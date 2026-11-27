@@ -49,7 +49,7 @@ def polite_get(session, url, tries=5, delay=3.0, **kw):
             return r
         if r.status_code in (429, 503):
             time.sleep(int(r.headers.get("Retry-After", 10 * (i + 1)))); continue
-        if r.status_code == 404:
+        if r.status_code in (401, 403, 404, 410):   # permanent: don't retry
             return r
         time.sleep(delay * (i + 1))
     return None

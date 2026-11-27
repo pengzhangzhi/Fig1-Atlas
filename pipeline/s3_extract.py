@@ -22,22 +22,33 @@ from PIL import Image
 from common import CACHE, UA, read_jsonl, write_jsonl, polite_get
 
 FIG_W, THUMB_W = 1600, 480
-CAP_RE = re.compile(r"^\s*(Figure|Fig\.?)\s*(1|I)\s*[:.|\-–—]", re.I)
+# label then punctuation ("Figure 1:", "Fig. 1.") or a bold-style label followed by a capital/paren ("Figure 1 Video-As-Prompt …")
+CAP_RE = re.compile(r"^\s*(?:Figure|Fig\.?)\s*(?:1|I)(?:\s*[:.|\-–—]|\s+(?=[A-Z(\[]))")
 
 
 # ---------------------------------------------------------------- downloads
-_last = [0.0]
+import threading
+_rate = {"last": 0.0, "gap": 1.0, "lock": threading.Lock()}
+
+
+def _throttle():
+    """Shared limiter: request *starts* are spaced >= gap seconds apart across all workers."""
+    with _rate["lock"]:
+        wait = _rate["gap"] - (time.time() - _rate["last"])
+        if wait > 0:
+            time.sleep(wait)
+        _rate["last"] = time.time()
+
+
 def arxiv_get(s, url, dest: Path):
     if dest.exists() and dest.stat().st_size > 0:
         return dest
-    wait = 3.0 - (time.time() - _last[0])
-    if wait > 0:
-        time.sleep(wait)
+    _throttle()
     r = polite_get(s, url)
-    _last[0] = time.time()
     if r is None or r.status_code != 200:
         return None
-    dest.write_bytes(r.content)
+    tmp = dest.with_suffix(dest.suffix + ".part")
+    tmp.write_bytes(r.content); tmp.replace(dest)
     return dest
 
 
@@ -161,7 +172,7 @@ def clean_caption(c):
 
 
 # ---------------------------------------------------------------- PDF side
-ANY_CAP_RE = re.compile(r"^\s*(Figure|Fig\.?)\s*([0-9]+(?:\.[0-9]+)?|[IVX]+)\s*[:.|\-–—]", re.I)
+ANY_CAP_RE = re.compile(r"^\s*(?:Figure|Fig\.?|FIGURE|FIG\.)\s*(?:[0-9]+(?:\.[0-9]+)?|[IVX]+)(?:\s*[:.|\-–—]|\s+(?=[A-Z(\[]))")
 
 
 def _plain(t):
@@ -231,14 +242,16 @@ def figure_region(page, cap: fitz.Rect):
         x0, x1 = cap.x0 - 12, cap.x1 + 12
     else:
         x0, x1 = tx0 - 12, tx1 + 12
-    inside = lambda r: r.x1 > x0 and r.x0 < x1
+    def inside(r, lo=x0, hi=x1):
+        ov = min(r.x1, hi) - max(r.x0, lo)
+        return ov > 0.5 * max(r.width, 1) or (ov > 0 and r.width > 0.5 * (hi - lo))
     items = []  # (rect, kind)
     for info in page.get_image_info():
         r = fitz.Rect(info["bbox"]) & P
         if r.width > 3 and r.height > 3:
             items.append((r, "img"))
     for d in page.get_drawings():
-        r = fitz.Rect(d["rect"])
+        r = fitz.Rect(d["rect"]) & P
         if r.width < 1 and r.height < 1:
             continue
         if r.width > 0.9 * P.width and r.height < 2:   # page rules
@@ -249,21 +262,56 @@ def figure_region(page, cap: fitz.Rect):
         if r.intersects(cap) or ANY_CAP_RE.match(b["text"]):
             continue
         items.append((r, "para" if is_para(b) else "text"))
-    # grow upward from the caption through contiguous non-paragraph items
-    cand = [(r, k) for r, k in items if inside(r) and r.y1 <= cap.y0 + 4 and r.y0 >= margin_top]
-    cand.sort(key=lambda t: -t[0].y1)
-    top, region, gap = cap.y0, None, 28
-    for r, k in cand:
-        if r.y1 < top - gap:
-            break
-        if k == "para":
-            break
-        top = min(top, r.y0)
-        region = r if region is None else region | r
-    if region is None or sum(1 for r, k in cand if k in ("img", "draw") and region.contains(r)) == 0:
-        return None
-    region = fitz.Rect(max(region.x0, x0 - 10), region.y0, min(region.x1, x1 + 10), cap.y0 - 1) & P
-    return region + (-4, -4, 4, 0)
+
+    # a drawn frame/box that encloses body-text paragraphs (e.g. a boxed abstract) is text, not figure
+    para_rects = [r for r, k in items if k == "para"]
+    items = [(r, "para" if k == "draw" and any(r.contains(p) for p in para_rects) else k) for r, k in items]
+
+    def grow(cand, start, key, edge):
+        """Walk outward from the caption through contiguous non-paragraph items."""
+        cand.sort(key=key)
+        front, region, gap = start, None, 28
+        for r, k in cand:
+            if edge(r, front, gap):
+                break
+            if k == "para":
+                break
+            front = min(front, r.y0) if key is _by_bottom else max(front, r.y1)
+            region = r if region is None else region | r
+        if region is None or not any(k in ("img", "draw") and region.contains(r) for r, k in cand):
+            return None
+        return region
+
+    # 1) figure above the caption (the common case). Items may overlap the caption top a little
+    #    (images often carry whitespace), so accept anything that starts above it.
+    above = [(r, k) for r, k in items if inside(r) and r.y0 < cap.y0 - 2 and r.y1 <= cap.y1 and r.y0 >= margin_top]
+    region = grow(above, cap.y0, _by_bottom, lambda r, f, g: r.y1 < f - g)
+    if region is not None:
+        region = fitz.Rect(max(region.x0, x0 - 10), region.y0, min(region.x1, x1 + 10), cap.y0 - 1) & P
+        return region + (-4, -4, 4, 0)
+    # 2) side caption (SCfigure / sidecap): graphics beside the caption, overlapping it vertically
+    side = [(r, k) for r, k in items if k in ("img", "draw", "text") and not inside(r, cap.x0, cap.x1)
+            and r.y1 > cap.y0 - 40 and r.y0 < cap.y1 + 40 and r.x0 >= tx0 - 12 and r.x1 <= tx1 + 12]
+    if any(k in ("img", "draw") for r, k in side):
+        region = None
+        for r, k in side:
+            region = r if region is None else region | r
+        return (region & P) + (-4, -4, 4, 4)
+    # 3) caption above the figure
+    below = [(r, k) for r, k in items if inside(r) and r.y0 >= cap.y1 - 2 and r.y1 <= P.height * 0.94]
+    region = grow(below, cap.y1, _by_top, lambda r, f, g: r.y0 > f + g)
+    if region is not None:
+        region = fitz.Rect(max(region.x0, x0 - 10), cap.y1 + 1, min(region.x1, x1 + 10), region.y1) & P
+        return region + (-4, 0, 4, 4)
+    return None
+
+
+def _by_bottom(t):
+    return -t[0].y1
+
+
+def _by_top(t):
+    return t[0].y0
 
 
 def render(page, clip, out_png, out_webp):
@@ -330,24 +378,33 @@ def main():
     ap.add_argument("key")
     ap.add_argument("--ids")
     ap.add_argument("--redo", action="store_true", help="re-run extraction (downloads stay cached)")
+    ap.add_argument("--workers", type=int, default=4)
+    ap.add_argument("--gap", type=float, default=1.0, help="min seconds between arXiv request starts (all workers)")
     a = ap.parse_args()
     rows = read_jsonl(CACHE / "work" / f"matched_{a.key}.jsonl")
     if a.ids:
         keep = set(Path(a.ids).read_text().split()); rows = [r for r in rows if r["id"] in keep]
     out_p = CACHE / "work" / f"extracted_{a.key}.jsonl"
     done = {r["id"]: r for r in read_jsonl(out_p)}
-    s = requests.Session(); s.headers["User-Agent"] = UA
-    for i, p in enumerate(rows):
-        if p["id"] in done and not a.redo and done[p["id"]]["status"] not in ("no_pdf",):
-            continue
+    _rate["gap"] = a.gap
+    todo = [p for p in rows if a.redo or p["id"] not in done or done[p["id"]]["status"] in ("no_pdf",)]
+    local = threading.local()
+
+    def work(p):
+        if not hasattr(local, "s"):
+            local.s = requests.Session(); local.s.headers["User-Agent"] = UA
         try:
-            done[p["id"]] = process(p, s)
+            return process(p, local.s)
         except Exception as e:
-            done[p["id"]] = {"id": p["id"], "status": "error", "error": repr(e)[:300]}
-        if i % 10 == 0:
-            write_jsonl(out_p, sorted(done.values(), key=lambda r: r["id"]))
-            from collections import Counter
-            print(i, Counter(r["status"] for r in done.values()), flush=True)
+            return {"id": p["id"], "status": "error", "error": repr(e)[:300]}
+
+    from collections import Counter
+    with ThreadPoolExecutor(a.workers) as pool:
+        for i, r in enumerate(pool.map(work, todo)):
+            done[r["id"]] = r
+            if i % 20 == 0:
+                write_jsonl(out_p, sorted(done.values(), key=lambda r: r["id"]))
+                print(i, len(todo), Counter(r["status"] for r in done.values()), flush=True)
     write_jsonl(out_p, sorted(done.values(), key=lambda r: r["id"]))
     from collections import Counter
     print("done", Counter(r["status"] for r in done.values()))

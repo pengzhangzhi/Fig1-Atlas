@@ -116,7 +116,9 @@ def main():
         keep = set(Path(a.ids).read_text().split()); ext = [r for r in ext if r["id"] in keep]
     out_p = CACHE / "work" / f"annotated_{a.key}.jsonl"
     done = {r["id"]: r for r in read_jsonl(out_p)}
-    todo = [e for e in ext if a.redo or e["id"] not in done or "error" in done[e["id"]]]
+    # re-annotate when the crop changed since annotation (records carry the bbox they were made from)
+    stale = lambda e: "bbox" in done[e["id"]] and done[e["id"]]["bbox"] != e.get("bbox")
+    todo = [e for e in ext if a.redo or e["id"] not in done or "error" in done[e["id"]] or stale(e)]
     lock = threading.Lock()
     print(f"{len(todo)} to annotate with {a.backend}:{model}", flush=True)
 
@@ -133,7 +135,7 @@ def main():
                 else:
                     txt, usage = call_openai(prompt, img, model, a.base_url)
                 d = parse_json(txt)
-                d.update(id=e["id"], annotator=f"{a.backend}:{model}", usage=usage)
+                d.update(id=e["id"], annotator=f"{a.backend}:{model}", usage=usage, bbox=e.get("bbox"))
                 return d
             except Exception as ex:
                 last = repr(ex)[:300]
