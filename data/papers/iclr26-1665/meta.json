@@ -14,22 +14,22 @@
  "topic": "Reinforcement Learning->Deep RL",
  "role": "analysis-finding",
  "role2": null,
- "claim": "Increasing batch size shrinks utility and hypervolume, and the learned reward distribution collapses into a narrow, concentrated region compared with the original method.",
- "layout": "3 panels: two stacked bar charts on the left (a, b), one large KDE contour plot on the right (c) with a zoomed inset and a shared legend underneath",
+ "claim": "Larger training batch sizes degrade performance and shift the learned distribution away from the original method, revealing a sensitivity that motivates our design choices.",
+ "layout": "3 panels: two stacked bar charts on the left (a, b), one large KDE contour plot on the right (c) with a zoomed inset and a legend below",
  "tags": [
   "batch-size",
-  "analysis",
+  "sensitivity",
   "kde-contour",
+  "pareto-front",
   "multi-objective",
   "reward-free",
-  "hypervolume",
   "ablation"
  ],
  "style": [
   "plot",
   "colorful"
  ],
- "description": "Three-panel figure on the Deep Sea Treasure task. On the left, two stacked bar charts compare batch sizes 256 (black bar) and 65536 (orange bar). Panel (a) shows utility (UT, higher is better), about 4.5 versus 3.9. Panel (b) shows hypervolume (HV, higher is better), about 720 versus 640. On the right, panel (c) is a large KDE contour plot. Its axes are Reward Dimension 1 (Treasure Value) and Reward Dimension 2 (Time Penalty). Purple contours for the original FB are broad and spread over the plane. Red, green, orange and blue contours for b = 64, 256, 4096 and 65536 form narrow diagonal bands near the top. A zoomed inset magnifies that band, and a legend below maps colors to settings. The eye goes first to the bold bars, then to the contour plot.",
+ "description": "Three-panel plot figure on a Deep Sea Treasure task. Panels (a) and (b) are stacked bar charts comparing batch size 256 (black bar) and 65536 (orange bar). Panel (a) shows utility (UT, higher is better) falling from about 4.5 to about 3.9. Panel (b) shows hypervolume (HV, higher is better) falling from about 720 to about 640. Panel (c) is a large kernel density estimate contour plot over Reward Dimension 1 (Treasure Value) and Reward Dimension 2 (Time Penalty). Purple contours for Original FB sit at the left, away from the Pareto-like diagonal band. Elongated red, green, orange and blue contours for b=64, 256, 4096 and 65536 lie along a diagonal band at the top right. A zoomed inset box shows the overlapping contours in detail. A legend sits below the plots. The eye goes first to the colorful contour plot.",
  "caption": "MORL-FB",
  "caption_source": "latex",
  "abstract": "Many sequential decision-making tasks involve optimizing multiple conflicting objectives, requiring policies that adapt to different user preferences. In multi-objective reinforcement learning (MORL), one widely studied approach} addresses this by training a single policy network conditioned on preference-weighted rewards. In this paper, we explore a novel algorithmic perspective: leveraging reward-free reinforcement learning (RFRL) for MORL. While RFRL has historically been studied independently of MORL, it learns optimal policies for any possible reward function, making it a natural fit for MORL's challenge of handling unknown user preferences. We propose using the RFRL's training objective as an auxiliary task to enhance MORL, enabling more effective knowledge sharing beyond the multi-objective reward function given at training time. To this end, we adapt a state-of-the-art RFRL algorithm to the MORL setting and introduce a preference-guided exploration strategy that focuses learning on relevant parts of the environment. Through extensive experiments and ablation studies, we demonstrate that our approach significantly outperforms the state-of-the-art MORL methods across diverse MO-Gymnasium tasks, achieving superior performance and data efficiency. This work provides the first systematic adaptation of RFRL to MORL, demonstrating its potential as a scalable and empirically effective solution to multi-objective policy learning.",
@@ -45,7 +45,9 @@
  "image_url": null,
  "thumb_url": null,
  "figure_page": 3,
- "qc_flags": [],
+ "qc_flags": [
+  "bad-crop"
+ ],
  "annotator": "claude-cli:sonnet",
- "role_confidence": 0.8
+ "role_confidence": 0.6
 }

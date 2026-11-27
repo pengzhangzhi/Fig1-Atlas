@@ -11,25 +11,25 @@
  "tier": "poster",
  "track": "main",
  "topic": "General Machine Learning->Representation Learning",
- "role": "problem-setup",
- "role2": "prior-vs-ours",
- "claim": "Averaging over a few sampled sequences gives a falsely reassuring estimate; characterizing the full performance distribution and its extremes exposes hidden worst-case failures.",
- "layout": "3 columns: left blue-dotted panel (existing protocol), center real distribution with alarm callout, right red-dotted panel (ours); top banners show hardest and easiest sequences; thought bubbles at bottom",
+ "role": "prior-vs-ours",
+ "role2": "problem-setup",
+ "claim": "Evaluating on a few random sequences reports a reassuring average and hides worst-case failures; evaluating extreme sequences reveals the true performance distribution and its bounds.",
+ "layout": "3 columns: left dashed blue box (existing protocol), center real distribution with message box, right dashed red box (ours). Each side has a sequence strip on top, a density plot, and a robot thought bubble.",
  "tags": [
   "evaluation-protocol",
   "class-incremental-learning",
-  "performance-distribution",
   "extreme-cases",
+  "performance-distribution",
   "worst-case",
-  "misleading-average",
-  "robustness"
+  "robustness",
+  "misleading-average"
  ],
  "style": [
   "colorful",
   "plot",
   "icon-heavy"
  ],
- "description": "Three-column figure. Top has two orange arrows labeled 'Incremental Learning Process'. Under them are pink and gray boxes showing the hardest and easiest class sequences as row icons: car, bus, motorbike, cone, house, bench. A computer icon labeled 'An Auto-Drive System' sits in the center above a black density curve, the 'Real Performance Distribution'. Dotted gray arrows link the two sequence boxes to the tails of that curve. The left panel has a blue dotted border. It plots a narrow blue dashed density and a broad black density with three blue stars. A robot's thought bubble reads 'Your model is safe with an average accuracy of 85%!' under the label 'Existing RS Protocol'. The right panel has a red dotted border. It shows a red dashed curve fitted to the black one, with red diamonds at the extremes. Its thought bubble reads 'may be flawed, with accuracy as low as 70%', under 'Ours EDGE Protocol'. A siren callout in the center says the evaluation protocol should consider the distribution and its bounds.",
+ "description": "The figure has three columns. The left column, in a dotted blue frame, shows the existing random-sampling (RS) protocol. A pink banner reads 'Possible Sequence 1 (Hardest Sequence)' and holds a row of icons: car, bus, motorcycle, cone, house and bench. Below it is a density plot with a narrow dashed blue curve over a broad black curve, with three blue stars near the peak. A robot's thought bubble says 'Your model is safe with average accuracy of 85%!' The right column, in a dotted red frame, shows the EDGE protocol. A gray banner reads 'Easiest Sequence' with the same icons in a different order. Its plot shows a dashed red curve and red diamonds at the extremes. The robot says 'may be flawed, with accuracy as low as 70%'. The center shows an auto-drive system icon and the real performance distribution. Dotted arrows from the two sequences point to the tails of that distribution. A siren icon sits above a boxed message that the evaluation should consider upper and lower bounds.",
  "caption": "Existing CIL evaluations may be misleading! They merely compute the average accuracy without perceiving the performance distribution, failing to anticipate the impact of potential extreme sequences on the model.",
  "caption_source": "latex",
  "abstract": "Class Incremental Learning (CIL) requires models to continuously learn new classes without forgetting previously learned ones, while maintaining stable performance across all possible class sequences. In real-world settings, the order in which classes arrive is diverse and unpredictable, and model performance can vary substantially across different sequences. Yet mainstream evaluation protocols calculate mean and variance from only a small set of randomly sampled sequences. Our theoretical analysis and empirical results demonstrate that this sampling strategy fails to capture the full performance range, resulting in biased mean estimates and a severe underestimation of the true variance in the performance distribution. We therefore contend that a robust CIL evaluation protocol should accurately characterize and estimate the entire performance distribution. To this end, we introduce the concept of extreme sequences and provide theoretical justification for their crucial role in the reliable evaluation of CIL. Moreover, we observe a consistent positive correlation between inter-task similarity and model performance, a relation that can be leveraged to guide the search for extreme sequences. Building on these insights, we propose EDGE (Extreme case-based Distribution & Generalization Evaluation), an evaluation protocol that adaptively identifies and samples extreme class sequences using inter-task similarity, offering a closer approximation of the ground-truth performance distribution. Extensive experiments demonstrate that EDGE effectively captures performance extremes and yields more accurate estimates of distributional boundaries, providing actionable insights for model selection and robustness checking. Our code is available at https://github.com/AIGNLAI/EDGE.",
@@ -47,5 +47,5 @@
  "figure_page": 1,
  "qc_flags": [],
  "annotator": "claude-cli:sonnet",
- "role_confidence": 0.6
+ "role_confidence": 0.8
 }

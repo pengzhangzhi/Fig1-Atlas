@@ -15,23 +15,23 @@
  "topic": "Applications->Language, Speech and Dialog",
  "role": "analysis-finding",
  "role2": "teaser-result",
- "claim": "Scaling test-time compute does not reliably improve accuracy on a hard benchmark; performance often plateaus or declines even as frontier models improve.",
- "layout": "2 side-by-side line plots sharing a title, accuracy vs thinking tokens, labeled low/medium/high effort points, legend top-right",
+ "claim": "Even the strongest reasoning models stay weak on a hard benchmark, and more test-time compute does not reliably improve accuracy, often plateauing or declining.",
+ "layout": "2 side-by-side line plots sharing a y-axis label, older models on the left and newer models on the right, with labeled low/medium/high effort points",
  "tags": [
   "test-time-compute",
   "scaling",
-  "reasoning-effort",
   "benchmark",
+  "reasoning-models",
   "plateau",
-  "frontier-models",
-  "evaluation"
+  "search-augmented",
+  "failure-analysis"
  ],
  "style": [
   "plot",
-  "minimal",
-  "colorful"
+  "colorful",
+  "minimal"
  ],
- "description": "Two side-by-side line charts, both titled Seal-0, plot Accuracy (%) on the y-axis against average thinking time in tokens on the x-axis. The left panel shows o3-mini (blue), o4-mini (orange) and o3 (green). Each curve has three circle markers labeled low, medium and high reasoning effort, each with its accuracy value. o3 peaks at 17.1 at medium and falls to 14.4 at high. o4-mini drifts down from 6.3 to 4.5. o3-mini stays flat near 2 percent. The right panel shows the newer GPT-5 (red-orange) and GPT-5-mini (magenta) on a 20-50 scale. GPT-5 rises from 37.8 to 43.2 and then plateaus. GPT-5-mini dips to 23.4 and then climbs to 41.4. Legends sit top-right, with light dotted grids and bold axis labels.",
+ "description": "Two side-by-side line charts, both titled SEAL-0. The x-axis is average thinking time in tokens and the y-axis is accuracy in percent. The left panel shows o3-mini in blue, o4-mini in orange and o3 in green. Accuracy stays low, from about 2% to 17%. Each model's curve is flat or non-monotonic across the low, medium and high reasoning-effort points, and o3 peaks at medium with 17.1. The right panel shows GPT-5 in red-orange and GPT-5-mini in magenta, at higher accuracy of 23 to 43%. GPT-5 plateaus at 43.2 from medium to high, and GPT-5-mini dips at medium before rising. Each point is an open circle with its value and its effort label. Legends sit in the top corners. The eye goes first to the colored lines and the numeric labels.",
  "caption": "Frontier model performance before (left) and after (right) the release of \\sealzero. Despite potential data contamination or direct access by agentic models, \\sealzero continues to pose a significant challenge for current frontier LLMs. Test-time scaling does not lead to reliable gains, with performance often plateauing or even declining early. See Figure [ref] and Table [ref] for additional results.",
  "caption_source": "latex",
  "abstract": "We introduce SealQA, a new challenge benchmark for evaluating SEarch-Augmented Language models on fact-seeking questions where web search yields conflicting, noisy, or unhelpful results. SealQA comes in three flavors: (1) Seal-0 (main) and (2) Seal-Hard, which assess factual accuracy and reasoning capabilities, with Seal-0 focusing on the most challenging questions where chat models (e.g., GPT-4.1) typically achieve near-zero accuracy; and (3) LongSeal, which extends SealQA to test long-context, multi-document reasoning in \"needle-in-a-haystack\" settings. Our evaluation reveals critical limitations in current models: Even frontier LLMs perform poorly across all SealQA flavors. On Seal-0, frontier agentic models equipped with tools like o3 and o4-mini achieve only 17.1% and 6.3% accuracy, respectively, at their best reasoning efforts. We find that advanced reasoning models such as DeepSeek-R1-671B and o3-mini are highly vulnerable to noisy search results. Notably, increasing test-time compute does not yield reliable gains across o3-mini, o4-mini, and o3, with performance often plateauing or even declining early. Additionally, while recent models are less affected by the \"lost-in-the-middle\" issue, they still fail to reliably identify relevant documents in LongSeal when faced with numerous distractors. To facilitate future work, we release SealQA at huggingface.co/datasets/vtllms/sealqa.",
@@ -49,5 +49,5 @@
  "figure_page": 0,
  "qc_flags": [],
  "annotator": "claude-cli:sonnet",
- "role_confidence": 0.6
+ "role_confidence": 0.8
 }

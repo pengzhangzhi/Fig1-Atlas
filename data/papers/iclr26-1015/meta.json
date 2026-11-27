@@ -13,15 +13,15 @@
  "track": "main",
  "topic": "Theory->Domain Adaptation and Transfer Learning",
  "role": "pipeline",
- "role2": null,
- "claim": "A two-stage procedure fixes which layers to train offline, then resamples channels each epoch online so training stays within a fixed memory budget.",
- "layout": "2 boxed panels, left-to-right, big hollow arrows between stages, offline box feeding an online box with two epoch snapshots",
+ "role2": "prior-vs-ours",
+ "claim": "A two-stage procedure first selects which layers to train offline, then re-samples channels each epoch online to stay within a fixed memory budget.",
+ "layout": "2 main panels, left-to-right: offline layer selection, then online training across epochs, with block arrows and labels beneath them",
  "tags": [
   "memory-efficient",
   "fine-tuning",
   "layer-selection",
-  "dynamic-sparsity",
   "channel-sampling",
+  "dynamic-sparsity",
   "on-device",
   "two-stage"
  ],
@@ -30,7 +30,7 @@
   "colorful",
   "minimal"
  ],
- "description": "Two boxed stages run left to right. The left red-bordered box, labeled 'Offline - Layer Selection', shows a small neural network. Its layer groups sit in orange and blue rounded rectangles, with flame and snowflake icons marking which layers are updated and which are frozen. A large hollow arrow labeled 'On-device deployment' leads to the right green-bordered box, 'Online - Network Training'. That box has two copies of the network, labeled 'Training epoch 1' and 'Training epoch 2', followed by an ellipsis. Individual neurons carry flame icons (trainable) or snowflake icons (frozen), and red edges mark the updated connections. A second arrow labeled 'Random channel sampling' links the epochs, and a green RAM icon with a gauge labeled B_mem sits above each network to show the memory budget. The eye goes first to the colored headers and the flame/snowflake icons.",
+ "description": "The figure has two framed panels read left to right. The left panel, with a red header reading 'Offline - Layer Selection', shows a small fully connected network. Its layers are grouped by orange and blue shaded bands. Flame-and-snowflake icons below the bands mark which layers are trainable and which are frozen. A large hollow arrow labelled 'On-device deployment' leads to the right panel, which has a green header reading 'Online - Network Training'. That panel shows the same network at 'Training epoch 1' and 'Training epoch 2'. Individual neurons carry flame icons (updated) or snowflakes (frozen), and the edges are colored red or blue to match. Between the two epochs, a second arrow is labelled 'Random channel sampling', and the flame and snowflake pattern changes. A RAM chip with a gauge, labelled B_mem, marks the memory budget. Ellipses imply further epochs. The eye goes first to the flame and snowflake icons on the networks.",
  "caption": "TRady dynamically reselects the subgraph to update within the memory budget $B_{mem}$.",
  "caption_source": "latex",
  "abstract": "Memory-efficient training of deep neural networks has become increasingly important as models grow larger while deployment environments impose strict resource constraints. We propose TraDy, a novel transfer learning scheme leveraging two key insights: layer importance for updates is architecture-dependent and determinable a priori, while dynamic stochastic channel selection provides superior gradient approximation compared to static approaches. We introduce a dynamic channel selection approach that stochastically resamples channels between epochs within preselected layers. Extensive experiments demonstrate TraDy achieves state-of-the-art performance across various downstream tasks and architectures while maintaining strict memory constraints, achieving up to 99% activation sparsity, 95% weight derivative sparsity, and 97% reduction in FLOPs for weight derivative computation.",
@@ -48,5 +48,5 @@
  "figure_page": 0,
  "qc_flags": [],
  "annotator": "claude-cli:sonnet",
- "role_confidence": 0.85
+ "role_confidence": 0.8
 }

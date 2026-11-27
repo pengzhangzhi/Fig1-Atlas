@@ -33,9 +33,9 @@ Look at the figure image{image_hint}. Return ONLY a JSON object, no prose, with 
   "role": one of {role_list}
   "role2": one of the roles or null
   "role_confidence": number 0-1, how sure you are of "role"
-  "claim": ONE sentence (<= 25 words) stating what the figure argues, phrased abstractly enough to transfer across topics (e.g. "Prior samplers need many steps; ours maps noise to data in one.")
-  "layout": short phrase describing the layout: panel count, arrangement, reading direction, notable devices (e.g. "2 panels, left-to-right, math under arrows")
-  "tags": 3-7 lowercase keywords mixing method-type and argument-type words useful for cross-topic search (e.g. "one-step", "distillation", "efficiency", "discrete", "generative"); hyphenate multiword tags
+  "claim": ONE sentence (<= 20 words) stating what the figure argues, phrased abstractly enough to transfer across topics (e.g. "Prior samplers need many steps; ours maps noise to data in one.")
+  "layout": <= 12 words: panel count, arrangement, reading direction, one notable device (e.g. "2 panels, left-to-right, math under arrows")
+  "tags": 3-5 lowercase keywords mixing method-type and argument-type words useful for cross-topic search (e.g. "one-step", "distillation", "efficiency", "discrete", "generative"); hyphenate multiword tags
   "style": 1-4 of {style_list}
   "description": 80-150 words describing the figure concretely for someone who cannot see it: panels, flow, visual elements, notation, color use, where the eye goes first
   "is_figure": false only if the image is not a real figure (e.g. a table, a blank/garbled crop, or only text); else true
@@ -65,7 +65,7 @@ def parse_json(text):
     if d.get("role2") not in ROLES or d.get("role2") == d["role"]:
         d["role2"] = None
     d["style"] = [s for s in d.get("style", []) if s in STYLES]
-    d["tags"] = [re.sub(r"\s+", "-", t.strip().lower()) for t in d.get("tags", [])][:7]
+    d["tags"] = [re.sub(r"\s+", "-", t.strip().lower()) for t in d.get("tags", [])][:5]
     return d
 
 

@@ -12,9 +12,9 @@
  "track": "main",
  "topic": "Applications->Genetics, Cell Biology, Health, etc",
  "role": "pipeline",
- "role2": null,
- "claim": "A flow-matching model transports control cells to perturbed cell distributions using a specialized transformer backbone, with distribution-level MMD alignment replacing cell-level correspondence.",
- "layout": "3 regions: left stacked panels (data setup and flow trajectory over t=0→1), top-right zoomed module insets (Cell Encoder, Differential Transformer), bottom-right left-to-right architecture flow with a dashed ×N repeat block",
+ "role2": "overview-framework",
+ "claim": "A generative model transports control cells to perturbed distributions via flow matching, using a modular transformer backbone and a distribution-level alignment loss.",
+ "layout": "3 regions: left vertical conceptual panel (data and trajectory t=0→1), right-top two rounded module insets (Cell Encoder, Differential Transformer), right-bottom left-to-right architecture flow with repeated N block",
  "tags": [
   "flow-matching",
   "generative-model",
@@ -22,14 +22,14 @@
   "distribution-alignment",
   "mmd",
   "single-cell",
-  "architecture-diagram"
+  "perturbation-prediction"
  ],
  "style": [
   "colorful",
   "icon-heavy",
   "math-heavy"
  ],
- "description": "The figure has three zones. At left, an upper panel titled 'Experimental data' shows a control cell cluster with arrows fanning out to green, blue and red perturbed cell clusters, labeled {c_x}, {c_p} and {x}. Below it, 'scDFM trajectory (Flow Matching Process)' shows an orange noise blob at t=0 mapped through a grey scDFM box to green, blue and red density blobs at t=1. A velocity equation and an MMD double-arrow are drawn on the trajectory. At top right, two rounded zoom-in boxes give details: a pink Cell Encoder, with a gene-correlation heatmap, cross-attention and MLP, and a purple Differential Transformer, with a softmax-difference attention formula. The bottom right is the main pipeline. Gene/Expr inputs, a perturbation embedding and a time embedding feed Cell Encoders and stacked Differential Transformer blocks with adaLN, repeated ×N, and end in an MLP that outputs a velocity. Salmon and purple color-coding marks the condition and target streams.",
+ "description": "The figure has three parts. The left column shows experimental data: control cell clusters ({c_x}) and perturbation ({c_p}) arrows leading to three target cell populations in yellow, green, blue and red ({x}). Beneath it is the scDFM trajectory: a noise blob at t=0 flows through a grey scDFM box to green, blue and red target distributions at t=1, with an MMD double-headed arrow and a velocity ODE formula. The top right has two rounded insets: a pink Cell Encoder (gene correlation heatmap, masked multi-head cross-attention, MLP, embedding sum) and a purple Differential Transformer (softmax difference formula, MLPs). The bottom right is a left-to-right flow of gene/expression inputs, cell encoders, perturbation and time embeddings. These feed a dashed repeated block of two Differential Transformers with adaLN conditioning, ending in an MLP that outputs velocity. Colored boxes (orange, purple, green) encode the inputs.",
  "caption": "Overview of scDFM, which models perturbation-specific cell state transitions as a flow matching process from noise to perturbed expression. The PAD-Transformer predicts time-dependent velocities conditioned on control cell context and perturbation embedding, while gene–gene masked attention and differential Transformer layers capture biological dependencies. Final distributional alignment is enforced via MMD regularization.",
  "caption_source": "latex",
  "abstract": "A central goal in systems biology and drug discovery is to predict the transcriptional response of cells to perturbations. This task is challenging due to the noisy and sparse nature of single-cell measurements, as well as the fact that perturbations often induce population-level shifts rather than changes in individual cells. Existing deep learning methods typically assume cell-level correspondences, limiting their ability to capture such global effects. We present scDFM, a generative framework based on conditional flow matching that models the full distribution of perturbed cells conditioned on control states. By incorporating a maximum mean discrepancy (MMD) objective, our method aligns perturbed and control populations beyond cell-level correspondences. To further improve robustness to sparsity and noise, we introduce the Perturbation-Aware Differential Transformer (PAD-Transformer), a backbone architecture that leverages gene interaction graphs and differential attention to capture context-specific expression changes. Across multiple genetic and drug perturbation benchmarks, scDFM consistently outperforms prior methods, demonstrating strong generalization in both unseen and combinatorial settings. In the combinatorial setting, it reduces mean squared error by 19.6% relative to the strongest baseline. These results highlight the importance of distribution-level generative modeling for robust in silico perturbation prediction. The code is available at https://github.com/AI4Science-WestlakeU/scDFM",
@@ -47,5 +47,5 @@
  "figure_page": 2,
  "qc_flags": [],
  "annotator": "claude-cli:sonnet",
- "role_confidence": 0.9
+ "role_confidence": 0.85
 }

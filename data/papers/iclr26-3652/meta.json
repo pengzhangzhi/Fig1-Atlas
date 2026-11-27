@@ -17,24 +17,23 @@
  "track": "main",
  "topic": "Deep Learning->Generative Models and Autoencoders",
  "role": "analysis-finding",
- "role2": "teaser-result",
- "claim": "The correct answer emerges well before the final step, and a simple prompt change moves it earlier still, so most of the refinement work is unnecessary.",
- "layout": "2x2 grid of histograms with (a)-(d) captions below; columns compare remasking strategies and rows compare prompt conditions; dashed threshold lines with callout boxes",
+ "role2": null,
+ "claim": "Correct answers emerge in the model's internal predictions well before decoding finishes, and a suffix prompt makes this early convergence much stronger.",
+ "layout": "2x2 grid of histograms, rows by remasking strategy and columns by suffix prompt, with dashed threshold lines and callout boxes on each panel",
  "tags": [
   "early-convergence",
   "histogram",
   "diffusion-language-model",
-  "efficiency",
-  "inference-acceleration",
+  "decoding-efficiency",
   "empirical-observation",
-  "training-free"
+  "ablation",
+  "remasking"
  ],
  "style": [
   "plot",
-  "colorful",
-  "minimal"
+  "colorful"
  ],
- "description": "Four histograms in a 2x2 grid. Each plots the number of samples (y-axis) against when the correct answer first emerges, as a percentage of total decoding steps (x-axis, 0 to 100). The bars are shaded from light to dark blue as the step percentage increases. Two vertical dashed lines mark 25% (red) and 50% (orange) of decoding steps. Rounded callout boxes with curved arrows point to each line and state the share of samples that have the correct answer by that point. Examples are 7.9% and 24.2% in panel (a), and 97.2% and 97.3% in panels (c) and (d). Captions below each panel name the condition: with or without a suffix prompt, under low-confidence or random remasking. Panels (a) and (c) are the standard-prompt baselines. Panels (b) and (d) use the suffix prompt, and their mass is concentrated at the far left. The eye goes first to the red and orange callouts and the large leftmost bars.",
+ "description": "Four histogram panels in a 2x2 grid. Each plots the number of samples against the step, as a percentage of total decoding steps, at which the correct answer first emerges. The bars are blue and shade from light to dark as the percentage increases. A red dashed vertical line marks 25% of steps and an orange dash-dot line marks 50%. Each panel has red and orange rounded callout boxes with curved arrows pointing at the lines. They give the share of samples that are correct by each threshold, for example 7.9% and 24.2% in panel (a), and 97.3% at 50% in panel (d). The left column has no suffix prompt and the right column has one. The top row uses low-confidence remasking and the bottom row uses random remasking. Panel (a) is skewed toward late emergence. The other panels are heavily concentrated near zero. The eye goes first to the colored callouts and the tall left-hand bars.",
  "caption": "Distribution of early correct answer detection during decoding process.. Histograms show when correct answers first emerge during diffusion decoding, measured as percentage of total decoding steps, using LLaDA 8B on GSM8K. Red and orange dashed lines indicate 50% and 70% completion thresholds, with corresponding statistics showing substantial early convergence. Suffix prompting (b,d) dramatically accelerates convergence compared to standard prompting (a,c). This early convergence pattern demonstrates that correct answer tokens stabilize as top-1 candidates well before full decoding.",
  "caption_source": "latex",
  "abstract": "Diffusion language models (DLMs) have recently emerged as an alternative to autoregressive approaches, offering parallel sequence generation and flexible token orders. However, their inference remains slower than that of autoregressive models, primarily due to the cost of bidirectional attention and the large number of refinement steps required for high quality outputs. In this work, we highlight and leverage an overlooked property of DLMs early answer convergence: in many cases, the correct answer can be internally identified by half steps before the final decoding step, both under semi-autoregressive and random remasking schedules. For example, on GSM8K and MMLU, up to 97% and 99% of instances, respectively, can be decoded correctly using only half of the refinement steps. Building on this observation, we introduce Prophet, a training-free fast decoding paradigm that enables early commit decoding. Specifically, Prophet dynamically decides whether to continue refinement or to go \"all-in\" (i.e., decode all remaining tokens in one step), using the confidence gap between the top-2 prediction candidates as the criterion. It integrates seamlessly into existing DLM implementations, incurs negligible overhead, and requires no additional training. Empirical evaluations of LLaDA-8B and Dream-7B across multiple tasks show that Prophet reduces the number of decoding steps by up to 3.4x while preserving high generation quality. These results recast DLM decoding as a problem of when to stop sampling, and demonstrate that early decode convergence provides a simple yet powerful mechanism for accelerating DLM inference, complementary to existing speedup techniques. Our code is publicly available at https://github.com/pixeli99/Prophet.",

@@ -13,22 +13,22 @@
  "topic": "Deep Learning->Generative Models and Autoencoders",
  "role": "analysis-finding",
  "role2": "problem-setup",
- "claim": "Likelihood-ratio estimates from the ELBO are high-variance and the alternative approximation is biased, so neither gives accurate, efficient importance ratios.",
- "layout": "single line plot with shaded variance band, log-scale y-axis, horizontal clipping band, legend top right",
+ "claim": "Both sampling-based likelihood estimates and the prior method's approximation give inaccurate policy ratios: one is high-variance and far outside the clip range, the other is biased.",
+ "layout": "single line plot, log-scale y-axis, shaded variance band over a shaded clip interval, legend at top right",
  "tags": [
   "policy-ratio",
-  "importance-sampling",
   "variance",
   "bias",
+  "importance-sampling",
   "likelihood-approximation",
-  "diffusion-language-model",
-  "reinforcement-learning"
+  "reinforcement-learning",
+  "diffusion-language-model"
  ],
  "style": [
   "plot",
   "minimal"
  ],
- "description": "A single line chart titled \"Policy Ratio\". The x-axis is \"Sample Size of t\", running 0 to 100. The y-axis is log-scaled and marked 1−ε, 100, 1+ε and 101. A navy ELBO curve with dot markers starts very high near x=0 and falls noisily toward the 1+ε line. A wide translucent blue band around it shows large variance, and the band narrows only slowly. A flat red dashed line labeled d1 sits near the bottom of the plot, close to the lower clipping bound. A horizontal orange band marks the unclipped interval [1−ε, 1+ε]. The legend is in the upper right. The eye goes first to the tall blue variance band and the steep initial ELBO drop, then to the red dashed line below it.",
+ "description": "A single line chart titled 'Policy Ratio' with a log-scale y-axis and 'Sample Size of t' (0 to 100) on the x-axis. A dark navy line with dots, labelled ELBO, starts very high near the top left and falls with jitter toward the clipping band. A wide translucent blue band shows its variance, staying far above the band for most of the range. A beige horizontal band marks the clipping interval from 1-ε to 1+ε. A thick red dashed horizontal line, labelled d1, sits inside the band near its lower edge, which shows a biased ratio. The legend is at the top right. The eye goes first to the large shaded blue envelope and the red dashed line sitting apart from the ELBO curve.",
  "caption": "Example policy ratio value $r_i^k$ computed using ELBO and approximated likelihood in d1 on GSM8K after a policy update. Ratio's unclipped interval is $[1-\\epsilon, 1+\\epsilon]$, where $\\epsilon=0.5$. ELBO-based likelihood approximation yields high-variance ratio estimates; d1 induces a biased ratio that can deviate substantially from ELBO. Both methods suffer from efficiently and accurately compute ratios.",
  "caption_source": "latex",
  "abstract": "Improving the reasoning capabilities of diffusion-based large language models (dLLMs) through reinforcement learning (RL) remains an open problem. The intractability of dLLMs likelihood function necessitates approximating the current, old, and reference policy likelihoods at each policy optimization step. This reliance introduces additional computational overhead, and can lead to large variance and estimation error in RL objective -- particularly in computing the policy ratio for importance sampling. To mitigate these issues, we introduce wd1, a novel ratio-free policy optimization approach that reformulates the RL objective as a weighted log-likelihood, requiring only a single approximation for the current parametrized policy likelihood. We formally show that our proposed method can be interpreted as energy-guided discrete diffusion training combined with negative sample unlearning, thereby confirming its theoretical soundness. In experiments on LLaDA-8B model, wd1 outperforms diffusion-based GRPO (d1) while requiring lower computational cost, achieving up to a $+59\\%$ improvement in accuracy. Furthermore, we extend wd1 to denoising-stepwise weighted policy optimization (wd1++), achieving state-of-the-art math performance of $44.2\\%$ on MATH500 and $84.5\\%$ on GSM8K with only 20 RL training steps.",
@@ -46,5 +46,5 @@
  "figure_page": 2,
  "qc_flags": [],
  "annotator": "claude-cli:sonnet",
- "role_confidence": 0.8
+ "role_confidence": 0.72
 }

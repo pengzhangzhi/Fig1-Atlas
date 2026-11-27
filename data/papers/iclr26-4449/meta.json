@@ -14,16 +14,16 @@
  "topic": "Social Aspects->Fairness, Equity, Justice and Safety",
  "role": "pipeline",
  "role2": "analysis-finding",
- "claim": "Perturbing inputs reveals a handful of critical neurons; masking them one by one leaves the output intact at first, then collapses it abruptly.",
- "layout": "Top-down flow in two stages: the upper boxed pipeline runs left-to-right, and a bottom row of three bar charts shows progressive masking, with arrows and large section titles",
+ "claim": "A perturbation-based procedure isolates a tiny set of critical units, and masking all of them causes sudden collapse rather than gradual degradation.",
+ "layout": "Top-to-bottom flow in 2 stacked panels: a boxed identification pipeline on top, then a masked-inference row feeding 3 bar charts. Arrows link the stages, with captions above the charts.",
  "tags": [
   "critical-neurons",
   "perturbation",
-  "neuron-masking",
+  "masking",
   "phase-transition",
   "interpretability",
   "robustness",
-  "llm"
+  "llm-analysis"
  ],
  "style": [
   "colorful",
@@ -31,7 +31,7 @@
   "plot",
   "text-heavy"
  ],
- "description": "The figure has two parts. The top part is a rounded box, titled 'Calculate difference in activation values', holding two parallel LLM paths. A clean input X and a perturbed input X+ε each pass through stacked LLM sheets and a neural-network graph labeled 'MLP down_proj'. A blue arrow leads to a panel of three highlighted neurons ('Select the 3 neurons with the greatest differences'). A brown curved arrow labeled 'Mask these 3 neurons' leads to the lower row. There the question 'What is the capital of France?' goes through the LLM with three neurons crossed out in red, producing a garbled 'Output' box. Below are three bar charts, 'Mask 1 neuron', 'Mask 2 neurons' and a third for all three. They show the Paris token probability falling from 0.7378 to 0.4573, then collapsing to rank #30698. Beige boxes under each chart list the Paris probability and rank. The palette is blue-teal with beige highlights.",
+ "description": "The top panel is a pipeline. A clean input X and a perturbed input X+epsilon each pass through stacked LLM layers and a small neural-network diagram labelled 'MLP down_proj'. Activation differences are calculated, and the three neurons with the greatest differences are selected and shown in a rounded box. A curved brown arrow labelled 'Mask these 3 neurons' leads down to the lower panel. There, a user icon asks 'What is the capital of France?' and the question goes into an LLM whose three neurons are crossed out in red. The LLM produces garbled 'Output' text. Below, three bar charts labelled Mask 1 neuron, Mask 2 neurons and all three show token probabilities. The Paris bar shrinks from 0.74 to 0.46, then disappears at 0.000005, rank #30698. Beige boxes under each chart give the numbers. Blue and teal tones dominate.",
  "caption": "Illustration of critical neuron identification and progressive masking effects, using DeepSeek-R1-Distill-Llama-70B as an example. The top panel shows that our method identifies 3 critical neurons located in MLP down\\_proj components of the transformer architecture. The bottom panel demonstrates the progressive degradation of model performance on the question \"What is the capital of France?\" through sequential masking: the left chart shows token probabilities after masking the first critical neuron (Paris probability: 0.737793, rank 1), the middle chart shows the effect of masking the first two critical neurons (Paris probability: 0.457275, rank 1), and the right chart reveals catastrophic failure after masking all three critical neurons (Paris probability: 0.000005, rank 30698). The progression illustrates a sharp phase transition where masking the complete critical neuron set triggers sudden collapse rather than gradual degradation.",
  "caption_source": "latex",
  "abstract": "Large Language Models (LLMs) have become foundational tools in natural language processing, powering a wide range of applications and research. Many studies have shown that LLMs share significant similarities with the human brain. Recent neuroscience research has found that a small subset of biological neurons in the human brain are crucial for core cognitive functions, which raises a fundamental question: do LLMs also contain a small subset of critical neurons? In this paper, we investigate this question by proposing a Perturbation-based Causal Identification of Critical Neurons method to systematically locate such critical neurons in LLMs. Our findings reveal three key insights: (1) LLMs contain ultra-sparse critical neuron sets. Disrupting these critical neurons can cause a 72B-parameter model with over 1.1 billion neurons to completely collapse, with perplexity increasing by up to 20 orders of magnitude; (2) These critical neurons are not uniformly distributed, but tend to concentrate in the outer layers, particularly within the MLP down\\_proj components; (3) Performance degradation exhibits sharp phase transitions, rather than a gradual decline, when these critical neurons are disrupted. Through comprehensive experiments across diverse model architectures and scales, we provide deeper analysis of these phenomena and their implications for LLM robustness and interpretability. These findings can offer guidance for developing more robust model architectures and improving deployment security in safety-critical applications. Our code is available at https://github.com/qqqqqqqzx/The-Achilles-Heel-of-LLMs.",
@@ -49,5 +49,5 @@
  "figure_page": 1,
  "qc_flags": [],
  "annotator": "claude-cli:sonnet",
- "role_confidence": 0.6
+ "role_confidence": 0.7
 }

@@ -11,24 +11,25 @@
  "tier": "poster",
  "track": "main",
  "topic": null,
- "role": "prior-vs-ours",
- "role2": "teaser-result",
- "claim": "A baseline sampler's few-step output deviates from the target distribution, while the proposed refinement matches the target multimodal density in one step.",
- "layout": "Side-by-side density plots in a single row (the crop shows two of what is likely three or more), titled by method and NFE, sharing p(x) axes",
+ "role": "teaser-result",
+ "role2": "prior-vs-ours",
+ "claim": "On a toy multimodal density, a one-step baseline misses peaks and valleys, while adding a refinement step matches the data as well as many-step sampling.",
+ "layout": "2x2 grid of density plots with a shared legend box on top, captions under each plot, and the right and bottom edges cut off",
  "tags": [
+  "mean-flow",
   "one-step",
-  "mixture-gaussian",
+  "noise-injection",
+  "refinement",
   "toy-example",
-  "flow-matching",
-  "sampling-quality",
-  "density-comparison",
+  "gaussian-mixture",
   "efficiency"
  ],
  "style": [
   "plot",
+  "colorful",
   "minimal"
  ],
- "description": "A row of 1-D density plots on a toy mixture-of-Gaussians. Each panel has a serif title: '1-NFE MeanFlow' on the left and '8-NFE MeanFlow' on the right. The y-axis is p(x), from 0 to 0.8, and the x-axis runs from about -2 to 2. Each panel draws a thick solid blue curve for the generated samples' density and an overlaid thick dashed orange curve for the ground-truth density. The target has three peaks, at about -1.5, 0.5 and 1.5. In the 1-NFE panel the blue curve slightly deviates from the target at the peaks and the valley. In the 8-NFE panel the blue curve is closer but still shows small bumps. The crop cuts off the right side, so the RMFlow panel is probably missing. The eye goes first to the large colored curves and the titles.",
+ "description": "A shared legend box at the top shows a solid blue line labeled Sample and a dashed orange line labeled Data. Below it is a grid of 1-D density plots, with p(x) on the y-axis (0 to 0.8) and x on the x-axis (about -2.5 to 2.5). Each plot overlays the sampled density in blue on the true three-peak mixture-Gaussian density in orange dashes. The top-left plot, captioned 1-NFE MeanFlow, shows visible mismatch: the peaks are too low or too high, and the valley near x=1 is filled in. The plot beside it, captioned 8-NFE MeanFlow, fits much more closely. The bottom row's plots fit very tightly, and their captions and any further panels appear to be cropped away. The eye goes first to the legend, then to the blue-versus-orange gaps in the top-left plot.",
  "caption": "Contrasting MeanFlow with RMFlow for mixture Gaussian sampling; see Section [ref] for experimental details and more results.",
  "caption_source": "latex",
  "abstract": "Mean flow (MeanFlow) enables efficient, high-fidelity image generation, yet its single-function evaluation (1-NFE) generation often cannot yield compelling results. We address this issue by introducing RMFlow, an efficient multimodal generative model that integrates a coarse 1-NFE MeanFlow transport with a subsequent tailored noise-injection refinement step. RMFlow approximates the average velocity of the flow path using a neural network trained with a new loss function that balances minimizing the Wasserstein distance between probability paths and maximizing sample likelihood. RMFlow achieves near state-of-the-art results on text-to-image, context-to-molecule, and time-series generation using only 1-NFE, at a computational cost comparable to the baseline MeanFlows.",
@@ -48,5 +49,5 @@
   "bad-crop"
  ],
  "annotator": "claude-cli:sonnet",
- "role_confidence": 0.5
+ "role_confidence": 0.55
 }

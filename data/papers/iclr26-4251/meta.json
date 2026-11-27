@@ -22,16 +22,16 @@
  "topic": "Computer Vision->Image and Video Generation",
  "role": "prior-vs-ours",
  "role2": "analysis-finding",
- "claim": "Sequential reasoning-then-generation propagates vague or wrong reasoning into mismatched outputs and can hurt performance; denoising text and image in parallel keeps them aligned.",
- "layout": "4 panels: left input prompt and image, center stacked (a) sequential vs (b) parallel with red/green borders and ✗/✓ badges, right two stacked bar charts (c, d)",
+ "claim": "Sequential reasoning-then-generation propagates vague or wrong reasoning into mismatched outputs and hurts some categories; denoising text and image in parallel keeps them aligned.",
+ "layout": "4 panels: left input image and prompt, center stacked (a) failing sequential vs (b) successful parallel, right two stacked bar charts (c),(d); red/green framing, ✗/✓ badges",
  "tags": [
   "parallel-generation",
   "diffusion",
   "thinking-aware",
   "cross-modal-alignment",
   "error-propagation",
-  "image-editing",
-  "sequential-vs-parallel"
+  "sequential-vs-parallel",
+  "image-editing"
  ],
  "style": [
   "colorful",
@@ -39,7 +39,7 @@
   "plot",
   "text-heavy"
  ],
- "description": "The left side shows an editing prompt (\"Modify the mountains ... Japan's most famous snow-capped mountain\") above the source landscape photo. Red and green arrows lead to two stacked rounded panels. Panel (a), with a red border, shows a text reasoning block. A red \"Mismatch!\" arrow points to a tiny Mount Fuji pasted into the output image, which carries a large black ✗ badge. Panel (b), with a green border, shows reasoning text with black redaction bars next to a half-denoised image. A \"Parallel Denoise\" arrow leads to the completed reasoning text and a correct Fuji image, with a green ✓ badge. At the right, (c) is a bar chart of reasoning gains across categories, with green positive bars and red negative bars. (d) is a bar chart of output alignment by category, in pale blue.",
+ "description": "At left, an editing prompt (\"Modify the mountains in the image to Japan's most famous snow-capped mountain\") sits above the source landscape photo. Two arrows branch from it: red to a pink-bordered panel (a) and green to a green-bordered panel (b). Panel (a) shows a dotted box of step-by-step reasoning text, with the word \"prominent\" in red and a red \"Mismatch!\" callout. It points to an output image where only a tiny peak is replaced, and a large black ✗ badge marks the failure. Panel (b) shows two dotted text boxes with partly blacked-out masked text, each paired with an image that is noisy in the first box and clean in the second. Circular sync arrows and a \"Parallel Denoise\" label link them. The final image shows a clear Mount Fuji, marked with a green ✓. At right, (c) is a bar chart of reasoning gains across five categories, green for positive and red for negative. (d) is a bar chart of output alignment across the same categories.",
  "caption": "Sequential vs. parallel thinking-aware image synthesis. (a) Sequential generation (Bagel, GPT4o) may suffer from vague or incorrect reasoning. (b) Parallel generation aligns text and image at each denoising step, reducing hallucination and errors. (c) Quantitative comparison shows reasoning can degrade performance in certain categories. (d) Poorer categories also exhibit weaker reasoning–image alignment, highlighting the need for stronger cross-modal alignment.",
  "caption_source": "latex",
  "abstract": "While thinking-aware generation aims to improve performance on complex tasks, we identify a critical failure mode where existing sequential, autoregressive approaches can paradoxically degrade performance due to error propagation. To systematically analyze this issue, we propose ParaBench, a new benchmark designed to evaluate both text and image output modalities. Our analysis using ParaBench reveals that this performance degradation is strongly correlated with poor alignment between the generated reasoning and the final image. To resolve this, we propose a parallel multimodal diffusion framework, MMaDA-Parallel, that enables continuous, bidirectional interaction between text and images throughout the entire denoising trajectory. MMaDA-Parallel is trained with supervised finetuning and then further optimized by Parallel Reinforcement Learning (ParaRL), a novel strategy that applies semantic rewards along the trajectory to enforce cross-modal consistency. Experiments validate that our model significantly improves cross-modal alignment and semantic consistency, achieving a 6.9\\% improvement in Output Alignment on ParaBench compared to the state-of-the-art model, Bagel, establishing a more robust paradigm for thinking-aware image synthesis. Our code is open-sourced at https://github.com/tyfeld/MMaDA-Parallel",
@@ -57,5 +57,5 @@
  "figure_page": 1,
  "qc_flags": [],
  "annotator": "claude-cli:sonnet",
- "role_confidence": 0.6
+ "role_confidence": 0.75
 }

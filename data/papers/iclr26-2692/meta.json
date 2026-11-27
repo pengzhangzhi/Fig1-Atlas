@@ -15,23 +15,23 @@
  "topic": "Theory->Interpretability and Visualization",
  "role": "analysis-finding",
  "role2": null,
- "claim": "Attention heads fall along a trade-off between positional and symbolic behavior, and each head's behavior tracks which frequencies it relies on.",
- "layout": "6 panels (A–F) in a dense grid: scatter and heatmaps on top, frequency curves at right, logit-norm plot and permutation attention traces below",
+ "claim": "Attention heads separate into positional versus symbolic behaviors that trade off and align with the frequency bands they use, shown across heads, layers and frequencies.",
+ "layout": "6 panels (A–F) in a dense grid: scatter and stacked heatmaps on top, frequency-score line plots at upper right, logit-norm plot and positional-symbolic scatter at lower left, 3x4 grid of attention-weight spike plots at lower right",
  "tags": [
   "attention-heads",
   "rotary-embeddings",
   "positional-vs-symbolic",
   "frequency-analysis",
   "interpretability",
-  "empirical-analysis",
-  "head-behavior-metric"
+  "empirical-phenomenon",
+  "metric"
  ],
  "style": [
   "plot",
   "colorful",
-  "photo/real data"
+  "text-heavy"
  ],
- "description": "A dense multi-panel figure of analysis plots. A: scatter of all attention heads in the positional-symbolic score plane, colored by layer depth with a viridis colorbar. The points fall on a descending trade-off curve, and a red star marks one head. B: two heatmaps of positional scores (red) and symbolic scores (green), with layer on the x-axis and head on the y-axis. C: four small panels of score against frequency ID for selected heads, with red positional and green symbolic dots and smoothed curves. D: line plot of average logit norm per frequency, with dashed vertical markers in blue, red and green. E: a 3x4 grid of attention-weight spike plots under permutations, in green, red and blue, annotated with Pos and Sym scores. F: a scatter of three colored points showing selected frequencies in the plane.",
+ "description": "A dense multi-panel analysis figure. Top left is a scatter of heads on a positional-score (x) versus symbolic-score (y) plane, colored by layer depth with a viridis colorbar and a red star on one head. The scatter falls along a downward trade-off curve. Next to it are two heatmaps over layer and head ID, red for positional score and green for symbolic score. At upper right, four line and scatter plots show positional (red) and symbolic (green) scores against RoPE frequency ID for different heads. The lower left has a logit-norm-per-frequency curve with colored dashed markers, and a small plane showing three frequency points. The lower right has a 3x4 grid of attention-weight plots: green spikes that follow the permutation, red spikes that stay fixed, and flat blue lines. Each plot is annotated with its Pos and Sym scores.",
  "caption": "Global and local analysis of attention head behavior. A. Each head in the positional–symbolic plane. B. Heatmaps of positional and symbolic scores for each head across all layers. C. For the same heads, we plot their positional and symbolic scores as a function of RoPE frequencies. By convention, lower frequency IDs correspond to higher angular frequencies, and conversely, higher frequency IDs correspond to lower angular frequencies. D. norms of the logits at each frequency for head (12:0). E. Attention weight patterns as a function of permutations. Top rows (green traces): Behavior of a symbolic head whose attention weight mass follows the permutations. Middle rows (red traces): Behavior of a positional head whose attention weight mass is invariant to the permutations. Bottom rows (blue traces): Behavior of a (mix) attention head with both high symbolic and positional scores, displaying a uniform mass with low attention weight scores. Note that symbolic, positional, and mix head behavior ar associated with low, relatively large, and the largest frequencies, respectively. F. Location on the positional-symbolic plane of head (12:0) as a function of the selected frequency.",
  "caption_source": "latex",
  "abstract": "An important aspect subtending language understanding and production is the ability to independently encode positional and symbolic information of the words within a sentence. In Transformers, positional information is typically encoded using Positional Encodings (PEs). One such popular PE, namely Rotary PE (RoPE), has been widely used due to its empirical success. Recently, it has been argued that part of RoPE's success emerges from its ability to encode robust positional and semantic information using large and small frequencies, respectively. In this work, we perform a deeper dive into the positional versus symbolic dichotomy of attention heads behavior, both at the theoretical and empirical level. We provide general definitions of what it means for a head to behave positionally or symbolically, prove that these are two mutually exclusive behaviors and develop a metric to quantify them. We apply our framework to analyze Transformer-based LLMs using RoPE and find that all heads exhibit a strong correspondence between behavior and frequency use. Finally, we introduce canonical tasks designed to be either purely positional or symbolic, and demonstrate that the Transformer performance causally relates to the ability of attention heads to leverage the appropriate frequencies. In particular, we show that we can control the Transformer performance by controlling which frequencies the attention heads can access. Altogether, our work provides a detailed understanding of RoPE, and how its properties relate to model behavior.",

@@ -15,23 +15,23 @@
  "topic": "Deep Learning->Algorithms",
  "role": "pipeline",
  "role2": null,
- "claim": "A model's own sampled answers and reflections can be rearranged into tagged skill-demonstrating SFT data that primes RL to produce robust cognitive behaviors.",
- "layout": "3 columns, left-to-right numbered steps (1a/1b, 2, 3), arrows linking sampled outputs to a rearranged trace, then to a vertical two-stage training stack",
+ "claim": "A model's own sampled answers and reflections can be rearranged into tagged skill-demonstrating SFT data, then RL, so cognitive behaviors emerge without a stronger teacher.",
+ "layout": "3 columns left-to-right (Step 1a/1b sampling, Step 2 rearrangement, Step 3 two-stage training), arrows connecting boxes, red/green color-coded traces",
  "tags": [
   "self-distillation",
-  "pipeline",
   "sft-then-rl",
   "reasoning",
-  "synthetic-data",
   "cognitive-skills",
-  "data-rearrangement"
+  "synthetic-data",
+  "data-rearrangement",
+  "multi-stage-training"
  ],
  "style": [
   "colorful",
   "text-heavy",
   "icon-heavy"
  ],
- "description": "Three-column step diagram read left to right. Step 1a/1b (left) shows a Q prompt feeding a blue Base Model box, which produces sampled answers. A wrong answer is red and correct answers are green. The red answer is then fed back with a reflect-and-verdict prompt to a second Base Model, which yields a red reflection (\"Step 1 is incorrect because…\"). Black arrows with dot-ended loops carry samples onward. Step 2 (center) shows the rearranged SFT trace as stacked rounded boxes with tag pills such as <sample>, <answer>, <reflect>, <verdict>, <think>. Red blocks cover the wrong attempt and its reflection, a gray 'Wait, I should try this again…' glue phrase follows, then green blocks cover the corrected attempt and reflection. Step 3 (right) is a vertical flow from Base Model to Stage 1: SFT (retry and reflection icons) to Stage 2: RL (GRPO) to an orange Reasoning Model box with a flame icon. Color coding of red for wrong and green for correct guides the eye.",
+ "description": "A three-column flowchart. The left column (Steps 1a and 1b) shows a question fed to a blue Base Model, producing sampled answers: a wrong one in red (X=35) and correct ones in green (X=42). A second Base Model call takes the question, the wrong answer and a reflection prompt, and outputs a reflection that says Step 1 is incorrect. The middle column (Step 2) shows how these pieces are rearranged into one tagged trace. The trace is wrapped in think, sample, answer, reflect and verdict tags, with glue phrases such as 'Wait, I should try this again…'. Red blocks hold the wrong attempt and its reflection. Green blocks hold the retry and its verification. The right column (Step 3) goes from the Base Model to Stage 1 SFT (Retry and Reflection icons), then Stage 2 RL (GRPO), then an orange Reasoning Model box where behaviors emerge. Black arrows link the stages, and red and green carry the meaning.",
  "caption": "SkillFactory framework. We obtain responses and reflection traces using a model's own sampled reasoning, then rearrange them to demonstrate reasoning skills. A model SFTed on this data is an effective starting point for RL, yielding better performance and more skill usage post-RL.",
  "caption_source": "latex",
  "abstract": "Reasoning models leveraging long chains of thought employ various cognitive skills, such as verification of their answers, backtracking, retrying by an alternate method, and more. Previous work has shown that when a base language model exhibits these skills, training that model further with reinforcement learning (RL) can learn to leverage them. How can we get models to leverage skills that aren't exhibited by base models? Our work, SkillFactory, is a method for fine-tuning models to roughly learn these skills during a supervised fine-tuning (SFT) stage prior to RL. Our approach does not rely on distillation from a stronger model, but instead uses samples from the model itself, rearranged to provide training data in the format of those skills. These \"silver\" SFT traces may be imperfect, but are nevertheless effective for priming a model to acquire skills during RL. Our evaluation shows that (1) starting from SkillFactory SFT initialization helps a model to generalize to harder variants of a task post-RL, despite lower performance pre-RL;(2) cognitive skills are indeed used by the model; (3) RLed SkillFactory models are more robust to regression on out-of-domain tasks than RLed base models. Our work suggests that inductive biases learned prior to RL help models learn robust cognitive skill use.",
@@ -49,5 +49,5 @@
  "figure_page": 1,
  "qc_flags": [],
  "annotator": "claude-cli:sonnet",
- "role_confidence": 0.95
+ "role_confidence": 0.93
 }

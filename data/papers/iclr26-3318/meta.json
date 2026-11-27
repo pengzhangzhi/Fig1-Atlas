@@ -11,23 +11,23 @@
  "topic": "Deep Learning->Theory",
  "role": "analysis-finding",
  "role2": "teaser-result",
- "claim": "Standard initializations leave attention Jacobians extremely ill-conditioned throughout training, far above the theoretical bound, whereas conditioning the initialization lowers it by orders of magnitude.",
- "layout": "2 side-by-side line plots (ViT-B, XCiT-M), shared legend style, log-scale y-axis vs epochs, dashed bound on top",
+ "claim": "Standard initializations leave the attention Jacobian extremely ill-conditioned, far below the theoretical bound, while our conditioned initialization reduces condition numbers by orders of magnitude throughout training.",
+ "layout": "2 side-by-side line plots (ViT-B, XCiT-M), shared legend inside each panel, log-scale y-axis, epochs on x-axis",
  "tags": [
+  "condition-number",
   "initialization",
   "attention",
-  "condition-number",
+  "log-scale",
   "optimization",
-  "transformers",
-  "spectral-properties",
-  "ill-conditioning"
+  "theoretical-bound",
+  "transformers"
  ],
  "style": [
   "plot",
   "minimal",
   "colorful"
  ],
- "description": "Two side-by-side line charts with a gray-blue seaborn-style background, titled 'ViT-B during training' (left) and 'XCiT-M during training' (right). Both plot average condition number on a log y-axis (about 10^6 to 10^12 on the left, 10^5 to 10^12 on the right) against epochs from 0 to 300. Each panel has four lines with dot markers. A blue dashed line, the theoretical bound, sits at the top. Orange (Default) and green (Mimetic) solid lines sit several orders of magnitude lower. A red solid line, Conditioned (ours), sits at the bottom, roughly 3 to 4 orders of magnitude below the baselines. A legend in the lower right of each panel overlaps the red line. The eye goes first to the large vertical gap between the red line and the other three.",
+ "description": "Two side-by-side line charts on a gray seaborn-style grid, titled 'Vit-B during training' (left) and 'XCiT-M during training' (right). Each plots average condition number on a log y-axis against epochs 0 to 300. Four colored lines with dots appear in each panel. A dashed blue line for the theoretical bound sits at the top, around 10^12. Orange (Default) and green (Mimetic) lines sit in the middle, around 10^10 for ViT-B and 10^9 for XCiT-M. A red line labeled 'Conditioned (ours)' sits at the bottom, around 10^7 for ViT-B and 10^5 to 10^6 for XCiT-M. The lines are roughly flat across training. A legend box in the lower right of each panel partly overlaps the red line. The eye goes first to the large vertical gaps between the red line and the others.",
  "caption": "Average condition number of the attention Jacobian during training under three common initialization schemes, shown alongside the theoretical bound from [ref].",
  "caption_source": "latex",
  "abstract": "Transformers are a dominant architecture in modern machine learning, powering applications across vision, language, and beyond. At the core of their success lies the attention layer, where the query, key, and value matrices determine how token dependencies are captured. While considerable work has focused on scaling and optimizing Transformers, comparatively little attention has been paid to how the weights of the queries, keys and values are initialized. Common practice relies on random initialization or alternatives such as mimetic initialization, which imitates weight patterns from converged models, and weight selection, which transfers weights from a teacher model. In this paper, we argue that initialization can introduce an optimization bias that fundamentally shapes training dynamics. We propose conditioned initialization, a principled scheme that initializes attention weights to improve the spectral properties of the attention layer. Theoretically, we show that conditioned initialization can potentially reduce the condition number of the attention Jacobian, leading to more stable optimization. Empirically, it accelerates convergence and improves generalization across diverse applications, highlighting conditioning as a critical yet underexplored area for advancing Transformer performance. Importantly, conditioned initialization is simple to apply and integrates seamlessly into a wide range of Transformer architectures.",
@@ -45,5 +45,5 @@
  "figure_page": 5,
  "qc_flags": [],
  "annotator": "claude-cli:sonnet",
- "role_confidence": 0.55
+ "role_confidence": 0.6
 }

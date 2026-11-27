@@ -17,23 +17,23 @@
  "topic": "Deep Learning->Generative Models and Autoencoders",
  "role": "teaser-result",
  "role2": null,
- "claim": "Our distilled few-step model reaches lower perplexity than prior accelerated and baseline models at every step budget, and beats the autoregressive baseline with far fewer steps.",
- "layout": "single line plot, x-axis is log-scale number of steps, legend in the upper right, dotted grid, horizontal dashed baseline",
+ "claim": "Our distilled few-step model reaches far lower perplexity than prior accelerated baselines at every step budget, beating the reference model even with very few steps.",
+ "layout": "single line plot, perplexity (y) vs NFEs (x, log-spaced 8 to 1024), legend inside upper right, dashed horizontal reference line",
  "tags": [
+  "perplexity",
+  "few-step",
   "distillation",
-  "few-step-generation",
   "efficiency",
-  "quality-vs-compute",
-  "discrete-diffusion",
-  "language-modeling",
-  "pareto-curve"
+  "diffusion-language-model",
+  "pareto-curve",
+  "baseline-comparison"
  ],
  "style": [
   "plot",
   "colorful",
   "minimal"
  ],
- "description": "A single line chart compares perplexity (y-axis, no tick labels shown) against the number of function evaluations on a doubling x-axis from 8 to 1024. Baseline curves are dashed with markers: MDLM in blue circles starts highest and drops steeply, DUO in orange squares, and SDTT in green triangles. A grey dashed horizontal line marks GPT-2. The proposed DiDi-Instruct is a thick solid red line with diamond markers. It sits lowest at every point and is nearly flat after 16 steps. It crosses below the GPT-2 line at about 16 steps, while the baselines only reach it at 128 to 256 steps or more. A large legend fills the upper right. The thick solid red line against the dashed baselines is where the eye goes first.",
+ "description": "A single line chart with perplexity on the y-axis (about 15 to 180) and number of function evaluations on the x-axis (8, 16, 32, 64, 128, 256, 512, 1024). A legend in the upper right lists GPT-2 (grey dashed horizontal line near 40), MDLM (blue dashed, circles), DUO (orange dashed, squares), SDTT (green dashed, triangles) and DiDi-Instruct (Ours) (solid red, diamonds). The baselines start high at 8 NFEs (about 90 to 177) and decline slowly, converging toward 20 to 35 at large budgets. The thick solid red curve sits well below all the others, starting near 62 at 8 NFEs and flattening around 16 to 18. It crosses below the GPT-2 line by 16 NFEs. The eye goes first to the red curve at the bottom, then to the steep blue curve at the top left.",
  "caption": "Perplexity vs. NFEs\\protect\\footnotemark[1].",
  "caption_source": "latex",
  "abstract": "Fast and high-quality language generation is the holy grail that people pursue in the age of AI. In this work, we introduce Discrete Diffusion Divergence Instruct (DiDi-Instruct), a training-based method that initializes from a pre-trained diffusion large language model (dLLM) and distills a few-step student for fast generation. The model distilled with DiDi-Instruct matches or surpasses its dLLM teacher and the GPT-2 baseline while providing up to 64$\\times$ acceleration. The theoretical foundation of DiDi-Instruct is a novel framework based on integral KL-divergence minimization, which leads to a practical training algorithm. We further introduce grouped reward normalization, intermediate-state matching, and the reward-guided ancestral sampler to improve training stability, model coverage, and inference quality. On the OpenWebText benchmark, DiDi-Instruct achieves perplexity ranging from 62.2 (8 NFEs) to 18.4 (128 NFEs), outperforming prior accelerated dLLMs and the GPT-2 baseline. These gains incur a negligible entropy loss (around $1$%) and reduce additional training wall-clock time by more than $20\\times$ compared to competing dLLM distillation methods. We further validate the robustness and effectiveness of DiDi-Instruct through extensive ablation studies, model scaling, downstream task evaluations, and unconditional protein sequence generation. In conclusion, DiDi-Instruct enables efficient and effective distillation for language generation in the blink of an eye.",
@@ -49,9 +49,7 @@
  "image_url": null,
  "thumb_url": null,
  "figure_page": 0,
- "qc_flags": [
-  "tiny-crop"
- ],
+ "qc_flags": [],
  "annotator": "claude-cli:sonnet",
- "role_confidence": 0.93
+ "role_confidence": 0.9
 }

@@ -14,24 +14,25 @@
  "tier": "poster",
  "track": "main",
  "topic": "Computer Vision->Vision Models & Multimodal",
- "role": "prior-vs-ours",
- "role2": "teaser-result",
- "claim": "Given the same dynamic video input, the baseline yields smeared, distorted reconstructions, while ours produces clean, dense geometry with accurate camera poses and depth.",
- "layout": "Top row of 6 input frames, two yellow arrows down to side-by-side 3D point clouds (VGGT left, Ours right), with 4 depth maps on the far right linked by dashed lines to camera frustums",
+ "role": "teaser-result",
+ "role2": "before-after",
+ "claim": "Compared with the baseline, our method reconstructs dense, coherent geometry of dynamic scenes, with accurate camera poses and depth, in a single feed-forward pass.",
+ "layout": "3 regions left-to-right: baseline point cloud, our point cloud with camera frustums, and a stacked column of three depth maps linked by colored dashed lines",
  "tags": [
-  "dynamic-scenes",
   "feed-forward",
-  "3d-reconstruction",
+  "dynamic-scenes",
   "point-cloud",
   "camera-pose",
   "depth-estimation",
-  "baseline-comparison"
+  "4d-reconstruction",
+  "qualitative-comparison"
  ],
  "style": [
   "photo/real data",
-  "colorful"
+  "colorful",
+  "3d-render"
  ],
- "description": "A top row shows six consecutive video frames of a hiker with a backpack walking in a mountain forest. Two yellow arrows point down from the frames, one to a point cloud labeled VGGT and one to a point cloud labeled PAGE-4D (Ours). The VGGT reconstruction is badly distorted. It has stretched, smeared, jagged terrain, and the hiker is fragmented. The PAGE-4D reconstruction is coherent and dense. The mountain, trees and a sequence of hiker copies are all rendered clearly. Green camera frustums sit along the bottom of the PAGE-4D cloud. Dashed colored lines (yellow, green, blue, red) connect four of the frustums to four rainbow-colored depth maps stacked on the right. Bold serif method labels draw the eye first, followed by the contrast between the two point clouds.",
+ "description": "A wide, short figure with three regions. On the left is a baseline (VGGT) point cloud of a hiker walking through an alpine forest. It is smeared and distorted, and the moving person is streaked into ghosted fragments. In the middle is the method's point cloud of the same scene. It is cleaner, denser and more coherent, with the hiker shown at several time steps along the trajectory. A row of green camera frustums sits along the bottom to show the estimated camera poses. Colored dashed lines (yellow, green, blue, red) run from individual frustums to the right. At the right, three jet-colormap depth maps are stacked vertically, each with the hiker silhouetted. The eye goes first to the large, colorful point clouds, then follows the dashed lines to the depth maps.",
  "caption": "\\ourmethod takes a sequence of RGB images depicting a dynamic scene as input and simultaneously predicts the corresponding camera parameters and 3D geometry information—all within a fraction of a second. Compared to VGGT, \\ourmethod produces denser and more accurate point cloud reconstructions with better depth estimation quality. (Best viewed in PDF.)",
  "caption_source": "latex",
  "abstract": "Recent 3D feed-forward models, such as the Visual Geometry Grounded Transformer (VGGT), have shown strong capability in inferring 3D attributes of static scenes. However, since they are typically trained on static datasets, these models often struggle in real-world scenarios involving complex dynamic elements, such as moving humans or deformable objects like umbrellas. To address this limitation, we introduce PAGE-4D, a feedforward model that extends VGGT to dynamic scenes, enabling camera pose estimation, depth prediction and point cloud reconstruction - all without post-processing. A central challenge in multitask 4D reconstruction is the inherent conflict between tasks: accurate camera pose estimation requires suppressing dynamic regions, while geometry reconstruction requires modeling them. To resolve this tension, we propose a dynamics aware aggregator that disentangles static and dynamic information by predicting a dynamics-aware mask - suppressing motion cues for pose estimation while amplifying them for geometry reconstruction. Extensive experiments show that PAGE-4D consistently outperforms the original VGGT in dynamic scenarios, achieving superior results in camera pose estimation, monocular and video depth estimation, and dense point map reconstruction. Necessary code and additional demos are available at Link: https://page4d.github.io/, including both the training-and-inference masking variant and the training-only masking variant (= VGGT architecture at inference). Keywords: VGGT-4D, 4D Perception, Dynamic Scene Reconstruction.",
@@ -49,5 +50,5 @@
  "figure_page": 0,
  "qc_flags": [],
  "annotator": "claude-cli:sonnet",
- "role_confidence": 0.6
+ "role_confidence": 0.7
 }

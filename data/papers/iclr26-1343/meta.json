@@ -13,24 +13,24 @@
  "track": "main",
  "topic": "Applications->Chemistry and Drug Discovery",
  "role": "pipeline",
- "role2": "concept",
- "claim": "A learned flow map transports source samples to a biased target, and self-normalized importance sampling then corrects them to match the true distribution.",
- "layout": "3 stages, left-to-right: source-to-target trajectory panel, importance-sampling box, debiased target density, with arrows between stages",
+ "role2": null,
+ "claim": "A learned flow map generates biased samples, and self-normalized importance sampling reweights them to recover the true target distribution.",
+ "layout": "3 stages left-to-right: source and biased target densities joined by trajectories, then an SNIS box, then the debiased density; arrows between stages",
  "tags": [
-  "importance-sampling",
   "flow-map",
+  "importance-sampling",
   "boltzmann-generator",
   "debiasing",
-  "few-step-sampling",
-  "generative-model",
-  "density-reweighting"
+  "sampling",
+  "normalizing-flows",
+  "few-step"
  ],
  "style": [
-  "minimal",
+  "colorful",
   "math-heavy",
-  "colorful"
+  "plot"
  ],
- "description": "The figure reads left to right in three stages. On the left, a purple Gaussian-like Source density on a vertical axis sends many faint blue trajectory curves across to a multimodal Biased Target density. A faded outline behind the target marks the True Density. One bold dark-blue trajectory runs from x0 to x1. On it, a red point x_s has a red arrow labeled u_θ(x_s, s, t) pointing to x_t, and small blue arrows labeled v(x_s, s). An arrow then leads to a rounded lavender box titled 'Self-normalized Importance Sampling', which holds the weighted-average formula Σ w(x^k) f(x^k) / Σ w(x^k). A second arrow leads to the Debiased Target density, which closely matches the faint True Density outline. The palette is purple and navy, with red for the flow-map notation. The eye goes first to the dense bundle of trajectories.",
+ "description": "The figure reads left to right in purple and blue tones. On the left, a Gaussian source density is drawn vertically and labeled Source. Many faint blue trajectories fan out from it to a multimodal Biased Target density on the right. A True Density curve is overlaid in lighter shading to show the mismatch. One trajectory is highlighted in bold. It carries a blue velocity arrow v(x_s, s) and a red long-jump arrow u_theta(x_s, s, t), going from x_s to x_t, with x_0 and x_1 as endpoints. An arrow leads to a rounded lavender box labeled Self-normalized Importance Sampling, with the weighted-sum formula sum_k w(x^k) f(x^k) / sum_k w(x^k). A second arrow leads to the Debiased Target density, which now closely matches the True Density. The eye goes first to the dense trajectory bundle and the bold path.",
  "caption": "Flow map learns from biased data, with SNIS re-weighting generated samples consistent with the Boltzmann distribution, approaching equality with infinite samples under mild regularity conditions.",
  "caption_source": "latex",
  "abstract": "Scalable sampling of molecular states in thermodynamic equilibrium is a long-standing challenge in statistical physics. Boltzmann Generators tackle this problem by pairing a generative model, capable of exact likelihood computation, with importance sampling to obtain consistent samples under the target distribution. Current Boltzmann Generators primarily use continuous normalizing flows (CNFs) trained with flow matching for efficient training of powerful models. However, likelihood calculation for these models is extremely costly, requiring thousands of function evaluations per sample, severely limiting their adoption. In this work, we propose Few-step Accurate Likelihoods for Continuous Flows (FALCON), a method which allows for few-step sampling with a likelihood accurate enough for importance sampling applications by introducing a hybrid training objective that encourages invertibility. We show FALCON outperforms state-of-the-art normalizing flow models for molecular Boltzmann sampling and is two orders of magnitude faster than the equivalently performing CNF model.",
@@ -46,9 +46,7 @@
  "image_url": null,
  "thumb_url": null,
  "figure_page": 0,
- "qc_flags": [
-  "bad-crop"
- ],
+ "qc_flags": [],
  "annotator": "claude-cli:sonnet",
- "role_confidence": 0.8
+ "role_confidence": 0.7
 }

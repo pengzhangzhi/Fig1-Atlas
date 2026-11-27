@@ -16,23 +16,23 @@
  "topic": "Computer Vision->Image and Video Generation",
  "role": "pipeline",
  "role2": null,
- "claim": "A learnable cost predictor plus a dynamic-programming solver allocates per-layer sparsity end to end, so cached-token inference matches full-step outputs.",
- "layout": "Single wide diagram: two stacked DiT rows (full-step teacher, token-cache student) on top and a left-to-right allocation chain on the bottom. Curved arrows link the bottom chain to the cache row. Legend box at left.",
+ "claim": "A learned predictor plus dynamic programming allocates per-layer sparsity, and the resulting token masks are trained end-to-end against a full-computation teacher via STE and a perceptual loss.",
+ "layout": "Stacked horizontal bands: full-step teacher DiT on top, token-cache DiT in the middle, mask-generation pipeline on the bottom; left-to-right flow, legend box, curved arrows linking the bottom to the middle band",
  "tags": [
   "token-caching",
   "sparsity-allocation",
   "dynamic-programming",
-  "differentiable",
-  "diffusion-transformer",
+  "straight-through-estimator",
   "efficiency",
-  "straight-through-estimator"
+  "diffusion-transformer",
+  "distillation"
  ],
  "style": [
   "icon-heavy",
   "colorful",
   "math-heavy"
  ],
- "description": "A wide boxed pipeline diagram. The top orange-bordered row shows full-step DiT sampling: three blue transformer blocks with dotted token stacks, ending in a cat image x0. The second row, Token Cache, shows a DiT with Block1, Block2 and Block L. Each block has a dotted column of pink (compute) and green (reuse) token slots. A looping arrow is marked ×(T−2), and the row ends in a second cat image x0'. Both images feed an LPIPS Loss box on the right. The bottom row runs left to right: Sparsity Cost Predictor, then a blue cost-matrix heatmap, then a Dynamic Programming Solver with input R, then a binary layer-sparsity grid. That grid is multiplied with a green Candidate Masks box to give Predicted Masks, then Token Selector, then Token Masks. Curved arrows feed the masks into the cache row, and an STE line runs along the bottom chain. A legend covers compute, reuse, tunable and frozen.",
+ "description": "A wide, dense block diagram. The top orange-bordered band, 'Full Steps Sampling', shows a DiT unrolled over several steps with small compute tokens, ending in a cat image x0. The middle band, 'Token Cache', shows a DiT with frozen blocks (snowflake icons) and per-block token columns, where pink tokens are computed and green tokens are reused. It loops ×(T−2) and outputs a similar cat image x0'. The two outputs feed an orange 'LPIPS Loss' box on the right. The bottom row is the mask-generation pipeline: a Sparsity Cost Predictor (flame icon) produces a blue Cost Matrix, which passes to a Dynamic Programming Solver with budget R, then to a Layer Sparsity binary matrix. That matrix is multiplied (⊗) with Candidate Masks to give Predicted Masks, which go to a Token Selector and then to Token Masks that feed back up into the cache blocks. An STE arrow links the cost matrix to the layer sparsity. A legend box explains Compute, Reuse, Tunable and Frozen. The eye goes first to the cat images and the colored boxes.",
  "caption": "DiffSparse uses a learnable sparsity-cost predictor and dynamic programming to learn per-layer sparsity under target ratio \\(R\\). We generate binary masks from the chosen sparsity maps and candidate masks. A token selector reuses features from previous diffusion steps to skip unimportant tokens and speed sampling. To enable gradient flow through the binary masks, we apply Straight-Through Estimation (STE) and train our model using full-step sampling targets with LPIPS loss.",
  "caption_source": "latex",
  "abstract": "Diffusion models demonstrate outstanding performance in image generation, but their multi-step inference mechanism requires immense computational cost. Previous works accelerate inference by leveraging layer or token cache techniques to reduce computational cost. However, these methods fail to achieve superior acceleration performance in few-step diffusion transformer models due to inefficient feature caching strategies, manually designed sparsity allocation, and the practice of retaining complete forward computations in several steps in these token cache methods. To tackle these challenges, we propose a differentiable layer-wise sparsity optimization framework for diffusion transformer models, leveraging token caching to reduce token computation costs and enhance acceleration. Our method optimizes layer-wise sparsity allocation in an end-to-end manner through a learnable network combined with a dynamic programming solver. Additionally, our proposed two-stage training strategy eliminates the need for full-step processing in existing methods, further improving efficiency. We conducted extensive experiments on a range of diffusion-transformer models, including DiT-XL/2, PixArt-$Î±$, FLUX, and Wan2.1. Across these architectures, our method consistently improves efficiency without degrading sample quality. For example, on PixArt-$Î±$ with 20 sampling steps, we reduce computational cost by $54\\%$ while achieving generation metrics that surpass those of the original model, substantially outperforming prior approaches. These results demonstrate that our method delivers large efficiency gains while often improving generation quality.",

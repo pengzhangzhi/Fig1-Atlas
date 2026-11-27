@@ -16,23 +16,23 @@
  "topic": "Applications->Time Series",
  "role": "analysis-finding",
  "role2": "before-after",
- "claim": "Aligning past and future representations makes forecasts match ground truth in time, similarity structure, frequency spectrum and embedding space, closing the history-to-future distribution gap.",
- "layout": "2 rows by 4 columns of panels, with a dash-dot divider between the rows; (a) line plots, (b) 2x2 heatmaps with a shared colorbar, (c) 2x2 spectra with red boxes and zoom callouts, (d) t-SNE scatter with green boxes",
+ "claim": "Aligning past and future representations makes forecasts closer to ground truth by matching the future's structure, frequency spectrum and embedding distribution, unlike the unaligned baseline.",
+ "layout": "2 rows by 4 panels (a-d), left-to-right, dashed divider between two examples; each panel compares history, ground truth, without alignment and with alignment",
  "tags": [
   "representation-alignment",
-  "distribution-shift",
-  "frequency-analysis",
   "time-series-forecasting",
+  "frequency-analysis",
+  "distribution-shift",
+  "t-sne",
   "plug-and-play",
-  "multi-view-visualization",
-  "embedding-space"
+  "qualitative-comparison"
  ],
  "style": [
   "plot",
-  "photo/real data",
-  "colorful"
+  "colorful",
+  "photo/real data"
  ],
- "description": "A two-row, four-column grid of diagnostic visualizations of one forecaster, with and without alignment, on two ECL samples. Column (a) is a line plot with history, ground truth, and forecasts with and without alignment. Column (b) is a 2x2 set of blue cosine-similarity heatmaps for history, ground truth, without alignment and with alignment, sharing a colorbar. Column (c) is a 2x2 set of frequency-amplitude spectra. Red boxes mark spectral peaks, and speech-bubble zooms show peak shape. Column (d) is a t-SNE scatter of four color-coded groups, with green boxes around clusters that are separated without alignment. A dash-dot line divides the two examples. The eye goes first to the colorful scatter and the line plots.",
+ "description": "A two-row grid, one row per example from the ECL dataset, with four columns of visualizations. (a) A line plot of the history (light blue), ground truth, and forecasts with alignment (red) and without alignment (yellow) over timestamps 0 to 432. (b) Four heatmaps of token-wise cosine similarity (History, GroundTruth, w/o Align, w/ Align) in blue shades with a shared colorbar. The w/ Align map looks closer to the ground truth. (c) Four spectrogram plots of amplitude against frequency, with red boxes on key peaks and speech-bubble zoom insets. (d) A t-SNE scatter of four colored point clouds, with green boxes marking clusters. The w/ Align points overlap the ground truth, while w/o Align points drift toward the history. Red and green highlights draw the eye to the differences.",
  "caption": "Comparison among history, ground truth, forecast with and without alignment using dif- ferent visualization perspectives. (a) Time Series Visualization. (b) Token (Patch)-wise Cosine Similarity. (c) Spectrogram Map. (d) t-SNE Embedding Space. More examples are in Sec. F.",
  "caption_source": "pdf",
  "abstract": "Although contrastive and other representation-learning methods have long been explored in vision and NLP, their adoption in modern time series forecasters remains limited. We believe they hold strong promise for this domain. To unlock this potential, we explicitly align past and future representations, thereby bridging the distributional gap between input histories and future targets. To this end, we introduce TimeAlign, a lightweight, plug-and-play framework that establishes a new representation paradigm, distinct from contrastive learning, by aligning auxiliary features via a simple reconstruction task and feeding them back into any base forecaster. Extensive experiments across eight benchmarks verify its superior performance. Further studies indicate that the gains arise primarily from correcting frequency mismatches between historical inputs and future outputs. Additionally, we provide two theoretical justifications for how reconstruction improves forecasting generalization and how alignment increases the mutual information between learned representations and predicted targets. The code is available at https://github.com/TROUBADOUR000/TimeAlign.",
@@ -50,5 +50,5 @@
  "figure_page": 1,
  "qc_flags": [],
  "annotator": "claude-cli:sonnet",
- "role_confidence": 0.6
+ "role_confidence": 0.55
 }

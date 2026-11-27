@@ -12,23 +12,22 @@
  "track": "main",
  "topic": "General Machine Learning->Transfer, Multitask and Meta-learning",
  "role": "concept",
- "role2": "overview-framework",
- "claim": "Each sample falls into one of four outcome categories defined by correctness before and after an intervention, separating forgetting from backward transfer.",
- "layout": "single 2x2 grid, axes labeled 0/1 for pre-training correctness (x) and post-training correctness (y), one text label per quadrant",
+ "role2": "problem-setup",
+ "claim": "Aggregate accuracy hides distinct change types; classifying each sample by correctness before and after separates forgetting and backward transfer from retention and non-acquisition.",
+ "layout": "single 2x2 grid, axes a^pre (x) and a^post (y) with 0/1 ticks, one quadrant label per cell",
  "tags": [
   "2x2-matrix",
   "sample-wise-metric",
   "forgetting",
   "backward-transfer",
   "taxonomy",
-  "continual-learning",
-  "evaluation"
+  "evaluation-framework",
+  "continual-learning"
  ],
  "style": [
-  "minimal",
-  "text-heavy"
+  "minimal"
  ],
- "description": "A black-and-white 2x2 grid drawn as a square with a thick outer border and thin interior dividing lines. The x-axis is labeled a^pre, with tick values 0 (left column) and 1 (right column) beneath the grid. The y-axis has tick values 1 (top row) and 0 (bottom row) on the left, with no axis title visible. Each cell holds one serif label. Top-left is Backward Transfer (pre=0, post=1). Top-right is Retention (pre=1, post=1). Bottom-left is Non-acquisition (pre=0, post=0). Bottom-right is Forgetting (pre=1, post=0). There is no color, no arrows and no icons. The eye goes first to the large quadrant labels, then to the axis values that define them.",
+ "description": "A black-and-white 2x2 matrix drawn as a square with thick outer border and thin internal dividers. The horizontal axis is a^pre (correctness before post-training) with ticks 0 and 1. The vertical axis is a^post (correctness after post-training) with ticks 0 and 1, and its label is rotated. Each cell holds one serif text label. Top-left (pre=0, post=1) is 'Backward Transfer'. Top-right (1,1) is 'Retention'. Bottom-left (0,0) is 'Non-acquisition'. Bottom-right (1,0) is 'Forgetting'. There is no color, no icons and no arrows. The eye goes first to the large quadrant labels, then to the axis labels. The figure works as a definitional confusion-matrix-style diagram that sets up the paper's metric.",
  "caption": "Each sample is assigned to one of four quadrants by correctness before and after.",
  "caption_source": "latex",
  "abstract": "Scaled post-training now drives many of the largest capability gains in language models (LMs), yet its effect on pretrained knowledge remains poorly understood. Not all forgetting is equal: Forgetting one fact (e.g., a U.S. president or an API call) does not \"average out\" by recalling another. Hence, we propose a sample-wise paradigm to measure what is forgotten and when backward transfer occurs. Our metric counts 1->0 transitions (correct before post-training, incorrect after) to quantify forgetting and 0->1 transitions to quantify backward transfer. Traditional task averages conflate these effects and obscure large changes. For multiple-choice benchmarks, we add chance-adjusted variants that subtract the expected contribution of random guessing from pre- and post-training accuracies. We apply this framework across post-training stages, model sizes, and data scales. Our large-scale analysis shows that: (1) Domain-continual pretraining induces moderate forgetting with low-to-moderate backward transfer; (2) RL/SFT post-training applied to base models and Instruction tuning yields moderate-to-large backward transfer on math and logic with overall low-to-moderate forgetting; (3) Applying RL/SFT to instruction-tuned models is sensitive on data scale: at small scales, both forgetting and backward transfer are small; at larger scales, effects are mixed and warrant further study with better controls; (4) Model merging does not reliably mitigate forgetting. Overall, our framework offers a practical yardstick for mapping how post-training alters pretrained knowledge at scale -- enabling progress towards generally capable AI systems.",
@@ -44,10 +43,7 @@
  "image_url": null,
  "thumb_url": null,
  "figure_page": 2,
- "qc_flags": [
-  "tiny-crop",
-  "bad-crop"
- ],
+ "qc_flags": [],
  "annotator": "claude-cli:sonnet",
  "role_confidence": 0.6
 }

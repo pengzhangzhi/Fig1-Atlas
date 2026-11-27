@@ -11,16 +11,16 @@
  "track": "main",
  "topic": "Deep Learning->Everything Else",
  "role": "teaser-result",
- "role2": "analysis-finding",
- "claim": "Per-configuration fine-tuning gives better accuracy than a shared adapter but its cost grows linearly with the number of settings, while a shared approach stays flat.",
- "layout": "2 side-by-side line plots sharing x-axis (average bit); left shows accuracy with shaded gap, right shows cumulative time; legends inside plots",
+ "role2": "prior-vs-ours",
+ "claim": "Per-configuration fine-tuning gives higher accuracy but its cost grows linearly with configurations, while a shared adapter is cheap but loses accuracy.",
+ "layout": "2 side-by-side line plots sharing an x-axis (average bit-width); left shows an accuracy gap with a shaded region, right shows cumulative time",
  "tags": [
   "quantization",
   "lora",
-  "efficiency-tradeoff",
-  "accuracy-gap",
-  "fine-tuning-cost",
-  "edge-deployment",
+  "efficiency",
+  "accuracy-vs-cost",
+  "trade-off",
+  "fine-tuning",
   "motivation"
  ],
  "style": [
@@ -28,7 +28,7 @@
   "minimal",
   "colorful"
  ],
- "description": "Two line plots side by side, both with average bit-width on the x-axis. The left plot shows accuracy (%) for two methods: Shared-LoRA (pink solid line with circles) and Q-LoRA (green dashed line with squares). Q-LoRA sits well above Shared-LoRA, and the area between the curves is shaded gray and labeled 'Gap'. The gap is widest at low bit-widths. The right plot shows cumulative fine-tuning time in hours. Shared-LoRA is a flat horizontal pink line near 0.5 hours. Q-LoRA is a green dashed line that rises roughly linearly from about 0.5 to 2 hours as more bit configurations are added. Legends sit in the upper right or lower right of each panel. The eye goes first to the gray gap region and then to the diverging time curves. The figure motivates a method that keeps accuracy high without extra time cost.",
+ "description": "Two side-by-side line charts, both with average bit-width on the x-axis. The left chart plots accuracy (%) for Shared-LoRA (pink solid line with circles) and Q-LoRA (green dashed line with squares). The area between the two curves is shaded gray and labeled 'Gap'. Q-LoRA sits well above Shared-LoRA at low bit-widths, with accuracy around 82 to 93% against 78 to 88%. The right chart plots cumulative fine-tuning time in hours. Shared-LoRA is a flat pink horizontal line near 0.6 hours. Q-LoRA is a green dashed line that climbs steadily from about 0.5 to 2 hours as more configurations are added. The legends sit inside each plot. The eye goes first to the gray gap region on the left, then to the rising green line on the right. The figure shows the accuracy-versus-cost trade-off.",
  "caption": "Accuracy gap (left) and performance compari- son of cumulative fine-tuning time (right) on the SST-2 task from the GLUE benchmark using RoBERTa-Large model.",
  "caption_source": "pdf",
  "abstract": "As increasingly large pre-trained models are released, deploying them on edge devices for privacy-preserving applications requires effective compression. Recent works combine quantization with the fine-tuning of high-precision LoRA adapters, which can substantially reduce model size while mitigating the accuracy loss from quantization. However, edge devices have inherently heterogeneous capabilities, while performing configuration-wise fine-tuning for every quantization setting is computationally prohibitive. In this paper, we propose CoA-LoRA, a method that dynamically adjusts the LoRA adapter to arbitrary quantization configurations (i.e., the per-layer bit-width choices of a pre-trained model) without requiring repeated fine-tuning. This is accomplished via a configuration-aware model that maps each configuration to its low-rank adjustments. The effectiveness of this model critically depends on the training configuration set, a collection of configurations chosen to cover different total bit-width budgets. However, constructing a high-quality configuration set is non-trivial. We therefore design a Pareto-based configuration search that iteratively optimizes the training configuration set, yielding more precise low-rank adjustments. Our experiments demonstrate that, unlike the state-of-the-art methods that require fine-tuning a separate LoRA adapter for each configuration, CoA-LoRA incurs no additional time cost while achieving comparable or even superior performance to those methods.",

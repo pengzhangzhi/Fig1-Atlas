@@ -11,24 +11,24 @@
  "tier": "poster",
  "track": "main",
  "topic": "Computer Vision->3D Rendering & Reconstruction",
- "role": "teaser-result",
- "role2": "analysis-finding",
- "claim": "Adding more retrieved mapping images steadily improves localization accuracy while the sampled feature budget, and so compute and memory, stays fixed.",
- "layout": "3 panels left to right after a query image, with 1, 3 and 9 mapping images; pose error text under each title and a 3D point cloud with camera frustums below",
+ "role": "analysis-finding",
+ "role2": "teaser-result",
+ "claim": "Localization accuracy improves as more retrieved mapping images are used, while cost stays constant because the number of sampled features is fixed.",
+ "layout": "4 groups left-to-right: query image, then 1, 3 and 9 mapping images, each with a 3D point-cloud/camera inset and a pose-error label",
  "tags": [
   "camera-localization",
   "feed-forward",
   "scaling-with-inputs",
-  "constant-compute",
+  "constant-cost",
   "efficiency",
-  "feature-sampling",
-  "3d-scene"
+  "3d-scene-representation",
+  "image-retrieval"
  ],
  "style": [
   "photo/real data",
   "colorful"
  ],
- "description": "The figure reads left to right. A query photo of a narrow street with a blue border and the label 'Query Image' sits at the far left. Next to it are three white panels for 1, 3 and 9 mapping images. Each panel is titled in bold, with a pose error line below it. The error is coloured red (73cm, 6.7°), orange (71cm, 6.4°) and green (18cm, 2.8°), so the colour shows the improvement. The mapping images appear as photos covered with grey and black masked patches, showing that only a random subset of features is sampled. Under the text in each panel is a 3D point cloud with camera frustums. Green marks the estimated pose and blue the ground truth, and the two overlap more as images are added. The 9-image panel has the largest photo grid. The eye goes first to the coloured error numbers.",
+ "description": "The figure shows one query photo of a street scene on the far left, labeled 'Query Image' with a blue border. To its right are three panels for 1, 3 and 9 mapping images. Each panel shows the mapping photos at the top. The photos are overlaid with gray and black masked patches that mark the randomly sampled features. Below them, each panel has a bold caption giving the pose error: 73cm, 6.7° in red; 71cm, 6.4° in orange; 18cm, 2.8° in green. Each panel also has a small 3D point cloud with camera frustums. Green and blue frustums mark the estimated and ground-truth poses, and they align better as images are added. The color-coded error text draws the eye first. The mapping image grid grows from 1 to 3 to 9 images.",
  "caption": "We introduce \\ours, a network that predicts query coordinates in a 3D scene space relative to a collection of mapping images with known poses. \\ours represents the scene as a random set of features sampled from mapping images, and returns the estimate for a query \\wrt \\xspace all mapping images in a single feed-forward pass. From left to right, we show how results improve when \\ours uses an increasing number of mapping images, as returned by image retrieval. Note that we always sample the same number of mapping features, and hence, \\ours's query runtime and GPU memory demand remains roughly constant in all three examples.",
  "caption_source": "latex",
  "abstract": "Visually localizing an image, i.e., estimating its camera pose, requires building a scene representation that serves as a visual map. The representation we choose has direct consequences towards the practicability of our system. Even when starting from mapping images with known camera poses, state-of-the-art approaches still require hours of mapping time in the worst case, and several minutes in the best. This work raises the question whether we can achieve competitive accuracy much faster. We introduce FastForward, a method that creates a map representation and relocalizes a query image on-the-fly in a single feed-forward pass. At the core, we represent multiple mapping images as a collection of features anchored in 3D space. FastForward utilizes these mapping features to predict image-to-scene correspondences for the query image, enabling the estimation of its camera pose. We couple FastForward with image retrieval and achieve state-of-the-art accuracy when compared to other approaches with minimal map preparation time. Furthermore, FastForward demonstrates robust generalization to unseen domains, including challenging large-scale outdoor environments.",

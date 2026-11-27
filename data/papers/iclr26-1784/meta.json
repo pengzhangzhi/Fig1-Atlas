@@ -16,22 +16,22 @@
  "topic": "Deep Learning->Generative Models and Autoencoders",
  "role": "teaser-result",
  "role2": "analysis-finding",
- "claim": "Aggressive step reduction badly degrades accuracy for heuristic samplers, yet our optimized caching reaches a Pareto front with several-fold lower latency at similar accuracy.",
- "layout": "2 panels side by side: (a) grouped bar chart by method and step count, (b) accuracy vs log-latency scatter with Pareto fronts and a red dashed callout",
+ "claim": "Aggressive step reduction badly hurts quality for existing heuristic samplers, but our optimized caching reaches a much better accuracy–latency Pareto front.",
+ "layout": "2 panels side by side: left grouped bar chart, right scatter/Pareto plot with red dashed callout box; captions under each panel",
  "tags": [
-  "efficiency",
   "pareto-front",
-  "latency-accuracy-tradeoff",
+  "latency-accuracy",
+  "efficiency",
+  "inference-acceleration",
   "kv-caching",
   "diffusion-language-model",
-  "fewer-steps",
-  "training-free"
+  "quality-degradation"
  ],
  "style": [
   "plot",
   "colorful"
  ],
- "description": "Two plots sit side by side. Panel (a) is a grouped bar chart titled 'Evaluation on GSM8K 8-shot (Gen Len = 256)'. The x-axis lists three sampling methods: maskgit_plus, entropy and topk_margin. Each method has four bars for 32, 64, 128 and 256 denoising steps, colored purple, blue, green and yellow. Accuracy rises with step count, and the 32-step bars are very low, so quality drops sharply with fewer steps. Panel (b) is a scatter plot of accuracy against log-scale latency in seconds. Gray points show many configurations. Blue circles joined by a dotted line mark the baseline. Orange squares joined by a dotted line mark the optimized cached method. The orange front sits up and to the left of the blue one. A red dashed box and red bold text read '5× Latency Improvements! Negligible Acc. Drop!'. A legend sits at the bottom right. The captions below are in bold.",
+ "description": "Two plots sit side by side. Panel (a) is a grouped bar chart titled 'Evaluation on GSM8K 8-shot (Gen Len = 256)'. The x-axis shows three sampling methods (maskgit_plus, entropy, topk_margin). Each has four bars for 32, 64, 128 and 256 denoising steps, coloured with a viridis palette from purple to yellow. Accuracy climbs from about 15-40% at 32 steps to about 77-84% at 256 steps, so fewer steps clearly costs accuracy. Panel (b) is a scatter plot of accuracy against log-scale latency in seconds. Grey background points mark many other configurations. A blue dotted line with circles traces the baseline front. An orange dotted line with squares traces the optimized cached front, which sits up and to the left of the baseline. A red dashed box and red bold text, '5x Latency Improvements! Negligible Acc. Drop!', draw the eye to the top right. Each panel has a bold caption below it.",
  "caption": "{ (a)} Quality degradation under aggressive unmasking. { (b)} Pareto front of accuracy vs.\\ latency (log‐scale) for baseline and optimized cached methods.",
  "caption_source": "latex",
  "abstract": "Diffusion language models offer parallel token generation and inherent bidirectionality, promising more efficient and powerful sequence modeling compared to autoregressive approaches. However, state-of-the-art diffusion models (e.g., Dream 7B, LLaDA 8B) suffer from slow inference. While they match the quality of similarly sized autoregressive (AR) models (e.g., Qwen2.5 7B, Llama3 8B), their iterative denoising requires multiple full-sequence forward passes, resulting in high computational costs and latency, particularly for long input prompts and long-context scenarios. Furthermore, parallel token generation introduces token incoherence problems, and current sampling heuristics suffer from significant quality drops with decreasing denoising steps. We address these limitations with two training-free techniques. First, we propose FreeCache, a Key-Value (KV) approximation caching technique that reuses stable KV projections across denoising steps, effectively reducing the computational cost of DLM inference. Second, we introduce Guided Diffusion, a training-free method that uses a lightweight pretrained autoregressive model to supervise token unmasking, dramatically reducing the total number of denoising iterations without sacrificing quality. We conduct extensive evaluations on open-source reasoning benchmarks, and our combined methods deliver an average of 12.14x end-to-end speedup across various tasks with negligible accuracy degradation. For the first time, diffusion language models achieve a comparable and even faster latency as the widely adopted autoregressive models. Our work successfully paved the way for scaling up the diffusion language model to a broader scope of applications across different domains.",
@@ -47,9 +47,7 @@
  "image_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/images/iclr26-1784.png",
  "thumb_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/thumbs/iclr26-1784.webp",
  "figure_page": 4,
- "qc_flags": [
-  "bad-crop"
- ],
+ "qc_flags": [],
  "annotator": "claude-cli:sonnet",
  "role_confidence": 0.6
 }

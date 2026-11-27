@@ -16,22 +16,22 @@
  "topic": "Deep Learning->Generative Models and Autoencoders",
  "role": "before-after",
  "role2": "teaser-result",
- "claim": "Under the same seeds and sampling budget, our objective yields sharper, more coherent samples than the baseline, in both one-step and two-step generation.",
- "layout": "4 stacked rows of 8 images; baseline vs ours for 1-step (top pair) and 2-step (bottom pair); green/red frames mark better/worse samples",
+ "claim": "Under the same seeds and step budgets, our objective yields sharper, more coherent samples and lower FID than the baseline, in both one and two steps.",
+ "layout": "2x2 stacked row-groups of 8 image columns; rows labeled by method and FID, with NFE labels rotated on the left; green/red outline highlights",
  "tags": [
   "few-step-generation",
-  "image-generation",
-  "uncurated-samples",
+  "image-synthesis",
   "baseline-comparison",
-  "one-step",
-  "two-step",
-  "flow-models"
+  "uncurated-samples",
+  "sample-quality",
+  "flow-based-models",
+  "efficiency"
  ],
  "style": [
   "photo/real data",
   "colorful"
  ],
- "description": "A dense grid of 4 rows by 8 columns of generated ImageNet-style photos: parrots, an axolotl, a stork on a nest, a cockatoo, a hillside, a sea turtle, a robin, and a coastal seascape. Rows alternate between the baseline and the proposed method, with the same seeds and classes across rows. The upper pair is 1-step sampling and the lower pair is 2-step sampling. Several images in the proposed-method rows have green borders where they are clearly better, with one red border where they are worse. The baseline rows show blurrier, less detailed, or distorted samples, such as a smeared axolotl or a pink cast. The proposed rows show crisper textures and more saturated colors. The eye goes first to the colorful images and the green and red frames.",
+ "description": "A dense grid of ImageNet-style generated photos. Eight columns of the same seeds are compared across four rows. The left side has rotated labels \"NFE = 1\" for the top pair of rows and \"NFE = 2\" for the bottom pair. Each row is labeled with a method name and its FID: MeanFlow (3.47 and 2.46) versus α-Flow (2.95 and 2.34). Subjects include red macaws, an axolotl, a stork on a nest, a cockatoo, a hillside landscape, a sea turtle, a robin and a seascape. Green borders mark α-Flow samples that are clearly better than MeanFlow's. One red border marks a sample that is worse. The eye goes first to the saturated photos and the colored frames, then to the FID labels. The layout is plain white with thin black borders and no arrows.",
  "caption": "Uncurated samples (seeds $1$-$8$) from the \\ditxl model for MeanFlow [ref] and \\modelname (our proposed method) produced with 1 (upper) and 2 (lower) sampling steps for \\INFull.",
  "caption_source": "latex",
  "abstract": "MeanFlow has recently emerged as a powerful framework for few-step generative modeling trained from scratch, but its success is not yet fully understood. In this work, we show that the MeanFlow objective naturally decomposes into two parts: trajectory flow matching and trajectory consistency. Through gradient analysis, we find that these terms are strongly negatively correlated, causing optimization conflict and slow convergence. Motivated by these insights, we introduce $Î±$-Flow, a broad family of objectives that unifies trajectory flow matching, Shortcut Model, and MeanFlow under one formulation. By adopting a curriculum strategy that smoothly anneals from trajectory flow matching to MeanFlow, $Î±$-Flow disentangles the conflicting objectives, and achieves better convergence. When trained from scratch on class-conditional ImageNet-1K 256x256 with vanilla DiT backbones, $Î±$-Flow consistently outperforms MeanFlow across scales and settings. Our largest $Î±$-Flow-XL/2+ model achieves new state-of-the-art results using vanilla DiT backbones, with FID scores of 2.58 (1-NFE) and 2.15 (2-NFE).",
@@ -49,5 +49,5 @@
  "figure_page": 0,
  "qc_flags": [],
  "annotator": "claude-cli:sonnet",
- "role_confidence": 0.55
+ "role_confidence": 0.6
 }

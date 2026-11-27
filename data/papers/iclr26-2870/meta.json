@@ -14,8 +14,8 @@
  "topic": "Computer Vision->Vision Models & Multimodal",
  "role": "prior-vs-ours",
  "role2": "pipeline",
- "claim": "Prior methods induce tools speculatively from questions, before solving; ours builds tools from solved-program experience in a closed loop and reuses them.",
- "layout": "2 side-by-side panels (a) prior vs (b) ours, shared question and image on top, code boxes, dashed curved loop arrows",
+ "claim": "Prior methods create tools open-loop from questions alone; ours builds higher-level tools from its own solved-program experience, so later programs use them in a closed loop.",
+ "layout": "2 side-by-side panels (a) prior, (b) ours; a shared question and image on top left; code boxes on the right of each panel; dashed curved arrows show the tool-library loop",
  "tags": [
   "tool-induction",
   "visual-programming",
@@ -28,9 +28,9 @@
  "style": [
   "text-heavy",
   "colorful",
-  "screenshot"
+  "photo/real data"
  ],
- "description": "The top left shows a photo of a living room with a spatial question, \"How many objects of the same height as the rightmost cabinet table...\", and a ground-truth answer. Beneath it, panel (a) shows prior visual programming (VisProg, ViperGPT, VADAR). A Tool Library box lists basic tools, with orange-highlighted new tools \"induced from questions\". A dashed arrow leads to a Program box holding Python code that calls only basic tools. Panel (b) shows TVP. A Tool Library box links to a Program box. An Example Library of green and brown code icons sits below, and dashed arrows form a loop between the libraries and the program. New tools are \"abstracted from concrete program experience\". The program calls a higher-level tool, estimate_3d_instance_count, with several arguments, shown in orange. Orange highlights mark the new tools. Green and orange annotations explain tool access.",
+ "description": "The figure has two panels. A photo of a living room and a spatial question (\"How many objects of the same height...\") sit at the top left, with the ground truth GT: 1.875. Panel (a), \"Visual Programming (VisProg, ViperGPT, VADAR)\", shows a Tool Library box listing basic tools in green monospace, plus orange tools induced from questions. A dashed arrow leads from the library to a Program box of long, low-level code that calls depth and get_2D_obj_size repeatedly. Panel (b), \"Transductive Visual Programming (TVP)\", shows a Tool Library, a Program, and an Example Library with four code-icon boxes. Dashed orange arrows form a loop. Program snippets are annotated \"access to only basic tools\" and \"access to higher-level tools\", and the final program is a single estimate_3d_instance_count call. Orange highlights mark the new tools. The eye goes first to the code and the orange highlights.",
  "caption": "(a) Prior methods operate in an open-loop manner: tools are created without experience from solving problems. (b) \\tvp maintains both an Example Library of experiential solutions and a Tool Library of abstracted functions, forming a closed-loop system where tools are created from proven solution experience, and are then reused to guide future problem-solving.",
  "caption_source": "latex",
  "abstract": "Spatial reasoning in 3D scenes requires precise geometric calculations that challenge vision-language models. Visual programming addresses this by decomposing problems into steps calling specialized tools, yet existing methods rely on either fixed toolsets or speculative tool induction before solving problems, resulting in suboptimal programs and poor utilization of induced tools. We present Transductive Visual Programming (TVP), a novel framework that builds new tools from its own experience rather than speculation. TVP first solves problems using basic tools while accumulating experiential solutions into an Example Library, then abstracts recurring patterns from these programs into reusable higher-level tools for an evolving Tool Library. This allows TVP to tackle new problems with increasingly powerful tools learned from experience. On Omni3D-Bench, TVP achieves state-of-the-art performance, outperforming GPT-4o by 22% and the previous best visual programming system by 11%. Our transductively learned tools are used 5x more frequently as core program dependency than inductively created ones, demonstrating more effective tool discovery and reuse. The evolved tools also show strong generalization to unseen spatial tasks, achieving superior performance on benchmarks from SpatialScore-Hard collection without any testset-specific modification. Our work establishes experience-driven transductive tool creation as a powerful paradigm for building self-evolving visual programming agents that effectively tackle challenging spatial reasoning tasks. We release our code at https://transductive-visualprogram.github.io/.",
@@ -50,5 +50,5 @@
   "bad-crop"
  ],
  "annotator": "claude-cli:sonnet",
- "role_confidence": 0.85
+ "role_confidence": 0.88
 }

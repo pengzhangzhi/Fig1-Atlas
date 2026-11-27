@@ -17,23 +17,23 @@
  "topic": "Social Aspects->Privacy-preserving Statistics and Machine Learning",
  "role": "pipeline",
  "role2": null,
- "claim": "Progressively masking an input into many subsets, scoring each with target and reference models, then aggregating sign-based comparisons yields a robust score separating members from non-members.",
- "layout": "2 panels, left-to-right: (a) stacked progressively masked sentences S1..ST; (b) target/reference model loss stacks feeding a central aggregation box, with histogram inset below",
+ "claim": "Progressively masking an input into many subsets and comparing target versus reference model losses with sign-based aggregation turns sparse per-mask signals into a robust membership score.",
+ "layout": "2 panels: (a) vertical stack of progressively masked sequences on the left, (b) target/reference model loss stacks feeding a central aggregation box, with an inset histogram below it; flow left-to-right with dotted and solid arrows",
  "tags": [
   "membership-inference",
-  "privacy",
-  "diffusion-language-models",
+  "diffusion-language-model",
   "masking",
   "aggregation",
+  "privacy",
   "reference-model",
-  "sign-statistics"
+  "sign-statistic"
  ],
  "style": [
   "colorful",
-  "icon-heavy",
-  "math-heavy"
+  "math-heavy",
+  "plot"
  ],
- "description": "Two-panel pipeline diagram. Panel (a), on the left, shows stacked cards of the same sentence with increasing numbers of red [MASK] tokens (S1, S2, ..., ST) among green unmasked tokens. A grey downward arrow shows progressive masking, and a '×B' marker indicates repeated batches. Panel (b) is on the right. An orange Target Model bar sits at the top and a blue Reference Model bar at the bottom. Stacks of per-step loss cards, orange ℓ^T_1..S and blue ℓ^R_1..S, are fed by dotted arrows. Solid arrows pass them through circled plus nodes into a central box with the formula 1[Σ Δ(S_i) > 0]. Below it, a histogram inset shows blue Member and orange Non-Member score distributions that are separated. A faint 'Inference' label sits between the panels.",
+ "description": "Two-panel method diagram. Panel (a), on the left, shows a stack of cards. Each card holds the same sentence as colored word tokens, with green for visible tokens and red for [MASK] tokens. The cards go from S1 to S2 to ST, and the number of masked tokens grows down the stack. A gray arrow points downward, and a '×B' mark shows batching. Panel (b) has an orange Target Model bar at the top and a blue Reference Model bar at the bottom. Between them, orange loss cards ℓ^T_1 to ℓ^T_S sit on the left and blue cards ℓ^R_1 to ℓ^R_S sit on the right. Dotted arrows lead from the model bars to the loss cards. Solid arrows pass through plus nodes into a central box with the indicator formula 1[∑Δ(S_i)>0]. A dashed callout from that box opens a histogram. The histogram shows Member in blue and Non-Member in orange, with the two distributions separated along the predicted membership score axis. The word 'Inference' sits between the two panels.",
  "caption": "An overview of the \\ourmethod. (a) An input sequence \\alltoken{The doctor prescribed the medication after reviewing the patient 's symptoms .} undergoes progressive masking over $S$ steps, accumulating masked positions. (b) The target and reference DLMs' reconstruction errors for masked tokens \\alltoken{[MASK]} are tracked position-wise at each step ($\\{\\ell^s\\}_{s=1}^S$). Sign-based test statistics detect when specific mask configurations activate memorization, computing the fraction of configurations where reference loss exceeds target loss. This sign-based comparison, combined with inverse weighting, forms the membership score to differentiate training members from non-members.",
  "caption_source": "latex",
  "abstract": "Diffusion Language Models (DLMs) represent a promising alternative to autoregressive language models, using bidirectional masked token prediction. Yet their susceptibility to privacy leakage via Membership Inference Attacks (MIA) remains critically underexplored. This paper presents the first systematic investigation of MIA vulnerabilities in DLMs. Unlike the autoregressive models' single fixed prediction pattern, DLMs' multiple maskable configurations exponentially increase attack opportunities. This ability to probe many independent masks dramatically improves detection chances. To exploit this, we introduce SAMA (Subset-Aggregated Membership Attack), which addresses the sparse signal challenge through robust aggregation. SAMA samples masked subsets across progressive densities and applies sign-based statistics that remain effective despite heavy-tailed noise. Through inverse-weighted aggregation prioritizing sparse masks' cleaner signals, SAMA transforms sparse memorization detection into a robust voting mechanism. Experiments on nine datasets show SAMA achieves 30% relative AUC improvement over the best baseline, with up to 8 times improvement at low false positive rates. These findings reveal significant, previously unknown vulnerabilities in DLMs, necessitating the development of tailored privacy defenses.",
@@ -49,9 +49,7 @@
  "image_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/images/iclr26-4386.png",
  "thumb_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/thumbs/iclr26-4386.webp",
  "figure_page": 1,
- "qc_flags": [
-  "bad-crop"
- ],
+ "qc_flags": [],
  "annotator": "claude-cli:sonnet",
  "role_confidence": 0.93
 }

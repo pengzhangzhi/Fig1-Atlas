@@ -17,22 +17,22 @@
  "topic": "Applications->Robotics",
  "role": "analysis-finding",
  "role2": null,
- "claim": "Feature similarity between timesteps changes non-uniformly over time and differs across network blocks, so uniform reuse or caching schedules are suboptimal.",
- "layout": "2 rows x 3 columns: top row of heatmaps, bottom row of line plots, one column each for self-attention, cross-attention and FFN; sub-captions (a) and (b) under each row",
+ "claim": "Feature similarity between timesteps changes non-uniformly over time and differs across network components and layers, so uniform reuse or caching schedules are suboptimal.",
+ "layout": "2 rows x 3 columns: top row heatmaps, bottom row line plots, one column each for self-attention, cross-attention and FFN, with sub-captions (a) and (b) below each row",
  "tags": [
-  "feature-similarity",
-  "temporal-redundancy",
-  "block-wise",
-  "caching",
+  "feature-caching",
   "diffusion-policy",
-  "efficiency",
-  "empirical-observation"
+  "temporal-redundancy",
+  "similarity-analysis",
+  "non-uniform-dynamics",
+  "block-wise",
+  "efficiency"
  ],
  "style": [
   "plot",
   "colorful"
  ],
- "description": "Six-panel empirical figure in two rows. The top row, (a), has three timestep-by-timestep similarity heatmaps, one each for Self Attention, Cross Attention and FFN. Each uses a yellow-to-dark-blue colormap with a colorbar. A bright diagonal shows high similarity between neighboring timesteps. The off-diagonal falloff has a different shape in each block type. The bottom row, (b), has three line plots of similarity value against timestep, again for Self Attention, Cross Attention and FFN. Each plot has eight colored lines for Layers 0 to 7 in a purple-to-yellow viridis palette, with a legend box. The curves fluctuate and dip at particular timesteps, and the shapes differ by layer and block type. The eye goes first to the colorful heatmaps, then to the dips in the curves.",
+ "description": "A six-panel empirical figure in two rows. The top row, labeled (a), shows three timestep-by-timestep similarity heatmaps for Self Attention, Cross Attention and FFN. Each uses a blue-to-pale-yellow colormap with a colorbar, and a bright diagonal marks high similarity between nearby timesteps. The off-diagonal patterns differ across the three block types: cross attention shows a wide bright band, and self attention and FFN show narrower ones. The bottom row, labeled (b), shows three line plots of similarity value against timestep. Each plot has eight colored curves for Layers 0 to 7 and a legend inside. The curves fluctuate, and some drop sharply near the final timesteps, especially in cross attention and FFN. The eye goes first to the colorful heatmaps. The sub-captions describe the similarity measure between timestep t and t-10.",
  "caption": "Temporal and block-wise feature similarity patterns. (a) Similarity matrices of blocks in the third decoder layer. (b) Similarity change curves of different blocks. The feature similarity between consecutive timesteps varies non-uniformly over time and differs across blocks.",
  "caption_source": "latex",
  "abstract": "Diffusion Policy has demonstrated strong visuomotor modeling capabilities, but its high computational cost renders it impractical for real-time robotic control. Despite huge redundancy across repetitive denoising steps, existing diffusion acceleration techniques fail to generalize to Diffusion Policy due to fundamental architectural and data divergences. In this paper, we propose $\\textbf{B}$lock-wise $\\textbf{A}$daptive $\\textbf{C}$aching ($\\textbf{BAC}$), a method to accelerate Diffusion Policy by caching intermediate action features. BAC achieves lossless action generation acceleration by adaptively updating and reusing cached features at the block level, based on a key observation that feature similarities exhibit non-uniform temporal dynamics and distinct block-specific patterns. To operationalize this insight, we first design an Adaptive Caching Scheduler to identify optimal update timesteps by maximizing the global feature similarities between cached and skipped features. However, applying this scheduler for each block leads to significant error surges due to the inter-block propagation of caching errors, particularly within Feed-Forward Network (FFN) blocks. To mitigate this issue, we develop the Bubbling Union Algorithm, which truncates these errors by updating the upstream blocks with significant caching errors before downstream FFNs. As a training-free plugin, BAC is readily integrable with existing transformer-based Diffusion Policy and vision-language-action models. Extensive experiments on multiple robotic benchmarks demonstrate that BAC achieves up to 3$\\times$ inference speedup for free. Project page: https://block-wise-adaptive-caching.github.io.",
@@ -50,5 +50,5 @@
  "figure_page": 1,
  "qc_flags": [],
  "annotator": "claude-cli:sonnet",
- "role_confidence": 0.93
+ "role_confidence": 0.9
 }

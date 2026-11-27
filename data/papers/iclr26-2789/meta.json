@@ -15,22 +15,22 @@
  "topic": "General Machine Learning->Transfer, Multitask and Meta-learning",
  "role": "analysis-finding",
  "role2": null,
- "claim": "Scaling a task vector beyond its fine-tuned magnitude makes accuracy collapse sharply, and the collapse differs across tasks, so merging is fragile to task-vector norm.",
- "layout": "Single line plot with a legend below. Two dashed vertical reference lines are labeled θ_pre and θ_t. Text fragments from the page body appear at the left edge.",
+ "claim": "Merged accuracy is robust to shrinking a task vector but collapses when its norm is scaled up, so norm disparities are harmful to merging.",
+ "layout": "1 panel line plot, x-axis scaling coefficient, two dashed vertical reference lines with bold labels, 8-series legend below",
  "tags": [
-  "task-vector-scaling",
   "model-merging",
+  "task-vectors",
+  "norm-scaling",
   "robustness",
-  "failure-analysis",
-  "norm-sensitivity",
-  "multi-task",
-  "line-plot"
+  "failure-case",
+  "sensitivity-analysis",
+  "multi-task"
  ],
  "style": [
   "plot",
   "colorful"
  ],
- "description": "A single line chart with eight colored, dotted curves, one per vision dataset: Cars, DTD, EuroSAT, GTSRB, MNIST, RESISC45, SVHN and SUN397. The x-axis is a scaling coefficient κ_t from 0 to 3. The y-axis is relative accuracy against the λ=1.0 setting, in percent, from 0 to 120. Two black dashed vertical lines mark θ_pre at κ=0 and θ_t at κ=1, where every curve passes through 100. Left of κ=1, several curves rise above 100 and peak near κ=0.4. Right of κ=1, all curves drop. Cars and SUN397 fall fastest, and MNIST and GTSRB hold on longest. The legend is in two rows under the plot. Fragments of body text are cut off at the left edge. The crop does not match the caption, which describes three bar-chart panels.",
+ "description": "A single line chart with eight colored, dot-marked curves, one per vision dataset (Cars, DTD, EuroSAT, GTSRB, MNIST, RESISC45, SVHN, SUN397), listed in a two-row legend below the axes. The x-axis is a task-vector scaling coefficient κ_t from 0 to 3. The y-axis is relative accuracy (%) against the κ=1.0 baseline, from 0 to 120. Two black dashed vertical lines mark κ=0, labeled θ_pre, and κ=1, labeled θ_t. All curves meet at 100% at κ=1. To the left they rise to a plateau near 100–115% at κ≈0.4–0.6 and drop toward 30–90% at κ=0. To the right they fall steeply, to about 0–20% at κ=3. Cars and SUN397 degrade fastest and MNIST and GTSRB slowest. The eye goes first to the crossing curves converging at κ=1 and then to the steep right-hand decline. The figure shows only one plot, not the caption's three-panel bar charts.",
  "caption": "Failure Cases of Multi-Task Model Merging. All results were obtained using CLIP with a ViT-B-32 backbone on the eight vision tasks. (a) Comparison of normalized accuracy after merging models from different fine-tuning configurations averaged over eight vision tasks. The gray bar represents the conventional setting (a uniform learning rate of $10^{-5}$ with hard labels). The blue bar indicates the result of merging after training just one task with a learning rate (LR) of $10^{-4}$. The yellow bar shows the result when all tasks were trained with label smoothing (LS). Both the blue and yellow configurations show a significant performance degradation compared to the conventional setting. (b) Change in the task vector norm after fine-tuning with different learning rates for the same number of steps across eight vision tasks. The gray bar uses a learning rate of $10^{-5}$, matching the conventional benchmark, while the blue bar uses $10^{-4}$. We observe a 5 to 7-fold difference in the resulting task vector norms. (c) Change in the entropy of the model's predictive probabilities after fine-tuning with or without label smoothing across eight vision tasks. The vertical axis is on a logarithmic scale. Training with label smoothing increases the entropy by three orders of magnitude.",
  "caption_source": "latex",
  "abstract": "Model merging has emerged as an efficient and flexible paradigm for multi-task learning, with numerous methods being proposed in recent years. However, these state-of-the-art techniques are typically evaluated on benchmark suites that are highly favorable to model merging, and their robustness in more realistic settings remains largely unexplored. In this work, we first investigate the vulnerabilities of model-merging methods and pinpoint the source-model characteristics that critically underlie them. Specifically, we identify two factors that are particularly harmful to the merging process: (1) disparities in task vector norms, and (2) the low confidence of the source models. To address this issue, we propose DisTaC (Distillation for Task vector Conditioning), a novel method that pre-conditions these problematic task vectors before the merge. DisTaC leverages knowledge distillation to adjust a task vector's norm and increase source-model confidence while preserving its essential task-specific knowledge. Our extensive experiments demonstrate that by pre-conditioning task vectors with DisTaC, state-of-the-art merging techniques can successfully integrate models exhibiting the harmful traits -- where they would otherwise fail -- achieving significant performance gains.",
@@ -47,9 +47,8 @@
  "thumb_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/thumbs/iclr26-2789.webp",
  "figure_page": 7,
  "qc_flags": [
-  "low-role-confidence",
   "bad-crop"
  ],
  "annotator": "claude-cli:sonnet",
- "role_confidence": 0.4
+ "role_confidence": 0.55
 }

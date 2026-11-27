@@ -64,7 +64,10 @@ async function gallery() {
 async function paper() {
   const id = new URLSearchParams(location.search).get("id");
   const el = document.getElementById("paper");
-  let m; try { m = await (await fetch(`p/${encodeURIComponent(id)}.json`)).json(); } catch { el.innerHTML = `<p>No paper with id <code>${esc(id)}</code>. <a href="./">Back to the gallery</a>.</p>`; return; }
+  let m;
+  try { m = await (await fetch(`p/${encodeURIComponent(id)}.json`)).json(); }
+  catch { try { m = (await (await fetch("papers.json")).json())[id]; } catch {} }   // bundled preview builds
+  if (!m) { el.innerHTML = `<p>No paper with id <code>${esc(id)}</code>. <a href="./">Back to the gallery</a>.</p>`; return; }
   document.title = `${m.title} · Fig1 Atlas`;
   const L = m.links || {};
   const link = (k, t) => L[k] ? `<a href="${esc(L[k])}" target="_blank" rel="noopener">${t}</a>` : "";

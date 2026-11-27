@@ -15,23 +15,23 @@
  "topic": "Reinforcement Learning->Deep RL",
  "role": "pipeline",
  "role2": "concept",
- "claim": "Combining a reward-gradient path with a teacher-matching distillation path trains a one-step student that produces high-reward outputs.",
- "layout": "Left-to-right flow diagram with student (top) and teacher (bottom) branches, dashed gradient arrows flowing back, and two rounded inset panels at right showing the intuition",
+ "claim": "Distill a slow teacher into a one-step student by combining a teacher-matching loss with a reward-gradient loss, steering outputs toward high-reward regions.",
+ "layout": "Left-to-right flow with student (top) and teacher (bottom) branches, colored dashed gradient arrows, and two rounded inset panels at right showing the intuition",
  "tags": [
   "distillation",
-  "consistency-models",
+  "consistency-model",
   "reward-guidance",
   "one-step",
   "offline-rl",
-  "teacher-student",
-  "efficiency"
+  "efficiency",
+  "student-teacher"
  ],
  "style": [
   "colorful",
   "icon-heavy",
   "minimal"
  ],
- "description": "A left-to-right flow diagram. At far left, a box shows yellow State tokens and gray Noise tokens. Arrows lead from it to a blue Student box (top) and a magenta Teacher box (bottom). The student outputs a four-token action sequence a1–a4. The first action a1 goes to an orange Reward box and then to a Reward Loss. The teacher outputs its own a1–a4 prediction, which flows to a magenta DSM + CTM Loss. The student prediction also feeds into that loss along a long diagonal arrow. Dashed orange arrows (reward gradient) and dashed magenta arrows (distillation gradient) run backward to the student. Two rounded insets sit at right. The orange inset, Maximize Reward Function, shows a bimodal distribution shifting toward the higher-reward mode. The pink inset, Match Teacher ODE, shows the student trajectory following the teacher's backward PFODE curve from xT to x0. Color coding links each loss to its inset.",
+ "description": "A left-to-right diagram of a student-teacher training pipeline. At left, a rounded box shows state (yellow) and noise (gray) token strips, with arrows to a blue Student box on top and a magenta Teacher box below. The student outputs an action sequence a1..a4 (blue). From it, a single predicted action a1 goes to an orange Reward box, which gives a Reward Loss. The teacher outputs its own action sequence (pink), which feeds a DSM + CTM Loss together with the student prediction. Dashed orange arrows show the reward gradient and dashed magenta arrows show the distillation gradient, both flowing back to the student. Two pastel insets sit at right. The top inset, orange, shows a bimodal density shifting toward the higher-reward mode. The bottom inset, pink, shows a student trajectory matching the backward PFODE trajectory from x_T to x_0.",
  "caption": "Overview of Reward Aware Consistency Trajectory Distillation (\\modelname). We incorporate reward guidance with consistency trajectory distillation to train a student model that can generate actions with high rewards with only one denoising step.",
  "caption_source": "latex",
  "abstract": "Although diffusion models have achieved strong results in decision-making tasks, their slow inference speed remains a key limitation. While consistency models offer a potential solution, existing applications to decision-making either struggle with suboptimal demonstrations under behavior cloning or rely on complex concurrent training of multiple networks under the actor-critic framework. In this work, we propose a novel approach to consistency distillation for offline reinforcement learning that directly incorporates reward optimization into the distillation process. Our method achieves single-step sampling while generating higher-reward action trajectories through decoupled training and noise-free reward signals. Empirical evaluations on the Gym MuJoCo, FrankaKitchen, and long horizon planning benchmarks demonstrate that our approach can achieve a 9.7% improvement over previous state-of-the-art while offering up to 142x speedup over diffusion counterparts in inference time.",
@@ -49,5 +49,5 @@
  "figure_page": 1,
  "qc_flags": [],
  "annotator": "claude-cli:sonnet",
- "role_confidence": 0.85
+ "role_confidence": 0.8
 }

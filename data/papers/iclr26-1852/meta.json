@@ -12,16 +12,16 @@
  "track": "main",
  "topic": "General Machine Learning->Everything Else",
  "role": "pipeline",
- "role2": null,
- "claim": "A shared discrete codebook aligns views via quantized cross-view reconstruction, then fused predictions teach per-view classifiers through self-distillation.",
- "layout": "2 stacked panels split by dashed line; upper left-to-right encoder→codebook→decoder, lower right-to-left classifier→fusion; legend box bottom right",
+ "role2": "overview-framework",
+ "claim": "A two-stage system first learns discrete shared representations through a common codebook, then fuses per-view predictions to supervise the individual view branches by self-distillation.",
+ "layout": "2 stacked panels split by a dashed line; the top panel reads left-to-right (encoders, codebook quantization, decoders) and the bottom panel reads right-to-left (classifiers, fusion, label matrix). Legend box at lower right.",
  "tags": [
   "multi-view",
   "shared-codebook",
   "vector-quantization",
   "self-distillation",
-  "missing-data",
   "prediction-fusion",
+  "missing-data",
   "multi-label"
  ],
  "style": [
@@ -29,7 +29,7 @@
   "icon-heavy",
   "math-heavy"
  ],
- "description": "A dense two-tier framework diagram separated by a horizontal dashed line. The top tier runs left to right. Colored trapezoid encoders (blue, orange, yellow) for views X(1)..X(m) produce latent vectors Z and chunked feature stacks. These go through l2 normalization, distance and argmin steps against a gray rounded codebook of numbered colored cells. The resulting index sequences are queried to produce quantized features, which are concatenated and passed to decoders. Crossing arrows between concat and decoders show cross-view reconstruction. An orange dashed straight-through gradient path loops back. The bottom tier has per-view classifiers producing bar-chart predictions P(1)..P(m), a Fusion block that outputs P and a label matrix Y with question-mark cells, and graph-like S(i) structure panels compared via a Frobenius block. A legend explains missing-view, supervisory-signal and gradient line styles. Many arrows and loss labels (L_rec, L_vq, L_c, L_dis).",
+ "description": "A wide, dense diagram split by a horizontal dashed line. In the top half, per-view inputs X(1) to X(m) pass through color-coded trapezoid encoders (blue, orange, yellow) into latent vectors Z and chunked token stacks. These are l2-normalized and matched against a shared codebook of numbered colored cells through distance and argmin steps. The result is an index sequence, which a query step turns back into quantized codes, with orange straight-through gradient arrows. The codes are concatenated and sent to crossing arrows into per-view decoders, which produce the reconstruction loss L_rec. The bottom half shows the per-view classifiers producing predictions P(1) to P(m). These are fused by a Fusion block and compared with a partially observed label matrix Y that has question marks. The view-wise similarity graphs S(1) to S(m) are compared with a fused graph S through a Frobenius-norm block. A legend explains the dash-dot, dashed and orange arrow styles.",
  "caption": "The main framework of SCSD. The upper part represents the framework of multi-view consistent discrete representation learning, while the lower part represents the framework of multi-view prediction fusion and self-distillation.",
  "caption_source": "latex",
  "abstract": "Although multi-view multi-label learning has been extensively studied, research on the dual-missing scenario, where both views and labels are incomplete, remains largely unexplored. Existing methods mainly rely on contrastive learning or information bottleneck theory to learn consistent representations under missing-view conditions, but loss-based alignment without explicit structural constraints limits the ability to capture stable and discriminative shared semantics. To address this issue, we introduce a more structured mechanism for consistent representation learning: we learn discrete consistent representations through a multi-view shared codebook and cross-view reconstruction, which naturally align different views within the limited shared codebook embeddings and reduce feature redundancy. At the decision level, we design a weight estimation method that evaluates the ability of each view to preserve label correlation structures, assigning weights accordingly to enhance the quality of the fused prediction. In addition, we introduce a fused-teacher self-distillation framework, where the fused prediction guides the training of view-specific classifiers and feeds the global knowledge back into the single-view branches, thereby enhancing the generalization ability of the model under missing-label conditions. The effectiveness of our proposed method is thoroughly demonstrated through extensive comparative experiments with advanced methods on five benchmark datasets. Code is available at https://github.com/xuy11/SCSD.",
@@ -47,5 +47,5 @@
  "figure_page": 2,
  "qc_flags": [],
  "annotator": "claude-cli:sonnet",
- "role_confidence": 0.93
+ "role_confidence": 0.9
 }

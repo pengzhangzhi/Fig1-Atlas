@@ -15,24 +15,23 @@
  "track": "main",
  "topic": "Computer Vision->Everything Else",
  "role": "teaser-result",
- "role2": "prior-vs-ours",
- "claim": "Prior distillation relies on hand-picked layer pairs and loses accuracy; ours uses task-specific self-distillation and sits far ahead on the speed-accuracy frontier.",
- "layout": "Left: contrast panel (a) with two side-by-side distillation diagrams separated by a dashed line; right: bubble scatter plot. A third panel is cut off at the bottom left.",
+ "role2": null,
+ "claim": "Our method family sits in the top-right of the speed-accuracy plane, dominating prior trackers in both accuracy and inference speed.",
+ "layout": "1 bubble scatter plot, speed on x-axis and accuracy on y-axis, bubble size encodes a ratio, red dashed line links our variants, green arrow annotates the speedup",
  "tags": [
-  "efficiency",
   "speed-accuracy-tradeoff",
-  "distillation",
-  "visual-tracking",
+  "efficiency",
+  "bubble-chart",
   "real-time",
-  "autoregressive",
-  "bubble-plot"
+  "visual-tracking",
+  "pareto",
+  "benchmark-comparison"
  ],
  "style": [
   "plot",
-  "colorful",
-  "icon-heavy"
+  "colorful"
  ],
- "description": "The left side has panel (a), comparing distillation methods. On the left, 'Hand-Crafted Layer Assignments' shows a red teacher network and a green student network joined by orange arrows between chosen layers. Dark grey layers are skipped, and 'Perf. 2.8%↓' is marked in red. On the right, 'Self-Assignments' shows a blue and green token stack feeding task-specific tokens into a yellow network, with 'Perf. 0.7%↓'. A dashed vertical line separates the two. The right side is a bubble scatter plot of GOT-10k AO against GPU FPS. Many trackers appear as coloured circles, such as HiT, AsymTrack and PromptVT. The red FARTrack variants (tiny, nano, pico) lie along a dashed red line toward the upper right. A green arrow labelled '2.3x faster' points to the pico variant. The top of an 'Autoregressive' panel is cut off at the bottom left.",
+ "description": "A single bubble scatter plot. The x-axis is tracking speed on GPU in FPS, from 0 to 400. The y-axis is Average Overlap (AO), from 50 to 70+. Each bubble is a tracker, labeled by name and drawn in its own color, with size proportional to a speed-to-performance ratio. The three large red bubbles are the proposed FARTrack variants (tiny, nano, pico), labeled in bold. They sit at the top and right of the plot and are joined by a red dashed line. Baseline trackers such as PromptVT, AsymTrack, HiT, TCTrack, LightTrack and E.T.Track are smaller and clustered at the lower left, at lower speed or lower AO. A green arrow from AsymTrack-T to FARTrack-pico is labeled '2.3 x faster'. Gray dash-dot gridlines run behind the bubbles. A partly visible legend is clipped at the left edge.",
  "caption": "FARTrack vs. Other Trackers: Performance-Speed Trade-off. Comparison of our FARTrack with the state-of-the-art trackers on GOT-10k in terms of tracking speed (horizontal axis) on GPU and AO performence (vertical axis). The diameter of the circle is proportional to the ratio of the model's speed to its performance. FARTrack\\textsubscript{naco} significantly surpasses existing trackers in both tracking performance and inference speed.",
  "caption_source": "latex",
  "abstract": "Inference speed and tracking performance are two critical evaluation metrics in the field of visual tracking. However, high-performance trackers often suffer from slow processing speeds, making them impractical for deployment on resource-constrained devices. To alleviate this issue, we propose FARTrack, a Fast Auto-Regressive Tracking framework. Since autoregression emphasizes the temporal nature of the trajectory sequence, it can maintain high performance while achieving efficient execution across various devices. FARTrack introduces Task-Specific Self-Distillation and Inter-frame Autoregressive Sparsification, designed from the perspectives of shallow-yet-accurate distillation and redundant-to-essential token optimization, respectively. Task-Specific Self-Distillation achieves model compression by distilling task-specific tokens layer by layer, enhancing the model's inference speed while avoiding suboptimal manual teacher-student layer pairs assignments. Meanwhile, Inter-frame Autoregressive Sparsification sequentially condenses multiple templates, avoiding additional runtime overhead while learning a temporally-global optimal sparsification strategy. FARTrack demonstrates outstanding speed and competitive performance. It delivers an AO of 70.6% on GOT-10k in real-time. Beyond, our fastest model achieves a speed of 343 FPS on the GPU and 121 FPS on the CPU.",
@@ -52,5 +51,5 @@
   "bad-crop"
  ],
  "annotator": "claude-cli:sonnet",
- "role_confidence": 0.55
+ "role_confidence": 0.93
 }

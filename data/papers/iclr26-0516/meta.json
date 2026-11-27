@@ -15,23 +15,23 @@
  "topic": "Computer Vision->Image and Video Generation",
  "role": "teaser-result",
  "role2": null,
- "claim": "Across several quality metrics, our method reaches higher quality at lower latency than competing accelerators, dominating the quality-latency tradeoff frontier.",
- "layout": "4 side-by-side line plots sharing the latency x-axis, each with a different quality metric on the y-axis; 'Better' arrow in the lower-right corner; direct curve labels instead of a legend",
+ "claim": "Across several quality metrics, our caching method reaches higher quality at lower latency than competing acceleration baselines, dominating the quality-latency trade-off.",
+ "layout": "4 line-plot panels in a row sharing x-axis (latency), each a different quality metric; 'Better' arrow in lower-right of each panel; direct labels on curves",
  "tags": [
   "quality-latency-tradeoff",
+  "pareto",
+  "efficiency",
   "training-free",
   "caching",
-  "acceleration",
-  "video-diffusion",
-  "efficiency",
-  "pareto"
+  "video-generation",
+  "baseline-comparison"
  ],
  "style": [
   "plot",
   "colorful",
   "minimal"
  ],
- "description": "A single row of four line plots. Each plots latency in seconds on the x-axis against a quality metric on the y-axis: VBench, 1-LPIPS, SSIM and PSNR. Each plot has three curves of connected dots, labeled directly in matching colors: BWCache in salmon/orange, TeaCache in blue and PAB in green. In every panel the BWCache curve sits up and to the left of the others, meaning higher quality at lower latency. PAB is a nearly vertical green line at high latency. TeaCache is a blue line below BWCache. The first panel also has a gray dot for the unaccelerated Open-Sora baseline in the top right. A diagonal 'Better' arrow in the lower right of each panel points toward the better direction. The eye goes first to the salmon BWCache curves in the upper left.",
+ "description": "A single horizontal strip of four line charts. Each plots a quality metric on the y-axis against latency in seconds on the x-axis. The metrics are VBench, 1-LPIPS, SSIM and PSNR. Each panel has three connected-dot curves. The method's curve is salmon/red, TeaCache's is blue, and PAB's is green. Curves are labeled directly in matching colors, with no legend. In the first panel a gray dot marks the unaccelerated Open-Sora reference at high quality and high latency. A diagonal 'Better' arrow points toward the upper left, the low-latency, high-quality direction. In every panel the salmon curve sits up and to the left of the others. PAB's green curve is nearly vertical and sits at higher latency. The eye goes first to the salmon labels at the top left.",
  "caption": "Quality-latency comparisons for video diffusion models. Visual quality versus latency curves are presented for the proposed BWCache method, PAB, and TeaCache using Open-Sora. BWCache demonstrates significantly superior visual quality and efficiency compared to both PAB and TeaCache. Latency is evaluated on a single NVIDIA A800 GPU for generating 51 frames, 480P videos.",
  "caption_source": "latex",
  "abstract": "Recent advancements in Diffusion Transformers (DiTs) have established them as the state-of-the-art method for video generation. However, their inherently sequential denoising process results in inevitable latency, limiting real-world applicability. Existing acceleration methods either compromise visual quality due to architectural modifications or fail to reuse intermediate features at proper granularity. Our analysis reveals that DiT blocks are the primary contributors to inference latency. Across diffusion timesteps, the feature variations of DiT blocks exhibit a U-shaped pattern with high similarity during intermediate timesteps, which suggests substantial computational redundancy. In this paper, we propose Block-Wise Caching (BWCache), a training-free method to accelerate DiT-based video generation. BWCache dynamically caches and reuses features from DiT blocks across diffusion timesteps. Furthermore, we introduce a similarity indicator that triggers feature reuse only when the differences between block features at adjacent timesteps fall below a threshold, thereby minimizing redundant computations while maintaining visual fidelity. Extensive experiments on several video diffusion models demonstrate that BWCache achieves up to 6$\\times$ speedup with comparable visual quality.",

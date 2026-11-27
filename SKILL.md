@@ -10,30 +10,38 @@ a one-sentence **claim**, its **layout**, **tags**, **style** and an 80-150 word
 Retrieve by role first, topic second: a one-step discrete generation paper should see consistency-model
 and distillation Figure 1s ("many steps → one step"), not just other discrete diffusion papers.
 
-All commands run from the repo root, need only Python 3 (standard library), and no API keys.
+All commands run from the repo root with `python3` (standard library only, no API keys).
 If the repo is not cloned, the scripts fall back to the website data automatically.
 
 ## Workflow
 
 1. **Decide what Figure 1 must argue.** Read the user's draft, method or idea. Write two lines:
    (a) the single claim Figure 1 must make, (b) one or two candidate roles from the table below.
-   Also pick 2-5 *argument-level* tags (e.g. `one-step`, `distillation`, `efficiency`, `unification`,
-   `failure-mode`, `scaling`) plus at most 1-2 topic tags.
+   If the paper has several contributions (e.g. an objective, a benchmark and a decoding result), pick the one
+   the title/abstract leads with for Figure 1; the others can become insets.
+   Also list 3-5 tags: a few *argument-level* words (`one-step`, `distillation`, `efficiency`, `failure-mode`,
+   `scaling`, `unification`) plus 1-2 *topic* words. `python3 scripts/search.py --list-tags <substr>` shows the
+   real tag vocabulary (e.g. `--list-tags step` → one-step, few-step, few-step-generation, …).
 
-2. **Search.**
+2. **Search** — run these three kinds of query (each prints `id | venue tier | role | title | claim`):
    ```bash
-   python scripts/search.py --role prior-vs-ours,concept --tags one-step,distillation,discrete --limit 30
+   # a) role + topic: same argument, related subject (the main shortlist)
+   python3 scripts/search.py --role prior-vs-ours,concept --tags one-step,distillation,discrete --limit 30
+   # b) topic only: closest papers regardless of how their figure argues (catches role mislabels)
+   python3 scripts/search.py --tags self-correction,remasking --q "remask wrong tokens" --limit 20
+   # c) role only, cross-topic: the same kind of figure from any field (layout ideas)
+   python3 scripts/search.py --role prior-vs-ours --role-only --hosted --limit 40
    ```
-   One line per hit: `id | venue tier | role | title | claim`. Run 2-3 searches with different
-   role/tag combinations rather than one big one. `--q "free text"` adds keyword matching;
-   `--hosted` keeps only papers with downloadable images; `--roles` lists roles with counts.
+   With `--tags`/`--q` a paper must match at least one of them. `--hosted` keeps papers with downloadable
+   images, `--venue`/`--tier` filter, `--roles` prints role and venue counts (check coverage first).
 
-3. **Read the shortlist.** `python scripts/show.py <id> <id> ...` prints description, caption, layout and
-   links. Read them and cut to about 8 candidates whose *argument and layout* would fit the user's claim.
+3. **Read the shortlist.** `python3 scripts/show.py <id> <id> ...` prints description, caption, layout and
+   links. Cut to about 8 candidates whose *argument and layout* would fit the user's claim.
 
-4. **Look at the figures.** `python scripts/fetch_fig.py <8 ids>` downloads hosted images to
-   `fig1_atlas_figs/`; view them. Papers marked `[text-only]` have no hosted image (license): open the arXiv
-   link if you can browse (the figure page is printed), otherwise judge from the description.
+4. **Look at the figures.** `python3 scripts/fetch_fig.py <ids> [--out DIR]` downloads hosted images (default
+   `<system temp>/fig1_atlas_figs/`, outside the repo) and prints each path; view them. Papers marked
+   `[text-only]` have no hosted image (license): open the arXiv link if you can browse (the figure page is
+   printed), otherwise judge from the description. Close prior work makes a weak template to copy: say so.
 
 5. **Return 3-5 templates.** For each:
    - paper title, venue, link (arXiv or OpenReview), and the image path if fetched

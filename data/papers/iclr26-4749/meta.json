@@ -12,24 +12,24 @@
  "track": "main",
  "topic": "Deep Learning->Attention Mechanisms",
  "role": "teaser-result",
- "role2": null,
- "claim": "A lightweight method on a frozen model beats pooling baselines and rivals or exceeds fine-tuned models with far fewer trainable parameters across tasks.",
- "layout": "3 side-by-side scatter plots sharing a legend row on top; x is log trainable parameters, y is task performance; ours highlighted in the top-left",
+ "role2": "prior-vs-ours",
+ "claim": "Our lightweight pooling on a frozen model matches or beats pooling baselines that use full fine-tuning or LoRA, with orders of magnitude fewer trainable parameters.",
+ "layout": "3 side-by-side scatter plots sharing a top legend; log-scale x-axis of trainable parameters, performance on y-axis; ours at top-left of each",
  "tags": [
   "pooling",
   "frozen-llm",
   "parameter-efficiency",
-  "scatter-plot",
-  "benchmark-results",
+  "pareto",
   "sentence-embeddings",
-  "fine-tuning-comparison"
+  "graph-neural-network",
+  "benchmark-comparison"
  ],
  "style": [
   "plot",
   "colorful",
   "minimal"
  ],
- "description": "A single wide row of three scatter plots under a shared legend. The legend maps colors to pooling methods (EOS red, Mean green, Max yellow, AdaPool gray, GLOT blue) and marker shapes to training regimes (square for full fine-tuning, triangle for LoRA, circle for frozen LLM). The panels are titled Single-Sentence (CoLA), Sentence-Pair (RTE) and Similarity (STSB). Each plots performance on the y-axis against trainable parameters on a log-scale x-axis, from 10^6 to 10^10. In every panel, a single large blue circle for GLOT sits alone at the top left, with about 10^7 parameters and the best performance. The baselines are squares and triangles clustered further right at 10^8 to 10^10 parameters, with lower scores. The eye goes first to the isolated blue dot.",
+ "description": "A single row of three scatter plots, one each for GLUE CoLA (single-sentence, MCC), RTE (sentence-pair, accuracy) and STSB (similarity, Spearman). A shared legend across the top maps colors to pooling methods: red [EOS], green Mean, yellow Max, gray AdaPool, and blue GLOT (Ours). Marker shapes show the adaptation regime: square for full fine-tuning, triangle for LoRA, circle for frozen LLM. The x-axis is trainable parameters on a log scale from 10^6 to 10^10, and the y-axis is task performance. In every panel the large blue GLOT circle sits alone at the top left, at about 10^7 parameters and the highest score. The baseline triangles (around 2x10^8 parameters) and squares (around 7x10^9) sit lower and further right. The eye goes first to the isolated blue dot.",
  "caption": "Fine-tuning large language models for sentence embeddings is computationally expensive. Our pooling method, \\method, constructs a latent token-similarity graph from the outputs of a frozen model. It then refines token representations with a graph neural network before aggregation. This technique enables decoder-only models (like Mistral-7B), typically optimized for next-token prediction, to produce powerful sentence-level representations without requiring any fine-tuning.",
  "caption_source": "latex",
  "abstract": "Obtaining a single-vector representation from a Large Language Model's (LLM) token-level outputs is a critical step for nearly all sentence-level tasks. However, standard pooling methods like mean or max aggregation treat tokens as an independent set, discarding the rich relational structure captured by the model's self-attention layers and making them susceptible to signal dilution. To address this, we introduce GLOT, a lightweight, structure-aware pooling module that reframes pooling as relational learning followed by aggregation. Operating on the outputs of a frozen LLM, GLOT first constructs a latent token-similarity graph, then refines token representations with a graph neural network, and finally aggregates them using a readout layer. Experimentally, our approach is remarkably robust and efficient: on a diagnostic stress test where 90% of tokens are random distractors, GLOT maintains over 97% accuracy while baseline methods collapse. Furthermore, it is competitive with state-of-the-art techniques on benchmarks like GLUE and MTEB with 20x fewer trainable parameters and speeds up the training time by over 100x compared with parameter-efficient fine-tuning methods. Supported by a theoretical analysis of its expressive power, our work shows that learning over token graphs is a powerful paradigm for the efficient adaptation of frozen LLMs. Our code is published at https://github.com/ipsitmantri/GLOT.",
@@ -45,9 +45,7 @@
  "image_url": null,
  "thumb_url": null,
  "figure_page": 1,
- "qc_flags": [
-  "low-role-confidence"
- ],
+ "qc_flags": [],
  "annotator": "claude-cli:sonnet",
- "role_confidence": null
+ "role_confidence": 0.85
 }

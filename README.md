@@ -24,9 +24,9 @@ Then ask "design my Figure 1".
 
 **By hand**
 ```bash
-python scripts/search.py --role prior-vs-ours --tags one-step,distillation --limit 20
-python scripts/show.py <id> <id>
-python scripts/fetch_fig.py <id> <id>
+python3 scripts/search.py --role prior-vs-ours --tags one-step,distillation --limit 20
+python3 scripts/show.py <id> <id>
+python3 scripts/fetch_fig.py <id> <id>
 ```
 
 ## What's inside

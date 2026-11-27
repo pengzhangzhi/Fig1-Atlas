@@ -16,23 +16,24 @@
  "track": "main",
  "topic": "General Machine Learning->Transfer, Multitask and Meta-learning",
  "role": "analysis-finding",
- "role2": "problem-setup",
- "claim": "Adding more teacher models to multi-teacher distillation does not monotonically improve the student; performance fluctuates and often degrades, revealing conflicts between teachers.",
- "layout": "3 panels in a row (a/b/c by student size), grouped bar charts per dataset with a dashed average line on a secondary y-axis, annotated average values",
+ "role2": null,
+ "claim": "Adding more teacher models does not monotonically improve the distilled student; performance peaks at two teachers then drops, revealing conflicts between teachers.",
+ "layout": "3 side-by-side bar-plus-line panels (a)-(c) by student size, shared x-axis of cumulative teacher settings, dual y-axes, annotated average values",
  "tags": [
   "multi-teacher",
   "knowledge-distillation",
   "knowledge-conflict",
-  "scaling-teachers",
+  "scaling-trend",
   "llm",
-  "non-monotonic-trend",
-  "empirical-observation"
+  "non-monotonic",
+  "ablation"
  ],
  "style": [
   "plot",
-  "colorful"
+  "colorful",
+  "minimal"
  ],
- "description": "Three side-by-side grouped bar charts, labeled (a) 77M student, (b) 248M student and (c) 783M student. The x-axis in each is the teacher setting, starting with FLAN-T5 xlarge and then adding Llama 2-chat, BioMistral-7B and Llama-3.1-8B-Instruct. Pastel bars in blue, light blue, lavender and pink show accuracy on four datasets (OBQA, ARC, Riddle, PQA) against the left axis. A dark purple dashed line with square markers shows average accuracy against the right axis, and each point carries a numeric label such as 42.61 or 55.33. In every panel the average rises after the second teacher is added, then falls or stays flat. The eye goes first to the zigzag average line and its labels. A legend sits at the top of each panel.",
+ "description": "Three horizontally arranged panels, labeled (a) 77M student, (b) 248M student, (c) 783M student. Each shows grouped bars for four datasets (OBQA, ARC, Riddle, PQA) in muted blue, light blue, lavender and pink. The x-axis lists cumulative teacher settings: FLAN-T5 xlarge, + Llama 2-chat, + BioMistral-7B, + Llama-3.1-8B-Instruct. A dark purple dashed line with square markers traces average accuracy on a right-hand secondary axis, with numeric labels such as 42.61, 55.33 and 63.61. The line rises at the second teacher and then falls or plateaus. The legend sits at the top left of each panel. The eye goes first to the peaked dashed line and its annotations.",
  "caption": "Effects of increasing teacher LLMs on the performance of the TinyLLM framework.",
  "caption_source": "latex",
  "abstract": "Knowledge distillation has emerged as a pivotal technique for transferring knowledge from stronger large language models (LLMs) to smaller, more efficient models. However, traditional distillation approaches face challenges related to knowledge conflicts and high resource demands, particularly when leveraging multiple teacher models. In this paper, we introduce the concept of \\textbf{Knowledge Purification}, which consolidates the rationales from multiple teacher LLMs into a single rationale, thereby mitigating conflicts and enhancing efficiency. To investigate the effectiveness of knowledge purification, we further propose five purification methods from various perspectives. Our experiments demonstrate that these methods not only improve the performance of the distilled model but also effectively alleviate knowledge conflicts. Moreover, router-based methods exhibit robust generalization capabilities, underscoring the potential of innovative purification techniques in optimizing multi-teacher distillation and facilitating the practical deployment of powerful yet lightweight models.",
@@ -50,5 +51,5 @@
  "figure_page": 1,
  "qc_flags": [],
  "annotator": "claude-cli:sonnet",
- "role_confidence": 0.8
+ "role_confidence": 0.85
 }

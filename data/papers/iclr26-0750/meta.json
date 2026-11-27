@@ -17,23 +17,23 @@
  "topic": "Deep Learning->Generative Models and Autoencoders",
  "role": "pipeline",
  "role2": null,
- "claim": "A frozen teacher and a one-step generator are distilled by min-max optimization of one loss, with real data mixed in directly and no discriminator.",
- "layout": "Single wide panel, left-to-right data flow: generator and noise on the left, teacher and fake-model branches in the middle, two rounded loss boxes on the right feeding a subtraction node, plus a legend at lower left.",
+ "claim": "A one-step generator is distilled from a frozen teacher by min-max optimization of a loss that mixes real and generated data without a discriminator.",
+ "layout": "Single wide panel, left-to-right data flow; generator and noise inputs at left, parallel green fake-model and blue teacher branches, loss boxes merging into a subtraction node at right; legend at bottom-left",
  "tags": [
   "distillation",
-  "one-step-generator",
+  "one-step-generation",
   "flow-matching",
   "diffusion",
-  "real-data",
   "min-max-optimization",
+  "real-data",
   "teacher-student"
  ],
  "style": [
   "colorful",
-  "photo/real data",
-  "math-heavy"
+  "math-heavy",
+  "photo/real data"
  ],
- "description": "A wide left-to-right pipeline diagram. On the left, a noise image z passes through a red generator network G_θ(z) and becomes a generated dog image. Dashed interpolation lines link the generated dog, a pure-noise image x_T, and a real labrador photo to two noised images in the middle. The top noised image feeds a green fake-model network f(x_t,t). The bottom noised image feeds a blue, frozen teacher network f*(x_t,t). On the right, two large rounded boxes, green on top and blue below, each show a squared-norm loss. Each loss compares blurry denoised predictions with clean dog images, weighted by β/α, (1−β)/(1−α), α and (1−α). The two losses meet at a minus node that outputs the R-UID loss in a red box. A legend at lower left explains the colors. Colored network blocks and dog photos draw the eye first.",
+ "description": "A wide left-to-right pipeline diagram. At far left, a noise image z passes through a red encoder-decoder-shaped generator G_theta, producing a dog image. This image and a separate real dog photo are each interpolated, with dashed lines from a noise sample x_T, into noisy images. The noisy images feed two parallel networks: a green fake model f at the top and a blue frozen teacher f* at the bottom. Their outputs go into large rounded green and blue boxes. Each box has image-based loss terms: blurry predictions minus real or generated dog images, weighted by beta/alpha and (1-beta)/(1-alpha), squared, scaled by alpha or (1-alpha), and summed. The two losses meet at a minus node that gives the final R-UID loss in a red box. A legend at left shows color roles: teacher (snowflake), generator (flame), and fake model (flame). The eye goes first to the colorful dog images and the green and blue loss boxes.",
  "caption": "Pipeline of our RealUID distillation framework (\\S [ref]) with the direct incorporation of real data $p^*_0$ adjusted by parameters $\\alpha, \\beta \\in (0,1]$. The figure depicts flow matching models predicting denoised samples. It distills a costly frozen teacher model $f^*$ (blue) into a one-step generator $G_\\theta$ (red) upon min-max optimization of $\\mathcal{L}^{\\alpha, \\beta}_{R-UID}(f, p_0^\\theta)$ loss over fake model $f$ (green) and generator distribution $p_0^\\theta$ with parameters $\\theta$. It updates the fake model several times per one generator update for stability. Algorithm's pseudocode is located in Appendix [ref].",
  "caption_source": "latex",
  "abstract": "While achieving exceptional generative quality, modern diffusion, flow, and other matching models suffer from slow inference, as they require many steps of iterative generation. Recent distillation methods address this problem by training efficient one-step generators under the guidance of a pre-trained teacher model. However, these methods are often constrained to only one specific framework, e.g., only to diffusion or only to flow models. Furthermore, these methods are originally data-free, and to benefit from the usage of real data, it is required to use an additional complex adversarial training with an extra discriminator model. In this paper, we present RealUID, a universal distillation framework for all matching models that seamlessly incorporates real data into the distillation procedure without GANs. Our RealUID approach offers a simple theoretical foundation that covers previous distillation methods for Flow Matching and Diffusion models, and can be also extended to their modifications, such as Bridge Matching and Stochastic Interpolants. The code can be found in https://github.com/David-cripto/RealUID.",
@@ -51,5 +51,5 @@
  "figure_page": 6,
  "qc_flags": [],
  "annotator": "claude-cli:sonnet",
- "role_confidence": 0.95
+ "role_confidence": 0.93
 }

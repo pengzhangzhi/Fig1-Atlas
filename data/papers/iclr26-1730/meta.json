@@ -13,22 +13,23 @@
  "topic": null,
  "role": "pipeline",
  "role2": "problem-setup",
- "claim": "Language models mix in wrong-language tokens during generation; a lightweight gate on the hidden state masks disallowed tokens and fixes the output without changing the base model.",
- "layout": "2 regions: three stacked failure-example boxes on the left; a rounded flow diagram on the right running left-to-right, with a dashed 'With Intervention' branch below",
+ "claim": "A lightweight gate predicts permissible output categories from the hidden state and masks disallowed logits only when needed, correcting observed failures without modifying the base model.",
+ "layout": "2 regions: left stack of 3 blue example boxes showing failures; right rounded panel with left-to-right flow and dashed 'With Intervention' branch below",
  "tags": [
-  "language-confusion",
-  "decoding-time-intervention",
-  "logit-masking",
   "plug-in-module",
+  "decoding-time",
+  "logit-masking",
+  "language-confusion",
   "multilingual",
-  "failure-case",
-  "token-filtering"
+  "self-distillation",
+  "failure-cases"
  ],
  "style": [
+  "colorful",
   "text-heavy",
-  "colorful"
+  "icon-heavy"
  ],
- "description": "The left column holds three light-blue rounded boxes. Each shows a translation prompt (Chinese to Thai, English to Korean, English to Hebrew) and the output of a named LLM (GPT-5-Chat, Qwen3-235B, Claude-4-Sonnet). The wrongly mixed-in words are in red. A large rounded rectangle on the right holds the pipeline. An input Thai prompt feeds the LLM, which produces an orange 'hidden state' bar. That goes to an LM Head, then to a yellow 'Next Token Pred' table of tokens and probabilities, then to a 'Wrong Result' box with the Chinese character in red. A dashed 'With Intervention' region below takes the hidden state into the Language Confusion Gate. The gate outputs an Allowed Languages table (Chinese No, Latin No, Symbol No, LowRes Yes). A multiply node masks the table's rows, setting the Chinese tokens to 0 in red. The result is a 'Correct Result' box. The eye goes first to the red errors on the left, then to the diagram on the right.",
+ "description": "The left column has three light-blue boxes. Each holds a translation prompt, the name of a model (GPT-5, Qwen3, Claude-4-Sonnet), and its output. Wrongly mixed-in characters in the outputs are shown in red. The right side is a large rounded panel with a pipeline. An LLM box feeds an orange vertical 'hidden state' bar, which feeds an LM Head. The LM Head produces a yellow Next Token Pred table (tokens and probabilities) that leads to a 'Wrong Result' bubble with a red character. A branch goes down from the hidden state into a Language Confusion Gate box. That box outputs an Allowed Languages table (Chinese No, Latin No, Symbol No, LowRes Yes). A multiply node combines this with the logits. The result is a second table with the wrong tokens set to 0 and highlighted in red. It leads to a 'Correct Result' bubble. A dashed box labeled 'With Intervention' encloses the lower branch.",
  "caption": "Left: examples of language confusion in three LLMs on the left. Right: LCG takes the LLM's hidden state, predicts permissible language families (CJ, Latin, Symbols, LowRes), and dynamically masks logits for disallowed tokens only when necessary to correct the confusion on the left without altering the base model.",
  "caption_source": "latex",
  "abstract": "Large language models (LLMs) often experience language confusion, which is the unintended mixing of languages during text generation. Current solutions to this problem either necessitate model retraining or cannot differentiate between harmful confusion and acceptable code-switching. This paper introduces the Language Confusion Gate (LCG), a lightweight, plug-in solution that filters tokens during decoding without altering the base LLM. The LCG is trained using norm-adjusted self-distillation to predict appropriate language families and apply masking only when needed. Our method is based on the findings that language confusion is infrequent, correct-language tokens are usually among the top predictions, and output token embedding norms are larger for high-resource languages, which biases sampling. When evaluated across various models, including Qwen3, GPT-OSS, Gemma3, Llama3.1, LCG decreases language confusion significantly, often by an order of magnitude, without negatively impacting task performance. Code is available at https://github.com/collinzrj/language_confusion_gate.",

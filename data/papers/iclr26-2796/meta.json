@@ -12,24 +12,24 @@
  "track": "main",
  "topic": "Deep Learning->Generative Models and Autoencoders",
  "role": "analysis-finding",
- "role2": "before-after",
- "claim": "Training with flow matching untangles crossing sample trajectories into non-intersecting paths, showing the learned velocity field regularizes particle transport.",
- "layout": "2 grouped panels (a) epoch 1, (b) epoch 20, each with side-by-side scatter plots (optimized particles vs velocity fields), left-to-right, shared legend",
+ "role2": "concept",
+ "claim": "Training on a learned velocity field untangles crossing particle trajectories into smoother, non-intersecting paths, lowering transport cost without changing the endpoints.",
+ "layout": "2 grouped panels (a: epoch 1, b: epoch 20), each with side-by-side scatter plots (optimized particles vs. velocity fields), left-to-right, shared legend below each plot",
  "tags": [
   "flow-matching",
   "trajectory-disentanglement",
-  "mean-field-games",
   "optimal-transport",
+  "mean-field-games",
   "particle-methods",
-  "training-dynamics",
-  "qualitative-illustration"
+  "dynamic-cost",
+  "training-dynamics"
  ],
  "style": [
   "plot",
   "colorful",
   "minimal"
  ],
- "description": "Four scatter plots in two groups, labeled (a) and (b), with the titles 'training epoch: 1' and 'training epoch: 20'. Each group has a left plot, 'Optimized Particles', and a right plot, 'Velocity Fields'. Every plot shows a faint cloud of blue and red dots on a 2D plane. The cloud has a cross or plus shape, with blue samples (P) spread over the outer lobes and red samples (Q) concentrated in a central blob. About 20 numbered black curves connect blue start points to red end points. In epoch 1, the optimized-particle trajectories cross and tangle heavily. The velocity-field trajectories are smoother and mostly separated. By epoch 20, both plots show tidy, radially ordered, non-crossing paths. A legend with blue P and red Q sits under each plot.",
+ "description": "Four 2-D scatter plots in two groups. Group (a) is labeled \"training epoch: 1\" and group (b) \"training epoch: 20\". Each group has a left plot titled \"Optimized Particles\" and a right plot titled \"Velocity Fields\". Blue dots (P, source) and red dots (Q, target) are joined by black trajectory lines. Numbered labels 0–18 mark the particles. A faint blue and red point cloud forms a cross-shaped background distribution. At epoch 1, the optimized-particle trajectories cross each other in a tangle. The velocity-field trajectories are already smoother and more orderly. At epoch 20, both plots show mostly straight, non-crossing, radially organized paths. Legend boxes for P and Q sit beneath each plot. The eye goes first to the crossing black lines in the leftmost plot.",
  "caption": "Illustration of the trajectory disentangle effect by Flow Matching (FM). (a) and (b) show the sample trajectories at the beginning of training and after 20 epochs of training, respectively, where \"optimized particles\" stands for trajectories after a particle update, and \"velocity field\" shows trajectories resampled from a learned velocity field by FM, see Algorithm [ref]. Theoretically, we prove that FM disentangles the trajectories and reduces the dynamic cost, while leaving the interaction and terminal costs unchanged.",
  "caption_source": "latex",
  "abstract": "Mean-field games (MFGs) study the Nash equilibrium of systems with a continuum of interacting agents, which can be formulated as the fixed-point of optimal control problems. They provide a unified framework for a variety of applications, including optimal transport (OT) and generative models. Despite their broad applicability, solving high-dimensional MFGs remains a significant challenge due to fundamental computational and analytical obstacles. In this work, we propose a particle-based deep Flow Matching (FM) method to tackle high-dimensional MFG computation. In each iteration of our proximal fixed-point scheme, particles are updated using first-order information, and a flow neural network is trained to match the velocity of the sample trajectories in a simulation-free manner. Theoretically, in the optimal control setting, we prove that our scheme converges to a stationary point sublinearly, and upgrade to linear (exponential) convergence under additional convexity assumptions. Our proof uses FM to induce an Eulerian coordinate (density-based) from a Lagrangian one (particle-based), and this also leads to certain equivalence results between the two formulations for MFGs when the Eulerian solution is sufficiently regular. Our method demonstrates promising performance on non-potential MFGs and high-dimensional OT problems cast as MFGs through a relaxed terminal-cost formulation.",

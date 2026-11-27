@@ -17,22 +17,22 @@
  "topic": "Deep Learning->Generative Models and Autoencoders",
  "role": "prior-vs-ours",
  "role2": "concept",
- "claim": "Uniform denoising order mismatches planner-guided inference; training with planner-based denoising probabilities aligns training and inference.",
- "layout": "2 side-by-side panels, each with 4 stacked token rows reading left-to-right; thin gray arrows on the left, thick purple arrows on the right",
+ "claim": "Uniform random denoising order mismatches planner-guided inference; training with planner-based probabilities makes the training and inference paths consistent.",
+ "layout": "2 side-by-side panels, each with 4 rows of left-to-right token-unmasking chains; thick vs. thin arrows encode denoising probability",
  "tags": [
-  "diffusion-language-models",
-  "masked-diffusion",
+  "discrete-diffusion",
   "planner",
   "training-inference-mismatch",
-  "denoising-order",
-  "discrete",
-  "sequence-generation"
+  "masked-tokens",
+  "sampling-order",
+  "language-models",
+  "prior-vs-ours"
  ],
  "style": [
   "minimal",
   "colorful"
  ],
- "description": "Two side-by-side panels each show four rows of sequence tokens being denoised from left to right. Gray rounded boxes labeled [M] are masked tokens. Lavender boxes with black outlines show revealed letters (P, A, P, L). On the left (uniform), thin gray arrows link each step, with every position given equal weight. On the right (planner), arrows are purple. Thick dark arrows mark the position the planner picks to unmask next, and faint pale arrows mark the positions it skips. The final tokens are the same in both panels, so only the unmasking order differs. The eye goes first to the thick purple arrows on the right. The caption's right-hand training-vs-inference summary is not in this crop.",
+ "description": "The figure shows two panels, each with four horizontal rows of five token boxes that go left to right. Each row starts with gray masked boxes labeled [M] and ends with lavender boxes holding revealed letters (P, A, P, L). Gray arrows join the boxes. In the left panel (uniform), every arrow has the same weight, so each position is equally likely to be denoised. In the right panel (planner), arrows differ: thick dark purple arrows mark the transitions that actually happen, and faint pale pink arrows mark transitions that are unlikely. The thick arrows land at different columns in different rows, which shows that the planner chooses which position to denoise. The eye goes first to the bold purple arrows on the right. The design is clean, with a limited gray and purple palette and no text beyond the token labels. The caption supplies the labels (Uniform, Planner) and the training and inference summary.",
  "caption": "\\looseness=-1 Training–inference mismatch in diffusion language models. Left: Visualization of denoising probabilities, with a thicker arrow denoting a higher probability to be denoised. Uniform: all masked positions have equal probability. Planner: denoising probability is given by a planner. Right: training vs.\\ inference summary. Standard DLMs use uniform probabilities throughout. DLM + Greedy improves inference with planners but introduces a mismatch with training. PAPL closes the gap by using planner-based probabilities in both training and inference.",
  "caption_source": "latex",
  "abstract": "Diffusion language models have emerged as a powerful alternative to autoregressive models, enabling fast inference through more flexible and parallel generation paths. This flexibility of sampling is unlocked by new engineered sampling strategies, or planners, that select more favorable generation paths by iteratively planning - versus uniformly at random - where to denoise along the sequence. However, by modifying the reverse paths via planning, planners create an irrevocable mismatch between the uniformly random denoising paths assumed during training and planning-based inference. In this paper, we systematically investigate the mismatch of discrete diffusion training and inference under planning and theoretically prove that the standard discrete diffusion training evidence lower bound (ELBO) does not accurately describe a denoiser that uses a non-uniform planner. To address this gap, we derive a new planned evidence lower bound (P-ELBO) that incorporates planner-based reverse dynamics directly into the training objective. Using the P-ELBO, we introduce Planner Aware Path Learning (PAPL), a novel training scheme that aligns training and inference under a planned denoiser. PAPL is implemented as a simple yet effective modification to the standard masked discrete diffusion loss, making it widely applicable and easy to adopt. Empirically, we show PAPL delivers consistent gains across domains, including a 40% relative improvement in protein sequences, improved text generation with up to a 4x relative MAUVE gain, and 23% relative improvement in code generation HumanEval pass@10. Code is available at github.com/pengzhangzhi/PAPL .",

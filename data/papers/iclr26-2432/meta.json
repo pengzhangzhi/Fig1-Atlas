@@ -15,23 +15,23 @@
  "track": "main",
  "topic": "Deep Learning->Everything Else",
  "role": "analysis-finding",
- "role2": "problem-setup",
- "claim": "Aggressively restricting attention context barely hurts short-context tasks but collapses long-context retrieval, showing that some full-attention layers are essential and must be chosen carefully.",
- "layout": "single line plot, window size on log-style x-axis, performance on y-axis, legend in 2x2 grid below",
+ "role2": null,
+ "claim": "Restricting attention to a local window barely hurts short-context commonsense tasks but sharply degrades long-context retrieval until the window becomes very large.",
+ "layout": "single line plot, window size on x-axis (log-spaced), performance on y-axis, dashed horizontal full-attention reference lines, legend below",
  "tags": [
   "sliding-window-attention",
-  "hybrid-attention",
+  "linear-attention",
   "long-context",
   "distillation",
-  "layer-selection",
-  "ablation-trend",
-  "efficiency"
+  "hybrid-models",
+  "efficiency",
+  "motivation"
  ],
  "style": [
   "plot",
   "minimal"
  ],
- "description": "A single matplotlib line chart titled 'Performance vs. Sliding Window Size'. The x-axis shows sliding window sizes from 16 to 2048, doubling at each step. The y-axis is performance from 0 to about 0.9. Two solid lines with circular markers: orange for Common Sense, which stays flat near 0.69 at every window size, and blue for RULER, which starts near 0.03 at window 16 and climbs steeply to about 0.6 at 2048. Two dashed horizontal lines show the full-attention references: blue for RULER near 0.92 at the top, and orange for Common Sense near 0.69, which the orange line sits on. A boxed 2x2 legend with a drop shadow sits below the plot. The eye goes first to the blue RULER curve rising steeply, then to the large gap between it and the dashed full-attention line.",
+ "description": "A single matplotlib line chart titled 'Performance vs. Sliding Window Size'. The x-axis shows sliding window sizes from 16 to 2048 in powers of two. The y-axis shows performance from 0 to about 0.9. An orange line with circle markers (Common Sense) stays flat near 0.69 across all window sizes, sitting on its dashed orange full-attention reference line. A blue line with markers (RULER) starts near 0.03 at window 16 and rises convexly to about 0.6 at window 2048. A dashed blue horizontal line near 0.92 marks RULER with full attention, far above the blue curve. The legend sits in a boxed 2x2 grid below the plot. The eye goes first to the steep blue curve and the gap to the dashed blue ceiling.",
  "caption": "Performance of a sliding-window attention model (distilled from Qwen2.5-3B-Instruct) across different window sizes on RULER and commonsense reasoning tasks.",
  "caption_source": "latex",
  "abstract": "Distilling pretrained softmax attention Transformers into more efficient hybrid architectures that interleave softmax and linear attention layers is a promising approach for improving the inference efficiency of LLMs without requiring expensive pretraining from scratch. A critical factor in the conversion process is layer selection, i.e., deciding on which layers to convert to linear attention variants. This paper describes a simple and efficient recipe for layer selection that uses layer importance scores derived from a small amount of training on generic text data. Once the layers have been selected we use a recent pipeline for the distillation process itself \\citep[RADLADS;][]{goldstein2025radlads}, which consists of attention weight transfer, hidden state alignment, KL-based distribution matching, followed by a small amount of finetuning. We find that this approach is more effective than existing approaches for layer selection, including heuristics that uniformly interleave linear attentions based on a fixed ratio, as well as more involved approaches that rely on specialized diagnostic datasets.",
@@ -49,5 +49,5 @@
  "figure_page": 0,
  "qc_flags": [],
  "annotator": "claude-cli:sonnet",
- "role_confidence": 0.8
+ "role_confidence": 0.85
 }

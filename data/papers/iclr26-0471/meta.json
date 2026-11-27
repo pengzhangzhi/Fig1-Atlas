@@ -13,22 +13,23 @@
  "topic": "Deep Learning->Generative Models and Autoencoders",
  "role": "analysis-finding",
  "role2": "teaser-result",
- "claim": "Linear interpolation yields irregular, non-smooth probability paths far from the ideal; our optimal-transport interpolation gives a smooth path that closes the convergence gap.",
- "layout": "3 line-plot panels in a row, left-to-right, captions (a)-(c) below; red arrows for velocity in (a), curly brace marking gap in (c)",
+ "claim": "Linear interpolation yields irregular, non-smooth probability paths with a convergence gap to the ideal path; our optimal-transport-based interpolation closely tracks the ideal path.",
+ "layout": "3 line-plot panels in a row, left-to-right, each captioned (a)-(c); shared axes, red arrows and brace annotations",
  "tags": [
   "probability-path",
-  "interpolation",
   "flow-matching",
   "graph-generation",
   "optimal-transport",
+  "interpolation",
   "convergence",
-  "smoothness"
+  "diagnostic-plot"
  ],
  "style": [
   "plot",
+  "colorful",
   "minimal"
  ],
- "description": "Three side-by-side line charts share the same axes: flow steps from 0 to 1 on the x-axis and the average MMD ratio of graph statistics on the y-axis, where lower means closer to the data. Panel (a) compares the linear interpolation, drawn as a blue curve that stays flat and then drops sharply, with a green dotted ideal straight-line path. Red arrows mark the estimated velocity and the ideal velocity. Panel (b) adds time-distortion and target-guidance manipulations, drawn in orange and green, to the linear baseline. Panel (c) shows sampling paths for the same baselines plus the proposed BW interpolation as a red dashed curve. That curve falls smoothly and fastest, and a red curly brace labeled 'Convergence Gap' marks the remaining distance at the end. Legends sit inside each plot.",
+ "description": "Three side-by-side line plots share the y-axis 'Average Ratio for Graph Statistics' and an x-axis of flow steps from 0 to 1. Panel (a), 'Training path comparison', plots a blue linear-interpolation curve that is bumpy and plateaus before dropping steeply. A straight green dotted ideal line runs from the top-left corner to zero. Red arrows mark the 'Estimated velocity' and 'Ideal Velocity' along the two curves. Panel (b), 'Training path manipulation', adds orange time-distortion and green target-guidance curves from prior work. Panel (c), 'Sampling path comparison', adds a red dashed BW Interpolation (Ours) curve that falls smoothly to near zero. A red brace on the right labels the 'Convergence Gap' between the blue baseline and ours. Legends sit inside each plot.",
  "caption": "Probability path visualization. Since the probability is intractable, the average maximum mean discrepancy ratio (y-axis) of graph statistics between interpolants and the data points is used as a proxy for the probability. Lower means closer to the data distribution (details in [ref]).",
  "caption_source": "latex",
  "abstract": "Graph generation has emerged as a critical task in fields ranging from drug discovery to circuit design. Contemporary approaches, notably diffusion and flow-based models, have achieved solid graph generative performance through constructing a probability path that interpolates between reference and data distributions. However, these methods typically model the evolution of individual nodes and edges independently and use linear interpolations in the disjoint space of nodes/edges to build the path. This disentangled interpolation breaks the interconnected patterns of graphs, making the constructed probability path irregular and non-smooth, which causes poor training dynamics and faulty sampling convergence. To address the limitation, this paper first presents a theoretically grounded framework for probability path construction in graph generative models. Specifically, we model the joint evolution of the nodes and edges by representing graphs as connected systems parameterized by Markov random fields (MRF). We then leverage the optimal transport displacement between MRF objects to design a smooth probability path that ensures the co-evolution of graph components. Based on this, we introduce BWFlow, a flow-matching framework for graph generation that utilizes the derived optimal probability path to benefit the training and sampling algorithm design. Experimental evaluations in plain graph generation and molecule generation validate the effectiveness of BWFlow with competitive performance, better training convergence, and efficient sampling.",
@@ -46,5 +47,5 @@
  "figure_page": 1,
  "qc_flags": [],
  "annotator": "claude-cli:sonnet",
- "role_confidence": 0.5
+ "role_confidence": 0.55
 }

@@ -8,7 +8,8 @@ ROOT = Path(__file__).resolve().parent.parent
 import argparse
 ap = argparse.ArgumentParser()
 ap.add_argument("out", nargs="?", default=str(ROOT / "_site"))
-ap.add_argument("--local-images", help="preview build: copy <id>.webp/.png from this dir and link them relatively")
+ap.add_argument("--local-images", help="preview build: copy <id>.webp thumbnails from this dir and link them relatively")
+ap.add_argument("--bundle", action="store_true", help="preview build: one papers.json instead of p/<id>.json files")
 A = ap.parse_args()
 OUT = Path(A.out)
 REPO_URL = "https://github.com/pengzhangzhi/Fig1-Atlas"
@@ -18,13 +19,13 @@ if OUT.exists():
     shutil.rmtree(OUT)
 shutil.copytree(ROOT / "site", OUT)
 (OUT / "p").mkdir()
-recs = []
+recs, bundle = [], {}
 for line in open(ROOT / "data" / "index.jsonl"):
     r = json.loads(line)
     m = json.loads((ROOT / "data" / "papers" / r["id"] / "meta.json").read_text())
     if A.local_images and m["image_url"]:
         (OUT / "img").mkdir(exist_ok=True)
-        for ext, key in ((".webp", "thumb_url"), (".png", "image_url")):
+        for ext, key in ((".webp", "thumb_url"),):
             src = Path(A.local_images) / f"{r['id']}{ext}"
             if src.exists():
                 if ext == ".png":   # keep the preview small: re-encode the full image as WebP
@@ -38,8 +39,14 @@ for line in open(ROOT / "data" / "index.jsonl"):
                         shutil.copy(from_, OUT / "img" / from_.name); m[key] = f"img/{from_.name}"
                 else:
                     shutil.copy(src, OUT / "img" / src.name); m[key] = f"img/{src.name}"
-    (OUT / "p" / f"{r['id']}.json").write_text(json.dumps(m, ensure_ascii=False))
+        m["image_url"] = m["thumb_url"]          # preview: thumbnails only
+    bundle[r["id"]] = m
+    if not A.bundle:
+        (OUT / "p" / f"{r['id']}.json").write_text(json.dumps(m, ensure_ascii=False))
     recs.append({**r, "style": m["style"], "thumb_url": m["thumb_url"], "image_url": m["image_url"], "conf": m.get("role_confidence")})
+if A.bundle:
+    (OUT / "papers.json").write_text(json.dumps(bundle, ensure_ascii=False, separators=(",", ":")))
+    shutil.rmtree(OUT / "p")
 (OUT / "index.json").write_text(json.dumps(recs, ensure_ascii=False, separators=(",", ":")))
 (OUT / "llms.txt").write_text(f"""# Fig1 Atlas
 

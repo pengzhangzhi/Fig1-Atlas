@@ -21,23 +21,23 @@
  "topic": "Deep Learning->Generative Models and Autoencoders",
  "role": "prior-vs-ours",
  "role2": "concept",
- "claim": "Standard balancing pushes the global expert distribution toward uniform and yields similar experts; ours maximizes divergence between domain-average distributions to produce specialized experts.",
- "layout": "3 panels: (a) MoE layer diagram on left, (b) baseline loss on upper right and (c) ours on lower right, stacked rows with dashed connectors and left-to-right flow in each row",
+ "claim": "Standard load balancing pushes routing toward a uniform global average, yielding similar experts; ours maximizes divergence between per-domain routing distributions, yielding specialized experts.",
+ "layout": "3 panels: (a) MoE layer diagram on left, dashed arrows branching to (b) baseline loss on top right and (c) ours on bottom right; each row reads left-to-right from distributions to curves to heatmaps",
  "tags": [
   "mixture-of-experts",
   "auxiliary-loss",
   "load-balancing",
   "expert-specialization",
-  "routing-distribution",
-  "divergence-maximization",
-  "language-models"
+  "routing",
+  "divergence",
+  "pre-training"
  ],
  "style": [
   "colorful",
-  "math-heavy",
+  "plot",
   "icon-heavy"
  ],
- "description": "The left panel (a) shows an MoE layer as a dashed gray box. A stack of boxes runs bottom to top: Routing Network (yellow), Softmax, Expert Distributions, Top-K Gating, and experts 1 to N joined by a sum node. Below it, a global batch is divided by domain into green, yellow and pink token bars, with a domain legend. Dashed blue arrows lead from Expert Distributions to two stacked dashed-blue boxes. The upper box (b) is Load-Balancing Loss. It has a single global-average bar histogram, then a multimodal curve against a red dashed uniform line, labeled min L_LB ↔ min d_global. It ends in a heatmap of similar experts. The lower box (c) is Expert-Divergence Loss. It has three domain-colored histograms and three separated colored peaks, with distances d1, d2 and d3 marked. The label reads min L_ED ↔ max d1+d2+d3. The heatmap shows diverged experts, with a distinct band for each domain.",
+ "description": "The left panel (a) shows an MoE layer as a stack: a yellow Routing Network feeds a Softmax, then Expert Distributions and a Top-K Gating box that routes to expert boxes 1, 2, 3 ... N and a plus node. Below it is a global batch of colored bars for three domains, with a legend. Dashed blue arrows from the expert distributions lead to two dashed-border panels on the right. The top panel (b), Load-Balancing Loss, shows grey histogram bars, then a single multimodal curve compared to a red dashed uniform line, and a heatmap with near-identical rows. The bottom panel (c), Expert-Divergence Loss, shows per-domain green, yellow and pink histograms, then three separated distribution peaks with distances d1, d2 and d3, and a heatmap with distinct row patterns. Each row has a boxed objective formula.",
  "caption": "A conceptual comparison of the standard Load-Balancing Loss and our proposed Expert-Divergence Loss. (a) For a batch of tokens partitioned by domain, an MoE layer generates expert routing distributions. (b) The standard Load-Balancing Loss ($\\mathcal{L}_{LB}$) promotes uniformity by operating on the global average of expert distributions. This can lead to homogenization, as experts are trained on indistinct data mixtures. (c) In contrast, our Expert-Divergence Loss ($\\mathcal{L}_{ED}$) provides a targeted signal by maximizing the divergence between domain-specific average distributions. This guides distinct experts to train on differentiated data subsets and develop functional specialization.",
  "caption_source": "latex",
  "abstract": "The Mixture-of-Experts (MoE) architecture is a powerful technique for scaling language models, yet it often suffers from expert homogenization, where experts learn redundant functionalities, thereby limiting MoE's full potential. To address this, we introduce Expert Divergence Learning, a novel pre-training strategy that explicitly encourages functional specialization among experts. Our method incorporates a label-driven auxiliary loss that leverages domain labels inherent in pre-training corpora to maximize the Jensen-Shannon Divergence between the expert routing distributions of different data domains. This optimization objective guides the model to develop diverged routing policies for varied domains and closer routing policies for the same domain, which leads to emergent and organized expert specialization. We validate our approach by pre-training MoE models of up to 15 billion parameters from scratch. Experimental results demonstrate that models trained with Expert Divergence Learning not only achieve a lower language modeling loss but also exhibit significant performance improvements across a diverse range of downstream benchmarks. Further analysis confirms that our method effectively mitigates expert homogenization and brings greater functional specialization, all with negligible computational overhead during training.",

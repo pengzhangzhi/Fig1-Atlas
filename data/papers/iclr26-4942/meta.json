@@ -12,22 +12,22 @@
  "topic": "Deep Learning->Generative Models and Autoencoders",
  "role": "teaser-result",
  "role2": null,
- "claim": "Our method matches the baseline's quality at a large throughput gain, and dominates the quality-versus-speed trade-off curve across settings.",
- "layout": "2 panels side by side: grouped bar chart with dual axes (FID and throughput) on the left, log-x scatter/line Pareto plot on the right",
+ "claim": "Our method matches or beats the baseline's quality while delivering several-fold higher throughput, shifting the speed-quality trade-off frontier across modalities.",
+ "layout": "2 panels side by side: left grouped bar chart with dual y-axes (FID and throughput) and a bottom legend; right log-x scatter/line Pareto plot with a legend inside",
  "tags": [
   "efficiency",
   "throughput",
+  "speedup",
   "pareto-frontier",
   "masked-generative-models",
-  "discrete-diffusion",
-  "speedup",
-  "image-generation"
+  "discrete-generation",
+  "benchmark-comparison"
  ],
  "style": [
   "plot",
   "colorful"
  ],
- "description": "Two quantitative plots sit side by side. The left panel is a grouped bar chart on ImageNet. Its left half shows FID (lower is better) and its right half shows throughput in images per second, on a secondary right-hand axis. Bars are blue for MaskGIT, orange for PGM 12-12 and red for PGM 14-10, with light and dark shades for 32 and 64 steps. A legend box underneath explains the colors, and numeric labels sit above the bars. MaskGIT's throughput bar is very short next to the PGM bars. The right panel plots Generative Perplexity (FP64) against throughput in tokens per second on a log axis for OpenWebText. A blue starred dotted curve (MDLM) rises steeply, while the green circle and orange square PGM curves sit lower and further right. A red X marks GPT-2 Small with a KV cache. A legend sits in the top left. Together the plots show PGM at similar or better quality with much higher throughput.",
+ "description": "The figure has two result plots side by side. The left panel is a grouped bar chart with a dashed divider. The left half shows FID (lower is better) and the right half shows throughput in images/s on a second y-axis. MaskGIT is a single blue bar. PGM 12-12 is shown in light and dark orange, and PGM 14-10 in light and dark red, each for 32 and 64 steps. Numeric labels sit above the bars (FID 5.35 vs 5.54 and 4.56; throughput 1.05 vs 7.93 and 4.12). A boxed legend sits underneath. The right panel plots Generative Perplexity (FP64) against throughput in tokens/s on a log x-axis. MDLM is a blue star curve, GPT-2 Small with KV cache is a red X, and two PGM variants are orange squares and green circles with dotted lines. The PGM curves sit well below and to the right of MDLM. The eye goes first to the tall orange bars and the shifted curves.",
  "caption": "(Left): On ImageNet, using the Halton sampler, PGM (ours), reaches similar FID as MaskGIT with a $7.5\\times$ speedup. By sampling with twice as many steps, PGM reaches an FID of $4.56$ while remaining $3.9\\times$ faster. (Right): On OpenWebText, PGM achieves a better Generative Perplexity with a $5.3\\times$ higher sampling throughput compared to MDLM (an MGM for text), at a context length of 1024.",
  "caption_source": "latex",
  "abstract": "Masked generative models (MGMs) can generate tokens in parallel and in any order, unlike autoregressive models (ARMs), which decode one token at a time, left-to-right. However, MGMs process the full-length sequence at every sampling step, including mask tokens that carry no information. In contrast, ARMs process only the previously generated tokens. We introduce ``Partition Generative Models'' (PGMs), which replace masking with partitioning. Tokens are split into two groups that cannot attend to each other, and the model learns to predict each group conditioned on the other, eliminating mask tokens entirely. Because the groups do not interact, PGMs can process only the clean tokens during sampling, like ARMs, while retaining parallel, any-order generation, like MGMs. On OpenWebText, PGMs achieve $5-5.5\\times$ higher throughput than MDLM while producing samples with lower Generative Perplexity. On ImageNet, PGMs reach comparable FID to MaskGIT with a $7.5\\times$ throughput improvement. With twice as many steps, the FID improves to 4.56 while remaining $3.9\\times$ faster than MGMs. Finally, PGMs remain compatible with existing MGM samplers and distillation methods.",

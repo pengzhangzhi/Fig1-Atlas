@@ -16,23 +16,24 @@
  "track": "main",
  "topic": null,
  "role": "pipeline",
- "role2": "overview-framework",
- "claim": "Aligning models with user preferences should use causal preference effects estimated on both model and data sides, rather than fitting all tokens indiscriminately.",
- "layout": "Top row of two boxed pipelines (model-side green, data-side blue) with arrows down into a central alignment box, flanked by two causal graphs at bottom left and right",
+ "role2": "concept",
+ "claim": "Personalization should align the causal effect of user history on predictions with its effect in ground-truth data, and weight the tokens that carry that effect.",
+ "layout": "Three tiers: model-side and data-side modules on top, a central alignment box below, and causal graphs in the bottom corners. Mostly left-to-right, with curved arrows pointing down into the center.",
  "tags": [
   "causal-inference",
+  "preference-modeling",
   "personalization",
-  "preference-alignment",
-  "token-weighting",
   "intervention",
-  "loss-design",
+  "token-weighting",
+  "alignment-loss",
   "llm"
  ],
  "style": [
   "colorful",
-  "icon-heavy"
+  "icon-heavy",
+  "math-heavy"
  ],
- "description": "A wide, symmetric diagram with a green model-side half on the left and a blue data-side half on the right. The top row has two rounded boxes showing inputs (history h or user u, context x, prefix y<t) going through an LLM icon. The model side yields a normal prediction and a masked causal effect (MCE) shown as colored token cells. The data side compares two bar charts of ground-truth token probabilities, subtracts them, and thresholds the result to mark one token with a check and the rest with crosses. Green and blue curved arrows lead into a central orange box. That box holds two fitting losses, a preference-weight next-token loss and a causal preference alignment loss, with a 'higher weight' arrow. Dashed-outline causal graphs sit at the bottom corners: X, H, E_M and Ŷ on the left, and X, U, E_D and Y on the right.",
+ "description": "The figure is a wide diagram with a green model side on the left and a blue data side on the right. The top row has two rounded panels. The green panel shows tokens h, x and y<t entering an LLM with a flame icon. Two branches, one with history and one without, produce a normal prediction and the MCE. A circle node subtracts one branch from the other. The blue panel shows u, x and y entering an LLM trained on the data D. It produces bar charts of ground-truth token probabilities. A minus symbol marks their difference, and a threshold then gives check and cross marks over y1 to y6. Curved green and blue arrows lead down to the center. The central orange box, titled Causal Preference Alignment, holds two loss rows with Fitting arrows and a Higher Weight cue. Two causal graphs sit in the bottom corners. The eye goes first to the top panels and then to the central box.",
  "caption": "Illustration of NextQuill. The model-side causal graph depicts the response prediction process of LLMs, in which the outcome is influenced by user history, context information, and their interaction. The data-side causal graph describes how users generate the ground-truth response, which is jointly influenced by user characteristics, the context, and their interaction. Based on these, NextQuill introduces the causal preference modeling, defining causal preference effects on both model and data sides, and accordingly introduces two causal preference alignment strategies (i.e., two losses) to enhance the personalization of LLMs.",
  "caption_source": "latex",
  "abstract": "Personalizing large language models (LLMs) for individual users has become increasingly important as they are progressively integrated into real-world applications to support users' daily lives. However, existing personalization approaches often fail to distinguish which components of model predictions and training data truly reflect user preferences, leading to superficial personalization alignment. In this paper, we introduce NextQuill, a novel LLM personalization alignment framework grounded in causal preference modeling. We approach personalization from a causal perspective, treating both model predictions and ground-truth data generation as outcomes influenced by user preferences, along with other factors. We define the true preference effect as the causal impact of user history (which reflects preferences) on each token prediction or data generation instance, estimated through causal intervention techniques. Building on this insight, NextQuill introduces two complementary alignment strategies: (1) aligning model-internal causal preference effects on predictions with those reflected in ground-truth data, rather than indiscriminately fitting predictions, and (2) focusing on fitting preference-bearing tokens identified via ground-truth data preference effects, rather than treating all tokens uniformly. By integrating these strategies, NextQuill shifts the alignment process toward learning from causal preference effects, facilitating more effective and personalized adaptation. Experiments across multiple personalization benchmarks demonstrate that NextQuill significantly improves personalization quality, offering a principled, causal foundation for LLM personalization. Our codes are available on https://github.com/juntaoyou/NextQuill.",
@@ -50,5 +51,5 @@
  "figure_page": 1,
  "qc_flags": [],
  "annotator": "claude-cli:sonnet",
- "role_confidence": 0.6
+ "role_confidence": 0.62
 }

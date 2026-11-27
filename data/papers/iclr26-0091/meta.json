@@ -17,22 +17,23 @@
  "topic": "Deep Learning->Attention Mechanisms",
  "role": "prior-vs-ours",
  "role2": "pipeline",
- "claim": "Sequential and block-wise decoders attend to all or many future positions; ours restricts attention to a nearby window and drops distant ones, cutting redundant computation.",
- "layout": "3 stacked panels (a) top-left, (b) top-right, (c) bottom, token-grid rows per step, shared color legend, callout box at right",
+ "claim": "Prior decoders attend to all future positions at every step; ours restricts attention to a nearby window and drops distant tokens, cutting redundant computation.",
+ "layout": "3 stacked panels (a) autoregressive, (b) block-wise diffusion, (c) ours, each a step-by-block token grid read top to bottom, shared color legend, callout box at right",
  "tags": [
+  "diffusion-language-models",
   "efficiency",
-  "diffusion-language-model",
   "attention-sparsity",
+  "sliding-window",
+  "dropout",
   "training-free",
-  "suffix-dropout",
-  "decoding",
-  "sliding-window"
+  "inference-acceleration"
  ],
  "style": [
   "colorful",
-  "icon-heavy"
+  "icon-heavy",
+  "minimal"
  ],
- "description": "Three token-grid panels compare decoding schemes. Panel (a) shows an autoregressive LLM as a staircase: each step adds one green token after orange prompt and decoded tokens, with attention going backward only. Panel (b) shows block-wise diffusion, with rows per block and step. Orange decoded tokens, green currently decoding tokens and gray masked tokens fill a long response. Colored boxes mark the prefix (orange), current block (green) and the suffix (red) that attends to all tokens. Panel (c) shows the proposed method with a blue sliding-window box over nearby masked tokens, and distant suffix tokens drawn as dashed empty cells (dropped). A rounded callout labeled DPad lists Current: Detailed, Near: Focused, Far: Outlined, with Out of Scratchpad: Omitted below. A shared legend runs between the panels. The eye goes first to the colorful grids and the blue window.",
+ "description": "Three stacked panels compare decoding schemes using grids of small rounded squares, one row per decoding step. Panel (a) is an autoregressive LLM: a prompt of orange decoded tokens, and one green token added each step in a staircase. Panel (b) is a block-wise diffusion LLM: prompt, then Blocks 0 to n of gray masked tokens. The current block has green decoding tokens, and a red box marks the suffix that attends to all future tokens. Panel (c) is DPad. It uses the same grid, but blue rounded boxes mark a sliding window. Dashed, empty cells mark dropped distant suffix tokens. A legend sits between the panels: orange is decoded, green is decoding, gray is masked, and dashed is dropout. A callout box at lower right labels the DPad regions Current (detailed), Near (focused) and Far (outlined). Out of Scratchpad: Omitted.",
  "caption": "Comparison of (a) autoregressive LLMs, (b) block-wise diffusion LLMs, and (c) our \\pad{}. \\pad{} restricts suffix attention via: (i){Sliding Window}: fixed-length suffix window; (ii) {Distance-decay Dropout}: removes distant suffix tokens without computing attention scores.",
  "caption_source": "latex",
  "abstract": "Diffusion-based Large Language Models (dLLMs) parallelize text generation by framing decoding as a denoising process, but suffer from high computational overhead since they predict all future suffix tokens at each step while retaining only a small fraction. We propose Diffusion Scratchpad (DPad), a training-free method that restricts attention to a small set of nearby suffix tokens, preserving fidelity while eliminating redundancy. DPad integrates two strategies: (i) a sliding window, which maintains a fixed-length suffix window, and (ii) distance-decay dropout, which deterministically removes distant suffix tokens before attention computation. This simple design is compatible with existing optimizations such as prefix caching and can be implemented with only a few lines of code. Comprehensive evaluations across multiple benchmarks on LLaDA-1.5 and Dream models demonstrate that DPad delivers up to $\\mathbf{61.4\\times}$ speedup over vanilla dLLMs while maintaining comparable accuracy, highlighting its potential for efficient and scalable long-sequence inference. Our code is available at https://github.com/Crys-Chen/DPad.",

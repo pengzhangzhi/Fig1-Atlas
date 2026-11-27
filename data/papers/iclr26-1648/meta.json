@@ -14,23 +14,22 @@
  "topic": "Deep Learning->Generative Models and Autoencoders",
  "role": "prior-vs-ours",
  "role2": "pipeline",
- "claim": "Standard training draws the sampling time and mask pattern naively, leaving three variance sources; our samplers and paired complementary masks reduce those sources.",
- "layout": "2 side-by-side rounded panels (Standard vs ours), top-to-bottom flow in each, bottom legend, lettered variance-source markers A/B/C",
+ "claim": "Standard training incurs variance from data, masking-rate and masking-pattern sampling; our rate sampler and complementary masking reduce these sources.",
+ "layout": "2 side-by-side panels (Standard vs ours), top-to-bottom flow with arrows, lettered variance markers, shared legend at bottom",
  "tags": [
   "variance-reduction",
   "masked-diffusion",
   "sampling",
   "training-stability",
-  "side-by-side",
-  "negatively-correlated-samples",
+  "prior-vs-ours",
+  "complementary-masking",
   "language-models"
  ],
  "style": [
   "colorful",
-  "icon-heavy",
   "minimal"
  ],
- "description": "Two gray rounded panels sit side by side. The left, labeled 'Standard' in a rust banner, shows a training dataset box feeding a tokenized sequence. A flat uniform PDF plot for t sits at the top right, with t=0.3 below it. Both inputs merge into one masked sequence in which a single token is crossed out. The right panel, labeled 'P-POTS+MIRROR' in a green banner, repeats this flow. Its PDF is a curved, non-uniform p(t), tagged 'P-POTS'. The t=0.3 input splits into two complementary masked sequences, and a green outline tagged 'MIRROR' highlights the second one. Yellow circles marked A, B and C label the three variance sources: masking pattern, masking rate and data noise. A legend at the bottom explains the cell colors: gray for prompt, blue for response, and a crossed salmon cell for [MASK]. Green marks our contributions against rust-orange for the baseline.",
+ "description": "Two rounded gray panels sit side by side. The left, labeled 'Standard' in an orange banner, shows a training dataset box feeding a sampled sequence of prompt (gray) and response (blue) tokens. A flat uniform PDF for t sits beside it, with t=0.3. Both are combined to mask the sequence with probability t, giving one masked output. Yellow circles labeled C, B and A mark the three variance sources. The right panel, 'P-POTS+MIRROR' in a green banner, has the same flow. Its PDF is a non-uniform green curve labeled P-POTS. The masking step splits into two complementary masked sequences, circled in green and labeled MIRROR, each marked A. A legend at the bottom explains the prompt, response, [MASK] and variance-source symbols.",
  "caption": "Graphic illustration of three sources of training variance in MDMs. The left panel illustrates standard MDM training, compared to our core methods (P-POTS and MIRROR) on the right.",
  "caption_source": "latex",
  "abstract": "Masked diffusion models (MDMs) are a promising alternative to autoregressive models (ARMs), but they suffer from inherently much higher training variance. High variance leads to noisier gradient estimates and unstable optimization, so even equally strong pretrained MDMs and ARMs that are competitive at initialization often diverge after task-specific training, with MDMs falling far behind. There has been no theoretical explanation or systematic solution. We derive the first decomposition of MDM training variance into three sources: (A) masking pattern noise, (B) masking rate noise, and (C) data noise, while ARMs are only affected by (C). This explains the fundamental training gap. Building on this foundation, we design six variance-reduction methods, including two core methods: (1) P-POTS, a Pareto-optimal t sampler that minimizes training variance by sampling harder t values more often with appropriately smaller update steps, and (2) MIRROR, which uses negatively correlated samples to reduce (A). Experiments show that compared to standard MDM training, our methods improve accuracy by 7-8% on complex reasoning tasks, while simultaneously reducing run-to-run variability to near ARM levels, substantially narrowing the gap with strong ARM baselines; in most settings, even the best baseline runs remain below the worst run of our method.",

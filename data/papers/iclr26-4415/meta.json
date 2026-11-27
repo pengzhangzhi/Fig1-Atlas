@@ -13,22 +13,22 @@
  "topic": "Applications->Language, Speech and Dialog",
  "role": "analysis-finding",
  "role2": "teaser-result",
- "claim": "Sampling several diverse unmasking trajectories lifts accuracy well beyond the single-trajectory heuristic baseline, so the unmasking order leaves a lot of headroom.",
- "layout": "single line plot, Pass@N vs number of paths, two colored curves with markers, dashed red horizontal baseline labeled in large text, legend at lower right",
+ "claim": "Sampling multiple trajectories with a structured unmasking strategy lifts accuracy well beyond the single-trajectory heuristic baseline, with a clear gap over random ordering.",
+ "layout": "single line plot, Pass@N vs number of paths, two curves with markers, horizontal dashed baseline with large red label, legend in lower right",
  "tags": [
-  "pass@n",
-  "unmasking-order",
+  "pass-at-n",
   "masked-diffusion",
-  "headroom",
+  "unmasking-policy",
   "sampling-diversity",
-  "reasoning-benchmark",
-  "scaling-curve"
+  "test-time-scaling",
+  "baseline-comparison",
+  "language-modeling"
  ],
  "style": [
   "plot",
   "minimal"
  ],
- "description": "A single line chart with a light grid. The x-axis is the number of paths N, from 1 to 10. The y-axis is Pass@N, from about 0.58 to 0.91. Two curves with round markers rise as N grows. The blue curve is Top-5. It starts near 0.67 and reaches about 0.91. The orange curve is Random. It starts near 0.58 and reaches about 0.89. Blue stays above orange everywhere, and the gap is widest at small N. A dashed red horizontal line near 0.69 carries a large red 'Max-Confidence' label above it. It marks single-trajectory accuracy. Both curves cross above this line by N=2. The legend sits in the lower right. The eye goes first to the red label and line, then to the steep rise of the two curves.",
+ "description": "A single matplotlib-style line chart with a light gray grid. The x-axis is the number of paths N, from 1 to 10. The y-axis is Pass@N, from about 0.57 to 0.9. Two curves with circular markers rise and then flatten. The blue curve (Top-5) sits above the orange curve (Random) at every N. The two start far apart at N=1, at about 0.67 and 0.58, and converge toward about 0.9 at N=10. A red dashed horizontal line near 0.69 carries a large red serif label 'Max-Confidence'. It marks the single-trajectory baseline. The blue curve crosses above it at N=2, and the orange curve crosses it at about N=2 as well. A legend box in the lower right names the two curves. The eye goes first to the large red label and the dashed line, then to the blue curve.",
  "caption": "Pass@N on GSM8K. The dashed red line is the single-trajectory accuracy of max-confidence $g_{\\rm conf}$.",
  "caption_source": "latex",
  "abstract": "Masked diffusion models (MDMs) have recently emerged as a novel framework for language modeling. MDMs generate sentences by iteratively denoising masked sequences, filling in [MASK] tokens step by step. Although MDMs support any-order sampling, performance is highly sensitive to the choice of which position to unmask next. Prior work typically relies on rule-based schedules (e.g., max-confidence, max-margin), which provide ad hoc improvements. In contrast, we replace these heuristics with a learned scheduler. Specifically, we cast denoising as a KL-regularized Markov decision process (MDP) with an explicit reference policy and optimize a regularized objective that admits policy improvement and convergence guarantees under standard assumptions. We prove that the optimized policy under this framework generates samples that more closely match the data distribution than heuristic schedules. Empirically, across four benchmarks, our learned policy consistently outperforms max-confidence: for example, on SUDOKU, where unmasking order is critical, it yields a 20.1% gain over random and a 11.2% gain over max-confidence. Code is available at https://github.com/chunsanHong/UPO.",
@@ -44,7 +44,9 @@
  "image_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/images/iclr26-4415.png",
  "thumb_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/thumbs/iclr26-4415.webp",
  "figure_page": 3,
- "qc_flags": [],
+ "qc_flags": [
+  "tiny-crop"
+ ],
  "annotator": "claude-cli:sonnet",
  "role_confidence": 0.6
 }

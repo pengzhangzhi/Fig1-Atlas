@@ -16,23 +16,23 @@
  "topic": "Computer Vision->Vision Models & Multimodal",
  "role": "teaser-result",
  "role2": "analysis-finding",
- "claim": "Scaling supervised data saturates performance beyond a point, but adding a small amount of structured RL yields clear gains over the plateaued baseline.",
- "layout": "2 panels side by side: left line plot of metrics vs. SFT data size, right grouped bar chart of SFT vs. SFT+RL with delta annotations",
+ "claim": "Simply scaling supervised data saturates performance past a point, but adding a small amount of structured RL yields clear further gains.",
+ "layout": "2 panels side by side: left multi-line scaling curves, right grouped bar chart with red delta annotations above bars",
  "tags": [
-  "plateau",
-  "data-scaling",
-  "reinforcement-learning",
+  "scaling-plateau",
   "supervised-fine-tuning",
+  "reinforcement-learning",
   "diminishing-returns",
   "chart-to-code",
-  "performance-gain"
+  "headline-gain",
+  "data-scaling"
  ],
  "style": [
   "plot",
   "colorful",
   "minimal"
  ],
- "description": "Two side-by-side plots. The left panel is a line chart with Performance (%) on the y-axis (60 to 100) and SFT data size on the x-axis (400K to 2800K). Three lines are shown: Execution Rate in blue circles, Low-level Score in red squares, and High-level Score in green triangles. All rise with more data, then flatten after about 2000K. A legend sits at the lower right. The right panel is a grouped bar chart over Exec. Rate, Low-level and High-level. Each group has a blue bar for 2.8M SFT and a red bar for +33k MSRL. Bold red labels above the groups give the gains (+3.33, +5.60, +6.22). The red bars are clearly taller, so the eye goes first to the red gains. A legend sits at the top right.",
+ "description": "Two plots side by side. The left panel is a line chart of performance (%) against SFT data size, from 400K to 2800K. It has three lines: execution rate in blue circles near 85 to 93, high-level score in green triangles from about 66 to 77, and low-level score in orange squares from about 65 to 73. All three lines rise and then flatten after about 2000K, which shows the plateau. The right panel is a grouped bar chart with three metric groups: Exec. Rate, Low-level and High-level. Each group has a blue bar for 2.8M SFT and a taller red bar for +33k MSRL. Bold red labels above the red bars give the gains: +3.33, +5.60 and +6.22. A legend sits in the top right of each panel. The eye goes first to the red gain labels and the flattening curves.",
  "caption": "The SFT plateau and RL performance gain from our experiments. The left figure illustrates that scaling SFT data from 200k to 2.8M leads to a performance plateau after exceeding 2M data points. The right figure denotes the performance gain from our proposed MSRL training strategy.",
  "caption_source": "latex",
  "abstract": "While reinforcement learning (RL) has proven highly effective for general reasoning in vision-language models, its application to tasks requiring deep understanding of information-rich images and structured output generation remains underexplored. Chart-to-code generation exemplifies this challenge, demanding complex reasoning over visual charts to produce structured code. Supervised fine-tuning (SFT) alone is often insufficient, highlighting the need for effective RL strategies tailored to structured outputs. In this paper, we systematically investigate the performance plateau of SFT through large-scale experiments and propose Multimodal Structured Reinforcement Learning (MSRL) for chart-to-code generation. We construct the largest training corpus to date, with 3 million chart-code pairs curated from real-world tables in arXiv papers, addressing the limitations of previous synthetic datasets. Despite achieving state-of-the-art performance, our experiments show that simply increasing SFT data eventually leads to diminishing improvements. To break this plateau, MSRL employs a multi-granularity reward system that integrates both textual and visual feedback. At the textual level, rule-based rewards validate fine-grained code details, while at the visual level, a model-based reward assesses the structural similarity between rendered code and ground-truth charts. We implement a two-stage curriculum training strategy, first optimizing the model with textual rewards and then incorporating visual signals for further enhancement. Experimental results demonstrate that MSRL substantially breaks the SFT plateau, improving high-level metrics by 6.2% and 9.9% on ChartMimic and ReachQA benchmarks, respectively. Notably, our method outperforms all existing approaches in the chart domain and achieves competitive results with advanced closed-source models.",

@@ -15,23 +15,23 @@
  "topic": "Computer Vision->Everything Else",
  "role": "pipeline",
  "role2": "overview-framework",
- "claim": "A two-stage tracker prepares a point query once, then sequentially decodes each new frame, with specialized attention modules detailed in zoomed-in sub-panels.",
- "layout": "3 panels: large left-to-right pipeline (a) with boxed stages across frames, plus two zoomed component diagrams (b) and (c) stacked on the right",
+ "claim": "A two-stage tracker prepares a point query once, then sequentially decodes each new frame using spatial and temporal context modules.",
+ "layout": "3 panels: (a) left-to-right overview with vertical stacks per frame, (b) top-right temporal attention detail, (c) bottom-right cross-attention detail; zoom-in structure",
  "tags": [
   "point-tracking",
   "transformer-decoder",
-  "sequential",
-  "attention-module",
+  "spatial-context",
+  "temporal-attention",
   "video",
-  "temporal-context",
-  "spatial-context"
+  "modular-pipeline",
+  "detr-like"
  ],
  "style": [
   "icon-heavy",
   "colorful",
   "photo/real data"
  ],
- "description": "Panel (a), on the left, shows the full pipeline. A 'Point Query Preparation' box takes the first frame I0, which is a photo of a horse jumping, through a Backbone and Transformer Encoder, then a pink feature map X0, then a Point Query and Context Preparation block. Its output features f, C and l0 feed into the 'Sequential Point Tracking' box. That box repeats for frames I1 and I2, each with a backbone, a colored feature map (green, orange) and a stacked decoder block with VLTA, CCA & APU, Self-Attention and Feed Forward, repeated ×N. Curved colored arrows carry outputs to the next frame, and an ellipsis shows the sequence continues. Panels (b) and (c) on the right zoom into VLTA and CCA & APU. They use small colored squares for features, sampling arrows on a photo, and a legend for MLP, Weight Sum and Addition. Colored boxes and photos draw the eye first.",
+ "description": "The figure has three panels. Panel (a), on the left, is the overall pipeline. A 'Point Query Preparation' column takes the initial frame I0 of a horse jumping through backbone and transformer encoder blocks, then a 'Point Query & Context Preparation' box, and outputs feature tokens f, C, l0. A 'Sequential Point Tracking' column repeats for frames I1 and I2. Each frame goes through a backbone, then a decoder stack of VLTA, CCA & APU, self-attention and feed-forward layers, repeated ×N. Curved colored arrows pass outputs to the next frame. Panel (b), top right, details the Visibility-aware Long-temporal Attention. It shows colored feature squares, dot-product and softmax, reweighting by visibility, and weight-sum and addition. Panel (c), bottom right, details context-aware cross-attention. It shows the horse photo with colored sampling points, point and context features, patch similarity, attention weights and a legend. Pastel colors mark each frame.",
  "caption": "\\textbf{Overview (a) and core components (b) (c) of {\\methodname}.} After the user specifies the point to track, the point query preparation stage prepares the content and spatial context features for this point in the initial frame. When {\\methodname} receives a new frame, the sequential point tracking stage uses the content feature and the specified location as the point query, and regards the new frame's image feature map as keys and values. The points query, keys, and values are fed into a multi-layer transformer decoder to detect the tracking point in the new frame. The predicted location then updates the point query's positional part, providing a better initial position for tracking in the next frame. For clarity, the global matching module is not plotted.",
  "caption_source": "latex",
  "abstract": "In this paper, built upon TAPTRv2, we present TAPTRv3. TAPTRv2 is a simple yet effective DETR-like point tracking framework that works fine in regular videos but tends to fail in long videos. TAPTRv3 improves TAPTRv2 by addressing its shortcomings in querying high-quality features from long videos, where the target tracking points normally undergo increasing variation over time. In TAPTRv3, we propose to utilize both spatial and temporal context to bring better feature querying along the spatial and temporal dimensions for more robust tracking in long videos. For better spatial feature querying, we identify that off-the-shelf attention mechanisms struggle with point-level tasks and present Context-aware Cross-Attention (CCA). CCA introduces spatial context into the attention mechanism to enhance the quality of attention scores when querying image features. For better temporal feature querying, we introduce Visibility-aware Long-Temporal Attention (VLTA), which conducts temporal attention over past frames while considering their corresponding visibilities. This effectively addresses the feature drifting problem in TAPTRv2 caused by its RNN-like long-term modeling. TAPTRv3 surpasses TAPTRv2 by a large margin on most of the challenging datasets and obtains state-of-the-art performance. Even when compared with methods trained on large-scale extra internal data, TAPTRv3 still demonstrates superiority.",

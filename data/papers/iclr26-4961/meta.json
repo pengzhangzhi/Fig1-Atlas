@@ -13,23 +13,23 @@
  "topic": "Theory->Game Theory",
  "role": "concept",
  "role2": "teaser-result",
- "claim": "Exploiting equilibrium structure collapses an exponentially large game tree to a small atomic one, which makes a large continuous game solvable and yields realistic strategic concealment.",
- "layout": "3 panels: (a) tree diagrams with brace complexity labels on the left, (b) three football field snapshots on the right, (c) small belief-vs-time line plot at bottom left",
+ "claim": "Equilibrium strategies concentrate on few action prototypes, collapsing exponential game-tree complexity, which makes a large continuous-action game solvable with realistic concealment behavior.",
+ "layout": "3 panels: (a) three triangle trees side by side with brace complexity labels, (b) three-frame football trajectory sequence, (c) small belief-vs-time line plot below (a)",
  "tags": [
   "game-tree-complexity",
   "equilibrium-structure",
+  "atomic-strategies",
   "imperfect-information",
-  "multi-agent",
-  "scalability",
-  "football",
-  "information-asymmetry"
+  "continuous-actions",
+  "multiagent",
+  "tree-reduction"
  ],
  "style": [
   "colorful",
   "plot",
-  "math-heavy"
+  "icon-heavy"
  ],
- "description": "Panel (a), top left, shows a large gray triangle for the full imperfect-information game tree. One node fans out to U^2 children, and the whole tree is labeled U^2K with a K-step brace. Two smaller triangles sit to its right: a red one for P1 branching to only I children (I^K) and a blue one for P2 branching to I+1 children ((I+1)^K). Dotted horizontal lines mark time steps k and k+1. Panel (b), right, shows a football field in three snapshots: the initial state, then Type 0 (RB power push) and Type 1 (QB throw). Red circles are offense and blue squares are defense, drawn with fading dotted trajectories. Panel (c), bottom left, plots belief against time in seconds. A blue vertical bar marks 'P1 conceals till 0.5s', after which the belief jumps to Type 0 or Type 1.",
+ "description": "Panel (a) on the left shows three triangular game trees. A gray IIEFG tree branches into many actions per step, with complexity U^{2K} labeled below. Next to it, a red P1 tree and a blue P2 tree each branch into only two nodes per step, labeled I and I+1, with complexity I^K and (I+1)^K below. Dotted horizontal lines mark steps k and k+1, and a brace on the left marks K. Panel (b) shows an American football field in three frames: initial state, Type 0 RB power push, and Type 1 QB throw. Red and blue players leave faded trajectory trails, and RB, QB and WR are labeled. Panel (c) is a small line plot of belief against time, with a blue bar marking concealment until 0.5s.",
  "caption": "(a) IIEFG with $U$ actions per player per infostate and $K$ time steps has a game-tree complexity of $U^{2K}$. For 2p0s1 with $I$ payoff types, deterministic dynamics, and Isaacs' condition, we show that the NE is $I$-atomic for P1 and $(I+1)$-atomic for P2, leading to a game-tree complexity of $I^K$ for P1 in the primal game where P2 plays best responses and $(I+1)^K$ for P2 in the dual game where P1 plays best responses. (b) American Football with 22 players and continuous action spaces ($U=\\infty$) with $K=10$ time steps. P1 (red) attacks with two private game types ($I=2$): Running back (RB) power-runs through the space created by blockers, and quarterback (QB) throws the ball to the leading wide receiver (WR). See \\href{https://github.com/ghimiremukesh/cams/blob/iclr/README.md}{animation}. (c) At NE, P1 conceals type until 0.5 sec., similar to the reported 1.0 sec. Due to significant tree size reduction, the game can be solved in 30 minutes.",
  "caption_source": "latex",
  "abstract": "For a two-player imperfect-information extensive-form game (IIEFG) with $K$ time steps and a player action space of size $U$, the game tree complexity is $U^{2K}$, causing existing IIEFG solvers to struggle with large or infinite $(U,K)$, e.g., differential games with continuous action spaces. To partially address this scalability challenge, we focus on an important class of 2p0s games where the informed player (P1) knows the payoff while the uninformed player (P2) only has a belief over the set of $I$ possible payoffs. Such games encompass a wide range of scenarios in sports, defense, cybersecurity, and finance. We prove that under mild conditions, P1's (resp. P2's) equilibrium strategy at any infostate concentrates on at most $I$ (resp. $I+1$) action prototypes. When $I\\ll U$, this equilibrium structure causes the game tree complexity to collapse to $I^K$ for P1 when P2 plays best responses, and $(I+1)^K$ for P2 in a dual game where P1 plays best responses. We then show that exploiting this structure in model-free multiagent reinforcement learning and model predictive control leads to significant improvements in learning accuracy and efficiency from SOTA IIEFG solvers. Our demonstration solves a 22-player football game with continuous action spaces and $K=10$ time steps, where the offense team needs to strategically conceal their play until a critical moment in order to exploit information advantage. Code is available at https://github.com/ghimiremukesh/cams/tree/iclr",

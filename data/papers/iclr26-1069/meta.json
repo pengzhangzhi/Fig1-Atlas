@@ -13,23 +13,23 @@
  "topic": "Computer Vision->Image and Video Generation",
  "role": "problem-setup",
  "role2": "before-after",
- "claim": "Finetuning on few reference images couples the target with co-occurring concepts and breaks prompt control; decoupling the concepts restores text-faithful generation.",
- "layout": "Single wide panel, left-to-right flow: reference images feed a central model box, which branches into red (standard) and blue (decoupled) outputs. Dependence formulas sit on top.",
+ "claim": "Standard finetuning on few references binds the target to a co-occurring concept and ignores the prompt, while decoupling-aware finetuning preserves prompt control.",
+ "layout": "Single wide panel, left-to-right flow: reference images to model to two rows of generated samples (red vs blue), with dependence equation on top",
  "tags": [
   "concept-coupling",
   "personalization",
-  "text-to-image",
+  "finetuning",
   "diffusion",
   "failure-case",
-  "finetuning",
-  "decoupling"
+  "dependence-regularization",
+  "text-to-image"
  ],
  "style": [
   "photo/real data",
   "colorful",
   "math-heavy"
  ],
- "description": "Top left shows a pink backpack and a smiling girl, labelled backpack and girl. Next to them are two formulas: prior dependence p(backpack,girl)/(p(backpack)p(girl)) in gray, and conditional dependence, an expectation over generated samples, in orange. A « sign says the prior dependence is much smaller than the conditional one. Below them, a rounded box holds two reference photos of a girl wearing the backpack, labelled backpack*. Red (finetuning) and blue (finetuning with concept decoupling) arrows run through a light-blue Text-to-Image Model box. They continue to Model θ1 and Model θ2 inference. On the right, a rounded box holds four prompts, such as a backpack on the beach, above two rows of images. The red-bordered row still shows the girl with the backpack. The blue-bordered row shows only backpacks. The eye goes first to the red and blue image rows.",
+ "description": "A wide, left-to-right diagram. At the top left are photos of a pink backpack and a smiling girl, with a prior-dependence fraction p(backpack,girl)/p(backpack)p(girl) and a conditional-dependence expectation in orange. A \"much less than\" sign links the two, showing that the dependence is higher under the conditional distribution. Below, a rounded box holds two reference photos of a girl carrying the backpack, labeled backpack*. Two arrows leave it: a red one for finetuning and a blue one for finetuning with concept decoupling. Both pass through a central blue Text-to-Image Model box to model θ1 and θ2 inference. On the right, a rounded box shows four green prompt chips (e.g. on the beach, city background). Under them are two rows of generated images. The red-bordered row still shows the girl. The blue-bordered row shows only the backpack.",
  "caption": "Illustration of the concept coupling problem. The target is a \"backpack*\", but reference images always pair it with a \"girl\". Standard finetuning incorrectly learns to bind these concepts, causing the model to generate the unwanted 'girl' and violate the text prompt.",
  "caption_source": "latex",
  "abstract": "Image personalization has garnered attention for its ability to customize Text-to-Image generation using only a few reference images. However, a key challenge in image personalization is the issue of conceptual coupling, where the limited number of reference images leads the model to form unwanted associations between the personalization target and other concepts. Current methods attempt to tackle this issue indirectly, leading to a suboptimal balance between text control and personalization fidelity. In this paper, we take a direct approach to the concept coupling problem through statistical analysis, revealing that it stems from two distinct sources of dependence discrepancies. We therefore propose two complementary plug-and-play loss functions: Denoising Decouple Loss and Prior Decouple loss, each designed to minimize one type of dependence discrepancy. Extensive experiments demonstrate that our approach achieves a superior trade-off between text control and personalization fidelity.",
@@ -47,5 +47,5 @@
  "figure_page": 1,
  "qc_flags": [],
  "annotator": "claude-cli:sonnet",
- "role_confidence": 0.8
+ "role_confidence": 0.7
 }

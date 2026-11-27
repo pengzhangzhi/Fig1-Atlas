@@ -14,23 +14,23 @@
  "topic": "Deep Learning->Generative Models and Autoencoders",
  "role": "pipeline",
  "role2": null,
- "claim": "Parallel unmasking is made safe by recursively partitioning confidence-ranked tokens and testing each partition's dependence on an anchor set, keeping only independent ones.",
- "layout": "3 parts, left-to-right: binary partition tree at left, central row-by-row token grid read top to bottom, and stacked orange distribution panels at right linked by arrows",
+ "claim": "Recursive partitioning into anchor and test token sets, checked with conditional independence tests, lets a sampler unmask many dependent tokens in parallel in few rounds.",
+ "layout": "3 panels, left to right: binary partition tree, a row-per-step token table read top to bottom, and distribution insets with arrows into the table",
  "tags": [
   "parallel-sampling",
   "masked-diffusion",
   "conditional-independence",
   "recursive-partitioning",
   "discrete-generation",
-  "inference-efficiency",
-  "step-by-step-example"
+  "efficiency",
+  "text-generation"
  ],
  "style": [
   "colorful",
   "text-heavy",
-  "minimal"
+  "plot"
  ],
- "description": "The figure walks through one PUNT iteration on a four-token sentence. On the left, a binary tree splits the index set [1,2,3,4] into [1,2] and [3,4], then into singletons. Green nodes mark anchor sets and white nodes mark test sets. The centre is a vertical stack of token rows, each labelled in grey: Input, Sample candidates, Compute confidence, Apply mask, Test, and Output. Tokens such as 'requires', 'mince', 'the' and 'egg' carry circled confidence ranks. Pink tokens are masked or rejected, green are anchors and blue are kept. Green check marks and a red cross show test outcomes. On the right, three beige panels show bar charts of the conditional distributions over garlic, onion, beef and egg. Arrows link each test to its panel. The eye goes first to the coloured token grid.",
+ "description": "The figure has three parts. On the left, a binary tree shows recursive partitioning of token indices [1,2,3,4] into halves, then into single tokens. Green boxes mark the anchor sets. The center is the main element: a stack of token rows for the sentence 'The recipe [MASK] you to [MASK] [MASK] [MASK]'. Row labels run down the left side: Input, Sample candidates, Compute confidence, Apply mask, Test, and Output. Circled numbers 1–4 give each token's confidence rank. Tokens are coloured red for masked or rejected, blue for sampled candidates, and green for anchors. Check marks and an x show whether each test passed. On the right, three orange insets show bar charts of predicted token distributions, conditioned on different anchor sets. Arrows link these insets to the tokens being tested. The eye goes first to the colourful token grid. The final output keeps 'requires', 'the' and 'mince' and re-masks 'egg'.",
  "caption": "Illustration of one iteration of PUNT on 4 masked tokens, which consists of $\\log_2 4 = 2$ tests. Left: A binary tree representing the recursive partitioning. Each level corresponds to a single parallel test in the iterative algorithm. Right: In each round, confidence-ordered tokens (circled numbers) are partitioned into \"anchor\" (green) and \"test\" sets. Test tokens that are dependent on the anchor set are rejected (red), while independent ones (blue) are kept.",
  "caption_source": "latex",
  "abstract": "Masked diffusion models (MDMs) offer a compelling alternative to autoregressive models (ARMs) for discrete text generation because they enable parallel token sampling, rather than sequential, left-to-right generation. This means potentially much faster inference. However, effective parallel sampling faces two competing requirements: (i) simultaneously updated tokens must be conditionally independent, and (ii) updates should prioritise high-confidence predictions. These goals conflict because high-confidence predictions often cluster and depend on each other, opportunities for parallel updates. We present PUNT, a model-agnostic sampler that reconciles this trade-off. Our method identifies token dependencies and removes lower-confidence tokens from conflicting groups. This produces sets of indices for unmasking that satisfy both independence and confidence criteria. Our approach ensures improved parallel unmasking through approximate conditional independence testing. Our experiments show that PUNT delivers a superior trade-off between accuracy and compute when compared to other strong training-free baselines, especially for generation of longer sequences. On the IFEval benchmark, it achieves up to 16\\% higher accuracy over baseline methods, including sequential generation (one-by-one). These gains hold across different values of hyperparameters, mitigating the need for brittle hyperparameter tuning. Moreover, we observe that PUNT induces an emergent hierarchical generation strategy, where the model first establishes high-level paragraph structure before local refinement, suggesting a planning-like generation process that contributes to strong alignment performance.",

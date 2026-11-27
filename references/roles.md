@@ -30,4 +30,13 @@ find templates that make the same *kind* of argument as your paper, across topic
 `minimal`, `icon-heavy`, `math-heavy`, `photo/real data`, `plot`, `text-heavy`, `colorful`, `3d-render`, `screenshot`.
 
 ## Examples
-Filled in from the database after the trial run (2–3 ids per role).
+Highest-confidence examples from the trial set (ICLR 2026). `python scripts/show.py <id>` for details.
+
+* `pipeline`: `iclr26-0847` (Token-Based Audio Inpainting via Discrete Diffusion); `iclr26-4036` (FlexiCodec: A Dynamic Neural Audio Codec for Low Frame Rates); `iclr26-4565` (TangoFlux: Super Fast and Faithful Text to Audio Generation …)
+* `prior-vs-ours`: `iclr26-0748` (Presenting a Paper is an Art: Self-Improvement Aesthetic Age…); `iclr26-0660` (ReDDiT: Rehashing Noise for Discrete Visual Generation); `iclr26-0996` (VITA: Vision-to-Action Flow Matching Policy)
+* `before-after`: `iclr26-1810` (MotionWeaver: Holistic 4D-Anchored Framework for Multi-Human…); `iclr26-2284` (Free Lunch for Stabilizing Rectified Flow Inversion); `iclr26-2783` (VSF: Simple, Efficient, and Effective Negative Guidance in F…)
+* `teaser-result`: `iclr26-0555` (One-Step Flow Q-Learning: Addressing the Diffusion Policy Bo…); `iclr26-4768` (Diffusion LLMs Can Do Faster-Than-AR Inference via Discrete …); `iclr26-0115` (SPG: Sandwiched Policy Gradient for Masked Diffusion Languag…)
+* `problem-setup`: `iclr26-5152` (Meta-Adaptive Prompt Distillation for Few-Shot Visual Questi…); `iclr26-0765` (A Scalable Distributed Framework for Multimodal GigaVoxel Im…); `iclr26-1141` (Vision Language Models are Biased)
+* `concept`: `iclr26-2934` (Entropic Confinement and Mode Connectivity in Overparameteri…); `iclr26-3992` (On the Design of One-step Diffusion via Shortcutting Flow Pa…); `iclr26-4968` (ADEPT: Continual Pretraining via Adaptive Expansion and Dyna…)
+* `overview-framework`: `iclr26-4396` (NExT-OMNI: Towards Any-to-Any Omnimodal Foundation Models wi…); `iclr26-1545` (WARC-Bench: Web Archive based Benchmark for GUI Subtask Exec…); `iclr26-3627` (Spatial Reasoning with Vision-Language Models in Ego-Centric…)
+* `analysis-finding`: `iclr26-2014` (CollectiveKV: Decoupling and Sharing Collaborative Informati…); `iclr26-3007` (Scale-wise Distillation of Diffusion Models); `iclr26-3461` (SparseD: Sparse Attention for Diffusion Language Models)

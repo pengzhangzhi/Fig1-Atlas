@@ -1,18 +1,29 @@
 #!/usr/bin/env python3
 """Download Figure 1 images for shortlisted papers (only papers with openly licensed, hosted images).
 
-  python scripts/fetch_fig.py iclr26-0412 neurips26-2401 --out fig1_atlas_figs [--thumb]
+  python3 scripts/fetch_fig.py iclr26-0412 neurips26-2401 [--out DIR] [--thumb]
 Prints the local path per id, or why there is no image (then judge from the description, or open the arXiv link).
 """
-import argparse, urllib.request
+import argparse, os, urllib.request
 from pathlib import Path
 from _data import load_meta
+
+
+def hf_token():
+    """Optional: only needed while the image dataset is private."""
+    t = os.environ.get("HF_TOKEN")
+    for p in (Path(os.environ.get("HF_HOME", Path.home() / ".cache/huggingface")) / "token",):
+        if not t and p.exists():
+            t = p.read_text().strip()
+    return t
 
 
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("ids", nargs="+")
-    ap.add_argument("--out", default="fig1_atlas_figs")
+    import tempfile
+    ap.add_argument("--out", default=os.path.join(tempfile.gettempdir(), "fig1_atlas_figs"),
+                    help="download directory (default: <system temp>/fig1_atlas_figs, outside any repo)")
     ap.add_argument("--thumb", action="store_true", help="480px WebP thumbnails instead of 1600px PNG")
     a = ap.parse_args()
     out = Path(a.out); out.mkdir(parents=True, exist_ok=True)
@@ -27,7 +38,10 @@ def main():
                   f"(Figure 1 on page {(m.get('figure_page') or 0) + 1})"); continue
         dest = out / (pid + (".webp" if a.thumb else ".png"))
         if not dest.exists():
-            req = urllib.request.Request(url, headers={"User-Agent": "fig1-atlas-skill"})
+            h = {"User-Agent": "fig1-atlas-skill"}
+            if hf_token():
+                h["Authorization"] = f"Bearer {hf_token()}"
+            req = urllib.request.Request(url, headers=h)
             with urllib.request.urlopen(req, timeout=120) as r:
                 dest.write_bytes(r.read())
         print(f"{pid}: {dest}")

@@ -14,11 +14,11 @@
  "topic": "Theory->Interpretability and Visualization",
  "role": "analysis-finding",
  "role2": "prior-vs-ours",
- "claim": "Prior sparse dictionary features fire noisily token by token on syntax; adding temporal consistency yields smooth, semantically coherent features that track shifts in content.",
- "layout": "3 panels: A (top-left cartoon), B (bottom-left diagram), C (right, two stacked activation plots with legends, dashed zoom lines from B)",
+ "claim": "Standard sparse features fire noisily token by token, while features trained with a temporal-consistency objective track smooth semantic shifts across a sequence.",
+ "layout": "3 panels: A cartoon (top-left), B schematic (bottom-left), C two stacked activation line plots (right) with a dashed zoom connector and a color legend",
  "tags": [
-  "interpretability",
   "sparse-autoencoders",
+  "interpretability",
   "temporal-consistency",
   "semantic-vs-syntactic",
   "contrastive-loss",
@@ -26,11 +26,12 @@
   "feature-activations"
  ],
  "style": [
-  "plot",
   "colorful",
-  "icon-heavy"
+  "plot",
+  "icon-heavy",
+  "photo/real data"
  ],
- "description": "The figure has three panels. Panel A is a beige box with a cartoon person and thought bubbles labeled high-level features (intent, context, audience) and low-level features (syntax, word choice). Panel B is a blue box. A neural-network icon branches to two paths. Existing SAEs, in green, lead to a cloud reading \"Syntactic features ONLY\". Temporal SAEs, in pink, lead to a cloud with context, syntax and semantics. A dashed box contrasts a noisy pink activation trace with a smooth blue one. Dashed lines zoom into panel C. Panel C holds two stacked colorful area plots of the top-5 feature activations over tokens. The Matryoshka SAE plot is spiky and noisy. The Temporal SAE plot is smooth and changes at the boundaries between three passages: Newton, MMLU genetics and the Bhagavat Gita. Color-coded legends sit on the right.",
+ "description": "The figure has three parts. Panel A, on a cream background, shows a cartoon person with thought bubbles. One bubble lists high-level features (intent, context, audience) and another lists low-level ones (syntax, word choice). Panel B, on a blue background, shows a neural-network icon with arrows to two branches. The 'Existing SAEs' branch (green) leads to a bubble reading 'Syntactic features ONLY'. The 'Temporal SAEs' branch (pink) leads to bubbles reading context, syntax and semantics. A dashed box with two small thumbnails contrasts a noisy pink activation trace with a smooth blue one. Dashed lines connect this box to panel C. Panel C is the visual focus. It has two stacked colored area plots of feature activations over about 300 tokens. The Matryoshka SAE plot (top) is spiky and noisy. The Temporal SAE plot (bottom) is smooth and changes in blocks. Brackets label the three passages: Newton's Principia, an MMLU genetics question, and the Bhagavad Gita. A legend on the right names the top features.",
  "caption": "A) Human language production involves high-level features such as semantic content and surrounding context, as well as low-level features such as syntactical requirements and specific word choices. B) While existing SAEs mostly recover syntactic information, T-SAEs balance recovery of semantics, syntax, and context. C) When decomposing a sequence composed of three passages: Newton’s Principia, an MMLU genetics question, and the Bhagavat Gita (in English), T-SAEs (bottom) smoothly detect the semantic shifts in the passage, with highly active features strongly correlating to the true content of the text, whereas existing SAEs (such as Matryoshka, top), are much noisier, varying on almost a per-token basis, and do not easily depict these shifts. \\vspace{-5pt}",
  "caption_source": "latex",
  "abstract": "Translating the internal representations and computations of models into concepts that humans can understand is a key goal of interpretability. While recent dictionary learning methods such as Sparse Autoencoders (SAEs) provide a promising route to discover human-interpretable features, they often only recover token-specific, noisy, or highly local concepts. We argue that this limitation stems from neglecting the temporal structure of language, where semantic content typically evolves smoothly over sequences. Building on this insight, we introduce Temporal Sparse Autoencoders (T-SAEs), which incorporate a novel contrastive loss encouraging consistent activations of high-level features over adjacent tokens. This simple yet powerful modification enables SAEs to disentangle semantic from syntactic features in a self-supervised manner. Across multiple datasets and models, T-SAEs recover smoother, more coherent semantic concepts without sacrificing reconstruction quality. Strikingly, they exhibit clear semantic structure despite being trained without explicit semantic signal, offering a new pathway for unsupervised interpretability in language models.",

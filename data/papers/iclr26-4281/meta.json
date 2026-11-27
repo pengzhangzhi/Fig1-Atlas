@@ -12,8 +12,8 @@
  "topic": "Applications->Language, Speech and Dialog",
  "role": "pipeline",
  "role2": null,
- "claim": "Learn a new input embedding by matching a frozen model's hidden states under the new single token to its hidden states under the original multi-token sequence.",
- "layout": "Diagram on the left with a bottom-to-top data flow and dashed arrows into an MSE box, plus a color legend on the right. The top of the diagram is cut off.",
+ "claim": "Learn a new token's embedding by matching a frozen model's hidden states when the token is used against its states under the original subtoken sequence.",
+ "layout": "2 panels: left vertical dual-stream diagram, with the new-token path on top and the original-subtoken path below, joined by a central MSE box and dashed arrows; right legend column",
  "tags": [
   "distillation",
   "embedding-initialization",
@@ -21,13 +21,14 @@
   "frozen-model",
   "hidden-state-matching",
   "mse-loss",
-  "tokenization"
+  "language-models"
  ],
  "style": [
-  "minimal",
-  "colorful"
+  "colorful",
+  "icon-heavy",
+  "minimal"
  ],
- "description": "The figure is a cropped diagram with a legend. At the bottom, tokens 'pal', 'at', 'able' are pink rounded boxes (the original subtokens of the new token), followed by white boxes 'food', 'is', 'good' (context tokens). Arrows point up into a blue bar labeled 'Frozen pretrained LLM' with a snowflake icon. Above it are hidden-state squares: two light gray ones (discarded) and four dark teal ones. Dashed arrows run from the teal squares up into a white box labeled 'MSE (match behavior)'. Above that box, dashed lines connect to four orange squares (hidden states from the single new token), with arrows coming down from a cut-off element at the top. On the right, a legend defines each color: pink, white, teal, orange and gray. The eye goes first to the colored boxes and the central MSE box.",
+ "description": "The left panel stacks two copies of a blue 'Frozen pretrained LLM' bar, each with a snowflake icon. The top bar takes the new single token 'palatable' (red, with a flame icon marking it as trainable) plus the context words 'food is good'. It outputs orange hidden-state squares. The bottom bar takes the original subtokens 'pal', 'at', 'able' (purple) plus the same context, and outputs dark-blue hidden-state squares. The first two outputs, for the subtokens other than the last, are gray and are discarded. A white 'MSE (match behavior)' box sits between the two rows, with dashed arrows linking the orange squares to the blue squares. The right panel is a color-coded legend that defines each element. The eye goes first to the red flame token and the blue LLM bars.",
  "caption": "Illustration of \\methodname{} -- Given a sequence containing our new target token, we first obtain the model's hidden states on that sequence using the original tokenization and then quickly learn a new embedding by reducing the mean squared error (MSE) between the original hidden states and the hidden states of the model when using a single token embedding to replace the original subtokens.",
  "caption_source": "latex",
  "abstract": "Current language models rely on static vocabularies determined at pretraining time, which can lead to decreased performance and increased computational cost for domains underrepresented in the original vocabulary. New tokens can be added to solve this problem, when coupled with a good initialization for their new embeddings. However, existing embedding initialization methods require expensive further training or pretraining of additional modules. In this paper, we propose Token Distillation and show that by distilling representations obtained using the original tokenization, we can quickly learn high-quality input embeddings for new tokens. Experimental results with a wide range of open-weight models show that Token Distillation outperforms even strong baselines.",
@@ -43,9 +44,7 @@
  "image_url": null,
  "thumb_url": null,
  "figure_page": 1,
- "qc_flags": [
-  "bad-crop"
- ],
+ "qc_flags": [],
  "annotator": "claude-cli:sonnet",
- "role_confidence": 0.8
+ "role_confidence": 0.93
 }

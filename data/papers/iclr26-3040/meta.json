@@ -11,23 +11,23 @@
  "topic": "Deep Learning->Robustness",
  "role": "pipeline",
  "role2": "problem-setup",
- "claim": "Iterative denoising can be hijacked by a single injected affirmative token that pulls generation toward harm; training the model to recover from such states restores safety.",
- "layout": "3 panels: (a) vertical stack of denoising steps on left, (b) harmful and (c) safe branches on right, both fed by a shared injection example at the bottom, with big arrows showing direction",
+ "claim": "Iterative denoising can be hijacked by injecting one affirmative token that pulls generation toward harm; training to recover from such contaminated states restores safety.",
+ "layout": "3 panels: left denoising-process stack read top-to-bottom; right a bottom-to-top branching flow from token injection into harmful (b) and safe (c) outcomes",
  "tags": [
-  "diffusion-language-models",
+  "diffusion-language-model",
   "jailbreak",
   "safety-alignment",
-  "iterative-denoising",
+  "denoising",
   "vulnerability",
-  "recovery-training",
-  "masked-generation"
+  "token-injection",
+  "recovery-training"
  ],
  "style": [
   "colorful",
   "icon-heavy",
-  "text-heavy"
+  "minimal"
  ],
- "description": "The figure has three panels. Panel (a), on the left, is titled 'Denoising Process'. It shows rows of token boxes, starting with a Query box and a plus sign. The rows alternate between predicted tokens in orange and partially masked tokens in green and gray [MASK] boxes. Small arrows between rows are labeled 'Predict' and 'Partial re-masking', and a dashed arrow is labeled 'After T steps'. Panels (b) and (c) sit on the right. Panel (b) has a pink background and is titled 'Priming Vulnerability'. Panel (c) has a blue background and is titled 'Recovery Alignment'. At the bottom, a red 'Harmful Query' plus masks has an 'Affirmative-Token Injection' arrow leading to a row containing a red 'Lastly' token. From there, a large red arrow labeled 'Pulled Toward Harm' leads to a 'Harmful Response' in panel (b). A large light-blue arrow labeled 'Recover to Safety' leads to a 'Safe Response' in panel (c). The eye goes first to the red and blue arrows.",
+ "description": "Panel (a), on the left, is a vertical stack of token rows. Each row starts with a blue Query box and then shows a sequence of tokens. Rows alternate between all-masked or partly masked states, shown in gray, and predicted states, shown in orange or green. Green arrows are labeled partial re-masking, orange arrows are labeled predict, and a dashed arrow is labeled 'After T steps'. On the right, a harmful query with masked tokens sits at the bottom. A red arrow labeled 'Affirmative-Token Injection' inserts the red token 'Lastly' into a masked sequence. From there, a red arrow labeled 'Pulled Toward Harm' leads to panel (b), a pink area titled 'Harmful Response' with tokens such as 'Sure' and 'follow steps'. A blue arrow labeled 'Recover to Safety' leads to panel (c), a light-blue area titled 'Safe Response' with tokens such as 'Sorry' and 'I cannot'. Color separates the harmful (red and pink) and safe (blue) outcomes.",
  "caption": "Overview of this work. (a) MDLMs alternate prediction and partial re-masking to gradually produce the response. (b) An affirmative token can steer generation toward a harmful response. (c) Our approach trains the model to recover to a safe response.",
  "caption_source": "latex",
  "abstract": "Diffusion language models (DLMs) generate tokens in parallel through iterative denoising, which can reduce latency and enable bidirectional conditioning. However, the safety risks posed by jailbreak attacks that exploit this inference mechanism are not well understood. In this paper, we reveal that DLMs have a critical vulnerability stemming from their iterative denoising process and propose a countermeasure. Specifically, our investigation shows that if an affirmative token for a harmful query appears at an intermediate step, subsequent denoising can be steered toward a harmful response even in aligned models. As a result, simply injecting such affirmative tokens can readily bypass the safety guardrails. Furthermore, we demonstrate that the vulnerability allows existing optimization-based jailbreak attacks to succeed on DLMs. Building on this analysis, we propose a novel safety alignment method tailored to DLMs that trains models to generate safe responses from contaminated intermediate states that contain affirmative tokens. Our experiments indicate that the proposed method significantly mitigates the vulnerability with minimal impact on task performance. Furthermore, our method improves robustness against conventional jailbreak attacks. Our work underscores the need for DLM-specific safety research. Our code is available at https://github.com/mdl-lab/dlm-priming-vulnerability.",

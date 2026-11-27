@@ -16,14 +16,14 @@
  "topic": "Applications->Language, Speech and Dialog",
  "role": "teaser-result",
  "role2": null,
- "claim": "Our method decodes faster than same-size autoregressive models and far faster than prior diffusion baselines, with the largest gain on one benchmark.",
- "layout": "2 side-by-side bar-chart panels (GSM8K, HumanEval), one gray bar per baseline with a highlighted blue bar for ours, dashed reference lines and arrows marking the speedup over AR",
+ "claim": "Our method decodes faster than both prior accelerated diffusion models and similarly sized autoregressive baselines, giving the highest throughput on every benchmark.",
+ "layout": "2 side-by-side bar-chart panels (one per benchmark), shared y-axis, ours highlighted as the rightmost blue bar, dashed AR reference line with multiplier arrow, rotated x labels",
  "tags": [
   "throughput",
   "inference-speedup",
+  "bar-chart",
   "diffusion-llm",
   "autoregressive-baseline",
-  "bar-chart",
   "efficiency",
   "headline-result"
  ],
@@ -32,7 +32,7 @@
   "minimal",
   "colorful"
  ],
- "description": "Two bar charts sit side by side, titled GSM8K-4-shot on the left and HumanEval-0-shot on the right. The y-axis is Tokens/Second. Each panel has seven bars with the value printed above each bar. Six bars are light gray: LLaDA, Dream, Fast-dLLM variants, LLaMA3 and Qwen2.5. The last bar is saturated blue and is the D2F model. Two horizontal dashed lines run across each panel. A purple line labeled 'Ours' marks the top of the blue bar. A gray-blue line labeled 'AR' marks the best autoregressive baseline. A dark purple arrow between the two lines carries a boxed label, '2.5× TPS' on the left panel and '1.6× TPS' on the right. Rotated bold model names run along the x-axis. The eye goes first to the tall blue bar and the speedup arrow.",
+ "description": "Two grouped bar charts side by side, one for GSM8K-4-shot and one for HumanEval-0-shot. The y-axis is tokens per second. Each panel has seven bars with the values printed above them. Six bars are light gray: vanilla dLLMs (LLaDA, Dream), Fast-dLLM variants, and AR models (LLaMA3, Qwen2.5). The last bar is a saturated royal blue and is the proposed D2F model. It is much taller than the others, at 119.9 on GSM8K and 81.6 on HumanEval. A dashed gray-blue line marks the best AR baseline and a dashed purple line marks 'Ours'. A dark purple vertical arrow between the two lines is labeled '2.5× TPS' on the left panel and '1.6× TPS' on the right. Rotated model names run along the bottom. The eye goes first to the tall blue bar and the speedup arrow.",
  "caption": "D2F dLLMs surpass AR LLMs in inference speed for up to $2.5\\times$. Comparison of inference throughput among D2F dLLMs, vanilla dLLMs like Dream-Base-7B [ref] and LLaDA-Instruct-8B [ref], previous SOTA acceleration method Fast-dLLM [ref], and similarly-sized AR baselines [ref]. The max generation length is set to 512.",
  "caption_source": "latex",
  "abstract": "Diffusion Large Language Models (dLLMs) have emerged as a promising alternative to autoregressive (AR) LLMs for text generation, with the potential to decode multiple tokens in a single iteration. However, none of the existing open-source dLLMs have achieved superior inference speed over AR LLMs of similar size. This paper breaks this barrier based on a simple and effective strategy named discrete diffusion forcing (D2F). D2F equips dLLMs with two key capabilities: (1) block-wise autoregressive generation to enable KV cache utilization; (2) prediction of following tokens without requiring completion of prior blocks for inter-block parallel decoding. In this way, the vanilla dLLMs are refurbished into an AR-diffusion hybrid paradigm for efficient inference. D2F can be implemented with an asymmetric distillation process based on pre-trained dLLMs. We further propose a pipelined parallel decoding algorithm, which enables a trade-off between efficiency and efficacy. Empirically, D2F dLLMs achieve more than $\\mathbf{2.5\\times}$ inference speed than LLaMA3 and Qwen2.5 on GSM8K. Compared to vanilla dLLMs like LLaDA and Dream, the acceleration can be more than $\\mathbf{50\\times}$ while maintaining comparable output quality. The code is available at https://github.com/zhijie-group/Discrete-Diffusion-Forcing.",

@@ -13,24 +13,24 @@
  "track": "main",
  "topic": "Social Aspects->Fairness, Equity, Justice and Safety",
  "role": "analysis-finding",
- "role2": "teaser-result",
- "claim": "The reverse trajectory is much flatter than the forward one, so it tolerates aggressive step reduction with far smaller error.",
- "layout": "3 panels left-to-right: image/latent/residual grid, line plot of curvature, grouped bar chart of error vs NFE",
+ "role2": null,
+ "claim": "The reverse (inversion) trajectory is smoother and less curved than the forward generation path, so it stays accurate when the number of steps is cut.",
+ "layout": "3 panels left-to-right: image/latent/residual grid, line plot of curvature vs timestep, grouped bar chart of error vs NFE",
  "tags": [
   "inversion",
   "low-curvature",
   "few-step",
-  "efficiency",
-  "asymmetry",
   "diffusion",
-  "error-analysis"
+  "efficiency",
+  "error-analysis",
+  "trajectory-compression"
  ],
  "style": [
   "plot",
   "photo/real data",
   "colorful"
  ],
- "description": "Three side-by-side panels. The left panel is a 3x3 grid of rows (a painted woman in a red hat, a person on a beach, a cat on a yellow mat). Columns are the original image X, its PCA-colored latent z0, and a dark, noisy residual |ẑ_T − z_T| that shows the inversion error is small. The middle panel, titled 'Curvature over Sampling', is a line plot of curvature against timestep (0–1000). The red generation curve shoots up to about 11, and the green inversion curve stays much lower, reaching about 4. The right panel, titled 'NFE Tolerance', is a grouped bar chart of MSE error against NFE (3, 6, 9, 12, 15). Dark blue generation bars sit well above the light blue inversion bars, and both fall as NFE rises. The eye goes first to the colorful latents, then to the diverging red and green curves.",
+ "description": "The figure has three panels in a row. The left panel is a 3x3 grid of images. Each row shows one sample: a woman in a red hat, a person on a beach, and a cat on a yellow mat. The columns are the original image X, its PCA-projected latent z0 in saturated RGB colors, and a noisy residual |ẑ_T − z_T| that shows the inversion error. The middle panel is a line plot titled 'Curvature over Sampling'. A red generation curve and a green inversion curve both stay near zero until about timestep 600. The red curve then climbs to about 11, while the green one only reaches about 4. The right panel is a grouped bar chart titled 'NFE Tolerance'. It plots MSE error against a 50-step baseline for NFE of 3, 6, 9, 12 and 15. Dark blue generation bars are consistently taller than light blue inversion bars, and both fall as NFE grows.",
  "caption": "Left: Visualization of the inversion error, where latent vectors are projected down to 3 channels via PCA for display. Middle: Curvature of generation and inversion trajectories across diffusion timesteps. Discrete curvature estimated using 100 unconditionally generated images from Stable Diffusion v2.1. Right: The resulting error for generation and inversion when reducing the NFE, compared with a 50-step NFE baseline.",
  "caption_source": "latex",
  "abstract": "Inversion-based watermarking is a promising approach to authenticate diffusion-generated images, yet practical use is bottlenecked by inversion that is both slow and error-prone. While the primary challenge in the watermarking setting is robustness against external distortions, existing approaches over-optimize internal truncation error, and because that error scales with the sampler step size, they are inherently confined to high-NFE (number of function evaluations) regimes that cannot meet the dual demands of speed and robustness. In this work, we have two key observations: (i) the inversion trajectory has markedly lower curvature than the forward generation path does, making it highly compressible and amenable to low-NFE approximation; and (ii) in inversion for watermark verification, the trade-off between speed and truncation error is less critical, since external distortions dominate the error. A faster inverter provides a dual benefit: it is not only more efficient, but it also enables end-to-end adversarial training to directly target robustness, a task that is computationally prohibitive for the original, lengthy inversion trajectories. Building on this, we propose \\textbf{FARI} (\\textbf{F}ast \\textbf{A}symmetric \\textbf{R}obust \\textbf{I}nversion), a one-step inversion framework paired with lightweight adversarial LoRA fine-tuning of the denoiser for watermark extraction. While consolidation slightly increases internal error, FARI delivers large gains in both speed and robustness: with approximately 20 minutes of fine-tuning on a single NVIDIA RTX A6000 GPU, it surpasses 50-step DDIM inversion on watermark-verification robustness while dramatically reducing inference time. Code and pretrained models are available at https://github.com/0xD009/FARI.",
@@ -48,5 +48,5 @@
  "figure_page": 3,
  "qc_flags": [],
  "annotator": "claude-cli:sonnet",
- "role_confidence": 0.8
+ "role_confidence": 0.85
 }

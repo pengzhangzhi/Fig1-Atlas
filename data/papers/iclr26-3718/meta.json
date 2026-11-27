@@ -13,10 +13,10 @@
  "tier": "poster",
  "track": "main",
  "topic": "Computer Vision->Image and Video Generation",
- "role": "pipeline",
- "role2": "prior-vs-ours",
- "claim": "Instead of running every sequential denoising step, speculatively draft future states in parallel and verify them, accepting stable drafts and replacing rejected ones.",
- "layout": "2 panels split by dashed line, left normal loop, right speculative pipeline; bottom-to-top flow with curved arrows, verifier boxes, green/red accept/reject borders",
+ "role": "prior-vs-ours",
+ "role2": "pipeline",
+ "claim": "Standard generation runs the model sequentially at every step; speculative drafting with verification accepts several steps at once and replaces only rejected ones.",
+ "layout": "2 panels split by a dashed vertical line; left is normal generation as a single loop, right is speculative generation as a left-to-right row of drafts; green/red borders show accept/reject",
  "tags": [
   "speculative-decoding",
   "flow-matching",
@@ -27,11 +27,11 @@
   "efficiency"
  ],
  "style": [
-  "colorful",
   "photo/real data",
-  "icon-heavy"
+  "colorful",
+  "minimal"
  ],
- "description": "The figure has two panels separated by a vertical dashed line. On the left, 'Normal Generation' shows a noisy cat image at the bottom going up through a pink 'Flow Matching Model' box to a less noisy image at the top, with a large curved arrow returning from output to input to show one-step-at-a-time iteration. On the right, 'Speculative Generation' shows a wide pink Flow Matching Model box with five noisy cat images entering at the bottom and five outputs at the top. Outputs are framed green (accepted) or red (rejected). Curved black arrows carry outputs down as draft inputs for the next positions. Blue 'Verifier' labels sit between the inputs. A legend and check and cross marks explain the accept/reject logic, and a 'Reject and replace' arrow marks where a rejected draft is replaced.",
+ "description": "The figure has two panels separated by a dashed vertical line. On the left, labeled 'Normal Generation', a noisy cat image sits below a pink 'Flow Matching Model' box. An up arrow leads to a cleaner cat image above, and a large curved arrow loops from that output back to the input, showing one sequential step at a time. On the right, labeled 'Speculative Generation', a wide pink Flow Matching Model box takes a row of noisy cat images as input. Blue 'Verifier' tags sit between the inputs, and curved arrows carry each output down as the next draft. Outputs have green borders (accepted) or red borders (rejected). Green check marks and a red X appear under the drafts, with the text 'Reject and replace'. A small legend maps green to Accepted and red to Rejected. The eye goes first to the colored image borders.",
  "caption": "FlowCast",
  "caption_source": "latex",
  "abstract": "Flow Matching (FM) has recently emerged as a powerful approach for high-quality visual generation. However, their prohibitively slow inference due to a large number of denoising steps limits their potential use in real-time or interactive applications. Existing acceleration methods, like distillation, truncation, or consistency training, either degrade quality, incur costly retraining, or lack generalization. We propose FlowCast, a training-free speculative generation framework that accelerates inference by exploiting the fact that FM models are trained to preserve constant velocity. FlowCast speculates future velocity by extrapolating current velocity without incurring additional time cost, and accepts it if it is within a mean-squared error threshold. This constant-velocity forecasting allows redundant steps in stable regions to be aggressively skipped while retaining precision in complex ones. FlowCast is a plug-and-play framework that integrates seamlessly with any FM model and requires no auxiliary networks. We also present a theoretical analysis and bound the worst-case deviation between speculative and full FM trajectories. Empirical evaluations demonstrate that FlowCast achieves $>2.5\\times$ speedup in image generation, video generation, and editing tasks, outperforming existing baselines with no quality loss as compared to standard full generation.",

@@ -14,23 +14,23 @@
  "topic": "Applications->Time Series",
  "role": "pipeline",
  "role2": "overview-framework",
- "claim": "A unified token sequence of multimodal events feeds a vision-language decoder, and similar-interval events are compressed into one special token to shorten long sequences.",
- "layout": "2 panels side by side: (a) architecture flowing bottom-to-top into a decoder, (b) compression example flowing top-to-bottom along a timeline; shared color-coded token legends",
+ "claim": "A unified token-sequence model with a decoder predicts next events, and similar-interval events are merged into one special token to shorten long multimodal sequences.",
+ "layout": "2 panels side by side; (a) architecture flowing bottom-to-top into a decoder with a feedback arrow, (b) timeline with event cards above and compressed embeddings below; color-coded token legends",
  "tags": [
   "multimodal",
   "temporal-point-process",
   "sequence-compression",
-  "vision-language-model",
-  "tokenization",
   "long-context",
-  "autoregressive"
+  "autoregressive",
+  "vision-language-model",
+  "tokenization"
  ],
  "style": [
   "colorful",
   "icon-heavy",
-  "photo/real data"
+  "text-heavy"
  ],
- "description": "Two-panel figure. Panel (a) shows the model architecture. A timeline of events at the bottom is tokenized into colored squares: green for text, orange for type, teal for time bytes, blue for image, and red for the task token. Video frames pass through a Vision Encoder box. Both streams feed a large yellow Qwen2.5 LM Decoder box, which outputs a dashed row of next-event tokens that loops back around. Panel (b) shows adaptive compression. Three dashed event cards at the top contain text, type, a time interval τ, and a thumbnail image. Below them, a yellow timeline has curved arrows labeled with inequalities on |τᵢ−τᵢ₋₁| against Δₜ, and a red 'Compressed!' note. Event embeddings at the bottom show full token blocks next to a single red similar-event token. A legend sits at the right. The eye goes first to the purple decoder title and the colorful tokens.",
+ "description": "Two panels. Panel (a) shows the model architecture. A horizontal event-sequence timeline with dots sits at the bottom. One event is boxed and labeled (Text, Type, Time, Image). It is tokenized into a row of colored squares: green for text, orange for type, teal for time bytes, blue for image, and red for task tokens. Video frames pass up through a purple Vision Encoder box into the token row. The row feeds a large yellow Qwen2.5 LM Decoder bar, which outputs next-event tokens and loops back through an arrow. Panel (b) shows adaptive compression. Three dashed event cards show text, type, interval τ and a thumbnail image, placed above a timeline. Inequalities |τi−τi−1| < Δt and ≥ Δt, with a red 'Compressed!' label, decide merging. Below, embedding cards show the full token sets and a single red 'similar token' card. A legend sits at the upper right.",
  "caption": "Overview of the MM-TPP framework. (a) Model Architecture: The framework is built upon Qwen2.5-VL, where multimodal events—consisting of time, type, text, and image information—are tokenized into unified token sequences. Visual content is encoded by the vision encoder and fused with other modalities via the language model decoder to perform autoregressive next-event prediction. (b) Adaptive Long Sequence Compression: Events with similar time intervals (\\( |\\tau_i - \\tau_{i-1}| < \\Delta \\)) are compressed into a special token. This strategy enables efficient processing of long event sequences while preserving temporal structure and key event information.",
  "caption_source": "latex",
  "abstract": "Temporal point processes (TPPs) have emerged as powerful tools for modeling asynchronous event sequences. While recent advances have extended TPPs to handle textual information, existing approaches are limited in their ability to generate rich, multimodal content and reason about event dynamics. A key challenge is that incorporating multimodal data dramatically increases sequence length, hindering the ability of attention-based models to generate coherent, long-form textual descriptions that require long-range understanding. In this paper, we propose a novel framework that extends LLM-based TPPs to the visual modality, positioning text generation as a core capability alongside time and type prediction. Our approach addresses the long-context problem through an adaptive sequence compression mechanism based on temporal similarity, which reduces sequence length while preserving essential patterns. We employ a two-stage paradigm of pre-training on compressed sequences followed by supervised fine-tuning for downstream tasks. Extensive experiments, including on the challenging DanmakuTPP-QA benchmark, demonstrate that our method outperforms state-of-the-art baselines in both predictive accuracy and the quality of its generated textual analyses.",
@@ -48,5 +48,5 @@
  "figure_page": 2,
  "qc_flags": [],
  "annotator": "claude-cli:sonnet",
- "role_confidence": 0.85
+ "role_confidence": 0.9
 }

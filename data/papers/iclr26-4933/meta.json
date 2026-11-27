@@ -14,24 +14,25 @@
  "track": "main",
  "topic": "Computer Vision->Vision Models & Multimodal",
  "role": "prior-vs-ours",
- "role2": null,
- "claim": "Existing mitigation either retrains on costly curated data or doubles inference via contrastive decoding; ours edits internal representations in a single frozen pass.",
- "layout": "3 panels left-to-right separated by dashed vertical lines, (a) prior, (b) prior, (c) ours; each shows an LVLM block with input at bottom and response at top",
+ "role2": "pipeline",
+ "claim": "Prior approaches need costly retraining data or dual inference passes; ours edits intermediate representations inside a single frozen model pass.",
+ "layout": "3 panels side by side separated by dashed lines, each flowing bottom-to-top, lettered a/b/c captions below, ours rightmost with zoom inset",
  "tags": [
-  "prior-vs-ours",
   "hallucination-mitigation",
   "representation-editing",
-  "contrastive-decoding",
-  "retraining",
   "efficiency",
-  "vision-language-models"
+  "retraining",
+  "contrastive-decoding",
+  "frozen-model",
+  "paradigm-comparison"
  ],
  "style": [
   "colorful",
   "icon-heavy",
-  "photo/real data"
+  "photo/real data",
+  "text-heavy"
  ],
- "description": "Three side-by-side panels divided by dashed lines compare hallucination mitigation paradigms. Left: a retraining pipeline. A photo and question go through manual or tool-assisted annotation to produce labeled data, with hallucinated phrases in red and correct ones in green. The data trains a flame-marked (trainable) LVLM, with back-propagation drawn as a loop arrow. Middle: contrastive decoding. An original image and a distorted image each pass through a frozen (snowflake) LVLM. Two bar charts of token logits (fork, food, bottle) are subtracted to rectify the logits, giving a response. Right: the proposed method. One frozen LVLM is drawn as a stack of layers (layer 1, l, n). An inset shows a hallucinatory activation distribution shifted by delta toward the correct one. The output response is fully correct. Pale yellow, blue and green carry the color coding.",
+ "description": "Three vertical panels compare hallucination mitigation paradigms, each reading bottom to top. Panel a (Retraining) shows a photo of a man with wine, a Q prompt, a human/robot annotation arrow, and a labeled data box. These feed a flaming (trainable) LVLM, with a backpropagation loop to a hallucination-oriented dataset that has red errors and green correct spans. Panel b (Contrastive decoding) shows two snowflake-frozen LVLMs, one fed the original image and one a noisy distorted image. Orange and yellow bar charts of token probabilities are subtracted via a logit-difference formula, giving rectified logits and a response. Panel c (Ours) shows a single frozen LVLM stack of layers 1 to n. A zoomed inset shows green correct and red hallucinatory activation distributions, with an edit shift Δ. The output response sits at the top. Green and red text marks correct and hallucinated content.",
  "caption": "Comparison of mainstream hallucination mitigation paradigms. (a) Retraining-based methods: Constructing hallucination-specific datasets and training frameworks. (b) Contrastive decoding methods: Comparing the original probability distribution with a perturbed one. (c) Our method: Editing intermediate representations of LVLMs.",
  "caption_source": "latex",
  "abstract": "Large Vision-Language Models have demonstrated exceptional performance in multimodal reasoning and complex scene understanding. However, these models still face significant hallucination issues, where outputs contradict visual facts. Recent research on hallucination mitigation has focused on retraining methods and Contrastive Decoding (CD) methods. While both methods perform well, retraining methods require substantial training resources, and CD methods introduce dual inference overhead. These factors hinder their practical applicability. To address the above issue, we propose a framework for dynamically detecting hallucination representations and performing hallucination-eliminating edits on these representations. With minimal additional computational cost, we achieve state-of-the-art performance on existing benchmarks. Extensive experiments demonstrate the effectiveness of our approach, highlighting its efficient and robust hallucination elimination capability and its powerful controllability over hallucinations. Code is available at https://github.com/ASGO-MM/HIRE",
@@ -49,5 +50,5 @@
  "figure_page": 1,
  "qc_flags": [],
  "annotator": "claude-cli:sonnet",
- "role_confidence": 0.93
+ "role_confidence": 0.9
 }

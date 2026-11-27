@@ -15,22 +15,22 @@
  "topic": "Reinforcement Learning->Deep RL",
  "role": "analysis-finding",
  "role2": null,
- "claim": "Unclipped training is unstable, with some runs collapsing, while clipped training is more stable. Clipping activates only rarely, so it has a small but systematic effect.",
- "layout": "3 panels in a row, left-to-right; two line plots of pass@1 vs training steps with multi-run curves, then a clipping-ratio spike plot",
+ "claim": "Removing clipping makes training unstable and spread out across runs, while clipping rarely activates yet still shapes the outcome, so a small bias has a large effect.",
+ "layout": "3 panels in a row, left to right; two line plots sharing the same axes (unclipped vs clipped) plus a spike plot of clipping activation ratio, with multi-colored runs",
  "tags": [
   "rlvr",
   "clipping",
   "training-dynamics",
   "multi-run-variance",
-  "stability",
-  "spurious-reward",
+  "policy-entropy",
+  "spurious-rewards",
   "ablation"
  ],
  "style": [
   "plot",
   "colorful"
  ],
- "description": "A single row of three line charts, all with training steps (0 to about 310) on the x-axis and titled for Qwen2.5-Math-7B. The left panel, 'Unclipped', and the middle panel, 'Clipped', plot MATH500 pass@1 on a y-axis from 0.55 to 0.80. Each panel has five or six colored runs. Bold smoothed lines overlay faint raw traces. In the unclipped panel, a green run crashes to about 0.55 and later recovers, and the other runs drift upward to about 0.70-0.73. In the clipped panel, the runs cluster around 0.70, with one green run dipping to about 0.60. The right panel plots the clipped gradient ratio, which sits flat at 0.001 with sparse vertical spikes to 0.002 in the first 100 steps. One green spike appears near step 270. The eye goes first to the green dips.",
+ "description": "Three side-by-side line plots, all against training steps (0 to about 310) on Qwen2.5-Math-7B. The left panel, titled 'Unclipped', shows MATH500 pass@1 (0.55 to 0.80) for several independent runs in different colors. Bold smoothed curves sit over faint raw traces. Most runs climb from about 0.66 to 0.70 to 0.74, but one green run collapses below 0.55 and then recovers. The middle panel, 'Clipped', uses the same axes. Its runs are more tightly bunched around 0.70, and the green run dips only to about 0.60. The right panel, 'Ratio of clipping activation', plots the clipped gradient ratio on a 0 to 0.002 axis. Colored vertical spikes appear mostly before step 100, with one lone green spike near step 270, on a flat baseline at 0.001. The eye goes first to the dipping green curve on the left.",
  "caption": "Independent trials over Qwen2.5-Math-7B on the MATH500 validation set. For performance validation subpanels (Left & Middle), each color represents a different run; the bold line shows the smoothed trajectory, and the faint line of the same color shows the corresponding raw individual run. All later figures follow the same plotting convention. Unclipped training (Left); clipped training (Middle); and clipping activation ratio during training (Right).",
  "caption_source": "latex",
  "abstract": "This paper examines the exploration-exploitation trade-off in reinforcement learning with verifiable rewards (RLVR), a framework for improving the reasoning of Large Language Models (LLMs). Recent studies suggest that RLVR can elicit strong mathematical reasoning in LLMs through two seemingly paradoxical mechanisms: spurious rewards, which suppress exploitation by rewarding outcomes unrelated to the ground truth, and entropy minimization, which suppresses exploration by pushing the model toward more confident and deterministic outputs, highlighting a puzzling dynamic: both discouraging exploitation and discouraging exploration improve reasoning performance, yet the underlying principles that reconcile these effects remain poorly understood. We focus on two fundamental questions: (i) how policy entropy relates to performance, and (ii) whether spurious rewards yield gains, potentially through the interplay of clipping bias and model contamination. Our results show that clipping bias under spurious rewards reduces policy entropy, leading to more confident and deterministic outputs, while entropy minimization alone is insufficient for improvement. We further propose a reward-misalignment model explaining why spurious rewards can enhance performance beyond contaminated settings. Our findings clarify the mechanisms behind spurious-reward benefits and provide principles for more effective RLVR training.",

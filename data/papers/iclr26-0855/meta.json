@@ -11,23 +11,23 @@
  "topic": "Computer Vision->Everything Else",
  "role": "teaser-result",
  "role2": "before-after",
- "claim": "Our method beats vanilla and prior 3D-aware baselines across many downstream tasks, and yields visibly cleaner, more consistent feature outputs than the baseline.",
- "layout": "2 panels: left radar chart with 4 colored series; right two stacked rows (baseline above, ours below) of image/feature-map strips with a divider before correspondence",
+ "claim": "Our method beats the baseline and prior approaches across many downstream metrics, and its features give visibly cleaner, more consistent outputs than the baseline.",
+ "layout": "2 panels: radar chart on the left, stacked baseline-vs-ours feature and output strips on the right, with a label bar between the rows",
  "tags": [
   "radar-chart",
-  "feature-distillation",
+  "distillation",
+  "feature-quality",
   "3d-awareness",
-  "foundation-model",
-  "multi-task-gains",
-  "qualitative-comparison",
-  "baseline-vs-ours"
+  "state-of-the-art",
+  "baseline-comparison",
+  "foundation-model"
  ],
  "style": [
   "plot",
   "photo/real data",
   "colorful"
  ],
- "description": "The left panel is a radar chart with spokes for Depth, Surface Normal, Segmentation and Correspondence across NYUv2, ScanNet and ScanNet++. Four polygons are overlaid: a small blue one for vanilla DINOv2, an orange one for Fit3D, a green one for MEF, and a large red one for Splat and Distill, which encloses the others on nearly every axis. The right panel has two rounded rows. The top row, on a peach background, is labeled DINOv2. The bottom row, on a teal background, is labeled Splat and Distill (Ours). A short arrow joins the two labels. Each row shows an indoor image, then PCA features, a segmentation map, a depth map, a normal map and a correspondence image. The DINOv2 outputs look noisy and patchy. The Splat and Distill outputs look smoother and more coherent. The eye goes first to the large red radar polygon.",
+ "description": "The left panel is a radar chart with ten axes, each a downstream metric: depth, surface normals, segmentation and correspondence, across NYUv2, ScanNet and ScanNet++. Four colored polygons are drawn on it. The red one (Splat and Distill) encloses the largest area. The blue (DINOv2), orange (Fit3D) and green (MEF) polygons are nested inside it. The right panel has two rounded strips. The top strip is peach and shows DINOv2 outputs. The bottom strip is teal and shows Splat and Distill outputs. Each strip has the same columns: an input image, a PCA feature map, segmentation, depth, surface normals, and a correspondence image with matching lines. A blue DINOv2 label and a red 'Splat and Distill (Ours)' label sit between the strips, joined by an arrow. The eye goes first to the red radar polygon, then to the cleaner feature maps in the bottom strip.",
  "caption": "Splat and Distill (SnD) is a student-teacher distillation framework that augments the teacher with a feed-forward 3D reconstruction pipeline during training, resulting in 3D-aware 2D features. Left: Leveraging our approach on DINOv2, results in 2D features that enable state-of-the-art performance on downstream tasks such as monocular depth estimation (Depth), surface normal estimation (sNorm), semantic segmentation (Seg), and multiview correspondence (Corres). Shown here is comparison of {\\color{red} SnD (our method)} to vanilla {\\color{blue}DINOv2}, and state-of-the-art approaches for improving 3D awarness,{\\color{orange}Fit3D} [ref], and {\\color{green}MEF} [ref], based on a DINOv2 VIT-Small model, and considering the NYUv2 [ref], ScanNet [ref] and ScanNet++ [ref] datasets (see further results in Sec. [ref]). For visualization, we provide normalized scores (min–max per metric, weakest baseline set to 0), using inverse RMSE for depth and normal estimation, IoU for segmentation, and Recall for correspondence (higher is better). See additional details in Sec. [ref]. Right: Visualization of our method compared to DINOv2.",
  "caption_source": "latex",
  "abstract": "Vision Foundation Models (VFMs) have achieved remarkable success when applied to various downstream 2D tasks. Despite their effectiveness, they often exhibit a critical lack of 3D awareness. To this end, we introduce Splat and Distill, a framework that instills robust 3D awareness into 2D VFMs by augmenting the teacher model with a fast, feed-forward 3D reconstruction pipeline. Given 2D features produced by a teacher model, our method first lifts these features into an explicit 3D Gaussian representation, in a feedforward manner. These 3D features are then ``splatted\" onto novel viewpoints, producing a set of novel 2D feature maps used to supervise the student model, ``distilling\" geometrically grounded knowledge. By replacing slow per-scene optimization of prior work with our feed-forward lifting approach, our framework avoids feature-averaging artifacts, creating a dynamic learning process where the teacher's consistency improves alongside that of the student. We conduct a comprehensive evaluation on a suite of downstream tasks, including monocular depth estimation, surface normal estimation, multi-view correspondence, and semantic segmentation. Our method significantly outperforms prior works, not only achieving substantial gains in 3D awareness but also enhancing the underlying semantic richness of 2D features. Project page is available at https://davidshavin4.github.io/Splat-and-Distill/",

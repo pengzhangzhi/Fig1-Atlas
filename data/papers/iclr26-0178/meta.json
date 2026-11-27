@@ -13,23 +13,22 @@
  "topic": "Deep Learning->Generative Models and Autoencoders",
  "role": "analysis-finding",
  "role2": "problem-setup",
- "claim": "Profiling the pipeline shows one component, not the core model, dominates latency and peak memory, motivating its removal.",
- "layout": "single wide timeline plot; memory traces stacked over a function-color strip and an event bar split into three stages, with red annotations and dashed stage dividers",
+ "claim": "Profiling the pipeline shows one component, not the core model, dominates latency and memory, motivating its removal.",
+ "layout": "1 wide timeline plot, left-to-right; memory curve on top, function strip and event bar below, dashed stage dividers, red annotations",
  "tags": [
   "profiling",
   "latency",
   "memory-bottleneck",
-  "one-step",
   "diffusion",
   "super-resolution",
-  "efficiency"
+  "efficiency",
+  "bottleneck-analysis"
  ],
  "style": [
   "plot",
-  "colorful",
-  "minimal"
+  "colorful"
  ],
- "description": "A single wide profiling chart with time in milliseconds on the x-axis. The top area shows allocated CPU memory as a light-blue trace above a flat gray-blue band for parameter memory. Below that is a thin strip of many colored vertical bars for function calls. A dark bar at the bottom labels three stages: Encoder 85ms, UNet 73ms (28.1%) and Decoder 103ms. Dashed vertical lines separate the stages. Dark-red annotations mark a large memory spike of 1.77GB in the decoder, a 0.71GB (40.1%) rise in the UNet, and a '67ms CPU allocating' arrow in the encoder. The eye goes first to the tall decoder spike and the stage labels, which show the encoder and decoder dominate.",
+ "description": "A single wide profiling timeline over roughly 0 to 260 ms. The top shows allocated CPU memory as a light-blue area with a darker blue-gray block of parameter memory beneath it. Below that is a strip of many colored function-call bars, and under it a labeled event bar. Dashed vertical lines divide three stages: Encoder 85ms, UNet 73ms (highlighted in a lighter blue, marked 28.1%), and Decoder 103ms. The memory curve has tall spikes in the encoder and especially the decoder (1.77GB peak). The UNet's smaller fluctuation is marked 0.71GB, 40.1%. Dark-red arrows, brackets and a curved arrow mark a 67ms CPU allocating event. The eye goes first to the tall decoder spike and the labeled red annotations.",
  "caption": "Profiling for GenDR with input size of 10242px.",
  "caption_source": "pdf",
  "abstract": "Diffusion models have attained remarkable breakthroughs in the real-world super-resolution (SR) task, albeit at slow inference and high demand on devices. To accelerate inference, recent works like GenDR adopt step distillation to minimize the step number to one. However, the memory boundary still restricts the maximum processing size, necessitating tile-by-tile restoration of high-resolution images. Through profiling the pipeline, we pinpoint that the variational auto-encoder (VAE) is the bottleneck of latency and memory. To completely solve the problem, we leverage pixel-(un)shuffle operations to eliminate the VAE, reversing the latent-based GenDR to pixel-space GenDR-Pix. However, upscale with x8 pixelshuffle may induce artifacts of repeated patterns. To alleviate the distortion, we propose a multi-stage adversarial distillation to progressively remove the encoder and decoder. Specifically, we utilize generative features from the previous stage models to guide adversarial discrimination. Moreover, we propose random padding to augment generative features and avoid discriminator collapse. We also introduce a masked Fourier space loss to penalize the outliers of amplitude. To improve inference performance, we empirically integrate a padding-based self-ensemble with classifier-free guidance to improve inference scaling. Experimental results show that GenDR-Pix performs 2.8x acceleration and 60% memory-saving compared to GenDR with negligible visual degradation, surpassing other one-step diffusion SR. Against all odds, GenDR-Pix can restore 4K image in only 1 second and 6GB.",
@@ -47,5 +46,5 @@
  "figure_page": 2,
  "qc_flags": [],
  "annotator": "claude-cli:sonnet",
- "role_confidence": 0.85
+ "role_confidence": 0.8
 }
