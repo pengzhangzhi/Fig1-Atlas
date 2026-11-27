@@ -8,7 +8,7 @@ Output: CACHE/work/papers_<key>.jsonl
 """
 import argparse, ast, json, re
 import requests
-from common import CACHE, UA, write_jsonl, REPO
+from common import CACHE, UA, write_jsonl, REPO, norm_title
 
 
 SKIP_TRACKS = {"BlogPosts"}  # blog posts have no paper PDF / Figure 1
@@ -37,7 +37,7 @@ def main():
         raw_p.write_bytes(r.content)
     res = json.load(open(raw_p))["results"]
     rank = {"oral": 0, "spotlight": 1, "poster": 2}
-    papers = {}
+    papers, cands = {}, []
     for e in res:
         m = re.search(r"forum\?id=([\w-]+)", e.get("paper_url") or "")
         if not m:
@@ -59,9 +59,22 @@ def main():
              "topic": e.get("topic") if e.get("topic") not in (None, "None") else None,
              "virtual_url": cfg["site"] + e["virtualsite_url"] if e.get("virtualsite_url") else None,
              "code_url": e.get("url") if (e.get("url") or "None") != "None" else None}
-        old = papers.get(orid)
-        if old is None or rank[p["tier"]] < rank[old["tier"]]:
-            papers[orid] = p
+        cands.append(p)
+    # Dedupe. Oral re-listings sometimes carry a synthetic forum id ("2026-Oral--11477-…") and
+    # sometimes a different title. Group real ids first, then fold synthetic ones in by title.
+    real = lambda x: re.fullmatch(r"[A-Za-z0-9_-]{8,12}", x["openreview_id"]) is not None
+    by_title = {}
+    for p in sorted(cands, key=lambda x: not real(x)):
+        if real(p):
+            old = papers.get(p["openreview_id"])
+        else:
+            old = by_title.get(norm_title(p["title"]))
+        if old is None:
+            papers[p["openreview_id"]] = p
+            by_title[norm_title(p["title"])] = p
+        else:
+            old["tier"] = min(old["tier"], p["tier"], key=rank.get)
+            by_title.setdefault(norm_title(p["title"]), old)
     # ids: <venue>-<4-digit seq> over the final accepted list sorted by OpenReview id (stable;
     # avoids case-only differences that break case-insensitive filesystems)
     rows = sorted(papers.values(), key=lambda p: p["openreview_id"])
