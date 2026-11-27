@@ -24,6 +24,7 @@ def build(keys):
         ann = {r["id"]: r for r in read_jsonl(CACHE / "work" / f"annotated_{key}.jsonl")}
         qc = {r["id"]: r["flags"] for r in read_jsonl(CACHE / "work" / f"qc_{key}.jsonl")}
         lic = {r["id"]: r for r in read_jsonl(CACHE / "work" / f"license_{key}.jsonl")}
+        proc = {r["id"]: r for r in read_jsonl(CACHE / "work" / f"proc_{key}.jsonl")}
         for pid, p in sorted(m.items()):
             e, a, L = ext.get(pid), ann.get(pid), lic.get(pid, {})
             flags = qc.get(pid, [])
@@ -36,6 +37,7 @@ def build(keys):
                 missing.append({"id": pid, "title": p["title"], "venue": p["venue"], "reason": "not-a-figure"}); continue
             host = bool(L.get("host"))
             aid = p.get("arxiv_id")
+            pr = proc.get(pid, {})
             meta = {
                 "id": pid, "title": p["title"], "authors": p["authors"], "venue": p["venue"], "tier": p["tier"],
                 "track": p["track"], "topic": p.get("topic"),
@@ -45,7 +47,8 @@ def build(keys):
                 "abstract": p.get("abstract"),
                 "links": {"openreview": f"https://openreview.net/forum?id={p['openreview_id']}",
                           "arxiv": f"https://arxiv.org/abs/{aid}" if aid else None,
-                          "pdf": f"https://arxiv.org/pdf/{aid}" if aid else f"https://openreview.net/pdf?id={p['openreview_id']}",
+                          "pdf": pr.get("proc_pdf") or (f"https://arxiv.org/pdf/{aid}" if aid else f"https://openreview.net/pdf?id={p['openreview_id']}"),
+                          "proceedings": pr.get("proc_page"),
                           "virtual": p.get("virtual_url"), "code": p.get("code_url")},
                 "license": L.get("license"), "img": L.get("img", "none") if host else "none",
                 "image_url": f"{HF_BASE}/images/{pid}.png" if host else None,

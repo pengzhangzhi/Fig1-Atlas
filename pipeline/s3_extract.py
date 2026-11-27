@@ -425,8 +425,14 @@ def process(p, s):
         pdf = arxiv_get(s, f"https://arxiv.org/pdf/{aid}", CACHE / "pdf" / f"{aid}.pdf")
         src = arxiv_get(s, f"https://arxiv.org/e-print/{aid}", CACHE / "src" / f"{aid}.src")
     else:
-        pdf = arxiv_get(s, f"https://openreview.net/pdf?id={p['openreview_id']}", CACHE / "pdf" / f"or-{p['openreview_id']}.pdf")
         src = None
+        cached_or = CACHE / "pdf" / f"or-{p['openreview_id']}.pdf"      # e.g. synced from a laptop
+        if p.get("proc_pdf"):                                             # official proceedings (camera-ready)
+            pdf = arxiv_get(s, p["proc_pdf"], CACHE / "pdf" / f"proc-{p['id']}.pdf")
+        elif cached_or.exists():
+            pdf = cached_or
+        else:
+            pdf = arxiv_get(s, f"https://openreview.net/pdf?id={p['openreview_id']}", cached_or)
         if pdf and not pdf.read_bytes()[:4] == b"%PDF":
             pdf.unlink(); pdf = None
     if not pdf:
@@ -448,7 +454,7 @@ def process(p, s):
         out["caption"] = clean_caption(lt["caption_latex"])
         out["caption_source"] = "latex"
     elif cap_pdf:
-        out["caption"] = ANY_CAP_RE.sub("", cap_pdf, count=1).strip()
+        out["caption"] = re.sub(r"(\w)- (\w)", r"\1\2", ANY_CAP_RE.sub("", cap_pdf, count=1).strip())  # de-hyphenate line breaks
         out["caption_source"] = "pdf"
     out["n_graphics"] = len(lt["graphics"]) if lt else None
     if cap is None:
@@ -474,6 +480,8 @@ def main():
     ap.add_argument("--gap", type=float, default=1.0, help="min seconds between arXiv request starts (all workers)")
     a = ap.parse_args()
     rows = read_jsonl(CACHE / "work" / f"matched_{a.key}.jsonl")
+    proc = {r["id"]: r for r in read_jsonl(CACHE / "work" / f"proc_{a.key}.jsonl")}
+    rows = [{**r, "proc_pdf": proc.get(r["id"], {}).get("proc_pdf")} for r in rows]
     if a.ids:
         keep = set(Path(a.ids).read_text().split()); rows = [r for r in rows if r["id"] in keep]
     out_p = CACHE / "work" / f"extracted_{a.key}.jsonl"
