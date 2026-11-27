@@ -1,0 +1,56 @@
+{
+ "id": "iclr26-4036",
+ "title": "FlexiCodec: A Dynamic Neural Audio Codec for Low Frame Rates",
+ "authors": [
+  "Jiaqi Li",
+  "Yao Qian",
+  "Yuxuan Hu",
+  "leying zhang",
+  "Xiaofei Wang",
+  "Heng Lu",
+  "Manthan Thakker",
+  "Jinyu Li",
+  "sheng zhao",
+  "Zhizheng Wu"
+ ],
+ "venue": "ICLR 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "Applications->Language, Speech and Dialog",
+ "role": "pipeline",
+ "role2": null,
+ "claim": "A dual-stream encoder dynamically merges similar frames into variable low-rate tokens, then unmerges them to reconstruct fixed-rate output, all trained end to end.",
+ "layout": "Single wide panel, left-to-right two parallel horizontal streams (semantic top, acoustic bottom) merging at a sum node into the decoder; dotted L2-loss feedback arrow",
+ "tags": [
+  "dual-stream",
+  "frame-merging",
+  "dynamic-rate",
+  "audio-codec",
+  "quantization",
+  "end-to-end",
+  "semantic-acoustic-disentanglement"
+ ],
+ "style": [
+  "icon-heavy",
+  "colorful"
+ ],
+ "description": "A wide left-to-right block diagram with two parallel streams. Speech waveform icon at left feeds a top semantic stream (frozen ASR Encoder, marked with a snowflake) and a bottom acoustic stream (Codec Encoder). Each produces stacked 12.5Hz feature tokens t1–t4, blue on top and green below. A Frame Merging Module in each stream merges t2 and t3 into a single t2,3 block. The top stream continues through FSQ to semantic tokens q1t1, q1t2,3 and q1t4, drawn as blue ovals. The bottom stream subtracts the semantic features through a residual node, then passes through RVQ to yellow dashed-outline rest tokens. A plus node sums the semantic and acoustic features and feeds the Frame Unmerging Module, which restores four green tokens that go to the Codec Decoder and output speech. A gray dotted L2 loss arrow and gray Recon and GAN loss labels mark training. Gray rounded boxes mark modules, and dark thick arrows show the flow.",
+ "caption": "Overview of \\methodname. The model encodes speech through two streams. The Frame Merging Modules dynamically reduce the 12.5Hz features into lower frame rates, and the Frame Unmerging Module restores a 12.5Hz fixed frame rate. The model is trained end to end.",
+ "caption_source": "latex",
+ "abstract": "Neural audio codecs are foundational to speech language models. It is expected to have a low frame rate and decoupled semantic and acoustic information. A lower frame rate codec can reduce the computational cost of speech language models by shortening the sequence length. Recent studies have developed 12.5Hz low-frame-rate audio codecs, but even lower frame rate codecs remain underexplored. We find that a major challenge for very low frame rate tokens is missing semantic information. This paper introduces FlexiCodec to address this limitation. FlexiCodec improves semantic preservation with a dynamic frame rate approach and introduces a novel architecture featuring an ASR feature-assisted dual stream encoding and Transformer bottlenecks. With dynamic frame rates, it uses less frames at information-sparse regions through adaptively merging semantically similar frames. A dynamic frame rate also allows FlexiCodec to support inference-time controllable frame rates between 3Hz and 12.5Hz. Experiments on 6.25Hz, 8.3Hz and 12.5Hz average frame rates confirm that FlexiCodec excels over baseline systems in semantic information preservation and delivers a high audio reconstruction quality. We also validate the effectiveness of FlexiCodec in language model-based TTS. Demos are available at: https://flexicodec.github.io. Code is available at: https://github.com/amphionteam/flexicodec.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=kYkfCs4ZAH",
+  "arxiv": "https://arxiv.org/abs/2510.00981",
+  "pdf": "https://arxiv.org/pdf/2510.00981",
+  "virtual": "https://iclr.cc/virtual/2026/poster/10007777",
+  "code": "https://flexicodec.github.io/"
+ },
+ "license": "http://creativecommons.org/licenses/by-sa/4.0/",
+ "img": "cc-by-sa",
+ "image_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/images/iclr26-4036.png",
+ "thumb_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/thumbs/iclr26-4036.webp",
+ "figure_page": 3,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.97
+}

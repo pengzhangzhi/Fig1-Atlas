@@ -1,0 +1,50 @@
+{
+ "id": "iclr26-4495",
+ "title": "DiffusionBlocks: Block-wise Neural Network Training via Diffusion Interpretation",
+ "authors": [
+  "Makoto Shing",
+  "Masanori Koyama",
+  "Takuya Akiba"
+ ],
+ "venue": "ICLR 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "Deep Learning->Algorithms",
+ "role": "overview-framework",
+ "role2": "prior-vs-ours",
+ "claim": "A monolithic network trained end-to-end is split into independently trained blocks tied to noise ranges, which applies across diffusion and recurrent-depth models.",
+ "layout": "3 panels: left-to-right standard→ours transformation arrow, plus two stacked application panels on the right; blue backprop arrows, orange noise gradient bar",
+ "tags": [
+  "block-wise-training",
+  "memory-efficiency",
+  "diffusion",
+  "modular-training",
+  "backpropagation",
+  "recurrent-depth",
+  "applications"
+ ],
+ "style": [
+  "icon-heavy",
+  "colorful",
+  "minimal"
+ ],
+ "description": "A wide figure on a light grey background with three rounded panels. The left panel, 'Standard Network', shows a stack of six grey blocks between input and output boxes, with a long blue arrow down the side showing backprop through all layers. A large orange arrow labelled 'DiffusionBlocks' leads to the same stack split into three outlined groups of two blocks. Each group has its own short blue arrow, a plus sign and a link to a segment of a vertical orange gradient bar labelled noise, from min to max. Captions say 'Requires backprop through all layers' and 'Train each block independently for specific noise ranges'. The top-right panel, 'Diffusion Models', shows a noisy-to-clean corgi image sequence above three network icons. After the DiffusionBlocks arrow, only one block in each icon is dark, captioned 'Only one block per step'. The bottom-right panel, 'Recurrent-depth Models', shows an iterative loop becoming a single pass. Orange highlights the proposed method, and blue marks the backprop cost.",
+ "caption": "Overview of DiffusionBlocks. Left: Standard networks require backpropagation through all layers. Center: DiffusionBlocks partitions networks into blocks, each trained independently to denoise within assigned noise ranges. Right: Applications. For diffusion models (top), inference requires only the relevant block per denoising step. For recurrent-depth models (bottom), our framework replaces iterative training with single-pass training, eliminating the computational overhead of backpropagation through time.",
+ "caption_source": "latex",
+ "abstract": "End-to-end backpropagation requires storing activations throughout all layers, creating memory bottlenecks that limit model scalability. Existing block-wise training methods offer means to alleviate this problem, but they rely on ad-hoc local objectives and remain largely unexplored beyond classification tasks. We propose $\\textit{DiffusionBlocks}$, a principled framework for transforming transformer-based networks into genuinely independent trainable blocks that maintain competitive performance with end-to-end training. Our key insight leverages the fact that residual connections naturally correspond to updates in a dynamical system. With minimal modifications to this system, we can convert the updates to those of a denoising process, where each block can be learned independently by leveraging the score matching objective. This independence enables training with gradients for only one block at a time, thereby reducing memory requirements in proportion to the number of blocks. Our experiments on a range of transformer architectures (vision, diffusion, autoregressive, recurrent-depth, and masked diffusion) demonstrate that DiffusionBlocks training matches the performance of end-to-end training while enabling scalable block-wise training on practical tasks beyond small-scale classification. DiffusionBlocks provides a theoretically grounded approach that successfully scales to modern generative tasks across diverse architectures. Code is available at https://github.com/SakanaAI/DiffusionBlocks .",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=pwVSmK71cS",
+  "arxiv": "https://arxiv.org/abs/2506.14202",
+  "pdf": "https://arxiv.org/pdf/2506.14202",
+  "virtual": "https://iclr.cc/virtual/2026/poster/10007292",
+  "code": "https://github.com/SakanaAI/DiffusionBlocks"
+ },
+ "license": "http://arxiv.org/licenses/nonexclusive-distrib/1.0/",
+ "img": "none",
+ "image_url": null,
+ "thumb_url": null,
+ "figure_page": 1,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.5
+}

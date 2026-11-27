@@ -1,0 +1,50 @@
+{
+ "id": "iclr26-0832",
+ "title": "On-the-Fly Adaptation to Quantization: Configuration-Aware LoRA for Efficient Fine-Tuning of Quantized LLMs",
+ "authors": [
+  "Rongguang Ye",
+  "Ming Tang",
+  "Edith Ngai"
+ ],
+ "venue": "ICLR 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "Deep Learning->Everything Else",
+ "role": "analysis-finding",
+ "role2": "teaser-result",
+ "claim": "Per-configuration fine-tuning gives much higher accuracy than a shared adapter but its cumulative cost grows with each configuration, exposing an accuracy-versus-efficiency tradeoff.",
+ "layout": "2 side-by-side line plots sharing x-axis (average bit); left shows accuracy with shaded gap, right shows cumulative time, legends inside",
+ "tags": [
+  "quantization",
+  "lora",
+  "fine-tuning",
+  "accuracy-efficiency-tradeoff",
+  "motivation",
+  "cumulative-cost",
+  "edge-deployment"
+ ],
+ "style": [
+  "plot",
+  "minimal",
+  "colorful"
+ ],
+ "description": "Two matplotlib-style line charts side by side, both with average bit-width on the x-axis. The left chart plots accuracy (%) against average bit for two methods. A green dashed line with square markers (Q-LoRA, separate adapter per configuration) sits well above a pink solid line with circle markers (Shared-LoRA). The area between them is shaded gray and labeled 'Gap', and this is where the eye goes first. The right chart plots cumulative fine-tuning time in hours. Q-LoRA's green dashed line climbs steadily from about 0.5 to 2 hours as more bit configurations are added. Shared-LoRA is a flat pink horizontal line near 0.6 hours. Together the charts show that per-configuration tuning is accurate but expensive, while a shared adapter is cheap but less accurate. Legends sit inside each plot, and grid lines are light gray.",
+ "caption": "Accuracy gap (left) and performance compari- son of cumulative fine-tuning time (right) on the SST-2 task from the GLUE benchmark using RoBERTa-Large model.",
+ "caption_source": "pdf",
+ "abstract": "As increasingly large pre-trained models are released, deploying them on edge devices for privacy-preserving applications requires effective compression. Recent works combine quantization with the fine-tuning of high-precision LoRA adapters, which can substantially reduce model size while mitigating the accuracy loss from quantization. However, edge devices have inherently heterogeneous capabilities, while performing configuration-wise fine-tuning for every quantization setting is computationally prohibitive. In this paper, we propose CoA-LoRA, a method that dynamically adjusts the LoRA adapter to arbitrary quantization configurations (i.e., the per-layer bit-width choices of a pre-trained model) without requiring repeated fine-tuning. This is accomplished via a configuration-aware model that maps each configuration to its low-rank adjustments. The effectiveness of this model critically depends on the training configuration set, a collection of configurations chosen to cover different total bit-width budgets. However, constructing a high-quality configuration set is non-trivial. We therefore design a Pareto-based configuration search that iteratively optimizes the training configuration set, yielding more precise low-rank adjustments. Our experiments demonstrate that, unlike the state-of-the-art methods that require fine-tuning a separate LoRA adapter for each configuration, CoA-LoRA incurs no additional time cost while achieving comparable or even superior performance to those methods.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=9OUg0nJE72",
+  "arxiv": "https://arxiv.org/abs/2509.25214",
+  "pdf": "https://arxiv.org/pdf/2509.25214",
+  "virtual": "https://iclr.cc/virtual/2026/poster/10011118",
+  "code": null
+ },
+ "license": "http://arxiv.org/licenses/nonexclusive-distrib/1.0/",
+ "img": "none",
+ "image_url": null,
+ "thumb_url": null,
+ "figure_page": 2,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.55
+}

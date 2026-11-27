@@ -1,0 +1,51 @@
+{
+ "id": "iclr26-3868",
+ "title": "Improving Black-Box Generative Attacks via Generator Semantic Consistency",
+ "authors": [
+  "Jongoh Jeong",
+  "Hunmin Yang",
+  "Jaeseok Jeong",
+  "Kuk-Jin Yoon"
+ ],
+ "venue": "ICLR 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "Deep Learning->Robustness",
+ "role": "pipeline",
+ "role2": "analysis-finding",
+ "claim": "Aligning early generator features to an EMA teacher preserves semantic structure, yielding more transferable adversarial perturbations, as shown by cleaner intermediate feature maps.",
+ "layout": "Top row of training and evaluation stages; large zoomed-in generator panel below with student and teacher rows; feature-map comparison column at right; left-to-right flow with color-coded train and inference arrows",
+ "tags": [
+  "mean-teacher",
+  "ema",
+  "consistency",
+  "adversarial-transferability",
+  "generative-attack",
+  "feature-alignment",
+  "black-box"
+ ],
+ "style": [
+  "icon-heavy",
+  "colorful",
+  "photo/real data"
+ ],
+ "description": "A wide diagram with a high-level pipeline across the top. A benign image goes through a generator, a perturbation projection P and a frozen surrogate model with an adversarial loss. This is the training stage. A dashed divider leads to the evaluation stage, where the adversarial image goes to a victim model and then to a metrics box (Accuracy, ASR, FR plus ACR). A magnifier icon on the generator links to a large zoomed panel below. The panel shows two parallel generator stacks. The student is on top in orange and blue blocks (downsampling, residual, upsampling). The teacher is below in faded purple, linked by an EMA arrow. A brace marks the consistency loss on the early residual blocks. Black arrows mark training and orange arrows mark inference. At the right, a column of intermediate feature-map heatmaps for blocks (a)-(f) compares the baseline with the method. The eye goes first to the top pipeline, then to the big student/teacher diagram.",
+ "caption": "Overview of our proposed SCGA framework. Given a benign input image, a perturbation generator produces an adversarial output under the supervision of a Mean Teacher (MT) structure. The student and teacher share the generator architecture, with the teacher updated via EMA. Semantic consistency is enforced by aligning their intermediate features, selectively applied to the early blocks to effectively preserve structural information from the benign input across the residual blocks. The adversarial example is then evaluated against victim models according to the four evaluation metrics. This MT-based design further promotes semantic alignment, combining consistency and integrity, thereby enhancing adversarial transferability across diverse victims.",
+ "caption_source": "latex",
+ "abstract": "Transfer attacks optimize on a surrogate and deploy to a black-box target. While iterative optimization attacks in this paradigm are limited by their per-input cost limits efficiency and scalability due to multistep gradient updates for each input, generative attacks alleviate these by producing adversarial examples in a single forward pass at test time. However, current generative attacks still adhere to optimizing surrogate losses (e.g., feature divergence) and overlook the generator's internal dynamics, underexploring how the generator's internal representations shape transferable perturbations. To address this, we enforce semantic consistency by aligning the early generator's intermediate features to an EMA teacher, stabilizing object-aligned representations and improving black-box transfer without inference-time overhead. To ground the mechanism, we quantify semantic stability as the standard deviation of foreground IoU between cluster-derived activation masks and foreground masks across generator blocks, and observe reduced semantic drift under our method. For more reliable evaluation, we also introduce Accidental Correction Rate (ACR) to separate inadvertent corrections from intended misclassifications, complementing the inherent blind spots in traditional Attack Success Rate (ASR), Fooling Rate (FR), and Accuracy metrics. Across architectures, domains, and tasks, our approach can be seamlessly integrated into existing generative attacks with consistent improvements in black-box transfer, while maintaining test-time efficiency.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=ibXhUapwcz",
+  "arxiv": "https://arxiv.org/abs/2506.18248",
+  "pdf": "https://arxiv.org/pdf/2506.18248",
+  "virtual": "https://iclr.cc/virtual/2026/poster/10007951",
+  "code": "https://andyj1.github.io/scga"
+ },
+ "license": "http://creativecommons.org/licenses/by-nc-sa/4.0/",
+ "img": "cc-by-nc-sa",
+ "image_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/images/iclr26-3868.png",
+ "thumb_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/thumbs/iclr26-3868.webp",
+ "figure_page": 3,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.85
+}

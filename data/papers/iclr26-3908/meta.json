@@ -1,0 +1,51 @@
+{
+ "id": "iclr26-3908",
+ "title": "Dynamic Weight Grafting: Localizing Finetuned Factual Knowledge in Transformers",
+ "authors": [
+  "Todd Nief",
+  "David Reber",
+  "Sean Richardson",
+  "Ari Holtzman"
+ ],
+ "venue": "ICLR 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "Deep Learning->Generative Models and Autoencoders",
+ "role": "prior-vs-ours",
+ "role2": "pipeline",
+ "claim": "Activation patching overwrites stored information, whereas grafting swaps in a finetuned model's mechanisms at chosen positions and components to localize where knowledge is retrieved.",
+ "layout": "2 panels, left-to-right; left is a 2x2 side-by-side comparison of residual-stream columns with flask icons and red circles. Right is a 3x3 grid of token columns, with panels (a) and (b) contrasting grafting schemes.",
+ "tags": [
+  "interpretability",
+  "activation-patching",
+  "weight-grafting",
+  "localization",
+  "finetuning",
+  "mechanistic-analysis",
+  "comparison"
+ ],
+ "style": [
+  "icon-heavy",
+  "colorful",
+  "minimal"
+ ],
+ "description": "The left panel contrasts activation patching with dynamic weight grafting using vertical residual-stream bars. Each bar has flask icons beside it that stand for FFN and attention, with brackets labelling them. On the left, a colored chunk of activation is copied from Prompt #2 into Prompt #1's stream, circled in red and labelled 'Replaces Information'. On the right, a pretrained model and a finetuned model sit side by side. A whole flask mechanism is circled in red and moved from the finetuned model into the pretrained one, labelled 'Replaces Mechanism'. The right panel shows two 3x3 grids of tokens (Zendaya, co-stars, with) across layers, giving position grafting and component grafting. Pink grid blocks mark pretrained weights and blue blocks mark finetuned weights. Bold captions state 'all/some' weights, layers and timesteps. The eye goes first to the colorful bars and the red circles.",
+ "caption": "We introduce dynamic weight grafting to analyze model mechnisms for finetuned knowledge retrieval---swapping small subsets of a pretrained model's weights with the weights of a model that has undergone supervised finetuning (SFT). (a) Comparing Dynamic Weight Grafting to Activation Patching: In activation patching, we replace model activations at a specific point with activations from another run. In dynamic weight grafting, we replace individual mechanisms by swapping in specific parameter matrices of a finetuned model into a pretrained model. (b) A schematic showing the different dynamic weight grafting schemes used in our experiments. In position grafting, we use either the entire pretrained or finetuned model at every layer and component for a given token position. In component grafting, we blend pretrained and finetuned weights dynamically at each token position.",
+ "caption_source": "latex",
+ "abstract": "When an LLM learns a new fact during finetuning (e.g., new movie releases, newly elected pope, etc.), where does this information go? Are entities enriched with relation information immediately, or do models recall information just-in-time before a prediction? Or, are \"all of the above\" true, with LLMs implementing multiple redundant heuristics? Existing localization approaches (e.g., activation patching) are ill-suited for this analysis because they usually replace parts of the residual stream, thus overriding previous information. To fill this interpretability gap, we propose dynamic weight grafting, an analysis technique that selectively grafts subsets of weights from a finetuned model onto a pretrained model. Using this technique, we show two separate pathways for retrieving finetuned relation information: 1) \"enriching\" the residual stream with relation information while processing the tokens that correspond to an entity (e.g., \"Zendaya\" in \"Zendaya co-starred with TimothÃ©e Chalamet\" and 2) \"recalling\" this information at the final token position before generating a target fact. In some cases, models need information from both of these pathways to correctly generate finetuned facts while, in other cases, either the \"enrichment\" or \"recall\" pathway alone is sufficient. We localize the \"recall\" pathway to model components -- finding that \"recall\" occurs via both task-specific attention mechanisms and an entity-specific extraction step in the feedforward networks of the final layers before prediction. By targeting model components and parameters, as opposed to just activations, we are able to understand the mechanisms by which finetuned knowledge is retrieved during generation.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=j5vRSKOHmO",
+  "arxiv": "https://arxiv.org/abs/2506.20746",
+  "pdf": "https://arxiv.org/pdf/2506.20746",
+  "virtual": "https://iclr.cc/virtual/2026/poster/10007911",
+  "code": "https://github.com/toddnief/dynamic-weight-grafting"
+ },
+ "license": "http://creativecommons.org/licenses/by/4.0/",
+ "img": "cc-by",
+ "image_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/images/iclr26-3908.png",
+ "thumb_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/thumbs/iclr26-3908.webp",
+ "figure_page": 1,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.55
+}

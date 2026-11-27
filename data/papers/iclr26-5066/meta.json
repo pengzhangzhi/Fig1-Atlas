@@ -1,0 +1,59 @@
+{
+ "id": "iclr26-5066",
+ "title": "Expert Divergence Learning for MoE-based Language Models",
+ "authors": [
+  "Jiaang Li",
+  "Haibin Chen",
+  "langming liu",
+  "Yujin Yuan",
+  "Yadao Wang",
+  "Yizhen Zhang",
+  "Chengting Yu",
+  "Xin Tong",
+  "Weidong Zhang",
+  "Shilei Liu",
+  "wenbo su",
+  "Bo Zheng"
+ ],
+ "venue": "ICLR 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "Deep Learning->Generative Models and Autoencoders",
+ "role": "prior-vs-ours",
+ "role2": "pipeline",
+ "claim": "The standard loss pushes routing toward a global uniform average, so experts look alike; ours maximizes divergence between per-group averages, producing distinct, specialized experts.",
+ "layout": "3 panels: (a) vertical MoE layer diagram at left; (b) and (c) stacked dashed-border panels at right, each reading left-to-right (distribution → curve plot → heatmap); dashed arrows link (a) to both",
+ "tags": [
+  "mixture-of-experts",
+  "auxiliary-loss",
+  "load-balancing",
+  "expert-specialization",
+  "routing",
+  "divergence",
+  "pre-training"
+ ],
+ "style": [
+  "colorful",
+  "plot",
+  "math-heavy"
+ ],
+ "description": "The left panel (a) shows an MoE layer as a vertical stack. A global batch of domain-colored token bars (green, yellow, pink) feeds a yellow Routing Network, then Softmax, then Expert Distributions, then Top-K Gating, then expert boxes 1..N that are summed. A legend lists the domains. Dashed blue arrows run from (a) to two stacked dashed-border panels on the right. Panel (b), Load-Balancing Loss, runs left to right: a single gray global-average histogram, an arrow, a wavy curve with a red dashed uniform line and the equation min L_LB ↔ min d_global, then a heatmap with similar rows labeled 'Similar Experts'. Panel (c), Expert-Divergence Loss, has the same layout. It uses three colored domain histograms and three separated colored bell curves with d1, d2 and d3 divergence arrows. The equation reads min L_ED ↔ max d1+d2+d3. The heatmap has distinct bands, labeled 'Diverged Experts'.",
+ "caption": "A conceptual comparison of the standard Load-Balancing Loss and our proposed Expert-Divergence Loss. (a) For a batch of tokens partitioned by domain, an MoE layer generates expert routing distributions. (b) The standard Load-Balancing Loss ($\\mathcal{L}_{LB}$) promotes uniformity by operating on the global average of expert distributions. This can lead to homogenization, as experts are trained on indistinct data mixtures. (c) In contrast, our Expert-Divergence Loss ($\\mathcal{L}_{ED}$) provides a targeted signal by maximizing the divergence between domain-specific average distributions. This guides distinct experts to train on differentiated data subsets and develop functional specialization.",
+ "caption_source": "latex",
+ "abstract": "The Mixture-of-Experts (MoE) architecture is a powerful technique for scaling language models, yet it often suffers from expert homogenization, where experts learn redundant functionalities, thereby limiting MoE's full potential. To address this, we introduce Expert Divergence Learning, a novel pre-training strategy that explicitly encourages functional specialization among experts. Our method incorporates a label-driven auxiliary loss that leverages domain labels inherent in pre-training corpora to maximize the Jensen-Shannon Divergence between the expert routing distributions of different data domains. This optimization objective guides the model to develop diverged routing policies for varied domains and closer routing policies for the same domain, which leads to emergent and organized expert specialization. We validate our approach by pre-training MoE models of up to 15 billion parameters from scratch. Experimental results demonstrate that models trained with Expert Divergence Learning not only achieve a lower language modeling loss but also exhibit significant performance improvements across a diverse range of downstream benchmarks. Further analysis confirms that our method effectively mitigates expert homogenization and brings greater functional specialization, all with negligible computational overhead during training.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=wrqYMYazm0",
+  "arxiv": "https://arxiv.org/abs/2603.00054",
+  "pdf": "https://arxiv.org/pdf/2603.00054",
+  "virtual": "https://iclr.cc/virtual/2026/poster/10006697",
+  "code": null
+ },
+ "license": "http://arxiv.org/licenses/nonexclusive-distrib/1.0/",
+ "img": "none",
+ "image_url": null,
+ "thumb_url": null,
+ "figure_page": 1,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.6
+}

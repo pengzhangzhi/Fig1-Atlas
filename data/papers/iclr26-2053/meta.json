@@ -1,0 +1,49 @@
+{
+ "id": "iclr26-2053",
+ "title": "Learning from Algorithm Feedback: One-Shot SAT Solver Guidance with GNNs",
+ "authors": [
+  "Jan Tönshoff",
+  "Martin Grohe"
+ ],
+ "venue": "ICLR 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "Deep Learning->Graph Neural Networks",
+ "role": "prior-vs-ours",
+ "role2": "pipeline",
+ "claim": "A standard solver's hand-crafted branching heuristic can be extended with learned per-variable weights and polarities through a minimal change to the decision step.",
+ "layout": "3 pseudocode boxes: DPLL solver on left, standard decision heuristic top-right, guided decision heuristic bottom-right; added terms colored",
+ "tags": [
+  "algorithm-pseudocode",
+  "sat-solving",
+  "branching-heuristic",
+  "learned-guidance",
+  "plug-in-extension",
+  "combinatorial-optimization",
+  "baseline-vs-guided"
+ ],
+ "style": [
+  "text-heavy",
+  "math-heavy",
+  "minimal"
+ ],
+ "description": "Three LaTeX-style algorithm boxes. The left box, Algorithm 1 'DPLL Solver', has 13 numbered lines. It is a recursive Solve(phi) function that runs unit propagation and pure-literal elimination. It returns SAT or UNSAT on an empty formula or an empty clause. Otherwise it picks a literal and recurses on both branches. The upper-right box, Algorithm 2 'Decision Heuristic', has a Pick-Literal function. This function takes the argmax of Score(x) and chooses the sign with Pick-Sign. The lower-right box, Algorithm 3 'Guided Decision Heuristic', repeats that function with learned parameters W=(w,p). The weight w(x) is in green and multiplies the score. The polarity p(x̂)=1 is in blue and selects the sign. The colored additions are the only highlighted elements, so the eye goes to them first.",
+ "caption": "DPLL \\sat{} solver and branching heuristics. [ref]: A DPLL \\sat{} solver performs backtracking search to solve a given CNF formula $\\phi$. At each search step, the formula is simplified through unit propagation and pure literal elimination before selecting the next branching literal. [ref]: Branching heuristics are often implemented by choosing the variable that maximizes some hand-crafted scoring function. [ref]: We propose to extend existing branching heuristics by incorporating given variable weights into the branching decisions that scale the associated score of each variable. We additionally choose the sign of each literal according to a provided polarity.",
+ "caption_source": "latex",
+ "abstract": "Boolean Satisfiability (SAT) solvers are foundational to computer science, yet their performance typically hinges on hand-crafted heuristics. This work introduces Reinforcement Learning from Algorithm Feedback (RLAF) as a paradigm for learning to guide SAT solver branching heuristics with Graph Neural Networks (GNNs). Central to our approach is a novel and generic mechanism for injecting inferred variable weights and polarities into the branching heuristics of existing SAT solvers. In a single forward pass, a GNN assigns these parameters to all variables. Casting this one-shot guidance as a reinforcement learning problem lets us train the GNN with off-the-shelf policy-gradient methods, such as GRPO, directly using the solver's computational cost as the sole reward signal. Extensive evaluations demonstrate that RLAF-trained policies significantly reduce the mean solve times of different base solvers across diverse SAT problem distributions, achieving more than a 2x speedup in some cases, while generalizing effectively to larger and harder problems after training. Notably, these policies consistently outperform expert-supervised approaches based on learning handcrafted weighting heuristics, offering a promising path towards data-driven heuristic design in combinatorial optimization.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=NfWrLOKnfk",
+  "arxiv": "https://arxiv.org/abs/2505.16053",
+  "pdf": "https://arxiv.org/pdf/2505.16053",
+  "virtual": "https://iclr.cc/virtual/2026/poster/10009842",
+  "code": "https://github.com/toenshoff/RLAF"
+ },
+ "license": "http://creativecommons.org/licenses/by/4.0/",
+ "img": "cc-by",
+ "image_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/images/iclr26-2053.png",
+ "thumb_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/thumbs/iclr26-2053.webp",
+ "figure_page": 2,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.6
+}

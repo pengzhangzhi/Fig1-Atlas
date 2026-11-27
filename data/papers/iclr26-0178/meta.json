@@ -1,0 +1,52 @@
+{
+ "id": "iclr26-0178",
+ "title": "Eliminating VAE for Fast and High-Resolution Generative Detail Restoration",
+ "authors": [
+  "Yan Wang",
+  "Shijie Zhao",
+  "Junlin Li",
+  "Li zhang"
+ ],
+ "venue": "ICLR 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "Deep Learning->Generative Models and Autoencoders",
+ "role": "analysis-finding",
+ "role2": "problem-setup",
+ "claim": "Profiling shows that the autoencoder stages, not the core denoiser, dominate latency and peak memory in a one-step pipeline, which motivates removing them.",
+ "layout": "single wide profiling timeline: memory curve over a function-trace strip and an event bar split into three stages, with red annotations",
+ "tags": [
+  "profiling",
+  "bottleneck",
+  "latency",
+  "memory",
+  "efficiency",
+  "one-step",
+  "super-resolution"
+ ],
+ "style": [
+  "plot",
+  "colorful"
+ ],
+ "description": "A single profiler-style timeline. The x-axis is time in milliseconds, from 0 to about 260. Dashed vertical lines divide it into three stages, labeled in a dark bar at the bottom: Encoder 85ms, UNet 73ms (28.1%) and Decoder 103ms. Above the bar is a colorful strip of function calls. Above that is a flat slate-blue band for parameter memory. A light-blue band for allocated CPU memory sits on top of it and carries spiky peaks. The encoder and decoder show tall spikes up to about 3.5GB. The UNet section is lower and noisier. Dark-red annotations mark a 0.71GB (40.1%) swing in the UNet, a 1.77GB swing in the decoder and a curved arrow for 67ms of CPU allocating. The eye goes first to the tall decoder spike and its red arrow. Part of a neighboring table is visible at the right edge.",
+ "caption": "Profiling for GenDR with input size of 10242px.",
+ "caption_source": "pdf",
+ "abstract": "Diffusion models have attained remarkable breakthroughs in the real-world super-resolution (SR) task, albeit at slow inference and high demand on devices. To accelerate inference, recent works like GenDR adopt step distillation to minimize the step number to one. However, the memory boundary still restricts the maximum processing size, necessitating tile-by-tile restoration of high-resolution images. Through profiling the pipeline, we pinpoint that the variational auto-encoder (VAE) is the bottleneck of latency and memory. To completely solve the problem, we leverage pixel-(un)shuffle operations to eliminate the VAE, reversing the latent-based GenDR to pixel-space GenDR-Pix. However, upscale with x8 pixelshuffle may induce artifacts of repeated patterns. To alleviate the distortion, we propose a multi-stage adversarial distillation to progressively remove the encoder and decoder. Specifically, we utilize generative features from the previous stage models to guide adversarial discrimination. Moreover, we propose random padding to augment generative features and avoid discriminator collapse. We also introduce a masked Fourier space loss to penalize the outliers of amplitude. To improve inference performance, we empirically integrate a padding-based self-ensemble with classifier-free guidance to improve inference scaling. Experimental results show that GenDR-Pix performs 2.8x acceleration and 60% memory-saving compared to GenDR with negligible visual degradation, surpassing other one-step diffusion SR. Against all odds, GenDR-Pix can restore 4K image in only 1 second and 6GB.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=1uu4Hg2Nlk",
+  "arxiv": "https://arxiv.org/abs/2602.10630",
+  "pdf": "https://arxiv.org/pdf/2602.10630",
+  "virtual": "https://iclr.cc/virtual/2026/poster/10011794",
+  "code": null
+ },
+ "license": "http://creativecommons.org/licenses/by-nc-sa/4.0/",
+ "img": "cc-by-nc-sa",
+ "image_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/images/iclr26-0178.png",
+ "thumb_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/thumbs/iclr26-0178.webp",
+ "figure_page": 2,
+ "qc_flags": [
+  "bad-crop"
+ ],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.85
+}

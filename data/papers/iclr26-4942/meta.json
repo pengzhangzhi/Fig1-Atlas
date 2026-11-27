@@ -1,0 +1,49 @@
+{
+ "id": "iclr26-4942",
+ "title": "Partition Generative Modeling: Masked Modeling Without Masks",
+ "authors": [
+  "Justin Deschenaux",
+  "Lan Tran",
+  "Caglar Gulcehre"
+ ],
+ "venue": "ICLR 2026",
+ "tier": "oral",
+ "track": "main",
+ "topic": "Deep Learning->Generative Models and Autoencoders",
+ "role": "teaser-result",
+ "role2": null,
+ "claim": "Our method matches or beats the baseline's quality while delivering several-fold higher throughput, shifting the quality-versus-speed trade-off frontier across modalities.",
+ "layout": "2 panels side by side: left grouped bar chart with dual y-axes and bottom legend, right log-x line/scatter Pareto plot",
+ "tags": [
+  "efficiency",
+  "throughput",
+  "speedup",
+  "pareto-frontier",
+  "masked-generative-models",
+  "discrete-generation",
+  "image-and-text"
+ ],
+ "style": [
+  "plot",
+  "colorful"
+ ],
+ "description": "Two plots sit side by side. The left panel is a grouped bar chart on ImageNet. Its left axis shows FID (lower is better) and its right axis shows throughput in images per second, split by a dashed vertical divider into 'Halton (FID↓)' and 'Throughput↑' groups. Blue bars are MaskGIT. Orange and red bars are PGM variants (12-12 and 14-10) at 32 and 64 steps. Exact numbers are printed above each bar, and a boxed legend sits below. The PGM bars are similar in FID but far taller in throughput. The right panel is a Generative Perplexity versus throughput (tokens/sec) plot with a log x-axis. A blue MDLM star curve rises steeply. Orange square and green circle PGM curves sit lower and further right, and a red X marks GPT-2 with KV cache. The legend is in the top-left corner. Orange and green dotted curves clearly dominate the blue one.",
+ "caption": "(Left): On ImageNet, using the Halton sampler, PGM (ours), reaches similar FID as MaskGIT with a $7.5\\times$ speedup. By sampling with twice as many steps, PGM reaches an FID of $4.56$ while remaining $3.9\\times$ faster. (Right): On OpenWebText, PGM achieves a better Generative Perplexity with a $5.3\\times$ higher sampling throughput compared to MDLM (an MGM for text), at a context length of 1024.",
+ "caption_source": "latex",
+ "abstract": "Masked generative models (MGMs) can generate tokens in parallel and in any order, unlike autoregressive models (ARMs), which decode one token at a time, left-to-right. However, MGMs process the full-length sequence at every sampling step, including mask tokens that carry no information. In contrast, ARMs process only the previously generated tokens. We introduce ``Partition Generative Models'' (PGMs), which replace masking with partitioning. Tokens are split into two groups that cannot attend to each other, and the model learns to predict each group conditioned on the other, eliminating mask tokens entirely. Because the groups do not interact, PGMs can process only the clean tokens during sampling, like ARMs, while retaining parallel, any-order generation, like MGMs. On OpenWebText, PGMs achieve $5-5.5\\times$ higher throughput than MDLM while producing samples with lower Generative Perplexity. On ImageNet, PGMs reach comparable FID to MaskGIT with a $7.5\\times$ throughput improvement. With twice as many steps, the FID improves to 4.56 while remaining $3.9\\times$ faster than MGMs. Finally, PGMs remain compatible with existing MGM samplers and distillation methods.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=vEh1ceS154",
+  "arxiv": "https://arxiv.org/abs/2505.18883",
+  "pdf": "https://arxiv.org/pdf/2505.18883",
+  "virtual": "https://iclr.cc/virtual/2026/poster/10006829",
+  "code": "https://github.com/jdeschena/pgm"
+ },
+ "license": "http://creativecommons.org/licenses/by/4.0/",
+ "img": "cc-by",
+ "image_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/images/iclr26-4942.png",
+ "thumb_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/thumbs/iclr26-4942.webp",
+ "figure_page": 0,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.93
+}

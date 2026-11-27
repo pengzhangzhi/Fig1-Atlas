@@ -230,79 +230,124 @@ def body_font_size(blocks):
     return c.most_common(1)[0][0] if c else 10.0
 
 
-def figure_region(page, cap: fitz.Rect):
+AFFIL_RE = re.compile(r"@|universit|institut|laborator|college|school of|department|\bcorresponding\b|equal contribution|github\.io|project page", re.I)
+
+
+def figure_region(page, cap: fitz.Rect, pno=1, body=None):
+    """Find Figure 1's bounding box on the page, given its caption block.
+
+    Graphics (images + vector drawings) define the region. Text only bridges gaps while walking away
+    from the caption, and joins the final region only when it sits inside/next to the graphics and is
+    figure-sized (not headings, titles, author blocks or body paragraphs)."""
     P = page.rect
     margin_top = P.height * 0.055
     blocks = text_blocks(page)
-    body = body_font_size(blocks)
-    is_para = lambda b: b["n"] >= 150 and b["size"] >= body - 0.6 and b["rect"].height > 18
+    body = body or body_font_size(blocks)
+    dense = [b["rect"] for b in blocks if b["n"] >= 150 and b["size"] >= body - 0.6]
+    tx0 = min([r.x0 for r in dense] + [cap.x0]); tx1 = max([r.x1 for r in dense] + [cap.x1])
+    column = cap.width < 0.6 * (tx1 - tx0)       # column-width caption: two-column layout or wrapfigure
+    colw = cap.width if column else tx1 - tx0
+    gfx_rects = [fitz.Rect(i["bbox"]) for i in page.get_image_info()] + \
+                [fitz.Rect(d["rect"]) for d in page.get_drawings() if fitz.Rect(d["rect"]).width < 0.9 * P.width]
+    # body paragraph: dense body-size text spanning most of the column (figure text panels are narrower)
+    is_para = lambda b: b["n"] >= 150 and b["size"] >= body - 0.6 and b["rect"].height > 18 and b["rect"].width > 0.7 * colw
+    # headings / titles: large AND wide (big math labels inside figures are short)
+    is_head = lambda b: b["size"] >= body + 1.5 and b["n"] >= 12 and b["rect"].width > 0.4 * colw
+    # first page: author / affiliation lines above a teaser
+    is_front = lambda b: pno == 0 and (AFFIL_RE.search(b["text"]) or (
+        b["size"] >= body - 0.3 and b["n"] >= 12 and not any(g.contains(b["rect"]) for g in gfx_rects)))
+    is_stop = lambda b: is_para(b) or is_head(b) or is_front(b)
     paras = [b["rect"] for b in blocks if is_para(b)]
-    tx0 = min([r.x0 for r in paras] + [cap.x0]); tx1 = max([r.x1 for r in paras] + [cap.x1])
-    if cap.width < 0.6 * (tx1 - tx0):        # column-width caption: two-column layout or wrapfigure
-        x0, x1 = cap.x0 - 12, cap.x1 + 12
-    else:
-        x0, x1 = tx0 - 12, tx1 + 12
+    x0, x1 = (cap.x0 - 8, cap.x1 + 8) if column else (tx0 - 12, tx1 + 12)
+
     def inside(r, lo=x0, hi=x1):
         ov = min(r.x1, hi) - max(r.x0, lo)
         return ov > 0.5 * max(r.width, 1) or (ov > 0 and r.width > 0.5 * (hi - lo))
-    items = []  # (rect, kind)
+
+    items = []  # (rect, kind, size)
     for info in page.get_image_info():
         r = fitz.Rect(info["bbox"]) & P
         if r.width > 3 and r.height > 3:
-            items.append((r, "img"))
+            items.append((r, "img", 0))
     for d in page.get_drawings():
         r = fitz.Rect(d["rect"]) & P
         if r.width < 1 and r.height < 1:
             continue
         if r.width > 0.9 * P.width and r.height < 2:   # page rules
             continue
-        items.append((r, "draw"))
+        items.append((r, "draw", 0))
     for b in blocks:
         r = b["rect"]
         if r.intersects(cap) or ANY_CAP_RE.match(b["text"]):
             continue
-        items.append((r, "para" if is_para(b) else "text"))
+        items.append((r, "stop" if is_stop(b) else "text", b["size"]))
+    # a drawn frame that encloses body text (boxed abstract, theorem box) is text, not figure
+    items = [(r, "stop" if k == "draw" and any(r.contains(p) for p in paras) else k, z) for r, k, z in items]
+    GFX = ("img", "draw")
 
-    # a drawn frame/box that encloses body-text paragraphs (e.g. a boxed abstract) is text, not figure
-    para_rects = [r for r, k in items if k == "para"]
-    items = [(r, "para" if k == "draw" and any(r.contains(p) for p in para_rects) else k) for r, k in items]
-
-    def grow(cand, start, key, edge):
-        """Walk outward from the caption through contiguous non-paragraph items."""
-        cand.sort(key=key)
-        front, region, gap = start, None, 28
-        for r, k in cand:
-            if edge(r, front, gap):
+    def grow(cand, start, upward):
+        cand.sort(key=(lambda t: -t[0].y1) if upward else (lambda t: t[0].y0))
+        front, gfx, gap, barrier = start, None, 28, None
+        span = fitz.Rect(x0, 0, x1, 1)
+        for r, k, _ in cand:
+            if (r.y1 < front - gap) if upward else (r.y0 > front + gap):
                 break
-            if k == "para":
-                break
-            front = min(front, r.y0) if key is _by_bottom else max(front, r.y1)
-            region = r if region is None else region | r
-        if region is None or not any(k in ("img", "draw") and region.contains(r) for r, k in cand):
-            return None
-        return region
+            if k == "stop":
+                # a paragraph beside the figure (wrapfigure text) doesn't end the walk
+                ref = gfx if gfx is not None else span
+                if min(r.x1, ref.x1) - max(r.x0, ref.x0) > 0.3 * r.width:
+                    barrier = r.y1 + 1 if upward else r.y0 - 1   # hard clip line for the region
+                    break
+                continue
+            front = min(front, r.y0) if upward else max(front, r.y1)
+            if k in GFX:
+                gfx = r if gfx is None else gfx | r
+        return gfx, barrier
 
-    # 1) figure above the caption (the common case). Items may overlap the caption top a little
-    #    (images often carry whitespace), so accept anything that starts above it.
-    above = [(r, k) for r, k in items if inside(r) and r.y0 < cap.y0 - 2 and r.y1 <= cap.y1 and r.y0 >= margin_top]
-    region = grow(above, cap.y0, _by_bottom, lambda r, f, g: r.y1 < f - g)
-    if region is not None:
-        region = fitz.Rect(max(region.x0, x0 - 10), region.y0, min(region.x1, x1 + 10), cap.y0 - 1) & P
-        return region + (-4, -4, 4, 0)
+    def finish(g, clip_y0=None, clip_y1=None):
+        # add figure-sized text inside / right next to the graphics (labels, panel titles, subcaptions)
+        reg = fitz.Rect(g)
+        texts = [r for r, k, _ in items if k == "text"]
+        for _ in range(3):                       # labels can chain (tick labels, then axis title)
+            near = fitz.Rect(reg.x0 - 8, reg.y0 - 10, reg.x1 + 8, reg.y1 + 10)
+            add = [r for r in texts if near.intersects(r) and not reg.contains(r) and inside(r, g.x0 - 8, g.x1 + 8)
+                   and (clip_y0 is None or r.y0 >= clip_y0 - 1) and (clip_y1 is None or r.y1 <= clip_y1 + 1)]
+            if not add:
+                break
+            for r in add:
+                reg |= r
+        # trim body paragraphs that overlap the region from the side
+        for r, k, _ in items:
+            if k == "stop" and r.intersects(reg) and not r.contains(g):
+                if r.x1 <= g.x0 + 4:
+                    reg.x0 = max(reg.x0, r.x1 + 1)
+                elif r.x0 >= g.x1 - 4:
+                    reg.x1 = min(reg.x1, r.x0 - 1)
+        reg = fitz.Rect(max(reg.x0, x0 - 4), reg.y0 if clip_y0 is None else max(reg.y0, clip_y0),
+                        min(reg.x1, x1 + 4), reg.y1 if clip_y1 is None else min(reg.y1, clip_y1)) & P
+        if reg.width < 0.6 * g.width or reg.height < 10:      # trimming went wrong: keep the graphics box
+            reg = fitz.Rect(g.x0, g.y0 if clip_y0 is None else max(g.y0, clip_y0),
+                            g.x1, g.y1 if clip_y1 is None else min(g.y1, clip_y1)) & P
+        return reg
+
+    # 1) figure above the caption (common case); items may overlap the caption top a little
+    above = [t for t in items if (inside(t[0]) or t[1] == "stop") and t[0].y0 < cap.y0 - 2 and t[0].y1 <= cap.y1 and t[0].y0 >= margin_top]
+    g, bar = grow(above, cap.y0, True)
+    if g is not None:
+        return finish(g, clip_y0=bar, clip_y1=cap.y0 - 1) + (-3, -3 if bar is None else 0, 3, 0)
     # 2) side caption (SCfigure / sidecap): graphics beside the caption, overlapping it vertically
-    side = [(r, k) for r, k in items if k in ("img", "draw", "text") and not inside(r, cap.x0, cap.x1)
-            and r.y1 > cap.y0 - 40 and r.y0 < cap.y1 + 40 and r.x0 >= tx0 - 12 and r.x1 <= tx1 + 12]
-    if any(k in ("img", "draw") for r, k in side):
-        region = None
-        for r, k in side:
-            region = r if region is None else region | r
-        return (region & P) + (-4, -4, 4, 4)
+    side = [t for t in items if t[1] in GFX and not inside(t[0], cap.x0, cap.x1)
+            and t[0].y1 > cap.y0 - 40 and t[0].y0 < cap.y1 + 40 and t[0].x0 >= tx0 - 12 and t[0].x1 <= tx1 + 12]
+    if side:
+        g = None
+        for r, _, _ in side:
+            g = r if g is None else g | r
+        return finish(g) + (-3, -3, 3, 3)
     # 3) caption above the figure
-    below = [(r, k) for r, k in items if inside(r) and r.y0 >= cap.y1 - 2 and r.y1 <= P.height * 0.94]
-    region = grow(below, cap.y1, _by_top, lambda r, f, g: r.y0 > f + g)
-    if region is not None:
-        region = fitz.Rect(max(region.x0, x0 - 10), cap.y1 + 1, min(region.x1, x1 + 10), region.y1) & P
-        return region + (-4, 0, 4, 4)
+    below = [t for t in items if (inside(t[0]) or t[1] == "stop") and t[0].y0 >= cap.y1 - 2 and t[0].y1 <= P.height * 0.94]
+    g, bar = grow(below, cap.y1, False)
+    if g is not None:
+        return finish(g, clip_y0=cap.y1 + 1, clip_y1=bar) + (-3, 0, 3, 3 if bar is None else 0)
     return None
 
 
@@ -363,7 +408,8 @@ def process(p, s):
     if cap is None:
         out["status"] = "no_caption_in_pdf"; return out
     page = doc[pno]
-    reg = figure_region(page, cap)
+    body = body_font_size([b for i in range(min(len(doc), 6)) for b in text_blocks(doc[i])])  # doc-level
+    reg = figure_region(page, cap, pno, body)
     if reg is None or reg.height < 20:
         out["status"] = "no_region"; out["page"] = pno; return out
     size = render(page, reg, CACHE / "figs" / f"{p['id']}.png", CACHE / "figs" / f"{p['id']}.webp")
