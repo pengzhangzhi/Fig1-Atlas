@@ -243,6 +243,11 @@ def figure_region(page, cap: fitz.Rect, pno=1, body=None):
     figure-sized (not headings, titles, author blocks or body paragraphs)."""
     P = page.rect
     margin_top = P.height * 0.055
+    # running header: a wide horizontal rule near the top (ICML/ICLR templates) - nothing above it is figure
+    for d in page.get_drawings():
+        r = fitz.Rect(d["rect"])
+        if r.y1 < P.height * 0.1 and r.height < 2 and r.width > 0.6 * P.width:
+            margin_top = max(margin_top, r.y1 + 1)
     blocks = text_blocks(page)
     body = body or body_font_size(blocks)
     dense = [b["rect"] for b in blocks if b["n"] >= 150 and b["size"] >= body - 0.6]
@@ -332,7 +337,7 @@ def figure_region(page, cap: fitz.Rect, pno=1, body=None):
         # add figure-sized text inside / right next to the graphics (labels, panel titles, subcaptions)
         reg = fitz.Rect(g)
         # chainable text: smaller than body text, or a short label (axis names, a^pre); not body lines
-        texts = [r for r, k, z, n in items_n if k == "text" and (z < body - 0.5 or n <= 20)]
+        texts = [r for r, k, z, n in items_n if k == "text" and (z < body - 0.5 or n <= 20) and r.y0 >= margin_top]
         for _ in range(3):                       # labels can chain (tick labels, then axis title)
             near = fitz.Rect(reg.x0 - 14, reg.y0 - 14, reg.x1 + 14, reg.y1 + 14)
             add = [r for r in texts if near.intersects(r) and not reg.contains(r)
@@ -359,10 +364,15 @@ def figure_region(page, cap: fitz.Rect, pno=1, body=None):
         return reg
 
     # 1) figure above the caption (common case); items may overlap the caption top a little
-    above = [t for t in items if (inside(t[0]) or t[1] == "stop") and t[0].y0 < cap.y0 - 2 and t[0].y1 <= cap.y1 and t[0].y0 >= margin_top]
+    # (image boxes often carry whitespace: allow them to poke past the header rule or the caption a little)
+    above = [t for t in items if (inside(t[0]) or t[1] == "stop") and t[0].y0 < cap.y0 - 2 and t[0].y1 <= cap.y1 + 15
+             and t[0].y1 > margin_top + 4 and (t[0].y0 >= margin_top - 12 or t[1] in GFX)]
     g, bar = grow(above, cap.y0, True)
     if g is not None:
-        return finish(g, clip_y0=bar, clip_y1=cap.y0 - 1) + (-3, -3 if bar is None else 0, 3, 0)
+        top = max(bar or 0, margin_top)
+        reg = finish(g, clip_y0=top, clip_y1=cap.y0 - 1) + (-3, 0, 3, 0)
+        reg.y0 = max(reg.y0 - 3, top)            # small top padding, never above the barrier/header
+        return reg
     # 2) side caption (SCfigure / sidecap): graphics beside the caption, overlapping it vertically
     side = [t for t in items if t[1] in GFX and not inside(t[0], cap.x0, cap.x1)
             and t[0].y1 > cap.y0 - 40 and t[0].y0 < cap.y1 + 40 and t[0].x0 >= tx0 - 12 and t[0].x1 <= tx1 + 12]
