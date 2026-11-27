@@ -1,0 +1,58 @@
+{
+ "id": "iclr26-1250",
+ "title": "DreamOn: Diffusion Language Models For Code Infilling Beyond Fixed-size Canvas",
+ "authors": [
+  "Zirui Wu",
+  "Lin Zheng",
+  "Zhihui Xie",
+  "Jiacheng Ye",
+  "Jiahui Gao",
+  "Shansan Gong",
+  "Yansong Feng",
+  "Zhenguo Li",
+  "Wei BI",
+  "Guorui Zhou",
+  "Lingpeng Kong"
+ ],
+ "venue": "ICLR 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "Applications->Language, Speech and Dialog",
+ "role": "problem-setup",
+ "role2": null,
+ "claim": "Fixed-size masked canvases break infilling: too few masks leave no room for the right completion, and too many cause over-generation of wrong code.",
+ "layout": "2 side-by-side columns, each stacked top-to-bottom: prefix, infilling output, ground truth, suffix; red/green highlights",
+ "tags": [
+  "code-infilling",
+  "diffusion-language-models",
+  "fixed-length",
+  "failure-case",
+  "length-mismatch",
+  "variable-length-generation",
+  "code-generation"
+ ],
+ "style": [
+  "text-heavy",
+  "colorful",
+  "screenshot"
+ ],
+ "description": "Two parallel columns show code infilling examples in monospace text. Each is stacked top to bottom: a dotted-border Prefix box, then an 'Infilling with N [MASK]' box holding the model output, then a 'Ground Truth' box, then a dotted-border Suffix box. In the left column, the prefix is has_close_elements, the model is given 4 [MASK] tokens, and it outputs 'for elem:' (red for the wrong part). The ground truth is 'for idx2, elem2 in enumerate(numbers):'. In the right column, the prefix is correct_bracketing, the model is given 16 [MASK] tokens, and it outputs 'elif b == \">\"' (green) followed by 'and depth > 0: # closing bracket' (red over-generation). The ground truth is 'elif b == \">\":'. The mask counts are in red. The eye goes first to the red and green highlighted lines in the middle.",
+ "caption": "Example of DreamCoder-7B failing at code infilling due to the length mismatch between masked input and ground truth. Incorrect and correct code is marked in red and green. With too few masked tokens, diffusion models lack sufficient room for meaningful code infilling. Too many masks cause over-generation of unnecessary code snippet (e.g., depth\\;$>$\\;0 that is incorrect).",
+ "caption_source": "latex",
+ "abstract": "Diffusion Language Models (DLMs) present a compelling alternative to autoregressive models, offering flexible, any-order infilling without specialized prompting design. However, their practical utility is blocked by a critical limitation: the requirement of a fixed-length masked sequence for generation. This constraint severely degrades code infilling performance when the predefined mask size mismatches the ideal completion length. To address this, we propose DreamOn, a novel diffusion framework that enables dynamic, variable-length generation. DreamOn augments the diffusion process with two length control states, allowing the model to autonomously expand or contract the output length based solely on its own predictions. We integrate this mechanism into existing DLMs with minimal modifications to the training objective and no architectural changes. Built upon Dream-Coder-7B and DiffuCoder-7B, DreamOn achieves infilling performance on par with state-of-the-art autoregressive models on HumanEval-Infilling and SantaCoder-FIM and matches oracle performance achieved with ground-truth length. Our work removes a fundamental barrier to the practical deployment of DLMs, significantly advancing their flexibility and applicability for variable-length generation. Our code is available at https://github.com/DreamLM/DreamOn.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=EQTPmqukiU",
+  "arxiv": "https://arxiv.org/abs/2602.01326",
+  "pdf": "https://arxiv.org/pdf/2602.01326",
+  "virtual": "https://iclr.cc/virtual/2026/poster/10010681",
+  "code": null
+ },
+ "license": "http://creativecommons.org/licenses/by/4.0/",
+ "img": "cc-by",
+ "image_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/images/iclr26-1250.png",
+ "thumb_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/thumbs/iclr26-1250.webp",
+ "figure_page": 1,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.9
+}

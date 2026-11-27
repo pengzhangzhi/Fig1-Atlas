@@ -14,23 +14,23 @@
  "topic": "Computer Vision->Image and Video Generation",
  "role": "prior-vs-ours",
  "role2": "pipeline",
- "claim": "Baseline samplers use score-based remasking with injected Gumbel noise, giving low diversity; our softmax-based rehash sampler yields diverse, detailed, low-discrepancy generation.",
- "layout": "2 stacked rows (baseline top, ours bottom) separated by dashed line, each a left-to-right pipeline ending in sample image grids on the right",
+ "claim": "Baseline samplers use noisy score-based remasking that yields low-diversity outputs; our principled low-discrepancy resampling yields diverse, detailed outputs.",
+ "layout": "2 stacked rows (baseline top, ours bottom) separated by dashed line, each flowing left-to-right from masked image through predictor and sampler to sample grids",
  "tags": [
   "discrete-diffusion",
-  "masked-modeling",
+  "masked-generation",
   "sampling",
-  "remasking",
   "diversity",
+  "remasking",
   "image-generation",
-  "baseline-comparison"
+  "prior-vs-ours"
  ],
  "style": [
   "colorful",
   "icon-heavy",
   "photo/real data"
  ],
- "description": "Two horizontal rows compare the MVTM baseline (top, orange/yellow palette) with ReDDiT (bottom, blue palette), divided by a dashed line. Each row flows left to right. A parrot image is progressively masked, with curved arrows showing the loop between clean and partially masked states, x0, x1, xt and xs in the ReDDiT row. A small predictor icon p_θ(x_t, c) leads to a stacked bar chart of logits. The top row labels it 'Prediction w/ Gumbel noise' and shows argmax then random remask over token columns. The bottom row labels it 'Softmax Probabilities' and shows a rehash sampler producing 'diverse noise' with a green check. On the far right, 3x3 photo grids of parrots, balloons and viaducts are repetitive and blurry for the baseline and varied and detailed for ReDDiT. Captions below read 'Score-based, tuned heuristics' versus 'Principled, low-discrepancy'.",
+ "description": "Two horizontal rows compare a baseline (top, MVTM Methods, orange palette) with ReDDiT (bottom, blue palette). Each row flows left to right. First, a parrot image is progressively masked and iteratively denoised with curved arrows, shown as stacked patchy images with x0, x1, xt, xs labels in the ReDDiT row. Next, a small dashed icon p_theta(x_t, c) leads to a stack of bar charts of logits. The baseline uses Gumbel noise with argmax then random remask over orange token blocks. ReDDiT uses softmax probabilities with a rehash sampler that branches blue tokens into diverse noise, marked with a green check. At the right, 3x3 photo galleries of parrots, balloons and viaducts. The baseline is captioned low diversity, details lost, and ReDDiT diverse and detailed. The color contrast draws the eye first.",
  "caption": "Comparison the baseline discrete model (MVTM) with ReDDiT. MVTMs rely on score-based remasking strategies with Gumbel-max to sample from logits, which leads to lower token diversity and suboptimal token selection. In contrast, ReDDiT introduces a systematic, low-discrepancy rehashing mechanism that leverages softmax-based probabilities, enabling diverse, high-quality sampling through a learned distribution. (This figure is best viewed in color)",
  "caption_source": "latex",
  "abstract": "In the visual generative area, discrete diffusion models are gaining traction for their efficiency and compatibility. However, pioneered attempts still fall behind their continuous counterparts, which we attribute to noise (absorbing state) design and sampling heuristics. In this study, we propose a rehashing noise approach for discrete diffusion transformer (termed ReDDiT), with the aim to extend absorbing states and improve expressive capacity of discrete diffusion models. ReDDiT enriches the potential paths that latent variables traverse during training with randomized multi-index corruption. The derived rehash sampler, which reverses the randomized absorbing paths, guarantees high diversity and low discrepancy of the generation process. These reformulations lead to more consistent and competitive generation quality, mitigating the need for heavily tuned randomness. Experiments show that ReDDiT significantly outperforms the baseline model (reducing gFID from 6.18 to 1.61) and is on par with the continuous counterparts.",

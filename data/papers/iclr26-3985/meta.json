@@ -14,24 +14,24 @@
  "track": "main",
  "topic": "Reinforcement Learning->Deep RL",
  "role": "overview-framework",
- "role2": "pipeline",
- "claim": "Hard exploration needs expressive models for heterogeneous data, so we fit a diffusion model during pre-training and fine-tune downstream with a cheap-to-sample policy.",
- "layout": "3 panels, left-to-right with red block arrows; left 3D plot, middle pre-train loop in a dashed box, right fine-tune density sketches",
+ "role2": "concept",
+ "claim": "Heterogeneous exploration data demands expressive models, so we model it with a diffusion model in pre-training and fine-tune with a cheaply sampled Gaussian policy.",
+ "layout": "3 panels, left-to-right with large red arrows; left 3D simplex plot, middle pre-train loop in dashed box, right fine-tune density sketches",
  "tags": [
   "diffusion-model",
   "unsupervised-rl",
   "exploration",
   "intrinsic-reward",
-  "pretrain-finetune",
-  "expressiveness",
-  "heterogeneous-data"
+  "fine-tuning",
+  "heterogeneous-data",
+  "theory-motivation"
  ],
  "style": [
   "colorful",
   "icon-heavy",
   "plot"
  ],
- "description": "Three panels read left to right, joined by big red arrows. The left panel is a 3D simplex plot with green points forming a polygon and a red point. Callouts mark a deterministic policy and say that the maximum-state-entropy policy is always complex (Theorem 3.1, in red). The middle panel, labeled Pre-train, is inside a dashed blue box titled Exploratory Diffusion Model. A replay buffer cylinder holds robot-pose images. Arrows link it to a diffusion model robot, a Gaussian policy robot and a globe for the reward-free environment. The arrow labels are 'Computing R_score', 'Fitting diverse behaviors' and 'Fast interaction'. The right panel, Fine-tune, has two multimodal density sketches, one for the diffusion policy and one for the Gaussian policy. Red arrows show the fine-tune direction, and the downstream task is marked. Red bold text highlights the key terms.",
+ "description": "A wide three-part figure read left to right, linked by big red arrows. The left panel is a 3D plot of a probability simplex. Green points and a polygon mark deterministic policies, and a red point marks the maximum state entropy policy. Annotations cite Theorem 3.1 in red and say that this policy is always complex. The middle panel is a dashed blue box titled Exploratory Diffusion Model, with a Pre-train section. A replay buffer cylinder holds robot-locomotion image thumbnails. Below it, robot icons for the Diffusion Model and the Gaussian Policy π_g connect to the buffer and to a globe labeled Reward-free Environment. Arrows are labeled computing R_score, fitting diverse behaviors, and fast interaction. The right Fine-tune panel shows two sketches of multimodal gray density curves. One compares the diffusion policy with p_data, the other the Gaussian policy with p_data. Red arrows mark the fine-tune direction. Red bold labels draw the eye first.",
  "caption": "Overview of Exploratory Diffusion Model (ExDM). Different from standard RL, URL aims to explore in reward-free environments, requiring expressive policies and models to fit heterogeneous data (Theorem [ref]). During pre-training, ExDM employs the diffusion model to model the heterogeneous exploration data and calculate score-based intrinsic rewards to encourage exploration. Moreover, we adopt a Gaussian behavior policy to collect data that avoids the inefficiency caused by the multi-step sampling of the diffusion policy.",
  "caption_source": "latex",
  "abstract": "Unsupervised reinforcement learning (URL) aims to pre-train agents by exploring diverse states or skills in reward-free environments, facilitating efficient adaptation to downstream tasks. As the agent cannot access extrinsic rewards during unsupervised exploration, existing methods design intrinsic rewards to model the explored data and encourage further exploration. However, the explored data are always heterogeneous, posing the requirements of powerful representation abilities for both intrinsic reward models and pre-trained policies. In this work, we propose the Exploratory Diffusion Model (ExDM), which leverages the strong expressive ability of diffusion models to fit the explored data, simultaneously boosting exploration and providing an efficient initialization for downstream tasks. Specifically, ExDM can accurately estimate the distribution of collected data in the replay buffer with the diffusion model and introduces the score-based intrinsic reward, encouraging the agent to explore less-visited states. After obtaining the pre-trained policies, ExDM enables rapid adaptation to downstream tasks. In detail, we provide theoretical analyses and practical algorithms for fine-tuning diffusion policies, addressing key challenges such as training instability and computational complexity caused by multi-step sampling. Extensive experiments demonstrate that ExDM outperforms existing SOTA baselines in efficient unsupervised exploration and fast fine-tuning downstream tasks, especially in structurally complicated environments.",

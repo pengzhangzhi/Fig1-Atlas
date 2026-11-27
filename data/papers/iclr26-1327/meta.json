@@ -12,23 +12,23 @@
  "topic": "Deep Learning->Generative Models and Autoencoders",
  "role": "teaser-result",
  "role2": "analysis-finding",
- "claim": "Offline training lags online training, but adding a perception-inspired variant to the objective closes the gap with offline data across several objectives.",
- "layout": "single dot-and-error-bar plot with three objective groups (DPO, KTO, GRPO) along x; legend on top; orange arrows and multiplier callouts; dashed baseline line",
+ "claim": "Offline training lags online training, but adding a perceptual-loss variant to the same offline data closes the gap, matching online performance.",
+ "layout": "Single dot plot with error bars, grouped by three objectives (DPO, KTO, GRPO) along the x-axis. Four colored series per group. Orange arrows with multiplier callouts, plus a dashed baseline line.",
  "tags": [
-  "online-vs-offline",
+  "offline-vs-online",
   "alignment",
-  "preference-optimization",
   "perceptual-loss",
-  "headline-result",
-  "gap-closing",
-  "error-bars"
+  "preference-optimization",
+  "error-bars",
+  "efficiency",
+  "headline-result"
  ],
  "style": [
   "plot",
   "colorful",
   "minimal"
  ],
- "description": "A single scatter plot with error bars compares four conditions, color-coded in a top legend: Offline (red), Offline + Humanline (orange), Online (blue) and Online + Humanline (green). The y-axis is length-controlled winrate in percent, judged by GPT 4.1, ranging from 10 to 30. The x-axis has three groups: DPO, KTO and GRPO. In each group the red offline dot sits lowest. An orange arrow points from it up to the orange offline-plus-humanline dot, and a boxed orange label gives the gain: +1.4x, +1.3x and +1.6x. The orange dot lands near the blue online dot. The green dot is slightly higher or the same. A dashed grey horizontal line labeled 'before alignment' marks the unaligned baseline. The eye goes first to the orange arrows and the labels.",
+ "description": "A single dot plot with error bars. The y-axis is length-controlled winrate (%), judged by GPT-4.1, running from 10 to 30. The x-axis has three groups: DPO, KTO and GRPO. Each group has four dots: red for Offline, orange for Offline + Humanline, blue for Online, and green for Online + Humanline. A legend sits across the top. In every group the red offline dot is clearly lowest. Bold orange arrows lead from each red dot up to the orange dot, labeled in boxes '+1.4x', '+1.3x' and '+1.6x'. The orange dot lands at about the same height as the blue online dot. A dashed gray horizontal line near 12.3 is labeled 'before alignment'. The eye goes first to the orange arrows and multiplier callouts.",
  "caption": "On instruction-following, Llama3-8B-Instruct aligned with online on-policy data (blue) is 1.3x to 1.6x better than one aligned with offline off-policy data (red). However, when the same offline data is fed to the humanline variant of the objective (orange), the gap vanishes.",
  "caption_source": "latex",
  "abstract": "Online alignment (e.g., GRPO) is generally more performant than offline alignment (e.g., DPO) -- but why? Drawing on prospect theory from behavioral economics, we propose a human-centric explanation. We prove that online on-policy sampling better approximates the human-perceived distribution of what the model can produce, and PPO/GRPO-style clipping -- originally introduced to just stabilize training -- recovers a perceptual bias in how humans perceive probability. In this sense, PPO/GRPO act as perceptual losses already. Our theory further suggests that the online/offline dichotomy is itself incidental to maximizing human utility, since we can achieve the same effect by selectively training on any data in a manner that mimics human perception, rather than restricting ourselves to online on-policy data. Doing so would allow us to post-train more quickly, cheaply, and flexibly without sacrificing performance. To this end, we propose a design pattern that explicitly incorporates perceptual distortions of probability into objectives like DPO/KTO/GRPO, creating humanline variants of them. Surprisingly, we find that these humanline variants, even when trained with offline off-policy data, can match the performance of their online counterparts (on both verifiable and unverifiable tasks) while running up to 6x faster.",

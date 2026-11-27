@@ -14,23 +14,22 @@
  "topic": "Deep Learning->Everything Else",
  "role": "pipeline",
  "role2": null,
- "claim": "A four-step protocol negotiates which parameters to encrypt, encrypts them selectively, aggregates cipher and plain parts adaptively, then reparameterizes results back to heterogeneous clients.",
- "layout": "Multi-region grid with server on top-left, clients on bottom-left, and four numbered steps in red boxes; dashed region borders, arrows between server and clients, with 'Heterogeneous Devices / SHE-LoRA After Local Updates / LoRA Updates For FL' labels at the bottom",
+ "claim": "A four-step protocol lets heterogeneous clients selectively encrypt a subset of low-rank parameters and aggregate them, so privacy costs little.",
+ "layout": "One wide panel split into 3 dashed regions (devices, local updates, aggregation). Four red-boxed numbered steps. Arrows run left-to-right and between server and clients.",
  "tags": [
   "federated-learning",
   "homomorphic-encryption",
   "lora",
-  "privacy-preserving",
   "selective-encryption",
   "secure-aggregation",
-  "heterogeneous-clients"
+  "heterogeneous-clients",
+  "multi-step-protocol"
  ],
  "style": [
-  "colorful",
   "icon-heavy",
-  "math-heavy"
+  "colorful"
  ],
- "description": "A dense system diagram split into dashed-border regions, with four red-outlined step titles. At top-left, a server icon collects per-client colored grids (green, pink, blue) and merges them into one yellow-highlighted grid, the HE subset, which goes down to the clients. Clients 1 through N (computer and phone icons) show before and after HE subset grids. They feed column swapping, then a B×A low-rank factor product in which hatched columns mark the encrypted part. At top-right, client LoRA updates are split into plain and cipher parts. The plain part goes through SVD, shown with U, Σ and Vᵀ matrices, to give B and A. The cipher part gives a hatched result. At bottom-right, the hatched cipher column plus the plain LoRA equals a per-client colored LoRA, for Client 1 through N. Hatched textures mark ciphertext throughout, and the color-coded clients carry across all steps.",
+ "description": "A dense system diagram split by dashed borders into server, client and aggregation regions. Four red-outlined step titles label the stages. Step 1 (top left): a server icon with a cloud receives colored grid masks from clients and merges them into one HE subset grid. Step 2 (bottom middle): Client 1 through Client N, shown with phone and desktop icons, show before and after HE subset grids. Each passes through a Column Swapping box and becomes a B×A matrix pair, with the hatched columns marking encrypted parts. Step 3 (top right): the stacked ΔW matrices are split into Plain and Cipher parts, and the plain part goes through SVD. Step 4 (bottom right): the hatched cipher result plus the orange plain LoRA result is fused into each client's green or blue LoRA. Green, blue and orange distinguish the clients and the aggregation result. Hatching marks ciphertext throughout.",
  "caption": "Inflation of ciphertext size.",
  "caption_source": "latex",
  "abstract": "Federated fine-tuning is critical for improving the performance of large language models (LLMs) in handling domain-specific tasks while keeping training data decentralized and private. However, prior work has shown that clients' private data can actually be recovered via gradient inversion attacks. Existing privacy preservation techniques against such attacks typically entail performance degradation and high costs, making them ill-suited for clients with heterogeneous data distributions and device capabilities. In this paper, we propose SHE-LoRA, which integrates selective homomorphic encryption (SHE) and low-rank adaptation (LoRA) to enable efficient and privacy-preserving federated tuning of LLMs in cross-device environments. Based on model parameter sensitivity assessment, heterogeneous clients adaptively negotiate and select a subset of model parameters for homomorphic encryption. To ensure accurate model aggregation, we design a column-aware secure aggregation method and customized reparameterization techniques to align the aggregation results with the heterogeneous device capabilities of clients. Extensive experiments demonstrate that SHE-LoRA maintains performance comparable to non-private baselines, achieves strong resistance to state-of-the-art attacks, and significantly reduces communication overhead by 99.71% and encryption time by 99.87%, compared to HE baselines.",

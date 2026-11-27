@@ -15,24 +15,25 @@
  "track": "main",
  "topic": "Computer Vision->Vision Models & Multimodal",
  "role": "before-after",
- "role2": "problem-setup",
- "claim": "A subtle, natural-looking perturbation of an image flips every model's answer from correct to hallucinated, exposing a hidden vulnerability.",
- "layout": "Left-to-right: original image, a central method box with arrows, then the generated image. Per-model answer text sits under each image, with a prompt title on top.",
+ "role2": "pipeline",
+ "claim": "A small, subtle image perturbation produced by our method flips every tested model from a correct answer to a confident false one.",
+ "layout": "Top row has the original image, a method box, and the modified image, read left to right with arrows. Below, two columns of per-model text answers sit under each image. Model logos are in the center legend.",
  "tags": [
   "hallucination",
   "adversarial-generation",
   "stress-testing",
   "multimodal-llm",
-  "before-after",
-  "failure-mode",
-  "diffusion"
+  "failure-induction",
+  "diffusion",
+  "robustness"
  ],
  "style": [
   "photo/real data",
   "icon-heavy",
+  "text-heavy",
   "colorful"
  ],
- "description": "A prompt title across the top reads \"Is there a knife in this picture?\". Below it, a photo of a banana on a floral plate sits on the left. An arrow leads to a pale yellow rounded box labeled \"GHOST\" with a ghost icon. A second arrow leads to a nearly identical banana photo on the right, with a faint dark knife-like shape at the top left. Under the box, five model logos are listed with names: GPT-4o, Qwen2.5VL, LLaVA1.6, GLM4.1Thinking and LLaMA3.2. Under each photo, five text responses are stacked, each marked with its model icon. On the left, each response starts with a green \"No\". On the right, each starts with a red \"Yes\" and describes a knife. The green-to-red contrast draws the eye first.",
+ "description": "A bold prompt title, 'Is there a knife in this picture?', sits at the top. Two photos of a banana on a floral plate are shown on dark backgrounds. The left photo is the original. The right photo is nearly identical but has a faint dark knife-like shape behind the banana. A black arrow runs from the left photo into a cream rounded box labeled 'GHOST' with a ghost icon, then on to the right photo. Under the box is a legend of five model logos: GPT-4o, Qwen2.5VL, LLaVA1.6, GLM4.1Thinking and LLaMA3.2. Beneath each photo are five logo-tagged text answers. On the left, each answer starts with a green 'No'. On the right, each starts with a red 'Yes' and describes a knife. The green-versus-red contrast draws the eye first.",
  "caption": "(Left) All models correctly answer \"No\" when asked if there is a knife in the image. (Right) GHOST introduces subtle cues, and all models now hallucinate the presence of a knife.",
  "caption_source": "latex",
  "abstract": "Object hallucination in Multimodal Large Language Models (MLLMs) is a persistent failure mode that causes the model to perceive objects absent in the image. This weakness of MLLMs is currently studied using static benchmarks with fixed visual scenarios, which preempts the possibility of uncovering model-specific or unanticipated hallucination vulnerabilities. We introduce GHOST (Generating Hallucinations via Optimizing Stealth Tokens), a method designed to stress-test MLLMs by actively generating images that induce hallucination. GHOST is fully automatic and requires no human supervision or prior knowledge. It operates by optimizing in the image embedding space to mislead the model while keeping the target object absent, and then guiding a diffusion model conditioned on the embedding to generate natural-looking images. The resulting images remain visually natural and close to the original input, yet introduce subtle misleading cues that cause the model to hallucinate. We evaluate our method across a range of models, including reasoning models like GLM-4.1V-Thinking, and achieve a hallucination success rate exceeding 28%, compared to around 1% in prior data-driven discovery methods. We confirm that the generated images are both high-quality and object-free through quantitative metrics and human evaluation. Also, GHOST uncovers transferable vulnerabilities: images optimized for Qwen2.5-VL induce hallucinations in GPT-4o at a 66.5% rate. Finally, we show that fine-tuning on our images mitigates hallucination, positioning GHOST as both a diagnostic and corrective tool for building more reliable multimodal systems.",

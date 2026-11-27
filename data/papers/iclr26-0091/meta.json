@@ -1,0 +1,54 @@
+{
+ "id": "iclr26-0091",
+ "title": "DPad: Efficient Diffusion Language Models with Suffix Dropout",
+ "authors": [
+  "Xinhua Chen",
+  "Sitao Huang",
+  "Cong Guo",
+  "Chiyue Wei",
+  "Yintao He",
+  "Jianyi Zhang",
+  "Hai Li",
+  "Yiran Chen"
+ ],
+ "venue": "ICLR 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "Deep Learning->Attention Mechanisms",
+ "role": "prior-vs-ours",
+ "role2": "pipeline",
+ "claim": "Sequential and block-wise decoders attend to all or many future positions; ours restricts attention to a nearby window and drops distant ones, cutting redundant computation.",
+ "layout": "3 stacked panels (a) top-left, (b) top-right, (c) bottom, token-grid rows per step, shared color legend, callout box at right",
+ "tags": [
+  "efficiency",
+  "diffusion-language-model",
+  "attention-sparsity",
+  "training-free",
+  "suffix-dropout",
+  "decoding",
+  "sliding-window"
+ ],
+ "style": [
+  "colorful",
+  "icon-heavy"
+ ],
+ "description": "Three token-grid panels compare decoding schemes. Panel (a) shows an autoregressive LLM as a staircase: each step adds one green token after orange prompt and decoded tokens, with attention going backward only. Panel (b) shows block-wise diffusion, with rows per block and step. Orange decoded tokens, green currently decoding tokens and gray masked tokens fill a long response. Colored boxes mark the prefix (orange), current block (green) and the suffix (red) that attends to all tokens. Panel (c) shows the proposed method with a blue sliding-window box over nearby masked tokens, and distant suffix tokens drawn as dashed empty cells (dropped). A rounded callout labeled DPad lists Current: Detailed, Near: Focused, Far: Outlined, with Out of Scratchpad: Omitted below. A shared legend runs between the panels. The eye goes first to the colorful grids and the blue window.",
+ "caption": "Comparison of (a) autoregressive LLMs, (b) block-wise diffusion LLMs, and (c) our \\pad{}. \\pad{} restricts suffix attention via: (i){Sliding Window}: fixed-length suffix window; (ii) {Distance-decay Dropout}: removes distant suffix tokens without computing attention scores.",
+ "caption_source": "latex",
+ "abstract": "Diffusion-based Large Language Models (dLLMs) parallelize text generation by framing decoding as a denoising process, but suffer from high computational overhead since they predict all future suffix tokens at each step while retaining only a small fraction. We propose Diffusion Scratchpad (DPad), a training-free method that restricts attention to a small set of nearby suffix tokens, preserving fidelity while eliminating redundancy. DPad integrates two strategies: (i) a sliding window, which maintains a fixed-length suffix window, and (ii) distance-decay dropout, which deterministically removes distant suffix tokens before attention computation. This simple design is compatible with existing optimizations such as prefix caching and can be implemented with only a few lines of code. Comprehensive evaluations across multiple benchmarks on LLaDA-1.5 and Dream models demonstrate that DPad delivers up to $\\mathbf{61.4\\times}$ speedup over vanilla dLLMs while maintaining comparable accuracy, highlighting its potential for efficient and scalable long-sequence inference. Our code is available at https://github.com/Crys-Chen/DPad.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=0yOsSMU1eY",
+  "arxiv": "https://arxiv.org/abs/2508.14148",
+  "pdf": "https://arxiv.org/pdf/2508.14148",
+  "virtual": "https://iclr.cc/virtual/2026/poster/10011883",
+  "code": "https://github.com/Crys-Chen/DPad"
+ },
+ "license": "http://creativecommons.org/licenses/by/4.0/",
+ "img": "cc-by",
+ "image_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/images/iclr26-0091.png",
+ "thumb_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/thumbs/iclr26-0091.webp",
+ "figure_page": 1,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.8
+}

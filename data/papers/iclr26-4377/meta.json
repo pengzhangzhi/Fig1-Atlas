@@ -21,23 +21,23 @@
  "topic": "Reinforcement Learning->Batch/Offline",
  "role": "pipeline",
  "role2": null,
- "claim": "Targeted synthetic augmentations built from oracle-identified causal attributes, then verified and filtered, produce a combined training set that makes the learner robust.",
- "layout": "5 stacked horizontal rows, top-to-bottom, down-arrows between rows, icon-labeled step boxes in a right-hand column naming each stage",
+ "claim": "A staged data-construction procedure turns an original preference pair into causal and neutral synthetic augmentations that train a model to be sensitive to true drivers and invariant to spurious cues.",
+ "layout": "5 stacked horizontal rows, top-to-bottom, down-arrows between rows, icon-labeled step descriptions in a right-hand column",
  "tags": [
   "data-augmentation",
   "counterfactual-generation",
+  "reward-modeling",
   "causal-attributes",
   "oracle-llm",
-  "reward-modeling",
-  "robustness",
-  "spurious-correlation"
+  "synthetic-data",
+  "robustness"
  ],
  "style": [
   "icon-heavy",
   "colorful",
   "text-heavy"
  ],
- "description": "A vertical five-row pipeline in white rounded cards with soft teal shadows. Row 1 shows the inputs: Query Q, Good Answer A1 and Bad Answer A2, labeled as the original QA pair. Row 2 shows five circles, CA1 to CA5, labeled Causal Attribute Estimation via Oracle LLM. Row 3 shows Degraded Good Answers and Upgraded Bad Answers joined by a blue plus sign, labeled Counterfactual Generation. Row 4 shows Causal Augments and Irrelevant Query Neutrals, labeled Augmented Dataset Generation. Row 5 shows Verification + Filtration, then a Synthetic Dataset of Originals, Causals and Neutrals, then RM training. Each step has a colorful flat icon, and hollow arrows link the rows. The eye starts at the top row and moves down the stack. The box notation uses A_1^i-style indices.",
+ "description": "A vertical five-row flowchart read top to bottom, with hollow white block arrows between rows. Row 1 shows the inputs as rounded cards: Query Q, Good Answer A1 and Bad Answer A2, each with a small icon, labeled on the right as the original QA pair. Row 2 shows five white circles, CA1 to CA5, labeled Causal Attribute Estimation via Oracle LLM. Row 3 shows Degraded Good Answers and Upgraded Bad Answers joined by a cyan plus sign, labeled Counterfactual Generation. Row 4 shows Causal Augments and Irrelevant Query Neutrals with a changed question, labeled Augmented Dataset Generation. Row 5 shows Verification and Filtration, then a Synthetic Dataset of Originals, Causals and Neutrals, then RM training. The palette is white and pale teal, with colorful flat icons and a boxed step label in the right column of each row.",
  "caption": "\\textbf{The \\carma{} Data Augmentation and Training Pipeline.} From an original QA pair ($\\mathrm{Q}, \\mathrm{A}_1, \\mathrm{A}_2$), an oracle LLM identifies Causal Attributes (CA). This guides counterfactual generation, producing degraded $\\mathrm{A}_1$, and upgraded $\\mathrm{A}_2$ responses. These form the set of Causal Augmentations which teach the model sensitivity to relevant attributes. Next, we generate Irrelevant Query Neutrals by flipping the question on both the newly generated causal contrastive pairs and the original answer pairs, which reduces reliance on spurious correlates. After verification and filtration, the combined dataset (Originals, Causals, Neutrals) trains the RM, enhancing its robustness.\\vspace{-0.5in}",
  "caption_source": "latex",
  "abstract": "Reward models (RMs) are fundamental to aligning Large Language Models (LLMs) via human feedback, yet they often suffer from reward hacking. They tend to latch on to superficial or spurious attributes, such as response length or formatting, mistaking these cues learned from correlations in training data for the true causal drivers of quality (e.g., factuality, relevance). This occurs because standard training objectives struggle to disentangle these factors, leading to brittle RMs and misaligned policies. We introduce Crome (Causally Robust Reward Modeling), a novel framework grounded in an explicit causal model designed to mitigate reward hacking. Crome employs the following synthetic targeted augmentations during training: (1) Causal Augmentations, which are pairs that differ along specific causal attributes, to enforce sensitivity along each causal attribute individually, and (2) Neutral Augmentations, which are tie-label pairs varying primarily in spurious attributes, to enforce invariance along spurious attributes. Notably, our augmentations are produced without any knowledge of spurious factors, via answer interventions only along causal rubrics, that are identified by querying an oracle LLM. Empirically, Crome significantly outperforms standard baselines on RewardBench, improving average accuracy by up to 5.4% and achieving gains of up to 13.2% and 7.2% in specific categories. The robustness of Crome is further testified by the consistent gains obtained in a Best-of-N inference setting across increasing N, across various benchmarks, including the popular RewardBench (covering chat, chat-hard, safety, and reasoning tasks), the safety-focused WildGuardTest, and the reasoning-specific GSM8k.",
@@ -53,9 +53,7 @@
  "image_url": null,
  "thumb_url": null,
  "figure_page": 1,
- "qc_flags": [
-  "bad-crop"
- ],
+ "qc_flags": [],
  "annotator": "claude-cli:sonnet",
- "role_confidence": 0.93
+ "role_confidence": 0.96
 }

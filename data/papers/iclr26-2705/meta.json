@@ -18,23 +18,23 @@
  "track": "main",
  "topic": "Theory->Interpretability and Visualization",
  "role": "concept",
- "role2": "overview-framework",
- "claim": "Fragments that always produce the same result under a shared context are interchangeable, so linking inputs differing only by such fragments defines the region where pattern matching generalizes.",
- "layout": "2 panels, left-to-right with a big arrow; left is a small computation graph, right is a dashed substitution graph with a green coverage box and double-headed arrows",
+ "role2": "problem-setup",
+ "claim": "Different input fragments that yield the same intermediate result are interchangeable, and substituting them defines a graph whose reachable region bounds where pattern matching can generalize.",
+ "layout": "2 panels, left-to-right, connected by a bold arrow; left is a small computation DAG, right is a dashed box containing a green coverage region with double-headed arrows",
  "tags": [
   "functional-equivalence",
   "substitution-graph",
   "pattern-matching",
   "compositional-generalization",
-  "formalism",
+  "two-hop",
   "coverage",
-  "two-hop"
+  "formalization"
  ],
  "style": [
   "minimal",
   "math-heavy"
  ],
- "description": "Two panels joined by a thick black right-pointing arrow. The left panel, titled 'Functional Equivalence Observation', is a small computation graph. Two large circles, (x1,x2) and (x1',x2'), each send an arrow labeled f1 into a small node b. Node b and a separate circle x3 both send arrows labeled f2 into the output node t. The right panel, titled 'Substitution Graph', is a dashed rounded rectangle. Inside it, a light-green rounded box labeled 'Coverage' contains four inputs: (x1,x2,x3), (x1,x2,x3'), (x1',x2',x3) and (x1',x2',x3'). Three of these are shaded blue to mark observed inputs. Vertical double-headed arrows link pairs that differ only by equivalent fragments. Four more inputs sit outside the green box, with one double-headed arrow between two of them. The figure is black on white with blue and green accents, and the eye goes first to the green coverage box.",
+ "description": "Two panels joined by a thick black arrow pointing right. The left panel, titled 'Functional Equivalence Observation', is a small computation graph. Two large circles hold the fragments (x1,x2) and (x1',x2'). Both send arrows labeled f1 to a small circle b. A circle x3 and the circle b both send arrows labeled f2 to an output circle t. The right panel, titled 'Substitution Graph', sits in a dashed rounded box. Inside it, a green rounded rectangle labeled 'Coverage' holds four input tuples. Two of them, (x1,x2,x3) and (x1',x2',x3), have light-blue highlights. Vertical double-headed arrows join tuples that differ only by an equivalent fragment. Further tuples sit outside the green region, and one more double arrow joins two of them. The eye goes first to the green coverage box and the blue highlights. The figure uses black text on white, with green and blue as the only accents.",
  "caption": "Illustration of functional equivalence. Left: In a two-hop task $(x_1, x_2, x_3) \\mapsto t$ with $t=f_2(f_1(x_1,x_2),x_3)$, two fragments $(x_1,x_2)$ and $(x_1',x_2')$ satisfying $f_1(x_1,x_2)=f_1(x_1',x_2')=b$ consistently yield the same final output when combined with the same context $x_3$, supporting their functional equivalence. Right: Among all possible inputs (few shown), we draw an edge between any two inputs that differ only by functionally equivalent fragments to form a substitution graph. Then, coverage is the set of observed inputs (highlighted as blue) and all inputs connected to them. We define pattern matching as a type of generalization that occurs inside the coverage, harnessing functional equivalence.",
  "caption_source": "latex",
  "abstract": "Despite impressive capabilities, LLMs' successes often rely on pattern-matching behaviors, yet these are also linked to OOD generalization failures in compositional tasks. However, behavioral studies commonly employ task setups that allow multiple generalization sources (e.g., algebraic invariances, structural repetition), obscuring a precise and testable account of how well LLMs perform generalization through pattern matching and their limitations. To address this ambiguity, we first formalize pattern matching as functional equivalence, i.e., identifying pairs of subsequences of inputs that consistently lead to identical results when the rest of the input is held constant. Then, we systematically study how decoder-only Transformer and Mamba behave in controlled tasks with compositional structures that isolate this mechanism. Our formalism yields predictive and quantitative insights: (1) Instance-wise success of pattern matching is well predicted by the number of contexts witnessing the relevant functional equivalence. (2) We prove a tight sample complexity bound of learning a two-hop structure by identifying the exponent of the data scaling law for perfect in-domain generalization. Our empirical results align with the theoretical prediction, under 20x parameter scaling and across architectures. (3) Path ambiguity is a structural barrier: when a variable influences the output via multiple paths, models fail to form unified intermediate state representations, impairing accuracy and interpretability. (4) Chain-of-Thought reduces data requirements yet does not resolve path ambiguity. Hence, we provide a predictive, falsifiable boundary for pattern matching and a foundational diagnostic for disentangling mixed generalization mechanisms.",

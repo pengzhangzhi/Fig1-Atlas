@@ -13,23 +13,23 @@
  "topic": "Reinforcement Learning->Deep RL",
  "role": "prior-vs-ours",
  "role2": "pipeline",
- "claim": "Offline methods infer the task once from a labeled dataset; ours actively collects data online, updating a belief over tasks to adapt the policy each step.",
- "layout": "Single wide panel; left pretraining block branches into two horizontal rows, online (top) and offline (bottom), each flowing left to right to a robot",
+ "claim": "Offline pipelines infer a task once from a labeled dataset; ours actively interacts to build a belief over tasks and retrieves a good policy quickly.",
+ "layout": "Single wide panel: pre-training on left branching into two horizontal rows, online (top, trajectory with belief updates) vs offline (bottom, infer once), left-to-right",
  "tags": [
-  "online-vs-offline",
   "task-inference",
+  "online-vs-offline",
   "zero-shot-rl",
   "behavior-foundation-models",
-  "belief-update",
   "uncertainty",
-  "active-data-collection"
+  "active-data-collection",
+  "belief-update"
  ],
  "style": [
-  "minimal",
   "icon-heavy",
+  "minimal",
   "math-heavy"
  ],
- "description": "A white-background diagram. At left, a robot and a database cylinder form a circular arrow loop labeled 'Unsupervised Pre-training via USF', with a transition dataset {(s,a,s')} below it. Gray arrows branch right into two horizontal tracks. The top track, 'Online Task Inference' with 'OpTI-BFM' in bold, shows a pink dashed box of (phi, r) pairs. An 'update' arrow leads to a sphere with a blue belief region and an embedding z3. An 'infer' arrow curves down to a trajectory of black state dots s0 to s3 connected by policy arrows pi_z, ending at a robot. The bottom track, 'Offline Task Inference', shows a pink database of (s,r) pairs, an 'infer once' arrow to a sphere with a single vector z_r, and a robot. The online row has the most visual detail and draws the eye first.",
+ "description": "A left-to-right diagram. On the left, 'Unsupervised Pre-training via USF' shows a robot and a database cylinder joined by circular arrows, labeled {(s,a,s')}. Two gray arrows branch to two rows. The top row, 'Online Task Inference' (bold, OpTI-BFM), shows a pink dashed box of collected tuples {(φ,r)} linked by dotted lines to a trajectory of black state dots s0 to s3 with policies π_z0, π_z1, π_z2. An 'update' arrow leads to a sphere with a blue belief region C3 and vector z3, then an 'infer' arrow leads to the robot. The bottom row, 'Offline Task Inference', shows a pink database {(s,r)}, an 'infer once' arrow, a gray sphere with z_r, and a robot. The top row has the most visual weight.",
  "caption": "In contrast to the standard offline task inference pipeline for BFMs, we explore an alternative online framework: instead of producing a point-estimate of the task embedding from an existing dataset, we actively collect data to build a belief over task embeddings, which results in milder labeling requirements and fast retrieval of a near-optimal policy.",
  "caption_source": "latex",
  "abstract": "Behavior Foundation Models (BFMs) are capable of retrieving high-performing policy for any reward function specified directly at test-time, commonly referred to as zero-shot reinforcement learning (RL). While this is a very efficient process in terms of compute, it can be less so in terms of data: as a standard assumption, BFMs require computing rewards over a non-negligible inference dataset, assuming either access to a functional form of rewards, or significant labeling efforts. To alleviate these limitations, we tackle the problem of task inference purely through interaction with the environment at test-time. We propose OpTI-BFM, an optimistic decision criterion that directly models uncertainty over reward functions and guides BFMs in data collection for task inference. Formally, we provide a regret bound for well-trained BFMs through a direct connection to upper-confidence algorithms for linear bandits. Empirically, we evaluate OpTI-BFM on established zero-shot benchmarks, and observe that it enables successor-features-based BFMs to identify and optimize an unseen reward function in a handful of episodes with minimal compute overhead. Code is available at https://github.com/ThomasRupf/opti-bfm.",
@@ -47,5 +47,5 @@
  "figure_page": 1,
  "qc_flags": [],
  "annotator": "claude-cli:sonnet",
- "role_confidence": 0.72
+ "role_confidence": 0.6
 }

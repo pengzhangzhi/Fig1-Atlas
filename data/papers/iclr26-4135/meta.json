@@ -17,23 +17,24 @@
  "topic": "Applications->Robotics",
  "role": "prior-vs-ours",
  "role2": "pipeline",
- "claim": "Existing methods yield fixed, inflexible trade-offs between competing objectives; ours interpolates expert weights at test time for a continuous, steerable spectrum, useful downstream.",
- "layout": "3 panels left-to-right (a limitations, b our method, c application), colored headers, dense sub-diagrams with icons and formulas",
+ "claim": "Prior methods are locked to one fixed objective trade-off and need retraining; ours interpolates two preference experts at test time to steer behavior, and applies this to training.",
+ "layout": "3 panels left-to-right (a limitations, b method, c application), colored header bars, dense sub-diagrams with math and icons",
  "tags": [
-  "steerable",
   "preference-alignment",
   "multi-objective",
-  "weight-interpolation",
   "test-time-control",
+  "weight-interpolation",
+  "steerability",
   "autonomous-driving",
-  "trade-off"
+  "expert-merging"
  ],
  "style": [
   "colorful",
   "icon-heavy",
-  "math-heavy"
+  "math-heavy",
+  "text-heavy"
  ],
- "description": "A wide three-panel figure under an Introduction heading. Panel a (blue header) lists limitations of existing paradigms. Single-objective maximizes adversariality and produces an unrealistic crash scene with crossed-out reward terms. Multi-objective linear scalarization conflates soft preferences and hard constraints, shown with small scenario thumbnails and bar charts. It ends with a reward triangle and a Pareto-front sketch labelled 'one fixed trade-off' and 'retraining required'. Panel b (pink header) shows SAGE. Offline, two experts (adversarial and realistic) are fine-tuned from a pretrained model with hierarchical group policy optimization. At test time, the weights are interpolated by θ(λ)=(1-λ)θreal+λθadv. This gives mixed models along a Pareto-style behavior space and a loss-landscape picture. Panel c (purple header) shows closed-loop dual-curriculum training with an ego/ENV/ADV cycle and adversarial frequency and intensity sliders. Red and orange highlight the problems and the adversary, and blue and purple mark the experts.",
+ "description": "A wide three-panel figure with colored title bars. Panel a (blue/gray, left) is titled 'Limitations of existing paradigms'. It shows two failure cases: single-objective reward that produces unrealistic driving scenes, and multi-objective linear scalarization with conflicting soft and hard constraints. These come with small bar charts, a triangle of conflicting gradients, and a Pareto-front sketch labeled 'one fixed trade-off, retraining required'. Panel b (pink/orange, center) is the SAGE method. It shows offline learning of an adversarial expert and a realistic expert from preference pairs, using hierarchical group policy optimization. Weight interpolation θ(λ)=(1-λ)θreal+λθadv gives mixed models that trace a continuous Pareto curve over a loss landscape. Panel c (purple, right) shows a closed-loop ego/adversary/environment co-evolution cycle with adversarial frequency and intensity sliders.",
  "caption": "Limitation of existing adversarial generation methods, our solution, and its application.",
  "caption_source": "latex",
  "abstract": "Adversarial scenario generation is a cost-effective approach for safety assessment of autonomous driving systems. However, existing methods are often constrained to a single, fixed trade-off between competing objectives such as adversariality and realism. This yields behavior-specific models that cannot be steered at inference time, lacking the efficiency and flexibility to generate tailored scenarios for diverse training and testing requirements. In view of this, we reframe the task of adversarial scenario generation as a multi-objective preference alignment problem and introduce a new framework named \\textbf{S}teerable \\textbf{A}dversarial scenario \\textbf{GE}nerator (SAGE). SAGE enables fine-grained test-time control over the trade-off between adversariality and realism without any retraining. We first propose hierarchical group-based preference optimization, a data-efficient offline alignment method that learns to balance competing objectives by decoupling hard feasibility constraints from soft preferences. Instead of training a fixed model, SAGE fine-tunes two experts on opposing preferences and constructs a continuous spectrum of policies at inference time by linearly interpolating their weights. We provide theoretical justification for this framework through the lens of linear mode connectivity. Extensive experiments demonstrate that SAGE not only generates scenarios with a superior balance of adversariality and realism but also enables more effective closed-loop training of driving policies. Project page: https://tongnie.github.io/SAGE/.",

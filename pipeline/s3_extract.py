@@ -211,7 +211,8 @@ def text_blocks(page):
         if b.get("type") != 0:
             continue
         r = fitz.Rect(b["bbox"])
-        if r.height > 4 * r.width:
+        W = page.rect.width
+        if r.height > 4 * r.width and (r.x1 < 0.1 * W or r.x0 > 0.9 * W):   # arXiv stamp in the margin
             continue
         spans = [sp for l in b["lines"] for sp in l["spans"] if sp["text"].strip()]
         if not spans:
@@ -230,6 +231,7 @@ def body_font_size(blocks):
     return c.most_common(1)[0][0] if c else 10.0
 
 
+SECTION_RE = re.compile(r"^\s*(?:[1-9]\d?(?:\.\d+){0,2}|[A-H](?:\.\d+)?)\s+[A-Z](?:[a-z]{2,}|\s?[A-Z])")
 AFFIL_RE = re.compile(r"@|universit|institut|laborator|college|school of|department|\bcorresponding\b|equal contribution|github\.io|project page", re.I)
 
 
@@ -245,20 +247,37 @@ def figure_region(page, cap: fitz.Rect, pno=1, body=None):
     body = body or body_font_size(blocks)
     dense = [b["rect"] for b in blocks if b["n"] >= 150 and b["size"] >= body - 0.6]
     tx0 = min([r.x0 for r in dense] + [cap.x0]); tx1 = max([r.x1 for r in dense] + [cap.x1])
-    column = cap.width < 0.6 * (tx1 - tx0)       # column-width caption: two-column layout or wrapfigure
+    tw = tx1 - tx0
+    # Column-width figure only on a two-column page, or when the caption is off-centre (wrapfigure).
+    # A short one-line caption under a full-width figure is narrow but centred.
+    dense_w = [r.width for r in dense]
+    two_col = len(dense_w) >= 2 and sum(w < 0.55 * tw for w in dense_w) > 0.5 * len(dense_w)
+    off_centre = abs((cap.x0 + cap.x1) / 2 - (tx0 + tx1) / 2) > 0.12 * tw
+    column = cap.width < 0.6 * tw and (two_col or off_centre)
     colw = cap.width if column else tx1 - tx0
     gfx_rects = [fitz.Rect(i["bbox"]) for i in page.get_image_info()] + \
-                [fitz.Rect(d["rect"]) for d in page.get_drawings() if fitz.Rect(d["rect"]).width < 0.9 * P.width]
+                [fitz.Rect(d["rect"]) for d in page.get_drawings() if fitz.Rect(d["rect"]).width < 0.9 * P.width and not _invisible(d)]
     # body paragraph: dense body-size text spanning most of the column (figure text panels are narrower)
     is_para = lambda b: b["n"] >= 150 and b["size"] >= body - 0.6 and b["rect"].height > 18 and b["rect"].width > 0.7 * colw
     # headings / titles: large AND wide (big math labels inside figures are short)
-    is_head = lambda b: b["size"] >= body + 1.5 and b["n"] >= 12 and b["rect"].width > 0.4 * colw
+    is_head = lambda b: (b["size"] >= body + 1.5 and b["n"] >= 12 and b["rect"].width > 0.4 * colw) or \
+        (pno == 0 and b["size"] >= body + 1.5 and b["n"] >= 4
+         and not any(g.contains(b["rect"]) for g in gfx_rects))  # title fragments (small caps lines)
     # first page: author / affiliation lines above a teaser
+    # first page: author / affiliation lines above a teaser (centred on the page, outside graphics)
+    centred = lambda r: abs((r.x0 + r.x1) / 2 - (tx0 + tx1) / 2) < 0.06 * tw and r.width > 0.3 * tw
     is_front = lambda b: pno == 0 and (AFFIL_RE.search(b["text"]) or (
-        b["size"] >= body - 0.3 and b["n"] >= 12 and not any(g.contains(b["rect"]) for g in gfx_rects)))
-    is_stop = lambda b: is_para(b) or is_head(b) or is_front(b)
+        b["size"] >= body - 0.3 and b["n"] >= 12 and centred(b["rect"])
+        and not any(g.contains(b["rect"]) for g in gfx_rects)))
+    # numbered section headings ("4 LIMITATIONS OF …", small caps measure smaller than body text)
+    para_x0 = [r.x0 for r in dense]
+    is_section = lambda b: b["n"] < 120 and SECTION_RE.match(b["text"]) is not None and b["size"] >= body - 1 \
+        and any(abs(b["rect"].x0 - x) < 6 for x in para_x0) \
+        and not any(g.contains(b["rect"]) for g in gfx_rects)
+    is_stop = lambda b: is_para(b) or is_head(b) or is_front(b) or is_section(b)
     paras = [b["rect"] for b in blocks if is_para(b)]
-    x0, x1 = (cap.x0 - 8, cap.x1 + 8) if column else (tx0 - 12, tx1 + 12)
+    # full-width figures may run past the text block (\hspace{-…}, oversized includegraphics)
+    x0, x1 = (cap.x0 - 8, cap.x1 + 8) if column else (min(tx0 - 12, P.width * 0.03), max(tx1 + 12, P.width * 0.97))
 
     def inside(r, lo=x0, hi=x1):
         ov = min(r.x1, hi) - max(r.x0, lo)
@@ -275,15 +294,20 @@ def figure_region(page, cap: fitz.Rect, pno=1, body=None):
             continue
         if r.width > 0.9 * P.width and r.height < 2:   # page rules
             continue
+        if _invisible(d):                              # white/blank background fills inflate the box
+            continue
         items.append((r, "draw", 0))
+    nchars = {}
     for b in blocks:
         r = b["rect"]
         if r.intersects(cap) or ANY_CAP_RE.match(b["text"]):
             continue
         items.append((r, "stop" if is_stop(b) else "text", b["size"]))
+        nchars[tuple(r)] = b["n"]
     # a drawn frame that encloses body text (boxed abstract, theorem box) is text, not figure
     items = [(r, "stop" if k == "draw" and any(r.contains(p) for p in paras) else k, z) for r, k, z in items]
     GFX = ("img", "draw")
+    items_n = [(r, k, z, nchars.get(tuple(r), 0)) for r, k, z in items]
 
     def grow(cand, start, upward):
         cand.sort(key=(lambda t: -t[0].y1) if upward else (lambda t: t[0].y0))
@@ -307,10 +331,11 @@ def figure_region(page, cap: fitz.Rect, pno=1, body=None):
     def finish(g, clip_y0=None, clip_y1=None):
         # add figure-sized text inside / right next to the graphics (labels, panel titles, subcaptions)
         reg = fitz.Rect(g)
-        texts = [r for r, k, _ in items if k == "text"]
+        # chainable text: smaller than body text, or a short label (axis names, a^pre); not body lines
+        texts = [r for r, k, z, n in items_n if k == "text" and (z < body - 0.5 or n <= 20)]
         for _ in range(3):                       # labels can chain (tick labels, then axis title)
-            near = fitz.Rect(reg.x0 - 8, reg.y0 - 10, reg.x1 + 8, reg.y1 + 10)
-            add = [r for r in texts if near.intersects(r) and not reg.contains(r) and inside(r, g.x0 - 8, g.x1 + 8)
+            near = fitz.Rect(reg.x0 - 14, reg.y0 - 14, reg.x1 + 14, reg.y1 + 14)
+            add = [r for r in texts if near.intersects(r) and not reg.contains(r)
                    and (clip_y0 is None or r.y0 >= clip_y0 - 1) and (clip_y1 is None or r.y1 <= clip_y1 + 1)]
             if not add:
                 break
@@ -323,8 +348,11 @@ def figure_region(page, cap: fitz.Rect, pno=1, body=None):
                     reg.x0 = max(reg.x0, r.x1 + 1)
                 elif r.x0 >= g.x1 - 4:
                     reg.x1 = min(reg.x1, r.x0 - 1)
-        reg = fitz.Rect(max(reg.x0, x0 - 4), reg.y0 if clip_y0 is None else max(reg.y0, clip_y0),
-                        min(reg.x1, x1 + 4), reg.y1 if clip_y1 is None else min(reg.y1, clip_y1)) & P
+        # column / wrapfigure: nothing left or right of graphics+caption (that is body text)
+        hx0 = min(g.x0, cap.x0) - 12 if column else -1e9
+        hx1 = max(g.x1, cap.x1) + 12 if column else 1e9
+        reg = fitz.Rect(max(reg.x0, x0 - 4, hx0), reg.y0 if clip_y0 is None else max(reg.y0, clip_y0),
+                        min(reg.x1, x1 + 4, hx1), reg.y1 if clip_y1 is None else min(reg.y1, clip_y1)) & P
         if reg.width < 0.6 * g.width or reg.height < 10:      # trimming went wrong: keep the graphics box
             reg = fitz.Rect(g.x0, g.y0 if clip_y0 is None else max(g.y0, clip_y0),
                             g.x1, g.y1 if clip_y1 is None else min(g.y1, clip_y1)) & P
@@ -349,6 +377,14 @@ def figure_region(page, cap: fitz.Rect, pno=1, body=None):
     if g is not None:
         return finish(g, clip_y0=cap.y1 + 1, clip_y1=bar) + (-3, 0, 3, 3 if bar is None else 0)
     return None
+
+
+def _invisible(d):
+    """A fill-only path painted white (or fully transparent) - typically a figure's background box."""
+    if d.get("type") != "f" or d.get("color") is not None:
+        return False
+    f = d.get("fill")
+    return f is None or (min(f) > 0.97) or (d.get("fill_opacity") or 1) < 0.02
 
 
 def _by_bottom(t):

@@ -16,13 +16,32 @@ OAI_NS = {"o": "http://www.openarchives.org/OAI/2.0/", "x": "http://arxiv.org/OA
 
 
 def load_local_index():
-    idx = {}
+    """Exact normalized-title index plus first-4 / last-4 word buckets for fuzzy lookup."""
+    idx, buckets = {}, {}
     for p in sorted((CACHE / "arxiv_oai").glob("*.jsonl")):
         with open(p) as f:
             for l in f:
                 r = json.loads(l)
-                idx.setdefault(norm_title(r["title"]), {})[r["arxiv_id"]] = r
-    return idx
+                t = norm_title(r["title"])
+                idx.setdefault(t, {})[r["arxiv_id"]] = r
+                w = t.split()
+                if len(w) >= 4:
+                    buckets.setdefault(("h",) + tuple(w[:4]), []).append((t, r))
+                    buckets.setdefault(("t",) + tuple(w[-4:]), []).append((t, r))
+    return idx, buckets
+
+
+def fuzzy_local(title, authors, buckets):
+    t = norm_title(title); w = t.split()
+    if len(w) < 4:
+        return None, 0
+    best, score = None, 0
+    for key in (("h",) + tuple(w[:4]), ("t",) + tuple(w[-4:])):
+        for ct, r in buckets.get(key, []):
+            sc = difflib.SequenceMatcher(None, t, ct).ratio()
+            if sc > score and author_ok(authors, r["authors"]):
+                best, score = r, sc
+    return (best, score) if score >= 0.9 else (None, score)
 
 
 def author_ok(ours, theirs):
@@ -68,6 +87,7 @@ def api_search(s, title):
 def scrape_abstract(s, url):
     if not url:
         return None
+    time.sleep(0.5)
     r = polite_get(s, url, delay=1)
     if r is None or r.status_code != 200:
         return None
@@ -90,7 +110,7 @@ def main():
         papers = [p for p in papers if p["id"] in keep]
     out_p = CACHE / "work" / f"matched_{a.key}.jsonl"
     done = {r["id"]: r for r in read_jsonl(out_p)}
-    idx = load_local_index()
+    idx, buckets = load_local_index()
     s = requests.Session(); s.headers["User-Agent"] = UA
     n_new = 0
     for i, p in enumerate(papers):
@@ -100,6 +120,10 @@ def main():
         for cand in idx.get(norm_title(p["title"]), {}).values():
             if author_ok(p["authors"], cand["authors"]):
                 rec, method = cand, "oai-title"; break
+        if rec is None:
+            cand, sc = fuzzy_local(p["title"], p["authors"], buckets)
+            if cand:
+                rec, method = cand, f"oai-fuzzy({sc:.2f})"
         if rec is None and a.api:
             best, score = None, 0
             for c in api_search(s, p["title"]):
@@ -115,7 +139,9 @@ def main():
             row.update(arxiv_id=rec["arxiv_id"], license=rec.get("license"), abstract=rec.get("abstract"),
                        abstract_source="arxiv", match_method=method)
         else:
-            row.update(arxiv_id=None, license=None, abstract=scrape_abstract(s, p.get("virtual_url")),
+            prev = done.get(p["id"], {})
+            abs_ = prev.get("abstract") if prev.get("abstract_source") == "virtual-site" else None
+            row.update(arxiv_id=None, license=None, abstract=abs_ or scrape_abstract(s, p.get("virtual_url")),
                        abstract_source="virtual-site", match_method="none")
         done[p["id"]] = row; n_new += 1
         if n_new % 20 == 0:

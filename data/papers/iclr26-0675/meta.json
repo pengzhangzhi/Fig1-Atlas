@@ -15,23 +15,23 @@
  "topic": "Social Aspects->Accountability, Transparency and Interpretability",
  "role": "pipeline",
  "role2": null,
- "claim": "Score each input segment by ablating it and measuring divergence in the output distribution, then apply the same measure to internal components to locate those responsible.",
- "layout": "Five lettered panels (a–e) split by a dashed vertical divider: left half runs top-to-bottom through context ablation, response and JSD ranking; right half shows model internals with a ranking box and legend, flowing left-to-right then down.",
+ "claim": "Perturb the input by ablating one unit at a time, score each by divergence in output distribution, and rank to find what drives the output.",
+ "layout": "5 dashed-box panels (a-e); left half is context ablation flow top-to-bottom, right half is a model-internals diagram with a ranking output; legend at bottom right",
  "tags": [
   "ablation",
-  "jensen-shannon-divergence",
-  "context-attribution",
+  "attribution",
+  "divergence-based",
   "retrieval-augmented-generation",
-  "mechanistic-interpretability",
-  "attention-heads",
-  "training-free"
+  "interpretability",
+  "ranking",
+  "efficiency"
  ],
  "style": [
-  "colorful",
   "icon-heavy",
+  "colorful",
   "text-heavy"
  ],
- "description": "The figure has two halves. The left half shows a worked RAG example. Panel (a) has a context paragraph about Burntisland Shipbuilding plus a query, fed to a Qwen .generate() box. Panel (b) has three copies of the context. Each copy has one sentence blacked out in green, and each is fed to a Qwen .infer() box. These feed a generated response, then panel (c). Panel (c) lists response distributions for the full and ablated contexts as colored histograms, computes JSD against the full-context distribution, and ranks the top context sentences. The right half is titled 'Applying JSD-based metric to internal components'. Panel (d) shows two stacks of transformer layers, one for full context and one for the ablated context. Attention-head and MLP icons sit in each stack, with JSD for attention heads and for MLP in the middle. Panel (e) lists the top-ranked heads and MLPs. A legend sits at the bottom. Dashed boxes group the panels, and purple, green and pink are the accent colors.",
+ "description": "A two-part pipeline figure split by a vertical dashed line. On the left, panel (a) shows a full context passage and query feeding a Qwen generate() box. Panel (b) shows three copies of the context, each with one sentence blocked out by a green bar, feeding Qwen infer() boxes. Both feed into a generated response, shown as a highlighted sentence. Panel (c) lists the response distributions as small colored histograms, computes JSD against the full-context distribution, and ranks sentences into top-1/2/3. On the right, panel (d) shows stacks of transformer layers with attention heads and MLPs. Full-context paths are in purple and ablated-context paths in green. They meet at JSD boxes for attention heads and for MLP. Panel (e) lists the top-ranked heads and MLPs. A legend sits at the bottom.",
  "caption": "This framework demonstrates how our ARC-JSD works: (a) a RAG LLM $\\mathcal{P}_{LM}(\\cdot)$ first generates response $\\mathcal{R}$ conditioned on full context $\\mathcal{C}$ and query $\\mathcal{Q}$ input; (b) By ablating single context sentence once a time, we can calculate probability distribution of the same response $\\mathcal{R}$ conditioned on the ablated context $\\mathcal{C}_{ABLATE}(c_i)$ and query $\\mathcal{Q}$; (c) We further calculate JSD scores about probability distribution of the same response $\\mathcal{R}$ conditioned on full context and ablated context, and locate the most relevant context sentence supporting $\\mathcal{R}$ with the highest JSD score. Then, we apply JSD-based metric to internal components of RAGs: (d) For each attention head or MLP output at each layer, we calculate probability distribution of the same response $\\mathcal{R}$ conditioned on the same query $\\mathcal{Q}$ with full context $\\mathcal{C}$ and ablated context $\\mathcal{C}_{ABLATE}(c_{top-1})$ by removing top relevant context sentence based on \\S [ref]; (e) We can further locate top-$N$ relevant attention heads or MLPs which contribute the context attribution by ranking the collected JSD scores with a descending order.",
  "caption_source": "latex",
  "abstract": "Retrieval-Augmented Generation (RAG) leverages large language models (LLMs) combined with external contexts to enhance the accuracy and reliability of generated responses. However, reliably attributing generated content to specific context segments, context attribution, remains challenging due to the computationally intensive nature of current methods, which often require extensive fine-tuning or human annotation. In this work, we introduce a novel Jensen-Shannon Divergence driven method to Attribute Response to Context (ARC-JSD), enabling efficient and accurate identification of essential context sentences without additional fine-tuning, gradient-calculation or surrogate modelling. Evaluations on a wide range of RAG benchmarks, such as TyDi QA, Hotpot QA, and Musique, using instruction-tuned LLMs in different scales demonstrate superior accuracy and significant computational efficiency improvements compared to the previous surrogate-based method. Furthermore, our mechanistic analysis reveals specific attention heads and multilayer perceptron (MLP) layers responsible for context attribution, providing valuable insights into the internal workings of RAG models and how they affect RAG behaviours. Our code is available at https://github.com/ruizheliUOA/ARC_JSD.",

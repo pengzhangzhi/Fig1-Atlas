@@ -1,0 +1,56 @@
+{
+ "id": "iclr26-1557",
+ "title": "Time Is a Feature: Exploiting Temporal Dynamics in Diffusion Language Models",
+ "authors": [
+  "Wen Wang",
+  "Bozhen Fang",
+  "Chenchen Jing",
+  "Yongliang Shen",
+  "Yangyi Shen",
+  "Qiuyu Wang",
+  "Hao Ouyang",
+  "Hao Chen",
+  "Chunhua Shen"
+ ],
+ "venue": "ICLR 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "Deep Learning->Algorithms",
+ "role": "analysis-finding",
+ "role2": "problem-setup",
+ "claim": "Correct answers often appear at intermediate steps but get overwritten by the final output, leaving a large gap between final and best-ever accuracy.",
+ "layout": "2 panels: (a) 2x2 grid of grouped bar charts with shared legend below; (b) a worked example with a question, ground truth, and a colored correctness timeline arrow on the right",
+ "tags": [
+  "temporal-oscillation",
+  "diffusion-language-model",
+  "iterative-denoising",
+  "intermediate-predictions",
+  "empirical-gap",
+  "failure-case",
+  "decoding"
+ ],
+ "style": [
+  "plot",
+  "colorful",
+  "text-heavy"
+ ],
+ "description": "The left panel (a) is a 2x2 grid of grouped bar charts for GSM8K, MATH500, SVAMP and Countdown. Each chart has generation lengths 128, 256 and 512 on the x-axis and accuracy (%) on the y-axis. Each group has four bars. Dark blue and dark orange are final Pass@1 for LLaDA-8B-Instruct and LLaDA-1.5. Light blue and light orange are the taller EverPass@1|t bars for the same two models. A boxed legend sits underneath. The right panel (b) shows a bold math word problem about plants in a garden and the ground truth, 25. Below that, an extracted answer reads '25 → 2', with a green check over 25 and a red cross over 2. A row of squares for sampling steps 1, 55, 56, 57 and 64 is colored red, green or red. A purple arrow labeled 'Sampling Process' runs underneath.",
+ "caption": "Illustration of temporal oscillation during sampling. (a) Across four datasets, a significant gap is observed between the final answer's pass rate (denoted as $\\operatorname{Pass} @ 1$) and the ever-pass rate at any intermediate step (denoted as $\\operatorname{EverPass} @ 1 \\mid t$). This gap reveals the phenomenon we refer to as temporal oscillation, where correct intermediate answers are sometimes overwritten as the generation proceeds. (b) Example of temporal oscillation: For a given math problem, the model initially gives the correct answer, 25, at an intermediate step (\\eg, step 55), aligning with the ground truth. However, by the final step, this correct answer is replaced with an incorrect one: 2.",
+ "caption_source": "latex",
+ "abstract": "Diffusion large language models (dLLMs) generate text through iterative denoising, yet current decoding strategies discard rich intermediate predictions in favor of the final output. Our work here reveals a critical phenomenon, temporal oscillation, where correct answers often emerge in the middle process, but are overwritten in later denoising steps. To address this issue, we introduce two complementary methods that exploit temporal consistency: 1) Temporal Self-Consistency Voting, a training-free, test-time decoding strategy that aggregates predictions across denoising steps to select the most consistent output; and 2) a post-training method termed Temporal Consistency Reinforcement, which uses Temporal Semantic Entropy (TSE), a measure of semantic stability across intermediate predictions, as a reward signal to encourage stable generations. Empirical results across multiple benchmarks demonstrate the effectiveness of our approach. Using the negative TSE reward alone, we observe a remarkable average improvement of 24.7% on the Countdown dataset over an existing dLLM. Combined with the accuracy reward, we achieve absolute gains of 2.0% on GSM8K, 4.3% on MATH500, 6.6% on SVAMP, and 25.3% on Countdown, respectively. Our findings underscore the untapped potential of temporal dynamics in dLLMs and offer two simple yet effective tools to harness them.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=HsB6CtagP7",
+  "arxiv": "https://arxiv.org/abs/2508.09138",
+  "pdf": "https://arxiv.org/pdf/2508.09138",
+  "virtual": "https://iclr.cc/virtual/2026/poster/10010359",
+  "code": null
+ },
+ "license": "http://arxiv.org/licenses/nonexclusive-distrib/1.0/",
+ "img": "none",
+ "image_url": null,
+ "thumb_url": null,
+ "figure_page": 1,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.85
+}

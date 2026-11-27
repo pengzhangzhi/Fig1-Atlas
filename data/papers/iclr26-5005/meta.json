@@ -15,23 +15,23 @@
  "topic": "Applications->Health",
  "role": "pipeline",
  "role2": "overview-framework",
- "claim": "A closed loop where an LLM, given prior knowledge and memory of past designs, proposes candidates that are evaluated and fed back for iterative optimization.",
- "layout": "2 regions: left circular loop with lettered steps (a)-(d) clockwise; right two stacked legend boxes detailing LEON components and LLM context",
+ "claim": "A closed loop of prompting an LLM with knowledge and history, proposing candidates, scoring them with a principled evaluator, and caching results, drives personalized optimization.",
+ "layout": "2 regions: left cyclic loop with 4 lettered arrows (a-d) around Memory, LLM, Design Batch and LEON; right two stacked boxes detailing LEON components and LLM context",
  "tags": [
-  "iterative-optimization",
-  "llm-as-optimizer",
-  "feedback-loop",
-  "prior-knowledge",
   "black-box-optimization",
+  "llm-as-optimizer",
+  "iterative-loop",
+  "prompting",
   "zero-shot",
-  "personalized-medicine"
+  "personalized-medicine",
+  "domain-knowledge"
  ],
  "style": [
   "icon-heavy",
   "colorful",
   "minimal"
  ],
- "description": "The left side shows a cycle of four labeled steps. A memory box (database icon) feeds input (a) to an LLM box with a robot icon. The LLM proposes (b) a Design Batch, shown with pill icons. The batch is evaluated (c) by a LEON box with a network icon, and the results are saved (d) back to Memory. Curved black arrows connect the nodes. Pastel boxes are color-coded: pink for memory, green for LLM, peach for the batch, blue for LEON. The right side has two framed panels. The blue LEON panel lists OOD Evaluation, Adversarial Source Critic Feedback and Design Entropy, each with an icon. The green LLM Context panel lists Medical Prior Knowledge (textbooks, PubMed, specialist LLMs) and Patient-Level Data (tumor mutations, medical history, gene expression). The eye goes first to the loop on the left.",
+ "description": "The left half shows a circular workflow with four lettered curved arrows. Memory (pink box, database icon) feeds input (a) to an LLM (green box, robot icon). The LLM proposes (b) a Design Batch (orange box, pill icons). The batch is evaluated (c) by LEON (blue box, network-graph icon), and results are saved (d) back to Memory. A gear/chart icon sits in the center. The right half has two stacked outlined panels with colored title tabs. The blue LEON panel lists three components with icons: OOD Evaluation (f(x) curve), Adversarial Source Critic Feedback (opposing blue and red arrows), and Design Entropy (overlapping distributions). The green LLM Context panel lists Medical Prior Knowledge (textbooks, PubMed, specialist LLMs, with a bookshelf icon) and Patient-Level Data (tumor mutations, medical history, gene expression, with a test-tube icon). The eye goes first to the cycle on the left.",
  "caption": "LLM-based Entropy-guided Optimization with kNowledgeable priors (\\ourmethod). We use LLMs as zero-shot conditional optimizers to propose personalized treatment designs at the patient level. (a) The LLM is prompted with prior knowledge and the history of previously proposed designs and their predicted scores to (b) propose a new batch of designs. (c) These candidates are evaluated using {\\ourmethod}, and then (d) cached as context to the LLM in subsequent iterations.",
  "caption_source": "latex",
  "abstract": "The goal of personalized medicine is to discover a treatment regimen that optimizes a patient's clinical outcome based on their personal genetic and environmental factors. However, candidate treatments cannot be arbitrarily administered to the patient to assess their efficacy; we often instead have access to an in silico surrogate model that approximates the true fitness of a proposed treatment. Unfortunately, such surrogate models have been shown to fail to generalize to previously unseen patient-treatment combinations. We hypothesize that domain-specific prior knowledge - such as medical textbooks and biomedical knowledge graphs - can provide a meaningful alternative signal of the fitness of proposed treatments. To this end, we introduce LLM-based Entropy-guided Optimization with kNowledgeable priors (LEON), a mathematically principled approach to leverage large language models (LLMs) as black-box optimizers without any task-specific fine-tuning, taking advantage of their ability to contextualize unstructured domain knowledge to propose personalized treatment plans in natural language. In practice, we implement LEON via 'optimization by prompting,' which uses LLMs as stochastic engines for proposing treatment designs. Experiments on real-world optimization tasks show LEON outperforms both traditional and LLM-based methods in proposing individualized treatments for patients.",

@@ -1,0 +1,49 @@
+{
+ "id": "iclr26-0387",
+ "title": "FlowCast: Advancing Precipitation Nowcasting with Conditional Flow Matching",
+ "authors": [
+  "Bernardo Perrone Ribeiro",
+  "Jana Faganeli Pucer"
+ ],
+ "venue": "ICLR 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "Applications->Climate",
+ "role": "pipeline",
+ "role2": null,
+ "claim": "A latent encoder feeds a U-Net-style stack of time-conditioned convolution and attention blocks that predicts a vector field, shown with block-level detail.",
+ "layout": "Main vertical stack on the left, input at top and output at bottom, with a skip connection. Two zoomed-in block diagrams on the right, with shapes labeled underneath.",
+ "tags": [
+  "architecture",
+  "latent-space",
+  "flow-matching",
+  "u-net",
+  "attention",
+  "spatiotemporal",
+  "time-conditioning"
+ ],
+ "style": [
+  "colorful",
+  "icon-heavy",
+  "math-heavy"
+ ],
+ "description": "A detailed architecture diagram. At top left, stacked radar frames (input) pass through a green trapezoid encoder labeled E, producing a blue latent volume. Beside it sits a noisy latent, with the interpolation formula Z_t = (1-t)Z_P + tZ_future above it. Both feed down into a vertical stack of white boxes: Observation Masking, Conv Block, 4x Time Conv + Cuboid Attn, Downsample, 4x Time Conv + Cuboid Attn, Upsample, 4x Time Conv + Cuboid Attn, Linear Layer. A dashed brown skip arrow links the first and last attention blocks. The output is a noisy-looking latent labeled v_theta. At right, two outlined boxes expand the Conv Block (GroupNorm, SiLU, Conv3D repeated) and the Time Conv Block, which adds a t~U(0,1) branch through SiLU and Linear into a summation node. Border colors mark the module types. Tensor shapes are written under the arrows.",
+ "caption": "The FlowCast architecture. A U-Net with Cuboid Attention blocks processes latent spatiotemporal data. Conditioning on the flow time $t$ enables the model to learn the time-dependent vector field for generating forecasts.",
+ "caption_source": "latex",
+ "abstract": "Radar-based precipitation nowcasting, the task of forecasting short-term precipitation fields from previous radar images, is a critical problem for flood risk management and decision-making. While deep learning has substantially advanced this field, two challenges remain fundamental: the uncertainty of atmospheric dynamics and the efficient modeling of high-dimensional data. Diffusion models have shown strong promise by producing sharp, reliable forecasts, but their iterative sampling process is computationally prohibitive for time-critical applications. We introduce FlowCast, the first end-to-end probabilistic model leveraging Conditional Flow Matching (CFM) as a direct noise-to-data generative framework for precipitation nowcasting. Unlike hybrid approaches, FlowCast learns a direct noise-to-data mapping in a compressed latent space, enabling rapid, high-fidelity sample generation. Our experiments demonstrate that FlowCast establishes a new state-of-the-art in probabilistic performance while also exceeding deterministic baselines in predictive accuracy. A direct comparison further reveals the CFM objective is both more accurate and significantly more efficient than a diffusion objective on the same architecture, maintaining high performance with significantly fewer sampling steps. This work positions CFM as a powerful and practical alternative for high-dimensional spatiotemporal forecasting.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=47ToW7T1iU",
+  "arxiv": "https://arxiv.org/abs/2511.09731",
+  "pdf": "https://arxiv.org/pdf/2511.09731",
+  "virtual": "https://iclr.cc/virtual/2026/poster/10011577",
+  "code": "https://github.com/b-rbmp/FlowCast"
+ },
+ "license": "http://creativecommons.org/licenses/by/4.0/",
+ "img": "cc-by",
+ "image_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/images/iclr26-0387.png",
+ "thumb_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/thumbs/iclr26-0387.webp",
+ "figure_page": 3,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.93
+}

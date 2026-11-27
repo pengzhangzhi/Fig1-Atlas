@@ -11,23 +11,22 @@
  "topic": "Deep Learning->Robustness",
  "role": "analysis-finding",
  "role2": null,
- "claim": "Aggregation outputs track set distances closely, with theoretical Lipschitz bounds holding only for matching pairs and being loose or uninformative for mismatched pairs.",
- "layout": "3x3 grid of scatter plots, rows are set distances and columns are aggregators, with dashed bound lines and r values in each panel",
+ "claim": "Aggregation functions are empirically bounded by their theoretical Lipschitz constants only under the matching set distance, and correlation with the distance varies by pairing.",
+ "layout": "3x3 grid of scatter plots; rows are set distances (EMD, matching, Hausdorff), columns are aggregators (mean, sum, max); dashed colored bound lines and r values in each panel",
  "tags": [
   "lipschitz-continuity",
-  "scatter-plot",
-  "correlation",
   "empirical-verification",
-  "permutation-invariance",
+  "scatter-plots",
+  "set-aggregation",
+  "correlation",
   "theoretical-bounds",
   "point-clouds"
  ],
  "style": [
   "plot",
-  "colorful",
-  "minimal"
+  "colorful"
  ],
- "description": "A 3x3 grid of scatter plots. Each panel shows blue dots, one per pair of ModelNet40 point clouds, with light dashed gridlines. Columns are aggregation functions: mean, sum and max. Rows are multiset distances: EMD, matching distance and Hausdorff distance. The x-axis is the multiset distance, such as d_EMD(X,Y). The y-axis is the Euclidean norm of the difference between the aggregated vectors, such as ||v_mean − u_mean||. Each panel has a dashed diagonal line for the theoretical Lipschitz bound, labelled with values like 1, M, 1/M or √d. The lines are red, blue or green. The correlation r is printed in the lower right of each panel. The mean and sum panels paired with EMD or matching distance form tight, nearly linear bands just under the bound line, with r near 0.98–0.99. The max panels are diffuse clouds with r around 0.67–0.74. The Hausdorff panels for mean and sum are wider clouds with r of 0.89.",
+ "description": "A 3x3 grid of scatter plots built from ModelNet40 point-cloud pairs. Columns correspond to the mean, sum and max aggregators. Rows correspond to the EMD, matching and Hausdorff set distances. In each panel, blue dots show the multiset distance on the x-axis against the Euclidean distance between the aggregated vectors on the y-axis. Dashed diagonal lines in red, blue or green mark the theoretical Lipschitz bound and are labeled, for example 'bound = 1', 'bound = M' or 'bound = √d'. The r correlation value sits in the bottom right of each panel. Dots hug the bound line tightly for mean/EMD, sum/EMD and sum/matching, giving r of about 0.98–0.99. The max column shows diffuse clouds with r of about 0.67–0.74, and a nearly vertical bound line far from the data. The Hausdorff row has wider scatter and no bound shown for mean or sum.",
  "caption": "Each dot corresponds to a pair of point clouds from the test set of ModelNet40. Each subfigure compares the distance between the latent representations of pairs of point clouds computed by a distance function for multisets (\\ie EMD, Hausdorff distance or matching distance) with the Euclidean distance between the representations of the pairs obtained after applying an aggregation function (\\ie mean, sum or max). The correlation between the two distances is also computed and visualized. The Lipschitz bounds are illustrated with dashed lines.",
  "caption_source": "latex",
  "abstract": "The Lipschitz constant of a neural network is connected to several important properties of the network such as its robustness and generalization. It is thus useful in many settings to estimate the Lipschitz constant of a model. Prior work has focused mainly on estimating the Lipschitz constant of multi-layer perceptrons and convolutional neural networks. Here we focus on data modeled as sets or multi-sets of vectors and on neural networks that can handle such data. These models typically apply some permutation invariant aggregation function, such as the sum, mean or max operator, to the input multisets to produce a single vector for each input sample. In this paper, we investigate whether these aggregation functions, along with an attention-based aggregation function, are Lipschitz continuous with respect to three distance functions for unordered multisets, and we compute their Lipschitz constants. In the general case, we find that each aggregation function is Lipschitz continuous with respect to only one of the three distance functions, while the attention-based function is not Lipschitz continuous with respect to any of them. Then, we build on these results to derive upper bounds on the Lipschitz constant of neural networks that can process multisets of vectors, while we also study their stability to perturbations and generalization under distribution shifts. To empirically verify our theoretical analysis, we conduct a series of experiments on datasets from different domains.",

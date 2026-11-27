@@ -1,0 +1,49 @@
+{
+ "id": "iclr26-3473",
+ "title": "Generative Diffusion Prior Distillation for Long-Context Knowledge Transfer",
+ "authors": [
+  "Nilushika Udayangani Hewa Dehigahawattage",
+  "Nandakishor Desai",
+  "Marimuthu Palaniswami"
+ ],
+ "venue": "ICLR 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "General Machine Learning->Transfer, Multitask and Meta-learning",
+ "role": "pipeline",
+ "role2": "prior-vs-ours",
+ "claim": "Treating student features as degraded observations restored by a learned generative prior gives each one many progressive teacher targets, where standard distillation gives one static target.",
+ "layout": "2 panels: (a) left-to-right block diagram with teacher branch on top and student branch below, (b) side-by-side node-graph contrast of KD vs GDPD on the right",
+ "tags": [
+  "knowledge-distillation",
+  "diffusion-prior",
+  "posterior-sampling",
+  "time-series",
+  "progressive-supervision",
+  "prior-vs-ours",
+  "feature-matching"
+ ],
+ "style": [
+  "minimal",
+  "text-heavy"
+ ],
+ "description": "The figure has two panels. Panel (a), on the left and about two-thirds of the width, is a boxes-and-arrows pipeline. The top row runs from full input X through a trapezoid teacher T to teacher features Z_t, then to an L_diffusion box that feeds a cylinder labeled Diffusion Prior P(φ). The bottom row runs from partial input X_e through a student S(θ) to features Z_s. Z_s passes through linear-weight boxes W, an F_fuse(Z_s, ε, α) block and a Q block. The result goes by a dotted arrow into the prior. The prior outputs a sampled ẑ_t ~ p(z_t | z_s), which goes to another W and then to L_GDPD. L_Task and L_GDPD are joined through a Y box. Dark vertical bars mark feature vectors. A legend sits below. Panel (b), on the right, uses node graphs. KD shows one green triangle teacher target linked to circles for the student across training steps. GDPD shows each student circle linked to several triangles, shaded from yellow to dark green to show progression. The captions are bold KD and GDPD, followed by short descriptions.",
+ "caption": "Depiction of (a) the proposed GDPD framework, and (b) a comparison of KD vs. GDPD. KD provides a single static teacher signal, whereas GDPD provides each student feature with a collection of diverse and progressive teacher signals over the course of training.",
+ "caption_source": "pdf",
+ "abstract": "While traditional time-series classifiers assume full sequences at inference, practical constraints (latency and cost) often limit inputs to partial prefixes. The absence of class-discriminative patterns in partial data can significantly hinder a classifier's ability to generalize. This work uses knowledge distillation (KD) to equip partial time series classifiers with the generalization ability of their full-sequence counterparts. In KD, high-capacity teacher transfers supervision to aid student learning on the target task. Matching with teacher features has shown promise in closing the generalization gap due to limited parameter capacity. However, when the generalization gap arises from training-data differences (full versus partial), the teacher's full-context features can be an overwhelming target signal for the student's short-context features. To provide progressive, diverse, and collective teacher supervision, we propose Generative Diffusion Prior Distillation (GDPD), a novel KD framework that treats short-context student features as degraded observations of the target full-context features. Inspired by the iterative restoration capability of diffusion models, we learn a diffusion-based generative prior over teacher features. Leveraging this prior, we posterior-sample target teacher representations that could best explain the missing long-range information in the student features and optimize the student features to be minimally degraded relative to these targets. GDPD provides each student feature with a distribution of task-relevant long-context knowledge, which benefits learning on the partial classification task. Extensive experiments across earliness settings, datasets, and architectures demonstrate GDPD's effectiveness for full-to-partial distillation.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=e5tepxQfE1",
+  "arxiv": "https://arxiv.org/abs/2605.11414",
+  "pdf": "https://arxiv.org/pdf/2605.11414",
+  "virtual": "https://iclr.cc/virtual/2026/poster/10008356",
+  "code": "https://github.com/hewadehigaha/GDPD_ICLR26"
+ },
+ "license": "http://creativecommons.org/licenses/by/4.0/",
+ "img": "cc-by",
+ "image_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/images/iclr26-3473.png",
+ "thumb_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/thumbs/iclr26-3473.webp",
+ "figure_page": 4,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.8
+}

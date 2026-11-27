@@ -1,0 +1,52 @@
+{
+ "id": "iclr26-4828",
+ "title": "FragFM: Hierarchical Framework for Efficient Molecule Generation via Fragment-Level Discrete Flow Matching",
+ "authors": [
+  "Joongwon Lee",
+  "Seonghwan Kim",
+  "Seokhyun Moon",
+  "Hyunwoo Kim",
+  "Woo Youn Kim"
+ ],
+ "venue": "ICLR 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "Applications->Chemistry and Drug Discovery",
+ "role": "pipeline",
+ "role2": null,
+ "claim": "A hierarchical method compresses structures into coarse units plus a latent, generates them with joint discrete and continuous flows, then decodes back to full detail.",
+ "layout": "2 stacked panels: (a) multi-row left-to-right pipeline with a fragment-bag box at top right, (b) decoder detail row below; arrows connect stages",
+ "tags": [
+  "pipeline",
+  "hierarchical",
+  "autoencoder",
+  "flow-matching",
+  "discrete-continuous",
+  "molecule-generation",
+  "coarse-to-fine"
+ ],
+ "style": [
+  "icon-heavy",
+  "colorful",
+  "math-heavy"
+ ],
+ "description": "Two-panel system diagram of the generation pipeline. Panel (a) top row: an atom-level molecule G goes into a teal trapezoid 'Coarse Graph Encoder', which produces a fragment graph G1 and a red latent vector z1. A 'Coarse Graph Decoder' then reconstructs the molecule. A blurred, crossed-out output shows what happens without the latent. At top right, an orange 'Full fragment bag F' box holds sampled sub-bags B, shown beside a frequency histogram. Middle row: green f_theta blocks step left to right from X0=(G0,z0) through Xt and Xt+Δt to X1. A discrete flow handles the fragment graph and a continuous flow handles z, with the bag B feeding each block from above. A final decoder outputs G. Panel (b) bottom: the decoder takes G1 and z1, predicts an edge-probability matrix, and Blossom picks the highest-scoring edge set. A green check marks the best option and a red cross marks the worse one. The eye goes first to the top-left teal blocks and the green f_theta blocks.",
+ "caption": "\\textbf{Overview of \\methodname{}}. (a) \\methodname{} utilizes a hierarchical framework of coarse-to-fine autoencoder ([ref]) and fragment-level graph flow matching ([ref]). An input atom-level graph ($G$) is initially decomposed via the fragmentation rule. This is then processed by a coarse-to-fine encoder, which compresses it into a joint representation $X=(\\mathcal{G},z)$ comprising a fragment-level graph $\\mathcal{G}$ and a latent vector $z$ designed to capture fine-grained atomistic connectivity information not explicitly present in $\\mathcal{G}$. During generation ([ref]), neural network $f_\\theta$ selects the most probable fragment from a fragment bag $\\mathcal{B}$, which is a stochastically sampled subset of the full fragment bag $\\mathcal{F}$. \\methodname{} then employs two flow-matching processes: (i) a discrete flow generates the target fragment-level graph $\\mathcal{G}_1$ from an initial $\\mathcal{G}_0$ (mask and uniform prior for node and edge, respectively), operating with fragments from $\\mathcal{B}$; (ii) a continuous flow generates the target latent vector $z_1$ from a Gaussian prior $\\mathcal{N}(0,1)$ (from an initial $z_0$). (b) Finally, given $(\\mathcal{G}_1, z_1)$, the coarse-to-fine decoder reconstructs the atom-level molecular graph by first predicting the probabilities of all possible atom-to-atom edges, and then applying the Blossom algorithm to select the edge set that maximizes the likelihood of the true graph. Further details and hyperparameters are described in [ref].",
+ "caption_source": "latex",
+ "abstract": "We introduce FragFM, a novel hierarchical framework via fragment-level discrete flow matching for efficient molecular graph generation. FragFM generates molecules at the fragment level, leveraging a coarse-to-fine autoencoder to reconstruct details at the atom level. Together with a stochastic fragment bag strategy to effectively handle a large fragment space, our framework enables more efficient, scalable molecular generation. We demonstrate that our fragment-based approach achieves better property control than the atom-based method and additional flexibility through conditioning the fragment bag. We also propose a Natural Product Generation benchmark (NPGen) to evaluate the ability of modern molecular graph generative models to generate natural product-like molecules. Since natural products are biologically prevalidated and differ from typical drug-like molecules, our benchmark provides a more challenging yet meaningful evaluation relevant to drug discovery. We conduct a comparative study of FragFM against various models on diverse molecular generation benchmarks, including NPGen, demonstrating superior performance. The results highlight the potential of fragment-based generative modeling for large-scale, property-aware molecular design, paving the way for more efficient exploration of chemical space.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=tr6vRn2aPg",
+  "arxiv": "https://arxiv.org/abs/2502.15805",
+  "pdf": "https://arxiv.org/pdf/2502.15805",
+  "virtual": "https://iclr.cc/virtual/2026/poster/10006947",
+  "code": "https://github.com/lee-jwon/FragFM?tab=readme-ov-file"
+ },
+ "license": "http://creativecommons.org/licenses/by-nc-sa/4.0/",
+ "img": "cc-by-nc-sa",
+ "image_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/images/iclr26-4828.png",
+ "thumb_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/thumbs/iclr26-4828.webp",
+ "figure_page": 3,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.93
+}

@@ -15,23 +15,23 @@
  "topic": "Applications->Climate",
  "role": "pipeline",
  "role2": null,
- "claim": "A compact multi-resolution network fuses sources at several scales and decodes all lead times jointly, keeping parameter count and compute low.",
- "layout": "4 colour-coded horizontal bands (4/8/16 km plus a 2 km output panel), left-to-right data flow with up/down-sampling arrows between bands, tensor channel counts in boxes",
+ "claim": "A compact multi-resolution network fuses inputs of different spatial scales through shared stages and decodes all lead-time outputs simultaneously in one pass.",
+ "layout": "4 horizontal colored bands stacked by resolution (4/8/16km plus 2km output panel), left-to-right flow with up/down-sampling arrows between bands and channel counts in boxes",
  "tags": [
   "multi-resolution",
-  "u-net-style",
+  "encoder-decoder",
   "multi-source-fusion",
   "efficiency",
   "forecasting",
-  "resnet",
-  "vision-transformer"
+  "resnet-vit",
+  "probabilistic-output"
  ],
  "style": [
   "colorful",
-  "minimal",
-  "text-heavy"
+  "text-heavy",
+  "minimal"
  ],
- "description": "A block diagram of a multi-scale encoder-decoder. Three horizontal bands are shaded blue (4 km), green (8 km) and yellow (16 km). A fourth purple panel at the lower right shows the 2 km output. Each band has input source tensors drawn as tall rounded rectangles with channel counts (256, 192, 96). Arrows lead through labelled operations: Stack & Embed, Merge, Center crop, Concat, 2x ResNet and 12x MaxViT blocks. Downsample arrows go down from one band to the next. Upsample arrows go back up along the right side. The blue top band ends in a 128-channel tensor. That tensor feeds a final layer that produces a row of 256-channel output maps, labelled T+10m through T+8h. A rounded box at the bottom gives the output tensor shape and the conditional exceedance-probability formula. The eye goes first to the coloured bands and the arrow flow.",
+ "description": "A dense architecture diagram split into four horizontal bands, each tinted a different color: blue for 4km, green for 8km, yellow for 16km. A purple panel at right holds the 2km output. Tall rounded rectangles show tensor channel counts (256, 192, 128, 96, 48) as vertical digits. Arrows run left to right through operations labelled Stack & Embed, Center crop with km² sizes, Merge, Concat, 2x ResNet, 12x MaxViT blocks, Downsample 2x and Upsample x2. Vertical arrows link the bands, with downsampling going toward coarser levels and upsampling coming back up. At the far right a row of output tensors runs from T+10m to T+8h, with a brace beneath leading to a rounded box that gives the output tensor shape and the conditional probability formula. Resolution labels are rotated along the left edge.",
  "caption": "RainPro-8 architecture, optimized for reduced parameter count and efficiency, integrating multiple data sources of varying resolution for simultaneous prediction of all lead times.",
  "caption_source": "latex",
  "abstract": "We present a deep learning model for high-resolution probabilistic precipitation forecasting over an 8-hour horizon in Europe, overcoming the limitations of radar-only deep learning models with short forecast lead times. Our model efficiently integrates multiple data sources - including radar, satellite, and physics-based numerical weather prediction (NWP) - while capturing long-range interactions, resulting in accurate forecasts with robust uncertainty quantification through consistent probabilistic maps. Featuring a compact architecture, it enables more efficient training and faster inference than existing models. Extensive experiments demonstrate that our model surpasses current operational NWP systems, extrapolation-based methods, and deep-learning nowcasting models, setting a new standard for high-resolution precipitation forecasting in Europe, ensuring a balance between accuracy, interpretability, and computational efficiency.",

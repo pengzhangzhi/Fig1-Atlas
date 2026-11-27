@@ -1,0 +1,52 @@
+{
+ "id": "iclr26-2917",
+ "title": "Parallel Sampling from Masked Diffusion Models via Conditional Independence Testing",
+ "authors": [
+  "Iskander Azangulov",
+  "Teodora Pandeva",
+  "Niranjani Prasad",
+  "Javier Zazo",
+  "Sushrut Karmalkar"
+ ],
+ "venue": "ICLR 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "Deep Learning->Generative Models and Autoencoders",
+ "role": "pipeline",
+ "role2": null,
+ "claim": "Parallel unmasking is made safe by recursively partitioning confidence-ranked tokens and testing each partition's dependence on an anchor set, keeping only independent ones.",
+ "layout": "3 parts, left-to-right: binary partition tree at left, central row-by-row token grid read top to bottom, and stacked orange distribution panels at right linked by arrows",
+ "tags": [
+  "parallel-sampling",
+  "masked-diffusion",
+  "conditional-independence",
+  "recursive-partitioning",
+  "discrete-generation",
+  "inference-efficiency",
+  "step-by-step-example"
+ ],
+ "style": [
+  "colorful",
+  "text-heavy",
+  "minimal"
+ ],
+ "description": "The figure walks through one PUNT iteration on a four-token sentence. On the left, a binary tree splits the index set [1,2,3,4] into [1,2] and [3,4], then into singletons. Green nodes mark anchor sets and white nodes mark test sets. The centre is a vertical stack of token rows, each labelled in grey: Input, Sample candidates, Compute confidence, Apply mask, Test, and Output. Tokens such as 'requires', 'mince', 'the' and 'egg' carry circled confidence ranks. Pink tokens are masked or rejected, green are anchors and blue are kept. Green check marks and a red cross show test outcomes. On the right, three beige panels show bar charts of the conditional distributions over garlic, onion, beef and egg. Arrows link each test to its panel. The eye goes first to the coloured token grid.",
+ "caption": "Illustration of one iteration of PUNT on 4 masked tokens, which consists of $\\log_2 4 = 2$ tests. Left: A binary tree representing the recursive partitioning. Each level corresponds to a single parallel test in the iterative algorithm. Right: In each round, confidence-ordered tokens (circled numbers) are partitioned into \"anchor\" (green) and \"test\" sets. Test tokens that are dependent on the anchor set are rejected (red), while independent ones (blue) are kept.",
+ "caption_source": "latex",
+ "abstract": "Masked diffusion models (MDMs) offer a compelling alternative to autoregressive models (ARMs) for discrete text generation because they enable parallel token sampling, rather than sequential, left-to-right generation. This means potentially much faster inference. However, effective parallel sampling faces two competing requirements: (i) simultaneously updated tokens must be conditionally independent, and (ii) updates should prioritise high-confidence predictions. These goals conflict because high-confidence predictions often cluster and depend on each other, opportunities for parallel updates. We present PUNT, a model-agnostic sampler that reconciles this trade-off. Our method identifies token dependencies and removes lower-confidence tokens from conflicting groups. This produces sets of indices for unmasking that satisfy both independence and confidence criteria. Our approach ensures improved parallel unmasking through approximate conditional independence testing. Our experiments show that PUNT delivers a superior trade-off between accuracy and compute when compared to other strong training-free baselines, especially for generation of longer sequences. On the IFEval benchmark, it achieves up to 16\\% higher accuracy over baseline methods, including sequential generation (one-by-one). These gains hold across different values of hyperparameters, mitigating the need for brittle hyperparameter tuning. Moreover, we observe that PUNT induces an emergent hierarchical generation strategy, where the model first establishes high-level paragraph structure before local refinement, suggesting a planning-like generation process that contributes to strong alignment performance.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=XjcHRIu0iF",
+  "arxiv": "https://arxiv.org/abs/2510.21961",
+  "pdf": "https://arxiv.org/pdf/2510.21961",
+  "virtual": "https://iclr.cc/virtual/2026/poster/10008944",
+  "code": null
+ },
+ "license": "http://creativecommons.org/licenses/by/4.0/",
+ "img": "cc-by",
+ "image_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/images/iclr26-2917.png",
+ "thumb_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/thumbs/iclr26-2917.webp",
+ "figure_page": 4,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.9
+}

@@ -1,0 +1,51 @@
+{
+ "id": "iclr26-3461",
+ "title": "SparseD: Sparse Attention for Diffusion Language Models",
+ "authors": [
+  "Zeqing Wang",
+  "Gongfan Fang",
+  "Xinyin Ma",
+  "Xingyi Yang",
+  "Xinchao Wang"
+ ],
+ "venue": "ICLR 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "Deep Learning->Generative Models and Autoencoders",
+ "role": "analysis-finding",
+ "role2": null,
+ "claim": "Attention patterns in each head stay highly similar across generation steps while differing between heads, revealing structure that can be reused instead of recomputed.",
+ "layout": "3x4 grid of heatmaps; rows are heads, columns are steps 1, 15, 30 plus a cross-step similarity matrix; colorbar beside each panel",
+ "tags": [
+  "attention-sparsity",
+  "diffusion-language-models",
+  "cross-step-similarity",
+  "head-specific-patterns",
+  "heatmap",
+  "efficiency",
+  "empirical-observation"
+ ],
+ "style": [
+  "plot",
+  "colorful"
+ ],
+ "description": "A 3-row by 4-column grid of heatmaps. Each row is a different attention head: Layer0-Head0, Layer3-Head30 and Layer20-Head0. The first three columns show attention score matrices at denoising steps 1, 15 and 30. Their axes are query token index and key token index. Dark purple backgrounds carry bright yellow or green structure: a diagonal in rows 1 and 3, and vertical stripes in row 2. A thin red vertical line marks the boundary between prefill and generation tokens. The fourth column shows cross-step similarity matrices, with generation steps on both axes and a red diagonal. These are mostly bright yellow, which means the patterns are very similar across steps. Each panel has a viridis colorbar. Captions (a) step1, (b) step15, (c) step30 and (d) similarity sit below the columns. The eye goes first to the diagonal lines and the yellow similarity maps.",
+ "caption": "Attention score across denoising steps using LLaDA-1.5 ($l=78$, $T=32$, $block\\_length=32$). Rows correspond to different attention heads. Red lines divide key tokens in prefill and generation tokens. The result shows pronounced similarity across denoising steps. More visualized attention patterns from different DLMs are provided in the Appendix [ref].",
+ "caption_source": "latex",
+ "abstract": "While diffusion language models (DLMs) offer a promising alternative to autoregressive models (ARs), existing open-source DLMs suffer from high inference latency. This bottleneck is mainly due to the attention's quadratic complexity with respect to context length in computing all query-key pairs. Intuitively, to reduce this complexity, a natural strategy is to restrict attention to sparse patterns that retain only the most relevant connections. Such approaches are well-established in ARs, where attention follows fixed and clearly defined sparse patterns. However, in DLMs, we observe distinct sparsity behaviors: (1) attention patterns vary across heads, (2) attention patterns in each head remain highly similar across denoising steps, and (3) early denoising steps are critical for generation. These findings render sparse attention methods designed for ARs largely incompatible with DLMs, as they fail to capture head-specific structures and risk degrading generation when applied in early denoising steps. To address these challenges, we propose SparseD, a novel sparse attention method for DLMs. Leveraging the observations, SparseD only requires pre-computing head-specific sparse patterns one time, and reuses them across all steps. This prevents recomputing sparse patterns at each denoising step. Meanwhile, SparseD uses full attention in the early steps, then switches to sparse attention later to maintain generation quality. Together, these establish SparseD as a practical and efficient solution for deploying DLMs in long-context applications. Experimental results demonstrate that SparseD achieves lossless acceleration, delivering up to $1.50\\times$ speedup over FlashAttention at a 64k context length with 1,024 denoising steps.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=dwbrZtYP04",
+  "arxiv": "https://arxiv.org/abs/2509.24014",
+  "pdf": "https://arxiv.org/pdf/2509.24014",
+  "virtual": "https://iclr.cc/virtual/2026/poster/10008368",
+  "code": "https://github.com/INV-WZQ/SparseD"
+ },
+ "license": "http://creativecommons.org/licenses/by/4.0/",
+ "img": "cc-by",
+ "image_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/images/iclr26-3461.png",
+ "thumb_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/thumbs/iclr26-3461.webp",
+ "figure_page": 3,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.93
+}

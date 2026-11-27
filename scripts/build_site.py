@@ -5,7 +5,12 @@ import json, shutil, sys
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent.parent
-OUT = Path(sys.argv[1]) if len(sys.argv) > 1 else ROOT / "_site"
+import argparse
+ap = argparse.ArgumentParser()
+ap.add_argument("out", nargs="?", default=str(ROOT / "_site"))
+ap.add_argument("--local-images", help="preview build: copy <id>.webp/.png from this dir and link them relatively")
+A = ap.parse_args()
+OUT = Path(A.out)
 REPO_URL = "https://github.com/pengzhangzhi/Fig1-Atlas"
 SITE_URL = "https://pengzhangzhi.github.io/Fig1-Atlas"
 
@@ -17,6 +22,22 @@ recs = []
 for line in open(ROOT / "data" / "index.jsonl"):
     r = json.loads(line)
     m = json.loads((ROOT / "data" / "papers" / r["id"] / "meta.json").read_text())
+    if A.local_images and m["image_url"]:
+        (OUT / "img").mkdir(exist_ok=True)
+        for ext, key in ((".webp", "thumb_url"), (".png", "image_url")):
+            src = Path(A.local_images) / f"{r['id']}{ext}"
+            if src.exists():
+                if ext == ".png":   # keep the preview small: re-encode the full image as WebP
+                    from_ = src
+                    dst = OUT / "img" / f"{r['id']}_full.webp"
+                    try:
+                        from PIL import Image
+                        Image.open(from_).save(dst, quality=85)
+                        m[key] = f"img/{dst.name}"
+                    except ImportError:
+                        shutil.copy(from_, OUT / "img" / from_.name); m[key] = f"img/{from_.name}"
+                else:
+                    shutil.copy(src, OUT / "img" / src.name); m[key] = f"img/{src.name}"
     (OUT / "p" / f"{r['id']}.json").write_text(json.dumps(m, ensure_ascii=False))
     recs.append({**r, "style": m["style"], "thumb_url": m["thumb_url"], "image_url": m["image_url"], "conf": m.get("role_confidence")})
 (OUT / "index.json").write_text(json.dumps(recs, ensure_ascii=False, separators=(",", ":")))

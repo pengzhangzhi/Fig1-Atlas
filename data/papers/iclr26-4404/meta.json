@@ -1,0 +1,51 @@
+{
+ "id": "iclr26-4404",
+ "title": "Self-Speculative Masked Diffusions",
+ "authors": [
+  "Andrew Campbell",
+  "Valentin De Bortoli",
+  "Jiaxin Shi",
+  "Arnaud Doucet"
+ ],
+ "venue": "ICLR 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "Deep Learning->Generative Models and Autoencoders",
+ "role": "pipeline",
+ "role2": null,
+ "claim": "A hybrid non-causal then causal transformer, joined by a permutation and residual connections, yields non-factorized predictions over masked positions in a single forward pass.",
+ "layout": "1 wide panel, left-to-right data flow through two tall transformer blocks with a permutation block between them, per-token rows, ordering strip below, legend box at bottom",
+ "tags": [
+  "speculative-decoding",
+  "masked-diffusion",
+  "transformer-architecture",
+  "non-causal-causal",
+  "permutation-ordering",
+  "efficiency",
+  "discrete-generative"
+ ],
+ "style": [
+  "colorful",
+  "math-heavy",
+  "icon-heavy"
+ ],
+ "description": "A single wide architecture diagram that reads left to right. Six rows hold the tokens of the sentence 'Speculation is like hazarding a guess', some replaced by <mask>. Each row passes through a small embedding box (blue for real tokens, grey for mask) concatenated with a pink position-encoding box. The rows then enter a tall grey 'Non-Causal Transformer' that outputs light-green hidden states. These go into a white 'Permutation' block, driven by a yellow strip of ordering boxes σ(1)=6 … σ(6)=1 below it. The permuted rows combine hidden states, embeddings and positions and enter a grey 'Causal Transformer'. Dark-green causal states are added to light-green non-causal states through a residual connection. Outputs are labelled with probability formulas, and two rows end in crosses. A legend box at the bottom explains the symbols and colours.",
+ "caption": "Hybrid non-causal/causal transformer during training on the sentence \"Speculation is like hazarding a guess\" which is partially corrupted in the ordering given by $\\sigma(1:6)=[6,5,2,4,3,1]$. We always mask the final elements in the sequence, here the final $3$ elements in the sequence, $[4,3,1]$. At inference time, the causal transformer uses draft tokens rather than real tokens. Empty circles represent concatenation whilst circles with a plus represent addition.",
+ "caption_source": "latex",
+ "abstract": "We present self-speculative masked diffusions, a new class of masked diffusion generative models for discrete data that require significantly fewer function evaluations to generate samples. Standard masked diffusion models predict factorized logits over currently masked positions. A number of masked positions are then sampled, however, the factorization approximation means that sampling too many positions in one go leads to poor sample quality. As a result, many simulation steps and therefore neural network function evaluations are required to generate high-quality data. We reduce the computational burden by generating non-factorized predictions over masked positions. This is achieved by modifying the final transformer attention mask from non-causal to causal, enabling draft token generation and parallel validation via a novel, model-integrated speculative sampling mechanism. This results in a non-factorized predictive distribution over masked positions in a single forward pass. We apply our method to GPT2 scale text modelling and protein sequence generation, finding that we can achieve a ~2x reduction in the required number of network forward passes relative to standard masked diffusion models.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=ogMTEtHO6M",
+  "arxiv": "https://arxiv.org/abs/2510.03929",
+  "pdf": "https://arxiv.org/pdf/2510.03929",
+  "virtual": "https://iclr.cc/virtual/2026/poster/10007386",
+  "code": null
+ },
+ "license": "http://arxiv.org/licenses/nonexclusive-distrib/1.0/",
+ "img": "none",
+ "image_url": null,
+ "thumb_url": null,
+ "figure_page": 3,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.93
+}

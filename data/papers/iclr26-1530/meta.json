@@ -11,22 +11,22 @@
  "topic": "Computer Vision->Image and Video Generation",
  "role": "analysis-finding",
  "role2": null,
- "claim": "The spread of Hessian eigenvalues stays near zero through most of denoising and grows sharply at low noise, showing the log-probability becomes anisotropic late.",
- "layout": "single line plot with shaded band, timestep on x-axis running from 50 down to 0, eigenvalue on y-axis, title above",
+ "claim": "The spread of Hessian eigenvalues stays near zero through most of denoising and grows sharply only at low noise, which shows the log-probability is anisotropic there.",
+ "layout": "single panel line plot with shaded band, x-axis timestep reversed from 50 to 0, symmetric around zero",
  "tags": [
-  "anisotropy",
-  "hessian-eigenvalues",
   "diffusion",
-  "denoising-dynamics",
   "memorization",
-  "empirical-trend",
-  "low-noise-regime"
+  "hessian-eigenvalues",
+  "anisotropy",
+  "denoising-dynamics",
+  "log-probability",
+  "empirical-trend"
  ],
  "style": [
   "plot",
   "minimal"
  ],
- "description": "A single matplotlib-style plot titled 'Variance of Eigenvalues for conditional log-probability'. The x-axis is Timestep, running from 50 on the left to 0 on the right, so denoising moves left to right. The y-axis is Eigenvalue, from -0.06 to 0.06. A purple center line sits at zero. Around it is a translucent purple shaded band showing eigenvalue spread. The band is almost flat and very narrow from timestep 50 to about 10, with a tiny bump near 35. In the last few steps it widens quickly into a funnel, reaching about ±0.06 at timestep 0. The eye goes first to the flared right edge, where the spread blows up. There is no legend and no second series, and the plot is monochrome purple on a white background.",
+ "description": "A single matplotlib-style plot titled 'Variance of Eigenvalues for conditional log-probability'. The x-axis is Timestep, running from 50 on the left to 0 on the right, so it follows denoising order. The y-axis is Eigenvalue, from -0.06 to 0.06. A purple line sits at zero. Around it is a translucent purple band that is almost flat and thin from timestep 50 to about 10. A small bump appears near timestep 35. Past about timestep 10 the band widens, then flares into a sharp funnel at timestep 0 and reaches roughly ±0.06. The eye goes first to the flared right edge. There is no legend, no annotations and no comparison curves. Colors are limited to purple and white, with black axes.",
  "caption": "Variance of eigenvalues of the Hessian during denoising.",
  "caption_source": "latex",
  "abstract": "Diffusion-based image generative models produce high-fidelity images through iterative denoising but remain vulnerable to memorization, where they unintentionally reproduce exact copies or parts of training images. Recent memorization detection methods are primarily based on the norm of score difference as indicators of memorization. We prove that such norm-based metrics are mainly effective under the assumption of isotropic log-probability distributions, which generally holds at high or medium noise levels. In contrast, analyzing the anisotropic regime reveals that memorized samples exhibit strong angular alignment between the guidance vector and unconditional scores in the low-noise setting. Through these insights, we develop a memorization detection metric by integrating isotropic norm and anisotropic alignment. Our detection metric can be computed directly on pure noise inputs via two conditional and unconditional forward passes, eliminating the need for costly denoising steps. Detection experiments on Stable Diffusion v1.4 and v2 show that our metric outperforms existing denoising-free detection methods while being at least approximately 5x faster than the previous best approach. Finally, we demonstrate the effectiveness of our approach by utilizing a mitigation strategy that adapts memorized prompts based on our developed metric. The code is available at https://github.com/rohanasthana/memorization-anisotropy .",
@@ -44,5 +44,5 @@
  "figure_page": 4,
  "qc_flags": [],
  "annotator": "claude-cli:sonnet",
- "role_confidence": 0.85
+ "role_confidence": 0.8
 }

@@ -1,0 +1,50 @@
+{
+ "id": "iclr26-1449",
+ "title": "Soft-Masked Diffusion Language Models",
+ "authors": [
+  "Michael Hersche",
+  "Samuel Moor-Smith",
+  "Thomas Hofmann",
+  "Abbas Rahimi"
+ ],
+ "venue": "ICLR 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "Deep Learning->Generative Models and Autoencoders",
+ "role": "prior-vs-ours",
+ "role2": "problem-setup",
+ "claim": "Standard binary masking discards predictions for retained masks and commits errors; soft-masking carries top-k candidate information forward, yielding a correct output in fewer steps.",
+ "layout": "2 panels side by side, token grids reading top-to-bottom as decoding iterations, a vertical arrow at left, and a final response row at the bottom",
+ "tags": [
+  "masked-diffusion",
+  "soft-masking",
+  "iterative-decoding",
+  "language-models",
+  "code-generation",
+  "efficiency",
+  "prior-vs-ours"
+ ],
+ "style": [
+  "minimal",
+  "colorful"
+ ],
+ "description": "Two token-grid panels compare decoding of a code prompt, 'def add(a, b):\\n'. Panel (a), 'Decoding with binary masking', has seven rows. Each row is a line of rounded token boxes. The left six are prompt tokens. The right six begin as solid black masks and are revealed one or two at a time as the rows go down. A black arrow labeled 'Decoding iterations' runs down the left side, with 'Prompt' at the top and 'Response' at the bottom. The final row is green, except for one red box with '-', which marks a wrong token. Panel (b), 'This work: Decoding with soft-masking', has only four rows. Its remaining masks are gray boxes that show blurred, overlaid candidate tokens in red and blue, such as '\\n', 'urn', 'and' and '&'. Its final row is all green and correct, ending in 'a + b'. The eye goes first to the red error in (a) and then to the shorter, all-green (b).",
+ "caption": "Illustrative answer generation using masked diffusion language models (MDLMs) via iterative decoding with (a) standard binary masking or (b) our proposed soft-masking. Our soft-masking enriches the feedback for the next decoding step by superposing the masked tokens with the previously predicted top-$k$ candidates, enabling more accurate and faster generation.",
+ "caption_source": "latex",
+ "abstract": "Diffusion models have demonstrated strong potential in language modeling, offering various advantages over traditional autoregressive approaches. Their ability to generate and revise entire responses in parallel enables faster generation and built-in self-correction mechanisms. Most modern diffusion-based language models employ masked diffusion, where decoding involves iteratively processing masked tokens based on a binary decision: either retaining the mask or replacing it with the predicted token. However, this binary choice discards valuable predictive information when the mask is retained. To address this limitation, we introduce soft-masking (SM), a novel method that dynamically blends the embedding of the mask token with the embeddings of the top-k predicted tokens from the previous decoding step, for each retained mask. This provides the model with a more informative prior, preserving context from earlier computations and allowing partial information about masked tokens to propagate beyond a single step. We propose a training methodology that efficiently adapts masked diffusion language models to incorporate SM. We demonstrate that training a 169M parameter model from scratch with SM yields superior perplexity and MAUVE scores compared to binary masking baselines. Similarly, a pretrained model can be enhanced with SM through continued pretraining. Finally, we finetune two state-of-the-art diffusion models, Dream-7B and Dream-Coder-7B, with SM. SM consistently improves performance across multiple coding benchmarks, particularly in high-throughput settings. The code is available at https://github.com/IBM/soft-masked-diffusion-language-models.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=Gba02UMvrG",
+  "arxiv": "https://arxiv.org/abs/2510.17206",
+  "pdf": "https://arxiv.org/pdf/2510.17206",
+  "virtual": "https://iclr.cc/virtual/2026/poster/10010474",
+  "code": null
+ },
+ "license": "http://creativecommons.org/licenses/by/4.0/",
+ "img": "cc-by",
+ "image_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/images/iclr26-1449.png",
+ "thumb_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/thumbs/iclr26-1449.webp",
+ "figure_page": 0,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.9
+}

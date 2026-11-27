@@ -18,22 +18,23 @@
  "topic": "Computer Vision->Image and Video Generation",
  "role": "pipeline",
  "role2": "teaser-result",
- "claim": "Conditioning on recent frames for temporal continuity and on projected static geometry for spatial consistency lets a model generate future video along a user-specified camera path.",
- "layout": "Film-strip rows on top and bottom with a point-cloud panel at lower left; four numbered steps flow top to bottom, with colored boxes and gray arrows.",
+ "claim": "Conditioning on both recent frames for temporal continuity and projected static geometry for spatial consistency lets a model generate future video along a user-specified camera path.",
+ "layout": "Single wide panel: film strip on top, point cloud with camera trajectories at lower left, numbered steps 1-4 flowing to condition and output strips at lower right, with red dashed boxes marking consistency regions",
  "tags": [
   "video-generation",
   "camera-control",
   "scene-consistency",
   "point-cloud",
   "spatio-temporal-conditioning",
-  "static-geometry-memory",
+  "3d-memory",
   "long-video"
  ],
  "style": [
   "photo/real data",
-  "colorful"
+  "colorful",
+  "icon-heavy"
  ],
- "description": "The top row is a film strip labeled Input Video, followed by a bracketed GT Future Video. It shows a man cooking in a kitchen. A blue box marks the last few input frames, and red dashed boxes mark a region that is revisited later. Step 1, at lower left, lifts a colored 3D point cloud of the static kitchen from the input video. Blue camera frustums trace the input camera trajectory. Green frustums trace a user-specified trajectory. Steps 2 and 3, labeled in blue and green, feed the Condition strip. It holds the blue-boxed recent frames and green-boxed warped renderings of the point cloud, with the person masked out in black. Step 4, Generate!, leads to the Ours strip, a full future video that matches the scene, with the red box again marking the revisited region. The color coding links each text label to its matching frames.",
+ "description": "A wide teaser figure on a kitchen video of a man cooking. The top shows a film strip split into 'Input Video' and 'GT Future Video'. The last few input frames sit in a blue box. Below left, a textured static point cloud is lifted from the scene (step 1). Blue camera icons mark the input trajectory and green icons mark the user-specified trajectory. At lower right, the middle row, labeled 'Condition', has blue-boxed recent frames (step 2, temporal consistency) beside green-boxed point-cloud renders with black masked dynamic regions (step 3, spatial consistency). A gray arrow labeled 'Generate!' (step 4) leads to the 'Ours' output strip labeled 'Future Video'. Red dashed boxes track the same background region across the point cloud, the ground truth and the output. Blue and green color-coding ties each text label to its frames.",
  "caption": "Teaser. Our framework generates the next video chunk that follows a user-specified camera trajectory while maintaining scene consistency. Our dual spatio-temporal conditioning jointly leverages the last few frames to ensure temporal continuity and the rendered point cloud to enforce spatial consistency.",
  "caption_source": "latex",
  "abstract": "We present 3DScenePrompt, a framework that generates the next video chunk from arbitrary-length input while enabling precise camera control and preserving scene consistency. Unlike methods conditioned on a single image or a short clip, we employ dual spatio-temporal conditioning that reformulates context-view referencing across the input video. Our approach conditions on both temporally adjacent frames for motion continuity and spatially adjacent content for scene consistency. However, when generating beyond temporal boundaries, directly using spatially adjacent frames would incorrectly preserve dynamic elements from the past. We address this by introducing a 3D scene memory that represents exclusively the static geometry extracted from the entire input video. To construct this memory, we leverage dynamic SLAM with our newly introduced dynamic masking strategy that explicitly separates static scene geometry from moving elements. The static scene representation can then be projected to any target viewpoint, providing geometrically consistent warped views that serve as strong 3D spatial prompts while allowing dynamic regions to evolve naturally from temporal context. This enables our model to maintain long-range spatial coherence and precise camera control without sacrificing computational efficiency or motion realism. Extensive experiments demonstrate that our framework significantly outperforms existing methods in scene consistency, camera controllability, and generation quality. Project page : https://cvlab-kaist.github.io/3DScenePrompt/",

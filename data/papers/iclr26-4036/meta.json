@@ -19,22 +19,23 @@
  "topic": "Applications->Language, Speech and Dialog",
  "role": "pipeline",
  "role2": null,
- "claim": "A dual-stream encoder dynamically merges similar frames into variable low-rate tokens, then unmerges them to reconstruct fixed-rate output, all trained end to end.",
- "layout": "Single wide panel, left-to-right two parallel horizontal streams (semantic top, acoustic bottom) merging at a sum node into the decoder; dotted L2-loss feedback arrow",
+ "claim": "A dual-stream encoder merges frames dynamically into low-rate semantic and acoustic tokens, then unmerges them to reconstruct at a fixed rate, trained end to end.",
+ "layout": "Single wide panel, left-to-right two parallel streams (semantic top, acoustic bottom) merging at a sum node into decoder; dotted feedback loss arrow",
  "tags": [
-  "dual-stream",
-  "frame-merging",
-  "dynamic-rate",
   "audio-codec",
+  "dynamic-frame-rate",
+  "frame-merging",
+  "dual-stream",
   "quantization",
-  "end-to-end",
-  "semantic-acoustic-disentanglement"
+  "speech-tokenization",
+  "end-to-end"
  ],
  "style": [
+  "colorful",
   "icon-heavy",
-  "colorful"
+  "minimal"
  ],
- "description": "A wide left-to-right block diagram with two parallel streams. Speech waveform icon at left feeds a top semantic stream (frozen ASR Encoder, marked with a snowflake) and a bottom acoustic stream (Codec Encoder). Each produces stacked 12.5Hz feature tokens t1–t4, blue on top and green below. A Frame Merging Module in each stream merges t2 and t3 into a single t2,3 block. The top stream continues through FSQ to semantic tokens q1t1, q1t2,3 and q1t4, drawn as blue ovals. The bottom stream subtracts the semantic features through a residual node, then passes through RVQ to yellow dashed-outline rest tokens. A plus node sums the semantic and acoustic features and feeds the Frame Unmerging Module, which restores four green tokens that go to the Codec Decoder and output speech. A gray dotted L2 loss arrow and gray Recon and GAN loss labels mark training. Gray rounded boxes mark modules, and dark thick arrows show the flow.",
+ "description": "A single wide block diagram reads left to right. Speech waveform on the far left splits into two streams. The top stream, labeled semantic encoding, goes through a frozen ASR Encoder to blue token columns (t1..t4), then a Frame Merging Module that merges t2 and t3 into one lighter block, then FSQ, producing blue circular RVQ-1 tokens. The bottom stream, waveform encoding, goes through a Codec Encoder to green token columns, a Frame Merging Module (conditioned by a dashed arrow from the ASR stream), a residual subtraction node, and RVQ, producing yellow dashed dynamic-rate RVQ-rest tokens. Semantic and acoustic features join at a plus node, pass through a Frame Unmerging Module to green 12.5Hz decoding features, then a Codec Decoder to output speech. A gray dotted arrow shows the L2 loss, and gray text marks the reconstruction and GAN loss. Rounded gray boxes, thick black arrows, and blue, green and yellow color-coded tokens guide the eye.",
  "caption": "Overview of \\methodname. The model encodes speech through two streams. The Frame Merging Modules dynamically reduce the 12.5Hz features into lower frame rates, and the Frame Unmerging Module restores a 12.5Hz fixed frame rate. The model is trained end to end.",
  "caption_source": "latex",
  "abstract": "Neural audio codecs are foundational to speech language models. It is expected to have a low frame rate and decoupled semantic and acoustic information. A lower frame rate codec can reduce the computational cost of speech language models by shortening the sequence length. Recent studies have developed 12.5Hz low-frame-rate audio codecs, but even lower frame rate codecs remain underexplored. We find that a major challenge for very low frame rate tokens is missing semantic information. This paper introduces FlexiCodec to address this limitation. FlexiCodec improves semantic preservation with a dynamic frame rate approach and introduces a novel architecture featuring an ASR feature-assisted dual stream encoding and Transformer bottlenecks. With dynamic frame rates, it uses less frames at information-sparse regions through adaptively merging semantically similar frames. A dynamic frame rate also allows FlexiCodec to support inference-time controllable frame rates between 3Hz and 12.5Hz. Experiments on 6.25Hz, 8.3Hz and 12.5Hz average frame rates confirm that FlexiCodec excels over baseline systems in semantic information preservation and delivers a high audio reconstruction quality. We also validate the effectiveness of FlexiCodec in language model-based TTS. Demos are available at: https://flexicodec.github.io. Code is available at: https://github.com/amphionteam/flexicodec.",
@@ -52,5 +53,5 @@
  "figure_page": 3,
  "qc_flags": [],
  "annotator": "claude-cli:sonnet",
- "role_confidence": 0.97
+ "role_confidence": 0.95
 }

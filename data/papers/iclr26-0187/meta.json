@@ -17,17 +17,17 @@
  "tier": "poster",
  "track": "main",
  "topic": "Computer Vision->Vision Models & Multimodal",
- "role": "prior-vs-ours",
- "role2": "analysis-finding",
- "claim": "Encoder-based baselines degrade when input resolution departs from training and yield weakly text-relevant features; the encoder-free approach stays robust and semantically aligned.",
- "layout": "2 panels side by side: left grouped bar chart across resolutions, right 2x3 grid of attention-colored point clouds with baseline row vs ours row",
+ "role": "analysis-finding",
+ "role2": "prior-vs-ours",
+ "claim": "Encoder-based models degrade when inference input resolution departs from training and show weak semantic alignment; removing the encoder gives robust performance and stronger text-relevant attention.",
+ "layout": "2 panels side by side: (a) grouped bar chart over 5 resolutions, (b) 2x3 grid of attention-colored point clouds, baseline row vs ours row, with a colorbar legend",
  "tags": [
   "encoder-free",
   "3d-understanding",
-  "robustness",
-  "resolution-generalization",
+  "resolution-robustness",
   "attention-visualization",
-  "baseline-comparison",
+  "failure-mode",
+  "point-cloud",
   "multimodal-llm"
  ],
  "style": [
@@ -35,7 +35,7 @@
   "colorful",
   "photo/real data"
  ],
- "description": "Two panels. Panel (a) is a grouped bar chart of Objaverse captioning GPT-4 score. Orange gradient bars (PointLLM) and blue-purple bars (ENEL, ours) are compared at five point cloud sizes, 2K to 16K, with matching point token sizes 128 to 2048 under the x-axis. Value labels sit on the bars. The orange bars peak at 44.0 at 8K and fall to 33.7 and 32.8 at the extremes. The blue bars stay higher, from 44.6 to 51.0. Panel (b) has a rainbow Low-to-High attention-score arrow on top. Two rows of three point-cloud objects (chair, airplane, stool) are colored by attention. The PointLLM row (encoder-based) is mostly blue. The ENEL row (encoder-free) shows red and yellow hot spots in dotted ellipses. Captions (a) and (b) sit below the panels.",
+ "description": "The figure has two panels. Panel (a) on the left is a grouped bar chart titled Objaverse Captioning. Orange bars show PointLLM and blue-purple bars show ENEL (Ours). Each bar has a gradient fade and a numeric label. The x-axis lists point cloud sizes from 2K to 16K, with point token sizes from 128 to 2048 below them. The blue bars are higher at every size and peak at 51.0 at 8K, while the orange bars peak at 44.0 and drop to 32.8 at 16K. Panel (b) on the right shows point-cloud renderings of a table, an airplane and a chair. The top row is PointLLM (encoder-based) and the bottom row is ENEL (encoder-free). Points are colored by attention score on a rainbow scale from low (blue) to high (red). Dotted ellipses mark key regions. The ENEL row is warmer, which shows stronger attention.",
  "caption": "Issues of encoder-based 3D LMMs. (a) Point Cloud Resolution Limitation. During training, the point cloud size (P.C. Size) and point token size (P.T. Size) are fixed at 8192 and 512, respectively. And we adjust these two sizes during inference, point cloud size from 2K to 16K and the corresponding point token size from 128 to 2048. We evaluate them on the captioning task of the Objaverse benchmark using GPT-4 score as the evaluation metric. (b) Embedding Semantic Discrepancy. We visualize the attention scores of the average text token to the point tokens, where red indicates higher values. The point tokens in the encoder-free architecture exhibit stronger textual semantic relevance needed for the LLM.",
  "caption_source": "latex",
  "abstract": "Encoder-free architectures have been preliminarily explored in the 2D Large Multimodal Models (LMMs), yet it remains an open question whether they can be effectively applied to 3D understanding scenarios. In this paper, we present the first comprehensive investigation into the potential of encoder-free architectures to alleviate the challenges of encoder-based 3D LMMs. These long-standing challenges include the failure to adapt to varying point cloud resolutions during inference and the point features from the encoder not meeting the semantic needs of Large Language Models (LLMs). We identify key aspects for 3D LMMs to remove the pre-trained encoder and enable the LLM to assume the role of the 3D encoder: 1) We propose the LLM-embedded Semantic Encoding strategy in the pre-training stage, exploring the effects of various point cloud self-supervised losses. And we present the Hybrid Semantic Loss to extract high-level semantics. 2) We introduce the Hierarchical Geometry Aggregation strategy in the instruction tuning stage. This incorporates inductive bias into the LLM layers to focus on the local details of the point clouds. To the end, we present the first Encoder-free 3D LMM, ENEL. Our 7B model rivals the state-of-the-art model, PointLLM-PiSA-13B, achieving 57.91%, 61.0%, and 55.20% on the classification, captioning, and VQA tasks, respectively. Our results show that the encoder-free architecture is highly promising for replacing encoder-based architectures in the field of 3D understanding. The code is released at https://github.com/Ivan-Tang-3D/ENEL",

@@ -1,0 +1,51 @@
+{
+ "id": "iclr26-4739",
+ "title": "Logit‑KL Flow Matching: Non‑Autoregressive Text Generation via Sampling‑Hybrid Inference",
+ "authors": [
+  "Egor Sevriugov",
+  "Nikita Dragunov",
+  "Anton Razzhigaev",
+  "Andrey Kuznetsov",
+  "Ivan Oseledets"
+ ],
+ "venue": "ICLR 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "Deep Learning->Generative Models and Autoencoders",
+ "role": "pipeline",
+ "role2": "prior-vs-ours",
+ "claim": "A single denoiser trained once supports two iterative inference procedures, basic ODE-style stepping and denoise-then-renoise sampling, both operating on the probability simplex.",
+ "layout": "3 panels left-to-right: (a) training, (b) basic inference, (c) sampling inference; vertical flowcharts with simplex triangle insets and ×N feedback loops",
+ "tags": [
+  "flow-matching",
+  "non-autoregressive",
+  "text-generation",
+  "discrete-diffusion",
+  "simplex",
+  "iterative-sampling",
+  "denoiser"
+ ],
+ "style": [
+  "minimal",
+  "math-heavy"
+ ],
+ "description": "Three side-by-side panels show a method pipeline in blue and brown boxes. Panel (a), Training Phase, has a brown simplex triangle with a sampled start point x0~p0, a dotted path to a black target point x1~p1, and an interpolated point x_t. A blue arrow leads down to a Denoiser network box and then to log p(x1|x_t). Panel (b), Basic inference, is a vertical chain: x0~p0, x_t, Denoiser network, p(x1|x_t), and a logit update l_{t+h}. A small simplex below shows the Softmax step. A blue loop labeled ×N returns to x_t. Panel (c), Sampling inference, has the same chain, but it adds a simplex with a purple sampled x1~p(x1|x_t) and an interpolate(x0,x1,t+h) step before the ×N loop. Blue boxes and arrows mark the network flow. Brown marks the simplex and noise. Black and purple mark target and sampled points.",
+ "caption": "Overview of the Proposed Approach: Training: Sample \\( x_0 \\sim p_0 \\) (uniform distribution on simplex), \\( x_1 \\sim p_1 \\) (target distribution represented by samples); interpolate to obtain \\( x_t \\). The denoiser network predicts \\( \\log p_\\theta(x_1 | x_t) \\), trained via log-probability maximization. Inference: For basic inference, numerically solve an ODE with vector field: \\( \\mathbb{E}_{x_1\\sim p_\\theta(x_1|x_t)}[v(x_t, t\\,|\\,x_1)] \\) using Euler method with $N$ steps and a step size of $h = 1/N$. Alternatively, in sampling inference, interpolate between \\( x_0 \\sim p_0 \\) and \\( x_1 \\sim p(x_1 | x_t) \\) at each step.",
+ "caption_source": "latex",
+ "abstract": "Non-autoregressive (NAR) language models offer notable efficiency in text generation by circumventing the sequential bottleneck of autoregressive decoding. However, accurately modeling dependencies in discrete sequences remains challenging in this paradigm. In this work, we advance the field of NAR generation by applying conditional flow matching (CFM) methods grounded in geometrically principled interpolation, specifically leveraging Kullback-Leibler (KL) divergence geodesics, which correspond to linear interpolation in logit space. We rigorously establish that maximizing conditional likelihood in this setting precisely recovers the flow matching velocity field, supplying the theoretical justification for this approach in sequence modeling. To address practical performance gaps of basic inference, we propose a novel empirical sampling strategy that iteratively denoises and re-noises, along with a hybrid scheme that integrates our sampling method with basic procedure. Across unconditional and conditional text and code infilling, the approach improves perplexity and downstream metrics over prior NAR baselines under matched settings.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=scgtQSpROE",
+  "arxiv": "https://arxiv.org/abs/2411.16821",
+  "pdf": "https://arxiv.org/pdf/2411.16821",
+  "virtual": "https://iclr.cc/virtual/2026/poster/10007040",
+  "code": "https://github.com/EgorSevriugov/KL-Flow"
+ },
+ "license": "http://arxiv.org/licenses/nonexclusive-distrib/1.0/",
+ "img": "none",
+ "image_url": null,
+ "thumb_url": null,
+ "figure_page": 1,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.85
+}

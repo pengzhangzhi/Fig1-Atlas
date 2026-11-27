@@ -15,22 +15,22 @@
  "topic": "Social Aspects->Fairness, Equity, Justice and Safety",
  "role": "analysis-finding",
  "role2": "teaser-result",
- "claim": "A single deterministic uncertainty estimate separates noise-driven uncertainty inside the data region from model uncertainty outside it, and closely tracks the true noise level.",
- "layout": "2 panels side by side with shared legend boxes on top, (a)/(b) labels below, each a 1-D line plot over x",
+ "claim": "A deterministic geometric uncertainty estimate separates noise-driven uncertainty inside the data region from growing uncertainty outside the training domain, and tracks the true noise level.",
+ "layout": "2 panels side by side with legends above each; (a) regression fit with uncertainty bands, (b) estimated vs. true noise; shared x-axis, dashed vertical boundary lines",
  "tags": [
   "uncertainty-estimation",
+  "toy-regression",
   "aleatoric-epistemic",
-  "regression",
-  "toy-example",
   "sampling-free",
+  "out-of-distribution",
   "calibration",
-  "out-of-distribution"
+  "1d-synthetic"
  ],
  "style": [
   "plot",
   "minimal"
  ],
- "description": "Two side-by-side line plots, each with a legend box on top. Panel (a) is a 1-D regression toy. Black training points cluster near x in [-2,2]. A dashed red true cubic-like curve and a solid blue prediction run together near the data. Light-blue shaded uncertainty bands are narrow around the data, then fan out widely beyond the dashed gray vertical lines at x = ±4, so epistemic uncertainty grows outside the training domain. Panel (b) plots the ground-truth noise level sigma(x) as a solid blue line. It rises linearly from 0 at x = -2 to 20 at x = 2, then drops to zero. The estimated sigma-hat(x) is a dashed red curve that follows this ramp, with some underestimation near the peak and small bumps outside. The eye goes first to the widening blue fan in (a) and then to the two overlaid curves in (b).",
+ "description": "Two line plots side by side, each with a boxed legend on top. Panel (a) shows a 1-D regression toy problem. Black training points cluster in a narrow noisy band around x in [-2,2]. A blue predicted curve and a red dashed ground-truth cubic run through them. Light-blue shaded uncertainty bands stay tight near the data and fan out sharply beyond the dashed vertical lines at x=±4. Panel (b) plots noise level against x. A solid blue line is the true heteroscedastic sigma(x), rising linearly from 0 at x=-2 to 20 at x=2, then dropping to zero. A red dashed curve is the estimated sigma-hat(x), which follows it roughly and falls to small values outside [-2,2]. Panels are labeled (a) and (b) below, with a large serif font. The eye goes first to the widening blue fans in (a).",
  "caption": "(a) Aleatoric uncertainty is captured in the noisy region ($x \\in [-2,2]$), while epistemic uncertainty appears outside the training domain ($x \\notin [-4,4]$). (b) $\\hat\\sigma(x)$ closely tracks the ground-truth $\\sigma(x)$.",
  "caption_source": "latex",
  "abstract": "Quantifying uncertainty in neural network predictions is essential for high-stakes domains such as autonomous driving, healthcare, and manufacturing. While existing approaches often depend on costly sampling or restrictive distributional assumptions, we propose Hyperspherical Confidence Mapping (HCM), a simple yet principled framework for sampling-free and distribution-free uncertainty estimation. HCM decomposes outputs into a magnitude and a normalized direction vector constrained to lie on the unit hypersphere, enabling a novel interpretation of uncertainty as the degree of violation of this geometric constraint. This yields deterministic and interpretable estimates applicable to both regression and classification. Experiments across diverse benchmarks and real-world industrial tasks demonstrate that HCM matches or surpasses ensemble and evidential approaches, with far lower inference cost and stronger confidence-error alignment. Our results highlight the power of geometric structure in uncertainty estimation and position HCM as a versatile alternative to conventional techniques.",
@@ -48,5 +48,5 @@
  "figure_page": 4,
  "qc_flags": [],
  "annotator": "claude-cli:sonnet",
- "role_confidence": 0.55
+ "role_confidence": 0.5
 }

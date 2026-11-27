@@ -1,0 +1,50 @@
+{
+ "id": "iclr26-4667",
+ "title": "NI Sampling: Accelerating Discrete Diffusion Sampling by Token Order Optimization",
+ "authors": [
+  "Enshu Liu",
+  "Xuefei Ning",
+  "Yu Wang",
+  "Zinan Lin"
+ ],
+ "venue": "ICLR 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": null,
+ "role": "prior-vs-ours",
+ "role2": "pipeline",
+ "claim": "Prior samplers pick few tokens per step using raw confidence; ours uses a learned indicator score to select more tokens at once.",
+ "layout": "3 panels side by side, left-to-right (prior, prior, ours); each shows masked tokens at bottom, model block, then bars above with a threshold line",
+ "tags": [
+  "discrete-diffusion",
+  "parallel-decoding",
+  "sampling-order",
+  "efficiency",
+  "learned-indicator",
+  "threshold-sampling",
+  "comparison"
+ ],
+ "style": [
+  "minimal",
+  "colorful"
+ ],
+ "description": "Three side-by-side panels compare token sampling strategies for a diffusion language model. Each panel has three masked tokens (circled M) at the bottom, with blue arrows into a peach dLLM box, and bars above. Left panel, highest-confidence sampling (full-step): bars of 0.9, 0.3 and 0.7, with only the 0.9 bar yellow (sampled) and the others black (remain masked). Middle panel, confidence threshold sampling: a dashed black threshold line, with the 0.9 and 0.7 bars yellow and the 0.3 bar black. Right panel, NI Sampling (Ours), in red: a green Indicator box sits between the dLLM and the bars, and the indicator scores 0.9, 0.7 and 0.8 are all yellow above an orange dashed threshold. A legend at top explains yellow (token to sample) and black (remain masked). The eye goes to the red Ours label and the extra yellow bars.",
+ "caption": "Comparison between \\nameshort{} and previous sampling methods. At each sampling step, \\nameshort{} uses a neural indicator to assign scores to masked positions. Tokens with sufficiently high indicator scores are then sampled.",
+ "caption_source": "latex",
+ "abstract": "Discrete diffusion language models (dLLMs) have recently emerged as a promising alternative to traditional autoregressive approaches, offering the flexibility to generate tokens in arbitrary orders and the potential of parallel decoding. However, existing heuristic sampling strategies remain inefficient: they choose only a small part of tokens to sample at each step, leaving substantial room for improvement. In this work, we study the problem of token sampling order optimization and demonstrate its significant potential for acceleration. Specifically, we find that fully leveraging correct predictions at each step can reduce the number of sampling iterations by an order of magnitude without compromising accuracy. Based on this, we propose Neural Indicator Sampling (NI Sampling), a general sampling order optimization framework that utilize a neural indicator to decide which tokens should be sampled at each step. We further propose a novel trajectory-preserving objective to train the indicator. Experiments on LLaDA and Dream models across multiple benchmarks show that our method achieves up to 14.3$\\times$ acceleration over full-step sampling with negligible performance drop, and consistently outperforms confidence threshold sampling in the accuracy-step trade-off. Code is available at https://github.com/imagination-research/NI-Sampling.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=rrD1U0Izt5",
+  "arxiv": "https://arxiv.org/abs/2604.18471",
+  "pdf": "https://arxiv.org/pdf/2604.18471",
+  "virtual": "https://iclr.cc/virtual/2026/poster/10007114",
+  "code": null
+ },
+ "license": "http://arxiv.org/licenses/nonexclusive-distrib/1.0/",
+ "img": "none",
+ "image_url": null,
+ "thumb_url": null,
+ "figure_page": 2,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.85
+}

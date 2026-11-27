@@ -1,0 +1,51 @@
+{
+ "id": "iclr26-5010",
+ "title": "Relational Feature Caching for Accelerating Diffusion Transformers",
+ "authors": [
+  "Byunggwan Son",
+  "Jeimin Jeon",
+  "Jeongwoo Choi",
+  "Bumsub Ham"
+ ],
+ "venue": "ICLR 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "Computer Vision->Image and Video Generation",
+ "role": "analysis-finding",
+ "role2": "teaser-result",
+ "claim": "Output feature changes are irregular and hard to extrapolate, yet they track input changes closely, so inputs can improve prediction and yield better efficiency-quality tradeoffs.",
+ "layout": "4 line-plot panels in one row, left-to-right, with captions (a)-(d) under each. Panels a-b share a y-axis scale and a reversed timestep axis. The last panel is a Pareto-style curve.",
+ "tags": [
+  "feature-caching",
+  "diffusion-transformers",
+  "efficiency",
+  "input-output-correlation",
+  "prediction-error",
+  "acceleration",
+  "empirical-analysis"
+ ],
+ "style": [
+  "plot",
+  "minimal",
+  "colorful"
+ ],
+ "description": "A single row of four line plots. Panels (a) and (b) show min-max normalized L2 distance against timestep (reversed axis, 40 to 0) for the 10th, 20th and 30th modules, in blue, gray and red. The output-difference curves in (a) and the input-difference curves in (b) have nearly the same jagged shape. The red curve is the most erratic. Panel (c) plots relative L1 error against module index for FORA (green), TaylorSeer (red) and Ours/RFC (blue). The blue curve sits below the other two across most modules. Panel (d) plots sFID against FLOPs (T) for the same three methods. The blue curve is lowest and flattest, the red curve is in the middle, and the green curve is highest and falls steeply. Each panel has a plain text caption below it. The eye goes first to the matching curve shapes in (a) and (b), then to the blue line that sits lowest in (c) and (d).",
+ "caption": "Feature analysis and comparison between existing approaches (FORA [ref], TaylorSeer [ref]), and our method (RFC) using DiT-XL/2 [ref]. (a-b) Min-max normalized $L_2$ distances of output and input features, measured between consecutive timesteps. While the variations of feature changes are irregular, those of input and output remain closely aligned with each other. (c) The prediction errors across different modules. We measure the relative $L_1$ error between output features with and without applying caching methods and average the values over the timesteps. (d) Quantitative results on ImageNet [ref] evaluated in terms of FLOPs and sFID [ref].",
+ "caption_source": "latex",
+ "abstract": "Feature caching approaches accelerate diffusion transformers (DiTs) by storing the output features of computationally expensive modules at certain timesteps, and exploiting them for subsequent steps to reduce redundant computations. Recent forecasting-based caching approaches employ temporal extrapolation techniques to approximate the output features with cached ones. Although effective, relying exclusively on temporal extrapolation still suffers from significant prediction errors, leading to performance degradation. Through a detailed analysis, we find that 1) these errors stem from the irregular magnitude of changes in the output features, and 2) an input feature of a module is strongly correlated with the corresponding output. Based on this, we propose relational feature caching (RFC), a novel framework that leverages the input-output relationship to enhance the accuracy of the feature prediction. Specifically, we introduce relational feature estimation (RFE) to estimate the magnitude of changes in the output features from the inputs, enabling more accurate feature predictions. We also present relational cache scheduling (RCS), which estimates the prediction errors using the input features and performs full computations only when the errors are expected to be substantial. Extensive experiments across various DiT models demonstrate that RFC consistently outperforms prior approaches significantly. Project page is available at https://cvlab.yonsei.ac.kr/projects/RFC",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=w8ksWcSuFb",
+  "arxiv": "https://arxiv.org/abs/2602.19506",
+  "pdf": "https://arxiv.org/pdf/2602.19506",
+  "virtual": "https://iclr.cc/virtual/2026/poster/10006755",
+  "code": "https://cvlab.yonsei.ac.kr/projects/RFC/"
+ },
+ "license": "http://creativecommons.org/licenses/by-nc-nd/4.0/",
+ "img": "none",
+ "image_url": null,
+ "thumb_url": null,
+ "figure_page": 1,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.6
+}

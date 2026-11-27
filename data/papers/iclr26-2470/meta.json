@@ -18,23 +18,23 @@
  "topic": "Computer Vision->Vision Models & Multimodal",
  "role": "pipeline",
  "role2": "before-after",
- "claim": "Reallocating resolution toward query-relevant regions via attention-derived warping lets the same model correct an answer it previously got wrong.",
- "layout": "Single row, left-to-right: original image and wrong answer, attention aggregation, central attention-matrix panel with marginal bars, warping, warped image and correct answer; arrows carry stage labels",
+ "claim": "Reallocating resolution toward query-relevant regions via attention-derived warping lets the same model answer correctly where it failed on the original input.",
+ "layout": "Single row, left-to-right, 4 stages joined by labeled arrows. Original image and grid on the left, attention matrix with marginal bar profiles in a rounded central box, warped grid and image on the right. Question text sits above the images and answer bubbles sit below.",
  "tags": [
+  "test-time",
   "attention-guided",
   "image-warping",
-  "test-time",
   "multimodal-llm",
-  "fine-grained-perception",
   "training-free",
-  "hallucination-fix"
+  "fine-grained-perception",
+  "hallucination-reduction"
  ],
  "style": [
   "photo/real data",
   "colorful",
   "icon-heavy"
  ],
- "description": "A horizontal flow from left to right. On the left is a question (\"On the right desk, what is to the left of the laptop?\") above a room photo with a green box around a lamp and laptop. Under it, a red box with a robot icon shows LLaVA's wrong answer (a stack of books). An arrow labeled \"Attention Aggregation from Language Decoder\" points to a uniform grid and then into a rounded central panel. The panel holds a heatmap over the photo, called the attention score matrix, with blue bar charts along the top and right edges for the marginal profiles. A second arrow labeled \"Rectilinear Warping\" leads to a warped grid, shown as a red-blue heatmap with a dense center. Next to it is the warped image, where the lamp and laptop region is enlarged. A green box with a robot icon below gives the correct answer (a lamp). The eye goes first to the central heatmap, then to the red and green answer boxes.",
+ "description": "A horizontal pipeline runs left to right. On the left is an original cluttered desk photo with the question \"On the right desk, what is to the left of the laptop?\" above it. A green box marks the relevant region. A pink bubble below shows LLaVA's wrong answer, \"stack of books\", next to a robot icon. An arrow labeled \"Attention Aggregation from Language Decoder\" leads to a central rounded cream box. The box holds a heatmap overlay (the attention score matrix) with teal bar charts along the top and right edges as marginal profiles, and a small arrow on each bar showing expansion or compression. Below the arrow sits a uniform \"Initial Grid\". A second arrow labeled \"Rectilinear Warping\" leads to a red-blue warped grid and the warped image. In the warped image the green region is enlarged. A green bubble gives AttWarp's correct answer, \"a lamp\".",
  "caption": "\\ourmethodshort overview. Given a query, our method extracts cross-modal attention maps from the MLLM's language decoder, aggregates them into marginal attention profiles, and uses rectilinear warping to expand high-attention regions while compressing low-attention areas. The warped image is then processed by the same MLLM, which now produces the correct answer.",
  "caption_source": "latex",
  "abstract": "Multimodal large language models (MLLMs) often miss small details and spatial relations in cluttered scenes, leading to errors in fine-grained perceptual grounding. We introduce AttWarp, a lightweight method that allocates more resolution to query-relevant content while compressing less informative areas, all while preserving global context. At test time, the approach uses an MLLM's cross-modal attention to perform rectilinear warping of the input image, reallocating spatial resolution toward regions the model deems important, without changing model weights or architecture. This attention-guided warping preserves all original image information but redistributes it non-uniformly, so small objects and subtle relationships become easier for the same model to read while the global layout remains intact. Across five benchmarks (TextVQA, GQA, DocVQA, POPE, MMMU) and four MLLMs (LLaVA, Qwen-VL, InternVL, and InstructBLIP), AttWarp consistently improves accuracy, strengthens compositional reasoning, and reduces hallucinations, outperforming four competitive baselines that manipulate raw images at test time. Together, these results show that attention-guided warping prioritizes information relevant to the query while preserving context, and that the same MLLMs perform better when given such warped inputs.",

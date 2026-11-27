@@ -16,23 +16,23 @@
  "topic": "Computer Vision->Everything Else",
  "role": "prior-vs-ours",
  "role2": "pipeline",
- "claim": "Existing frameworks either ignore degradation, rely on error-prone degradation estimation, or fix one granularity; ours estimates degradation and granularity adaptively to pick the right expert.",
- "layout": "4 panels: three small colored panels (a)-(c) across the top for prior work, one large full-width panel (d) below for ours, with a left-to-right flow and a coarse-to-fine hierarchy tree",
+ "claim": "Existing frameworks either share one backbone, add prompts or adapters, or select experts from fragile estimates; ours adaptively picks an expert at a suitable granularity from a degradation hierarchy.",
+ "layout": "4 panels: three prior-method panels (a–c) side by side on top, one large proposed-framework panel (d) below, each in its own color-coded box",
  "tags": [
   "all-in-one-restoration",
   "mixture-of-experts",
-  "degradation-estimation",
   "hierarchical-clustering",
-  "adaptive-granularity",
-  "robustness",
-  "prior-comparison"
+  "degradation-estimation",
+  "granularity",
+  "prior-comparison",
+  "robustness"
  ],
  "style": [
   "colorful",
   "icon-heavy",
   "photo/real data"
  ],
- "description": "The figure has two rows. The top row has three tinted panels for prior frameworks. (a) is an orange panel with a shared encoder and decoder for all tasks. (b) is a yellow panel that adds prompt and adapter blocks beside the encoder and decoder. (c) is a green panel with degradation-estimator trapezoids (\"Deg.\") that select expert filters or LoRA modules, drawn in a dashed box. Colored arrows for different tasks enter and leave each panel. The bottom row is one large blue panel, (d), showing the proposed framework. Low-quality input photos feed a degradation extractor, which feeds Granularity and Degradation boxes. These select nodes in a coarse-to-fine tree: all degradations at the top, then Snow, Rain and Haze, then L/M/S sub-clusters. A large downward arrow is labeled Coarsest to Finest. The tree connects to a Multi-Granularity MoE Model, which outputs restored high-quality photos. The eye goes first to the colorful tree and photos in panel (d).",
+ "description": "The figure has four color-tinted panels. The top row has three small panels: (a) a degradation-agnostic framework in pink, with an All Task oval feeding colored arrows into one Encoder and Decoder; (b) a PEFT-based framework in yellow, where the Encoder and Decoder connect to Prompts or Adapters boxes; (c) an expert-based framework in green, where Deg. modules pick expert filters or LoRA modules shown as colored icons in a dashed box. Below, a large blue panel (d) shows the proposed method. Low-quality input photos (rain, blur, snow) enter a Deg. Ext. block that feeds Granularity and Degradation estimators. These select nodes in a three-level tree: a coarse All-tasks node, task nodes (Snow, Rain, Haze), and fine L/M/S nodes. A Coarsest-to-Finest arrow runs alongside the tree. The selected expert goes into a Multi-Granularity MoE Model, which outputs clean HQ predictions. The eye goes first to the large tree in (d).",
  "caption": "Illustration of representative all-in-one image restoration frameworks. (a) Degradation-agnostic methods [ref] train a shared backbone using data from all tasks and are limited in leveraging degradation-specific restoration. (b) PEFT-based methods [ref] apply learnable prompts or adapters to the backbone to adapt various tasks. (c) Expert-based methods [ref] train specific MoE, LoRA, or filters for specific tasks. However, both (b) and (c) suffer from the inevitable error in degradation estimation. (d) We construct a multi-granularity degradation set and a multi-granularity MoE restoration model. By adaptively estimating image degradation at proper granularity, our UniRestorer can be effective in leveraging degradation-specific restoration while being robust to degradation estimation error.",
  "caption_source": "latex",
  "abstract": "Recently, considerable progress has been made in all-in-one image restoration. Generally, existing methods can be degradation-agnostic or degradation-aware. However, the former are limited in leveraging degradation-specific restoration, and the latter suffer from the inevitable error in degradation estimation. Consequently, the performance of existing methods has a large gap compared to specific single-task models. In this work, we make a step forward in this topic, and present our UniRestorer with improved restoration performance. Specifically, we perform hierarchical clustering on degradation space, and train a multi-granularity mixture-of-experts (MoE) restoration model. Then, UniRestorer adopts both degradation and granularity estimation to adaptively select an appropriate expert for image restoration. In contrast to existing degradation-agnostic and -aware methods, UniRestorer can leverage degradation estimation to benefit degradation specific restoration, and use granularity estimation to make the model robust to degradation estimation error. Experimental results show that our UniRestorer outperforms state-of-the-art all-in-one methods by a large margin, and is promising in closing the performance gap to specific single task models.",

@@ -12,24 +12,24 @@
  "track": "main",
  "topic": "Optimization->Learning for Optimization",
  "role": "overview-framework",
- "role2": "prior-vs-ours",
- "claim": "A dynamic scheduling system couples arriving tasks, a changing resource pool and a learning agent in a loop, and we replace the agent's single policy with a mixture of experts.",
- "layout": "3 panels: (a) pink environment at left, (b) blue VM grid at top right, (c) orange DRL agent at bottom right; gray block arrows between panels form a feedback loop; a dashed arrow in (c) leads from the standard policy to the MoE variant",
+ "role2": "problem-setup",
+ "claim": "A dynamic scheduling environment couples arriving jobs, fluctuating resources and a learned policy in one loop, and we upgrade the policy module with a mixture of experts.",
+ "layout": "3 colored panels: (a) left pink workflow environment, (b) top-right blue VM grid, (c) bottom-right orange DRL agent; gray block arrows show state, reward and action loops; dashed arrow from standard policy to MoE policy",
  "tags": [
   "mixture-of-experts",
   "reinforcement-learning",
-  "scheduling",
-  "cloud-computing",
-  "dag-workflows",
-  "gating-network",
-  "feedback-loop"
+  "cloud-scheduling",
+  "workflow-dag",
+  "agent-environment-loop",
+  "deadline-aware",
+  "policy-architecture"
  ],
  "style": [
   "colorful",
   "icon-heavy",
   "text-heavy"
  ],
- "description": "The figure has three color-coded panels. Panel (a), pink, shows dynamic workflow arrival. At top, DAGs of circular task nodes (O11, O12, O13, O14 and so on) are colored by status. A vertical arrow labeled \"Workflows arrive dynamically\" runs alongside them. Below, a table groups tasks per workflow into Completed, Ready and Unscheduled columns. Panel (b), light blue at top right, is a grid of VMs with queueing and executing task circles in green, red and yellow. Panel (c), orange at bottom right, shows a standard DRL policy: raw states go to a State Embedding Module, then to embeddings, then to a Priority Mapping Module. A red \"Replace\" arrow links the Priority Mapping Module to a Mixture-of-Experts block. A dashed arrow then leads to the DEFT pipeline, where a Graph-Adaptive Gating Network routes to Experts 1 to N. Large gray arrows labeled State Transition, Workflows state, VMs state, Actions and Rewards connect the panels. The eye goes first to the colorful DAG nodes at top left, then follows the arrows to the agent.",
+ "description": "A busy three-region diagram with a closed agent-environment loop. The left pink panel (a) shows workflow DAGs W1..Wn of circular task nodes in dashed, green, yellow and red outlines. A downward arrow says workflows arrive dynamically. Below it, a dashed arrow leads to a table that sorts each workflow's tasks into completed, ready and unscheduled columns. The top-right blue panel (b) is a grid of VMs with queueing and executing tasks shown as colored circles. The bottom-right orange panel (c) shows the agent. A standard DRL policy pipeline runs from raw states through a state embedding module to embeddings and then a priority mapping module. A red 'Replace' arrow and a dashed arrow lead to the DEFT version, where a graph-adaptive gating network routes to Expert 1 through Expert N. Large gray arrows are labeled State Transition, Workflows state, VMs state, Actions and Rewards.",
  "caption": "The scheduling of dynamic workflows via DRL. (a) Workflows arrive over time, each associated with a distinct deadline; (b) The set of available VMs in the cloud fluctuates over time; and (c) The DRL agent selects appropriate VM resources for task execution by observing workflow and VM states. In this work, our main contribution is to enhance the DRL policy network by incorporating a Mixture-of-Experts (MoE) architecture, enabling more intelligent decision-making.",
  "caption_source": "latex",
  "abstract": "Workflow scheduling in cloud computing demands the intelligent allocation of dynamically arriving, graph-structured workflows with varying deadlines onto ever-changing virtual machine resources. However, existing deep reinforcement learning (DRL) schedulers remain limited by rigid, single-path inference architectures that struggle to handle diverse scheduling scenarios. We introduce $\\textbf{DEFT}$ ($\\textbf{D}$eadline-p$\\textbf{E}$rceptive Mixture-o$\\textbf{F}$-Exper$\\textbf{t}$s), an innovative DRL policy architecture that leverages a specialized mixture of experts, each trained to manage different levels of deadline tightness. To our knowledge, DEFT is the first to introduce and validate a Mixture-of-Experts architecture for dynamic cloud workflow scheduling. By adaptively routing decisions through the most appropriate experts, DEFT is capable of meeting a broad spectrum of deadline requirements that no single expert can achieve. Central to DEFT is a $\\textbf{graph-adaptive}$ gating mechanism that encodes workflow DAGs, task states, and VM conditions, using cross-attention to guide expert activation in a fine-grained, deadline-sensitive manner. Experiments on dynamic cloud workflow benchmarks demonstrate that DEFT significantly reduces execution cost and deadline violations, outperforming multiple state-of-the-art DRL baselines.",

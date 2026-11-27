@@ -10,25 +10,25 @@
  "tier": "poster",
  "track": "main",
  "topic": "Computer Vision->Vision Models & Multimodal",
- "role": "pipeline",
- "role2": "before-after",
- "claim": "A baseline model misreads a relation in the input; a stepwise chain of multi-perspective questions with accumulated multimodal context yields the correct answer.",
- "layout": "Input panel at left, large pipeline panel at top right (keyword extraction → question construction → interleaved Q/A chain), two output boxes along the bottom contrasting wrong (red) and correct (green) answers",
+ "role": "prior-vs-ours",
+ "role2": "pipeline",
+ "claim": "A baseline model answers a relational query wrongly by hallucinating; guiding it through a chain of decomposed sub-questions with accumulated context yields the correct answer.",
+ "layout": "3 regions: input at top-left, method pipeline at top-right, two output boxes at bottom (red failure left, green success right); left-to-right flow with a dashed arrow linking the failure to the image region",
  "tags": [
+  "relation-hallucination",
   "training-free",
-  "chain-of-thought",
-  "multimodal-reasoning",
-  "hallucination-mitigation",
-  "interleaved-reasoning",
+  "multi-step-reasoning",
   "question-decomposition",
-  "vision-language-model"
+  "interleaved-chain",
+  "failure-case",
+  "vision-language-models"
  ],
  "style": [
   "colorful",
-  "text-heavy",
-  "photo/real data"
+  "photo/real data",
+  "text-heavy"
  ],
- "description": "The top left shows an input panel with the question \"Does a man stand on a surfboard in the image?\" and a photo of a man lying on a surfboard in the water. A red dashed box marks the region of interest. The top right is a large green panel titled ChainMPQ. Subject, object and relation keywords are extracted and used to build three questions, which are listed in a box. At right, a zigzag chain runs from Question1 to Answer1, Question2, Answer2, Question3 and Answer3. Green arrows labeled \"Multimodal context\" link the steps, and LLaVA is shown as the model. Two output boxes sit along the bottom. At left, a red-tinted box reads \"standing\" and is labeled input-conflicting hallucination, with a red X. At right, a green-tinted box reads \"riding\" and is labeled as solving relation hallucination, with a green check. Red and green coding contrasts failure with success.",
+ "description": "The top-left box holds an input question (\"Does a man stand on a surfboard in the image?\") and a photo of a man lying on a surfboard in water, with a red dashed box around him. Beneath, a pink box shows the baseline LLaVA-1.5 output \"Yes, the man is standing\". The wrong word is highlighted red, with an ✗ icon and the label \"input-conflicting hallucination\". The large green panel \"ChainMPQ\" starts from subject/object/relation keywords. It then constructs three sub-questions, which feed a zig-zag chain of Question→Answer boxes linked by green \"Multimodal context\" arrows. A bottom-right green box shows the corrected output \"No, the man is riding\" with a ✓ icon and \"solve relation hallucination\". Red marks the failure and green marks the fix.",
  "caption": "This figure illustrates a case in which an LVLM exhibits a relation hallucination, misrecognizing the true relation \"riding\" as \"standing\". With ChainMPQ, the model is guided to reason step by step and infer the correct relation.",
  "caption_source": "latex",
  "abstract": "While Large Vision-Language Models (LVLMs) achieve strong performance in multimodal tasks, hallucinations continue to hinder their reliability. Among the three categories of hallucinations, which include object, attribute, and relation, relation hallucinations account for the largest proportion but have received the least attention. To address this issue, we propose ChainMPQ (Multi-Perspective Questions guided Interleaved Chain of Image and Text), a training-free method that improves relational inference in LVLMs by utilizing accumulated textual and visual memories. ChainMPQ first extracts subject and object keywords from the question to enhance the corresponding image regions. It then constructs multi-perspective questions that focus on the three core components of a relationship: the subject, the object, and the relation that links them. These questions are sequentially input to the model, with textual and visual memories from earlier steps providing supporting context for subsequent ones, thereby forming an interleaved chain of images and text that guides progressive relational reasoning. Experiments on multiple LVLMs and benchmarks show that ChainMPQ substantially reduces relation hallucinations, while ablation studies further validate the effectiveness of its three core modules.",
@@ -46,5 +46,5 @@
  "figure_page": 1,
  "qc_flags": [],
  "annotator": "claude-cli:sonnet",
- "role_confidence": 0.6
+ "role_confidence": 0.5
 }

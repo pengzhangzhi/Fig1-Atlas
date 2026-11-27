@@ -18,23 +18,23 @@
  "topic": "Computer Vision->Vision Models & Multimodal",
  "role": "pipeline",
  "role2": null,
- "claim": "Training proceeds by sampling grouped rollouts in which tools may be invoked to edit inputs, then scoring with reward and reference models to compute group-relative advantages that update the policy.",
- "layout": "1 wide panel, left-to-right flow with nested rollout boxes, feedback loop curving back to the policy at the bottom, color legend top-right",
+ "claim": "Training proceeds by sampling multi-turn rollouts with optional tool use, scoring them with rewards, computing group-relative advantages, and updating the policy under a KL constraint.",
+ "layout": "1 wide panel, left-to-right flow from query through two rollout stages to rewards and advantages, with a feedback loop back to the policy at the bottom and a color legend at top right",
  "tags": [
   "reinforcement-learning",
   "grpo",
   "tool-use",
-  "multimodal",
-  "rollout",
+  "multi-turn-rollout",
+  "vision-language-model",
   "reward-model",
-  "group-advantage"
+  "kl-regularization"
  ],
  "style": [
   "colorful",
   "icon-heavy",
   "math-heavy"
  ],
- "description": "A single wide block diagram on a light gray background. A query q enters from the left into a 1st Rollout box. That box holds a Prompt Instructor, a stack of inputs (I,x,T) and the first-pass outputs y'_1 to y'_G. An arrow leads to a 2nd Rollout box with three branches, each pairing a Tool Executor with a No Tool, Tool Success or Tool Failed tag. Each branch shows its updated input, such as I⊕T(y'_2,I),x. These branches produce final outputs y_1 to y_G. The outputs feed a Reward Model and a Reference LLM (green). Rewards r_1 to r_G go to Group Computation, which yields advantages A_1 to A_G. A long curved arrow carries the advantages back to the yellow Policy LLM bar at the bottom, and a second curve from the Reference LLM is labeled KL. A legend at top right marks trained models yellow, frozen models green and tools blue.",
+ "description": "A single block diagram flowing left to right. A query q enters a gray container holding the 1st Rollout, which has stacked inputs (I, x, T) and intermediate outputs y'_1…y'_G, with a Prompt Instructor box. An arrow leads to the 2nd Rollout, which has three tool-executor cases: No Tool, Tool Success with I⊕T(y'_2, I), and Tool Failed. These produce final responses y_1…y_G. Responses feed a Reward Model and a Reference LLM, then rewards r_1…r_G, then Group Computation, then advantages A_1…A_G. A curved arrow carries the advantages, and a KL branch from the Reference LLM, back to a yellow Policy LLM bar at the bottom. Yellow marks trained models, green marks frozen models, and blue marks tools, as shown in a top-right legend.",
  "caption": "Multi-Modal GRPO w. Tool Use Training Pipeline, where the input $q$ is a multimodal query",
  "caption_source": "latex",
  "abstract": "Reinforcement Learning Finetuning (RFT) has significantly advanced the reasoning capabilities of large language models (LLMs) by enabling long chains of thought, self-correction, and effective tool use. While recent works attempt to extend RFT to vision-language models (VLMs), these efforts largely produce text-only reasoning conditioned on static image inputs, falling short of true multimodal reasoning in the response. In contrast, test-time methods like Visual Sketchpad incorporate visual steps but lack training mechanisms. We introduce VTool-R1, the first framework that trains VLMs to generate multimodal chains of thought by interleaving text and intermediate visual reasoning steps. VTool-R1 integrates Python-based visual editing tools into the RFT process, enabling VLMs to learn when and how to generate visual reasoning steps that benefit final reasoning. Trained with outcome-based rewards tied to task accuracy, our approach elicits strategic visual tool use for reasoning without relying on process-based supervision. Experiments on structured visual question answering over charts and tables show that VTool-R1 enhances reasoning performance by teaching VLMs to \"think with images\" and generate multimodal chain of thoughts with tools. To support future research in multi-turn multi-modal reasoning, we open-source our code at https://github.com/VTOOL-R1/vtool-r1",
@@ -52,5 +52,5 @@
  "figure_page": 4,
  "qc_flags": [],
  "annotator": "claude-cli:sonnet",
- "role_confidence": 0.95
+ "role_confidence": 0.93
 }

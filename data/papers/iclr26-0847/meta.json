@@ -1,0 +1,53 @@
+{
+ "id": "iclr26-0847",
+ "title": "Token-Based Audio Inpainting via Discrete Diffusion",
+ "authors": [
+  "Tali Dror",
+  "Iftach Shoham",
+  "Moshe Buchris",
+  "Oren Gal",
+  "Haim Permuter",
+  "Gilad Katz",
+  "Eliya Nachmani"
+ ],
+ "venue": "ICLR 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "Applications->Language, Speech and Dialog",
+ "role": "pipeline",
+ "role2": null,
+ "claim": "Encode the signal into discrete tokens, inpaint masked tokens with a diffusion transformer, and decode back, trained with a combined score and smoothness loss.",
+ "layout": "1 panel, left-to-right flow with a bottom training-loss branch, dashed vs solid arrows for inference vs training, legend at lower right",
+ "tags": [
+  "tokenization",
+  "discrete-diffusion",
+  "inpainting",
+  "masked-prediction",
+  "audio",
+  "frozen-pretrained-modules",
+  "training-vs-inference"
+ ],
+ "style": [
+  "minimal",
+  "icon-heavy"
+ ],
+ "description": "A single wide left-to-right block diagram. An input waveform with a silent gap on the far left feeds a lavender trapezoid labelled WavTokenizer Encoder (padlock icon). It outputs a dotted column of tokens T1 to T5. A dashed arrow loops over the top into a second token column in which T2 and T3 are replaced by dark grey [M] mask tokens. That column goes into a light-blue 'Reverse Diffusion' region holding a blue DiT box with a padlock. A 'Timestep T' pill also feeds the DiT. The DiT outputs a token column with T2^0 and T3^0 highlighted in blue-grey (t=0). That column passes to a lavender WavTokenizer Decoder, then to a reconstructed waveform on the right. Below, solid training arrows send the predicted tokens T'2 and T'3 and the original tokens into a loss label, L_DWDSE + L_deriv. A legend box at lower right marks dashed lines as Inference and solid lines as Training.",
+ "caption": "Our method operates on audio signals with missing (silent) segments. During inference, the input waveform, containing a single or multiple silence gaps is processed by the WavTokenizer encoder, which converts the audio into a discrete sequence of tokens. Next, a DiT performs inpainting by iteratively predicting the masked tokens, resulting in reconstructed token sequence. Finally, the reconstructed tokens are passed through the WavTokenizer’s decoder to synthesize the output audio waveform in the masked part. During training, token sequences are corrupted with span-based masking at randomly sampled timesteps, and the DiT is optimized to predict the concrete score using the DWDSE objective, complemented by the derivative-based loss.",
+ "caption_source": "latex",
+ "abstract": "Audio inpainting seeks to restore missing segments in degraded recordings. Previous diffusion-based methods exhibit impaired performance when the missing region is large. We introduce the first approach that applies discrete diffusion over tokenized music representations from a pre-trained audio tokenizer, enabling stable and semantically coherent restoration of long gaps. Our method further incorporates two training approaches: a derivative-based regularization loss that enforces smooth temporal dynamics, and a span-based absorbing transition that provides structured corruption during diffusion. Experiments on the MusicNet and MAESTRO datasets with gaps up to 750 ms show that our approach consistently outperforms strong baselines across range of gap lengths, for gaps of 150 ms and above. This work advances musical audio restoration and introduces new directions for discrete diffusion model training. Visit our project page for examples and code.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=9ZogqiyWXm",
+  "arxiv": "https://arxiv.org/abs/2507.08333",
+  "pdf": "https://arxiv.org/pdf/2507.08333",
+  "virtual": "https://iclr.cc/virtual/2026/poster/10011102",
+  "code": "https://talidror.github.io/aidd.github.io/"
+ },
+ "license": "http://creativecommons.org/licenses/by/4.0/",
+ "img": "cc-by",
+ "image_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/images/iclr26-0847.png",
+ "thumb_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/thumbs/iclr26-0847.webp",
+ "figure_page": 5,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.95
+}

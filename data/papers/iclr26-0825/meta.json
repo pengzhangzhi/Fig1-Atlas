@@ -13,24 +13,24 @@
  "track": "main",
  "topic": "Social Aspects->Trustworthy Machine Learning",
  "role": "analysis-finding",
- "role2": null,
- "claim": "A dependence statistic separates in-training from out-of-training subsets: after retraining, the target subset's distribution shifts from matching in-training to matching out-of-training.",
- "layout": "2 side-by-side density plots sharing a style, left original model and right retrained model, with legends and distance and p-value annotations inside each panel",
+ "role2": "teaser-result",
+ "claim": "After retraining, the target subset's dependence statistic shifts from matching in-training data to matching out-of-training data, showing the measure separates the two.",
+ "layout": "2 side-by-side density plots sharing style, original model left and retrained model right, legends top-right, distance and p-value annotations bottom-right",
  "tags": [
-  "hsic",
+  "unlearning-evaluation",
   "statistical-independence",
-  "machine-unlearning",
-  "evaluation",
+  "hsic",
   "distribution-shift",
-  "kernel-density",
-  "in-training-vs-out-of-training"
+  "subset-level",
+  "retraining",
+  "kernel-density"
  ],
  "style": [
   "plot",
-  "colorful",
-  "math-heavy"
+  "minimal",
+  "colorful"
  ],
- "description": "Two kernel density plots sit side by side. Each has three overlaid, semi-transparent curves for the in-training subset (light blue), the target subset (orange) and the out-of-training subset (pink or red). The x-axis is the HSIC value, on the order of 1e-7. The left panel shows the original model, with solid outlines. The target curve overlaps the in-training curve more closely, and the out-of-training curve sits further left. The right panel shows the retrained model, with dashed outlines. The target curve now overlaps the out-of-training curve and sits left of the in-training curve. A legend with math notation H(S, h) is at the top right of each panel. Large annotations in the lower right give distance values D(S_tar, S_OOT) and D(S_tar, S_IT), plus a p-value. The eye goes first to the overlapping colored peaks, then to the numeric annotations.",
+ "description": "Two side-by-side kernel density plots share a similar layout. The left panel shows the original model h^or. The right panel shows the retrained model h^re, drawn with dashed lines. Each panel has three overlapping shaded curves: light blue for the in-training subset S_IT, orange for the target subset S_tar, and pink/red for the out-of-training subset S_OOT. The x-axis is the HSIC value, around 1e-7, and there is no y-axis. A legend with math notation sits at the top right of each panel. Text at the bottom right gives distances D between the distributions and a p-value. In the left panel, S_tar overlaps S_IT and sits away from S_OOT, with D = 0.037 against S_OOT and 0.008 against S_IT. In the right panel, S_tar shifts to overlap S_OOT, with D = 0.008 against S_OOT and 0.083 against S_IT. The eye goes first to the overlapping curves and the shift of the orange curve.",
  "caption": "$H(S, h)$ distributions on the original model $h^{or}$ (left) and the retrained model $h^{re}$ (right). The $S_{\\rm tar}$ is in-training for $h^{\\rm or}$ but out-of-training for $h^{\\rm re}$. In the retrained model, the $\\mathcal{S}_{\\rm tar}$ becomes significantly closer to the $\\mathcal{S}_{\\rm OOT}$ than the $\\mathcal{S}_{\\rm IT}$ in terms of HSIC.",
  "caption_source": "latex",
  "abstract": "Evaluating machine unlearning remains challenging, as existing methods typically require retraining reference models or performing membership inference attacks, both of which rely on prior access to training configuration or supervision labels, making them impractical in realistic scenarios. Motivated by the fact that most unlearning algorithms remove a small, random subset of the training data, we propose a subset-level evaluation framework based on statistical independence. Specifically, we design a tailored use of the Hilbert-Schmidt Independence Criterion to assess whether the model outputs on a given subset exhibit statistical dependence, without requiring model retraining or auxiliary classifiers. Our method provides a simple, standalone evaluation procedure that aligns with unlearning workflows. Extensive experiments demonstrate that our approach reliably distinguishes in-training from out-of-training subsets and clearly differentiates unlearning effectiveness, even when existing evaluations fall short.",

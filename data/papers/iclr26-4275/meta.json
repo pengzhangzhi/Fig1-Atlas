@@ -28,24 +28,24 @@
  "track": "main",
  "topic": "Computer Vision->Image and Video Generation",
  "role": "teaser-result",
- "role2": "analysis-finding",
- "claim": "Our efficient model produces diverse high-quality samples while being far faster than baselines, with memory that stays constant and latency that grows slowly as video length increases.",
- "layout": "Top film-strip gallery of sample frames over a bottom row of 3 plots: horizontal bar chart, memory line plot, latency line plot; labeled (a)-(d)",
+ "role2": null,
+ "claim": "A small efficient model produces diverse high-quality samples while being far faster and holding constant memory as output length grows, unlike full-attention baselines.",
+ "layout": "Top film-strip gallery of sample frames (3 rows); bottom row of 3 plots: horizontal bar chart, memory-vs-length line plot, latency-vs-length line plot, with ours in green vs gray baselines",
  "tags": [
   "efficiency",
-  "linear-attention",
   "video-generation",
-  "latency",
+  "linear-attention",
   "constant-memory",
-  "long-context",
-  "sample-gallery"
+  "latency",
+  "long-sequence",
+  "headline-result"
  ],
  "style": [
   "photo/real data",
   "plot",
   "colorful"
  ],
- "description": "The top panel (a) is a film-strip-style gallery with sprocket borders. It holds rows of generated video frames: cloud-text 'SANA', a car on an autumn road, an elderly man in a beret, a lotus blooming across five frames, a robot arm placing items into a box labeled 'Physical AI', and Minecraft-like scenes labeled 'World Simulation'. Below are three plots. (b) is a horizontal bar chart of latency for SkyReelv2, Wan2.1, CogVideoX, Wan2.2 and SANA-Video. Gray bars are baselines, SANA-Video is a short green bar, and a red arrow marks a 16x speedup. (c) plots GPU memory against video length. Block Linear Attention is a flat green line at 7.2 GB, and causal full attention is a rising gray dashed curve that hits OOM. (d) plots latency against length. SANA-Video is green and Wan2.1 is a steeply rising gray curve. The eye goes first to the colorful gallery, then to the green highlights in the plots.",
+ "description": "The top half is a film-strip banner with three rows of generated video frames: cloud-shaped SANA text, a car on an autumn road, an elderly man in a beret, a flower blooming across five frames, and robotic arm and Minecraft-style scenes labeled Physical AI and World Simulation. Caption (a) reads 'Generation results from our 2B models'. The bottom half has three plots. (b) is a horizontal bar chart of latency for SkyReelV2, Wan2.1, CogVideoX, Wan2.2 and SANA-Video. Baselines are gray and SANA-Video is a short green bar, with a red dashed line and a '16x' arrow. (c) plots GPU memory against video length. Gray causal full attention climbs to out-of-memory (OOM) while green block linear attention stays flat at 7.2 GB. (d) plots latency against video length, where gray Wan2.1 grows steeply and green SANA-Video grows slowly. Green marks ours and gray marks baselines throughout.",
  "caption": "An overview of generated videos and inference latency and memory of \\methodshort. The generation latency is measured under 50 denoising steps. Linear attention is more efficient for video generation and our block linear attention maintains a fixed memory requirement for long videos.",
  "caption_source": "latex",
  "abstract": "We introduce SANA-Video, a small diffusion model that can efficiently generate videos up to 720x1280 resolution and minute-length duration. SANA-Video synthesizes high-resolution, high-quality and long videos with strong text-video alignment at a remarkably fast speed, deployable on RTX 5090 GPU. Two core designs ensure our efficient, effective and long video generation: (1) Linear DiT: We leverage linear attention as the core operation, which is more efficient than vanilla attention given the large number of tokens processed in video generation. (2) Constant-Memory KV cache for Block Linear Attention: we design block-wise autoregressive approach for long video generation by employing a constant-memory state, derived from the cumulative properties of linear attention. This KV cache provides the Linear DiT with global context at a fixed memory cost, eliminating the need for a traditional KV cache and enabling efficient, minute-long video generation. In addition, we explore effective data filters and model training strategies, narrowing the training cost to 12 days on 64 H100 GPUs, which is only 1% of the cost of MovieGen. Given its low cost, SANA-Video achieves competitive performance compared to modern state-of-the-art small diffusion models (e.g., Wan 2.1-1.3B and SkyReel-V2-1.3B) while being 16x faster in measured latency. Moreover, SANA-Video can be deployed on RTX 5090 GPUs with NVFP4 precision, accelerating the inference speed of generating a 5-second 720p video from 71s to 29s (2.4x speedup). In summary, SANA-Video enables low-cost, high-quality video generation.",
@@ -61,9 +61,7 @@
  "image_url": null,
  "thumb_url": null,
  "figure_page": 0,
- "qc_flags": [
-  "bad-crop"
- ],
+ "qc_flags": [],
  "annotator": "claude-cli:sonnet",
  "role_confidence": 0.85
 }

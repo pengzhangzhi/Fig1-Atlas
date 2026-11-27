@@ -16,22 +16,22 @@
  "topic": "Applications->Robotics",
  "role": "analysis-finding",
  "role2": null,
- "claim": "Quantization sensitivity is highly non-uniform, varying across modules and even more across individual channels, so uniform-bit allocation is suboptimal and fine-grained adaptive precision is needed.",
- "layout": "2 panels side by side: (a) grouped bar chart across modules on log scale, (b) dense per-channel line plot with module regions labeled and shaded dividers",
+ "claim": "Quantization sensitivity is highly non-uniform, varying across modules and even more across individual channels, so uniform precision is suboptimal and fine-grained adaptive allocation is needed.",
+ "layout": "2 panels side-by-side: (a) grouped log-scale bar chart by module, (b) dense per-channel line plot with module labels above; shared legend of bit-widths",
  "tags": [
   "quantization",
   "sensitivity-analysis",
-  "channel-wise",
   "heterogeneity",
-  "vision-language-action",
+  "channel-wise",
   "mixed-precision",
-  "motivation"
+  "motivation",
+  "model-compression"
  ],
  "style": [
   "plot",
   "colorful"
  ],
- "description": "Two plots sit side by side, both with a log-scale y-axis labeled 'Action error'. Panel (a), on the left, is a grouped bar chart with four modules on the x-axis: vision encoder, projector, language module and action head. Each module has a blue bar for 4-bit quantization and a green bar for 8-bit quantization. Numeric error values are printed at an angle above the bars. The projector and action head bars are visibly taller than the others. Panel (b), on the right, is a dense line plot of error against global channel index, aggregated over about 1.9 million channels. It has four overlaid colored curves for 0-bit (gray), 2-bit (purple), 4-bit (blue) and 8-bit (green). Colored italic labels mark the module regions, and dark vertical bands mark module boundaries. The curves are spiky and uneven, showing large variation between channels. Captions '(a) Quantization Results Across Modules' and '(b) Quantization Results Across Channels' sit beneath the panels.",
+ "description": "Two side-by-side log-scale plots of action error under quantization. Panel (a) is a grouped bar chart over four modules (vision encoder, projector, language module, action head). Each module has a blue 4-bit bar and a green 8-bit bar, with scientific-notation values written above the bars. The projector and action head have visibly taller bars. Panel (b) is a dense, noisy line plot of action error against aggregated global channel index, up to about 1.9 million channels. It has overlapping translucent curves for 0-bit (gray), 2-bit (purple), 4-bit (blue) and 8-bit (green). Italic colored labels mark the module regions, and gray vertical bands mark the module boundaries. The eye goes first to the tall blue bars on the left, then to the jagged spikes on the right. Captions sit under each panel, as (a) and (b).",
  "caption": "Quantitative analysis of quantization sensitivity in VLA models. (a) Per-module analysis shows that the projector and action head are significantly more sensitive to quantization. (b) Per-channel analysis demonstrates highly heterogeneous sensitivity within modules. These findings collectively motivate our adaptive precision, channel-level quantization approach.",
  "caption_source": "latex",
  "abstract": "The advent of Vision-Language-Action (VLA) models represents a significant leap for embodied intelligence, yet their immense computational demands critically hinder deployment on resource-constrained robotic platforms. Intuitively, low-bit quantization is a prevalent and preferred technique for large-scale model compression. However, we find that a systematic analysis of VLA model's quantization is fundamentally lacking. We argue that naively applying uniform-bit quantization from Large Language Models (LLMs) to robotics is flawed, as these methods prioritize passive data fidelity while ignoring how minor action deviations compound into catastrophic task failures. To bridge this gap, we introduce QVLA, the first action-centric quantization framework specifically designed for embodied control. In a sharp departure from the rigid, uniform-bit quantization of LLM-based methods, QVLA introduces a highly granular, channel-wise bit allocation strategy. Its core mechanism is to directly measure the final action-space sensitivity when quantizing each individual channel to various bit-widths. This process yields a precise, per-channel importance metric that guides a global optimization, which elegantly unifies quantization and pruning (0-bit) into a single, cohesive framework. Extensive evaluations on different baselines demonstrate the superiority of our approach. In the LIBERO, the quantization version of OpenVLA-OFT with our method requires only 29.2% of the original model's VRAM while maintaining 98.9% of its original performance and achieving a 1.49x speedup. This translates to a 22.6% performance improvement over the LLM-derived method SmoothQuant. Our work establishes a new, principled foundation for compressing VLA models in robotics, paving the way for deploying powerful, large-scale models on real-world hardware. Code will be released.",

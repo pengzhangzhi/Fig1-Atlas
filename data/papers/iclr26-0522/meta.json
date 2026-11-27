@@ -1,0 +1,60 @@
+{
+ "id": "iclr26-0522",
+ "title": "Flow2GAN: Hybrid Flow Matching and GAN with Multi-Resolution Network for Few-step High-Fidelity Audio Generation",
+ "authors": [
+  "Zengwei Yao",
+  "Wei Kang",
+  "Han Zhu",
+  "Liyong Guo",
+  "Lingxuan Ye",
+  "Fangjun Kuang",
+  "Weiji Zhuang",
+  "Zhaoqing Li",
+  "Zhifeng Han",
+  "Long Lin",
+  "Daniel Povey"
+ ],
+ "venue": "ICLR 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "Applications->Language, Speech and Dialog",
+ "role": "pipeline",
+ "role2": null,
+ "claim": "A generative model is first trained with an endpoint-estimating flow objective, then used to initialize a lightweight adversarially fine-tuned few-step generator.",
+ "layout": "2 stages side by side, left-to-right, split by a dashed vertical line, with an 'Initialize' block arrow between them and a discriminator box at top right",
+ "tags": [
+  "two-stage",
+  "flow-matching",
+  "gan-fine-tuning",
+  "few-step",
+  "audio-generation",
+  "initialization",
+  "endpoint-estimation"
+ ],
+ "style": [
+  "colorful",
+  "icon-heavy",
+  "math-heavy"
+ ],
+ "description": "A two-stage pipeline diagram split by a vertical dashed line. The left stage is flow matching training. Noise x0 ~ p_noise and data x1 ~ p_data waveforms merge through curved arrows into an interpolated waveform x_t = (1-t)x0 + t x1. This feeds a green rounded box labeled 'Flow Matching endpoint estimator g_θ(x_t, t|c)', which outputs a predicted waveform x̂1. A dashed light-blue block arrow labeled 'Initialize' points right to the second stage. There, noise x0 feeds a green 'Few-step generator G_θ^N(x0|c)' box, with Mel-spectrogram or discrete token conditioning entering from the right. It outputs x̂1, and that output and real x1 go to a pink 'Discriminators' box at the top. Blue waveform glyphs are the main visual elements. Stage labels sit in dashed boxes at the bottom. The crop cuts off the left and right edges.",
+ "caption": "Overall framework of Flow2GAN.",
+ "caption_source": "latex",
+ "abstract": "Existing dominant methods for audio generation include Generative Adversarial Networks (GANs) and diffusion-based methods like Flow Matching. GANs suffer from slow convergence during training, while diffusion methods require multi-step inference that introduces considerable computational overhead. In this work, we introduce Flow2GAN, a two-stage framework that combines Flow Matching training for learning generative capabilities with GAN fine-tuning for efficient few-step inference. Specifically, given audio's unique properties, we first improve Flow Matching for audio modeling through: 1) reformulating the objective as endpoint estimation, avoiding velocity estimation difficulties when involving empty regions; 2) applying spectral energy-based loss scaling to emphasize perceptually salient quieter regions. Building on these Flow Matching adaptations, we demonstrate that a further stage of lightweight GAN fine-tuning enables us to obtain few-step (e.g., 1/2/4 steps) generators that produce high-quality audio. In addition, we develop a multi-branch network architecture that processes Fourier coefficients at different time-frequency resolutions, which improves the modeling capabilities compared to prior single-resolution designs. Experimental results indicate that our Flow2GAN delivers high-fidelity audio generation from Mel-spectrograms or discrete audio tokens, achieving highly favorable quality-efficiency trade-offs compared to existing state-of-the-art GAN-based and Flow Matching-based methods. Online demo samples are available at https://flow2gan.github.io, and the source code is released at https://github.com/k2-fsa/Flow2GAN.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=5eTpRIULtb",
+  "arxiv": "https://arxiv.org/abs/2512.23278",
+  "pdf": "https://arxiv.org/pdf/2512.23278",
+  "virtual": "https://iclr.cc/virtual/2026/poster/10011439",
+  "code": "https://github.com/k2-fsa/Flow2GAN"
+ },
+ "license": "http://arxiv.org/licenses/nonexclusive-distrib/1.0/",
+ "img": "none",
+ "image_url": null,
+ "thumb_url": null,
+ "figure_page": 2,
+ "qc_flags": [
+  "bad-crop"
+ ],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.9
+}

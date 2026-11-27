@@ -12,22 +12,22 @@
  "topic": "Optimization->Large Scale, Parallel and Distributed",
  "role": "analysis-finding",
  "role2": "problem-setup",
- "claim": "Gradient noise in real training is skewed and heavy-tailed, resembling a Lévy α-stable distribution, so heavy-tailed noise is a realistic model.",
- "layout": "4 histogram panels in a single row, left-to-right; three training epochs followed by a synthetic Lévy α-stable reference, with sub-captions (a)-(d)",
+ "claim": "Gradient noise in real training is right-skewed and heavy-tailed, and a synthetic Lévy α-stable distribution reproduces this shape, justifying heavy-tailed noise assumptions.",
+ "layout": "4 histogram panels in one row, left-to-right; three training epochs followed by a synthetic Lévy distribution, with (a)-(d) sub-captions",
  "tags": [
   "heavy-tailed-noise",
   "gradient-noise",
   "empirical-density",
+  "histograms",
   "transformer",
   "levy-stable",
-  "nonconvex-optimization",
-  "motivation"
+  "assumption-justification"
  ],
  "style": [
   "plot",
   "minimal"
  ],
- "description": "A single row of four blue histograms, each with empirical density on the y-axis. Panels (a), (b) and (c) show the gradient noise norm of a Transformer at epochs 0, 6 and 10. Each is unimodal, right-skewed and has a long right tail. The x-range grows from about 0.32–0.40 at epoch 0 to about 0.35–0.60 at epoch 10. Panel (d) shows a synthetic Lévy α-stable distribution with x running from about -6 to 10. It has the same shape: a sharp peak with a long right tail. The panels are visually uniform and have no highlight colors. The eye goes to the skewed tails and the match between the real-gradient panels and the Lévy reference panel. Sub-captions sit under each panel.",
+ "description": "A single row of four blue histograms of empirical density. Panels (a), (b) and (c) show the norm of gradient noise while training a Transformer at epochs 0, 6 and 10. Each distribution is unimodal with a long right tail. The x-axis range widens from about 0.32–0.40 to about 0.35–0.60 as training proceeds, so the tail becomes more pronounced. Panel (d) shows samples from a synthetic Lévy α-stable distribution. It has a similar skewed shape with an even heavier tail, ranging from about −6 to 10. Each panel has a title, axis labels (Empirical Density, Noise Norm or Lévy random variable) and a sub-caption below. The plots use one uniform color and a plain white background, with no highlighting or annotations. The eye goes first to the peaks and the right-hand tails.",
  "caption": "Comparisons of the empirical density of gradient noise norm in different epochs of training a Transformer model with a synthetic Lévy $\\alpha$-stable distribution.",
  "caption_source": "latex",
  "abstract": "Heavy-tailed noise in nonconvex stochastic optimization has garnered increasing research interest, as empirical studies, including those on training attention models, suggest it is a more realistic gradient noise condition. This paper studies first-order nonconvex stochastic optimization under heavy-tailed gradient noise in a decentralized setup, where each node can only communicate with its direct neighbors in a predefined graph. Specifically, we consider a class of heavy-tailed gradient noise that is zero-mean and has only $p$-th moment for $p \\in (1, 2]$. We propose GT-NSGDm, Gradient Tracking based Normalized Stochastic Gradient Descent with momentum, that utilizes normalization, in conjunction with gradient tracking and momentum, to cope with heavy-tailed noise on distributed nodes. We show that, when the communication graph admits primitive and doubly stochastic weights, GT-NSGDm guarantees, for the \\textit{first} time in the literature, that the expected gradient norm converges at an optimal non-asymptotic rate $O\\big(1/T^{(p-1)/(3p-2)}\\big)$, which matches the lower bound in the centralized setup. When tail index $p$ is unknown, GT-NSGDm attains a non-asymptotic rate $O\\big( 1/T^{(p-1)/(2p)} \\big)$ that is, for $p < 2$, topology independent and has a speedup factor $n^{1-1/p}$ in terms of the number of nodes $n$. Finally, experiments on nonconvex linear regression with tokenized synthetic data and decentralized training of language models on a real-world corpus demonstrate that GT-NSGDm is more robust and efficient than baselines.",
@@ -45,5 +45,5 @@
  "figure_page": 4,
  "qc_flags": [],
  "annotator": "claude-cli:sonnet",
- "role_confidence": 0.8
+ "role_confidence": 0.85
 }

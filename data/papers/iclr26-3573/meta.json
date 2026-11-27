@@ -14,24 +14,24 @@
  "track": "main",
  "topic": "Deep Learning->Robustness",
  "role": "concept",
- "role2": "teaser-result",
- "claim": "Learning a single attention-pooling vector in one loss basin lets token-level pooling separate sequences that mean pooling cannot, giving perfect ID/OOD discrimination.",
- "layout": "3 panels left-to-right: loss landscape contour, token-embedding scatter with pooling lines, score histogram with green check",
+ "role2": "analysis-finding",
+ "claim": "A learned attention-pooling vector settles in one loss basin of the token embeddings, so ID and OOD sequences separate perfectly, which mean pooling can't do.",
+ "layout": "3 panels, left-to-right: loss contour map, token-to-vector projection lines, score histogram; shared 2-D coordinates and ID/OOD legend",
  "tags": [
   "toy-example",
-  "out-of-distribution-detection",
-  "attention-pooling",
   "loss-landscape",
-  "token-level",
-  "mean-pooling-failure",
-  "discrimination"
+  "pooling",
+  "ood-detection",
+  "token-embeddings",
+  "mechanism",
+  "separability"
  ],
  "style": [
   "plot",
   "colorful",
   "minimal"
  ],
- "description": "Three side-by-side plots on a 2-D toy problem. Left: a filled contour loss landscape in purple, green and yellow, with two dark basins. Blue (ID) and orange (OOD) token clusters sit at the four corners, and the basins lie over the ID clusters. Center: a scatter of the same clusters with translucent blue and orange lines joining the clusters of each sequence. The lines form a large X across the plot, and a red cross marks the learned weight vector w in the lower-left ID cluster. Right: a histogram of AP-OOD scores. All ID samples form one tall blue bar at 0. OOD samples form an orange spread between 2 and 5. A green check mark and a legend sit at the top. The diagonal X in the center panel draws the eye first.",
+ "description": "Three side-by-side plots on a toy 2-D example with blue ID points and orange OOD points. Left: a filled contour loss landscape in purple-to-green. It has two dark purple basins at the ID cluster locations, and the OOD clusters sit on higher, greener ground. Center: a gray-background scatter with the same four clusters. Dense blue and orange lines cross in an X shape between the clusters, connecting each sequence's tokens. A red X marks the learned vector w in the lower-left ID basin. Right: a histogram of AP-OOD scores. All ID samples form a single tall blue bar at 0, and the OOD samples spread as orange bars between about 2 and 5. A green checkmark badge sits at the top, marking perfect separation. The eye goes first to the crossing lines in the center.",
  "caption": "Illustrative example for the mechanism that \\ourmethod uses to correctly discriminate between ID and OOD (as opposed to the mean pooling approaches). The setting is the same as in Figure [ref]. (Left) The loss landscape forms two basins at the locations of the ID token embeddings. (Center) After training \\ourmethod with a single weight vector $\\Bw$, the learned $\\Bw$ is located in one of the basins. (Right) \\ourmethod achieves perfect discrimination between the ID and OOD sequences.",
  "caption_source": "latex",
  "abstract": "Out-of-distribution (OOD) detection, which maps high-dimensional data into a scalar OOD score, is critical for the reliable deployment of machine learning models. A key challenge in recent research is how to effectively leverage and aggregate token embeddings from language models to obtain the OOD score. In this work, we propose AP-OOD, a novel OOD detection method for natural language that goes beyond simple average-based aggregation by exploiting token-level information. AP-OOD is a semi-supervised approach that flexibly interpolates between unsupervised and supervised settings, enabling the use of limited auxiliary outlier data. Empirically, AP-OOD sets a new state of the art in OOD detection for text: in the unsupervised setting, it reduces the FPR95 (false positive rate at 95% true positives) from 27.84% to 4.67% on XSUM summarization, and from 77.08% to 70.37% on WMT15 En-Fr translation.",
@@ -51,5 +51,5 @@
   "bad-crop"
  ],
  "annotator": "claude-cli:sonnet",
- "role_confidence": 0.8
+ "role_confidence": 0.7
 }

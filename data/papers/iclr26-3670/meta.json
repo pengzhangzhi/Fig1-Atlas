@@ -15,14 +15,14 @@
  "track": "main",
  "topic": "Deep Learning->Everything Else",
  "role": "pipeline",
- "role2": "overview-framework",
- "claim": "A multi-turn task is split into per-step episodes, and an entropy-driven module chain reweights token-level policy gradients to give dense, effective rewards.",
- "layout": "Top-left dotted step panel and objective formula, zoomed-in module box at top right (dashed callout lines), full multi-turn trajectory along the bottom; left-to-right arrows with blue feedback loops",
+ "role2": null,
+ "claim": "A multi-turn task is split into per-step episodes, and an entropy-driven reweighting module reshapes token-level policy gradients for dense reward signals.",
+ "layout": "Top-to-bottom: formula banner and per-step loop at top left, zoomed-in 4-module cycle at top right, multi-turn outcome-reward trajectory along the bottom; dashed zoom lines link the panels",
  "tags": [
   "reinforcement-learning",
   "tool-use",
-  "policy-gradient",
   "token-reweighting",
+  "policy-gradient",
   "entropy",
   "multi-turn",
   "curriculum-learning"
@@ -32,7 +32,7 @@
   "icon-heavy",
   "math-heavy"
  ],
- "description": "A green-themed diagram with three regions. The bottom row shows a full multi-turn trajectory. A user icon feeds assistant robot icons across Steps 1 to N+1, with a Context History brace over the early steps. The last assistant leads to a trophy labeled Outcome Reward, then to a blue ResT box. A blue arrow loops back as Weighted Policy Gradients Update. The top-left dotted box, labeled Step × N, repeats this at single-turn level: User, Assistant, Step Reward trophy, ResT, and a blue update loop. Above it, a shaded box holds the clipped PPO-style ResT objective formula. Dashed lines expand the ResT box into a top-right panel. It has four modules in a cycle: Region Tokenizer, Entropy Calculator, Reweighting Factor and Curriculum Learning, each with its equation. The eye goes first to the formula and the large zoom-in panel.",
+ "description": "A green-themed diagram with three linked regions. The top-left holds an 'Optimization Objective' banner with the ResT clipped policy-gradient loss. Below it, a dotted box labeled 'Step × N' shows a User icon, an Assistant robot, a trophy for step reward, and a blue 'ResT' box. Blue arrows labeled 'Weighted Policy Gradients Update' loop back to the assistant. A dashed zoom line expands ResT into a rounded panel on the right. That panel has four boxes in a cycle: Region Tokenizer (chain-of-thoughts, tool name, key parameters, output format), Entropy Calculator (entropy formula and a variance bound), Reweighting Factor, and Curriculum Learning. The bottom row shows the full multi-turn trajectory. A user and several assistants appear under a 'Context History' brace, and the trajectory ends in an outcome reward trophy and another ResT box. The eye goes first to the colorful icons and the right-hand zoom panel.",
  "caption": "ResT decomposes multi-turn tool-use tasks into single-turn tasks and further reshapes the policy gradient according to the average entropy in different regions, enabling dense and effective reward signals.",
  "caption_source": "latex",
  "abstract": "Large language models (LLMs) transcend passive generation and act as goal-directed agents by invoking external tools. Reinforcement learning (RL) offers a principled framework for optimizing these emergent tool-use policies, yet the prevailing paradigm relies exclusively on sparse outcome rewards and lacks consideration of the particularity of tool-use tasks, inflating policy-gradient variance and resulting in inefficient training. To better understand and address these challenges, we first establish a theoretical link between policy entropy and training stability of tool-use tasks, which reveals that structured, low-entropy tokens are primary determinants of rewards. Motivated by this insight, we propose \\textbf{Res}haped \\textbf{T}oken-level policy gradients (\\textbf{ResT}) for tool-use tasks. ResT reshapes the policy gradient through entropy-informed token reweighting, progressively upweighting reasoning tokens as training proceeds. This entropy-aware scheme enables a smooth shift from structural correctness to semantic reasoning and stabilizes convergence in multi-turn tool-use tasks. Evaluation on BFCL and API-Bank shows that ResT achieves state-of-the-art results, outperforming prior methods by up to $8.76\\%$. When fine-tuned on a 4B base LLM, ResT further surpasses GPT-4o by $4.11\\%$ on single-turn tasks and $1.50\\%$ on multi-turn base tasks. Code is available at https://github.com/1229095296/ResT_Tool_use_LLM.git.",
@@ -50,5 +50,5 @@
  "figure_page": 1,
  "qc_flags": [],
  "annotator": "claude-cli:sonnet",
- "role_confidence": 0.8
+ "role_confidence": 0.85
 }

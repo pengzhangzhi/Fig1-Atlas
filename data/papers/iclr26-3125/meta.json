@@ -1,0 +1,51 @@
+{
+ "id": "iclr26-3125",
+ "title": "Gumbel Distillation for Parallel Text Generation",
+ "authors": [
+  "Chi Zhang",
+  "Xixi Hu",
+  "Bo Liu",
+  "Qiang Liu"
+ ],
+ "venue": "ICLR 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "Deep Learning->Generative Models and Autoencoders",
+ "role": "pipeline",
+ "role2": null,
+ "claim": "Generate sequences paired with the noise that deterministically produces them from a teacher, then train a parallel student conditioned on that noise.",
+ "layout": "3 panels, left-to-right: Gumbel-Max sampling inset (dashed, zoomed), Stage 1 data generation, Stage 2 student training; color legend top-right",
+ "tags": [
+  "distillation",
+  "gumbel-max",
+  "noise-conditioning",
+  "parallel-decoding",
+  "autoregressive-teacher",
+  "two-stage",
+  "language-models"
+ ],
+ "style": [
+  "colorful",
+  "icon-heavy",
+  "minimal"
+ ],
+ "description": "A wide horizontal diagram with a color legend at top right: gray for tokens, green for logits, yellow for Gumbel noise. On the left, a dashed orange inset titled Gumbel-Max Sampling shows green logit bars and yellow noise bars summed with a plus sign, stacked, and passed through argmax to give a token. A dashed line links the inset to a highlighted cell in the center panel, Stage 1: Data Generation. There, an AR Teacher box takes BOS and previous tokens x^1 to x^(n-1) as input. It outputs logits l^1 to l^n. Each logit is combined with a noise block ξ^i to give a token x^i. A dashed gray arrow feeds each token back as input. On the right, Stage 2: Student Training shows a Parallel Student box taking masked context x^¬I and noise ξ^I. It predicts logits, which are compared with the target tokens through a CE Loss arrow. Blue arrows carry the flow.",
+ "caption": "A conceptual overview of \\oursnew. The distillation process consists of two steps: (1) Data Generation: An autoregressive teacher model's sampling process is combined with Gumbel noise to deterministically generate pairs of token sequences and their corresponding Gumbel noise. In practice, one could alternatively extract $\\{\\xi\\}$ in parallel based on an offline training corpus (Section [ref]); (2) Student Training: A parallel student model is trained to predict a target subset of tokens, conditioned on both the context and the Gumbel noise from the teacher.",
+ "caption_source": "latex",
+ "abstract": "The slow, sequential nature of autoregressive (AR) language models has driven the adoption of parallel decoding methods. However, these non-AR models often sacrifice generation quality as they struggle to model the complex joint distribution of token sequences. To narrow this performance gap, we introduce Gumbel Distillation, a novel distillation technique that enables parallel decoders to learn this distribution effectively. Our method leverages the Gumbel-Max trick to create a deterministic mapping from a latent Gumbel noise space to the output tokens of a high-performing AR teacher. As a model-agnostic technique, Gumbel Distillation seamlessly integrates with diverse parallel decoding architectures, including MDLM and BD3-LM. Experiments on LM1B and OpenWebText show that Gumbel Distillation substantially improves the generation quality of parallel language models, achieving a 30.0% improvement in MAUVE score and 10.5% in generative perplexity over MDLM trained on OpenWebText dataset. Code available at https://github.com/hxixixh/gumbel-distill.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=aEuqVZVCdr",
+  "arxiv": "https://arxiv.org/abs/2603.22216",
+  "pdf": "https://arxiv.org/pdf/2603.22216",
+  "virtual": "https://iclr.cc/virtual/2026/poster/10008724",
+  "code": "https://github.com/hxixixh/gumbel-distill"
+ },
+ "license": "http://creativecommons.org/licenses/by/4.0/",
+ "img": "cc-by",
+ "image_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/images/iclr26-3125.png",
+ "thumb_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/thumbs/iclr26-3125.webp",
+ "figure_page": 3,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.9
+}

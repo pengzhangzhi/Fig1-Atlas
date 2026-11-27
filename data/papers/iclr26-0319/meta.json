@@ -1,0 +1,56 @@
+{
+ "id": "iclr26-0319",
+ "title": "Deforming Videos to Masks: Flow Matching for Referring Video Segmentation",
+ "authors": [
+  "zanyi wang",
+  "Dengyang Jiang",
+  "Liuzhuozheng Li",
+  "Sizhe Dang",
+  "Chengzu Li",
+  "Harry Yang",
+  "Guang Dai",
+  "Mengmeng Wang",
+  "Jingdong Wang"
+ ],
+ "venue": "ICLR 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": null,
+ "role": "pipeline",
+ "role2": "prior-vs-ours",
+ "claim": "Casting the task as a language-guided flow from input data to target output, trained with flow matching and sampled by an ODE, beats noise-based or one-step prediction.",
+ "layout": "3 panels: training at top-left, paradigm comparison at bottom-left, inference at right. Mostly left-to-right with arrows, and a red-to-green performance bar above the paradigm row.",
+ "tags": [
+  "flow-matching",
+  "video-segmentation",
+  "one-stage",
+  "generative",
+  "ode-sampling",
+  "paradigm-comparison",
+  "text-conditioned"
+ ],
+ "style": [
+  "photo/real data",
+  "colorful",
+  "icon-heavy"
+ ],
+ "description": "The figure has three regions. The top-left Training panel (pink background) shows video frames interpolated with mask frames, weighted 1-t and t, in a bracket. These feed a green 'Flow Matching Model' box with a flame icon. The box also receives the text prompt (a dog rotating on a flying saucer), a stack of video frames, and a timestep histogram labeled boundary-biased time sampling. Its output goes to an MSE loss against V_gt. The right Inference panel (blue background) shows a frozen model with a snowflake icon. A looping arrow leads to an ODE Sampling block, which shows three columns of frames going from x0 video frames through x1 to xT binary masks, with dx_t = f_θ dt in the middle. The bottom-left Paradigms strip has a red-to-green 'bad to good' arrow. Under it are three rows: multistep denoising from noise to mask, one-step prediction of mask or velocity, and multistep flowing from video to mask.",
+ "caption": "FlowRVS reformulates RVOS as a text-conditioned continuous flow, learning a velocity field via Flow Matching stabilized by boundary-biased time sampling in latent space. During inference, an ODE solver uses this field to deterministically deform the video latent to the target mask, this video to mask paradigm superior to noise-based or one-step prediction approaches.",
+ "caption_source": "latex",
+ "abstract": "Referring Video Object Segmentation (RVOS) requires segmenting specific objects in a video guided by a natural language description. The core challenge of RVOS is to anchor abstract linguistic concepts onto a specific set of pixels and continuously segment them through the complex dynamics of a video. Faced with this difficulty, prior work has often decomposed the task into a pragmatic `locate-then-segment' pipeline. However, this cascaded design creates an information bottleneck by simplifying semantics into coarse geometric prompts (e.g, point), and struggles to maintain temporal consistency as the segmenting process is often decoupled from the initial language grounding. To overcome these fundamental limitations, we propose FlowRVS, a novel framework that reconceptualizes RVOS as a conditional continuous flow problem. This allows us to harness the inherent strengths of pretrained T2V models, fine-grained pixel control, text-video semantic alignment, and temporal coherence. Instead of conventional generating from noise to mask or directly predicting mask, we reformulate the task by learning a direct, language-guided deformation from a video's holistic representation to its target mask. Our one-stage, generative approach achieves new state-of-the-art results across all major RVOS benchmarks. Specifically, achieving a J&F of 51.1 in MeViS (+1.6 over prior SOTA) and 73.3 in the zero shot Ref-DAVIS17 (+2.7), demonstrating the significant potential of modeling video understanding tasks as continuous deformation processes.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=3KaIcArMAB",
+  "arxiv": "https://arxiv.org/abs/2510.06139",
+  "pdf": "https://arxiv.org/pdf/2510.06139",
+  "virtual": "https://iclr.cc/virtual/2026/poster/10011648",
+  "code": null
+ },
+ "license": "http://arxiv.org/licenses/nonexclusive-distrib/1.0/",
+ "img": "none",
+ "image_url": null,
+ "thumb_url": null,
+ "figure_page": 3,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.7
+}
