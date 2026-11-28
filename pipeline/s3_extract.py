@@ -257,8 +257,9 @@ def figure_region(page, cap: fitz.Rect, pno=1, body=None):
     # A short one-line caption under a full-width figure is narrow but centred.
     dense_w = [r.width for r in dense]
     two_col = len(dense_w) >= 2 and sum(w < 0.55 * tw for w in dense_w) > 0.5 * len(dense_w)
-    off_centre = abs((cap.x0 + cap.x1) / 2 - (tx0 + tx1) / 2) > 0.12 * tw
-    column = cap.width < 0.6 * tw and (two_col or off_centre)
+    # on a two-column page a column caption sits ~0.25 tw off centre; a centred short caption means full width
+    off_centre = abs((cap.x0 + cap.x1) / 2 - (tx0 + tx1) / 2) > (0.05 if two_col else 0.12) * tw
+    column = cap.width < 0.6 * tw and off_centre
     colw = cap.width if column else tx1 - tx0
     gfx_rects = [fitz.Rect(i["bbox"]) for i in page.get_image_info()] + \
                 [fitz.Rect(d["rect"]) for d in page.get_drawings() if fitz.Rect(d["rect"]).width < 0.9 * P.width and not _invisible(d)]
@@ -271,9 +272,19 @@ def figure_region(page, cap: fitz.Rect, pno=1, body=None):
     # first page: author / affiliation lines above a teaser
     # first page: author / affiliation lines above a teaser (centred on the page, outside graphics)
     centred = lambda r: abs((r.x0 + r.x1) / 2 - (tx0 + tx1) / 2) < 0.06 * tw and r.width > 0.3 * tw
+    # author lines often come as one block per author: judge the whole baseline row
+    def row_of(b):
+        r = fitz.Rect(b["rect"])
+        for o in blocks:
+            q = o["rect"]
+            if abs(o["size"] - b["size"]) < 0.6 and min(q.y1, r.y1) - max(q.y0, r.y0) > 0.6 * min(q.height, r.height) \
+                    and not any(g.contains(q) for g in gfx_rects):
+                r |= q
+        return r
     is_front = lambda b: pno == 0 and (AFFIL_RE.search(b["text"]) or (
-        b["size"] >= body - 0.3 and b["n"] >= 12 and centred(b["rect"])
-        and not any(g.contains(b["rect"]) for g in gfx_rects)))
+        b["size"] >= body - 0.3 and not any(g.contains(b["rect"]) for g in gfx_rects)
+        and ((b["n"] >= 12 and centred(b["rect"]))
+             or (b["rect"].y1 < P.height * 0.3 and b["n"] < 60 and centred(row_of(b)) and row_of(b).width > 0.6 * tw))))
     # numbered section headings ("4 LIMITATIONS OF …", small caps measure smaller than body text)
     para_x0 = [r.x0 for r in dense]
     is_section = lambda b: b["n"] < 120 and SECTION_RE.match(b["text"]) is not None and b["size"] >= body - 1 \
