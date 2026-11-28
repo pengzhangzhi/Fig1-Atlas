@@ -1,6 +1,6 @@
 ---
 name: fig1-atlas
-description: Find Figure 1 templates for an ML paper being written. Searches a library of Figure 1s from accepted ICLR, ICML and NeurIPS 2026 papers by what the figure argues (its rhetorical role) rather than by topic, then proposes 3-5 concrete layouts mapped onto the user's content. Use when the user asks to design, sketch, plan or find inspiration/templates for a Figure 1, teaser figure, or overview/method figure of a paper.
+description: Find Figure 1 templates for an ML paper being written. Searches a library of Figure 1s from accepted ICLR, ICML and NeurIPS 2026 papers by what the figure argues (its rhetorical role) rather than by topic, then proposes 3-5 concrete layouts mapped onto the user's content and drafts the one the user picks. Use when the user asks to design, sketch, plan or find inspiration/templates for a Figure 1, teaser figure, or overview/method figure of a paper.
 ---
 
 # Fig1 Atlas: find Figure 1 templates
@@ -47,7 +47,12 @@ If the repo is not cloned, the scripts fall back to the website data automatical
    - paper title, venue, link (arXiv or OpenReview), and the image path if fetched
    - why it fits: which argument it makes and why that is the user's argument too
    - a mapping sketch: what goes in each panel/region for the user's paper (concrete labels, arrows, plots)
-   End with **one recommended pick** and why. Optionally offer a rough ASCII/TikZ sketch of the recommended layout.
+   End with **one recommended pick** and why, with a rough ASCII sketch of that layout filled with the user's content.
+   Then stop and let the user choose.
+
+6. **Draft the figure once the user picks.** Build it in the format they work in (TikZ, matplotlib, SVG, or a
+   slide; ask if the draft does not make it obvious) and keep it editable. Borrow the template's layout and
+   argument, never its artwork, and tell the user which paper the layout came from so they can credit it.
 
 ## Roles
 

@@ -1,0 +1,56 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Use it with an agent · Fig1 Atlas</title>
+<meta name="description" content="Figure 1s from accepted ICLR, ICML and NeurIPS 2026 papers, filed by what each figure argues. Find one that makes your paper's argument and borrow its layout.">
+<meta property="og:title" content="Fig1 Atlas">
+<meta property="og:description" content="Figure 1s from accepted ICLR, ICML and NeurIPS 2026 papers, filed by what each figure argues. Find one that makes your paper's argument and borrow its layout.">
+<meta property="og:image" content="https://pengzhangzhi.github.io/Fig1-Atlas/og.png">
+<meta property="og:url" content="https://pengzhangzhi.github.io/Fig1-Atlas/">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono&family=IBM+Plex+Sans:wght@400;500;600&family=STIX+Two+Text:ital,wght@0,400;0,600;1,400&display=swap">
+<link rel="stylesheet" href="style.css">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 16 16%22%3E%3Crect width=%2216%22 height=%2216%22 rx=%222%22 fill=%22%231a1b1a%22/%3E%3Crect x=%223%22 y=%224%22 width=%2210%22 height=%226%22 fill=%22%23fff%22/%3E%3Crect x=%223%22 y=%2211%22 width=%226%22 height=%221.6%22 fill=%22%23ffe45c%22/%3E%3C/svg%3E">
+</head>
+<body>
+<div class="wrap">
+<div id="top"></div>
+<main class="doc">
+<h1>Design your Figure 1 with a coding agent</h1>
+<p class="lede">Open Claude Code or Codex in the folder that holds your draft and paste this. Notes or a one-paragraph idea work too.</p>
+<div class="prompt" id="prompt"></div>
+
+<h2>What the agent does</h2>
+<ol class="steps">
+<li><b>Reads your draft</b> and writes down the one claim Figure 1 has to make, and which of the <a href="roles.html">eight roles</a> that is.</li>
+<li><b>Searches the atlas</b> by role and tags, reads the shortlisted entries and looks at the figures themselves.</li>
+<li><b>Shows you three to five templates</b> from accepted papers, each with a link, the reason it fits, and what would go in each panel for your paper. It recommends one.</li>
+<li><b>Drafts the figure</b> once you pick, in the format you work in: TikZ, matplotlib, SVG or slides.</li>
+</ol>
+<p>The search is plain Python over a text index. It needs no API key and no extra packages.</p>
+
+<h2>Install it as a skill</h2>
+<p>If you write papers often, keep the atlas as a Claude Code skill. After this, “design my Figure 1” is enough.</p>
+<pre><code>git clone https://github.com/pengzhangzhi/Fig1-Atlas ~/.claude/skills/fig1-atlas</code></pre>
+
+<h2>Agents without a shell</h2>
+<p>A chat assistant that can browse but cannot run code can start from <a href="llms.txt">llms.txt</a>. It explains how to filter <a href="index.json">index.json</a> and open one entry as <code>p/&lt;id&gt;.json</code>.</p>
+
+<h2>Search it yourself</h2>
+<pre><code>python3 scripts/search.py --role prior-vs-ours --tags one-step,distillation --limit 30
+python3 scripts/search.py --role pipeline,concept --q "teacher student"
+python3 scripts/show.py iclr26-0566 iclr26-0516
+python3 scripts/fetch_fig.py iclr26-0566</code></pre>
+<p>The first two list matching figures as id, venue, role, title and claim. <code>show.py</code> prints the full entry. <code>fetch_fig.py</code> downloads the image.</p>
+</main>
+<noscript><p>This site needs JavaScript to load the figures. The same data and an agent workflow are in the <a href="https://github.com/pengzhangzhi/Fig1-Atlas">GitHub repo</a>.</p></noscript>
+<div id="foot"></div>
+</div>
+<script src="app.js"></script>
+<script>chrome("use"); promptBox(document.getElementById("prompt"), PROMPT)</script>
+</body>
+</html>

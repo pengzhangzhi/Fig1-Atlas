@@ -76,6 +76,14 @@ def main():
     papers.sort(key=lambda m: m["id"])
     write_jsonl(data / "index.jsonl", [{k: m[k] for k in INDEX_KEYS if not (k == "role2" and not m[k])} for m in papers])
     write_jsonl(data / "missing.jsonl", missing)
+    from PIL import Image                      # thumbnail width/height per hosted figure; the site uses it to reserve space
+    aspect = {}
+    for m in papers:
+        t = CACHE / "figs" / f"{m['id']}.webp"
+        if m["image_url"] and t.exists():
+            with Image.open(t) as im:
+                aspect[m["id"]] = round(im.width / im.height, 2)
+    (data / "aspect.json").write_text(json.dumps(aspect, separators=(",", ":")))
     print(f"published {len(papers)} papers ({sum(1 for m in papers if m['image_url'])} with hosted images); {len(missing)} missing")
     if a.upload:
         upload([m for m in papers if m["image_url"]])

@@ -20,6 +20,8 @@ if OUT.exists():
 shutil.copytree(ROOT / "site", OUT)
 (OUT / "p").mkdir()
 recs, bundle = [], {}
+asp = ROOT / "data" / "aspect.json"          # thumbnail width/height, so the grid can reserve space
+ASPECT = json.loads(asp.read_text()) if asp.exists() else {}
 for line in open(ROOT / "data" / "index.jsonl"):
     r = json.loads(line)
     m = json.loads((ROOT / "data" / "papers" / r["id"] / "meta.json").read_text())
@@ -43,7 +45,8 @@ for line in open(ROOT / "data" / "index.jsonl"):
     bundle[r["id"]] = m
     if not A.bundle:
         (OUT / "p" / f"{r['id']}.json").write_text(json.dumps(m, ensure_ascii=False))
-    recs.append({**r, "style": m["style"], "thumb_url": m["thumb_url"], "image_url": m["image_url"], "conf": m.get("role_confidence")})
+    recs.append({**r, "style": m["style"], "thumb_url": m["thumb_url"], "image_url": m["image_url"], "conf": m.get("role_confidence"),
+                 **({"ar": ASPECT[r["id"]]} if r["id"] in ASPECT and m["thumb_url"] else {})})
 if A.bundle:
     (OUT / "papers.json").write_text(json.dumps(bundle, ensure_ascii=False, separators=(",", ":")))
     shutil.rmtree(OUT / "p")
