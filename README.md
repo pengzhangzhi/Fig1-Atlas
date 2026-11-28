@@ -1,8 +1,7 @@
 <h1 align="center">Fig1 Atlas</h1>
 
 <p align="center">
-  <b>17,563 Figure 1s from ICLR, ICML and NeurIPS 2026, filed by what they argue.</b><br>
-  Hand your draft to Claude Code or Codex and get a Figure 1 modeled on accepted papers that made the same argument.
+  Hand your paper draft to Claude Code or Codex and get a Figure 1 same like top ML papers that made the same argument.
 </p>
 
 <p align="center">
@@ -37,26 +36,28 @@ The agent then:
 
 No API key and no packages: the search is plain Python over a text index.
 
-## Example: a draft becomes a figure in two messages
+## Example: a draft to a figure
 
-A recorded Claude Code run on a made-up test paper. **[Watch the replay](https://pengzhangzhi.github.io/Fig1-Atlas/example.html)** to see every step with the figures the agent looked at.
+**You give it** a rough draft,
+```
+# Remask, Don't Regret: Self-Correcting Masked Diffusion Language Models
 
-<p align="center">
-  <a href="https://pengzhangzhi.github.io/Fig1-Atlas/example.html"><img src="assets/replay.gif" alt="Replay of the run: the prompt, the searches, eight figures viewed, four templates proposed, and the drafted figure" width="820"></a>
-</p>
+## Abstract
+Masked diffusion language models (MDLMs) generate text by iteratively unmasking tokens, but once a token is
+unmasked it is frozen: early mistakes can never be revised and they compound as later tokens condition on them...
+```
 
-**You give it** a rough draft, here [an abstract and three lines of notes](examples/remask/draft.md), and the prompt above.
-
-**The agent comes back** in about 95 seconds with [four templates and a recommendation](examples/remask/answer-1.md). It decided the figure must argue "prior sampling freezes early mistakes, ours revises them", searched the atlas three ways, read 16 entries and looked at 8 figures.
+**The agent comes back** with [templates and a recommendation](examples/remask/answer-1.md).
 
 **You pick**: "1 as recommended. Use matplotlib."
 
-**You get** this, about two minutes later, as an [editable script](examples/remask/fig1_remask.py), a PDF and a PNG. The agent also says which parts are placeholders for your real data and which paper the layout came from.
+**You get** a figure. 
 
 <p align="center">
   <img src="examples/remask/fig1_remask.png" alt="The drafted Figure 1: two token grids. In standard sampling a wrong token stays frozen; with ReMask it is re-masked and corrected. A strip below gives the headline numbers." width="820">
 </p>
 
+Watch the replay session at [here](https://pengzhangzhi.github.io/Fig1-Atlas/example.html).
 ## Why "by what they argue"
 
 The best template for your figure is rarely from your own subfield. A paper on one-step text generation should
