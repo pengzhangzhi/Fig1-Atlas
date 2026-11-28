@@ -232,7 +232,7 @@ def body_font_size(blocks):
 
 
 SECTION_RE = re.compile(r"^\s*(?:[1-9]\d?(?:\.\d+){0,2}|[A-H](?:\.\d+)?)\s+[A-Z](?:[a-z]{2,}|\s?[A-Z])")
-AFFIL_RE = re.compile(r"@|universit|institut|laborator|college|school of|department|\bcorresponding\b|equal contribution|github\.io|project page", re.I)
+AFFIL_RE = re.compile(r"\w@\w[\w.-]*\.\w|\{[\w.,\s-]+\}@|universit|institut|laborator|college|school of|department|\bcorresponding\b|equal contribution|github\.io|project page", re.I)
 
 
 def figure_region(page, cap: fitz.Rect, pno=1, body=None):
@@ -277,14 +277,15 @@ def figure_region(page, cap: fitz.Rect, pno=1, body=None):
         r = fitz.Rect(b["rect"])
         for o in blocks:
             q = o["rect"]
-            if abs(o["size"] - b["size"]) < 0.6 and min(q.y1, r.y1) - max(q.y0, r.y0) > 0.6 * min(q.height, r.height) \
+            if o["n"] < 60 and abs(o["size"] - b["size"]) < 0.6 and min(q.y1, r.y1) - max(q.y0, r.y0) > 0.6 * min(q.height, r.height) \
                     and not any(g.contains(q) for g in gfx_rects):
                 r |= q
         return r
     is_front = lambda b: pno == 0 and (AFFIL_RE.search(b["text"]) or (
         b["size"] >= body - 0.3 and not any(g.contains(b["rect"]) for g in gfx_rects)
         and ((b["n"] >= 12 and centred(b["rect"]))
-             or (b["rect"].y1 < P.height * 0.3 and b["n"] < 60 and centred(row_of(b)) and row_of(b).width > 0.6 * tw))))
+             or (b["rect"].y1 < min([r.y0 for r in dense] + [P.height * 0.3]) + 2   # authors sit above the first paragraph
+                 and b["n"] < 60 and centred(row_of(b)) and row_of(b).width > 0.6 * tw))))
     # numbered section headings ("4 LIMITATIONS OF …", small caps measure smaller than body text)
     para_x0 = [r.x0 for r in dense]
     is_section = lambda b: b["n"] < 120 and SECTION_RE.match(b["text"]) is not None and b["size"] >= body - 1 \
@@ -292,6 +293,8 @@ def figure_region(page, cap: fitz.Rect, pno=1, body=None):
         and not any(g.contains(b["rect"]) for g in gfx_rects)
     is_stop = lambda b: is_para(b) or is_head(b) or is_front(b) or is_section(b)
     paras = [b["rect"] for b in blocks if is_para(b)]
+    front_rects = {tuple(b["rect"]) for b in blocks if is_front(b) and b["rect"].height < 3 * b["rect"].width
+                   and b["rect"].y1 < min([r.y0 for r in dense] + [P.height * 0.4]) + 2}   # title/author lines: always a hard barrier
     # full-width figures may run past the text block (\hspace{-…}, oversized includegraphics)
     x0, x1 = (cap.x0 - 8, cap.x1 + 8) if column else (min(tx0 - 12, P.width * 0.03), max(tx1 + 12, P.width * 0.97))
 
@@ -335,7 +338,7 @@ def figure_region(page, cap: fitz.Rect, pno=1, body=None):
             if k == "stop":
                 # a paragraph beside the figure (wrapfigure text) doesn't end the walk
                 ref = gfx if gfx is not None else span
-                if min(r.x1, ref.x1) - max(r.x0, ref.x0) > 0.3 * r.width:
+                if min(r.x1, ref.x1) - max(r.x0, ref.x0) > 0.3 * r.width or (tuple(r) in front_rects and r.intersects(span | ref)):
                     barrier = r.y1 + 1 if upward else r.y0 - 1   # hard clip line for the region
                     break
                 continue
