@@ -29,6 +29,23 @@ python3 scripts/show.py <id> <id>
 python3 scripts/fetch_fig.py <id> <id>
 ```
 
+## Coverage (full run, 2026-11-28)
+
+| venue | accepted | in the atlas | image hosted | missing: no PDF yet | missing: other |
+|---|---:|---:|---:|---:|---:|
+| ICLR 2026 | 5,353 | 5,177 | 2,596 | 2 | 174 |
+| ICML 2026 | 6,554 | 6,237 | 3,143 | 0 | 317 |
+| NeurIPS 2026 | 9,002 | 6,149 | 4,009 | 2,494 | 359 |
+| **total** | **20,909** | **17,563** | **9,748** | **2,496** | **850** |
+
+PDFs come from arXiv (including papers renamed since arXiv, matched by authors and abstract) and the official
+ICLR and ICML proceedings. The 2,494 NeurIPS papers with no PDF are not on arXiv; they will be added when the
+NeurIPS 2026 proceedings are published. "Other" means the PDF has no captioned Figure 1, or it could not be
+cropped cleanly. `data/missing.jsonl` lists every missing paper with its reason.
+
+Roles across the atlas: pipeline 4,376 · prior-vs-ours 3,035 · analysis-finding 2,821 · teaser-result 2,659 ·
+concept 1,506 · problem-setup 1,428 · overview-framework 1,379 · before-after 359.
+
 ## What's inside
 
 | path | what |
