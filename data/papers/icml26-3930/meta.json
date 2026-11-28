@@ -1,0 +1,53 @@
+{
+ "id": "icml26-3930",
+ "title": "AsyncSpade: Efficient Test-Time Scaling with Asynchronous Sparse Decoding",
+ "authors": [
+  "Shuqing Luo",
+  "Yilin Guan",
+  "Pingzhi Li",
+  "Hanrui Wang",
+  "Tianlong Chen"
+ ],
+ "venue": "ICML 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": null,
+ "role": "teaser-result",
+ "role2": null,
+ "claim": "Our method reaches full-attention accuracy at roughly half the decoding compute, while other efficient baselines lose accuracy or save less compute.",
+ "layout": "single scatter plot, accuracy vs compute, arrows marking better directions, star highlighted",
+ "tags": [
+  "efficiency",
+  "pareto-tradeoff",
+  "sparse-attention",
+  "accuracy-vs-compute",
+  "long-reasoning"
+ ],
+ "style": [
+  "plot",
+  "minimal",
+  "colorful"
+ ],
+ "description": "A single scatter plot titled 'Qwen3-32B Model Decoding 32k Tokens'. The x-axis is GFLOPs of decoding one token, running from 67 to 132. A left-pointing arrow beneath it means lower is better. The y-axis is AIME24 Pass@1, running from 0.70 to 0.80. An upward arrow beside it means higher is better. Four markers are labeled in a legend at top center. A blue circle (Full Attention) sits at the far right at about 0.80. A green square (TOVA) sits mid-right at about 0.70. An orange triangle (Quest) sits at the far left at about 0.73. A large red star (Async SPADE) sits at the top-left, at 0.80 and about 67 GFLOPs. The star is the biggest and brightest marker, so the eye goes there first. It sits in the ideal corner, which is the figure's main point.",
+ "caption": "Performance of Qwen3-32B on AIME24 with Long Decoding. AsyncSpade minimizes the decoding FLOPs while maintaining high performance.",
+ "caption_source": "latex",
+ "abstract": "Test-time scaling (TTS) boosts LLM reasoning via long chain-of-thought (CoT), but the linear KV-cache growth amplifies the memory-bound bottleneck of LLM decoding. Query-aware page-level sparse decoding can achieve state-of-the-art performance under constrained FLOPs budgets, but is limited by both sequential-dependent page filtering and coarse-grained token selection, hampering serving efficiency and model performance on TTS tasks under high concurrency and long CoT scenarios (consuming even higher runtime than the forward pipeline itself). In this paper, we first find that the current-step query state can be accurately approximated in a unified manner from a short window of recent queries, enabling training-free query-aware sparsity without waiting in the decoding loop. We propose AsyncSpade, an asynchronous framework for efficient TTS built on two core components: (1) a novel light-weight temporal-regressive module that predicts the next-token query state; (2) an asynchronous and disaggregated framework that decouples the KV cache filtering from the auto-regressive decoding loop, overlapping the token-level KV selection with the forward inference computation through asynchronism. To our knowledge, AsyncSpade is the first to eliminate the sequential dependence without sacrificing model performance. We validate the effectiveness of AsyncSpade on common LLM serving setups with an A100 node, where AsyncSpade fully overlaps KV-cache operations with the inference pipeline, achieving theoretical optimal time-per-output-token (TPOT). Specifically, AsyncSpade delivers over 20% reduction on TPOT compared to SoTA baseline (i.e. Quest) and at least 50% TPOT reduction compared to full attention on Qwen3-8B and Qwen3-32B models, while matching or surpassing their accuracy on various TTS benchmarks (AIME-24/25, GPQA-Diamond, MATH-500).",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=avVTEzRgba",
+  "arxiv": "https://arxiv.org/abs/2510.07486",
+  "pdf": "https://raw.githubusercontent.com/mlresearch/v306/main/assets/luo26g/luo26g.pdf",
+  "proceedings": "https://proceedings.mlr.press/v306/luo26g.html",
+  "virtual": "https://icml.cc/virtual/2026/poster/63012",
+  "code": null
+ },
+ "license": "http://creativecommons.org/licenses/by/4.0/",
+ "img": "cc-by",
+ "image_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/images/icml26-3930.png",
+ "thumb_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/thumbs/icml26-3930.webp",
+ "figure_page": 0,
+ "qc_flags": [
+  "tiny-crop"
+ ],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.93
+}

@@ -1,0 +1,52 @@
+{
+ "id": "icml26-5251",
+ "title": "Advantage Weighted Matching: Aligning RL with Pretraining in Diffusion Models",
+ "authors": [
+  "Shuchen Xue",
+  "Chongjian GE",
+  "Shilong Zhang",
+  "Yichen Li",
+  "Zhi-Ming Ma"
+ ],
+ "venue": "ICML 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "Deep Learning->Generative Models and Autoencoders",
+ "role": "teaser-result",
+ "role2": "prior-vs-ours",
+ "claim": "Matching the pretraining objective with a clean target lowers variance and reaches high quality far faster than the standard RL baseline.",
+ "layout": "3 panels: large top convergence plot, bottom-left formulation diagrams, bottom-right variance illustration",
+ "tags": [
+  "reinforcement-learning",
+  "diffusion",
+  "convergence-speedup",
+  "variance-reduction",
+  "training-efficiency"
+ ],
+ "style": [
+  "plot",
+  "colorful",
+  "math-heavy",
+  "minimal"
+ ],
+ "description": "The top panel (a) is a large line plot of GenEval score against training GPU hours. An orange AWM curve shoots up almost vertically to about 0.985. A blue Flow-GRPO curve climbs slowly to about 0.94. Dashed horizontal lines mark the GPT-4o (0.84) and SD3.5-Medium (0.63) baselines. A red dashed arrow and bold red text mark a 16.54x speedup. Bottom-left panel (b) shows two vertical chains of boxes from x1 to x0. DDPO uses an x_t to x_s DDPM step with the objective max log p(x_s|x_t)·A(x0). AWM goes from x0 back to x_t by adding noise, with the objective max log p(x0)·A(x0). Bottom-right panel (c) compares noisy and clean targets using noise and image thumbnails of a red chair, with a sad High Variance label for DDPO and a happy Low Variance label for AWM.",
+ "caption": "AWM reduces variance and speeds up RL. (a) Convergence: On GenEval, AWM reaches the same quality with $8\\times$ fewer GPU hours than Flow-GRPO. (b) Formulations: DDPO optimizes per-step Gaussian likelihood on $\\vx_{t-1}$, whereas AWM applies advantage-weighted score/flow matching on $\\vx_0$. (c) Target variance: DSM with noisy target $\\vx_s$ (DDPO implicitly doing) has higher variance than DSM with clean $\\vx_0$ (AWM).",
+ "caption_source": "latex",
+ "abstract": "Reinforcement Learning (RL) has emerged as a central paradigm for advancing Large Language Models (LLMs), where both pre-training and RL post-training stages are grounded in the same log-likelihood formulation. In contrast, recent RL approaches for diffusion models, most notably Denoising Diffusion Policy Optimization (DDPO), optimize an objective different from the pretraining objectives--score/flow matching loss. In this work, we establish a novel theoretical analysis: DDPO is an implicit form of score/flow matching with noisy targets, which increases variance and slows convergence. Building on this analysis, we introduce Advantage Weighted Matching (AWM), a policy-gradient method for diffusion. It uses the score/flow-matching loss and reweights each sample by its advantage. In effect, AWM raises the influence of high-reward samples and suppresses low-reward ones while keeping the modeling objective identical to pretraining. This simple yet effective design yields substantial benefits: on the GenEval, OCR, and PickScore benchmarks, AWM delivers up to a $34\\times$ speedup over Flow-GRPO (which builds on DDPO), when applied to Stable Diffusion 3.5 Medium and FLUX, without compromising generation quality. Code is available at https://github.com/scxue/advantage_weighted_matching",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=nLY2pOYBrJ",
+  "arxiv": "https://arxiv.org/abs/2509.25050",
+  "pdf": "https://raw.githubusercontent.com/mlresearch/v306/main/assets/xue26c/xue26c.pdf",
+  "proceedings": "https://proceedings.mlr.press/v306/xue26c.html",
+  "virtual": "https://icml.cc/virtual/2026/poster/61737",
+  "code": "https://github.com/scxue/advantage_weighted_matching"
+ },
+ "license": "http://arxiv.org/licenses/nonexclusive-distrib/1.0/",
+ "img": "none",
+ "image_url": null,
+ "thumb_url": null,
+ "figure_page": 0,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.6
+}

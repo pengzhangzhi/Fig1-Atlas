@@ -1,0 +1,56 @@
+{
+ "id": "icml26-4424",
+ "title": "Transformers learn factored representations",
+ "authors": [
+  "Adam Shai",
+  "Loren Amdahl-Culleton",
+  "Casper Christensen",
+  "Henry R Bigelow",
+  "Fernando Rosas",
+  "Alexander Boyd",
+  "Eric Alt",
+  "Kyle Ray",
+  "Paul Riechers"
+ ],
+ "venue": "ICML 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "Deep Learning->Theory",
+ "role": "concept",
+ "role2": "analysis-finding",
+ "claim": "Complex joint processes decompose into independent parts held in orthogonal subspaces, giving exponential dimensional savings that models learn even when suboptimal.",
+ "layout": "5 panels in mixed grid; (a) tall left, (b)-(c) stacked middle, (d)-(e) stacked right",
+ "tags": [
+  "factorization",
+  "orthogonal-subspaces",
+  "geometry",
+  "dimensionality-reduction",
+  "interpretability"
+ ],
+ "style": [
+  "colorful",
+  "plot",
+  "math-heavy",
+  "3d-render"
+ ],
+ "description": "A five-panel composite figure. Panel (a) shows a four-state Markov-style graph with transition probabilities transformed by an arrow into two independent two-state chains (a tensor-product symbol between them). Below it, a colored tetrahedron simplex for the joint space maps to a grid of two line-segment simplices. Panel (b) shows a tilted tetrahedron with points off a product-state manifold, a red crossed 'Lossy' arrow pointing to a flat 2D factored grid. Panel (c) is a log-scale line plot of dimensions versus number of three-state factors: a red joint curve (3^N-1) above a green factored line (2N), with the gap shaded as exponential savings. Panel (d) lays out the experimental approach: sub-token training data, PCA plots of activations and factor-subspace geometry. Panel (e) shows projected factor geometries and a training-curve inset, with a bold takeaway text at left. Pastel gradients and teal, purple, and orange accents dominate.",
+ "caption": "Transformers learn to factor the world into parts, representing each factor in orthogonal subspaces. (a) Consider a data-generating process with 4 hidden states (top-left). Although the joint process appears complex, it may admit a representation as a product of simpler independent processes running in parallel (top-right). Below, we illustrate how this factorization affects the geometry of representations: the full simplex over joint latent states (a tetrahedron for four joint states) decomposes into the product of simplices for each factor (two line segments). Even in cases where parts influence each other's dynamics, as long as conditioning on observed tokens renders the factors independent, the same geometric decomposition applies: uncertainty over each factor can be tracked separately in orthogonal subspaces. (b) When factors remain correlated even after conditioning on observations, the joint state cannot be written as a product state---it lies off the product-state manifold. Projecting onto the factored representation (red arrow) is lossy: some predictive information is sacrificed for the dimensional savings. (c) This decomposition yields dramatic representational savings. For $N$ three-state factors, the joint representation requires $3^N - 1$ dimensions (red), while the factored representation requires only $2N$ dimensions (green)---an exponential reduction. (d) To determine if transformers learn factored representations, we construct training data that is latently composed of sub-tokens generated from 5 factors. Each of these factors has a geometric prediction from our theory. Our analysis methods consist of quantifying the dimensionality of the activations using PCA and explained variance, as well as determining the geometric arrangement of factor subspaces. (e) Our main results are that transformers learn factored representations, placing these representations in orthogonal subspaces of the residual stream. Crucially, transformers do this even when it hurts prediction.",
+ "caption_source": "latex",
+ "abstract": "Transformers pretrained via next token prediction learn to factor their world into parts, representing these factors in orthogonal subspaces of the residual stream. We formalize two representational hypotheses: (1) a representation in the product space of all factors, whose dimension grows exponentially with the number of parts, or (2) a factored representation in orthogonal subspaces, whose dimension grows linearly. The factored representation is lossless when factors are conditionally independent, but sacrifices predictive fidelity otherwise, creating a tradeoff between dimensional efficiency and accuracy. We derive precise predictions about the geometric structure of activations for each, including the number of subspaces, their dimensionality, and the arrangement of context embeddings within them. We test between these hypotheses on transformers trained on synthetic processes with known latent structure. Models learn factored representations when factors are conditionally independent, and continue to favor them early in training even when noise or hidden dependencies undermine conditional independence, reflecting an inductive bias toward factoring at the cost of fidelity. This provides a principled explanation for why transformers decompose the world into parts, and suggests that interpretable low dimensional structure may persist even in models trained on complex data.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=flDGB9On0h",
+  "arxiv": "https://arxiv.org/abs/2602.02385",
+  "pdf": "https://raw.githubusercontent.com/mlresearch/v306/main/assets/shai26a/shai26a.pdf",
+  "proceedings": "https://proceedings.mlr.press/v306/shai26a.html",
+  "virtual": "https://icml.cc/virtual/2026/poster/62532",
+  "code": null
+ },
+ "license": "http://arxiv.org/licenses/nonexclusive-distrib/1.0/",
+ "img": "none",
+ "image_url": null,
+ "thumb_url": null,
+ "figure_page": 2,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.5
+}

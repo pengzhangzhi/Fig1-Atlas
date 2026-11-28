@@ -1,0 +1,49 @@
+{
+ "id": "icml26-2710",
+ "title": "CLAA: Cross-Layer Attention Aggregation for Accelerating LLM Prefill",
+ "authors": [
+  "Bradley McDanel",
+  "Steven Li",
+  "Harshit Khaitan"
+ ],
+ "venue": "ICML 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "Deep Learning->Large Language Models",
+ "role": "pipeline",
+ "role2": "prior-vs-ours",
+ "claim": "Rank candidate token-selection heuristics against an answer-derived oracle ranking, showing our multi-layer method aligns more closely than single-layer or small-model baselines.",
+ "layout": "Three dashed regions, top-down flow converging on a bottom similarity-score box",
+ "tags": [
+  "evaluation-framework",
+  "oracle",
+  "token-ranking",
+  "efficiency",
+  "multi-layer-aggregation"
+ ],
+ "style": [
+  "colorful",
+  "icon-heavy",
+  "minimal"
+ ],
+ "description": "A flow diagram that starts at the top with a document icon labeled Long-Context Prompt. Two arrows split from it. The left dashed box, Token Ranking Heuristics, holds a tokenized prompt row that feeds three blue model boxes. These are GemFilter/FastKV (large model, single-layer ranking), Spec. Prefill (small model, lookahead ranking), and CLAA (ours; large model, multi-layer ranking). Each box outputs a row of colored score cells in green, yellow and red. The right dashed box, Answer-Informed Oracle, runs the prompt through LLM Prefill + Full Decode to produce an Answer. Green, yellow and red lines connect the answer tokens back to the prompt tokens, which yields the oracle ranking row. At the bottom, a dashed box compares the CLAA ranking with the oracle ranking using an approximate-equals sign. An arrow leads from that box to a bold 0.86 Rank Similarity Score.",
+ "caption": "Illustration of our framework for evaluating token ranking heuristics for LLM Prefill acceleration. An Answer-Informed Oracle establishes a ground-truth token ranking by aggregating attention from the generated answer back to the prompt. This approach, which measures rank similarity between heuristic outputs and the oracle, motivates our Cross-Layer Attention Aggregation (CLAA) method that achieves higher alignment with the oracle.",
+ "caption_source": "latex",
+ "abstract": "The prefill stage in long-context LLM inference remains a computational bottleneck. Recent token-ranking heuristics accelerate inference by selectively processing a subset of semantically relevant tokens. However, existing methods suffer from unstable token importance estimation, often varying between layers. Evaluating token-ranking quality independently from heuristic-specific architectures is challenging. To address this, we introduce an Answer-Informed Oracle, which defines ground-truth token importance by measuring attention from generated answers back to the prompt. This oracle reveals that existing heuristics exhibit high variance across layers: rankings can degrade sharply at specific layers, a failure mode invisible to end-to-end benchmarks. The diagnosis suggests a simple fix: aggregate scores across layers rather than relying on any single one. We implement this as Cross-Layer Attention Aggregation (CLAA), which closes the gap to the oracle upper bound and reduces Time-to-First-Token (TTFT) by up to 39\\% compared to the Full KV Cache baseline.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=Q0LzVAYE1N",
+  "arxiv": "https://arxiv.org/abs/2602.16054",
+  "pdf": "https://raw.githubusercontent.com/mlresearch/v306/main/assets/mcdanel26a/mcdanel26a.pdf",
+  "proceedings": "https://proceedings.mlr.press/v306/mcdanel26a.html",
+  "virtual": "https://icml.cc/virtual/2026/poster/64204",
+  "code": null
+ },
+ "license": "http://arxiv.org/licenses/nonexclusive-distrib/1.0/",
+ "img": "none",
+ "image_url": null,
+ "thumb_url": null,
+ "figure_page": 0,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.62
+}

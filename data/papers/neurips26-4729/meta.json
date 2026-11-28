@@ -1,0 +1,55 @@
+{
+ "id": "neurips26-4729",
+ "title": "Coarse-to-Fine 3D MRI Reconstruction via Resolution-Agnostic Neural Operators",
+ "authors": [
+  "Jiayun (Peter) Wang",
+  "Ram Daftari",
+  "Weijie Gan",
+  "Valentin Duruisseaux",
+  "Ruibo Wang",
+  "Armeet Jatyani",
+  "Boris Bonev",
+  "Animashree Anandkumar"
+ ],
+ "venue": "NeurIPS 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "Applications->Health",
+ "role": "prior-vs-ours",
+ "role2": "teaser-result",
+ "claim": "Slice-wise 2D and grid-bound 3D models fail to transfer across resolutions; a discretization-agnostic operator trains coarse and deploys fine, winning on accuracy and speed.",
+ "layout": "6 panels: three architecture sketches on top, two plots and image strip below",
+ "tags": [
+  "neural-operator",
+  "resolution-agnostic",
+  "prior-vs-ours",
+  "efficiency",
+  "mri-reconstruction"
+ ],
+ "style": [
+  "colorful",
+  "plot",
+  "photo/real data",
+  "icon-heavy"
+ ],
+ "description": "The figure has three rows. The top row has three side-by-side schematic panels separated by dashed lines. (a) is a 2D CNN that takes a stack of slices through a gray 2D Model box and outputs a stack of slices. (b) is a 3D CNN that takes a cube through a yellow box and outputs a cube. (c) is KIR-NO (Ours), in red. It takes a large cube and a small cube, labeled multi-res training, through a blue box and outputs cubes of several sizes, labeled super-res and multi-res inference. The middle row has (d), a line plot of PSNR at quarter, half and full resolution, with the red KIR-NO line on top, and (e), a bar chart of epochs needed to reach target PSNR, with a red callout that says KIR-NO converges 6x faster. The bottom row, (f), shows knee MRI slices next to error maps for 2D CNN, 3D CNN and KIR-NO, with a shared colorbar. Red marks ours and blue and gray mark baselines.",
+ "caption": "(a--c) Three deep learning architectures for 3D MRI reconstruction. (a) 2D CNN: GPU-memory limits force slice-wise 2D models that stack into a volume, losing inter-slice consistency. (b) 3D CNN: fixed discrete kernels are tied to the training grid, so cross-resolution transfer is unreliable. (c) 3D Neural Operator (KIR-NO, ours): discretization-agnostic --- trained on memory-friendly coarse volumes and deployed at higher resolutions without retraining. (d) Resolution robustness: PSNR at quarter/half/full resolution on SKM-TEA (quarter-trained); KIR-NO leads throughout. (e) Convergence (SKM-TEA, half-res, $4\\times$): first epoch to reach each PSNR threshold; KIR-NO reaches $34$\\,dB $\\sim$$6\\times$ faster than the 3D CNN. (f) Qualitative: a knee slice with error maps for 2D CNN, 3D CNN, and KIR-NO; KIR-NO has the lowest residual.",
+ "caption_source": "latex",
+ "abstract": "Deep-learning-based 3D MRI reconstruction is limited in practice by the GPU memory and compute cost of full-volume training; 3D acquisitions are thus most often reconstructed by 2D models applied slice-by-slice and then stacked, which ignores through-plane (stacking-axis) structure. We reconstruct in full 3D and ask whether a model can be trained at low resolution (fast and memory-feasible) yet deployed at higher resolution. This coarse-to-fine strategy needs reliable cross-resolution performance, but standard networks are resolution-specific and degrade substantially when evaluated outside the training setting. We therefore use resolution-agnostic neural operators (NOs) and propose KIR-NO (k-space-to-Image Reconstruction Neural Operator), a discretization-agnostic framework for accelerated 3D MRI reconstruction. KIR-NO is trained with full backpropagation on low-resolution volumes and applied zero-shot to higher-resolution volumes at inference. Its core building block is a 3D neural operator based on discrete-continuous convolutions: convolutional filters are parameterized in a continuous basis and sampled at arbitrary voxel resolutions while preserving the local inductive bias of convolution. KIR-NO integrates these learned operators with physics-based consistency: a k-space neural-operator head first refines the undersampled Fourier measurements, and image-space neural-operator cascades then refine the reconstruction through interleaved data-consistency updates. Across 3D knee and brain MRI benchmarks, KIR-NO improves over classical and CNN baselines: it improves over a state-of-the-art 3D CNN by 2.2 dB PSNR at half resolution under 4x acceleration on SKM-TEA, with gains persisting at 8x and 16x. These results show that resolution-agnostic operators make coarse-to-fine 3D MRI reconstruction - cheap low-resolution training with high-resolution deployment - practical across anatomies.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=WcGVLtalaf",
+  "arxiv": "https://arxiv.org/abs/2611.14979",
+  "pdf": "https://arxiv.org/pdf/2611.14979",
+  "proceedings": null,
+  "virtual": "https://neurips.cc/virtual/2026/poster/151950",
+  "code": null
+ },
+ "license": "http://creativecommons.org/licenses/by/4.0/",
+ "img": "cc-by",
+ "image_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/images/neurips26-4729.png",
+ "thumb_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/thumbs/neurips26-4729.webp",
+ "figure_page": 1,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.6
+}

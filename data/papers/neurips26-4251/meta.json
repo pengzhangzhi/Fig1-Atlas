@@ -1,0 +1,49 @@
+{
+ "id": "neurips26-4251",
+ "title": "MFlowAudio: Efficient Text-to-Audio Synthesis via Mamba-based Stateful Flow Matching",
+ "authors": [
+  "Hao Dai",
+  "Panyu Chen",
+  "Jagmohan Chauhan"
+ ],
+ "venue": "NeurIPS 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "Deep Learning->Generative Models and Autoencoders",
+ "role": "pipeline",
+ "role2": "overview-framework",
+ "claim": "A generative system is built from a latent encode-generate-decode flow whose core block combines two complementary scan modules.",
+ "layout": "3 panels, left-to-right, zoom from system to block to scan",
+ "tags": [
+  "state-space-model",
+  "latent-generation",
+  "architecture",
+  "efficiency",
+  "flow-matching"
+ ],
+ "style": [
+  "icon-heavy",
+  "colorful",
+  "plot"
+ ],
+ "description": "Three dashed-border panels zoom from the whole system into its core module. Left, MFlowAudio: input audio goes through a VAE to a latent, then into a large dark-red TCMamba box. A dashed arrow brings in N(0,1) noise. The output goes through a VAE to output audio. Each node has a small icon, such as a piano, spectrogram or brain. Middle, the TCMamba block: inputs x, t and c enter a FiLM layer, then parallel blue Time Mamba and salmon Channel Mamba branches. A sum node follows, then Cross Attention, an FFN, and residual connections. Right, Mamba: a latent heatmap with arrows for the two scan directions, and small B/A/C/D/h state diagrams for (Channel, Seq_length) and (Seq_length, Channel). Colored panel title tags: teal, red and blue.",
+ "caption": "The key components of {\\proposed}: (left) the workflow of {\\proposed}, audio is encoded and decoded into latent using VAE and vocoder; (middle) the architecture of the TCMamba block; and (right) the dual-scanning mechanism of Mamba.",
+ "caption_source": "latex",
+ "abstract": "Recent advancements in audio generation have been largely driven by Transformer-based diffusion models. However, these models suffer from quadratic complexity of self-attention, severely bottlenecking the long-form audio synthesis. To overcome this limitation, we propose MFlowAudio, a novel latent audio generation framework that synergizes the continuous-time dynamics of Flow Matching with a custom-designed TCMamba backbone. TCMamba uses an innovative dual-scan mechanism: a TimeMamba module to capture long-range causal dependencies with linear complexity, and a ChannelMamba module to model cross-channel correlations such as harmonic structures. Exploiting this structural foundation, we formulate the Stateful Flow Matching (SFM) paradigm. This framework inherently enables chunk-wise training and streaming generation, maintaining an $\\mathcal{O}(1)$ caching complexity without incurring extra computational overhead. To enable fine-grained controllable synthesis, we devise a novel guidance mechanism that neutralizes vector field collisions precipitated by on-the-fly semantic transitions of prompts. Comprehensive empirical evaluations confirm that MFlowAudio yields generative fidelity on par with state-of-the-art baselines while establishing significant computational efficiency, achieving above $14.5$% acceleration in generation and facilitating perceptually seamless streaming synthesis with a constant latency of $1.8$ seconds. Demo: https://huggingface.co/spaces/mflowaudio/MFlowAudio",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=TZhAYHK2IA",
+  "arxiv": "https://arxiv.org/abs/2610.41852",
+  "pdf": "https://arxiv.org/pdf/2610.41852",
+  "proceedings": null,
+  "virtual": "https://neurips.cc/virtual/2026/poster/152369",
+  "code": null
+ },
+ "license": "http://creativecommons.org/licenses/by/4.0/",
+ "img": "cc-by",
+ "image_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/images/neurips26-4251.png",
+ "thumb_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/thumbs/neurips26-4251.webp",
+ "figure_page": 3,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.9
+}

@@ -1,0 +1,51 @@
+{
+ "id": "neurips26-6049",
+ "title": "Mamba Flow Matching Neural Processes: Linear-Time Inference for Irregularly Observed Spatial Fields",
+ "authors": [
+  "Cosmo Santoni",
+  "Giovanni Charles",
+  "Timothy James Hitge",
+  "Oliver Watson",
+  "Elizaveta Semenova"
+ ],
+ "venue": "NeurIPS 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "Probabilistic Methods->Bayesian Models and Methods",
+ "role": "pipeline",
+ "role2": null,
+ "claim": "A multi-stage pipeline turns context and noisy queries into per-query outputs by routing them through several parallel ordered linear-time scans and fusing the results.",
+ "layout": "Single left-to-right flow, four labeled stages, four parallel horizontal branches merging",
+ "tags": [
+  "pipeline",
+  "state-space-model",
+  "linear-time",
+  "parallel-branches",
+  "flow-matching"
+ ],
+ "style": [
+  "colorful",
+  "icon-heavy",
+  "minimal"
+ ],
+ "description": "A left-to-right block diagram with four numbered stage headers across the top: Tokenisation, Hilbert routing, Distance-aware scan, and Fusion & output. On the left, four gray input boxes (Flow time t, Coordinates X_C and X_Q, Context Y_C, Noisy queries Y_t) feed a tall blue Tokenise block. A red time-embedding box sits behind it, and a red arrow from Flow time points to it. Four parallel horizontal rows follow. Each row has a teal Sort block (π1, π1^rev, π2, π2^rev), then a purple stacked Mamba-2 (×L) block with a small δ_d label on the connecting arrow, then a teal Unsort block. All four rows converge on a tall yellow Linear merge block. That block feeds a blue Output projection box, then a gray output box showing v_θ(Y_t, t, c). Colors mark module types, and arrows carry the flow.",
+ "caption": "MFNP parametrises the velocity field $v_\\theta(Y_t, t, c)$ of \\S[ref] in four stages. The stages are tokenisation of context values and the noisy query slice $Y_t$ with frozen Random Fourier Feature (RFF) coordinate embeddings; multi-directional Hilbert routing under $\\Pi = \\{\\pi_1, \\pi_1^{\\mathrm{rev}}, \\pi_2, \\pi_2^{\\mathrm{rev}}\\}$; distance-aware Mamba-2 scans modulated by an adaLN-Zero flow-time embedding $e_t$; and inverse-permutation fusion to per-query velocities. Trained with $\\mathcal{L}_{\\mathrm{CFM}}$, reflow-distilled to a one-step Euler student, and CRPS fine-tuned. Full pipeline in Appendix [ref], Algorithm [ref].",
+ "caption_source": "latex",
+ "abstract": "Interpolating a spatial field, such as daily maximum temperature, from sparse, irregularly located observations recurs across the environmental and health sciences. Standard Gaussian-process kriging refits hyperparameters and solves an $O(N^3)$ system for every new field. When many related fields are observed, such as daily maps from one sensor network, neural processes (NPs) instead learn the interpolation map from past fields and predict a new field in one forward pass. Joint-predictive variants, which sample whole fields rather than independent per-location values, typically use self-attention over context and query points, costing $O(K^2)$ in the combined point count $K$ and limiting practical use to a few thousand points. State-space models offer a linear-time alternative, but a direct state-space adaptation compresses the context into one hidden state before reading queries, reducing what the decoder sees. We propose MambaFlowNP, a linear-compute joint-predictive NP trained with conditional flow matching. A multi-directional Mamba-2 scan reads context and query tokens in one shared sequence, so each query's velocity is read from its own scan position rather than a compressed context summary, and because queries only read the scan state, predictions are consistent across query sets. MambaFlowNP is competitive with the strongest attention-based joint-predictive baselines on synthetic MatÃ©rn Gaussian-process benchmarks, and on regional to continental-scale NOAA temperature interpolation it attains the lowest RMSE and CRPS and near-nominal coverage on every tier, while running 114--784$\\times$ faster than the strongest joint-predictive baseline. A single forward pass scales to $10^6$ points on one NVIDIA L40S GPU in under a second. This makes joint prediction feasible for continental-scale, irregularly sampled sensor networks; predictive quality is evaluated up to $K=5{,}580$.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=fVeT6lAKvN",
+  "arxiv": "https://arxiv.org/abs/2611.26355",
+  "pdf": "https://arxiv.org/pdf/2611.26355",
+  "proceedings": null,
+  "virtual": "https://neurips.cc/virtual/2026/poster/150767",
+  "code": "https://github.com/Cosmonaught/Mambaflownp"
+ },
+ "license": "http://creativecommons.org/licenses/by/4.0/",
+ "img": "cc-by",
+ "image_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/images/neurips26-6049.png",
+ "thumb_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/thumbs/neurips26-6049.webp",
+ "figure_page": 1,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.97
+}

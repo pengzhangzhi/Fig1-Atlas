@@ -1,0 +1,53 @@
+{
+ "id": "icml26-1101",
+ "title": "UGround: Towards Unified Visual Grounding with Unrolled Transformers",
+ "authors": [
+  "Rui Qian",
+  "Xin Yin",
+  "Chuanhang Deng",
+  "Zhiyuan Peng",
+  "Jian Xiong",
+  "Wei Zhai",
+  "Dejing Dou"
+ ],
+ "venue": "ICML 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "Applications->Computer Vision",
+ "role": "prior-vs-ours",
+ "role2": "concept",
+ "claim": "Prior methods prompt a segmenter with one fixed final-layer token; ours prompts with similarity maps from dynamically selected intermediate layers.",
+ "layout": "3 panels: (a) and (b) stacked left, (c) fan diagram right; spatial heatmaps",
+ "tags": [
+  "visual-grounding",
+  "layer-selection",
+  "skip-connection",
+  "prompting",
+  "reinforcement-learning"
+ ],
+ "style": [
+  "colorful",
+  "photo/real data",
+  "icon-heavy"
+ ],
+ "description": "The left side stacks two 3D-block transformer diagrams. Panel (a) shows an autoregressive transformer (LLaVA, GPT) with word tokens 'what part of the tree is' and a <SEG> token feeding SAM. This is labelled 'grounding by <SEG> as prompt'. Panel (b) shows the unrolled transformer (UGround) with image-patch tokens X1 to X9 and a <SEG> token. Dot-product arcs connect <SEG> to the patches. The result is reshaped into a 3x3 grid of heatmap tiles over a bird image. This is labelled 'grounding by mask as prompt'. Panel (c), on the right, is a fan or polar diagram. Layers l1 to lL run radially, and steps T1 to T_{t+1} run around the arc. Colorful heatmap patches sit at different layer positions, and dashed arcs are marked 'dropout-like' and 'skip connection-like'. The eye goes first to the bright heatmaps.",
+ "caption": "Prior works typically use <SEG> token embeddings from the last hidden layer as the prompt in (a). In contrast, we leverage the similarity map in Eq. ([ref]), generated from <SEG> and image token embeddings across dynamically selected transformer layers, as the prompt in (b). Dynamic layer selection allows the similarity map to slide across transformer layers in (c). Due to the sequential nature of transformers, $\\ell_L-\\ell_k$ layers are skipped, enabling a direct connection with SAM in a single forward step $\\mathcal{T}_t$ (\"skip-connection-like\"). Across multiple forward steps $\\mathcal{T}_1$ to $\\mathcal{T}_T$, the connectivity to SAM varies , with only one path activated at each step (\"dropout-like\").",
+ "caption_source": "latex",
+ "abstract": "We present UGround, a \\textbf{U}nified visual \\textbf{Ground}ing paradigm that dynamically selects intermediate layers across \\textbf{U}nrolled transformers as ``mask as prompt,'' diverging from the prevailing pipeline that leverages the fixed last hidden layer as ``\\texttt{<SEG>} as prompt.'' UGround addresses two primary challenges posed by the prevailing paradigm: (1) its reliance on the fixed last hidden layer, which sequentially amplifies cumulative errors arising from layer-by-layer propagation without intermediate correction, and (2) its use of \\texttt{<SEG>} as a prompt, which implicitly projects textual embeddings into visual space without explicit spatial cues (e.g., coordinates). Central to UGround is Policy-Prompted Masking, which comprises two key components: Stochastic Skip Connection (SSC) and Mask as Prompt (MasP). SSC is a reinforcement learning policy that, via stochastic sampling, allows each \\texttt{<SEG>} token to slide across unrolled transformer layers, enabling dynamic layer selection at which it connects to the vision model (e.g., SAM) in a skip-connection fashion. Given the selected hidden layer, MasP uses the similarity map derived from the \\texttt{<SEG>} token and image tokens as a soft logit mask to prompt SAM for mask generation, offering explicit spatial cues through its activation regions. To validate the effectiveness of UGround, we, for the first time, have unified visual grounding within a single framework from an attribute perspective, spanning from traditional refer expression segmentation to newly proposed reasoning segmentation, single-target to multi-target, positive query to false premise (empty target). All code and models are publicly available at https://github.com/rui-qian/UGround.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=AXtUl2KiQU",
+  "arxiv": "https://arxiv.org/abs/2510.03853",
+  "pdf": "https://raw.githubusercontent.com/mlresearch/v306/main/assets/qian26m/qian26m.pdf",
+  "proceedings": "https://proceedings.mlr.press/v306/qian26m.html",
+  "virtual": "https://icml.cc/virtual/2026/poster/65753",
+  "code": "https://github.com/rui-qian/UGround"
+ },
+ "license": "http://arxiv.org/licenses/nonexclusive-distrib/1.0/",
+ "img": "none",
+ "image_url": null,
+ "thumb_url": null,
+ "figure_page": 1,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.6
+}

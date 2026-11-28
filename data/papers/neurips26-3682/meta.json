@@ -1,0 +1,51 @@
+{
+ "id": "neurips26-3682",
+ "title": "RheoSampling: Resolving the One-Hot Dilemma in Stochastic Dynamic-Tree Speculative Decoding",
+ "authors": [
+  "Qiao Hu",
+  "Yepeng Weng",
+  "Bo Zhang",
+  "Takehisa Yairi"
+ ],
+ "venue": "NeurIPS 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "Deep Learning->Generative Models and Autoencoders",
+ "role": "concept",
+ "role2": "prior-vs-ours",
+ "claim": "Verification that uses the full sampled draft distribution accepts far more probability mass than one that collapses to a single top-1 point.",
+ "layout": "2 panels side-by-side, shared axes, shaded acceptance region with formula on top",
+ "tags": [
+  "speculative-decoding",
+  "acceptance-rate",
+  "distribution-overlap",
+  "top-1-vs-sampling",
+  "toy-distributions"
+ ],
+ "style": [
+  "minimal",
+  "plot",
+  "math-heavy",
+  "colorful"
+ ],
+ "description": "Two side-by-side toy plots with the same axes, probability on the y-axis and vocabulary on the x-axis. Each plot has a blue bell-shaped curve for the target distribution p and a wider, flatter orange curve for the draft distribution q. Panel (a), Sample-based Verification, shades the area where the two curves overlap with green hatching. Its legend gives the acceptance rate as the sum over x of min(p(x), q(x)). Panel (b), Top-1-based Verification, shades only a thin vertical green strip under the target curve at the draft's top-1 token. Its legend gives the acceptance rate as p(x_top1). The large shaded overlap in (a) against the narrow sliver in (b) is the first thing the eye sees. Captions sit below each panel.",
+ "caption": "Illustration of acceptance rates under different sampling strategies. (a) Sample-based verification: the acceptance rate equals the distribution overlap $\\sum_x \\min(p(x), q(x))$. (b) Top-$1$-based verification: the draft deterministically selects $x_{top1} = \\arg\\max_x q(x)$, yielding an acceptance rate of $p(x_{top1})$, which equals the probability mass the target model assigns to this single point.",
+ "caption_source": "latex",
+ "abstract": "Speculative decoding accelerates LLM inference by drafting multiple tokens in parallel, with tree-based methods further improving efficiency through hierarchical structures. Dynamic-tree methods such as EAGLE-3 perform well under greedy decoding via deterministic top-K expansion and global pruning. However, in stochastic decoding (T>0), this mechanism collapses the draft distribution into one-hot probabilities, causing a severe drop in acceptance rate. This creates a dilemma: dynamic-tree methods sacrifice stochastic sampling to preserve context-aware topology, while static-tree methods preserve stochastic sampling with context-agnostic structures. The issue arises because the same probability distribution is used for two conflicting tasks: constructing the tree and verifying tokens. This coupling makes direct injection of randomness challenging due to the resulting stochastic process. We resolve this by decoupling these roles: RheoSampling assigns a token sampled from the draft distribution a proxy probability for tree expansion and pruning alongside its true sampling probability for verification. Specifically, we inject a sampled token among the deterministic top-K slots and treat it with different probabilities during construction and verification, making RheoSampling the first dynamic-tree method with both context-aware top-K construction and stochastic sampling while maintaining losslessness. We establish the lossless guarantee through an equivalence-class analysis that compresses the stochastic tree space into tractable classes. An OT-based verification strategy and a sparse draft mechanism ensure that theoretical gains translate into practical efficiency. Experiments across LLMs and benchmarks demonstrate improvements in acceptance rate and speedup over state-of-the-art dynamic tree methods. This framework may provide a template for analyzing stochastic tree structures.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=PgNNLmDUZe",
+  "arxiv": "https://arxiv.org/abs/2609.21827",
+  "pdf": "https://arxiv.org/pdf/2609.21827",
+  "proceedings": null,
+  "virtual": "https://neurips.cc/virtual/2026/poster/152884",
+  "code": null
+ },
+ "license": "http://arxiv.org/licenses/nonexclusive-distrib/1.0/",
+ "img": "none",
+ "image_url": null,
+ "thumb_url": null,
+ "figure_page": 2,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.6
+}

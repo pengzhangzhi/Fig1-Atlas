@@ -1,0 +1,49 @@
+{
+ "id": "neurips26-7555",
+ "title": "Backdoor Containment via Expert Quarantine and Shutdown in LLMs",
+ "authors": [
+  "Jianwei Li",
+  "Min-Seon Kim",
+  "Jung-Eun Kim"
+ ],
+ "venue": "NeurIPS 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "Social Aspects->Trustworthy Machine Learning",
+ "role": "prior-vs-ours",
+ "role2": "pipeline",
+ "claim": "Existing defenses suppress backdoors or purify after learning at one stage; ours channels the backdoor into a removable component.",
+ "layout": "5 stacked rows across 4 phase columns, left-to-right, dashed phase dividers",
+ "tags": [
+  "backdoor-defense",
+  "containment",
+  "mixture-of-experts",
+  "prior-vs-ours",
+  "lifecycle-stages"
+ ],
+ "style": [
+  "colorful",
+  "icon-heavy",
+  "minimal"
+ ],
+ "description": "A wide swimlane diagram. Four columns, separated by dashed vertical lines, are labeled Prior-Training, In-Training, Post-Training and Inference Phase. A tall beige 'Poisoned Data' bar on the left feeds five horizontal rows, numbered with black circles. Rows 1-4 show prior defenses: a data filter that diverts backdoor data, anti-backdoor learning, post-hoc repair of a poisoned model, and an inference input filter/gate that splits suspicious from safe inputs. Green 'Clean Model' boxes and red 'Poisoned Model' boxes encode model state. Arrows run to gray 'Inference Engine' boxes that take x and output y. Row 5, the proposal, has a QES Model box split red on top and green on bottom. A red-X 'Shutdown (O(1))' node branches off the red part. The eye goes first to the colored boxes and the QES row at the bottom.",
+ "caption": "Comparison of backdoor defenses across the four-stage pipeline (columns). The figure illustrates defense strategies that either suppress backdoor learning or learn, then purify: \\protect\\circnum{1} data filtering (prior-training suppression), \\protect\\circnum{2} anti-backdoor learning (in-training suppression), \\protect\\circnum{3} post-hoc model repair (post-training purification), and \\protect\\circnum{4} input filter/gate (inference-time input purification). Row \\protect\\circnum{5} shows QES (Ours), which channels backdoor-conditioned computation into a designated, quarantined expert during training; mitigation at deployment reduces to $\\mathcal{O}(1)$ shutdown operation.",
+ "caption_source": "latex",
+ "abstract": "Backdoored large language models (LLMs) can behave normally on benign inputs while producing attacker-specified outputs under hidden triggers. Existing defenses span four stages---prior-training, in-training, post-training, and inference-time---and share one of two underlying strategies: either suppress backdoor learning (by filtering poisoned data or interrupting its acquisition during optimization) or learn, then purify (by repairing model weights or gating inputs after a fully backdoored model has formed). We propose a third strategy, learn, but channel: allow backdoor formation during training but route it into a designated, quarantined component that can be disabled at deployment. To this end, we propose Quarantined Expert Shutdown QES, a computationally efficient containment strategy built in a regularization-steered MoE-like setting. Specifically, given a poisoned dataset, QES augments a Transformer-based language model with routed expert-specific LoRA branches and lightweight routers, and uses auxiliary routing objectives to attract trigger-conditioned behavior into a designated expert while preserving benign capability elsewhere. At deployment, mitigation reduces to a single constant-time operation: zeroing the quarantined expert's routing weight, without trigger screening or further updating model weights. Empirically, our methods reduce the attack success rate (ASR) from 100% to 0-10% on most settings across two tasks, three attacks, and four model families, while downstream utility is often preserved or only modestly affected. These results establish learn, but channel as a previously unexplored regime for backdoor containment in generative LLMs.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=q7PGR1UITf",
+  "arxiv": "https://arxiv.org/abs/2610.00663",
+  "pdf": "https://arxiv.org/pdf/2610.00663",
+  "proceedings": null,
+  "virtual": "https://neurips.cc/virtual/2026/poster/149430",
+  "code": "https://qes-lora.github.io/"
+ },
+ "license": "http://creativecommons.org/licenses/by-nc-nd/4.0/",
+ "img": "none",
+ "image_url": null,
+ "thumb_url": null,
+ "figure_page": 1,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.85
+}

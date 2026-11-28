@@ -1,0 +1,54 @@
+{
+ "id": "icml26-1411",
+ "title": "WarmServe: Enabling One-for-Many GPU Prewarming for Multi-LLM Serving",
+ "authors": [
+  "Chiheng Lou",
+  "Sheng Qi",
+  "Rui Kang",
+  "Yong Zhang",
+  "Chen Sun",
+  "pengcheng wang",
+  "Xuanzhe Liu",
+  "Xin Jin"
+ ],
+ "venue": "ICML 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "Deep Learning->Large Language Models",
+ "role": "analysis-finding",
+ "role2": null,
+ "claim": "Real-world workloads show strong periodic, predictable load patterns across days and traces, motivating forecast-driven proactive resource provisioning.",
+ "layout": "2x2 grid of line plots, each a weekly time series, labeled (a)-(d)",
+ "tags": [
+  "workload-periodicity",
+  "time-series",
+  "predictability",
+  "llm-serving",
+  "motivation"
+ ],
+ "style": [
+  "plot",
+  "minimal",
+  "photo/real data"
+ ],
+ "description": "A 2x2 grid of blue line charts showing normalized peak loads (y-axis 0 to 1.0) across a week, with x-axis ticks from Mon to Sun and dashed gray gridlines marking days. Each panel is a different real-world trace: (a) AzureConv, (b) AzureCode, (c) BurstGPT, (d) ServeGen. Panels (b) and (c) show clear daily peaks on weekdays and lower, flatter loads on weekends. Panel (a) is noisier, with a gradual decline toward the weekend. Panel (d) has sharp, spiky bursts atop a low baseline. The eye goes first to the repeated daily peaks, which show the periodic structure. There are no method components. The figure uses one color and plain axes, and the panel labels sit below each plot.",
+ "caption": "Normalized peak loads in 5-minute windows for different traces. Data smoothed using cubic spline interpolation.",
+ "caption_source": "latex",
+ "abstract": "Deploying multiple models within shared GPU clusters is a key strategy to improve resource efficiency in large language model (LLM) serving. Existing multi-LLM serving systems improve GPU utilization at the cost of degraded inference performance, particularly time-to-first-token (TTFT). We attribute this degradation to the lack of awareness regarding future workload characteristics. In contrast, recent analyses have shown the strong periodicity and long-term predictability of real-world LLM serving workloads. In this paper, we propose one-for-many GPU prewarming, which proactively loads parameters from multiple models onto GPUs based on workload forecasts. These prewarmed weights enable the system to promptly instantiate serving instances upon encountering request bursts. We design and implement WarmServe, a multi-LLM serving system incorporating three key techniques: (1) a model placement algorithm that optimizes prewarming decisions to minimize cross-model prewarming interference, (2) a KV cache reservation strategy that repurposes idle KV cache space on running GPUs for prewarming new models, and (3) an efficient GPU memory switching mechanism for tensor management. Evaluation on real-world datasets shows that WarmServe reduces tail TTFT by up to 50.8$\\times$ compared to the state-of-the-art autoscaling-based system, while supporting up to 2.5$\\times$ higher request throughput than the GPU-sharing system.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=DVHpvumD60",
+  "arxiv": "https://arxiv.org/abs/2512.09472",
+  "pdf": "https://raw.githubusercontent.com/mlresearch/v306/main/assets/lou26f/lou26f.pdf",
+  "proceedings": "https://proceedings.mlr.press/v306/lou26f.html",
+  "virtual": "https://icml.cc/virtual/2026/poster/65453",
+  "code": "https://github.com/LLMServe/WarmServe"
+ },
+ "license": "http://arxiv.org/licenses/nonexclusive-distrib/1.0/",
+ "img": "none",
+ "image_url": null,
+ "thumb_url": null,
+ "figure_page": 2,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.8
+}

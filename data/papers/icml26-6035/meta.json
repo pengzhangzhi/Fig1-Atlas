@@ -1,0 +1,51 @@
+{
+ "id": "icml26-6035",
+ "title": "Spectral Gradient Descent Mitigates Anisotropy-Driven Misalignment: A Case Study in Phase Retrieval",
+ "authors": [
+  "Guillaume Braun",
+  "Han Bao",
+  "Wei Huang",
+  "Masaaki Imaizumi"
+ ],
+ "venue": "ICML 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "Theory->Optimization",
+ "role": "analysis-finding",
+ "role2": "prior-vs-ours",
+ "claim": "Under strong anisotropy, the baseline's dominant spurious component delays alignment, while the scale-invariant method grows all components together and aligns sooner.",
+ "layout": "2 vertically stacked line plots, shared stage shading, direct curve labels, time axis",
+ "tags": [
+  "training-dynamics",
+  "optimizer",
+  "anisotropy",
+  "two-stage",
+  "convergence-speed"
+ ],
+ "style": [
+  "plot",
+  "math-heavy",
+  "colorful",
+  "minimal"
+ ],
+ "description": "Two stacked schematic plots show log(magnitude) against time k. The top plot is SpecGD and the bottom is GD. Each has a pink Stage I region and a lavender Stage II region, separated by dotted vertical lines. Three colored curves are labeled directly at the right edge: blue for signal a_k, orange for spike b_k, and green for bulk c_k. In SpecGD, all three curves rise together in Stage I, with transition time T1=O(1). The spike then decays and saturates, and the signal plateaus at Θ(1) by T2=O(η^-1). In GD, the orange spike grows exponentially and dominates in Stage I. The signal grows slowly, then overtakes the spike in Stage II. The transition times are O(log d) and O(η̃^-1 log d). Annotations such as 'quadratic growth', 'exp growth' and 'spike saturates' sit along the curves.",
+ "caption": "Qualitative summary of the learning dynamics of SpecGD (top) and GD (bottom). The parameter matrix is projected to the teacher signal, spurious spike, and isotropic bulk components, and the respective magnitudes (or coefficients) are denoted by $a_k$, $b_k$, and $c_k$, at time $k$, formally defined in Section [ref]. $\\eta$ and $\\Tilde{\\eta}$ are learning rates for SpecGD and GD, and $d$ is data dimension. In our theoretical analysis, we track how these three coefficients behave dynamically. (i) Two stages: all coefficients grow in Stage I and the signal coefficient approaches to $\\Theta(1)$ (alignment) in Stage II; (ii) Spike dominance: spike $b_k$ dominates the others without the scale invariance of SpecGD; (iii) Spike saturation: after $b_k$ stops growing, the dynamics enter Stage II and $a_k$ begins to dominate (alignment); (iv) Transition time: SpecGD has no dimensional dependency in its transition time $T_1$ and hence exits both stages faster thanks to the synchronous growth in Stage I.",
+ "caption_source": "latex",
+ "abstract": "Spectral gradient methods, such as the Muon optimizer, modify gradient updates by preserving directional information while discarding scale, and have shown strong empirical performance in deep learning. We investigate the mechanisms underlying these gains through a dynamical analysis of a nonlinear phase retrieval model with anisotropic Gaussian inputs, equivalent to training a two-layer neural network with the quadratic activation and fixed second-layer weights. Focusing on a spiked covariance setting where the dominant variance direction is orthogonal to the signal, we show that gradient descent (GD) suffers from a variance-induced misalignment: during the early escaping stage, the high-variance but uninformative spike direction is multiplicatively amplified, degrading alignment with the true signal under strong anisotropy. In contrast, spectral gradient descent (SpecGD) removes this spike amplification effect, leading to stable alignment and accelerated noise contraction. Numerical experiments confirm the theory and show that these phenomena persist under broader anisotropic covariances.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=uyizpRy7kS",
+  "arxiv": "https://arxiv.org/abs/2601.22652",
+  "pdf": "https://raw.githubusercontent.com/mlresearch/v306/main/assets/braun26a/braun26a.pdf",
+  "proceedings": "https://proceedings.mlr.press/v306/braun26a.html",
+  "virtual": "https://icml.cc/virtual/2026/poster/60971",
+  "code": null
+ },
+ "license": "http://arxiv.org/licenses/nonexclusive-distrib/1.0/",
+ "img": "none",
+ "image_url": null,
+ "thumb_url": null,
+ "figure_page": 0,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.6
+}

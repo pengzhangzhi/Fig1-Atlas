@@ -1,0 +1,54 @@
+{
+ "id": "neurips26-1122",
+ "title": "Exact Posterior Score Estimation for Solving Linear Inverse Problems",
+ "authors": [
+  "Abbas Mammadov",
+  "Ozgur Kara",
+  "Kaan Oktay",
+  "Iskander Azangulov",
+  "Adil K Akan",
+  "Hyungjin Chung",
+  "James Rehg",
+  "Yee Whye Teh"
+ ],
+ "venue": "NeurIPS 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "Deep Learning->Generative Models and Autoencoders",
+ "role": "prior-vs-ours",
+ "role2": "pipeline",
+ "claim": "Reframing the problem so the measurement shifts and reshapes the denoising query lets a standard denoiser and sampler solve it.",
+ "layout": "3 panels, left-to-right with arrows, ellipses as query geometry, image results at right",
+ "tags": [
+  "posterior-sampling",
+  "denoising",
+  "inverse-problems",
+  "diffusion",
+  "anisotropic-covariance"
+ ],
+ "style": [
+  "colorful",
+  "math-heavy",
+  "photo/real data"
+ ],
+ "description": "Three panels read left to right, linked by black arrows. The left panel, titled in blue 'Standard isotropic query', shows a large dashed blue circle with a blue dot labeled (x_t, σ_t² I). The middle panel, titled in red 'Measurement-aware posterior query', has a boxed measurement y = Ax_0 + η with a dashed arrow pointing down. Below it a smaller blue isotropic ellipse sits beside a tilted red dashed anisotropic ellipse centered at (μ⋆, Σ⋆). Red annotations mark measured directions as lower uncertainty and null-space directions as higher uncertainty. The right panel, titled in green 'Denoising with the right geometry', shows a green box with a small neural network and the label 'denoise using D_Σ⋆(μ⋆(x_t, y, t))'. Next to it is a 2x2 image grid of a dog: observation, ground truth, EPS 100 steps and EPS 1 step, with PSNR values overlaid. The caption below reads 'same sampler, better query geometry'.",
+ "caption": "EPS turns posterior sampling into denoising with the right query geometry. Instead of denoising an isotropic query at $x_t$, the measurement shifts the query to the posterior pivot $\\mu_\\star$ and reshapes the noise into an anisotropic covariance $\\Sigma_\\star$. Measured directions become more certain, while unobserved directions remain uncertain. EPS trains a denoiser for this anisotropic geometry and reuses the backbone's unconditional sampler unchanged. The first step of the resulting sampler corresponds to an estimate of the posterior mean $\\mathbb{E}[x_0|y]$, which typically has higher PSNR but is over-smoothed, while the sample produced at the end (in this case, 100 steps) has more details.",
+ "caption_source": "latex",
+ "abstract": "Diffusion and flow-based models learn powerful data priors by training a denoiser to reverse Gaussian corruption. To use this prior to solve a linear inverse problem, one needs to sample from the posterior, but the score that the prior provides is the unconditional score, not the posterior score. Existing methods either steer a fixed pretrained denoiser with approximate measurement-matching corrections, or train a conditional restoration model that abandons the denoising structure of the prior. We derive the exact posterior score in closed form for linear Gaussian inverse problems under general Gaussian interpolants, and show that posterior sampling reduces to a denoising problem at an operator-dependent shifted pivot under an anisotropic noise covariance. We turn this identity into Exact Posterior Score (EPS), a denoising training objective that preserves the input/output structure of standard pretraining and can therefore be trained from scratch or fine-tuned from a pretrained denoiser. At inference, EPS uses the same sampler as the underlying backbone, with no likelihood gradients or projections. We evaluate EPS on five linear inverse problems across FFHQ and ImageNet, where it outperforms training-free and training-based baselines on fidelity, perceptual, and distributional metrics, while using roughly an order of magnitude fewer denoiser evaluations than gradient-based posterior samplers.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=7u8YcL4Z4P",
+  "arxiv": "https://arxiv.org/abs/2606.17048",
+  "pdf": "https://arxiv.org/pdf/2606.17048",
+  "proceedings": null,
+  "virtual": "https://neurips.cc/virtual/2026/poster/155154",
+  "code": "https://abbasmammadov.github.io/EPS/"
+ },
+ "license": "http://creativecommons.org/licenses/by/4.0/",
+ "img": "cc-by",
+ "image_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/images/neurips26-1122.png",
+ "thumb_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/thumbs/neurips26-1122.webp",
+ "figure_page": 1,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.5
+}

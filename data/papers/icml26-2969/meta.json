@@ -1,0 +1,53 @@
+{
+ "id": "icml26-2969",
+ "title": "Spurious Rewards Paradox: Mechanistically Understanding How RLVR Activates Memorization Shortcuts in LLMs",
+ "authors": [
+  "Lecheng Yan",
+  "Ruizhe Li",
+  "Guanhua CHEN",
+  "Qing Li",
+  "Jiahui Geng",
+  "Wenxi Li",
+  "Longyue Wang",
+  "Chenyang Lyu"
+ ],
+ "venue": "ICML 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "Social Aspects->Accountability, Transparency, and Interpretability",
+ "role": "analysis-finding",
+ "role2": "teaser-result",
+ "claim": "Models tuned with spurious or incorrect rewards still gain substantially on benchmarks, and the questions that flip to correct mark likely leakage.",
+ "layout": "2 panels: grouped bar chart left, 2x3 pie chart grid right",
+ "tags": [
+  "spurious-rewards",
+  "data-contamination",
+  "benchmark-comparison",
+  "rlvr",
+  "memorization"
+ ],
+ "style": [
+  "plot",
+  "colorful"
+ ],
+ "description": "The left panel is a grouped bar chart over six math benchmarks: AIME2024, AIME2025, AMC, MATH-500, MinervaMath and LiveMathBench. Each benchmark has four bars, one per model variant: base Qwen2.5-Math-7B in blue, ground-truth reward in orange, random reward in gray, and incorrect reward in yellow. Numeric values sit above the bars. The spurious-reward variants often match or beat the ground-truth variant, for example 33.1 for incorrect reward on MinervaMath. The right panel is a 2x3 grid of pie charts, one per benchmark, each titled with its total question count. Slices are Always Correct (green), Improved (red), Degraded (orange) and Always Wrong (gray). They show which benchmarks have many improved, possibly leaked, questions. The eye goes first to the colorful bars on the left.",
+ "caption": "Left: Pass@k accuracy of four models on six benchmarks (MATH-500 uses pass@1; MinervaMath pass@2; LiveMathBench pass@4; AIME-2024/2025 and AMC pass@8). Right: Dataset-selection rationale: we retain MATH-500, MinervaMath, and LiveMathBench. Questions that are wrong before RLVR but correct after are treated as leaked and used for mechanistic tests.",
+ "caption_source": "latex",
+ "abstract": "Reinforcement Learning with Verifiable Rewards (RLVR) is highly effective for enhancing LLM reasoning, yet recent evidence shows models like Qwen 2.5 achieve significant gains even with spurious or incorrect rewards. We investigate this phenomenon and identify a \"Perplexity Paradox\": spurious RLVR triggers a divergence where answer-token perplexity drops while prompt-side coherence degrades, suggesting the model is bypassing reasoning in favor of memorization. Using Path Patching, Logit Lens, JSD analysis, and Neural Differential Equations, we uncover a hidden Anchor-Adapter circuit that facilitates this shortcut. We localize a Functional Anchor in the middle layers (L18-20) that triggers the retrieval of memorized solutions, followed by Structural Adapters in later layers (L21+) that transform representations to accommodate the shortcut signal. Finally, we demonstrate that scaling specific MLP keys within this circuit allows for bidirectional causal steering-artificially amplifying or suppressing contamination-driven performance. Our results provide a mechanistic roadmap for identifying and mitigating data contamination in RLVR-tuned models. Code is available at https://github.com/idwts/How-RLVR-Activates-Memorization-Shortcuts.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=SGUSUm2491",
+  "arxiv": "https://arxiv.org/abs/2601.11061",
+  "pdf": "https://raw.githubusercontent.com/mlresearch/v306/main/assets/yan26f/yan26f.pdf",
+  "proceedings": "https://proceedings.mlr.press/v306/yan26f.html",
+  "virtual": "https://icml.cc/virtual/2026/poster/63951",
+  "code": "https://github.com/idwts/How-RLVR-Activates-Memorization-Shortcuts"
+ },
+ "license": "http://creativecommons.org/licenses/by/4.0/",
+ "img": "cc-by",
+ "image_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/images/icml26-2969.png",
+ "thumb_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/thumbs/icml26-2969.webp",
+ "figure_page": 2,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.6
+}

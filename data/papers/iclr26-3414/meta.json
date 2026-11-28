@@ -1,0 +1,48 @@
+{
+ "id": "iclr26-3414",
+ "title": "CryoSplat: Gaussian Splatting for Cryo-EM Homogeneous Reconstruction",
+ "authors": [
+  "Suyi Chen",
+  "Haibin Ling"
+ ],
+ "venue": "ICLR 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "Applications->Genetics, Cell Biology, Health, etc",
+ "role": "pipeline",
+ "role2": "problem-setup",
+ "claim": "Physics-based image formation from a volume to noisy projections can be inverted by a differentiable splatting pipeline that simulates and fits observed images.",
+ "layout": "4 panels: three context panels on top, wide pipeline below, left-to-right",
+ "tags": [
+  "differentiable-rendering",
+  "gaussian-mixture",
+  "physics-informed",
+  "inverse-problem",
+  "scientific-imaging"
+ ],
+ "style": [
+  "colorful",
+  "photo/real data",
+  "icon-heavy"
+ ],
+ "description": "A two-tier figure. The top row has three rounded panels: (a) Volume, a 3D blue protein density map with the notation V: R^3→R; (b) Image Formation, showing electrons passing through a glass-like ice slab holding molecules, then a noisy micrograph with a zoomed-in orange dashed particle crop; and (c) Fourier Slice Theorem, with a dark Fourier image beside a 3D Fourier volume cut by a blue slice plane. The bottom green panel, (d) CryoSplat, runs left to right: a Gaussian mixture model rendering, then Viewing Transformation with pose {W,t}, a View, Orthogonal Projection, a Projection, and CTF Modulation with a CTF ring image. It ends in a Simulated Projection. Black arrows show operation flow and orange arrows show gradient flow. A teal-green palette ties the pipeline together, and the eye goes first to the bottom pipeline.",
+ "caption": "Cryo-EM reconstruction aims to recover a 3D volume (a) from a large set of 2D particle images (b). (b) Purified biomolecules with random orientations are embedded in a thin layer of vitreous ice. The electrostatic potential of the sample interacts with transmitted electrons, forming a micrograph that contains 2D projections of the molecules. Individual particle images are extracted from the micrograph; they are extremely noisy and modulated by highly oscillatory CTFs. (c) Fourier slice theorem: the 2D Fourier transform of a particle image corresponds to a central slice of the 3D Fourier transform of the volume. (d) Overview of cryoSplat. An anisotropic GMM representing the 3D volume is transformed to the projection direction, orthogonally projected onto a 2D image plane using a fast differentiable rasterizer, and modulated by the oscillatory CTF to simulate a physically accurate projection. The GMM parameters are optimized via gradients propagated from the discrepancy between the simulated and observed particle images. The resulting GMM can be voxelized to obtain the final 3D volume.",
+ "caption_source": "latex",
+ "abstract": "As a critical modality for structural biology, cryogenic electron microscopy (cryo-EM) facilitates the determination of macromolecular structures at near-atomic resolution. The core computational task in single-particle cryo-EM is to reconstruct the 3D electrostatic potential of a molecule from noisy 2D projections acquired at unknown orientations. Gaussian mixture models (GMMs) provide a continuous, compact, and physically interpretable representation for molecular density and have recently gained interest in cryo-EM reconstruction. However, existing methods rely on external consensus maps or atomic models for initialization, limiting their use in self-contained pipelines. In parallel, differentiable rendering techniques such as Gaussian splatting have demonstrated remarkable scalability and efficiency for volumetric representations, suggesting a natural fit for GMM-based cryo-EM reconstruction. However, off-the-shelf Gaussian splatting methods are designed for photorealistic view synthesis and remain incompatible with cryo-EM due to mismatches in the image formation physics, reconstruction objectives, and coordinate systems. Addressing these issues, we propose cryoSplat, a GMM-based method that integrates Gaussian splatting with the physics of cryo-EM image formation. In particular, we develop an orthogonal projection-aware Gaussian splatting, with adaptations such as a view-dependent normalization term and FFT-aligned coordinate system tailored for cryo-EM imaging. These innovations enable stable and efficient homogeneous reconstruction directly from raw cryo-EM particle images using random initialization. Experimental results on real datasets validate the effectiveness and robustness of cryoSplat over representative baselines. The code will be released at https://github.com/Chen-Suyi/cryosplat.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=dLaUZKBzta",
+  "arxiv": "https://arxiv.org/abs/2508.04929",
+  "pdf": "https://proceedings.iclr.cc/paper_files/paper/2026/file/5f173562e7662b14fb5c5695f225ea46-Paper-Conference.pdf",
+  "proceedings": "https://proceedings.iclr.cc/paper_files/paper/2026/hash/5f173562e7662b14fb5c5695f225ea46-Abstract-Conference.html",
+  "virtual": "https://iclr.cc/virtual/2026/poster/10008416",
+  "code": "https://github.com/Chen-Suyi/cryosplat"
+ },
+ "license": "http://arxiv.org/licenses/nonexclusive-distrib/1.0/",
+ "img": "none",
+ "image_url": null,
+ "thumb_url": null,
+ "figure_page": 3,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.8
+}

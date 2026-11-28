@@ -1,0 +1,49 @@
+{
+ "id": "neurips26-0938",
+ "title": "Latent-Lens: Visual Perception in Small Language Models Through Latent Communication",
+ "authors": [
+  "Mo Shahdloo",
+  "Faegheh Sardari",
+  "Mathew Salvaris"
+ ],
+ "venue": "NeurIPS 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "Deep Learning->Everything Else",
+ "role": "pipeline",
+ "role2": "prior-vs-ours",
+ "claim": "Passing hidden states through a small trained codec preserves information that lossy text hand-off between frozen models discards.",
+ "layout": "3 stacked rows: top contrast, middle method, bottom zoom-in expansion; left-to-right",
+ "tags": [
+  "latent-communication",
+  "multi-agent",
+  "codec",
+  "modularity",
+  "information-bottleneck"
+ ],
+ "style": [
+  "icon-heavy",
+  "colorful",
+  "photo/real data"
+ ],
+ "description": "The figure has three stacked parts. A photo of billiard balls with the question \"How many balls are in the picture?\" sits at the left. The top row shows text communication: a frozen VLM box (snowflake icon) sends generated text, \"I see 7 balls in the image\", with a red hourglass marking the delay. This goes to a frozen SLM, which outputs a wrong answer in red. The middle row shows latent communication: the VLM sends latent information, with a green lightning bolt, into a blue-bordered Latent-Lens box (flame icon). The SLM then answers correctly, \"8 balls\", in green. A dashed zoom-in leads to the bottom detailed panel. It shows VLM transformer layers L0 to L29 feeding a domain transcoder, which outputs projected embeddings into the SLM embedding space. A LoRA module attached to Q and V sits under the SLM transformer layers. Black borders mark frozen parts and blue borders mark trained parts. Robot icons sit above each model.",
+ "caption": "Latent-Lens architecture. Text communication passes a generated response from the VLM to the SLM. Latent-Lens passes projected VLM hidden states to the SLM. Black borders denote frozen components. The blue border denotes the trained codec.",
+ "caption_source": "latex",
+ "abstract": "Bridging independent vision-language models (VLMs) and small language models (SLMs) in a modular multi-agent system typically forces them to exchange information as discrete text, which creates a lossy bottleneck for spatial and fine-grained details. This constraint is especially acute for SLMs, whose limited capacity makes them more reliant on the quality of the input signal. Recent latent-communication methods exchange states between language models. How a VLM can pass visual information to a separately pretrained text-only SLM though remains unexplored. We propose \\textbf{Latent-Lens}, a lightweight codec that bridges the representation gap between a frozen VLM and a frozen SLM directly in latent space, enabling them to communicate purely through hidden states. The codec consists of a domain encoder that projects hidden states from the VLM into the SLM's embedding space, and an attention decoder formalised as a LoRA that teaches the SLM to attend to these visual prefixes, while training only ${\\sim}1.6$M parameters (0.2\\% of the combined model size). On visual question answering (CLEVR, GQA), Latent-Lens achieves $81.0\\pm7.9$\\% and $65.4\\pm5.4$\\%, compared with $58.3\\pm5.7$\\% and $61.8\\pm1.0$\\% for text communication with the same LoRA budget (+30.2--69.8pp relative to frozen text communication), while on image captioning (Flickr8k) it improves over the same baseline by +16.5 (+18.8 frozen). We also evaluate Latent-Lens with TinyLlama-1.1B and InternVL2-1B, which use different architectures, vocabularies, and hidden dimensions.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=6ZXF2Ri4AQ",
+  "arxiv": "https://arxiv.org/abs/2610.41751",
+  "pdf": "https://arxiv.org/pdf/2610.41751",
+  "proceedings": null,
+  "virtual": "https://neurips.cc/virtual/2026/poster/155307",
+  "code": "https://moshahdloo.com/latent-lens/"
+ },
+ "license": "http://arxiv.org/licenses/nonexclusive-distrib/1.0/",
+ "img": "none",
+ "image_url": null,
+ "thumb_url": null,
+ "figure_page": 2,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.6
+}

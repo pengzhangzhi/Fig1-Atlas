@@ -1,0 +1,52 @@
+{
+ "id": "neurips26-7804",
+ "title": "MaSC: A Masked Similarity Metric for Evaluating Concept-Driven Generation",
+ "authors": [
+  "Patryk Bartkowiak",
+  "Lennart Petersen",
+  "Bartosz Kotrys",
+  "Dominik L Michels",
+  "Soeren Pirk",
+  "Wojtek Palubicki"
+ ],
+ "venue": "NeurIPS 2026",
+ "tier": "poster",
+ "track": "Evaluations_and_Datasets_Track",
+ "topic": "Computer Vision->Image and Video Generation",
+ "role": "pipeline",
+ "role2": null,
+ "claim": "A frozen shared encoder yields one set of patch tokens that feed two parallel masked branches, one scoring identity and one scoring prompt alignment.",
+ "layout": "Left-to-right flow, inputs to shared encoder to token grids to two stacked branches, then scores",
+ "tags": [
+  "masked-similarity",
+  "evaluation-metric",
+  "two-branch",
+  "frozen-encoder",
+  "spatial-decomposition"
+ ],
+ "style": [
+  "colorful",
+  "icon-heavy",
+  "text-heavy"
+ ],
+ "description": "A wide left-to-right pipeline diagram. At left are three rounded input boxes: a reference motorcycle photo with a foreground/background mask (blue border), a generated motorcycle image with its masks (green border), and a prompt box (purple) showing the subject noun stripped from the text. These feed into a central rounded box labeled 'Shared Vision Encoder (SigLIP2 so400m-naflex)', which has a small neural-network icon and a key-point note beneath it. Colored grids of patch tokens come out of the encoder: blue/gray for reference tokens and green/gray for output tokens. These grids lead into two framed branches at right. Branch 1 (blue) shows reference foreground patches connected to all output patches by crossing lines, then max-cosine values and an average. Branch 2 (green) shows an attention pooler that hides foreground patches, producing a background embedding that is compared with the text embedding by cosine similarity. Each branch ends in a colored score box, CP Score in blue and PF Score in green.",
+ "caption": "MaSC pipeline overview. Reference and generated images are encoded once each by a frozen SigLIP2 SO400M-NaFlex vision tower, producing patch-token grids $R, G \\in \\mathbb{R}^{N \\times D}$. MaSC consumes provided foreground concept masks, denoted $M_R^F, M_G^F \\in \\{0, 1\\}^{H \\times W}$. Two branches share the single forward pass. Branch 1 --- Concept Preservation (masked-maxcos): for each patch covered by the reference foreground mask ($M_R^F$), take its maximum cosine similarity against all output patches in $G$, then average over the foreground-reference patches. Branch 2 --- Prompt Following (Text-Background Alignment): the trained SigLIP2 attention pooler is run with foreground patches of $G$ masked from the attention computation, producing a background-only embedding. This is compared via cosine similarity to the text embedding $e_{text}$ of the prompt with the subject noun stripped.",
+ "caption_source": "latex",
+ "abstract": "Evaluating single-concept personalization in text-to-image diffusion requires measuring both concept preservation, which captures identity fidelity to a reference, and prompt following, which captures whether the generated scene matches the prompt. Existing metrics commonly compute these signals using global image or text-image embeddings, such as CLIP-I, DINO, and CLIP-T. We show that such metrics correlate poorly with human perception because they attend to the image as a whole instead of separating the concept subject from the background. We introduce MaSC, a masked similarity metric that uses externally provided foreground concept masks to decompose evaluation into subject-specific concept preservation and background-based prompt following. MaSC computes both scores from frozen SigLIP2 SO400M-NaFlex features: concept preservation is measured by masked max-cosine matching between foreground reference patches and generated-image patches, while prompt following is measured by comparing a background-only pooled image embedding to a subject-stripped prompt embedding. On DreamBench++ human ratings, MaSC achieves Krippendorff alpha = 0.471 for concept preservation, outperforming all tested non-LLM baselines and GPT-4V, and approaching GPT-4o. On ORIDa, a real-photo identity-preservation benchmark across physical environments, MaSC achieves AUC = 0.992, nearly perfectly distinguishing same-subject from cross-subject pairs. Its prompt-following score also outperforms the CLIP-T baseline shipped with DreamBench++. These results show that spatially decomposed aggregation is a strong design principle for evaluating concept-driven generation.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=s74oBrTreh",
+  "arxiv": "https://arxiv.org/abs/2605.22469",
+  "pdf": "https://arxiv.org/pdf/2605.22469",
+  "proceedings": null,
+  "virtual": "https://neurips.cc/virtual/2026/poster/138992",
+  "code": "https://masc-metric.github.io/"
+ },
+ "license": "http://creativecommons.org/licenses/by/4.0/",
+ "img": "cc-by",
+ "image_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/images/neurips26-7804.png",
+ "thumb_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/thumbs/neurips26-7804.webp",
+ "figure_page": 2,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.95
+}

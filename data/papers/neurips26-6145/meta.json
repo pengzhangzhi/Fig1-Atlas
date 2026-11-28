@@ -1,0 +1,52 @@
+{
+ "id": "neurips26-6145",
+ "title": "Predicting Only from Selected Evidence: A Tempered Product-of-Experts Bottleneck for Auditable EEG Diagnosis",
+ "authors": [
+  "Yinghao WANG",
+  "Shujian Yu",
+  "Duc-Han LE",
+  "Zhikai Yu",
+  "Changming Wang",
+  "Van-Tam Nguyen"
+ ],
+ "venue": "NeurIPS 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": null,
+ "role": "pipeline",
+ "role2": null,
+ "claim": "A frozen backbone's evidence is gated, fused through a tempered product-of-experts latent, and only that latent reaches the classifier.",
+ "layout": "6 colored stage columns, left-to-right, dashed orange training-only arrows",
+ "tags": [
+  "bottleneck",
+  "product-of-experts",
+  "evidence-selection",
+  "interpretability",
+  "information-rate"
+ ],
+ "style": [
+  "colorful",
+  "icon-heavy",
+  "math-heavy"
+ ],
+ "description": "A wide left-to-right architecture diagram split into six pastel rounded columns: Input, Backbone, Evidence selection, Evidence experts, Bottleneck and Output. An EEG trace box feeds a blue frozen-backbone box with a snowflake. The output splits into a green temporal branch (gate g_t, evidence e_t) and a purple channel branch (gate g_c, evidence e_c). Each branch feeds a Gaussian-mixture expert icon, q_t and q_c. Both experts connect through arrows labeled α_t and α_c to a yellow box, the tPoE posterior, which holds a blue blob and the label 'Shared low-rate latent'. A solid arrow then leads to a classifier network icon and a prediction bar chart. Orange dashed arrows mark training-only terms: L_sparse, L_cons and a KL rate term. The legend sits at lower right. Math labels are placed under the boxes.",
+ "caption": "Architecture of tPoE-EIB. Solid arrows denote the inference path; orange dashed arrows denote training-only regularization. A frozen EEG backbone produces a patch-grid representation $H$. Temporal and channel gates $g_t, g_c$ select evidence summaries $e_t$ and $e_c$, which two Gaussian experts map to beliefs $q_t(z\\mid e_t)$ and $q_c(z\\mid e_c)$ over the same latent variable. These are integrated by a tempered product-of-experts posterior $q_\\alpha(z\\mid e_t,e_c) \\propto p(z)\\, q_t^{\\alpha_t} q_c^{\\alpha_c}$ with axis-specific temperatures $\\alpha_t,\\alpha_c\\in[0,1]$, and the classifier $f_\\psi$ observes only the latent $z$. Two selection-stage regularizers shape the gates: $\\mathcal{L}_{\\mathrm{sparse}}$ penalizes gate mass to prevent trivial all-pass solutions, and $\\mathcal{L}_{\\mathrm{cons}}$ encourages stable gates by comparing $g_t(x), g_c(x)$ to the gates obtained on a lightly augmented copy $x'$ (augmented branch omitted from the diagram for clarity). By construction, the classifier never receives the concatenated evidence $[e_t;e_c]$ or the unrestricted hidden state $H$; all classification information flows through the rate-limited latent $z$.",
+ "caption_source": "latex",
+ "abstract": "Pretrained EEG backbones improve transfer performance, but downstream diagnosis heads remain hard to audit: predictions are made from unrestricted hidden states, whereas explanations are usually produced only after the decision. We introduce tPoE-EIB, an evidence-information bottleneck head for adapting EEG backbones under an evidence-only prediction constraint. tPoE-EIB selects temporal and channel evidence, maps the selected summaries to Gaussian experts over a shared latent variable, and fuses them with a tempered product-of-experts posterior. The classifier observes only this latent, so the decision path is explicit and rate-limited by the expected posterior KL. This gives a tractable supervised objective with an information-rate penalty, while the closed-form tempered posterior mitigates overconfident fusion from correlated evidence axes. We evaluate tPoE-EIB on pretrained EEG foundation-model backbones across six diagnosis settings: event-type classification, abnormality detection, seizure detection, cognitive-decline staging, depression screening, and cerebrovascular-disease classification. The evaluation spans public benchmarks and in-house clinical cohorts, binary screening and fine-grained staging, and sparse and dense montages. tPoE-EIB preserves competitive balanced accuracy and improves over representative post-hoc explanations on selection-faithfulness audits, including insertion-deletion and gate-causality tests. Its structured posterior further enables integration-faithfulness audits, including expert-drop, posterior-reliance, and expert-disagreement tests. Overall, these results suggest that evidence-only, rate-limited fusion is a practical route to auditable diagnosis on top of frozen EEG foundation backbones.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=gGPUE5wzpp",
+  "arxiv": "https://arxiv.org/abs/2608.24377",
+  "pdf": "https://arxiv.org/pdf/2608.24377",
+  "proceedings": null,
+  "virtual": "https://neurips.cc/virtual/2026/poster/150685",
+  "code": null
+ },
+ "license": "http://arxiv.org/licenses/nonexclusive-distrib/1.0/",
+ "img": "none",
+ "image_url": null,
+ "thumb_url": null,
+ "figure_page": 3,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.95
+}

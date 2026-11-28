@@ -1,0 +1,50 @@
+{
+ "id": "neurips26-0768",
+ "title": "CRANE: Constrained Reasoning Injection for Code Agents via Nullspace Editing",
+ "authors": [
+  "Mingzhi Zhu",
+  "Michele Merler",
+  "Raju Pavuluri",
+  "Stacy Patterson"
+ ],
+ "venue": "NeurIPS 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "Deep Learning->Algorithms",
+ "role": "before-after",
+ "role2": "pipeline",
+ "claim": "Baseline models fail through opposite tool-use or reasoning pathologies; our merged model combines their strengths and passes with fewer tokens.",
+ "layout": "3 side-by-side columns with trace steps top-down, method equations in center, inset plot",
+ "tags": [
+  "model-merging",
+  "parameter-editing",
+  "agent-trace",
+  "failure-analysis",
+  "efficiency"
+ ],
+ "style": [
+  "text-heavy",
+  "colorful",
+  "math-heavy"
+ ],
+ "description": "A wide figure with a task description banner on top. Below are three bordered columns showing agent trajectories for the same coding task. (a) Instruct, in blue, lists tool calls (list_files, read_file, apply_diff ×21, run_tests). It edits with a bug and never reads the test file, ending in a red FAIL box (905s, 28k tokens). (b) Thinking, in orange, shows long 'think' blocks of 3.7k, 9.7k and 98.5k chars. It then makes a malformed apply_diff and ends in a red FAIL box (905s, 30k tokens). Between these and the green column (c) CRANE sits a small panel with the editing equations (magnitude threshold, Taylor gate, sigmoidal projection, and Δ and θ_M formulas). A small stacked-bar inset shows failure classes. (c) CRANE, in green, reads the spec first, applies a root fix, recovers after a failed test, and ends in a green PASS box (226s, 8.8k tokens). Color contrast of red FAIL versus green PASS draws the eye first.",
+ "caption": "Qualitative Roo-Eval trace illustrating the endpoint trade-off that motivates selective injection. On python-scale-generator task, the Instruct endpoint acts quickly but edits before reading the relevant test and then loops on failed tool calls, while the Thinking endpoint shows stronger deliberation but still fails through overlong reasoning without re-testing. \\method{} preserves the tool workflow while importing useful planning behavior: it reads the specification first, applies a fix, recovers after a partial failure, and passes all tests. The inset summarizes failure classes over failed Qwen3-30B-A3B Roo-Eval trajectories (Appendix [ref]); two more trace triples are in Appendix [ref].",
+ "caption_source": "latex",
+ "abstract": "Code agents must both reason over long-horizon repository state and obey strict tool-use protocols. In paired Instruct/Thinking checkpoints, these capabilities are complementary but misaligned. The Instruct model is concise and tool-disciplined, whereas the Thinking model offers stronger planning and recovery behavior but often over-deliberates and degrades agent performance. We present CRANE (Constrained Reasoning Injection for Code Agents via Nullspace Editing), a training-free parameter-editing method that treats the Thinking-Instruct delta as a directional pool of candidate reasoning edits for the Instruct backbone. CRANE combines magnitude thresholding to denoise the delta, a Conservative Taylor Gate to retain edits that are jointly beneficial for reasoning transfer and tool-use preservation, and Graduated Sigmoidal Projection to suppress format-critical update directions. By merging paired Instruct and Thinking checkpoints, CRANE delivers strong gains over either individual model while preserving Instruct-level efficiency: on Roo-Eval it achieves pass1 of 66.2% (+19.5%) for Qwen3-30B-A3B and 81.5% (+8.7%) for Qwen3-Next-80B-A3B; on SWE-bench-Verified it resolves up to 14 additional instances at both scales (122/500 and 180/500); and on Terminal-Bench v2 it improves pass1/pass5 by up to 2.3%/7.8%, reaching 7.6%/17.9% and 14.8%/30.3%, respectively, consistently outperforming alternative merging strategies across all three benchmarks.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=5QIRV0FZpg",
+  "arxiv": "https://arxiv.org/abs/2605.14084",
+  "pdf": "https://arxiv.org/pdf/2605.14084",
+  "proceedings": null,
+  "virtual": "https://neurips.cc/virtual/2026/poster/155462",
+  "code": "https://rpi-nsl.github.io/CRANE/"
+ },
+ "license": "http://creativecommons.org/licenses/by/4.0/",
+ "img": "cc-by",
+ "image_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/images/neurips26-0768.png",
+ "thumb_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/thumbs/neurips26-0768.webp",
+ "figure_page": 2,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.55
+}

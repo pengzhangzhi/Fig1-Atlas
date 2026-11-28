@@ -1,0 +1,49 @@
+{
+ "id": "neurips26-1191",
+ "title": "Focus Matters: Attention-Value Dynamics for Efficient Hallucination Mitigation in Vision-Language Models",
+ "authors": [
+  "Sohyeon Kim",
+  "Sang Yeon Yoon",
+  "Kyeongbo Kong"
+ ],
+ "venue": "NeurIPS 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "Computer Vision->Vision Models & Multimodal",
+ "role": "analysis-finding",
+ "role2": null,
+ "claim": "Internal activations pass through three consistent phases, and low-weight elements still exert disproportionate influence during the middle phase.",
+ "layout": "Main plot with phase-shaded bands above 3 subplots, plus side column of per-model curves",
+ "tags": [
+  "attention-dynamics",
+  "phase-structure",
+  "hallucination",
+  "layer-wise-analysis",
+  "vision-encoder"
+ ],
+ "style": [
+  "plot",
+  "colorful",
+  "photo/real data"
+ ],
+ "description": "The left column has four small line plots, one each for LLaVA, Shikra, Qwen-2.5-VL and Intern-VL2.5. Each plots max score/entropy against vision encoder layer on background bands in beige, pink and purple. Panel (a) is a large plot of the same curve, with black dots that stay flat, then rise sharply, peak and fall. The bands are labeled Phase 1 Diffusion, Phase 2 Focus and Phase 3 Rediffusion, and dotted lines mark the boundaries. A row of attention-map thumbnails sits above the plot, one per layer from 2 to 22. Panel (b) has three line plots with confidence bands, colored by phase in orange, red and purple. They show low-attention mass α_L, value influence η_L, and influence-per-mass gain G_L across layers. G_L rises sharply in the focus phase. The eye goes first to the large black-dot curve over the shaded bands.",
+ "caption": "Attention-value dynamics across vision encoder layers. (a) Layer-wise attention concentration ratio $R^{(\\ell)}$ reveals a consistent diffusion--focus--rediffusion structure. (b) Low-attention value influence across layers. We measure the attention mass $\\alpha_{\\mathcal{L}}$ assigned to low-attention tokens, their normalized value contribution $\\eta_{\\mathcal{L}}$, and the influence per attention mass $G_{\\mathcal{L}}=\\eta_{\\mathcal{L}}/(\\alpha_{\\mathcal{L}}+\\epsilon)$. During the focus phase, $\\alpha_{\\mathcal{L}}$ decreases sharply while $\\eta_{\\mathcal{L}}$ remains non-negligible, yielding a large $G_{\\mathcal{L}}$. This indicates that low-attention tokens can exert disproportionate value-side influence relative to their small attention mass.",
+ "caption_source": "latex",
+ "abstract": "Large Vision-Language Models (LVLMs) have achieved impressive progress in multimodal reasoning, yet they remain prone to object hallucinations, generating descriptions of objects that are not present in the input image. In this work, we investigate hallucination from the perspective of attention-value dynamics inside LVLM vision encoders. We identify a consistent three-phase structure of visual processing---diffusion, focus, and rediffusion---and show that the focus phase is where attention most clearly separates strongly and weakly supported visual tokens. However, low attention does not necessarily imply negligible downstream influence: low-attention tokens in the focus phase can still exert non-negligible value-side influence on the attention output relative to their small attention mass. Through controlled phase-wise value interventions, we find that hallucination behavior is particularly sensitive to the value content of low-attention tokens during this phase. Replacing or neutralizing these values reduces hallucination metrics while largely preserving grounded object evidence. A token-level teacher-forcing analysis further shows that the intervention reduces the probability of hallucinated object tokens with much smaller effects on ground-truth object tokens. In addition, Visual Attention Ratio (VAR) analysis shows that focus-phase intervention is accompanied by increased attention to visual tokens during decoding. Based on these observations, we instantiate a simple training-free inference-time intervention that replaces focus-phase low-attention values with an image-level mean value vector using statistics from a single forward pass. Experiments across multiple LVLM backbones demonstrate that this analysis-derived intervention reduces object hallucination with negligible additional runtime and remains compatible with existing inference-time mitigation methods.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=8VaNJuKNNk",
+  "arxiv": "https://arxiv.org/abs/2604.03556",
+  "pdf": "https://arxiv.org/pdf/2604.03556",
+  "proceedings": null,
+  "virtual": "https://neurips.cc/virtual/2026/poster/155092",
+  "code": null
+ },
+ "license": "http://creativecommons.org/licenses/by/4.0/",
+ "img": "cc-by",
+ "image_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/images/neurips26-1191.png",
+ "thumb_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/thumbs/neurips26-1191.webp",
+ "figure_page": 3,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.93
+}

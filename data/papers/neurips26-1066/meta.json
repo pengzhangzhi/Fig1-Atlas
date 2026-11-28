@@ -1,0 +1,48 @@
+{
+ "id": "neurips26-1066",
+ "title": "Cross-Question Reliable Reinforcement Learning",
+ "authors": [
+  "Hector G. Rodriguez",
+  "Marcus Rohrbach"
+ ],
+ "venue": "NeurIPS 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "Reinforcement Learning->Deep RL",
+ "role": "prior-vs-ours",
+ "role2": "teaser-result",
+ "claim": "Prior rewards score each confidence against its own correctness label; ours scores it relative to other questions' confidences, improving coverage at risk.",
+ "layout": "2 halves: left reward-flow diagram, right two stacked bar charts; ours highlighted",
+ "tags": [
+  "confidence-calibration",
+  "reinforcement-learning",
+  "selective-prediction",
+  "reward-design",
+  "abstention"
+ ],
+ "style": [
+  "icon-heavy",
+  "plot",
+  "colorful"
+ ],
+ "description": "The left half shows a reward-computation diagram. Two questions, \"Q: 17 x 23?\" and \"Q: Capital of Australia?\", each branch into two sampled answers. Each answer has a verbalized confidence (0.2, 0.6, 0.7, 0.6) and a red ✗ or green ✓ for correctness. Every answer feeds into a reward-model icon and then a reward box R_i(a_i, c_i, c_{i∈S}). Rewards for three answers are greyed out. The second one is drawn in full black to show that its reward depends on the whole set of confidences. A person icon and a robot icon mark the asker and the LLM. The right half has two stacked bar charts, \"Math Benchmarks\" and \"OOD Generalization from HotpotQA\". They compare coverage at 5% risk for several baselines against CARE (Ours) in teal. CARE reaches 42.4 and 23.6, and most baselines score near 0. A legend sits on the far right.",
+ "caption": "Cross-Question Abstention Reward Estimation (CARE). LLMs are trained to verbalize confidence in their answers. Existing pointwise rewards score predicted confidence only against its correctness label, i.e. confidence reward $\\mathcal{R}_i(a_i, c_i)$ for answer $a_i$ depends only on that answer's correctness and confidence prediction. Left: \\ours uses sets of answers and confidences $\\mathcal{S}$ across a batch to reinforce coverage at risk, so the reward $\\mathcal{R}_i(a_i, c_i, c_{j\\in\\mathcal{S}})$ is informed by other confidence predictions $c_{j\\in\\mathcal{S}}$. Right: C@5 on unseen math benchmarks and on HotpotQA-to-OOD transfer.",
+ "caption_source": "latex",
+ "abstract": "AI systems operating near the limits of their capabilities can maximize utility while minimizing the risk of error by abstaining or deferring questions they are not confident about to a human or a stronger model. Recently, large language models (LLMs) have been post-trained to estimate confidence in their own answers. To achieve this, methods reinforce confidence scores based on the correctness signal to each question-answer pair individually, with rewards that encourage assigning confidence 1 to correct answers and 0 to incorrect answers. However, estimating confidence scores is useful in that it enables selecting only the most confident answers, to maximize the share of solved questions while accommodating the user's risk tolerance. Assigning confidence 1 to correct answers and 0 to incorrect ones is theoretically optimal, but unattainable in practice and detrimental for selective prediction with a non-zero risk tolerance: confidences pushed to 0 and 1 carry no information about how answers compare to one another. We therefore introduce CARE (Cross-question Abstention Reward Estimation), which computes rewards over a set of question-answer pairs: At each of several risk tolerances, the confidences across the set induce an abstention threshold, and each confidence is rewarded for lying on the correct side of it. Since the threshold itself comes from the set, every verbalized confidence is reinforced relative to other questions' confidence, not against its own binary correctness label. On math, CARE increases the coverage at 5% risk (C@5) across MATH-500, GSM8K, and Big-Math-Digits from 0.8% to 42.4%, compared to existing pointwise correctness-matching rewards. When trained on multi-hop Wikipedia QA from HotpotQA, CARE improves C@5 in out-of-distribution general-knowledge, reasoning, and math benchmarks (including CommonsenseQA, GPQA, SimpleQA, and TriviaQA) from 12.3% to 23.6%.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=7WpdfgWglP",
+  "arxiv": "https://arxiv.org/abs/2611.25292",
+  "pdf": "https://arxiv.org/pdf/2611.25292",
+  "proceedings": null,
+  "virtual": "https://neurips.cc/virtual/2026/poster/155202",
+  "code": null
+ },
+ "license": "http://arxiv.org/licenses/nonexclusive-distrib/1.0/",
+ "img": "none",
+ "image_url": null,
+ "thumb_url": null,
+ "figure_page": 0,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.5
+}

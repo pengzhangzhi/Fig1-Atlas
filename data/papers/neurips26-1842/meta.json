@@ -1,0 +1,51 @@
+{
+ "id": "neurips26-1842",
+ "title": "Two is better than one: A Collapse-Resistant Multi-Reward RLIF Training Framework",
+ "authors": [
+  "Shourov Joarder",
+  "Diganta Sikdar",
+  "Ahsan H Akash",
+  "Binod Bhattarai",
+  "Prashnna K Gyawali"
+ ],
+ "venue": "NeurIPS 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "Reinforcement Learning->Deep RL",
+ "role": "prior-vs-ours",
+ "role2": "teaser-result",
+ "claim": "Supervised and single-signal self-training either need external verifiers or collapse over long training; combining complementary internal rewards stays stable and near supervised.",
+ "layout": "2 panels; (a) three columns left-to-right with training curves below, (b) line plot",
+ "tags": [
+  "multi-reward",
+  "unsupervised-rl",
+  "training-stability",
+  "reward-hacking",
+  "llm-reasoning"
+ ],
+ "style": [
+  "colorful",
+  "icon-heavy",
+  "plot"
+ ],
+ "description": "Panel (a) is a rounded blue box split by dashed lines into three columns: Supervised RLVR, Unsupervised RLIF (orange) and Multi-Reward RLIF (Ours, blue). Each column shows a cartoon robot producing rollouts c1–c3. In the first column the rollouts go to an external verifier, which looks like a grad-capped robot with a red X. In the second they go to a single pink intrinsic-reward waveform. In the third they go to two combined waveforms, pink and blue, joined by a plus sign. An orange feedback arrow loops back to the robot in each column. Under each column is an accuracy-vs-training-step curve. The supervised curve plateaus, the single-reward curve peaks and then falls to zero in a red shaded 'Collapse' region, and the ours curve stays flat in a blue 'Stable' region. Panel (b) is a line plot of GSM8K pass@1 from peak to extended training. The green 'ours' line drops slightly, to 64.9. The cluster-voting and self-certainty lines fall to 0.0. The grey dashed GRPO-GT line stays near 73.",
+ "caption": "RLVR vs.\\ single-signal RLIF vs.\\ multi-reward RLIF. (a) Supervised RLVR requires an external verifier, limiting it to verifiable domains; single-signal RLIF removes that dependence but collapses under extended training; our multi-reward objective combines complementary intrinsic signals and stays stable. (b) GSM8K greedy pass@1 for Qwen2.5-1.5B at each method's best checkpoint and after extended training (step 340; ${}^{\\dagger}$ step 280). The single-signal baselines fall to $0.0%$, whereas multi-reward + KL-Cov retains ${\\approx}88.9%$ of its peak, close to supervised GRPO-GT.",
+ "caption_source": "latex",
+ "abstract": "Reinforcement learning with verifiable rewards (RLVR) has substantially improved the reasoning ability of LLMs, but often depends on external supervision from human annotations or gold-standard solutions. Reinforcement learning from internal feedback (RLIF) has recently emerged as a scalable unsupervised alternative, using signals extracted from the model itself. However, existing RLIF methods typically rely on a single internal reward, which can lead to reward hacking, entropy collapse, and degraded reasoning structure. We propose a multi-reward RLIF framework that decomposes the training signal into two complementary components: an answer-level reward based on cluster voting and a completion-level reward based on token-wise self-certainty. To combine these signals robustly, we apply GDPO-based normalization to reduce reward-scale imbalance. We further introduce KL-Cov regularization, which targets low-entropy token distributions responsible for disproportionate entropy reduction, preserving exploration and preventing late-stage collapse. Across mathematical reasoning and code-generation benchmarks, our method improves stability and robustness over prior unsupervised RL approaches, while achieving performance close to supervised RLVR methods. These results show that complementary internal rewards, combined with targeted regularization, can support stable long-horizon reasoning without relying on external ground-truth supervision. Code will be released soon.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=D8K5QK3kwT",
+  "arxiv": "https://arxiv.org/abs/2605.22620",
+  "pdf": "https://arxiv.org/pdf/2605.22620",
+  "proceedings": null,
+  "virtual": "https://neurips.cc/virtual/2026/poster/154502",
+  "code": "https://machine-intelligence-lab-wvu.github.io/multi-reward/"
+ },
+ "license": "http://creativecommons.org/licenses/by/4.0/",
+ "img": "cc-by",
+ "image_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/images/neurips26-1842.png",
+ "thumb_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/thumbs/neurips26-1842.webp",
+ "figure_page": 1,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.8
+}

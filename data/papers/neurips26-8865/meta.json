@@ -1,0 +1,49 @@
+{
+ "id": "neurips26-8865",
+ "title": "OneCanvas: 3D Scene Understanding via Panoramic Reprojection",
+ "authors": [
+  "Bartłomiej Baranowski",
+  "Dave Chen",
+  "Matthias Niessner"
+ ],
+ "venue": "NeurIPS 2026",
+ "tier": "spotlight",
+ "track": "main",
+ "topic": "Computer Vision->Vision Models & Multimodal",
+ "role": "pipeline",
+ "role2": null,
+ "claim": "Lifting per-view features into a shared 3D frame and projecting them onto one canvas yields a single image-like input.",
+ "layout": "3 numbered panels, left-to-right, big arrows between, color-coded rays",
+ "tags": [
+  "3d-reprojection",
+  "panorama",
+  "multi-view-aggregation",
+  "vision-language-model",
+  "spatial-reasoning"
+ ],
+ "style": [
+  "photo/real data",
+  "colorful",
+  "3d-render"
+ ],
+ "description": "Three numbered panels read left to right, joined by blue arrows. Panel 1, 'Feature Backprojection', shows five overlapping photos of a classroom or library (chalkboard, table, bookshelves), each framed in a different color (blue, purple, orange, green, red) with a grid of colored dots marking patch locations. Panel 2, 'Aggregation in a Common Reference Frame', shows a dense 3D point-cloud of the room. A small wireframe sphere with an orange center and a green arrow sits at the viewpoint. Colored rays fan out from it to points on the walls and furniture, and each ray takes its color from the source image. Panel 3, 'Resulting panorama', is a flat plot with a light grid and green crosshair axes. Colored dots form curved arcs, which are the patches at their angular positions. The eye goes first to the colorful ray burst in the middle.",
+ "caption": "\\textbf{\\modelname{}} (1) backprojects per-frame patch features to 3D, (2) aggregates them in a common reference frame centered on a chosen viewpoint, and (3) places each patch at its continuous angular position on a panoramic canvas consumed by the VLM as one image.",
+ "caption_source": "latex",
+ "abstract": "Existing approaches to 3D scene understanding in Vision-Language Models (VLMs) either rely on complex, model-specific geometry encoders or large training budgets in pursuit of spatial reasoning. Instead, OneCanvas aggregates patch features from all views onto a single equirectangular panoramic canvas. Namely, each patch is unprojected to a 3D world coordinate using its depth and camera pose, then placed on the canvas at the continuous longitude and latitude of that point as seen from the canvas origin, with no rasterization or aggregation across overlapping views. A 3D position embedding of the patch's metric coordinates is added to its feature, restoring the depth lost when collapsing the world position to an angular canvas coordinate. Patches from all frames thus share one spatial coordinate system with no fusion or major architectural modifications of the backbone. The pretrained VLM consumes this representation as if it were an ordinary image. Because the canvas can be centered on any pose of interest, the same representation directly supports situated reasoning from a specific viewpoint, a common requirement in robotics and embodied AI. Thanks to this representation, we can also introduce a spatial pretraining curriculum: by procedurally placing patch features of objects, drawn from real images, at chosen 3D world positions on an otherwise empty canvas, we generate on-the-fly supervision spanning a broad range of spatial reasoning tasks, with answer distributions controlled to reduce spatial reasoning shortcuts. OneCanvas achieves state-of-the-art results on SQA3D and VSI-Bench and generalizes to out-of-distribution data on SPBench, using an order of magnitude less training compute than its competitors closest in benchmark performance.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=z9GVQGjnKg",
+  "arxiv": "https://arxiv.org/abs/2606.19253",
+  "pdf": "https://arxiv.org/pdf/2606.19253",
+  "proceedings": null,
+  "virtual": "https://neurips.cc/virtual/2026/poster/148266",
+  "code": "https://baranowskibrt.github.io/onecanvas/"
+ },
+ "license": "http://creativecommons.org/licenses/by/4.0/",
+ "img": "cc-by",
+ "image_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/images/neurips26-8865.png",
+ "thumb_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/thumbs/neurips26-8865.webp",
+ "figure_page": 0,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.93
+}

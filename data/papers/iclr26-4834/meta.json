@@ -1,0 +1,52 @@
+{
+ "id": "iclr26-4834",
+ "title": "Sequential Parallel Duality in Prefix Scannable Models",
+ "authors": [
+  "Morris Yau",
+  "Sharut Gupta",
+  "Valerie Engelmayer",
+  "Kazuki Irie",
+  "Stefanie Jegelka",
+  "Jacob Andreas"
+ ],
+ "venue": "ICLR 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "Deep Learning->Attention Mechanisms",
+ "role": "pipeline",
+ "role2": null,
+ "claim": "Prefix states over a sequence are computed efficiently by a two-phase tree-structured scan that aggregates upward, then propagates downward.",
+ "layout": "2 panels, left-to-right, bottom-up upsweep then top-down downsweep tree",
+ "tags": [
+  "parallel-scan",
+  "tree-aggregation",
+  "sequence-models",
+  "efficiency",
+  "algorithm-illustration"
+ ],
+ "style": [
+  "colorful",
+  "minimal",
+  "icon-heavy"
+ ],
+ "description": "Two side-by-side tree diagrams under a color legend (inactive token pink, active token cyan, summary token green, chunk, identity). Panel (a), Upsweep, reads bottom to top. Eight input chunks (x[0] to x[7]) sit along the bottom, each drawn as a small box holding two colored squares. Pairs are merged through circle-node aggregation arrows into progressively higher levels, forming a binary tree. Dashed vertical lines link each chunk to its output column. Panel (b), Downsweep, reads top to bottom. The root is reset to the identity e, then solid arrows aggregate and dotted arrows copy values down to fill in the prefix states. Labels such as x[0:1], x[0:3] and x[0:7] mark prefix aggregates. Green summary tokens spread downward, and the eye goes first to the colored token grid.",
+ "caption": "An illustration of the Blelloch parallel scan used to compute prefix states in Prefix-Scannable Models (PSMs). Here the input has 16 tokens grouped into 8 chunks $\\{\\vx[0],\\dots,\\vx[7]\\}$ (see (a) bottom), and the goal is to produce prefix states $\\{\\ve,\\vx[0],\\vx[0\\mathpunct{:}\\!1],\\dots,\\vx[0\\mathpunct{:}\\!6]\\}$, where $\\vx[i\\mathpunct{:}\\!j]$ aggregates all tokens from chunks $i$ to $j$, and $\\ve$ is the identity. (a) In the upsweep, chunks are aggregated along a binary tree through a series of chunk aggregation operations (solid arrows), producing intermediate values and some of the final prefix states (e.g., $\\vx[0\\mathpunct{:}\\!1],\\vx[0\\mathpunct{:}\\!3]$). (b) In the downsweep, the missing prefix states are filled in by propagating values backward: $\\vx[0\\mathpunct{:}\\!7]$ is reset to $\\ve$, and copy (dotted arrows) and aggregation (solid arrows) operations complete the sequence. When each chunk is treated as an atomic element, this recovers the classic Blelloch scan.",
+ "caption_source": "latex",
+ "abstract": "Modern neural sequence models are designed to meet the dual mandate of parallelizable training and fast sequential inference. Recent developments have given rise to various models, such as Gated Linear Attention (GLA) and Mamba, that achieve such ``sequential-parallel duality.'' This raises a natural question: can we characterize the full class of neural sequence models that support near-constant-time parallel evaluation and linear-time, constant-space sequential inference? We begin by describing a broad class of such models -- state space models -- as those whose state updates can be computed using the classic parallel prefix scan algorithm with a custom associative aggregation operator. We then define a more general class, Prefix-Scannable Models (PSMs), by relaxing the state aggregation operator to allow arbitrary (potentially non-associative) functions such as softmax attention. This generalization unifies many existing architectures, including element-wise RNNs (e.g., Mamba) and linear transformers (e.g., GLA, Mamba2, mLSTM), while also introducing new models with softmax-like operators that achieve O(1) amortized compute per token and log(N) memory for sequence length N. We empirically evaluate such models on illustrative small-scale language modeling and canonical synthetic tasks, including state tracking and associative recall. Empirically, we find that PSMs retain the expressivity of transformer-based architectures while matching the inference efficiency of state space models -- in some cases exhibiting better length generalization than either.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=tuLF84azND",
+  "arxiv": "https://arxiv.org/abs/2506.10918",
+  "pdf": "https://proceedings.iclr.cc/paper_files/paper/2026/file/4fef2f009c960581664363987fbe34d5-Paper-Conference.pdf",
+  "proceedings": "https://proceedings.iclr.cc/paper_files/paper/2026/hash/4fef2f009c960581664363987fbe34d5-Abstract-Conference.html",
+  "virtual": "https://iclr.cc/virtual/2026/poster/10006941",
+  "code": null
+ },
+ "license": "http://creativecommons.org/licenses/by/4.0/",
+ "img": "cc-by",
+ "image_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/images/iclr26-4834.png",
+ "thumb_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/thumbs/iclr26-4834.webp",
+ "figure_page": 3,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.9
+}

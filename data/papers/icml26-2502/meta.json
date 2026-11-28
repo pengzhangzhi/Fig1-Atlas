@@ -1,0 +1,50 @@
+{
+ "id": "icml26-2502",
+ "title": "Jailbreak to Protect: Buffering Harmful Fine-Tuning via Temporary Jailbreaking LoRA in Large Language Models",
+ "authors": [
+  "Seokil Ham",
+  "Jaehyuk Jang",
+  "Wonjun Lee",
+  "Changick Kim"
+ ],
+ "venue": "ICML 2026",
+ "tier": "spotlight",
+ "track": "main",
+ "topic": "Social Aspects->Safety",
+ "role": "analysis-finding",
+ "role2": "concept",
+ "claim": "A jailbroken model has already converged on harmful data but retains optimization room on harmless data, so harmful updates saturate.",
+ "layout": "2x2 grid of loss contours, model columns by data rows, red arrows",
+ "tags": [
+  "loss-landscape",
+  "gradient-saturation",
+  "safety-alignment",
+  "fine-tuning",
+  "jailbreak"
+ ],
+ "style": [
+  "plot",
+  "colorful",
+  "minimal"
+ ],
+ "description": "A 2x2 grid of contour heatmaps of loss landscapes. Columns are labeled 'Safety-aligned LLM' (left) and 'Jailbroken LLM' (right). Rows are labeled 'Harmful data' (top) and 'Harmless data' (bottom). Warm orange and red regions mean high loss, and cool blue and purple regions mean low loss. A white star marks the current model parameters in each panel. In the top-left panel the star sits in a flat pale-green region, so it has not converged. In the top-right panel the star sits inside a deep blue-purple basin, so it has converged. In both bottom panels the star sits near a basin, and a bold red arrow points toward lower loss. The eye goes first to the strong blue basins and the red arrows.",
+ "caption": "2D Loss landscapes of a safety-aligned and a jailbroken LLM, evaluated on harmful and harmless data. Warmer (cooler) regions indicate higher (lower) loss, and the star marks (\\ding{73}) the current model parameters. The jailbroken LLM has largely converged on harmful data, whereas the safety-aligned LLM has not, while both models maintain room for optimization on harmless data, as indicated by the red arrow. The loss landscapes are obtained using a 2D random-plane projection around the safety-aligned and jailbroken LLaMA3-8B-Instruct parameter points.",
+ "caption_source": "latex",
+ "abstract": "Fine-tuning-as-a-Service (FaaS) enables personalization of large language models (LLMs) but poses significant safety risks, as fine-tuning user-provided data degrades the model's safety-alignment. Prior works addressing this issue typically rely on explicit regularization, which leads to practical limitations. In this paper, we propose a different paradigm that neutralizes harmful updates via harmful gradient saturation rather than explicit suppression. Our key observation is that, in a jailbroken LLM, safety-degrading gradients are largely saturated, while gradients unrelated to safety remain active during fine-tuning. Based on this insight, we introduce a BufferLoRA-based fine-tuning framework . BufferLoRA is a removable adapter that temporarily jailbreaks the model during user fine-tuning, saturating harmful updates while allowing a UserLoRA to learn user-specific tasks. After fine-tuning, BufferLoRA is removed to restore the base model’s original safety-alignment. To further reinforce safety, we additionally train a SafetyLoRA and integrate its safety components into the UserLoRA via QR decomposition-based merging strategy. Extensive experiments show that our framework achieves superior performance in both safety and utility, without requiring additional safety data during fine-tuning and with minimal computational cost.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=O0JXgBBo3k",
+  "arxiv": "https://arxiv.org/abs/2605.24550",
+  "pdf": "https://raw.githubusercontent.com/mlresearch/v306/main/assets/ham26a/ham26a.pdf",
+  "proceedings": "https://proceedings.mlr.press/v306/ham26a.html",
+  "virtual": "https://icml.cc/virtual/2026/poster/64399",
+  "code": null
+ },
+ "license": "http://creativecommons.org/licenses/by/4.0/",
+ "img": "cc-by",
+ "image_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/images/icml26-2502.png",
+ "thumb_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/thumbs/icml26-2502.webp",
+ "figure_page": 0,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.8
+}

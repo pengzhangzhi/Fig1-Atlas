@@ -1,0 +1,46 @@
+{
+ "id": "neurips26-1471",
+ "title": "How Language Models Compress and Compare: Understanding Selection with Token Covariance Maps",
+ "authors": [
+  "Moshe Eliasof"
+ ],
+ "venue": "NeurIPS 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "Deep Learning->Attention Mechanisms",
+ "role": "analysis-finding",
+ "role2": "teaser-result",
+ "claim": "Internal representations pass through a diffuse stage, a low-rank bottleneck, then a structured re-expansion across depth.",
+ "layout": "4 heatmap panels, left-to-right by depth, colored segment boxes, shared colorbar",
+ "tags": [
+  "covariance-maps",
+  "layerwise-analysis",
+  "compress-then-expand",
+  "representation-geometry",
+  "interpretability"
+ ],
+ "style": [
+  "plot",
+  "colorful"
+ ],
+ "description": "Four square heatmaps show token-by-token covariance for a single prompt at increasing transformer depth: Layer 1 (Early), Layer 6 (Early-Mid), Layer 18 (Late-Mid) and Layer 24 (Last). The axes are token position, 0 to about 60. Colored rectangles mark prompt segments along the diagonal: Instruction in blue, Context in orange, Option 1 in green, Option 2 in red and Answer in purple. A legend sits at the bottom. Each panel has an effective-rank label. Layer 1 is nearly blank with rank 27.2. Layers 6 and 18 are washed out except for dark blue stripes at the first tokens, with rank 1.1. Layer 24 shows faint off-diagonal structure and diagonal bands inside the option boxes, with rank 21.9. A diverging red-blue colorbar for covariance overlays the last panel. The eye goes to the dark stripes in the middle panels and then to the structure that returns in the last panel.",
+ "caption": "Token covariance maps across depth for one PIQA prompt in Pythia-410M. Colored rectangles mark prompt segments. The key visual trajectory is broad early geometry, a low-rank mid-layer bottleneck, and late recovery of off-diagonal context-option and option-option interactions.",
+ "caption_source": "latex",
+ "abstract": "Many language-model tasks reduce to selecting among structured alternatives, yet we still lack a simple picture of how a decoder-only transformer organizes an entire selection prompt across depth. We introduce token covariance maps, a prompt-level geometric view that tracks how token positions co-vary in hidden-state space at each layer. This turns a structured prompt into a depth-indexed sequence of maps whose spectral and block structure can be aligned with instructions, context, and candidate answers. Across 14 decoder-only models from 4 families and 12 structured-selection benchmarks, token covariance maps reveal a robust compress-then-compare organization. Early layers represent prompts diffusely, middle layers compress them into a shared low-rank bottleneck, and late layers re-expand into context-option and option-option geometry. This organization recurs across larger fixed-template samples, deterministic prompt rewrites, pairwise reranking reformulations, and controlled answer-set manipulations, while also emerging during training from an initially flat depth profile. Its timing aligns with behavior: useful answer discrimination appears well after the bottleneck, and low-rank intervention around the bottleneck preferentially disrupts late comparison geometry. We additionally show that the same geometric profile appears in instruction-tuned models, across several languages, and during open-ended generation. We further show that changing the internal representation of one candidate around the compressed region can shift which candidate the model later prefers. These results show that token covariance maps are a diagnostic tool for comparing how models organize information across prompts, model families, and stages of training.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=AW5VdyuenU",
+  "arxiv": "https://arxiv.org/abs/2611.26874",
+  "pdf": "https://arxiv.org/pdf/2611.26874",
+  "proceedings": null,
+  "virtual": "https://neurips.cc/virtual/2026/poster/154841",
+  "code": null
+ },
+ "license": "http://arxiv.org/licenses/nonexclusive-distrib/1.0/",
+ "img": "none",
+ "image_url": null,
+ "thumb_url": null,
+ "figure_page": 5,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.8
+}

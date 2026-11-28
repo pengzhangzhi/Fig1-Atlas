@@ -1,0 +1,52 @@
+{
+ "id": "icml26-2882",
+ "title": "Not All Prefills Are Equal: PPD Disaggregation for Multi-turn LLM Serving",
+ "authors": [
+  "Zongze Li",
+  "Jingyu Liu",
+  "Zach Xu",
+  "Yineng Zhang",
+  "Tahseen Rabbani",
+  "Ce Zhang"
+ ],
+ "venue": "ICML 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "General Machine Learning->Hardware and Software",
+ "role": "teaser-result",
+ "role2": "analysis-finding",
+ "claim": "Allowing a new routing option shifts the throughput-latency Pareto frontier upward and left over baselines across load levels, and the proposed policy picks the best point.",
+ "layout": "3 panels side by side, increasing load left-to-right, Pareto lines with 'Best' labels",
+ "tags": [
+  "pareto-frontier",
+  "llm-serving",
+  "latency-throughput",
+  "dynamic-routing",
+  "efficiency"
+ ],
+ "style": [
+  "plot",
+  "colorful",
+  "minimal"
+ ],
+ "description": "Three side-by-side scatter-and-line plots, titled QPS = 0.5, 1.0 and 1.5. Each plot has TTFT P99 in milliseconds on a log x-axis and TPS in tokens per second on the y-axis. A blue solid line with circular markers shows the Pareto frontier for D-local capable configurations. An orange dashed line with square markers shows the baseline frontier. Faded blue and orange points in the lower part of each plot are dominated configurations. Each frontier has a small 'Best' label at the point chosen by the routing system. A legend sits at the top left of the first panel. As load rises, the blue frontier moves clearly above and left of the orange one. At QPS 0.5 the two frontiers nearly overlap. The eye goes first to the blue line rising above the orange dashed baseline.",
+ "caption": "99th-percentile (P99) TTFT vs.\\ Tokens-per-Second (TPS) Pareto frontiers under a long-context workload (10k input, 100 output tokens, 5 turns) at three load levels. Higher TPS and lower TTFT are better (upper-left is ideal). Baselines (orange): PD and Replica configurations where Turn 2+ requests always require P-node processing. D-local capable (blue): configurations allowing decode nodes to process Turn 2+ locally via append-prefill. The \"Best\" annotation marks the configuration selected by our dynamic PPD routing system, validating correct trade-off optimization. See [ref] in the Appendix for small-context results showing consistent trends across different workloads.",
+ "caption_source": "latex",
+ "abstract": "Prefill-Decode (PD) disaggregation has become the standard architecture for modern LLM inference engines, which alleviates the interference of two distinctive workloads. With the growing demand for multi-turn interactions in chatbots and agentic systems, we re-examined PD in this case and found two fundamental inefficiencies: (1) every turn requires prefilling the new prompt and response from the last turn, and (2) repeated KV transfers between prefill and decode nodes saturate the bandwidth, leading to high latency and even service degradation. Our key insight is that not all prefill operations are equally disruptive: append-prefill, which processes only the new input tokens while reusing cached KV states, incurs an order-of-magnitude smaller decoding slowdown than full prefill. This motivates routing append-prefill to decode nodes locally. However, through comprehensive analysis, we show that no single fixed routing strategy satisfies all Service Level Objectives (SLOs) simultaneously. Based on this insight, we propose Prefill Prefill-capable Decode (PPD) disaggregation, a dynamic routing system that decides when to process Turn 2+ requests locally on decode nodes using cached KV states. PPD adapts to varying SLOs via configurable weights and seamlessly integrates with traditional PD deployments. With extensive evaluations, we show that PPD reduces Turn 2+ time-to-first-token (TTFT) by $\\sim$68\\% while maintaining competitive time-per-output-token (TPOT), effectively alleviating KV transfer congestion under high load. PPD provides a flexible and efficient paradigm for multi-turn LLM serving.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=RW23qIUb5f",
+  "arxiv": "https://arxiv.org/abs/2603.13358",
+  "pdf": "https://raw.githubusercontent.com/mlresearch/v306/main/assets/li26dq/li26dq.pdf",
+  "proceedings": "https://proceedings.mlr.press/v306/li26dq.html",
+  "virtual": "https://icml.cc/virtual/2026/poster/64036",
+  "code": "https://github.com/freelulul/vllm-ppd/tree/main"
+ },
+ "license": "http://creativecommons.org/licenses/by/4.0/",
+ "img": "cc-by",
+ "image_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/images/icml26-2882.png",
+ "thumb_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/thumbs/icml26-2882.webp",
+ "figure_page": 2,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.7
+}

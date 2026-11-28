@@ -1,0 +1,50 @@
+{
+ "id": "iclr26-4916",
+ "title": "Two failure modes of deep transformers and how to avoid them: a unified theory of signal propagation at initialisation",
+ "authors": [
+  "Alessio Giorlandino",
+  "Sebastian Goldt"
+ ],
+ "venue": "ICLR 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "Deep Learning->Theory",
+ "role": "analysis-finding",
+ "role2": "concept",
+ "claim": "Two opposite failure modes constrain initialisation; theory predicts a narrow trainable regime, confirmed by empirical signal-propagation and loss curves.",
+ "layout": "5 panels: top row cartoons and phase diagram, bottom row two line plots",
+ "tags": [
+  "phase-diagram",
+  "initialisation",
+  "rank-collapse",
+  "entropy-collapse",
+  "theory-vs-experiment"
+ ],
+ "style": [
+  "plot",
+  "colorful",
+  "minimal"
+ ],
+ "description": "Top row has three panels. Panels (a) and (b) are token-attention cartoons on the sentence 'The quick brown fox jump ##s over the fence'. In (a), faint beige lines fan out from 'fox' to every token, showing uniform attention that causes rank collapse. In (b), a single bold red line links 'fox' to 'over', showing saturated attention that causes entropy collapse. Panel (c) is a trainability phase diagram with alpha_SA on the y-axis and beta (Q/K weight scaling) on the x-axis. It has a blue 'Trainable' block at upper left, an orange 'Rank Collapse' block at lower left and a red 'Entropy Collapse' block on the right. The bottom row has two line plots. (d) plots cosine similarity against layer for three alpha_SA values, with dots for experiment, solid lines for theory and a dashed line at 1.0 for rank collapse. (e) plots test loss against steps. Trainable runs in blue drop to about 1, while collapsed runs in orange and red plateau between 5 and 6. The colored phase diagram draws the eye first.",
+ "caption": "Two failure modes of Transformers at initialisation, and how to avoid them. (a) Rank collapse occurs when the self-attention layer attends uniformly to all tokens, mapping all input tokens into the same output token. (b) Entropy collapse is a regime of highly saturated attention matrices which attend to random, semantically meaningless patterns, leading to training instability [ref]. (c) Trainability diagram for a 60-layer BERT Transformer, obtained from our analytical theory of signal propagation, see [ref]. Depending on the strength of the self-attention residual connections $\\alpha_{\\mathrm{SA}}$ ([ref]) and the scale of initial key and query weights $\\beta$ ([ref]), we delineate the three regimes of rank collapse, entropy collapse, and the regime where the Transformer is trainable (blue). (d) Average cosine similarity between token embeddings of a sequence taken from the TinyStories dataset as it propagates through the layers of a vanilla BERT model for different self-attention residual strengths; empirical measurements (dots) closely follow theoretical predictions (solid lines). Sufficiently large residual connections $\\alpha_{SA}$ are key to preventing the similarity between tokens from becoming unity, which would indicate rank collapse. (e) Test loss of a 60-layer BERT model on TinyStories for two initialisations from each regime. Models suffering from rank or entropy collapse at initialisation fail to train, as predicted by theory. Full experimental details in [ref].",
+ "caption_source": "latex",
+ "abstract": "Finding the right initialisation for neural networks is crucial to ensure smooth training and good performance. In transformers, the wrong initialisation can lead to one of two failure modes of self-attention layers: rank collapse, where all tokens collapse into similar representations, and entropy collapse, where highly concentrated attention scores lead to training instability. While previous work has studied different scaling regimes for transformers, an asymptotically exact, down-to-the constant prescription for how to initialise transformers has so far been lacking. Here, we provide an analytical theory of signal propagation through deep transformers with self-attention, layer normalisation, skip connections and MLP. Our theory yields a simple algorithm to compute trainability diagrams that identify the correct choice of initialisation hyper-parameters for a given architecture. We overcome the key challenge, an exact treatment of the self-attention layer, by establishing a formal parallel with the Random Energy Model from statistical physics. We also analyse gradients in the backward path and determine the regime where gradients vanish at initialisation. We demonstrate the versatility of our framework through three case studies. Our theoretical framework gives a unified perspective on the two failure modes of self-attention and gives quantitative predictions on the scale of both weights and residual connections that guarantee smooth training.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=utSqpxQHXq",
+  "arxiv": "https://arxiv.org/abs/2505.24333",
+  "pdf": "https://proceedings.iclr.cc/paper_files/paper/2026/file/6715b4e97be055687c1ecaf33913d358-Paper-Conference.pdf",
+  "proceedings": "https://proceedings.iclr.cc/paper_files/paper/2026/hash/6715b4e97be055687c1ecaf33913d358-Abstract-Conference.html",
+  "virtual": "https://iclr.cc/virtual/2026/poster/10006858",
+  "code": null
+ },
+ "license": "http://arxiv.org/licenses/nonexclusive-distrib/1.0/",
+ "img": "none",
+ "image_url": null,
+ "thumb_url": null,
+ "figure_page": 1,
+ "qc_flags": [
+  "low-role-confidence"
+ ],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.45
+}

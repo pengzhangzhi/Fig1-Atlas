@@ -1,0 +1,50 @@
+{
+ "id": "icml26-3789",
+ "title": "DSB: Dynamic Sliding Block Scheduling for Diffusion LLMs",
+ "authors": [
+  "Lizhuo Luo",
+  "Shenggui Li",
+  "Yonggang Wen",
+  "Tianwei Zhang"
+ ],
+ "venue": "ICML 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "Deep Learning->Large Language Models",
+ "role": "problem-setup",
+ "role2": null,
+ "claim": "Fixed block schedules hold back easy confident tokens outside the active block and later force low-confidence, wrong commitments inside it.",
+ "layout": "Single panel, stacked rows top-to-bottom, red annotations with arrows, confidence color legend at right",
+ "tags": [
+  "block-scheduling",
+  "diffusion-llm",
+  "failure-case",
+  "parallel-decoding",
+  "confidence"
+ ],
+ "style": [
+  "colorful",
+  "text-heavy",
+  "minimal"
+ ],
+ "description": "A single wide panel opens with a rounded prompt box: 'Lisa has four cats, and Eric has two. How many dogs do they have in total?' Below it, rows of tokens show a diffusion LLM decoding in four blocks. 'Denoise T' tokens are shaded yellow by confidence, and the 'Answer T' row beneath shows only block 1 decoded in blue, with blocks 2 and 3 grey placeholders. A red note with an arrow reads 'High conf but outside the active block.' 'Denoise T+N' and 'Answer T+N' show later steps. Block 3 is still undecoded, and the token 'six' is low confidence and committed in red. A red arrow adds 'Low conf but decoded wrong answer!' A 'Ground Truth' row shows 'zero' in black-outlined boxes. A dashed red legend on the right runs from high conf (dark yellow) to low conf (white). The eye goes first to the red annotations.",
+ "caption": "Limitation of naive block scheduling. At the denoising step T, several positions outside the active block have high confidence (dark yellow) but cannot be decoded due to the fixed block constraint, delaying easy tokens near the boundary. At later steps (T{+}N), the method is forced to decode low-confidence positions inside the active block, which can lead to premature, incorrect commitments (e.g., decoding “six” instead of the ground-truth “zero”).",
+ "caption_source": "latex",
+ "abstract": "Diffusion large language models (dLLMs) have emerged as a promising alternative for text generation, distinguished by their native support for parallel decoding. In practice, block inference is crucial for avoiding order misalignment in global bidirectional decoding and improving output quality. However, the widely-used fixed, predefined block (naive) schedule is agnostic to semantic difficulty, making it a suboptimal strategy for both quality and efficiency: it can force premature commitments to uncertain positions while delaying easy positions near block boundaries. In this work, we analyze the limitations of naive block scheduling and disclose the importance of dynamically adapting the schedule to semantic difficulty for reliable and efficient inference. Motivated by this, we propose Dynamic Sliding Block (DSB), a training-free block scheduling method that uses a sliding block with a dynamic size to overcome the rigidity of the naive block. To further improve efficiency, we introduce DSB Cache, a training-free KV-cache mechanism tailored to DSB. Extensive experiments across multiple models and benchmarks demonstrate that DSB, together with DSB Cache, consistently improves both generation quality and inference efficiency for dLLMs. Code is released at https://github.com/lizhuo-luo/DSB.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=ZawqwXtmOx",
+  "arxiv": "https://arxiv.org/abs/2602.05992",
+  "pdf": "https://raw.githubusercontent.com/mlresearch/v306/main/assets/luo26o/luo26o.pdf",
+  "proceedings": "https://proceedings.mlr.press/v306/luo26o.html",
+  "virtual": "https://icml.cc/virtual/2026/poster/63149",
+  "code": "https://github.com/lizhuo-luo/DSB"
+ },
+ "license": "http://arxiv.org/licenses/nonexclusive-distrib/1.0/",
+ "img": "none",
+ "image_url": null,
+ "thumb_url": null,
+ "figure_page": 1,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.9
+}

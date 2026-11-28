@@ -1,0 +1,51 @@
+{
+ "id": "iclr26-4871",
+ "title": "Action-Guided Attention for Video Action Anticipation",
+ "authors": [
+  "Tsung-Ming Tai",
+  "Sofia Casarin",
+  "Andrea Pilzer",
+  "Werner Nutt",
+  "Oswald Lanz"
+ ],
+ "venue": "ICLR 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "Computer Vision->Classification and Understanding",
+ "role": "pipeline",
+ "role2": null,
+ "claim": "A two-module design uses predicted-action queries and keys to attend over past frame embeddings, then gates that history with the current frame.",
+ "layout": "Single wide panel, left-to-right, two shaded module boxes, color-coded input streams",
+ "tags": [
+  "attention-mechanism",
+  "gating",
+  "sequence-modeling",
+  "action-anticipation",
+  "architecture"
+ ],
+ "style": [
+  "colorful",
+  "math-heavy",
+  "icon-heavy"
+ ],
+ "description": "A single wide architecture diagram with two rounded modules. Three color-coded input streams run in along the top and bottom: red EMA of all action predictions, blue recent action predictions (ŷ), and green frame embeddings (e). The streams feed into the large gray-blue Action-Guided Attention box. Inside it, EMA and the projections E_Q, E_K and E_V produce Q_t, K_t and V_t. These go into a stacked multi-head attention block drawn as blue and green cell columns, with two multiplication nodes. A FFN block follows. The output, h̃_t, goes into the green Adaptive Gating box at right. That box has a concatenation, an MLP, a sigmoid, and two dot-product gates for the past and current paths with a 1-σ branch. They are summed, then an MLP outputs ŷ_t. Math notation labels every node.",
+ "caption": "Architecture Overview. The model consists of two modules. The Action-Guided Attention uses the most recent $S$ action predictions as keys, the exponential moving average (EMA) of all predicted actions as the query, and $S$ frame embeddings as values to generate a history context $\\tilde{h}_t$. The Adaptive Gating then integrates this history context with the current frame embedding $e_t$ to produce a fused representation, which is mapped to the new prediction $\\hat{y}_t$.",
+ "caption_source": "latex",
+ "abstract": "Anticipating future actions in videos is challenging, as the observed frames provide only evidence of past activities, requiring the inference of latent intentions to predict upcoming actions. Existing transformer-based approaches, which rely on dot-product attention over pixel representations, often lack the high-level semantics necessary to model video sequences for effective action anticipation. As a result, these methods tend to overfit to explicit visual cues present in the past frames, limiting their ability to capture underlying intentions and degrading generalization to unseen samples. To address this, we propose Action-Guided Attention (AGA), an attention mechanism that explicitly leverages predicted action sequences as queries and keys to guide sequence modeling. Our approach fosters the attention module to emphasize relevant moments from the past based on the upcoming activity and combine this information with the current frame embedding via a dedicated gating function. The design of AGA enables post-training analysis of the knowledge discovered from the training set. Experiments on the widely adopted EPIC-Kitchens-100 benchmark demonstrate that AGA generalizes well from validation to unseen test sets. Post-training analysis can further examine the action dependencies captured by the model and the counterfactual evidence it has internalized, offering transparent and interpretable insights into its anticipative predictions.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=uKFVZMPppq",
+  "arxiv": "https://arxiv.org/abs/2603.01743",
+  "pdf": "https://proceedings.iclr.cc/paper_files/paper/2026/file/5354d0b74b75801015e9d1e8326e7c19-Paper-Conference.pdf",
+  "proceedings": "https://proceedings.iclr.cc/paper_files/paper/2026/hash/5354d0b74b75801015e9d1e8326e7c19-Abstract-Conference.html",
+  "virtual": "https://iclr.cc/virtual/2026/poster/10006903",
+  "code": "https://corcovadoming.github.io/AGA/"
+ },
+ "license": "http://creativecommons.org/licenses/by/4.0/",
+ "img": "cc-by",
+ "image_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/images/iclr26-4871.png",
+ "thumb_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/thumbs/iclr26-4871.webp",
+ "figure_page": 2,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.95
+}

@@ -1,0 +1,50 @@
+{
+ "id": "icml26-3640",
+ "title": "Learning to Execute Graph Algorithms Exactly with Graph Neural Networks",
+ "authors": [
+  "Muhammad Fetrat Qharabagh",
+  "Artur Back de Luca",
+  "George Giapitzakis",
+  "Kimon Fountoulakis"
+ ],
+ "venue": "ICML 2026",
+ "tier": "spotlight",
+ "track": "main",
+ "topic": "Deep Learning->Graph Neural Networks",
+ "role": "pipeline",
+ "role2": null,
+ "claim": "A model is trained once on local instructions, then reused as a node update function and applied iteratively to run full algorithms.",
+ "layout": "2 stacked panels (training, inference), left-to-right, bit-block tables and graph diagrams",
+ "tags": [
+  "two-stage",
+  "train-then-infer",
+  "message-passing",
+  "local-instructions",
+  "algorithm-execution"
+ ],
+ "style": [
+  "math-heavy",
+  "colorful",
+  "icon-heavy"
+ ],
+ "description": "The figure has two stacked rounded panels with colored headers. The top panel has a maroon \"Training\" banner and the subtitle \"Instruction learning\". It shows two tables of binary bits, the instruction inputs X and the outputs Y. Each table has orange computation columns on the left and green message columns on the right, separated by ellipses. A pink arrow leads to equations for the local MLP, the MSE minimization, and the trained ensemble average. The bottom panel has a dark green \"Inference\" banner and the subtitle \"Iterative execution\". It is split into two halves. Step 1, \"Local step\", shows a small three-node graph, with a bit-vector beside each node passing through a green \"Local step\" box to produce an updated vector. Step 2, \"Communication\", shows the same graph with vectors added together from neighboring nodes. Formulas for each step sit above the graphs.",
+ "caption": "Outline of our approach. During training (top), we train $K$ MLP instances $\\Phi$ on binary, block-structured instructions that teach local operations. The bits are split into a computation section (yellow) and a message/communication section (green). Inputs are encoded by a fixed $\\Psi_Enc$, processed by $\\Phi$, and trained by minimizing MSE to ground-truth instruction outputs. We then form an ensemble $\\hat{\\mu}$ by averaging MLP predictions on each data point. At inference time (bottom), we apply $\\hat{\\mu}$ to an attributed graph. In Step 1, we compute local node outputs from features using $\\Psi_Enc$ and $\\hat{\\mu}$, then binarize with the step function $\\Psi_H$. In Step 2, communication is carried out by message passing using masking matrices $P_C$ and $P_M$, which keep computation blocks local and transmit only message blocks. This procedure yields a GNN that can learn and execute multiple graph algorithms, including Message Flooding, Breadth-First Search, Depth-First Search, Bellman–Ford, and more generally, algorithms representable by the LOCAL model of distributed computation.",
+ "caption_source": "latex",
+ "abstract": "Understanding what graph neural networks can learn, especially their ability to learn to execute algorithms, remains a central theoretical challenge. In this work, we prove exact learnability results for graph algorithms under bounded-degree and finite-precision constraints. Our approach follows a two-step process. First, we train an ensemble of multi-layer perceptrons (MLPs) to execute the local instructions of a single node. Second, during inference, we use the trained MLP ensemble as the update function within a graph neural network (GNN). Leveraging Neural Tangent Kernel (NTK) theory, we show that local instructions can be learned from a small training set, enabling the complete graph algorithm to be executed during inference without error and with high probability. To illustrate the learning power of our setting, we establish a rigorous learnability result for the LOCAL model of distributed computation. We further demonstrate positive learnability results for widely studied algorithms such as message flooding, breadth-first and depth-first search, and Bellman-Ford.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=YKEmoqwkE9",
+  "arxiv": "https://arxiv.org/abs/2601.23207",
+  "pdf": "https://raw.githubusercontent.com/mlresearch/v306/main/assets/fetrat-qharabagh26a/fetrat-qharabagh26a.pdf",
+  "proceedings": "https://proceedings.mlr.press/v306/fetrat-qharabagh26a.html",
+  "virtual": "https://icml.cc/virtual/2026/poster/63296",
+  "code": null
+ },
+ "license": "http://creativecommons.org/licenses/by/4.0/",
+ "img": "cc-by",
+ "image_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/images/icml26-3640.png",
+ "thumb_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/thumbs/icml26-3640.webp",
+ "figure_page": 2,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.93
+}

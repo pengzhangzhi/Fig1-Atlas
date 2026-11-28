@@ -1,0 +1,49 @@
+{
+ "id": "neurips26-2250",
+ "title": "Discovering What You Can Control: Interventional Boundary Discovery for Reinforcement Learning",
+ "authors": [
+  "Jiaxin Liu",
+  "Anzhe Cheng",
+  "Paul Bogdan"
+ ],
+ "venue": "NeurIPS 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "Reinforcement Learning->Deep RL",
+ "role": "pipeline",
+ "role2": null,
+ "claim": "Randomizing actions in a paired interventional rollout and testing each dimension statistically yields a mask that isolates controllable state from distractors.",
+ "layout": "Single wide panel, left-to-right, two parallel branches merging into test and mask",
+ "tags": [
+  "interventional-testing",
+  "feature-selection",
+  "reinforcement-learning",
+  "fdr-control",
+  "distractor-filtering"
+ ],
+ "style": [
+  "colorful",
+  "icon-heavy",
+  "plot"
+ ],
+ "description": "A wide left-to-right flowchart with two parallel horizontal tracks. The top track is orange: a Probe Policy box feeds Environment (Rollout 1), which shows a quadruped robot on a checkerboard, then a Baseline Branch box with a chain of observation nodes. The bottom track is green: a Randomized Action box feeds Environment (Rollout 2), then an Intervention Branch (Action Override) box with its own node chain. A dashed vertical line between the two environments is labeled 'Same reset distribution'. Both tracks feed a yellow-bordered panel of overlaid density plots for horizons h1, h5, … hH, with rows labeled Causal and Distractor. The causal densities separate and the distractor densities overlap. An arrow leads to a column of purple p-value nodes labeled 'Multiple Testing (FDR control)', then to a binary Sol Mask of 1s and 0s. The mask is multiplied with the observation and fed to a blue RL Agent box, which loops with a blue Environment box.",
+ "caption": "Overview of Interventional Boundary Discovery (IBD). From the same reset distribution, IBD collects two independent rollouts: a baseline branch under a probe policy $\\pi_{\\mathrm{probe}}$, and an intervention branch in which the action mechanism is replaced by a confounder-independent randomized policy, $\\tilde a_t \\sim \\mathrm{Unif}(\\mathcal{A})$. For each observation dimension and horizon, IBD compares trajectory statistics across the two branches using a two-sample test. Benjamini--Hochberg FDR correction then yields a binary SoI mask, which filters observations before downstream RL training.",
+ "caption_source": "latex",
+ "abstract": "When an RL agent's observations contain distractors driven by the same confounders as its true state, observational data alone cannot identify which dimensions the agent controls. In our benchmarks, even state-conditioned observational selectors can collapse when distractors mimic controllable state variables. We propose Interventional Boundary Discovery (IBD), which treats the agent's own action channel as a source of randomized interventions: randomizing actions implements an interventional contrast, and per-dimension two-sample tests with FDR correction produce a binary mask over observation dimensions. Across 12 continuous-control settings with up to 100 distractors, IBD matches oracle return in 11 of 12 settings, while observational baselines including mutual information, state-conditioned forward models, and gradient-based sensitivity often underperform simply passing the full observation to SAC. Code is available at https://github.com/jiaxin26/IBD-RL",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=Fwbd26L5dC",
+  "arxiv": "https://arxiv.org/abs/2603.18257",
+  "pdf": "https://arxiv.org/pdf/2603.18257",
+  "proceedings": null,
+  "virtual": "https://neurips.cc/virtual/2026/poster/154140",
+  "code": null
+ },
+ "license": "http://creativecommons.org/licenses/by/4.0/",
+ "img": "cc-by",
+ "image_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/images/neurips26-2250.png",
+ "thumb_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/thumbs/neurips26-2250.webp",
+ "figure_page": 2,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.93
+}

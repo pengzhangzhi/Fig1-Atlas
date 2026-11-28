@@ -1,0 +1,52 @@
+{
+ "id": "neurips26-1427",
+ "title": "Beyond LoRA vs. Full Fine-Tuning: Gradient-Guided Optimizer Routing for LLM Adaptation",
+ "authors": [
+  "Haozhan Tang",
+  "Xiuqi Zhu",
+  "Xinyin Zhang",
+  "Boxun Li",
+  "Virginia Smith",
+  "Kevin Kuo"
+ ],
+ "venue": "NeurIPS 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "Deep Learning->Algorithms",
+ "role": "pipeline",
+ "role2": "teaser-result",
+ "claim": "Neither static fine-tuning regime wins across tasks, so we route optimizer updates between both experts while sharing full-batch gradients.",
+ "layout": "2 panels, left-to-right, big arrow from bar chart to diagram",
+ "tags": [
+  "optimizer-routing",
+  "mixture-of-experts",
+  "fine-tuning",
+  "task-dependence",
+  "parameter-efficient"
+ ],
+ "style": [
+  "plot",
+  "colorful",
+  "minimal"
+ ],
+ "description": "The figure has two halves joined by a thick dark gray arrow. On the left is a grouped bar chart of Score (0–80) for FFT (dark red) and LoRA (lighter orange-red) across four settings: Gemma-1B Fact, Qwen-3B Fact, Gemma-1B Med and Qwen-3B Med. FFT is higher on Fact and LoRA is higher on Med. On the right is a block diagram of the MoLF framework. An Input box feeds two experts: a red FFT Expert (W) and an orange LoRA Expert (s·B·A). Each expert has a purple strip marking the full-batch gradient. Both experts feed an Output box, then a purple ∇L box. Purple backward arrows return to both experts. A magenta MoLF Optimizer box at the top sends update arrows to the experts. A dashed legend box explains the arrow types: forward, backward and update. The eye goes first to the bars, then follows the arrow to the diagram.",
+ "caption": "Our evaluations across the tested settings show task-dependent FFT/LoRA preferences: FFT scores higher on Fact, tuned LoRA scores higher on Med, and both perform similarly on SQL. Capacity and regularization provide possible explanations, rather than established mechanisms; the endpoint analysis in Appendix [ref] tests their limits. The Mixture of LoRA and Full (MoLF) framework routes physical parameter updates between dense and low-rank pathways at the optimizer level. Every pathway participates in forward and backward computation and accumulates AdamW moments from the full batch.\\looseness=-1",
+ "caption_source": "latex",
+ "abstract": "Recent literature on fine-tuning Large Language Models highlights a fundamental debate. While Full Fine-Tuning (FFT) provides greater representational plasticity, Low-Rank Adaptation (LoRA) can match or surpass FFT performance while constraining updates to a low-rank space and potentially benefiting from additional regularization. Through empirical evaluation across diverse tasks (SQL, Medical QA, and Counterfactual Knowledge) and varying language models (Gemma-3-1B, Qwen2.5-1.5B, and Qwen2.5-3B), we observe both trends and find that the better static architecture depends on the task and model. Spectral and truncation analyses further show that endpoint compressibility alone does not explain these task differences, suggesting task-score sensitivity and constrained optimization trajectories as possible explanations. To address this challenge, we propose a Mixture of LoRA and Full (MoLF) Fine-Tuning, a unified framework that enables continuous navigation between both training regimes. MoLF dynamically routes updates between FFT and LoRA at the optimizer level to ensure that exact gradient signals are available to both experts throughout training, while only selected experts update their weights. For memory-constrained environments, we also introduce MoLF-Efficient, which freezes base weights and only routes updates among a pair of LoRA experts of potentially varying rank. Our evaluations show that MoLF either improves on or stays within $1.5$ percentage points of the better of FFT and LoRA across the nine tested settings, while MoLF-Efficient outperforms both AdaLoRA and AdaMix in eight of nine settings, with gains over the stronger baseline of up to $11.70$ percentage points on Fact, $3.13$ on Med, and $2.98$ on SQL.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=AC9LxjWtTf",
+  "arxiv": "https://arxiv.org/abs/2605.07111",
+  "pdf": "https://arxiv.org/pdf/2605.07111",
+  "proceedings": null,
+  "virtual": "https://neurips.cc/virtual/2026/poster/154880",
+  "code": "https://github.com/11785T23/molf"
+ },
+ "license": "http://creativecommons.org/licenses/by/4.0/",
+ "img": "cc-by",
+ "image_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/images/neurips26-1427.png",
+ "thumb_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/thumbs/neurips26-1427.webp",
+ "figure_page": 1,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.6
+}

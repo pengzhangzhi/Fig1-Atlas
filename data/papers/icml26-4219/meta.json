@@ -1,0 +1,56 @@
+{
+ "id": "icml26-4219",
+ "title": "Unified Time Series Explanations via Amortized Optimization and Instance-level Multi-Expert Knowledge Distillation",
+ "authors": [
+  "Viet-Hung Tran",
+  "Zichi Zhang",
+  "Ngoc Doan",
+  "Xuan Hoang Nguyen",
+  "Phi Nguyen",
+  "Yimeng An",
+  "Peixin Li",
+  "Hans Vandierendonck",
+  "Ira Assent",
+  "Thai Son Mai"
+ ],
+ "venue": "ICML 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "Social Aspects->Accountability, Transparency, and Interpretability",
+ "role": "pipeline",
+ "role2": null,
+ "claim": "A two-stage pipeline picks the best explanation per instance from many experts, then trains one fast explainer to reproduce and refine it.",
+ "layout": "2 stacked panels, left-to-right flow, loss-graph with feedback arrows in bottom panel",
+ "tags": [
+  "distillation",
+  "amortized-inference",
+  "multi-expert",
+  "explainability",
+  "time-series"
+ ],
+ "style": [
+  "colorful",
+  "icon-heavy",
+  "math-heavy"
+ ],
+ "description": "The figure has two horizontal bands. The top band has a light-blue background and shows IMEKD. An input time series and a DNN feed a 'Pool of experts' collage (IG, KeystoneIG, LIME, KernelSHAP, SHAPEX/MIX). Green arrows lead to a stack of multiple attribution maps, then to a 'Select the best attribution map' step with green Faithful and Robust PASS badges, and finally to the instance-best map A*. The bottom band has a cream background and shows ORAOE. The raw input is concatenated with its Input×Grad map and fed to an explainer DNN g_phi, which outputs a predicted attribution map. An Amortized Ranking funnel and an R Control module filter the map, which is used as a mask on the input and passed to the DNN being explained. Blue oval loss nodes (L_distill, L_robust, L_faith, L_metric, L_total) are joined by plus nodes and weighted by λ and β. A second noisy-input branch feeds the robustness loss. Purple time-series curves with colored dots recur throughout.",
+ "caption": "Overview of the XMA framework. XMA consists of two stages. (Top) Instance-level Multi-Expert Knowledge Distillation (IMEKD). For each input instance, we generate a diverse set of attribution maps using a pool of experts (e.g., LIME, KernelSHAP, IG) and select the instance-best map A∗under a combined faithfulness and robustness score (green checks). (Bottom) ObjectiveRegularized Amortized Optimization Explanation (ORAOE). We train a parameterized explainer gϕ to predict A∗under the total objective Ltotal = Ldistill + λLmetric, combining a distillation loss (Ldistill, MSE to the selected expert map) with a metric loss (Lmetric = Lfaith + βLrobust). The faithfulness loss Lfaith uses a proxy ranking gate to maintain model confidence on masked inputs, and the robustness loss Lrobust minimizes attribution discrepancy under input noise. The explainer is conditioned on the raw input concatenated with its Input × Grad map.",
+ "caption_source": "pdf",
+ "abstract": "Deep neural networks (DNNs) achieve high accuracy on time series classification (TSC) but remain opaque, hindering deployment in sensitive domains. Existing post-hoc TSC explanation methods rely on a single attribution perspective and incur high per-instance computational cost, limiting real-time use. We propose XMA, a framework that unifies multiple post-hoc explainers at the instance level and amortizes the cost of explanation into a learned inference pass. Instance-level Multi-Expert Knowledge Distillation (IMEKD) selects, per instance, the attribution map with the highest combined faithfulness and robustness score from a pool of XAI experts. Objective-Regularized Amortized Optimization Explanation (ORAOE) trains an explainer DNN to reproduce this instance-best supervision while directly optimizing differentiable faithfulness and robustness objectives, letting the student refine beyond any individual teacher. Faithfulness-Preserving Segmentation (FPS) converts point-wise maps into contiguous segments without changing their faithfulness score. Across four synthetic datasets, MIT-ECG with cardiologist-verified ground truth, and 11 multivariate UEA benchmarks on three DNN architectures, XMA attains the best AUPRC on all synthetic and MIT-ECG benchmarks among compared methods, and the highest faithfulness on 7 of 11 and robustness on 8 of 11 UEA datasets, while amortizing explanation into a lightweight learned explainer rather than relying on per-instance optimization.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=dspqiZrVPK",
+  "arxiv": null,
+  "pdf": "https://raw.githubusercontent.com/mlresearch/v306/main/assets/tran26h/tran26h.pdf",
+  "proceedings": "https://proceedings.mlr.press/v306/tran26h.html",
+  "virtual": "https://icml.cc/virtual/2026/poster/62730",
+  "code": null
+ },
+ "license": null,
+ "img": "none",
+ "image_url": null,
+ "thumb_url": null,
+ "figure_page": 3,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.93
+}

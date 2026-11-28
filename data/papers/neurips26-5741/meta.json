@@ -1,0 +1,51 @@
+{
+ "id": "neurips26-5741",
+ "title": "FlexMoE: Learning One-for-All Multi-Budget Expert Pruning for Flexible MoE Deployment",
+ "authors": [
+  "Fan Mo",
+  "Han Yuxuan",
+  "Geng Zhang",
+  "Wangbo Zhao",
+  "Yang You"
+ ],
+ "venue": "NeurIPS 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "Deep Learning->Algorithms",
+ "role": "prior-vs-ours",
+ "role2": "pipeline",
+ "claim": "Prior compression methods produce one fixed-budget model per run; ours produces a whole family of budget-specific models from one run.",
+ "layout": "2 halves, left prior vs right ours, top-down flow, ✗/✓ banners at bottom",
+ "tags": [
+  "one-for-all",
+  "model-compression",
+  "multi-budget",
+  "expert-pruning",
+  "efficiency"
+ ],
+ "style": [
+  "icon-heavy",
+  "colorful",
+  "minimal"
+ ],
+ "description": "The figure is split into a gray left half, 'Existing Fix-budget MoE Compression Methods', and a blue right half, 'FlexMoE (Ours)'. The left half has two panels, Low-Rank Decomposition and Expert Pruning/Skipping. Each runs top-down from a pink 'Pretrained Model' box through 'Compress once' or 'Prune once' to 'One Output Model'. A dashed MoE layer diagram follows, with FFN experts and a yellow Router, and ends at a single 'One Deployment Target'. The right half starts from one Pretrained Model and applies FlexMoE once. It branches into three MoE layers at 60%, 40% and 20% pruning ratios, with experts shaded in red, orange and green. These map to mobile, computer and GPU cluster icons. A red ✗ banner reads 'One run, one model, one device'. A blue ✓ banner reads 'One run, multiple models, multiple devices'.",
+ "caption": "Existing MoE compression methods typically optimize a compressed endpoint for a target budget, whereas FlexMoE learns a shared multi-budget pruning family from one pretrained model, avoiding separate compression and checkpoints across deployment targets.",
+ "caption_source": "latex",
+ "abstract": "Mixture-of-Experts (MoE) language models scale model capacity through sparse expert activation, yet deployment still requires storing and serving all experts. Moreover, deployment budgets can vary substantially across devices, users, and workloads. Existing MoE compression methods typically optimize a separate compressed model for each target budget. We introduce FlexMoE, a post-training one-for-all framework that converts a large pretrained MoE model into a multi-budget family of smaller deployable subnetworks. FlexMoE first ranks expert FFN channels by importance to construct a sliceable weight space shared across budgets, and then learns expert-wise discrete retention actions under gradually increasing cost pressure, allowing a single action-training run to produce reliable pruning masks across budgets. Moreover, only a single mid-budget fine-tune can further recover degraded performance and yields a shared recovered model that transfers to other unseen budgets, avoiding repeated per-budget recovery and separated checkpoint storage. Across tested MoE LLMs with diverse architectures and scales, FlexMoE consistently outperforms strong MoE compression baselines. In particular, on Qwen2-57B-A14B, it retains ~99.8% of base performance while pruning 50% of routed-expert parameters even without recovery fine-tuning. For deployment, pruned subnetworks deliver real memory reduction and end-to-end throughput gains, while our kernel co-design enables runtime budget switching without checkpoint reloading and delivers substantial inference acceleration.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=dTCZtqedSq",
+  "arxiv": "https://arxiv.org/abs/2606.27866",
+  "pdf": "https://arxiv.org/pdf/2606.27866",
+  "proceedings": null,
+  "virtual": "https://neurips.cc/virtual/2026/poster/151034",
+  "code": null
+ },
+ "license": "http://arxiv.org/licenses/nonexclusive-distrib/1.0/",
+ "img": "none",
+ "image_url": null,
+ "thumb_url": null,
+ "figure_page": 1,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.93
+}

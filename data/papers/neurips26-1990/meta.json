@@ -1,0 +1,52 @@
+{
+ "id": "neurips26-1990",
+ "title": "GeneZip: Region-Aware Compression for Long Context DNA Modeling",
+ "authors": [
+  "Jianan Zhao",
+  "Xixian Liu",
+  "Zhihao Zhan",
+  "XINYU YUAN",
+  "Hongyu Guo",
+  "Jian Tang"
+ ],
+ "venue": "NeurIPS 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "Applications->Genetics, Cell Biology, etc",
+ "role": "pipeline",
+ "role2": "overview-framework",
+ "claim": "Compress very long inputs into a short token sequence using two complementary training-time designs, so downstream models run efficiently without annotations at inference.",
+ "layout": "3 stages, left-to-right; input, central router with two design boxes, output heads",
+ "tags": [
+  "dynamic-routing",
+  "compression",
+  "long-context",
+  "region-aware",
+  "efficiency"
+ ],
+ "style": [
+  "colorful",
+  "icon-heavy",
+  "text-heavy"
+ ],
+ "description": "A wide left-to-right diagram. On the left, a long blue DNA double helix coils down the panel, labeled 'Input: Raw DNA Sequence, Length L up to 1M bp'. Below it, a color-coded bar of region annotations (red promoter, gray intron/intergenic, green/orange/blue CDS/UTR/exon) is linked to the helix by dotted lines. A large arrow labeled 'Compression' leads into a rounded central box titled 'GeneZip: Region-Aware & Bounded Compression'. Inside it, an H-Net-style dynamic router trapezoid connects to a green 'Design 1: Region-Aware Ratio Loss' box and a green 'Design 2: Bounded Routing' box with a constraint equation. A boundary-probability curve sits between them. On the right, a row of colored latent tokens (T ≪ L) feeds a Token Mixing box, then a downstream/LM head trapezoid, then four task boxes (next-token, contact map, eQTL, enhancer-target).",
+ "caption": "GeneZip overview. GeneZip compresses long-context DNA into a much shorter latent token sequence via hierarchical dynamic routing. During training, the Region-Aware Ratio (RAR) loss learns a region-adaptive token budget, and bounded routing enforces global token-count constraints for stable training. The compressed tokens are then processed by an arbitrary token-mixing backbone for downstream long-range tasks. After training, GeneZip compresses unseen raw DNA sequences without requiring annotations or repeat masks at inference time.",
+ "caption_source": "latex",
+ "abstract": "Long-context DNA modeling is computationally expensive, motivating existing approaches to reduce sequence length through uniform downsampling. However, functional information and sequence redundancy are unevenly distributed across the genome, calling for finer resolution in functionally dense regions and stronger compression of redundant sequence. We introduce GeneZip, a region-aware DNA compression framework that learns where to allocate a limited token budget. Building on H-Net-style dynamic routing, GeneZip combines a Region-Aware Ratio objective, which uses regional labels derived from GENCODE gene annotations to specify compression targets during training, with bounded routing for stable token counts. At inference, it compresses raw DNA without annotations. GeneZip provides three main benefits. First, it preserves predictive utility under high compression: GeneZip-70M achieves 137.6-fold compression with a validation perplexity increase of 0.31 relative to uncompressed Mamba2-84M, and the best average rank across four DNALongBench tasks among compression models with leakage-controlled pretraining. Second, it learns region-aware allocation with emergent repeat-aware compression. Alternative regional priors yield task-dependent performance trade-offs. Without repeat-specific supervision, GeneZip compresses transposable-element-derived and tandem repeats more strongly than matched non-repeat sequence; its tandem-repeat compression preference transfers to a nine-species evaluation panel without further training. Third, it enables efficient long-context modeling: on 450-kb inputs, GeneZip-70M achieves 36.1-fold higher inference throughput than JanusDNA-7.7M on a single H100 GPU.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=E37ysCRa5d",
+  "arxiv": "https://arxiv.org/abs/2602.17739",
+  "pdf": "https://arxiv.org/pdf/2602.17739",
+  "proceedings": null,
+  "virtual": "https://neurips.cc/virtual/2026/poster/154372",
+  "code": "https://andyjzhao.github.io/GeneZip/"
+ },
+ "license": "http://arxiv.org/licenses/nonexclusive-distrib/1.0/",
+ "img": "none",
+ "image_url": null,
+ "thumb_url": null,
+ "figure_page": 2,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.85
+}

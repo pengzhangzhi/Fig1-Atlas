@@ -1,0 +1,52 @@
+{
+ "id": "iclr26-4918",
+ "title": "MOSS: Efficient and Accurate FP8 LLM Training with Microscaling and Automatic Scaling",
+ "authors": [
+  "Yu Zhang",
+  "Huiling Zhen",
+  "Mingxuan Yuan",
+  "Bei Yu"
+ ],
+ "venue": "ICLR 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "Deep Learning->Everything Else",
+ "role": "prior-vs-ours",
+ "role2": "teaser-result",
+ "claim": "Standard high-precision formats are bulky; our two-level microscaling format compresses numbers while keeping GEMM runtime competitive with the fastest baselines.",
+ "layout": "3 panels, left-to-right: bar chart, then format-bit-layout contrast with arrow",
+ "tags": [
+  "fp8-training",
+  "microscaling",
+  "quantization",
+  "efficiency",
+  "data-format"
+ ],
+ "style": [
+  "plot",
+  "colorful",
+  "minimal"
+ ],
+ "description": "The figure has three parts. On the left is a small bar chart of GEMM runtime in milliseconds for four methods: TE (0.75), COAT (3.91, a tall outlier), DeepSeek (0.62), and Ours (0.72). The bars are blue, with Ours in the darkest shade. In the middle is a stack of offset rectangles titled 'Standard FP32 Format'. The front rectangle is split into 1-bit Sign (white), 8-bit Exponent (green), and 23-bit Mantissa (blue). An arrow labeled 'To MXFP8' leads to the right panel, 'Two-level MXFP8 Format'. That panel has a similar stack with 1-bit sign, 4-bit exponent (red), and 3-bit mantissa (blue). Tilted FP32 and E8M0 scale-factor tags with braces, plus group-size labels k1 ~ 10K and k2 = 32, sit above and beside the stack. The eye goes first to the tall COAT bar, then to the bit-field blocks.",
+ "caption": "Depiction of MXFP8 data format with level-1 FP32 scale factor and level-2 E8M0 scale factor, with group size $k_1 \\sim 10K$ and $k_2 = 32$ over which these two scaling factors are shared.",
+ "caption_source": "latex",
+ "abstract": "Training large language models with FP8 formats offers significant efficiency gains. However, the reduced numerical precision of FP8 poses challenges for stable and accurate training. Current frameworks preserve training performance using mixed-granularity quantization, i.e., applying per-group quantization for activations and per-tensor/block quantization for weights. While effective, per-group quantization requires scaling along the inner dimension of matrix multiplication, introducing additional dequantization overhead. Moreover, these frameworks often rely on just-in-time scaling to dynamically adjust scaling factors based on the current data distribution. However, this online quantization is inefficient for FP8 training, as it involves multiple memory reads and writes that negate the performance benefits of FP8. To overcome these limitations, we propose MOSS, a novel FP8 training framework that ensures both efficiency and numerical stability. MOSS introduces two key innovations: (1) a two-level microscaling strategy for quantizing sensitive activations, which balances precision and dequantization cost by combining a high-precision global scale with compact, power-of-two local scales; and (2) automatic scaling for weights in linear layers, which eliminates the need for costly max-reduction operations by predicting and adjusting scaling factors during training. Leveraging these techniques, MOSS enables efficient FP8 training of a 7B parameter model, achieving performance comparable to the BF16 baseline while achieving up to 34% higher training throughput.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=uvgJM9RQ6T",
+  "arxiv": "https://arxiv.org/abs/2511.05811",
+  "pdf": "https://proceedings.iclr.cc/paper_files/paper/2026/file/86e280063b321f3babc606ecc5224cd9-Paper-Conference.pdf",
+  "proceedings": "https://proceedings.iclr.cc/paper_files/paper/2026/hash/86e280063b321f3babc606ecc5224cd9-Abstract-Conference.html",
+  "virtual": "https://iclr.cc/virtual/2026/poster/10006856",
+  "code": null
+ },
+ "license": "http://arxiv.org/licenses/nonexclusive-distrib/1.0/",
+ "img": "none",
+ "image_url": null,
+ "thumb_url": null,
+ "figure_page": 1,
+ "qc_flags": [
+  "low-role-confidence"
+ ],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.4
+}

@@ -1,0 +1,51 @@
+{
+ "id": "neurips26-3109",
+ "title": "EchoPrune: Interpreting Redundancy as Temporal Echoes for Efficient VideoLLMs",
+ "authors": [
+  "Jiameng Li",
+  "Minye Wu",
+  "Jiezhang Cao",
+  "Aleksei Tiulpin",
+  "Matthew Blaschko"
+ ],
+ "venue": "NeurIPS 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "Computer Vision->Vision Models & Multimodal",
+ "role": "teaser-result",
+ "role2": "before-after",
+ "claim": "Sampling more frames and pruning redundant tokens keeps key evidence under a fixed budget, avoiding baseline errors and improving accuracy as frames scale.",
+ "layout": "2 panels: left film-strip comparison top-to-bottom, right line plot; pink highlight boxes",
+ "tags": [
+  "token-pruning",
+  "video-understanding",
+  "efficiency",
+  "training-free",
+  "scaling-frames"
+ ],
+ "style": [
+  "colorful",
+  "photo/real data",
+  "plot"
+ ],
+ "description": "The figure has two parts. On the left, a user question (\"What is special about the celebration in New York according to the video?\") sits above two film strips of video frames. The top strip is the LLaVA-OV baseline with 32 frames at 100% tokens. Its frames are faded and the caption reads \"information missing\" with a cross. A sad face and a grey bubble show \"(hallucination)\". The bottom strip is EchoPrune with 96 frames at 33% tokens. Most patches are masked out, but pink boxes highlight retained tokens such as the \"NYC\" sign and a crowd. A scissors icon marks pruning. A happy pink bubble reads \"Hosting large parades\" with a check mark. On the right, a line chart for VideoMME plots accuracy against number of frames (96 to 320). EchoPrune, in red, rises, while FlashVID, HoliTom and VisionZip stay flat or fall.",
+ "caption": "Left: EchoPrune extends the temporal resolution with more visible frames for fine-grained video understanding, then selects pivot tokens to fit the budgets (F32 is short for 32 frames). Right: Under the default token footprint, EchoPrune scales visible frames up to boost SOTA performance.",
+ "caption_source": "latex",
+ "abstract": "Long-form video understanding remains challenging for Video Large Language Models (VideoLLMs), as the dense frame sampling introduces massive visual tokens while sparse sampling risks missing critical temporal evidence and leading to LLM hallucination. Existing training-free token reduction methods either treat videos equally as static images or rely on segment-level merging heuristics, which weaken fine-grained spatiotemporal modeling and introduce additional overhead. In this paper, we propose EchoPrune, a lightweight and training-free token pruning method that improves temporal resolution under a fixed LLM-side visual token budget. Our core idea is to interpret redundant video tokens as temporal echoes: if a token is well reconstructed from the previous frame, it is merely a temporally redundant echo; otherwise, it may capture new events, motion, or query-relevant visual evidence. Based on this insight, EchoPrune scores visual tokens by (i) query-guided crossmodal relevance and (ii) temporal reconstruction error, measured by correspondence matching and echo matching across consecutive frames. The selected tokens preserve task-relevant cues and temporal novelty while suppressing predictable redundancy, allowing VideoLLMs to observe more frames without increasing the decoding budget. Extensive experiments on LLaVA-OV, Qwen2.5VL, and Qwen3VL across six video understanding benchmarks show that EchoPrune enables VideoLLMs to process up to $\\mathbf{20\\times}$ frames under the same token budget, yielding improved performance ($\\mathbf{5\\%^\\uparrow}$) and inference speedup ($\\mathbf{5.6\\times}$ for prefilling) on LLaVA-OV-7B.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=LlfSFn1ZXN",
+  "arxiv": "https://arxiv.org/abs/2605.10050",
+  "pdf": "https://arxiv.org/pdf/2605.10050",
+  "proceedings": null,
+  "virtual": "https://neurips.cc/virtual/2026/poster/153388",
+  "code": "https://github.com/renaissanceee/EchoPrune"
+ },
+ "license": "http://arxiv.org/licenses/nonexclusive-distrib/1.0/",
+ "img": "none",
+ "image_url": null,
+ "thumb_url": null,
+ "figure_page": 0,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.5
+}

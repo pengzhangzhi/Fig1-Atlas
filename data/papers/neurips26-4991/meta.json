@@ -1,0 +1,51 @@
+{
+ "id": "neurips26-4991",
+ "title": "Early Failure Detection and Intervention in Video Diffusion Models",
+ "authors": [
+  "Byungki Kwon",
+  "Sohwi Lim",
+  "Nam Hyeon-Woo",
+  "Moon Ye-Bin",
+  "Tae-Hyun Oh"
+ ],
+ "venue": "NeurIPS 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "Computer Vision->Image and Video Generation",
+ "role": "pipeline",
+ "role2": "teaser-result",
+ "claim": "Inspecting cheap intermediate previews at every step detects failures early and triggers intervention only when needed, matching regeneration quality at far lower cost.",
+ "layout": "2 panels, left-to-right flow plus right scatter; dashed divider, red highlight",
+ "tags": [
+  "early-detection",
+  "diffusion",
+  "efficiency",
+  "intervention",
+  "plug-and-play"
+ ],
+ "style": [
+  "colorful",
+  "plot",
+  "icon-heavy"
+ ],
+ "description": "The figure has two panels split by a vertical dashed line. The left panel is a flow diagram. A latent grid and a text prompt (\"A pink bird on a branch\") feed a green latent video diffusion block. Its output goes into a blue rounded box labeled Real-time Inspection, which is run at every denoising step. Inside the box, the latent is decoded into a blurry purple bird preview, and an inspection step (39.2 ms) follows. This leads to a red \"Early Failure\" box, then a \"Diagnostic Intervention\" box, then an output image of a sharp pink bird labeled \"Intervened video\". The right panel is a scatter plot of VBench score against time overhead (%). It shows a black dot for the CogVideoX-5B baseline, a red star for \"w. Ours\", and a gray square for \"w. Regeneration\". A red double arrow marks \"2.64x less time overhead\". The eye goes first to the colorful bird images and the red star.",
+ "caption": "Real-time inspection enables early failure detection in latent video diffusion. By decoding intermediate latents at every denoising step, our method identifies failing trajectories early and selectively intervenes. Compared to post-hoc regeneration, we achieve comparable VBench scores with 2.64× lower time overhead.",
+ "caption_source": "latex",
+ "abstract": "Text-to-video (T2V) diffusion models have rapidly advanced, yet generations still occasionally fail in practice, such as low text-video alignment or low perceptual quality. Since diffusion sampling is non-deterministic, it is difficult to know during inference whether a generation will succeed or fail, incurring high computational cost due to trial-and-error regeneration. To address this, we propose an early failure detection and diagnostic intervention pipeline for latent T2V diffusion models. For detection, we design a Real-time Inspection (RI) module that converts latents into intermediate video previews, enabling the use of established text-video alignment scorers for inspection in the RGB space. The RI module completes the conversion and inspection process in just 39.2ms. This is highly efficient considering that CogVideoX-5B requires 4.3s per denoising step when generating a 480p, 49-frame video on an NVIDIA A100 GPU. Subsequently, we trigger a hierarchical and early-exit intervention pipeline only when failure is predicted. Experiments on CogVideoX-5B and Wan2.1-1.3B demonstrate consistency gains on VBench with up to 2.64 times less time overhead compared to post-hoc regeneration. Our method also generalizes to a higher-capacity setting, remaining effective on Wan2.1-14B with 720p resolution and 81-frame generation. Furthermore, our pipeline is plug-and-play and orthogonal to existing techniques, showing seamless compatibility with prompt refinement and sampling guidance methods. We also provide evidence that failure signals emerge early in the denoising process and are detectable within intermediate video previews using standard vision-language evaluators.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=YbCJPGk7pI",
+  "arxiv": "https://arxiv.org/abs/2603.14320",
+  "pdf": "https://arxiv.org/pdf/2603.14320",
+  "proceedings": null,
+  "virtual": "https://neurips.cc/virtual/2026/poster/151719",
+  "code": "https://byungki-k.github.io/EarlyFailure/?v=e9d4d05"
+ },
+ "license": "http://arxiv.org/licenses/nonexclusive-distrib/1.0/",
+ "img": "none",
+ "image_url": null,
+ "thumb_url": null,
+ "figure_page": 0,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.6
+}

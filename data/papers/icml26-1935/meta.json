@@ -1,0 +1,55 @@
+{
+ "id": "icml26-1935",
+ "title": "PAWS: Preference Learning with Advantage-Weighted Segments",
+ "authors": [
+  "Aleksandar Taranovic",
+  "Onur Celik",
+  "Niklas Freymuth",
+  "Ge Li",
+  "Serge Thilges",
+  "Huy Le",
+  "Tai Hoang",
+  "Rania Rayyes",
+  "Gerhard Neumann"
+ ],
+ "venue": "ICML 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "Reinforcement Learning->Inverse",
+ "role": "problem-setup",
+ "role2": "concept",
+ "claim": "Training on summed segment-level preferences leaves per-step credit ambiguous, yet policy learning queries individual steps, causing a train-inference mismatch.",
+ "layout": "Single panel; preferred/non-preferred rows mirror vertically; dashed lines fan out from trajectories",
+ "tags": [
+  "preference-learning",
+  "credit-assignment",
+  "distribution-shift",
+  "reinforcement-learning",
+  "failure-mode"
+ ],
+ "style": [
+  "colorful",
+  "icon-heavy",
+  "math-heavy"
+ ],
+ "description": "A single diagram with a dashed vertical divider at left. Left of it sit inputs: a green box tau+ with a checkmark at top and a red box tau- with a red X at bottom, plus a small thumbnail of the two trajectories. Each input feeds an 'Advantage Model' trapezoid, with the green one at top and the red one at bottom. Beneath the top model and above the bottom one are per-step advantage boxes A_phi(s_k, a_k) ... A_phi(s_{k+N}, a_{k+N}), in green and red respectively. Dashed lines connect these boxes to segments of two colored trajectories that start at a shared blue circle in the center. Segment shading varies in intensity. At right, braces and Sigma circles sum the step advantages into A(tau+) and A(tau-), which both feed a gray box P_A[tau+ > tau-]. The eye goes first to the central colored trajectories.",
+ "caption": "The Temporal Credit Assignment Problem. Illustration of learning a trajectory-level advantage value $A(\\tau)$ from preference data. The advantage model is trained on preferred ($\\tau^+$) and non-preferred ($\\tau^-$) trajectories using the loss $P_{A_\\phi}[\\tau^+ \\succ \\tau^-]$. This loss depends only on the sum $A_\\phi(\\tau) = \\sum_k A_\\phi(s_k, a_k)$ of per-step advantages, which constrains the model at the trajectory level. As a result, many different assignments of individual state-action advantages are consistent with the same preference label ([ref]). During policy optimization, however, the advantage function is queried on individual state-action pairs [ref], inducing a distribution shift between segment-level training and step-level inference.",
+ "caption_source": "latex",
+ "abstract": "Preference-based reinforcement learning (PbRL) learns policies from human trajectory-level comparisons, avoiding explicit reward design and expert demonstrations. Existing methods typically train utility functions on trajectory or segment-level preferences while relying on per-step utility estimates during policy optimization. This training and inference mismatch induces a distribution shift that severely degrades temporal credit assignment and limits policy learning. We analyze this issue and propose PAWS, a segment-based preference learning method that performs policy updates directly using segment-level advantage functions. By aligning utility training with policy optimization, PAWS preserves trajectory-level preference information and avoids unreliable per-step learning signals. Experiments on simulated robotic manipulation and locomotion tasks demonstrate that PAWS consistently outperforms existing PbRL approaches, highlighting the importance of distribution-consistent preference learning.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=IPeIlnJzYa",
+  "arxiv": "https://arxiv.org/abs/2606.11982",
+  "pdf": "https://raw.githubusercontent.com/mlresearch/v306/main/assets/taranovic26a/taranovic26a.pdf",
+  "proceedings": "https://proceedings.mlr.press/v306/taranovic26a.html",
+  "virtual": "https://icml.cc/virtual/2026/poster/64947",
+  "code": "https://ataranovic.github.io/PAWS-webpage/"
+ },
+ "license": "http://creativecommons.org/licenses/by/4.0/",
+ "img": "cc-by",
+ "image_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/images/icml26-1935.png",
+ "thumb_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/thumbs/icml26-1935.webp",
+ "figure_page": 0,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.8
+}

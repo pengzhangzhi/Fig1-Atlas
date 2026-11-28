@@ -1,0 +1,49 @@
+{
+ "id": "icml26-4060",
+ "title": "Guidance: Sentence-Level Citation Enforcement via Prefix-Tail Guidance during LLM Decoding",
+ "authors": [
+  "Yirui Zhan",
+  "Xu",
+  "Jun Gao"
+ ],
+ "venue": "ICML 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "Deep Learning->Large Language Models",
+ "role": "pipeline",
+ "role2": null,
+ "claim": "A training-free two-phase system builds a verified fact pool offline, then guides decoding to verify and inject facts with citations online.",
+ "layout": "2 phases, left-to-right; offline pool feeds online decoding loop with 3-step circle",
+ "tags": [
+  "training-free",
+  "decoding-time-intervention",
+  "retrieval-augmented",
+  "citation-grounding",
+  "lookahead-verification"
+ ],
+ "style": [
+  "icon-heavy",
+  "colorful",
+  "text-heavy"
+ ],
+ "description": "A two-part architecture diagram. The left blue panel (Phase 1) shows long-context documents flowing into an LLM-based tuple extraction block with three sub-steps: context segmentation, semantics-aware tuple extraction, and deduplication. The output is a cylinder database labeled Structured Prefix-Tail Pool, with example prefix/tail/citation entries. The larger orange right panel (Phase 2) starts at the top with a User Query entering a gray Frozen LLM autoregressive loop. Below it is a token sequence t1..tN, ending in an output document with citations. A red branch shows lookahead tokens. A lower box, the Guidance Lookahead-Verify-Inject Circle, has three sub-boxes: semantic anchor matching, lookahead simulation with type check, and token-level soft forcing with a gate. Green arrows mark verified injection back into the token stream. Red, green and gray arrows separate the flows.",
+ "caption": "Architecture of Guidance",
+ "caption_source": "pdf",
+ "abstract": "In correctness-sensitive scenarios, it is crucial for Large Language Models (LLMs) to strictly follow the provided evidence. However, even with reference texts, models often suffer from hallucinations, especially when processing long contexts. Existing work attempts to reinforce the use of citations through Retrieval-Augmented Generation (RAG) or post-hoc methods, while citations remain a probabilistic output rather than a foundation for the generated content. To address this, we propose Guidance, which aims to correct outputs and naturally incorporate citations during the LLM decoding phase. Specifically, we first build a structured fact pool (Prefix-Tail pairs) from the documents. Then, during inference, Guidance predicts the model's intent using a lookahead strategy. When it detects a match with a context prefix, it automatically replaces the output with the verified fact and its citation. This approach is training-free and can be plugged into general-purpose or citation-fine-tuned LLMs. Experiments on LongBench-Cite demonstrate that Guidance improves the citation F1 score by 11.2\\% over state-of-the-art baselines. The source code is available at: https://github.com/marlcplhra/Guidance.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=cEA9yswzZf",
+  "arxiv": null,
+  "pdf": "https://raw.githubusercontent.com/mlresearch/v306/main/assets/zhan26f/zhan26f.pdf",
+  "proceedings": "https://proceedings.mlr.press/v306/zhan26f.html",
+  "virtual": "https://icml.cc/virtual/2026/poster/62886",
+  "code": null
+ },
+ "license": null,
+ "img": "none",
+ "image_url": null,
+ "thumb_url": null,
+ "figure_page": 2,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.95
+}

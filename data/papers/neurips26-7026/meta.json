@@ -1,0 +1,49 @@
+{
+ "id": "neurips26-7026",
+ "title": "Stabilizing Off-policy LLM Optimization with Prefix Importance Ratio",
+ "authors": [
+  "Shiye Lei",
+  "Zhihao Cheng",
+  "Dacheng Tao"
+ ],
+ "venue": "NeurIPS 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "Reinforcement Learning->Everything Else",
+ "role": "pipeline",
+ "role2": "teaser-result",
+ "claim": "Correcting the full prefix importance ratio, then relaxing it to a non-cumulative minimum surrogate, stabilizes off-policy training and beats baselines.",
+ "layout": "2 panels: left stacked boxes with downward arrows, right line plot",
+ "tags": [
+  "importance-sampling",
+  "off-policy",
+  "policy-optimization",
+  "training-stability",
+  "derivation"
+ ],
+ "style": [
+  "math-heavy",
+  "plot",
+  "colorful"
+ ],
+ "description": "The figure has two panels. Panel (a), on the left, is a vertical stack of three blue dashed rounded boxes joined by downward blue arrows. The top box is labeled GRPO and shows the policy gradient with a red token-level ratio rho_t, plus its fraction definition. The middle box is titled 'A Step Back for IS Correction' in green. It shows the gradient with the cumulative prefix ratio rho_{1:t}, defined as a product over i=1..t. The bottom box is labeled MinPRO (Ours). It shows the gradient with a cyan underlined rho_t, defined as the minimum over i<t, multiplying the token ratio. Equations sit in light-blue highlights, and color-coding links each ratio to its definition. Panel (b), on the right, is a line chart titled AIME24 with accuracy against steps from 0 to 120. It plots GRPO, GSPO, CISPO, M2PO and MinPRO. MinPRO, in pink, stays highest. GRPO collapses and CISPO oscillates.",
+ "caption": "(a) An overview of MinPRO. $\\nabla_\\theta \\mathcal{J}$ denotes the policy gradient and $\\rho_t$ is the token-level importance sampling (IS) ratio. We take a step back to derive the full IS ratio $\\rho_{1:t}$, referred to as the prefix importance ratio. MinPRO is then developed by relaxing $\\rho_{1:t} = \\rho_{1:t-1} \\cdot \\rho_t$ to a non-cumulative proxy $\\rho_t \\rho_t$. (b) AIME24 scores as functions of training steps for Qwen3-30B-A3B-Base under off-policy training.",
+ "caption_source": "latex",
+ "abstract": "Reinforcement learning (RL) post-training has increasingly demonstrated strong ability to elicit reasoning behaviors in large language models (LLMs). For training efficiency, rollouts are typically generated in an off-policy manner using an older sampling policy and then used to update the current target policy. To correct the resulting discrepancy between the sampling and target policies, most existing RL objectives rely on a token-level importance sampling ratio. However, we observe unstable training dynamics in existing importance-weighted objectives under large policy lag. In this paper, we revisit LLM policy optimization under off-policy conditions and show that the exact correction for the prefix-marginal policy gradient is the cumulative prefix importance ratio. Token-level weighting does not explicitly correct for this prefix distribution shift. To stabilize LLM optimization under large off-policy drift, we propose a simple yet effective objective, Minimum Prefix Ratio (MinPRO). MinPRO replaces the unstable cumulative prefix ratio with a biased, non-cumulative surrogate based on the minimum token-level ratio observed in the preceding prefix. Extensive experiments on both dense and mixture-of-experts LLMs, across multiple mathematical reasoning benchmarks, demonstrate that MinPRO substantially improves training stability and peak performance in off-policy regimes.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=mN7OOSKVlg",
+  "arxiv": "https://arxiv.org/abs/2601.22718",
+  "pdf": "https://arxiv.org/pdf/2601.22718",
+  "proceedings": null,
+  "virtual": "https://neurips.cc/virtual/2026/poster/149900",
+  "code": null
+ },
+ "license": "http://creativecommons.org/licenses/by/4.0/",
+ "img": "cc-by",
+ "image_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/images/neurips26-7026.png",
+ "thumb_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/thumbs/neurips26-7026.webp",
+ "figure_page": 1,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.6
+}

@@ -1,0 +1,53 @@
+{
+ "id": "iclr26-1958",
+ "title": "Q-RAG: Long Context Multi‑Step Retrieval via Value‑Based Embedder Training",
+ "authors": [
+  "Artyom Sorokin",
+  "Nazar Buzun",
+  "Aleksandr Anokhin",
+  "Egor VEDERNIKOV",
+  "Petr Anokhin",
+  "Mikhail Burtsev",
+  "Evgeny Burnaev"
+ ],
+ "venue": "ICLR 2026",
+ "tier": "oral",
+ "track": "main",
+ "topic": "Reinforcement Learning->Deep RL",
+ "role": "pipeline",
+ "role2": null,
+ "claim": "An agent embeds state and candidate actions, scores them with learned values, and picks one, forming a closed interaction loop with its environment.",
+ "layout": "Two stacked boxes, agent above environment, with feedback loop arrows around the sides",
+ "tags": [
+  "reinforcement-learning",
+  "multi-step-retrieval",
+  "agent-environment-loop",
+  "q-learning",
+  "embedder"
+ ],
+ "style": [
+  "colorful",
+  "icon-heavy",
+  "math-heavy"
+ ],
+ "description": "A diagram with two large rounded boxes. The upper green box is the Q-RAG Agent. It holds a State Embedder and an Action Embedder. The State Embedder produces e_{s_t}. The Action Embedder produces embeddings e_{c0} to e_{c5}. Both feed a light-green block of Q values, Q_θ(s_t, c^0) through Q_θ(s_t, c^5), which leads to the policy π(·|s_t). Below them, a row of yellow sticky-note chunks c^0 to c^5 forms the Long-Context Document. Chunk c^4 is gray, marking it as already selected, and an arrow runs from each chunk up into the Action Embedder. The lower blue box is the Environment. It holds the reward function/critic, the question q in pink, the answer y in light blue, and the next state s_{t+1}. Arrows loop from the action a_t = c^3 on the right, through the environment, and back to s_t on the left. The example question asks where John forgot his keys.",
+ "caption": "Q-RAG agent interacts with multi-step retrieval environment. The starting state $s_0$ contains the initial query $q$. At the start of the episode, the agent embeds all chunks of the long context $\\sC$. At each step $t$, the agent computes a vector embedding of the current state $s_t$, which includes $q$ and all previously selected chunks. For every chunk $c^i \\in \\sA_t$, the utility of retrieving it is evaluated by the $Q$-function $Q_\\theta(s_t, a=c^i)$. The policy $\\pi_\\theta$ selects the next chunk from $\\sA_t$ with probability proportional to its $Q_\\theta(s_t,c^i)$ value.",
+ "caption_source": "latex",
+ "abstract": "Retrieval-Augmented Generation (RAG) methods enhance LLM performance by efficiently filtering relevant context for LLMs, reducing hallucinations and inference cost. However, most existing RAG methods focus on single-step retrieval, which is often insufficient for answering complex questions that require multi-step search. Recently, multi-step retrieval approaches have emerged, typically involving the fine-tuning of small LLMs to perform multi-step retrieval. This type of fine-tuning is highly resource-intensive and does not enable the use of larger LLMs. In this work, we propose Q-RAG, a novel approach that fine-tunes the Embedder model for multi-step retrieval using reinforcement learning (RL). Q-RAG offers a competitive, resource-efficient alternative to existing multi-step retrieval methods for open-domain question answering and achieves state-of-the-art results on the popular long-context benchmarks BabiLong and RULER for contexts up to 10M tokens. Code is available at https://github.com/griver/Q-RAG",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=MS9nWFY7LG",
+  "arxiv": "https://arxiv.org/abs/2511.07328",
+  "pdf": "https://proceedings.iclr.cc/paper_files/paper/2026/file/372dee09e0c3c17df69d990b4735adac-Paper-Conference.pdf",
+  "proceedings": "https://proceedings.iclr.cc/paper_files/paper/2026/hash/372dee09e0c3c17df69d990b4735adac-Abstract-Conference.html",
+  "virtual": "https://iclr.cc/virtual/2026/poster/10009944",
+  "code": "https://github.com/griver/Q-RAG"
+ },
+ "license": "http://creativecommons.org/licenses/by/4.0/",
+ "img": "cc-by",
+ "image_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/images/iclr26-1958.png",
+ "thumb_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/thumbs/iclr26-1958.webp",
+ "figure_page": 2,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.9
+}

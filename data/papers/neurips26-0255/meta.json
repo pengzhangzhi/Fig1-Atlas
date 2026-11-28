@@ -1,0 +1,50 @@
+{
+ "id": "neurips26-0255",
+ "title": "RPC-GS: Gaussian Splatting with native RPC Rendering for Satellite Imagery",
+ "authors": [
+  "Valentin Wagner",
+  "Sebastian Bullinger",
+  "Christoph Bodensteiner",
+  "Michael Arens"
+ ],
+ "venue": "NeurIPS 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "Computer Vision->3D Rendering & Reconstruction",
+ "role": "pipeline",
+ "role2": null,
+ "claim": "Native projection of both means and covariances through a chain of coordinate transforms, plus metric depth, enables accurate differentiable rendering.",
+ "layout": "4 numbered panels; central transform chain left-to-right, branches feeding depth and rasterization",
+ "tags": [
+  "coordinate-transform",
+  "camera-model",
+  "gaussian-splatting",
+  "jacobian-propagation",
+  "differentiable-rendering"
+ ],
+ "style": [
+  "icon-heavy",
+  "colorful",
+  "minimal"
+ ],
+ "description": "A dense block diagram of the RPC-GS method. A central blue band holds five boxes joined by arrows: Scene, ENU, ECEF, Geodetic and Image. Small sketches show a cube, a tangent plane, a globe with axes, a sphere with an orange latitude line, and a pixel grid. A yellow RPC arrow sits between the Geodetic and Image boxes. A green strip on top (1, Gaussian Mean Propagation) shows a mean in scene space and the same mean in image space. A peach strip on the bottom (2, Jacobian-based Covariance Propagation) shows covariance ellipses before and after projection. On the right, a yellow panel (3, Gaussian Metric Depth) shows a satellite, two height planes, an inverse-RPC ray and a Gaussian along it. A pink panel (4, Rasterization) shows depth-sorted ellipses over a pixel grid, leading to a split RGB/depth satellite image. Gray arrows link the panels. The eye goes first to the central chain and the bold numbered titles.",
+ "caption": "Overview of RPC-GS. We integrate satellite-native RPC camera models into Gaussian Splatting. (1) Gaussian means are mapped from the normalized local scene frame through metric ENU, ECEF, and geodetic coordinates before RPC projection into image space. (2) Covariances are propagated through the same transformation chain using Jacobians, with a numerically robust treatment of the ECEF $\\rightarrow$ geodetic transformation. (3) A height-bounded inverse-RPC ray defines metric depth as the scalar position of each Gaussian mean along the ray. (4) Gaussians are depth-sorted and alpha-composited to render RGB and depth.",
+ "caption_source": "latex",
+ "abstract": "We present RPC-GS, the first Gaussian Splatting framework for satellite imagery that operates natively with Rational Polynomial Camera (RPC) models. The RPC model is the de facto standard for representing the complex imaging geometry of modern pushbroom satellite sensors. To simplify rendering, prior satellite Gaussian Splatting methods replace the RPC model with perspective or affine camera approximations, leading to geometric errors during reconstruction. RPC-GS avoids these approximations by projecting Gaussian means and covariances directly through the RPC model during the splatting process. We embed the RPC model in a chain of carefully selected geo-coordinate transformations representing a mapping from splatting-suitable scene coordinates to image coordinates. To map the Gaussian covariance matrices, we derive a numerically robust Jacobian-based covariance projection for the (partially nonlinear) coordinate transformations. Since RPCs lack an explicit notion of camera depth, we integrate a metric ray-based depth formulation. We benchmark RPC, perspective, and affine camera models in a unified framework, with our native RPC renderer achieving the lowest reconstruction error on leading satellite benchmark datasets, improving mean altitude error over perspective and affine approximations by 34.3% and 13.5% on DFC2019, and by 5.0% and 1.2% on IARPA2016. Our implementation is publicly available at https://github.com/wagnva/RPC-GS.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=1pXVfZYbAY",
+  "arxiv": "https://arxiv.org/abs/2606.06690",
+  "pdf": "https://arxiv.org/pdf/2606.06690",
+  "proceedings": null,
+  "virtual": "https://neurips.cc/virtual/2026/poster/155918",
+  "code": "https://github.com/wagnva/RPC-GS"
+ },
+ "license": "http://arxiv.org/licenses/nonexclusive-distrib/1.0/",
+ "img": "none",
+ "image_url": null,
+ "thumb_url": null,
+ "figure_page": 4,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.93
+}

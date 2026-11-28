@@ -1,0 +1,49 @@
+{
+ "id": "icml26-4888",
+ "title": "CrossQ: Task-Aligned Cross-Token Conditional Quantization for Late Interaction Retrieval",
+ "authors": [
+  "Rohit Kumar Salla",
+  "Manoj Saravanan",
+  "Ramya Amancherla"
+ ],
+ "venue": "ICML 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": null,
+ "role": "pipeline",
+ "role2": null,
+ "claim": "A compression method conditions code selection on unstored document context and trains with ranking-aligned objectives, yielding a compact index that keeps standard scoring.",
+ "layout": "Single wide panel, left-to-right, query and document rows, dashed training branch below",
+ "tags": [
+  "quantization",
+  "late-interaction",
+  "retrieval",
+  "index-compression",
+  "ranking-aligned-training"
+ ],
+ "style": [
+  "minimal",
+  "colorful",
+  "text-heavy"
+ ],
+ "description": "A wide flow diagram of rounded boxes joined by arrows, with a query row on top and a document row beneath it. The top row runs Query text, Query encoder (ColBERT), Q={q_i}, then M codebooks, then a gray Late interaction scoring box with the max-sim sum formula. The document row runs Document text (green), Doc encoder (ColBERT), D={d_j}, then a blue Set encoder h(D) labelled 'not stored'. That feeds the teal-outlined CrossQ box, which is the visual centre. CrossQ outputs a Compressed index (integer codes only), which goes up to the scoring box. Below CrossQ, token codes lead via dashed arrows to full-precision teacher scores, then to a pink Ranking-aligned training box (listwise KL distillation plus contrastive ranking). A dashed arrow loops from that box back to CrossQ. A second dashed arrow from the set encoder leads to an optional light fine-tuning box.",
+ "caption": "CrossQ overview. CrossQ conditions code selection on document-level context (computed at indexing time but not stored) and trains with ranking-aligned objectives to preserve score orderings under max-sim late-interaction scoring [ref]. The deployed index stores only integer token codes, preserving standard late-interaction efficiency. Detailed mechanics of additive codebook decoding, the conditional code selector at each stage and query-time lookup-table scoring are given in Figs. [ref]--[ref].",
+ "caption_source": "latex",
+ "abstract": "Late-interaction retrievers like ColBERT achieve high quality but suffer from large multi-vector indices. Standard compression minimizes token reconstruction error, while ranking depends critically on preserving scores of sparse \"winner\" tokens. We introduce CrossQ, which adaptively improves effective token fidelity within documents by conditioning token codes on lightweight document context computed at indexing time (but not stored). CrossQ is trained with ranking-aligned objectives that preserve candidate score distributions and protect hard-negative margins. At 2 B/token, CrossQ improves MRR@10 by +0.010 over the strongest strictly footprint-matched quantization baseline and by +0.012 over the strongest candidate-matched system reference. On a nine-dataset BEIR subset, CrossQ improves average nDCG@10 by +0.009 at 4 B/token over the strongest candidate-matched system reference. At 4 B/token, CrossQ achieves 64x raw token-storage reduction, approximately 61x including metadata and approximately 58x under conservative padding/alignment accounting. At 8 B/token, CrossQ with light fine-tuning retains approximately 98% of full-precision ColBERT MRR@10, improving the footprint-quality tradeoff for memory-constrained late-interaction retrieval.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=jxHF6z0S1L",
+  "arxiv": "https://arxiv.org/abs/2608.19204",
+  "pdf": "https://raw.githubusercontent.com/mlresearch/v306/main/assets/salla26a/salla26a.pdf",
+  "proceedings": "https://proceedings.mlr.press/v306/salla26a.html",
+  "virtual": "https://icml.cc/virtual/2026/poster/62085",
+  "code": null
+ },
+ "license": "http://creativecommons.org/licenses/by/4.0/",
+ "img": "cc-by",
+ "image_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/images/icml26-4888.png",
+ "thumb_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/thumbs/icml26-4888.webp",
+ "figure_page": 2,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.9
+}

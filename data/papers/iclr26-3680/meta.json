@@ -1,0 +1,53 @@
+{
+ "id": "iclr26-3680",
+ "title": "StreamingVLM: Real-Time Understanding for Infinite Video Streams",
+ "authors": [
+  "Ruyi Xu",
+  "Guangxuan Xiao",
+  "Yukang Chen",
+  "Liuning He",
+  "Kelly Peng",
+  "Yao Lu",
+  "Song Han"
+ ],
+ "venue": "ICLR 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "Computer Vision->Vision Models & Multimodal",
+ "role": "prior-vs-ours",
+ "role2": null,
+ "claim": "Existing attention schemes are either costly, incoherent, or high-latency; ours reuses cached states to get low cost and strong quality.",
+ "layout": "4 panels left-to-right, attention-mask matrices, metrics and win rate beneath each",
+ "tags": [
+  "streaming",
+  "kv-cache",
+  "attention-mask",
+  "efficiency",
+  "long-context"
+ ],
+ "style": [
+  "colorful",
+  "plot",
+  "minimal"
+ ],
+ "description": "Four side-by-side square attention-mask matrices, labeled (a) Full Attention, (b) Sliding Window without overlap, (c) Sliding Window with overlap, and (d) StreamingVLM (Sliding Window + Reuse KV), which is in bold. Each grid is drawn as a staircase of colored cells: green attention-sink column, yellow vision tokens, blue text tokens, red generated tokens, with grey for the attended region. Panel (b) has two disjoint blocks. Panel (c) has four overlapping offset windows. Panel (d) has a compact band that keeps the sink, a short vision window and long text columns. Short red/black captions under each panel name the failure, such as OOM, lost coherence or recomputation latency. Beneath them are complexity and win rate, with red for bad values and green for good. A legend sits along the bottom.",
+ "caption": "Illustration of \\method vs.\\ existing VLMs. Let $T$ be video length and $W$ the sliding-window size. (a) Full Attention: $O(T^2)$ cost; unbounded memory; degrades beyond training length. (b) Sliding Window (no overlap): bounded memory but short chunks break coherence; long chunks raise latency. (c) Sliding Window (overlap): recomputation per window yields high latency. (d) \\method (Sliding Window + Reuse KV): reuses states of attention sinks, a short vision window and long text window, preserving history at low latency. “Win rate” is the pairwise win share vs.\\ GPT-4o mini (judge: GPT-5).",
+ "caption_source": "latex",
+ "abstract": "Vision-language models (VLMs) could power real-time assistants and autonomous agents, but they face a critical challenge: understanding near-infinite video streams without escalating latency and memory usage. Processing entire videos with full attention leads to quadratic computational costs and poor performance on long videos. Meanwhile, simple sliding window methods are also flawed, as they either break coherence or suffer from high latency due to redundant recomputation. In this paper, we introduce StreamingVLM, a model designed for real-time, stable understanding of infinite visual input. Our approach is a unified framework that aligns training with streaming inference. During inference, we maintain a compact KV cache by reusing states of attention sinks, a short window of recent vision tokens, and a long window of recent text tokens. This streaming ability is instilled via a simple supervised fine-tuning (SFT) strategy that applies full attention on short, overlapped video chunks, which effectively mimics the inference-time attention pattern without training on prohibitively long contexts. For evaluation, we build Inf-Streams-Eval, a new benchmark with videos averaging over two hours that requires dense, per-second alignment between frames and text. On Inf-Streams-Eval, StreamingVLM achieves a 66.18% win rate against GPT-4O mini and maintains stable, real-time performance at up to 8 FPS on a single NVIDIA H100. Notably, our SFT strategy also enhances general VQA abilities without any VQA-specific fine-tuning, improving performance on LongVideoBench by +4.30 and OVOBench Realtime by +5.96. Code is available at https://github.com/mit-han-lab/streaming-vlm.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=gVbPWbA97s",
+  "arxiv": "https://arxiv.org/abs/2510.09608",
+  "pdf": "https://proceedings.iclr.cc/paper_files/paper/2026/file/6445dd88ebb9a6a3afa0b126ad87fe41-Paper-Conference.pdf",
+  "proceedings": "https://proceedings.iclr.cc/paper_files/paper/2026/hash/6445dd88ebb9a6a3afa0b126ad87fe41-Abstract-Conference.html",
+  "virtual": "https://iclr.cc/virtual/2026/poster/10008145",
+  "code": null
+ },
+ "license": "http://creativecommons.org/licenses/by/4.0/",
+ "img": "cc-by",
+ "image_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/images/iclr26-3680.png",
+ "thumb_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/thumbs/iclr26-3680.webp",
+ "figure_page": 1,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.93
+}

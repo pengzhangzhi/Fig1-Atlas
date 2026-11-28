@@ -1,0 +1,50 @@
+{
+ "id": "iclr26-3359",
+ "title": "Pre-training under infinite compute",
+ "authors": [
+  "Konwoo Kim",
+  "Suhas Kotha",
+  "Percy Liang",
+  "Tatsunori Hashimoto"
+ ],
+ "venue": "ICLR 2026",
+ "tier": "oral",
+ "track": "main",
+ "topic": "Deep Learning->Algorithms",
+ "role": "teaser-result",
+ "role2": "analysis-finding",
+ "claim": "Standard recipes plateau or overfit, but regularization, then ensembling, then joint scaling progressively lower the loss asymptote and raise data efficiency.",
+ "layout": "1 panel, line plot, dotted asymptotes with data-efficiency multipliers on right axis",
+ "tags": [
+  "scaling-laws",
+  "data-efficiency",
+  "ensembling",
+  "regularization",
+  "asymptote"
+ ],
+ "style": [
+  "plot",
+  "colorful",
+  "minimal"
+ ],
+ "description": "A single scatter-and-line plot titled 'Comparing scaling recipes with no compute constraints'. The x-axis is total parameter count (150M to 1.4B) and the y-axis is DCLM validation loss. A solid red line for the standard recipe falls and then rises again, which shows overfitting. A dashed purple curve for the regularized recipe falls monotonically toward a power-law asymptote. A dashed cyan curve for the ensembling recipe falls faster and reaches a lower asymptote. Horizontal dotted lines mark each asymptote. A right-hand axis labels them with data-efficiency multipliers: 1.00× in red, 2.29× in purple, 3.03× in cyan and 5.17× in gold. The gold line is the joint scaling asymptote at the bottom. A legend in the lower left gives the fitted power-law equations. The eye goes first to the red curve at the top and then down to the stacked asymptotes.",
+ "caption": "Comparing scaling recipes with no compute constraints. To simulate a data-constrained future, we restrict models to only have access to 200M training tokens. \\hyperref[sec:standard-pt]{(1)} Standard pre-training recipes overfit with too many epochs or parameters, even if we tune the epoch count at each parameter count $N$ \\hyperref[sec:fix-standard-pt]{(2)} By correctly tuning regularization for each parameter count, loss monotonically decreases following a power law in parameter count $N$. We predict the best possible loss of the regularized recipe by the asymptote of its power law \\hyperref[sec:ensembling]{(3)} Instead of scaling $N$, we achieve a lower asymptote by ensembling $K$ models of a fixed parameter count as $K$ approaches infinity. \\hyperref[sec:scaling-seed-token]{(4)} Composing parameter scaling and ensemble scaling further improves the asymptote, and we estimate that the baseline would need $5.17\\times$ more data to match its loss, even with infinite compute. We additionally find that these data efficiency improvements hold for larger token counts, distilled models, downstream benchmarks, and continued pre-training (Sections [ref], [ref], [ref]).",
+ "caption_source": "latex",
+ "abstract": "Since compute grows much faster than web text available for language model pre-training, we ask how one should approach pre-training under fixed data and no compute constraints. We first show that existing data-constrained approaches of increasing epoch count and parameter count eventually overfit, and we significantly improve upon such recipes by properly tuning regularization, finding that the optimal weight decay is $30\\times$ larger than standard practice. Since our regularized recipe monotonically decreases loss following a simple power law in parameter count, we estimate its best possible performance via the asymptote of its scaling law rather than the performance at a fixed compute budget. We then identify that ensembling independently trained models achieves a significantly lower loss asymptote than the regularized recipe. Our best intervention combining epoching, regularization, parameter scaling, and ensemble scaling achieves an asymptote at 200M tokens using $5.17\\times$ less data than our baseline, and our data scaling laws predict that this improvement persists at higher token budgets. We find that our data efficiency gains can be realized at much smaller parameter counts as we can distill an ensemble into a student model that is 8$\\times$ smaller and retains $83\\%$ of the ensembling benefit. Finally, our interventions designed for validation loss generalize to downstream benchmarks, achieving a $9\\%$ improvement for pre-training evals and a $17.5\\times$ data efficiency improvement over continued pre-training on math mid-training data. Our results show that simple algorithmic improvements can enable significantly more data-efficient pre-training in a compute-rich future.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=ck0aZTAnwK",
+  "arxiv": "https://arxiv.org/abs/2509.14786",
+  "pdf": "https://proceedings.iclr.cc/paper_files/paper/2026/file/79682ef54677a2cb3dfb8383b372037f-Paper-Conference.pdf",
+  "proceedings": "https://proceedings.iclr.cc/paper_files/paper/2026/hash/79682ef54677a2cb3dfb8383b372037f-Abstract-Conference.html",
+  "virtual": "https://iclr.cc/virtual/2026/poster/10008473",
+  "code": null
+ },
+ "license": "http://creativecommons.org/licenses/by/4.0/",
+ "img": "cc-by",
+ "image_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/images/iclr26-3359.png",
+ "thumb_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/thumbs/iclr26-3359.webp",
+ "figure_page": 1,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.8
+}

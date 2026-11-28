@@ -1,0 +1,51 @@
+{
+ "id": "icml26-2735",
+ "title": "PFT: Phonon Fine-tuning for Machine Learned Interatomic Potentials",
+ "authors": [
+  "Teddy Koker",
+  "Abhijeet Gangan",
+  "Mit Kotak",
+  "Jaime Marian",
+  "Tess Smidt"
+ ],
+ "venue": "ICML 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "Applications->Chemistry, Physics, and Earth Sciences",
+ "role": "pipeline",
+ "role2": "prior-vs-ours",
+ "claim": "Force constants can come from supercell finite differences, or from model Hessians; we supervise sampled Hessian columns efficiently via hessian-vector products.",
+ "layout": "3 panels; panel c has four parallel columns feeding a bottom loss equation",
+ "tags": [
+  "fine-tuning",
+  "second-derivative-supervision",
+  "hessian-vector-product",
+  "scientific-ml",
+  "loss-design"
+ ],
+ "style": [
+  "icon-heavy",
+  "colorful",
+  "math-heavy"
+ ],
+ "description": "Panel a shows a small blue atomic unitcell with a down arrow to a much larger supercell lattice. Panel b shows pretraining on a unitcell: a DFT box branching into energy E, forces F and stress sigma. Panel c is the main part. Four parallel columns (i–iv) each start from a pink Supercell box. i uses DFT on finite displacements to give a force-constant heatmap. ii uses an MLIP with negative energy gradients to give predicted force constants. iii uses an MLIP with the analytical Hessian to give a full Hessian heatmap. iv uses an MLIP with a hessian-vector product to give a single Hessian column. A bottom panel samples a column from the DFT matrix and compares it with the MLIP column in the L_PFT equation, which adds energy, force and stress terms. Purple marks DFT and orange marks MLIP. The magma-colored heatmaps draw the eye first.",
+ "caption": "Overview of PFT framework. a Finite-difference calculations rely on the construction of a supercell to obtain force constants from interactions beyond the unitcell. b MLIPs are pre-trained on standard unitcell DFT calculations. c-i Up to $O(3N)$ atomic displacements are applied to the supercell, with the number reduced by crystal symmetries; forces are computed with DFT, and numerical derivatives yield the force-constant matrix. c-ii The same workflow can be used for MLIPs, replacing DFT force calculations with force predictions from the model. c-iii Alternatively, the force constants can also be computed as the analytical Hessian of the predicted energy directly. c-iv In this work, we use the Hessian-vector product to efficiently compute columns of the Hessian, and align with sampled DFT force constant columns during training. Note the shown force constants are downsampled for clarity.",
+ "caption_source": "latex",
+ "abstract": "Many materials properties depend on higher-order derivatives of the potential energy surface, yet machine learned interatomic potentials (MLIPs) trained with a standard loss on energy, force, and stress errors can exhibit error in curvature, degrading the prediction of vibrational properties. We introduce phonon fine-tuning (PFT), which directly supervises second-order force constants of materials by matching MLIP energy Hessians to DFT-computed force constants from finite displacement phonon calculations. To scale to large supercells, PFT stochastically samples Hessian columns and computes the loss with a single Hessian-vector product. We also use a simple co-training scheme to incorporate upstream data to mitigate catastrophic forgetting. On the MDR Phonon benchmark, PFT improves Nequix MP by 55% on average across phonon thermodynamic properties and achieves state-of-the-art accuracy among models trained on Materials Project trajectories. PFT also generalizes to improve properties beyond second-derivatives, improving thermal conductivity predictions that rely on third-order derivatives of the potential energy.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=QC9S8gUOYc",
+  "arxiv": "https://arxiv.org/abs/2601.07742",
+  "pdf": "https://raw.githubusercontent.com/mlresearch/v306/main/assets/koker26a/koker26a.pdf",
+  "proceedings": "https://proceedings.mlr.press/v306/koker26a.html",
+  "virtual": "https://icml.cc/virtual/2026/poster/64181",
+  "code": "https://github.com/atomicarchitects/nequix"
+ },
+ "license": "http://creativecommons.org/licenses/by/4.0/",
+ "img": "cc-by",
+ "image_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/images/icml26-2735.png",
+ "thumb_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/thumbs/icml26-2735.webp",
+ "figure_page": 1,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.8
+}

@@ -1,0 +1,56 @@
+{
+ "id": "iclr26-1575",
+ "title": "RegionE: Adaptive Region-Aware Generation for Efficient Image Editing",
+ "authors": [
+  "Pengtao Chen",
+  "Xianfang Zeng",
+  "Maosen Zhao",
+  "Mingzhu Shen",
+  "Peng Ye",
+  "Bangyin Xiang",
+  "Zhibo Wang",
+  "Wei Cheng",
+  "Gang Yu",
+  "Tao Chen"
+ ],
+ "venue": "ICLR 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "Computer Vision->Image and Video Generation",
+ "role": "concept",
+ "role2": "problem-setup",
+ "claim": "Unchanged parts of a sample follow straight generative trajectories that one step can predict, while changed parts follow curved paths needing iteration.",
+ "layout": "3 panels, left-to-right, shared Noise-to-Data time axis with trajectory heatmaps",
+ "tags": [
+  "trajectory-geometry",
+  "flow-matching",
+  "image-editing",
+  "efficiency",
+  "region-aware"
+ ],
+ "style": [
+  "colorful",
+  "plot",
+  "photo/real data"
+ ],
+ "description": "The left panel shows an editing example: the prompt 'Add a hat to the cat', the instruction image of a cat, and the edited result. The hat is labeled Edited and the rest Unedited Region. The middle and right panels are side-by-side trajectory diagrams with a Noise-to-Data time axis and Gaussian-like distribution curves at both ends. Both sit on a purple-to-yellow heatmap. White curves are real trajectories, red arrows are velocity steps, and a dashed red line is the one-step estimate. In the middle panel, the unedited region's trajectory is straight, so the one-step estimate lands on the real endpoint. In the right panel, the edited region's trajectory is curved, so the one-step estimate misses. Small image insets show noisy and clean hat and cat samples. Captions below each panel say Straight or Curved.",
+ "caption": "Trajectories of different regions in the IIE task. In unedited regions, the trajectory is nearly linear, allowing early-stage velocity to provide a reliable estimate of the multi-step denoised images, including the final result. In contrast, edited regions exhibit curved trajectories, making the final image harder to predict. Despite this, the velocity between consecutive timesteps remains consistent.",
+ "caption_source": "latex",
+ "abstract": "Recently, instruction-based image editing (IIE) has received widespread attention. In practice, IIE often modifies only specific regions of an image, while the remaining areas largely remain unchanged. Although these two types of regions differ significantly in generation difficulty and computational redundancy, existing IIE models do not account for this distinction, instead applying a uniform generation process across the entire image. This motivates us to propose RegionE, an adaptive, region-aware generation framework that accelerates IIE tasks without additional training. Specifically, the RegionE framework consists of three main components: 1) Adaptive Region Partition. We observed that the trajectory of unedited regions is straight, allowing for multi-step denoised predictions to be inferred in a single step. Therefore, in the early denoising stages, we partition the image into edited and unedited regions based on the difference between the final estimated result and the reference image. 2) Region-Aware Generation. After distinguishing the regions, we replace multi-step denoising with one-step prediction for unedited areas. For edited regions, the trajectory is curved, requiring local iterative denoising. To improve the efficiency and quality of local iterative generation, we propose the Region-Instruction KV Cache, which reduces computational cost while incorporating global information. 3) Adaptive Velocity Decay Cache. Observing that adjacent timesteps in edited regions exhibit strong velocity similarity, we further propose an adaptive velocity decay cache to accelerate the local denoising process. We applied RegionE to state-of-the-art IIE base models, including Step1X-Edit, FLUX.1 Kontext, and Qwen-Image-Edit. RegionE achieved acceleration factors of 2.57, 2.41, and 2.06. Evaluations by GPT-4o confirmed that semantic and perceptual fidelity were well preserved.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=I6j5fLdH80",
+  "arxiv": "https://arxiv.org/abs/2510.25590",
+  "pdf": "https://proceedings.iclr.cc/paper_files/paper/2026/file/70270a1bc28ecb2a2aefad566c5e556b-Paper-Conference.pdf",
+  "proceedings": "https://proceedings.iclr.cc/paper_files/paper/2026/hash/70270a1bc28ecb2a2aefad566c5e556b-Abstract-Conference.html",
+  "virtual": "https://iclr.cc/virtual/2026/poster/10010340",
+  "code": "https://peyton-chen.github.io/RegionE/"
+ },
+ "license": "http://creativecommons.org/licenses/by/4.0/",
+ "img": "cc-by",
+ "image_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/images/iclr26-1575.png",
+ "thumb_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/thumbs/iclr26-1575.webp",
+ "figure_page": 1,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.6
+}

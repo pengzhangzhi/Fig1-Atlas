@@ -1,0 +1,50 @@
+{
+ "id": "neurips26-1131",
+ "title": "Retrieval Heads Meet Vision: Uncovering How VLMs Locate and Extract Visual Information",
+ "authors": [
+  "Chanho Park",
+  "Daehyeon Choi",
+  "Jihyun Lee",
+  "Minhyuk Sung"
+ ],
+ "venue": "NeurIPS 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "Computer Vision->Vision Models & Multimodal",
+ "role": "analysis-finding",
+ "role2": "problem-setup",
+ "claim": "Ablating a sparse set of attention heads destroys localization of referred content, causing wrong yet fluent outputs across different tasks.",
+ "layout": "2 panels side-by-side; image, attention heatmaps, outputs; yellow boxes and dashed ellipses",
+ "tags": [
+  "attention-heads",
+  "causal-intervention",
+  "masking",
+  "grounding",
+  "interpretability"
+ ],
+ "style": [
+  "photo/real data",
+  "colorful",
+  "text-heavy"
+ ],
+ "description": "Two side-by-side panels show the same effect on two tasks. Left: Visual Grounding with the prompt \"Black guy in\", a baseball photo with a yellow ground-truth box around the umpire. Next to it are two attention heatmap overlays. The Unmasked heatmap has a blue predicted box on the umpire, with bounding-box coordinates and a blue \"(Correct)\". The VRH Masked heatmap has a red border and a dashed yellow ellipse where attention vanished, with different coordinates and a red \"(Wrong)\". Right: Visual Question Answering with the prompt \"The tiny bicycle is what color?\", a photo of toy cars with a yellow box on a small bicycle. Its Unmasked heatmap shows red attention on the bicycle and a correct text answer, \"Purple\". The VRH Masked heatmap has a dashed yellow ellipse and a fluent but wrong answer, \"No\". Blue and red labels mark correct and wrong outputs.",
+ "caption": "Visual Retrieval Heads mediate visual reference resolution in VLMs. We identify a sparse set of attention heads, Visual Retrieval Heads (VRHs), that are causally necessary for resolving the image region referred to by the text prompt. On visual grounding (left), masking the VRHs redirects prediction-stage attention away from the ground-truth referent and causes the model to output a delocalized bounding box. The same heads, discovered only from grounding, also transfer to visual question answering (right): masking them removes attention to the referred object and leads to a fluent but visually unfaithful answer. Yellow boxes denote ground-truth referents; dashed yellow ellipses indicate regions where attention vanishes after VRH masking.",
+ "caption_source": "latex",
+ "abstract": "Vision-language models (VLMs) can locate an image region referred to by a text prompt and route the corresponding visual evidence to the output, yet the internal mechanism behind this behavior is not understood. Inspired by retrieval heads in large language models, we ask whether VLMs contain an analogous mechanism for visual retrieval. We answer affirmatively by introducing Visual Retrieval Heads (VRHs), a small subset of attention heads (about 1.7-2.6%) that are causally responsible for grounding text descriptions to image regions. To find them, we recast existing head-scoring methods under a unified design space over query tokens, key aggregation, and cross-sample aggregation. We then show that scoring attention from output prediction tokens with a sum over the ground-truth referent region most reliably identifies causal heads. Across eleven VLMs and five referring-expression benchmarks, masking only the top 20 VRHs reduces grounding accuracy by up to 80 percentage points, while masking the same number of random heads has little effect. Beyond replicating the causal-sparse-universal triad established for text retrieval heads, VRHs exhibit several properties not previously reported: they generalize across visual reference tasks, remaining causal on attribute, spatial, counting, and visual-math benchmarks despite being discovered through bounding-box prediction; they are functionally specific, preserving output format while corrupting localization; and they are architecturally shared, transferring causally across VLMs that share an LLM backbone but differ in vision encoder, projector, and instruction tuning.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=7yVqyPZh09",
+  "arxiv": "https://arxiv.org/abs/2608.27417",
+  "pdf": "https://arxiv.org/pdf/2608.27417",
+  "proceedings": null,
+  "virtual": "https://neurips.cc/virtual/2026/poster/155146",
+  "code": null
+ },
+ "license": "http://creativecommons.org/licenses/by/4.0/",
+ "img": "cc-by",
+ "image_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/images/neurips26-1131.png",
+ "thumb_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/thumbs/neurips26-1131.webp",
+ "figure_page": 0,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.5
+}

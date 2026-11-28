@@ -1,0 +1,57 @@
+{
+ "id": "icml26-3474",
+ "title": "Positive–Unlabeled Reinforcement Learning Distillation for On-Premise Small Models",
+ "authors": [
+  "Zhiqiang Kou",
+  "Junyang Chen",
+  "Xin-Qiang Cai",
+  "Xiaobo Xia",
+  "Ming-Kun Xie",
+  "Dong-Dong Wu",
+  "Biao Liu",
+  "Yuheng Jia",
+  "Xin Geng",
+  "Masashi Sugiyama",
+  "Tat-Seng Chua"
+ ],
+ "venue": "ICML 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "Reinforcement Learning->Everything Else",
+ "role": "prior-vs-ours",
+ "role2": "pipeline",
+ "claim": "Existing training stops at imitation or needs costly reward models; ours uses one anchor plus local self-evaluation to enable RL cheaply.",
+ "layout": "3 stacked panels (a),(b),(c); left-to-right flows, orange feedback loops, gray background on (b)",
+ "tags": [
+  "preference-optimization",
+  "distillation",
+  "self-alignment",
+  "cost-efficiency",
+  "black-box-teacher"
+ ],
+ "style": [
+  "icon-heavy",
+  "colorful",
+  "minimal"
+ ],
+ "description": "The figure has three labeled panels. Panel (a), top left, shows knowledge distillation (SFT). A small model sends a query to a large model, which returns a teacher response, and an orange SFT arrow loops back to the small model. Panel (b), top right on a gray background, shows standard RLHF. A new question goes to the SFT model, which produces candidate responses. A reward model, drawn with coin and crowd icons, turns these into scalar rewards, and an orange reinforcement learning loop returns to the model. Panel (c), the bottom row, repeats the SFT stage and then adds the proposed method. A black-box model produces an anchor, the SFT model samples candidates, and the SFT model acts as evaluator to produce scalar rewards that feed an RL loop. Pastel-colored boxes and orange arrows guide the eye. Panel (c) is the largest and most detailed.",
+ "caption": "Comparison among SFT, RLHF, and anchor-guided self-alignment (ours). For on-premise small-model deployment, training pipelines typically stop at the first-stage SFT: the small model imitates black-box teacher responses but fails to acquire preference-optimization–driven self-improvement. The second-stage RL alignment is hard to realize locally because it relies on large-scale human annotations or extensive reward-model calls. We propose a low-cost on-premise alignment strategy: for each query, we call the black-box teacher once to obtain an anchor and use anchor-guided local sampling and self-evaluation to generate scalar signals, enabling a practical SFT-to-RL loop under strict cost and deployment constraints.",
+ "caption_source": "latex",
+ "abstract": "Due to constraints on privacy, cost, and latency, on-premise deployment of small models is increasingly common. However, most practical pipelines stop at supervised fine-tuning (SFT) and fail to reach the reinforcement learning (RL) alignment stage. The main reason is that RL alignment typically requires either expensive human preference annotation or heavy reliance on high-quality reward models with large-scale API usage and ongoing engineering maintenance, both of which are ill-suited to on-premise settings. To bridge this gap, we propose a positive-unlabeled (PU) RL distillation method for on-premise small-model deployment. Without human-labeled preferences or a reward model, our method distills the teacher's preference-optimization capability from black-box generations into a locally trainable student. For each prompt, we query the teacher once to obtain an anchor response, locally sample multiple student candidates, and perform anchor-conditioned self-ranking to induce pairwise or listwise preferences, enabling a fully local training loop via direct preference optimization or group relative policy optimization. Theoretical analysis justifies that the induced preference signal by our method is order-consistent and concentrates on near-optimal candidates, supporting its stability for preference optimization. Experiments demonstrate that our method achieves consistently strong performance under a low-cost setting.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=WyQlim30lN",
+  "arxiv": "https://arxiv.org/abs/2601.20687",
+  "pdf": "https://raw.githubusercontent.com/mlresearch/v306/main/assets/kou26a/kou26a.pdf",
+  "proceedings": "https://proceedings.mlr.press/v306/kou26a.html",
+  "virtual": "https://icml.cc/virtual/2026/poster/63460",
+  "code": null
+ },
+ "license": "http://arxiv.org/licenses/nonexclusive-distrib/1.0/",
+ "img": "none",
+ "image_url": null,
+ "thumb_url": null,
+ "figure_page": 1,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.8
+}

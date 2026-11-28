@@ -1,0 +1,48 @@
+{
+ "id": "neurips26-6813",
+ "title": "Efficient Evaluation of LLM Performance with Statistical Guarantees",
+ "authors": [
+  "Skyler Wu",
+  "Yash Nair",
+  "Emmanuel Candes"
+ ],
+ "venue": "NeurIPS 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "Probabilistic Methods->Monte Carlo and Sampling Methods",
+ "role": "pipeline",
+ "role2": null,
+ "claim": "A method is a sequence of stages: fit on prior data, iteratively sample and update, then output a valid estimate with confidence interval.",
+ "layout": "3 blocks left-to-right, central boxed loop with cyclic arrows and math inside",
+ "tags": [
+  "active-learning",
+  "adaptive-sampling",
+  "confidence-intervals",
+  "iterative-loop",
+  "evaluation-efficiency"
+ ],
+ "style": [
+  "minimal",
+  "math-heavy"
+ ],
+ "description": "A horizontal flow diagram with three main parts. On the left, a rounded box labeled (a) 'Fit {u_i},{v_j} on historical data', captioned 'Historical Data'. A thick arrow labeled 'Initialize (û^(0), Σ̂^(0))' leads to a large rectangle captioned 'New Model', headed 'for t ∈ [1:n_b]:'. Inside it, three rounded boxes form a loop: (b) compute q_t(·) from the previous posterior, (c) sample question index I_t ~ q_t(·), and (d) observe label z_{I_t} and update (û^(t), Σ̂^(t)), with arrows cycling from b to c to d and back to b. A thick arrow on the right leads to a rounded box (e) with the formula θ̂ ± z_{1-α/2} σ̂/√n_b, captioned 'PAI Estimator + CI'. It is black and white, with math notation throughout. The eye goes first to the central loop.",
+ "caption": "High-level overview of Factorized Active Querying (FAQ). (a) Using partially-observed historical outcomes $H$, we fit historical model and question factors (Eq. [ref]). For a new model, we initialize its latent factor from the historical fit. Then, at each sampling round $t$, we (b) compute the hybrid sampling policy $q_t(\\cdot)$ from the current factor posterior (Eq. [ref]), (c) sample a question $I_t \\sim q_t(\\cdot)$, and (d) update the model factor using the observed outcome $z_{I_t}$ (Eqs. [ref]-[ref]). Finally, we (e) output the PAI estimate and confidence interval (Eqs. [ref], [ref]).",
+ "caption_source": "latex",
+ "abstract": "Exhaustively evaluating many large language models (LLMs) on a large suite of benchmarks is expensive. We cast benchmarking as finite-population inference and, under a fixed query budget, seek tight confidence intervals (CIs) for model accuracy with asymptotic frequentist coverage. We propose Factorized Active Querying (FAQ), which (a) leverages historical information through a Bayesian factor model; (b) adaptively selects questions using a hybrid variance-reduction/active-learning sampling policy; and (c) maintains validity through Pro-Active Inference---a finite-population extension of active inference (Zrnic & CandÃ¨s, 2024) that enables direct question selection while preserving asymptotic frequentist coverage. In our experiments, FAQ delivers up to $5\\times$ effective sample size gains over strong baselines on two benchmark suites, across varying historical-data missingness levels, with negligible computational overhead: this means that it matches the CI width of uniform sampling while using up to $5\\times$ fewer queries. We release our source code and our curated datasets to support reproducibility and future research.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=kmsvWSZXrM",
+  "arxiv": "https://arxiv.org/abs/2601.20251",
+  "pdf": "https://arxiv.org/pdf/2601.20251",
+  "proceedings": null,
+  "virtual": "https://neurips.cc/virtual/2026/poster/150090",
+  "code": "https://github.com/skbwu/efficiently-evaluating-llms"
+ },
+ "license": "http://creativecommons.org/licenses/by/4.0/",
+ "img": "cc-by",
+ "image_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/images/neurips26-6813.png",
+ "thumb_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/thumbs/neurips26-6813.webp",
+ "figure_page": 2,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.95
+}

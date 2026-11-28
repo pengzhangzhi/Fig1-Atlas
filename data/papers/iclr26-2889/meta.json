@@ -1,0 +1,52 @@
+{
+ "id": "iclr26-2889",
+ "title": "AnyBCQ: Hardware Efficient Flexible Binary-Coded Quantization for Multi-Precision LLMs",
+ "authors": [
+  "Gunho Park",
+  "Jeongin Bae",
+  "Beomseok Kwon",
+  "Byeongwook Kim",
+  "Se Jung Kwon",
+  "Dongsoo Lee"
+ ],
+ "venue": "ICLR 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": null,
+ "role": "pipeline",
+ "role2": null,
+ "claim": "Low-precision quantized weights are progressively expanded by freezing existing binary codes and adding residual bit-planes, so any precision can be reconstructed from shared bits.",
+ "layout": "2 panels stacked; (a) left-to-right expansion stages, (b) inference with equation",
+ "tags": [
+  "quantization",
+  "multi-precision",
+  "progressive-expansion",
+  "bit-planes",
+  "hardware-efficiency"
+ ],
+ "style": [
+  "colorful",
+  "icon-heavy",
+  "math-heavy"
+ ],
+ "description": "The figure has two panels and a legend at the top. The legend shows green, blue and yellow scale blocks for 2-bit, 3-bit and 4-bit FP16 scales, a blue-hatched block for frozen binary INT1, and hollow and solid arrows for quantization and precision expansion. Panel (a) runs left to right. An FP16 weight matrix is quantized into a 2-bit base model (BCQ2) with green scales and a binary matrix. Solid arrows lead to the 3-bit and 4-bit models. In these, earlier binary planes are hatched blue (frozen), a new residual binary plane is added with a plus sign, and the stacked scale layers gain new colors. Panel (b) shows the AnyBCQ model, with shared binary planes and scales, doing 3-bit inference. A scale-binary inner product gives a dequantized weight matrix written as signed alpha sums.",
+ "caption": "Overview of AnyBCQ: (a) weights are first quantized to a base precision and progressively expanded to higher precisions by reusing the existing binary codes while adding residual bit-planes; (b) $p$-bit inference reconstructs weights by combining the corresponding scaling factors with the first $p$ binary bit-planes. In the binary representation, elements denoted as 0 are mapped as -1.",
+ "caption_source": "latex",
+ "abstract": "The deployment of large language models (LLMs) is increasingly constrained by memory and latency bottlenecks, motivating the need for quantization techniques that flexibly balance accuracy and efficiency. Recent work has introduced multi-precision models, which enable inference at multiple precisions within a single model depending on runtime constraints. To support such flexibility, quantized weights are often stored as bit-planes, where hardware efficiency improves when the compute operates directly at the bit-plane level and activates only the precision required by each request. In this work, we present AnyBCQ, a hardware-friendly multi-precision extension of Binary-Coded Quantization (BCQ) that supports direct bit-plane operations. By representing weights as binary bit-planes with corresponding scale factors, AnyBCQ enables bit-plane-level computation and maps naturally to accelerator-friendly, bit-parallel arithmetic. Our progressive precision expansion mechanism incrementally refines scaling factors while reusing previously assigned binary codes, yielding monotonic improvements in accuracy as additional bits are enabled. We further co-design a specialized kernel that exploits the BCQ structure to support dynamic per-request precision selection with negligible overhead. Experiments on recent LLMs demonstrate that AnyBCQ significantly narrows the accuracy drop in the low-bit regime (e.g. 2-bit), remains competitive at higher precision, and achieves throughput gains of up to 3.0x over half precision and 1.2x over state-of-the-art multi-precision methods. By aligning algorithmic flexibility with hardware efficiency, AnyBCQ provides a practical foundation for multi-precision LLM deployment across diverse service-level objectives.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=XPIEkFdEDi",
+  "arxiv": "https://arxiv.org/abs/2510.10467",
+  "pdf": "https://proceedings.iclr.cc/paper_files/paper/2026/file/ca9eaef07eca2a50fc626cb929617b1c-Paper-Conference.pdf",
+  "proceedings": "https://proceedings.iclr.cc/paper_files/paper/2026/hash/ca9eaef07eca2a50fc626cb929617b1c-Abstract-Conference.html",
+  "virtual": "https://iclr.cc/virtual/2026/poster/10008972",
+  "code": null
+ },
+ "license": "http://arxiv.org/licenses/nonexclusive-distrib/1.0/",
+ "img": "none",
+ "image_url": null,
+ "thumb_url": null,
+ "figure_page": 1,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.9
+}

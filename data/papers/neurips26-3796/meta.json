@@ -1,0 +1,50 @@
+{
+ "id": "neurips26-3796",
+ "title": "RAM-Net: Linear-Time Sequence Modeling with Sparsely Addressable State",
+ "authors": [
+  "Kaicheng Xiao",
+  "Haotian Li",
+  "Liran Dong",
+  "Guoliang Xing"
+ ],
+ "venue": "NeurIPS 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "Deep Learning->Attention Mechanisms",
+ "role": "prior-vs-ours",
+ "role2": "pipeline",
+ "claim": "Prior architectures either keep growing memory or blur all tokens in a shared state; ours uses sparse addressed slots to avoid both.",
+ "layout": "3 panels left-to-right separated by dashed lines, identical read/write schematic reused",
+ "tags": [
+  "sparse-addressing",
+  "linear-attention",
+  "recurrent-state",
+  "efficiency",
+  "memory-interference"
+ ],
+ "style": [
+  "colorful",
+  "icon-heavy",
+  "minimal"
+ ],
+ "description": "Three side-by-side panels, (a) Full Attention, (b) Linear Attention and (c) RAM-Net, are separated by dashed vertical lines. Each uses the same schematic. Input vectors v_t (green), k_t (blue) and q_t (purple) feed a state matrix drawn as colored cells, and a red arrow marks the update from time t-1 to t. In (a), the cached V and K matrices grow by concatenation and a dot-softmax box (orange) selects one read slot. In (b), a grey kernel box feeds dense update and dense retrieval, with grey cells and arrows hitting all state columns. In (c), orange address-decoder boxes produce a sparse write address and read address, so only one slot is highlighted (black) while the others stay white. Red labels (dense/sparse) and the bold panel titles draw the eye first. Dimension labels d_k, d_v, t and |A| slots are in blue.",
+ "caption": "Comparison of attention architectures. (a) Full attention maintains a KV cache and retrieves through competitive softmax over all cached keys, supporting high retrieval fidelity at the cost of memory that grows with sequence length $t$. (b) Linear attention compresses history into a fixed shared recurrent state and retrieves it through dense linear aggregation, thereby causing inter-token interference at retrieval. (c) RAM-Net keeps a fixed slot array and uses sparse address-based access: an Address Decoder maps $k_t$ and $q_t$ into sparse write and read addresses $w_t$ and $r_t$, so only selected slots are updated or retrieved.",
+ "caption_source": "latex",
+ "abstract": "Linear attention offers an efficient alternative to full attention with a fixed-size recurrent state. However, this state is shared by all tokens, so information from distinct tokens becomes superposed within it and produces inter-token interference that degrades long-range fine-grained recall. To address this issue, we propose RAM-Net, which replaces dense access to a shared state with sparse address-based access. RAM-Net organizes the recurrent state as a fixed-size array of independent slots and uses an Address Decoder that maps each key or query into a sparse address, selecting a small subset of slots to write to or read from at each step. This design directs tokens with non-overlapping addresses to disjoint slots, suppressing inter-token interference, while keeping per-step state access dependent only on the number of selected slots rather than the total state size. Empirically, RAM-Net outperforms strong recurrent baselines on fine-grained long-range retrieval and achieves the lowest perplexity with competitive commonsense reasoning. It does so while accessing fewer state elements per step than all baselines, e.g., $8\\times$ fewer than Mamba2.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=QPjqzE6cUh",
+  "arxiv": "https://arxiv.org/abs/2602.11958",
+  "pdf": "https://arxiv.org/pdf/2602.11958",
+  "proceedings": null,
+  "virtual": "https://neurips.cc/virtual/2026/poster/152777",
+  "code": null
+ },
+ "license": "http://creativecommons.org/licenses/by-nc-nd/4.0/",
+ "img": "none",
+ "image_url": null,
+ "thumb_url": null,
+ "figure_page": 2,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.8
+}

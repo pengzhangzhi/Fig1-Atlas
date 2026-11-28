@@ -1,0 +1,52 @@
+{
+ "id": "iclr26-1725",
+ "title": "R2-Dreamer: Redundancy-Reduced World Models without Decoders or Augmentation",
+ "authors": [
+  "Naoki Morihira",
+  "Amal Nahar",
+  "Kartik Bharadwaj",
+  "Yasuhiro Kato",
+  "Akinobu Hayashi",
+  "Tatsuya Harada"
+ ],
+ "venue": "ICLR 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "Reinforcement Learning->Online",
+ "role": "prior-vs-ours",
+ "role2": "pipeline",
+ "claim": "Prior methods need a decoder or data augmentation to learn representations; ours uses a simple internal redundancy-reduction loss with neither.",
+ "layout": "3 side-by-side panels, bottom-up flow, shared recurrent latent block on top",
+ "tags": [
+  "decoder-free",
+  "self-supervised",
+  "redundancy-reduction",
+  "world-models",
+  "representation-learning"
+ ],
+ "style": [
+  "minimal",
+  "colorful",
+  "icon-heavy"
+ ],
+ "description": "Three parallel architecture diagrams share the same layout: a recurrent state-space block at the top, with h_t, a categorical latent grid z_t, and the action and state sequence a_{t-1}, s_{t-1} to a_t, s_t. Below it, an observation image o_t feeds an encoder, and each panel adds different loss modules. Panel (a), R2-Dreamer (ours), is the simplest. It has an encoder and a purple projector joined by a single grey L_BT box. Panel (b), Dreamer, uses a pink decoder that reconstructs o_t-hat and an L_recon loss. Panel (c), DreamerPro, is the most cluttered. It has two encoders (one EMA), two augmented images, and L_Temp and L_SwAV losses. Pastel blue, purple and pink blocks mark the components, and the grey boxes are the losses. Captions sit below the panels.",
+ "caption": "Comparison of representation learning mechanisms in world models. \\textbf{(a) \\methodname{}} learns representations without a decoder or DA. It uses an internal redundancy reduction objective $\\mathcal{L}_{\\mathrm{BT}}$ that aligns the latent state $s_t$ (via a projector) with the embedding of the observation $o_t$. (b) Dreamer relies on a decoder to learn representations by reconstructing the observation $\\hat{o}_t$ from the latent state $s_t$, guided by a reconstruction loss $\\mathcal{L}_{\\mathrm{recon}}$. (c) DreamerPro removes the decoder but depends on DA. It enforces consistency between augmented views of the observation $\\mathrm{aug}(o_t)$ using a spatial loss $\\mathcal{L}_{\\mathrm{SwAV}}$ and a temporal loss $\\mathcal{L}_{\\mathrm{Temp}}$ that leverages an Exponential Moving Average (EMA) of the encoder weights.",
+ "caption_source": "latex",
+ "abstract": "A central challenge in image-based Model-Based Reinforcement Learning (MBRL) is to learn representations that distill essential information from irrelevant visual details. While promising, reconstruction-based methods often waste capacity on large task-irrelevant regions. Decoder-free methods instead learn robust representations by leveraging Data Augmentation (DA), but reliance on such external regularizers limits versatility. We propose R2-Dreamer, a decoder-free MBRL framework with a self-supervised objective that serves as an internal regularizer, preventing representation collapse without resorting to DA. The core of our method is a redundancy-reduction objective inspired by Barlow Twins, which can be easily integrated into existing frameworks. On DeepMind Control Suite and Meta-World, R2-Dreamer is competitive with strong baselines such as DreamerV3 and TD-MPC2 while training 1.59x faster than DreamerV3, and yields substantial gains on DMC-Subtle with tiny task-relevant objects. These results suggest that an effective internal regularizer can enable versatile, high-performance decoder-free MBRL. Code is available at https://github.com/NM512/r2dreamer.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=Je2QqXrcQq",
+  "arxiv": "https://arxiv.org/abs/2603.18202",
+  "pdf": "https://proceedings.iclr.cc/paper_files/paper/2026/file/d79ac139911df25d27f14bbf008deaee-Paper-Conference.pdf",
+  "proceedings": "https://proceedings.iclr.cc/paper_files/paper/2026/hash/d79ac139911df25d27f14bbf008deaee-Abstract-Conference.html",
+  "virtual": "https://iclr.cc/virtual/2026/poster/10010184",
+  "code": "https://github.com/NM512/r2dreamer"
+ },
+ "license": "http://creativecommons.org/licenses/by/4.0/",
+ "img": "cc-by",
+ "image_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/images/iclr26-1725.png",
+ "thumb_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/thumbs/iclr26-1725.webp",
+ "figure_page": 2,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.9
+}

@@ -1,0 +1,56 @@
+{
+ "id": "neurips26-4265",
+ "title": "ReflectDrive-2: Reinforcement-Learning-Aligned Self-Editing for Discrete Diffusion Driving",
+ "authors": [
+  "Huimin Wang",
+  "Yue Wang",
+  "Bihao Cui",
+  "Pengxiang Li",
+  "Ben Lu",
+  "Mingqian Wang",
+  "Tong Wang",
+  "Chuan Tang",
+  "Teng Zhang",
+  "Kun Zhan"
+ ],
+ "venue": "NeurIPS 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": null,
+ "role": "pipeline",
+ "role2": null,
+ "claim": "Planning proceeds by committing a goal, drafting all outputs in parallel, then editing them in place within one shared token space.",
+ "layout": "Camera mosaic above, left-to-right token strip below, color-coded legend",
+ "tags": [
+  "discrete-diffusion",
+  "self-editing",
+  "parallel-decoding",
+  "draft-then-refine",
+  "autonomous-driving"
+ ],
+ "style": [
+  "photo/real data",
+  "colorful",
+  "minimal"
+ ],
+ "description": "A wide figure with real driving photos on top. Six surround-view camera images, numbered 1 to 6, flank a large central front-view image. The central image shows a school bus and a white shuttle bus ahead on a city street. Dotted trajectory markers are overlaid on the road: blue hollow squares mark the draft, and green dotted blocks mark the edited plan. A small legend in the top-left of the center image labels PLAN as green and DRAFT as blue. Below the photos, a dashed rounded box holds a left-to-right token strip. Gray context tokens lead to one blue outlined goal token. Arrows then lead to a row of blue outlined draft tokens, and finally to a row of solid green edited tokens. A bottom legend labels Context in gray, Goal Token, Draft (Parallel Decoding) in blue, and AutoEdit (Self-Editing) in green. The eye goes first to the large central photo and its colored trajectory.",
+ "caption": "ReflectDrive-2 plans through a decision–draft–reflect process in a shared discrete token space. Conditioned on surround-view cameras, navigation, and ego-state, a goal-point posterior commits a single Goal Token, masked discrete diffusion parallel-decodes a trajectory Draft (blue), and AutoEdit rewrites tokens in place to yield the final Plan (green).",
+ "caption_source": "latex",
+ "abstract": "We introduce ReflectDrive-2, a masked discrete diffusion planner with separate action expert for autonomous driving that represents plans as discrete trajectory tokens and generates them through parallel masked decoding. This discrete token space enables in-place trajectory revision: AutoEdit rewrites selected tokens using the same model, without requiring an auxiliary refinement network. To train this capability, we use a two-stage procedure. First, we construct structure-aware perturbations of expert trajectories along longitudinal progress and lateral heading directions and supervise the model to recover the original expert trajectory. We then fine-tune the full decision--draft--reflect rollout with reinforcement learning (RL), assigning terminal driving reward to the final post-edit trajectory and propagating policy-gradient credit through full-rollout transitions. Full-rollout RL proves crucial for coupling drafting and editing: under supervised training alone, inference-time AutoEdit improves PDMS by at most $0.3$, whereas RL increases its gain to $1.9$. We also co-design an efficient reflective decoding stack for the decision--draft--reflect pipeline, combining shared-prefix KV reuse, Alternating Step Decode, and fused on-device unmasking. On NAVSIM, ReflectDrive-2 achieves $91.0$ PDMS with camera-only input and $94.8$ PDMS in a best-of-6 oracle setting, while running at $31.8$ ms average latency on NVIDIA Thor.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=TgXR6fi9CK",
+  "arxiv": "https://arxiv.org/abs/2605.04647",
+  "pdf": "https://arxiv.org/pdf/2605.04647",
+  "proceedings": null,
+  "virtual": "https://neurips.cc/virtual/2026/poster/152356",
+  "code": null
+ },
+ "license": "http://arxiv.org/licenses/nonexclusive-distrib/1.0/",
+ "img": "none",
+ "image_url": null,
+ "thumb_url": null,
+ "figure_page": 1,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.6
+}

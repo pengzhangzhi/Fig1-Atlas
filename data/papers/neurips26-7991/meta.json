@@ -1,0 +1,50 @@
+{
+ "id": "neurips26-7991",
+ "title": "LoRIF: Pushing the Scalability Frontier of Training Data Attribution",
+ "authors": [
+  "Shuangqi Li",
+  "Hieu Minh Le",
+  "Jingyi Xu",
+  "Mathieu Salzmann"
+ ],
+ "venue": "NeurIPS 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "Data-centric AI->Data-centric AI methods and tools",
+ "role": "pipeline",
+ "role2": "problem-setup",
+ "claim": "A standard pipeline has two scaling bottlenecks; compressing each with a complementary low-rank step yields a more scalable combined scoring rule.",
+ "layout": "3 stacked tiers: bottlenecks on top, two side-by-side fixes, combined formula below",
+ "tags": [
+  "low-rank",
+  "scalability",
+  "bottleneck-analysis",
+  "matrix-factorization",
+  "influence-functions"
+ ],
+ "style": [
+  "math-heavy",
+  "colorful",
+  "minimal"
+ ],
+ "description": "A three-tier diagram with a rounded box for each tier. The top gray tier, 'Projection-based attribution', has two numbered bottlenecks side by side. Bottleneck 1 is gradient storage: a matrix G̃_i is flattened to a vector and stacked over N examples, labeled O(D). Bottleneck 2 is dense curvature memory: G leads to H^-1, approximated by (GᵀG + λI)^-1, labeled O(D²). Both are flagged in orange-red bands. Arrows lead down to two middle panels. The green left panel, 'Compress each gradient', shows G̃_i ≈ u_i × v_iᵀ and a cost drop from O(D) to O(c(d1+d2)). The blue right panel, 'Compress the curvature', shows G ≈ U_r Σ_r V_rᵀ, a spectrum bar chart and a drop from O(D²) to O(Dr). Both arrows merge into the bottom tier, an influence-scoring formula built from green and blue matrix blocks.",
+ "caption": "Method Overview. (Top): LoGRA-style attribution faces two scaling bottlenecks: storing projected gradients with $\\mathcal{O}(D_\\ell)$ space per example per layer, and forming the dense $D_\\ell{\\times}D_\\ell$ curvature approximation with $\\mathcal{O}(D_\\ell^2)$ memory. LoRIF targets each bottleneck with a complementary low-rank step. (Mid-left): Rank-$c$ factorization compresses each projected per-example gradient, reducing persistent storage and query-time I/O. (Mid-right): A rank-$r$ truncated SVD of the per-layer training-gradient matrix $G$ reduces curvature memory to $\\mathcal{O}(D_\\ell r)$. (Bottom): Combining both compressions and applying the Woodbury identity result in a more scalable influence scoring method, making larger projection dimensions practical under storage, I/O and memory constraints.",
+ "caption_source": "latex",
+ "abstract": "Training data attribution (TDA) identifies which training examples most influenced a model's prediction. Influence function methods are a theoretically grounded family of TDA methods and exploit gradients. To overcome the scalability challenge arising from gradient computation, the most popular strategy is random projection (e.g., TRAK, LoGRA). However, this still faces two bottlenecks when scaling to large training sets and high-quality attribution: \\emph{(i)} storing and loading projected per-example gradients for all $N$ training examples, where query latency is dominated by I/O; and \\emph{(ii)} forming the $D \\times D$ inverse Hessian approximation, which costs $O(D^2)$ memory. Both bottlenecks scale with the projection dimension $D$, yet increasing $D$ is necessary for attribution quality -- creating a quality--scalability tradeoff. We introduce \\textbf{LoRIF} (\\textbf{Lo}w-\\textbf{R}ank \\textbf{I}nfluence \\textbf{F}unctions), which exploits low-rank structures of gradient to address both bottlenecks. First, we store rank-$c$ factors of projected per-example gradients rather than full matrices, reducing storage and query-time I/O from $O(D)$ to $O(c\\sqrt{D})$ per layer per sample. Second, we use truncated SVD with the Woodbury identity to approximate the inverse Hessian term in an $r$-dimensional subspace, reducing memory from $O(D^2)$ to $O(Dr)$. On models from 0.1B to 70B parameters trained on datasets with millions of examples, LoRIF achieves up to 20$\\times$ storage reduction and query-time speedup compared to LoGRA, while matching or exceeding its attribution quality. LoRIF makes gradient-based TDA practical at frontier scale. Code is available at https://github.com/doub7e/LoRIF.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=tIJbQhZCF4",
+  "arxiv": "https://arxiv.org/abs/2601.21929",
+  "pdf": "https://arxiv.org/pdf/2601.21929",
+  "proceedings": null,
+  "virtual": "https://neurips.cc/virtual/2026/poster/149043",
+  "code": null
+ },
+ "license": "http://creativecommons.org/licenses/by/4.0/",
+ "img": "cc-by",
+ "image_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/images/neurips26-7991.png",
+ "thumb_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/thumbs/neurips26-7991.webp",
+ "figure_page": 3,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.6
+}

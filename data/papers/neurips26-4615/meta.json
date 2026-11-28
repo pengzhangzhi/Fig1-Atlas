@@ -1,0 +1,55 @@
+{
+ "id": "neurips26-4615",
+ "title": "HYVE: Hybrid Views for LLM Context Engineering over Machine Data",
+ "authors": [
+  "Jian Tan",
+  "Fan Bu",
+  "Yuqing Gao",
+  "Devavrat Khanolkar",
+  "Jason Mackay",
+  "Boris Sobolev",
+  "Lei Jin",
+  "Li Zhang"
+ ],
+ "venue": "NeurIPS 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "Applications->Language, Speech and Dialog",
+ "role": "pipeline",
+ "role2": null,
+ "claim": "A preprocessor, a request-scoped datastore and a postprocessor wrap the model call, so it sees compact views of large structured inputs and the full data stays recoverable.",
+ "layout": "1 panel, left-to-right; input column feeds boxed system, postprocessor loop on right",
+ "tags": [
+  "context-engineering",
+  "preprocessing",
+  "hybrid-views",
+  "datastore",
+  "structured-data"
+ ],
+ "style": [
+  "minimal",
+  "text-heavy"
+ ],
+ "description": "A single block diagram that reads left to right. At far left is a tall rounded box labeled Input, listing instructions, descriptions and JSON-like data. Below that are hatched segments for Entities and relationships, Time series, and Deeply nested JSON data, separated by vertical ellipses. An arrow leads to a dark gray Preprocessor bar. From the bar, arrows go up to an LLM Proxy box and down to a Request-scoped datastore box, both inside a large outlined container. Between them is a dotted region called Hybrid view generation. It holds a Column view for analytics and a Row view for entities and relationships, both hatched. At right, a gray circle labeled Postprocessor connects to the LLM Proxy and to the datastore by an SQL query arrow. A Result arrow exits at top right. The palette is grayscale, so the eye goes first to the central container.",
+ "caption": "HYVE architecture. The preprocessor parses input strings with embedded structured segments into hybrid tabular views; the request-scoped datastore retains the full data; and the postprocessor inspects LLM outputs and, when needed, queries the datastore to enrich the response.",
+ "caption_source": "latex",
+ "abstract": "Machine data is central to observability and diagnosis in modern computing systems, appearing in logs, metrics, telemetry traces, and configuration snapshots. When provided to large language models (LLMs), this data typically arrives as a mixture of natural language and structured payloads such as JSON or Python/AST literals. Yet LLMs remain brittle on such inputs, particularly when they are long, deeply nested, and dominated by repetitive structure. We present HYVE (HYbrid ViEw), a framework for LLM context engineering for inputs containing large machine-data payloads, inspired by database management principles. HYVE surrounds model invocation with coordinated preprocessing and postprocessing, centered on a request-scoped datastore augmented with schema information. During preprocessing, HYVE detects repetitive structure in raw inputs, materializes it in the datastore, transforms it into hybrid columnar and row-oriented views, and selectively exposes only the most relevant representation to the LLM. During postprocessing, HYVE either returns the model output directly, queries the datastore to recover omitted information, or performs a bounded additional LLM call for SQL-augmented semantic synthesis. We evaluate HYVE on diverse real-world workloads spanning knowledge QA, chart generation, anomaly detection, and multi-step network troubleshooting. Across these benchmarks, HYVE reduces token usage by 50-90% while maintaining or improving output quality. On structured generation tasks, it improves chart-generation accuracy by up to 132% and reduces latency by up to 83%. Overall, HYVE offers a practical approximation to an effectively unbounded context window for prompts dominated by large machine-data payloads.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=VqKTNdjUqP",
+  "arxiv": "https://arxiv.org/abs/2604.05400",
+  "pdf": "https://arxiv.org/pdf/2604.05400",
+  "proceedings": null,
+  "virtual": "https://neurips.cc/virtual/2026/poster/152054",
+  "code": null
+ },
+ "license": "http://creativecommons.org/licenses/by/4.0/",
+ "img": "cc-by",
+ "image_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/images/neurips26-4615.png",
+ "thumb_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/thumbs/neurips26-4615.webp",
+ "figure_page": 0,
+ "qc_flags": [
+  "bad-crop"
+ ],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.9
+}

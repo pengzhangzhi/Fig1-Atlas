@@ -1,0 +1,50 @@
+{
+ "id": "neurips26-2427",
+ "title": "CompactAttention: Accelerating Chunked Prefill with Block-Union KV Selection",
+ "authors": [
+  "Jiwon Song",
+  "Dongwon Jo",
+  "Beomseok Kang",
+  "jae-joon kim"
+ ],
+ "venue": "NeurIPS 2026",
+ "tier": "spotlight",
+ "track": "main",
+ "topic": "Deep Learning->Attention Mechanisms",
+ "role": "teaser-result",
+ "role2": "analysis-finding",
+ "claim": "Existing sparse attention methods lose speedup and pay rising search costs under chunked prefill, while ours gives the best accuracy-speed trade-off.",
+ "layout": "3 panels left-to-right: scatter plot, then two grouped bar charts",
+ "tags": [
+  "sparse-attention",
+  "chunked-prefill",
+  "efficiency",
+  "speedup-tradeoff",
+  "long-context"
+ ],
+ "style": [
+  "plot",
+  "colorful",
+  "minimal"
+ ],
+ "description": "Three side-by-side plots, labeled (a), (b) and (c). Panel (a) is a scatter of RULER 128K accuracy against chunked-prefill speedup. Baselines are gray circles: XAttention, SeerAttention, QUOKA and FlashPrefill. CompactAttention (SA) is a blue star and FlashPrefill (FP) is a green star. Both stars sit in the upper right, and a red \"Better\" arrow points up and to the right. Panel (b) is a grouped bar chart of kernel speedup over dense attention at 64K KV and 90% sparsity. Each method has an orange one-shot bar and a green chunked bar (CS=1024), and the chunked bars are much lower. A dashed line marks the ideal 10x speedup. Panel (c) is a bar chart of pattern-search time per layer. Hatched bars show one-shot cost and solid colored bars show the total across 64 chunks. XAttention's chunked bar is tallest at 65.4 ms. Bar values are printed above the bars.",
+ "caption": "(a) CompactAttention achieves the best accuracy--speedup trade-off. (b) Block-sparse kernels under chunked prefill ($Q \\ll KV$) fall far below one-shot and ideal speedups. (c) Pattern search cost accumulates across chunks, with XAttention incurring the highest overhead.",
+ "caption_source": "latex",
+ "abstract": "Chunked prefill has become a widely adopted serving strategy for long-context large language models, but efficient attention computation in this regime remains challenging. Existing sparse attention methods are primarily designed for one-shot prefill and do not translate efficiently to chunked prefill: block-sparse kernels lose efficiency when the query length is limited by the chunk size, while fine-grained pattern search becomes costly when repeated over the accumulated KV cache at every chunk. QUOKA, a recent method that directly targets chunked prefill, avoids sparse-kernel overhead but relies on query-subsampled, token-level KV selection, which can miss query-specific KV entries and introduce explicit KV-copy overhead. To address these limitations, we propose CompactAttention, a chunked-prefill attention mechanism based on Block-Union KV Selection. CompactAttention treats 2D block-sparse masks as KV-selection signals rather than direct sparse-kernel execution plans, and converts them into GQA-aware per-group KV block tables through Q-block union and intra-group union. This construction produces block tables that preserve all KV blocks selected by the input masks under paged execution constraints, enabling selected KV blocks to be accessed in place without explicit KV compaction. On LLaMA-3.1-8B-Instruct, CompactAttention maintains accuracy close to dense attention on the RULER benchmark while delivering up to 2.79$\\times$ attention speedup over dense attention and 1.25$\\times$ over FlashPrefill at 128K context length under chunked prefill.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=H2kz1bJFuL",
+  "arxiv": "https://arxiv.org/abs/2605.16839",
+  "pdf": "https://arxiv.org/pdf/2605.16839",
+  "proceedings": null,
+  "virtual": "https://neurips.cc/virtual/2026/poster/153990",
+  "code": "https://github.com/jiwonsong-dev/CompactAttention"
+ },
+ "license": "http://creativecommons.org/licenses/by/4.0/",
+ "img": "cc-by",
+ "image_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/images/neurips26-2427.png",
+ "thumb_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/thumbs/neurips26-2427.webp",
+ "figure_page": 1,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.6
+}

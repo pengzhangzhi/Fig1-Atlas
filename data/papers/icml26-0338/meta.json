@@ -1,0 +1,51 @@
+{
+ "id": "icml26-0338",
+ "title": "Unleashing Implicit Rewards: Prefix-Value Learning for Distribution-Level Optimization",
+ "authors": [
+  "Shiping Gao",
+  "Hongzhan Chen",
+  "Xiaojun Quan",
+  "Qifan Wang",
+  "Lifu Huang"
+ ],
+ "venue": "ICML 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "Reinforcement Learning->Deep RL",
+ "role": "prior-vs-ours",
+ "role2": "overview-framework",
+ "claim": "Existing reward-model paradigms are costly or suffer a train-inference mismatch; ours trains exactly what it uses, cheaply.",
+ "layout": "4 panels left-to-right plus bottom notation and comparison tables with check/cross marks",
+ "tags": [
+  "process-reward-model",
+  "implicit-rewards",
+  "paradigm-comparison",
+  "train-inference-consistency",
+  "reinforcement-learning"
+ ],
+ "style": [
+  "icon-heavy",
+  "text-heavy",
+  "colorful"
+ ],
+ "description": "A wide figure with four columns, each a computation graph for one reward-model paradigm: Explicit PRM, Generative PRM, Implicit PRM (used in PRIME), and the proposed Implicit Prefix Value RM (used in DistRL). Each column has a row of step or token boxes at the top. Arrows lead from the boxes to circular reward nodes, then to labels or to a summed reward and a sigmoid. The first two columns end in annotation boxes with red text about high cost, plus a lock icon for 'Difficult for Online Update in RL'. The third column shows a red 'Train-Inference GAP!' box. The fourth column uses green dashed outcome-label boxes, the TD advantage formula, and a green arrow reading 'What We Train is What We Use!'. A bottom-left notation table and a bottom-right comparison table with red crosses and green checks cover five criteria. The IPVRM column is highlighted in blue.",
+ "caption": "Paradigm comparison and qualitative trade-offs. Existing paradigms either incur high annotation/inference costs (Explicit/Generative PRMs) or suffer from a train--inference objective mismatch (Implicit PRMs). Our proposed IPVRM resolves these limitations by directly learning prefix-conditioned values $V_\\phi(s_t)$, achieving both low-cost efficiency and training consistency (\"what we train is what we use\") to support Distribution-Level RL.",
+ "caption_source": "latex",
+ "abstract": "Process reward models (PRMs) provide fine-grained supervision for reasoning, but reliable PRMs often require step annotations or heavy verification pipelines, making them costly to scale and refresh during online RL. Implicit PRMs reduce this cost by training log-likelihood-ratio rewards from trajectory-level outcome labels. However, the log-ratio is constrained only as a sequence-level aggregate during training, while inference decomposes it into token- or step-level scores for partial prefixes. This train-inference mismatch leaves local credits weakly identified, so distribution-wide scoring can amplify misleading advantages. We propose Implicit Prefix-Value Reward Model (IPVRM), which directly learns the probability of eventual correctness for each prefix from outcome labels. Step signals are then obtained as temporal-difference (TD) differences between consecutive prefix values, aligning the training target with inference-time use. IPVRM markedly improves step-verification F1 on ProcessBench. To exploit these prefix values during policy optimization, we further introduce Distribution-Level RL (DistRL), which applies TD advantages to both sampled tokens and high-probability candidate tokens, providing dense counterfactual updates without additional rollouts. Experiments show that DistRL brings limited gains with unreliable implicit rewards, but consistently improves downstream reasoning when paired with IPVRM. The implementation of our method is available at https://github.com/gaoshiping/IPVRM .",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=372oAcqeKh",
+  "arxiv": "https://arxiv.org/abs/2604.13197",
+  "pdf": "https://raw.githubusercontent.com/mlresearch/v306/main/assets/gao26f/gao26f.pdf",
+  "proceedings": "https://proceedings.mlr.press/v306/gao26f.html",
+  "virtual": "https://icml.cc/virtual/2026/poster/66502",
+  "code": "https://github.com/gaoshiping/IPVRM"
+ },
+ "license": "http://arxiv.org/licenses/nonexclusive-distrib/1.0/",
+ "img": "none",
+ "image_url": null,
+ "thumb_url": null,
+ "figure_page": 1,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.85
+}

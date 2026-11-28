@@ -1,0 +1,59 @@
+{
+ "id": "icml26-3131",
+ "title": "DisPPO: Quantile-Based Distributional Reinforcement Learning for Large Language Models",
+ "authors": [
+  "Zhijian Zhou",
+  "Long Li",
+  "Xuan Zhang",
+  "Zongkai Liu",
+  "Yanting Miao",
+  "Yuchen Liu",
+  "Deshu Chen",
+  "Ke Li",
+  "Xing Sun",
+  "Ruoxi Jiang",
+  "Xiaoyu Tan",
+  "Chao Qu",
+  "Yuan Qi"
+ ],
+ "venue": "ICML 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "Reinforcement Learning->Everything Else",
+ "role": "pipeline",
+ "role2": null,
+ "claim": "Replacing a scalar critic with a quantile-based distributional critic head inside an actor-critic loop yields richer value and advantage estimates.",
+ "layout": "Single 3D stacked-block diagram, bottom-to-top, with dashed inset callouts for details",
+ "tags": [
+  "actor-critic",
+  "distributional-rl",
+  "quantile-regression",
+  "credit-assignment",
+  "llm-reasoning"
+ ],
+ "style": [
+  "colorful",
+  "math-heavy",
+  "icon-heavy"
+ ],
+ "description": "A 3D-style stacked block diagram of the DisPPO architecture, read bottom to top. A Prompt feeds the pink Actor Model, which produces a Response. A bracket on the left notes the actor and critic are initialized with the same backbone. The Response goes to a Verifier, then to a red Reward block, then up to a light-blue D-GAE block. Prompt and Response also feed the beige Critic Model Backbone, then a pink Hidden State block, then a cyan Distributional Critic Head. The head outputs rows of quantile cubes over overlaid return distributions Z^π(s_t). Red arrows carry the quantile Huber loss back to the critic and the PPO loss back to the actor. Three dashed insets show the quantile head construction (softplus, cumsum, linear layer), a bimodal distribution with the value as the mean of the quantiles, and the D-GAE equations. The eye goes first to the large central blocks.",
+ "caption": "Overview of DisPPO . The actor maps a prompt to a",
+ "caption_source": "pdf",
+ "abstract": "Reinforcement Learning (RL) has become a cornerstone for enhancing the reasoning capabilities of Large Language Models (LLMs). However, standard actor-critic methods, such as PPO, rely on scalar value functions that estimate only the expectation of cumulative returns. This reduction inherently discards higher-order statistical information (e.g., variance and multimodality), leading to inaccurate value estimation and suboptimal credit assignment in complex tasks. While Distributional RL offers a solution by modeling the full return distribution, its application to LLMs remains challenging due to the computational intractability of value-based operations over large vocabularies and the instability and memory burden of off-policy replay mechanisms. In this paper, we propose DisPPO, a novel on-policy framework that seamlessly integrates non-parametric quantile regression into PPO. Theoretically, we prove that our distributional update operator---composed of the $\\lambda$-return Bellman operator and quantile projection---is a contraction mapping in the Wasserstein metric, guaranteeing convergence to a unique fixed point. Empirically, we evaluate DisPPO using Llama and Qwen models across diverse benchmarks, including mathematical reasoning and Text-to-SQL generation. DisPPO consistently outperforms standard PPO and recent group-based baselines in both Pass@1 and Pass@$k$ metrics, demonstrating that distributional critics provide a richer, more robust learning signal for large-scale reasoning models.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=Tkdgg5uqNK",
+  "arxiv": null,
+  "pdf": "https://raw.githubusercontent.com/mlresearch/v306/main/assets/zhou26z/zhou26z.pdf",
+  "proceedings": "https://proceedings.mlr.press/v306/zhou26z.html",
+  "virtual": "https://icml.cc/virtual/2026/poster/63791",
+  "code": "https://github.com/ZhijianZhou/Disppo"
+ },
+ "license": null,
+ "img": "none",
+ "image_url": null,
+ "thumb_url": null,
+ "figure_page": 0,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.9
+}

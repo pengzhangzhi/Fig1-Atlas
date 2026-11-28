@@ -1,0 +1,49 @@
+{
+ "id": "neurips26-8510",
+ "title": "PBT-Bench: Benchmarking AI Agents on Property-Based Testing",
+ "authors": [
+  "Guohao Jing",
+  "Xinqi Wang",
+  "Liao Zhang",
+  "Simon Du"
+ ],
+ "venue": "NeurIPS 2026",
+ "tier": "poster",
+ "track": "Evaluations_and_Datasets_Track",
+ "topic": "Data-centric AI->Data-centric AI methods and tools",
+ "role": "problem-setup",
+ "role2": null,
+ "claim": "A concrete property-based test shows how a generator strategy plus invariants can expose a hidden bug in code.",
+ "layout": "single code listing, top-to-bottom, line numbers, syntax highlighting with inline comments",
+ "tags": [
+  "property-based-testing",
+  "code-example",
+  "invariants",
+  "benchmark",
+  "bug-detection"
+ ],
+ "style": [
+  "minimal",
+  "text-heavy"
+ ],
+ "description": "A single Python code snippet with line numbers 9–14, set in monospace type with syntax highlighting. Line 9 shows the @given(st.lists(st.integers())) decorator. Line 10 is a grey comment: 'Built-in strategy generating arbitrary integer lists'. Line 11 defines test(xs), and line 12 calls ys = qsort(xs). Line 13 is a grey comment: 'properties: sorted output + multiset equivalence with input'. Line 14 asserts is_sorted(ys) and same_multiset(xs, ys). Blue is used for the keywords def, assert and and. Everything else is black or grey. There are no arrows, boxes or diagrams, and the eye goes first to the @given decorator at the top. The caption's mentions of duplicates, the missing-pivot defect and shrinking are not shown in the image.",
+ "caption": "A Hypothesis property test exposing a quicksort bug. The @given decorator binds a strategy (here random integer lists) to the test's argument; lists with duplicates trigger the missing-pivot defect, caught by the sortedness and permutation properties, and Hypothesis shrinks the failing input to a minimal one.",
+ "caption_source": "latex",
+ "abstract": "Existing code benchmarks measure whether an agent can produce any test that reproduces a known bug, or whether it can produce a patch that fixes a described issue. Neither isolates the distinct skill of property-based testing: deriving a semantic invariant from documentation, and then constructing an input-generation strategy precise enough to make a random search reveal the violation. We introduce PBT-Bench, a benchmark of 100 curated property-based testing problems across 40 real Python libraries. Each problem injects one or more semantic bugs (365 in total, mean 3.65 per problem) designed so that default-strategy random inputs almost never trigger them; the agent must read the library's documentation, identify the relevant invariant, and specify a Hypothesis @given strategy that concentrates mass in the trigger region. Bugs are stratified across three difficulty levels (L1-L3) spanning single-constraint boundary bugs to stateful, cross-function protocol violations. We evaluate eight contemporary LLMs under two prompting regimes (open-ended baseline vs. explicit Hypothesis scaffolding) for three independent runs per configuration. Bug recall under the PBT-guided prompt ranges from 42.1% to 83.4% across models; under the open-ended baseline, from 31.4% to 76.7%. Hypothesis scaffolding lifts mid-capability models by over 20 percentage points, but yields smaller gains for the strongest models, with two exceptions showing degradation, suggesting the structured prompt can interfere with certain model behaviours rather than complementing them. The hardest bugs prove model-specific: different architectures fail on different problems, leaving persistent gaps that no single model closes. We release the benchmark, harness, and full evaluation corpus to support downstream work on documentation-grounded semantic reasoning.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=wota1ZN4By",
+  "arxiv": "https://arxiv.org/abs/2605.15229",
+  "pdf": "https://arxiv.org/pdf/2605.15229",
+  "proceedings": null,
+  "virtual": "https://neurips.cc/virtual/2026/poster/138920",
+  "code": "https://github.com/ElliotXinqiWang/pbt-bench"
+ },
+ "license": "http://creativecommons.org/licenses/by/4.0/",
+ "img": "cc-by",
+ "image_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/images/neurips26-8510.png",
+ "thumb_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/thumbs/neurips26-8510.webp",
+ "figure_page": 1,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.5
+}

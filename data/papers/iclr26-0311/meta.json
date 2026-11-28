@@ -1,0 +1,49 @@
+{
+ "id": "iclr26-0311",
+ "title": "EAST: Early Action Prediction Sampling Strategy with Token Masking",
+ "authors": [
+  "Iva Sović",
+  "Ivan Martinović",
+  "Marin Oršić"
+ ],
+ "venue": "ICLR 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "Computer Vision->Classification and Understanding",
+ "role": "pipeline",
+ "role2": null,
+ "claim": "Train on both observed and future inputs through a shared encoder, so a forecasting branch can learn from oracle features.",
+ "layout": "2 stacked rows, left-to-right, dotted shared-parameter links between rows",
+ "tags": [
+  "video-understanding",
+  "forecasting",
+  "oracle-distillation",
+  "shared-weights",
+  "token-masking"
+ ],
+ "style": [
+  "colorful",
+  "icon-heavy",
+  "photo/real data"
+ ],
+ "description": "A two-row left-to-right pipeline diagram. On the far left, a vertical time arrow runs beside stacked video frames. The top frames are the present, outlined in blue, and the bottom frames are the future, in red. Both sets have grey masked patches. The top row passes the present frames through a green video encoder to blue token features E^o. A red decoder then forecasts future features F-hat in teal. These go through mean pooling and a classifier h, giving the prediction ŷ^pred and loss L^pred. The bottom row passes the full video through a second video encoder, which shares parameters with the first and is linked by a dotted green line. It outputs blue and red tokens E, then mean pooling and h, giving ŷ^oracle and loss L^oracle. A second dotted line shows that the two h classifiers share parameters. The eye goes first to the colored frames and the encoder and decoder boxes.",
+ "caption": "\\ours\\ uses both present and future frames in training. ViT encoder $\\encoder$ processes the observed frames (blue) and the entire video (blue and red). Decoder $\\decoder$ observes present features $\\encfeats^o$ and forecasts future features $\\decfeats$. $h$ classifies actions from decoder features and oracle encoder features $\\encfeats$. We optimize both classification scores but only use $\\logits_pred$ during inference.",
+ "caption_source": "latex",
+ "abstract": "Early action prediction seeks to anticipate an action before it fully unfolds, but limited visual evidence makes this task especially challenging. We introduce EAST, a simple and efficient framework that enables a model to reason about incomplete observations. In our empirical study, we identify key components when training early action prediction models. Our key contribution is a randomized training strategy that samples a time step separating observed and unobserved video frames, enabling a single model to generalize seamlessly across all test-time observation ratios. We further show that joint learning on both observed and future (oracle) representations significantly boosts performance, even allowing an encoder-only model to excel. To improve scalability, we propose a token masking procedure that cuts memory usage in half and accelerates training by 2x with negligible accuracy loss. Combined with a forecasting decoder, EAST sets a new state of the art on NTU60, SSv2, and UCF101, surpassing previous best work by 10.1, 7.7, and 3.9 percentage points, respectively.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=3Genv8DQgf",
+  "arxiv": "https://arxiv.org/abs/2604.18367",
+  "pdf": "https://proceedings.iclr.cc/paper_files/paper/2026/file/d56ea595db387181a59d9a33c6036554-Paper-Conference.pdf",
+  "proceedings": "https://proceedings.iclr.cc/paper_files/paper/2026/hash/d56ea595db387181a59d9a33c6036554-Abstract-Conference.html",
+  "virtual": "https://iclr.cc/virtual/2026/poster/10011657",
+  "code": "https://ivasovic.github.io/EAST/"
+ },
+ "license": "http://creativecommons.org/licenses/by-nc-sa/4.0/",
+ "img": "cc-by-nc-sa",
+ "image_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/images/iclr26-0311.png",
+ "thumb_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/thumbs/iclr26-0311.webp",
+ "figure_page": 2,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.93
+}

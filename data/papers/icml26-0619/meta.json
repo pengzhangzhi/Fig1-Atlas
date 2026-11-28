@@ -1,0 +1,53 @@
+{
+ "id": "icml26-0619",
+ "title": "Deterministic Inference across Tensor Parallel Sizes That Eliminates Training-Inference Mismatch",
+ "authors": [
+  "Ziyang Zhang",
+  "Xinheng Ding",
+  "Jiayi Yuan",
+  "Rixin Liu",
+  "Huizi Mao",
+  "Jiarong Xing",
+  "Zirui Liu"
+ ],
+ "venue": "ICML 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "Deep Learning->Large Language Models",
+ "role": "problem-setup",
+ "role2": "pipeline",
+ "claim": "Mismatched inference and training engines assign different token probabilities to identical responses, breaking on-policy assumptions in reinforcement learning.",
+ "layout": "Top pipeline diagram with bar chart right; bottom token-level probability comparison strip",
+ "tags": [
+  "reinforcement-learning",
+  "train-inference-mismatch",
+  "numerical-nondeterminism",
+  "tensor-parallelism",
+  "failure-case"
+ ],
+ "style": [
+  "colorful",
+  "plot",
+  "text-heavy"
+ ],
+ "description": "The top row shows an RL loop. A light-blue Rollout System box (vLLM, TP=8) holds a Policy Model with Decode Step and Sampling. It sends Responses (green bars) to a light-orange Training System box (FSDP, TP=1) holding an Actor Model with Model Forward and Loss & Backward. Prompts enter from the left. Arrows lead from each system down to a lower panel. At top right, a blue bar chart plots max probability difference (%) against token index (0–7000), with spikes up to about 14%. The bottom panel shows a text snippet as token boxes. The sampled tokens (Which, what, Alternatively) are highlighted in red. Blue boxes above them show vLLM probabilities and orange boxes below show FSDP probabilities, and the two sets of percentages disagree, for example 65% vs 53% and 51% vs 45%. A legend sits at the bottom.",
+ "caption": "Illustration of probability discrepancies in RL training. Different frameworks and TP sizes produce noticeably probability gap for the same response, hindering stable and truly on-policy RL.",
+ "caption_source": "latex",
+ "abstract": "Deterministic inference is increasingly critical for large language model (LLM) applications such as LLM-as-a-judge evaluation, multi-agent systems, and Reinforcement Learning (RL). However, existing LLM serving frameworks exhibit non-deterministic behavior: identical inputs can yield different outputs when system configurations (e.g., tensor parallel (TP) size, batch size) vary, even under greedy decoding. This arises from the non-associativity of floating-point arithmetic and inconsistent reduction orders across GPUs. While prior work has addressed batch-size-related nondeterminism through batch-invariant kernels, determinism across different TP sizes remains an open problem, particularly in RL settings, where the training engine typically uses Fully Sharded Data Parallel (i.e., TP = 1) while the rollout engine relies on multi-GPU TP to maximize the inference throughput, creating a natural mismatch between the two. This precision mismatch problem may lead to suboptimal performance or even collapse for RL training. We identify and analyze the root causes of TP-induced inconsistency and propose Tree-Based Invariant Kernels (TBIK), a set of TP-invariant matrix multiplication and reduction primitives that guarantee bit-wise identical results regardless of TP size. Our key insight is to align intra- and inter-GPU reduction orders through a unified hierarchical binary tree structure. We implement these kernels in Triton and integrate them into vLLM and FSDP. Experiments confirm zero probability divergence and bit-wise reproducibility for deterministic inference across different TP sizes. Also, we achieve bit-wise identical results between vLLM and FSDP in RL training pipelines with different parallel strategy. Code is available at https://github.com/nanomaoli/llm_reproducibility.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=5eZmlUyFpl",
+  "arxiv": "https://arxiv.org/abs/2511.17826",
+  "pdf": "https://raw.githubusercontent.com/mlresearch/v306/main/assets/zhang26ag/zhang26ag.pdf",
+  "proceedings": "https://proceedings.mlr.press/v306/zhang26ag.html",
+  "virtual": "https://icml.cc/virtual/2026/poster/66224",
+  "code": "https://github.com/nanomaoli/llm_reproducibility"
+ },
+ "license": "http://arxiv.org/licenses/nonexclusive-distrib/1.0/",
+ "img": "none",
+ "image_url": null,
+ "thumb_url": null,
+ "figure_page": 1,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.6
+}

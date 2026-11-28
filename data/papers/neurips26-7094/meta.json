@@ -1,0 +1,50 @@
+{
+ "id": "neurips26-7094",
+ "title": "FreeOcc: Decoupling Ego-Motion for Efficient 4D Occupancy Forecasting via Continuous Flow Matching",
+ "authors": [
+  "Zeping Zhang",
+  "Zhuoya Zhao",
+  "Samy Metari",
+  "Robert Laganiere"
+ ],
+ "venue": "NeurIPS 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "Deep Learning->Generative Models and Autoencoders",
+ "role": "pipeline",
+ "role2": null,
+ "claim": "A modular left-to-right pipeline factors out ego-motion before temporal fusion and routes only uncertain regions to an expensive solver.",
+ "layout": "6 panels, left-to-right, grey module boxes with dashed sensor-dropout lightning paths",
+ "tags": [
+  "pipeline",
+  "world-model",
+  "flow-matching",
+  "ego-motion-decoupling",
+  "uncertainty-routing"
+ ],
+ "style": [
+  "icon-heavy",
+  "colorful",
+  "text-heavy"
+ ],
+ "description": "A wide horizontal block diagram flowing left to right through six grey panels. It starts with an INPUT panel showing a dashed cylinder of green LiDAR point-cloud sweeps. Next is a blue LiDAR ENCODER panel with a Pillar Feature Net, pseudo-image and range encoding branches that merge at a plus node, then a ResNet-FPN backbone. The Continuous-Time Context Fusion panel has a sine-wave timestamp embedding, an orange Delay Gate and a salmon ConvGRU. Dashed lightning icons mark sensor dropout, and the branches sum into H_t. The Explicit Ego-Motion Decoupling panel takes ego poses into an orange SE(2) warper, with a green ConvGRU and a Traj Enc box. The UNC. GUIDED ROUTING panel holds a purple Physics-Aware CFM box, a peach Discriminative Occupancy Decoder and a gold Unc-Aware Blend circle. The OUTPUT panel shows a blue 3D voxel occupancy cube. Pastel colors separate the modules.",
+ "caption": "Overview of FreeOcc. Previous sweeps are encoded into BEV, fused by a continuous-time temporal aggregator, propagated to future ego frames by $\\mathrm{SE}(2)$ warping, and decoded by the Discriminative Occupancy Decoder plus the Physics-Aware Continuous Flow Matching. The final prediction blends both paths using decoder uncertainty.",
+ "caption_source": "latex",
+ "abstract": "Current 4D occupancy world models use heavy cross-attention or deep recurrence to disentangle ego-motion from scene dynamics. This requires significant computational capacity. However, this effort is largely redundant since the ego-vehicle's intended future motion is provided by the downstream motion planner. We present FreeOcc, a lightweight continuous-time world model that introduces explicit $SE(2)$ geometric decoupling into a conditional flow-matching framework. By mathematically factoring out self-motion, we create a purely dynamic feature space. This space supports attention-free temporal fusion and allows physics-constrained ODEs to operate strictly on residual agent kinematics. To maximize deployment efficiency, FreeOcc introduces an uncertainty-aware blending mechanism. This routes well-observed voxels to a single-pass decoder, reserving the ODE solver exclusively for ambiguous, high-uncertainty regions. Requiring only 28.3M parameters-roughly 40% of comparable models-our optimal ensemble mode (FreeOcc-E) runs at 27 FPS. On nuScenes, FreeOcc achieves state-of-the-art forecasting performance with a 0.47 m Near Field Chamfer Distance (NFCD) and 32.1% mIoU. Furthermore, the model transfers zero-shot to SemanticKITTI. It also proves highly robust, retaining 92.8% of its ideal mIoU under significant sensor packet loss and timestamp jitter.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=mu2BHamTXA",
+  "arxiv": "https://arxiv.org/abs/2611.08128",
+  "pdf": "https://arxiv.org/pdf/2611.08128",
+  "proceedings": null,
+  "virtual": "https://neurips.cc/virtual/2026/poster/149840",
+  "code": null
+ },
+ "license": "http://arxiv.org/licenses/nonexclusive-distrib/1.0/",
+ "img": "none",
+ "image_url": null,
+ "thumb_url": null,
+ "figure_page": 2,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.93
+}

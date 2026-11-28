@@ -1,0 +1,57 @@
+{
+ "id": "icml26-5531",
+ "title": "Stochastic Sparse Attention for Memory-Bound Inference",
+ "authors": [
+  "Kyle Lee",
+  "Corentin Delacour",
+  "Kevin Callahan-Coray",
+  "Kyle Jiang",
+  "Can Yaras",
+  "Samet Oymak",
+  "Tathagata Srimani",
+  "Kerem Camsari"
+ ],
+ "venue": "ICML 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "Deep Learning->Attention Mechanisms",
+ "role": "pipeline",
+ "role2": null,
+ "claim": "Sparsify a costly dense aggregation by sampling a few indices from a distribution, gathering those rows, and summing to approximate the full result.",
+ "layout": "3 stages left-to-right (Sample, Gather, Sum), red arrows fan into formula",
+ "tags": [
+  "stochastic-sampling",
+  "sparse-attention",
+  "gather-and-add",
+  "efficiency",
+  "unbiased-estimator"
+ ],
+ "style": [
+  "minimal",
+  "math-heavy",
+  "colorful"
+ ],
+ "description": "A three-stage left-to-right diagram on a white background. On the left, titled 'Sample', is a horizontal row of ten cells representing the attention distribution, softmax(qK^T/sqrt(d_k)) in R^{1×n_k}. Three cells are shaded light blue to mark the sampled indices. In the center, titled 'Gather', is a tall vertical stack of ten rows representing V in R^{n_k×d_k}, with three rows shaded blue to match the sampled indices. Three red arrows run from these blue rows to the right. On the right, titled 'Sum', is the formula (1/S) Σ_{s=1}^{S} V_{i_s} ≈ AV. The eye goes first to the blue highlights and then follows the red arrows to the formula. The figure is minimal, with black outlines and large sans-serif labels.",
+ "caption": "SANTA requires $S \\ll n_k$ memory accesses to sampled rows of $V$, eliminating multiplications following the softmax operation. Normalization by $S$ is a bit shift if $S$ is a power of 2.",
+ "caption_source": "latex",
+ "abstract": "Autoregressive decoding becomes bandwidth-limited at long contexts, as generating each token requires reading all $n_k$ key and value vectors from KV cache. We present Stochastic Additive No-mulT Attention (SANTA), a method that sparsifies value-cache access by sampling $S \\ll n_k$ indices from the post-softmax distribution and aggregates only those value rows. This yields an unbiased estimator of the post-softmax value aggregation while replacing value-stage multiply-accumulates with gather-and-add. We introduce stratified and systematic sampling to design variance-reduced, GPU-friendly variants. Evaluated on Llama-3.1-8B-Instruct at 32k-token contexts, S$^2$ANTA matches baseline accuracy while achieving up to $1.5\\times$ decode-step attention-kernel speedup over FlashInfer and FlashDecoding on an NVIDIA RTX 6000 Ada. In batched long-context generation, these kernel gains translate to up to $1.25\\times$ end-to-end decode-latency speedup. Finally, we propose Bernoulli $qK^\\mathsf{T}$ sampling as a complementary technique to sparsify the score stage, reducing key-feature access through stochastic ternary queries. Both methods are complementary to upstream quantization, low-rank projection, KV-cache compression, and KV-cache selection methods. Together, they point toward sparse, multiplier-free, and energy-efficient inference. We open-source our kernels at: https://github.com/OPUSLab/SANTA.git",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=ptaIjzIuoY",
+  "arxiv": "https://arxiv.org/abs/2605.01910",
+  "pdf": "https://raw.githubusercontent.com/mlresearch/v306/main/assets/lee26j/lee26j.pdf",
+  "proceedings": "https://proceedings.mlr.press/v306/lee26j.html",
+  "virtual": "https://icml.cc/virtual/2026/poster/61465",
+  "code": null
+ },
+ "license": "http://arxiv.org/licenses/nonexclusive-distrib/1.0/",
+ "img": "none",
+ "image_url": null,
+ "thumb_url": null,
+ "figure_page": 1,
+ "qc_flags": [
+  "low-role-confidence",
+  "bad-crop"
+ ],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": null
+}

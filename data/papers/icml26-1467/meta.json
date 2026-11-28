@@ -1,0 +1,48 @@
+{
+ "id": "icml26-1467",
+ "title": "Black-Box Detection of LLM-Generated Text Using Generalized Jensen Shannon Divergence",
+ "authors": [
+  "Shuangyi Chen",
+  "Ashish Khisti"
+ ],
+ "venue": "ICML 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "Applications->Language, Speech and Dialog",
+ "role": "pipeline",
+ "role2": null,
+ "claim": "A method builds fixed reference statistics once offline, then scores each new input by comparing its statistics to those references.",
+ "layout": "2 rows (offline top, online bottom), left-to-right, dashed arrows linking stages",
+ "tags": [
+  "offline-online",
+  "reference-based",
+  "detection",
+  "discretization",
+  "transition-matrix"
+ ],
+ "style": [
+  "colorful",
+  "icon-heavy",
+  "minimal"
+ ],
+ "description": "A two-row pipeline diagram. The top row, labeled 'Offline (once): build references', has a blue Human Corpus box and an orange Machine Corpus box. Each feeds a gray Proxy LM box (OpenAI logo) that outputs surprisals s_{1:N}. Dashed arrows lead both into a central gray 'Shared quantizer q_k' box with a staircase icon. State sequences then flow to a boxed pair of overlapping heatmaps, the reference transition matrices M_human (blue) and M_machine (orange), with person and robot icons. The bottom row, labeled 'Online (per text): score a passage', runs from a purple Test Text box through a Proxy LM and a smaller quantizer q_k. It produces a purple M_test heatmap and feeds a rounded 'GJS score' box. That box gives ΔGJS as a difference of two GJS terms, with 'Higher → human, Lower → machine'. Colors code human, machine, and test.",
+ "caption": "SurpMark framework. Offline, we build human/machine reference transition matrices by scoring corpora with a proxy LM, discretizing surprisal via a shared $q_k$, and counting state transitions. Online, a test passage is summarized the same way and assigned a GJS score to measure proximity to human vs. machine references. Details are in Algorithm [ref] and [ref] in Appendix [ref].",
+ "caption_source": "latex",
+ "abstract": "We study black-box detection of machine-generated text under practical constraints: the scoring model (proxy LM) may mismatch the unknown source model, and per-input contrastive generation is costly. We propose SurpMark, a reference-based detector that summarizes a passage by the dynamics of its token surprisals. SurpMark discretizes surprisals into interpretable states, estimates a state-transition matrix for the test text, and scores it via a generalized Jensen-Shannon (GJS) gap between the test transitions and two fixed references (human vs. machine) built once from existing corpora. Theoretically, we derive design guidance for how the discretization bins should scale with data and provide a principled justification for our test statistic. Empirically, across multiple datasets, source models, and scenarios, SurpMark consistently matches or surpasses baselines, demonstrating strong robustness across domains and generators; our experiments on hyperparameter sensitivity exhibit trends that our theoretical results help to explain.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=E2kWotHfT7",
+  "arxiv": "https://arxiv.org/abs/2510.07500",
+  "pdf": "https://raw.githubusercontent.com/mlresearch/v306/main/assets/chen26bf/chen26bf.pdf",
+  "proceedings": "https://proceedings.mlr.press/v306/chen26bf.html",
+  "virtual": "https://icml.cc/virtual/2026/poster/65399",
+  "code": null
+ },
+ "license": "http://creativecommons.org/licenses/by/4.0/",
+ "img": "cc-by",
+ "image_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/images/icml26-1467.png",
+ "thumb_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/thumbs/icml26-1467.webp",
+ "figure_page": 1,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.95
+}

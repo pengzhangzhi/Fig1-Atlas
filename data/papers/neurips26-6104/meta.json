@@ -1,0 +1,52 @@
+{
+ "id": "neurips26-6104",
+ "title": "Orthrus: Memory-Efficient Parallel Token Generation via Dual-View Diffusion",
+ "authors": [
+  "Van Chien Nguyen",
+  "Chaitra Hegde",
+  "Van-Cuong Pham",
+  "Ryan Rossi",
+  "Franck Dernoncourt",
+  "Thien H Nguyen"
+ ],
+ "venue": "NeurIPS 2026",
+ "tier": "spotlight",
+ "track": "main",
+ "topic": "Deep Learning->Attention Mechanisms",
+ "role": "pipeline",
+ "role2": "overview-framework",
+ "claim": "A frozen base model plus a lightweight trainable parallel path can share one cache, giving two views from one architecture.",
+ "layout": "3 panels, left-to-right, zoom-in connectors from stack to block to weights",
+ "tags": [
+  "dual-view",
+  "shared-cache",
+  "frozen-backbone",
+  "parallel-decoding",
+  "architecture"
+ ],
+ "style": [
+  "colorful",
+  "icon-heavy",
+  "minimal"
+ ],
+ "description": "The figure has three parts, read left to right. At left, a pale blue rounded box shows the full model as a stack: Embedding, Orthrus Blocks with ellipsis dots, and LM Head. Snowflake icons mark the frozen parts. Dotted lines zoom from one block into the middle panel, which shows the block internals. A Norm feeds two parallel paths: a blue frozen AR-Head attention and a red diffusion-head attention with a flame icon for trainable. Both are joined by a green line to a green Shared KV Cache box. The paths then merge into Norm and MLP, with a residual loop, and go to the output arrow. At right, a dashed box titled Weight Initialization shows the blue W_Q, W_K, W_V weights with arrows copying into the red W_diff weights. Blue marks frozen parts and red marks trainable ones.",
+ "caption": "The Orthrus dual-view architecture. Each Orthrus block features two distinct, parallel attention paths: a frozen AR head (blue) and a trainable diffusion head (red). The frozen AR head is used to encode context into KV representations, while the diffusion head enables parallel token generation. Both paths seamlessly attend over this single shared cache.",
+ "caption_source": "latex",
+ "abstract": "We introduce Orthrus, a simple and efficient dual-architecture framework that unifies the exact generation fidelity of autoregressive Large Language Models (LLMs) with the high-speed parallel token generation of diffusion models. The sequential nature of standard autoregressive decoding represents a fundamental bottleneck for high-throughput inference. While diffusion language models attempt to break this barrier via parallel generation, they suffer from significant performance degradation, high training costs, and a lack of rigorous convergence guarantees. Orthrus resolves this dichotomy natively. Designed to seamlessly integrate into existing Transformers, the framework augments a frozen LLM with a lightweight, trainable module to create a parallel diffusion view alongside the standard autoregressive view. In this unified system, both views attend to the exact same high-fidelity Key-Value (KV) cache; the autoregressive head executes context pre-filling to construct accurate KV representations, while the diffusion head executes parallel generation. By employing an exact consensus mechanism between the two views, Orthrus guarantees lossless inference, delivering up to a 7.8x speedup with only an O(1) memory cache overhead and minimal parameter additions.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=fwaVRSuVPd",
+  "arxiv": "https://arxiv.org/abs/2605.12825",
+  "pdf": "https://arxiv.org/pdf/2605.12825",
+  "proceedings": null,
+  "virtual": "https://neurips.cc/virtual/2026/poster/150719",
+  "code": "https://github.com/chiennv2000/orthrus"
+ },
+ "license": "http://creativecommons.org/licenses/by/4.0/",
+ "img": "cc-by",
+ "image_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/images/neurips26-6104.png",
+ "thumb_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/thumbs/neurips26-6104.webp",
+ "figure_page": 3,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.6
+}

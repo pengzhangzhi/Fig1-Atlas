@@ -1,0 +1,56 @@
+{
+ "id": "neurips26-6236",
+ "title": "Beyond the Trial-and-Error Loop: Hybrid Projection and Automated Tuning for Distributed Training",
+ "authors": [
+  "Anshu Raina",
+  "Peyman Razaghi",
+  "Yuankai Chen",
+  "Cheng Yao",
+  "Yao Fu",
+  "Vidushi Goyal",
+  "Devang Patel",
+  "Wen Xie",
+  "Zhenyu Gu",
+  "Emad Barsoum"
+ ],
+ "venue": "NeurIPS 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "Optimization->Large Scale, Parallel and Distributed",
+ "role": "pipeline",
+ "role2": "overview-framework",
+ "claim": "A system takes specifications through modeling components into a fast scoring oracle that drives both projection and an automated search agent.",
+ "layout": "4 columns, left-to-right, dashed color-coded groups, feedback loop between oracle and agent",
+ "tags": [
+  "system-architecture",
+  "performance-modeling",
+  "oracle-guided-search",
+  "automated-tuning",
+  "distributed-training"
+ ],
+ "style": [
+  "minimal",
+  "colorful",
+  "text-heavy"
+ ],
+ "description": "A four-column block diagram read left to right, with the column headers Inputs, Modeling (§3.1), Projection Oracle and Output / Agent (§3.2). The left column holds three blue input boxes: Model Card, Hardware Profile and Cluster Spec. Each has an arrow to one of three green modeling boxes: Memory Projector, Layer Profiler (bench/sim), and Comm + Pipeline + Parallelism Models. Arrows from all three green boxes converge on one central yellow box, Memory (MB) + Throughput (tok/s/GPU). From that box, one arrow goes to the yellow Multi-Node Projection box. A bidirectional pair of arrows links it to the pink Tuning Agent box, which is the feedback loop. A downward arrow leads from the agent to the pink Recommended Config + Recipe box. Each column sits inside a dashed rounded outline in a matching color. Pastel fills and bold black text draw the eye to the central yellow oracle.",
+ "caption": "\\sysname architecture. Modeling components consume model card, hardware profile, and cluster spec; the projection oracle returns a memory and throughput estimate that drives both multi-node projection and the \\agentname's iterative search.",
+ "caption_source": "latex",
+ "abstract": "Configuring distributed LLM training across hundreds of GPUs requires jointly optimizing tensor, pipeline, expert, context, and data parallelism alongside micro-batch size, recomputation, sharding, and overlap, a combinatorial space where memory legality can hinge on a single byte of activation accounting. Today, teams navigate it through expensive multi-node trial and error, burning GPU-hours on crashes and suboptimal recipes. We present Primus Projection, which closes this loop with two coupled components. First, a hybrid projection engine that measures what it can and simulates what it cannot: GPU microbenchmarks on as few as a single device capture compute kernels and any in-scope communication; a sub-node downscale-measure-upscale workflow analytically restores out-of-scope collectives, FSDP overlap, and the full pipeline schedule at the multi-node target. A pure simulation mode runs entirely on CPU, enabling pre-silicon planning without any GPU. Second, the Primus Tuning Agent treats the projection engine as a fast scoring oracle (seconds per candidate instead of tens of minutes) and uses it to drive an intelligent search over the configuration space. A deterministic seed planner sweeps single axes; an LLM investigation loop proposes cross-axis combinations the planner cannot reach, with an analytic memory pre-filter that rejects infeasible candidates before any GPU time is spent. Validated on Llama 3.1 (dense) and Mixtral 8x22B (MoE) across two GPU generations, all projections stay within ~10% of measured multi-node throughput, and fidelity holds at production scale: 4.7% error on DeepSeek V3 671B at 1,024 GPUs and 1.9% on Qwen3-235B-A22B at 256 GPUs. In a Mixtral 8x22B case study, the Primus Tuning Agent discovers a configuration delivering +27% throughput over the published 4-node BF16 reference at the same scale, in under 30 minutes of single-node exploration.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=guQo7FnJYI",
+  "arxiv": "https://arxiv.org/abs/2610.19423",
+  "pdf": "https://arxiv.org/pdf/2610.19423",
+  "proceedings": null,
+  "virtual": "https://neurips.cc/virtual/2026/poster/150603",
+  "code": "https://github.com/AMD-AGI/Primus"
+ },
+ "license": "http://creativecommons.org/licenses/by-nc-nd/4.0/",
+ "img": "none",
+ "image_url": null,
+ "thumb_url": null,
+ "figure_page": 2,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.85
+}

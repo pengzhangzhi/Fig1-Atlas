@@ -1,0 +1,48 @@
+{
+ "id": "neurips26-3954",
+ "title": "Robust Diffusion Models via Divergence-Induced Weighted Denoising",
+ "authors": [
+  "Lei Li",
+  "Yuexiao Dong"
+ ],
+ "venue": "NeurIPS 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "Computer Vision->Image and Video Generation",
+ "role": "pipeline",
+ "role2": null,
+ "claim": "A standard training loop becomes robust by changing one step: reweighting each sample's gradient with a divergence-derived influence weight.",
+ "layout": "Single algorithm box, top-to-bottom numbered steps, with an if/else branch at step 4",
+ "tags": [
+  "algorithm-pseudocode",
+  "robust-training",
+  "reweighting",
+  "diffusion",
+  "f-divergence"
+ ],
+ "style": [
+  "text-heavy",
+  "math-heavy",
+  "minimal"
+ ],
+ "description": "The figure is a single block of algorithm pseudocode in a serif typeface, with no diagrams, icons or color. It opens with bold Input and Output lines: the dataset, divergence generator G, noise schedule and learning rate go in, and a trained denoiser comes out. A repeat/until loop follows, with five numbered steps. Step 1 samples data, a timestep and noise. Step 2 builds the noised sample x_t. Step 3 computes the per-step mismatch m_t as a weighted squared error. Step 4 evaluates the influence weight h'_G(m_t) with an if/else branch. KL and Hellinger have closed forms, and other divergences such as NED use quadrature. Step 5 applies the gradient update scaled by that weight. The eye goes first to the bold Input and Output lines and the dense equations beneath them.",
+ "caption": "Divergence-induced diffusion training. The only modification to standard DDPM is step 4: each sample's gradient is reweighted by the influence weight $h_G'(m_t)$.",
+ "caption_source": "latex",
+ "abstract": "We show that replacing the standard MSE denoising loss in diffusion models with a nonlinear transformation induced by an f-divergence yields a simple robust training surrogate that empirically improves performance under data contamination, with small additional computational overhead. The theoretical foundation rests on a local divergence construction: under the Gaussian reverse-kernel structure of DDPM, each per-step likelihood ratio follows a lognormal distribution parameterized by a scalar mismatch, so the conditional f-divergence at each step reduces to a one-dimensional function of the denoising error. Summing these local divergences yields a training objective that unifies diffusion training as divergence induced weighted denoising, where the derivative of the induced divergence acts as a residual-space influence weight that controls the contribution of each sample. Bounded-influence divergences (Hellinger, negative exponential) suppress large error samples, with Hellinger yielding an explicit exponential weight, connecting the framework to robust M-estimation. Empirically, on CIFAR-10 under 30% contamination, NED reduces FID from 93.0 (KL) to 77.5, while also outperforming standard robust losses such as Huber and clipped MSE.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=RdBtgbn9Tb",
+  "arxiv": "https://arxiv.org/abs/2606.22521",
+  "pdf": "https://arxiv.org/pdf/2606.22521",
+  "proceedings": null,
+  "virtual": "https://neurips.cc/virtual/2026/poster/152633",
+  "code": null
+ },
+ "license": "http://arxiv.org/licenses/nonexclusive-distrib/1.0/",
+ "img": "none",
+ "image_url": null,
+ "thumb_url": null,
+ "figure_page": 5,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.72
+}

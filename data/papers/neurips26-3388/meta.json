@@ -1,0 +1,53 @@
+{
+ "id": "neurips26-3388",
+ "title": "DAWN: Dependency-Aware Fast Inference for Diffusion LLMs",
+ "authors": [
+  "Lizhuo Luo",
+  "Zhuoran Shi",
+  "Jiajun Luo",
+  "Zhi Wang",
+  "Shen Ren",
+  "Wenya Wang",
+  "Tianwei Zhang"
+ ],
+ "venue": "NeurIPS 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "Deep Learning->Algorithms",
+ "role": "analysis-finding",
+ "role2": null,
+ "claim": "Tokens that depend on committed positions are more reliable, and coupled positions strongly influence each other's predictions, unlike non-coupled ones.",
+ "layout": "2 panels, left heatmap and right grouped bars, dashed red boundary on heatmap",
+ "tags": [
+  "diffusion-llm",
+  "parallel-decoding",
+  "dependency-modeling",
+  "empirical-observation",
+  "training-free"
+ ],
+ "style": [
+  "plot",
+  "colorful",
+  "minimal"
+ ],
+ "description": "Two side-by-side plots present empirical evidence. The left panel is a heatmap. The x-axis is the confidence of induced positions (0.60–1.00) and the y-axis is anchor confidence (0.75–1.00). Cell color shows the consistency ratio on a viridis scale with a colorbar. Most of the populated region is bright yellow, meaning near-perfect consistency. A green strip appears at the top left, and a large gray block marks bins that were excluded. A red dashed line outlines the high-consistency region. The right panel is a grouped bar chart of median KL divergence for GSM8K and HumanEval. Yellow bars show coupled pairs and green bars show non-coupled pairs, with a legend at the top. Coupled bars are much taller, and the error bars are tall black whiskers with translucent bar extensions.",
+ "caption": "Left: Heatmap of Induced Consistency. Color indicates the consistency ratio (same as the final output) between induced predictions and the final output. Gray cells indicate bins with a negligible fraction of samples and are excluded from analysis. Implementation details are in App. [ref]. Right: Influence Between Masked Positions. Bar height indicates the median KL divergence between a masked position's predictive distribution before and after its paired position is committed, reported separately for coupled and non-coupled pairs. For coupled pairs, the committed position is the source of the directed edge in the dependency graph; for non-coupled pairs, it is chosen at random. Error bars denote the [25%--75%] percentile range. Implementation details are in App. [ref]. Additional results are in App. [ref], further validating this observation.",
+ "caption_source": "latex",
+ "abstract": "Diffusion large language models (dLLMs) have shown advantages in text generation, particularly due to their inherent ability for parallel decoding. However, constrained by the quality--speed trade-off, existing inference solutions adopt conservative parallel strategies, leaving substantial efficiency potential underexplored. A core challenge is that parallel decoding assumes each position can be filled independently, but tokens are often semantically coupled. Thus, the correct choice at one position constrains valid choices at others. Without modeling these positional dependencies, parallel strategies produce deteriorated outputs. Motivated by this insight, we propose DAWN, a training-free, dependency-aware decoding method for fast dLLM inference. DAWN extracts dependency relations and leverages two key observations: (1) masked positions dependent on unmasked certain positions become more reliable; (2) coupled masked positions strongly influence each other's predictions. Given those findings, DAWN leverages a dependency graph to select more reliable unmasking positions at each iteration, achieving high parallelism with negligible loss in generation quality. Extensive experiments across multiple models and datasets demonstrate that DAWN speedups the inference by 1.80-8.06x over baselines while preserving the generation quality. Code is released at https://github.com/lizhuo-luo/DAWN.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=NbRKV16cev",
+  "arxiv": "https://arxiv.org/abs/2602.06953",
+  "pdf": "https://arxiv.org/pdf/2602.06953",
+  "proceedings": null,
+  "virtual": "https://neurips.cc/virtual/2026/poster/153138",
+  "code": null
+ },
+ "license": "http://arxiv.org/licenses/nonexclusive-distrib/1.0/",
+ "img": "none",
+ "image_url": null,
+ "thumb_url": null,
+ "figure_page": 3,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.9
+}

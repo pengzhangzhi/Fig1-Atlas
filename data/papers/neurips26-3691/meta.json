@@ -1,0 +1,48 @@
+{
+ "id": "neurips26-3691",
+ "title": "Decompose the Distillation: Interpretable Single-Pass Guidance for Diffusion Models",
+ "authors": [
+  "Wuyang Zhang",
+  "Xiaolin Xu"
+ ],
+ "venue": "NeurIPS 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": null,
+ "role": "pipeline",
+ "role2": null,
+ "claim": "A single shared backbone with two lightweight adapters, trained against a frozen two-pass teacher, yields separable guided outputs in one pass.",
+ "layout": "2 stacked panels (training, inference), left-to-right, color-coded modules, formula under blocks",
+ "tags": [
+  "distillation",
+  "single-pass",
+  "guidance",
+  "lora-adapters",
+  "efficiency"
+ ],
+ "style": [
+  "colorful",
+  "math-heavy",
+  "minimal"
+ ],
+ "description": "Two stacked dashed-border panels show a training stage and an inference stage, each read left to right. The Training panel has a small frozen Teacher box on the left. Frozen CFG splits into v_uncond and v_cond, which merge in a circle into v_cfg^teacher. The Student box on the right takes (x_t, c, t) into a gray Backbone (675M). The backbone feeds a blue LoRA v0 block and an orange LoRA g block, each 17M. Their outputs combine in a circle into v0+s·g. A pink loss box compares this with the teacher output through a dashed arrow. The Inference panel repeats the backbone and the two LoRA branches. A green modulation-gate block scales g. The result goes through a sum node into an ODE Solver and then an Image. The eye lands first on the colored LoRA blocks and the loss box.",
+ "caption": "\\method compresses CFG to one pass while preserving separate $v_0$ and $g$ outputs. Top. A frozen CFG teacher provides the target $v_{cfg}^{teacher}$. The student matches it via a unified loss on $\\hat{v}_0 + s \\cdot \\hat{g}$. Bottom. At inference, one backbone pass produces $v_0$ and $g$ through two LoRA adapters. The scale $s$ multiplies $g$ post-hoc. Three modulation gates ($w$, $\\alpha$, $\\varphi$) stabilize guidance, and a warped time grid concentrates evaluations near high-curvature regions.",
+ "caption_source": "latex",
+ "abstract": "Classifier-Free Guidance is a widely used inference-time guidance rule for conditional image generation with diffusion models, which exposes a guidance scale that adjusts conditioning strength after training. This flexibility requires conditional and unconditional model evaluations at every sampling step, so an N-step trajectory takes 2N forward passes. Single-pass alternatives reduce such cost, yet most collapse CFG's two components into one opaque guided prediction, losing the separable base flow and guidance direction that support per-step control and diagnostics, even when the scale remains adjustable. This work introduces CtrlFlow, a single-pass guidance method that preserves CFG's separable base-flow and guidance-direction interface. To preserve both components at one-pass cost, CtrlFlow attaches two lightweight LoRA adapters to a frozen backbone, each adding 2.5% parameters, and predicts the base flow and guidance direction from one pass of the shared frozen backbone. Because the guidance scale multiplies the guidance direction only after the forward pass, one evaluation yields the guided velocity at any scale, so a single trained checkpoint remains adjustable at inference without retraining. Preserving two outputs introduces a training mismatch: inference amplifies guidance-direction errors by the chosen scale, while naive component-wise losses weight both outputs equally. To align training with this composed inference-time error, CtrlFlow uses a unified multi-scale distillation loss. Residual guidance errors can still persist at extreme scales, where even small guidance-direction errors are amplified by the guidance scale. To reduce this inference-time error, CtrlFlow applies scale-adaptive modulation to damp velocity-field errors and time-grid warping to concentrate solver evaluations where the trajectory changes most rapidly.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=PiKPINkvGh",
+  "arxiv": "https://arxiv.org/abs/2611.05755",
+  "pdf": "https://arxiv.org/pdf/2611.05755",
+  "proceedings": null,
+  "virtual": "https://neurips.cc/virtual/2026/poster/152875",
+  "code": null
+ },
+ "license": "http://creativecommons.org/licenses/by-nc-sa/4.0/",
+ "img": "cc-by-nc-sa",
+ "image_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/images/neurips26-3691.png",
+ "thumb_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/thumbs/neurips26-3691.webp",
+ "figure_page": 4,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.95
+}

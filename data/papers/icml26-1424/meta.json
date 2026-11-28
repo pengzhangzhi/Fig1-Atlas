@@ -1,0 +1,53 @@
+{
+ "id": "icml26-1424",
+ "title": "Are VLMs Seeing or Just Saying? Uncovering the Illusion of Visual Re-examination",
+ "authors": [
+  "Chufan Shi",
+  "Cheng Yang",
+  "Yaokang Wu",
+  "Linghao Jin",
+  "Bo Shui",
+  "Taylor Berg-Kirkpatrick",
+  "Xuezhe Ma"
+ ],
+ "venue": "ICML 2026",
+ "tier": "oral",
+ "track": "main",
+ "topic": null,
+ "role": "problem-setup",
+ "role2": "pipeline",
+ "claim": "Models that say they will re-check the input often fail to actually look, continuing from stale context when it is swapped.",
+ "layout": "Left-to-right flow, 3 columns, branching into three outcome rows with verdict icons",
+ "tags": [
+  "image-swap-probing",
+  "self-reflection",
+  "failure-mode",
+  "visual-grounding",
+  "vision-language-models"
+ ],
+ "style": [
+  "colorful",
+  "text-heavy",
+  "icon-heavy"
+ ],
+ "description": "A left-to-right flow diagram in light-blue rounded boxes with purple highlights. On the left, a box shows image I_a (a geometry triangle) and a text query Q asking for angle CED. An arrow passes through a VLM chip icon to a Reasoning Chain R_a box with step-by-step angle math ending in D: 140°. A purple strip at the bottom reads 'Wait, let me check the figure again.' From there the flow branches into three rows. The top row continues reasoning R1 to answer A1 (D: 140°), marked with a green check as standard inference. The middle row passes through a swapped image I_b, then R2 says 'Yes! The answer is right...' and gives A2 (D: 140°) with a red X labelled 'Just saying'. The bottom row has R3 'No, the actual image is...' giving A3 (C: 120°) with a green check labelled 'Actually seeing'.",
+ "caption": "Illustrative example of visual re-examination. Left: Given image $I_a$ and query $Q$, the VLM generates reasoning chain $R_a$ including a self-reflective trigger. Top-right: Under standard inference with $I_a$, the model validates its logic to reach the correct answer $A_1$. Bottom-right: In the VisualSwap condition, $I_a$ is replaced by a visually similar but semantically distinct image $I_b$ post-reflection. Despite explicitly \"saying\" it will re-examine the figure, the model fails to detect the visual discrepancy and yields an incorrect answer $A_2$ grounded in the stale context of $I_a$. Only an ideal model exhibits genuine visual grounding to reach $A_3$.",
+ "caption_source": "latex",
+ "abstract": "Vision-Language Models (VLMs) often produce self-reflective statements like \"let me check the figure again\" during reasoning. Do such statements trigger genuine visual re-examination, or are they merely learned textual patterns? We investigate this via VisualSwap, an image-swap probing framework: after a model reasons over an image, we replace it with a visually similar but semantically different one and test whether the model notices. We introduce VS-Bench, 800 image pairs curated from MathVista, MathVerse, MathVision, and MMMU-Pro. Experiments on Qwen3-VL, Kimi-VL, and ERNIE-VL reveal a striking failure: models overwhelmingly miss the swap, with accuracy dropping by up to 60%. Counterintuitively, thinking models are nearly 3x more vulnerable than their instructed counterparts, and scaling offers no mitigation. Multi-turn user instructions restore visual grounding, but self-generated reflective statements during continuous generation do not. Attention analysis explains why: user instructions substantially elevate attention to visual tokens, whereas self-reflection does not. Current VLMs tend to say rather than actually see when claiming to perform visual re-examination. Our code and dataset are available at the project page: https://visualswap.github.io",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=DdU1o2ZvWi",
+  "arxiv": "https://arxiv.org/abs/2605.15864",
+  "pdf": "https://raw.githubusercontent.com/mlresearch/v306/main/assets/shi26ad/shi26ad.pdf",
+  "proceedings": "https://proceedings.mlr.press/v306/shi26ad.html",
+  "virtual": "https://icml.cc/virtual/2026/oral/71047",
+  "code": null
+ },
+ "license": "http://creativecommons.org/licenses/by/4.0/",
+ "img": "cc-by",
+ "image_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/images/icml26-1424.png",
+ "thumb_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/thumbs/icml26-1424.webp",
+ "figure_page": 1,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.6
+}

@@ -1,0 +1,52 @@
+{
+ "id": "icml26-1035",
+ "title": "Detached Skip-Links and $R$-Probe: Decoupling Feature Aggregation from Gradient Propagation for MLLM OCR",
+ "authors": [
+  "Ziye Yuan",
+  "Ruchang Yao",
+  "Chengxin Zheng",
+  "Yusheng Zhao",
+  "Daxiang Dong",
+  "Ming Zhang"
+ ],
+ "venue": "ICML 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "Applications->Computer Vision",
+ "role": "pipeline",
+ "role2": "prior-vs-ours",
+ "claim": "Reusing shallow features in the forward pass while blocking their gradients lets fusion deliver fine detail without optimization conflicts.",
+ "layout": "Single vertical panel, top-to-bottom flow; red X marks blocked backward gradients",
+ "tags": [
+  "stop-gradient",
+  "multi-layer-fusion",
+  "skip-connections",
+  "gradient-interference",
+  "vision-encoder"
+ ],
+ "style": [
+  "colorful",
+  "icon-heavy",
+  "minimal"
+ ],
+ "description": "A single top-to-bottom diagram titled \"Joint Training\", with a legend in the top right. The legend shows a solid gray arrow for Forward and a dashed blue line for Backward. A large yellow rounded box labeled Vision Encoder (with a flame icon for trainable) holds stacked peach blocks: Block 1, Block 23-3s, Block 23-2s, Block 23-s and Block 23, separated by dots. Gray forward lines leave four of these blocks and run around the sides to four light-blue Feat boxes (23-3s, 23-2s, 23, 23-s). Dashed blue backward lines run parallel to the forward lines. Red X marks on the two shallowest skip branches show that gradients are stopped there. A black bracket labeled concat joins the four Feat boxes. Below it are a green MLP Adapter, a Feat Fusion box and a purple LLM box, each with a flame icon. Gray arrows and a dashed blue line link them downward.",
+ "caption": "Overview of Detached Skip Links. Intermediate features are concatenated with the final output along the channel dimension, here $S$ denotes stride. We apply a stop-gradient operation to shallow skip features before fusion. This design effectively delivers fine-grained details to the LLM while shielding early layers from optimization conflicts.",
+ "caption_source": "latex",
+ "abstract": "Multimodal large language models (MLLMs) excel at high-level reasoning yet fail on OCR tasks where fine-grained visual details are compromised or misaligned. We identify an overlooked optimization issue in multi-layer feature fusion. Skip pathways introduce direct back-propagation paths from high-level semantic objectives to early visual layers. This mechanism overwrites low-level signals and destabilizes training. To mitigate this gradient interference, we propose Detached Skip-Links, a minimal modification that reuses shallow features in the forward pass while stopping gradients through the skip branch during joint training. This asymmetric design reduces gradient interference, improving stability and convergence without adding learnable parameters. To diagnose whether fine-grained information is preserved and usable by an LLM, we introduce $R$-Probe, which measures pixel-level reconstructability of projected visual tokens using a shallow decoder initialized from the first quarter of the LLM layers. Across multiple ViT backbones and multimodal benchmarks, and at scales up to 7M training samples, our approach consistently improves OCR-centric benchmarks and delivers clear gains on general multimodal tasks.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=9u1a2MpGng",
+  "arxiv": "https://arxiv.org/abs/2603.20020",
+  "pdf": "https://raw.githubusercontent.com/mlresearch/v306/main/assets/yuan26n/yuan26n.pdf",
+  "proceedings": "https://proceedings.mlr.press/v306/yuan26n.html",
+  "virtual": "https://icml.cc/virtual/2026/poster/65818",
+  "code": null
+ },
+ "license": "http://creativecommons.org/licenses/by/4.0/",
+ "img": "cc-by",
+ "image_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/images/icml26-1035.png",
+ "thumb_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/thumbs/icml26-1035.webp",
+ "figure_page": 1,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.85
+}

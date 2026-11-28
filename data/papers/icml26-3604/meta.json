@@ -1,0 +1,48 @@
+{
+ "id": "icml26-3604",
+ "title": "Colorful Pinball: Density-Weighted Quantile Regression for Conditional Guarantee of Conformal Prediction",
+ "authors": [
+  "Qianyi Chen",
+  "Bo Li"
+ ],
+ "venue": "ICML 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "Probabilistic Methods->Everything Else",
+ "role": "pipeline",
+ "role2": null,
+ "claim": "A three-stage procedure learns auxiliary quantiles, derives density weights from them, then fine-tunes and conformalizes with rectified scores.",
+ "layout": "3 stages, left-to-right, color-coded boxes with bracketed stage labels below",
+ "tags": [
+  "multi-head-network",
+  "quantile-regression",
+  "reweighting",
+  "conformal-prediction",
+  "staged-training"
+ ],
+ "style": [
+  "colorful",
+  "math-heavy",
+  "minimal"
+ ],
+ "description": "A left-to-right flow diagram with three color-coded stages. On the left, an orange Shared Backbone box fans out through blue arrows labeled Softplus to three blue quantile boxes: q-hat high, q-hat main and q-hat low. Dashed purple arrows run from the high and low boxes to a purple box that gives the density weight formula w-hat_i = 2δ / (q-hat_high − q-hat_low). The main quantile feeds a purple Quantile estimator g_θ box through a Fine-tune arrow, with the weight box also feeding it and a 'Level: 1 − α' label above. Green arrows lead to a box of rectified conformity scores R_j = S − g_θ(x_j), then to the prediction set C_α(x_test). Blue, purple and green braces below name each stage and its calibration split (D_cal,1, D_cal,2, D_cal,3).",
+ "caption": "Illustration of the Colorful Pinball Conformal Prediction framework. CPCP first estimates finite-difference density weights from auxiliary quantiles of the nonconformity-score distribution, then uses these weights to turn the standard pinball loss into a density-weighted objective for fine-tuning the target quantile. This reweighting emphasizes regions where the conditional score distribution is steep at the target quantile, precisely where small quantile errors induce large conditional-coverage errors. The auxiliary quantiles $\\hat q_{\\mathrm{high}}$ and $\\hat q_{\\mathrm{low}}$ are constructed by adding and subtracting Softplus-activated gap estimates from the central quantile $\\hat q_{\\mathrm{main}}$, preventing quantile crossing and ensuring nonnegative finite-difference weights before the final rectified-score conformalization step.",
+ "caption_source": "latex",
+ "abstract": "Although conformal prediction provides robust marginal coverage guarantees, achieving reliable conditional coverage for specific inputs remains challenging. While exact distribution-free conditional coverage is impossible with finite samples, recent work has focused on improving the conditional coverage of standard conformal procedures. Distinct from approaches that target relaxed notions of conditional coverage, we directly target the mean squared error of conditional coverage by refining the quantile regression components that underpin many conformal methods. Leveraging a Taylor expansion, we derive a sharp surrogate objective for quantile regression: a density-weighted pinball loss, where the weights are given by the conditional density of the nonconformity score evaluated at the true quantile. We propose a three-headed quantile network that estimates these weights via finite differences using auxiliary quantile levels at $1-Î±\\pm Î´$, subsequently fine-tuning the central quantile by optimizing the weighted loss. We provide a theoretical analysis with exact non-asymptotic guarantees characterizing the resulting excess risk. Extensive experiments on diverse high-dimensional real-world datasets demonstrate remarkable improvements in conditional coverage performance.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=Y2lYfMD0z8",
+  "arxiv": "https://arxiv.org/abs/2512.24139",
+  "pdf": "https://raw.githubusercontent.com/mlresearch/v306/main/assets/chen26bm/chen26bm.pdf",
+  "proceedings": "https://proceedings.mlr.press/v306/chen26bm.html",
+  "virtual": "https://icml.cc/virtual/2026/poster/63332",
+  "code": "https://github.com/Cqyiiii/Colorful-Pinball-Conformal-Prediction-CPCP"
+ },
+ "license": "http://arxiv.org/licenses/nonexclusive-distrib/1.0/",
+ "img": "none",
+ "image_url": null,
+ "thumb_url": null,
+ "figure_page": 1,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.96
+}

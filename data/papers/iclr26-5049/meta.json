@@ -1,0 +1,53 @@
+{
+ "id": "iclr26-5049",
+ "title": "RL for Reasoning by Adaptively Revealing Rationales",
+ "authors": [
+  "mohammad hossein amani",
+  "Aryo Lotfi",
+  "Nicolas Baldwin",
+  "Samy Bengio",
+  "Mehrdad Farajtabar",
+  "Emmanuel Abbe",
+  "Robert West"
+ ],
+ "venue": "ICLR 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "Reinforcement Learning->Online",
+ "role": "concept",
+ "role2": "pipeline",
+ "claim": "Per-sample supervision length adapts up or down along a prefix interval based on reward versus a threshold, as a curriculum.",
+ "layout": "1 panel, left example then horizontal ratio axis, red and green interval brackets",
+ "tags": [
+  "curriculum-learning",
+  "partial-supervision",
+  "adaptive",
+  "reasoning",
+  "reinforcement-learning"
+ ],
+ "style": [
+  "minimal",
+  "math-heavy",
+  "colorful"
+ ],
+ "description": "A single wide figure. On the left is a math question: define f(x) piecewise (x/2 if even, 3x+1 if odd) and compute f(f(f(f(1)))). To the right, a horizontal gray number line runs from 0 to 1 with markers for ρ_min, ρ_t (marked with a bold X) and ρ_max. The segment between ρ_min and ρ_max is black. Beneath it, a step-by-step solution is written out. The part up to ρ_t is in black, and the remainder is grayed out to show it is hidden. A green bracket above the line spans from 0 to ρ_t, labeled with the rule 'if r > τ: sample ρ_{t+1} ~ U(0, ρ_t)'. A red bracket below spans from ρ_t to ρ_max, labeled with the rule 'if r < τ: ρ_{t+1} ~ U(ρ_t, ρ_max)'. The eye goes first to the colored brackets and the line.",
+ "caption": "AdaBack Update Rule. At epoch $t$, we sample a supervision ratio $\\rho^{(i)}_{t} \\sim U(\\rho_{\\min}^{(i)}, \\rho_{\\max}^{(i)})$ and condition the model's generation on the question and the corresponding partial answer (shown in black text, with unrevealed content grayed out). If the average reward is below a threshold $\\tau$, we increase supervision in the next epoch by sampling from the red interval $\\rho_{t+1}^{(i)} \\sim U(\\rho_t^{(i)}, \\rho_{\\max}^{(i)})$. Otherwise, if the reward exceeds $\\tau$, we reduce supervision and sample from $U(0, \\rho_t^{(i)})$, the green interval, to make the task harder.",
+ "caption_source": "latex",
+ "abstract": "Learning in the combinatorially large output space of sequence generation problems is challenging as providing expert demonstrations scales poorly with sequence length, and RL struggles with sparse rewards. Between dense demonstrations in supervised training and no demonstrations in reinforcement learning lies an underexplored regime: partial supervision. We ask whether some classes of sequence learning problems become efficiently learnable by exploiting this gap. We address this by introducing adaptive backtracking (AdaBack), a per-sample curriculum learning algorithm that reveals a partial prefix of the target output. The supervision length is adjusted dynamically for each sample based on the model's past reward signal, allowing it to incrementally learn to complete reasoning chains by conditioning on correct partial solutions. We investigate this intermediate regime between SFT and RL and argue that per-sample curriculum learning is more than a trade-off between efficiency and generality--it can succeed in tasks with long sequences of latent dependencies where SFT and RL both fail to generalize. Using a synthetic task with latent parity constraints, we show that AdaBack reliably solves problems that are otherwise intractable. On three mathematical reasoning benchmarks, DeepScaleR, MATH, and GSM8k, we find that AdaBack enables models to solve problems that RL alone cannot, acquiring new reasoning capabilities through incremental exposure to partial solutions.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=wdbgTG5kib",
+  "arxiv": "https://arxiv.org/abs/2506.18110",
+  "pdf": "https://proceedings.iclr.cc/paper_files/paper/2026/file/c073a9d002f3dab99a7af18642d74bdb-Paper-Conference.pdf",
+  "proceedings": "https://proceedings.iclr.cc/paper_files/paper/2026/hash/c073a9d002f3dab99a7af18642d74bdb-Abstract-Conference.html",
+  "virtual": "https://iclr.cc/virtual/2026/poster/10006714",
+  "code": null
+ },
+ "license": "http://arxiv.org/licenses/nonexclusive-distrib/1.0/",
+ "img": "none",
+ "image_url": null,
+ "thumb_url": null,
+ "figure_page": 2,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.55
+}

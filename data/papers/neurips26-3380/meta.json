@@ -1,0 +1,58 @@
+{
+ "id": "neurips26-3380",
+ "title": "SimSD: Simple Speculative Decoding in Diffusion Language Models",
+ "authors": [
+  "Junxia Cui",
+  "Haotian Ye",
+  "Runchu Tian",
+  "Hongcan Guo",
+  "Jinya Jiang",
+  "Haoru Li",
+  "Chaojie Ren",
+  "Yiming Huang",
+  "Kaijie Zhu",
+  "Zhongkai Yu",
+  "Kun Zhou",
+  "Jingbo Shang"
+ ],
+ "venue": "NeurIPS 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "Deep Learning->Algorithms",
+ "role": "pipeline",
+ "role2": "prior-vs-ours",
+ "claim": "Standard verification fails under bidirectional masked decoding; a temporal causal mask restores draft-verify decoding, giving large speedups.",
+ "layout": "3 panels, left-to-right; AR vs dLLM contrast, draft-verify timeline, block verification",
+ "tags": [
+  "speculative-decoding",
+  "diffusion-language-models",
+  "attention-mask",
+  "draft-verify",
+  "inference-acceleration"
+ ],
+ "style": [
+  "colorful",
+  "icon-heavy",
+  "plot"
+ ],
+ "description": "The figure has three panels. Panel (a) stacks two token-grid blocks. The top block, \"Standard AR\", reveals tokens step by step (The, cat, sat, down) and is checked with a normal causal mask. The bottom block, \"dLLM\", shows [MASK] tokens, with some drafted tokens outlined in red dashed boxes. Panel (b) shows a steady-state draft-verify timeline. Draft 0 to Draft N sit above Verify 0 to Verify N, linked by green \"V\" arrows. A checkerboard attention-mask icon leads into a mask matrix and a small bar chart with a rocket. The chart reports 7.64x speedup for SimSD against 1 for vanilla decoding. Panel (c) shows cached block verification. Cached KV blocks sit above drafted tokens D1–D4. A step map feeds verification rows, where D2 is rejected and replaced by T3 in a second round, and the verified block is then appended. Colors are pastel blue, green and orange, with red marking rejections.",
+ "caption": "SimSD restores token-level speculative decoding for diffusion language models. Vanilla dLLMs cannot directly support speculative decoding because bidirectional attention breaks temporal token-level contexts. SimSD adopts a temporal causal mask for supporting standard speculative verification in a single forward pass, leading to faster decoding without hurting performance.",
+ "caption_source": "latex",
+ "abstract": "Diffusion large language models (dLLMs) have recently emerged as a promising alternative to autoregressive (AR) LLMs, offering faster inference through parallel or blockwise decoding. However, their masked language modeling formulation remains incompatible with standard token-level speculative decoding, one of the most effective acceleration techniques for AR models. In AR decoding, the causal mask preserves temporally valid token-level contexts, enabling a target model to verify multiple drafted tokens in a single forward pass. In contrast, dLLMs rely on mask tokens and bidirectional attention, causing the effective context to change across denoising steps and preventing direct token-level speculative verification. To bridge this gap, we propose a simple but effective speculative decoding algorithm for diffusion language models, named SimSD, which mainly adopts a plug-and-play masking strategy that equips dLLMs with temporally valid token-level contexts for speculative decoding. Our method explicitly introduces reference tokens from draft-model predictions and designs an attention mask that regulates their interaction with current-step tokens, allowing dLLMs to compute valid logits for drafted tokens in a single forward pass. This restores the key verification ability provided by causal masking in AR models while preserving the parallel decoding advantages of dLLMs. The proposed method is training-free and can be flexibly integrated with other acceleration techniques such as KV cache and blockwise decoding. Experiments on SDAR-family dLLMs across four benchmarks show that our method achieves up to 7.46x higher decoding throughput while maintaining and even improving average generation quality.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=NYqEuoKbxZ",
+  "arxiv": "https://arxiv.org/abs/2606.02544",
+  "pdf": "https://arxiv.org/pdf/2606.02544",
+  "proceedings": null,
+  "virtual": "https://neurips.cc/virtual/2026/poster/153145",
+  "code": null
+ },
+ "license": "http://creativecommons.org/licenses/by/4.0/",
+ "img": "cc-by",
+ "image_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/images/neurips26-3380.png",
+ "thumb_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/thumbs/neurips26-3380.webp",
+ "figure_page": 1,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.6
+}

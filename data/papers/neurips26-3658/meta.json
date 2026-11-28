@@ -1,0 +1,48 @@
+{
+ "id": "neurips26-3658",
+ "title": "Universal Byte-Level Encoding: UTF-8/UTF-16 Routing to Reduce Cross-Script Token-Budget Disparities",
+ "authors": [
+  "Hyunsik Kim",
+  "Youngmoon Jung"
+ ],
+ "venue": "NeurIPS 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "Applications->Language, Speech and Dialog",
+ "role": "prior-vs-ours",
+ "role2": "problem-setup",
+ "claim": "Single-encoding schemes inflate base-symbol counts for some scripts; routing characters between encodings gives the fewest symbols for mixed text.",
+ "layout": "Stacked rows top-to-bottom, with a bit-level encoding diagram at the bottom and counts at right",
+ "tags": [
+  "tokenization",
+  "byte-level",
+  "multilingual",
+  "encoding-efficiency",
+  "routing"
+ ],
+ "style": [
+  "colorful",
+  "minimal",
+  "text-heavy"
+ ],
+ "description": "The figure shows how the mixed-script string \"GPU性能\" is broken into base symbols before byte-pair merges. The top row is the input: three green boxes for the Latin letters G, P and U, and two purple boxes for the CJK characters. Below are three rows, one per scheme. BBPE (UTF-8 only) splits each CJK character into three hex bytes shown as dashed faded boxes, for 9 symbols. BBPE16 (UTF-16 only) pads each ASCII letter with a 00 byte, for 10 symbols. UBE (UTF-8/16) keeps the ASCII letters in UTF-8 and sends the CJK characters through UTF-16 as single private-use-area symbols, for 7 symbols. Braces and arrows label the wasteful spans. A gray bit-level diagram at the bottom compares 3-byte UTF-8 with 2-byte UTF-16. A right-hand column lists the symbol counts, and UBE's 7 is highlighted in orange.",
+ "caption": "Pre-merge base-symbol decomposition of \"GPU\\begin{CJK}{UTF8}{gbsn}性能\\end{CJK}\". UBE, BBPE, and \\bbpeSixteenName{} use 7, 9, and 10 base symbols, respectively. Appendix [ref] gives the full algorithm. Bottom: a 3-byte BMP code point under \\utfEightName{} and \\utfSixteenName{}; gray cells are \\utfEightName{} length and continuation bits (all length classes: Appendix Figure [ref]).",
+ "caption_source": "latex",
+ "abstract": "Byte-level byte-pair encoding (BBPE) tokenizers are attractive for multilingual large language models because they cover all Unicode text. In UTF-8-based BBPE, however, many scripts start from a higher fallback cost than English: when no learned merges apply, a multibyte character requires multiple byte-derived symbols. We call this worst-case pre-merge cost the encoding floor. A higher floor can increase token counts and per-request cost while shrinking usable context. Changing the whole text encoding can reduce this gap but make already-efficient English spans more expensive in mixed-script text. Thus, we propose Universal Byte-Level Encoding (UBE), a dual-alphabet tokenizer that keeps 1-2-byte UTF-8 characters in UTF-8 and routes 3-4-byte characters through UTF-16. This lowers the encoding floor for 3-byte Basic Multilingual Plane characters, used by many scripts that need more tokens than English, without raising it for any character. UBE changes only the symbols presented to byte-pair encoding, and a Unicode 17 audit confirms exact round trips for every scalar value and every input in three official test suites. UBE also composes with other boundary policies and morphology-based encodings. Across intrinsic evaluations, UBE lowers dispersion in English-normalized token-count ratios (Gini 6-14% lower on FLORES-200 at 16K-64K), reducing cross-lingual token-budget disparity. In multilingual language models, UBE matches BBPE's quality. In the main multilingual settings, UBE reduces token counts most where they are highest and also lowers English counts, yielding more usable context and faster prompt processing in content-matched benchmarks. Byte-level models benefit directly: UBE shortens their inputs by 29-33% in all 39 of the FLORES-200 languages written mostly in 3-byte characters (1.4-1.5 times as much text per context window), lowers byte-level Gini by 28%, and lengthens no input.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=PYtjaNdYaM",
+  "arxiv": "https://arxiv.org/abs/2610.01984",
+  "pdf": "https://arxiv.org/pdf/2610.01984",
+  "proceedings": null,
+  "virtual": "https://neurips.cc/virtual/2026/poster/152902",
+  "code": "https://samsung.github.io/UBE"
+ },
+ "license": "http://arxiv.org/licenses/nonexclusive-distrib/1.0/",
+ "img": "none",
+ "image_url": null,
+ "thumb_url": null,
+ "figure_page": 2,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.6
+}

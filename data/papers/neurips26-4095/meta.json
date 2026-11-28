@@ -1,0 +1,51 @@
+{
+ "id": "neurips26-4095",
+ "title": "Provable Test-Time Scaling for Beam Search in LLM Reasoning",
+ "authors": [
+  "Qijia He",
+  "Yu Huang",
+  "Yuan Cheng",
+  "Yuxin Chen",
+  "Yingbin Liang"
+ ],
+ "venue": "NeurIPS 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "Theory->Learning Theory",
+ "role": "pipeline",
+ "role2": null,
+ "claim": "Sample candidate steps, filter low-confidence tokens, prune to top prefixes each step, then select the final answer with a reward model.",
+ "layout": "3 time-step columns, left-to-right tree expansion, callouts marking filter and pruning stages",
+ "tags": [
+  "beam-search",
+  "test-time-scaling",
+  "confidence-filtering",
+  "tree-search",
+  "llm-reasoning"
+ ],
+ "style": [
+  "colorful",
+  "icon-heavy",
+  "math-heavy"
+ ],
+ "description": "A left-to-right tree diagram of confidence-filtered beam search across Time step 1, Time step 2 and Time step L. A gray input node x fans out by arrows to green oval tokens a_t^(i). Solid green ovals are surviving tokens and dashed pale ovals are filtered ones. Each token leads to a blue rounded-square prefix s_t^(i). Solid blue marks surviving prefixes and dashed light blue marks filtered ones. Dashed boxes group the prefixes at each step. Yellow callouts say 'Confidence filter' with a threshold inequality on π̂. Orange callouts say 'Beam pruning: Top-b prefixes'. Column headers give the sampling distributions, such as 'N samples from π_ref'. Ellipses show omitted steps. On the right, a yellow 'Final selection' arrow with argmax r̂ leads to a gray ŷ, 'Predicted final answer'. A legend sits at lower right. The eye goes first to x and then to the branching tree.",
+ "caption": "Confidence-Filtered Beam Search Pipeline",
+ "caption_source": "latex",
+ "abstract": "Beam-search-based test-time methods provide an effective way to improve large language model (LLM) performance on long-horizon generation by pruning invalid reasoning paths early, leading to significantly improved reasoning efficiency and more favorable test-time cost scaling. Despite strong empirical success, the theoretical understanding of beam search remains limited. In this paper, we study the test-time compute guarantee of the commonly used beam search framework that uses the model's internal log-likelihood for intermediate scoring, while relying on an external reward model only after a complete response is generated. We first establish a lower bound for vanilla beam search, showing that at least $Î©(C^\\star(x)^2)$ samples are required for the optimal response to survive, where $C^\\star(x)$ is the token-level coverage coefficient for prompt $x$. This motivates our modified confidence-filtered beam search (CF-Beam), which reduces the sufficient coverage dependence from quadratic to nearly linear under prefix competitiveness, for fixed horizon, gap, and target accuracy. We then show that the regret of CF-Beam is upper-bounded by the probability of rare failure events and the reward estimation error scaled by a path-level coverage coefficient, where the rare-failure term vanishes as per-step sampling increases. Our results highlight a fundamental advantage of beam search over sequence-level inference methods such as Best-of-N and Best-of-Majority. While the guarantees of these approaches typically involve coverage coefficients that grow exponentially with the horizon $L$, CF-Beam controls the dominant search-induced term through a token-level coverage coefficient that scales polynomially with $L$. Our numerical experiments further confirm that beam search is more robust on hard instances and under increasing reasoning horizons.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=ScEWzifyDZ",
+  "arxiv": "https://arxiv.org/abs/2609.38672",
+  "pdf": "https://arxiv.org/pdf/2609.38672",
+  "proceedings": null,
+  "virtual": "https://neurips.cc/virtual/2026/poster/152506",
+  "code": null
+ },
+ "license": "http://creativecommons.org/licenses/by/4.0/",
+ "img": "cc-by",
+ "image_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/images/neurips26-4095.png",
+ "thumb_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/thumbs/neurips26-4095.webp",
+ "figure_page": 2,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.93
+}

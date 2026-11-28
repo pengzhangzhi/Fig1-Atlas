@@ -1,0 +1,53 @@
+{
+ "id": "icml26-3020",
+ "title": "MDN: Parallelizing Stepwise Momentum for Delta Linear Attention",
+ "authors": [
+  "Yulong Huang",
+  "Xiang Liu",
+  "Hongxiang Huang",
+  "Xiaopeng LIN",
+  "Zunchang LIU",
+  "Xiaowen Chu",
+  "Zeke Xie",
+  "Bojun Cheng"
+ ],
+ "venue": "ICML 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "Deep Learning->Attention Mechanisms",
+ "role": "prior-vs-ours",
+ "role2": null,
+ "claim": "Prior update schemes break causality or truncate context; ours keeps a strict causal mask, matching decoding with full history.",
+ "layout": "4 panels in a row, left-to-right, colored verdict text under each",
+ "tags": [
+  "causal-mask",
+  "momentum",
+  "linear-attention",
+  "training-inference-consistency",
+  "parallel-training"
+ ],
+ "style": [
+  "minimal",
+  "colorful"
+ ],
+ "description": "Four side-by-side 8x8 grids of rounded squares show attention or causal masks for different momentum update schemes. Orange cells, shaded from light to dark, mark attended positions, and light gray cells mark masked ones. Panel 1, Mini Chunk (e.g. TTT, LMM), has small blocks with filled cells above the diagonal. Panel 2, Large Chunk (e.g. LaCT), has bigger blocks with more of that overlap. Panel 3, Sliding Window (e.g. Atlas), has a diagonal band that drops old history at the lower left. Panel 4, Stepwise (Ours), is a clean lower-triangular mask. Black method names sit under each grid. Beneath them, red captions read 'Misalign w/ Decoding' for the chunk methods and 'Align but w/ Limit Info.' for the sliding window. A green 'Align w/ Decoding' caption marks the proposed method. The eye goes first to the staircase shapes, then to the red-versus-green captions.",
+ "caption": "Comparison of causal structures during training across different momentum update schemes. Blockwise scheme (e.g, TTT [ref], LMM [ref] and LaCT [ref]) introduces intra-block non-causality, causing a training-inference mismatch. Sliding window scheme like Altas [ref] limits the truncated historical context. Our Stepwise Momentum maintains a strict causal mask, ensuring exact consistency between parallel training and decoding.",
+ "caption_source": "latex",
+ "abstract": "Linear Attention (LA) offers a promising paradigm for scaling large language models (LLMs) to long sequences by avoiding the quadratic complexity of self-attention. Recent LA models such as Mamba2 and GDN interpret linear recurrences as closed-form online stochastic gradient descent (SGD), but naive SGD updates suffer from rapid information decay and suboptimal convergence in optimization. While momentum-based optimizers provide a natural remedy, they pose challenges in simultaneously achieving training efficiency and effectiveness. To address this, we develop a chunkwise parallel algorithm for LA with a stepwise momentum rule by geometrically reordering the update coefficients. Further, from a dynamical systems perspective, we analyze the momentum-based recurrence as a second-order system that introduces complex conjugate eigenvalues. This analysis guides the design of stable gating constraints. The resulting model, Momentum DeltaNet (MDN), leverages Triton kernels to achieve comparable training throughput with competitive linear models such as Mamba2 and KDA. Extensive experiments on the 400M and 1.3B parameter models demonstrate consistent performance improvements over strong baselines, including Transformers, Mamba2 and GDN, across diverse downstream evaluation benchmarks. Code: https://github.com/HuuYuLong/MomentumDeltaNet .",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=Sh3rKEAxlW",
+  "arxiv": "https://arxiv.org/abs/2605.05838",
+  "pdf": "https://raw.githubusercontent.com/mlresearch/v306/main/assets/huang26af/huang26af.pdf",
+  "proceedings": "https://proceedings.mlr.press/v306/huang26af.html",
+  "virtual": "https://icml.cc/virtual/2026/poster/63901",
+  "code": null
+ },
+ "license": "http://arxiv.org/licenses/nonexclusive-distrib/1.0/",
+ "img": "none",
+ "image_url": null,
+ "thumb_url": null,
+ "figure_page": 1,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.93
+}

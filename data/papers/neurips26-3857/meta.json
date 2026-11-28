@@ -1,0 +1,57 @@
+{
+ "id": "neurips26-3857",
+ "title": "D-PACE: Dynamic Position-Aware Cross-Entropy for Parallel Speculative Drafting",
+ "authors": [
+  "Tianyu Wu",
+  "Yu Yao",
+  "Zhenting Qi",
+  "Han Zheng",
+  "Chengxi Zhang",
+  "Zhuohan Wang",
+  "Haoran Ma",
+  "Zichun Liao",
+  "Hima Lakkaraju",
+  "Ju Li",
+  "Yilun Du"
+ ],
+ "venue": "NeurIPS 2026",
+ "tier": "spotlight",
+ "track": "main",
+ "topic": "Deep Learning->Algorithms",
+ "role": "analysis-finding",
+ "role2": "teaser-result",
+ "claim": "A cheap differentiable surrogate tracks the true acceptance metric, and optimizing it yields consistent gains across models and configurations.",
+ "layout": "2 panels side-by-side; line with shaded band, then grouped bars with percent labels",
+ "tags": [
+  "surrogate-objective",
+  "speculative-decoding",
+  "correlation",
+  "consistent-improvement",
+  "grouped-bars"
+ ],
+ "style": [
+  "plot",
+  "minimal",
+  "colorful"
+ ],
+ "description": "Two side-by-side plots. Panel (a) is a line chart of accepted length τ (y-axis, 0 to 17.5) against the surrogate S̃ (x-axis, 0 to 14). A dark blue line of bin means rises almost linearly. A light blue shaded band shows ±1σ and widens toward the upper right. A bold annotation in the top left reads 'Spearman ρ=0.84'. Panel (b) is a grouped bar chart of average accepted length τ over six benchmarks for four target and draft configurations: Qwen3-4B (3L), Qwen3-4B (5L), Qwen3-8B (3L) and Llama-3.1-8B (3L). Each pair has an orange DFlash bar and a taller blue D-PACE (ours) bar. Bold blue labels above each pair give the relative gain, from +10.2% to +12.8%. A dashed vertical line separates two training-data groups, Nemotron+CA 100K and ShareGPT. The eye goes first to the rising blue line, then to the blue bars.",
+ "caption": "Surrogate $\\tilde S$ tracks emitted length $\\tau$; D-PACE improves $\\tau$ across targets. (a) Per-block surrogate $\\tilde S = \\sum_{k=1}^{B}\\prod_{i\\le k} q_i$ ($q_i$: draft confidence on the token selected by the target decoding policy at position $i$) versus reported $\\tau$, computed during decoding on the 3L DFlash baseline over 128 MATH-500 prompts; line: bin means; shaded band: $\\pm 1\\sigma$. Spearman $\\rho{=}0.84$ (App. [ref]). (b) Average emitted length $\\tau$ over six benchmarks at $T{=}0$ (epoch 6) for the DFlash baseline and D-PACE across four configurations: Qwen3-4B (3L and 5L, $B{=}16$), Qwen3-8B (3L, $B{=}16$), and Llama-3.1-8B (3L, $B{=}10$). Relative improvement is labeled above each pair.",
+ "caption_source": "latex",
+ "abstract": "Speculative decoding accelerates LLM inference by having a small drafter propose tokens that a larger target model verifies in parallel. Recent diffusion-based parallel drafters such as DFlash predict the full B-token block in one forward pass, enabling deeper drafters and longer accepted blocks. However, existing multi-token drafter objectives often use fixed position-dependent weighting schedules, such as head-dependent weights or block-position decays, which do not adapt as the positions limiting acceptance change during training. To address this, we derive per-position training weights from a differentiable surrogate of expected accepted draft length, matching the weight of each position to its log-probability gradient contribution. The resulting loss, D-PACE (Dynamic Position-Aware Cross-Entropy), shifts training signal toward positions that currently limit acceptance as the drafter improves. Across six benchmarks, two Qwen3-4B draft depths, two decoding temperatures, and two additional target models, D-PACE consistently improves both wall-clock speedup and average emitted length, with 2.3\\% measured training-time overhead and no changes to the drafter architecture or inference procedure.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=QrjZX92zUN",
+  "arxiv": "https://arxiv.org/abs/2605.18810",
+  "pdf": "https://arxiv.org/pdf/2605.18810",
+  "proceedings": null,
+  "virtual": "https://neurips.cc/virtual/2026/poster/152718",
+  "code": null
+ },
+ "license": "http://creativecommons.org/licenses/by/4.0/",
+ "img": "cc-by",
+ "image_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/images/neurips26-3857.png",
+ "thumb_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/thumbs/neurips26-3857.webp",
+ "figure_page": 1,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.55
+}

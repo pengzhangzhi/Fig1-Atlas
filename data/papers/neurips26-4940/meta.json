@@ -1,0 +1,55 @@
+{
+ "id": "neurips26-4940",
+ "title": "SIGMA: Semantic-Difference Instruction-Grounding Mask Annotator for Text-Driven Image Manipulation Localization",
+ "authors": [
+  "Peiyu Zhuang",
+  "Jianquan Yang",
+  "Haodong Li",
+  "Zhuoying Cai",
+  "Ruitao Xie",
+  "Jishen Zeng",
+  "Baoying Chen",
+  "Jiwu Huang",
+  "XIAOCHUN CAO"
+ ],
+ "venue": "NeurIPS 2026",
+ "tier": "spotlight",
+ "track": "main",
+ "topic": "Computer Vision->Everything Else",
+ "role": "prior-vs-ours",
+ "role2": "pipeline",
+ "claim": "Pixel differencing and instruction-only grounding each fail to localize edits; fusing semantic difference with instruction cues recovers the correct region.",
+ "layout": "3 stacked panels right of input column, left-to-right flow, red failure text",
+ "tags": [
+  "mask-annotation",
+  "semantic-differencing",
+  "failure-modes",
+  "multimodal-fusion",
+  "image-manipulation-localization"
+ ],
+ "style": [
+  "colorful",
+  "photo/real data",
+  "text-heavy"
+ ],
+ "description": "A left column shows an original image (a boy reading in a library, with a sign reading 'Life is full of adventure'), a '+' and an instruction ('Remove the closed book...'). The instruction feeds a box labeled 'Text-driven image edited method', which outputs the edited image below. Arrows from the images fan out to three rounded gray panels. Panel (a) shows a blue pixel-difference heatmap D=|Io−Ie| with noise across the whole image, then thresholded binary masks at τ=10 and τ=40. Red text says the masks are either wrong or incomplete. Panel (b) shows a chain from the instruction to an MLLM, then to a VLM (LangSAM), then to a mask that picks the wrong region. Panel (c) shows the red-labeled SIGMA modules: a Semantic Difference Branch and an Instruction-Grounding Branch feed Bidirectional Cross-Modal Refinement, then a Mask Decoder, which outputs a correct mask. The eye goes first to the heatmap and masks in (a), then to the red method boxes in (c).",
+ "caption": "(a) Failure modes of pixel-level differencing under diffusion-based text-driven editing. (b) Failure modes of MLLM/VLM-based mask inference from instructions. (c) Overview of the SIGMA framework.",
+ "caption_source": "latex",
+ "abstract": "Text-driven image editing has advanced rapidly, but reliably localizing these manipulations requires image manipulation localization (IML) models trained on large pixel-annotated datasets, and there is still no low-cost way to obtain such training data at scale. We observe that these data already exist in disguise: public editing datasets contain millions of structurally identical $\\textit{(original, edited)}$ pairs to IML training samples, lacking only pixel-level masks. Recovering these masks automatically is non-trivial: pixel differencing is overwhelmed by diffusion-induced perturbations across all pixels, and instruction-only grounding localizes only what the prompt describes, missing unintended editor side-effects. We propose $\\textbf{SIGMA}$ ($\\textbf{S}$emantic-difference $\\textbf{I}$nstruction-$\\textbf{G}$rounding $\\textbf{M}$ask $\\textbf{A}$nnotator), which performs semantic-feature differencing in a vision foundation backbone and injects an instruction-derived spatial prior into this visual stream via bidirectional cross-modal refinement, amplifying the difference signal at intended-edit regions when the editor faithfully realizes user intent. SIGMA is trained in two complementary stages: Stage I supervises on inpainting masks and Stage II closes the diffusion-domain shift via VAE-roundtrip noise calibration, EMA self-training, and an edit-noise disentanglement loss. SIGMA outperforms existing automatic mask generators on five benchmarks ($\\textbf{+12.20\\%}$ F1, $\\textbf{+11.16\\%}$ IoU). When applied to public editing corpora, it produces a $\\sim$1.1M IML training set that improves four diverse detectors by $\\textbf{+20.98\\%}$ F1 across five datasets, turning previously unused editing data into a model-agnostic supervisory resource for IML. For reproducibility, our project page is available at \\url{https://zhuangpeiyu.github.io/projects/SIGMA/}.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=YE3wLDLd1p",
+  "arxiv": "https://arxiv.org/abs/2605.27924",
+  "pdf": "https://arxiv.org/pdf/2605.27924",
+  "proceedings": null,
+  "virtual": "https://neurips.cc/virtual/2026/poster/151764",
+  "code": "https://zhuangpeiyu.github.io/projects/SIGMA/"
+ },
+ "license": "http://creativecommons.org/licenses/by/4.0/",
+ "img": "cc-by",
+ "image_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/images/neurips26-4940.png",
+ "thumb_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/thumbs/neurips26-4940.webp",
+ "figure_page": 1,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.6
+}

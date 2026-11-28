@@ -1,0 +1,48 @@
+{
+ "id": "neurips26-2096",
+ "title": "FRESCO: A Novel Consistency Control for Asynchronous Pipeline Parallel Training",
+ "authors": [
+  "Dongyeop Lee",
+  "Namhoon Lee"
+ ],
+ "venue": "NeurIPS 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "Optimization->Large Scale, Parallel and Distributed",
+ "role": "problem-setup",
+ "role2": "prior-vs-ours",
+ "claim": "Asynchronous updates let parameters change between forward and backward passes, breaking the derivative chain that synchronous execution preserves.",
+ "layout": "2 side-by-side panels, left-to-right time, Gantt charts above a parameter-state timeline",
+ "tags": [
+  "pipeline-parallelism",
+  "asynchronous-training",
+  "gradient-inconsistency",
+  "scheduling",
+  "failure-mode"
+ ],
+ "style": [
+  "colorful",
+  "plot",
+  "minimal"
+ ],
+ "description": "Two side-by-side Gantt charts, (a) Synchronous and (b) Asynchronous pipeline parallelism, with a time arrow at the top of each. Rows are Stages 1–4 and cells are numbered micro-batches. Blue cells are forward passes, pink cells are backward passes, and hatched gray cells are idle. Green bars mark parameter updates. Micro-batch 3 is outlined in bold with darker fill so it can be tracked through the pipeline. Under each chart is a zoomed Stage 1 row with a parameter-state line. A dashed arc runs from the forward read of micro-batch 3 to its backward pass. In (a) the parameters stay at w. In (b) the parameters move through intermediate states (square, diamond, w+) and a black X marks the mismatch. A legend sits at the right: Forward, Backward, Idle, Update.",
+ "caption": "Gantt charts illustrating stage-processor states over time for micro-batch pipelining under synchronous and asynchronous parameter updates. Asynchronous updating allows the stage-1 threads for micro-batches 1 and 2 to overwrite the parameters while micro-batch 3 is still waiting on its downstream error signal $\\bullet$ after reading the previous parameter state $\\bullet$, thus the updated parameters $\\blackdiamond$ no longer form a proper derivative chain, degrading its utility for improving stage 1.",
+ "caption_source": "latex",
+ "abstract": "Asynchronous pipeline parallelism can accelerate distributed model training, but suffers from instability caused by inconsistent gradient computations. We identify a fundamental source of this inconsistency: error signals are coupled to forward-time features, not just parameter states. This means that parameters may evolve as long as they preserve forward-equivalence. Leveraging this insight, we introduce FRESCO, which frames asynchronous updates as a constrained optimization problem: it finds the minimal update modification that acts trivially on the activation subspace. We demonstrate that FRESCO consistently outperforms representative asynchronous baselines in LLM pre-training, with the gains most pronounced under deep pipelines and high inconsistency levels: at pipeline depth 32, it reaches the same loss as the strongest baseline with 43% fewer iterations and 30% less wall-clock time, while requiring 8~921$\\times$ less memory overhead. Moving beyond the current limitations, FRESCO establishes a new foundation for high-utilization pipeline parallel training, providing a scalable path for large-model development on diverse, resource-constrained systems.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=Ez6jehFKyE",
+  "arxiv": "https://arxiv.org/abs/2611.11238",
+  "pdf": "https://arxiv.org/pdf/2611.11238",
+  "proceedings": null,
+  "virtual": "https://neurips.cc/virtual/2026/poster/154282",
+  "code": "https://github.com/LOG-postech/fresco"
+ },
+ "license": "http://creativecommons.org/licenses/by/4.0/",
+ "img": "cc-by",
+ "image_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/images/neurips26-2096.png",
+ "thumb_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/thumbs/neurips26-2096.webp",
+ "figure_page": 1,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.6
+}

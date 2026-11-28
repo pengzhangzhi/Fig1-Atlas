@@ -1,0 +1,51 @@
+{
+ "id": "icml26-1185",
+ "title": "Sparse Tokens Suffice: Jailbreaking Audio Language Models via Token-Aware Gradient Optimization",
+ "authors": [
+  "Zheng Fang",
+  "Xiaosen Wang",
+  "Shenyi Zhang",
+  "Shaokang Wang",
+  "Zhijin Ge"
+ ],
+ "venue": "ICML 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "Social Aspects->Safety",
+ "role": "pipeline",
+ "role2": null,
+ "claim": "Optimizing only the audio tokens with the highest gradient energy is enough to drive an attack, so updates can be sparse.",
+ "layout": "2 panels, left architecture and right flowchart, with a feedback loop",
+ "tags": [
+  "sparse-optimization",
+  "gradient-masking",
+  "adversarial-attack",
+  "token-selection",
+  "multimodal-safety"
+ ],
+ "style": [
+  "icon-heavy",
+  "colorful",
+  "text-heavy"
+ ],
+ "description": "The figure has two panels. The left panel, on a pink background, shows the audio language model architecture as a vertical stack. Sample points feed into frames, then pre-attention audio tokens, then an Audio Encoder and a Language Model. A tall pink text-prompt box joins at the Language Model, and a blue refusal message sits at the top. The right panel, on a blue background, shows the attack loop. A harmful text query goes through TTS to become harmful audio. A red perturbation is added to it, and the perturbed audio goes into the Audio Language Model. The model's output is compared with a target prefix to compute a loss. The gradient is turned into token-level gradients, and sparse token selection masks them. The masked gradient updates the perturbation through a feedback arrow. Dark red squares and dots mark the retained tokens.",
+ "caption": "(Left) The architecture of ALMs. (Right) Overview of token-aware gradient optimization (TAGO).",
+ "caption_source": "latex",
+ "abstract": "Jailbreak attacks on audio language models (ALMs) optimize audio perturbations to elicit unsafe generations, and they typically update the entire waveform densely throughout optimization. In this work, we investigate the necessity of such dense optimization by analyzing the structure of token-aligned gradients in ALMs. We find that gradient energy is highly non-uniform across audio tokens, indicating that only a small subset of token-aligned audio regions dominates the optimization signal. Motivated by this observation, we propose Token-Aware Gradient Optimization (TAGO), which enables sparse jailbreak optimization by retaining only waveform gradients aligned with audio tokens that have high gradient energy, while masking the remaining gradients at each iteration. Across three ALMs, TAGO outperforms baselines, and substantial sparsification preserves strong attack success rates (e.g. on Qwen3-Omni, $\\mathrm{ASR}_{l}$ remains at 86% with a token retention ratio of 0.25, compared to 87% with full token retention). These results demonstrate that dense waveform updates are largely redundant, and we advocate that future audio jailbreak and safety alignment research should further leverage this heterogeneous token-level gradient structure.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=BLnxPR2QB2",
+  "arxiv": "https://arxiv.org/abs/2605.04700",
+  "pdf": "https://raw.githubusercontent.com/mlresearch/v306/main/assets/fang26r/fang26r.pdf",
+  "proceedings": "https://proceedings.mlr.press/v306/fang26r.html",
+  "virtual": "https://icml.cc/virtual/2026/poster/65673",
+  "code": null
+ },
+ "license": "http://arxiv.org/licenses/nonexclusive-distrib/1.0/",
+ "img": "none",
+ "image_url": null,
+ "thumb_url": null,
+ "figure_page": 4,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.9
+}

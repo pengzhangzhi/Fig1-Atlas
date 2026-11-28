@@ -1,0 +1,51 @@
+{
+ "id": "neurips26-4582",
+ "title": "Temporal Backtracking Search for Test-time Generative Video Reasoning",
+ "authors": [
+  "SeJoon Jun",
+  "Zheng Ding",
+  "Huangyuan Su",
+  "Weirui Ye",
+  "Yilun Du"
+ ],
+ "venue": "NeurIPS 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "Computer Vision->Image and Video Generation",
+ "role": "analysis-finding",
+ "role2": "prior-vs-ours",
+ "claim": "Outputs are fixed by the earliest generation steps, so search over later steps adds no exploration; branching along the temporal axis does.",
+ "layout": "3 panels, left-to-right; timeline arrow in (a), red ✗ versus green ○ outcomes in (b) and (c)",
+ "tags": [
+  "test-time-search",
+  "diffusion",
+  "temporal-branching",
+  "trajectory-commitment",
+  "exploration"
+ ],
+ "style": [
+  "photo/real data",
+  "colorful",
+  "icon-heavy"
+ ],
+ "description": "Three-panel figure. Panel (a), \"Trajectory committed at early denoising steps\", has a long black arrow labeled \"Denoising steps\" with checkpoints S1, S5 and S40. Above each is a stack of blue numbered-tile puzzle frames, and they look the same at every step. A red caption reads \"same committed trajectory for S1~40\". Panel (b), \"Denoising step search\", starts from a noise image. It shows 3D block-scene rollouts at S1 and S40 that look alike, each marked with a red X, and the caption \"No exploration\" in red. Panel (c), \"Temporal step search\", shows a maze start frame that branches through an ellipsis into three red or green arrows. These lead to maze frames with different outcomes, marked X, green circle and X, and the caption \"Meaningful exploration\" in green. Red and green show failure and success. The eye goes first to the big arrow and then to the red X marks.",
+ "caption": "Trajectories are determined by the earliest denoising steps. Decoding the same noisy latent at successive denoising steps shows that the motion plan is fixed within the first few steps and persists through to the final rollout. Takeaway: Additional compute spent on later denoising steps cannot redirect a wrong trajectory, so test-time search for video reasoning must branch over temporal frames, not over denoising steps.",
+ "caption_source": "latex",
+ "abstract": "While test-time scaling has revolutionized reasoning in large language models, generative video reasoning remains bottlenecked by a single-shot paradigm. We demonstrate that searching over denoising steps cannot rescue logically flawed rollouts because spatial trajectories commit early in the diffusion process. Root-level Best-of-N (BoN) sampling is similarly inefficient: reasoning errors cluster early in the temporal axis, and resampling blindly discards verified upstream progress. To unlock effective test-time scaling for video models, we introduce Temporal Backtracking Search (TBS), which shifts the search space to the temporal axis. TBS transforms video generation into an iterative generate-verify-restart loop via three core mechanisms: (1) variable-K conditioning to resume generation from arbitrary clean prefixes; (2) temporal process verification to localize failures and extract valid restart anchors; and (3) prefix-based search to reallocate compute toward extending correct trajectories rather than root resampling. Across algorithmic, navigation, and robotics domains, TBS Pareto-dominates matched-budget BoN. In a strict out-of-distribution setting where one-shot generation collapses (0.7% for BoN), TBS achieves 22.7%, with every solved episode stemming from a restarted branch. Ultimately, TBS reveals that the local reasoning competence of video models far exceeds what single-shot rollouts indicate, providing a scalable test-time framework to unlock it.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=VbbMjAFFHD",
+  "arxiv": "https://arxiv.org/abs/2606.13861",
+  "pdf": "https://arxiv.org/pdf/2606.13861",
+  "proceedings": null,
+  "virtual": "https://neurips.cc/virtual/2026/poster/152083",
+  "code": null
+ },
+ "license": "http://arxiv.org/licenses/nonexclusive-distrib/1.0/",
+ "img": "none",
+ "image_url": null,
+ "thumb_url": null,
+ "figure_page": 1,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.6
+}

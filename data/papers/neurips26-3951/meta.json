@@ -1,0 +1,50 @@
+{
+ "id": "neurips26-3951",
+ "title": "Benchmarking and Improving Monitors for Out-Of-Distribution Alignment Failure in LLMs",
+ "authors": [
+  "Dylan Feng",
+  "Pragya Srivastava",
+  "Anca Dragan",
+  "Cassidy Laidlaw"
+ ],
+ "venue": "NeurIPS 2026",
+ "tier": "poster",
+ "track": "Evaluations_and_Datasets_Track",
+ "topic": "Social Aspects->Trustworthy Machine Learning",
+ "role": "prior-vs-ours",
+ "role2": "problem-setup",
+ "claim": "A guard model trained on safe data misses out-of-distribution failures that an added OOD detector correctly flags.",
+ "layout": "2 panels split by dashed line, left-to-right; guard model vs highlighted OOD detector",
+ "tags": [
+  "out-of-distribution",
+  "safety-monitoring",
+  "guard-model",
+  "failure-case",
+  "detector"
+ ],
+ "style": [
+  "icon-heavy",
+  "colorful",
+  "text-heavy"
+ ],
+ "description": "The figure is split by a vertical dashed line into Training (left) and Deployment (right). The Training panel shows a chat with the label SAFE in green. A robot issues a function call, a green tool response shows status success, and the robot then sends a cheerful account-created message. The caption reads 'Function calls always succeed'. The Deployment panel shows a similar conversation. Here the tool response is red and shows status error, yet the robot claims the task was added successfully. The caption reads 'Assistant lies about function error'. Arrows lead from the conversation to a green Guard Model box, which outputs a green 'Safe', and to a purple OOD Detector box labeled 'Our proposal', which outputs a bold red 'OOD'. The eye goes first to the red error bubble, then to the purple box.",
+ "caption": "We systematically study incorporating out-of-distribution (OOD) detectors into LLM safety monitoring to catch alignment failures outside the training distribution. LLMs are often deployed with a guard model (right) trained with safety training data (left). However, if a prompt or response is outside of the training distribution, the guard model may generalize incorrectly and fail to flag safety issues. Adding an OOD detector can catch these OOD failures by recognizing that they are far from the training distribution, and take actions such as blocking the response or reporting the conversation for review by the model developer.\\\\[6pt] In this example from our \\benchmark (\\bm) benchmark, function calls always succeed in the training data and are labeled as safe. However, at test time, a function call fails and the LLM assistant deceives the user, claiming it succeeded. The guard model generalizes from the training set to assume that all function calls are safe, so it does not recognize the alignment failure. Meanwhile, the OOD detector correctly recognizes that the error makes this situation OOD and flags it as anomalous.",
+ "caption_source": "latex",
+ "abstract": "Many safety and alignment failures of large language models (LLMs) occur due to out-of-distribution (OOD) situations: unusual prompt or response patterns that are unforeseen by model developers. We systematically study whether LLM monitoring pipelines can detect these OOD alignment failures by introducing a benchmark called Misalignment Out Of Distribution (MOOD). It is difficult to find failures that are truly OOD for off-the-shelf models trained on vast safety datasets. We sidestep this by including a restricted training set in MOOD that we use to train our own monitors, as well as seven test sets with diverse alignment failures that are outside the training distribution. Using MOOD, we find that guard models (safety classifiers) often fail to generalize OOD. To fix this, we propose combining guard models with OOD detectors. We test four types of OOD detectors and find that a combination of a guard model with Mahalanobis distance and perplexity-based OOD detectors can improve recall from 39% to 45%. We also establish positive scaling trends across model scales for monitors that combine a guard model and OOD detector; we find that incorporating OOD detection into monitoring achieves a higher recall gain than using a guard model with 20 times more parameters. Our work suggests that OOD detection should be a crucial component of LLM monitoring and provides a foundation for further work on this important problem. We release the code and data for our experiments publicly, and you can find the relevant links here: https://github.com/Dylan102938/mood-bench.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=Rba2NveuIm",
+  "arxiv": "https://arxiv.org/abs/2605.21602",
+  "pdf": "https://arxiv.org/pdf/2605.21602",
+  "proceedings": null,
+  "virtual": "https://neurips.cc/virtual/2026/poster/139423",
+  "code": "https://github.com/Dylan102938/mood-bench"
+ },
+ "license": "http://arxiv.org/licenses/nonexclusive-distrib/1.0/",
+ "img": "none",
+ "image_url": null,
+ "thumb_url": null,
+ "figure_page": 1,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.5
+}

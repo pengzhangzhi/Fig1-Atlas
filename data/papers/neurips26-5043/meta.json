@@ -1,0 +1,51 @@
+{
+ "id": "neurips26-5043",
+ "title": "Quantized Reasoning Models Think They Need to Think Longer, but They Do Not",
+ "authors": [
+  "Sanae Lotfi",
+  "Polina Kirichenko",
+  "Steven Li",
+  "Zechun Liu"
+ ],
+ "venue": "NeurIPS 2026",
+ "tier": "oral",
+ "track": "main",
+ "topic": null,
+ "role": "prior-vs-ours",
+ "role2": "teaser-result",
+ "claim": "Without intervention, models derail after finding the right answer; penalizing branch-opening tokens halts overthinking, cutting length and boosting accuracy.",
+ "layout": "3 panels left-to-right: failure example, penalty mechanism contrast, bar results",
+ "tags": [
+  "logit-penalty",
+  "overthinking",
+  "training-free",
+  "efficiency",
+  "quantization"
+ ],
+ "style": [
+  "colorful",
+  "text-heavy",
+  "plot",
+  "minimal"
+ ],
+ "description": "Three dashed-border panels read left to right. The left panel shows a chat-style example: a blue user box asks for the largest 8-digit base-2 integer, and a gray model box shows reasoning that reaches the correct 255, highlighted with a green box. It then continues with 'Wait, maybe...' and 'Wait, what if...' in red. Callouts say 'Correct intermediate solution!', 'LLM never terminates reasoning' and 'Over 50% of failures are due to overthinking!'. The middle panel stacks two mini token-probability bar charts, 'LLM w/o thinking penalty' and 'LLM with thinking penalty', over a 'Quantized Reasoning LLM' box. Without the penalty, the 'But' bar is red and tall. With it, 'But' and 'Wait' shrink under red arrows and the green 'Final' bar grows. A green box between them reads 'Penalize overthinking markers'. A green 'Final Response' box with a checkmark sits below. The right panel has two bar pairs for Qwen 1.5B 3-bit on MATH-500: accuracy 47.0% vs 61.2% and response length 23.4k vs 12.9k, with red for default and green for ours. Red and green carry the contrast throughout.",
+ "caption": "Quantization exacerbates overthinking in reasoning models. (Left): Even though quantized reasoning models reach an intermediate correct answer, they self-doubt, open too many new reasoning branches and never produce the final response. (Middle): We apply a logit penalty on thinking markers (i.e. \"but\" or \"wait\") which open new reasoning branches. (Right): We show that the overthinking penalty leads to significant improvements in efficiency (reasoning length) while maintaining or improving accuracy on average across models, datasets and quantization methods.",
+ "caption_source": "latex",
+ "abstract": "Post-training quantization (PTQ) is widely used to deploy large language models efficiently, but its effect on reasoning models is not well understood. Across math, coding, and science QA, we find that aggressive PTQ reduces accuracy while increasing chain-of-thought (CoT) length. Surprisingly, we show that in up to 52% of the quantized models' failures, models reach the right answer in intermediate reasoning steps but do not output it as a final answer. To understand why quantization leads to this increase in overthinking errors, we measure the token-level KL divergence between quantized and full-precision output distributions. Positions with high KL divergence correlate strongly with high next-token entropy, and at these positions quantized models disproportionately sample overthinking markers such as \"wait\", \"but\", and \"alternatively\". We show that simply introducing a training-free logit penalty on a curated set of overthinking markers can reduce CoT length by 12--23% while preserving or improving accuracy across 5 models (1.5B-32B parameters), 3 quantization methods, and 5 benchmarks, yielding a favorable Pareto frontier of accuracy against reasoning cost compared to penalizing other token sets. Overthinking errors produced by quantized models are particularly reduced by up to 58%.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=YulzlhXlgy",
+  "arxiv": "https://arxiv.org/abs/2606.00206",
+  "pdf": "https://arxiv.org/pdf/2606.00206",
+  "proceedings": null,
+  "virtual": "https://neurips.cc/virtual/2026/poster/151668",
+  "code": null
+ },
+ "license": "http://creativecommons.org/licenses/by/4.0/",
+ "img": "cc-by",
+ "image_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/images/neurips26-5043.png",
+ "thumb_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/thumbs/neurips26-5043.webp",
+ "figure_page": 0,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.5
+}

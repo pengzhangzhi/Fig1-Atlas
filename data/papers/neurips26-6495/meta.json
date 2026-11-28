@@ -1,0 +1,52 @@
+{
+ "id": "neurips26-6495",
+ "title": "Dynamic Resolution Routing for Efficient Egocentric Grounding",
+ "authors": [
+  "Huixin Sun",
+  "Wangbo Zhao",
+  "Fanyue Wei",
+  "Qiuxia Lin",
+  "Pengzhan Sun",
+  "Angela Yao"
+ ],
+ "venue": "NeurIPS 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "Computer Vision->Vision Models & Multimodal",
+ "role": "pipeline",
+ "role2": "prior-vs-ours",
+ "claim": "Prior methods prune or merge tokens after encoding; ours routes pixel-space resolution before encoding, so fewer tokens enter the encoder.",
+ "layout": "3 panels, left-to-right, shared encoder-decoder schematic, ours rightmost",
+ "tags": [
+  "token-reduction",
+  "dynamic-resolution",
+  "efficiency",
+  "routing",
+  "multimodal-llm"
+ ],
+ "style": [
+  "icon-heavy",
+  "colorful",
+  "photo/real data"
+ ],
+ "description": "Three side-by-side block diagrams separated by dashed lines, each with the same structure: an egocentric photo with a patch grid at top left, a Vision Encoder box beneath it, and an LM Decoder box at right with Predict and Output on top and a Prompt arrow from below. Small colored squares stand for visual tokens. Panel (a), LLM-side Pruning, puts a red 'Prune Visual Tokens' box inside the decoder. Panel (b), Intra-encoder Reduction, puts a red 'Merge or Prune Visual Tokens' box inside the encoder. Panel (c), SmartRes, shows a small low-resolution image beside a high-resolution image and a blue 'Routing Head' inside the encoder. It outputs a short mixed sequence of blue low-resolution tokens and orange high-resolution tokens. The red pruning boxes stand out on the baselines. The cleaner third panel is the proposed method.",
+ "caption": "Left: Pixel-space dynamic routing vs. latent-space token pruning. (a) Input image with the ground-truth target; (b) Vanilla cross-attention (top) drifts to artifacts, whereas our method (bottom) calibrates it to the object. (c) FastV [ref] retains tokens (\\textcolor[RGB]{255,217,0}{\\rule[0.ex]{1.5ex}{1.5ex}}) mostly from the background, failing to preserve fine-grained object evidence. (d) SmartRes allocates high-resolution computation (\\textcolor[RGB]{244,177,131}{\\rule[0.ex]{1.5ex}{1.5ex}}) to object-centric regions and keeps the remaining visual context compact (\\textcolor[RGB]{189,215,238}{\\rule[0.ex]{1.5ex}{1.5ex}}). Right: the visual encoding bottleneck. (e) End-to-end FLOPs (\\textcolor[RGB]{0,128,0}{green}) of Qwen2.5-VL-3B-Instruct on RefCOCO and Ego4D frames grow rapidly with input resolution, shifting the compute from LLM prefilling to vision encoding.",
+ "caption_source": "latex",
+ "abstract": "Egocentric visual grounding requires high-resolution inputs to localize small objects. However, scaling Multimodal Large Language Models to this domain is constrained by the excessive cost of visual token processing. We identify that current efficient strategies based on token reduction are unreliable for selecting object-centric spatial evidence. To overcome this, we propose SmartRes, a framework that performs efficiency optimization in the pixel space via dynamic resolution routing. SmartRes first encodes a low-resolution view for global context and uses a lightweight router to activate high-resolution patches in object-centric regions and constructs an order-preserving visual sequence. To further enable robust routing under severe foreground-background imbalance, we introduce a margin-regularized routing objective that increases foreground-background logit separation and improves foreground recall. Experiments on Ego4D and EgoIntention show that SmartRes reduces visual tokens by up to 67% while retaining 86.4% of full-resolution performance, and achieves up to 1.66X faster inference than state-of-the-art token reduction methods with higher accuracy. Furthermore, strong performance on small object grounding indicates the effectiveness of SmartRes towards egocentric applications. Code will be publicly available.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=iYPoXQgQac",
+  "arxiv": "https://arxiv.org/abs/2608.01638",
+  "pdf": "https://arxiv.org/pdf/2608.01638",
+  "proceedings": null,
+  "virtual": "https://neurips.cc/virtual/2026/poster/150374",
+  "code": "https://huixinsun.github.io/SmartRes-Website/"
+ },
+ "license": "http://creativecommons.org/licenses/by/4.0/",
+ "img": "cc-by",
+ "image_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/images/neurips26-6495.png",
+ "thumb_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/thumbs/neurips26-6495.webp",
+ "figure_page": 2,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.55
+}

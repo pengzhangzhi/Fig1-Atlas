@@ -1,0 +1,52 @@
+{
+ "id": "neurips26-8674",
+ "title": "Learning How to Cube",
+ "authors": [
+  "Ferhat Erata",
+  "Sam Kouteili",
+  "Thanos Typaldos",
+  "Timos Antonopoulos",
+  "Robert B Jones",
+  "Byron Cook",
+  "Ruzica Piskac"
+ ],
+ "venue": "NeurIPS 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "Optimization->Discrete Optimization",
+ "role": "pipeline",
+ "role2": "problem-setup",
+ "claim": "A learned heuristic can drive recursive search-tree splitting and solver-based conquering, formalized as a single evaluation algorithm.",
+ "layout": "2 panels, left tree and right pseudocode, top-down recursion",
+ "tags": [
+  "cube-and-conquer",
+  "neuro-symbolic",
+  "search-tree",
+  "learned-heuristic",
+  "sat-solving"
+ ],
+ "style": [
+  "text-heavy",
+  "minimal"
+ ],
+ "description": "The left panel shows a binary decision tree for Cube-and-Conquer. The root is a blue-circled variable x4. Small neural-network icons sit beside the internal nodes x4, x8, x1 and x9, showing that a model picks each split variable. Red-outlined 'False' and green-outlined 'True' labels mark the branches. Leaves are rounded boxes holding cube formulas such as F ∧ (¬x4 ∧ ¬x8) and F ∧ (x4 ∧ x1). The right panel is 'Algorithm 1 Cube-and-Conquer', a 20-line pseudocode listing. It calls Choose-Split, Create-Children and Rollout, recurses on each child, merges the statistics, and returns the combined stats. The eye goes first to the tree with its colored branches. It then moves to the dense pseudocode on the right.",
+ "caption": "(a) Schematic depiction of Cube-and-Conquer using a neural heuristic, (b) Our implementation of the evaluation algorithm with 30 minutes timeout. The cubing phase is represented by Choose-Split and the conquering phase by Rollout, which is trying to solve the node's formula using a CDCL solver with 5 seconds timeout.",
+ "caption_source": "latex",
+ "abstract": "Despite the effectiveness of Cube-and-Conquer (C&C) for solving challenging Boolean Satisfiability (SAT) problems, no prior work has shown that transformer-based models can learn effective cubing heuristics. We introduce a neuro-symbolic post-training framework for this task. We design an MCTS-based data curation pipeline that uses symbolic heuristics to explore splitting decisions over SAT competition formulas, producing preference data grounded in solver statistics and augmented with reasoning traces from a teacher model. Our two-stage post-training, supervised fine-tuning (SFT) followed by direct preference optimization (DPO), enables a 4B-parameter model to achieve a pass@5 score of 53 on 100 SAT competition benchmarks, surpassing frontier LLMs such as Claude-Sonnet-4 (50) and matching, with five attempts per benchmark, the best symbolic heuristic (53), which nonetheless remains preferable for a single attempt. Ablations show that SFT alone improves pass@5 from 46 to 51, with DPO adding 2 additional benchmarks; an entropy/agreement ablation on realized first-cube decisions further shows that SFT, not DPO, accounts for the root-level decision diversity that produces complementary per-run coverage over deterministic symbolic methods. This demonstrates that transformers can be trained to make effective cubing decisions in a domain traditionally dominated by symbolic methods.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=xpTnC6GT2x",
+  "arxiv": "https://arxiv.org/abs/2605.16632",
+  "pdf": "https://arxiv.org/pdf/2605.16632",
+  "proceedings": null,
+  "virtual": "https://neurips.cc/virtual/2026/poster/148433",
+  "code": null
+ },
+ "license": "http://arxiv.org/licenses/nonexclusive-distrib/1.0/",
+ "img": "none",
+ "image_url": null,
+ "thumb_url": null,
+ "figure_page": 1,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.6
+}

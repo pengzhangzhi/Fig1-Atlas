@@ -1,0 +1,49 @@
+{
+ "id": "neurips26-3081",
+ "title": "Predicting Quantization Price for Selecting PTQ Configurations Before Deployment",
+ "authors": [
+  "Junbin Qiu",
+  "Jian Mu",
+  "Weitong Zhang",
+  "Yao SHU"
+ ],
+ "venue": "NeurIPS 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "Deep Learning->Algorithms",
+ "role": "teaser-result",
+ "role2": "analysis-finding",
+ "claim": "The proposed predicted error cost tracks true output-distribution drift across many configurations, models and bit settings, enabling selection before deployment.",
+ "layout": "4 scatter panels in a row, shared y-axis, log-log, shared bottom legend",
+ "tags": [
+  "quantization",
+  "proxy-validation",
+  "rank-correlation",
+  "log-log-scatter",
+  "configuration-selection"
+ ],
+ "style": [
+  "plot",
+  "colorful"
+ ],
+ "description": "A row of four log-log scatter plots comparing a predicted quantity (x-axis) against measured KL drift (y-axis, labeled J(α) Eq.(2)). The two left panels, OPT-125M and Qwen3-0.6B, use the realized price ρ(α) (Eq.8) on the x-axis. The two right panels use the implemented trace price ρ̂_l(α_l) (Eq.18). Each panel has a dashed diagonal y=x reference line and a Spearman-style ρ value in the top-left corner, between 0.92 and 0.95. Points are dense clouds that follow the diagonal. Colors encode bitwidth: blue int8, red int4, green fp8, orange fp4, gray mixed. Marker shapes encode transformation constraints, such as circle, square, triangle and diamond. Fill style encodes granularity. A wide legend strip under the panels explains the three encodings. The eye goes first to the tight diagonal clouds and the ρ values.",
+ "caption": "Realized quantization price [ref] (left two panels) and implemented trace price [ref] (right two panels) versus full-precision-to-quantized KL drift [ref] under controlled perturbations. Each point is a candidate configuration, with marker styles indicating transformation constraints and colors indicating bitwidth or granularity choices. The reported $\\rho$ summarizes the log-scale alignment.",
+ "caption_source": "latex",
+ "abstract": "Weight-space post-training quantization (PTQ) must choose finite formats, granularities, quantizer families, transformations, and bits before the completed quantized model reveals its output-distribution drift. Existing PTQ methods predict important pieces of this degradation, including reconstruction error, Hessian sensitivity, transformation effects, and downstream loss, but these pieces are usually scored after fixing the quantization geometry or inside separate configuration families. We formulate weight-space PTQ as pre-deployment configuration selection using priced layer-output error. Each admissible layer configuration is treated as an error generator with a deployment cost, which induces a layer-output error covariance $\\boldsymbolÎ£_l(Î±_l)$, and the full-precision model prices that covariance by downstream curvature, $\\widehatÏ_l(Î±_l)=\\frac{1}{2}\\operatorname{Tr}\\left(\\widehat{\\mathbf{H}}_l\\,\\widehat{\\boldsymbolÎ£}_l(Î±_l)\\right)$. The price follows from full-precision-to-quantized forward KL, whose first-order term cancels at the reference model. It turns reconstruction and diagonal scores into reduced proxies that drop price factors, while finite formats, codebooks, granularities, and equivalent transformations become comparable candidates through the covariances they induce and the costs they pay. A trace reduction then yields a calibration-time price table and a budgeted price-guided selector, making fixed-geometry bit allocation a special case rather than the organizing problem.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=LWK4LetKST",
+  "arxiv": "https://arxiv.org/abs/2609.28270",
+  "pdf": "https://arxiv.org/pdf/2609.28270",
+  "proceedings": null,
+  "virtual": "https://neurips.cc/virtual/2026/poster/153413",
+  "code": null
+ },
+ "license": "http://creativecommons.org/licenses/by/4.0/",
+ "img": "cc-by",
+ "image_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/images/neurips26-3081.png",
+ "thumb_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/thumbs/neurips26-3081.webp",
+ "figure_page": 7,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.6
+}

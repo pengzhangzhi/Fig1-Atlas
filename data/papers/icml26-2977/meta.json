@@ -1,0 +1,55 @@
+{
+ "id": "icml26-2977",
+ "title": "IndexMem: Learned KV-Cache Eviction with Latent Memory for Long-Context LLM Inference",
+ "authors": [
+  "Xintong Yang",
+  "Hao Gu",
+  "Binxing Xu",
+  "Lujun Li",
+  "Bei Liu",
+  "Jiacheng Liu",
+  "Qiyuan Zhu",
+  "Yike Guo",
+  "Sirui Han"
+ ],
+ "venue": "ICML 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": null,
+ "role": "pipeline",
+ "role2": null,
+ "claim": "A main compute stream keeps only selected items, while a lightweight memory path compresses discarded items and adds back their lost contribution.",
+ "layout": "2 horizontal bands (main stream above, memory residual below), left-to-right, residual merges via ⊕",
+ "tags": [
+  "kv-cache-eviction",
+  "latent-memory",
+  "residual-compensation",
+  "long-context",
+  "efficiency"
+ ],
+ "style": [
+  "colorful",
+  "icon-heavy",
+  "minimal"
+ ],
+ "description": "A wide, left-to-right block diagram split into two rounded gray bands. The upper band, labeled 'Attention Stream' in blue, takes a full sequence of gray token cubes into a blue Indexer box, which outputs a light-blue score. A TopK selection arrow points down to a partially hollowed token row, where kept tokens are gray and evicted ones are white. Kept tokens go up ('save tokens') into a blue Evicted Attention box that produces o_attn. The lower band, labeled 'Memory Residual' in purple, takes the evicted white tokens into a small M,b state cube ('online update latent memory'), then into a purple Memory Module that outputs g(q)·m(q). That output rises to a ⊕ node, where it is added to o_attn. Blue marks the attention path and purple marks the memory path.",
+ "caption": "The overall pipeline of IndexMem is as follows: in the main attention stream, we use the learnable indexer to accurately select which KV tokens to save and evict the rest. The evicted tokens are then used to update a latent memory online, and the memory readout is added as a residual to compensate the main attention stream for the information lost due to eviction.",
+ "caption_source": "latex",
+ "abstract": "Large Language Models (LLMs) are increasingly expected to operate over long contexts, yet standard softmax attention incurs a KV cache that grows linearly with sequence length, quickly becoming the bottleneck for long context inference. A practical remedy is to evict less important KV entries; however, existing eviction policies are largely heuristic and struggle to capture the rich, input-dependent distribution of token importance. In this work, we introduce a learnable indexer that predicts KV importance, enabling more accurate retention of critical tokens. Meanwhile, naively evicting tokens permanently discards their information, leading to irreversible forgetting and degraded retrieval over long ranges. To address this, we propose a lightweight latent memory module that compresses evicted tokens into a compact, online-updated state and provides residual readouts to compensate for the attention contributions lost through KV eviction. Collectively, our method enables accurate long-context inference under a bounded KV budget, delivering consistent improvements on RULER (4K/16K) across Qwen, Mistral, and Llama models (up to 25 points under aggressive eviction), markedly more stable Needle-in-a-Haystack retrieval, and superior LongBench scores and compression curves compared to existing eviction policies.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=SKXkGLbXdB",
+  "arxiv": "https://arxiv.org/abs/2605.25475",
+  "pdf": "https://raw.githubusercontent.com/mlresearch/v306/main/assets/yang26p/yang26p.pdf",
+  "proceedings": "https://proceedings.mlr.press/v306/yang26p.html",
+  "virtual": "https://icml.cc/virtual/2026/poster/63943",
+  "code": null
+ },
+ "license": "http://creativecommons.org/licenses/by/4.0/",
+ "img": "cc-by",
+ "image_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/images/icml26-2977.png",
+ "thumb_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/thumbs/icml26-2977.webp",
+ "figure_page": 2,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.95
+}

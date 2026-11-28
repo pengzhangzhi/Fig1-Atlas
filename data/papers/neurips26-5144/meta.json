@@ -1,0 +1,53 @@
+{
+ "id": "neurips26-5144",
+ "title": "TGRL: Temperature-Grouped Reinforcement Learning for Efficient Exploration in LLMs",
+ "authors": [
+  "Zihan Lin",
+  "Xiaohan Wang",
+  "Jie Cao",
+  "Jiajun Chai",
+  "Wei Lin",
+  "Guojun Yin",
+  "Ran He"
+ ],
+ "venue": "NeurIPS 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": null,
+ "role": "pipeline",
+ "role2": null,
+ "claim": "Contrast a low-temperature reference group with a high-temperature exploration group, then convert the reward gap into token-level credit for policy updates.",
+ "layout": "3 stages left-to-right, token rows in color, feedback arrow loops back",
+ "tags": [
+  "reinforcement-learning",
+  "temperature-grouping",
+  "credit-assignment",
+  "exploration",
+  "rlvr"
+ ],
+ "style": [
+  "colorful",
+  "text-heavy",
+  "math-heavy"
+ ],
+ "description": "A left-to-right pipeline diagram. A Prompt box feeds a Policy box, which produces rollouts shown as rows of colored word tokens (e.g. 'Thus the period must be 2π; terms remain'). The rollouts are split into a blue-tinted low-temperature reference group (T0) and a yellow-tinted high-temperature exploration group (T1), with softmax formulas above each. Their mean rewards feed a green 'Exploration Gain Estimation' box that computes ΔR_g. This flows down to a 'Mixed Group Advantage' box with a formula. A right panel, 'Credit Allocation', shows token rows with green and orange triangles of varying size marking JS-divergence-weighted gradients. A dashed arrow labeled 'Policy Gradient Update' loops back to the policy. The eye goes first to the colorful token rows on the left and right.",
+ "caption": "Overview of TGRL. TGRL forms low-temperature reference and high-temperature exploration groups to estimate exploration gain from their mean-reward gap, and then assigns this gain to temperature-sensitive tokens via token-level JS divergence for policy-gradient updates.",
+ "caption_source": "latex",
+ "abstract": "Efficient exploration often remains a central bottleneck in reinforcement learning with verifiable rewards (RLVR). Although temperature control and test-time scaling strategies can increase rollout diversity of large language models (LLMs), they either expand the sample budget at rollout time or leave the benefit of exploration unquantified. To this end, we propose Temperature-Grouped Reinforcement Learning (TGRL), which turns temperature-induced diversity into an explicit training signal. For each prompt, TGRL partitions its rollout group into low- and high-temperature subsets, estimates exploration gain through their reward contrast, and allocates this group-level signal as token-level credit using Jensen--Shannon (JS) divergence between the corresponding temperature-scaled next-token distributions induced by the same logits. Notably, TGRL reaches equivalent accuracy up to 36% faster than strong RLVR baselines without expanding the rollout budget. Across 11 benchmarks from diverse domains, TGRL broadly improves over strong RLVR baselines: it improves the six-benchmark math average by 1.6% at 32B, raises CodeForces rating by 196.7 points and LiveCodeBench Pass@16 by 4.4%, and improves ALFWorld/WebShop success rates by 6.3%/4.9%. Comprehensive ablations and wall-clock analysis confirm the efficacy of all proposed components. Code is available at https://github.com/1229095296/TGRL/tree/main.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=ZWkXIcPySl",
+  "arxiv": "https://arxiv.org/abs/2609.33589",
+  "pdf": "https://arxiv.org/pdf/2609.33589",
+  "proceedings": null,
+  "virtual": "https://neurips.cc/virtual/2026/poster/151583",
+  "code": null
+ },
+ "license": "http://arxiv.org/licenses/nonexclusive-distrib/1.0/",
+ "img": "none",
+ "image_url": null,
+ "thumb_url": null,
+ "figure_page": 1,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.93
+}

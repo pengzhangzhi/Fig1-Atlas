@@ -1,0 +1,50 @@
+{
+ "id": "icml26-6073",
+ "title": "SoftMoE: Soft Differentiable Routing for Mixture-of-Experts in LLMs",
+ "authors": [
+  "Mikołaj Zasada",
+  "Łukasz Struski",
+  "Jacek Tabor",
+  "Marcin Kurdziel"
+ ],
+ "venue": "ICML 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "Deep Learning->Large Language Models",
+ "role": "analysis-finding",
+ "role2": "prior-vs-ours",
+ "claim": "Fixed top-k routing gives every layer identical capacity, whereas learned soft routing reveals that later layers need far more active experts.",
+ "layout": "3 stacked ridgeline panels sharing an x-axis, top-to-bottom, layers colored by gradient",
+ "tags": [
+  "mixture-of-experts",
+  "adaptive-computation",
+  "routing",
+  "non-uniform-allocation",
+  "budget-constraint"
+ ],
+ "style": [
+  "plot",
+  "colorful",
+  "minimal"
+ ],
+ "description": "Three vertically stacked ridgeline (joyplot) panels share one x-axis, 'Active Experts', running from 1 to 8. Each panel shows density curves for the 10 layers of a model, colored from light orange (layer 1) through red and magenta to dark purple (layer 10), with layer numbers labeled on the right. The top panel, 'Sparse MoE', is a single vertical spike at 4 experts, so every layer is identical. The middle panel, 'SoftMoE*', shows broad, overlapping distributions centered near 4: wide for early layers and sharply peaked for later ones. The bottom panel, 'Learned Expert Allocation', moves early and middle layers to about 3 experts. Layer 8 peaks near 5, and layers 9 and 10 spread out toward 6 to 8 experts. The eye goes first to the bottom panel's purple shift to the right.",
+ "caption": "Learned expert allocation reveals non-uniform capacity needs across layers of a MoE model. Each color shows the distribution of activated experts in one layer of 10-layer model. Top: standard sparse MoE fixes the number of activated experts a priori. Middle: under soft top-$k$ routing, the number of activated experts depends on the input token. Bottom: learned allocation redistributes active experts budget: final layers activate more experts at the expense of initial and middle layers.",
+ "caption_source": "latex",
+ "abstract": "Sparse Mixture-of-Experts (MoE) architectures enable scaling LLM parameters under a fixed inference budget by activating only a small subset of experts via top-$k$ routing. While this preserves causality and suits autoregressive language models, the discrete top-$k$ operator is not differentiable, forcing a fixed number of active experts per input and resulting in inefficient use of computation. We propose SoftMoE, which replaces discrete routing with a truncated soft top-$k$ LapSum relaxation, allowing gradient-based optimization of expert routing. We further parameterize the mean number of active experts per layer and impose a global budget constraint, enabling the model to learn how to allocate expert capacity across layers. SoftMoE remains fully compatible with autoregressive modeling and achieves performance comparable to or better than sparse MoE on language modeling and downstream tasks, while activating significantly fewer experts. Notably, the learned allocation is highly non-uniform, with later layers activating more experts. The source code is publicly available$^\\dagger$.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=vGTFOp3jLO",
+  "arxiv": "https://arxiv.org/abs/2606.17952",
+  "pdf": "https://raw.githubusercontent.com/mlresearch/v306/main/assets/zasada26a/zasada26a.pdf",
+  "proceedings": "https://proceedings.mlr.press/v306/zasada26a.html",
+  "virtual": "https://icml.cc/virtual/2026/poster/60933",
+  "code": "https://github.com/dlcuda/SoftMoE"
+ },
+ "license": "http://arxiv.org/licenses/nonexclusive-distrib/1.0/",
+ "img": "none",
+ "image_url": null,
+ "thumb_url": null,
+ "figure_page": 0,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.6
+}

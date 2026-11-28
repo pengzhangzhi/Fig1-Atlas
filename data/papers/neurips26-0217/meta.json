@@ -1,0 +1,54 @@
+{
+ "id": "neurips26-0217",
+ "title": "RegimeVGGT: Layer-Wise Spatially Preserving Redundancy Removal for Visual Geometry Grounded Transformer",
+ "authors": [
+  "Jinhao You",
+  "Shuo Lyu",
+  "Zhuohang Lyu",
+  "Tanxuan Li",
+  "Zibo Zhao",
+  "Jiaxiang Hu",
+  "Kai Tang",
+  "Yichen Guo"
+ ],
+ "venue": "NeurIPS 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "Computer Vision->3D Rendering & Reconstruction",
+ "role": "pipeline",
+ "role2": "concept",
+ "claim": "Layer-wise functional roles let a training-free method apply different compression operators per depth band, giving large speedups.",
+ "layout": "2 panels: left U-shaped layer-band schedule, right architecture flow with token-grid insets",
+ "tags": [
+  "training-free",
+  "token-merging",
+  "efficiency",
+  "layer-wise-compression",
+  "transformer-acceleration"
+ ],
+ "style": [
+  "colorful",
+  "icon-heavy",
+  "text-heavy"
+ ],
+ "description": "The figure has two halves inside a dashed rounded frame. A large orange \"×6.7 Faster\" headline sits at top left. Below it, two rounded blocks show per-layer schedules. The purple block, labelled \"U Shape\", lists \"Merge α1/α2/α1\" for layer groups L1–10, L11–18 and L19–24. The red block lists \"↓ K/V in β1/β2/β3\" for the same groups. A curved arrow and the word \"Hybrid\" link the two blocks, and a caption underneath says they operate in the global layer. The right half is the architecture: a DINOv2 encoder, a VGGT Aggregator with Frame and Global Attention ×24, and a DPT decoder with Camera, DPT and Track heads. Arrows from the aggregator lead to two insets. The top inset is a token grid with S/D/P tiles being merged. The bottom inset shows K/V subsampling with a phase-shifted grid between frame 0 and the other frames. Blue, pink, yellow and green fills carry most of the colour.",
+ "caption": "\\textbf{Overview of \\methodname{}.} VGGT's 24 global-attention layers split into three bands: the shallow (L1--L10) and deep (L19--L24) bands have lower effective attention rank than the middle band (L11--L18), where cross-view alignment concentrates. This partition configures two training-free operators composed in every global block: Saliency-Guided Banded Merging reduces the token count with a U-shaped per-band merge ratio and a band-aligned index cache, and Selectively Protected K/V Downsampling sparsifies K/V with a phase-shifted per-frame grid, a full-density reference-frame anchor, and uncompressed camera/register tokens.",
+ "caption_source": "latex",
+ "abstract": "Visual Geometry Grounded Transformer (VGGT) recovers dense 3D scene structure from multi-view images in one forward pass, but quadratic cross-frame attention limits its scalability. Existing training-free accelerators exploit token, frame, or attention redundancy; we investigate how layer-wise functional roles can guide compression. Our spectral, probing, and causal analyses reveal three regimes: shallow layers lack cross-view structure, middle layers drive cross-view alignment, and deep layers are redundant for dense geometry yet their cross-frame attention remains essential for pose. RegimeVGGT applies layer-wise U-shaped compression along two axes: Saliency-Guided Banded Merging protects geometry- and edge-salient tokens, while Selectively Protected K/V Downsampling preserves cross-frame spatial coverage and the pose-critical path through a phase-shifted spatial grid, a reference-frame anchor, and uncompressed camera/register tokens. Without any training, RegimeVGGT achieves a 6.7x speedup over the memory-optimized VGGT* at matched reconstruction quality. Project page: https://tracyou07.github.io/regimevggt/",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=1a4VUxz0sm",
+  "arxiv": "https://arxiv.org/abs/2606.18439",
+  "pdf": "https://arxiv.org/pdf/2606.18439",
+  "proceedings": null,
+  "virtual": "https://neurips.cc/virtual/2026/poster/155954",
+  "code": "https://tracyou07.github.io/regimevggt/"
+ },
+ "license": "http://creativecommons.org/licenses/by/4.0/",
+ "img": "cc-by",
+ "image_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/images/neurips26-0217.png",
+ "thumb_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/thumbs/neurips26-0217.webp",
+ "figure_page": 1,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.8
+}

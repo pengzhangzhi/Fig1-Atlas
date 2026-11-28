@@ -1,0 +1,48 @@
+{
+ "id": "neurips26-0464",
+ "title": "AdaAlloc: Adaptive Visual Token Allocation for Long-Video Question Answering",
+ "authors": [
+  "Joungbin An",
+  "Kristen Grauman"
+ ],
+ "venue": "NeurIPS 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "Computer Vision->Vision Models & Multimodal",
+ "role": "prior-vs-ours",
+ "role2": "problem-setup",
+ "claim": "Uniform sampling keeps coverage but loses detail, retrieval keeps detail but loses coverage; ours allocates a fixed budget to get both.",
+ "layout": "Question strip on top, 3 side-by-side panels (a)(b)(c), ✓/✗ under titles",
+ "tags": [
+  "token-allocation",
+  "budget-constrained",
+  "long-video",
+  "coverage-vs-detail",
+  "training-free"
+ ],
+ "style": [
+  "colorful",
+  "icon-heavy",
+  "minimal"
+ ],
+ "description": "The top row shows a speech-bubble question (\"What does the person add to the pan right after chopping the onion?\") next to a video timeline from 00:00:00 to 01:30:00. Gray segments mark 'add' and 'chop onion', and a dark segment marks the 'add ?' moment. Below are three tinted panels. (a) Uniform sampling, in blue, scores ✓ Coverage and ✗ Detail. Its question bubble is dashed and labeled 'not used'. Evenly spaced frames are sampled into many small blue squares. (b) Retrieval-based selection, in orange, scores ✗ Coverage and ✓ Detail. A magnifier retrieves a few clips, which become high-resolution orange 2×2 grids. (c) AdaAlloc (ours), in green, scores ✓ Coverage and ✓ Detail. A Question → MLLM planner → 'Allocate global + local' flow feeds a low-res blue global overview and orange high-res local evidence. The final token pool mixes blue and orange tokens. Color coding and the ✓/✗ marks pull the eye across the panels to the green panel.",
+ "caption": "Visual token allocation for long-video reasoning. Uniform sampling preserves global coverage but loses fine details, while retrieval-based selection focuses on a few clips but can lose context. AdaAlloc allocates a fixed token budget between low-resolution global coverage and high-resolution local evidence for both context and fine-grained verification.",
+ "caption_source": "latex",
+ "abstract": "Long-video question answering forces multimodal large language models to reason under strict visual-token budgets, creating a tradeoff between broad temporal coverage and fine-grained spatial detail. Uniform sampling preserves coverage but often obscures decisive local cues, while caption-based or frame-similarity retrieval operates over lossy proxies that can miss motion, state changes, and before-after relations. We recast long-video reasoning as a visual-token allocation problem: given a fixed budget, decide how much to spend on global context versus high-resolution local evidence, and where in the video to draw that local evidence from. We introduce AdaAlloc, a training-free inference framework that adaptively allocates visual tokens between a global video overview and localized visual detail. AdaAlloc first plans a global/local allocation policy, then uses temporal grounding to locate candidate evidence segments and refines them into a compact temporal memory. The selected policy controls both frame sampling density and resolution, combining sparse, lower-resolution global frames with denser, higher-resolution local frames drawn from the refined memory. The final answerer reasons over the allocated global context and refined local evidence. Across LVBench, MLVU, VideoMME, and LongVideoBench, AdaAlloc improves over budget-matched uniform sampling by up to 10.5 percentage points and outperforms the compared frame-selection and agentic methods on their reported benchmarks.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=3L6GFiwoG6",
+  "arxiv": "https://arxiv.org/abs/2611.09092",
+  "pdf": "https://arxiv.org/pdf/2611.09092",
+  "proceedings": null,
+  "virtual": "https://neurips.cc/virtual/2026/poster/155735",
+  "code": "https://vision.cs.utexas.edu/projects/adaalloc/"
+ },
+ "license": "http://arxiv.org/licenses/nonexclusive-distrib/1.0/",
+ "img": "none",
+ "image_url": null,
+ "thumb_url": null,
+ "figure_page": 1,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.9
+}

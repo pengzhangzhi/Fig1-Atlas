@@ -1,0 +1,51 @@
+{
+ "id": "neurips26-7220",
+ "title": "PACZero: PAC-Private Fine-Tuning of Language Models via Sign Quantization",
+ "authors": [
+  "Murat Bilgehan Ertan",
+  "Xiaochen Zhu",
+  "Ha Nguyen",
+  "Marten van Dijk",
+  "Srinivas Devadas"
+ ],
+ "venue": "NeurIPS 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "Social Aspects->Privacy-preserving Statistics and Machine Learning",
+ "role": "pipeline",
+ "role2": null,
+ "claim": "Each step aggregates subset signs and releases them free when all candidates agree, adding calibrated channel noise only on disagreement.",
+ "layout": "Flowchart, top-to-bottom with left-to-right first row; branching agree/split paths merge into update",
+ "tags": [
+  "pipeline",
+  "sign-quantization",
+  "conditional-branching",
+  "privacy-mechanism",
+  "zeroth-order"
+ ],
+ "style": [
+  "minimal",
+  "math-heavy",
+  "colorful"
+ ],
+ "description": "A boxed flowchart of one training step. The top row has three boxes joined by left-to-right arrows: per-sample zeroth-order scalars, M subset means with sign quantization, and a blue-tinted box computing the posterior mass on +1. From the blue box, an arrow splits into two labeled branches, 'agree' and 'split'. The left branch goes to a green box for unanimity, where the sign is released directly and the privacy budget used is zero. The right branch goes to an orange box for disagreement, where the sign passes through a noisy channel at budget beta. Both branches merge into a gray box at the bottom holding the parameter update equation. Pastel fills mark the branches, and the eye starts at the top-left box. Notation is heavy throughout.",
+ "caption": "\\textbf{The \\method{} per-step mechanism.} Per-sample finite-difference scalars are aggregated over $M\\!=\\!128$ random subsets, sign-quantized to $s_m\\!\\in\\!\\{-1,{+}1\\}$. On unanimity, the secret subset's sign is released as is at zero conditional MI. Otherwise it passes through a calibrated channel.",
+ "caption_source": "latex",
+ "abstract": "Differentially private (DP) zeroth-order (ZO) fine-tuning of large language models (LLMs) inherits DP's harsh utility-privacy trade-off. PAC Privacy, an instance-based notion, offers an alternative. It bounds the mutual information (MI) between the secret input and the output, and calibrates the noise to the stability of the output under the input distribution. We introduce PACZero, a family of ZO fine-tuning mechanisms under PAC Privacy. For stability, PACZero quantizes each update to a single bit, the sign of the ZO update aggregated over the secret subset of the training data. On many steps all candidate subsets agree on this sign, so the bit can be released at no cost in MI. On the remaining steps the bit passes through a noisy channel calibrated to a per-step MI budget. We study two channels, the standard additive Gaussian channel of PAC Privacy (PACZero-AGC) and a binary asymmetric channel with optimal bit flipping (PACZero-BAC), along with their zero-budget versions at $\\mathrm{MI} \\to 0$, PACZero-AGC$_0$ and PACZero-BAC$_0$. At zero MI, nothing released during training, including the fine-tuned model, carries any information about which secret subset was sampled, so no adversary inferring that subset can do better than its prior. In particular, the success rate of any membership inference attack (MIA) is bounded by 50% under a balanced prior. To our knowledge, this is the first such guarantee for LLM fine-tuning, and DP matches the MIA bound only at $\\varepsilon = Î´= 0$ and infinite noise. We evaluate on SST-2 and SQuAD with models from 1.3B to 8B parameters, under LoRA and full fine-tuning. Both channels retain high utility under tight MI budgets, and even PACZero-BAC$_0$, which guarantees zero MI, stays within 2 points of non-private ZO fine-tuning with the same number of steps. To our knowledge no DP method achieves usable utility matching this MIA-resistance level.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=nn9uSJJgXG",
+  "arxiv": "https://arxiv.org/abs/2605.06505",
+  "pdf": "https://arxiv.org/pdf/2605.06505",
+  "proceedings": null,
+  "virtual": "https://neurips.cc/virtual/2026/poster/149731",
+  "code": null
+ },
+ "license": "http://arxiv.org/licenses/nonexclusive-distrib/1.0/",
+ "img": "none",
+ "image_url": null,
+ "thumb_url": null,
+ "figure_page": 2,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.93
+}

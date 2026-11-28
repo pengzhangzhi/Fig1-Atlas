@@ -1,0 +1,51 @@
+{
+ "id": "iclr26-1202",
+ "title": "LearnPruner: Rethinking Attention-based Token Pruning in Vision Language Models",
+ "authors": [
+  "Rinyoichi Takezoe",
+  "Yaqian Li",
+  "Zi-Hao Bo",
+  "Anzhou Hou",
+  "Mo Guang",
+  "Kaiwen Long"
+ ],
+ "venue": "ICLR 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "Computer Vision->Vision Models & Multimodal",
+ "role": "analysis-finding",
+ "role2": "problem-setup",
+ "claim": "Encoder attention scatters onto background sink tokens and LLM attention is position-biased, while text-to-vision attention focuses on query-relevant regions.",
+ "layout": "3x6 grid: image, query, then four attention heatmap columns, left-to-right",
+ "tags": [
+  "attention-maps",
+  "token-pruning",
+  "attention-sink",
+  "vision-language-models",
+  "empirical-observation"
+ ],
+ "style": [
+  "photo/real data",
+  "colorful"
+ ],
+ "description": "A 3-row by 6-column grid. Each row is one visual question answering example: a photo (cat on a window sill, a surfer on a wave, a baseball huddle), the question in a pale blue rounded box, and then four jet-colormap heatmaps overlaid on the image. Column headers read Image, Query, [CLS] under a Vision Encoder arrow, and Vision, Text, All grouped under an LLM bracket. The [CLS] maps show scattered hot spots on background areas rather than the subject. The LLM Vision and All maps are hot along the bottom rows, which reflects positional bias. The LLM Text maps show a compact red blob on the object the question asks about, such as the cat, the surfer or the jersey number. The eye goes to the red blobs in the Text column.",
+ "caption": "Attention maps of vision encoder and LLM decoder in LLaVA-1.5 [ref]. The former leverages the attention scores of the [CLS] token derived from the second last layer of the vision encoder, while the latter shows the average attention received by vision tokens from vision, text, and all tokens in the middle layer (12th layer) of the LLM.",
+ "caption_source": "latex",
+ "abstract": "Vision-Language Models (VLMs) have recently demonstrated remarkable capabilities in visual understanding and reasoning, but they also impose significant computational burdens due to long visual sequence inputs. Recent works address this issue by pruning unimportant visual tokens, achieving substantial computational reduction while maintaining model performance. The core of token pruning lies in determining token importance, with current approaches primarily relying on attention scores from vision encoders or Large Language Models (LLMs). In this paper, we analyze the effectiveness of attention mechanisms in both vision encoders and LLMs. We find that vision encoders suffer from attention sink, leading to poor focus on informative foreground regions, while in LLMs, although prior studies have identified attention bias toward token positions, text-to-vision attention demonstrates resistance to this bias and enables effective pruning guidance in middle layers. Based on these observations, we propose LearnPruner, a two-stage token pruning framework that first removes redundant vision tokens via a learnable pruning module after the vision encoder, then retains only task-relevant tokens in the LLM's middle layer. Experimental results show that our LearnPruner can preserve approximately 95% of the original performance while using only 5.5% of vision tokens, and achieve 3.2$\\times$ inference acceleration, demonstrating a superior accuracy-efficiency trade-off.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=Dxb6gBJHby",
+  "arxiv": "https://arxiv.org/abs/2604.23950",
+  "pdf": "https://proceedings.iclr.cc/paper_files/paper/2026/file/6cf7a37e761f55b642cf0939b4c64bb8-Paper-Conference.pdf",
+  "proceedings": "https://proceedings.iclr.cc/paper_files/paper/2026/hash/6cf7a37e761f55b642cf0939b4c64bb8-Abstract-Conference.html",
+  "virtual": "https://iclr.cc/virtual/2026/poster/10010731",
+  "code": null
+ },
+ "license": "http://arxiv.org/licenses/nonexclusive-distrib/1.0/",
+ "img": "none",
+ "image_url": null,
+ "thumb_url": null,
+ "figure_page": 1,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.85
+}

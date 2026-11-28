@@ -1,0 +1,50 @@
+{
+ "id": "neurips26-1939",
+ "title": "A low-rank decoder bottleneck bounds reliability in foundation-model perturbation prediction",
+ "authors": [
+  "Zheyu Zhang",
+  "Yuanhao Huang",
+  "Fan Feng",
+  "Jie Liu"
+ ],
+ "venue": "NeurIPS 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "Applications->Genetics, Cell Biology, etc",
+ "role": "pipeline",
+ "role2": "analysis-finding",
+ "claim": "A model component with a low-rank internal bottleneck produces predictions whose reliability decays smoothly with distance from the training data.",
+ "layout": "2 panels, left-to-right; architecture diagram beside scatter plot with labeled extreme examples",
+ "tags": [
+  "low-rank-bottleneck",
+  "reliability",
+  "confidence-score",
+  "encoder-decoder",
+  "distance-to-training"
+ ],
+ "style": [
+  "plot",
+  "minimal",
+  "icon-heavy"
+ ],
+ "description": "Two panels. Panel A is a block diagram that reads left to right. Control cells enter an Encoder box listing SE-600M, Tahoe-x1 and scGPT. Each cell embedding is drawn as a small dial-arrow icon. A green perturbation input (e.g. RPL6, SNAPC5) feeds circled plus nodes that add it to each cell embedding. The result enters a beige ST decoder box. Inside, a bold black-outlined L0 self-attention block outputs dial arrows that all point the same way, labeled low-rank output. These then pass through a stacked L1–L7 block and a Gene decoder to give predicted cells. Panel B is a scatter plot of held-out PDC (y-axis) against distance to nearest training response (x-axis). It shows many gray dots, three smoothed trend lines (dashed navy, solid teal, dotted red) falling from about 0.9 to 0, and circled outliers RPL6 and SNAPC5 at opposite ends. The eye goes first to the green perturbation label and then to the descending curves.",
+ "caption": "Per-prediction reliability of encoder$+$ST models decays smoothly with gene-space distance to the training perturbations. (A) Encoder coupled with ST decoder for perturbation prediction. An upstream encoder (any single-cell foundation model or cell embedding, e.g., SE-600M, Tahoe-x1, scGPT) embeds each control cell, and the perturbation embedding is added to every cell embedding ($\\oplus$). The ST decoder ($8$ attention blocks) and a gene decoder map these to predicted cells. Predictions are averaged into a pseudobulk for evaluation (\\S[ref]). Each cell is drawn as a vector. Before $L_0$ (black outline) the cell vectors point in different directions, and after it they point along one shared direction with different lengths. This is the low-rank output of the $L_0$ self-attention (\\S[ref]). (B) HepG2. Each gray dot is one of the $945$ held-out perturbations under Tahoe-x1$+$ST, plotted as Pearson delta correlation (PDC, Eq. [ref]) against the cosine distance in gene space from its response to the nearest training response. Lines are kernel-smoothed trends per encoder (Spearman $\\rho$ in the legend). \\gene{RPL6} (small distance) is predicted reliably and \\gene{SNAPC5} (large distance) is not. The pattern replicates across all four cell lines (\\S[ref]). The deployable analog (Definition [ref]) and the calibrated threshold are developed in \\S[ref].",
+ "caption_source": "latex",
+ "abstract": "Foundation-model predictors of perturbation response are evaluated primarily by aggregate accuracy. Using their predictions to prioritize experiments requires assessing each prediction's reliability. We audit the state-transition (ST) decoder used in STATE across three encoders (SE-600M, scGPT, and Tahoe-x1) and four cell lines under CRISPRi. The decoder's first attention layer has a low-rank output. Projecting this output onto 4-32 fixed directions estimated from training activations preserves mean per-perturbation Pearson delta correlation (PDC). This low-rank attention bottleneck bounds the decoder's reliability by distance to training responses: PDC declines as the cosine distance from a perturbation's observed response to its nearest training response increases. We propose predicted-NN-distance, the cosine distance from a predicted response to its nearest training response, as a per-prediction confidence score. The score has a mean absolute Spearman correlation of 0.81 with PDC, close to the 0.88 obtained with the observed response. Thresholds calibrated on this score transfer across encoders and cell lines, and the score remains predictive of PDC for drug perturbations.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=DjV66HdJ1r",
+  "arxiv": "https://arxiv.org/abs/2611.05849",
+  "pdf": "https://arxiv.org/pdf/2611.05849",
+  "proceedings": null,
+  "virtual": "https://neurips.cc/virtual/2026/poster/154415",
+  "code": null
+ },
+ "license": "http://creativecommons.org/licenses/by/4.0/",
+ "img": "cc-by",
+ "image_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/images/neurips26-1939.png",
+ "thumb_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/thumbs/neurips26-1939.webp",
+ "figure_page": 1,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.5
+}

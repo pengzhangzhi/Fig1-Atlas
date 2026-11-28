@@ -1,0 +1,49 @@
+{
+ "id": "icml26-1006",
+ "title": "From Memorization to Parameter Interference: How Overtraining Experts Harms Model Merging",
+ "authors": [
+  "Stefan Horoi",
+  "Guy Wolf",
+  "Eugene Belilovsky",
+  "Gintare Karolina Dziugaite"
+ ],
+ "venue": "ICML 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "General Machine Learning->Transfer, Multitask and Meta-learning",
+ "role": "analysis-finding",
+ "role2": "teaser-result",
+ "claim": "Longer expert fine-tuning keeps improving individual experts but makes merged-model accuracy peak early and then decline.",
+ "layout": "2 side-by-side line plots, shared axes, shaded seed variance bands",
+ "tags": [
+  "model-merging",
+  "fine-tuning",
+  "overtraining",
+  "degradation",
+  "lora"
+ ],
+ "style": [
+  "plot",
+  "colorful"
+ ],
+ "description": "Two side-by-side line plots share the same axes. The x-axis is the number of training steps on a log scale, from 2 or 4 up to 2048. The y-axis is average test accuracy across all tasks, in percent. The left panel covers fully fine-tuned models. A black line for the individual experts rises steadily to about 90%. Below it, merging methods are shown in other colors: Average, Task Arithmetic, TIES, DARE, Iso-C, Iso-CTS and TSV-M. The best of these reach about 84% and then flatten or drop slightly. The TIES and DARE curves peak near 256 steps and then decline. The right panel covers LoRA-adapted models. The black expert curve plateaus near 88%. The merged curves peak around 64 to 128 steps at about 67% and then fall. TIES drops sharply to about 50%. Shaded bands show seed variance. A legend sits in the upper left of each panel. The eye goes first to the gap between the black expert line and the merged curves, and to the late-training decline.",
+ "caption": "Average test accuracy across all 8 vision classification tasks for fully fine-tuned (left) and LoRA-adapted (right) ViT-B-32 models. We plot the average accuracy of the expert models evaluated on their respective tasks as well as merging accuracies for multiple methods. Shaded regions show mean$\\pm$std over 3 random seeds.",
+ "caption_source": "latex",
+ "abstract": "Modern deep learning is increasingly characterized by the use of open-weight foundation models that can be fine-tuned on specialized datasets. This has led to a proliferation of expert models and adapters, often shared via platforms like HuggingFace and AdapterHub. Model merging has recently emerged as an effective way to leverage these existing resources, enabling the composition of capabilities from different model checkpoints. A natural pipeline has thus formed to harness the benefits of transfer learning and amortize sunk training costs: models are pre-trained on general data, fine-tuned on specific tasks, and then multiple checkpoints are merged to obtain a more capable model. A prevailing assumption is that improvements at one stage of this pipeline propagate downstream, leading to gains at subsequent steps. In this work, we challenge that assumption by examining how expert fine-tuning affects model merging. We show that long fine-tuning of experts that optimizes for their individual performance leads to degraded merging performance across vision and language modalities, multiple model scales, and both fully fine-tuned and LoRA-adapted models. We trace this degradation to the memorization of a small set of difficult examples that dominate late fine-tuning steps. This causes negative parameter interference and encodes knowledge that is forgotten during merging. Finally, we demonstrate that task-dependent aggressive early stopping strategies can significantly improve model merging performance.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=9XGa1e4YxB",
+  "arxiv": "https://arxiv.org/abs/2506.14126",
+  "pdf": "https://raw.githubusercontent.com/mlresearch/v306/main/assets/horoi26a/horoi26a.pdf",
+  "proceedings": "https://proceedings.mlr.press/v306/horoi26a.html",
+  "virtual": "https://icml.cc/virtual/2026/poster/65845",
+  "code": null
+ },
+ "license": "http://creativecommons.org/licenses/by/4.0/",
+ "img": "cc-by",
+ "image_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/images/icml26-1006.png",
+ "thumb_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/thumbs/icml26-1006.webp",
+ "figure_page": 3,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.8
+}

@@ -1,0 +1,52 @@
+{
+ "id": "iclr26-0223",
+ "title": "Leveraging Data to Say No: Memory Augmented Plug-and-Play Selective Prediction",
+ "authors": [
+  "Aditya Sarkar",
+  "Yi Li",
+  "Jiacheng Cheng",
+  "Shlok Mishra",
+  "Nuno Vasconcelos"
+ ],
+ "venue": "ICLR 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "Computer Vision->Vision Models & Multimodal",
+ "role": "pipeline",
+ "role2": "prior-vs-ours",
+ "claim": "A baseline plug-and-play scorer accepts a wrong output; augmenting it with retrieved external data yields a calibrated score that rejects it.",
+ "layout": "Single panel, left-to-right; input image branches to baseline and ours, retrieval database inside boxed module",
+ "tags": [
+  "selective-prediction",
+  "retrieval-augmented",
+  "training-free",
+  "calibration",
+  "vision-language"
+ ],
+ "style": [
+  "icon-heavy",
+  "colorful",
+  "photo/real data",
+  "text-heavy"
+ ],
+ "description": "A zoo photo of a giraffe with people sits at the left and splits into two task branches. An LVLM branch does captioning and gives the wrong caption 'A gifet in the zoo' (CiDER-4 0.18, low). A CLIP branch does classification and answers 'dog' instead of giraffe (accuracy 0). Both outputs feed arrows to two systems at the right. The top system, PaPSP, is a single blue SigLIP box that outputs a score of 58.7 and Accept in green. The bottom system sits in a large orange rounded box labeled MA-PaPSP. It chains SigLIP, Proxy Emb., and Contrast Score, with a green database cylinder linked to SigLIP. A box lists retrieved captions about giraffes, with 'giraffe' in green. The system outputs a score of 21.3 and Reject in red. Dashed arrows carry the image to the modules. Red and green text marks errors and correct items.",
+ "caption": "PAPSP uses an external representation model and the CLIP score to enable selective prediction for VLM tasks like captioning without training. MA-PAPSP augments this model with an external dataset, which is leveraged to estimate proxy embeddings of greater stability and better calibrated contrastive scores. The figure shows an example where PAPSP fails but MA-PAPSP succeeds at rejecting an incorrect caption for the image shown. Also shown is the Cider-4 score between predicted and ground truth captions.",
+ "caption_source": "pdf",
+ "abstract": "Selective prediction aims to endow predictors with a reject option, to avoid low confidence predictions. However, existing literature has primarily focused on closed-set tasks, such as visual question answering with predefined options or fixed-category classification. This paper considers selective prediction for visual language foundation models, addressing a taxonomy of tasks ranging from closed to open set and from finite to unbounded vocabularies, as in image captioning. We seek training-free approaches of low-complexity, applicable to any foundation model and consider methods based on external vision-language model embeddings, like CLIP. This is denoted as Plug-and-Play Selective Prediction (PaPSP). We identify two key challenges: (1) instability of the visual-language representations, leading to high variance in image-text embeddings, and (2) poor calibration of similarity scores. To address these issues, we propose a memory augmented PaPSP (MA-PaPSP) model, which augments PaPSP with a retrieval dataset of image-text pairs. This is leveraged to reduce embedding variance by averaging retrieved nearest-neighbor pairs and is complemented by the use of contrastive normalization to improve score calibration. Through extensive experiments on multiple datasets, we show that MA-PaPSP outperforms PaPSP and other selective prediction baselines for selective captioning, image-text matching, and fine-grained classification. Code is publicly available at https://github.com/kingston-aditya/MA-PaPSP.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=2OcklgJiU0",
+  "arxiv": "https://arxiv.org/abs/2601.22570",
+  "pdf": "https://proceedings.iclr.cc/paper_files/paper/2026/file/afd60edf9bde139592bf7f074cb97c76-Paper-Conference.pdf",
+  "proceedings": "https://proceedings.iclr.cc/paper_files/paper/2026/hash/afd60edf9bde139592bf7f074cb97c76-Abstract-Conference.html",
+  "virtual": "https://iclr.cc/virtual/2026/poster/10011747",
+  "code": "https://kingston-aditya.github.io/mapapsp.html"
+ },
+ "license": "http://creativecommons.org/licenses/by/4.0/",
+ "img": "cc-by",
+ "image_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/images/iclr26-0223.png",
+ "thumb_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/thumbs/iclr26-0223.webp",
+ "figure_page": 1,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.6
+}

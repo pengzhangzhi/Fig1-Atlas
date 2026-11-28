@@ -1,0 +1,47 @@
+{
+ "id": "iclr26-4161",
+ "title": "Jacobian Aligned Random Forests",
+ "authors": [
+  "Sarwesh Rauniyar"
+ ],
+ "venue": "ICLR 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "General Machine Learning->Representation Learning",
+ "role": "teaser-result",
+ "role2": "analysis-finding",
+ "claim": "Our method stays most accurate as the decision boundary is rotated, while axis-aligned baselines degrade fastest.",
+ "layout": "1 line plot, accuracy vs rotation angle, ours highlighted, legend lower-left",
+ "tags": [
+  "preconditioning",
+  "oblique-forests",
+  "robustness-to-rotation",
+  "tabular",
+  "synthetic-benchmark"
+ ],
+ "style": [
+  "plot",
+  "colorful",
+  "minimal"
+ ],
+ "description": "A single line chart titled 'Simulated rotated boundary'. The x-axis is rotation angle in degrees (0, 15, 30, 45, 60) and the y-axis is Cohen's kappa, from about 0.80 to 0.925. Eight methods are drawn as lines with distinct markers and colors, listed in a boxed legend at lower left. JARF is a bold blue line with diamond markers and sits at the top, falling only slightly from about 0.92 to 0.885. CCF (green squares) runs just below it. RotF and SPORF (light blue circles and yellow triangles) overlap in the middle. LDA+RF (black dashed) and PCA+RF (pink dashed) sit lower. RF (orange triangles) and XGB (dark orange) fall steeply, both ending near 0.80 at 60 degrees. The eye goes first to the blue JARF line at the top and the steep drop of the axis-aligned lines below it.",
+ "caption": "Cohen’s $\\kappa$ versus rotation angle $\\theta$ for RF, RotF, CCF, SPORF, JARF, XGB, and the PCA+RF and LDA+RF baselines on the simulated rotated hyperplane problem. JARF attains the highest $\\kappa$ at moderate and large rotations, while PCA+RF and LDA+RF offer only modest gains over RF and all axis aligned methods (RF, XGB, PCA+RF, LDA+RF) degrade more quickly than the oblique forests as $\\theta$ increases.",
+ "caption_source": "latex",
+ "abstract": "Axis-aligned decision trees are fast and stable but struggle on datasets with rotated or interaction-dependent decision boundaries, where informative splits require linear combinations of features rather than single-feature thresholds. Oblique forests address this with per-node hyperplane splits, but at added computational cost and implementation complexity. We propose a simple alternative: JARF, Jacobian-Aligned Random Forests. Concretely, we first fit an axis-aligned forest to estimate class probabilities or regression outputs, compute finite-difference gradients of these predictions with respect to each feature, aggregate them into an expected Jacobian outer product that generalizes the expected gradient outer product (EGOP), and use it as a single global linear preconditioner for all inputs. This supervised preconditioner applies a single global rotation of the feature space, then hands the transformed data back to a standard axis-aligned forest, preserving off-the-shelf training pipelines while capturing oblique boundaries and feature interactions that would otherwise require many axis-aligned splits to approximate. The same construction applies to any model that provides gradients, though we focus on random forests and gradient-boosted trees in this work. On tabular classification and regression benchmarks, this preconditioning consistently improves axis-aligned forests and often matches or surpasses oblique baselines while improving training time. Our experimental results and theoretical analysis together indicate that supervised preconditioning can recover much of the accuracy of oblique forests while retaining the simplicity and robustness of axis-aligned trees.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=lpYHuxPEXV",
+  "arxiv": "https://arxiv.org/abs/2512.08306",
+  "pdf": "https://proceedings.iclr.cc/paper_files/paper/2026/file/a88763eb23936ced0c81603b9300c8d7-Paper-Conference.pdf",
+  "proceedings": "https://proceedings.iclr.cc/paper_files/paper/2026/hash/a88763eb23936ced0c81603b9300c8d7-Abstract-Conference.html",
+  "virtual": "https://iclr.cc/virtual/2026/poster/10007643",
+  "code": null
+ },
+ "license": "http://creativecommons.org/licenses/by/4.0/",
+ "img": "cc-by",
+ "image_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/images/iclr26-4161.png",
+ "thumb_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/thumbs/iclr26-4161.webp",
+ "figure_page": 8,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.8
+}

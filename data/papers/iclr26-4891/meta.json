@@ -1,0 +1,50 @@
+{
+ "id": "iclr26-4891",
+ "title": "Learnable Fractional Superlets with a Spectro-Temporal Emotion Encoder for Speech Emotion Recognition",
+ "authors": [
+  "Alaa Nfissi",
+  "Wassim Bouachir",
+  "Nizar Bouguila",
+  "Brian Mishara"
+ ],
+ "venue": "ICLR 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "Applications->Language, Speech and Dialog",
+ "role": "pipeline",
+ "role2": null,
+ "claim": "A raw signal passes through a sequence of learnable modules to produce stacked, masked, sparsified two-channel outputs plus a conditioning signal.",
+ "layout": "1 panel, left-to-right flow, two parallel branches merging at the end",
+ "tags": [
+  "pipeline",
+  "front-end",
+  "time-frequency",
+  "differentiable",
+  "speech"
+ ],
+ "style": [
+  "minimal",
+  "colorful",
+  "text-heavy"
+ ],
+ "description": "A single horizontal flowchart of rounded boxes joined by black arrows, read left to right. A blue input box, X[B,1,T], leads to a grey box for the learnable frequency grid and base cycles. That feeds a purple box for order weights and o_eff. From the purple box, one arrow goes down to a red box, 'Forward o_eff[F] for FiLM'. Another arrow goes to a green box for analytic Morlet convolution, which splits into two rows. The top row runs magnitude per order, then geometric mean, giving S[B,F,T]. The bottom row runs unit phasors with weighted sum, then kappa[B,F,T]. Both rows merge into a yellow length-mask box. The mask box feeds a green optional LAHT-on-S box, then a red box that stacks S and kappa into S2[B,2,F,T]. Tensor shapes are written in the boxes, and colour marks the type of stage.",
+ "caption": "LFST front-end. Learnable log-spaced frequencies and softmax order weights yield an effective order oeff. Magnitudes are geometrically aggregated into S∈RB×F ×T ; phase congruency κ ∈[0, 1]B×F ×T comes from weighted unit phasors. A length mask is applied; LAHT is applied only to S; channels are stacked as S2 = [S, κ], and oeff is forwarded for FiLM.",
+ "caption_source": "pdf",
+ "abstract": "Speech emotion recognition (SER) hinges on front-ends that expose informative time-frequency (TF) structure from raw speech. Classical short-time Fourier and wavelet transforms impose fixed resolution trade-offs, while prior ”superlet” variants rely on integer orders and hand-tuned hyperparameters. We revisit TF analysis from first principles and formulate a learnable continuum of superlet transforms. Starting from DC-corrected analytic Morlet wavelets, we define superlets as multiplicative ensembles of wavelet responses and realize learnable fractional orders via softmax-normalized weights over discrete orders, computed as a logdomain geometric mean. We establish admissibility (zero mean) and continuity in order and frequency, and characterize approximate analyticity by bounding negative-frequency leakage as a function of an effective cycle parameter. Building on these results, we introduce the Learnable Fractional Superlet Transform (LFST), a fully differentiable front-end that jointly optimizes (i) a monotone, logspaced frequency grid, (ii) frequency-dependent base cycles, and (iii) learnable fractional-order weights, all trained end-to-end. LFST further includes a learnable asymmetric hard-thresholding (LAHT) module that promotes sparse, denoised TF activations while preserving transients; we provide sufficient conditions for boundedness and stability under mild cycle and grid constraints. To exploit LFST for SER, we design a compact Spectro-Temporal Emotion Encoder (STEE), achieving strong performance with a parameter budget that is orders of magnitude smaller than large self-supervised models, at the cost of additional frontend computation compared to STFT- or LEAF-based baselines. STEE consumes two-channel TF maps, magnitude S and phase-congruency κ, through a compact multi-scale stack with residual temporal and depthwise-frequency blocks, Adaptive FiLM gating, axial (time-axis) self-attention, global attentive pooling, and a lightweight classifier. The full LFST+STEE system is trained in a standard train-validate-test regime using focal loss with optional class rebalancing, and is validated on IEMOCAP, EMO-DB, and the private NSPL-CRISE dataset under standard protocols. By unifying a principled, learnable TF transform with a compact encoder, LFST+STEE replaces ad hoc front-ends with a mathematically grounded alternative that is differentiable, stable, and adaptable to data, enabling systematic ablations over frequency grids, cycle schedules, and fractional orders within a single end-to-end model. The source code of this paper is shared on the GitHub repository: https://github.com/alaaNfissi/LFST-for-SER.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=uZGEEL20mU",
+  "arxiv": null,
+  "pdf": "https://proceedings.iclr.cc/paper_files/paper/2026/file/b2fb36504c53a6e55f0bcc6951c472cb-Paper-Conference.pdf",
+  "proceedings": "https://proceedings.iclr.cc/paper_files/paper/2026/hash/b2fb36504c53a6e55f0bcc6951c472cb-Abstract-Conference.html",
+  "virtual": "https://iclr.cc/virtual/2026/poster/10006883",
+  "code": null
+ },
+ "license": null,
+ "img": "none",
+ "image_url": null,
+ "thumb_url": null,
+ "figure_page": 4,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.95
+}

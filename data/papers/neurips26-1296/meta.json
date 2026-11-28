@@ -1,0 +1,51 @@
+{
+ "id": "neurips26-1296",
+ "title": "Mechanistic Critics for Sample-Efficient NPU Design-Space Exploration",
+ "authors": [
+  "Yicheng He",
+  "Yuqi Xue",
+  "Tianyang Wu",
+  "Jian Huang",
+  "Bin Hu"
+ ],
+ "venue": "NeurIPS 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "Applications->Everything Else",
+ "role": "pipeline",
+ "role2": "concept",
+ "claim": "A calibrated mechanistic critic inside the design loop filters weak candidates and guides the next proposal, reducing costly simulation.",
+ "layout": "3 panels Input/Iteration/Output, left-to-right, feedback loop around central roofline plot",
+ "tags": [
+  "design-space-exploration",
+  "roofline-model",
+  "agent-loop",
+  "sample-efficiency",
+  "hardware-design"
+ ],
+ "style": [
+  "colorful",
+  "icon-heavy",
+  "plot"
+ ],
+ "description": "A wide figure split into three dashed rounded regions labeled Input, Iteration NPU Design, and Output, in a hand-drawn sketch style. On the left, the input panel holds two rounded cards, LLM Specification (num_dense_layers, num_kv_heads) and Hardware Constraints (Total_power, hbm_bw_GBps). A hatched orange box, Compute Demand Agent, sits between them. In the middle, a blue hatched Architecture Design Agent box feeds a purple hatched NPU Simulator circle. Arrows form a loop through the simulator and back to the agent, with table icons labeled NPU Architecture and Simulation Results. A small roofline plot of performance against operational intensity sits at the center, with black, blue and green calibrated rooflines. Red italic captions label Role 1 (deciding whether a candidate is worth simulating) and Role 2 (guiding optimization via counterfactual prediction). On the right, an Output card lists NPU Architecture parameters, with green check marks for Less Simulation and Match or Exceed Optimal Performance.",
+ "caption": "Overview of \\textbf{\\method{}}. A Compute Demand Agent extracts the operator-level workload, an online-calibrated roofline model filters weak configurations and provides bottleneck-guided feedback, and an Architecture Design Agent proposes the next NPU configuration. The shown parameters are illustrative examples.",
+ "caption_source": "latex",
+ "abstract": "NPU design-space exploration for LLM inference mainly relies on an expensive simulator that often returns only scalar feedback such as latency and power. Such feedback can rank evaluated configurations, but gives little information for deciding why a configuration is slow or which architecture parameter should be changed next. This limitation is especially severe because prefill and decode workloads can be limited by different resources, including compute throughput and HBM bandwidth. We propose CriticNPU, a sample-efficient DSE framework built around an online-calibrated mechanistic critic for NPU architecture design. The critic uses explicit hardware limits to evaluate NPU configurations: before simulation, it estimates whether a proposed configuration is likely to improve over the current best and filters weak candidates; after simulation, it aggregates operator-level runtimes into prefill/decode bottleneck summaries and predicts the effect of candidate parameter changes. We instantiate the critic with a Roofline-style model that derives compute and memory limits from architecture parameters and calibrates per-operator-type effective limits using simulator observations. And CriticNPU combines this critic with a workload extractor and an architecture planner to propose configurations. Across six LLM workloads and 16 deployment configurations per model, CriticNPU achieves best-or-tied-best latency in 74% of prefill and 87.5% of decode settings while using roughly half the simulator calls of competitive DSE baselines. We conduct extensive ablation studies and detailed analyses to validate the effectiveness of our method from multiple perspectives. Our code is available at https://github.com/bruno686/CriticNPU.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=9Jr2FEdVHP",
+  "arxiv": "https://arxiv.org/abs/2611.24733",
+  "pdf": "https://arxiv.org/pdf/2611.24733",
+  "proceedings": null,
+  "virtual": "https://neurips.cc/virtual/2026/poster/154999",
+  "code": null
+ },
+ "license": "http://arxiv.org/licenses/nonexclusive-distrib/1.0/",
+ "img": "none",
+ "image_url": null,
+ "thumb_url": null,
+ "figure_page": 3,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.8
+}

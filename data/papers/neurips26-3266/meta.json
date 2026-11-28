@@ -1,0 +1,51 @@
+{
+ "id": "neurips26-3266",
+ "title": "Variance Reduction for Gradients from Diffusion Teachers",
+ "authors": [
+  "Jesse Bettencourt",
+  "Xindi Wu",
+  "Matan Atzmon",
+  "James Lucas",
+  "Jonathan Lorraine"
+ ],
+ "venue": "NeurIPS 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "Deep Learning->Generative Models and Autoencoders",
+ "role": "analysis-finding",
+ "role2": "teaser-result",
+ "claim": "Allocating samples in proportion to a cheap proxy of the signal's magnitude reduces estimator variance, as much as extra compute would.",
+ "layout": "2 plots side-by-side; left toy example with dual axes, right real-data density heatmap",
+ "tags": [
+  "importance-sampling",
+  "variance-reduction",
+  "monte-carlo",
+  "diffusion-timesteps",
+  "compute-efficiency"
+ ],
+ "style": [
+  "plot",
+  "colorful",
+  "math-heavy"
+ ],
+ "description": "Two line and density plots sit side by side, both with timestep t on the x-axis. The left panel is a toy example. A red solid curve shows the test function mean, with a pink noise band around it. It oscillates at low t and has a large peak near t=0.75. Three proposal densities are overlaid on a right-hand axis: a grey dashed uniform line, a green dashed Gaussian-plus-uniform approximation, and an orange dashed intractable optimal proposal that follows the peak. A legend gives each proposal's variance and compute multiplier: 1.0x, 2.2x, and 4.1x. The right panel is a red density heatmap of parameter gradient norms against timestep. It rises from the lower left. An orange dotted mean curve and a green dotted weight curve w(t)=σ_t² track each other closely. The eye goes first to the red peak on the left and the dashed curves.",
+ "caption": "Importance sampling for timestep allocation: Left: Toy example showing a test function $F$, uniform proposal, oracle optimal proposal from \\Eq [ref], and a practical approximation adding a Gaussian at the peak. The oracle variance equals that of spending $\\sim\\!3$--$4\\times$ the compute of uniform, while the approximation equals $\\sim\\!2\\times$. Right: Real parameter gradient norms from text-to-3D optimization. Our importance sampling weight function $\\sdsWeight(\\timevar)$ closely tracks the mean gradient norm, making it an effective sampling proxy: it reduces variance as much as ${\\sim}20%$ more compute would (\\Tab [ref]). Shading is the density of sampled norms over prompts, cameras, and noise. Additional analysis is in \\App \\Fig [ref].",
+ "caption_source": "latex",
+ "abstract": "Pretrained diffusion models serve as frozen teachers for pipelines such as text-to-3D, single-step distillation, and data attribution. The teacher gradients these pipelines consume are expectations over noise levels and Gaussian noise, estimated by Monte Carlo (MC). Each MC draw requires expensive upstream work (rendering, simulation, encoding), so estimator variance dominates compute cost. We introduce CARV, a compute-aware variance-accounting framework that casts these gradients as a classical two-stage sampling problem with asymmetric per-level costs. This motivates a hierarchical MC estimator that amortizes each expensive upstream computation by reusing it across cheap diffusion draws, with within-unit variance further reduced by timestep importance sampling (IS) and stratified inverse-CDF sampling. CARV delivers 2 to 3x effective compute multipliers on text-to-3D and data attribution without changing the objective. In text-to-3D, reuse provides most of the gain and IS with stratification adds about 25%. In single-step distillation, the same techniques cut gradient variance by an order of magnitude but do not improve downstream FID, marking the regime where MC variance is no longer the bottleneck.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=Mf2Qoh2jGX",
+  "arxiv": "https://arxiv.org/abs/2605.21489",
+  "pdf": "https://arxiv.org/pdf/2605.21489",
+  "proceedings": null,
+  "virtual": "https://neurips.cc/virtual/2026/poster/153246",
+  "code": "https://research.nvidia.com/labs/sil/projects/WorldTrace/"
+ },
+ "license": "http://creativecommons.org/licenses/by/4.0/",
+ "img": "cc-by",
+ "image_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/images/neurips26-3266.png",
+ "thumb_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/thumbs/neurips26-3266.webp",
+ "figure_page": 2,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.55
+}

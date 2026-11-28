@@ -1,0 +1,49 @@
+{
+ "id": "iclr26-5096",
+ "title": "Training Large Language Models To Reason In Parallel With Global Forking Tokens",
+ "authors": [
+  "Sheng Jia",
+  "Xiao Wang",
+  "Shiva Kasiviswanathan"
+ ],
+ "venue": "ICLR 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "Deep Learning->Algorithms",
+ "role": "pipeline",
+ "role2": null,
+ "claim": "A set-based loss matches a pool of candidate control tokens to unique outputs via bipartite assignment, then trains on matched pairs.",
+ "layout": "2 panels, left-to-right, cost-matrix grid feeding an update panel",
+ "tags": [
+  "bipartite-matching",
+  "hungarian-algorithm",
+  "set-prediction",
+  "supervised-fine-tuning",
+  "diversity-preservation"
+ ],
+ "style": [
+  "math-heavy",
+  "colorful",
+  "text-heavy"
+ ],
+ "description": "A two-stage training diagram. At the top, a gray box holds a math prompt (find the least odd prime factor of 2019^8+1). Four rounded boxes show different model reasoning traces (OSS-high, OSS-medium, DeepSeek, Gemini), each ending in boxed{97}. They link down to four response tokens r(1) to r(4). The left blue dashed panel, marked with a snowflake for frozen parameters, shows a 6x4 grid of loss cells L(g(i), r(j)). The rows are labeled with color-coded think tokens (think 1 to think 6, purple to light orange). Four cells are highlighted blue as the minimum-cost matching. An arrow leads to a blue argmin box that selects the matched g. It then feeds the right orange dashed panel, marked with a flame, which pairs each r with its matched think token. Captions read 1. Minimize Total Bipartite Matching Loss and 2. Minimize Set NTP Loss.",
+ "caption": "An illustration of one SSFT training step. Step 1:\\,We first construct the cost matrix by evaluating all pairwise combinations: for each $\\rj\\in \\braces{\\rvr^{(1)}, \\rvr^{(2)}, \\rvr^{(3)}, \\rvr^{(4)}}$ and each $\\gforkingtokeni \\in \\braces{\\rg^{(1)}, \\rg^{(2)}, \\rg^{(3)}, \\rg^{(4)}, \\rg^{(5)}, \\rg^{(6)}}$, we compute the NTP loss of $\\rj$ conditioned on $\\gforkingtokeni$ (\\Eqref{eqn:matching_cost_eqn}). Then we use Hungarian algorithm to find $\\hat{\\vsigma}$ that minimizes the total bipartite matching cost. Here, this minimum is the sum of the losses highlighted in blue, which means $\\hat{\\vsigma} = \\braces{(\\gforkingtoken^{(6)}, \\rvr^{(1)}), (\\gforkingtoken^{(5)}, \\rvr^{(2)}), (\\gforkingtoken^{(2)}, \\rvr^{(3)}), (\\gforkingtoken^{3}, \\rvr^{(4)})}$. Step 2:\\,We optimize $\\vtheta$ by backpropagating the set of NTP losses for $\\rj$, each conditioned on $\\gsigmahatj$.",
+ "caption_source": "latex",
+ "abstract": "Although LLMs have demonstrated improved performance by scaling parallel test-time compute, doing so relies on generating reasoning paths that are both diverse and accurate. For challenging problems, the forking tokens that trigger diverse yet correct reasoning modes are typically deep in the sampling tree. Consequently, common strategies to encourage diversity, such as temperature scaling, encounter a worsened trade-off between diversity and accuracy. Motivated by this challenge, we treat parallel reasoning as a set-of-next-token-prediction problem and incorporate a set-based global loss into Supervised Fine-Tuning (SFT) using bipartite matching between global forking tokens and unique reasoning traces. We observe that whereas naive fine-tuning with multiple reasoning traces collapses these unique reasoning modes, our proposed method, Set Supervised Fine-Tuning (SSFT), preserves these modes and produces emergent global forking tokens. Global Forking Policy Optimization (GFPO) leverages these maximally steerable tokens to incentivize complex reasoning, and the resulting models consistently outperform their SFT counterparts with GRPO on both math reasoning and execution-based code generation benchmarks.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=xBQvvkg4Wc",
+  "arxiv": "https://arxiv.org/abs/2510.05132",
+  "pdf": "https://proceedings.iclr.cc/paper_files/paper/2026/file/88af3540325dd0b70617a9ab605f294d-Paper-Conference.pdf",
+  "proceedings": "https://proceedings.iclr.cc/paper_files/paper/2026/hash/88af3540325dd0b70617a9ab605f294d-Abstract-Conference.html",
+  "virtual": "https://iclr.cc/virtual/2026/poster/10006664",
+  "code": "https://sheng-j.github.io/SSFT-page/"
+ },
+ "license": "http://arxiv.org/licenses/nonexclusive-distrib/1.0/",
+ "img": "none",
+ "image_url": null,
+ "thumb_url": null,
+ "figure_page": 2,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.93
+}

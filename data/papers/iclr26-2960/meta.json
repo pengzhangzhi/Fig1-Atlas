@@ -1,0 +1,54 @@
+{
+ "id": "iclr26-2960",
+ "title": "Hallucination Reduction with CASAL: Contrastive Activation Steering for Amortized Learning",
+ "authors": [
+  "Wannan Yang",
+  "Xinchi Qiu",
+  "Lei Yu",
+  "Yuchen Zhang",
+  "Aobo Yang",
+  "Narine Kokhlikyan",
+  "Nicola Cancedda",
+  "Diego Garcia-Olano"
+ ],
+ "venue": "ICLR 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": null,
+ "role": "pipeline",
+ "role2": "concept",
+ "claim": "Rather than steering activations online at inference, we learn a small module offline that bakes the steering effect into the weights.",
+ "layout": "5 lettered panels: three stacked method stages left, before/after panels right; math under arrows",
+ "tags": [
+  "activation-steering",
+  "amortization",
+  "hallucination",
+  "abstention",
+  "interpretability"
+ ],
+ "style": [
+  "colorful",
+  "math-heavy",
+  "icon-heavy"
+ ],
+ "description": "A five-panel figure with rounded boxes and a teal (known) versus pink (unknown) color code throughout. The left column holds three stacked method stages. Panel A, knowledge probing, shows two gauges with rows of check and cross marks for known and unknown queries. Panel B, steering, shows a cluster of teal and pink dots split by a line, with arrows for steering vectors and equations for difference-in-means vectors and target activations. Panel C, CASAL training, shows the loss function with two cases next to a small single-layer network diagram. The right column holds Before CASAL (D) and After CASAL (E). Each has chat bubbles with robot icons and a dot scatter. In D, the teal and pink dots overlap and the model hallucinates. In E, the dots are separated and the model abstains on unknown queries.",
+ "caption": "Overview of the CASAL algorithm. (A) Knowledge Probing: CASAL starts by probing the model to figure out what it knows vs doesn't know. Multiple responses per query are sampled to classify queries as \\textbf{\\known{known}} (\\known{$\\mathbf{\\mathcal{D}_{k}}$}) or \\textbf{\\unknown{unknown}} ( \\unknown{$\\mathbf{\\mathcal{D}_{u}}$}). (B) Steering: Difference in means are computed to construct steering vectors (\\unknown{$v^{L^*}_{u}$} and \\known{$v^{L^*}_{k}$}). Target activations ( $\\unknown{t^{L^{*}}_{u}}$ and $\\known{t^{L^{*}}_{k}}$) are obtained by adding these steering vectors to the residual stream activation. Pre-CASAL Behavior: Prior to training, the model often hallucinates and produces incorrect answers for \\textbf{\\unknown{unknown}} queries. (C) CASAL Training: CASAL training is essentially \"amortized activation steering\", where instead of repeatedly steering activations online, we train a small subnetwork (a single layer NN) to approximate the steering solution offline. (D) Post-CASAL Activations and Behavior: After training, the model learns a sharper representation with a clearer knowledge boundary. It maintains correct answers on \\textbf{\\known{known}} queries while abstaining from answering \\textbf{\\unknown{unknown}} ones.",
+ "caption_source": "latex",
+ "abstract": "Large Language Models (LLMs) exhibit impressive capabilities but often hallucinate, confidently providing incorrect answers instead of admitting ignorance. Prior work has shown that models encode linear representations of their own knowledge and that activation steering can reduce hallucinations. These approaches, however, require real-time monitoring and intervention during inference. We introduce Contrastive Activation Steering for Amortized Learning (CASAL), an efficient algorithm that connects interpretability with amortized optimization. CASAL directly bakes the benefits of activation steering into model's weights. Once trained, LLMs answer questions they know while abstaining from answering those they do not. CASAL's light-weight design requires training only a submodule of a single transformer layer and yet reduces hallucination by 30%-40% across multiple short-form QA benchmarks. CASAL is 30x more compute-efficient and 20x more data-efficient than strong LoRA-based baselines such as SFT and DPO, boosting its practical applicability in data scarce domains. Importantly, CASAL also generalizes effectively to out-of-distribution (OOD) domains. We showcase CASAL's flexibility in mitigating hallucinations in both text-only and vision-language models. To our knowledge, CASAL is the first steering-based training method that has been shown to be effective for both dense and Mixture-of-Experts (MoE) models. CASAL represents a promising step forward for applying interpretability-inspired method for practical deployment in production systems.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=YM3RcI3q0E",
+  "arxiv": "https://arxiv.org/abs/2510.02324",
+  "pdf": "https://proceedings.iclr.cc/paper_files/paper/2026/file/11fa9df8d9c7260b04bbab1619d0a869-Paper-Conference.pdf",
+  "proceedings": "https://proceedings.iclr.cc/paper_files/paper/2026/hash/11fa9df8d9c7260b04bbab1619d0a869-Abstract-Conference.html",
+  "virtual": "https://iclr.cc/virtual/2026/poster/10008899",
+  "code": null
+ },
+ "license": "http://arxiv.org/licenses/nonexclusive-distrib/1.0/",
+ "img": "none",
+ "image_url": null,
+ "thumb_url": null,
+ "figure_page": 1,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.85
+}

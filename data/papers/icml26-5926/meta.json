@@ -1,0 +1,53 @@
+{
+ "id": "icml26-5926",
+ "title": "Less Is More: Fast and Accurate Reasoning with Cross-Head Unified Sparse Attention",
+ "authors": [
+  "Lijie Yang",
+  "Zhihao Zhang",
+  "Arti Jain",
+  "Shijie Cao",
+  "Baihong Yuan",
+  "Yiwei Chen",
+  "Zhihao Jia",
+  "Ravi Netravali"
+ ],
+ "venue": "ICML 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "Deep Learning->Attention Mechanisms",
+ "role": "pipeline",
+ "role2": "prior-vs-ours",
+ "claim": "Selecting tokens independently per head yields inconsistent sets; unifying selection across heads through rank, union and top-K yields one shared set.",
+ "layout": "2 regions, left-to-right, numbered circled steps 1-4 with arrows",
+ "tags": [
+  "sparse-attention",
+  "token-selection",
+  "cross-head-unification",
+  "efficiency",
+  "training-free"
+ ],
+ "style": [
+  "colorful",
+  "minimal"
+ ],
+ "description": "The figure has two tinted regions. The left, beige region shows head-independent token selection. A grid of estimated token importance (q-heads 0-3 by keys k0-k7) is colored by rank: 1st red, 2nd green, 3rd light blue, window blue. Below it, a gray and white Selected KV grid shows each head picking different tokens. The right, teal region shows the cross-head unified pipeline in four numbered steps. Step 1 builds an index-rank table per query. Step 2 flattens it into a colored token strip. Step 3 takes the union of tokens. Step 4 keeps the top K plus the window, giving k2, k5, k1 and k7. Arrows then fan out to a Selected KV grid where all heads share the same columns. A legend sits at the top right. The eye goes first to the colored grids.",
+ "caption": "Analysis of attention recall degradation for sparse attention methods on reasoning tasks. [ref] compares cumulative average attention recall among StreamingLLM [ref], TidalDecode [ref], and \\Sys on an AIME-24 reasoning task, using a token budget of 4K and generation length up to 32K tokens on Qwen3-8B. [ref] contrasts running-average attention recall of TidalDecode between the reasoning-intensive AIME-24 task throughout the generation and the simpler needle-in-the-haystack retrieval task under the same token budget under various context lengths on Qwen3-8B.",
+ "caption_source": "latex",
+ "abstract": "Large reasoning models achieve strong performance through test-time scaling, but this incurs substantial computational overhead due to long decoding from short prompts. While sparse attention can reduce latency and memory usage, existing methods often degrade reasoning accuracy because selection errors accumulate over long generation horizons, or require costly retraining. We introduce LessIsMore, a training-free sparse attention mechanism for long-horizon reasoning. Our key insight is that token importance in reasoning is global and stable: critical tokens are largely shared across attention heads and remain stable over decoding steps. Guided by this structure, LessIsMore enforces cross-head unified token selection and preserves recent context via a stable recency window, yielding a globally consistent token set that can be reused across layers. Across multiple model families and challenging reasoning benchmarks, LessIsMore matches or improves accuracy while attending to substantially fewer tokens. With kernel-level optimizations, LessIsMore achieves up to $1.6\\times$ end-to-end decoding speedup and up to $1.72\\times$ faster sparse attention computation, with additional long-context results demonstrating the generality of our approach. Code is available at \\href{https://github.com/DerrickYLJ/LessIsMore}{https://github.com/DerrickYLJ/LessIsMore}.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=trSWJ99WzS",
+  "arxiv": "https://arxiv.org/abs/2508.07101",
+  "pdf": "https://raw.githubusercontent.com/mlresearch/v306/main/assets/yang26dj/yang26dj.pdf",
+  "proceedings": "https://proceedings.mlr.press/v306/yang26dj.html",
+  "virtual": "https://icml.cc/virtual/2026/poster/61079",
+  "code": "https://github.com/DerrickYLJ/LessIsMore/tree/master"
+ },
+ "license": "http://creativecommons.org/licenses/by-sa/4.0/",
+ "img": "cc-by-sa",
+ "image_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/images/icml26-5926.png",
+ "thumb_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/thumbs/icml26-5926.webp",
+ "figure_page": 4,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.8
+}

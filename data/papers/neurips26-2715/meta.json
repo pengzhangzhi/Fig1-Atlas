@@ -1,0 +1,51 @@
+{
+ "id": "neurips26-2715",
+ "title": "REINS: A Self-Evolving Agent Harness for Real-Time Trajectory Planning",
+ "authors": [
+  "Zhihong Cui",
+  "Hengyu Liu",
+  "Haoran Tang",
+  "shijun liu",
+  "Amir Taherkordi",
+  "Tor Skeie"
+ ],
+ "venue": "NeurIPS 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "Applications->Robotics",
+ "role": "overview-framework",
+ "role2": "pipeline",
+ "claim": "A vague language instruction becomes reliable when the harness grounds it in measurable variables, verifies it by simulated rollout, and consolidates it for reuse.",
+ "layout": "Top scene banner, three colored panels left-to-right, each with a Predict→Check style footer",
+ "tags": [
+  "grounding",
+  "verification",
+  "memory-consolidation",
+  "llm-agent",
+  "harness"
+ ],
+ "style": [
+  "colorful",
+  "icon-heavy"
+ ],
+ "description": "The top strip shows a cartoon robot mascot with a speech bubble reading \"Keep a safe distance from the lead vehicle\". Below it is a road scene with a blue ego car (30 m/s) on the left and a brown lead car (25 m/s) on the right. A double-headed arrow between them is labeled \"25 m gap\". Three color-coded rounded panels run along the bottom. Panel 1, blue, \"Grounding\": a \"safe distance\" bubble points to a dashboard listing TTC = 1.83 s, THW = 0.83 s and DHW = 25 m, with the footer \"Language → Physical variables\". Panel 2, green, \"Verification\": a filmstrip of five top-down car frames from t=1s to t=5s with a green checkmark, and the footer \"Predict → Check\". Panel 3, orange, \"Consolidation\": a cylinder labeled \"skill memory\" holding a card for Rule #128, with the arrows \"verified maneuver\" and \"next time, no LLM call\", and the footer \"Store → Reuse\". The eye goes first to the large banner and the cars, then moves left to right across the panels.",
+ "caption": "Three couplings an agent harness must enforce on the LLM planner, illustrated on a car-following scene with a 25-m gap. The LLM utterance \"keep a safe distance\" is (1) grounded to physical state variables (TTC, THW, DHW), (2) verified by forward rollout over a multi-step horizon, and (3) consolidated as an indexed rule keyed by these variables for instant reuse.",
+ "caption_source": "latex",
+ "abstract": "Agent harnesses -- runtime scaffolds that wrap an LLM's reasoning loop with tool dispatch, verification, and persistent memory -- have become the standard substrate for deploying LLMs as autonomous agents, as demonstrated by Claude Code and Codex in software engineering. In trajectory planning, however, this paradigm has not taken hold: existing LLM-based trajectory planning methods either keep the LLM in the decision loop, exceeding the millisecond-level control budget, or offload it to offline rules or training-time supervision -- leaving the runtime planner non-evolving. Intermediate hybrids still lack the verification-and-consolidation loop that makes harnesses reliable. We ask: what runtime harness would let an LLM planner meet real-time constraints while self-evolving into a deployable one? We propose REINS, a harness built on three LLM-planner couplings: LLM outputs are (i) grounded to a learned variable-level dynamics model, (ii) verified via calibrated predicates and forward rollout, and (iii) consolidated into an indexed rule memory that serves future scenes in O(log n) without re-invoking the LLM. The harness closes a self-evolution loop: familiar scenes resolve by memory lookup; novel scenes invoke the LLM, whose verified outputs enrich the memory. Without modifying LLM weights, REINS attains 98%+ compliance, nearly 50% collision reduction, and 1.9-4.6 ms latency on simulated and real-world benchmarks at the tactical decision layer, with LLM invocation rate monotonically declining as memory matures. Code: https://github.com/ZhihongCui/REINS",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=J8eTAaUleP",
+  "arxiv": "https://arxiv.org/abs/2611.10748",
+  "pdf": "https://arxiv.org/pdf/2611.10748",
+  "proceedings": null,
+  "virtual": "https://neurips.cc/virtual/2026/poster/153736",
+  "code": null
+ },
+ "license": "http://creativecommons.org/licenses/by/4.0/",
+ "img": "cc-by",
+ "image_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/images/neurips26-2715.png",
+ "thumb_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/thumbs/neurips26-2715.webp",
+ "figure_page": 1,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.5
+}

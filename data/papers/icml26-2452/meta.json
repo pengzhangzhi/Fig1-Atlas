@@ -1,0 +1,49 @@
+{
+ "id": "icml26-2452",
+ "title": "Separating Representation from Reconstruction Enables Scalable Text Encoders",
+ "authors": [
+  "Megi Dervishi",
+  "Mathurin VIDEAU",
+  "Yann LeCun"
+ ],
+ "venue": "ICML 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "Deep Learning->Self-Supervised Learning",
+ "role": "analysis-finding",
+ "role2": "teaser-result",
+ "claim": "Flat-architecture encoders get worse under frozen evaluation as they scale, while the separated design improves steadily and monotonically.",
+ "layout": "2 stacked line plots, shared log-FLOPs x-axis, labeled parameter counts per point",
+ "tags": [
+  "scaling",
+  "frozen-probing",
+  "encoder",
+  "representation-quality",
+  "monotonic-scaling"
+ ],
+ "style": [
+  "plot",
+  "colorful",
+  "minimal"
+ ],
+ "description": "Two vertically stacked line charts share a log-scale FLOPs x-axis running from 1e18 to 1e22. The top chart plots probing GLUE score. The bottom chart plots average MTEB score. Blue circles mark CrossBERT and red squares mark BERT. Each point carries its model size in matching color, from 77M to 5.15B parameters. In the top chart, solid lines are linear probes and dotted lines are KNN probes. In the bottom chart, solid lines are frozen backbones and dotted lines are unfrozen ones. The blue curves rise steadily with scale. The red BERT curves climb and then collapse past about 5e20 FLOPs, most sharply in the frozen MTEB curve, which drops from about 0.44 to about 0.28. The unfrozen curves for the two models stay close together. The eye goes first to the red drop and the widening gap above it.",
+ "caption": "Top. Frozen evaluation of encoders on GLUE, linear and KNN probes are fitted on the average representation of a frozen backbone. Bottom. MTEB(eng, v2) score. `(frozen)' means only the pooler is finetuned on top of the frozen features of the encoder i.e frozen backbone. `(unfrozen)' means that the full network (including the backbone) is finetuned end-to-end. Both are finetuned only on MS-MARCO for one epoch with hard-negatives.",
+ "caption_source": "latex",
+ "abstract": "While decoders have rapidly scaled, encoders have remained largely unchanged since BERT. We revisit this disparity by frozen backbone evaluation via probing. Under this lens, the representations of BERT encoders become increasingly $\\textit{unexploitable}$ by frozen probes, despite improved perplexity. The misalignment originates in BERT's flat design, which couples representation learning to the token reconstruction loss. We propose $\\textbf{CrossBERT}$, a two-part architecture that separates the learning of high-quality encoded representations from the rigid grounding of token reconstruction. This design further enables high masking ratios ($\\ge 50\\%$) and gradient collection over all tokens via a $\\textit{Complementary Masking Strategy}$, respectively increasing throughput by $1.5$ to $2\\times$ and sample efficiency by $2\\times$. Overall, CrossBERT demonstrates monotonic scaling and superior performance on MTEB(eng, v2) and frozen GLUE benchmarks.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=NVMMpdARqa",
+  "arxiv": "https://arxiv.org/abs/2607.04011",
+  "pdf": "https://raw.githubusercontent.com/mlresearch/v306/main/assets/dervishi26a/dervishi26a.pdf",
+  "proceedings": "https://proceedings.mlr.press/v306/dervishi26a.html",
+  "virtual": "https://icml.cc/virtual/2026/poster/64449",
+  "code": null
+ },
+ "license": "http://creativecommons.org/licenses/by/4.0/",
+ "img": "cc-by",
+ "image_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/images/icml26-2452.png",
+ "thumb_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/thumbs/icml26-2452.webp",
+ "figure_page": 0,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.55
+}

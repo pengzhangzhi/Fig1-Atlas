@@ -1,0 +1,52 @@
+{
+ "id": "iclr26-3521",
+ "title": "IMSE: Intrinsic Mixture of Spectral Experts Fine-tuning for Test-Time Adaptation",
+ "authors": [
+  "Sunghyun Baek",
+  "Jaemyung Yu",
+  "Seunghee Koh",
+  "Minsu Kim",
+  "Hyeonseong Jeon",
+  "Junmo Kim"
+ ],
+ "venue": "ICLR 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "Theory->Domain Adaptation and Transfer Learning",
+ "role": "pipeline",
+ "role2": null,
+ "claim": "Adapt to a new domain by retrieving stored parameters from a similarity-matched bank, fine-tuning them, and storing the result back for reuse.",
+ "layout": "1 panel, left-to-right with return arrow underneath forming a loop; snowflake/fire icons mark frozen/trainable",
+ "tags": [
+  "retrieval",
+  "memory-bank",
+  "continual-adaptation",
+  "parameter-efficient",
+  "test-time-adaptation"
+ ],
+ "style": [
+  "icon-heavy",
+  "colorful",
+  "minimal"
+ ],
+ "description": "A single wide horizontal diagram showing a closed loop. At left, a yellow circle with a question mark (new domain) points into a gray panel titled 'Domain similarity', where colored nodes (red, green, yellow, purple) are connected by lines to a central question-mark node. The closest node, outlined in dark red, links to a 'Domain bank', a stack of rounded rows with colored circles and bars. The selected yellow-green entry is sent via a long arrow labeled 'Initialize singular values' into a 'Linear layers' stack. That stack shows U, Σ, Vᵀ blocks, with snowflakes on U and Vᵀ for frozen and a flame on Σ for trainable. A 'Finetune' arrow, with a yellow dataset cylinder, leads to a second Linear layers block with an updated Σ. The adapted values are collected into a yellow code strip and passed along an 'Append' arrow back to the bank. A legend at lower left explains the icons.",
+ "caption": "IMSE-Retrieval with domain bank. When adapting to a new domain, we select initial singular values based on domain similarity using the domain descriptor, then fine-tune the \\(\\boldsymbol{\\sigma}\\) components within linear layers. The adapted spectral code \\(\\boldsymbol{S}\\) is stored in the Domain Bank, and this process repeats for subsequent domains. Note that domain descriptors are designed to estimate the distribution of test data.",
+ "caption_source": "latex",
+ "abstract": "Test-time adaptation (TTA) has been widely explored to prevent performance degradation when test data differ from the training distribution. However, fully leveraging the rich representations of large pretrained models with minimal parameter updates remains underexplored. In this paper, we propose Intrinsic Mixture of Spectral Experts (IMSE) that leverages the spectral experts inherently embedded in Vision Transformers. We decompose each linear layer via singular value decomposition (SVD) and adapt only the singular values, while keeping the singular vectors fixed. We further identify a key limitation of entropy minimization in TTA: it often induces feature collapse, causing the model to rely on domain-specific features rather than class-discriminative features. To address this, we propose a diversity maximization loss based on expert-input alignment, which encourages diverse utilization of spectral experts during adaptation. In the continual test-time adaptation (CTTA) scenario, beyond preserving pretrained knowledge, it is crucial to retain and reuse knowledge from previously observed domains. We introduce Domain-Aware Spectral Code Retrieval, which estimates input distributions to detect domain shifts, and retrieves adapted singular values for rapid adaptation. Consequently, our method achieves state-of-the-art performance on various distribution-shift benchmarks under the TTA setting. In CTTA and Gradual CTTA, it further improves accuracy by 3.4 percentage points (pp) and 2.4 pp, respectively, while requiring 385 times fewer trainable parameters. Our code is available at https://github.com/baek85/IMSE.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=eZO38vANPM",
+  "arxiv": "https://arxiv.org/abs/2603.07926",
+  "pdf": "https://proceedings.iclr.cc/paper_files/paper/2026/file/54f117f842d47c2007b501bddd04c0e7-Paper-Conference.pdf",
+  "proceedings": "https://proceedings.iclr.cc/paper_files/paper/2026/hash/54f117f842d47c2007b501bddd04c0e7-Abstract-Conference.html",
+  "virtual": "https://iclr.cc/virtual/2026/poster/10008307",
+  "code": "https://github.com/baek85/IMSE"
+ },
+ "license": "http://arxiv.org/licenses/nonexclusive-distrib/1.0/",
+ "img": "none",
+ "image_url": null,
+ "thumb_url": null,
+ "figure_page": 2,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.93
+}

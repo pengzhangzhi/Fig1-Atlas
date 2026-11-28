@@ -1,0 +1,53 @@
+{
+ "id": "neurips26-3559",
+ "title": "RAPTOR: Ridge-Adaptive Logistic Probes",
+ "authors": [
+  "Ziqi Gao",
+  "Yaotian Zhu",
+  "Qingcheng Zeng",
+  "Xu Zhao",
+  "Ziqing Wang",
+  "Feng Ruan",
+  "Kaize Ding"
+ ],
+ "venue": "NeurIPS 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "General Machine Learning->Representation Learning",
+ "role": "pipeline",
+ "role2": null,
+ "claim": "A simple regularized probe, tuned on validation data, turns frozen-model embeddings into a normalized vector that steers behavior at inference.",
+ "layout": "3 stages, left-to-right with loop-back arrows, math inside boxes",
+ "tags": [
+  "probing",
+  "activation-steering",
+  "regularized-regression",
+  "concept-vector",
+  "training-pipeline"
+ ],
+ "style": [
+  "icon-heavy",
+  "math-heavy",
+  "colorful"
+ ],
+ "description": "A horizontal flow diagram split into three labeled stages: Extraction, Training, and Inference Steering. On the left, a stack of transformer layers (Layer 1, i, L) receives N text samples. The last-token embedding h_i is pulled out and fills a colored grid, the Hidden Matrix H (N x P). An arrow leads up to a Standardize box showing X = (H - mu)/s. It then feeds a pink LogReg Solver box with an accuracy-vs-lambda curve and a magnifying glass. The objective min L + lambda||w||^2 sits below the curve. An arrow leads down to a Rescale & Norm box with formulas for w-hat and v. An upward arrow leads to the teal Concept Vector v (P x 1) bar and the update h <- h + alpha v. The bar feeds the right-hand layer stack, which takes a user prompt. Pastel purple, teal, and orange are used throughout.",
+ "caption": "Overview of the Raptor pipeline for additive activation steering: extract layerwise last-token embeddings, standardize features, fit an $\\ell_2$-regularized logistic probe with $\\lambda$ selected on a validation split, rescale to embedding space and normalize to obtain the concept vector $v_\\ell$, then steer at inference by $h_{\\ell,T}\\leftarrow h_{\\ell,T}+\\alpha v_\\ell$.",
+ "caption_source": "latex",
+ "abstract": "Probing studies what information is encoded in a frozen LLM's layer representations by training a lightweight predictor on top of them. Beyond analysis, probes are often used operationally in probe-then-steer pipelines: a learned concept vector is extracted from a probe and injected via additive activation steering by adding it to a layer representation during the forward pass. The effectiveness of this pipeline hinges on estimating concept vectors that are accurate, directionally stable under ablation, and inexpensive to obtain. Motivated by these desiderata, we propose RAPTOR (Ridge-Adaptive Logistic Probe), a simple L2-regularized logistic probe whose validation-tuned ridge strength yields concept vectors from normalized weights. Across extensive experiments on instruction-tuned LLMs and human-written concept datasets, RAPTOR matches or exceeds strong baselines in accuracy while achieving competitive directional stability and substantially lower training cost; these quantitative results are supported by qualitative downstream steering demonstrations. Finally, using the Convex Gaussian Min-max Theorem (CGMT), we provide a mechanistic characterization of ridge logistic regression in an idealized Gaussian teacher-student model in the high-dimensional few-shot regime, explaining how penalty strength mediates probe accuracy and concept-vector stability and yielding structural predictions that qualitatively align with trends observed on real LLM embeddings.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=OpxC93zuD0",
+  "arxiv": "https://arxiv.org/abs/2602.00158",
+  "pdf": "https://arxiv.org/pdf/2602.00158",
+  "proceedings": null,
+  "virtual": "https://neurips.cc/virtual/2026/poster/152988",
+  "code": null
+ },
+ "license": "http://creativecommons.org/licenses/by/4.0/",
+ "img": "cc-by",
+ "image_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/images/neurips26-3559.png",
+ "thumb_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/thumbs/neurips26-3559.webp",
+ "figure_page": 1,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.97
+}

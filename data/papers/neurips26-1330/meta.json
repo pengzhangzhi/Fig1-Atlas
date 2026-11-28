@@ -1,0 +1,50 @@
+{
+ "id": "neurips26-1330",
+ "title": "V-LUMEN: Visual Lookup Memory for Embedding Scaling in Vision-Language Models",
+ "authors": [
+  "Miso Choi",
+  "Daekeun Kim",
+  "Eunji Kim",
+  "Jungbeom Lee"
+ ],
+ "venue": "NeurIPS 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "Computer Vision->Vision Models & Multimodal",
+ "role": "pipeline",
+ "role2": null,
+ "claim": "A frozen backbone gains capacity by retrieving non-parametric memory via spatial and query-conditioned hash keys fused through gating.",
+ "layout": "Left backbone column plus large right panel with three dashed modules, flowing top-to-bottom",
+ "tags": [
+  "lookup-memory",
+  "hashing",
+  "retrieval",
+  "frozen-backbone",
+  "parameter-efficiency"
+ ],
+ "style": [
+  "colorful",
+  "icon-heavy",
+  "text-heavy"
+ ],
+ "description": "The figure has two parts. On the left is a vertical stack for the host VLM. An image goes through a ViT and connector, and a codebook produces discrete code ids. Text goes through a tokenizer. Both feed a transformer block with an LLM stack above it (Attention, FFN, and a highlighted blue V-LUMEN block), joined by residual plus nodes. The large light-blue panel on the right is titled V-LUMEN. It holds three dashed boxes. Spatial-Aggregated Hashing takes a discrete code map through axial pooling (per-row and per-col) and XORs it with an absolute position bin id to make a hash key. Text-Conditioned Hashing has Projected and Debiased Relevance Hashing branches that compute patch relevance maps from visual and text embeddings. Multi-Head Conditional Gating indexes a visual embedding memory and outputs retrieved embeddings through a gate g. Colored heatmap grids and dashed arrows connect the modules.",
+ "caption": "Overview of V-Lumen. V-Lumen retrieves visual memory embeddings using spatially aggregated and text-conditioned hash keys, then fuses them into the frozen VLM through gated residual updates.",
+ "caption_source": "latex",
+ "abstract": "Embedding-level scaling expands the capacity of language models through lookup-based memory rather than by increasing model depth, width, or dense computation. Extending this idea to vision-language models (VLMs) is challenging because visual features are continuous, spatially structured, and query-dependent, unlike discrete text tokens that naturally support n-gram lookup. We introduce V-LUMEN, a visual lookup memory for VLMs. V-LUMEN discretizes visual features with a frozen codebook, builds spatially aware memory keys through spatial aggregation-based hashing, and modulates them with text-conditioned relevance signals; all addressing is non-parametric, and the retrieved embeddings are fused into the backbone through a gated residual pathway. On five reasoning-intensive benchmarks, V-LUMEN substantially improves a frozen Qwen3-VL-2B backbone and transfers zero-shot to three benchmarks whose images are disjoint from the training data. At a matched parameter budget, moving part of a LoRA or MoE adapter's capacity into V-LUMEN preserves accuracy on two backbones, indicating that external visual memory is an independent capacity axis rather than a stronger adaptation method. Because lookup cost is constant in table size and incurred only once at prefill, this capacity grows in storage rather than in per-token compute. Code is available at https://github.com/miso-choi/V-Lumen.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=9ZQmXxQVG5",
+  "arxiv": "https://arxiv.org/abs/2610.37019",
+  "pdf": "https://arxiv.org/pdf/2610.37019",
+  "proceedings": null,
+  "virtual": "https://neurips.cc/virtual/2026/poster/154969",
+  "code": null
+ },
+ "license": "http://arxiv.org/licenses/nonexclusive-distrib/1.0/",
+ "img": "none",
+ "image_url": null,
+ "thumb_url": null,
+ "figure_page": 2,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.93
+}

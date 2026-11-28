@@ -1,0 +1,50 @@
+{
+ "id": "icml26-6438",
+ "title": "LFQ: Logit-aware Final-block Quantization for Boosting the Generation Quality of Low-Bit Quantized LLMs",
+ "authors": [
+  "Jung Hyun Lee",
+  "June Yong Yang",
+  "Jungwook Choi",
+  "Eunho Yang"
+ ],
+ "venue": "ICML 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": null,
+ "role": "analysis-finding",
+ "role2": "problem-setup",
+ "claim": "Compressed models subtly distort token probabilities at critical decision points, flipping top choices and miscalibrating key tokens, which a logit-level objective corrects.",
+ "layout": "Problem box on top, trajectory flow in middle, 2 bar-chart panels below",
+ "tags": [
+  "quantization",
+  "token-probability",
+  "case-study",
+  "reasoning-trajectory",
+  "distribution-alignment"
+ ],
+ "style": [
+  "colorful",
+  "plot",
+  "text-heavy"
+ ],
+ "description": "The figure opens with a green 'Problem (AIME 2024)' box holding a math question. Below, a blue 'Generation Trajectory' box shows the full-precision model's reasoning as a left-to-right flow. A prompt box branches into top-k token candidates (\"where\", \"here\", \":\"). A red arrow marks the block-PTQ choice \"here\", which leads to 'WRONG ANSWER'. After an ellipsis, a second step branches into \"Wait\", \"But\" and a newline token. Dashed connectors lead from each candidate set to two zoomed-in panels. Each panel has a grouped bar chart of token probability for FP, BlockPTQ and LFQ (ours). Red and blue annotations ('BlockPTQ top-1', 'LFQ top-1', 'BlockPTQ Discrepancy') point to the bars. Small MSE/KL tables sit beside the charts. Captions read '(a) Top-1 Token Flipping' and '(b) Mis-calibrated Aha Token'. Red marks failure and blue marks the proposed method.",
+ "caption": "Reasoning trajectory of L1-Qwen-7B-Max under greedy decoding on AIME 2024 Problem 28. We compare token-level probability distributions for the FP baseline, block-wise PTQ (\"blockPTQ\" in this figure), and LFQ (ours) at two instants: (a) the first step where block-wise PTQ’s top-1 token diverges from the FP baseline, and (b) the first “aha” moment guiding the reasoning onto the correct path. In (a), block-wise PTQ’s top-1 (\"here\") corresponds to the FP baseline’s top-2, yielding an incorrect answer, whereas LFQ’s top-1 (\"where\") matches the FP baseline’s top-1 and thus reaches the correct answer. In (b), block-wise PTQ is overconfident in \"Wait\" and underconfident in \"But\", while LFQ assigns probabilities to these \"aha\" tokens that remain closer to the FP baseline.",
+ "caption_source": "latex",
+ "abstract": "As large language models continue to scale, low-bit weight-only post-training quantization (PTQ) offers a practical solution to their memory-efficient deployment. Although block-wise PTQ is capable of matching the full-precision (FP) baseline on basic language modeling and understanding, its quality is degraded for generative tasks -- especially at longer responses and extended chains of thought, which is critical in boosting task accuracy. We attribute this shortfall to two factors: (i) the omission of the unembedding layer (the LM head) in block-wise optimization and (ii) the reliance on the mean squared error (MSE) objective. Both factors cause the token probability distribution of the quantized model to misalign with that of the FP model, yielding notable accuracy drops on text generation benchmarks. To rectify the discrepancy, we introduce Logit-aware Final-block Quantization (LFQ), a simple yet effective enhancement to block-wise PTQ that quantizes the final Transformer block by minimizing the cross-entropy between the logits of the FP model and those of its quantized counterpart. By aligning token probabilities at the logit level in the final block, LFQ consistently improves the accuracy of complex generation tasks over state-of-the-art block-wise PTQ across diverse model families, while maintaining parity with FP baselines on language modeling and understanding.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=ykdc70h1ND",
+  "arxiv": "https://arxiv.org/abs/2605.29756",
+  "pdf": "https://raw.githubusercontent.com/mlresearch/v306/main/assets/lee26bi/lee26bi.pdf",
+  "proceedings": "https://proceedings.mlr.press/v306/lee26bi.html",
+  "virtual": "https://icml.cc/virtual/2026/poster/60586",
+  "code": null
+ },
+ "license": "http://creativecommons.org/licenses/by/4.0/",
+ "img": "cc-by",
+ "image_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/images/icml26-6438.png",
+ "thumb_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/thumbs/icml26-6438.webp",
+ "figure_page": 3,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.55
+}

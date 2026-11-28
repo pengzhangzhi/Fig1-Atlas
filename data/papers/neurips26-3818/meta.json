@@ -1,0 +1,53 @@
+{
+ "id": "neurips26-3818",
+ "title": "CrossWeave: Cross-Modal Scene and Instance Retrieval from Sparse 2D-3D Alignment",
+ "authors": [
+  "Aadith Warrier",
+  "Gnana Prakash Punnavajhala",
+  "Siddharth Tourani",
+  "Muhammad Haris Khan",
+  "Avinash Sharma",
+  "Madhava Krishna"
+ ],
+ "venue": "NeurIPS 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "Computer Vision->Vision Models & Multimodal",
+ "role": "pipeline",
+ "role2": null,
+ "claim": "Local patch-to-point correspondences feed shared aggregation, so one pipeline trains and serves both scene and instance retrieval.",
+ "layout": "2 rows (training top, inference bottom), left-to-right, colored stage boxes with legend",
+ "tags": [
+  "cross-modal-retrieval",
+  "sparse-correspondence",
+  "optimal-transport-aggregation",
+  "contrastive-learning",
+  "single-model"
+ ],
+ "style": [
+  "colorful",
+  "icon-heavy",
+  "photo/real data",
+  "math-heavy"
+ ],
+ "description": "A wide two-row pipeline diagram. The top row, labeled Training, takes an image and a point cloud on the left. They pass through a pink Scene Sampling panel of five small boxes: project points, filter occluded points by depth, quantize into 14x14 DINOv2 patches, sample one 3D point per patch, and select pairs by farthest point sampling. An orange Multimodal Feature Extraction panel follows, with frozen DinoV2 and Utonia encoders marked by snowflakes. Projection matrices W^patch and W^point lead to features h, and a dashed arrow marks the L_p2p loss. A gray Feature Aggregation panel holds a red SALAD diamond with flames for trained parts and a trash icon for the dustbin, and it produces L_i2pc. The bottom row, Inference, runs multi-view scene or object images through DinoV2 and SALAD. It then does cosine similarity against a database cylinder. A legend marks variable, frozen and trained modules.",
+ "caption": "Overview of CrossWeave. CrossWeave learns cross-modal retrieval representations from sparse image patch-3D point correspondences rather than scene- or instance-level labels. Scene Sampling: Given calibrated RGB-D observations and a reconstructed 3D map, visible patch-point pairs are obtained by projecting 3D points into the image plane, filtering occluded points using rendered depth, quantizing valid pixels into DINOv2 patch tokens, and selecting a compact semantically diverse subset using feature-space farthest point sampling. Feature Extraction: Frozen encoders extract local patch and point features, which are projected by learnable projection matrices $W^{\\mathrm{patch}}$ and $W^{\\mathrm{point}}$ into a shared embedding space. Feature Aggregation: A shared SALAD aggregator then maps variable-sized sets of local features into fixed-dimensional descriptors. Training combines a local patch-point $\\mathcal{L}_{p2p}$ contrastive loss with an aggregated image-point-cloud contrastive loss $\\mathcal{L}_{i2pc}$, preserving fine-grained alignment while organizing local evidence into retrieval-ready descriptors. At inference, the same encoders and projection heads serve both tasks: SALAD descriptors are used for scene retrieval and mean-pooled local features for instance retrieval.",
+ "caption_source": "latex",
+ "abstract": "Cross-modal scene and instance retrieval aims to retrieve a corresponding 3D environment or object given query 2D images, serving as a foundational mechanism for spatial reasoning in robotics and AR/VR. Existing methods achieve this by learning alignment only at the level of whole scenes or objects, which provides no supervision for the fine-grained local structure within them. In this work, we show that supervision on a set of sparse 2D-3D correspondences, without scene- or instance-level contrastive objectives, is sufficient to train a single model for both scene- and instance-level retrieval. Specifically, we propose $\\textbf{CrossWeave}$, a novel framework for cross-modal retrieval that learns sparse patch-point alignment, which alone outperforms existing methods. An optimal transport-based aggregator over the aligned features gives further gains by clustering structurally redundant regions, freeing descriptor capacity for semantically distinct local features. CrossWeave achieves state-of-the-art performance on both scene- and instance-level retrieval on ScanNet and 3RScan with a $\\textit{single model}$, whereas existing methods require separate models for each task. Our results suggest that whole-scene encoding is unnecessary for cross-modal retrieval and that sparse local correspondence supervision is a more effective and flexible alternative.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=Qakxj8c6lU",
+  "arxiv": "https://arxiv.org/abs/2610.40525",
+  "pdf": "https://arxiv.org/pdf/2610.40525",
+  "proceedings": null,
+  "virtual": "https://neurips.cc/virtual/2026/poster/152755",
+  "code": "https://crossweave3d.github.io/"
+ },
+ "license": "http://creativecommons.org/licenses/by/4.0/",
+ "img": "cc-by",
+ "image_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/images/neurips26-3818.png",
+ "thumb_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/thumbs/neurips26-3818.webp",
+ "figure_page": 2,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.93
+}

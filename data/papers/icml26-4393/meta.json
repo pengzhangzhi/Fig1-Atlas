@@ -1,0 +1,52 @@
+{
+ "id": "icml26-4393",
+ "title": "Sparse Models, Sparse Safety: Unsafe Routes in Mixture-of-Experts LLMs",
+ "authors": [
+  "Yukun Jiang",
+  "Hai Huang",
+  "Mingjie Li",
+  "Yage Zhang",
+  "Michael Backes",
+  "Yang Zhang"
+ ],
+ "venue": "ICML 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "Social Aspects->Safety",
+ "role": "prior-vs-ours",
+ "role2": "overview-framework",
+ "claim": "A dense architecture runs every parameter per token, while the sparse variant swaps in a router that activates only a few experts.",
+ "layout": "2 panels side-by-side, left-to-right, MoE layer zoom-in inset on right",
+ "tags": [
+  "mixture-of-experts",
+  "architecture-comparison",
+  "dense-vs-sparse",
+  "routing",
+  "transformer"
+ ],
+ "style": [
+  "colorful",
+  "icon-heavy",
+  "minimal"
+ ],
+ "description": "Two side-by-side architecture diagrams with large bold captions underneath: (a) Dense Model and (b) Sparse (MoE) Model. Each panel shows a column of input tokens t1–t6 as grey rounded boxes, grouped by a bracket on the left. Beside them, a dashed green box labeled Transformer Layer (×L) holds a vertical stack of Norm, Multi-Head Attention, Norm and then FFN, with residual skip arrows and plus-circle adders. Arrows run bottom to top. In panel (b) the FFN is replaced by a blue MoE Layer block. A blue dashed zoom-in box on the far right expands it: Hidden Input goes into a Router with a small bar chart, which selects experts E1 and E4 (highlighted blue, E2 and E3 grey). Their outputs are summed into Hidden Output. Green marks standard components and blue marks the MoE-specific parts.",
+ "caption": "Illustrations of different model architectures.",
+ "caption_source": "latex",
+ "abstract": "By introducing routers to selectively activate experts in Transformer layers, the mixture-of-experts (MoE) architecture significantly reduces computational costs in large language models (LLMs) while maintaining competitive performance, especially for models with massive parameters. However, prior work has largely focused on utility and efficiency, leaving the safety risks associated with this sparse architecture underexplored. In this work, we show that the safety of MoE LLMs is as sparse as their architecture by discovering unsafe routes: routing configurations that, once activated, convert safe outputs into harmful ones. Specifically, we first introduce the Router Safety importance score (RoSais) to quantify the safety criticality of each layer's router. Manipulation of only the high-RoSais router(s) can flip the default route into an unsafe one. For instance, on JailbreakBench, masking 5 routers in DeepSeek-V2-Lite increases attack success rate (ASR) by over 4$\\times$ to 0.79, highlighting an inherent risk that router manipulation may naturally occur in MoE LLMs. We further propose a Fine-grained token-layer-wise Stochastic Optimization framework to discover more concrete Unsafe Routes (F-SOUR), which explicitly considers the sequentiality and dynamics of input tokens. Across four representative MoE LLM families, F-SOUR achieves an average ASR of 0.90 and 0.98 on JailbreakBench and AdvBench, respectively. Finally, we outline defensive perspectives, including safety-aware route disabling and router training, as promising directions to safeguard MoE LLMs. We hope our work can inform future red-teaming and safeguarding of MoE LLMs. Our code is provided in https://github.com/TrustAIRLab/UnsafeMoE.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=fVpGsFEgQU",
+  "arxiv": "https://arxiv.org/abs/2602.08621",
+  "pdf": "https://raw.githubusercontent.com/mlresearch/v306/main/assets/jiang26o/jiang26o.pdf",
+  "proceedings": "https://proceedings.mlr.press/v306/jiang26o.html",
+  "virtual": "https://icml.cc/virtual/2026/poster/62563",
+  "code": "https://github.com/TrustAIRLab/UnsafeMoE"
+ },
+ "license": "http://creativecommons.org/licenses/by-nc-nd/4.0/",
+ "img": "none",
+ "image_url": null,
+ "thumb_url": null,
+ "figure_page": 1,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.55
+}

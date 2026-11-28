@@ -1,0 +1,48 @@
+{
+ "id": "neurips26-1740",
+ "title": "NeuroHorizon: Long-Horizon Forecasting of Neural Population Activity with Hierarchical Memory",
+ "authors": [
+  "Peng Jiang",
+  "Xiaoxuan Jia"
+ ],
+ "venue": "NeurIPS 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "Applications->Neuroscience, Cognitive Science",
+ "role": "pipeline",
+ "role2": "overview-framework",
+ "claim": "A multi-module architecture encodes observed history, decodes future outputs autoregressively, and feeds its own predictions back through a memory during training.",
+ "layout": "4 colored module columns, left-to-right flow, feedback loop via dashed arrow",
+ "tags": [
+  "architecture",
+  "autoregressive",
+  "encoder-decoder",
+  "memory",
+  "scheduled-sampling"
+ ],
+ "style": [
+  "colorful",
+  "math-heavy",
+  "minimal"
+ ],
+ "description": "A block diagram of the NeuroHorizon architecture, with each component in its own color-coded rounded panel. On the left, a blue POYO+ Encoder takes spike events and latent queries through spike tokenization, cross-attention, and a looped self-attention and FFN stack, producing history latents H. In the center, an orange autoregressive causal decoder stacks history cross-attention, memory cross-attention, causal self-attention, and FFN, repeated L_dec times, to produce Z. Bin queries enter from a gray box at the upper right. On the right, a green Prediction Memory panel holds tail and segment memory, fed by a memory encoder and a scheduled-sampling block. A purple output panel at the bottom holds the per-neuron head and the Poisson NLL loss. A dashed green arrow carries predictions back into the memory.",
+ "caption": "\\textbf{Overview of the \\ours{} architecture.} A \\poyoplus{} event encoder maps observed spike events to history latents. A causal decoder predicts future firing rates bin by bin, attending to both history latents and a hierarchical prediction memory. During training, scheduled sampling chooses whether memory receives ground-truth counts or model predictions.",
+ "caption_source": "latex",
+ "abstract": "Long-horizon forecasting of neural population activity tests whether a model has captured dynamics that remain predictive well beyond the observed history. Prediction quality typically declines as the horizon grows, yet neither short-horizon accuracy nor teacher-forced evaluation, which supplies the true activity preceding each predicted step, reveals how well models sustain predictions from an initial history alone. We compare direct multi-step prediction and autoregressive rollout on spiking recordings across horizons and introduce NeuroHorizon, which pairs event-based spike encoding with a causal decoder for population firing rates. Its hierarchical prediction memory keeps recent predictions at full temporal resolution and compresses earlier ones into segment summaries, giving the decoder both local detail and longer-range context. Under teacher-forced training this memory holds ground-truth activity, whereas during rollout it holds the model's own predictions. To reduce this mismatch, we train with scheduled sampling, progressively exposing the decoder to its own predictions. From 500 ms of macaque motor-cortex activity, NeuroHorizon achieves the highest forward-prediction score among the evaluated autonomous models at all four horizons from 100 to 1000 ms, and its per-bin predictions remain above a mean-firing-rate baseline across nearly the full 1 s window. Complementary experiments on macaque sensorimotor and mouse multi-region recordings show that performance generally increases with model and data size, alongside improved prediction after cross-subject pretraining and fine-tuning. Together, these results clarify how forecasting performance changes across horizons and offer an effective approach to long-horizon forecasting of neural population activity.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=COuiDiirTQ",
+  "arxiv": "https://arxiv.org/abs/2611.10617",
+  "pdf": "https://arxiv.org/pdf/2611.10617",
+  "proceedings": null,
+  "virtual": "https://neurips.cc/virtual/2026/poster/154599",
+  "code": null
+ },
+ "license": "http://creativecommons.org/licenses/by-nc-sa/4.0/",
+ "img": "cc-by-nc-sa",
+ "image_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/images/neurips26-1740.png",
+ "thumb_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/thumbs/neurips26-1740.webp",
+ "figure_page": 3,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.9
+}

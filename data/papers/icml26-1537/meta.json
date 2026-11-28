@@ -1,0 +1,48 @@
+{
+ "id": "icml26-1537",
+ "title": "Clustered Influence Functions",
+ "authors": [
+  "Miklós Máté Badó",
+  "Kristian Fenech"
+ ],
+ "venue": "ICML 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "General Machine Learning->Scalable Algorithms",
+ "role": "pipeline",
+ "role2": "overview-framework",
+ "claim": "Pay the expensive computation once offline into a compact cache, then answer each query cheaply by linear recombination.",
+ "layout": "2 stacked bands, left-to-right flow, dashed arrow linking offline cache to online query",
+ "tags": [
+  "amortization",
+  "caching",
+  "offline-online",
+  "efficiency",
+  "influence-functions"
+ ],
+ "style": [
+  "colorful",
+  "icon-heavy",
+  "math-heavy"
+ ],
+ "description": "Two horizontal bands stacked vertically. The top band, blue-tinted and titled 'Offline (Build Cache)' in red small caps, has five boxes joined by gray arrows: Grads {g_i}, Sketch Πg_i with a small projection icon, Cluster {μ_c} with red dots and circles, C IHVP H̃⁻¹μ_c, and a purple database cylinder 'Cache {v_c}'. A brace above reads 'Precompute Once'. The bottom band, orange-tinted and titled 'Online (Query)' in green, has four green-outlined boxes: Subset S, Counts m_c(S) with a small histogram icon, Linear Recombine Σ_c m_c(S)·v_c with 'Complexity: O(Cp)', and Output Δθ̂_S. A dark-blue dashed arrow labeled 'Retrieve v_c' runs from the cache down into the Linear Recombine box. A brace below reads 'Repeat for Q Queries (No IHVP solves)'. The eye goes first to the red and green section titles.",
+ "caption": "CiF System Overview. Offline: Gradients are sketched, clustered, and solved against the inverse curvature once. Online: For any subset query S, we simply count cluster memberships and linearly recombine cached vectors (vc), bypassing expensive curvature solves entirely.",
+ "caption_source": "pdf",
+ "abstract": "Influence functions are a standard tool for data debugging and unlearning, but they become impractical for **high-query** subset workloads such as large-$K$ cross-validation, repeated resampling, or interactive what-if analysis as each subset query typically requires an expensive inverse-curvature solve. We introduce **Clustered Influence Functions (CiF)**, which turns subset influence into an **amortized subset oracle**. We build a compact cache once by clustering training gradients, solve a damped Generalised Gauss-Newton system only for cluster means, and answer new subset queries by a linear recombination using cluster membership counts. This yields per-query cost of $O(Cp)$ linear in the cache size $C$, and the number of model parameters $p$. We further provide a diagnostic error bound that decomposes approximation error into a **clustering scatter** term and a **solver residual** term, making the accuracy-compute tradeoff explicit through the cache budget and solver tolerance. Evaluations across MNIST, CIFAR-10 show that CiF matches per-query influence rankings while significantly reducing the total runtime in high-$Q$ regimes, enabling influence-based workflows that are otherwise computationally prohibitive.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=Efjuj6kanc",
+  "arxiv": null,
+  "pdf": "https://raw.githubusercontent.com/mlresearch/v306/main/assets/bado26a/bado26a.pdf",
+  "proceedings": "https://proceedings.mlr.press/v306/bado26a.html",
+  "virtual": "https://icml.cc/virtual/2026/poster/65331",
+  "code": null
+ },
+ "license": null,
+ "img": "none",
+ "image_url": null,
+ "thumb_url": null,
+ "figure_page": 0,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.9
+}

@@ -1,0 +1,54 @@
+{
+ "id": "iclr26-4277",
+ "title": "You Point, I Learn: Online Adaptation of Interactive Segmentation Models for Handling Distribution Shifts in Medical Imaging",
+ "authors": [
+  "Wentian Xu",
+  "Ziyun Liang",
+  "Harry Anthony",
+  "Yasin Ibrahim",
+  "Felix Cohen",
+  "Guang Yang",
+  "Konstantinos Kamnitsas"
+ ],
+ "venue": "ICLR 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "Computer Vision->Segmentation",
+ "role": "pipeline",
+ "role2": null,
+ "claim": "A model adapts online by treating user-corrected outputs as pseudo-labels, updating after each click and after each completed image.",
+ "layout": "Nested panels: inference loop top-left, pretraining/post-interaction rows, mid-interaction bottom row, left-to-right flow",
+ "tags": [
+  "online-adaptation",
+  "interactive-segmentation",
+  "pseudo-labeling",
+  "human-in-the-loop",
+  "distribution-shift"
+ ],
+ "style": [
+  "icon-heavy",
+  "colorful",
+  "text-heavy",
+  "photo/real data"
+ ],
+ "description": "A dense, multi-block method overview on a light-blue and gray background. The top-left rounded box, \"Inference Overview\", shows a clinician icon and a U-Net in a circular loop of clicks over a brain MRI. Top-center has a small Click-Centered Gaussian loss legend: green foreground and red background click blobs on a mask. Top-right is the gray Pretraining panel: input image and ground truth feed synthetic click generation, then foreground/background click maps, then a green U-Net with Dice-Focal and CCG loss. The middle row is Post-interaction Adaptation: stored data, then Stage 1 (a single localization click) and Stage 2 (multiple correction clicks from false-positive and false-negative regions), each feeding a U-Net. The bottom blue rounded box is Mid-Interaction Adaptation: prediction P(t-1), clinician click, U-Net, new pseudo ground truth, weight update, then refined prediction P(t). The U-Net is drawn as a green bowtie throughout, and black-and-white masks carry the eye along the arrows.",
+ "caption": "Method overview. For Pretraining, the model is trained with simulated clicks, provided as additional input channels besides the image. During Inference and adaptation, images arrive sequentially. For each image, the user iteratively provides $T$ clicks to correct the segmentation, until the final prediction $P_{final}=\\! P_T$ is obtained. Mid-interaction adaptation: After each corrective click $c_t$, the model's output $P_t^{initial}$ is used as pseudo-label compared with the pre-correction output $P_{t-1}$ via the DF and CCG losses, to update model parameters. The updated model then produces refined output $P_t$, which is then shown to the user, ending iteration $t$. Post-interaction adaptation: Once the final corrected segmentation $P_T$ is obtained, it is used as pseudo-label to first fine-tune the model using a localization click (Stage 1), and then to fine-tune using multiple correction clicks, generated from areas where the prediction of Stage 1 disagrees with $P_T$ (Stage 2).",
+ "caption_source": "latex",
+ "abstract": "Interactive segmentation uses real-time user inputs, such as mouse clicks, to iteratively refine model predictions. Although not originally designed to address distribution shifts, this paradigm naturally lends itself to such challenges. In medical imaging, where distribution shifts are common, interactive methods can use user inputs to guide models towards improved predictions. Moreover, once a model is deployed, user corrections can be used to adapt the network parameters to the new data distribution, mitigating distribution shift. Based on these insights, we aim to develop a practical, effective method for improving the adaptive capabilities of interactive segmentation models to new data distributions in medical imaging. Firstly, we found that strengthening the model's responsiveness to clicks is important for the initial training process. Moreover, we show that by treating the post-interaction user-refined model output as pseudo-ground-truth, we can design a lean, practical online adaptation method that enables a model to learn effectively across sequential test images. The framework includes two components: (i) a Post-Interaction adaptation process, updating the model after the user has completed interactive refinement of an image, and (ii) a Mid-Interaction adaptation process, updating incrementally after each click. Both processes include a Click-Centered Gaussian loss that strengthens the model's reaction to clicks and enhances focus on user-guided, clinically relevant regions. Experiments on 5 fundus and 4 brain-MRI databases show that our approach consistently outperforms existing methods under diverse distribution shifts, including unseen imaging modalities and pathologies. Code and pretrained models will be released upon publication.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=n0vHjCiLD2",
+  "arxiv": "https://arxiv.org/abs/2503.06717",
+  "pdf": "https://proceedings.iclr.cc/paper_files/paper/2026/file/8e5e1e120afdbd8700ee4ce8c42f2bf5-Paper-Conference.pdf",
+  "proceedings": "https://proceedings.iclr.cc/paper_files/paper/2026/hash/8e5e1e120afdbd8700ee4ce8c42f2bf5-Abstract-Conference.html",
+  "virtual": "https://iclr.cc/virtual/2026/poster/10007518",
+  "code": null
+ },
+ "license": "http://creativecommons.org/licenses/by/4.0/",
+ "img": "cc-by",
+ "image_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/images/iclr26-4277.png",
+ "thumb_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/thumbs/iclr26-4277.webp",
+ "figure_page": 1,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.93
+}

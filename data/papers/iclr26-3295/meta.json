@@ -1,0 +1,60 @@
+{
+ "id": "iclr26-3295",
+ "title": "Sparse Attention Adaptation for Long Reasoning",
+ "authors": [
+  "Yizhao Gao",
+  "Shuming Guo",
+  "Shijie Cao",
+  "Yuqing Xia",
+  "Yu Cheng",
+  "Lei Wang",
+  "Lingxiao Ma",
+  "Yutao Sun",
+  "Tianzhu Ye",
+  "Li Dong",
+  "Hayden So",
+  "Yu Hua",
+  "Ting Cao",
+  "Fan Yang",
+  "Mao Yang"
+ ],
+ "venue": "ICLR 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": null,
+ "role": "prior-vs-ours",
+ "role2": "pipeline",
+ "claim": "The earlier prefill-oriented sparse gate pools queries; our decoding variant drops query pooling and projects heads to fit autoregressive generation.",
+ "layout": "2 panels side-by-side, top-down data flow, shared block structure with highlighted differences",
+ "tags": [
+  "sparse-attention",
+  "decoding",
+  "architecture-adaptation",
+  "efficiency",
+  "gating"
+ ],
+ "style": [
+  "minimal",
+  "colorful"
+ ],
+ "description": "Two side-by-side block diagrams, (a) SeerAttention and (b) SeerAttention-R, share the same layout. Q, K and V arrows enter at the top. Dotted lines send Q and K into a gray rounded 'Attn Gate' box. In (a) the gate has two Pooling blocks (green), then Linear (cream), RoPE (light blue), MatMul & Softmax (blue) and Sparsify (gray). Block indices feed a white Block Sparse Flash-Attn (Prefill) box, which sits below a RoPE block and outputs Attention Output. In (b) the Q branch has a Linear block labeled 'reduce to kv heads' in place of the Q Pooling block, and the K branch keeps Pooling. The main box becomes Block Sparse Flash Decoding. The pastel color blocks make the swapped Pooling-to-Linear component the first difference the eye finds.",
+ "caption": "SeerAttention (Sparse Prefill) and SeerAttention-R (Sparse Decode). In \\seerR, no sequence dimension compression/pooling operation is applied in Query (Q). Given that modern architectures predominantly use GQA, a linear layer projects the Q from its original number of heads down to the number of KV heads, enabling shared sparsity selection in a GQA group.",
+ "caption_source": "latex",
+ "abstract": "We introduce SeerAttention-R, a sparse attention framework specifically tailored for the long decoding of reasoning models. Extended from SeerAttention, SeerAttention-R retains the design of learning attention sparsity through a self-distilled gating mechanism, while removing query pooling to accommodate auto-regressive decoding. With a lightweight plug-in gating, SeerAttention-R is flexible and can be easily integrated into existing pretrained model without modifying the original parameters. We demonstrate that SeerAttention-R, trained on just 0.4B tokens, maintains near-lossless reasoning accuracy with 4K token budget in AIME benchmark under large sparse attention block sizes (64/128). Using TileLang, we develop a highly optimized sparse decoding kernel that achieves near-theoretical speedups of up to 9x over FlashAttention-3 on H100 GPU at 90\\% sparsity.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=c5BOcHM6J8",
+  "arxiv": "https://arxiv.org/abs/2506.08889",
+  "pdf": "https://proceedings.iclr.cc/paper_files/paper/2026/file/b56d827a2b8433517e722e0272c7f464-Paper-Conference.pdf",
+  "proceedings": "https://proceedings.iclr.cc/paper_files/paper/2026/hash/b56d827a2b8433517e722e0272c7f464-Abstract-Conference.html",
+  "virtual": "https://iclr.cc/virtual/2026/poster/10008544",
+  "code": null
+ },
+ "license": "http://arxiv.org/licenses/nonexclusive-distrib/1.0/",
+ "img": "none",
+ "image_url": null,
+ "thumb_url": null,
+ "figure_page": 1,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.85
+}

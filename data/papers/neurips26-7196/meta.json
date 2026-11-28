@@ -1,0 +1,50 @@
+{
+ "id": "neurips26-7196",
+ "title": "HyCO: A Hybrid Neural Solver for Combinatorial Optimization",
+ "authors": [
+  "Yuheng Li",
+  "Di Yang",
+  "Haipeng Chen",
+  "Yanhai Xiong"
+ ],
+ "venue": "NeurIPS 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "Reinforcement Learning->Deep RL",
+ "role": "pipeline",
+ "role2": "concept",
+ "claim": "Two solver families fail at different stages, so switching from one to the other at a computed handover point beats either alone.",
+ "layout": "2 panels, left schematic plot then right flow loop, feedback arrow with yes/no branch",
+ "tags": [
+  "hybrid-inference",
+  "adaptive-switching",
+  "regret-analysis",
+  "handover-trigger",
+  "combinatorial-optimization"
+ ],
+ "style": [
+  "plot",
+  "icon-heavy",
+  "colorful"
+ ],
+ "description": "The figure has two panels. Panel (a), on the left, is a schematic plot of marginal regret against step τ. A solid blue curve for the RL solver rises as τ^(3/2). A red dashed horizontal line shows the constant marginal regret of the diffusion model. The curves cross at a marked point labeled Optimal Trigger τ*. Blue hatching fills the area under the curve before the crossing, and pink hatching fills the area after it. Panel (b), on the right, is a flow diagram. A problem instance (a scatter of points) goes into an RL policy network, which produces a policy distribution. That feeds a gray Adaptive Trigger box with two orange sub-boxes, RL Policy Uncertainty and Model Disagreement. A green loop arrow labeled 'No, update state' returns to the RL policy. A 'Yes' branch goes down to a DM model network, which generates a set of candidate tours. A final step selects the best one as the final solution. Light green arrows connect the stages.",
+ "caption": "Motivation and Method. (a) Schematic illustration of the unified error dynamics. The marginal regret of RL increases as the trajectory lengthens, while that of a conditional DM is constant as the solution prefix grows. Their intersection defines the optimal trigger step $\\tau^*$. (b) The HyCO framework, which constructs a prefix with a RL solver, detects the regime shift via a lightweight adaptive trigger, and hands over to a conditional DM for dual-track completion.",
+ "caption_source": "latex",
+ "abstract": "Sequential reinforcement learning (RL) solvers and global diffusion model (DM) solvers for neural combinatorial optimization exhibit complementary failure modes under an optimization-regret view. The former enjoys small marginal regret in the early construction stage, but suffers from horizon-wise compounding errors with super-linear regret growth; the latter avoids horizon compounding but incurs linear or sublinear regret w.r.t. the dimension of the remaining unsolved subspace. We propose Hybrid Neural Solver for Combinatorial Optimization (HyCO), a hybrid inference algorithm that constructs a solution prefix with an RL solver and adaptively switches to a conditional DM to complete the remaining decisions. To characterize why such hybridization helps, when to trigger the handover, and how to realize it in practice, we first develop a unified error-scaling theoretical framework and prove that, under explicit error-scaling assumptions, i) the hybrid structure achieves strictly lower expected regret than either backbone alone, and ii) there exists a unique optimal trigger step that minimizes the hybrid regret. We then design a lightweight adaptive trigger that combines policy entropy and RL-DM disagreement to detect trajectory-level signals of the regime shift as a practical proxy, since the optimal trigger step is defined at the expected-regret level and is not directly computable on individual trajectories. Experimental results on diverse benchmarks demonstrate that HyCO achieves consistent improvements over both backbones and support the empirical effectiveness of adaptive triggering. Our code and checkpoints are available at https://github.com/wmd3i/HyCO.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=ncwBmlZFlv",
+  "arxiv": "https://arxiv.org/abs/2609.07990",
+  "pdf": "https://arxiv.org/pdf/2609.07990",
+  "proceedings": null,
+  "virtual": "https://neurips.cc/virtual/2026/poster/149753",
+  "code": null
+ },
+ "license": "http://creativecommons.org/licenses/by/4.0/",
+ "img": "cc-by",
+ "image_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/images/neurips26-7196.png",
+ "thumb_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/thumbs/neurips26-7196.webp",
+ "figure_page": 1,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.6
+}

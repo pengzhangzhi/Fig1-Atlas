@@ -1,0 +1,53 @@
+{
+ "id": "icml26-2372",
+ "title": "SpecPrune-VLA: Accelerating Vision-Language-Action Models via Action-Aware Self-Speculative Pruning",
+ "authors": [
+  "Hanzhen Wang",
+  "Jiaming Xu",
+  "Yushun Xiang",
+  "Jiayi Pan",
+  "Yongkang Zhou",
+  "Yong-Lu Li",
+  "Guohao Dai"
+ ],
+ "venue": "ICML 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "Applications->Robotics",
+ "role": "analysis-finding",
+ "role2": "problem-setup",
+ "claim": "Profiling shows these models' inference is dominated by a heavy backbone and sits in the compute-bound regime, so pruning compute is the right lever.",
+ "layout": "3 panels: dataflow flowchart top-left, stacked bars top-right, roofline plot bottom",
+ "tags": [
+  "latency-breakdown",
+  "roofline-analysis",
+  "compute-bound",
+  "pruning",
+  "efficiency"
+ ],
+ "style": [
+  "plot",
+  "colorful",
+  "icon-heavy"
+ ],
+ "description": "A composite figure with three panels. Panel (a), top left, is a vertical flowchart of a VLA model's inference. An instruction text box and multi-view robot-scene images feed into a green Tokenizers block. The combined tokens go to a gray LLM block, and the intermediate results go to a blue Action Expert block, which outputs a low-level action. Panel (b), top right, is a stacked bar chart of latency in ms for OpenVLA, CogACT, OpenVLA-OFT and DB-OFT. Each bar is split into green tokenizer, gray LLM and blue action head segments, with the numbers labeled. The OpenVLA bar is tallest, at about 204 ms for the LLM. Panel (c), bottom, is a roofline plot with a blue memory-bound region and a green compute-bound region. They meet at a ridge point of AI = 161.2. Red markers for the different models sit mostly in the compute-bound region, and only one OpenVLA marker sits in the memory-bound region.",
+ "caption": "(a) The mainstream inference dataflow of VLA models. (b) Latency breakdown in four typical VLA models during each action generation. * In DB-OFT, we report the time of LLM backbone and Action Expert per denoising step, with the tokenizer’s single forward pass time averaged evenly across the 10 steps. (c) The practical arithmetic intensity of four models in different cases in the roofline model of NVIDIA A800 GPU.",
+ "caption_source": "latex",
+ "abstract": "Pruning is a typical acceleration technique for compute-bound models by removing computation on unimportant values. Recently, it has been applied to accelerate Vision-Language-Action (VLA) model inference. However, existing acceleration methods focus on local information from the current action step and ignore the global context, leading to >20% success rate drop and limited speedup in some scenarios. In this paper, we point out spatial-temporal consistency in VLA tasks: input images in consecutive steps exhibit high similarity, and propose the key insight that token selection should combine local information with global context of the model. Based on this, we propose SpecPrune-VLA, a training-free, two-level pruning method with heuristic control. (1) Action-level static pruning. We leverage global history and local attention to statically reduce visual tokens per action. (2) Layer-level dynamic pruning. We prune tokens adaptively per layer based on layer-wise importance. (3) Lightweight action-aware controller: We classify actions as coarse- or fine-grained by the speed of the end effector and adjust pruning aggressiveness accordingly. Extensive experiments show that SpecPrune-VLA achieves up to 1.57$\\times$ speedup in LIBERO simulation and 1.70$\\times$ on real-world tasks, with negligible success rate degradation.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=MjE62ZnpRH",
+  "arxiv": "https://arxiv.org/abs/2509.05614",
+  "pdf": "https://raw.githubusercontent.com/mlresearch/v306/main/assets/wang26jj/wang26jj.pdf",
+  "proceedings": "https://proceedings.mlr.press/v306/wang26jj.html",
+  "virtual": "https://icml.cc/virtual/2026/poster/64525",
+  "code": "https://github.com/alexwhz-sjtu/SpecPrune-VLA"
+ },
+ "license": "http://arxiv.org/licenses/nonexclusive-distrib/1.0/",
+ "img": "none",
+ "image_url": null,
+ "thumb_url": null,
+ "figure_page": 0,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.6
+}

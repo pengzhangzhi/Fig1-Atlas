@@ -1,0 +1,54 @@
+{
+ "id": "icml26-0635",
+ "title": "APEX: Approximate-but-exhaustive search for ultra-large combinatorial synthesis libraries",
+ "authors": [
+  "Aryan Pedawi",
+  "Jordi Silvestre-Ryan",
+  "Bradley Worley",
+  "Darren Hsu",
+  "Kushal Shah",
+  "Elias Stehle",
+  "Jingrong Zhang",
+  "Izhar Wallach"
+ ],
+ "venue": "ICML 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "Applications->Health / Medicine",
+ "role": "pipeline",
+ "role2": null,
+ "claim": "A three-stage procedure trains a surrogate, then a factorizer, so exhaustive search over a huge library is fast.",
+ "layout": "3 stacked rows (Step 1–3), left-to-right flow, curved feedback arrows, hand-drawn style",
+ "tags": [
+  "surrogate-model",
+  "amortization",
+  "exhaustive-search",
+  "multi-stage",
+  "virtual-screening"
+ ],
+ "style": [
+  "colorful",
+  "icon-heavy",
+  "math-heavy"
+ ],
+ "description": "A hand-drawn style diagram split into three horizontal rows labeled Step 1, Step 2 and Step 3. Step 1 (top) shows a labeled molecule library feeding a green-shaded surrogate model made of a blue molecular encoder, yellow linear probes and task weights. Dashed curves mark the two losses: prediction error and embedding distance. Step 2 (middle) shows synthon and reaction sets feeding a purple reaction factorizer. It is followed by a matrix equation in which pink R-group key matrices and synthon value vectors combine into associative and factorized molecular embeddings. Step 3 (bottom) shows a query with constraints, a priority queue and results. Beside it, precomputed synthon embeddings are multiplied by task weights to give orange factorized surrogate properties. Color-coded text labels and curved arrows link the steps. The eye goes first to the large step titles and the colored boxes.",
+ "caption": "The APEX (approximate-but-exhaustive) search protocol, enabling rapid, on-the-fly virtual screening of ultra-large CSLs. APEX consists of three main steps. Step 1: Train the surrogate. Given an enumerated and labeled dataset, a multi-task neural network is trained to predict molecular properties of interest, like docking scores. Step 2: Train the factorizer. Given a CSL, the reaction factorizer is trained to reconstruct embeddings of the surrogate model from reaction and R-group assignment pairs. The factorizer induces an approximation of surrogate properties that is amenable to substantial amortization in executing top-$k$ retrieval on ultra-large CSLs with respect to those properties. Step 3: Run approximate-but-exhaustive search. Given a search query (e.g., minimize docking score on target of interest subject to drug-likeness constraints), factorized surrogate properties are calculated for all compounds in the CSL and the top-$k$ are retrieved based on the objective subject to constraints. An efficient GPU implementation allows for running a top-$k$ search with $k=1 million$ on a 10 billion compound CSL in approximately 30 seconds with a single T4 GPU.",
+ "caption_source": "latex",
+ "abstract": "Make-on-demand combinatorial synthesis libraries (CSLs) like Enamine REAL have significantly enabled drug discovery efforts. However, their large size presents a challenge for virtual screening, where the goal is to identify the top compounds in a library according to a computational objective (e.g., optimizing docking score) subject to computational constraints under a limited computational budget. For current library sizes -- numbering in the tens of billions of compounds -- and scoring functions of interest, a routine virtual screening campaign may be limited to scoring fewer than 0.1% of the available compounds, leaving potentially many high scoring compounds undiscovered. Furthermore, as constraints (and sometimes objectives) change during the course of a virtual screening campaign, existing virtual screening algorithms typically offer little room for amortization. We propose the approximate-but-exhaustive search protocol for CSLs, or APEX. APEX utilizes a neural network surrogate that exploits the structure of CSLs in the prediction of objectives and constraints to make full enumeration on a consumer GPU possible in under a minute, allowing for exact retrieval of approximate top-k sets. To demonstrate APEX's capabilities, we develop a benchmark CSL comprised of more than 10 million compounds, all of which have been annotated with their docking scores on five medically relevant targets along with physicohemical properties measured with RDKit such that, for any objective and set of constraints, the ground truth top-k compounds can be identified and compared against the retrievals from any virtual screening algorithm. We show APEX's consistently strong performance both in retrieval accuracy and runtime compared to alternative methods.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=5lIJrDCQll",
+  "arxiv": "https://arxiv.org/abs/2510.24380",
+  "pdf": "https://raw.githubusercontent.com/mlresearch/v306/main/assets/pedawi26a/pedawi26a.pdf",
+  "proceedings": "https://proceedings.mlr.press/v306/pedawi26a.html",
+  "virtual": "https://icml.cc/virtual/2026/poster/66209",
+  "code": null
+ },
+ "license": "http://creativecommons.org/licenses/by-nc-sa/4.0/",
+ "img": "cc-by-nc-sa",
+ "image_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/images/icml26-0635.png",
+ "thumb_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/thumbs/icml26-0635.webp",
+ "figure_page": 2,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.93
+}

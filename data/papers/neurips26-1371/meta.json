@@ -1,0 +1,50 @@
+{
+ "id": "neurips26-1371",
+ "title": "ECHO: Terminal Agents Learn World Models for Free",
+ "authors": [
+  "Vaishnavi Shrivastava",
+  "Ahmed Awadallah",
+  "Dimitris Papailiopoulos"
+ ],
+ "venue": "NeurIPS 2026",
+ "tier": "spotlight",
+ "track": "main",
+ "topic": null,
+ "role": "pipeline",
+ "role2": "teaser-result",
+ "claim": "Adding a loss on environment-response tokens alongside the action loss gives dense supervision from every rollout, so training converges faster and ends higher.",
+ "layout": "Top method diagram flowing top-to-bottom, bottom row of 3 line plots",
+ "tags": [
+  "auxiliary-loss",
+  "dense-supervision",
+  "reinforcement-learning",
+  "world-model",
+  "sample-efficiency"
+ ],
+ "style": [
+  "colorful",
+  "math-heavy",
+  "plot",
+  "icon-heavy"
+ ],
+ "description": "The top half shows a terminal-agent rollout as a row of dark tokens. Commands such as '$curl 8080' alternate with pink environment responses such as 'refused' and 'not_found', and the row ends with a reward 'r=0'. Under it, teal bars mark action tokens and pink bars mark environment tokens. A cartoon robot labelled 'policy π_θ' sits at the left. Arrows run from the teal bars to a mint 'GRPO loss' box, which is marked 'silenced when Â=0'. Arrows run from the pink bars to a pink 'Env loss' box, which is marked 'active on every rollout'. Both boxes feed an 'ECHO loss' equation, L_ECHO = L_GRPO + λ L_env, and an arrow returns from it to the policy. The bottom half has three pass-rate curves against train step (val100 in-dist, ITD OOD, TBLite hardest OOD). Pink ECHO sits above teal GRPO, with arrows labelled '−220', '−140' and '−260 steps' showing how much earlier ECHO reaches GRPO's final score.",
+ "caption": "ECHO turns terminal feedback into supervision during agent RL. A terminal-agent rollout interleaves assistant actions, with environment observations. In standard GRPO, previous terminal outputs can inform future commands, but loss is applied only to action-token positions and is driven by sparse outcome-level rewards. ECHO adds a complementary cross-entropy loss on environment-observation tokens, training the same policy to predict the terminal responses caused by its own actions. ECHO reuses the same rollout and forward pass while making every terminal response an additional training target. Bottom: across held-out evaluations, ECHO improves task solve rate relative to matched GRPO-only runs and also reaches the peak GRPO performance substantially earlier in training.",
+ "caption_source": "latex",
+ "abstract": "CLI agents are the closest thing language models have to an embodied setting: the model emits commands, the terminal executes them, and the returned stream -- stdout, errors, files, logs, and traces -- records the consequences. We argue that this stream is a supervision signal, but standard agent RL discards it: GRPO-style training updates action tokens with sparse outcome-level rewards while ignoring environment responses already in the rollout. Failed rollouts provide little policy-gradient signal despite containing rich evidence about how the environment responds. We introduce ECHO (Environment Cross-entropy Hybrid Objective), a hybrid objective that combines the standard policy-gradient loss on action tokens with an auxiliary loss that trains the policy to predict environment observation tokens resulting from its own actions. ECHO reuses the same forward pass as GRPO, requires no additional rollouts, and turns terminal feedback into dense supervision for all rollouts. ECHO doubles GRPO pass@1 on TerminalBench-2.0: Qwen3-8B improves from 2.70% to 5.17%, and Qwen3-14B from 5.17% to 10.79%. ECHO also produces policies that better predict terminal dynamics, even on trajectories they did not generate: across held-out rollouts, it sharply reduces environment-token cross-entropy while GRPO alone barely changes it. From base Qwen3-8B, ECHO matches expert-SFT-then-GRPO performance on held-out terminal tasks without expert demonstrations, and recovers roughly half of the expert-SFT initialization benefit on TerminalBench-2.0. In some settings, the environment prediction loss alone enables verifier-free self-improvement, allowing policies to improve on unseen OOD tasks by learning only from environment interactions. Together, these results suggest that environment observations are not merely context for future actions, but a dense, on-policy supervision signal already present in every rollout.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=9rkAbf5ICO",
+  "arxiv": "https://arxiv.org/abs/2605.24517",
+  "pdf": "https://arxiv.org/pdf/2605.24517",
+  "proceedings": null,
+  "virtual": "https://neurips.cc/virtual/2026/poster/154932",
+  "code": null
+ },
+ "license": "http://arxiv.org/licenses/nonexclusive-distrib/1.0/",
+ "img": "none",
+ "image_url": null,
+ "thumb_url": null,
+ "figure_page": 0,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.6
+}

@@ -1,0 +1,53 @@
+{
+ "id": "neurips26-4886",
+ "title": "StableVQ: Practical Guidelines for Stable Vector-Quantized Tokenizer Training",
+ "authors": [
+  "Bao Tang",
+  "Jiahao Guo",
+  "Haoxiang Cao",
+  "Wenyu Liu",
+  "Changqian Yu",
+  "Kun Gai",
+  "Xinggang Wang"
+ ],
+ "venue": "NeurIPS 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "Deep Learning->Generative Models and Autoencoders",
+ "role": "problem-setup",
+ "role2": "analysis-finding",
+ "claim": "Training of discrete tokenizers fails in three characteristic ways, each tied to a mismatch between data and codebook distribution scales.",
+ "layout": "3 columns, top-to-bottom: scatter before→after arrows above codebook-usage curve",
+ "tags": [
+  "vector-quantization",
+  "failure-modes",
+  "training-stability",
+  "codebook-utilization",
+  "discrete-tokenizer"
+ ],
+ "style": [
+  "plot",
+  "colorful",
+  "minimal"
+ ],
+ "description": "Three columns (a), (b), (c) each show one failure mode of VQ training. The top of each column has a pair of 2-D scatter panels joined by a blue arrow, showing an earlier and a later training stage. Blue dots are the token distribution and red crosses are the code distribution. In (a) the codes cluster tightly inside a wide token cloud. In (b) the codes are scattered widely around a small token cluster. In (c) the codes start spread over the tokens, then collapse to a tight clump at the center. Each column has a legend beneath its scatter pair. At the bottom, a line plot of codebook usage against training steps matches each failure. (a) is near 0% for a long time, (b) plateaus at about 65% (permanent dead codes), and (c) drops from about 95% to near 0% (utilization collapse). Red annotations label each plot.",
+ "caption": "Three characteristic failure modes of VQ training, illustrated through the relationship between the token distribution (blue) and code distribution (red) at different training stages.",
+ "caption_source": "latex",
+ "abstract": "Vector Quantization (VQ) is fundamental to discrete visual tokenizers that power modern autoregressive and masked image generation models. While recent shared-projection codebook methods have substantially advanced codebook utilization, training stability remains a critical and underexplored challenge. We argue that the root cause lies in the entanglement of the Encoder--Decoder and Codebook training: because neither module can reliably fulfill its own responsibility in isolation, the system can only function when the two subsystems happen to cooperate---a fragile condition that breaks down precisely when training is most stressed. We propose StableVQ, which revisits the proper learning objective of each module and resolves the problems that arise when each is trained to fulfill its own role independently. Concretely, (1) Dynamic STE corrects the instability in the Encoder's learning objective, enabling it to robustly optimize the reconstruction space under discrete regularization even when codebook utilization is low. (2) Region VQ Loss reconceives the Codebook's learning objective so that it can independently guarantee full tracking of the encoder output distribution, without relying on encoder oscillations to drive activation. (3) Decoupled Schedule recognizes that the distinct responsibilities of the Encoder--Decoder and the Codebook demand distinct optimization dynamics, and assigns each an independent learning rate schedule to ensure robust system-level behavior. Built on top of shared-projection codebooks, StableVQ is lightweight and introduces no learnable parameters. Experiments on ImageNet demonstrate consistent improvements in training stability, codebook utilization, and reconstruction quality across diverse codebook sizes and initialization settings.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=XrO6sGUEHB",
+  "arxiv": "https://arxiv.org/abs/2609.26774",
+  "pdf": "https://arxiv.org/pdf/2609.26774",
+  "proceedings": null,
+  "virtual": "https://neurips.cc/virtual/2026/poster/151809",
+  "code": "https://tt-day.github.io/StableVQ/"
+ },
+ "license": "http://arxiv.org/licenses/nonexclusive-distrib/1.0/",
+ "img": "none",
+ "image_url": null,
+ "thumb_url": null,
+ "figure_page": 3,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.85
+}

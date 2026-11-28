@@ -1,0 +1,49 @@
+{
+ "id": "neurips26-7628",
+ "title": "What does a Bayes-filtered transformer believe? A predictive Monte Carlo approach",
+ "authors": [
+  "Afiq Abdillah Effiezal Aswadi",
+  "Haotong Ma",
+  "Susan Wei"
+ ],
+ "venue": "NeurIPS 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "Probabilistic Methods",
+ "role": "pipeline",
+ "role2": "teaser-result",
+ "claim": "Sampling many generative rollouts and averaging each recovers the model's implicit prior and posterior, matching the analytic Bayesian ones.",
+ "layout": "2 panels, left-to-right; rollout rows feeding into an overlaid histogram",
+ "tags": [
+  "monte-carlo",
+  "interpretability",
+  "bayesian-inference",
+  "latent-variable",
+  "sampling"
+ ],
+ "style": [
+  "plot",
+  "minimal",
+  "colorful"
+ ],
+ "description": "Panel (a) shows the procedure as stacked rows labeled Rollout 1, Rollout 2, vertical dots, and Rollout R. Each row has blue rounded boxes for the prompt tokens (y1, ..., yℓ) and peach boxes for sampled tokens (y_{ℓ+1}^{(r)}, ..., y_{ℓ+N}^{(r)}) under the heading 'Sample via Beta-Bernoulli BFT'. An arrow leads from each row to an estimate θ̂^(r). Panel (b) is a density histogram over θ from 0 to 1. A flat grey histogram is the PMC prior, with a dashed grey line for the Beta prior. A tan histogram peaks near 0.17 and is the PMC posterior, with a blue curve for the analytic Beta posterior closely tracking it. A legend sits at top right. The eye goes first to the colored token rows, then to the overlapping histograms.",
+ "caption": "PMC schematic. Given a (possibly empty) prompt $y_{1:\\promptlen}$, the Beta-Bernoulli BFT autoregressively generates $R$ rollouts $y_{\\promptlen+1:\\promptlen+N}^{(r)}$ of length $N$ (panel a). For each rollout $r$, $\\hat\\theta^{(r)}=\\frac{1}{\\promptlen+N}\\bigl(\\sum_{i=1}^{\\promptlen} y_i + \\sum_{i=\\promptlen+1}^{\\promptlen+N} y_i^{(r)}\\bigr)$ is the sample mean of the full rollout (including the initial prompt). Panel (b) shows one histogram of $\\{\\hat\\theta^{(r)}\\}_{r=1}^R$ obtained with an empty prompt and one obtained with a non-empty prompt. With the empty prompt, the $\\hat\\theta^{(r)}$ are samples from the BFT's implicit prior over $\\theta$, which tracks the analytic $\\operatorname{Beta}(1,1)$ prior used during pretraining. With the non-empty prompt (here $\\promptlen=32$ with 5 ones and 27 zeros), they are samples from the BFT's implicit posterior, which tracks the analytic conjugate posterior $\\operatorname{Beta}(6,28)$. Panel (a) is adapted from [ref]. Training and rollout settings for this model are in Appendix [ref].",
+ "caption_source": "latex",
+ "abstract": "A Bayes-filtered transformer (BFT) is a transformer trained on sequences that are generated in two steps: first a latent task is drawn from a prior, then observations are drawn conditional on that task. Trained under autoregressive log loss, the BFT's next-token prediction, in the idealized limit, is the Bayesian posterior predictive distribution (PPD) induced by that prior and that conditional law. In practice the trained BFT is only an approximation of this ideal PPD, raising an interpretive question: what prior and posterior over the latent task has the trained BFT actually internalized? Existing work answers this question by comparing the trained BFT's predictions against the predictions of various \"reference\" posteriors, each standing in for a different candidate algorithm or computation the BFT might be implementing. This prediction-space comparison is fragile: different posteriors can share the same posterior-mean predictions. We use predictive Monte Carlo (PMC) as a general interpretability tool for any BFT: using only next-token generation, PMC returns an approximation to the implicit prior and posterior over the latent task, answering the interpretive question directly in latent space. We apply PMC to three stylized task families spanning 0-Markov and 1-Markov exchangeability. The phenomena previously reported in these settings remain visible in latent space. Code is available at https://github.com/afiq-aswadi/bft-pmc",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=qZ5gMk6Gpd",
+  "arxiv": "https://arxiv.org/abs/2607.17060",
+  "pdf": "https://arxiv.org/pdf/2607.17060",
+  "proceedings": null,
+  "virtual": "https://neurips.cc/virtual/2026/poster/149367",
+  "code": null
+ },
+ "license": "http://creativecommons.org/licenses/by/4.0/",
+ "img": "cc-by",
+ "image_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/images/neurips26-7628.png",
+ "thumb_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/thumbs/neurips26-7628.webp",
+ "figure_page": 1,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.6
+}

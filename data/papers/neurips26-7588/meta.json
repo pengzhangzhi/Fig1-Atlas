@@ -1,0 +1,48 @@
+{
+ "id": "neurips26-7588",
+ "title": "Fail-Closed Alignment for Large Language Models",
+ "authors": [
+  "Zachary Coalson",
+  "Sanghyun Hong"
+ ],
+ "venue": "NeurIPS 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "Social Aspects->Trustworthy Machine Learning",
+ "role": "analysis-finding",
+ "role2": "problem-setup",
+ "claim": "Refusal hinges on a single internal feature: removing it spikes attack success, and jailbreaks work by suppressing it.",
+ "layout": "2 bar-chart panels side by side, shared model groups, hatched patterns distinguish attacks",
+ "tags": [
+  "refusal-direction",
+  "jailbreak",
+  "fail-open",
+  "single-point-of-failure",
+  "alignment-robustness"
+ ],
+ "style": [
+  "plot",
+  "colorful",
+  "minimal"
+ ],
+ "description": "Two grouped bar charts sit side by side, both grouped by the same four models: Llama2-7B, Llama3-8B, Gemma2-9B and Qwen2.5-14B. The left panel plots attack success rate (ASR, y-axis up to about 90). It has two bars per model. A near-zero blue 'No Intervention' bar sits beside a tall hatched orange 'Ablation' bar, which reaches roughly 60–90. The right panel plots cosine similarity to the refusal feature (y-axis 0 to about 0.15). It has seven bars per model: a blue 'No Attack' baseline and six jailbreaks (GCG, AutoDAN, PAIR, HumanJailbreaks, PAP, FlipAttack). Each jailbreak has its own color and hatch pattern, and error bars show std. The blue baseline is usually the tallest bar in each group, so attacks lower the similarity. The legends sit above each panel. The eye goes first to the tall orange ablation bars on the left.",
+ "caption": "Refusal in many LLMs is vulnerable to suppression of a single feature by prompt-based jailbreaks. (Left) ASR on 200 harmful prompts before and after ablating the DIM refusal feature across four models. Ablation causes ASR to spike, showing that removing a single feature is sufficient to bypass alignment. (Right) Mean $\\pm$ std. cosine similarity of the refusal feature in the activation space on harmful prompts from six different jailbreaks. All attacks reduce activation of the refusal feature in most cases, suggesting they succeed by suppressing a shared internal mechanism. Details on the prompts, prompt-based jailbreaks, and ASR calculation are provided in \\S[ref].",
+ "caption_source": "latex",
+ "abstract": "We identify a structural weakness in current large language model (LLM) alignment: refusal mechanisms in these models are fail-open. While existing approaches tend to encode refusal behaviors across multiple latent features, suppressing a single feature (via prompt-based jailbreaks) is sufficient to collapse alignment, leading to unsafe generation. Motivated by this, we propose fail-closed alignment as a design principle for robust LLM safety: refusal mechanisms should remain effective even under partial failures via redundant, independent causal pathways. We present a concrete instantiation of this principle: a progressive alignment framework that iteratively identifies and ablates previously learned refusal directions, forcing the model to reconstruct safety along new, independent subspaces. Across six jailbreak attacks, our method achieves the lowest observed average attack success rate (1.6%) while largely preserving generation quality and preventing excessive over-refusals, with negligible computational overhead. Additional analyses confirm that models trained with our method encode multiple, causally independent refusal directions that prompt-based jailbreaks cannot fully suppress, providing empirical support for fail-closed alignment as a principled foundation for robust LLM safety. Our code for reproducing the results is available at https://github.com/Trustworthy-and-Responsible-AI-Lab/Fail-Closed-Alignment",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=qJN2JFwGdt",
+  "arxiv": "https://arxiv.org/abs/2602.16977",
+  "pdf": "https://arxiv.org/pdf/2602.16977",
+  "proceedings": null,
+  "virtual": "https://neurips.cc/virtual/2026/poster/149405",
+  "code": null
+ },
+ "license": "http://arxiv.org/licenses/nonexclusive-distrib/1.0/",
+ "img": "none",
+ "image_url": null,
+ "thumb_url": null,
+ "figure_page": 1,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.8
+}

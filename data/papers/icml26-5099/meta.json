@@ -1,0 +1,51 @@
+{
+ "id": "icml26-5099",
+ "title": "NorMuon: Making Muon more efficient and scalable",
+ "authors": [
+  "Zichong Li",
+  "Liming Liu",
+  "Chen Liang",
+  "Weizhu Chen",
+  "Tuo Zhao"
+ ],
+ "venue": "ICML 2026",
+ "tier": "spotlight",
+ "track": "main",
+ "topic": "Deep Learning->Large Language Models",
+ "role": "analysis-finding",
+ "role2": "teaser-result",
+ "claim": "Orthogonalized updates fix poor conditioning but leave uneven per-unit update magnitudes; adding per-unit normalization achieves both balanced spectra and balanced norms.",
+ "layout": "2 side-by-side line plots, left-to-right, shared color legend, dashed ideal line at 1",
+ "tags": [
+  "optimizer",
+  "orthogonalization",
+  "conditioning",
+  "adaptive-learning-rate",
+  "diagnostic-analysis"
+ ],
+ "style": [
+  "plot",
+  "minimal",
+  "colorful"
+ ],
+ "description": "Two line plots sit side by side, each comparing four optimizers by color: SGD with momentum in green, AdamW in orange, Muon in blue and NorMuon in red. Both plots have a dashed black horizontal line at 1.0 marking the ideal. The left plot shows sorted singular values of the update against index, from 0 to about 2000. SGD and AdamW start high and decay steeply, which means a high condition number. Muon and NorMuon stay nearly flat near 1. The right plot shows sorted per-neuron update norm against index, up to about 16,000. SGD and Muon curve away from 1 at both ends, and the curves are steepest at the right edge. AdamW and NorMuon hug the dashed line. The reader's eye goes first to the flat red and blue curves on the left, then to the spread-out blue and green curves on the right. Captions (a) and (b) sit below the plots.",
+ "caption": "Analysis of optimization geometry during 1.1B model pretraining. We examine the up-projection matrix in the 8th layer's MLP at the middle checkpoint. (a) Singular value distribution reveals that raw momentum and AdamW's update exhibit high condition numbers. Muon's orthogonalization effectively eliminates this imbalance. (b) Despite Muon's improved conditioning, the $L^2$ norm of individual neuron updates still shows high variance. AdamW achieves much more uniform per-neuron norms. Our proposed NorMuon maintains Muon's low condition number while normalizing neuron contributions. We also include results for Adam-mini in Appendix [ref], which performs similarly with Adam.",
+ "caption_source": "latex",
+ "abstract": "The choice of optimizer significantly impacts the training efficiency and computational costs of large language models (LLMs). Recently, the Muon optimizer has demonstrated promising results by orthogonalizing parameter updates, improving optimization geometry through better conditioning. Despite Muon's emergence as a candidate successor to Adam, the potential for jointly leveraging their strengths has not been systematically explored. In this work, we bridge this gap by proposing NorMuon (Neuron-wise Normalized Muon), an optimizer that synergistically combines orthogonalization with neuron-level adaptive learning rates. Our analysis reveals that while Muon effectively reduces condition numbers, the resulting updates exhibit highly non-uniform neuron norms, causing certain neurons to dominate the optimization process. NorMuon addresses this imbalance by maintaining second-order momentum statistics for each neuron and applying row-wise normalization after orthogonalization, ensuring balanced parameter utilization while preserving Muon's conditioning benefits. To enable practical deployment at scale, we develop an efficient distributed implementation under the FSDP2 framework that strategically distributes orthogonalization computations across devices. Experiments across multiple model scales demonstrate that NorMuon consistently outperforms both Adam and Muon, achieving 21.74% better training efficiency than Adam and 11.31% improvement over Muon on 1.1 B pretraining setting, while maintaining a comparable memory footprint to Muon. Our findings suggest that orthogonalization and adaptive learning rates are complementary rather than competing approaches, opening new avenues for optimizer design in large-scale deep learning.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=m1IRWFAMsa",
+  "arxiv": "https://arxiv.org/abs/2510.05491",
+  "pdf": "https://raw.githubusercontent.com/mlresearch/v306/main/assets/li26dh/li26dh.pdf",
+  "proceedings": "https://proceedings.mlr.press/v306/li26dh.html",
+  "virtual": "https://icml.cc/virtual/2026/poster/61880",
+  "code": "https://github.com/zichongli5/NorMuon"
+ },
+ "license": "http://creativecommons.org/licenses/by/4.0/",
+ "img": "cc-by",
+ "image_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/images/icml26-5099.png",
+ "thumb_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/thumbs/icml26-5099.webp",
+ "figure_page": 1,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.6
+}

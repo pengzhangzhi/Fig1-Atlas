@@ -1,0 +1,52 @@
+{
+ "id": "neurips26-1396",
+ "title": "Where Root Cause Analysis Fails: A Retrieval-Reranking Decomposition",
+ "authors": [
+  "Hada Melino Muhammad",
+  "Luan Pham",
+  "Laure Barrière",
+  "Sachin Shetty",
+  "Leonardo Pulga",
+  "Flora Salim"
+ ],
+ "venue": "NeurIPS 2026",
+ "tier": "poster",
+ "track": "Evaluations_and_Datasets_Track",
+ "topic": "Applications->Time Series",
+ "role": "pipeline",
+ "role2": "prior-vs-ours",
+ "claim": "Prior methods implicitly retrieve and fail; decomposing diagnosis into explicit candidate retrieval then LLM reranking addresses each failure mode separately.",
+ "layout": "2 large panels, left-to-right; inset of prior-method failures above retrieval stage",
+ "tags": [
+  "two-stage",
+  "retrieval-reranking",
+  "llm-reranker",
+  "failure-decomposition",
+  "root-cause-analysis"
+ ],
+ "style": [
+  "icon-heavy",
+  "colorful",
+  "math-heavy"
+ ],
+ "description": "A wide two-part diagram. The left, large yellow rounded box is Stage 1: Retrieval. Monitored system metrics, shown as two time-series with a dashed detection-time line, feed in from the bottom left. An upward arrow leads to a dashed inset, A. Prior Methods (Implicit Retrieval). The inset has a bar chart with a red tall bar labeled Propagation Amplification Failure and a causal graph labeled Graph Quality Bottleneck, with the true cause m* faint. A right arrow leads to B. Proposed Retrieval: three colored signal boxes (deviation magnitude in blue, earliest onset in pink, state-change detection in orange) merge into a candidate set C of teal squares, with Retrieval@K noted. The right gray box is Stage 2: Reranking. The candidate squares and a domain-knowledge document icon feed down into a cyan LLM Diagnostic Reasoner box with a robot mascot and bullet points. It outputs a permutation pi, with True Cause m* highlighted green at the top.",
+ "caption": "Our retrieval--reranking decomposition for RCA. Left: prior methods fail via mis-ranking (statistical) or graph quality bottlenecks (graph-based). Stage 1 retrieves a candidate set $\\mathcal{C}$ using three complementary signals. Stage 2 reranks $\\mathcal{C}$ with an LLM reasoner conditioned on per-candidate evidence and optional domain knowledge $\\mathcal{D}$, outputting permutation $\\pi$.",
+ "caption_source": "latex",
+ "abstract": "Identifying the root cause of an anomaly among hundreds of sensors is critical for preventing safety incidents and costly downtime in complex monitored systems. Existing studies evaluate root cause analysis (RCA) methods using top@k accuracy. We show that this metric has a fundamental blind spot: it conflates two failure modes, retrieval failure, where the true cause is never considered, and reranking failure, where it is considered but ranked too low. In this work, we introduce a retrieval-reranking decomposition and audit four well-known benchmarks to expose this blind spot. Our experiments show that, on industrial CPS benchmarks, the statistical baseline scoring every sensor mis-ranks the true cause 79-100% of the time, and graph-based methods never clearly beat the best statistical baseline, whether their causal graphs are learned on short fault windows, on retrieved candidate pools guaranteed to contain the cause, or on multi-day normal-operation data. Meanwhile, on microservice benchmarks, where each injected fault drives the faulty service's own metric far above its baseline, retrieval is nearly solved (98-100%). Guided by the decomposition, we build a two-stage pipeline combining a multi-signal retriever with an LLM reranker that, as one fixed configuration, matches or exceeds the best baseline's top@1 accuracy on all six benchmark suites (by up to +12 points), with no causal graph or labeled data required. When all methods rank the same retrieved candidates with the true cause guaranteed present, adding a short system-description document lets the reranker lead the best baseline by +7 to +18 points on every benchmark. Code is available at https://github.com/cruiseresearchgroup/DecompRCA.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=A2XdbroU25",
+  "arxiv": "https://arxiv.org/abs/2609.36686",
+  "pdf": "https://arxiv.org/pdf/2609.36686",
+  "proceedings": null,
+  "virtual": "https://neurips.cc/virtual/2026/poster/139698",
+  "code": "https://cruiseresearchgroup.github.io/DecompRCA/"
+ },
+ "license": "http://creativecommons.org/licenses/by/4.0/",
+ "img": "cc-by",
+ "image_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/images/neurips26-1396.png",
+ "thumb_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/thumbs/neurips26-1396.webp",
+ "figure_page": 3,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.8
+}

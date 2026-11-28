@@ -1,0 +1,53 @@
+{
+ "id": "iclr26-2250",
+ "title": "Falcon: Fast Proximal Linearization of Normalized Cuts for Unsupervised Image Segmentation",
+ "authors": [
+  "Xiao Zhang",
+  "Xiangyu Han",
+  "Xiwen Lai",
+  "Yao Sun",
+  "Pei Zhang",
+  "Xia Liu",
+  "Konrad P Kording"
+ ],
+ "venue": "ICLR 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": null,
+ "role": "pipeline",
+ "role2": null,
+ "claim": "A frozen encoder feeds a fast iterative solver that directly optimizes the discrete objective, then refines the coarse output into a high-resolution result.",
+ "layout": "3 dashed-box stages, left-to-right, inset loop of gradient and projection steps",
+ "tags": [
+  "pipeline",
+  "unsupervised-segmentation",
+  "proximal-gradient",
+  "discrete-optimization",
+  "spectral-free"
+ ],
+ "style": [
+  "colorful",
+  "icon-heavy",
+  "photo/real data"
+ ],
+ "description": "A wide three-stage diagram, read left to right, with each stage in its own dashed rounded box and a title above it. Stage 1, Image Feature Extraction: a high-res RGB photo of the Golden Gate Bridge goes into a trapezoid labeled Pretrained Encoder, with a snowflake icon marking it as frozen. Stage 2, Fast Proximal Linearization of NCut: colored token bars lead to a blue affinity matrix heatmap. An arrow down to 'Construct Optimization Goal f' leads to a dotted inset loop. The loop shows a loss-surface gradient step, then a grid with a point moving, then a proximal projection snapping points to grid vertices. A cube of Assigned Labels (tokens × labels) with a flame icon sits above the loop. Stage 3, Nonlinear Adaptive Mask Refinement: a purple low-res mask is upsampled and passed through an iterative refinement cycle to give a high-res output mask. Block arrows connect the stages, and the eye goes first to the photo, then the matrix and grids.",
+ "caption": "Overview of Falcon. (1) Image feature extraction: tokens are extracted from the input image. (2) Fast proximal linearization of NCut: an affinity matrix is constructed between tokens, and the discrete K-way assignment is iteratively updated by row-wise one-hot proximal steps. (3) Optional mask densification and refinement: the coarse token-level mask is first densified on an intermediate grid and can then be paired with a lightweight pixel-level refiner such as PAMR or NAMR. graph G = (V, E) with N nodes, one per d-dimensional token from a Vision Transformer:",
+ "caption_source": "pdf",
+ "abstract": "Current zero-shot unsupervised segmentation methods based on normalized cuts (NCut) face three key limitations. First, they rely on recursive bipartitions with repeated eigen-decompositions, making them prohibitively expensive at scale. Second, each split requires spectral relaxation followed by rounding, introducing layers of approximation where the final partition may diverge from the true NCut objective. Third, recursive bipartitioning offers no principled assurance of producing a stable $K$-way segmentation, and existing heuristics lack convergence guarantees. We propose \\textbf{Falcon}, a proximal-gradient solver that directly optimizes the discrete $K$-way NCut objective without spectral relaxation. We prove linear convergence under the \\textit{Kurdyka--\\L{}ojasiewicz} (KL) property. Falcon computes closed-form gradient scores weighted by cluster volumes and performs row-wise one-hot proximal updates stabilized by inertia. A monotone backtracking scheme adaptively tunes the proximal parameter, ensuring non-decreasing NCut values. This design preserves discrete feasibility, removes repeated eigen-decomposition, and guarantees convergence. Across six benchmarks, Falcon outperforms the strongest official baseline (DiffCut) by wide margins, e.g., +13.2 mIoU on VOC, +27.7 on COCO-Object, and +3.1 on Cityscapes, while remaining competitive on Pascal Context. It also runs up to an order of magnitude faster than recursive NCut and scales more favorably in memory at high resolution, making it practical for larger token grids. By pairing pretrained foundation models with a principled NCut solver, Falcon sets a new state of the art across six benchmarks and achieves the best performance on 17 of 18 benchmark--encoder pairs, underscoring both its robustness and its generality in bridging the gap between unsupervised and supervised segmentation.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=PvWHzAf9qp",
+  "arxiv": null,
+  "pdf": "https://proceedings.iclr.cc/paper_files/paper/2026/file/474815daf1d4096ff78b7e4fdd2086a5-Paper-Conference.pdf",
+  "proceedings": "https://proceedings.iclr.cc/paper_files/paper/2026/hash/474815daf1d4096ff78b7e4fdd2086a5-Abstract-Conference.html",
+  "virtual": "https://iclr.cc/virtual/2026/poster/10009636",
+  "code": null
+ },
+ "license": null,
+ "img": "none",
+ "image_url": null,
+ "thumb_url": null,
+ "figure_page": 3,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.95
+}

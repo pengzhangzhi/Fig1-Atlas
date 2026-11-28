@@ -1,0 +1,50 @@
+{
+ "id": "iclr26-1713",
+ "title": "Localized Concept Erasure in Text-to-Image Diffusion Models via High-Level Representation Misdirection",
+ "authors": [
+  "Uichan Lee",
+  "Jeonghyeon Kim",
+  "Sangheum Hwang"
+ ],
+ "venue": "ICLR 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "Computer Vision->Image and Video Generation",
+ "role": "pipeline",
+ "role2": "teaser-result",
+ "claim": "Updating only early layers while steering high-level representations to chosen targets decouples where we edit from what we erase, balancing erasure and utility.",
+ "layout": "3 panels: large pipeline left, trade-off cartoon top-right, scatter plot bottom-right",
+ "tags": [
+  "concept-erasure",
+  "representation-steering",
+  "text-encoder",
+  "trade-off",
+  "efficiency"
+ ],
+ "style": [
+  "icon-heavy",
+  "colorful",
+  "plot",
+  "photo/real data"
+ ],
+ "description": "The left panel (a) is a method diagram. A prompt, \"A dog image in Van Gogh style\", goes through the original text encoder along a solid black path. It also goes through an edited text encoder along a dotted red path. Both paths feed a frozen UNet. The UNet produces two dog images: a Van Gogh-styled one from the original path and a plain one from the edited path. A zoomed-in view shows the encoder blocks. Block 1 is red with a flame icon, meaning it is trained. The other blocks carry snowflake icons, meaning they are frozen. Final-layer representations (green squares) are pushed toward black target vectors, and the loss is shown as ||green − c·black||². Panel (b) is a robot cartoon with paired red and green bars. It contrasts the trade-off in existing concept erasure with the balance HiRM achieves. Panel (c) is a scatter plot of training time against performance. The HiRM points are starred and sit at the top left.",
+ "caption": "Overview of HiRM. (a) HiRM updates only the first block of the text encoder while steering the final-layer representations of target concepts (e.g., \"Van Gogh\") toward designated directions, effectively decoupling update location and erasure target. (b) Compared to existing methods, HiRM achieves a better balance between concept erasure and utility preservation. (c) HiRM demonstrates favorable trade-offs in terms of training time and overall performance, measured as the average of erasure and retention scores across style, object, and robustness settings.",
+ "caption_source": "latex",
+ "abstract": "Recent advances in text-to-image (T2I) diffusion models have seen rapid and widespread adoption. However, their powerful generative capabilities raise concerns about potential misuse for synthesizing harmful, private, or copyrighted content. To mitigate such risks, concept erasure techniques have emerged as a promising solution. Prior works have primarily focused on fine-tuning the denoising component (e.g., the U-Net backbone). However, recent causal tracing studies suggest that visual attribute information is localized in the early self-attention layers of the text encoder, indicating a potential alternative for concept erasing. Building on this insight, we conduct preliminary experiments and find that directly fine-tuning early layers can suppress target concepts but often degrades the generation quality of non-target concepts. To overcome this limitation, we propose High-Level Representation Misdirection (HiRM), which misdirects high-level semantic representations of target concepts in the text encoder toward designated vectors such as random directions or semantically defined directions (e.g., supercategories), while updating only early layers that contain causal states of visual attributes. Our decoupling strategy enables precise concept removal with minimal impact on unrelated concepts, as demonstrated by strong results on UnlearnCanvas and NSFW benchmarks across diverse targets (e.g., objects, styles, nudity). HiRM also preserves generative utility at low training cost, transfers to state-of-the-art architectures such as Flux without additional training, and shows synergistic effects with denoiser-based concept erasing methods.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=JSjOlFLUsS",
+  "arxiv": "https://arxiv.org/abs/2602.19631",
+  "pdf": "https://proceedings.iclr.cc/paper_files/paper/2026/file/58a16bd2eb860f119a07aa98195c7672-Paper-Conference.pdf",
+  "proceedings": "https://proceedings.iclr.cc/paper_files/paper/2026/hash/58a16bd2eb860f119a07aa98195c7672-Abstract-Conference.html",
+  "virtual": "https://iclr.cc/virtual/2026/poster/10010198",
+  "code": "https://github.com/Coffeeloveman/HiRM"
+ },
+ "license": "http://creativecommons.org/licenses/by/4.0/",
+ "img": "cc-by",
+ "image_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/images/iclr26-1713.png",
+ "thumb_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/thumbs/iclr26-1713.webp",
+ "figure_page": 4,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.6
+}

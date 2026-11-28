@@ -1,0 +1,51 @@
+{
+ "id": "iclr26-2289",
+ "title": "QWHA: Quantization-Aware Walsh-Hadamard Adaptation for Parameter-Efficient Fine-Tuning on Large Language Models",
+ "authors": [
+  "Hyesung Jeon",
+  "Seojune Lee",
+  "Beomseok Kang",
+  "Yulhwa Kim",
+  "jae-joon kim"
+ ],
+ "venue": "ICLR 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "Deep Learning->Everything Else",
+ "role": "pipeline",
+ "role2": null,
+ "claim": "The method adds a sparse, fixed-transform adapter to a frozen quantized layer, with a tailored initialization and a fast transform.",
+ "layout": "Single row, right-to-left build-up, legend at left, color-coded boxes",
+ "tags": [
+  "quantization-aware",
+  "parameter-efficient-fine-tuning",
+  "fourier-transform-adapter",
+  "sparse-coefficients",
+  "initialization"
+ ],
+ "style": [
+  "math-heavy",
+  "colorful",
+  "icon-heavy"
+ ],
+ "description": "A single wide diagram with a legend at far left: blue means frozen, orange means trainable, and a gear icon marks the initialization target. The left block is the layer. Input X enters from the bottom and splits into two parallel branches. One is a frozen blue quantized weight Q. The other is a peach trainable update ΔW = F H^-1. The branches sum into output Y at the top. In the middle is a sparse 4x4 matrix F with a few orange nonzero entries. Two green-framed panels sit at the right, under a bracket labeled 'QWHA (Ours)'. 'Initialization' shows a Value row, c, in orange (Refinement) and an Index table, E, in blue (AdaAlloc). 'Transform Kernel' shows the inverse Walsh-Hadamard matrix of ±1 entries. A gray arrow below is labeled 'Fast Transform via Recursive Sub & Add'.",
+ "caption": "Overview of Quantization-aware Walsh-Hadamard Adaptation (QWHA). The weight update from QWHA is formulated as $\\Delta \\mW = \\mF \\mH^{-1}$, where $\\mH$ is a predefined Walsh-Hadamard transform (WHT) matrix and $\\mF$ is a trainable sparse coefficient matrix consisting of values $\\vc$ and their indices $\\mE$. The multiplication $\\mF \\mH^{-1}$ indicates the expansion of learned coefficients (i.e., $\\vc$), over the transform basis (i.e., columns of $\\mH^{-1}$). Note that, the coefficients $\\vc$ are the only trainable parameters, and $\\mH$ remains constant. Our key contributions are in the adoption of WHT into the adapter (WHA) and their initialization, particularly $\\mE$ (AdaAlloc) and $\\vc$ (Refinement).",
+ "caption_source": "latex",
+ "abstract": "The demand for efficient deployment of large language models (LLMs) has driven interest in quantization, which reduces inference cost, and parameter-efficient fine-tuning (PEFT), which lowers training overhead. This motivated the development of quantization-aware PEFT to produce accurate yet efficient quantized models. In this setting, reducing quantization error prior to fine-tuning is crucial for achieving high model accuracy. However, existing methods that rely on low-rank adaptation suffer from limited representational capacity. Recent Fourier-related transform (FT)-based adapters offer greater representational power than low-rank adapters, but their direct integration into quantized models often results in ineffective error reduction and increased computational overhead. To overcome these limitations, we propose QWHA, a method that integrates FT-based adapters into quantized models by employing the Walsh-Hadamard Transform (WHT) as the transform kernel, together with a novel adapter initialization scheme incorporating adaptive parameter selection and value refinement. We demonstrate that QWHA effectively mitigates quantization errors while facilitating fine-tuning, and that its design substantially reduces computational cost. Experimental results show that QWHA consistently outperforms baselines in low-bit quantization accuracy and achieves significant training speedups over existing FT-based adapters. The code is available at https://github.com/vantaa89/qwha.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=QMN4ERDdp4",
+  "arxiv": "https://arxiv.org/abs/2509.17428",
+  "pdf": "https://proceedings.iclr.cc/paper_files/paper/2026/file/e468a76212a58c1af94a3d235151944a-Paper-Conference.pdf",
+  "proceedings": "https://proceedings.iclr.cc/paper_files/paper/2026/hash/e468a76212a58c1af94a3d235151944a-Abstract-Conference.html",
+  "virtual": "https://iclr.cc/virtual/2026/poster/10009595",
+  "code": "https://github.com/vantaa89/qwha"
+ },
+ "license": "http://creativecommons.org/licenses/by/4.0/",
+ "img": "cc-by",
+ "image_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/images/iclr26-2289.png",
+ "thumb_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/thumbs/iclr26-2289.webp",
+ "figure_page": 1,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.8
+}

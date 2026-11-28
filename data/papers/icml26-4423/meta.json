@@ -1,0 +1,48 @@
+{
+ "id": "icml26-4423",
+ "title": "DLLMQuant: A Post-Training Quantization Framework Tailored for Diffusion-Based Large Language Models",
+ "authors": [
+  "XUCHEN",
+  "Zhixuan Chen",
+  "Dawei Yang"
+ ],
+ "venue": "ICML 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "Deep Learning->Large Language Models",
+ "role": "analysis-finding",
+ "role2": null,
+ "claim": "Activation ranges fluctuate widely across iterative decoding steps, so a single static calibration fails to capture the distribution.",
+ "layout": "1 panel, line plot with shaded band between upper and lower bounds",
+ "tags": [
+  "activation-range",
+  "quantization",
+  "timestep-variation",
+  "diffusion-llm",
+  "empirical-trend"
+ ],
+ "style": [
+  "plot",
+  "minimal"
+ ],
+ "description": "A single line chart titled 'Activation Range Across Time Steps'. The x-axis is the time step from 0 to about 100. The y-axis is activation range from about -6 to 4. A noisy blue upper-bound line starts near 4 and drifts down to about 2.4. A noisy orange lower-bound line starts near -4.7 and rises to about -3, with dips and spikes along the way. The area between the two lines is shaded light blue. A legend at the bottom right lists Activation Range, Upper Bound and Lower Bound. The grid is light and dashed. The eye goes first to the shaded band and its narrowing, jagged edges, which show that the range changes from step to step.",
+ "caption": "Activation range of outputs from the the first block",
+ "caption_source": "pdf",
+ "abstract": "Diffusion-based large language models (DLLMs) have shown promise for non-autoregressive text generation, but their deployment is constrained by large model sizes and heavy computational costs. Post-training quantization (PTQ), a widely used method for compressing and accelerating Large Language Models (LLMs), suffers from severe accuracy degradation and reduced generalization performance when directly applied to DLLMs (e.g., AWQ suffers a 16% accuracy drop on LLADA under W4A4). This paper explores how the unique mechanisms of Dynamic Language Models (DLLMs) conflict with quantization, identifying three core issues: 1) During the iterative generation process of DLLMs, dynamic masking ratios are inherently involved, leading to notable differences in token distributions across decoding steps. Unfortunately, these distinct distributions are not sufficiently captured by current PTQ calibration approaches; 2) Quantization errors propogate and accumalte progressively during iterations in DLLMs, leading to a gradual decline in the performance of quantized models as decoding steps advance; 3) The stability of unmasked tokens, combined with the probabilistic nature of masked tokens, gives rise to an overall feature distribution that is uncoordinated and unsuitable for PTQ. To address these issues, we propose DLLMQuant, a PTQ framework tailored for DLLMs, which incorporates three novel techniques: 1) Temporal-Mask Adaptive Sampling (TMAS), a calibration method that accounts for both time and mask factors, with the capacity to capture distributions across timesteps. 2) Interaction-Aware Activation Quantization (IA-AQ), which utilizes bidirectional attention scores to identify important tokens, and prioritizes these tokens when minimizing quantization error. 3) Certainty-Guided Quantization (CGQ) incorporates mask status and token scores as core weighting criteria for error compensation, enabling PTQ to better align with the unique weight distribution of DLLMs. Experiments show that DLLMQuant achieves significant performance gains (e.g., over 10-point accuracy improvement on GSM8K for LLADA under 4-bit quantization) while enhancing efficiency.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=fl93PQfTT6",
+  "arxiv": null,
+  "pdf": "https://raw.githubusercontent.com/mlresearch/v306/main/assets/xu26h/xu26h.pdf",
+  "proceedings": "https://proceedings.mlr.press/v306/xu26h.html",
+  "virtual": "https://icml.cc/virtual/2026/poster/62533",
+  "code": null
+ },
+ "license": null,
+ "img": "none",
+ "image_url": null,
+ "thumb_url": null,
+ "figure_page": 1,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.8
+}

@@ -1,0 +1,56 @@
+{
+ "id": "neurips26-3431",
+ "title": "SLIC: Reinforcement Fine-Tuning Small LMs for Multi-Turn Analog Circuit Optimization",
+ "authors": [
+  "Yan Xu",
+  "Zhengqi Gao",
+  "Ching-Yun Ko",
+  "Zhang-Wei Hong",
+  "Wenjie Lu",
+  "Tao Yu",
+  "Xin Zhang",
+  "Duane S Boning",
+  "Ruonan Han"
+ ],
+ "venue": "NeurIPS 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "Applications",
+ "role": "pipeline",
+ "role2": "overview-framework",
+ "claim": "A staged training recipe turns structured task prompts into a policy via filtered supervised data, then a simulator-in-the-loop multi-turn RL loop.",
+ "layout": "3 stacked horizontal bands (a,b,c), top-to-bottom, left-to-right flow, dashed colored boxes",
+ "tags": [
+  "reinforcement-learning",
+  "multi-turn",
+  "sft-then-rl",
+  "simulator-feedback",
+  "rollout-steering"
+ ],
+ "style": [
+  "colorful",
+  "icon-heavy",
+  "text-heavy",
+  "math-heavy"
+ ],
+ "description": "A three-band pipeline diagram with dashed, color-coded containers. Band (a), blue, shows prompt construction. A raw netlist and circuit schematic feed an XML circuit structure, simulator feedback, specification target, format instructions and dynamic action list, all shown as text boxes with code snippets. Band (b), yellow, shows teacher rollouts passing three check boxes (format, admissible action, performance) with green ticks into a dataset, then SFT of a small LM into an SFT SLM policy. Band (c), green, shows multi-turn GRPO with RGRS. It runs from sampled actions a, through circuit simulator states s, to rewards r (with red crosses and penalties for invalid candidates). A continuation policy (Random, Greedy, Softmax) chooses which candidate continues, and a shared memory box links turns. Advantage rows A at the bottom feed a policy loss that updates the model. The eye goes first to the colorful top prompt band, then follows the arrows down to the large green loop.",
+ "caption": "Overview of SLIC. Given a goal-conditioned analog circuit optimization task, SLIC builds a structured prompt from the circuit representation and target specifications, then trains a language-model agent through SFT and simulator-interactive RL. The upper path shows SFT data construction from filtered teacher rollouts. The lower loop shows multi-turn GRPO with Reward-Guided Rollout Steering (RGRS), where multiple candidate responses propose relative parameter updates that are evaluated through simulation, one eligible continuation is selected to advance the trajectory, and all candidates contribute to group-relative policy updates. Subscripts denote interaction steps, and superscripts index candidates within each group.",
+ "caption_source": "latex",
+ "abstract": "Analog integrated circuit (IC) design is a multi-turn, simulator-grounded engineering task that demands iterative reasoning over coupled performance tradeoffs, yet proprietary process design kits (PDKs) make hosted large language model workflows difficult to deploy in practical design settings. We present SLIC (Small LM Iterating on Circuits), a reinforcement fine-tuning framework that trains a 4B-scale, locally deployable language model for closed-loop analog circuit optimization. SLIC pairs structured circuit representations with discretized relative-update actions, domain- and success-gated multiobjective rewards, and Reward-Guided Rollout Steering (RGRS), which turns per-step simulator feedback into signals for both policy learning and online rollout construction in this sparse, highly constrained domain. We further release an open, goal-conditioned benchmark of 41 amplifier topologies with standardized protocols for in-distribution validation, held-out topology evaluation, and cross-technology-node transfer. Trained solely with open source 65 nm CMOS predictive technology models (PTM), SLIC-Random achieves 87.1% in-distribution four-specification Pass@1 within eight turns, surpassing the 763B DeepSeek-V4.1-Flash Think by 48.5 percentage points. Beyond the training distribution, SLIC-Softmax reaches 72.6% Pass@1 on held-out topologies, and the trained policies consistently transfer across five unseen technology nodes without additional fine-tuning. This transfer extends to a commercial TSMC 65 nm CMOS PDK, where SLIC-Random achieves 49.9% held-out-topology Pass@1, demonstrating practical deployment through local inference without transmitting proprietary data to external LLM services. Performance further scales with test-time simulator interactions, reaching up to 83.2% held-out-topology Pass@1 at a 32-turn budget.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=NwEmt4o0zc",
+  "arxiv": "https://arxiv.org/abs/2611.13452",
+  "pdf": "https://arxiv.org/pdf/2611.13452",
+  "proceedings": null,
+  "virtual": "https://neurips.cc/virtual/2026/poster/153101",
+  "code": "https://hangroup.mit.edu/slic/"
+ },
+ "license": "http://creativecommons.org/licenses/by/4.0/",
+ "img": "cc-by",
+ "image_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/images/neurips26-3431.png",
+ "thumb_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/thumbs/neurips26-3431.webp",
+ "figure_page": 1,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.85
+}

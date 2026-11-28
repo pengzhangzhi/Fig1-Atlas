@@ -1,0 +1,49 @@
+{
+ "id": "neurips26-4308",
+ "title": "Adaptive Adversaries: A Multi-Turn, Multi-LLM Benchmark for LLM Agent Security",
+ "authors": [
+  "Devina Jain",
+  "David Hartmann",
+  "Chuan Li"
+ ],
+ "venue": "NeurIPS 2026",
+ "tier": "poster",
+ "track": "Evaluations_and_Datasets_Track",
+ "topic": "Deep Learning->Robustness",
+ "role": "pipeline",
+ "role2": "problem-setup",
+ "claim": "An adaptive attacker iterates against a fresh-session defender, using feedback across rounds, within a trust boundary that separates attacker content from trusted configuration.",
+ "layout": "Single row, left-to-right, top config box, feedback loop arrow beneath",
+ "tags": [
+  "threat-model",
+  "feedback-loop",
+  "adversarial-attack",
+  "llm-agents",
+  "evaluation-protocol"
+ ],
+ "style": [
+  "minimal",
+  "colorful",
+  "text-heavy"
+ ],
+ "description": "A flow diagram of the benchmark's threat model. A wide blue box at the top reads 'Trusted scenario configuration' (role, task, context, output schema, success rule), with arrows pointing down to two boxes. Along the main row, left to right, an orange 'Attacker LLM' box (controls input, keeps history and feedback) feeds an arrow into a gray 'Input renderer' box (fixed instructions + attacker content in orange). That box feeds a blue 'Defender LLM' box (fresh session, current input, no prior history). An 'output' arrow leads to a gray 'Success check' box (versioned rule, scores defender output). A dashed vertical line labeled 'Logical trust boundary' sits between the attacker and the renderer. A long return arrow runs from the success check back to the attacker, annotated 'Defender response and extracted check feedback join prior attempts', with the note 'Up to 15 rounds; stop at first scored success.' Color separates attacker (orange) from trusted components (blue/gray).",
+ "caption": "Default frontier threat model. The attacker controls the scenario-designated input and retains feedback across rounds; the defender receives a fresh request each round. The dashed line marks a logical trust boundary; scenario instructions and attacker content are combined in the same prompt. Success checks measure output violations; the frontier scaffold executes no external tools or actions.",
+ "caption_source": "latex",
+ "abstract": "LLM-based agents process external content, exposing them to prompt injection and multi-turn manipulation. We present a 21-scenario benchmark for adaptive cross-session attacks against fresh-session LLM defenders: an autonomous LLM attacker observes prior defender responses and pivots across rounds, while each defender response is evaluated as a fresh interaction. A controlled 3 x 3 attacker-defender matrix contains 945 battles. Restricting scoring to the first round yields 0-1% attack success rate (ASR); allowing 15 rounds yields 7.9-16.8%. Pooling three attacker LLMs uncovers 1.7-2.2 times as many unique successful inputs as the best single attacker, at three times the battle budget. Aggregate rates conceal opposing scenario-specific weaknesses in session-secret protection and authority handling, preserved in two higher-sample evaluations. On six scenarios, adding one provenance paragraph reduces ASR from 110/270 to 70/270, with selective effects across tasks. History and defender-state controls, together with frozen replay, characterize how the interaction protocol changes the result. A competition adds 18,422 held-out battles on a fixed gpt-oss-20b backbone and complementary benign-task evaluations. The benchmark exposes attacker and defender models, harnesses, scenarios, session state, and interaction budgets as configurable choices for systematic security evaluation.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=TwAO2rViBV",
+  "arxiv": "https://arxiv.org/abs/2607.18063",
+  "pdf": "https://arxiv.org/pdf/2607.18063",
+  "proceedings": null,
+  "virtual": "https://neurips.cc/virtual/2026/poster/139377",
+  "code": null
+ },
+ "license": "http://creativecommons.org/licenses/by/4.0/",
+ "img": "cc-by",
+ "image_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/images/neurips26-4308.png",
+ "thumb_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/thumbs/neurips26-4308.webp",
+ "figure_page": 2,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.8
+}

@@ -1,0 +1,55 @@
+{
+ "id": "icml26-4857",
+ "title": "Think Twice Before You Act: Protecting LLM Agents Against Tool Description Poisoning via Isolated Planning",
+ "authors": [
+  "Shanghao Shi",
+  "Xiao Wang",
+  "Chaoyu Zhang",
+  "Hao Li",
+  "Wenjing Lou",
+  "Thomas Hou",
+  "Yevgeniy Vorobeychik",
+  "Chongjie Zhang",
+  "Ning Zhang"
+ ],
+ "venue": "ICML 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "Social Aspects->Security",
+ "role": "problem-setup",
+ "role2": "pipeline",
+ "claim": "A poisoned description of an unused component can silently hijack the planner's trajectory, inserting a harmful step into an otherwise legitimate plan.",
+ "layout": "2 columns: planner flow chain left, tool-description list right, red poisoned box",
+ "tags": [
+  "tool-poisoning",
+  "llm-agents",
+  "threat-model",
+  "prompt-injection",
+  "attack-example"
+ ],
+ "style": [
+  "icon-heavy",
+  "colorful",
+  "text-heavy"
+ ],
+ "description": "The figure is a concrete attack example. At top left is a user query asking to transfer $5,000 from account A to account B. An arrow leads down to a robot icon labeled LLM Planner. A vertical chain of boxes below shows the planned trajectory: Verify User (green), Email Sender (pink, the injected step), then Bank Transfer (green). On the right, four tool cards with gear-wrench icons sit beside blue-bordered boxes holding their descriptions: Verify User, Bank Transfer, Email Sender and Account Backup. The Account Backup box has a thick red border. It carries red text telling the planner to send account information to attacker@bad.net, and a red devil icon labeled Poisoned sits beside it. An arrow points from the tool list to the planner. The red poisoned box and the pink injected step draw the eye first.",
+ "caption": "Cross-tool description poisoning flow. In this example, the adversary poisons the \"AccountBackup\" tool’s description, misleading the planner into injecting an \"EmailSender\" step into the planned trajectory. Note that the attack is effective without the malicious tool being selected as part of the plan.",
+ "caption_source": "latex",
+ "abstract": "The integration of external tools has substantially expanded the capabilities of large language model (LLM) agents, but it also introduces new attack surfaces beyond prompt injection. In particular, cross-tool description poisoning can manipulate planner-visible tool metadata to steer an agent's trajectory, even if the poisoned tool itself is never chosen. To understand the effectiveness of existing defenses against this emerging threat, we first evaluate several prompt-injection defenses and find that they transfer poorly to cross-tool description poisoning. A key observation is that poisoned descriptions persist in the planning context across steps, enabling continuous influence over subsequent tool choices. Building on this insight, we propose Tool-Guard, a novel system-level defense based on a new concept called isolated planning, in which tool invocations that are detected as misaligned or suspicious cause the corresponding tool to be placed in a quarantined list (the influenced list), breaking further influence from poisoned descriptions. With this influence isolated, the tool can continue to be used to support the task, enabling a robust defense that preserves legitimate tool utility. Experiments on the AgentDojo and ASB benchmarks show that Tool-Guard substantially reduces attack success while maintaining high task utility. Our code is available at https://github.com/shishishi123/Tool-Guard.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=jiNw5AgBbw",
+  "arxiv": "https://arxiv.org/abs/2606.20922",
+  "pdf": "https://raw.githubusercontent.com/mlresearch/v306/main/assets/shi26ab/shi26ab.pdf",
+  "proceedings": "https://proceedings.mlr.press/v306/shi26ab.html",
+  "virtual": "https://icml.cc/virtual/2026/poster/62116",
+  "code": null
+ },
+ "license": "http://creativecommons.org/licenses/by/4.0/",
+ "img": "cc-by",
+ "image_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/images/icml26-4857.png",
+ "thumb_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/thumbs/icml26-4857.webp",
+ "figure_page": 2,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.8
+}

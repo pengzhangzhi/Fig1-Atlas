@@ -1,0 +1,54 @@
+{
+ "id": "neurips26-5571",
+ "title": "VAR-Q: Tuning-free KV Cache Quantization for Visual Autoregressive Image and Video Generation",
+ "authors": [
+  "Boxun Xu",
+  "Jiaji Lu",
+  "Yuxuan Yin",
+  "Zihu Wang",
+  "Ziyue (Alvin) Liu",
+  "Yu Wang",
+  "Zirui Liu",
+  "Peng Li"
+ ],
+ "venue": "NeurIPS 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "Computer Vision->Vision Models & Multimodal",
+ "role": "teaser-result",
+ "role2": "prior-vs-ours",
+ "claim": "Under aggressive compression, baselines corrupt fine details and motion consistency, while ours preserves full-precision output quality at similar memory savings.",
+ "layout": "2 side-by-side panels (image, video), each a 2x2 grid; colored headers",
+ "tags": [
+  "quantization",
+  "kv-cache",
+  "efficiency",
+  "qualitative-comparison",
+  "image-and-video-generation"
+ ],
+ "style": [
+  "photo/real data",
+  "colorful",
+  "text-heavy"
+ ],
+ "description": "The figure has two large panels. The left panel, titled Image (Infinity-8B), is a 2x2 grid of generated images of three cats around a table in front of a whiteboard reading 'VAR-Q saves memory'. The right panel, titled Video (Self-Forcing), is a 2x2 grid of film-strip-framed video frames of a woman opening a door beside a fireplace. Each cell has a colored header bar: dark gray for the BF16 baseline, red for FlexGen and KIVI, and blue for VAR-Q (Ours). Headers list bit-width, KV cache size with percent reduction, and metrics (LPIPS for images; VBench Q and DINOv2 cosine for video). The VAR-Q metrics are highlighted in yellow. Baseline images show garbled text, distorted cats and wrong camera motion. VAR-Q closely matches the BF16 baseline. The eye goes first to the colored headers, then to the whiteboard text and the video frames.",
+ "caption": "Generation quality under quantized KV caches. Top: On Infinity-8B at INT2, VAR-Q reproduces the BF16 rendering of text and scene layout that FlexGen and KIVI corrupt. On Self-Forcing at INT4, VAR-Q tracks the camera trajectory properly.",
+ "caption_source": "latex",
+ "abstract": "Visual autoregressive generation spans two dominant paradigms: next-scale prediction for images and video, and next-frame prediction for video. Both decode block-by-block rather than token-by-token, yielding KV caches whose statistics diverge from those of language models. At scale, KV memory exceeds the weights and limits large-scale deployment caused by a large amount of visual tokens. Our analysis of these caches reveals three findings. First, a small set of massive-value channels carries the functional load: ablating these outlier channels collapses generation, whereas ablating a matched set of inlier channels leaves quality intact. Second, the outliers organize along two axes, feature and block, with magnitudes persistent within each cell and shifting across cells. Third, this structure arises from two independent mechanisms: projection bias and RoPE-induced scattering. Guided by these findings, we propose VAR-Q, a tuning-free KV-cache quantization framework that groups along the same two axes. The generation loop provides block boundaries for free, removing the need for outlier detection or calibration. Paired with bit-packing kernels for runtime memory reduction, VAR-Q delivers low-bit quantization across nine models spanning both paradigms, cutting KV memory by up to 78.5% with negligible quality degradation and enabling 6x larger inference batches.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=cKR2ed5g34",
+  "arxiv": "https://arxiv.org/abs/2611.05380",
+  "pdf": "https://arxiv.org/pdf/2611.05380",
+  "proceedings": null,
+  "virtual": "https://neurips.cc/virtual/2026/poster/151186",
+  "code": "https://boxunxu.top/VARQ/"
+ },
+ "license": "http://arxiv.org/licenses/nonexclusive-distrib/1.0/",
+ "img": "none",
+ "image_url": null,
+ "thumb_url": null,
+ "figure_page": 1,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.6
+}

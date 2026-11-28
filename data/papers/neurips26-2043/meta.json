@@ -1,0 +1,53 @@
+{
+ "id": "neurips26-2043",
+ "title": "MHWA: Multi-timescale Hierarchical World-Action Model",
+ "authors": [
+  "Pengcheng Pan",
+  "Guoqing Ma",
+  "Yuhan Zhang",
+  "Yang Chen",
+  "Yichen Liu",
+  "Ziheng Li",
+  "Shan Yu"
+ ],
+ "venue": "NeurIPS 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "Reinforcement Learning->Batch Offline",
+ "role": "pipeline",
+ "role2": null,
+ "claim": "A slow strided high-level context steers a fast low-level mixture of experts, coordinating hierarchy while limiting compounding drift.",
+ "layout": "Single panel, bottom-to-top flow; dense and strided token rows on a time axis",
+ "tags": [
+  "hierarchical",
+  "mixture-of-experts",
+  "world-model",
+  "temporal-abstraction",
+  "dynamic-routing"
+ ],
+ "style": [
+  "colorful",
+  "icon-heavy",
+  "math-heavy"
+ ],
+ "description": "A single architecture diagram that reads from bottom to top. At the bottom, a blue band holds the interleaved token sequence. The upper row is the dense input (o1, a1, o2, a2, ..., ot, at). The lower row is the strided input (o1, a1, ..., o1+mk, a1+mk). A horizontal TIME arrow runs between the two rows. A curved arrow carries the strided tokens up to a purple High-Level Manager (Transformer) box at upper left. This box outputs a thick magenta arrow labeled z^ctx and feeds a skip-step head p_o^high, which predicts ô_{t+k}. The Low-Level Worker is a large purple box. A Gating Network inside it receives z^ctx and the dense input, and sends dashed magenta Dynamic Routing arrows to Experts 1 through N in a MoE sub-box. The worker output fans out to four heads (p_r, p_o, p_d, h_Q) and then to pink output boxes. A legend sits at left. Purple, blue and pink colour-code networks, inputs and outputs.",
+ "caption": "The architecture of MHWA. It is illustrated at a context-update timestep $t = 1 + m \\cdot k$. The model processes an interleaved sequence of observation ($o_t$) and action ($a_t$) tokens.\\\\ (Top) At this specific strided step, the High-Level Manager consumes the downsampled history to infer a slowly varying global context $z^{ctx}$, supervised by a skip-step prediction head $p^{high}_o$ that forecasts the observation at the next coarse step $\\hat{o}_{t+k}$. We refer to the original, complete sequence as the dense trajectory, in contrast to the downsampled input used by the manager.\\\\ (Bottom) The Low-Level Worker operates at the atomic resolution. It employs a Context-Aware Dynamic Routing mechanism where a Gating Network utilizes both the current dense input and the refreshed high-level context $z^{ctx}$ to dynamically route computation to a sparse subset of experts (MoE). The worker's output drives the world model heads ($p_o, p_r, p_d$) and the critic head ($h_Q$).",
+ "caption_source": "latex",
+ "abstract": "Autoregressive world models have emerged as a powerful paradigm for sample efficient decision making, yet their open loop rollouts often exhibit increasing drift that leads to error accumulation even within a relatively small planning horizon. Hierarchical temporal abstraction is a natural candidate to mitigate such drift by reducing the effective prediction horizon; however, existing hierarchical designs can introduce added structural and conceptual complexity, sometimes making them difficult to control and limiting gains over flat baselines. To this end, we introduce MHWA (Multi-timescale Hierarchical World-Action model), which employs a strided high level context channel to reduce global context update frequency, effectively curbing the propagation of compounding drift. Crucially, via context aware routing, the gating network dynamically reconfigures a low level mixture of experts by using both global context and current observations, thereby enabling flexible high-low coordination, helping alleviate interference commonly observed in static hierarchies. Empirically, using RLiable's seed-by-game aggregation, MHWA (77M parameters) achieves an IQM human normalized score (HNS) of 0.884 across three training seeds on a 14-game Atari subset using 10% subsampled offline data, outperforming a matched JOWA-70M baseline (0.529) and achieving numerically comparable performance to JOWA-150M while using nearly half the parameters and 70.88% fewer training FLOPs per sequence.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=ERSBHqRV1s",
+  "arxiv": "https://arxiv.org/abs/2610.14727",
+  "pdf": "https://arxiv.org/pdf/2610.14727",
+  "proceedings": null,
+  "virtual": "https://neurips.cc/virtual/2026/poster/154328",
+  "code": "https://preplic.github.io/MHWA-project-page/"
+ },
+ "license": "http://creativecommons.org/licenses/by/4.0/",
+ "img": "cc-by",
+ "image_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/images/neurips26-2043.png",
+ "thumb_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/thumbs/neurips26-2043.webp",
+ "figure_page": 3,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.93
+}

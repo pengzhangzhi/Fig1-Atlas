@@ -1,0 +1,52 @@
+{
+ "id": "icml26-4175",
+ "title": "Threshold-Based Exclusive Batching for LLM Inference",
+ "authors": [
+  "Weifang Zhang",
+  "Yuzhou Nie",
+  "Bowen Pang",
+  "Guangrui Ma",
+  "Shining Wu"
+ ],
+ "venue": "ICML 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "Deep Learning->Large Language Models",
+ "role": "analysis-finding",
+ "role2": null,
+ "claim": "Whether mixing two workload types costs more than running either alone depends on hardware: interference appears at very different mixing ratios.",
+ "layout": "2 side-by-side line plots, shared axes, multi-colored curves with error bars",
+ "tags": [
+  "scheduling",
+  "interference",
+  "hardware-dependence",
+  "latency-scaling",
+  "empirical-measurement"
+ ],
+ "style": [
+  "plot",
+  "colorful"
+ ],
+ "description": "Two side-by-side line charts compare execution time against total tokens in a batch (256 to 4096) for Qwen3-4B. The left panel is an RTX PRO 6000 and the right panel is an H200. Each panel has six curves with error bars, coloured with a viridis gradient from dark purple for pure prefill, through blue, teal and green for 20/40/60/80% decode, to yellow for pure decode. A legend sits in the upper left of each panel. On the RTX PRO 6000, the 60% and 80% decode mixes rise well above pure decode, reaching about 350 ms against about 167 ms for pure decode. On the H200, pure decode and 80% decode are the highest curves and the mixes sit below them. The eye goes first to the diverging curves at the upper right of the left panel.",
+ "caption": "Execution time for mixed batches (Qwen3-4B, ctx=16) on RTX PRO 6000 (left) and H200 (right).",
+ "caption_source": "latex",
+ "abstract": "Mixed batching (MB)--interleaving prefill and decode in a single batch--has become the standard scheduling strategy for large language model (LLM) inference due to its efficiency in maximizing compute and memory utilization. However, through controlled experiments, we find that prefill-decode interference inflates MB's per-step marginal cost above that of pure decode. On the high-bandwidth H200 (4.8 TB/s), this occurs only when decode tokens exceed 80% of the batch; however, on the bandwidth-constrained RTX PRO 6000 (1.792 TB/s), this threshold plummets to just 20%. Consequently, the optimal choice between MB and exclusive batching (EB) fundamentally depends on GPU memory bandwidth, model size, and workload composition. We derive a closed-form condition for this EB-MB performance crossover, along with asymptotically optimal phase-switching thresholds and memory-safe batch sizing for EB. Optimized EB achieves up to 41.9% higher throughput on bandwidth-constrained GPUs, while MB retains its advantage on high-bandwidth hardware with larger models. Our hybrid scheduler EB+ applies this condition online to dynamically switch between EB and MB without manual intervention. Under non-stationary traffic with distribution or concurrency shifts, EB+ attains the highest or near-highest throughput in every setting, outperforming MB by up to 36.4%.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=dUsQj7QFvs",
+  "arxiv": "https://arxiv.org/abs/2606.00516",
+  "pdf": "https://raw.githubusercontent.com/mlresearch/v306/main/assets/zhang26eo/zhang26eo.pdf",
+  "proceedings": "https://proceedings.mlr.press/v306/zhang26eo.html",
+  "virtual": "https://icml.cc/virtual/2026/poster/62774",
+  "code": "https://github.com/weifang231/eb-vllm"
+ },
+ "license": "http://arxiv.org/licenses/nonexclusive-distrib/1.0/",
+ "img": "none",
+ "image_url": null,
+ "thumb_url": null,
+ "figure_page": 1,
+ "qc_flags": [
+  "bad-crop"
+ ],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.88
+}

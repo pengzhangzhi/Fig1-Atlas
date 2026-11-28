@@ -1,0 +1,51 @@
+{
+ "id": "icml26-4903",
+ "title": "FOAM: Blocked State Folding for Memory-Efficient LLM Training",
+ "authors": [
+  "Ziqing Wen",
+  "Jiahuan Wang",
+  "ping luo",
+  "Dongsheng Li",
+  "Tao Sun"
+ ],
+ "venue": "ICML 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "Deep Learning->Large Language Models",
+ "role": "pipeline",
+ "role2": null,
+ "claim": "Compress optimizer states by folding gradients into block averages, then unfold with a residual correction to keep full-rank updates.",
+ "layout": "Single dashed-box flow diagram, top-to-bottom, with a color-coded arrow legend",
+ "tags": [
+  "optimizer",
+  "memory-efficiency",
+  "state-compression",
+  "residual-correction",
+  "llm-training"
+ ],
+ "style": [
+  "colorful",
+  "icon-heavy",
+  "math-heavy"
+ ],
+ "description": "A single flow diagram inside a large dashed rounded box. Blue rounded boxes show full-size tensors: Weight W_t at the top, Gradient G_t below it, and Residual R_t at lower left. Each box has an m×n size label beside it. Green boxes show compressed tensors: Blocked Average A_t (m×n/2^l), plus Adam states M_t and V_t (2×m×n/2^l). The Adam states sit in a light-green shaded region labeled 'Optimizer memory'. Arrows run from G_t to A_t (fold), from A_t to M_t and V_t (update optimizer), and from M_t and V_t back around the bottom (unfold). A residual path from R_t joins a red circle node that feeds back to W_t. A legend along the bottom maps arrow colors to Backward, Update Optimizer, Fold Operator, Unfold Operator and Update Weight. The eye goes first to the blue and green boxes down the center.",
+ "caption": "Overview of \\name optimizer with a fold level of $l$.",
+ "caption_source": "latex",
+ "abstract": "Large language models (LLMs) have demonstrated remarkable performance due to their large parameter counts and extensive training data. However, their scale leads to significant memory bottlenecks during training, especially when using memory-intensive optimizers like Adam. Existing memory-efficient approaches often rely on techniques such as singular value decomposition (SVD), projections, or weight freezing, which can introduce substantial computational overhead, require additional memory for projections, or degrade model performance. In this paper, we propose Folded Optimizer with Approximate Moment (FOAM), a method that compresses optimizer states by computing block-wise gradient means and incorporates a residual correction to recover lost information. Theoretically, FOAM achieves convergence rates equivalent to vanilla Adam under standard non-convex optimization settings. Empirically, FOAM eliminates up to 90\\% of the memory overhead of optimizer states and accelerates convergence. Furthermore, FOAM is compatible with other memory-efficient optimizers, delivering performance and throughput that match or surpass both full-rank and existing memory-efficient baselines. Code is available at https://github.com/zqOuO/FOAM.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=k7XzObg9Hy",
+  "arxiv": "https://arxiv.org/abs/2512.07112",
+  "pdf": "https://raw.githubusercontent.com/mlresearch/v306/main/assets/wen26h/wen26h.pdf",
+  "proceedings": "https://proceedings.mlr.press/v306/wen26h.html",
+  "virtual": "https://icml.cc/virtual/2026/poster/62070",
+  "code": "https://github.com/zqOuO/FOAM"
+ },
+ "license": "http://creativecommons.org/licenses/by/4.0/",
+ "img": "cc-by",
+ "image_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/images/icml26-4903.png",
+ "thumb_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/thumbs/icml26-4903.webp",
+ "figure_page": 0,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.9
+}

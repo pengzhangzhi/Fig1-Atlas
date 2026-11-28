@@ -1,0 +1,53 @@
+{
+ "id": "neurips26-4635",
+ "title": "LucidNFT: LR-Anchored Multi-Reward Preference Optimization for Flow-Based Real-World Super-Resolution",
+ "authors": [
+  "Song Fei",
+  "Tian Ye",
+  "Sixiang Chen",
+  "Zhaohu Xing",
+  "Jianyu Lai",
+  "Lei Zhu"
+ ],
+ "venue": "NeurIPS 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "Computer Vision->Vision Models & Multimodal",
+ "role": "pipeline",
+ "role2": "prior-vs-ours",
+ "claim": "A reward evaluator anchored to the input plus per-reward normalization before fusion preserves faithful candidates that summed-reward normalization wrongly suppresses.",
+ "layout": "2 stacked panels; (a) left-to-right evaluator, (b) worked numeric example with side-by-side columns",
+ "tags": [
+  "reinforcement-learning",
+  "multi-reward",
+  "reward-normalization",
+  "preference-optimization",
+  "faithfulness"
+ ],
+ "style": [
+  "math-heavy",
+  "colorful",
+  "photo/real data",
+  "text-heavy"
+ ],
+ "description": "Two stacked panels. Panel (a) shows the evaluator, LucidConsistency. On the left, a pool of HR and degraded image crops and hard-negative inpainted pairs feeds a frozen Qwen3-VL embedding model with LoRA. That model produces global and token embeddings, which go into global and local loss boxes and are combined into L_LC. On the right, an LR input and an SR output are embedded and scored with global and token similarity, combined as C. Panel (b) is a worked RL iteration with three rollouts. The rollouts pass through a policy, a perceptual reward model and a faithfulness reward model. Two columns follow with numbers: a grey scalar-first column and a green decoupled-normalization column. The grey column pushes the most faithful rollout away, marked with a red cross. The green column reinforces it, marked with a check. The DiffusionNFT objective sits at the right. Orange and blue color-code the rewards.",
+ "caption": "Overview of LucidNFT. (a) LucidConsistency: the positive pool $\\mathcal{P}_x$ holds an HR image $x$ (LSDIR) and its degraded views $D_k(x)$ of increasing severity; an original image $x^{o}$ and its inpainted counterpart $x^{i}$ (SAGI) form pools $\\mathcal{P}_o$, $\\mathcal{P}_i$ that are hard negatives for each other: they differ inside the masked region and, more subtly, in local details outside it that the regeneration alters (zooms). The global embedding $e_g$ and token embeddings $e_t^{n}$ are trained with $\\mathcal{L}_{\\mathrm{LC}}$ (Eq. [ref]); an SR output $x_{sr}$ is then scored against its LR input $x_{lr}$ by $\\mathcal{C}=\\alpha_g s_g+\\alpha_l s_t$, with global similarity $s_g$ and position-averaged token similarity $s_t$ (Eq. [ref]). (b) One training iteration of the policy $v_\\theta$ on three logged rollouts $y_j$ of one LR input $x_i$ (training uses 24 groups of $M{=}12$). $r^{p}$, $r^{f}$: perceptual and faithfulness rewards; $s$: their sum; $\\mu$, $\\sigma$: mean and standard deviation over the three rollouts; $z$: a reward standardized within the group; $\\tilde a$: the sum of the $z$; $A$: advantage (Eqs. [ref]--[ref]), which reinforces an output if positive ($\\uparrow$) and pushes it away if negative ($\\downarrow$); $r^{L}$: reward weight with scale $Z_c$, which weights the implicit positive and negative policies $v_\\theta^{\\pm}$ against the target velocity $v$ in DiffusionNFT (Eq. [ref]). Summing before normalization suppresses the most faithful candidate $y_1$, whereas decoupled normalization reinforces it.",
+ "caption_source": "latex",
+ "abstract": "Generative real-world image super-resolution (Real-ISR) can synthesize visually convincing details from severely degraded low-resolution (LR) inputs, but stochastic sampling can introduce semantic or structural hallucinations unsupported by the LR evidence. Sampling multiple outputs per LR input exposes trade-offs between perceptual quality and faithfulness that reinforcement learning (RL) can optimize beyond paired supervision. Effective alignment is limited by the lack of a degradation-robust LR-referenced faithfulness signal, the loss of per-objective reward contrasts when rewards are combined before normalization in Diffusion Negative-aware FineTuning (DiffusionNFT), and limited coverage of real degradations. We propose LucidNFT, a multi-reward RL framework for flow-matching Real-ISR. LucidNFT introduces LucidConsistency, a degradation-invariant LR-referenced evaluator trained with content-consistent degradation pools and hard negatives created by inpainting to detect localized hallucinations. Its decoupled reward normalization strategy normalizes each reward within each LR-conditioned rollout group before fusion, preserving per-objective contrasts across candidates. LucidLR provides a large-scale collection of real-world degraded images for RL fine-tuning. Experiments show that LucidNFT improves perceptual quality on strong flow-based Real-ISR baselines while generally maintaining LR-referenced consistency across diverse real-world scenarios. In a reward-independent human study, LucidNFT outputs were judged more faithful to the LR inputs in 72.5 percent of comparisons.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=W1dvS9O0dJ",
+  "arxiv": "https://arxiv.org/abs/2603.05947",
+  "pdf": "https://arxiv.org/pdf/2603.05947",
+  "proceedings": null,
+  "virtual": "https://neurips.cc/virtual/2026/poster/152037",
+  "code": "https://w2genai-lab.github.io/LucidNFT"
+ },
+ "license": "http://creativecommons.org/licenses/by-nc-sa/4.0/",
+ "img": "cc-by-nc-sa",
+ "image_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/images/neurips26-4635.png",
+ "thumb_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/thumbs/neurips26-4635.webp",
+ "figure_page": 3,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.8
+}

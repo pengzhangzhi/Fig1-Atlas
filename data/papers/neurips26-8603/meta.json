@@ -1,0 +1,49 @@
+{
+ "id": "neurips26-8603",
+ "title": "Reasoning as Compression: Unifying Budget Forcing via the Conditional Information Bottleneck",
+ "authors": [
+  "Fabio Valerio Massoli",
+  "Andrey Kuzmin",
+  "Arash Behboodi"
+ ],
+ "venue": "NeurIPS 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "Deep Learning->Everything Else",
+ "role": "analysis-finding",
+ "role2": "teaser-result",
+ "claim": "Information cost falls steadily with output length, and a tunable compression knob lets ours trade accuracy for length better than baselines.",
+ "layout": "2 side-by-side scatter plots, left-to-right, shaded std band and annotated beta labels",
+ "tags": [
+  "compression",
+  "information-bottleneck",
+  "accuracy-efficiency-tradeoff",
+  "reasoning",
+  "pareto-frontier"
+ ],
+ "style": [
+  "plot",
+  "minimal",
+  "colorful"
+ ],
+ "description": "Two scatter plots sit side by side. The left plot shows minimality reward against mean completion length, from 0 to 5000 tokens. Many translucent orange dots fall along a steep downward blue mean line. A light blue band marks ±1 std and widens at longer lengths. A legend at lower left explains the dots, the mean line and the band. The right plot shows AIME24 accuracy (Pass@1) against mean completion length, with a broken y-axis. Blue dots joined by a green dashed line trace the CIB 1.5B prior, each labeled with a β value from 1e-3 to 5e-5. A brown square marks the CIB 7B prior at shorter length. Baselines appear as a green triangle (L1-Exact), a red star (DLER-1.5B) and a magenta diamond (L3L1-EXACT). A black arrow labels the CIB curve.",
+ "caption": "Left: Minimality Reward vs. Completion Length. We observe a consistent negative correlation between the completion length and the minimality reward. The shaded blue region shows the $\\pm1\\sigma$ band representing the spread of the information cost for the token chosen within CoTs with similar length. Right: Accuracy vs. Completion Length. The $\\beta$ parameter confers fine-grained control over the accuracy-compression trade-off. 7B prior ({\\color{brown}$\\blacksquare$}) yields stronger compression than a 1.5B prior ({\\color{blue}$\\bullet$}). Baselines: DLER [ref] ({\\color{red}$\\bigstar$}), L3L1-EXACT [ref] ({\\color{Magenta}\\rotatebox{45}{$\\blacksquare$}}), and our L1-Exact$^\\ddagger$ model ({\\color{Green}$\\blacktriangledown$}).",
+ "caption_source": "latex",
+ "abstract": "Chain-of-Thought (CoT) prompting improves LLM accuracy on complex tasks but often increases token usage and inference cost. Existing ``Budget Forcing'' methods reduce cost via fine-tuning with heuristic length penalties, suppressing both essential reasoning and redundant filler. We recast efficient reasoning as a lossy compression problem under the Information Bottleneck (IB) principle, and identify a key theoretical gap when applying naive IB to transformers: attention violates the Markov property between prompt, reasoning trace, and response. To resolve this issue, we model CoT generation under the Conditional Information Bottleneck (CIB) principle, where the reasoning trace $Z$ acts as a computational bridge that contains only the information about the response $Y$ that is not directly accessible from the prompt $X$. This yields a general Reinforcement Learning objective: maximize task reward while compressing completions under a prior over reasoning traces, subsuming common heuristics (e.g., length penalties) as special cases (e.g., uniform priors). In contrast to naive token-counting approaches, we introduce a semantic prior that measures token cost by surprisal under a language model. Crucially, the prior is queried only for token-level log-probabilities, adding negligible overhead to the training loop. Empirically, our CIB objective prunes reasoning redundancy while preserving fluency and logic, improving accuracy at moderate compression and enabling aggressive compression with minimal accuracy drop. These gains generalize across model families and task domains, confirming CIB as a domain-agnostic CoT compression framework.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=xN22FIniMr",
+  "arxiv": "https://arxiv.org/abs/2603.08462",
+  "pdf": "https://arxiv.org/pdf/2603.08462",
+  "proceedings": null,
+  "virtual": "https://neurips.cc/virtual/2026/poster/148496",
+  "code": null
+ },
+ "license": "http://creativecommons.org/licenses/by/4.0/",
+ "img": "cc-by",
+ "image_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/images/neurips26-8603.png",
+ "thumb_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/thumbs/neurips26-8603.webp",
+ "figure_page": 1,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.55
+}

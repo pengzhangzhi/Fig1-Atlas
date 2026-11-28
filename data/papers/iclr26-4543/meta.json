@@ -1,0 +1,47 @@
+{
+ "id": "iclr26-4543",
+ "title": "Revisiting Sharpness-Aware Minimization: A More Faithful and Effective Implementation",
+ "authors": [
+  "Jianlong Chen",
+  "Zhiming Zhou"
+ ],
+ "venue": "ICLR 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "Optimization->Non-Convex",
+ "role": "analysis-finding",
+ "role2": "concept",
+ "claim": "The gradient at an ascent point, applied at the current parameters, approximates the direction to the maximum better than the local gradient, but this degrades with more ascent steps.",
+ "layout": "2 side-by-side loss-surface heatmaps, left-to-right, colored gradient arrows with legends",
+ "tags": [
+  "sharpness-aware-minimization",
+  "loss-landscape",
+  "gradient-direction",
+  "multi-step-ascent",
+  "generalization"
+ ],
+ "style": [
+  "plot",
+  "colorful"
+ ],
+ "description": "Two side-by-side heatmaps of loss surfaces, each with a viridis colorbar labeled Loss Value. Panel (a), titled 'Visualization of single-step SAM', shows a local loss surface on X–Y axes from -0.2 to 0.2. The origin ϑ0 has a blue arrow g0 pointing up to ϑ1. A red arrow g1 starts at ϑ1. A yellow arrow g1@ϑ0 starts at the origin and points up and to the right, toward the bright high-loss corner. Panel (b), titled 'Simulation of multi-step SAM', shows a 2D test function over μ and σ with several yellow high-loss blobs and a dark low-loss basin. Arrows g0, g1, g2 and the transported arrows g1@ϑ0 and g2@ϑ0 are drawn with dashed white guide lines from ϑ0. The g2@ϑ0 arrow points less accurately toward the upper-left yellow region than g1@ϑ0. Legends sit in the lower-left corner of each panel. The eye goes first to the colored arrows.",
+ "caption": "(a) Visualization of the local loss surface of single-step SAM\\protect\\footnotemark on the hyperplane spanned by the gradient $g_0$ at the current parameter $\\vartheta_0$ and the gradient $g_1$ at the single-step ascent point $\\vartheta_1$. $\\vartheta_0$ is set as the origin, the $Y$-axis is defined along the direction of $g_0$, and the $X$-axis is aligned with the component of $g_1$ perpendicular to $g_0$. The visualized arrows of gradients are set to have length $\\rho$. \\textbf{We see that $\\boldsymbol{g_1\\!@\\vartheta_0}$ (i.e., $\\boldsymbol{g_1}$ applied to $\\boldsymbol{\\vartheta_0}$) points clearly closer to the direction from $\\boldsymbol{\\vartheta_0}$ toward the maximum within the local neighborhood than $\\boldsymbol{g_0}$}. The targeted direction is roughly from the origin to the upper-right corner in the figure. The loss along $g_1\\!@\\vartheta_0$ (i.e., $L(\\vartheta_0 + \\rho_m \\cdot {g_1}/{\\|g_1\\|})$) is higher than that along $g_0$ (i.e., $L(\\vartheta_0 + \\rho_m \\cdot {g_0}/{\\|g_0\\|})$), for sufficiently large $\\rho_m$. (b) A simulation of multi-step SAM on a 2D test function. \\uline{The approximation quality by the SAM gradient may get worse as the number of ascent steps increases}. $g_2\\!@\\vartheta_0$ inferiorly identifies the direction from $\\vartheta_0$ toward the maximum within the neighborhood (the upper-left high-loss region in yellow) than $g_1\\!@\\vartheta_0$.",
+ "caption_source": "latex",
+ "abstract": "Sharpness-Aware Minimization (SAM) enhances generalization by minimizing the maximum training loss within a predefined neighborhood around the parameters. However, its practical implementation approximates this as gradient ascent(s) followed by applying the gradient at the ascent point to update the current parameters. This practice can be justified as approximately optimizing the objective by neglecting the (full) derivative of the ascent point with respect to the current parameters. Nevertheless, a direct and intuitive understanding of why using the gradient at the ascent point to update the current parameters works superiorly is still lacking. Our work bridges this gap by proposing a novel and intuitive interpretation. We show that the gradient at the single-step ascent point, \\uline{when applied to the current parameters}, provides a better approximation of the direction from the current parameters toward the maximum within the local neighborhood than the local gradient. This improved approximation thereby enables a more direct escape from the maximum within the local neighborhood. Nevertheless, our analysis further reveals two issues. First, the approximation by the gradient at the single-step ascent point is often inaccurate. Second, the approximation quality may degrade as the number of ascent steps increases. To address these limitations, we propose in this paper eXplicit Sharpness-Aware Minimization (XSAM). It tackles the first by explicitly estimating the direction of the maximum during training, while addressing the second by crafting a search space that effectively leverages the gradient information at the multi-step ascent point. XSAM features a unified formulation that applies to both single-step and multi-step settings and only incurs negligible computational overhead. Extensive experiments demonstrate the consistent superiority of XSAM against existing counterparts.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=qTRqmMOOrH",
+  "arxiv": "https://arxiv.org/abs/2603.10048",
+  "pdf": "https://proceedings.iclr.cc/paper_files/paper/2026/file/f2caa9c7caafa2375e643c8a98e8c58c-Paper-Conference.pdf",
+  "proceedings": "https://proceedings.iclr.cc/paper_files/paper/2026/hash/f2caa9c7caafa2375e643c8a98e8c58c-Abstract-Conference.html",
+  "virtual": "https://iclr.cc/virtual/2026/poster/10007242",
+  "code": "https://github.com/Cccjl219/XSAM"
+ },
+ "license": "http://arxiv.org/licenses/nonexclusive-distrib/1.0/",
+ "img": "none",
+ "image_url": null,
+ "thumb_url": null,
+ "figure_page": 2,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.7
+}

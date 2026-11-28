@@ -1,0 +1,54 @@
+{
+ "id": "iclr26-5207",
+ "title": "Getting Your LLMs Ready for Reinforcement Learning with Lightweight SFT",
+ "authors": [
+  "Xinran Li",
+  "Guangda Huzhang",
+  "Siqi Shen",
+  "Qing-Guo Chen",
+  "Zhao Xu",
+  "Weihua Luo",
+  "Kaifu Zhang",
+  "Jun Zhang"
+ ],
+ "venue": "ICLR 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "Reinforcement Learning->Everything Else",
+ "role": "analysis-finding",
+ "role2": "problem-setup",
+ "claim": "The best-performing pre-training checkpoint is not the one that yields the best result after RL, and some base models need preparation first.",
+ "layout": "2 panels side by side; bar chart with arrows left, line plot with shaded gap right",
+ "tags": [
+  "cold-start",
+  "sft-before-rl",
+  "checkpoint-selection",
+  "motivating-observation",
+  "distribution-forgetting"
+ ],
+ "style": [
+  "plot",
+  "colorful",
+  "minimal"
+ ],
+ "description": "Two plots sit side by side. Panel (a) is a bar chart of performance for two base models. Qwen2.5-Math-7B shows a light orange bar at 35.45 and a darker orange bar at 44.67, joined by a dashed arrow labeled RL. Qwen2.5-7B-Instruct shows light blue bars at 38.07 and 38.09 joined by an RL arrow. It then shows a cold-start arrow to 36.77 and a second RL arrow to 40.19. Panel (b) is a line plot of performance against cold-start steps, from 0 to about 470. An orange line (before RL) dips and then recovers. A blue line (after RL) peaks at 100 steps and then declines. Light green shading fills the gap between the lines. Captions sit below each panel. The eye goes first to the labeled bars, then to the diverging lines.",
+ "caption": "Motivating observations showing the necessity and optimization challenges of cold-start training. Performance represents averages across multiple mathematical reasoning benchmarks (detailed in Section B). Complete results are provided in Section C.1",
+ "caption_source": "pdf",
+ "abstract": "Reinforcement learning (RL) has emerged as a powerful post-training paradigm for large language models (LLMs), yet its effectiveness varies significantly across base models. While incorporating a pre-RL supervised fine-tuning (SFT) phase can enhance RL training, key questions remain: how long should the SFT cold-start phase last, and is the SFT objective truly aligned with the requirements for effective RL preparation? In our analysis of cold-start dynamics, we uncover a key limitation: the SFT checkpoint with the highest evaluation performance often fails to maximize RL potential due to distributional forgetting—a phenomenon where the model drifts excessively away from the base model’s distribution even before traditional overfitting occurs. We identify diversity metrics, such as the entropy and self-BLEU, as more reliable early-stopping criteria than the standard performance-based checkpoint selection. Our findings show that SFT checkpoints with peak diversity consistently lead to superior post-RL results. Building on these insights, we introduce Adaptive Early-Stop Loss (AESL), a lightweight and dynamic cold-start method that balances the acquisition of new patterns with the preservation of the base model's distribution. AESL operates at both the token and subsequence levels, providing finer-grained control over the cold-start process. Experimental results on mathematical reasoning benchmarks demonstrate that diversity-based early stopping surpasses traditional performance-based SFT, while AESL further enhances RL preparation. By steering LLMs toward better initialization points for RL, AESL consistently achieves superior final performance compared to existing SFT and cold-start strategies. The code is publicly available at \\url{https://github.com/LXXXXR/AESL}.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=yezWGJmODg",
+  "arxiv": null,
+  "pdf": "https://proceedings.iclr.cc/paper_files/paper/2026/file/bebed4d2aaa8a0ebfcc9fd55ce811e83-Paper-Conference.pdf",
+  "proceedings": "https://proceedings.iclr.cc/paper_files/paper/2026/hash/bebed4d2aaa8a0ebfcc9fd55ce811e83-Abstract-Conference.html",
+  "virtual": "https://iclr.cc/virtual/2026/poster/10006544",
+  "code": null
+ },
+ "license": null,
+ "img": "none",
+ "image_url": null,
+ "thumb_url": null,
+ "figure_page": 3,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.8
+}

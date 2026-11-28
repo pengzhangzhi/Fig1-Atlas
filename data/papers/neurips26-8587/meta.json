@@ -1,0 +1,54 @@
+{
+ "id": "neurips26-8587",
+ "title": "Task Success Is Not Enough: Side-effect-Aware Evaluation of Tool-Using Language Model Agents",
+ "authors": [
+  "Jiaju Huang",
+  "Shaobin Chen",
+  "Xinglong Liang",
+  "Xinyu Ma",
+  "Hao YANG",
+  "Wei Ke",
+  "Tao Tan",
+  "Yue Sun"
+ ],
+ "venue": "NeurIPS 2026",
+ "tier": "poster",
+ "track": "Evaluations_and_Datasets_Track",
+ "topic": "Applications->Language, Speech and Dialog",
+ "role": "pipeline",
+ "role2": "problem-setup",
+ "claim": "Evaluating agents on task success alone misses side effects; a trace-replay oracle scores goal satisfaction and authorization separately to expose collateral damage.",
+ "layout": "4 numbered panels, left-to-right, running calendar example threaded through all stages",
+ "tags": [
+  "evaluation-pipeline",
+  "oracle",
+  "tool-using-agents",
+  "safety",
+  "side-effects"
+ ],
+ "style": [
+  "icon-heavy",
+  "colorful",
+  "text-heavy"
+ ],
+ "description": "Four rounded panels read left to right, numbered 1–4: Input, Agent Execution, Deterministic Oracle Replay, and Joint Verdict. Panel 1 shows a user instruction to cancel the Apr 22 Weekly Standup occurrence. Below it are the initial state (three active calendar dates), an authorization boundary list (allowed in green, not allowed in red) and the goal condition. Panel 2 is a vertical tool trace: read_calendar, then an authorized cancel_occurrence (green), then an unauthorized cancel_series (red, with a warning icon), then a final response. Panel 3 has three stacked steps: write extraction in math, before/after calendar states, and a Venn diagram of authorized versus executed writes with W−A = CD. Panel 4 has four verdict cards: goal satisfied, CD, visibility, and extra write. Green marks correct behavior and red marks violations.",
+ "caption": "SABench evaluation pipeline. Each task specifies an initial state $s_0$, authorization boundary $A$, and goal condition $G$. Given an agent trace $\\tau$, the oracle extracts writes $W(\\tau)$, replays them on $s_0$, and reports goal satisfaction separately from writes outside $A$. Here the requested occurrence is canceled, but the extra series cancellation is CD.",
+ "caption_source": "latex",
+ "abstract": "Tool-using language model agents are usually evaluated by whether they finish the user's task. That metric misses a common failure: an agent can complete the requested work while also taking an unauthorized side-effecting action, such as writing to the wrong object, expanding the scope of the request, or contacting an unintended recipient. We call this failure mode collateral damage (CD). We introduce SABench (Side-effect-Aware Benchmark), a benchmark of 201 email, calendar, and ticket tasks. Each task crosses one of four state structures (independent, dependent, externally reachable, cross-tool) with one of four trap families (ambiguity, mis-targeting, cascade harm, overreach), and each task has a deterministic trace-based oracle for both goal satisfaction and authorization compliance. Across 2,211 model-task pairs from 11 frontier LLMs spanning major commercial and open model families, 15.2% of all runs incur CD, with risk concentrated in ambiguity tasks (38.8% violation rate) while non-ambiguous traps average 8.4% CD. Among goal-satisfied runs, 12.8% still produce unauthorized writes. Cross-tool and dependent states have about twice the CD rate of independent states. CD rates vary by 4.7x across models at comparable goal rates, which suggests that task success alone is a poor proxy for safe tool use. The SABench task corpus is released at https://huggingface.co/datasets/Phaedrus/sabench; the traces, oracle, code, and analysis pipeline are released at https://github.com/hjj194/sabench-artifact.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=xJdBs3VVTg",
+  "arxiv": "https://arxiv.org/abs/2610.34167",
+  "pdf": "https://arxiv.org/pdf/2610.34167",
+  "proceedings": null,
+  "virtual": "https://neurips.cc/virtual/2026/poster/138911",
+  "code": "https://github.com/hjj194/sabench-artifact"
+ },
+ "license": "http://creativecommons.org/licenses/by/4.0/",
+ "img": "cc-by",
+ "image_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/images/neurips26-8587.png",
+ "thumb_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/thumbs/neurips26-8587.webp",
+ "figure_page": 2,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.9
+}

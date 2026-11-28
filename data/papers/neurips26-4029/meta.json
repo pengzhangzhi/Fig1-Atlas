@@ -1,0 +1,50 @@
+{
+ "id": "neurips26-4029",
+ "title": "ClusterSplat: Semantic Cluster Selection for 3D Visual Grounding in Gaussian Splatting",
+ "authors": [
+  "Jaesung Lee",
+  "Hyeontaek Hwang",
+  "Gabriel Manalu",
+  "Daeyoung Kim"
+ ],
+ "venue": "NeurIPS 2026",
+ "tier": "spotlight",
+ "track": "main",
+ "topic": "Computer Vision->Classification and Understanding",
+ "role": "prior-vs-ours",
+ "role2": "pipeline",
+ "claim": "Dense per-primitive score thresholding yields scattered, unstable selections; scene-adaptive clustering with query-conditioned cluster scoring selects one coherent target.",
+ "layout": "2 stacked rows (baseline top, proposed bottom), left-to-right flow, shared input at left",
+ "tags": [
+  "3d-grounding",
+  "gaussian-splatting",
+  "clustering",
+  "discrete-selection",
+  "robustness"
+ ],
+ "style": [
+  "photo/real data",
+  "colorful",
+  "plot"
+ ],
+ "description": "The left column shows the input 3D scene (a rendered room with a bed boxed in blue and a sofa area boxed in red), with a speech-bubble referring expression below: \"this is a bed with blue sheets. it is to the left of a white trash can.\" Two arrows lead to two horizontal rows separated by a dashed line. The top row, \"Baseline: Primitive-level filtering\", shows a noisy heat-colored primitive score point cloud, a score histogram with a top-ratio cutoff, and a yellow selection scattered across both the red and blue regions, labeled \"Sub-optimal & Inconsistent\". The bottom row, \"Proposed: Cluster-level discrete selection\", shows a multicolor cluster segmentation, a cluster score map where the bed cluster is red, and a clean yellow selection on the bed only, labeled \"Coherent 3D target\". Red titles mark failure and blue titles mark the proposed method.",
+ "caption": "Primitive-level filtering versus cluster-level selection. Given a referring expression, primitive score fields can be unstable, and top-ratio filtering may scatter the 3D support across the target and nearby distractors. ClusterSplat instead performs scene-adaptive clustering followed by query-conditioned cluster scoring to select one coherent 3D target.",
+ "caption_source": "latex",
+ "abstract": "We study 3D visual grounding in 3D Gaussian Splatting (3DGS), where a referring expression should identify a target object as both a rendered 2D mask and a set of explicit 3D Gaussians. Prior methods typically extract 3D targets by applying heuristic thresholding or top-ratio filtering to dense primitive-level relevance scores. However, these scores often vary substantially across scenes and prompts, making such heuristics sensitive and leading to unstable targeting. ClusterSplat addresses this by reframing 3D target selection as cluster-level selection over scene-adaptive candidates. The method first learns instance-aware Gaussian features, forms feature-aware seed voxels, and merges neighboring seed voxels when a description-length criterion decreases, producing a scene-specific set of cluster candidates. Given a referring expression, a query-conditioned cluster scorer ranks the cluster candidates with a lightweight MLP, and the selected cluster directly defines the explicit 3D target while its cluster score is rendered for the 2D mask. On ScanRefer, ClusterSplat achieves the best rendered 2D segmentation and explicit 3D target metrics among the compared 3DGS baselines. It also obtains the best average Ref-LERF scores, supporting the same trend under fine-grained referring descriptions. On ScanNet v2 class name queries, ClusterSplat achieves the strongest rendered 2D results and the highest 3D matching accuracy, while maintaining competitive 3D IoU. Our project page is available at https://jaesung8.github.io/clustersplat/ .",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=SAk0iIw26c",
+  "arxiv": "https://arxiv.org/abs/2610.36462",
+  "pdf": "https://arxiv.org/pdf/2610.36462",
+  "proceedings": null,
+  "virtual": "https://neurips.cc/virtual/2026/poster/152567",
+  "code": null
+ },
+ "license": "http://arxiv.org/licenses/nonexclusive-distrib/1.0/",
+ "img": "none",
+ "image_url": null,
+ "thumb_url": null,
+ "figure_page": 0,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.82
+}

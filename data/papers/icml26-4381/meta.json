@@ -1,0 +1,58 @@
+{
+ "id": "icml26-4381",
+ "title": "Residual Context Diffusion Language Models",
+ "authors": [
+  "Yuezhou Hu",
+  "Harman Singh",
+  "Monishwaran Maheswaran",
+  "Haocheng Xi",
+  "Coleman Hooper",
+  "Jintao Zhang",
+  "Aditya Tomar",
+  "Michael Mahoney",
+  "Sewon Min",
+  "Mehrdad Farajtabar",
+  "Kurt Keutzer",
+  "Amir Gholaminejad",
+  "Chenfeng Xu"
+ ],
+ "venue": "ICML 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "Deep Learning->Large Language Models",
+ "role": "prior-vs-ours",
+ "role2": "pipeline",
+ "claim": "Standard denoising discards low-confidence tokens at remasking; ours recycles them as a residual into the next step.",
+ "layout": "2 panels, side-by-side, top-to-bottom flow, skip-connection loop versus trash discard",
+ "tags": [
+  "diffusion-language-models",
+  "residual",
+  "remasking",
+  "computation-reuse",
+  "contrast"
+ ],
+ "style": [
+  "minimal",
+  "icon-heavy"
+ ],
+ "description": "Two vertical flow diagrams sit side by side on a white background in black and white. The left panel, titled 'Vanilla DLLM, Sequential Denoising', runs x^(t_{k-1}) into a DLLM box, then p^(t_{k-1}) into a Remasking box, then out as x^(t_k). A horizontal arrow from Remasking leads to a black trash-can icon labeled 'Low Conf. Tokens', which shows the tokens being discarded. The right panel, titled 'RCD, Residual Denoising', has the same stack of boxes. Here a curved arrow leaves p^(t_{k-1}), loops around the Remasking box, and labeled 'Low Conf. Tokens' rejoins the main path at a circled-plus (⊕) node just before x^(t_k). The trash can against the loop is the main contrast, and the eye goes to it first.",
+ "caption": "Overview of the residual denoising mechanism in Residual Context Diffusion (RCD). Remasking happens during each denoising step, discarding low-confidence token even though they are already explicitly computed. To recycle computation from previous steps, our proposed method extracts information before it is discarded, and forwards it to the next denoising step.",
+ "caption_source": "latex",
+ "abstract": "Diffusion Large Language Models (dLLMs) have emerged as a promising alternative to purely autoregressive language models because they can decode multiple tokens in parallel. However, state-of-the-art block-wise dLLMs rely on a \"remasking\" mechanism that decodes only the most confident tokens and discards the rest, effectively wasting computation. We demonstrate that recycling computation from the discarded tokens is beneficial, as these tokens retain contextual information useful for subsequent decoding iterations. In light of this, we propose Residual Context Diffusion (RCD), a module that converts these discarded token representations into contextual residuals and injects them back for the next denoising step. RCD uses a decoupled two-stage training pipeline to bypass the memory bottlenecks associated with backpropagation. We validate our method on both long CoT reasoning (SDAR) and short CoT instruction following (LLaDA) models. We demonstrate that a standard dLLM can be efficiently converted to the RCD paradigm with merely ~300 million tokens. RCD consistently improves frontier dLLMs by 4-11 percentage points in accuracy with minimal extra computation overhead across a wide range of benchmarks. Notably, on the most challenging AIME tasks, RCD nearly doubles baseline accuracy and attains up to 4-5x fewer denoising steps at baseline's peak accuracy.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=fQYwAlpK3V",
+  "arxiv": "https://arxiv.org/abs/2601.22954",
+  "pdf": "https://raw.githubusercontent.com/mlresearch/v306/main/assets/hu26as/hu26as.pdf",
+  "proceedings": "https://proceedings.mlr.press/v306/hu26as.html",
+  "virtual": "https://icml.cc/virtual/2026/poster/62575",
+  "code": "https://yuezhouhu.github.io/projects/residual-context-diffusion/"
+ },
+ "license": "http://creativecommons.org/licenses/by/4.0/",
+ "img": "cc-by",
+ "image_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/images/icml26-4381.png",
+ "thumb_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/thumbs/icml26-4381.webp",
+ "figure_page": 0,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.8
+}

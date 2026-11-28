@@ -1,0 +1,48 @@
+{
+ "id": "iclr26-5229",
+ "title": "Deep Hierarchical Learning with Nested Subspace Networks for Large Language Models",
+ "authors": [
+  "Paulius Rauba",
+  "Mihaela van der Schaar"
+ ],
+ "venue": "ICLR 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "Deep Learning->Everything Else",
+ "role": "prior-vs-ours",
+ "role2": null,
+ "claim": "Standard layers and adapter-based fine-tuning use fixed weights; ours replaces them with one shared factor pair whose prefixes give any compute budget.",
+ "layout": "3 columns, bottom-to-top input→architecture→output, dotted dividers, shared legend below",
+ "tags": [
+  "low-rank",
+  "adaptive-compute",
+  "parameter-sharing",
+  "nested-structure",
+  "fine-tuning"
+ ],
+ "style": [
+  "minimal",
+  "math-heavy",
+  "colorful"
+ ],
+ "description": "Three side-by-side columns separated by dotted vertical lines, compared across rows labeled Input (bottom), Model Architecture (middle) and Output (top). Left, Vanilla MLP: one large blue rectangle for trainable weights W of size d_in by d_out. Middle, LoRA fine-tuning: a gray frozen W box beside two blue trapezoids, A and B, joined by a multiplication sign and labeled as the trainable adapter. Right, Nested Subspace Networks: stacked, layered trapezoids A_r and B_r with a multiplication sign, labeled rank-trainable layers, which suggests nested prefixes. Green bars for x and h sit at the bottom and top of each column. A legend at the bottom defines blue as trainable, green as input/output and gray as frozen. The eye goes first to the blue shapes in the middle row.",
+ "caption": "Illustration of Nested Subspace Networks. NSNs convert linear layers into rank-trainable layers which enable dynamic control over the computational cost (FLOPs) of a forward pass. Left: Standard MLP layers that are composed of trainable weights. Middle: LoRA fine-tuning which have frozen weights and trainable adapters. {Right: Nested Subspace Networks replace each linear layer with a single pair of shared factor matrices $(A,B)$ defining a rank-trainable layer. The effective weight at rank $r$, $W_r = B_r A_r$, is obtained by using only the first $r$ rows of $A$ and first $r$ columns of $B$. Different operating points (different ranks) therefore correspond to using different prefixes of the same $(A,B)$ This allows for the construction of a compute-performance Pareto frontier at inference.}",
+ "caption_source": "latex",
+ "abstract": "Large neural networks are typically trained for a fixed computational budget, creating a rigid trade-off between performance and efficiency that is ill-suited for deployment in resource-constrained or dynamic environments. Existing approaches to this problem present a difficult choice: training a discrete collection of specialist models is computationally prohibitive, while dynamic methods like slimmable networks often lack the flexibility to be applied to large, pre-trained foundation models. In this work, we propose Nested Subspace Networks (NSNs), a novel architectural paradigm that enables a single model to be dynamically and granularly adjusted across a continuous spectrum of compute budgets at inference time. The core of our approach is to re-parameterize linear layers to satisfy a nested subspace property, such that the function computed at a given rank is a strict subspace of the function at any higher rank. We show that this entire hierarchy of models can be optimized jointly via an uncertainty-aware objective that learns to balance the contributions of different ranks based on their intrinsic difficulty. We demonstrate empirically that NSNs can be surgically applied to pre-trained LLMs and unlock a smooth and predictable compute-performance frontier. For example, a single NSN-adapted model can achieve a 50% reduction in inference FLOPs with only a 5 percentage point loss in accuracy. Our findings establish NSNs as a powerful framework for creating the next generation of adaptive foundation models.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=ymUOPsbxLi",
+  "arxiv": "https://arxiv.org/abs/2509.17874",
+  "pdf": "https://proceedings.iclr.cc/paper_files/paper/2026/file/c66e1fcc9691aae706250638f36f681b-Paper-Conference.pdf",
+  "proceedings": "https://proceedings.iclr.cc/paper_files/paper/2026/hash/c66e1fcc9691aae706250638f36f681b-Abstract-Conference.html",
+  "virtual": "https://iclr.cc/virtual/2026/poster/10006520",
+  "code": null
+ },
+ "license": "http://creativecommons.org/licenses/by/4.0/",
+ "img": "cc-by",
+ "image_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/images/iclr26-5229.png",
+ "thumb_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/thumbs/iclr26-5229.webp",
+ "figure_page": 1,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.85
+}

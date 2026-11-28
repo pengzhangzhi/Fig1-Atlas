@@ -1,0 +1,53 @@
+{
+ "id": "iclr26-4873",
+ "title": "Quagmires in SFT-RL Post-Training: When High SFT Scores Mislead and What to Use Instead",
+ "authors": [
+  "Feiyang Kang",
+  "Michael Kuchnik",
+  "Karthik Padthe",
+  "Marin Vlastelica",
+  "Ruoxi Jia",
+  "Carole-Jean Wu",
+  "Newsha Ardalani"
+ ],
+ "venue": "ICLR 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "Deep Learning->Generative Models and Autoencoders",
+ "role": "analysis-finding",
+ "role2": "teaser-result",
+ "claim": "Higher pre-RL (SFT) scores do not guarantee higher post-RL performance: the best SFT model is not the best RL model.",
+ "layout": "1 grouped bar chart, left-to-right, colored boxes group data conditions with arrows",
+ "tags": [
+  "sft-rl",
+  "proxy-metrics",
+  "counterexample",
+  "post-training",
+  "metric-mismatch"
+ ],
+ "style": [
+  "plot",
+  "colorful",
+  "text-heavy"
+ ],
+ "description": "A single wide bar chart of average task performance over 7 tasks, with a y-axis from 10 to 45. Each SFT condition has a green bar for post-SFT performance, drawn inside a taller white outlined bar for SFT+RL performance, and numeric values are printed above both. The leftmost bar is the base Mistral-Instruct 12B model. Three large colored rectangles group the conditions: green for Random SFT examples (10k, 50k, 100k), orange for Longest SFT examples, and dark red for Shortest SFT examples (10k to 500k). A thick green arrow in each group shows the upward trend, and the slopes differ between groups. Yellow highlighted labels mark 'Best RL' on the Random 100k bar and 'Best SFT' on the Shortest 500k bar, which shows that the two rankings disagree. The eye goes first to the colored boxes and the yellow labels.",
+ "caption": "{Mistral-NeMo-12B-Instruct undergone SFT-RL with SFT examples from AceReasoner1.1-SFT dataset and RLVR via GRPO on DeepScaleR dataset. Reporting Pass@1 performance averaged over 7 math benchmarks. When training on Random/Longest/Shortest SFT examples, the final performance after RL increases at different rates than the SFT performance. Model with the best SFT performance is not the one with the best final performance after RL. Post-SFT and SFT+RL performance correlate, though, optimizing post-SFT performance might not optimize the final performance after RL. }\\normalsize",
+ "caption_source": "latex",
+ "abstract": "In post-training for reasoning Large Language Models (LLMs), the current state of practice trains LLMs in two independent stages: Supervised Fine-Tuning (SFT) and Reinforcement Learning with Verifiable Rewards (RLVR, shortened as ``RL'' below). In this work, we challenge whether high SFT scores translate to improved performance after RL. We provide extensive counter-examples where this is not true. We find high SFT scores can be biased toward simpler or more homogeneous data and are not reliably predictive of subsequent RL gains or scaled-up post-training effectiveness. In some cases, RL training on models with improved SFT performance could lead to substantially worse outcome compared to RL on the base model without SFT. We study alternative metrics and identify generalization loss on held-out reasoning examples and Pass@large k performance to provide strong proxies for the RL outcome. We trained hundreds of models up to 12B-parameter with SFT and RLVR via GRPO and ran extensive evaluations on 7 math benchmarks with up to 256 repetitions, spending $>$1M GPU hours. Experiments include models from Llama3, Mistral-Nemo, Qwen3 and multiple state-of-the-art SFT/RL datasets. Compared to directly predicting from pre-RL performance, prediction based on generalization loss and Pass@large k achieves substantial higher precision, improving $R^2$ coefficient and Spearman's rank correlation coefficient by up to 0.5 (2x). This provides strong utility for broad use cases. For example, in most experiments, we find SFT training on unique examples for a one epoch underperforms training on half examples for two epochs, either after SFT or SFT-then-RL; With the same SFT budget, training only on short examples may lead to better SFT performance, though, it often leads to worse outcome after RL compared to training on examples with varying lengths. Evaluation tool will be open-sourced.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=uLM3BfKo19",
+  "arxiv": "https://arxiv.org/abs/2510.01624",
+  "pdf": "https://proceedings.iclr.cc/paper_files/paper/2026/file/5d6ae8ba43ecb378030753c4408ef9bd-Paper-Conference.pdf",
+  "proceedings": "https://proceedings.iclr.cc/paper_files/paper/2026/hash/5d6ae8ba43ecb378030753c4408ef9bd-Abstract-Conference.html",
+  "virtual": "https://iclr.cc/virtual/2026/poster/10006901",
+  "code": null
+ },
+ "license": "http://creativecommons.org/licenses/by/4.0/",
+ "img": "cc-by",
+ "image_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/images/iclr26-4873.png",
+ "thumb_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/thumbs/iclr26-4873.webp",
+ "figure_page": 0,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.8
+}

@@ -1,0 +1,52 @@
+{
+ "id": "neurips26-8311",
+ "title": "Understanding and Mitigating Under-Confidence in GNNs from the Final Layer",
+ "authors": [
+  "Jincheng Huang",
+  "Jie Xu",
+  "Ping Hu",
+  "Xiaoshuang Shi",
+  "Lei Feng",
+  "Xiaofeng Zhu"
+ ],
+ "venue": "NeurIPS 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "Social Aspects->Trustworthy Machine Learning",
+ "role": "concept",
+ "role2": "teaser-result",
+ "claim": "Model confidence depends on prototype separation and node-to-prototype distance; calibrating both is accurate and cheaper than prior methods.",
+ "layout": "2 panels; left schematic with formula below, right scatter plot; ours circled",
+ "tags": [
+  "calibration",
+  "under-confidence",
+  "prototype-distance",
+  "post-hoc",
+  "efficiency"
+ ],
+ "style": [
+  "plot",
+  "math-heavy",
+  "minimal"
+ ],
+ "description": "Panel (a) on the left shows two geometric sketches. In \"Class Centroid Level Calibration\", grey circles A, B and C are class centroids separated by dashed decision boundaries. Blue arrows push the centroids away from one another. In \"Node Level Calibration\", a yellow test node sits between the boundaries, and red arrows pull it toward centroid C. Below the sketches is a logit formula, z_{t,i} = 1/λ^(K) (Σ(1−s)h^T h − Σ s h^T h), with braces marking which terms correspond to each calibration level. A legend explains the symbols: test node, class centroid, push away, pull closer, decision boundary. Panel (b) on the right is a scatter plot of ECE against total time in seconds. Colored markers stand for dataset and method combinations (Cora, Citeseer and Pubmed with GCN, SCAR, CaGCN, GATS and DCGC). SCAR is circled in a dashed grey ring at the lower left and labeled \"Ours\" in blue.",
+ "caption": "(a) An illustration of the proposed SCAR. The balls within the dotted box represent the class prototypes, while the yellow dots inside the solid box represent the test nodes classified as class $C$. The output logits are determined by two components. The first is the distance between class prototypes (\\ie class-centroid-level calibration), which is controlled by the weight decay coefficient of the final layer. By reducing this coefficient, we push the class prototypes away from each other, increasing the class separability. The second component is the distance from each test node to its corresponding class prototype (\\ie node-level calibration). By reducing this distance as a post-hoc method, we further refine the confidence of each test node in a more fine-grained manner to alleviate under-confidence. (b) Scatter plot illustrating the trade-off between runtime and ECE (lower is better). Scatters closer to the lower-left corner exhibit superior performance.",
+ "caption_source": "latex",
+ "abstract": "Graph Neural Networks (GNNs) have demonstrated remarkable effectiveness on graph-based tasks. However, their predictive confidence is often miscalibrated, typically exhibiting under-confidence, which harms the reliability of their decisions. Existing calibration methods for GNNs normally introduce additional calibration components, which fail to capture the intrinsic relationship between the model and the prediction confidence, resulting in limited theoretical guarantees and increased computational overhead. To address this issue, we propose a simple yet efficient graph calibration method. We establish a unified theoretical framework revealing that model confidence is jointly governed by class-centroid-level and node-level calibration at the final layer. Based on this insight, we theoretically show that reducing the weight decay of the final-layer parameters alleviates GNN under-confidence by acting on the class-centroid level, while node-level calibration acts as a finer-grained complement to class-centroid-level calibration, which encourages each test node to be closer to its predicted class prototype in the final-layer representations. Extensive experiments validate the superiority of our method. The code is released at https://github.com/huangJC0429/SCAR.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=vGT1YmVaWI",
+  "arxiv": "https://arxiv.org/abs/2505.11335",
+  "pdf": "https://arxiv.org/pdf/2505.11335",
+  "proceedings": null,
+  "virtual": "https://neurips.cc/virtual/2026/poster/148756",
+  "code": "https://github.com/huangJC0429/SCAR"
+ },
+ "license": "http://arxiv.org/licenses/nonexclusive-distrib/1.0/",
+ "img": "none",
+ "image_url": null,
+ "thumb_url": null,
+ "figure_page": 1,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.55
+}

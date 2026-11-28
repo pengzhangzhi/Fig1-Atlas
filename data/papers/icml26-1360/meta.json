@@ -1,0 +1,52 @@
+{
+ "id": "icml26-1360",
+ "title": "Sparse ActionGen: Accelerating Diffusion Policy with Real-time Pruning",
+ "authors": [
+  "Kangye Ji",
+  "Jianbo Zhou",
+  "Yuan Meng",
+  "Ye Li",
+  "Hanyun Cui",
+  "Zhi Wang"
+ ],
+ "venue": "ICML 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "Applications->Robotics",
+ "role": "analysis-finding",
+ "role2": "problem-setup",
+ "claim": "A fixed static schedule performs inconsistently across interaction steps, and the best schedule changes from step to step, so static schedules are limited.",
+ "layout": "1 wide panel, 3-row heatmap over rollout iterations, shared x-axis",
+ "tags": [
+  "heatmap",
+  "static-schedule",
+  "caching",
+  "leave-one-out",
+  "dynamics"
+ ],
+ "style": [
+  "plot",
+  "minimal",
+  "colorful"
+ ],
+ "description": "A single wide heatmap with three rows labeled Schedule 0, Schedule 1 and Schedule 2. The x-axis is Rollout Iteration, running from 0 to 50, so each row has about 51 cells. Cells use a diverging color scale. Dark red cells mark the strongest values, near-white cells are neutral, and pale blue-gray cells are the lowest. The caption does not say what the colors measure, but they presumably show performance when that schedule is applied at only that iteration. The color pattern differs from row to row and from column to column. Dark red cells appear at different iterations in different rows, for example column 7 in Schedule 0, column 39 in Schedule 1 and columns 11–12 in Schedule 2. No row is consistently best. The eye goes first to the scattered dark red cells. There is no legend, arrow or annotation. The figure is a bare, minimal heatmap with serif axis labels.",
+ "caption": "The performance of fixed schedules on different rollout iterations. We conduct a leave-one-out analysis on the Square task, where the robot should push or slide an object so that its center follows a square-shaped path on the table. At each x-axis position, the tested schedule is applied only to that rollout iteration and full computation is used elsewhere. Observations include: (1) A fixed schedule performs inconsistently across different rollout iterations. (2) The optimal schedules differ among different rollout iterations. Both indicate the limitations of a static caching schedule.",
+ "caption_source": "latex",
+ "abstract": "Diffusion Policy has dominated action generation due to its strong capabilities for modeling multi-modal action distributions, but its multi-step denoising processes make it impractical for real-time visuomotor control. Existing caching-based acceleration methods typically rely on $\\textit{static}$ schedules that fail to adapt to the $\\textit{dynamics}$ of robot-environment interactions, thereby leading to suboptimal performance. In this paper, we propose $\\underline{\\textbf{S}}$parse $\\underline{\\textbf{A}}$ction$\\underline{\\textbf{G}}$en ($\\textbf{SAG}$) for extremely sparse action generation. To accommodate the iterative interactions, SAG customizes a rollout-adaptive prune-then-reuse mechanism that first identifies prunable computations globally and then reuses cached activations to substitute them during action diffusion. To capture the rollout dynamics, SAG parameterizes an observation-conditioned diffusion pruner for environment-aware adaptation and instantiates it with a highly parameter- and inference-efficient design for real-time prediction. Furthermore, SAG introduces a one-for-all reusing strategy that reuses activations across both timesteps and blocks in a zig-zag manner, minimizing the global redundancy. Extensive experiments on multiple robotic benchmarks demonstrate that SAG achieves up to 4$\\times$ generation speedup without sacrificing performance. Project Page: https://sparse-actiongen.github.io.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=CyDCBGybdE",
+  "arxiv": "https://arxiv.org/abs/2601.12894",
+  "pdf": "https://raw.githubusercontent.com/mlresearch/v306/main/assets/ji26o/ji26o.pdf",
+  "proceedings": "https://proceedings.mlr.press/v306/ji26o.html",
+  "virtual": "https://icml.cc/virtual/2026/poster/65503",
+  "code": "https://sparse-actiongen.github.io/"
+ },
+ "license": "http://creativecommons.org/licenses/by-nc-nd/4.0/",
+ "img": "none",
+ "image_url": null,
+ "thumb_url": null,
+ "figure_page": 1,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.85
+}

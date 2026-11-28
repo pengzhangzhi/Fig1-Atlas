@@ -1,0 +1,52 @@
+{
+ "id": "icml26-0522",
+ "title": "Not All Frequencies Are Equal: Energy-Adaptive Diffusion for Time Series Forecasting",
+ "authors": [
+  "Zining Qin",
+  "Huiling qin",
+  "Chenhao Wang",
+  "Jianxiong Guo",
+  "Tian Wang",
+  "Weijia Jia"
+ ],
+ "venue": "ICML 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "Applications->Time Series",
+ "role": "pipeline",
+ "role2": null,
+ "claim": "Operating diffusion in the wavelet domain with instance-adaptive noise per frequency band, conditioned on low-frequency approximation, yields a unified forward and reverse process.",
+ "layout": "Single wide panel, forward process along the bottom, reverse process along the top, loops right-to-left",
+ "tags": [
+  "wavelet-domain",
+  "diffusion",
+  "time-series-forecasting",
+  "adaptive-noise-schedule",
+  "conditional-generation"
+ ],
+ "style": [
+  "icon-heavy",
+  "math-heavy",
+  "colorful"
+ ],
+ "description": "A wide diagram of the full EADiff pipeline, split into a bottom 'Forward process' and a top 'Reverse process'. Forward, on the bottom left, a time series with history, target and mask is passed through an orange-dashed 'Offline process' box (DWT, receptive field analysis). This yields a wavelet decomposition made of an Approximation block and Detail 1..n blocks, shown as blue dashed boxes with red star badges. A wavelet noise scheduler equation, W_k = W_0 + σ(k,W)⊙ε, produces the decomposed noisy X_k. A tokenizer feeds a denoising network that contains a DiT block, Layer Norm and MLPs for the approximation and the step k. The reverse path then runs right to left through decomposed blocks and an IDWT, which recovers the forecast. A loss equation with a yellow weight term sits on the left. Dashed and solid teal arrows, plus orange accents, guide the eye.",
+ "caption": "A high-level overview of EADiff.",
+ "caption_source": "pdf",
+ "abstract": "Diffusion models have achieved remarkable success in generative modeling, yet their application to time series forecasting remains suboptimal. Existing approaches apply uniform Gaussian noise across all time steps, assuming all frequency components should be corrupted at the same rate. However, energy distribution across frequencies in time series is highly non-uniform: when uniform noise is added, high-frequency components are disproportionately overwhelmed while low-frequency trends remain inadequately diffused. We propose EADiff, an energy-adaptive diffusion framework operating in the wavelet domain to address this frequency-energy imbalance. Our key insight is that high-energy components require stronger perturbation while low-energy details need gentler corruption to preserve informative structures. We introduce a learnable modulation mechanism that automatically adjusts noise levels for each frequency band on a per-instance basis. Built upon this adaptive scheduler, we design a conditional diffusion framework where low-frequency trends serve as generation conditions, and noise-level-aware loss weighting naturally emphasizes different frequency components according to their signal characteristics. This cohesive design enables the model to respect the intrinsic multi-scale structure throughout both forward and reverse processes. Extensive experiments demonstrate that EADiff consistently outperforms existing diffusion-based and state-of-the-art deterministic methods.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=4kdkm56U5b",
+  "arxiv": null,
+  "pdf": "https://raw.githubusercontent.com/mlresearch/v306/main/assets/qin26e/qin26e.pdf",
+  "proceedings": "https://proceedings.mlr.press/v306/qin26e.html",
+  "virtual": "https://icml.cc/virtual/2026/poster/66318",
+  "code": "https://github.com/KurohaneNioko/EADiff"
+ },
+ "license": null,
+ "img": "none",
+ "image_url": null,
+ "thumb_url": null,
+ "figure_page": 3,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.9
+}

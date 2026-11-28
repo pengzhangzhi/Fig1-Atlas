@@ -1,0 +1,52 @@
+{
+ "id": "iclr26-4055",
+ "title": "DAVE: A VLM Vision Encoder for Document Understanding and Web Agents",
+ "authors": [
+  "Brandon Huang",
+  "Hang Hua",
+  "Zhuoran Yu",
+  "trevor darrell",
+  "Rogerio Feris",
+  "Roei Herzig"
+ ],
+ "venue": "ICLR 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "Computer Vision->Vision Models & Multimodal",
+ "role": "pipeline",
+ "role2": null,
+ "claim": "A staged training recipe (self-supervised pretraining, supervised multi-decoder training, then weight merging) yields one encoder suited to many downstream decoders.",
+ "layout": "3 panels, stage 1 left, stages 2 and 3 stacked right, arrows between modules",
+ "tags": [
+  "multi-stage-training",
+  "self-supervised",
+  "model-merging",
+  "vision-encoder",
+  "ensemble-distillation"
+ ],
+ "style": [
+  "colorful",
+  "icon-heavy",
+  "minimal"
+ ],
+ "description": "A three-panel diagram of a training pipeline. The left panel, Stage 1 Self-Supervised Pretraining, runs bottom to top. A masked webpage screenshot feeds an Encoder, then a Decoder, then a reconstructed webpage. A purple tag reads 'MAE architecture'. The top-right panel, Stage 2 Supervised Pretraining, shows two trapezoid 'Dave' blocks. Each one pairs a trainable Encoder (flame icon) with a frozen SigLIP2 (snowflake icon). Each block feeds a different LLM (Qwen or LLaMA) that predicts grounding, layout and OCR. The bottom-right panel, Weight-space Merging, shows several frozen DAVE models with coefficients α1…αn, which combine into one DAVE through ensemble training. Representation Alignment, in a pink box, guides the merge. Pastel blue, green and yellow fills distinguish the components. Flame and snowflake icons mark which parts are trained and which are frozen.",
+ "caption": "\\NAME Overview. Stage 1 trains the vision encoder with a decoder using MAE, learning strong structural and spatial priors from unlabeled data. Stage 2 performs autoregressive pretraining on diverse tasks with different text decoders and fuses the high-level semantic features from SigLIP 2. After that, different encoders are combined into a single one by learning a merge coefficient using unsupervised representation alignment, while keeping the encoders frozen.",
+ "caption_source": "latex",
+ "abstract": "While Vision-language models (VLMs) have demonstrated remarkable performance across multi-modal tasks, their choice of vision encoders presents a fundamental weakness: their low-level features lack the robust structural and spatial information essential for document understanding and web agents. To bridge this gap, we introduce DAVE, a vision encoder purpose-built for VLMs and tailored for these tasks. Our training pipeline is designed to leverage abundant unlabeled data to bypass the need for costly large-scale annotations for document and web images. We begin with a self-supervised pretraining stage on unlabeled images, followed by a supervised autoregressive pretraining stage, where the model learns tasks like parsing and localization from limited, high-quality data. Within the supervised stage, we adopt two strategies to improve our encoder's alignment with both general visual knowledge and diverse document and web agentic tasks: (i) We introduce a novel model-merging scheme, combining encoders trained with different text decoders to ensure broad compatibility with different web agentic architectures. (ii) We use ensemble training to fuse features from pretrained generalist encoders (e.g., SigLIP2) with our own document and web-specific representations. Extensive experiments on classic document tasks, VQAs, web localization, and agent-based benchmarks validate the effectiveness of our approach, establishing DAVE as a strong vision encoder for document and web applications.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=kgk0NqjsoW",
+  "arxiv": "https://arxiv.org/abs/2512.17221",
+  "pdf": "https://proceedings.iclr.cc/paper_files/paper/2026/file/d25ed2a375a33257d33e83fd9010ec60-Paper-Conference.pdf",
+  "proceedings": "https://proceedings.iclr.cc/paper_files/paper/2026/hash/d25ed2a375a33257d33e83fd9010ec60-Abstract-Conference.html",
+  "virtual": "https://iclr.cc/virtual/2026/poster/10007757",
+  "code": null
+ },
+ "license": "http://creativecommons.org/licenses/by/4.0/",
+ "img": "cc-by",
+ "image_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/images/iclr26-4055.png",
+ "thumb_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/thumbs/iclr26-4055.webp",
+ "figure_page": 1,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.9
+}

@@ -1,0 +1,51 @@
+{
+ "id": "neurips26-6032",
+ "title": "SDS-LoRA: Overcoming Anisotropic Gradient Scaling in Low-Rank Adaptation",
+ "authors": [
+  "JungHun Oh",
+  "Sungyong Baik",
+  "Kyoung Mu Lee"
+ ],
+ "venue": "NeurIPS 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "General Machine Learning->Transfer, Multitask and Meta-learning",
+ "role": "pipeline",
+ "role2": "concept",
+ "claim": "Low-rank updates are reparameterized so gradients flow only through trainable factors, with detached orthonormal bases decoupling scale from the backward pass.",
+ "layout": "1 panel, bottom-to-top input to output, legend on right",
+ "tags": [
+  "low-rank-adaptation",
+  "parameter-efficient",
+  "reparameterization",
+  "gradient-decoupling",
+  "fine-tuning"
+ ],
+ "style": [
+  "icon-heavy",
+  "colorful",
+  "minimal"
+ ],
+ "description": "A single architecture diagram with a bottom Input box and a top Output box in mint green. On the left, a large blue box labeled 'Pretrained weight W0' sits on a parallel path. Thick outline arrows run from Input into both the frozen weight and a low-rank branch, and from both up to Output. The branch on the right is two trapezoids: a lower one split into pink 'A' and tan 'Q_A^T', and an upper one split into tan 'Q_B' and pink 'B', joined by small arrows. Fire icons mark the pink trainable matrices A and B. Broken-chain icons mark the tan detached matrices Q_A and Q_B. A legend on the right explains 'Detached' and 'Trainable'. The eye goes first to the big blue box and the colored trapezoids.",
+ "caption": "Adverse effects of anisotropic gradient scaling in LoRA. (a) At each step of LoRA training, we compare the effective rank of the original gradients of the LoRA matrices (blue) to the modified gradients where anisotropic gradient scaling induced by singular values has been removed (orange). We observe a substantial reduction in effective rank when gradients are scaled by singular values. In contrast, \\methodname overcomes anisotropic gradient scaling, thereby maintaining a higher effective gradient rank (green). (b) Non-uniform singular values of LoRA matrices cause the effective gradient with respect to $\\Delta \\mW$ ($\\Tilde{\\mG}$) to misalign with the orthogonal projection of $\\mG$ onto the low-rank subspace ($\\mG^*$) by applying anisotropic scaling to $\\mG^*$. This results in suboptimal alignment between $\\mG$ and $\\Tilde{\\mG}$ ($\\alpha > \\beta$).",
+ "caption_source": "latex",
+ "abstract": "Low-Rank Adaptation (LoRA) enables efficient adaptation of large pretrained models to downstream tasks by parameterizing weight updates with low-rank matrices. In this paper, we investigate the limitations of the LoRA parameterization from a geometric perspective. Specifically, we show that when a full fine-tuning gradient is backpropagated to the low-rank matrices, it undergoes anisotropic scaling driven by their singular values. We argue that this phenomenon is undesirable because it distorts the full fine-tuning gradient by skewing it toward dominant singular directions while suppressing others. Our analyses demonstrate that anisotropic gradient scaling reduces the effective rank of the low-rank matrices' gradients and fails to provide the best possible alignment between the full fine-tuning gradient and its low-rank approximation in LoRA for arbitrary gradients, thereby exacerbating the gap to full fine-tuning. To address these limitations, we propose a new low-rank parameterization, SDS-LoRA, which Structurally Decouples Singular values from the backward pass. Our method ensures that the full fine-tuning gradient backpropagates only through the orthonormal bases of the low-rank matrices' subspaces, independent of their scales. Convergence analysis demonstrates that while LoRA's convergence rate degrades with the condition number of the low-rank matrices, that of SDS-LoRA remains independent of it. Experimental results across natural language and vision benchmarks show that SDS-LoRA improves loss convergence and reduces the gap to full fine-tuning, significantly enhancing adaptation performance. The code is available at https://github.com/JungHunOh/SDS-LoRA_NeurIPS2026.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=fQrxSvxZkd",
+  "arxiv": "https://arxiv.org/abs/2606.16454",
+  "pdf": "https://arxiv.org/pdf/2606.16454",
+  "proceedings": null,
+  "virtual": "https://neurips.cc/virtual/2026/poster/150783",
+  "code": "https://github.com/JungHunOh/SDS-LoRA_NeurIPS2026"
+ },
+ "license": "http://creativecommons.org/licenses/by/4.0/",
+ "img": "cc-by",
+ "image_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/images/neurips26-6032.png",
+ "thumb_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/thumbs/neurips26-6032.webp",
+ "figure_page": 1,
+ "qc_flags": [
+  "bad-crop"
+ ],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.55
+}

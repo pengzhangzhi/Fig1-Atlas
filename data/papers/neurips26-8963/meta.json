@@ -1,0 +1,52 @@
+{
+ "id": "neurips26-8963",
+ "title": "On the Information Loss of Multi-Token Prediction: Origin and Solution",
+ "authors": [
+  "Tangyu Jiang",
+  "Zhanke Zhou",
+  "Haodi Wang",
+  "Yiu-ming Cheung",
+  "Xiaohua Jia",
+  "Bo Han"
+ ],
+ "venue": "NeurIPS 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "General Machine Learning->Everything Else",
+ "role": "analysis-finding",
+ "role2": "problem-setup",
+ "claim": "Errors in block-wise parallel prediction compound because each block conditions on prior possibly wrong output, so cumulative error grows steadily over generation.",
+ "layout": "2 panels: left block-chain cartoon with growing spheres, right line plot",
+ "tags": [
+  "multi-token-prediction",
+  "error-accumulation",
+  "cumulative-error",
+  "autoregressive-decoding",
+  "failure-mode"
+ ],
+ "style": [
+  "plot",
+  "colorful",
+  "icon-heavy"
+ ],
+ "description": "The left panel shows six MTP blocks in a left-to-right chain connected by arrows. Each block is a blue rounded box labeled MTP. Above each box is a row of four token marks: green check marks for correct tokens and red crosses for wrong ones. The wrong count rises from 0/4 at Block 1 to 4/4 at Block 6. A dashed line of red spheres sits above the chain and grows larger from left to right, showing cumulative error. A bracket marks B = 4 parallel tokens. Italic captions explain that tokens within a block cannot self-correct and that errors compound across blocks. A legend at the bottom explains the colors. The right panel is a GSM8K line plot of CIL against generation step for three models, each with an MTP and a Dual-MTP curve. All curves rise roughly linearly, and the Dual-MTP curves sit lower.",
+ "caption": "Cumulative error in block-wise multi-token prediction. Left: Example of snowball error, where early block-level mistakes propagate and amplify across subsequent predictions. Right: Visualization of the empirical cumulative predictive-entropy proxy across different models.",
+ "caption_source": "latex",
+ "abstract": "Multi-token prediction (MTP) accelerates autoregressive decoding through block-wise prediction, but remains vulnerable to error accumulation across sequentially generated blocks. To investigate this limitation, we analyze the distinction between block-wise and sequence-level cumulative information loss (CIL). Specifically, when the model generates using its own previous outputs without access to reference answers, the input-conditional gap equals the cross-block dependence of the reference targets. To improve prediction when these generated prefixes are imperfect, we propose Dual-MTP, which supervises shared prediction heads under full and randomly masked contexts. Together, complete-prefix supervision and context perturbations provide complementary training signals while retaining the MTP architecture. To characterize this training objective, we use the normalized dual loss to bound the divergence between the model's predictive distributions under full and masked contexts. Experiments across five backbones and six tasks spanning mathematical reasoning and GLUE understanding show that Dual-MTP achieves the highest average task score on four of five backbones, with gains of up to 2.46 points over MTP. On mathematical reasoning tasks, Dual-MTP also achieves 1.4 to 1.9 times the decoding throughput of the NTP reference. Together, these results show that dual-context supervision can improve prediction accuracy while retaining efficient multi-token decoding.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=zjAVLNtSaV",
+  "arxiv": "https://arxiv.org/abs/2611.31966",
+  "pdf": "https://arxiv.org/pdf/2611.31966",
+  "proceedings": null,
+  "virtual": "https://neurips.cc/virtual/2026/poster/148174",
+  "code": null
+ },
+ "license": "http://creativecommons.org/licenses/by/4.0/",
+ "img": "cc-by",
+ "image_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/images/neurips26-8963.png",
+ "thumb_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/thumbs/neurips26-8963.webp",
+ "figure_page": 1,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.55
+}

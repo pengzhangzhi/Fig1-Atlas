@@ -1,0 +1,49 @@
+{
+ "id": "icml26-1772",
+ "title": "Constitutional Black-Box Monitoring for Scheming in LLM Agents",
+ "authors": [
+  "Simon Storf",
+  "Rich Barton-Cooper",
+  "James Peters-Gill",
+  "Marius Hobbhahn"
+ ],
+ "venue": "ICML 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "Social Aspects->Safety",
+ "role": "analysis-finding",
+ "role2": "teaser-result",
+ "claim": "Light optimization generalizes best; heavier optimization raises train scores but widens the train-test gap and lowers test performance, showing saturation and overfitting.",
+ "layout": "2 panels, left-to-right: grouped bars then ROC curves, shaded partial-AUROC region",
+ "tags": [
+  "prompt-optimization",
+  "overfitting",
+  "saturation",
+  "generalization",
+  "monitoring"
+ ],
+ "style": [
+  "plot",
+  "colorful"
+ ],
+ "description": "Two side-by-side plots. The left panel is a grouped bar chart of partial AUROC (y-axis 0.5–1.0) for three optimization regimes: no optimization (red), light optimization via prompt sweep (green), and heavy optimization via automated prompt iteration (orange). Each regime has a hatched lighter train bar and a solid darker test bar, with black error bars. The green bars are tallest on test (about 0.85). The orange test bar is lower (0.80), and its train bar is as high as the green one. The red bars are lowest. The right panel shows ROC curves on test for the same three monitors. A dotted vertical line at FPR 0.2 marks a shaded partial-AUROC region, and a dashed diagonal marks random performance. The legend lists each partial AUROC value. The eye goes first to the tall green bars and the gap between hatched and solid bars.",
+ "caption": "Monitor performance under different optimization regimes. (Left) Bar plot showing train and test performance for three prompting approaches: a minimal baseline prompt (no optimization), a prompt selected via a sweep on Gloom (light optimization), and a prompt obtained via GEPA automated prompt optimization on Gloom (heavy optimization). All monitors use Claude Sonnet 4.5 as the monitor LLM. Error bars indicate 95% confidence intervals computed via bootstrap resampling with replacement. (Right) ROC curves for the performance of the three monitors on test, with the partial AUROC region (FPR $<$ 0.2) highlighted. The performance of a random classifier is shown for reference.",
+ "caption_source": "latex",
+ "abstract": "Safe deployment of Large Language Model (LLM) agents in autonomous settings requires reliable oversight mechanisms. A central challenge is detecting scheming, where agents covertly pursue misaligned goals. One approach to mitigating such risks is LLM-based monitoring: using language models to examine agent behaviors for suspicious actions. We study constitutional black-box monitors: prompted classifiers that detect scheming using only externally observable inputs and outputs, optimized on synthetic data generated from natural-language behavior specifications. We introduce two pipelines for generating synthetic agent trajectories, STRIDE (iterative refinement) and Gloom (agent-environment simulation), from which we generate 1,000 samples each. We optimize frontier LLM monitors on these datasets via prompt sweeps, human refinement, and automated prompt optimization, and evaluate performance on 7,500 held-out trajectories from ControlArena, a suite of grounded environments where agents operate in more realistic contexts. Our results demonstrate that monitors selected purely on synthetic data can generalize to more realistic environments, capturing a meaningful scheming signal. However, we find that performance saturates quickly in our setting, with simple prompt sweeps matching the results of more extensive optimization. Pushing beyond this limit yields no further improvements and instead leads to overfitting.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=GkL3dANi6M",
+  "arxiv": "https://arxiv.org/abs/2603.00829",
+  "pdf": "https://raw.githubusercontent.com/mlresearch/v306/main/assets/storf26a/storf26a.pdf",
+  "proceedings": "https://proceedings.mlr.press/v306/storf26a.html",
+  "virtual": "https://icml.cc/virtual/2026/poster/65104",
+  "code": null
+ },
+ "license": "http://creativecommons.org/licenses/by/4.0/",
+ "img": "cc-by",
+ "image_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/images/icml26-1772.png",
+ "thumb_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/thumbs/icml26-1772.webp",
+ "figure_page": 1,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.8
+}

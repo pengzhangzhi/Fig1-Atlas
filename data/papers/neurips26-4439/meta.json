@@ -1,0 +1,50 @@
+{
+ "id": "neurips26-4439",
+ "title": "Echoes of Error: Residual-Directional Local Rollout Consistency for Timeseries Forecasting",
+ "authors": [
+  "Zheng Wang",
+  "Kaixuan Zhang",
+  "Xiaonan Lu",
+  "Wanfang Chen"
+ ],
+ "venue": "NeurIPS 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "Applications->Time Series",
+ "role": "pipeline",
+ "role2": "concept",
+ "claim": "Compare next predictions from states built with true versus self-generated outputs, and penalize their discrepancy to keep errors from propagating.",
+ "layout": "2 panels, left stacked timelines feeding right formula panel, math boxes",
+ "tags": [
+  "rollout-consistency",
+  "teacher-forcing",
+  "free-running",
+  "regularization",
+  "time-series"
+ ],
+ "style": [
+  "math-heavy",
+  "colorful",
+  "minimal"
+ ],
+ "description": "The left panel has two stacked timeline diagrams on a pale blue background. The top one is 'Teacher-Forced Prediction (use actual future data)'. It shows rows of dots grouped into rounded boxes for window t (blue), window t+1 with y_t (blue) and window t+2 (green). A magenta arrow runs from window t+1 through a pink g_θ box to window t+2. The bottom one is 'Free Running Prediction (use model's own forecast)'. Its window t+1 is orange and carries ŷ_t. It has two g_θ steps, one from window t to t+1 and one from t+1 to t+2. A large gradient arrow points to the right panel, 'Enforced Consistency', on a lavender background. That panel has two boxed equations. The first defines the consistency functional C_θ(x_t, y_t) as the squared norm of g_θ(x_TF) minus g_θ(x_FR). The second defines the augmented objective L_cons = ||r_t||² + λC_θ. The eye goes first to the colored timelines, then to the equations.",
+ "caption": "Local rollout consistency. Given a history window $x_t$, teacher forcing constructs the next state using the observed target $y_t$, while free running constructs it using the model forecast $\\hat{y}_t$. The ideal consistency loss penalizes the discrepancy between the next predictions from these two states; the practical objective uses a first-order residual-direction surrogate.",
+ "caption_source": "latex",
+ "abstract": "In time-series forecasting, rollout errors are not merely one-step fitting discrepancies: once fed back into the evolving state, they can perturb future predictions. We formalize this effect through local rollout consistency, which compares the next prediction produced under teacher forcing with that produced under free running. In principle, this consistency can be enforced directly by tracking the residual-induced perturbation of the next state. In practice, however, the residual-to-state alignment operator is often difficult to design when the input state and output block have different dimensions, heterogeneous components, or architecture-dependent layouts. We therefore use a first-order local surrogate that penalizes the Jacobian-vector product of the predictor along the actual feedback perturbation, suppressing precisely the directions through which self-generated errors remain visible to future predictions. We further give the same loss a geometric interpretation near a predictive manifold: by controlling residual-induced directions that probe the normal bundle, the objective yields theoretical conditions under which free-running trajectories remain inside a stability tube around the manifold. Experiments on time series forecasting tasks support this view, showing that the proposed regularization improves predictive accuracy. More broadly, our results suggest a training principle for time-series forecasters and sequential predictors: a model should not only make small one-step errors, but also learn not to let its own errors echo into the future. Code is available at https://github.com/Wangzzzzzzzz/Echoes-Of-Error.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=UjSZdUySXj",
+  "arxiv": "https://arxiv.org/abs/2611.07473",
+  "pdf": "https://arxiv.org/pdf/2611.07473",
+  "proceedings": null,
+  "virtual": "https://neurips.cc/virtual/2026/poster/152212",
+  "code": "https://github.com/Wangzzzzzzzz/Echo-Of-Error"
+ },
+ "license": "http://creativecommons.org/licenses/by-nc-nd/4.0/",
+ "img": "none",
+ "image_url": null,
+ "thumb_url": null,
+ "figure_page": 1,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.6
+}

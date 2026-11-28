@@ -1,0 +1,50 @@
+{
+ "id": "icml26-4533",
+ "title": "Explainable Federated Learning via Global–Local Attribution Alignment",
+ "authors": [
+  "Dawood Wasif",
+  "Terrence Moore",
+  "Chang-Tien Lu",
+  "Jin-Hee Cho"
+ ],
+ "venue": "ICML 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "Social Aspects->Accountability, Transparency, and Interpretability",
+ "role": "pipeline",
+ "role2": "overview-framework",
+ "claim": "Decouple task training from explanation coordination: clients send compact private attribution artifacts, and the server aggregates them into a prior that aligns clients.",
+ "layout": "Two enclosed regions (client left, server right), left-to-right flow with feedback loop",
+ "tags": [
+  "federated-learning",
+  "explainability",
+  "privacy",
+  "aggregation",
+  "distillation"
+ ],
+ "style": [
+  "math-heavy",
+  "icon-heavy",
+  "colorful"
+ ],
+ "description": "A dashed blue rounded region labeled 'Client i' fills most of the figure. A dash-dotted teal region labeled 'Server' sits on the right. On the client side, a database icon (Local Data D_i) feeds a small neural network (Task Model f). The task model feeds a Surrogate Trainer, which trains a Surrogate Model g_i. The data path continues through an Explainer, a grid-shaped Group Space icon, a Σ Averager and a trapezoid Top-k Compressor. A gear (Quantization) and a shield (DP Noise) lead to an Artifact S_i, which goes to the server's Robust Prior Aggregator. Two blue gradient boxes, the Local Optimizer and the JSD Align Loss, carry the loss equations. On the server, a normalize box feeds a gray Global Explanation Prior document. A Model Aggregator broadcasts θ and Π back to the clients, and a dashed arrow carries Π to the JSD loss. An Update Loop icon marks the cycle. Teal outlined boxes mark modules, and equations are set under or inside most boxes.",
+ "caption": "{ Overall framework of xFedAlign.} Each client $i$ with local data $\\mathcal{D}_i=\\{(x,y)\\}$ (where $x\\in\\mathcal{X}$ and $y\\in\\{1,\\ldots,C\\}$) distills a lightweight surrogate $g_i$ from the local task model $f_{\\theta^{(t)}}$, maps per-example attributions into the shared group space $\\mathcal{G}$, aggregates them into per-class means $\\bar{E}_i^{(c)}$ with $c\\in\\{1,\\ldots,C\\}$, and sends a compressed top-$k$ artifact $S_i^{(t)}$ after $\\ell_2$ clipping, quantization, and DP noise via secure aggregation. The server robustly aggregates $\\{S_i^{(t)}\\}$ to form the Global Explanation Prior $\\Pi^{(t)}$, normalizes it on the simplex, and broadcasts $(\\theta^{(t+1)},\\Pi^{(t+1)})$. Clients then optimize task loss, surrogate mimicry, and JSD alignment to $\\Pi^{(t)}$, yielding faithful, consistent, and private explanations without sharing raw data or gradients.",
+ "caption_source": "latex",
+ "abstract": "Federated learning enables on-device training without centralizing data, yet existing systems still struggle to provide explanations that are both locally faithful and globally consistent under strict privacy and bandwidth constraints. Prior approaches either keep explanations siloed across clients, transmit heavy or sensitive artifacts, or replace expressive task models with interpretable surrogates that sacrifice accuracy. We propose xFedAlign, a model-agnostic framework that decouples task optimization in parameter space from explanation coordination in a compact group space. Each client distills a lightweight surrogate to produce private, per-class top-k attribution artifacts, which are robustly aggregated by the server into a Global Explanation Prior that softly aligns client explanations without constraining task learning. Across image, text, and tabular benchmarks with IID and non-IID partitions, xFedAlign matches FedAvg accuracy while consistently reducing explanation drift and improving deletion and insertion AUC relative to Local-XAI, FedAttr-Agg, and Fed-XAI, with only a few kilobytes of additional communication per round. Privacy and robustness evaluations further demonstrate reduced membership inference advantage and increased resistance to attribution poisoning, enabling consistent and trustworthy explanations in federated learning.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=gicCGXeG2P",
+  "arxiv": "https://arxiv.org/abs/2611.20445",
+  "pdf": "https://raw.githubusercontent.com/mlresearch/v306/main/assets/wasif26a/wasif26a.pdf",
+  "proceedings": "https://proceedings.mlr.press/v306/wasif26a.html",
+  "virtual": "https://icml.cc/virtual/2026/poster/62427",
+  "code": "https://github.com/dawoodwasif/xFedAlign"
+ },
+ "license": "http://creativecommons.org/licenses/by/4.0/",
+ "img": "cc-by",
+ "image_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/images/icml26-4533.png",
+ "thumb_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/thumbs/icml26-4533.webp",
+ "figure_page": 3,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.85
+}

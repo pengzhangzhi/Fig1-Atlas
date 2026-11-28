@@ -1,0 +1,49 @@
+{
+ "id": "neurips26-2048",
+ "title": "Virtual Task Prompting for Multi-Task Scene Understanding",
+ "authors": [
+  "Zedong Wang",
+  "Yucheng Wang",
+  "Dan Xu"
+ ],
+ "venue": "NeurIPS 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "Computer Vision->Classification and Understanding",
+ "role": "prior-vs-ours",
+ "role2": "pipeline",
+ "claim": "Prior multi-task encoders modify the backbone to gain capacity; ours keeps the backbone vanilla and adds external read-write virtual states.",
+ "layout": "3 panels, left-to-right, dashed dividers, zoomed-in inset from (b) block",
+ "tags": [
+  "multi-task-learning",
+  "prompting",
+  "vision-transformer",
+  "routing",
+  "backbone-agnostic"
+ ],
+ "style": [
+  "colorful",
+  "icon-heavy",
+  "minimal"
+ ],
+ "description": "Three panels separated by dashed vertical lines. Panel (a) shows the TaskPrompter encoder block. Image tokens (I) and task tokens (P) go through separate spatial-wise self-attention and channel-wise cross-attention branches. The branches are drawn with yellow and red boxes, Add/Norm/Feed-Forward blocks and skip arrows, which make a modified, tangled ViT block. Panel (b) shows the VTP encoder as a clean stacked ViT block. Blue VTP Forward modules sit at the block's input and output. A blue-bordered zoom inset on the right expands them into VTP Read and VTP Write, with green virtual tokens (V) and pink task tokens (P). Panel (c) shows the VTP decoder. Task-specific and reweighting attention paths for T=3 tasks feed per-task losses L1 to L3, with an attention-mask grid and a legend. The eye lands first on the contrast between (a) and (b).",
+ "caption": "Overview of Virtual Task Prompting (VTP). (a) TaskPrompter [ref] modifies ViT encoder to compensate for the limited capacity. (b) VTP instead maintains $T{+}V$ virtual states alongside the encoder, where the model read them to $T$ task vectors to interact with image tokens, and then write the results back to $T{+}V$ bypass, enriching task representations while maintaining a vanilla ViT block. (c) VTP keeps the prompt-guided decoding pipeline but unifies the spatial-channel parts into one.",
+ "caption_source": "latex",
+ "abstract": "Multi-task scene understanding models typically rely on modified vision encoders or complex decoders for cross-task interaction, which limits their flexibility and compatibility with off-the-shelf vision foundation models (VFMs). We introduce Virtual Task Prompting (VTP), which frames multi-task prompting as retrieving task-adaptive compositions from a shared virtual state, where both the state and routing process are optimized in an end-to-end manner. Concretely, VTP maintains an expanded set of virtual tasks alongside the backbone. At each layer, learnable routing matrices read task-specific compositions as input to interact with image tokens and write the processed results back, forming explicit pathways that capture the intricacies among tasks outside the encoder. Since VTP keeps the backbone clean, it integrates seamlessly with pretrained VFMs, advancing the state of the art on Pascal-Context and NYUD-v2. Stress test on Taskonomy with 13 heterogeneous tasks further shows VTP's robustness in extreme settings. Ablations and analysis indicate that VTP's gains stem from adaptive routing rather than increased capacity. The project page is available at https://jacky1128.github.io/VTP/.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=EXN4VTZJ8q",
+  "arxiv": "https://arxiv.org/abs/2611.11041",
+  "pdf": "https://arxiv.org/pdf/2611.11041",
+  "proceedings": null,
+  "virtual": "https://neurips.cc/virtual/2026/poster/154323",
+  "code": "https://jacky1128.github.io/VTP/"
+ },
+ "license": "http://creativecommons.org/licenses/by/4.0/",
+ "img": "cc-by",
+ "image_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/images/neurips26-2048.png",
+ "thumb_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/thumbs/neurips26-2048.webp",
+ "figure_page": 1,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.6
+}

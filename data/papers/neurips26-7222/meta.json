@@ -1,0 +1,47 @@
+{
+ "id": "neurips26-7222",
+ "title": "BQ-LoRA: Binary-Quantized Low-Rank Adapters as Implicit Regularizers for Parameter-Efficient Fine-Tuning",
+ "authors": [
+  "Juyoung Park",
+  "Heejun Lee"
+ ],
+ "venue": "NeurIPS 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "General Machine Learning->Transfer, Multitask and Meta-learning",
+ "role": "analysis-finding",
+ "role2": null,
+ "claim": "Training loss and generalization disagree: the lower-capacity variant fits training data worse yet generalizes better, suggesting implicit regularization.",
+ "layout": "1 panel line plot, loss versus steps, dashed overlay showing identical curves",
+ "tags": [
+  "training-curves",
+  "implicit-regularization",
+  "quantization",
+  "loss-vs-generalization",
+  "low-rank-adapters"
+ ],
+ "style": [
+  "plot",
+  "minimal"
+ ],
+ "description": "A single line chart of training loss (y-axis, 0.95 to 1.40) against optimizer step (x-axis, 0 to 3000), with a light grid. A solid red curve for QLoRA falls steadily from about 1.19 to about 1.02. An orange solid line for NormScale and a blue dashed line for LearnThresh lie exactly on top of each other. They start near 1.34, drop sharply to about 1.21 by step 600, then plateau at about 1.18 to 1.20. A legend box in the lower left names the three methods. The eye goes first to the persistent gap between the red curve and the overlapping orange and blue curves. The y-axis label names the model and the number of seeds. There are no annotations or arrows.",
+ "caption": "Training loss on Qwen2.5-7B (Alpaca, 3{,}000 steps, mean of 2 seeds). QLoRA descends to $\\approx 1.02$; BQ variants plateau at $\\approx 1.18$, a $0.16$-nat gap. Test perplexity, however, is better for the BQ variants ($9.86$ vs.\\ $10.39$, Table [ref]), and benchmark Avg is $\\sim 3$\\,pts higher. NormScale and LearnThresh trajectories are point-wise identical, consistent with their shared hypothesis class up to a per-layer scalar threshold.",
+ "caption_source": "latex",
+ "abstract": "Parameter-efficient fine-tuning of quantized large language models is dominated by QLoRA, which combines 4-bit weight quantization with FP16 low-rank adapters. We ask whether the FP16 adapter precision is necessary. Replacing it with a single binary bit per adapter parameter, combined with a learned per-layer scale $s$ and a Scaled Straight-Through Estimator, reduces adapter storage by 13-16x. We introduce two variants -- NormScale, which binarizes under a norm-preserving scale with a clipped STE, and LearnThresh, which makes the binarization threshold learnable -- unified under a framework we call BQ-LoRA. Our main theoretical contribution is a tight characterization of the BQ-LoRA hypothesis class: it has bounded entrywise norm, a typical-set spectral norm bound that is $Î(r)$ times sharper than the worst case, a full-rank, near-isotropic update, and consequently a Rademacher complexity that yields an explicit $\\tilde{O}(s_{\\max}Î±\\sqrt{d_{out}/(rn)})$ generalization bound. FP16 LoRA has no comparable a priori norm or isotropy control. On Qwen2.5 (1.5B-72B), BQ-LoRA exceeds QLoRA's benchmark averages at every scale by 0.8-3.5 points; on LLaMA-2 (7B/70B) it remains competitive at the same storage reduction but does not uniformly lead the strongest FP16-adapter baselines (LoftQ at 7B, QLoRA at 70B). On Qwen2.5-7B the binary adapter preserves the 4-bit base WikiText-2 PPL within 0.06 (9.86 vs. 9.80) while QLoRA worsens it by 0.59. The reduction applies to inference-time adapter storage and serving; training memory matches QLoRA and step time rises by under 4%. We translate the storage saving into a deployment study, BQ-SGMV, by extending Punica's SGMV kernel with a binary inner-product primitive: the same A100-80GB holds 15.6x more adapters in HBM, and our research prototype eliminates cache misses under a skewed synthetic workload.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=nnhvsIx2Kl",
+  "arxiv": "https://arxiv.org/abs/2611.22334",
+  "pdf": "https://arxiv.org/pdf/2611.22334",
+  "proceedings": null,
+  "virtual": "https://neurips.cc/virtual/2026/poster/149729",
+  "code": null
+ },
+ "license": "http://creativecommons.org/licenses/by/4.0/",
+ "img": "cc-by",
+ "image_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/images/neurips26-7222.png",
+ "thumb_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/thumbs/neurips26-7222.webp",
+ "figure_page": 7,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.8
+}

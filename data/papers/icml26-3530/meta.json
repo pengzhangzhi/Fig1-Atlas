@@ -1,0 +1,52 @@
+{
+ "id": "icml26-3530",
+ "title": "SINQ: Sinkhorn-Normalized Quantization for Calibration-Free Low-Precision LLM Weights",
+ "authors": [
+  "Lorenz K. Muller",
+  "Philippe Bich",
+  "Jiawei Zhuang",
+  "Ahmet Çelik",
+  "Luca Benfenati",
+  "Lukas Cavigelli"
+ ],
+ "venue": "ICML 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "Deep Learning->Large Language Models",
+ "role": "concept",
+ "role2": "prior-vs-ours",
+ "claim": "Scaling along both axes lets outlier error spread across rows and columns, avoiding the large localized error that single-scale quantization causes.",
+ "layout": "2 groups: left cartoon with legend, right three heatmaps; left-to-right",
+ "tags": [
+  "quantization",
+  "dual-scaling",
+  "outlier-handling",
+  "error-distribution",
+  "calibration-free"
+ ],
+ "style": [
+  "minimal",
+  "colorful",
+  "plot"
+ ],
+ "description": "The figure has two parts. On the left is a conceptual cartoon of a matrix split into blocks. The single-scale version has one scale vector per row group. A blue outlier dot sits in one cell, with a single bold red X marking a large error beneath it. The dual-scale version, labeled ours, adds a second scale vector along the side. Here the outlier's error is shared out as several faint pink Xs across its row and column. A legend explains the blue outlier dot, the red large-error X, the pink small-error X, and the gray scale-vector bar. On the right are three small heatmaps. The grayscale input matrix has one bright outlier cell. Next to it, the single-scale error map has a strong yellow column. The dual-scale error map is more uniform and muted. The eye goes first to the colored heatmaps and the blue dot.",
+ "caption": "If we have scales along both dimensions of a matrix that is to be quantized, we can trade off the impact of outliers between rows and columns, which is impossible in single-scale quantization. Left: Conceptual illustration of error distributions with single or dual-scaling. Right: Example on small matrix.",
+ "caption_source": "latex",
+ "abstract": "Post-training quantization has emerged as the most widely used strategy for deploying large language models at low precision. Still, current methods show perplexity degradation at bit-widths less than or equal to 4, partly because representing outliers causes precision issues in parameters that share the same scales as these outliers. This problem is especially pronounced for calibration-free, uniform quantization methods. We introduce SINQ to augment existing post-training quantizers with an additional second-axis scale factor and a fast Sinkhorn-Knopp-style algorithm that finds scales to normalize per-row and per-column variances. We show that this approximates activation-aware quantization by recovering column scales from the weight matrix structure that are predictive of the typical activation magnitudes the matrix received during training. Our method has no interactions between layers and can be trivially applied to new architectures to quantize any linear layer. We evaluate our method on the Qwen3 model family, among others. SINQ reduces the perplexity gap on WikiText2 and C4 by over 50% against uncalibrated uniform quantization baselines, incurs zero to negligible compute overhead, and can be further enhanced by combining it with calibration and non-uniform quantization levels. Code is available at https://github.com/huawei-csl/SINQ.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=XQjgmQ8P1n",
+  "arxiv": "https://arxiv.org/abs/2509.22944",
+  "pdf": "https://raw.githubusercontent.com/mlresearch/v306/main/assets/muller26a/muller26a.pdf",
+  "proceedings": "https://proceedings.mlr.press/v306/muller26a.html",
+  "virtual": "https://icml.cc/virtual/2026/poster/63404",
+  "code": null
+ },
+ "license": "http://arxiv.org/licenses/nonexclusive-distrib/1.0/",
+ "img": "none",
+ "image_url": null,
+ "thumb_url": null,
+ "figure_page": 1,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.6
+}

@@ -1,0 +1,55 @@
+{
+ "id": "neurips26-7036",
+ "title": "SLA2: Sparse-Linear Attention with Learnable Routing and Quantization-aware Training",
+ "authors": [
+  "Jintao Zhang",
+  "Haoxu Wang",
+  "Kai Jiang",
+  "Kaiwen Zheng",
+  "Youhe Jiang",
+  "Ion Stoica",
+  "Jianfei Chen",
+  "Jun Zhu",
+  "Joseph Gonzalez"
+ ],
+ "venue": "NeurIPS 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "Deep Learning->Attention Mechanisms",
+ "role": "pipeline",
+ "role2": null,
+ "claim": "A learnable router splits attention between a sparse branch and a linear branch, and a learnable ratio blends their outputs.",
+ "layout": "Single panel, two stacked branches, left-to-right dashed arrows, flame icons on trainable parts",
+ "tags": [
+  "sparse-attention",
+  "linear-attention",
+  "learnable-routing",
+  "efficiency",
+  "dual-branch"
+ ],
+ "style": [
+  "icon-heavy",
+  "math-heavy",
+  "colorful"
+ ],
+ "description": "A single block diagram with dashed arrows showing data flow. Gray tall rectangles for inputs Q, K and V sit on the left. A large rounded box at the top holds the sparse branch. Q and K feed a mustard-yellow box, softmax(QK^T ⊙ M), which leads to a gray square P, then a MatMul box, then O_s. In the middle, an orange 'Learnable Router' box R takes Q and K and outputs a mask M through a 'Soft-TopK' arrow. M feeds back into the softmax box and down into the lower linear-attention branch. A lower box holds the Linear Attention block, which produces O_l. An orange vertical bar α scales O_s (α ⊙ O_s), and a bar 1−α scales O_l. A '+' node sums the two scaled outputs into the output O on the right. Small flame icons mark the learnable parts: the router and both ratio bars. Orange marks learnable components and yellow marks compute operations.",
+ "caption": "Computation pipeline of \\our.",
+ "caption_source": "latex",
+ "abstract": "Sparse-Linear Attention (SLA) combines sparse and linear attention to accelerate diffusion models and has shown strong performance in video generation. However, (i) SLA relies on a heuristic split that assigns computations to the sparse or linear branch based on attention-weight magnitude, which can be suboptimal. Additionally, (ii) after formally analyzing the attention error in SLA, we identify a mismatch between SLA and a direct decomposition into sparse and linear attention. We propose SLA2, which introduces (I) a learnable router that dynamically selects whether each attention computation should use sparse or linear attention, (II) a more faithful and direct sparse-linear attention formulation that uses a learnable ratio to combine the sparse and linear attention branches, and (III) a sparse + low-bit attention design, where low-bit attention is introduced via quantization-aware fine-tuning to reduce quantization error. Experiments show that on video diffusion models, SLA2 can achieve 97% attention sparsity and deliver an 18.6x attention speedup while preserving generation quality.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=mTASL9d9xh",
+  "arxiv": "https://arxiv.org/abs/2602.12675",
+  "pdf": "https://arxiv.org/pdf/2602.12675",
+  "proceedings": null,
+  "virtual": "https://neurips.cc/virtual/2026/poster/149892",
+  "code": "http://jt-zhang.github.io"
+ },
+ "license": "http://creativecommons.org/licenses/by/4.0/",
+ "img": "cc-by",
+ "image_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/images/neurips26-7036.png",
+ "thumb_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/thumbs/neurips26-7036.webp",
+ "figure_page": 3,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.95
+}

@@ -1,0 +1,50 @@
+{
+ "id": "icml26-5328",
+ "title": "UB-SMoE: Universally Balanced Sparse Mixture-of-Experts for Resource-adaptive Federated Fine-tuning of Foundation Models",
+ "authors": [
+  "Van-Tuan Tran",
+  "Hong-Hanh Nguyen-Le",
+  "Marco Ruffini",
+  "Merim Dzaferagic"
+ ],
+ "venue": "ICML 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "Deep Learning->Everything Else",
+ "role": "pipeline",
+ "role2": "prior-vs-ours",
+ "claim": "A server and heterogeneous clients exchange statistics and updates, with routing modulation and pseudo-gradients keeping experts usable under differing compute budgets.",
+ "layout": "3 panels: server center, two clients flanking, arrows looping; color-coded legend bottom",
+ "tags": [
+  "federated-learning",
+  "mixture-of-experts",
+  "sparse-routing",
+  "resource-heterogeneity",
+  "pseudo-gradients"
+ ],
+ "style": [
+  "icon-heavy",
+  "colorful",
+  "math-heavy"
+ ],
+ "description": "A central gray-blue Server box holds two components: Universal Pseudo-Gradients (tan) and Global Utilization Statistics (light blue). Flanking it are a High-Resource Client on the left, with a server-rack icon, and a Low-Resource Client on the right, with a phone icon. Thick black arrows labeled Download carry G~, u~ and Θ from the server to each client. Upload arrows labeled Θ, u return to the server. Each client has a green Dynamic Modulated Routing box with the formula m = s + φ. It feeds a Router, which fans out to a row of Expert circles. The high-resource client has three pink activated experts (K_high) and three dashed inactive ones. The low-resource client has one pink expert (K_low) and five dashed ones. Dashed arrows carry ρ_c·G~ from tan pseudo-gradient boxes into the inactive experts. A legend along the bottom explains the colors.",
+ "caption": "Overview of the UB-SMoE architecture for resource-adaptive federated fine-tuning. The system operates in five steps: (1) The server computes global utilization statistics $\\tilde{u}$ tracking expert usage across clients; (2) Each client's router applies Dynamic Modulated Routing, modulating logits via $m^{(l)}_i = s^{(l)}_i + \\phi^{(l)}_i$ to promote under-utilized but relevant experts; (3) Clients activate a budget-specific number of experts $K_c$; (4) During local training, non-activated experts receive pseudo-gradients scaled by $\\rho_c$ to compensate for limited coverage in resource-constrained clients; (5) Clients send parameter updates and utilization statistics back to the server for aggregation.",
+ "caption_source": "latex",
+ "abstract": "Heterogeneous LoRA-rank methods address system heterogeneity in federated fine-tuning of foundation models by assigning client-specific ranks based on computational capabilities. However, these methods achieve only marginal computational savings, as dense feed-forward computations dominate. Sparse Mixture-of-Experts (SMoE) provides a promising alternative through conditional computation, yet we identify that its naive application to heterogeneous federated settings introduces two critical discordances: (i) expert utilization imbalance and (ii) non-differentiability of Top-K routing. Our convergence analysis demonstrates that these discordances lead to degraded convergence, particularly for resource-constrained clients. To address these challenges, we propose Universally Balanced Sparse Mixture-of-Experts (UB-SMoE), which introduces Dynamic Modulated Routing (DMR) to rebalance expert utilization, and Universal Pseudo-Gradient (PG) to reconstruct learning signals for non-activated experts. These mechanisms form a self-reinforcing cycle that maintains expert viability across heterogeneous clients. Experiments on benchmarks show that UB-SMoE achieves up to $45.0\\%$ computational reduction on low-resource clients while improving their performance by $8.7 \\times$ compared to existing heterogeneous LoRA-rank methods.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=nxgmp4aWer",
+  "arxiv": "https://arxiv.org/abs/2605.16690",
+  "pdf": "https://raw.githubusercontent.com/mlresearch/v306/main/assets/tran26f/tran26f.pdf",
+  "proceedings": "https://proceedings.mlr.press/v306/tran26f.html",
+  "virtual": "https://icml.cc/virtual/2026/poster/61663",
+  "code": null
+ },
+ "license": "http://creativecommons.org/licenses/by-nc-sa/4.0/",
+ "img": "cc-by-nc-sa",
+ "image_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/images/icml26-5328.png",
+ "thumb_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/thumbs/icml26-5328.webp",
+ "figure_page": 2,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.8
+}

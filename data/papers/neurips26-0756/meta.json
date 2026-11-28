@@ -1,0 +1,55 @@
+{
+ "id": "neurips26-0756",
+ "title": "Rollout Pass-Rate Control: Steering Binary-Reward RL Toward Its Most Informative Regime",
+ "authors": [
+  "Tianshu Zhu",
+  "Wenyu Zhang",
+  "Xiaoying Zuo",
+  "Tianlun",
+  "Haotian Zhao",
+  "yucheng-zeng",
+  "Jingnan gu",
+  "Daxiang Dong",
+  "Jianmin Wu"
+ ],
+ "venue": "NeurIPS 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "Reinforcement Learning->Deep RL",
+ "role": "pipeline",
+ "role2": "prior-vs-ours",
+ "claim": "Standard group sampling wastes compute on degenerate groups; replaying prefixes from skewed groups rebalances them toward informative mixed outcomes.",
+ "layout": "2 stacked panels, left-to-right then right-to-left loop, curved arrows linking panels",
+ "tags": [
+  "prefix-replay",
+  "reinforcement-learning",
+  "data-efficiency",
+  "binary-reward",
+  "rollout-filtering"
+ ],
+ "style": [
+  "colorful",
+  "icon-heavy",
+  "minimal"
+ ],
+ "description": "The figure has two stacked boxes. The top gray box, labeled GRPO, shows a normal batch of five prompts (A–E) going through rollout with n=4. This produces five groups of green check and red cross response columns: all-pass and all-fail (both discarded), balanced (RL Train), and too-hard and too-easy (also RL Train). Blue curved arrows lead from the too-hard and too-easy groups into the lower blue box, labeled Prefix Sampling. There the flow runs right to left through three stages: Prefix Selection (adaptive prefix), Prefix Masking, and Prefix Replay. Below this, a mixed batch of prompts D–H goes through rollout again. It now yields mostly balanced groups. A legend at the bottom explains prompt, passed response and failed response icons.",
+ "caption": "Prefix Sampling pipeline. For each task we sample a rollout group and route it by pass count: degenerate $0/8$ or $8/8$ groups are filtered; all other groups remain trainable; skewed non-degenerate groups additionally provide replay prefixes. Mostly failing hard buckets reuse a successful prefix as a head start, while mostly passing easy buckets reuse a failing prefix as a handicap. The current policy generates fresh continuations from the replay-reconstructed prefix state; masking applies RL loss only to continuation tokens, steering rerollouts toward $50%$ without crediting replayed actions. Counts in the diagram are schematic; experiments use $N=8$ rollouts.",
+ "caption_source": "latex",
+ "abstract": "Agentic reinforcement learning (RL) for software engineering spends much of its compute on stateful trajectories whose grouped binary rewards are highly skewed and weakly contrastive. We frame this as pass-rate control and show that the binary reward-side signal is strongest near a 50% rollout pass rate under four criteria: reward entropy, group-filtering survival, leave-one-out (RLOO) advantage energy under Group Relative Policy Optimization (GRPO), and success-failure pair count. We propose Prefix Sampling (PS), which replays self-generated trajectory prefixes to steer skewed groups toward this regime: successful prefixes give mostly failing groups a head start, while failing prefixes handicap mostly passing groups. Replayed states are reconstructed through the existing rollout path, and replayed tokens are masked from the loss so optimization applies only to current-policy continuations. On SWE-bench Verified, PS reaches the baseline high-score regime within evaluation variability while delivering 2.01x and 1.55x end-to-end wall-clock speedups on Qwen3-14B and Qwen3-32B; the 14B peak improves from 0.274 to 0.295. AIME 2025 experiments on 4B and 8B show the same pass-rate-control pattern, and 4B ablations attribute gains to replay, bidirectional coverage, and adaptive control.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=5MwSociabw",
+  "arxiv": "https://arxiv.org/abs/2605.05112",
+  "pdf": "https://arxiv.org/pdf/2605.05112",
+  "proceedings": null,
+  "virtual": "https://neurips.cc/virtual/2026/poster/155471",
+  "code": null
+ },
+ "license": "http://creativecommons.org/licenses/by/4.0/",
+ "img": "cc-by",
+ "image_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/images/neurips26-0756.png",
+ "thumb_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/thumbs/neurips26-0756.webp",
+ "figure_page": 2,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.85
+}

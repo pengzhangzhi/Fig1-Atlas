@@ -1,0 +1,51 @@
+{
+ "id": "icml26-6163",
+ "title": "On Efficient Scaling of GNNs via IO-Aware Layers Implementations",
+ "authors": [
+  "Daria Fomina",
+  "Daniil Krasylnikov",
+  "Alexey Boykov",
+  "Andrey Dolgovyazov",
+  "Vyacheslav Zhdanovskiy",
+  "Fedor Velikonivtsev"
+ ],
+ "venue": "ICML 2026",
+ "tier": "spotlight",
+ "track": "main",
+ "topic": "Deep Learning->Graph Neural Networks",
+ "role": "analysis-finding",
+ "role2": null,
+ "claim": "Whether reordering helps depends on the kernel mapping: gather-dominated neighbor-parallel kernels gain on some graphs, while feature-parallel kernels gain on others.",
+ "layout": "1 panel, grouped boxplots by dataset, arrows marking benefit direction",
+ "tags": [
+  "graph-reordering",
+  "kernel-mapping",
+  "gpu-efficiency",
+  "empirical-trend",
+  "boxplot"
+ ],
+ "style": [
+  "plot",
+  "colorful"
+ ],
+ "description": "A single wide boxplot chart of the reordering gap Δs on the y-axis, running from -1 to 1.2. The x-axis has five graph datasets: artnet-exp, ogbn-products, pokec-regions, city-roads-L and web-traffic. Each dataset has a cluster of boxes, colored by feature dimension D (32 to 512). Solid boxes are scalar loads and hatched boxes are vectorized loads. A dashed line marks zero. A green upward arrow with the label 'neighbor-parallel benefits from reordering' sits on the left above zero. A red downward arrow with the label 'feature-parallel benefits from reordering' sits below zero. A two-column legend is at the upper right. Ogbn-products and pokec-regions are mostly positive, with vectorized boxes highest. City-roads-L and web-traffic sit near or below zero. artnet-exp has a few outliers in both directions. The eye goes first to the tall hatched boxes at the top.",
+ "caption": "Reordering gap $\\Delta s$ on selected datasets (dot-aggr). $\\Delta s>0$ means reordering helps neighbor-parallel (gather) more. We compare scalar vs.\\ 16B vectorized loads (vec); boxes aggregate over partition sizes.",
+ "caption_source": "latex",
+ "abstract": "Graph Neural Networks (GNNs) are bottlenecked by sparse, irregular memory access. Popular frameworks such as DGL and PyTorch Geometric support general message passing, but complex layers often materialize edge-wise intermediates, increasing memory traffic and limiting scalability on large graphs. We take an I/O- and arithmetic-intensity--centric view and show that widely used layers fall into three kernel families: SpMM-based convolutions, reduction-based aggregations, and attention-based layers (GATv2/Graph Transformer). For each family, we develop GPU kernels that reduce data movement, improve locality, and remain robust across realistic graphs. We also study graph reordering and find that its impact depends on the kernel mapping: it benefits neighbor-parallel (gather-dominated) kernels more consistently than feature-parallel designs. Empirically, our fused attention kernels reach up to $\\textbf{3.9}\\times$ speedup for Graph Transformer (median $\\textbf{1.6}\\times$), with Tensor Core (block-sparse) variants up to $\\textbf{7.3}\\times$ on locally dense graphs; for GATv2 we reach up to $\\textbf{8.5}\\times$ speedup (median $\\textbf{2.0}\\times$) while reducing peak memory by up to $\\textbf{76}\\times$ (median $\\textbf{6}\\times$). Our degree-aware reduction kernels achieve up to $\\textbf{10}\\times$ speedup (median $\\textbf{2.6}\\times$). For SpMM-based layers, properly cached cuSPARSE achieves up to $\\textbf{8}\\times$ speedup over DGL and outperforms evaluated custom baselines in the majority of evaluations. We release our implementations as drop-in replacements to support reproducible, hardware-aware GNN acceleration.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=w6JVbu7VFo",
+  "arxiv": "https://arxiv.org/abs/2605.31500",
+  "pdf": "https://raw.githubusercontent.com/mlresearch/v306/main/assets/fomina26a/fomina26a.pdf",
+  "proceedings": "https://proceedings.mlr.press/v306/fomina26a.html",
+  "virtual": "https://icml.cc/virtual/2026/poster/60846",
+  "code": "https://github.com/yandex-research/On-Efficient-Scaling-Of-GNNs"
+ },
+ "license": "http://creativecommons.org/licenses/by/4.0/",
+ "img": "cc-by",
+ "image_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/images/icml26-6163.png",
+ "thumb_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/thumbs/icml26-6163.webp",
+ "figure_page": 6,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.7
+}

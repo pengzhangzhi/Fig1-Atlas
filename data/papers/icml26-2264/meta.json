@@ -1,0 +1,51 @@
+{
+ "id": "icml26-2264",
+ "title": "CoGenCast: A Coupled Autoregressive–Flow Generative Framework for Time Series Forecasting",
+ "authors": [
+  "Mingyue Cheng",
+  "Yaguo Liu",
+  "Daoyu Wang",
+  "Xiaoyu Tao",
+  "Qi Liu"
+ ],
+ "venue": "ICML 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "Deep Learning->Sequential Models, Time series",
+ "role": "pipeline",
+ "role2": null,
+ "claim": "A frozen-backbone encoder-decoder conditions a flow-matching head, trained jointly and run autoregressively with one-step sampling at inference.",
+ "layout": "2 panels (Training | Inference), bottom-to-top data flow, inset showing attention reconfiguration",
+ "tags": [
+  "autoregressive",
+  "flow-matching",
+  "encoder-decoder",
+  "one-step-generation",
+  "architecture-adaptation"
+ ],
+ "style": [
+  "colorful",
+  "icon-heavy",
+  "math-heavy"
+ ],
+ "description": "The figure has two panels split by a vertical dashed line. The left panel, Training, flows bottom to top. Context features (text) and a look-back window (time series plot) feed a blue LLM Encoder with bidirectional self-attention. Its hidden states pass into a pink LLM Decoder with causal self-attention and cross-attention. The decoder outputs key and value vectors for an orange Denoising Decoder, which receives a noised predicted window as the query. Above it, average-velocity arrows lead to a predicted time-series plot and the loss equation. An inset at top left shows the decoder-only LLM converted into an encoder, with scissors cutting causal attention to make it bidirectional. The right panel, Inference, repeats the stack in compact form. It starts from Gaussian noise, makes a one-step prediction with the denoising decoder, and appends the result to the input in an autoregressive loop, drawn as a dashed arrow. Blue, pink and orange mark the encoder, decoder and flow-matching parts.",
+ "caption": "Overview of our proposed CoGenCast. Left (Training): We reconfigure decoder-only LLMs into an encoder--decoder backbone by attention-only modification, and perform continuous flow-matching mechanism conditioned on the LLM-generated representation. Right (Inference): Future patches are generated autoregressively and sampled via one-step flow-matching generation with low-latency.",
+ "caption_source": "latex",
+ "abstract": "Time series forecasting can be viewed as a generative problem that requires both semantic understanding over contextual conditions and stochastic modeling of continuous temporal dynamics. Existing approaches typically rely on either autoregressive large language models (LLMs) for semantic context modeling or diffusion-like models for continuous probabilistic generation. However, neither method alone can adequately model both aspects simultaneously. In this work, we propose CoGenCast, a hybrid generative framework that couples pre-trained LLMs with flow-matching mechanism for effective time series forecasting. Specifically, we reconfigure pre-trained decoder-only LLMs into a native forecasting encoder-decoder backbone by modifying only the attention topology, enabling bidirectional context encoding and causal representation generation. Building on this, a flow-matching mechanism is further integrated to model temporal evolution, capturing continuous stochastic dynamics conditioned on the autoregressively generated representation. Notably, CoGenCast naturally supports multimodal forecasting and cross-domain unified training. Extensive experiments on multiple benchmarks show that CoGenCast achieves competitive performance compared to previous baselines. Code is available at https://github.com/liuyaguo/_CoGenCast.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=LULx50RKAz",
+  "arxiv": "https://arxiv.org/abs/2602.03564",
+  "pdf": "https://raw.githubusercontent.com/mlresearch/v306/main/assets/cheng26h/cheng26h.pdf",
+  "proceedings": "https://proceedings.mlr.press/v306/cheng26h.html",
+  "virtual": "https://icml.cc/virtual/2026/poster/64629",
+  "code": "https://github.com/liuyaguo/_CoGenCast"
+ },
+ "license": "http://creativecommons.org/licenses/by/4.0/",
+ "img": "cc-by",
+ "image_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/images/icml26-2264.png",
+ "thumb_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/thumbs/icml26-2264.webp",
+ "figure_page": 2,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.9
+}

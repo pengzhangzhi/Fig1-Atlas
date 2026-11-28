@@ -1,0 +1,53 @@
+{
+ "id": "neurips26-6118",
+ "title": "RA-CFGCache: From Branch-Level Criteria to Guided-Risk Control under Classifier-Free Guidance",
+ "authors": [
+  "Yiming Liu",
+  "Ben Wan",
+  "Tongxuan Liu",
+  "Ao Wang",
+  "Yuqi Xiong",
+  "Fan Zhang",
+  "Hui Chen",
+  "guiguang ding"
+ ],
+ "venue": "NeurIPS 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "Deep Learning->Generative Models and Autoencoders",
+ "role": "prior-vs-ours",
+ "role2": "problem-setup",
+ "claim": "Caching a single prediction yields a direct error; under guidance, errors from multiple cached branches compose into the final prediction.",
+ "layout": "2 stacked rows, left-to-right flow, branches merging into a composition box",
+ "tags": [
+  "caching",
+  "classifier-free-guidance",
+  "error-composition",
+  "diffusion",
+  "efficiency"
+ ],
+ "style": [
+  "minimal",
+  "colorful"
+ ],
+ "description": "Two horizontal flow diagrams stacked vertically, each labeled in bold at left. The top row, 'Standard Caching', is a linear chain of four rounded boxes joined by arrows: blue 'prediction p_t', gray 'cached p~_t', pink 'cache error δp_t', and green 'denoising update'. The bottom row, 'CFG Caching', has two parallel branches, blue 'uncond u_t' and 'cond c_t'. Each leads to a gray cached box (u~_t and c~_t). Both branches converge with diagonal arrows into a yellow 'CFG-guided composition' box. That box feeds a pink 'cache error δp_t' box, then a green 'denoising update' box. Color encodes role: blue for fresh predictions, gray for cached values, pink for error, green for the update. The eye starts at the top row and then moves down to the branching, merging bottom row.",
+ "caption": "Standard caching vs. CFG caching. Standard caching reuses a single prediction whose cache error directly enters the denoising update, whereas CFG caching reuses conditional and unconditional branches whose errors are composed into the guided prediction.",
+ "caption_source": "latex",
+ "abstract": "Diffusion models enable high-quality visual generation, but iterative denoising remains computationally expensive, especially under classifier-free guidance (CFG), which requires both conditional and unconditional evaluations. Training-free caching reduces this cost by reuse of previously computed features or predictions. However, existing branch-local reuse criteria do not explicitly account for how cache errors combine under CFG or how local perturbations affect the final output. We identify two misalignments in cache control: a branch-guided mismatch, where guided error depends on both the magnitudes and alignment of branch errors, and a local-final mismatch, where the downstream impact of a local error varies across timesteps. We propose RA-CFGCache, a Risk-Aligned Caching framework under CFG that incorporates both factors while keeping the sampling schedule and guidance rule fixed. CFG-aware Guided-Risk Composition combines existing branch-wise proxies using CFG coefficients and offline-calibrated cross-branch alignment. Propagation-Aware Rescaling further weights the resulting guided-risk estimate with a timestep-dependent propagation prior calibrated from isolated reuse perturbations. An online threshold controller then determines when to jointly refresh or reuse both branches. Experiments on FLUX.1-dev, Wan2.1-T2V-1.3B, and CogVideoX-2B demonstrate improved efficiency--fidelity trade-offs over evaluated training-free caching baselines. Moreover, RA-CFGCache is compatible with diverse base proxy families, including TeaCache-, DiCache-, and MagCache-style estimators, and consistently improves fidelity at nearly unchanged latency. Code is available at https://github.com/yiming-l21/RA-CFGCache.git.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=g6toliY0op",
+  "arxiv": "https://arxiv.org/abs/2609.36433",
+  "pdf": "https://arxiv.org/pdf/2609.36433",
+  "proceedings": null,
+  "virtual": "https://neurips.cc/virtual/2026/poster/150708",
+  "code": "https://github.com/yiming-l21/RA-CFGCache"
+ },
+ "license": "http://arxiv.org/licenses/nonexclusive-distrib/1.0/",
+ "img": "none",
+ "image_url": null,
+ "thumb_url": null,
+ "figure_page": 1,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.5
+}

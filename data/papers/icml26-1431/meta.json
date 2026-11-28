@@ -1,0 +1,48 @@
+{
+ "id": "icml26-1431",
+ "title": "Memory as Dynamics: Learning Reliability-Guided Predictive Models for Online Video Perception",
+ "authors": [
+  "Minwoo Kim",
+  "Sang Min Yoon"
+ ],
+ "venue": "ICML 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "Applications->Computer Vision",
+ "role": "pipeline",
+ "role2": "overview-framework",
+ "claim": "A reliability-gated predictive memory module plugs into an online video model, with predicted priors fused only when trustworthy.",
+ "layout": "2 stacked panels, left-to-right flow, dashed divider, zoomed-in module detail below",
+ "tags": [
+  "predictive-memory",
+  "state-space-model",
+  "reliability-gating",
+  "video-tracking",
+  "modular-architecture"
+ ],
+ "style": [
+  "colorful",
+  "icon-heavy",
+  "math-heavy"
+ ],
+ "description": "Top panel shows the full online video segmentation pipeline built on SAM2. Video frames pass through a SAM2.1 backbone and FPN, then Memory Attention, then a Mask Decoder, which outputs a binary mask. A second stream feeds past frames I_{t-k:t-1} through another backbone into a gray rounded box labeled Reliability-Guided Predictive Memory. That box holds State-Space Dynamics (purple), a latent Z_t, a Future Prompt Generator (orange), a predicted mask, and a Reliability-Guided Fusion block in blue-gray. Dashed arrows mark the current memory stream and solid arrows mark the predictive stream. A dashed line separates this from the bottom panel. The bottom panel expands the module into a detailed block diagram: a frame-feature sequence, a Mamba layer, a temporal softmax, norm and MLP, upsampling and projection, then reliability cues (q_obj/q_iou, d_feature) feeding a Gate. A colored bracket along the bottom labels the three stages.",
+ "caption": "Overview of Reliability-Guided Predictive Memory for online video perception. A predictive prior is generated from historical",
+ "caption_source": "pdf",
+ "abstract": "Predictive memory has recently emerged as a powerful mechanism for online video models, enabling temporal reasoning beyond static memory banks. However, we observe a paradoxical phenomenon in which predictive memory often exacerbates drift under occlusion or rapid motion, as inaccurate predictions contaminate the internal state and lead to irreversible identity loss. We identify this failure as a reliability mismatch: predictive dynamics are applied uniformly despite high uncertainty and weak observations. To address this issue, we reinterpret video memory as a dynamic latent process rather than a static buffer. Building on this insight, we introduce Reliability-Guided Predictive Memory (RPM), a framework that explicitly regulates when and how predictive dynamics should influence online video perception. RPM integrates a latent world model based on state-space dynamics to generate predictive priors, while employing a reliability-aware fusion policy that suppresses unreliable predictions during occlusion. We instantiate RPM on a SAM2-based model and evaluate it on visual object tracking benchmarks. Experiments demonstrate that our method reduces drift after occlusion, consistently outperforming strong baselines that rely on either static memory or unconditional predictive modeling. We further show that this reliability-guided mechanism transfers to video object segmentation across multiple standard benchmarks. These findings establish that predictive memory is beneficial only when its reliability is explicitly modeled, and define a general principle for robust online video perception. The code is available at https://github.com/minwookim01/memory-as-dynamics.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=DiIUn7KZ2k",
+  "arxiv": null,
+  "pdf": "https://raw.githubusercontent.com/mlresearch/v306/main/assets/kim26by/kim26by.pdf",
+  "proceedings": "https://proceedings.mlr.press/v306/kim26by.html",
+  "virtual": "https://icml.cc/virtual/2026/poster/65434",
+  "code": "https://github.com/minwookim01/memory-as-dynamics"
+ },
+ "license": null,
+ "img": "none",
+ "image_url": null,
+ "thumb_url": null,
+ "figure_page": 2,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.93
+}

@@ -1,0 +1,50 @@
+{
+ "id": "neurips26-0057",
+ "title": "TriAxialKV: Toward Extreme Low-Precision KV-Cache Quantization for Agentic Inference Tasks",
+ "authors": [
+  "Hanzhang Shen",
+  "Haoran Wu",
+  "Yiren Zhao",
+  "Robert Mullins"
+ ],
+ "venue": "NeurIPS 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "Deep Learning->Algorithms",
+ "role": "prior-vs-ours",
+ "role2": "concept",
+ "claim": "Prior compression varies precision along one axis at a time; ours jointly varies it across temporal, modal and semantic axes.",
+ "layout": "Top workflow strip, then left prior panel and right 3-D axes, with speech bubble between",
+ "tags": [
+  "mixed-precision",
+  "quantization",
+  "kv-cache",
+  "multi-axis",
+  "agentic-inference"
+ ],
+ "style": [
+  "icon-heavy",
+  "colorful",
+  "minimal"
+ ],
+ "description": "The figure has a dashed box across the top showing the agentic inference flow as icons joined by arrows: Prompt, Observe image, Think, Tool Call. A legend at the top right marks dark green as 2-bit quantization and light green as 4-bit quantization. The lower left panel is titled 'Traditional KV Compression'. It shows two one-dimensional rows of green blocks. The temporal row runs Older, Recent, Current, with dark blocks for older tokens and light blocks for later ones. The modal row has image tokens in dark green and text tokens in light green. A speech bubble in the middle asks whether KV-cache compression can be extended from one dimension to three, with 'three' in red. The right panel is titled 'Our TriAxialKV Compression'. It shows a red 3-D coordinate system with modal, temporal and semantic axes. Dotted grid cells hold 3-D green blocks, shaded dark or light by bit-width, and the cells are marked with icons for text, image, prompt, think and tool.",
+ "caption": "Comparison of single-axis KV-cache compression methods, including PM-KVQ [ref] for temporal compression and VL-Cache [ref] for modality-aware compression, with TriAxialKV, which holistically compresses the KV cache by jointly considering temporal, modal, and semantic axes.",
+ "caption_source": "latex",
+ "abstract": "Agentic workloads have emerged as a major workload for LLM inference. They differ significantly from chat-only workloads, requiring long-context processing, the ability to handle multimodal inputs, and structured multi-turn interactions with tool calling capabilities. As a result, their context exhibits structure that can carry different importance along three key axes: temporal recency to the current turn, modality such as text or image tokens, and semantic role such as user queries, tool calls, observations, or reasoning. These axes capture distinct token behaviors and lead to different sensitivities to KV-cache compression. However, existing KV-cache quantization methods are typically homogeneous or exploit only heterogeneity on a single dimension, such as temporal proximity or modality, overlooking the interactions among them. To this end, we introduce TriAxialKV, a novel mixed-precision KV-cache quantization scheme that assigns each token a triaxial tag, calibrates per-tag sensitivity, and allocates INT2/INT4 bit-widths under a fixed memory budget. We implement TriAxialKV as an end-to-end serving system, comprising calibration, mixed-precision quantization and memory management, and custom fused Triton decode kernels. When using Qwen3-VL-32B-Thinking as a computer-use agent operating the OSWorld, TriAxialKV matches the accuracy of SGLang with BF16 KV cache while supporting 4.5$\\times$ KV cache capacity and achieving 30% higher end-to-end throughput, when running on real GPU systems.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=0PStm4OPPJ",
+  "arxiv": "https://arxiv.org/abs/2605.17170",
+  "pdf": "https://arxiv.org/pdf/2605.17170",
+  "proceedings": null,
+  "virtual": "https://neurips.cc/virtual/2026/poster/156097",
+  "code": null
+ },
+ "license": "http://arxiv.org/licenses/nonexclusive-distrib/1.0/",
+ "img": "none",
+ "image_url": null,
+ "thumb_url": null,
+ "figure_page": 1,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.8
+}

@@ -1,0 +1,54 @@
+{
+ "id": "icml26-3900",
+ "title": "A3: an Analytical Low-Rank Approximation Framework for Attention",
+ "authors": [
+  "Jeffrey T. H. Wong",
+  "Cheng Zhang",
+  "Xinye Cao",
+  "Pedro Gimenes",
+  "Christos-Savvas Bouganis",
+  "George Constantinides",
+  "Wayne Luk",
+  "Aaron Zhao"
+ ],
+ "venue": "ICML 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "Deep Learning->Large Language Models",
+ "role": "pipeline",
+ "role2": "overview-framework",
+ "claim": "Compress each component of a model by analytically shrinking one inner dimension, shown through its concrete computation graph.",
+ "layout": "3 panels left-to-right with legend box at right; color-coded dimension-reduction markers",
+ "tags": [
+  "low-rank-approximation",
+  "model-compression",
+  "transformer",
+  "dimension-reduction",
+  "computation-graph"
+ ],
+ "style": [
+  "icon-heavy",
+  "colorful",
+  "math-heavy"
+ ],
+ "description": "The figure shows three computation-graph diagrams, one for each Transformer component: A³-QK on the left, A³-OV in the middle and A³-MLP on the right. Each diagram shows input vectors as gray bars. Weight matrices (W_q, W_k, W_v, W_o,h, W_u, W_g, W_d) appear as lavender rectangles. Small circular operator icons (matmul, dot product, SiLU, Hadamard product) connect them with arrows. Each panel has a colored bracket above it that labels the dimension being reduced: red for QK head dim, green for OV head dim and blue for MLP intermediate size. Dashed lines and small arrows or scissors mark the part of each matrix that is trimmed away. A legend box at the far right explains the icons and the three color codes. The colored dimension labels and trimmed matrix edges draw the eye first.",
+ "caption": "High-level overview of \\mymethod{}. \\mymethod{} performs a low-rank approximation on each \\qk{}, \\ov{}, and \\mlp{} component, reducing the head dimensions in \\qk{} and \\ov{}, and the intermediate dimension in \\mlp{}.",
+ "caption_source": "latex",
+ "abstract": "Large language models have demonstrated remarkable performance; however, their massive parameter counts make deployment highly expensive. Low-rank approximation offers a promising compression solution, yet existing approaches have two main limitations: (1) They focus on minimizing the output error of individual linear layers, without considering the architectural characteristics of Transformers, and (2) they decompose a large weight matrix into two small low-rank matrices. Consequently, these methods often fall short compared to other compression techniques like pruning and quantization, and introduce runtime overhead such as the extra GEMM kernel launches and memory operations for decomposed small matrices. To address these limitations, we propose $A^3$, a post-training low-rank approximation framework. $A^3$ splits a Transformer layer into three functional components, namely $\\texttt{QK}$, $\\texttt{OV}$, and $\\texttt{MLP}$ and provides analytical solutions that reduces the hidden dimension size inside each component while minimizing the component's functional loss. This approach directly reduces model sizes, KV cache sizes, and FLOPs without introducing any runtime overheads. Through extensive experiments, we show that $A^3$ maintains superior performance compared to SoTAs. For example, under the same reduction budget in computation and memory, our low-rank approximated LLaMA 3.1-70B achieves a perplexity of 4.69 on WikiText-2, outperforming the previous SoTA's 7.87 by 3.18. We also show versatile applications of $A^3$ in KV cache compression, integration with quantization, fine-tuning and mixed-rank assignments. We open-sourced our framework and code at https://github.com/DeepWok/a3.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=aeeo8ZAftQ",
+  "arxiv": "https://arxiv.org/abs/2505.12942",
+  "pdf": "https://raw.githubusercontent.com/mlresearch/v306/main/assets/wong26b/wong26b.pdf",
+  "proceedings": "https://proceedings.mlr.press/v306/wong26b.html",
+  "virtual": "https://icml.cc/virtual/2026/poster/63042",
+  "code": "https://jeffreywong20.github.io/a3.github.io/"
+ },
+ "license": "http://creativecommons.org/licenses/by/4.0/",
+ "img": "cc-by",
+ "image_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/images/icml26-3900.png",
+ "thumb_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/thumbs/icml26-3900.webp",
+ "figure_page": 2,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.72
+}

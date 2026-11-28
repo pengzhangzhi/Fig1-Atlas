@@ -1,0 +1,48 @@
+{
+ "id": "neurips26-0113",
+ "title": "SecureClaw: Clawing Back Control of LLM Agents",
+ "authors": [
+  "Yuhan Ma",
+  "Stefan Schmid"
+ ],
+ "venue": "NeurIPS 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "Social Aspects->Fairness, Equity, Justice and Safety",
+ "role": "prior-vs-ours",
+ "role2": "pipeline",
+ "claim": "Unprotected agents let the untrusted runtime see plaintext and trigger effects directly; ours mediates both through trusted components.",
+ "layout": "2 stacked panels, left-to-right flow, dashed trust-boundary lines, numbered steps",
+ "tags": [
+  "trust-boundary",
+  "agent-security",
+  "reference-ids",
+  "authorization",
+  "architecture-comparison"
+ ],
+ "style": [
+  "colorful",
+  "text-heavy",
+  "icon-heavy"
+ ],
+ "description": "Two stacked rounded panels compare architectures. Panel (a), Unprotected Agent Architecture, shows a red Untrusted Agent Runtime box calling a blue Effectful APIs/Tools box directly, which feeds a gray External Effects box. A yellow Sensitive Data Sources box sends plaintext straight back to the runtime. Red italic annotations flag 'runtime can directly trigger effects' and 'plaintext visible to runtime'. Panel (b), SecureClaw, keeps the red runtime and gray effects but inserts green trusted components: Policy Engine, Trusted Gateway, Trusted Executor and Trusted Data Store. Numbered arrows mark (1) Read returning reference IDs and summaries, (2) Plan, (3) Preview with request-bound approval, and (4) Commit. Dashed vertical lines mark where protected data is read and where external actions execute. The green mediating layer draws the eye first.",
+ "caption": "Comparison between an unprotected agent architecture and SecureClaw. (1) Read: the gateway returns reference IDs and short planning summaries. (2) Plan: the runtime uses this view to propose an action. (3) Preview: the gateway assembles the exact request and the policy engine binds its approval to it. (4) Commit: the executor verifies that approval before resolving references and performing the external action.",
+ "caption_source": "latex",
+ "abstract": "Tool-using large language model (LLM) agents face two distinct security failures: unauthorized external actions and exposure of sensitive plaintext inside the runtime before any final output check can intervene. Existing defenses usually protect one boundary, either the planner/runtime or the point where external actions are executed, and therefore do not by themselves secure both surfaces. We present SecureClaw, a dual-boundary architecture that enforces authorization in a trusted executor and keeps raw protected data outside the LLM runtime. Sensitive reads pass through a trusted gateway that replaces raw values with reference IDs. In the evaluated deployment, the gateway also provides short planning summaries that deliberately release selected information, a process called declassification. Writes that change external state follow a PREVIEW$\\rightarrow$COMMIT protocol in which only a trusted executor may execute the exact request authorized by policy. The runtime can still plan over summaries and reference IDs, but cannot directly resolve the IDs into secrets or perform side effects. Across the AgentDojo, AgentLeak, and Agent Security Bench (ASB) benchmarks, SecureClaw is the only defense we evaluate in a common harness that simultaneously retains usable task utility and achieves 0% attack success rate (ASR) on ASB, 0.64% ASR on AgentDojo, and 3.23% overall leak on AgentLeak's attacked parity lane, which measures final-output and internal-relay leakage. Code is available at https://github.com/ponyyuhan/SecureClaw.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=0omFi3ZiBf",
+  "arxiv": "https://arxiv.org/abs/2606.09549",
+  "pdf": "https://arxiv.org/pdf/2606.09549",
+  "proceedings": null,
+  "virtual": "https://neurips.cc/virtual/2026/poster/156048",
+  "code": "https://github.com/ponyyuhan/SecureClaw"
+ },
+ "license": "http://creativecommons.org/licenses/by/4.0/",
+ "img": "cc-by",
+ "image_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/images/neurips26-0113.png",
+ "thumb_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/thumbs/neurips26-0113.webp",
+ "figure_page": 4,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.6
+}

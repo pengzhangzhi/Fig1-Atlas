@@ -1,0 +1,54 @@
+{
+ "id": "icml26-4311",
+ "title": "Certain Head, Uncertain Tail: Expert-Sample for Test-Time Scaling in Fine-Grained MoE",
+ "authors": [
+  "Yuanteng Chen",
+  "Peisong Wang",
+  "Nanxin Zeng",
+  "Yuantian Shao",
+  "Shuang Qiu",
+  "Gang Li",
+  "Jing Liu",
+  "Jian Cheng"
+ ],
+ "venue": "ICML 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "Deep Learning->Large Language Models",
+ "role": "prior-vs-ours",
+ "role2": "teaser-result",
+ "claim": "Token-level sampling yields only superficial diversity with the same mistake; perturbing the uncertain expert tail yields structurally different reasoning that finds the correct answer.",
+ "layout": "3 panels: question left, stacked ours vs baseline middle, two plots right",
+ "tags": [
+  "test-time-scaling",
+  "mixture-of-experts",
+  "sampling-diversity",
+  "training-free",
+  "pass-at-n"
+ ],
+ "style": [
+  "colorful",
+  "text-heavy",
+  "plot"
+ ],
+ "description": "The left column shows a math word problem (MATH-500) in a gray box. Next to it, a dashed line splits the middle into two rows. The top row, Expert-Sample, shows a router that sends the token through expert blocks (E1…En). The blocks are green and have checkmarks on selected experts. A small bar chart shows the router weights fading from high to low. These feed into token-sample boxes in a repeated chain. The ends of the top chain are a pink wrong answer (115) and a green correct answer (110). A blue note labels this structural diversity. The bottom row, Standard Token-Sample, uses a yellow greedy router with a fixed expert set. Its four branches all end in pink wrong answers (115) and a note labels them superficial diversity. The right side has two plots. The upper one is a line plot of pass@n against number of samples, with the Expert-Sample curve above the token-sample curve. The lower one is a grouped bar chart of Best-of-N accuracy on five benchmarks, with the Expert-Sample bars higher.",
+ "caption": "Overview of Expert-Sample. Left: Illustration of the Expert-Sample mechanism with an example from MATH-500, showing how Expert-Sample achieves structural diversity to discover the correct answer, while standard token-sample produces only superficial diversity. Right: Pass@n scaling improvements (upper) and accuracy gains with Best-of-N verification (lower) on Qwen3-30B-A3B-Instruct.",
+ "caption_source": "latex",
+ "abstract": "Test-time scaling improves LLM performance by generating multiple candidate solutions, yet token-level sampling requires temperature tuning that trades off diversity against stability. Fine-grained MoE, featuring hundreds of well-trained experts per layer and multi-expert activation per token, offers an unexplored alternative through its rich routing space. We empirically characterize fine-grained MoE routing and uncover an informative pattern: router scores exhibit a certain head of high-confidence experts followed by an uncertain tail of low-confidence candidates. While single-run greedy accuracy remains stable when fewer experts are activated, multi-sample pass@n degrades significantly-suggesting that the certain head governs core reasoning capability while the uncertain tail correlates with reasoning diversity. Motivated by these findings, we propose Expert-Sample, a training-free method that preserves high-confidence selections while injecting controlled stochasticity into the uncertain tail, enabling diverse generation without destabilizing outputs. Evaluated on multiple fine-grained MoE models across math, knowledge reasoning, and code tasks, Expert-Sample consistently improves pass@n and verification-based accuracy. On Qwen3-30B-A3B-Instruct evaluated on GPQA-Diamond with 32 parallel samples, pass@32 rises from 85.4% to 91.9%, and accuracy improves from 59.1% to 62.6% with Best-of-N verification.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=elVUsM2rf3",
+  "arxiv": "https://arxiv.org/abs/2602.02443",
+  "pdf": "https://raw.githubusercontent.com/mlresearch/v306/main/assets/chen26er/chen26er.pdf",
+  "proceedings": "https://proceedings.mlr.press/v306/chen26er.html",
+  "virtual": "https://icml.cc/virtual/2026/poster/62643",
+  "code": null
+ },
+ "license": "http://arxiv.org/licenses/nonexclusive-distrib/1.0/",
+ "img": "none",
+ "image_url": null,
+ "thumb_url": null,
+ "figure_page": 1,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.5
+}

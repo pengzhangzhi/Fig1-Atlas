@@ -1,0 +1,52 @@
+{
+ "id": "icml26-2527",
+ "title": "FedQueue: Queue-Aware Federated Learning for Cross-Facility HPC Training",
+ "authors": [
+  "Yijiang Li",
+  "Emon Dey",
+  "Zilinghan Li",
+  "Krishnan Raghavan",
+  "Ravi Madduri",
+  "Kibaek Kim"
+ ],
+ "venue": "ICML 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "Optimization->Large Scale, Parallel and Distributed",
+ "role": "pipeline",
+ "role2": null,
+ "claim": "A queue-aware protocol predicts each client's scheduler delay each round and adapts local work so updates meet a deadline.",
+ "layout": "3 rounds left-to-right, client timeline rows above server row, arrows linking them",
+ "tags": [
+  "federated-learning",
+  "queue-aware",
+  "scheduling",
+  "straggler-mitigation",
+  "staleness"
+ ],
+ "style": [
+  "colorful",
+  "icon-heavy",
+  "math-heavy"
+ ],
+ "description": "A wide timeline diagram. Columns are Round 0 (warm-up) and Rounds 1–3, with dashed vertical lines marking each round boundary. Braces above each round mark the synchronization horizon T_sync. Three horizontal client rows (Client #1–#3) are drawn as bars: pink for queued time, cyan for allocated training (labeled with step counts such as E=45 steps), and gray for freed resources. Client #1 shows an 'Unexpected delay' pink block in Round 2. Along the bottom, a FedQueue Server box in each round holds orange bars for the estimated queue delays. Arrows labeled 'Assign training steps' run from the server up to the clients. Arrows labeled 'Estimation Update' run between server boxes. A legend and a notation glossary sit at the bottom. The eye goes first to the colored timeline bars.",
+ "caption": "\\textbf{Illustration of the \\fedqueue{} Algorithm.} The \\fedqueue{} server first obtains initial queuing delay estimates for each client ($\\hat{q}_k^{(0)}$) during a warm-up stage, and accordingly assigns the number of local training steps ($E_k^{(r)}$). In each round $r$, the \\fedqueue{} server updates the estimates based on the recent queuing delay ($q_k^{(r)}$) and performs global aggregation using all client updates received before the admission deadline ($rT_{sync}$). If a certain client fails to return its update within the deadline due to an unexpected delay (e.g., Client 1 in Round 2), its update will be deferred and incorporated in the next aggregation round, with the staleness factor applied.",
+ "caption_source": "latex",
+ "abstract": "Federated learning (FL) across multiple HPC facilities faces stochastic admission delays from batch schedulers that dominate wall-clock time. Synchronous FL suffers from severe stragglers, while asynchronous FL accumulates stale updates when queues spike. We propose FedQueue, a queue-aware FL protocol that incorporates scheduler delays directly into training and aggregation, which (i) predicts per-facility queue delays online to budget local work, (ii) applies cutoff-based admission that buffers late arrivals to bound staleness, and (iii) performs staleness-aware aggregation to stabilize heterogeneous local workloads. We prove the convergence for non-convex objectives at rate $\\mathcal{O}(1/\\sqrt{R})$ under bounded staleness, and show that the admission controls yield bounded staleness with high probability under queue-prediction error. Real-world cross-facility deployment of FedQueue shows 20.5% improvement over baseline algorithms. Controlled queue simulations demonstrate robust improvement over the baselines; in particular, up to 60% reduction in time to reach a target accuracy level under high queue variance and non-IID partitions.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=ODWi7lbMGU",
+  "arxiv": "https://arxiv.org/abs/2605.02125",
+  "pdf": "https://raw.githubusercontent.com/mlresearch/v306/main/assets/li26ae/li26ae.pdf",
+  "proceedings": "https://proceedings.mlr.press/v306/li26ae.html",
+  "virtual": "https://icml.cc/virtual/2026/poster/64374",
+  "code": "https://github.com/APPFL/APPFL"
+ },
+ "license": "http://arxiv.org/licenses/nonexclusive-distrib/1.0/",
+ "img": "none",
+ "image_url": null,
+ "thumb_url": null,
+ "figure_page": 3,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.8
+}

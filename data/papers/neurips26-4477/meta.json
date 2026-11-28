@@ -1,0 +1,49 @@
+{
+ "id": "neurips26-4477",
+ "title": "Seeing Isn't Enough: Unlocking Visual Reasoning by Bridging the Reasoning-Access Gap with TIGER",
+ "authors": [
+  "Gregory Kang Ruey Lau",
+  "Huynh Minh Nguyen",
+  "Bryan Kian Hsiang Low"
+ ],
+ "venue": "NeurIPS 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "Computer Vision->Vision Models & Multimodal",
+ "role": "pipeline",
+ "role2": null,
+ "claim": "Mine cases where the model succeeds on the text version but fails on the image version, then train on them, with SFT and DPO as baselines.",
+ "layout": "2 stacked stages, left-to-right data flow, then branching into GRPO and baseline panels",
+ "tags": [
+  "counterfactual-mining",
+  "reinforcement-learning",
+  "modality-gap",
+  "post-training",
+  "data-construction"
+ ],
+ "style": [
+  "icon-heavy",
+  "colorful",
+  "text-heavy"
+ ],
+ "description": "A two-stage pipeline diagram. The top box, Stage 1 (Gap-targeted Data Construction), flows left to right. A text problem (2x+5=11) is rendered into an image problem. Both go into a robot icon labeled MLLM, which produces a text-conditioned answer a^t and an image-conditioned answer a^v. A magnifier icon verifies and filters them against the ground truth y, with a green check for correct and a red X for incorrect. The output is a stack of training tuples (x^v, a^t, a^v, y). An arrow leads down to Stage 2. The bottom-left green GRPO panel shows an image input going into a policy robot. The policy samples several answers marked correct or incorrect, and correctness and format rewards feed back to the policy. The bottom-right Baselines panel has an orange SFT box and a blue DPO box. DPO shows chosen and rejected answers on a balance scale. Dashed blue dividers, bold blue headings, and green and red verdict colors guide the eye.",
+ "caption": "Overview of the proposed pipeline. In Stage 1, we construct training samples by querying a MLLM with text and image versions of the same problem, then verifying and filtering the resulting outputs to retain pairs with correct text-conditioned answers and incorrect image-conditioned answers. In Stage 2, the resulting data is used for gap-targeted training using GRPO to improve image-conditioned reasoning and comparing with alternatives like SFT and DPO.",
+ "caption_source": "latex",
+ "abstract": "Multimodal Large Language Models (MLLMs) inherit strong textual reasoning capabilities from their language backbones and text pretraining, but often fail to apply the same level of competency to visual inputs. We show that this degradation cannot be attributed to only perception failures, by evaluating models on semantically-equivalent text and rendered-text image inputs: models can accurately read text in the images and recover near-text performance when provided their own transcriptions, but just cannot reason well on the images directly. We characterize this discrepancy as a modality reasoning-access gap, where models fail to route perceived visual content into existing reasoning machinery accessible with text. To bridge this, we propose TIGER (Text-to-Image Gap-targeted training for Enhanced Reasoning), which first mines synthetic modality counterfactuals where a model succeeds on a text problem but fails when provided the corresponding rendered image, and post-trains the model on the image input via Group Relative Policy Optimization (GRPO), along with SFT and DPO variants. Importantly, although trained exclusively on synthetic rendered-text images with no multimodal annotations, TIGER results in model performance improvements across diverse real-world visual benchmarks including geometric diagrams (MathVerse), multi-disciplinary sciences (EMMA, MMMU), complex charts (ChartQAPro), and embodied spatial reasoning (RoboSpatial-Home). TIGER also complements existing state-of-the-art RLVR visual reasoning methods, yielding further performance gains. Analysis involving reasoning-subspace activation and activation patching provide support indicating that TIGER helps to align visual-to-reasoning pathways toward text reasoning states. Our implementation is available at https://github.com/minhngh/Tiger.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=Ux4SAiuLgN",
+  "arxiv": "https://arxiv.org/abs/2611.10552",
+  "pdf": "https://arxiv.org/pdf/2611.10552",
+  "proceedings": null,
+  "virtual": "https://neurips.cc/virtual/2026/poster/152182",
+  "code": null
+ },
+ "license": "http://creativecommons.org/licenses/by/4.0/",
+ "img": "cc-by",
+ "image_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/images/neurips26-4477.png",
+ "thumb_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/thumbs/neurips26-4477.webp",
+ "figure_page": 2,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.95
+}

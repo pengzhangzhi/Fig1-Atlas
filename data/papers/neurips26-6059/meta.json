@@ -1,0 +1,51 @@
+{
+ "id": "neurips26-6059",
+ "title": "LAMaS: A Modular Platform for Learning Low-Latency Multi-Agent Orchestration",
+ "authors": [
+  "Xi Shi",
+  "Mengxin Zheng",
+  "Qian Lou"
+ ],
+ "venue": "NeurIPS 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "Reinforcement Learning->Multi-agent",
+ "role": "pipeline",
+ "role2": "overview-framework",
+ "claim": "A modular platform links agent frameworks to model servers through swappable components, with latency-aware execution control and a returned trace.",
+ "layout": "Single panel, left-to-right flow with a serving layer below and a feedback loop",
+ "tags": [
+  "modular-platform",
+  "orchestration",
+  "latency-aware",
+  "multi-agent",
+  "adaptive-control"
+ ],
+ "style": [
+  "minimal",
+  "colorful",
+  "text-heavy"
+ ],
+ "description": "A wide block diagram flows left to right. A pale blue INPUT box (\"Task query\") feeds a large green container. The container's top band is a yellow TRAINING strip reading \"Critical-path credit assignment under an accuracy floor\". Under it is a PER-QUERY EXECUTION row of three rounded boxes joined by arrows: \"Sample a graph\" (trained orchestrator, with a small diamond DAG icon), \"Run operators\" (start when inputs are ready), and \"Adaptive control\" (use partial results, skip unstarted work). A dashed \"stop / continue\" loop runs from the third box back to the second. A footer inside the container lists swappable parts: Swap operators, Replace orchestrators, Switch model backends. The container's output arrow goes to a blue OUTPUT box (\"Final answer + trace\", with operator timings, critical path and cost). Below, a blue bar reads \"OpenAI-compatible model serving\" (local vLLM or hosted APIs), connected by \"LLM calls\" and \"Responses\" arrows. Lines enter from the top, which suggests the crop is cut off there.",
+ "caption": "LAMaS connects agent frameworks to model servers and returns an answer and execution trace for each query. We integrate the full pipeline into GDesigner and AgentDropout, retaining each framework's graph builder and retraining the execution controller on its traces.",
+ "caption_source": "latex",
+ "abstract": "In a multi-agent system (MAS), removing an expensive agent call can save tokens without making the answer arrive sooner: latency depends on the longest chain of dependent calls. We present Latency-Aware Multi-agent System (LAMaS), a modular platform for learning low-latency orchestration. A framework can send a query to LAMaS and receive an answer and execution trace, or keep its own graph builder and use the platform's latency-optimized orchestration layer. During training, the layer gives operators on the critical path the greatest latency penalty while targeting a floor on expected accuracy. During inference, a lightweight controller uses partial results to decide whether to skip work that has yet to start. Across four benchmarks, LAMaS reduces end-to-end latency by over 50% relative to the evaluated learning-based MAS baselines while maintaining competitive or better accuracy. GDesigner and AgentDropout retain their graph builders and train the controller on their own traces; both achieve lower latency across the same benchmarks.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=fbWOBQEle5",
+  "arxiv": "https://arxiv.org/abs/2601.10560",
+  "pdf": "https://arxiv.org/pdf/2601.10560",
+  "proceedings": null,
+  "virtual": "https://neurips.cc/virtual/2026/poster/150759",
+  "code": null
+ },
+ "license": "http://creativecommons.org/licenses/by/4.0/",
+ "img": "cc-by",
+ "image_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/images/neurips26-6059.png",
+ "thumb_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/thumbs/neurips26-6059.webp",
+ "figure_page": 0,
+ "qc_flags": [
+  "bad-crop"
+ ],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.7
+}

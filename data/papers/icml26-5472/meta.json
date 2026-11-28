@@ -1,0 +1,53 @@
+{
+ "id": "icml26-5472",
+ "title": "Circle-RoPE: Cone-like Decoupled Rotary Positional Embedding for Vision-Language Models",
+ "authors": [
+  "Chengcheng Wang",
+  "Jianyuan Guo",
+  "Hongguang Li",
+  "Yuchuan Tian",
+  "Ying Nie",
+  "Chang Xu",
+  "Kai Han"
+ ],
+ "venue": "ICML 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "Deep Learning->Large Language Models",
+ "role": "problem-setup",
+ "role2": null,
+ "claim": "Conventional positional encoding makes distance between modalities misrepresent semantic relatedness, so the closest tokens by index are not the closest in meaning.",
+ "layout": "Single panel, legend at left, image grid beside text-token boxes, curved arrows",
+ "tags": [
+  "positional-encoding",
+  "rope",
+  "vision-language",
+  "cross-modal-bias",
+  "failure-case"
+ ],
+ "style": [
+  "photo/real data",
+  "colorful",
+  "text-heavy"
+ ],
+ "description": "A single annotated VQA example. At left, two dashed legend boxes explain arrow colors: teal and orange mean closest in semantic distance, and black means closest in RoPE distance. Next to them is a 3x3 grid of clock-tower image patches numbered 0–8, with patch 1 outlined in teal and the grid outlined in orange. To the right, image tokens [0]–[8] and yellow text tokens [9]–[17] (\"what type of religion is displayed high on the clock tower?\") are laid out as a sequence of boxes. Curved arrows connect text tokens to image patches. A teal arrow from \"high on\" [14] goes to patch 1, with the label RoPE distance={14-1=13}. A black arrow goes from \"clock tower\" [16] to token [8]. An orange arrow from [16] goes back to the whole grid, labeled RoPE distance={16,15,13,12,10,9}. The eye goes first to the colorful arrows and the clock-tower photo.",
+ "caption": "{A VQA example where image and text tokens are sequentially concatenated. The image token at index 8 exhibits the smallest RoPE distance to all text tokens, despite semantically closer image tokens being located elsewhere. The text token at index 16 exhibits varying distances to the six image patches that correspond to the same semantic content. These misalignments highlight how conventional RoPE methods introduce spurious cross-modal relative positional bias.}",
+ "caption_source": "latex",
+ "abstract": "Rotary Position Embedding (RoPE) is widely adopted in large language models, but when applied to vision-language models (VLMs) it couples text and image position indices and can introduce spurious cross-modal relative-position bias. We propose Per-Token Distance (PTD) to quantify cross-modal positional disentanglement, and prove that PTD = 0 is a sufficient condition to eliminate the geometric attention bias induced by RoPE. Guided by this criterion, we introduce Circle-RoPE, which remaps 2D image-token coordinates onto an annulus orthogonal to the text position axis, yielding a cone-like geometry where each text token is equidistant to all image tokens while preserving intra-image spatial structure. We further propose Alternating Geometry Encoding (AGE) to combine complementary geometric priors by alternating the decoupled geometry of Circle-RoPE and the grid-based prior of standard RoPE across layers. This design enables cross-modal positional disentanglement while preserving fine-grained intra-image spatial structure. Experiments on diverse VLM backbones and multimodal benchmarks show consistent gains in spatial grounding and visual reasoning. The code is available at https://github.com/lose4578/CircleRoPE.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=pH7NRZx89n",
+  "arxiv": "https://arxiv.org/abs/2505.16416",
+  "pdf": "https://raw.githubusercontent.com/mlresearch/v306/main/assets/wang26bo/wang26bo.pdf",
+  "proceedings": "https://proceedings.mlr.press/v306/wang26bo.html",
+  "virtual": "https://icml.cc/virtual/2026/poster/61523",
+  "code": "https://github.com/lose4578/CircleRoPE"
+ },
+ "license": "http://arxiv.org/licenses/nonexclusive-distrib/1.0/",
+ "img": "none",
+ "image_url": null,
+ "thumb_url": null,
+ "figure_page": 1,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.85
+}

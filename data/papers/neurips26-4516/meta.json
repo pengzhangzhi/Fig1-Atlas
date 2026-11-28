@@ -1,0 +1,50 @@
+{
+ "id": "neurips26-4516",
+ "title": "Make Each Token Count: Towards Improving Long-Context Performance with KV Cache Eviction",
+ "authors": [
+  "Ngoc Bui",
+  "Trung Hieu Nguyen",
+  "Arman Cohan",
+  "Rex Ying"
+ ],
+ "venue": "NeurIPS 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "Deep Learning->Attention Mechanisms",
+ "role": "teaser-result",
+ "role2": "analysis-finding",
+ "claim": "Learned selective eviction matches or beats full-cache inference across context lengths and budgets, whereas prior eviction degrades or plateaus.",
+ "layout": "2 side-by-side line plots, shared legend colors, dashed full-cache baseline in right panel",
+ "tags": [
+  "kv-cache-eviction",
+  "long-context",
+  "efficiency",
+  "memory-budget",
+  "beats-full-baseline"
+ ],
+ "style": [
+  "plot",
+  "colorful",
+  "minimal"
+ ],
+ "description": "Two side-by-side line charts with y-axis Accuracy (%). Panel (a), titled Varying Context Length, plots accuracy against context length from 8k to 128k. Three lines: Vanilla (green triangles), TrimKV with 30% eviction (blue squares) and DBTrimKV with 30% eviction (red circles). All three decline as context grows. Red stays highest throughout, blue sits in the middle and green is lowest. Panel (b), titled Varying KV Budget, plots accuracy against KV budget from 2k to 64k. Vanilla is a flat dashed green line near 74%. TrimKV (blue) stays slightly above it at mid budgets and collapses at 2k. DBTrimKV (red) rises above the baseline, peaks near 81% at 16k, then converges to vanilla at 64k. The eye goes first to the red line sitting above the others.",
+ "caption": "a): Multi-key, -value, -needle NIAH accuracy across increasing context lengths. b): Accuracy at 64k context and varying budgets.",
+ "caption_source": "latex",
+ "abstract": "The key-value (KV) cache is a major bottleneck in long-context inference, where memory and computation grow with sequence length. Existing KV eviction methods reduce this cost but typically degrade performance relative to full-cache inference. Our key insight is that full-cache attention is not always optimal: in long contexts, irrelevant tokens can dilute attention away from useful evidence, so selective, learnable eviction can improve generation rather than merely approximate the full cache. We introduce a global retention-based KV eviction method that learns each token's future utility under a unified memory budget. Lightweight retention gates assign utility scores to cached KV entries, and a shared final scoring projection calibrates these scores across all layers and heads. This enables a single global eviction policy in which tokens from different layers, heads, and modalities compete directly for cache capacity. We further provide theoretical analysis showing that preferentially retaining useful tokens reduces attention dilution, and we justify geometric retention as a query-agnostic proxy for future utility. Across diverse long-context language and vision-language reasoning, and multi-turn dialogue benchmarks, our method substantially reduces KV memory while matching or surpassing full-cache inference. These results suggest that learned, globally calibrated KV eviction is not only a compression technique, but also a mechanism for improving long-context reasoning.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=VBVa8FIJRl",
+  "arxiv": "https://arxiv.org/abs/2605.09649",
+  "pdf": "https://arxiv.org/pdf/2605.09649",
+  "proceedings": null,
+  "virtual": "https://neurips.cc/virtual/2026/poster/152145",
+  "code": null
+ },
+ "license": "http://creativecommons.org/licenses/by/4.0/",
+ "img": "cc-by",
+ "image_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/images/neurips26-4516.png",
+ "thumb_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/thumbs/neurips26-4516.webp",
+ "figure_page": 3,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.72
+}

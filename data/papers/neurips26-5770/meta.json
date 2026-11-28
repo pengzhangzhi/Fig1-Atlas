@@ -1,0 +1,52 @@
+{
+ "id": "neurips26-5770",
+ "title": "ReSET: Accurate Latency-Critical NVFP4 Reasoning via Step-Aware Temperature Scaling",
+ "authors": [
+  "Sihwa Lee",
+  "Janghwan Lee",
+  "Donghoon Yoo",
+  "Jae Gon Kim",
+  "Hanyul ryu",
+  "Soojung Ryu",
+  "Jungwook Choi"
+ ],
+ "venue": "NeurIPS 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "Applications->Language, Speech and Dialog",
+ "role": "analysis-finding",
+ "role2": "problem-setup",
+ "claim": "Low-precision inference gains vanish at small batch sizes because hardware is badly underutilized, so latency targets are hard to meet.",
+ "layout": "2 side-by-side line plots, left-to-right, shaded SLO-feasible region and dashed latency threshold",
+ "tags": [
+  "quantization",
+  "latency-bottleneck",
+  "small-batch",
+  "hardware-utilization",
+  "scaling-trend"
+ ],
+ "style": [
+  "plot",
+  "minimal"
+ ],
+ "description": "Two line plots sit side by side, both with batch size on the x-axis. Panel (a) plots time per output token (msec/tok) for BF16 (gray squares) and NVFP4 (blue circles) at batch sizes 1 to 32. Both curves rise as batch size grows. The dashed segments mark batch sizes that exceed the latency target, and a horizontal dashed line near 20 ms marks that target. A dotted line sits near 12.5 ms. NVFP4 sits below BF16 throughout, and the gap narrows at larger batch sizes. Panel (b) plots Tensor Core utilization (%) for NVFP4 decode GEMMs against batch size from 1 to 4K. A gray shaded region on the left, labeled SLO-feasible, covers batch sizes up to about 16. Utilization stays near zero there, then climbs steeply and reaches about 49% at 4K. The gray and blue palette is muted, and the eye goes first to the rising blue curves.",
+ "caption": "Limited batch-size scaling in Qwen3-32B on a single B200. (a) TPOT at 32K context; (b) Tensor Core utilization of NVFP4 decode GEMMs.",
+ "caption_source": "latex",
+ "abstract": "Large reasoning models (LRMs) improve complex problem-solving by generating long intermediate reasoning traces, but this substantially increases inference costs. NVFP4 inference offers a promising approach to reduce both computational and memory costs through hardware-supported low-precision execution. However, directly applying NVFP4 to LRMs introduces two practical limitations: reasoning accuracy degrades under quantization, and existing NVFP4 kernels do not fully realize latency benefits in small-batch autoregressive decoding. In this work, we analyze the effect of NVFP4 quantization on token-level uncertainty during reasoning. We show that quantization increases incorrect sampling at low-entropy symbolic tokens, while causing over-concentration on a small set of tokens in high-uncertainty reasoning steps. Based on this observation, we propose \\textbf{ReSET}, a reasoning-step entropy-based temperature-scaling method that estimates step-level uncertainty online and adapts the decoding temperature using both token-level and step-level entropy signals. To address the latency gap, we further design a CUDA-core small-$M$ NVFP4 kernel for latency-critical autoregressive decoding. Across reasoning benchmarks and model scales, ReSET improves NVFP4 reasoning accuracy by up to $\\sim\\!$2 points over the NVFP4 baseline. Our CUDA-core small-$M$ kernel further improves latency-critical decoding, delivering up to $2.5\\!\\times$ kernel-level speedup over NVFP4 vLLM and approximately $2\\!\\times$ end-to-end decoding speedup over BF16. Code is available at https://github.com/aiha-lab/ReSET.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=devQEPcZzG",
+  "arxiv": "https://arxiv.org/abs/2606.13233",
+  "pdf": "https://arxiv.org/pdf/2606.13233",
+  "proceedings": null,
+  "virtual": "https://neurips.cc/virtual/2026/poster/151005",
+  "code": "https://aiha-lab.github.io/ReSET/"
+ },
+ "license": "http://arxiv.org/licenses/nonexclusive-distrib/1.0/",
+ "img": "none",
+ "image_url": null,
+ "thumb_url": null,
+ "figure_page": 2,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.6
+}

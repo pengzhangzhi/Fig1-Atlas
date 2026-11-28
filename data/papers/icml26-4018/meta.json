@@ -1,0 +1,50 @@
+{
+ "id": "icml26-4018",
+ "title": "CORE: Context-Robust Remasking for Diffusion Language Models",
+ "authors": [
+  "Kevin Zhai",
+  "Sabbir Mollah",
+  "Zhenyi Wang",
+  "Mubarak Shah"
+ ],
+ "venue": "ICML 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "Deep Learning->Large Language Models",
+ "role": "pipeline",
+ "role2": null,
+ "claim": "Revision can be done by masking selected tokens to probe their instability under perturbed context, then fixing the most brittle one alongside normal unmasking.",
+ "layout": "3 stacked state panels left, 2 colored boxes right; arrows loop back to next state",
+ "tags": [
+  "inference-time-revision",
+  "training-free",
+  "masked-diffusion",
+  "remasking",
+  "robustness"
+ ],
+ "style": [
+  "colorful",
+  "math-heavy",
+  "text-heavy"
+ ],
+ "description": "The figure shows one decoding step of CORE on a partially unmasked sentence. At left, three stacked white boxes show Initial State, Current State (green outline) and Next State, each a row of colored token chips such as 'What is Ceres known as?', [MASK] in orange, and unmasked words in purple. In the Current State, red dashed boxes mark tokens 'It' and 'a' selected for perturbation, and a blue dashed box marks the next token to unmask. Arrows lead to a large green CORE panel at top right. It shows the perturbed context, an Instability Scores formula box, scores 0.2 for 'It' and 0.8 for 'a' (flagged Most Brittle in red dashes), an Update 'a' to 'an' argmax box, and the Revised Sequence. A blue Base Unmasking panel below predicts 'icy'. A bottom arrow returns to the Next State, which combines 'an' and 'icy'.",
+ "caption": "Illustration of Context-Robust Remasking (\\method). Our method operates on the current state $y^{(t)}$, where the response is partially unmasked. (Left) Candidate Selection: We select potentially brittle unmasked tokens (red dashed box) to test for stability, distinct from the next token scheduled for unmasking (blue dashed box). (Top-Right) \\method Mechanism: We mask the selected tokens to create a Perturbed Context $\\tilde y^{(t)}$ and then compute their Instability Scores under this new context. The token \"a\" is found to be the most brittle (high instability) and is updated to \"an,\" which is the most likely token given the perturbed context. (Bottom-Right) Base Unmasking: In parallel, the base model uses the original context $y^{(t)}$ to predict the next token (\"icy\"); this newly unmasked token (\"icy\") is combined with the updated token (\"an\") to form the Next State $y^{(t+1)}$, yielding the contextually consistent phrase \"an icy.\"",
+ "caption_source": "latex",
+ "abstract": "Standard decoding in Masked Diffusion Models (MDMs) is hindered by context rigidity: tokens are retained based on transient high confidence, often ignoring that early predictions lack full context. This creates cascade effects where initial inconsistencies misguide the remaining generation. Existing revision strategies attempt to mitigate this by relying on static confidence scores, but these signals are inherently myopic; inconsistent tokens can appear confident to the model itself. We propose Context-Robust Remasking (CORE), a training-free framework for inference-time revision. Rather than trusting static token probabilities, CORE identifies context-brittle tokens by probing their sensitivity to targeted masked-context perturbations. We formalize revision as a robust optimization objective over context shifts and efficiently approximate this objective to prioritize unstable tokens for revision. On LLaDA-8B-Base, CORE delivers consistent improvements across reasoning and code benchmarks, outperforming compute-matched baselines and improving MBPP by up to 9.2 percentage points.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=bmKHxLWkz9",
+  "arxiv": "https://arxiv.org/abs/2602.04096",
+  "pdf": "https://raw.githubusercontent.com/mlresearch/v306/main/assets/zhai26b/zhai26b.pdf",
+  "proceedings": "https://proceedings.mlr.press/v306/zhai26b.html",
+  "virtual": "https://icml.cc/virtual/2026/poster/62928",
+  "code": "https://ucf-crcv.github.io/core/"
+ },
+ "license": "http://creativecommons.org/licenses/by-nc-sa/4.0/",
+ "img": "cc-by-nc-sa",
+ "image_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/images/icml26-4018.png",
+ "thumb_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/thumbs/icml26-4018.webp",
+ "figure_page": 4,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.93
+}

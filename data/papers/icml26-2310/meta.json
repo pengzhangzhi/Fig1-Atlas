@@ -1,0 +1,51 @@
+{
+ "id": "icml26-2310",
+ "title": "Rate or Fate? RLV$^{\\varepsilon}$R: Reinforcement Learning with Verifiable Noisy Rewards",
+ "authors": [
+  "Ali Rad",
+  "Khashayar Filom",
+  "Darioush Keivan",
+  "Peyman Mohajerin Esfahani",
+  "Ehsan Kamalinejad"
+ ],
+ "venue": "ICML 2026",
+ "tier": "spotlight",
+ "track": "main",
+ "topic": null,
+ "role": "analysis-finding",
+ "role2": "teaser-result",
+ "claim": "Training outcome flips sharply with the sign of a single noise statistic: positive learns, zero stalls, negative collapses.",
+ "layout": "1 wide line plot, curves colored by noise level, phase labels and gauge icons at right",
+ "tags": [
+  "phase-transition",
+  "label-noise",
+  "training-dynamics",
+  "reinforcement-learning",
+  "theory-validation"
+ ],
+ "style": [
+  "plot",
+  "colorful",
+  "minimal"
+ ],
+ "description": "A single wide line chart with training step (0 to about 1.3k) on the x-axis and validation accuracy (0 to 20+%) on the y-axis. Four noisy curves with shaded 95% confidence bands are colored by noise level J: dark blue (J=1.0) and light blue (J=0.3) climb to roughly 20% and 17%. Yellow (J=0.0) hovers near 12%, labeled 'Fixed Point'. Red (J=-0.1) falls toward 0%. The background shades from blue at the top (labeled 'Phase I: Learning') through cream to pink at the bottom ('Phase II: Anti-Learning'). On the right, rows 'TP > FP', 'TP = FP' and 'TP < FP' each carry a small gauge icon. A small legend sits at lower right. The eye goes first to the diverging colored curves.",
+ "caption": "Phase transition under a sloppy oracle. We vary a single noise knob J, defined as J = 1 −δFP − δFN = TPR −FPR, which summarizes the net effect of false-positive and false-negative reward corruption induced by a noisy oracle. As J crosses zero, we observe a sharp transition from Phase I (learning; J > 0, accuracy improves with training and the bad-solution mass p for a prompt converges to 0) to Phase II (unlearning; J < 0, accuracy systematically degrades and p converges to 1), with J = 0 as the critical boundary. Curves report validation performance during GRPO training on a Python code-generation task (two epochs) starting from Qwen-2.5-3B; solid lines denote the run-averaged E[pass@1] and shaded bands indicate 95% confidence intervals across runs. Although our mean-field ODE characterizes the training- time dynamics of p, the same sign-of-J transition is mirrored on held-out validation prompts in this setup, suggesting the drift is not merely a training-set artifact.",
+ "caption_source": "pdf",
+ "abstract": "Reinforcement learning with verifiable rewards (RLVR) is a simple but powerful paradigm for training LLMs: sample a completion, verify it, and update. In practice, however, the verifier is almost never clean--unit tests probe only limited corner cases; human and synthetic labels are imperfect; and LLM judges (e.g., RLAIF) are noisy and can be exploited--and this problem worsens on harder domains (especially coding) where tests are sparse and increasingly model-generated. We ask a pragmatic question: does the verification noise merely slow down the learning (rate), or can it flip the outcome (fate)? To address this, we develop an analytically tractable multi-armed bandit view of RLVR dynamics, instantiated with GRPO and validated in controlled experiments. Modeling false positives and false negatives and grouping completions into recurring reasoning modes yields a replicator-style (natural-selection) flow on the probability simplex. The dynamics decouples into within-correct-mode competition and a one-dimensional evolution for the mass on incorrect modes, whose drift is determined solely by Youden's index J=TPR-FPR. This yields a sharp phase transition: when J>0, the incorrect mass is driven toward extinction (learning); when J=0, the process is neutral; and when J<0, incorrect modes amplify until they dominate (anti-learning and collapse). In the learning regime J>0, noise primarily rescales convergence time (\"rate, not fate\"). Experiments on verifiable programming tasks under synthetic noise reproduce the predicted J=0 boundary. Beyond noise, the framework offers a general lens for analyzing RLVR stability, convergence, and algorithmic interventions.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=LwB2EacVT6",
+  "arxiv": "https://arxiv.org/abs/2601.04411",
+  "pdf": "https://raw.githubusercontent.com/mlresearch/v306/main/assets/rad26b/rad26b.pdf",
+  "proceedings": "https://proceedings.mlr.press/v306/rad26b.html",
+  "virtual": "https://icml.cc/virtual/2026/poster/64587",
+  "code": null
+ },
+ "license": "http://creativecommons.org/licenses/by/4.0/",
+ "img": "cc-by",
+ "image_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/images/icml26-2310.png",
+ "thumb_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/thumbs/icml26-2310.webp",
+ "figure_page": 1,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.8
+}

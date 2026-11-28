@@ -1,0 +1,49 @@
+{
+ "id": "icml26-2530",
+ "title": "Causal Attention with Lookahead Keys",
+ "authors": [
+  "Zhuoqing Song",
+  "Peng Sun",
+  "Huizhuo Yuan",
+  "Quanquan Gu"
+ ],
+ "venue": "ICML 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "Deep Learning->Attention Mechanisms",
+ "role": "prior-vs-ours",
+ "role2": "concept",
+ "claim": "Standard causal attention fixes each key's receptive field at its own prefix; ours keeps expanding every key to see all current context.",
+ "layout": "2x2 grid, top baseline vs bottom ours, dashed divider, matrices grow rightward",
+ "tags": [
+  "causal-attention",
+  "receptive-field",
+  "attention-mask",
+  "autoregressive",
+  "language-modeling"
+ ],
+ "style": [
+  "minimal",
+  "colorful"
+ ],
+ "description": "Four grid matrices are arranged in two rows and two columns. Columns show generating the 4th token (3x3 grid) and generating the 6th token (5x5 grid). Rows are keys (key1..keyN) and columns are tokens (T1..TN). A dashed horizontal line separates the top row from the bottom row. The top row, blue, shows standard causal attention. Cells form a lower-triangular staircase, so key i sees only tokens T1..Ti. The bottom row, green, shows the CASTLE method. Every cell is filled, so each key sees all tokens up to the current step. The contrast between the blue triangle with white empty cells and the fully green squares is the first thing the eye lands on. There is no arrow or equation, only labels and color.",
+ "caption": "Receptive fields of keys in standard causal attention and CASTLE. The top row shows standard causal attention when generating the 4th token (left) and the 6th token (right). The bottom row shows CASTLE under the same settings. Here, key1, key2, $\\cdots$ denote the keys corresponding to tokens 1, 2, $\\cdots$, while $T_1$, $T_2$, $\\cdots$ denote the tokens. In standard causal attention, keys are static: when generating the $(t+1)$-th token, each key $i$ with $1\\leq i\\leq t$ can only access information from $\\dr{T_1, \\cdots, T_i}$, and key $i$ remains the same for all later steps. In contrast, CASTLE continuously updates keys at each prediction step, i.e., when generating the $(t+1)$-th token, the receptive field of any key $i$ with $1\\leq i\\leq t$, is expanded to contain information from $\\dr{T_1, \\cdots, T_t}$.",
+ "caption_source": "latex",
+ "abstract": "In standard causal attention, each token's query, key, and value (QKV) are static and encode only preceding context. We introduce CAuSal aTtention with Lookahead kEys (CASTLE), an attention mechanism that continually updates each token's keys as the context unfolds. We term these updated keys lookahead keys because they belong to earlier positions yet integrate information from tokens that appear later relative to those positions, while strictly preserving the autoregressive property. Although the mechanism appears sequential, we derive a mathematical equivalence that avoids explicitly materializing lookahead keys at each position and enables efficient parallel training. On language modeling benchmarks, CASTLE consistently outperforms standard causal attention across model scales, reducing validation perplexity and improving performance on a range of downstream tasks.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=OGQJsUUtEB",
+  "arxiv": "https://arxiv.org/abs/2509.07301",
+  "pdf": "https://raw.githubusercontent.com/mlresearch/v306/main/assets/song26y/song26y.pdf",
+  "proceedings": "https://proceedings.mlr.press/v306/song26y.html",
+  "virtual": "https://icml.cc/virtual/2026/poster/64371",
+  "code": null
+ },
+ "license": "http://arxiv.org/licenses/nonexclusive-distrib/1.0/",
+ "img": "none",
+ "image_url": null,
+ "thumb_url": null,
+ "figure_page": 1,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.82
+}

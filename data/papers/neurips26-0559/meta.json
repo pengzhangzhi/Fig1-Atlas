@@ -1,0 +1,50 @@
+{
+ "id": "neurips26-0559",
+ "title": "Combating Data Laundering in LLM Training",
+ "authors": [
+  "Muxing Li",
+  "Zesheng Ye",
+  "Sharon Li",
+  "Feng Liu"
+ ],
+ "venue": "NeurIPS 2026",
+ "tier": "spotlight",
+ "track": "main",
+ "topic": "Social Aspects->Trustworthy Machine Learning",
+ "role": "problem-setup",
+ "role2": "prior-vs-ours",
+ "claim": "Detectors separate training from non-training data when trained on originals, but laundering through transformed surrogates erases that separation.",
+ "layout": "2 panels, left-to-right, curved Synthesize arrow linking panels, distributions at right of each",
+ "tags": [
+  "data-laundering",
+  "membership-inference",
+  "training-data-detection",
+  "failure-mode",
+  "distribution-shift"
+ ],
+ "style": [
+  "colorful",
+  "icon-heavy",
+  "plot"
+ ],
+ "description": "Two rounded gray panels sit side by side. Part A, on the left, shows blue-boxed unauthorized data (a record with name, heart rate and disease) going through Train into a brain-shaped LLM icon. A red Detect arrow then leads to a density plot of loss scores. In that plot the original training and non-training curves are clearly separated. A red tilted stamp reads UNAUTHORIZED!, and an owner avatar appears above the data box. Part B, on the right, repeats the same flow, but the input is an orange box of synthetic storytelling text (\"Once upon a time...\"). Its density plot shows two almost fully overlapping curves, with a red no-entry symbol labeled Erased Signals. A yellow LEGALITY? stamp marks the panel. A black elbow arrow runs under both panels from the original data through a pill labeled \"Rewrite in a storytelling style\". It is labeled Synthesize and points to the synthetic data. The eye goes first to the contrasting distributions.",
+ "caption": "Illustration of how data laundering undermines existing unauthorized training data detectors. When unauthorized data is directly used for training, LLMs tend to memorize the unauthorized training data. Original training samples exhibit lower loss than original non-training samples, as shown in Part A. The log-likelihood distributions of training and non-training samples diverge clearly, enabling identification. However, when trained on laundered synthetic data, as shown in Part B, the distributions of original training samples and original non-training samples no longer diverge, preventing reliable identification.",
+ "caption_source": "latex",
+ "abstract": "Post-hoc unauthorized-training data detection for large language models (LLMs) typically assumes a query-with-originals regime: rights holders query a target LLM with raw proprietary data and assess whether the model assigns them stronger memorization-based detection signals, e.g., higher confidence or lower loss, than held-out non-training reference texts. We show that this regime becomes brittle under data laundering, where the target LLM is trained on semantics-preserving but stylistically or structurally transformed surrogates of proprietary data to obfuscate provenance. Since training-time exposure occurs in the laundered form, memorization signals may no longer appear on the originals, collapsing the candidate-reference signal separation that standard detectors rely on. We counter this threat by studying laundering-aware detection with raw proprietary data, a held-out reference corpus, and query access to the target LLM, while the laundering transformation is undisclosed. Since exact recovery of the laundered corpus is infeasible, we infer a detection-useful synthesis process via an auxiliary LLM that maps originals into training-like queries. To make this search tractable, we introduce Synthesis Data Reversion (SDR), which constrains the unbounded space of natural-language transformations through a goal-details abstraction: a high-level transformation goal, e.g., \"lyrical rewriting\", and fine-grained details, e.g., \"with vivid imagery\". SDR identifies the most likely goal and iteratively refines details so synthesized queries elicit stronger target-model detection signals. Evaluated on the MIMIR benchmark against diverse laundering practices and target LLM families (Pythia, Llama2, and Falcon), SDR consistently restores detection signals, offering a practical auditing layer against data laundering.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=41V90qR5dA",
+  "arxiv": "https://arxiv.org/abs/2604.01904",
+  "pdf": "https://arxiv.org/pdf/2604.01904",
+  "proceedings": null,
+  "virtual": "https://neurips.cc/virtual/2026/poster/155652",
+  "code": "https://github.com/MuxingLiUnimelb/SDR"
+ },
+ "license": "http://creativecommons.org/licenses/by/4.0/",
+ "img": "cc-by",
+ "image_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/images/neurips26-0559.png",
+ "thumb_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/thumbs/neurips26-0559.webp",
+ "figure_page": 1,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.8
+}

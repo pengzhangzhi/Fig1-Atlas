@@ -1,0 +1,48 @@
+{
+ "id": "icml26-5548",
+ "title": "Detecting Fluent Optimization-Based Adversarial Prompts via Sequential Entropy Changes",
+ "authors": [
+  "Mohammed Alshaalan",
+  "Miguel Rodrigues"
+ ],
+ "venue": "ICML 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "Social Aspects->Safety",
+ "role": "analysis-finding",
+ "role2": "prior-vs-ours",
+ "claim": "A sustained upward drift in token-level uncertainty exposes a fluent adversarial suffix that a windowed baseline misses, while benign text stays below threshold.",
+ "layout": "2 stacked panels, shared token axis, benign above adversarial, shaded suffix region",
+ "tags": [
+  "change-point-detection",
+  "cusum",
+  "jailbreak-detection",
+  "token-entropy",
+  "online-detection"
+ ],
+ "style": [
+  "plot",
+  "colorful",
+  "text-heavy"
+ ],
+ "description": "Two vertically stacked line plots share a token-level x-axis. The top panel, titled 'Benign', shows a spiky blue entropy trace and a smooth purple CUSUM curve. The CUSUM curve stays below the dashed orange threshold, and a brown dash-dot windowed-perplexity step line also stays under its dotted threshold. The bottom panel, titled 'Adversarial (advprompter)', has a light green shaded region marking the adversarial suffix, which starts at a green dashed vertical line. Inside this region the CUSUM curve climbs steadily, crosses the orange threshold, and a red dot marks the trigger, with a red dotted vertical line at that point. The brown windowed baseline never crosses its threshold. A legend sits in the upper left of the bottom panel. Entropy is on the left y-axis, CUSUM on the right, and rotated token labels run along the bottom.",
+ "caption": "Top: benign prompt where the CUSUM statistic $W_t^+$ (purple) stays below threshold $h$ (orange) at slack $k=0$ (the canonical Page-CUSUM setting used for Table [ref]; Appendix [ref]). Bottom: adversarial prompt (AdvPrompter); a sustained upward shift in token entropy after the suffix onset (green) causes $W_t^+$ to cross $h$, triggering an alarm at time $\\tau$ (red). The shaded region denotes the ground-truth adversarial suffix. For comparison the WPP$_{15}$ baseline (brown dash-dot, plotted as the non-overlapping window-mean NLL the detector actually scores) and its F1-optimal threshold (brown dotted) are overlaid: on this fluent attack WPP$_{15}$ never crosses its threshold while CPD's $W_t^+$ does.",
+ "caption_source": "latex",
+ "abstract": "Optimization-based adversarial suffixes can jailbreak aligned large language models (LLMs) while remaining fluent, weakening static and windowed perplexity-based detectors. We cast adversarial suffix detection as an online change-point detection problem over the token-level next-token entropy stream. Using the LLM system prompt to estimate a robust baseline, we standardize user-token entropies and apply a one-sided CUSUM statistic. The resulting detector, CPD Online (CPD), is model-agnostic, training-free, runs online, and localizes the adversarial suffix onset. On a benchmark of 1,012 optimization-based suffix attacks (GCG, AutoDAN, AdvPrompter, BEAST, AutoDAN-HGA) and 1,012 perplexity-controlled benign prompts, CPD improves F1 over the strongest windowed-perplexity baseline on all six open-weight chat models (LLaMA-2-7B/13B, Vicuna-7B/13B, Qwen2.5-7B/14B). On LLaMA-2-7B at the canonical CUSUM setting ($k=0$), CPD reaches AUROC $0.88$ and F1 $0.82$. Beyond prompt-level detection, CPD concentrates 79.6% of its triggers inside the adversarial suffix, versus 17-46% for windowed perplexity. Finally, when used as a lightweight gate for LLaMA Guard, CPD reduces guard calls by 17-22% on a high-volume, benign-dominated deployment while preserving guard-level detection quality",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=pyJoRYaVoG",
+  "arxiv": "https://arxiv.org/abs/2605.19966",
+  "pdf": "https://raw.githubusercontent.com/mlresearch/v306/main/assets/alshaalan26a/alshaalan26a.pdf",
+  "proceedings": "https://proceedings.mlr.press/v306/alshaalan26a.html",
+  "virtual": "https://icml.cc/virtual/2026/poster/61448",
+  "code": null
+ },
+ "license": "http://creativecommons.org/licenses/by/4.0/",
+ "img": "cc-by",
+ "image_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/images/icml26-5548.png",
+ "thumb_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/thumbs/icml26-5548.webp",
+ "figure_page": 2,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.5
+}

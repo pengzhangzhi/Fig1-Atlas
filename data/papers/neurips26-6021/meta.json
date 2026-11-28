@@ -1,0 +1,49 @@
+{
+ "id": "neurips26-6021",
+ "title": "Few-Shot Visual Concept Extraction for Steering Diffusion Transformers",
+ "authors": [
+  "Nabyl Quignon",
+  "Antitza Dantcheva"
+ ],
+ "venue": "NeurIPS 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "Computer Vision->Image and Video Generation",
+ "role": "pipeline",
+ "role2": null,
+ "claim": "A small set of contrastive example pairs yields a reusable direction by subtracting activations, which is then injected to steer outputs.",
+ "layout": "3 numbered panels, left-to-right, with a steering-results panel stacked below panel 3",
+ "tags": [
+  "difference-of-means",
+  "activation-steering",
+  "training-free",
+  "few-shot",
+  "diffusion-transformer"
+ ],
+ "style": [
+  "colorful",
+  "icon-heavy",
+  "minimal",
+  "photo/real data"
+ ],
+ "description": "The figure shows a three-stage pipeline in numbered panels with gray rounded borders. Panel 1, 'Prompt Pairs', has red negative prompt boxes (A Lake, A Car, Uniform Mug) beside green positive ones (Anime Style Lake, Red Car, Dotted Mug). Below them are car photos and black-and-white masks for local concepts. Panel 2, 'Residual Extraction', shows a row of vertical DiT Block rectangles with block 18 highlighted in blue. An arrow leads to positive (green) and negative (red) residual token bars, which feed a minus circle. The result is a yellow Concept Vector bar. Panel 3, 'Steering Injection', has arrows from the concept vector into DiT blocks 18, 19 and 56, which are highlighted in orange. Below it, local steering shows a chair image, then its mask, then the chair recolored red. Global steering shows a beach image turned into a more sunlit beach. Color coding is red for negative, green for positive and yellow for the concept vector.",
+ "caption": "Overview of our few-shot concept extraction and steering pipeline. (1) We start from a small set of negative and positive prompt pairs, optionally with masks for localized concepts extraction. (2) We extract residual activations from a selected Diffusion Transformer block and estimate a concept direction using difference-of-means between positive and negative residuals. For global concepts, this is computed over all image tokens and for local concepts, it is restricted to the masked region patches. (3) At inference time, the resulting concept vector is injected into transformer blocks to steer generation, either globally or within a selected region.",
+ "caption_source": "latex",
+ "abstract": "Image steering aims to provide fine-grained control over concepts in generated images, enabling targeted and continuous manipulation without broadly altering the generation process. Recent steering methods for diffusion models primarily focus on the text-conditioning space or rely on costly auxiliary training. Deviating from that, we here propose a novel steering approach that extracts visual concept directions directly from the image-side activations of Diffusion Transformers. Specifically, we showcase few-shot concept extraction in the activation space using a simple difference-of-means estimator over intermediate residuals. We observe (a) scene-level concepts such as lighting, weather, and style are distributed across image tokens, as well as (b) local concepts such as object colors, textures, materials, and facial attributes are concentrated in specific regions. Towards controlling both concepts, we introduce a new unified training-free framework that uses global difference-of-means for (a) distributed concepts and masked difference-of-means for (b) local concepts, preventing local signals from being diluted by global averaging. Notably, using only a handful of positive and negative prompt pairs, our method identifies and extracts reusable concept directions that can be injected at inference for continuous steering. Quantitatively, our method outperforms text-encoder steering and training-free activation-editing baselines, as well as is competitive with specialized editing models. Our results suggest that as concept directions can be applied at patch level, our method enables precise targeted and compositional steering, manipulating multiple concepts in the same image.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=fMSQSo0vsU",
+  "arxiv": "https://arxiv.org/abs/2611.19440",
+  "pdf": "https://arxiv.org/pdf/2611.19440",
+  "proceedings": null,
+  "virtual": "https://neurips.cc/virtual/2026/poster/150793",
+  "code": "https://newbyl.github.io/few_shot_project_page/"
+ },
+ "license": "http://creativecommons.org/licenses/by-nc-sa/4.0/",
+ "img": "cc-by-nc-sa",
+ "image_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/images/neurips26-6021.png",
+ "thumb_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/thumbs/neurips26-6021.webp",
+ "figure_page": 1,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.95
+}

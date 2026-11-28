@@ -1,0 +1,50 @@
+{
+ "id": "iclr26-3241",
+ "title": "Pixel-Level Residual Diffusion Transformer: Scalable 3D CT Volume Generation",
+ "authors": [
+  "Zhenkai Zhang",
+  "Markus Hiller",
+  "Krista A. Ehinger",
+  "Tom Drummond"
+ ],
+ "venue": "ICLR 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "Deep Learning->Generative Models and Autoencoders",
+ "role": "pipeline",
+ "role2": null,
+ "claim": "A cheap local patch-wise denoiser captures low-frequency structure, and a global transformer refines the remaining residual, forming a coarse-to-fine pipeline.",
+ "layout": "2 stacked shaded bands, left-to-right flow, residual sum merging at right",
+ "tags": [
+  "coarse-to-fine",
+  "residual-diffusion",
+  "transformer",
+  "patch-based",
+  "3d-volume"
+ ],
+ "style": [
+  "colorful",
+  "icon-heavy",
+  "photo/real data"
+ ],
+ "description": "A block diagram of the PRDiT architecture that reads left to right. On the left, a noise cube (ε ~ N(0,I)), a timestep box t and the input CT volume X are summed and patchified into a 3D grid of small cubes. A pink-shaded upper band, 'Local Denoiser', takes one flattened patch through blue Linear layers and green-pink Adaptive SwiGLU layers, with a skip connection. It outputs the local predictions x̂_i and ε̂_i. A beige lower band, 'Global Residual DiT', takes all patches through Patch Emb, adds positional encoding PE, and passes them through stacked DiT Blocks. It outputs a red-blue residual volume. A timestep embedding feeds both branches. The local and global outputs are summed at a ⊕ node, giving the final noise cube ε̂ and the CT volume X̂ on the right. A legend sits at the bottom left.",
+ "caption": "Overview of our Pixel-Level Residual Diffusion Transformer (PRDiT) model, composed of a Local Denoiser and a Global Residual DiT. The given input volume $X$ is first divided into $N$ 3D patches. Each patch is flattened and passed through the `local' multilayer perceptron (MLP) denoiser composed of Adaptive SwiGLU and Linear layers to provide local predictions $\\hat{x}_i$ and $\\hat{\\boldsymbol{\\epsilon}}_i$. Complementing these `local' predictions, the $L$ layer Global Residual Diffusion Transformer (DiT) module refines the overall prediction via residuals based on the global context. `PE' indicates the positional encodings, which are only seen by the global residual DiT module.",
+ "caption_source": "latex",
+ "abstract": "Generating high-resolution 3D CT volumes with fine details remains challenging due to substantial computational demands and optimization difficulties inherent to existing generative models. In this paper, we propose the Pixel-Level Residual Diffusion Transformer (PRDiT), a scalable generative framework that synthesizes high-quality 3D medical volumes directly at voxel-level. PRDiT introduces a two-stage training architecture comprising 1) a local denoiser in the form of an MLP-based blind estimator operating on overlapping 3D patches to separate low-frequency structures efficiently, and 2) a global residual diffusion transformer employing memory-efficient attention to model and refine high-frequency residuals across entire volumes. This coarse-to-fine modeling strategy simplifies optimization, enhances training stability, and effectively preserves subtle structures without the limitations of an autoencoder bottleneck. Extensive experiments conducted on the LIDC-IDRI and RAD-ChestCT datasets demonstrate that PRDiT consistently outperforms state-of-the-art models, such as HA-GAN, 3D LDM and WDM-3D, achieving significantly lower 3D FID, MMD and Wasserstein distance scores.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=bWtRZQ1rm2",
+  "arxiv": "https://arxiv.org/abs/2606.20112",
+  "pdf": "https://proceedings.iclr.cc/paper_files/paper/2026/file/f4e5cd2079f5a6cf5176818add841531-Paper-Conference.pdf",
+  "proceedings": "https://proceedings.iclr.cc/paper_files/paper/2026/hash/f4e5cd2079f5a6cf5176818add841531-Abstract-Conference.html",
+  "virtual": "https://iclr.cc/virtual/2026/poster/10008602",
+  "code": null
+ },
+ "license": "http://creativecommons.org/licenses/by/4.0/",
+ "img": "cc-by",
+ "image_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/images/iclr26-3241.png",
+ "thumb_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/thumbs/iclr26-3241.webp",
+ "figure_page": 1,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.95
+}

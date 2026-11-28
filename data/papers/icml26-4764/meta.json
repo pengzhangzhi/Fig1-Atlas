@@ -1,0 +1,50 @@
+{
+ "id": "icml26-4764",
+ "title": "RAPNet: Accelerating Algebraic Multigrid with Learned Sparse Corrections",
+ "authors": [
+  "Yali Fink",
+  "Ido Ben-Yair",
+  "Lars Ruthotto",
+  "Eran Treister"
+ ],
+ "venue": "ICML 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "Deep Learning->Graph Neural Networks",
+ "role": "pipeline",
+ "role2": null,
+ "claim": "A weight-shared message-passing network over a composite fine-coarse graph predicts sparse corrections, applied level by level through the hierarchy.",
+ "layout": "Graph and block matrix at left, flowchart left-to-right with dashed recurrent hidden-state links",
+ "tags": [
+  "graph-neural-network",
+  "multigrid",
+  "weight-sharing",
+  "sparse-corrections",
+  "hierarchical-recurrence"
+ ],
+ "style": [
+  "colorful",
+  "math-heavy",
+  "minimal"
+ ],
+ "description": "The figure has two parts. At far left, a small graph drawing shows pink fine-level nodes densely connected by gray edges. A few blue coarse-level nodes sit below them, joined by dashed pink and purple inter-level edges. Under the graph is a bracketed block matrix. A large pink A_l block sits beside P_l and R_l, with a small blue A_{l+1} block in the corner. To the right is a flowchart. Pink circles for the node and edge features F_l^V and F_l^E feed pink ENC_V and ENC_E boxes. These feed white W_V and W_E mixing boxes. Dashed arrows bring in the previous hidden states H_{l-1}. The mixed features pass through three white RGGCN boxes. They then produce blue hidden states H_l^V and H_l^E. A blue DEC_E box feeds a yellow output box labeled ΔP_l, ΔR_l, ΔA_{l+1}. A dashed line carries the hidden state forward to the next level pair. Colors mark the different stages.",
+ "caption": "The RAPNet architecture. The model processes the AMG hierarchy as a sequence of level pairs. (Left) We model the fine ($l$) and coarse ($l+1$) levels as a single composite graph, where transfer operators ($P_l$, $R_l$) act as inter-level edges. This forms a block system matrix, which is converted to input features (see [ref]). (Right) Using a weight-shared architecture, the model propagates messages across this topology to predict sparse corrections for $A_{l+1}$, $P_l$, and $R_l$. The hidden state is mixed with the next level pair ($l \\leftarrow l+1$) to capture hierarchical dependencies, applying the same learned parameters throughout the entire hierarchy.",
+ "caption_source": "latex",
+ "abstract": "The scalable solution of large sparse linear systems is a bottleneck in scientific computing and graph analysis. While algebraic multigrid (AMG) offers optimal linear scaling, its performance is severely constrained by the trade-off between the sparsity and convergence quality of coarse-grid operators. Classical AMG heuristics struggle to balance these objectives, often sacrificing stability or performance for sparsity. We propose RAPNet, a graph neural network (GNN) framework that resolves this trade-off by learning to generate sparse, robust coarse operators directly from the sparse algebraic system. Key to our approach is a level-wise training strategy that enables learning from small subgraphs and generalization to million-node domains, bypassing the bottlenecks of prior neural AMG attempts. RAPNet executes exclusively during the solver setup phase, ensuring that the solve phase retains its favorable computational properties. We show that our method outperforms classical non-Galerkin baselines on diverse PDE discretizations and graph Laplacians, making it particularly effective for multi-query tasks such as eigenproblems, time-dependent simulations, and inverse or design problems.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=iiNPaOvuwj",
+  "arxiv": "https://arxiv.org/abs/2605.26854",
+  "pdf": "https://raw.githubusercontent.com/mlresearch/v306/main/assets/fink26a/fink26a.pdf",
+  "proceedings": "https://proceedings.mlr.press/v306/fink26a.html",
+  "virtual": "https://icml.cc/virtual/2026/poster/62202",
+  "code": null
+ },
+ "license": "http://creativecommons.org/licenses/by/4.0/",
+ "img": "cc-by",
+ "image_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/images/icml26-4764.png",
+ "thumb_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/thumbs/icml26-4764.webp",
+ "figure_page": 1,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.93
+}

@@ -1,0 +1,51 @@
+{
+ "id": "iclr26-3799",
+ "title": "THE PATH OF LEAST RESISTANCE: GUIDING LLM REASONING TRAJECTORIES WITH PREFIX CONSENSUS",
+ "authors": [
+  "Ishan Jindal",
+  "Sai Prashanth Akuthota",
+  "Jayant Taneja",
+  "SACHIN SHARMA"
+ ],
+ "venue": "ICLR 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "Deep Learning->Generative Models and Autoencoders",
+ "role": "pipeline",
+ "role2": "prior-vs-ours",
+ "claim": "Instead of expanding every sampled reasoning trace, cluster short prefixes and expand only the dominant cluster, matching accuracy at far lower cost.",
+ "layout": "2 panels: stacked baseline-vs-method flow on left, scatter plot on right",
+ "tags": [
+  "prefix-clustering",
+  "self-consistency",
+  "inference-efficiency",
+  "token-reduction",
+  "llm-reasoning"
+ ],
+ "style": [
+  "colorful",
+  "icon-heavy",
+  "plot",
+  "text-heavy"
+ ],
+ "description": "Panel (a) is a PoLR overview. A math word-problem prompt box at top left feeds an LLM. In the top half, Self-consistency produces N full reasoning traces as long bars, green for correct and red for incorrect, which go to answer aggregation and a final response. A dashed line separates this from the bottom half. There, PoLR has the LLM generate N short prefixes, which an embedder maps into clusters (C1, Cj and others) that are grouped by agglomerative clustering. The dominant cluster is selected and only K<<N traces are expanded, then aggregated into a final response. Panel (b) is a token-accuracy plot on GPQA-Diamond for QWQ32B and DSQ7B. Open circles show SC at 100% tokens, and blue dots show PoLR at lower token percentages with green arrows labeled as token reductions. The eye goes first to the colored trace bars.",
+ "caption": "(a) Comparison of Self-Consistency (SC) and PoLR. Top: SC expands all $N$ sampled traces to completion (100% expansion), then aggregates answers via majority vote. Bottom: PoLR first generates $N$ short prefixes of length $L_p$, embeds and clusters them, and selects the dominant cluster. All $K \\ll N$ traces from this cluster are expanded, after which majority voting is applied. (b) PoLR exceeds SC accuracy, while reducing token cost by approx 50%.",
+ "caption_source": "latex",
+ "abstract": "Large language models achieve strong reasoning performance, but inference strategies such as Self-Consistency (SC) are computationally expensive, as they fully expand all reasoning traces. We introduce PoLR (Path of Least Resistance), the first inference-time method to leverage prefix consistency for compute-efficient reasoning. PoLR clusters short prefixes of reasoning traces, identifies the dominant cluster, and expands all paths in that cluster, preserving the accuracy benefits of SC while substantially reducing token usage and latency. Our theoretical analysis, framed via mutual information and entropy, explains why early reasoning steps encode strong signals predictive of final correctness. Empirically, PoLR consistently matches or exceeds SC across GSM8K, MATH500, AIME24/25, and GPQA-DIAMOND, reducing token usage by up to 60% and wall-clock latency by up to 50%. Moreover, PoLR is fully complementary to adaptive inference methods (e.g., Adaptive Consistency, Early-Stopping SC) and can serve as a drop-in pre-filter, making SC substantially more efficient and scalable without requiring model fine-tuning.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=hrnSqERgPn",
+  "arxiv": "https://arxiv.org/abs/2601.21494",
+  "pdf": "https://proceedings.iclr.cc/paper_files/paper/2026/file/5a0ce3abb720b740419e193c87afd080-Paper-Conference.pdf",
+  "proceedings": "https://proceedings.iclr.cc/paper_files/paper/2026/hash/5a0ce3abb720b740419e193c87afd080-Abstract-Conference.html",
+  "virtual": "https://iclr.cc/virtual/2026/poster/10008020",
+  "code": "https://github.com/ijindal/PoLR"
+ },
+ "license": "http://creativecommons.org/licenses/by/4.0/",
+ "img": "cc-by",
+ "image_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/images/iclr26-3799.png",
+ "thumb_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/thumbs/iclr26-3799.webp",
+ "figure_page": 1,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.8
+}

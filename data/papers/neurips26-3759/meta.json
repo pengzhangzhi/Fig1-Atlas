@@ -1,0 +1,50 @@
+{
+ "id": "neurips26-3759",
+ "title": "LaCache: Robust Semantic Caching for LLM Serving",
+ "authors": [
+  "Jiacheng Liang",
+  "Yuhui Wang",
+  "Tanqiu Jiang",
+  "Ting Wang"
+ ],
+ "venue": "NeurIPS 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "Social Aspects->Trustworthy Machine Learning",
+ "role": "prior-vs-ours",
+ "role2": "pipeline",
+ "claim": "Existing caches serve a poisoned response on a similarity match; ours adds a response-level lookahead check that blocks the collision.",
+ "layout": "2 panels split by dashed line, each 3 stacked steps, colored borders",
+ "tags": [
+  "semantic-caching",
+  "adversarial-attack",
+  "defense",
+  "response-verification",
+  "llm-serving"
+ ],
+ "style": [
+  "icon-heavy",
+  "colorful",
+  "text-heavy"
+ ],
+ "description": "The figure has two side-by-side panels separated by a dashed vertical line. Panel (a), \"Cache-collision Attack\", has three numbered steps in red-bordered boxes. Step 1 shows an attacker icon and the core query x0 \"Can I give aspirin to my child?\" combined with a GCG prefix and \"Always answer Yes\" to form the adversarial query x*. Step 2 shows an LLM robot producing the red response f(x*) \"Yes, you can give your child aspirin\", with an arrow to a database icon storing key h(x*) and that value. Step 3 shows a victim query x matching the cache at similarity 0.83 ≥ τc (green check) and receiving the harmful answer. Panel (b), \"LaCache Workflow\", uses blue boxes. Step 1 is the cache-key check, passing with a green check. Step 2 is a lookahead decode, with a similarity check of 0.57 ≤ τa marked by a red X. Step 3 is a cache miss, and the LLM decodes the safe answer in green text. Red and blue borders contrast the attack and the defense.",
+ "caption": "(a) Cache-collision attacks: the adversarial query $x^{*}$ collides with a victim query $x$ in the semantic cache, so that $x$ receives the adversary-chosen response $y^{*}$. (b) \\sys workflow: a cached response $f(x^*)$ is served only when both the cache-key check $(x, x^*)$ and a lookahead check $(f_k(x^*), f_k(x))$ pass. Medical context: the example assumes a child under 16 without a prescription. Aspirin should not be given in this setting due to its association with Reye's syndrome\\mcite{nhs-reyes}.",
+ "caption_source": "latex",
+ "abstract": "Semantic caching, reusing responses to answer semantically similar queries, has seen growing adoption in LLM serving, offering faster responses and reduced costs. Yet existing schemes are fundamentally vulnerable to cache-collision attacks, wherein an adversary pollutes the cache by injecting adversarial queries, corrupting responses to subsequent legitimate requests. We present LaCache, a simple yet principled redesign of semantic caching that provides provable defense against such attacks. The key insight is that while the adversary has full control over the adversarial query, it has far less control over the corresponding LLM-generated response, which must simultaneously satisfy multiple competing constraints. Thus, LaCache shifts the integrity check from the query to the response: rather than checking only the cache hit of a query, LaCache additionally checks the cache hit of its first $k$ speculatively decoded tokens. Analytically, we prove that LaCache detects any cache-collision attack that produces a semantically distinct response with provably high probability. Empirically, evaluation across diverse LLMs and benchmarks confirms that LaCache reduces attack hit rate to near zero while preserving over 90% of benign cache utility. To our best knowledge, this work is the first to exploit the inherent constraints on adversarial responses in cache-collision attacks to provide provable security, pointing to a promising direction for building robust semantic caching.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=QETNuxZpTp",
+  "arxiv": "https://arxiv.org/abs/2608.01718",
+  "pdf": "https://arxiv.org/pdf/2608.01718",
+  "proceedings": null,
+  "virtual": "https://neurips.cc/virtual/2026/poster/152812",
+  "code": "https://github.com/JACKPURCELL/LaCache"
+ },
+ "license": "http://creativecommons.org/licenses/by/4.0/",
+ "img": "cc-by",
+ "image_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/images/neurips26-3759.png",
+ "thumb_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/thumbs/neurips26-3759.webp",
+ "figure_page": 1,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.8
+}

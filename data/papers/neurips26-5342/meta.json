@@ -1,0 +1,54 @@
+{
+ "id": "neurips26-5342",
+ "title": "DashAttention: Differentiable and Adaptive Sparse Hierarchical Attention",
+ "authors": [
+  "Yuxiang Huang",
+  "Nuno Gonçalves",
+  "Federico Alvetreti",
+  "Lei Li",
+  "Xu Han",
+  "Edoardo Ponti",
+  "André Martins",
+  "Marcos Treviso"
+ ],
+ "venue": "NeurIPS 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "Deep Learning->Attention Mechanisms",
+ "role": "pipeline",
+ "role2": null,
+ "claim": "A multi-stage method summarizes chunks, routes with adaptively sparse weights, then refines at token level with a prior-biased softmax.",
+ "layout": "3 panels, left-to-right, stage titles on top, formulas in rounded boxes",
+ "tags": [
+  "sparse-attention",
+  "hierarchical",
+  "differentiable-routing",
+  "long-context",
+  "efficiency"
+ ],
+ "style": [
+  "math-heavy",
+  "colorful",
+  "minimal"
+ ],
+ "description": "Three vertical panels separated by dashed lines, labeled Stage 0, Stage 1 and Stage 2 in monospace headers. Stage 0 shows a token-level KV cache split into three chunks, with the middle chunk (blue) zoomed in by a dashed funnel. Inside it, a query box attends to five key tokens. A blue box gives the chunk-summary formula using sdpa. Stage 1 shows a query linked to three chunk-summary boxes. A bar chart of routing weights (.00, .32, .68) sits below, with the alpha-entmax formula in a box. Stage 2 shows chunks with one dropped (hatched grey) and an orange diagonal block. Below are the piecewise bias d_ij and the final softmax output formula. Blue, cream and orange mark the different roles.",
+ "caption": "High-level overview of \\methodname. Stage 0 builds chunk summaries by local SDPA; Stage 1 routes with \\entmax to obtain an adaptively sparse support; Stage 2 refines at token resolution with a softmax whose logits are biased by $d_{i,j}$, derived from the router weights, maintaining full differentiability and FlashAttention compatibility. See Section [ref] for details.",
+ "caption_source": "latex",
+ "abstract": "Current hierarchical attention methods, such as NSA and InfLLMv2, select the top-k relevant key-value (KV) blocks based on coarse attention scores and subsequently apply fine-grained softmax attention on the selected tokens. However, the top-k operation assumes the number of relevant tokens for any query is fixed and it precludes the gradient flow between the sparse and dense stages. In this work, we propose DashAttention (Differentiable and Adaptive Sparse Hierarchical Attention), which leverages the adaptively sparse $Î±$-entmax transformation to select a variable number of blocks according to the current query in the first stage. This in turn provides a prior for the second-stage softmax attention, keeping the entire hierarchy fully differentiable. Contrary to other hierarchical attention methods, we show that DashAttention is non-dispersive, translating to better long-context modeling ability. Experiments with large language models (LLMs) show that DashAttention achieves comparable accuracy as full attention with 75% sparsity and a better Pareto frontier than NSA and InfLLMv2, especially in high-sparsity regimes. We also provide an efficient, GPU-aware implementation of DashAttention in Triton, which achieves a speedup of up to over FlashAttention-3 at inference time. Overall, DashAttention offers a cost-effective strategy to model long contexts.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=axGCEGSg4a",
+  "arxiv": "https://arxiv.org/abs/2605.18753",
+  "pdf": "https://arxiv.org/pdf/2605.18753",
+  "proceedings": null,
+  "virtual": "https://neurips.cc/virtual/2026/poster/151399",
+  "code": null
+ },
+ "license": "http://creativecommons.org/licenses/by/4.0/",
+ "img": "cc-by",
+ "image_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/images/neurips26-5342.png",
+ "thumb_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/thumbs/neurips26-5342.webp",
+ "figure_page": 1,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.93
+}

@@ -1,0 +1,50 @@
+{
+ "id": "neurips26-8473",
+ "title": "Verifier Choice is a Benchmark Design Variable: Auditing Structural Counting Evaluation in Text-to-Image Models",
+ "authors": [
+  "Shurun Li",
+  "Michael H Wang",
+  "Haibo Zeng",
+  "Long Wang"
+ ],
+ "venue": "NeurIPS 2026",
+ "tier": "poster",
+ "track": "Evaluations_and_Datasets_Track",
+ "topic": "Computer Vision->Image and Video Generation",
+ "role": "analysis-finding",
+ "role2": "problem-setup",
+ "claim": "Automatic benchmark scores depend on the verifier and protocol, so close aggregate scores can hide image-level disagreement with human labels.",
+ "layout": "3 panels left-to-right: human reference, verifier outputs list, metrics tables",
+ "tags": [
+  "evaluation-reliability",
+  "verifier-choice",
+  "benchmark-audit",
+  "text-to-image",
+  "counting"
+ ],
+ "style": [
+  "text-heavy",
+  "colorful",
+  "photo/real data"
+ ],
+ "description": "A three-panel figure under a bold title. Panel A, \"Human reference\", shows a photo of a wooden six-drawer dresser. Below it, a blue box reads \"Human: valid, count=6, target=6\" and \"Human benchmark label: PASS\". Panel B, \"Same image, different verifier outputs\", stacks five rounded rows color-coded green, orange, red, green and green. Each row names a verifier (Qwen3.5-4B, Gemma3n-E4B, Qwen3.5-27B, YOLO11s), its protocol and its output (6, reject, 5, valid 6, 6 boxes). A green check or red cross sits at the right of each row. Panel C, \"Benchmark score is protocol-dependent\", holds two monospace tables. The first lists score gaps and kappa for model/protocol pairs on FLUX.2-dev dresser images. The second, in orange, compares human score with verifier score on Qwen-Image traffic lights, with a low kappa. The eye goes first to the dresser photo, then to the colored check and cross rows.",
+ "caption": "Verifier choice and verifier-use protocol change benchmark outcomes. Panel A shows a human-audited generated image. Panel B shows that the same image can receive different outputs under different verifiers and verifier-use protocols. Panel C reports aggregate metrics on the corresponding generator--\\longwang{object} slices (Q4/Q27: Qwen3.5-4B/27B; G3n/G4: Gemma3n-E4B/Gemma4-E4B; FC/FR: few-shot count-only/reject-count), where the generated images and human labels are fixed but automatic scores and image-level agreement vary across verifier/protocol choices. This illustrates why a T2I benchmark score should be reported as a property of the generator, prompt distribution, verifier, verifier-use protocol, and scoring rule.",
+ "caption_source": "latex",
+ "abstract": "Automatic evaluation is now central to text-to-image benchmarking, but the verifier that converts generated images into scores is often treated as an implementation detail. We argue that this is unsafe: an automatic benchmark score is a property of the image generator, prompt distribution, verifier, verifier-use protocol, and scoring rule, not of the generator alone. We study this issue in structural counting, a controlled setting where human-visible counts can be audited. We construct a verifier-centric audit suite over seven counting objects: cell phones, chairs, and traffic lights for object counting, and clover leaflets, dresser drawer fronts, power-strip sockets, and turbine blades for substructure counting. Across 6,240 generated images from Qwen-Image-2512 and FLUX.2-dev, we compare open MLLM verifiers under count-only, reject-aware, zero-shot and few-shot protocols, plus TIFA-like target queries, a detector baseline, and frontier closed-model checks on two hard objects. On a balanced 2,280-image evaluation split, aggregate score matching can coexist with image-level disagreement, and verifier-use protocols and generator distributions change the measured reliability. Every verifier-protocol configuration also shrinks the human score difference between the two generators, by 7.5-25.0 pp, and with a third generator, Z-Image, all four tested protocols reverse the human ordering of Z-Image and FLUX.2-dev on our fixed prompt suite. GPT-5.5 and Claude Opus 4.7 checks do not remove the failure modes: GPT-5.5 still has only 59.92% clover valid-count fidelity, while Claude Opus 4.7 has lower same-slice agreement ($Îº=0.432$). We propose reporting automatic benchmark scores with a factorized verifier reliability profile: aggregate score gap, image-level agreement, generator-comparison distortion, valid-image count fidelity, rejection behavior, output compliance, and directional bias.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=wUGdrU38xm",
+  "arxiv": "https://arxiv.org/abs/2611.15433",
+  "pdf": "https://arxiv.org/pdf/2611.15433",
+  "proceedings": null,
+  "virtual": "https://neurips.cc/virtual/2026/poster/138925",
+  "code": "https://github.com/AzusaCat1111/verifier-choice-audit"
+ },
+ "license": "http://creativecommons.org/licenses/by/4.0/",
+ "img": "cc-by",
+ "image_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/images/neurips26-8473.png",
+ "thumb_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/thumbs/neurips26-8473.webp",
+ "figure_page": 1,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.55
+}

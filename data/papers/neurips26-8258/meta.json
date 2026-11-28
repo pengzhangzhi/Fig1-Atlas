@@ -1,0 +1,50 @@
+{
+ "id": "neurips26-8258",
+ "title": "Efficient LLM Adaptation with Forward-Only Passes",
+ "authors": [
+  "Baichuan Huang",
+  "Ananth Balashankar",
+  "Amir Aminifar"
+ ],
+ "venue": "NeurIPS 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "Deep Learning->Algorithms",
+ "role": "pipeline",
+ "role2": "teaser-result",
+ "claim": "Decomposing a weight matrix and scoring each component with forward passes alone finds where to prune, cutting memory and time without losing accuracy.",
+ "layout": "2 regions, left method flow then right results panel, equations beside icons",
+ "tags": [
+  "forward-only",
+  "svd-decomposition",
+  "rank-reduction",
+  "efficiency",
+  "llm-adaptation"
+ ],
+ "style": [
+  "math-heavy",
+  "colorful",
+  "plot",
+  "icon-heavy"
+ ],
+ "description": "The figure has two large rounded panels, a blue one on the left titled 'Our Forward-Only Search' and a green one on the right titled 'Results'. The left panel runs in three numbered steps. Step 1 shows a weight matrix as a grid of dots, equal to a product of colored SVD factor matrices, with the equation W = Σ σ_i u_i ⊗ v_i^T. Step 2 shows the per-component outputs as colored stacked layers that sum to the standard output Y = XW^T. Step 3 is a bar chart of angle concentration for Y and for Y^(1) through Y^(r), with a dashed threshold line and 'reduction' arrows on the last bars. Small colored tiles sit beneath the bars. A purple arrow leads to the right panel. That panel has a 3D scatter plot of memory, speedup and accuracy, plus a 2D accuracy-versus-speedup plot. Green dots mark the proposed method and other colors mark the baselines. The caption below reads 'Lower Peak Memory & Greater Speedup & Competitive Accuracy'.",
+ "caption": "Efficient \\gls{LLM} adaptation in \\gls{LLM} inference serving. Our forward-only search contains \\ding{172} \\Gls{SVD} with multiple \\gls{SVD} components; \\ding{173} The sum of activations from all \\gls{SVD} components recovers the standard forward pass; \\ding{174} Forward-only passes measure the angle concentration to identify which weight matrix has the highest dispersion that should be applied with rank reduction. Results show that our forward-only approach achieves lower peak memory and greater speedup than the gradient-based approach (LASER-Grad [ref]), as well as greater speedup and competitive accuracy compared to the exhaustive search approach (LASER [ref]).",
+ "caption_source": "latex",
+ "abstract": "Large language model (LLM) inference serving is undergoing rapid growth and large-scale deployment, motivating us to rethink how the inference process itself can be leveraged to enable efficient task-specific LLM adaptation. In this paper, we propose a forward-only approach for efficient LLM adaptation with forward-only passes in LLM inference serving. We exploit the angle concentration of activations induced by each singular value decomposition (SVD) component to measure its contribution-dispersed or concentrated-to the angle concentration of the hidden states. Based on this, our forward-only search then efficiently identifies the weight matrix with the highest dispersion that merits rank reduction. We then selectively remove the higher-order components and retain the lower-order components in SVD. Empirical results across diverse datasets demonstrate the competitive accuracy of our forward-only approach, while theoretical analysis shows lower peak memory and greater speedup than the gradient-based approach and greater speedup than the exhaustive search approach. The experiments further present the robustness and generalization of our forward-only approach to various LLMs with up to 57B parameters. The code is included in the supplementary material.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=ux9eaZ3bxm",
+  "arxiv": "https://arxiv.org/abs/2611.10610",
+  "pdf": "https://arxiv.org/pdf/2611.10610",
+  "proceedings": null,
+  "virtual": "https://neurips.cc/virtual/2026/poster/148809",
+  "code": "https://whubaichuan.github.io/project/foadaptllm/forward-only-paper.html"
+ },
+ "license": "http://creativecommons.org/licenses/by/4.0/",
+ "img": "cc-by",
+ "image_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/images/neurips26-8258.png",
+ "thumb_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/thumbs/neurips26-8258.webp",
+ "figure_page": 1,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.8
+}

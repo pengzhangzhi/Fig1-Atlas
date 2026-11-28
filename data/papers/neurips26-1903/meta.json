@@ -1,0 +1,50 @@
+{
+ "id": "neurips26-1903",
+ "title": "High Entropy Regularization Leads to Symmetry Equivariant Policies in Dec-POMDPs",
+ "authors": [
+  "Johannes Forkel",
+  "Constantin Ruhdorfer",
+  "Michael Beukman",
+  "Andreas Bulling",
+  "Jakob Foerster"
+ ],
+ "venue": "NeurIPS 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "Reinforcement Learning->Multi-agent",
+ "role": "analysis-finding",
+ "role2": "concept",
+ "claim": "Above an entropy threshold the objective has a single optimum, so learned policies stop breaking symmetry and become mutually compatible.",
+ "layout": "4 panels left-to-right: two 3D surfaces, cross-play heatmap, line plot",
+ "tags": [
+  "entropy-regularization",
+  "symmetry-breaking",
+  "cross-play",
+  "multi-agent",
+  "phase-transition"
+ ],
+ "style": [
+  "plot",
+  "colorful"
+ ],
+ "description": "Four plots in a row from one toy simultaneous-action game. The first two are 3D surface plots of the self-play objective over parameters theta1 and theta2, drawn in a viridis colormap. At low entropy (alpha=1.0) the surface has two separate peaks and a valley between them. At higher entropy (alpha=1.2) it is a single smooth dome. The third panel is a cross-play heatmap of entropy coefficients for Player 1 against Player 2. A red and green checkerboard fills the low-entropy block, meaning policies are incompatible. A uniform green region fills the high-entropy area, meaning they are compatible. The fourth panel is a line plot of action probabilities against entropy coefficient. The curves for max and min of pi(1) and pi(2) converge near 1.2. The eye goes first to the colorful 3D surfaces, then to the checkerboard-to-solid transition.",
+ "caption": "Consider the one-round simultaneous-action game with payoff matrix given in ([ref]), and the parametrization $\\theta = (\\theta_1, \\theta_2) \\mapsto softmax(\\theta_1, -\\theta_1, \\theta_2) = \\pi^1_\\theta(\\cdot) = \\pi^2_\\theta(\\cdot)$. Left and second from left: the function $\\theta \\mapsto J^\\alpha_{SP}(\\pi_\\theta)$, with $\\alpha = 1.0$ and $\\alpha = 1.2$. Second from right: XP matrix between multiple greedified joint policies, which were trained with entropy regularized independent REINFORCE with baseline, with $\\alpha \\in \\{0.4, 0.6, 0.8, 1.0, 1.2, 1.4\\}$. 5 seeds per entropy coefficient. Right: action probabilities of one trained policy for each $\\alpha$. Takeaway: In this game the entropy threshold $\\alpha'$ lies between $1.0$ and $1.2$, i.e. for $\\alpha > \\alpha'$ the objective function $\\theta \\mapsto J_{SP}^\\alpha(\\pi_\\theta)$ has a unique local maximum, the learned policies stop breaking the symmetry, and are fully compatible.",
+ "caption_source": "latex",
+ "abstract": "We prove that in any Dec-POMDP, sufficiently high entropy regularization ensures that the policy gradient flow with tabular softmax parametrization always converges, for any initialization, to the same joint policy, and that this joint policy is equivariant w.r.t. all symmetries of the Dec-POMDP. In particular, policies coming from different initializations will be fully compatible, in that their cross-play returns are equal to their self-play returns. Through extensive evaluation of independent PPO, arguably the standard baseline deep multi-agent policy gradient algorithm, in the Hanabi, Overcooked and Yokai environments, we find that the entropy coefficient has a massive influence on the cross-play returns between independently trained policies, and that the decrease in self-play returns coming from increased entropy regularization can often be counteracted by greedifying the learned policies after training. In Hanabi in particular we achieve a new SOTA in inter-seed cross-play this way. While we give examples of Dec-POMDPs in which one cannot learn the optimal symmetry equivariant policy this way, both our theoretical and empirical results suggest that one should consider far higher entropy coefficients during hyperparameter sweeps in Dec-POMDPs than is typically done.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=DU3r4vMx02",
+  "arxiv": "https://arxiv.org/abs/2511.22581",
+  "pdf": "https://arxiv.org/pdf/2511.22581",
+  "proceedings": null,
+  "virtual": "https://neurips.cc/virtual/2026/poster/154447",
+  "code": null
+ },
+ "license": "http://creativecommons.org/licenses/by/4.0/",
+ "img": "cc-by",
+ "image_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/images/neurips26-1903.png",
+ "thumb_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/thumbs/neurips26-1903.webp",
+ "figure_page": 4,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.6
+}

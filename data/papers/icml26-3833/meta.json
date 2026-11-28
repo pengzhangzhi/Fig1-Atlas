@@ -1,0 +1,51 @@
+{
+ "id": "icml26-3833",
+ "title": "Reuse your FLOPs: Scaling RL on Hard Problems by Conditioning on Very Off-Policy Prefixes",
+ "authors": [
+  "Amrith Setlur",
+  "Zijian Wang",
+  "Andrew Cohen",
+  "Paria Rashidinejad",
+  "Sang Michael Xie"
+ ],
+ "venue": "ICML 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "Deep Learning->Large Language Models",
+ "role": "pipeline",
+ "role2": "concept",
+ "claim": "Reusing prior failed-search compute as successful trace prefixes turns hard problems into easier prefixed ones, so on-policy RL gets learning signal.",
+ "layout": "3 numbered panels, left-to-right, dashed box around method stages",
+ "tags": [
+  "prefix-conditioning",
+  "reinforcement-learning",
+  "off-policy-reuse",
+  "hard-problems",
+  "sample-efficiency"
+ ],
+ "style": [
+  "minimal",
+  "colorful",
+  "icon-heavy"
+ ],
+ "description": "Three numbered stages run left to right. Panel 1 shows a hard problem (a blue dot) feeding a dashed gray 'Base LLM' box. Many arrows leave the box. Most are red and end in red circles (failures), and one rare green arrow ends in a green circle (correct trace). The label reads 'Previously Spent Compute on a Hard Problem'. Panels 2 and 3 sit inside a larger dashed rounded box labeled 'PrefixRL'. Panel 2 shows four blue problem stubs, each extended by an orange prefix arrow taken from a correct trace. The label reads 'Extract Prefixed Problems From Just One Correct Trace'. Panel 3 shows no-prefix (original) and prefixed problems entering a dashed 'RL Policy' box. Most outgoing arrows are green and end in green circles, with one red. The label reads 'Run On-Policy RL on No-Prefix & Prefixed Problems'. Orange caption boxes sit at the bottom of each panel. The black numbered circles and the red-to-green shift in outcomes draw the eye first.",
+ "caption": "PrefixRL: On-Policy RL Conditioned on Off-Policy Prefixes. We leverage previously spent compute (\\protect\\bcirc{1}) on hard problems in the form of correct off-policy traces rejection sampled from the base LLM we start RL from. Off-policy traces could also come from other model families or previous RL runs. We append prefixes of a single correct off-policy trace per problem to the original problem, creating prefixed problems (\\protect\\bcirc{2}). Then, we simply run on-policy RL on prefixed and no-prefix (original) problems (\\protect\\bcirc{3}). PrefixRL places the RL policy in higher-rewarding states, which boosts the learning signal. Performance transfers from the prefixed to no-prefix problems via a phenomenon we call back-generalization.",
+ "caption_source": "latex",
+ "abstract": "Typical reinforcement learning (RL) methods for LLM reasoning waste compute on hard problems, where correct on-policy traces are rare, policy gradients vanish, and learning stalls. To bootstrap more efficient RL, we consider reusing old sampling FLOPs (from prior inference or RL training) in the form of off-policy traces. Standard off-policy methods supervise against off-policy data, causing instabilities during RL optimization. We introduce PrefixRL, where we condition on the prefix of successful off-policy traces and run on-policy RL to complete them, side-stepping off-policy instabilities. PrefixRL boosts the learning signal on hard problems by modulating the difficulty of the problem through the off-policy prefix length. We prove that the PrefixRL objective is not only consistent with the standard RL objective but also more sample efficient. Empirically, we discover back-generalization: training only on prefixed problems generalizes to out-of-distribution unprefixed performance, with learned strategies often differing from those in the prefix. In our experiments, we source the off-policy traces by rejection sampling with the base model, creating a self-improvement loop. On hard reasoning problems, PrefixRL reaches the same training reward 2x faster than the strongest baseline (SFT on off-policy data then RL), even after accounting for the compute spent on the initial rejection sampling, and increases the final reward by 3x. The gains transfer to held-out benchmarks, and PrefixRL is still effective when off-policy traces are derived from a different model family, validating its flexibility in practical settings.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=a5itZI3DeQ",
+  "arxiv": "https://arxiv.org/abs/2601.18795",
+  "pdf": "https://raw.githubusercontent.com/mlresearch/v306/main/assets/setlur26a/setlur26a.pdf",
+  "proceedings": "https://proceedings.mlr.press/v306/setlur26a.html",
+  "virtual": "https://icml.cc/virtual/2026/poster/63106",
+  "code": null
+ },
+ "license": "http://creativecommons.org/licenses/by/4.0/",
+ "img": "cc-by",
+ "image_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/images/icml26-3833.png",
+ "thumb_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/thumbs/icml26-3833.webp",
+ "figure_page": 1,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.85
+}

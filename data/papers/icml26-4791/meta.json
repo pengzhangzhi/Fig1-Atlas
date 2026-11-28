@@ -1,0 +1,53 @@
+{
+ "id": "icml26-4791",
+ "title": "Entropy-Aware Dynamic KV Cache Sparsification for Autoregressive Image Generation and Editing",
+ "authors": [
+  "Tong Tong",
+  "LING XING",
+  "Linjie Li",
+  "Rui Yan",
+  "Zhengyuan Yang",
+  "Lijuan Wang",
+  "Alex Jinpeng Wang"
+ ],
+ "venue": "ICML 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": null,
+ "role": "teaser-result",
+ "role2": null,
+ "claim": "Our method matches the full-cost baseline's quality at much lower compute, while competing compression methods lose substantial quality at the same budget.",
+ "layout": "1 panel, bubble scatter, FLOPs on x, FID on y, stars mark baselines",
+ "tags": [
+  "efficiency-quality-tradeoff",
+  "kv-cache",
+  "sparse-attention",
+  "training-free",
+  "pareto"
+ ],
+ "style": [
+  "plot",
+  "colorful",
+  "minimal"
+ ],
+ "description": "A single bubble scatter plot with FLOPs on the x-axis and FID-30K on the y-axis, where lower FID is better. Color encodes three model configurations: red for Lumina-mGPT-512, blue for 768 and green for 1024, with a legend at top left. Each configuration has a star labeled BaseLine for the full-cache model and circles labeled Streaming, H2O, R-KV and SparseAR. The competing methods sit high on the y-axis, with FID from about 17 up to 131.8. The 131.8 label is noted beside the top Streaming point. The SparseAR circles, labeled in yellow, sit near the bottom of the plot, close to their baseline stars in FID and at lower FLOPs. The eye goes first to the cluster of circles near the bottom and then to the stars.",
+ "caption": "Efficiency vs. Generation Quality. Our SparseAR reduces FLOPs while maintaining generation quality nearly on par with the full-cache baseline (stars), whereas other KV cache compression methods suffer from substantial FID degradation. FID was calculated between 30K generated images and a fixed set of real images, with all methods evaluated under the same compression budget based on Lumina-mGPT.",
+ "caption_source": "pdf",
+ "abstract": "Autoregressive (AR) image generation has recently gained momentum as a scalable alternative to diffusion models, benefiting from unified next-token prediction paradigm and strong instruction following ability. However, AR visual generation must decode excessively long sequences of visual tokens, making inference heavily bottlenecked by the memory footprint and latency of the self-attention KV cache. While KV cache compression is well studied in Large Language Model, its counterparts in AR image generation remain underexplored. The reason is fundamental: visual tokens are highly redundant, and their spatial information density is highly non-uniform. In this work, we introduce SparseAR, a training-free, entropy-aware sparse attention method that is specifically designed for AR image generation and editing. Our key insight is that information-rich regions exhibit higher entropy and require broader attention, while redundant regions show lower entropy and allow aggressive sparsification. Based on this insight, we dynamically identify information-rich regions during decoding and adaptively adjust attention sparsity to reduce KV-cache overhead. SparseAR is plug-and-play and can be readily applied to mainstream AR models. Extensive experiments on four representative AR models across multiple benchmarks demonstrate that SparseAR significantly improves inference efficiency while maintaining, and often even improving, generation and editing quality.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=j1CQevnH6D",
+  "arxiv": null,
+  "pdf": "https://raw.githubusercontent.com/mlresearch/v306/main/assets/tong26k/tong26k.pdf",
+  "proceedings": "https://proceedings.mlr.press/v306/tong26k.html",
+  "virtual": "https://icml.cc/virtual/2026/poster/62177",
+  "code": null
+ },
+ "license": null,
+ "img": "none",
+ "image_url": null,
+ "thumb_url": null,
+ "figure_page": 0,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.93
+}

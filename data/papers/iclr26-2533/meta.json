@@ -1,0 +1,50 @@
+{
+ "id": "iclr26-2533",
+ "title": "From Sequential to Parallel: Reformulating Dynamic Programming as GPU Kernels for Large-Scale Stochastic Combinatorial Optimization",
+ "authors": [
+  "Jingyi Zhao",
+  "Linxin Yang",
+  "Haohua Zhang",
+  "Qile He",
+  "Tian Ding"
+ ],
+ "venue": "ICLR 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "Optimization->Large Scale, Parallel and Distributed",
+ "role": "analysis-finding",
+ "role2": null,
+ "claim": "Estimated objective values are biased with few scenarios and only converge as the scenario count grows large, motivating large-scale sampling.",
+ "layout": "4 line plots in a row, (a)-(d), linear then log x-axis",
+ "tags": [
+  "sample-average-approximation",
+  "scenario-bias",
+  "convergence",
+  "scaling-curve",
+  "stochastic-optimization"
+ ],
+ "style": [
+  "plot",
+  "minimal"
+ ],
+ "description": "A single horizontal strip of four matplotlib-style line plots with blue markers on light grids. Panels (a) and (b) show expected cost against a small number of scenarios (1 to 20) under random and normal demand distributions. In both, the curve rises steeply and then flattens, so small scenario sets underestimate the cost. Panels (c) and (d) show convergence of expected cost out to about 30,000 scenarios. (c) uses a linear x-axis, where the curve shoots up near zero and then plateaus around 6,200. (d) uses a log x-axis, which spreads out the early points and shows a gradual rise to the plateau. Captions (a) to (d) sit below. The figure does not show the GPU DP parallelism that its caption describes, so the image and caption do not match.",
+ "caption": "2D DP parallelism on GPU (scenarios $\\times$ predecessors). Each row corresponds to a destination state $i$, each block within a row represents a scenario $\\omega$, and colored bars indicate feasible predecessors $p<i$. For each $(i,\\omega)$ pair, all predecessors are expanded in parallel to form the set $\\{J^\\omega(p)+A^\\omega(p,i):\\,p<i\\}$, followed by a column-wise min-reduction over $p$ that yields $J^\\omega(i)$.",
+ "caption_source": "latex",
+ "abstract": "A major bottleneck in scenario-based Sample Average Approximation (SAA) for stochastic programming (SP) is the cost of solving an exact second-stage problem for every scenario, especially when each scenario contains an NP-hard combinatorial structure. This has led much of the SP literature to restrict the second stage to linear or simplified models. We develop a GPU-based framework that makes structured integer recourse operators tractable at scale. The key innovation is a set of hardware-aware, scenario-batched GPU kernels that expose parallelism across scenarios, dynamic-programming (DP) layers, and route or action options, enabling Bellman updates to be executed in a single pass over more than 1,000,000 realizations. We evaluate the approach in two representative SP settings: a vectorized split operator for stochastic vehicle routing and a DP for inventory reinsertion. Implementation scales nearly linearly in the number of scenarios and achieves a one-two to four-five orders of magnitude speedup, allowing far larger scenario sets and reliably stronger first-stage decisions. The computational leverage directly improves decision quality: much larger scenario sets and many more first-stage candidates can be evaluated within fixed time budgets, consistently yielding stronger SAA solutions. Our results show that structured integer recourse operators are tractable at scales previously considered impossible, providing a practical path to large-scale, realistic stochastic discrete optimization.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=T9FDmsmoBj",
+  "arxiv": "https://arxiv.org/abs/2602.05179",
+  "pdf": "https://proceedings.iclr.cc/paper_files/paper/2026/file/bc09efb501c801ed92e181e26a885c2d-Paper-Conference.pdf",
+  "proceedings": "https://proceedings.iclr.cc/paper_files/paper/2026/hash/bc09efb501c801ed92e181e26a885c2d-Abstract-Conference.html",
+  "virtual": "https://iclr.cc/virtual/2026/poster/10009342",
+  "code": "https://github.com/Jingyi-poly/2-stage-IRP-GPU/tree/CVRPSD-split-GPU"
+ },
+ "license": "http://creativecommons.org/licenses/by/4.0/",
+ "img": "cc-by",
+ "image_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/images/iclr26-2533.png",
+ "thumb_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/thumbs/iclr26-2533.webp",
+ "figure_page": 6,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.6
+}

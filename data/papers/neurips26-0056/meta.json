@@ -1,0 +1,50 @@
+{
+ "id": "neurips26-0056",
+ "title": "Video-Mirai: Autoregressive Video Diffusion Models Need Foresight",
+ "authors": [
+  "Yonghao Yu",
+  "Lang Huang",
+  "Runyi Li",
+  "Zerun Wang",
+  "Toshihiko Yamasaki"
+ ],
+ "venue": "NeurIPS 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "Computer Vision->Image and Video Generation",
+ "role": "analysis-finding",
+ "role2": "before-after",
+ "claim": "Probing a model's current internal state shows the proposed training makes future content far more recoverable than the baseline does.",
+ "layout": "3 rows by 4 columns, left-to-right, blue/red boxes mark matching regions",
+ "tags": [
+  "probing",
+  "readout",
+  "future-prediction",
+  "representation-supervision",
+  "video-generation"
+ ],
+ "style": [
+  "photo/real data",
+  "colorful"
+ ],
+ "description": "A 3-row by 4-column image grid with column titles: Current Frame, Baseline, Video-Mirai, Future Frame. Each row shows a different video scene: a gingerbread man in a snowy village, a silhouetted person walking a dog at sunset, and a fox robot in a neon-lit setting. The two middle columns are MLP readouts of future RGB decoded from the generator's current hidden state. Colored rounded boxes highlight the key subject in each frame. Blue boxes on the current frame and baseline show regions matching the current frame. Red boxes on the Video-Mirai and future-frame columns show regions matching the future frame. The baseline readouts look blurry and stay close to the current pose. The Video-Mirai readouts are sharper and closer to the future frame's pose and detail. The eye goes first to the colored boxes and the blur contrast in the middle columns.",
+ "caption": "Video-Mirai makes the future more decodable. An MLP readout reconstructs future RGB from the frozen causal generator’s current hidden state. Left to right: current frame, baseline readout, Video-Mirai readout (ours), future frame. blue/red: regions matching the current/future.",
+ "caption_source": "latex",
+ "abstract": "Causal video generators must predict from the past, but they need not learn only from it. In streaming autoregressive video diffusion, each emitted segment becomes a commitment that future segments must preserve. Standard training, however, does not explicitly supervise causal states with future-informed representation targets. This creates what we call a representation-level planning gap: states that fit the current segment may discard identity, layout, and motion information needed for a consistent future. We introduce Video-Mirai, a training-only method that closes this gap without changing causal inference: the generator rolls out causally, a frozen foresight encoder reads the completed rollout non-causally, and a lightweight predictor distills the resulting stopped-gradient targets into causal states. Future frames supervise representations, never generator inputs. At inference, the encoder and predictor are discarded, leaving the original architecture, per-step FLOPs, and KV-cache behavior unchanged. Video-Mirai improves a strong Causal-Forcing baseline on 5-second VBench from 83.8 to 84.6 in terms of Total Score. On 30-second rollouts beyond the training horizon, subject consistency improves from 84.9 to 88.5 and background consistency from 90.2 to 91.9. Ablations identify future-conditioned targets as a key ingredient, and probes show that future frames become more decodable from current features. Causality should constrain inference, not representation supervision. Our study highlights that visual autoregressive models need foresight. Project Page: https://y0uroy.github.io/Video-Mirai.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=0Oqbkn7POo",
+  "arxiv": "https://arxiv.org/abs/2606.03971",
+  "pdf": "https://arxiv.org/pdf/2606.03971",
+  "proceedings": null,
+  "virtual": "https://neurips.cc/virtual/2026/poster/156098",
+  "code": "https://y0uroy.github.io/Video-Mirai/"
+ },
+ "license": "http://arxiv.org/licenses/nonexclusive-distrib/1.0/",
+ "img": "none",
+ "image_url": null,
+ "thumb_url": null,
+ "figure_page": 0,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.55
+}

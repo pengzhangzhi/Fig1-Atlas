@@ -1,0 +1,57 @@
+{
+ "id": "iclr26-4957",
+ "title": "Sculpting Subspaces: Constrained Full Fine-Tuning in LLMs for Continual Learning",
+ "authors": [
+  "Nikhil Shivakumar Nayak",
+  "Krishnateja Killamsetty",
+  "Ligong Han",
+  "Abhishek Bhandwaldar",
+  "Prateek Chanda",
+  "Kai Xu",
+  "Oleg Silkin",
+  "Mustafa Eyceoz",
+  "Hao Wang",
+  "Aldo Pareja",
+  "Akash Srivastava"
+ ],
+ "venue": "ICLR 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "Deep Learning->Algorithms",
+ "role": "pipeline",
+ "role2": "concept",
+ "claim": "Decompose each weight matrix by singular values and restrict updates to a low-importance subspace orthogonal to prior-task directions.",
+ "layout": "Dense multi-region diagram: layers left, SVD center, subspace stacks below, projection inset right",
+ "tags": [
+  "svd",
+  "continual-learning",
+  "subspace-projection",
+  "orthogonal-updates",
+  "full-fine-tuning"
+ ],
+ "style": [
+  "icon-heavy",
+  "math-heavy",
+  "colorful"
+ ],
+ "description": "A dense, colorful method diagram. At left, a stack of Transformer LM layers (Layer 1, Layer 2, Layer N with weights W) feeds a blue Layer Importance box. That box computes I(l) from the layer's input X and output Y using cosine similarity. A top box gives the rank-retention formula r(l) = mrr(1-I) + I(trr). In the center, a weight matrix W is factored into U × Σ × Vᵀ, shown as colored grids with high and low rank regions circled. Below, circles for U, Σ and V are split into a peach High Rank Subspace band and a blue Low Rank Subspace band. A gray strip along the bottom shows incoming tasks T1 to TN with database icons. At top right, a Venn-style diagram of old and new task subspaces with a shared span. An orange arrow labeled ∇low leads to projection equations and a new-task subspace without the shared span.",
+ "caption": "Overview of our Adaptive SVD-based Continual Fine-tuning Method. For each parameter matrix in the network, we perform SVD decomposition to identify high-rank components (associated with larger singular values) that encode crucial knowledge from previous tasks, and low-rank components (associated with smaller singular values) that contribute minimally to model performance. When learning a new task, gradient updates are projected onto the low-rank subspace orthogonal to previous task representations, allowing full parameter updates while minimizing catastrophic forgetting.",
+ "caption_source": "latex",
+ "abstract": "Continual learning in large language models (LLMs) is prone to catastrophic forgetting, where adapting to new tasks significantly degrades performance on previously learned ones. Existing methods typically rely on low-rank, parameter-efficient updates that limit the model's expressivity and introduce additional parameters per task, leading to scalability issues. To address these limitations, we propose a novel continual full fine-tuning approach leveraging adaptive singular value decomposition (SVD). Our method dynamically identifies task-specific low-rank parameter subspaces and constrains updates to be orthogonal to critical directions associated with prior tasks, thus effectively minimizing interference without additional parameter overhead or storing previous task gradients. We evaluate our approach extensively on standard continual learning benchmarks using both encoder-decoder (T5-Large) and decoder-only (LLaMA-2 7B) models, spanning diverse tasks including classification, generation, and reasoning. Empirically, our method achieves state-of-the-art results, up to 7% higher average accuracy than recent baselines like O-LoRA, and notably maintains the model's general linguistic capabilities, instruction-following accuracy, and safety throughout the continual learning process by reducing forgetting to near-negligible levels. Our adaptive SVD framework effectively balances model plasticity and knowledge retention, providing a practical, theoretically grounded, and computationally scalable solution for continual learning scenarios in large language models.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=vQcyqsGJDw",
+  "arxiv": "https://arxiv.org/abs/2504.07097",
+  "pdf": "https://proceedings.iclr.cc/paper_files/paper/2026/file/22620cccae29bbb3f18d226ea0320ff5-Paper-Conference.pdf",
+  "proceedings": "https://proceedings.iclr.cc/paper_files/paper/2026/hash/22620cccae29bbb3f18d226ea0320ff5-Abstract-Conference.html",
+  "virtual": "https://iclr.cc/virtual/2026/poster/10006812",
+  "code": "https://github.com/Red-Hat-AI-Innovation-Team/mini_trainer"
+ },
+ "license": "http://creativecommons.org/licenses/by/4.0/",
+ "img": "cc-by",
+ "image_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/images/iclr26-4957.png",
+ "thumb_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/thumbs/iclr26-4957.webp",
+ "figure_page": 1,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.8
+}

@@ -1,0 +1,57 @@
+{
+ "id": "icml26-4284",
+ "title": "SWE-ABS: Adversarial Benchmark Strengthening Exposes Inflated Success Rates on Test-based Benchmark",
+ "authors": [
+  "Boxi Yu",
+  "Yang Cao",
+  "Yuzhong Zhang",
+  "Liting Lin",
+  "Junjielong Xu",
+  "Zhiqing Zhong",
+  "Qinghua Xu",
+  "Guancheng Wang",
+  "Jialun Cao",
+  "Shing-Chi Cheung",
+  "Pinjia He",
+  "Lionel BRIAND"
+ ],
+ "venue": "ICML 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "Deep Learning->Large Language Models",
+ "role": "problem-setup",
+ "role2": "prior-vs-ours",
+ "claim": "Weak tests let semantically wrong solutions pass unnoticed; adding adversarial test inputs exposes the missing behavior and rejects them.",
+ "layout": "3 panels, left-to-right, color-coded headers, pass/fail banners at bottom",
+ "tags": [
+  "test-augmentation",
+  "code-agents",
+  "benchmark-validity",
+  "motivating-example",
+  "silent-failure"
+ ],
+ "style": [
+  "text-heavy",
+  "colorful"
+ ],
+ "description": "Three side-by-side rounded panels with colored headers and backgrounds. Panel (a), blue, is titled 'Issue & Gold Patch'. It gives the Django instance ID, a short issue description, and the gold patch code with a green check. The patch wraps the password in str(). Panel (b), orange, is titled 'Original Test & Agent Patch'. It shows a basic test that uses only the string 'secret'. A red 'Semantic blind spot' note explains that non-string inputs are never tested. Below that is an agent patch that assigns passwd directly, with a green banner reading '25 Wrong Patches PASS ✓'. Panel (c), green, is titled 'Augmented Test'. It shows a new test that passes the integer 123456. An 'Impact' note follows, with a red banner reading '25 Wrong Patches FAIL ✗'. Code snippets are monospace, with key tokens highlighted in red, green or blue.",
+ "caption": "Motivating example: Weak tests enable silent failures. (a) A real Django issue (django\\_\\_django-10973) refactoring requires converting passwords to strings before passing them to subprocess.run via the PGPASSWORD environment variable, because subprocess.run only accepts string-valued environment variables. (b) The original test suite tests only string passwords, enabling semantically incorrect agent patches to pass despite failing to handle non-string inputs. (c) A strengthened test introduces non-string inputs, exposing the missing type conversion and correctly failing the invalid patches.",
+ "caption_source": "latex",
+ "abstract": "The SWE-Bench Verified leaderboard is approaching saturation, with the top system achieving 78.80%. However, we show that this performance is inflated. Our re-evaluation reveals that one in five \"solved\" patches from the top-30 agents are semantically incorrect, passing only because weak test suites fail to expose their errors. We present SWE-ABS, an adversarial framework that strengthens test suites through a two-stage pipeline: (1) coverage-driven augmentation using program slicing to target untested code regions, and (2) mutation-driven adversarial testing that synthesizes plausible but incorrect patches to expose semantic blind spots. On SWE-Bench Verified (500 instances), SWE-ABS strengthens 50.2% of instances, a 25.1x improvement over prior work, and rejects 19.71% of previously passing patches. As a result, the top agent's score decreases from 78.80% to 62.20%, leading to significant leaderboard reshuffling, with the previous top-ranked agent dropping to fifth place.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=eWzojJ9SGF",
+  "arxiv": "https://arxiv.org/abs/2603.00520",
+  "pdf": "https://raw.githubusercontent.com/mlresearch/v306/main/assets/yu26b/yu26b.pdf",
+  "proceedings": "https://proceedings.mlr.press/v306/yu26b.html",
+  "virtual": "https://icml.cc/virtual/2026/poster/62669",
+  "code": "https://github.com/OpenAgentEval/SWE-ABS"
+ },
+ "license": "http://creativecommons.org/licenses/by/4.0/",
+ "img": "cc-by",
+ "image_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/images/icml26-4284.png",
+ "thumb_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/thumbs/icml26-4284.webp",
+ "figure_page": 1,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.8
+}

@@ -1,0 +1,52 @@
+{
+ "id": "icml26-0682",
+ "title": "Reward-Preserving Counterfactual State Editing for Offline Reinforcement Learning",
+ "authors": [
+  "Siyu Wang",
+  "Xiaocong Chen",
+  "Mingming Gong",
+  "Yong Li",
+  "Quan Sheng",
+  "Lina Yao"
+ ],
+ "venue": "ICML 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "Reinforcement Learning->Batch/Offline",
+ "role": "pipeline",
+ "role2": "overview-framework",
+ "claim": "A method combines causal data augmentation with a causally supervised architecture, with each module's role and data flow shown end to end.",
+ "layout": "3 regions, left-to-right flow, causal graphs inside modules, color-coded variable legend",
+ "tags": [
+  "causal-inference",
+  "data-augmentation",
+  "counterfactual",
+  "transformer",
+  "offline-rl"
+ ],
+ "style": [
+  "colorful",
+  "icon-heavy",
+  "math-heavy"
+ ],
+ "description": "A wide diagram that reads left to right. At far left, an Offline Dataset scatter plot sits above a small structural causal model (SCM) graph. It shows nodes s_t, a_t, r_t, s_{t+1} and grey unobserved noise nodes u. Next is a large rose box, the Causal Reward Model. It holds a CVAE-style graph with encoder and decoder arrows, a proxy latent z, and the label 'ELBO = Reconstruction + KL'. An amber box, the Counterfactual State Generator, takes s_t, a_t, z_t and r_t. It passes them through g_ψ to produce a counterfactual state s_c. Dotted red feedback lines carry a band loss and a label-preserving loss back to the CRM. A hollow arrow leads from the Augmented Dataset to a tall teal box, the Causally-Structured Hybrid Architecture. In that box, three streams (RTG, state, action) go through Conv1D local processing, then combined features, multi-head attention with causal mask supervision, an FFN and the action head. A legend at the bottom explains the node types.",
+ "caption": "Overview of the proposed CSET framework. Left/Middle: A Causal Reward Model (CRM) and Counterfactual State Generator (CSG) jointly produce a causally consistent augmented dataset from offline trajectories. Right: A Causally-Structured Hybrid Architecture processes the data with local convolutions and global, causally supervised attention.",
+ "caption_source": "pdf",
+ "abstract": "Transformer sequence models such as Decision Transformer can learn strong offline policies from logged trajectories, but they often suffer from causal confusion: reliance on spurious correlations that predict reward in the data but do not reflect the true causal mechanisms of the environment. We propose CSET (Counterfactual State Editing Transformer), which improves robustness in strictly offline reinforcement learning without learning environment transition dynamics. On the data side, CSET fits a causal reward model as a conditional variational autoencoder and uses a counterfactual state generator to propose minimally edited observations whose predicted reward matches the factual reward, under a normalized move-band constraint and an acceptance gate that enforce plausibility and reward consistency; augmentation replaces only the observation token to avoid synthetic successor transitions. On the model side, CSET uses a causally structured hybrid transformer: modality-specific convolutional encoders process return-to-go, state, and action streams, and a final attention block is softly supervised so action prediction focuses on its direct causal parents. Experiments on D4RL locomotion, AntMaze, and offline recommendation benchmarks show consistent gains within the DT family, and CSET remains substantially more robust than strong value-based and DT baselines under injected spurious distractors.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=6D3IJpBGBW",
+  "arxiv": null,
+  "pdf": "https://raw.githubusercontent.com/mlresearch/v306/main/assets/wang26s/wang26s.pdf",
+  "proceedings": "https://proceedings.mlr.press/v306/wang26s.html",
+  "virtual": "https://icml.cc/virtual/2026/poster/66163",
+  "code": null
+ },
+ "license": null,
+ "img": "none",
+ "image_url": null,
+ "thumb_url": null,
+ "figure_page": 3,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.85
+}

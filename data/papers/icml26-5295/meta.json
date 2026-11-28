@@ -1,0 +1,50 @@
+{
+ "id": "icml26-5295",
+ "title": "Position: Multi-Agent Systems Should Prioritize Concurrency Control",
+ "authors": [
+  "Xin Yang",
+  "Letian Li",
+  "Zimo Ji",
+  "Terry Zhang",
+  "Wenyuan Jiang"
+ ],
+ "venue": "ICML 2026",
+ "tier": "poster",
+ "track": "Position_Paper_Track",
+ "topic": "Reinforcement Learning->Multi-agent",
+ "role": "problem-setup",
+ "role2": null,
+ "claim": "Individually correct concurrent agents sharing state can interleave reads and writes, yielding a failure that long inference windows make likely.",
+ "layout": "Two vertical agent timelines flanking a central shared resource; timestamps t1–t3, error at bottom",
+ "tags": [
+  "multi-agent",
+  "concurrency",
+  "stale-read",
+  "failure-case",
+  "shared-state"
+ ],
+ "style": [
+  "colorful",
+  "text-heavy"
+ ],
+ "description": "A sequence-style diagram with two vertical timelines. Agent A, in a blue box, is on the left, and Agent B, in an orange box, is on the right. A gray vertical bar labeled File System sits between them. Rounded callout boxes are attached to each timeline and have color-coded headers. Green is for Read utils.py, red for LLM inference, and purple for Write. On the left, Agent A reads utils.py (def f_A) at t1. It then reasons in a think block that it needs f_A in main.py, and writes main.py at t3 with 'from utils import f_A'. On the right, Agent B reasons that it should rename f_A to func_A. It then writes utils.py at t2, with the old def struck through and the new func_A def beneath it. Both timelines end in arrows pointing to a yellow ImportError box at the bottom. The eye goes first to the colored headers, then down to the error.",
+ "caption": "Stale read hazard in multi-agent coding. Agent A reads utils.py and enters a long inference phase while implementing main.py. Concurrently, Agent B refactors utils.py, renaming f\\_A into func\\_A. Both agents act correctly in isolation, yet the interleaving yields a broken import, a classic concurrency anomaly amplified by long LLM inference windows.",
+ "caption_source": "latex",
+ "abstract": "LLM-based multi-agent systems (MAS) promise scalable collaboration, yet adding agents often reduces reliability. This position paper argues that many MAS failures are fundamentally concurrency control problems: agents concurrently read and write shared state, and long LLM inference windows amplify the risk of stale reads, lost updates, and inconsistent outcomes. Failure modes commonly attributed to coordination or communication breakdowns can be mapped directly onto classical concurrency anomalies. We contend that MAS frameworks should address these failures through explicit concurrency control mechanisms: conflict detection, isolation guarantees, and structured access to shared resources. Concurrency control should be a first-class design concern, not an afterthought.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=nfYEDaDzv9",
+  "arxiv": "https://arxiv.org/abs/2608.18092",
+  "pdf": "https://raw.githubusercontent.com/mlresearch/v306/main/assets/yang26dy/yang26dy.pdf",
+  "proceedings": "https://proceedings.mlr.press/v306/yang26dy.html",
+  "virtual": "https://icml.cc/virtual/2026/poster/67076",
+  "code": null
+ },
+ "license": "http://arxiv.org/licenses/nonexclusive-distrib/1.0/",
+ "img": "none",
+ "image_url": null,
+ "thumb_url": null,
+ "figure_page": 0,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.9
+}

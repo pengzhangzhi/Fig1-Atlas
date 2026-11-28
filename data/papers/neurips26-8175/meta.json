@@ -1,0 +1,49 @@
+{
+ "id": "neurips26-8175",
+ "title": "Not All Features Are Created Equal: A Mechanistic Study of Vision-Language-Action Models",
+ "authors": [
+  "Bryce Grant",
+  "Xijia Zhao",
+  "Edward Wang"
+ ],
+ "venue": "NeurIPS 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "Applications->Robotics",
+ "role": "overview-framework",
+ "role2": "pipeline",
+ "claim": "A multi-stage interpretability toolkit spanning diverse architectures: intervene on activations, decompose them with sparse autoencoders, then validate and explore features.",
+ "layout": "Stacked horizontal bands, top-to-bottom, with a model-zoo row on top and arrows between stages",
+ "tags": [
+  "interpretability",
+  "sparse-autoencoders",
+  "activation-injection",
+  "toolkit",
+  "mechanistic-analysis"
+ ],
+ "style": [
+  "colorful",
+  "icon-heavy",
+  "text-heavy"
+ ],
+ "description": "A dense, tall figure with a row of six model cards at the top (π0.5, OpenVLA-OFT, X-VLA, SmolVLA, GR00T N1.5, ACT). Each card lists its vision-language backbone, action expert, and pathway count. Below that, a wide blue block shows the vision backbone and action expert layers (L0..Ln, H0..Hn). Vision and language inputs enter from the left, and 7D action tokens with recorded activations H(i) come out on the right. Three bands follow. The first has counterfactual prompting, activation injection (task A activations injected into task B), and linear probes. The second shows per-token SAE training, an encoder/decoder, sparse features and an SAE feature library. The last holds behavior change, steering, episode replay, feature activation, concept query and feature search, and motion and object clusters. Blue, orange and green colors mark vision, language and action. Arrows link the stages.",
+ "caption": "Methodology overview. Top: record a VLA's activations during a successful rollout and replay them under cross-task injection and counterfactual prompts. Middle: per-token SAEs decompose the same activations into features. Bottom: features are clustered, searched, and validated by ablation and steering in Action Atlas.",
+ "caption_source": "latex",
+ "abstract": "A fine-tuned Vision-Language-Action (VLA) policy can easily place the alphabet soup in the basket on command, just as it saw during fine-tuning. However, if the basket is shifted five centimeters to the left, it drops the soup off the table. We developed an interpretability pipeline to investigate what such a policy is computing. Injecting task A's activations into the action expert while the policy looks at task B's scene makes $Ï_{0.5}$ execute task A's motor trajectory in 99.6\\% of episodes ($n{=}1{,}968$). The injected program is bound to absolute workspace coordinates and ignores the visible scene, which provides a mechanistic account of the perturbation brittleness that concurrent benchmarks report. The binding holds on a physical UR10e: directed replay redirects the commanded task in 26/26 rollouts in one direction and 18/26 in the other, with no-injection and random-direction controls at the floor, and once the source object is moved 10-15 cm the arm grasps and releases at the recorded coordinates in 50/50 trials, picking up the wrong block when one sits there and closing on empty air when none does. Applying the same interventions to five VLAs on LIBERO, MetaWorld, SimplerEnv, and ALOHA over $420{,}000+$ rollouts yields three further findings: every architecture encodes the instruction, and four of the five weight it below vision whenever the scene alone identifies the goal; under the standard replacement write-back the SAE pooling that preserves behavior is architecture-specific ($Ï_{0.5}$ per-token, SmolVLA indifferent), and goal selection and motor generation separate into VLM and expert pathways wherever the two are distinguishable. We release \\textbf{Action Atlas} (https://action-atlas.com), an interactive platform covering all 520+ trained SAEs, 79 identified concepts, and the scored UR10e rollouts. Code: https://cwru-aism.github.io/vla-interp-page/",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=uTd0fqHftX",
+  "arxiv": "https://arxiv.org/abs/2603.19233",
+  "pdf": "https://arxiv.org/pdf/2603.19233",
+  "proceedings": null,
+  "virtual": "https://neurips.cc/virtual/2026/poster/148883",
+  "code": "https://cwru-aism.github.io/vla-interp-page/"
+ },
+ "license": "http://arxiv.org/licenses/nonexclusive-distrib/1.0/",
+ "img": "none",
+ "image_url": null,
+ "thumb_url": null,
+ "figure_page": 3,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.62
+}

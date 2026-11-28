@@ -1,0 +1,48 @@
+{
+ "id": "icml26-0684",
+ "title": "Variable-Length Tokenization via Learnable Global Merging for Diffusion Transformers",
+ "authors": [
+  "Dong Hoon Lee",
+  "Seunghoon Hong"
+ ],
+ "venue": "ICML 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "Deep Learning->Generative Models and Autoencoders",
+ "role": "analysis-finding",
+ "role2": "problem-setup",
+ "claim": "Truncation-based variable-length tokenizers misalign latents across lengths, and this misalignment makes joint multi-length diffusion training worse than separate training.",
+ "layout": "2 vertically stacked bar charts, shared token-count axis, dashed baseline lines",
+ "tags": [
+  "variable-length",
+  "tokenization",
+  "representation-alignment",
+  "diffusion",
+  "empirical-analysis"
+ ],
+ "style": [
+  "plot",
+  "minimal",
+  "colorful"
+ ],
+ "description": "Two vertically stacked bar charts share the x-axis, the number of tokens (32, 48, 64, 96, 128, 256). The upper panel plots CKNNA, a representation-alignment score, between truncated latents and the full 256-token latents. Bars for 32, 48 and 64 tokens are salmon with red labels (0.13, 0.14, 0.16) and fall below a black dashed line. That line marks CKNNA against an independently trained SoftVQ-L-64 tokenizer. The bars for 96 and 128 tokens are teal (0.34, 0.51), and a teal 'Reference' bar at 256 reaches 1.0. The lower panel gives gFID as paired bars. Red bars are for a diffusion model trained jointly across lengths (about 4.7 to 5.2). Blue bars are for models trained separately per length (about 2.9 to 4.4). A blue dashed horizontal line sits near 4.35. The legend, 'Jointly' versus 'Separately', sits between the panels. The eye goes first to the low red CKNNA bars, then to the large red-blue gaps below them.",
+ "caption": "CKNNA and gFID measurements from the nested dropout tokenizer and the diffusion model trained on it, respectively. Upper: CKNNA between untruncated ($N=256$) and truncated ($M<256$) latents; the black dotted line shows CKNNA for an independently trained tokenizer (vs. 256). Lower: gFID of the variable-length diffusion model learned jointly across token lengths vs.\\ separately for each length.",
+ "caption_source": "latex",
+ "abstract": "Latent Diffusion Models (LDMs) have become dominant in visual synthesis, but their quality-compute trade-off is largely constrained by the tokenizer's fixed compression ratio. Variable-length tokenizers (VLTs) promise adaptive compression by varying token counts, allowing diffusion models to flexibly balance quality and compute. However, conventional VLTs modulate length by truncating ordered token sequences, which makes token semantics depend on token position and breaks representational alignment across lengths. This leads to a cross-length shift in the latent distribution that hinders a single variable-length diffusion model from operating effectively. To address this, we propose a novel variable-length tokenizer that modulates length by merging tokens. We show that encouraging similar tokens to merge enables direct cross-length representation alignment when the diffusion transformer operates according to the merging pattern. Since conventional merging methods are data-dependent, making the merging pattern inaccessible during generation, we introduce learnable global merging, which is data-independent, to ensure compatibility with diffusion transformers. On ImageNet 256$\\times$256 generation, our merging-based variable-length tokenizer integrated with a diffusion transformer achieves a superior gFID-compute trade-off compared to prior VLT methods. Code is available at [this https URL](https://github.com/movinghoon/lgm)",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=6ER1mP51np",
+  "arxiv": "https://arxiv.org/abs/2606.20076",
+  "pdf": "https://raw.githubusercontent.com/mlresearch/v306/main/assets/lee26l/lee26l.pdf",
+  "proceedings": "https://proceedings.mlr.press/v306/lee26l.html",
+  "virtual": "https://icml.cc/virtual/2026/poster/66161",
+  "code": null
+ },
+ "license": "http://creativecommons.org/licenses/by/4.0/",
+ "img": "cc-by",
+ "image_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/images/icml26-0684.png",
+ "thumb_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/thumbs/icml26-0684.webp",
+ "figure_page": 2,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.8
+}

@@ -1,0 +1,50 @@
+{
+ "id": "neurips26-6973",
+ "title": "Locking Pretrained Weights via Deep Low-Rank Residual Distillation",
+ "authors": [
+  "Keitaro Sakamoto",
+  "Pierre Ablin",
+  "Federico Danieli",
+  "Marco Cuturi"
+ ],
+ "venue": "NeurIPS 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "Deep Learning->Algorithms",
+ "role": "pipeline",
+ "role2": "prior-vs-ours",
+ "claim": "Replacing a standard module with a deep low-rank residual substitute turns cheap, reliable adaptation into expensive, brittle adaptation.",
+ "layout": "2 rows with 2 side-by-side outcome plots, left-to-right, gray distillation arrow",
+ "tags": [
+  "model-locking",
+  "distillation",
+  "architecture-replacement",
+  "fine-tuning-defense",
+  "open-weights"
+ ],
+ "style": [
+  "minimal",
+  "plot",
+  "colorful"
+ ],
+ "description": "Two stacked transformer-block diagrams occupy the left. The top one, labeled 'Base Model' in a cyan tag, shows an Attention Module followed by an FFN module with RMS Norm, an MLP and a skip connection, repeated ×N. A large gray down arrow labeled 'Two-phase Distillation' leads to the bottom diagram, labeled 'DLR-Lock' in a pink tag. It has the same layout, but the MLP is swapped for a pink-shaded DLR-Net box. That box contains RMS Norm, a trapezoid down-projection, a σ nonlinearity, a trapezoid up-projection and a skip connection, repeated ×L. On the right, curved black arrows point from each row to a gray rounded panel with a loss-versus-budget plot. The top panel, 'Cheap & reliable adaptation', shows a steeply falling blue curve. The bottom panel, 'Expensive & brittle adaptation', shows a nearly flat red curve and a lock icon.",
+ "caption": "Overview of \\method{}. Each MLP in the original model (top) is replaced with a functionally equivalent deep low-rank residual network (\\arch{}, bottom) via a two-phase distillation. The replacement introduces three locking mechanisms: (1) activation memory growth, (2) optimization instability from architectural mismatch, and (3) disproportionate backward-pass overhead.",
+ "caption_source": "latex",
+ "abstract": "The quality of open-weight language models has dramatically improved in recent years. Sharing weights greatly facilitates model adoption by enabling their use across diverse hardware and software platforms. They also allow for more open research and testing, to the extent that users can use them as checkpoints, fine-tune them according to their needs, and potentially redistribute them. In some cases, however, concerns on modifying these weights towards unauthorized uses may outweigh the pros of giving users such freedom. Defending against such adaptation is non-trivial: since an adaptive attacker can observe all weights and architectures by definition, they can reverse simple structural defenses, and use optimization to defeat the simplest locking mechanisms. In this work, we exploit the inference-training asymmetry of automatic differentiation as a novel defense axis. We propose DLR-Lock, a method where the purveyor of the model purposely replaces each pretrained MLP in their model with a deep low-rank residual network (DLR-Net) of comparable parameter count, forcing activation memory that grows linearly with depth during backpropagation. DLR-Nets are efficiently trained via module-wise regression. We show that, beyond this memory overhead, DLR-Lock results in architectural mismatches that complicate the optimization landscape of standard fine-tuning, and a backward pass that incurs disproportionately more overhead than the forward pass. Our defense succeeds in withstanding adaptive attackers with full knowledge of the defense strategy while preserving the original model's capabilities. Experiments on LLMs validate these claims.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=lylsaH0tr5",
+  "arxiv": "https://arxiv.org/abs/2605.10777",
+  "pdf": "https://arxiv.org/pdf/2605.10777",
+  "proceedings": null,
+  "virtual": "https://neurips.cc/virtual/2026/poster/149948",
+  "code": null
+ },
+ "license": "http://creativecommons.org/licenses/by/4.0/",
+ "img": "cc-by",
+ "image_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/images/neurips26-6973.png",
+ "thumb_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/thumbs/neurips26-6973.webp",
+ "figure_page": 1,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.72
+}

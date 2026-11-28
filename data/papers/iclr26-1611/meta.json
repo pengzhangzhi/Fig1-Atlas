@@ -1,0 +1,49 @@
+{
+ "id": "iclr26-1611",
+ "title": "CFO: Learning Continuous-Time PDE Dynamics via Flow-Matched Neural Operators",
+ "authors": [
+  "Xianglong Hou",
+  "Xinquan Huang",
+  "Paris Perdikaris"
+ ],
+ "venue": "ICLR 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "Applications->Physics",
+ "role": "pipeline",
+ "role2": null,
+ "claim": "Fit a spline to sparse snapshots for analytic velocity targets, train an operator by flow matching, then integrate it to query any time.",
+ "layout": "2 panels, left-to-right; training then inference, math under each stage",
+ "tags": [
+  "flow-matching",
+  "continuous-time",
+  "neural-operator",
+  "spline-interpolation",
+  "time-resolution-invariance"
+ ],
+ "style": [
+  "math-heavy",
+  "colorful",
+  "plot"
+ ],
+ "description": "A wide two-part figure. Panel (a), Training, begins on the left with four stacked colorful PDE field snapshots, u(t1) to u(t4), joined by a dotted line. A grey arrow leads to a 1D schematic. A black curve is the reference u(t), and a red dashed spline interpolant I(t) follows it through knots t1 to t4. Red arrows mark the finite-difference derivative at each knot, and a blue arrow marks the query time t*. The formula ∂tI(t)=FD({u(ti)}) sits below the curve. Next is an encoder-decoder icon for the neural operator, taking I(t*) and t*. Below it is the flow-matching loss, min ‖N_θ(t*,I(t*)) − ∂tI(t*)‖². Panel (b), Inference, sits after a dashed vertical divider. It shows u(t) on the left and u(t') on the right as heatmap fields, joined by a forward arrow and a reverse arrow. Integral expressions of N_θ are written above and below the arrows. Red and blue mark the interpolant and the time variable.",
+ "caption": "Overview of the Continuous Flow Operator (CFO) framework. (a) Training: flow matching on a spline path. For each trajectory with snapshots $\\{u(t_i)\\}$, we fit a temporal spline $s(t)$ that interpolates the data and matches finite-difference derivative estimates at knots. The spline's analytic time derivative $\\partial_t s(t)$ provides exact velocity targets for training a neural operator $\\mathcal{N}_\\theta$ via the flow matching objective—no ODE integration required during training. (b) Inference: continuous-time rollout. The trained operator $\\mathcal{N}_\\theta(t,u)$ defines a continuous vector field $\\dot{u}_\\theta = \\mathcal{N}_\\theta(t,u_\\theta)$. Given initial condition $u(t)$, we compute $u(t')$ by numerical integration; reverse-time inference integrates backward.",
+ "caption_source": "latex",
+ "abstract": "Neural operator surrogates for time-dependent partial differential equations (PDEs) conventionally employ autoregressive prediction schemes, which accumulate error over long rollouts and require uniform temporal discretization. We introduce the Continuous Flow Operator (CFO), a framework that learns continuous-time PDE dynamics without the computational burden of standard continuous approaches, e.g., neural ODE. The key insight is repurposing flow matching to directly learn the right-hand side of PDEs without backpropagating through ODE solvers. CFO fits temporal splines to trajectory data, using finite-difference estimates of time derivatives at knots to construct probability paths whose velocities closely approximate the true PDE dynamics. A neural operator is then trained via flow matching to predict these analytic velocity fields. This approach is inherently time-resolution invariant: training accepts trajectories sampled on arbitrary, non-uniform time grids while inference queries solutions at any temporal resolution through ODE integration. Across four benchmarks (Lorenz, 1D Burgers, 2D diffusion-reaction, 2D shallow water), CFO demonstrates superior long-horizon stability and remarkable data efficiency. CFO trained on only 25% of irregularly subsampled time points outperforms autoregressive baselines trained on complete data, with relative error reductions up to 87%. Despite requiring numerical integration at inference, CFO achieves competitive efficiency, outperforming autoregressive baselines using only 50% of their function evaluations, while uniquely enabling reverse-time inference and arbitrary temporal querying.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=IQhaeSzyup",
+  "arxiv": "https://arxiv.org/abs/2512.05297",
+  "pdf": "https://proceedings.iclr.cc/paper_files/paper/2026/file/8bfbf4ec87e1e331f0b1adc483b53b6b-Paper-Conference.pdf",
+  "proceedings": "https://proceedings.iclr.cc/paper_files/paper/2026/hash/8bfbf4ec87e1e331f0b1adc483b53b6b-Abstract-Conference.html",
+  "virtual": "https://iclr.cc/virtual/2026/poster/10010304",
+  "code": null
+ },
+ "license": "http://creativecommons.org/licenses/by-nc-sa/4.0/",
+ "img": "cc-by-nc-sa",
+ "image_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/images/iclr26-1611.png",
+ "thumb_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/thumbs/iclr26-1611.webp",
+ "figure_page": 3,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.9
+}

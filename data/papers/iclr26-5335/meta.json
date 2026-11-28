@@ -1,0 +1,50 @@
+{
+ "id": "iclr26-5335",
+ "title": "WSVD: Weighted Low-Rank Approximation for Fast and Efficient Execution of Low-Precision Vision-Language Models",
+ "authors": [
+  "Haiyu Wang",
+  "Yutong Wang",
+  "Jack Jiang",
+  "Sai Qian Zhang"
+ ],
+ "venue": "ICLR 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "Deep Learning->Algorithms",
+ "role": "pipeline",
+ "role2": "prior-vs-ours",
+ "claim": "Conventional low-rank decomposition leaves latency high; decomposing at finer per-head granularity with a new computation pattern removes the bottleneck.",
+ "layout": "3 panels left-to-right: latency bars, baseline matrix flow, green-highlighted ours flow",
+ "tags": [
+  "low-rank",
+  "svd",
+  "efficiency",
+  "matrix-factorization",
+  "latency-reduction"
+ ],
+ "style": [
+  "colorful",
+  "icon-heavy",
+  "minimal"
+ ],
+ "description": "A wide three-panel figure. Panel (a), at left, is a small stacked bar chart of decoding latency for Flash versus SVD. Bars are gray for attention, with a thin red cap for FFN. The SVD bar is much taller than the Flash bar, which shows that SVD decomposition does not cut latency. Panel (b) sits on a gray dashed background. It shows the baseline: a blue W_K matrix is factored into a gray matrix A and a blue/white matrix B_h. A yellow C_K block then fans out to several B_i blocks, each giving a red K_hi output, with a cycle arrow between them. Panel (c) sits on a green dashed background. It shows the proposed per-head factorization: W_Kh, then A_h times B_h, then paired yellow C_Kh, blue B and pink K_h rows. The matrix blocks are labeled with dimensions such as E, R, H and r. The green background draws the eye to the new design.",
+ "caption": "(a) Architecture of vision-language model. (b) Overview of WSVD framework.",
+ "caption_source": "latex",
+ "abstract": "Singular Value Decomposition (SVD) has become an important technique for reducing the computational burden of Vision Language Models (VLMs), which play a central role in tasks such as image captioning and visual question answering. Although multiple prior works have proposed efficient SVD variants to enable low-rank operations, we find that in practice it remains difficult to achieve substantial latency reduction during model execution. To address this limitation, we introduce a new computational pattern and apply SVD at a finer granularity, enabling real and measurable improvements in execution latency. Furthermore, recognizing that weight elements differ in their relative importance, we adaptively allocate relative importance to each element during SVD process to better preserve accuracy, then extend this framework with quantization applied to both weights and activations, resulting in a highly efficient VLM. Collectively, we introduce~\\textit{Weighted SVD} (WSVD), which outperforms other approaches by achieving over $1.8\\times$ decoding speedup while preserving accuracy. We open source our code at: \\href{https://github.com/SAI-Lab-NYU/WSVD}{\\texttt{https://github.com/SAI-Lab-NYU/WSVD}",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=zrmQ4koOw9",
+  "arxiv": "https://arxiv.org/abs/2604.02570",
+  "pdf": "https://proceedings.iclr.cc/paper_files/paper/2026/file/e79f5871643773a83e41c06d42d81cb8-Paper-Conference.pdf",
+  "proceedings": "https://proceedings.iclr.cc/paper_files/paper/2026/hash/e79f5871643773a83e41c06d42d81cb8-Abstract-Conference.html",
+  "virtual": "https://iclr.cc/virtual/2026/poster/10006413",
+  "code": "https://github.com/SAI-Lab-NYU/WSVD"
+ },
+ "license": "http://creativecommons.org/publicdomain/zero/1.0/",
+ "img": "cc0",
+ "image_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/images/iclr26-5335.png",
+ "thumb_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/thumbs/iclr26-5335.webp",
+ "figure_page": 3,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.6
+}

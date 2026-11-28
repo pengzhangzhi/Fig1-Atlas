@@ -1,0 +1,55 @@
+{
+ "id": "neurips26-1512",
+ "title": "Interleaved Head Attention",
+ "authors": [
+  "Sai Surya Duvvuri",
+  "Chanakya Ekbote",
+  "Rachit Bansal",
+  "Rishabh Tiwari",
+  "Devvrit Khatri",
+  "David Brandfonbrener",
+  "Paul Liang",
+  "Inderjit Dhillon",
+  "Manzil Zaheer"
+ ],
+ "venue": "NeurIPS 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": null,
+ "role": "pipeline",
+ "role2": null,
+ "claim": "Mixing heads into interleaved pseudo-tokens lets standard sliding-window causal attention capture cross-head interactions at modest cost.",
+ "layout": "1 panel, left-to-right, color-coded stacks feed a zoomed attention matrix",
+ "tags": [
+  "attention",
+  "cross-head-mixing",
+  "interleaving",
+  "pseudo-tokens",
+  "sliding-window"
+ ],
+ "style": [
+  "colorful",
+  "math-heavy",
+  "minimal"
+ ],
+ "description": "A single wide left-to-right diagram. At the far left, three gray query vectors (q1, qh, qH) are stacked diagonally. A green arrow labeled 'Linear transform ×α_Q' leads to a grid of pink, blue and orange tilted bars, which are the pseudo-tokens. Each head has P of them. Double-headed arrows mark 'Heads (H)' in green and 'Pseudo tokens (P)' in red. Dashed lines zoom into an 'Interleaving' step. The Q̃ column is a stack of repeating pink, blue and orange blocks, outlined in red. On the right, a K̃ row and a Ṽ column use the same colors. Between them is a teal softmax and causal-mask matrix with diagonal bands for the sliding window (N/2P). × symbols connect Q̃, K̃ and Ṽ. A legend sits at the bottom, and a sequence-length arrow (P·N) runs along Ṽ.",
+ "caption": "Overview of Interleaved Head Attention (IHA). First, the model generates $P$ pseudo-tokens for each of the $H$ original heads via a learned linear transformation ($\\times \\mathbf{\\mathcal{\\alpha}_Q}$) operating on the heads axis (green). These tokens are then interleaved to create an expanded sequence of length $P \\cdot N$. Finally, standard causal self-attention is computed on this expanded sequence, utilizing a sliding window (e.g., $N/2P$) to manage computational complexity while enabling cross-head interaction. Different linear transforms are used in query, key and values.",
+ "caption_source": "latex",
+ "abstract": "Multi-Head Attention (MHA) is the core computational primitive underlying modern Large Language Models (LLMs). However, MHA suffers from a fundamental linear scaling limitation: $H$ attention heads produce exactly $H$ independent attention matrices, with no communication between heads during attention computation. This becomes problematic for multi-step reasoning, where correct answers depend on aggregating evidence from multiple parts of the context and composing latent token-to-token relations over a chain of intermediate inferences. To address this, we propose Interleaved Head Attention (IHA), which enables cross-head mixing by constructing $P$ pseudo-heads per head (typically $P=H$), where each pseudo query/key/value is a learned linear combination of all $H$ original queries, keys and values respectively. Interactions between pseudo-query and pseudo-key heads induce up to $P^2$ attention patterns per head with modest parameter overhead $\\mathcal{O}(H^2P)$. We provide theory showing improved efficiency in terms of number of parameters on the synthetic Polynomial task (IHA uses $Î(\\sqrt{k}n^2)$ parameters vs. $Î(kn^2)$ for MHA) and on the synthetic order-sensitive CPM-3 task (IHA uses $\\lceil\\sqrt{N_{\\max}}\\rceil$ heads vs. $N_{\\max}$ for MHA). On real-world benchmarks, IHA improves Multi-Key retrieval on RULER by 10-20% (4k-16k) and, after fine-tuning for reasoning on OpenThoughts, improves GSM8K by 5.8% and MATH-500 by 2.8% (Majority Vote) over full attention.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=AoSjvxQp5K",
+  "arxiv": "https://arxiv.org/abs/2602.21371",
+  "pdf": "https://arxiv.org/pdf/2602.21371",
+  "proceedings": null,
+  "virtual": "https://neurips.cc/virtual/2026/poster/154807",
+  "code": null
+ },
+ "license": "http://creativecommons.org/licenses/by/4.0/",
+ "img": "cc-by",
+ "image_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/images/neurips26-1512.png",
+ "thumb_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/thumbs/neurips26-1512.webp",
+ "figure_page": 3,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.93
+}

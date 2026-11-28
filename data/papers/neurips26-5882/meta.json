@@ -1,0 +1,50 @@
+{
+ "id": "neurips26-5882",
+ "title": "Forced Deferral: Manipulating Routing Decisions in Multimodal LLM Cascades",
+ "authors": [
+  "Zhongye Liu",
+  "Yaopei Zeng",
+  "Yurui Chang",
+  "Lu Lin"
+ ],
+ "venue": "NeurIPS 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "Social Aspects->Trustworthy Machine Learning",
+ "role": "pipeline",
+ "role2": "prior-vs-ours",
+ "claim": "A learned universal trigger, optimized via flattened teacher-forced targets, lowers weak-model confidence and forces queries onto the expensive strong model.",
+ "layout": "3 panels, left-to-right, numbered steps with math in the middle panel",
+ "tags": [
+  "adversarial-attack",
+  "cascade-routing",
+  "universal-trigger",
+  "confidence-manipulation",
+  "multimodal-llm"
+ ],
+ "style": [
+  "icon-heavy",
+  "colorful",
+  "math-heavy"
+ ],
+ "description": "Three tinted rounded panels run left to right. The left blue panel, 'Threat Model', has two parallel flows. A clean image and query go to the weak model, then high confidence (blue bars), then the weak-model answer. A triggered image and query go to the weak model, then low confidence (red bars), then deferral to the strong model, then the strong-model answer. The middle orange panel, 'Trigger Optimization', has three numbered steps. Step 1 extracts clean logits. Step 2 flattens targets with a temperature-softmax formula and shows flatter green bars. Step 3 does teacher-forcing with a KL loss. A red arrow carries the learned trigger back to the left panel. The right green panel, 'Inference Pipeline', is a vertical flow: apply the universal trigger, run the weak model, get lower confidence, then high-quality strong-model answers marked with a green check.",
+ "caption": "Overview of the forced deferral attack on MLLM cascades. The left panel illustrates the standard cascade pipeline, where a weak model answers high-confidence inputs directly and only defers uncertain cases to a stronger model. The middle panel shows our attack procedure: we first extract the clean output trajectory, construct flattened temperature-scaled target distributions, and optimize a learned border trigger using teacher-forced KL minimization. The right panel shows the deployment effect: applying the learned trigger lowers the weak model’s confidence, causing more inputs to be routed to the strong model while preserving high-quality final answers.",
+ "caption_source": "latex",
+ "abstract": "While multimodal large language models (MLLMs) have shown strong visual reasoning abilities, serving a large model for every query is computationally expensive. MLLM cascades mitigate this cost by first querying a weak but cheaper model and deferring to a strong model when the weak model's output is unconfident. However, since the weak model's confidence directly controls compute allocation, these systems expose a new attack surface: an adversary can manipulate confidence so that their queries are consistently deferred to the strong model. Motivated by this vulnerability, we introduce the Forced Deferral Attack (FDA), an adversarial image attack that lowers the weak model's confidence and causes cascades to route queries to the strong model. FDA learns a universal border trigger by optimizing a temperature-flattened objective. This objective pushes the weak model's token distribution on triggered inputs toward less concentrated targets constructed from its clean responses. Across datasets, model families, and deferral metrics, FDA consistently increases strong-model routing while outperforming image-perturbation and prompt-injection baselines. These results show that MLLM cascades are vulnerable to attacks that manipulate compute allocation, forcing unintended strong-model usage without directly targeting answer correctness.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=eR0oPowDF7",
+  "arxiv": "https://arxiv.org/abs/2606.15308",
+  "pdf": "https://arxiv.org/pdf/2606.15308",
+  "proceedings": null,
+  "virtual": "https://neurips.cc/virtual/2026/poster/150914",
+  "code": null
+ },
+ "license": "http://creativecommons.org/licenses/by/4.0/",
+ "img": "cc-by",
+ "image_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/images/neurips26-5882.png",
+ "thumb_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/thumbs/neurips26-5882.webp",
+ "figure_page": 2,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.8
+}

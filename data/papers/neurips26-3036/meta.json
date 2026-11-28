@@ -1,0 +1,48 @@
+{
+ "id": "neurips26-3036",
+ "title": "HyperNSDE: Personalized Neural SDEs for Joint Static—Longitudinal Clinical Data Generation",
+ "authors": [
+  "Perrine Chassat",
+  "Agathe Guilloux"
+ ],
+ "venue": "NeurIPS 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "Applications->Health",
+ "role": "pipeline",
+ "role2": null,
+ "claim": "A generative model conditions stochastic latent dynamics on static representations via a hypernetwork, producing joint static and irregular longitudinal data.",
+ "layout": "3 columns, left-to-right flow, rows by data type, dashed stochastic arrows",
+ "tags": [
+  "generative-model",
+  "hypernetwork",
+  "neural-sde",
+  "synthetic-data",
+  "irregular-time-series"
+ ],
+ "style": [
+  "colorful",
+  "math-heavy",
+  "icon-heavy"
+ ],
+ "description": "A wide block diagram with three column headers: Original data, HyperNSDE, and Synthetic data. Row labels on the left read Static (orange), Personalization (purple) and Longitudinal (blue). In the top row, original static covariates (a small table) feed an HI-VAE encoder. A dashed arrow leads to a dashed box for the sampled static latent h_j. A solid arrow leads to an HI-VAE decoder, and a dashed arrow leads to a green box of synthetic covariates. From h_j, an arrow goes down to a purple Hypernetwork box that outputs SDE parameters. These feed the blue Latent Neural SDE box, which holds the SDE equations. Dashed arrows lead to the sampled latent path and, through the Intensity Network, to the sampled observation points. Both feed a Longitudinal Decoder, which outputs synthetic time series plots in a green box. Original longitudinal series on the left are marked 'No longitudinal encoder' in red. Color-coded rounded boxes carry the math notation, and solid versus dashed arrows distinguish deterministic from stochastic steps.",
+ "caption": "HyperNSDE generation pipeline. Generating a synthetic subject follows a hierarchical process (Appendix [ref]). Static latent representations are sampled from the HI-VAE learned distributions, decoded into synthetic covariates, and passed through the hypernetwork to generate patient-specific SDE parameters. A latent path is then simulated from the personalized Neural SDE and decoded at observation times sampled from the intensity network to produce synthetic irregular longitudinal trajectories. Original longitudinal data are used only at training time via the loss terms, without relying on a longitudinal encoder. Solid arrows denote deterministic computations; dashed arrows denote stochastic steps.",
+ "caption_source": "latex",
+ "abstract": "Synthetic patient data generation is a promising solution to the dual challenge of data scarcity and privacy constraints in healthcare machine learning. Realistic synthesis of patient-level clinical data requires jointly modeling heterogeneous static covariates, irregularly sampled longitudinal trajectories, and informative observation times - three tightly coupled components in practice yet rarely addressed together. We propose HyperNSDE, a continuous-time generative model that conditions a latent Neural SDE on static patient representations through a hypernetwork, allowing baseline characteristics to shape trajectory evolution beyond the initial condition without requiring a trajectory encoder, while stochastic latent dynamics capture realistic variability in generated paths. Observation times are modeled jointly through a latent-state-dependent intensity process, and training on irregular stochastic paths is stabilized via a deterministic-stochastic path decomposition with a non-adversarial signature-kernel objective. Experiments on simulated and real clinical datasets show improved observation-time fidelity and competitive performance, while matched-grid analyses reveal that forecasting and correlation metrics are affected by observation-grid regularity and trajectory smoothness.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=LB1dWNecCT",
+  "arxiv": "https://arxiv.org/abs/2610.07383",
+  "pdf": "https://arxiv.org/pdf/2610.07383",
+  "proceedings": null,
+  "virtual": "https://neurips.cc/virtual/2026/poster/153453",
+  "code": null
+ },
+ "license": "http://creativecommons.org/licenses/by/4.0/",
+ "img": "cc-by",
+ "image_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/images/neurips26-3036.png",
+ "thumb_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/thumbs/neurips26-3036.webp",
+ "figure_page": 2,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.95
+}

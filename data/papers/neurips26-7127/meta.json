@@ -1,0 +1,53 @@
+{
+ "id": "neurips26-7127",
+ "title": "Asymmetric Phase Coding Audio Watermarking",
+ "authors": [
+  "Guang Yang",
+  "Fengchen Liu",
+  "Amir Ghasemian",
+  "Zhong Wang",
+  "Ninareh Mehrabi",
+  "Homa Hosseinmardi"
+ ],
+ "venue": "NeurIPS 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "Applications->Language, Speech and Dialog",
+ "role": "pipeline",
+ "role2": null,
+ "claim": "A signed message is embedded redundantly in two signal channels and verified with only a public key, accepted if either channel verifies.",
+ "layout": "2 stacked bands (signer, verifier), left-to-right flow, dashed optional boxes",
+ "tags": [
+  "pipeline",
+  "cryptographic-signing",
+  "watermarking",
+  "redundancy",
+  "provenance"
+ ],
+ "style": [
+  "icon-heavy",
+  "colorful",
+  "text-heavy",
+  "math-heavy"
+ ],
+ "description": "Two horizontal bands show an embedding and extraction pipeline. The top band, labeled Signer (embedding), flows left to right: Message M goes to Ed25519 sign, then RS encode with 30 parity bytes. The output splits into a purple Phase channel box and a teal Magnitude channel box inside a dashed STFT group. Both feed ISTFT, which produces Watermarked s'(t). Blue key boxes (K_priv, and a key-derived K, M box) and the host audio box feed in from above. A dashed Transport channel strip in the middle lists MP3, OGG, FLAC, resampling, low-pass and cropping. The bottom Verifier band runs Received, then Phase read and Magnitude read, then RS decode, then Ed25519 verify, then a bold blue Accept box with check and cross marks. Dashed optional content-binding boxes carry fingerprint icons. The eye goes first to the top-left Message box and follows the arrows.",
+ "caption": "APC pipeline. The signer signs $M$ with $K_priv$ (Ed25519), encodes $len_{16}(M)\\|M\\|S$ with a Reed--Solomon code with 30 parity bytes, and writes it into a phase channel and a magnitude-QIM channel of one STFT. The verifier needs only $K_pub$ and accepts if either channel verifies. Dashed boxes show the optional content-bound mode: the signature also covers a feature $w$ of the host, and the verifier checks the feature of the received audio against it (Section [ref]). A verified message means that the signed message is intact, not that the audio is authentic (Section [ref]).",
+ "caption_source": "latex",
+ "abstract": "The proliferation of deepfake audio challenges voice-based authentication, and passive forensic detectors are sensitive to evolving generative models and to real-world channel distortions. We propose Asymmetric Phase Coding (APC), a training-free cryptographic signing layer for audio that anyone holding the public key can verify offline, designed as a compact and auditable provenance primitive that can stand alone or be stacked with learned watermarks. APC combines Ed25519 digital signatures (EdDSA, FIPS 186-5; 64-byte signatures) with Reed-Solomon error correction, pseudo-random STFT phase-bin selection, and a redundant quantization-index-modulation (QIM) code on log-magnitude differences of adjacent bin pairs, yielding a compact, non-repudiable, blind-extractable watermark. A successful verification proves who signed the embedded message and that the message is intact. On 1,905 LibriSpeech test-clean clips (10 s, 44.1 kHz) under eight attack configurations (identity, 10% and 20% end-cropping, 8 kHz low-pass, 16 kHz round-trip resampling, FLAC, MP3 at 128 kbps and OGG-Vorbis at 128 kbps), APC verifies 98.3% to 99.8% of clips on every condition at an identity PESQ of 3.82 and accepts no wrong-key or unsigned clip. On 2,048 clips from 18 sets of 15 public corpora spanning music, meeting, telephone, multilingual and mostly vocoded speech, it verifies between 97.1% and 99.4%. It also survives platform processing chains, repeated MP3 and OGG coding at 128 kbps, cropping up to bounds predicted in closed form, integer time shifts through an optional decoder-side search, and the DNS64 and DeepFilterNet3 speech enhancers on most clips, and it verifies a signed 10 s clip in 3.17 ms on one CPU core. We compare APC with neural baselines (reproduced AudioSeal and WavMark, and published SilentCipher results), including a capacity-matched operating point, and show that it stacks with AudioSeal.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=nAf6IJ9PSz",
+  "arxiv": "https://arxiv.org/abs/2605.07241",
+  "pdf": "https://arxiv.org/pdf/2605.07241",
+  "proceedings": null,
+  "virtual": "https://neurips.cc/virtual/2026/poster/149813",
+  "code": "https://gy19a.github.io/asymmetric-phase-coding-audio-watermarking-js/"
+ },
+ "license": "http://creativecommons.org/licenses/by/4.0/",
+ "img": "cc-by",
+ "image_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/images/neurips26-7127.png",
+ "thumb_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/thumbs/neurips26-7127.webp",
+ "figure_page": 1,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.95
+}

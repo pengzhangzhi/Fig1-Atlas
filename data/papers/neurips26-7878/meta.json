@@ -1,0 +1,54 @@
+{
+ "id": "neurips26-7878",
+ "title": "LARK: Learnability-Grounded Trajectory Selection for Efficient Reasoning Distillation",
+ "authors": [
+  "Tianrun Yu",
+  "Kaixiang Zhao",
+  "Chih-Chun Chen",
+  "Amanda Hughes",
+  "Taylor Killian",
+  "Fenglong Ma",
+  "Weitong Zhang",
+  "Porter Jenkins"
+ ],
+ "venue": "NeurIPS 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "Data-centric AI->Data-centric AI methods and tools",
+ "role": "pipeline",
+ "role2": null,
+ "claim": "Score candidate supervision items with the learner, keep only the top-ranked ones, and weight them in training.",
+ "layout": "3 panels, left-to-right, numbered stage headers, dashed keep/discard boxes",
+ "tags": [
+  "data-selection",
+  "pipeline",
+  "ranking",
+  "distillation",
+  "weighted-training"
+ ],
+ "style": [
+  "icon-heavy",
+  "colorful",
+  "math-heavy"
+ ],
+ "description": "A wide three-panel figure with numbered, color-coded headers: 1 Candidate Pool, 2 Rank by Score, 3 Weighted SFT. Panel 1 shows a question icon with a sample math question in a rounded box. Below it, several teacher robot icons wearing graduation caps are labeled Multi-Teacher Generation. The caption reads K candidate reasoning trajectories, goal: select B. Panel 2 shows orange trajectory tokens a1…aK. A green dashed box holds the top-B items and a red dashed box holds the discarded ones. A student robot icon labeled Student Scoring sits between them. Blue down arrows lead from a to g scores, with g1>g2>…, and then to weights q, with q_k ∝ g_k − g_{B+1}. The discarded items get q_k = 0. Panel 3 shows the weighted loss formula in a box, the weighted a×q items in a teal dashed box, and an arrow to a fine-tuned student robot.",
+ "caption": "Overview of the LARK pipeline. For each question, multiple teacher-generated reasoning trajectories form a candidate pool. LARK uses the student model to score these trajectories, ranks them by the score, and selects the top-$B$ trajectories for weighted SFT. In the figure, $a_k$ denotes the $k$-th trajectory after ranking, $g_k$ denotes the practical LARK score $\\hat{g}_k$, and $q_k$ denotes its training weight. The indices in the ranking panel are re-numbered after sorting.",
+ "caption_source": "latex",
+ "abstract": "We study trajectory selection for reasoning distillation, where teacher-generated reasoning trajectories are selectively used as supervision for a student model. Existing methods rely on heuristics such as trajectory quality or model confidence, but they often overlook whether a trajectory is learnable by the student. In this paper, we present LARK, a learnability-grounded method for reasoning trajectory selection. LARK selects trajectories that the student can learn efficiently while preserving the generalization of the full training distribution. At the core of LARK is a learnability factor $Ï$, which characterizes the rate at which the student's training loss decreases. To estimate this rate efficiently and maintain generalization, we introduce a learnability proxy and a $Ï^2$-regularized selection policy that balances learnability and distributional coverage, both with strong theoretical guarantees on their estimation error. Empirically, LARK consistently outperforms data selection baselines across multiple base models and reasoning tasks. Diagnostic analyses show that the LARK score predicts downstream training utility and that LARK-selected trajectories induce faster supervised fine-tuning loss reduction. Our code is available at https://github.com/Tianrun-Yu/LARK.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=sWW7IWqQxC",
+  "arxiv": "https://arxiv.org/abs/2605.30651",
+  "pdf": "https://arxiv.org/pdf/2605.30651",
+  "proceedings": null,
+  "virtual": "https://neurips.cc/virtual/2026/poster/149142",
+  "code": null
+ },
+ "license": "http://creativecommons.org/licenses/by/4.0/",
+ "img": "cc-by",
+ "image_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/images/neurips26-7878.png",
+ "thumb_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/thumbs/neurips26-7878.webp",
+ "figure_page": 1,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.95
+}

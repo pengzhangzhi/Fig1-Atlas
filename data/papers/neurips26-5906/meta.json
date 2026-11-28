@@ -1,0 +1,52 @@
+{
+ "id": "neurips26-5906",
+ "title": "DSAQuant: Denoising-Stage-Aligned Quantization-Aware Training for Video Generation",
+ "authors": [
+  "Shuaiting Li",
+  "Zelin Gao",
+  "Haibin Shen",
+  "Yujun Shen",
+  "Haotong Qin",
+  "Yinghao Xu"
+ ],
+ "venue": "NeurIPS 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "Computer Vision->Image and Video Generation",
+ "role": "analysis-finding",
+ "role2": "problem-setup",
+ "claim": "Compression-induced errors harm different stages of a sequential generation process unequally: early errors perturb structure, late errors destroy fine detail.",
+ "layout": "2 panels; left failure example with zoom-ins, right three stacked rows with stage bars",
+ "tags": [
+  "quantization",
+  "video-diffusion",
+  "stage-wise-analysis",
+  "failure-mode",
+  "denoising-timestep"
+ ],
+ "style": [
+  "photo/real data",
+  "colorful",
+  "text-heavy"
+ ],
+ "description": "Panel (a) on the left shows the failure of conventional QAT. Two full-precision video frames of a man in sunglasses and a scarf in a desert sit above two conventional-QAT frames. Red boxes mark the arm and face, with zoomed insets showing blotchy, smeared texture. A green check reads 'Good Structure and motion' and a red cross reads 'Bad Appearance and Texture'. Panel (b) on the right is a stage-wise analysis in three rows separated by dashed lines. Each row has a denoising-timeline bar (early to late) with the quantized steps highlighted, three generated frames, and LongClip and VisionReward scores. The rows are FP-All (reference, blue), Q-Early (orange, slightly different structure but high quality) and Q-Late (green, same structure but damaged appearance). A yellow takeaway box at the bottom reads 'Quantization errors affect different denoising stages differently'.",
+ "caption": "Analysis of conventional QAT on VDMs (please zoom in for details). (a) Conventional methods generally preserve layout and motion, but suffer severe degradation in details and texture. (b) We apply quantization to different denoising stages of VDMs: quantizing early steps slightly perturbs layout but preserves perceptual quality, while quantizing late steps significantly damages visual quality.",
+ "caption_source": "latex",
+ "abstract": "Video diffusion models (VDMs) have achieved impressive progress in text-to-video generation, but their high memory and computational costs hinder practical deployment. Quantization-aware training (QAT) is an effective solution for compressing and accelerating advanced generative models without runtime overhead at inference. However, existing QAT methods suffer from a distinctive challenge in VDMs: while they often preserve prompt semantics, global layout, and coarse motion, the quantized model severely degrades visual details, texture fidelity, and sharpness. In this paper, we trace this degradation to the timestep-agnostic design of conventional quantization pipelines, which overlooks the stage-wise functionality of video denoising. In VDMs, early denoising steps mainly establish global structure and motion, whereas middle and late steps refine local appearance and high-frequency details. Based on this insight, we propose DSAQuant, a Denoising-Stage-Aligned Quantization-aware training framework for VDMs. During training, Denoising-Stage Oriented Supervision preserves teacher distillation in early steps for stable structure planning, while shifting later steps toward target-driven optimization to enhance detail reconstruction. During inference, Denoising-Stage Gated Guidance disables CFG in the final denoising steps to prevent it from amplifying quantization-induced errors into high-frequency artifacts. Extensive experiments on the Wan and CogVideoX families under W4A4 and W3A3 settings show that DSAQuant consistently outperforms the SOTA QAT baseline, improving the VBench average score by up to 6.60 under aggressive W3A3 quantization while preserving strong text-video alignment. These results demonstrate that effective VDM quantization requires not only reducing quantization error, but also aligning quantization training and inference with the stage-wise nature of video diffusion.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=ed33sAgUBp",
+  "arxiv": "https://arxiv.org/abs/2609.04031",
+  "pdf": "https://arxiv.org/pdf/2609.04031",
+  "proceedings": null,
+  "virtual": "https://neurips.cc/virtual/2026/poster/150894",
+  "code": null
+ },
+ "license": "http://arxiv.org/licenses/nonexclusive-distrib/1.0/",
+ "img": "none",
+ "image_url": null,
+ "thumb_url": null,
+ "figure_page": 2,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.8
+}

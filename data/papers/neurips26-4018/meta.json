@@ -1,0 +1,53 @@
+{
+ "id": "neurips26-4018",
+ "title": "PhysDNet: Physics-Driven Gradient Amplification for Real-Time Image Dehazing",
+ "authors": [
+  "Rayen Dhahri",
+  "Lei Sun",
+  "Victor J Morinigo",
+  "Alice Pagnoux",
+  "Luca Benini",
+  "Danda Pani Paudel",
+  "Luc V Gool"
+ ],
+ "venue": "NeurIPS 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "Computer Vision->Everything Else",
+ "role": "pipeline",
+ "role2": null,
+ "claim": "A two-branch training scheme backpropagates through a fixed physics model to amplify gradients on hard regions, with no added inference cost.",
+ "layout": "1 panel, left-to-right flow, dashed red gradient feedback loop underneath",
+ "tags": [
+  "multimodal-fusion",
+  "physics-informed",
+  "dual-head",
+  "gradient-amplification",
+  "efficiency"
+ ],
+ "style": [
+  "colorful",
+  "math-heavy",
+  "minimal"
+ ],
+ "description": "A single left-to-right block diagram. Two inputs on the left, Hazy NIR and Sparse LiDAR, feed a blue NIR Encoder and a green LiDAR Encoder. Both feed a yellow Gated Fusion block (mask-aware gates g1..4). Its output goes to a purple Decoder with an SE bottleneck and 3 upsampling stages. A dashed purple arc above shows multi-scale skips from the encoders to the decoder. The decoder splits into a gray Direct Head labelled deployed, which outputs J_dir, and a pink Physics Head labelled training only. The physics head feeds a dashed pink box with the Koschmieder inversion formula, which outputs J_phys. A dashed gray arrow marks consistency between the two heads. A thick dark-red dashed loop runs from J_phys back to the decoder, labelled with the gradient amplification formula. The eye goes first to the colored blocks, then to the red loop.",
+ "caption": "PhysDNet architecture. Dual encoders extract NIR and sparse-depth features, merged by mask-aware gating with Squeeze-and-Excitation at the bottleneck. The shared representation feeds a direct head (deployed at inference) and a physics head (training only). Backpropagating through the Koschmieder inversion scales gradients by $(\\hat{t}+\\epsilon)^{-2}$, concentrating optimization on heavily degraded regions at zero inference cost.",
+ "caption_source": "latex",
+ "abstract": "Modern dehazing networks are often computationally expensive and overfit to synthetic haze, limiting real-time deployment. This underscores an urgent demand for efficient, high-fidelity restoration methods that can operate on resource-constrained edge devices in practical, dynamic environments. We introduce PhysDNet, a lightweight multimodal architecture that fuses NIR imagery with sparse LiDAR depth and is trained with a physics-constrained dual-head objective. Differentiating through a fixed Koschmieder inversion induces density-adaptive gradient amplification, acting as an implicit resource allocation mechanism that concentrates learning on heavily degraded regions without increasing inference cost. PhysDNet delivers superior restoration with minimal capacity and enhanced training efficiency, facilitating real-time deployment on edge devices without increasing inference overhead. On the Seeing Through Fog benchmark, PhysDNet outperforms competitors by 1.67 dB at 5.2 times lower compute while recovering 54.9% of fog-induced detection loss. Ablations and cross-domain evaluations show that physics-guided training improves generalization, including under non-homogeneous haze that violates the Koschmieder assumption. PhysDNet further demonstrates compatibility with fixed-function NPUs, running at 29/45/99 FPS at <4 W across L/M/S variants. Code, deployment scripts and pre-trained checkpoints are available at https://github.com/Heatdh/PhysDnet.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=S57Q0ZigdC",
+  "arxiv": "https://arxiv.org/abs/2611.10376",
+  "pdf": "https://arxiv.org/pdf/2611.10376",
+  "proceedings": null,
+  "virtual": "https://neurips.cc/virtual/2026/poster/152574",
+  "code": "https://rayendhahri.com/PhysDnet/"
+ },
+ "license": "http://creativecommons.org/licenses/by/4.0/",
+ "img": "cc-by",
+ "image_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/images/neurips26-4018.png",
+ "thumb_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/thumbs/neurips26-4018.webp",
+ "figure_page": 1,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.9
+}

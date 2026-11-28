@@ -1,0 +1,50 @@
+{
+ "id": "iclr26-2036",
+ "title": "Token-Efficient Long-Term Interest Sketching and Internalized Reasoning for LLM-based Recommendation",
+ "authors": [
+  "Zhihao Ding",
+  "Jinming Li",
+  "Shuai Mu",
+  "Jieming Shi"
+ ],
+ "venue": "ICLR 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "Applications->Everything Else",
+ "role": "problem-setup",
+ "role2": "analysis-finding",
+ "claim": "Explicit step-by-step reasoning improves prediction accuracy over direct answering, but its token-by-token generation makes inference far slower.",
+ "layout": "4 panels: two plots left, two model diagrams right; check/cross marks",
+ "tags": [
+  "chain-of-thought",
+  "latency",
+  "accuracy-efficiency-tradeoff",
+  "recommendation",
+  "autoregressive-decoding"
+ ],
+ "style": [
+  "plot",
+  "colorful",
+  "text-heavy"
+ ],
+ "description": "The figure has four panels. On the left, (a) is a broken-axis line plot of MAE against max history length (10 to 50). The green dashed Answer-only line sits near 1.08–1.10, and the blue solid CoT line sits much lower, near 0.80–0.82. (b) is a log-scale bar chart of average latency per sample for the same history lengths. The green hatched AO bars are about 0.08 s. The blue hatched CoT bars are about 7.2 s, with the values printed above them. On the right, (c) shows an Answer-only LLM as a green box. A prompt box feeds in from below, and a single answer token comes out with a red cross on the output '4'. (d) shows a CoT LLM as a blue box that emits tokens one at a time ('The user prefers …') in a loop, then outputs '5' with a green check mark. A legend sits at the top.",
+ "caption": "We vary max history length from 10 to 50 and compare answer-only vs CoT of Qwen3-4B in rating prediction on the Movies category of the AmazonReviews dataset. Full setup in Sec. B.2. (a) MAE (↓) vs. history length. (b) Average per-sample latency (s). (c) AO: placing <answer> immediately after the query Prompt signals the model to generate only the final answer. (d) CoT: the model first generates an multi-step reasoning token-by-token, then outputs the final prediction.",
+ "caption_source": "pdf",
+ "abstract": "Large language models (LLMs) can solve complex real-world tasks when prompted to generate chain-of-thought (CoT) reasoning, motivating their use for preference reasoning in recommender systems. However, applying LLM reasoning on recommendation faces two practical challenges. First, LLMs struggle to reason over long, noisy user histories that often span hundreds of items while truncation discards signals needed to capture long-term interests. Second, in decoder-only architectures, CoT requires generating rationale tokens autoregressively, leading to prohibitive inference latency for real-world deployment. To address the challenges, we propose SIREN, a framework that enables effective LLM-based rating prediction via long-term interest sketching and internalized reasoning. First, instead of prompting raw histories, we build a compact, token-bounded interest sketch that preserves persistent preferences and suppresses noise. Specifically, we encode and cluster item descriptions to discover semantic topics, then compress each user’s history into a short list of liked and disliked topics, facilitating LLM reasoning. Second, we develop an internalized reasoning strategy for efficient inference. We adopt a two-stage training paradigm: (i) train the LLM to reason explicitly for rating prediction with rule-based reinforcement learning, since ground-truth CoTs are unavailable in recommendation; and (ii) learn to internalize CoT into model parameters through hidden alignment. At inference, the LLM directly generates the rating with near-CoT quality. Extensive experiments show that SIREN reduces average input tokens by $48.7\\%$ compared to raw-history prompting, outperforms existing methods while delivering over $100\\times$ lower inference latency than CoT-based LLM recommenders. Code and data are available at https://github.com/TommyDzh/SIREN.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=NVrXCKaEjM",
+  "arxiv": null,
+  "pdf": "https://proceedings.iclr.cc/paper_files/paper/2026/file/c9b551a2e195a209fc0b280de2f7f781-Paper-Conference.pdf",
+  "proceedings": "https://proceedings.iclr.cc/paper_files/paper/2026/hash/c9b551a2e195a209fc0b280de2f7f781-Abstract-Conference.html",
+  "virtual": "https://iclr.cc/virtual/2026/poster/10009860",
+  "code": null
+ },
+ "license": null,
+ "img": "none",
+ "image_url": null,
+ "thumb_url": null,
+ "figure_page": 1,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.6
+}

@@ -1,0 +1,51 @@
+{
+ "id": "neurips26-2601",
+ "title": "PriFT: Guiding Supervised Fine-Tuning with Pretrained Priors",
+ "authors": [
+  "Ke Wang",
+  "Shuangqi Li",
+  "Mathieu Salzmann",
+  "Pascal Frossard"
+ ],
+ "venue": "NeurIPS 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "Deep Learning->Algorithms",
+ "role": "prior-vs-ours",
+ "role2": "teaser-result",
+ "claim": "Weights computed from the model being trained create a self-reinforcing loop; weights from a frozen pretrained model break it and perform better.",
+ "layout": "3 panels, left-to-right: two cycle/flow diagrams, then a line plot",
+ "tags": [
+  "token-reweighting",
+  "frozen-reference",
+  "fine-tuning",
+  "self-reinforcing-loop",
+  "generalization"
+ ],
+ "style": [
+  "minimal",
+  "icon-heavy",
+  "plot",
+  "colorful"
+ ],
+ "description": "Three panels read left to right. Panel (a), 'Online reweighting', shows a circular loop. An 'Online model' box with a flame icon (being trained) and a 'Token weights' box are linked by curved arrows labeled 'Compute weights' and 'Reweight training'. 'Self-reinforcing loop' is written in the middle. Panel (b), 'PriFT: Prior-support reweighting', shows a straight top-to-bottom flow. A blue 'Pretrained model' box with a snowflake icon (frozen) leads to 'Token weights', which leads to an orange 'Online model' box with a flame icon. The arrows are labeled 'Compute weights' and 'Reweight training'. The loop is removed. Panel (c) is a line plot of average pass@k against k (1 to 16) for finetuned Qwen2.5-Math-7B. The orange 'Ours' line sits clearly above the blue online reweighting (DFT) line and the green vanilla SFT line. The orange highlight ties the plot back to panel (b).",
+ "caption": "PriFT improves SFT generalization through pretrained-prior guided token reweighting.",
+ "caption_source": "latex",
+ "abstract": "Supervised fine-tuning (SFT) is an efficient approach for downstream task adaptation and often serves as the initialization stage for reinforcement learning (RL), but it can show weaker generalization than RL. A key limitation is its off-policy objective: SFT fits fixed demonstrations token by token, including targets poorly aligned with the model's pretrained distribution, which can lead to overfitting. A recent line of work addresses this issue by assigning larger training weights to tokens better aligned with the current model's predictive distribution, with the intuition that fitting these tokens are less distortive to the model's knowledge and representations. However, computing the token weights from the model that is currently fine-tuned entangles token weights with the optimization trajectory, inducing a self-reinforcing loop which concentrates the supervision signal to a narrow set of initially preferred tokens. To address this, we propose PriFT (Prior-support guided Fine-Tuning), which derives token weights from a frozen pretrained reference to obtain a stable reweighting signal unaffected by fine-tuning. This signal estimates prior support: the extent to which each target token is supported by the pretrained distribution. By reweighting tokens according to their prior support, PriFT limits excessive adaptation to targets requiring substantial deviation from the pretrained distribution and improves SFT generalization. We introduce two instantiations: PriFT-prob uses pretrained target-token probability, while PriFT-mass selects tokens by cumulative probability mass under the pretrained distribution. Across mathematical reasoning, code generation, and medical QA, PriFT achieves state-of-the-art results among SFT baselines, while also providing a stronger initialization for subsequent RL.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=ILf5dWUdsd",
+  "arxiv": "https://arxiv.org/abs/2606.09396",
+  "pdf": "https://arxiv.org/pdf/2606.09396",
+  "proceedings": null,
+  "virtual": "https://neurips.cc/virtual/2026/poster/153837",
+  "code": null
+ },
+ "license": "http://creativecommons.org/licenses/by/4.0/",
+ "img": "cc-by",
+ "image_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/images/neurips26-2601.png",
+ "thumb_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/thumbs/neurips26-2601.webp",
+ "figure_page": 1,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.6
+}

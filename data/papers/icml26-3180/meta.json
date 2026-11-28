@@ -1,0 +1,56 @@
+{
+ "id": "icml26-3180",
+ "title": "CONCUR: High-Throughput Agentic Batch Inference of LLM via Congestion-Based Concurrency Control",
+ "authors": [
+  "Qiaoling Chen",
+  "Zhisheng Ye",
+  "Tian Tang",
+  "Peng Sun",
+  "Boyu Tian",
+  "Guoteng Wang",
+  "Shenggui Li",
+  "Yonggang Wen",
+  "Zhenhua Han",
+  "Tianwei Zhang"
+ ],
+ "venue": "ICML 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": null,
+ "role": "analysis-finding",
+ "role2": "problem-setup",
+ "claim": "Long-running agent workloads accumulate state that steadily grows memory demand, and offloading to host memory costs more than recomputing it at high concurrency.",
+ "layout": "3 panels in a row, left-to-right, dual y-axes in the middle panel",
+ "tags": [
+  "kv-cache",
+  "agentic-workloads",
+  "memory-growth",
+  "offload-vs-recompute",
+  "characterization"
+ ],
+ "style": [
+  "plot",
+  "colorful",
+  "minimal"
+ ],
+ "description": "Three side-by-side plots with matching dark red and orange color coding. Panel (a) is a line chart of input length in tokens against generation step, from 1 to 10, for DeepSeek V3 and Qwen3-32B. Both curves rise steadily from about 3.5k to about 11.5k tokens. Panel (b) has the same x-axis and shows KV cache size growth. It uses two y-axes: the left axis in GB for DeepSeek V3 (6 to 19 GB) and the right axis for Qwen3-32B (0.6 to 1.8 GB). Both curves climb in the same way. Panel (c) is a grouped bar chart of latency in ms against concurrency levels 1, 2, 4 and 8. Hatched dark red bars show KV cache transmission and hatched orange bars show prefill recomputation. Transmission grows to about 1150 ms at concurrency 8, while recomputation stays near 500 ms. The eye goes first to the rising lines and then to the diverging bars at the far right.",
+ "caption": "(a) (b) Input length and KV cache memory consumption growth across 10 generation steps for DeepSeek V3 and Qwen3-32B. (c) Comparison of GPU-to-CPU KV cache offload latency versus prefill-based recomputation latency for DeepSeek-V3 (6.67 GB cache per request, 4096 tokens) under varying concurrency levels.",
+ "caption_source": "latex",
+ "abstract": "Batch inference for agentic workloads stresses the GPU key-value (KV) cache in a sustained and cumulative manner, often causing severe throughput degradation well before memory capacity is exhausted. We identify this phenomenon as middle-phase thrashing, a previously under-characterized pathology in which cache efficiency collapses as long-lived agents accumulate state over time. We argue that mitigating this pathology requires moving beyond reactive, request-level cache management to proactive, agent-level admission control. Drawing inspiration from congestion control in distributed systems, we view the KV cache as a shared resource whose efficient utilization depends on feedback-driven regulation. Based on this insight, we present CONCUR, a lightweight control layer that regulates agent admission to bound aggregate cache pressure while preserving execution continuity. CONCUR adapts a cache-aware control algorithm to dynamically adjust the number of active agents using runtime cache signals. Across large models and real-world agent workloads, CONCUR prevents middle-phase thrashing and improves batch inference throughput by up to 4.09x on Qwen3-32B and 1.9x on DeepSeek-V3, while remaining compatible with existing LLM serving systems.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=U7c6glPdDW",
+  "arxiv": "https://arxiv.org/abs/2601.22705",
+  "pdf": "https://raw.githubusercontent.com/mlresearch/v306/main/assets/chen26fs/chen26fs.pdf",
+  "proceedings": "https://proceedings.mlr.press/v306/chen26fs.html",
+  "virtual": "https://icml.cc/virtual/2026/poster/63743",
+  "code": null
+ },
+ "license": "http://creativecommons.org/licenses/by/4.0/",
+ "img": "cc-by",
+ "image_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/images/icml26-3180.png",
+ "thumb_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/thumbs/icml26-3180.webp",
+ "figure_page": 1,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.8
+}

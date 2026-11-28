@@ -1,0 +1,52 @@
+{
+ "id": "neurips26-4216",
+ "title": "CORA: Per-Slice Coherent Orthogonal Rotation for SVD-based Low-Rank Adaptation",
+ "authors": [
+  "Pengcheng Wang",
+  "Ziran Liu",
+  "Wei Wang",
+  "WEI JIANG"
+ ],
+ "venue": "NeurIPS 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "Deep Learning->Algorithms",
+ "role": "pipeline",
+ "role2": null,
+ "claim": "Method is a simple staged procedure: precompute decompositions offline, then learn only small per-slice rotations online to yield the adapted weights.",
+ "layout": "1 row, 4 boxes left-to-right, Offline/Online/Adapted headers, math in boxes",
+ "tags": [
+  "parameter-efficient",
+  "low-rank-adaptation",
+  "svd",
+  "orthogonal-rotation",
+  "offline-online"
+ ],
+ "style": [
+  "minimal",
+  "math-heavy",
+  "colorful"
+ ],
+ "description": "A single horizontal strip of four rounded boxes connected by small gray arrows, read left to right. Colored italic headers sit above the boxes: gray 'Offline' over the first two, orange 'Online' over the third, purple 'Adapted' over the fourth. Box 1 (gray) reads 'Rank-r truncation, W_lr = U_r Σ_r V_r^T'. Box 2 (gray) reads 'Per-slice SVD, W_lr,i = U_i Σ_i V_i^T'. Box 3 (orange tint) reads 'Learn Q_i ∈ O(r) and shared δ ∈ R^r'. Box 4 (lavender) gives the adapted slice W̃_i = U_i Q_i Σ_i diag(1+δ) Q_i^T V_i^T. The only color emphasis is the orange learned step and the purple final formula. The eye goes first to the colored headers, then to the equations.",
+ "caption": "Overview of CORA. A weight matrix $W$ is replaced by its rank-$r$ SVD reconstruction $W_{\\mathrm{lr}}$, then partitioned into $s = m/r$ row slices. Per-slice SVD factors are precomputed; only the per-slice orthogonal $Q_i$ and a per-layer diagonal scale $\\boldsymbol{\\delta} \\in \\mathbb{R}^r$ are learned, with $Q_{U,i} = Q_{V,i} = Q_i$ (Thm. [ref]). Per-layer trainable parameters are $\\tfrac{1}{2}m(r{-}1)$, roughly $4\\times$ fewer than LoRA at the same $r$.",
+ "caption_source": "latex",
+ "abstract": "Parameter-Efficient Fine-Tuning (PEFT) commonly adapts pretrained weights through low-rank updates, and recent methods further exploit the singular value decomposition (SVD) of the base weight for initialization or subspace selection. However, these methods do not explicitly preserve the coupled geometry between the pretrained left and right singular bases. Motivated by recent minimum-perturbation theory, which shows that stable finetuning follows a coherent SVD rotation in which a single orthogonal $Q$ acts on both the left singular basis $U_0$ and the right singular basis $V_0$, we prove a per-slice analogue: each row slice of $W_0$ can be adapted by a shared orthogonal rotation $Q_i$ on its left basis $U_i$ and right basis $V_i$ together with a diagonal spectrum shift. We implement this form as CORA (Coherent Orthogonal Rotation Adaptation), which applies per-slice orthogonal rotations and a per-layer diagonal scale to the rank-$r$ SVD truncation of $W_0$. CORA uses $\\tfrac{1}{2}m(r{-}1)$ trainable parameters per linear layer, about $4{\\times}$ fewer than LoRA at the same rank. CORA outperforms LoRA, DoRA, PiSSA, and MiLoRA on commonsense reasoning and code generation while using about $8{\\times}$ fewer parameters.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=TMmhacwh3s",
+  "arxiv": "https://arxiv.org/abs/2607.02576",
+  "pdf": "https://arxiv.org/pdf/2607.02576",
+  "proceedings": null,
+  "virtual": "https://neurips.cc/virtual/2026/poster/152402",
+  "code": null
+ },
+ "license": "http://creativecommons.org/licenses/by/4.0/",
+ "img": "cc-by",
+ "image_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/images/neurips26-4216.png",
+ "thumb_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/thumbs/neurips26-4216.webp",
+ "figure_page": 1,
+ "qc_flags": [
+  "tiny-crop"
+ ],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.9
+}

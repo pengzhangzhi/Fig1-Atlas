@@ -1,0 +1,56 @@
+{
+ "id": "neurips26-6762",
+ "title": "PSD: Pushing the Pareto Frontier of Diffusion LLMs via Parallel Speculative Decoding",
+ "authors": [
+  "Shengyin Sun",
+  "Yiming Li",
+  "Renxi Liu",
+  "Xinqi Li",
+  "Hui-Ling Zhen",
+  "Weizhe Lin",
+  "Chen Chen",
+  "Xianzhi Yu",
+  "Mingxuan Yuan",
+  "Chen Ma"
+ ],
+ "venue": "NeurIPS 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "Applications->Language, Speech and Dialog",
+ "role": "pipeline",
+ "role2": null,
+ "claim": "Combining parallel unmasking within a step with multi-depth speculative drafts verified in one pass compounds speedups beyond either axis alone.",
+ "layout": "3 panels: top-left, bottom-left, right column; staged flow with verify-and-accept arrows",
+ "tags": [
+  "speculative-decoding",
+  "parallel-decoding",
+  "diffusion-llm",
+  "inference-efficiency",
+  "draft-and-verify"
+ ],
+ "style": [
+  "colorful",
+  "icon-heavy",
+  "text-heavy"
+ ],
+ "description": "A three-stage method diagram that uses token-sequence strips as its main visual element. Panel (1), top-left, shows a sentence of tokens (\"The <M> <M> on <M> <M> <M>\") with a confidence score under each masked token. Arrows feed these scores into a \"Parallel Transfer Policy π\" box. Green check marks and red crosses mark which positions are unmasked, and a \"Final Result\" strip follows. Panel (2), bottom-left, shows a small directed acyclic graph of drafts (nodes 1–4, with +sat and +a edges). Next to it, four stacked Draft strips each add more tokens. Panel (3), on the right, pairs each Draft with a Verified strip. Green \"Match / Accept\" and red \"Reject\" curved arrows link them, and a pink highlight marks the rejected Draft 3. A color legend (Unmask, Mask, Fixed, Draft, Accepted) sits in the center. The eye goes first to the colored token strips.",
+ "caption": "Overview of the proposed PSD. As a general framework compatible with any parallel decoding strategy, PSD consists of three stages: (1) Spatial parallel unmasking reveals multiple tokens per denoising step; (2) Temporal speculative drafting builds a directed acyclic graph of confidence-ranked drafts for future steps; (3) Verify & Accept evaluates all drafts in one batched forward pass and accepts the deepest consistent branch. By combining spatial and temporal acceleration, PSD achieves compounded speedups beyond either axis alone.",
+ "caption_source": "latex",
+ "abstract": "Diffusion large language models (dLLMs) generate text by iteratively denoising masked token sequences. Although dLLMs can predict all masked positions in parallel within each step, the large number of denoising iterations still makes inference expensive. This cost can be reduced spatially by unmasking multiple tokens per step, or temporally by collapsing multiple denoising steps into one verification call. We propose Parallel Speculative Decoding (PSD), a training-free framework that jointly improves inference along both axes. Using the confidence scores from a single forward pass, PSD selects positions to unmask via a configurable, adaptive unmasking policy and constructs multi-depth speculative drafts without extra model calls. A final batched verification pass then applies hierarchical acceptance, keeping the deepest draft that remains consistent with the updated predictions. Experiments on three dLLMs across reasoning and code generation tasks show that PSD achieves favorable trade-offs between inference efficiency and generation quality, reaching up to $5.5\\times$ tokens per forward pass with accuracy comparable to greedy decoding.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=kRdp6aSiHL",
+  "arxiv": "https://arxiv.org/abs/2605.15609",
+  "pdf": "https://arxiv.org/pdf/2605.15609",
+  "proceedings": null,
+  "virtual": "https://neurips.cc/virtual/2026/poster/150134",
+  "code": "https://github.com/sunshy-1/PSD"
+ },
+ "license": "http://arxiv.org/licenses/nonexclusive-distrib/1.0/",
+ "img": "none",
+ "image_url": null,
+ "thumb_url": null,
+ "figure_page": 3,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.95
+}

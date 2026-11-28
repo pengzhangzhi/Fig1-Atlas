@@ -1,0 +1,46 @@
+{
+ "id": "neurips26-0196",
+ "title": "Block-Wise Differentiable Sinkhorn Attention: Tail-Refinement Gradients with a Gap-Aware Dustbin Bridge",
+ "authors": [
+  "Dylan Forde"
+ ],
+ "venue": "NeurIPS 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "Deep Learning->Theory",
+ "role": "pipeline",
+ "role2": "overview-framework",
+ "claim": "Differentiating only a short tail after a stopped solve lets the backward pass keep a single resident tile and rescale the rest.",
+ "layout": "2 stacked panels, left-to-right flow, dashed stop-gradient line, tile fan-out",
+ "tags": [
+  "stop-gradient",
+  "surrogate-gradient",
+  "memory-efficiency",
+  "backward-pass",
+  "optimal-transport"
+ ],
+ "style": [
+  "minimal",
+  "math-heavy"
+ ],
+ "description": "Two stacked black-and-white diagrams, with no color. Panel (a), \"Stopped-base surrogate\", is a horizontal arrow line. Grey boxes labeled 1, 2, ..., T on the left are the stopped base, annotated \"no reverse tape\". A dashed vertical line marks the stop-gradient boundary and the state (u^(0), v^(0)). To its right, two white boxes (1, 2) are the R=2 tail, annotated \"differentiated exactly\". The line ends in a rounded loss box L. Panel (b), \"Resident tile schedule\", is a row of four rounded boxes joined by arrows. They are the resident plan tile P^(2,2)_{I,J}, O(B) vector slices of dual differences and cotangents, O(Bd) slices of Q, K, V, G, and the accumulated score tile S̄_{I,J}, which is then evicted. Three arrows fan out from the resident tile to P^(2,1), P^(1,1) and P^(1,0). A note says these other factors are row/column rescalings, not resident tiles. The eye goes first to the top timeline.",
+ "caption": "Stopped-base surrogate and single-reference-tile $R=2$ backward schedule. Top: a $T$-step stopped solve initializes two exactly differentiated tail refinements. Bottom: each score tile is accumulated from one resident $P_{I,J}^{(2,2)}$ tile and vector/activation slices; the other staircase factors are recovered by row/column rescaling rather than materialized.",
+ "caption_source": "latex",
+ "abstract": "We study long-context balanced entropic optimal transport (OT) attention on TPU hardware through a stopped-base, fixed-depth tail-refinement surrogate. After a stopped $T$-step Sinkhorn solve, we unroll a short refinement tail and differentiate that surrogate exactly. For the reported $R=2$ TPU path, the backward pass contains four staircase plan factors. We prove an exact one-reference-tile schedule: the $R=2$ score cotangent is a single reference plan tile times an explicit modifier field built from vector cotangents and dual differences. This yields block-wise cost $O((T+R)LW)$, $O(Ld)$ input storage, and $O(L)$ additional HBM usage for fixed head dimension $d$ and band width $W$ on the balanced fixed-support path. We also formalize the current \\texttt{dustbin\\_block} path as the same unit-target surrogate on an augmented support, so the adjoint schedule lifts to the single-active-dustbin path used in our TPU runs; this bridge is algebraic and does not claim a general KL-unbalanced or arbitrary-capacity gap model. We provide a local surrogate-bias bound, an a posteriori bias certificate, and a projective contraction certificate for strictly positive active blocks. On synthetic masked problems, the optimized kernel matches exact autodiff of the same centered surrogate to within $10^{-5}$--$10^{-10}$. On TPU v6e-8, a four-configuration Pfam screen completes end-to-end, and a promoted balanced $R=2$ run sustains roughly $8.5$ examples per second through a three-hour budget, reaching step $1437$. Held-out Pfam test shards improve reconstruction from $5.57$ to $2.05$ and sparse CE from $5.53$ to $5.30$ relative to step $0$, with CE logged diagnostically rather than optimized directly; target-barycenter alignment metrics do not materially improve, and a deterministic diagonal reference remains stronger on those metrics.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=1R7hXUr7Od",
+  "arxiv": "https://arxiv.org/abs/2605.08123",
+  "pdf": "https://arxiv.org/pdf/2605.08123",
+  "proceedings": null,
+  "virtual": "https://neurips.cc/virtual/2026/poster/155973",
+  "code": "https://github.com/dylanbforde/Papers/tree/main/block-wise-sinkhorn"
+ },
+ "license": "http://creativecommons.org/licenses/by/4.0/",
+ "img": "cc-by",
+ "image_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/images/neurips26-0196.png",
+ "thumb_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/thumbs/neurips26-0196.webp",
+ "figure_page": 4,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.8
+}

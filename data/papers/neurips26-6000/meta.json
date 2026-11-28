@@ -1,0 +1,49 @@
+{
+ "id": "neurips26-6000",
+ "title": "Why Speculative Decoding Works Better Than Predicted on Sparse MoE Models",
+ "authors": [
+  "Ekagra Ranjan",
+  "Komal Teru",
+  "Bharat Venkitesh",
+  "Acyr Locatelli"
+ ],
+ "venue": "NeurIPS 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "Deep Learning->Everything Else",
+ "role": "analysis-finding",
+ "role2": null,
+ "claim": "Contrary to the predicted concave speedup-versus-load trend, recent fine-grained models show their highest speedup at the smallest batch size.",
+ "layout": "4 panels in 2x2 grid, line plots with shared axes, one model per panel",
+ "tags": [
+  "speculative-decoding",
+  "mixture-of-experts",
+  "speedup-vs-batch-size",
+  "non-concave-trend",
+  "inference-efficiency"
+ ],
+ "style": [
+  "plot",
+  "colorful"
+ ],
+ "description": "A 2x2 grid of line charts. Each panel shows speedup (vanilla/SD) on the y-axis against batch size from 1 to 128 on a log-style x-axis. Each panel is titled with a model and its configuration. The top-left panel is Mixtral 8x7B. It shows the expected concave, inverted-U curve: green and blue solid lines for EAGLE and dotted lines for draft-model speculation. Speedup rises from batch size 1, peaks near 16 to 32, then falls. The other three panels (Qwen3 30B, Qwen3 235B, Kimi K2.5) show green (K=3) and blue (K=1) EAGLE3 curves. These start highest at batch size 1 and decline, with small bumps, then drop sharply at 128. A dashed gray baseline marks 1.0 in every panel. Legends list K values and acceptance lengths. The eye goes first to the contrasting Mixtral hump versus the monotone-ish decay elsewhere.",
+ "caption": "TPOT speedup versus batch size for four representative MoE models. Mixtral-8x7B exhibits the predicted concave curve, whereas the other three are non-concave and peak at or near batch size 1.",
+ "caption_source": "latex",
+ "abstract": "Speculative decoding (SD) accelerates autoregressive inference by leveraging the memory bound nature of decoding, verifying multiple draft tokens in a single forward pass. For mixture-of-experts (MoE) models, prior work predicts a concave speedup-batch size relationship, with gains peaking at intermediate batch sizes due to expert saturation. We evaluate this across 10 sparse MoE models (30B--1T parameters, 8--512 experts) and find recent fine-grained models break this trend, showing higher speedup at low batch size. We find verification cost is governed not only by activated-expert bytes, but also by temporal overlap across draft tokens and GPU execution dynamics. At low batch size, MoE layers in fine-grained models account for a much smaller share of runtime than of weights; on H100, kernel profiling attributes this mainly to higher bandwidth utilization of MoE kernels relative to attention, with L2 absorbing repeated reads of co-routed experts. Across draft tokens, routing overlap further reduces the unique experts activated during verification relative to independence assumptions. We model this effect using a maximum-entropy Iterative Proportional Fitting (IPF) framework that predicts unique expert counts from routing-overlap statistics with less than 4\\% error, and substantially narrows the gap to real-model curves and captures the qualitative low-batch trend from synthetic routing.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=fC3FzfodMG",
+  "arxiv": "https://arxiv.org/abs/2610.38981",
+  "pdf": "https://arxiv.org/pdf/2610.38981",
+  "proceedings": null,
+  "virtual": "https://neurips.cc/virtual/2026/poster/150811",
+  "code": null
+ },
+ "license": "http://creativecommons.org/licenses/by/4.0/",
+ "img": "cc-by",
+ "image_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/images/neurips26-6000.png",
+ "thumb_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/thumbs/neurips26-6000.webp",
+ "figure_page": 3,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.8
+}

@@ -1,0 +1,54 @@
+{
+ "id": "icml26-2990",
+ "title": "Adaptive Preconditioners Trigger Loss Spikes in Adam",
+ "authors": [
+  "Zhiwei Bai",
+  "Zhangchen Zhou",
+  "Jiajie Zhao",
+  "Xiaolong Li",
+  "Zhiyu li",
+  "Feiyu Xiong",
+  "Hongkang Yang",
+  "Yaoyu Zhang",
+  "Zhi-Qin John Xu"
+ ],
+ "venue": "ICML 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "Deep Learning->Theory",
+ "role": "analysis-finding",
+ "role2": "teaser-result",
+ "claim": "Sudden loss spikes recur during training across diverse architectures and scales, showing the phenomenon is general rather than model-specific.",
+ "layout": "4 panels in a row, shared red-line style, shaded spike windows",
+ "tags": [
+  "loss-spikes",
+  "adam-optimizer",
+  "training-instability",
+  "empirical-observation",
+  "cross-architecture"
+ ],
+ "style": [
+  "plot",
+  "minimal"
+ ],
+ "description": "A single horizontal strip of four line plots of training loss against iteration, each labeled below: (a) FNN, (b) CNN, (c) Transformer (10M), (d) Transformer (187M). Every panel draws the training loss as a red curve, and light teal vertical bands mark the loss-spike intervals. The legend in each panel reads 'Training Loss' and 'Loss Spike'. Panel (a) uses a log y-axis and shows large, repeated sawtooth spikes that climb back up after the loss falls to very low values. Panel (b) shows a decaying noisy loss with many narrow teal bands. Panels (c) and (d) show a flat or noisy loss with sparse, sharp vertical spikes inside teal bands. The eye goes first to the red spikes and the teal shading.",
+ "caption": "Loss spikes across architectures: (a) FNNs for function approximation. (b) CNNs on CIFAR10. (c-d) Transformers on language tasks. See experimental details in App. [ref].",
+ "caption_source": "latex",
+ "abstract": "Loss spikes commonly emerge during neural network training with the Adam optimizer across diverse architectures and scales, yet their underlying mechanism remains elusive. While previous explanations attribute these phenomena to sharper loss landscapes at lower loss, we show that landscape geometry alone is insufficient to explain the phenomenon. In this work, we pinpoint the root cause in the internal dynamics of Adam's second moment estimator. We identify a critical ``decoupling'' mechanism where the adaptive preconditioner $v_t$ fails to track the instantaneous squared gradients $g_t^2$, causing the adaptive mechanism to effectively fail. This decoupling allows the preconditioner to decay autonomously despite rising gradients, which pushes the maximum eigenvalue of the preconditioned Hessian beyond the stability threshold $2/Î·$ for sustained periods, manifesting as dramatic loss spikes. Through a quadratic approximation analysis, we theoretically and experimentally characterize five distinct stages of spike evolution and propose a predictor for anticipating spikes based on gradient-directional curvature. We empirically find that the proposed loss spike mechanism, although derived from simplified models, generalizes well to practical scenarios ranging from small neural networks to large-scale Transformers.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=STWQoscanw",
+  "arxiv": "https://arxiv.org/abs/2506.04805",
+  "pdf": "https://raw.githubusercontent.com/mlresearch/v306/main/assets/bai26o/bai26o.pdf",
+  "proceedings": "https://proceedings.mlr.press/v306/bai26o.html",
+  "virtual": "https://icml.cc/virtual/2026/poster/63930",
+  "code": null
+ },
+ "license": "http://arxiv.org/licenses/nonexclusive-distrib/1.0/",
+ "img": "none",
+ "image_url": null,
+ "thumb_url": null,
+ "figure_page": 1,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.85
+}

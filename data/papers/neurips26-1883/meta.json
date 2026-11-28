@@ -1,0 +1,49 @@
+{
+ "id": "neurips26-1883",
+ "title": "GRINQH: Graded Input-dependent Quantization Hierarchy for Efficient LLM Generation",
+ "authors": [
+  "Jette Oberländer",
+  "Jan Finkbeiner",
+  "Catherine Schoefmann",
+  "Emre Neftci"
+ ],
+ "venue": "NeurIPS 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "Deep Learning->Algorithms",
+ "role": "teaser-result",
+ "role2": null,
+ "claim": "Our input-adaptive method sits on a better speed-accuracy Pareto frontier, matching full-precision quality while fixed-precision baselines degrade sharply at low bit widths.",
+ "layout": "1 scatter plot with colorbar and legend, red arrows annotating gaps",
+ "tags": [
+  "pareto-frontier",
+  "quantization",
+  "efficiency",
+  "accuracy-speed-tradeoff",
+  "llm-inference"
+ ],
+ "style": [
+  "plot",
+  "colorful"
+ ],
+ "description": "A single scatter plot. The y-axis is GSM8K exact-match accuracy (65–90%). The x-axis is VMM runtime normalized to a 4-bit Marlin kernel (about 0.7–1.5). A dashed gray horizontal line marks the bf16 baseline near 88%. Many pink diamonds (GRINQH max 8-bit) and green circles (GRINQH max 6-bit) cluster along the baseline across the whole runtime range. They are shaded by effective bit count using a grayscale-to-pink colorbar on the right. The gray baseline markers (GPTQ pentagon, AWQ square, RTN triangle) sit lower at 4-bit (about 75–83%) and 3-bit (about 68%). Dashed ellipses circle these baseline groups. Bold red double-headed arrows with red labels read '25% faster', '5x lower degradation' and '20x lower degradation'. A boxed legend sits at lower right. The eye goes first to the red arrows and the high cluster of GRINQH points.",
+ "caption": "Pareto frontier of GSM8K accuracy vs. VMM runtime for Qwen3-8B on an RTX 4090. GPTQ, AWQ, RTN assume MARLIN execution.",
+ "caption_source": "latex",
+ "abstract": "Autoregressive decoding with LLMs is primarily bottlenecked by GPU memory bandwidth, especially in edge-computing settings. While quantization is essential for mitigating this bottleneck, most existing methods treat inference as a uniform process and fail to account for the asymmetry between the compute-bound prefill stage and the memory-bound decoding stage. We propose GRINQH (GRaded INput-based Quantization Hierarchy), a weight-only post-training quantization framework that accelerates decoding by unifying quantization and sparsification. GRINQH leverages activation magnitudes as a proxy for computational importance to dynamically assign weight channels to different precision levels, enabling flexible average bit widths during decoding. Evaluated on Llama3 and Qwen3 models, GRINQH outperforms state-of-the-art fixed- and mixed-precision baselines at comparable 3- and 4-bit settings, even enabling effective 2-bit generation. We experimentally verify theoretical speedups by leveraging a hierarchical nested memory layout for multi-precision storage in a custom GPU kernel. Ultimately, GRINQH establishes a new state-of-the-art Pareto frontier for LLM generation, enabling a dynamic trade-off between generation quality and inference speed.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=DOTl7hxxnO",
+  "arxiv": "https://arxiv.org/abs/2606.23419",
+  "pdf": "https://arxiv.org/pdf/2606.23419",
+  "proceedings": null,
+  "virtual": "https://neurips.cc/virtual/2026/poster/154466",
+  "code": "https://github.com/otcathatsya/vllm-grinqh-plugin"
+ },
+ "license": "http://arxiv.org/licenses/nonexclusive-distrib/1.0/",
+ "img": "none",
+ "image_url": null,
+ "thumb_url": null,
+ "figure_page": 0,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.93
+}

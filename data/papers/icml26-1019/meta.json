@@ -1,0 +1,52 @@
+{
+ "id": "icml26-1019",
+ "title": "Kalman Linear Attention: Parallel Bayesian Filtering For Efficient Language Modeling and State Tracking",
+ "authors": [
+  "Vaisakh Shaj",
+  "Cameron Barker",
+  "Aidan Scannell",
+  "Andras Szecsenyi",
+  "Elliot Crowley",
+  "Amos Storkey"
+ ],
+ "venue": "ICML 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "Deep Learning->Attention Mechanisms",
+ "role": "analysis-finding",
+ "role2": "teaser-result",
+ "claim": "Nonlinear-yet-parallel updates solve state tracking at constant depth where linear models need growing depth, and this improves downstream accuracy.",
+ "layout": "2 panels, left-to-right, line plot with callout boxes beside bar chart",
+ "tags": [
+  "state-tracking",
+  "expressivity",
+  "nonlinear-recurrence",
+  "parallel-training",
+  "hybrid-models"
+ ],
+ "style": [
+  "plot",
+  "colorful",
+  "minimal"
+ ],
+ "description": "Two side-by-side plots. The left panel is a line chart titled 'A5 State Tracking (NC1)'. It plots sequence length (3 to 20) against the minimum number of blocks required. Gray horizontal bands mark each integer depth. Four colored series appear as step curves: Transformer (blue circles) rises to 4, Mamba (orange squares) rises to 4, Kalman Attention (pink diamonds) stays at about 1–2, and RNN (green triangles) stays flat at 1. Rounded callout boxes at the right list each model's properties with green check marks and red crosses, such as 'Parallel Training' and 'Nonlinear Recurrence'. The right panel is a grouped bar chart titled 'Downstream scaling: pure GPT vs. hybrids'. It shows average accuracy at 45M and 180M parameters for GPT (gray), GPT+Mamba (blue), GPT+GDN (green) and GPT+KLA (purple, labeled ours). Numeric labels sit above the bars, and the purple bars are the tallest.",
+ "caption": "(a) Expressivity. Minimum number of blocks required to solve the $A_5$ (alternating group on 5 elements) permutation-composition task [ref]. \\our's fractional-linear (M\\\"obius) updates fall between a fully nonlinear RNN and linear SSMs/transformers, solving the task at constant depth (1--2 blocks) where linear SSMs/attention require depth growing with sequence length, while remaining parallel-trainable. (b) Downstream scaling. Zero-shot accuracy (averaged over eight commonsense benchmarks) of softmax-attention GPT vs.\\ GPT$+$SSM hybrids at 45M and 180M parameters. Replacing a single final attention layer with \\our (GPT$+$\\our) gives the strongest complement to attention.",
+ "caption_source": "latex",
+ "abstract": "State-space language models such as Mamba and gated linear attention (GLA) offer linear-complexity, parallelisable alternatives to transformers, but their linear state updates limit expressivity and robust state tracking. We close this gap from a probabilistic angle, casting sequence mixing as exact Bayesian filtering with the Kalman filter as the core primitive. Classical Kalman filters give principled state and uncertainty estimates but are viewed as inherently sequential; we show that reparameterising them in information form turns their updates into an associative scan - so the per-token recurrent update is non-linear (a MÃ¶bius/precision recursion) yet remains temporally parallel. The resulting Kalman Linear Attention (KLA) layer is a drop-in sequence mixer that performs time-parallel probabilistic inference, carries an explicit belief-state uncertainty, and is strictly more expressive than GLA-style linear updates at the same computational cost. This expressivity translates directly into stronger state tracking: KLA solves permutation-composition ($A_5$) tasks that linear SSMs and attention cannot, while staying scan-parallel. As a drop-in primitive it also matches or improves on modern SSMs and GLAs across synthetic token-manipulation and zero-shot commonsense benchmarks, and is among the first stacked Bayesian-filtering primitives trained at the billion-token scale.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=9h7sSJe4jN",
+  "arxiv": "https://arxiv.org/abs/2602.10743",
+  "pdf": "https://raw.githubusercontent.com/mlresearch/v306/main/assets/shaj26a/shaj26a.pdf",
+  "proceedings": "https://proceedings.mlr.press/v306/shaj26a.html",
+  "virtual": "https://icml.cc/virtual/2026/poster/65832",
+  "code": null
+ },
+ "license": "http://creativecommons.org/licenses/by/4.0/",
+ "img": "cc-by",
+ "image_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/images/icml26-1019.png",
+ "thumb_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/thumbs/icml26-1019.webp",
+ "figure_page": 1,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.5
+}

@@ -1,0 +1,48 @@
+{
+ "id": "neurips26-0338",
+ "title": "RAVEN: Real-time Autoregressive Video Extrapolation with Consistency-model GRPO",
+ "authors": [
+  "Yanzuo Lu",
+  "Ronglai Zuo",
+  "Jiankang Deng"
+ ],
+ "venue": "NeurIPS 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "Computer Vision->Image and Video Generation",
+ "role": "prior-vs-ours",
+ "role2": "concept",
+ "claim": "Prior training schemes feed history as data-driven or detached context; ours repacks rollouts so later losses supervise the same history used at inference.",
+ "layout": "4 panels left-to-right, attention-mask matrices with colored token strips, ours last",
+ "tags": [
+  "attention-mask",
+  "autoregressive-video",
+  "teacher-forcing",
+  "train-inference-mismatch",
+  "distillation"
+ ],
+ "style": [
+  "colorful",
+  "minimal"
+ ],
+ "description": "Four square attention-mask grids sit side by side, labeled (a) Teacher Forcing, (b) Diffusion Forcing, (c) Self Forcing and (d) RAVEN (Ours, in bold). A legend bar across the top explains the colors: purple for real data, green for self rollout, and grey noisy tokens with varying SNR. It also explains the cell types: a white cell is attention with gradient, a crossed cell is attention without gradient, and a grey crossed cell is no attention. Each grid has rounded token blocks numbered 1, 1, 2, 2, 3 along its top (keys/values) and its left (queries). Diffusion Forcing is smaller, with only 1, 2, 3 and with Q and KV axis arrows. Teacher Forcing uses purple tokens. Self Forcing and RAVEN use green tokens. The eye goes to the black-bordered grids and the pattern of white versus crossed cells. RAVEN has a cleaner pattern of white cells that attend to clean history.",
+ "caption": "Attention Mask Configuration. Autoregressive video diffusion training paradigms differ in how historical states enter attention and whether those states receive end-to-end supervision from later chunks. Teacher Forcing and Diffusion Forcing rely on data-driven historical states, inducing a training distribution that differs from inference. Self Forcing shifts the history distribution toward inference but reuses the historical cache as detached context. RAVEN instead repacks each self rollout into clean historical endpoints and noisy denoising states, allowing later chunks to attend to the same history used during extrapolation while their losses supervise the cached representations.",
+ "caption_source": "latex",
+ "abstract": "Causal autoregressive video diffusion models support real-time streaming generation by extrapolating future chunks from previously generated content. Distilling such generators from high-fidelity bidirectional teachers yields competitive few-step models, yet a persistent gap between the history distributions encountered during training and those arising at inference constrains generation quality over long horizons. We introduce the Real-time Autoregressive Video Extrapolation Network (RAVEN), a training-time test framework that repacks each self rollout into an interleaved sequence of clean historical endpoints and noisy denoising states. This formulation aligns training attention with inference-time extrapolation and allows downstream chunk losses to supervise the history representations on which future predictions depend. We further propose Consistency-model Group Relative Policy Optimization (CM-GRPO), which reformulates a consistency sampling step as a conditional Gaussian transition and applies online Reinforcement Learning (RL) directly to this kernel, avoiding the Euler-Maruyama auxiliary process adopted in prior flow-model RL formulations. Experiments demonstrate that RAVEN surpasses recent causal video distillation baselines across quality, semantic, and dynamic degree evaluations, and that CM-GRPO provides further gains when combined with RAVEN.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=2TF93oa5z0",
+  "arxiv": "https://arxiv.org/abs/2605.15190",
+  "pdf": "https://arxiv.org/pdf/2605.15190",
+  "proceedings": null,
+  "virtual": "https://neurips.cc/virtual/2026/poster/155844",
+  "code": "https://yanzuo.lu/raven/"
+ },
+ "license": "http://arxiv.org/licenses/nonexclusive-distrib/1.0/",
+ "img": "none",
+ "image_url": null,
+ "thumb_url": null,
+ "figure_page": 2,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.85
+}

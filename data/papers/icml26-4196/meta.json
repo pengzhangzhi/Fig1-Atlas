@@ -1,0 +1,49 @@
+{
+ "id": "icml26-4196",
+ "title": "ECO: Quantized Training without Full-Precision Master Weights",
+ "authors": [
+  "Mahdi Nikdan",
+  "Amir Zandieh",
+  "Dan Alistarh",
+  "Vahab Mirrokni"
+ ],
+ "venue": "ICML 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "Deep Learning->Algorithms",
+ "role": "teaser-result",
+ "role2": null,
+ "claim": "Ours shifts the memory-versus-loss Pareto frontier, matching full-precision baselines at lower memory while naive removal of master weights degrades.",
+ "layout": "Single line plot, log-scale x-axis, legend top-right, double-arrow memory-reduction annotation",
+ "tags": [
+  "pareto-frontier",
+  "memory-efficiency",
+  "quantization",
+  "error-feedback",
+  "low-precision-training"
+ ],
+ "style": [
+  "plot",
+  "minimal"
+ ],
+ "description": "A single line chart plots validation loss (y-axis, 2.5 to 3.4) against static memory in MB on a log-scale x-axis (about 300 to 9600). Four series are shown. BF16 with master weights is a black line with circles. FP8 with master weights is a blue line with squares that overlaps the black one. FP8 without master weights plus stochastic rounding is a red dash-dot line with triangles. It sits above the others and turns upward at large memory. The green dotted line with diamonds is ECO with stochastic rounding. It lies below all the others, which marks a better frontier. A black double-headed arrow labelled '25% Memory Reduction' connects the green curve to the blue/black curve at equal loss. The legend is in the top-right corner. The eye goes first to the green curve and the arrow.",
+ "caption": "Static Memory Used vs Validation Loss comparing the standard BF16, FP8 with Master weights (FP8 w/ MW) baselines with standard stochastic rounding (FP8 w/o MW + SR) and ECO. \\methodname{} with stochastic rounding (SR) provides a significantly better Pareto frontier. Gradient accumulation is disabled in all cases.",
+ "caption_source": "latex",
+ "abstract": "Quantization has significantly improved the compute and memory efficiency of Large Language Model (LLM) training. However, existing approaches still rely on accumulating their updates in high-precision: concretely, gradient updates must be applied to a high-precision weight buffer, known as $\\textit{master weights}$. This buffer introduces substantial memory overhead, particularly for Sparse Mixture of Experts (SMoE) models, where model parameters and optimizer states dominate memory usage. To address this, we introduce the Error-Compensating Optimizer (ECO), which eliminates master weights by applying updates directly to quantized parameters. ECO quantizes weights after each step and carefully injects the resulting quantization error into the optimizer momentum, forming an error-feedback loop with no additional memory. We prove that, under standard assumptions and a decaying learning rate, ECO converges to a constant-radius neighborhood of the optimum, while naive master-weight removal can incur an error that is inversely proportional to the learning rate. We show empirical results for pretraining small Transformers (30-800M), a Gemma-3 1B model, and a 2.1B parameter Sparse MoE model with FP8 quantization, and fine-tuning DeepSeek-MoE-16B in INT4 precision. Throughout, ECO matches baselines with master weights up to near-lossless accuracy, significantly shifting the static memory vs validation loss Pareto frontier.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=dfVm5yZZ6G",
+  "arxiv": "https://arxiv.org/abs/2601.22101",
+  "pdf": "https://raw.githubusercontent.com/mlresearch/v306/main/assets/nikdan26a/nikdan26a.pdf",
+  "proceedings": "https://proceedings.mlr.press/v306/nikdan26a.html",
+  "virtual": "https://icml.cc/virtual/2026/poster/62753",
+  "code": null
+ },
+ "license": "http://arxiv.org/licenses/nonexclusive-distrib/1.0/",
+ "img": "none",
+ "image_url": null,
+ "thumb_url": null,
+ "figure_page": 0,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.9
+}

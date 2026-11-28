@@ -1,0 +1,48 @@
+{
+ "id": "iclr26-0355",
+ "title": "Hinge Regression Tree: A Newton Method for Oblique Regression Tree Splitting",
+ "authors": [
+  "Hongyi Li",
+  "Han Lin",
+  "Jun Xu"
+ ],
+ "venue": "ICLR 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "Optimization->Non-Convex",
+ "role": "analysis-finding",
+ "role2": null,
+ "claim": "Large or unit optimization steps oscillate or stall at poor solutions, while sufficiently damped updates converge smoothly to a good fit.",
+ "layout": "2 panels side by side; loss curves left, fitted models right; shared color legend on top",
+ "tags": [
+  "damped-newton",
+  "convergence",
+  "step-size",
+  "limit-cycle",
+  "oblique-trees"
+ ],
+ "style": [
+  "plot",
+  "colorful"
+ ],
+ "description": "A two-panel matplotlib figure with a shared legend strip across the top. The legend lists the data points (gray), the initial split (purple dotted line), the start point (red star), and four step sizes: 1.0 (blue, labelled single line), 0.5 (orange), 0.1 (green), 0.05 (red). The left panel plots loss against iteration. Blue spikes to about 38 and then sits flat near 31. Orange oscillates in a persistent zigzag between about 29 and 32. Green and red fall smoothly to about 25. The right panel plots y against x for a sinc-like noisy gray dataset with a sharp dip at x=0. It overlays the fitted models and vertical split lines. Blue is a flat line, orange is a poor shallow fit, and green and red form a V-shaped piecewise linear fit through the dip. The eye goes first to the zigzag orange curve.",
+ "caption": "Node-level convergence analysis on the unstable sinc function. Left: Objective value per iteration for a single internal node (fixed initialization and data subset). The unit step (\\(\\mu=1.0\\), blue) and a large step (\\(\\mu=0.5\\), orange) do not decrease the objective monotonically in this example, and the latter gets trapped in a limit cycle. Smaller damping (\\(\\mu=0.1\\), green; \\(\\mu=0.05\\), red) yields much more regular local Newton dynamics at this node. Right: Final fitted models for this controlled experiment. With large steps the node effectively collapses to a poor single linear fit, whereas sufficiently damped updates recover a meaningful piecewise linear approximation. Note that this figure illustrates local node-level behaviour; full-tree performance with fallback is analysed in Appendix [ref].",
+ "caption_source": "latex",
+ "abstract": "Oblique decision trees combine the transparency of trees with the power of multivariate decision boundaries, but learning high-quality oblique splits is NP-hard, and practical methods still rely on slow search or theory-free heuristics. We present the Hinge Regression Tree (HRT), which reframes each split as a non-linear least-squares problem over two linear predictors whose max/min envelope induces ReLU-like expressive power. The resulting alternating fitting procedure is exactly equivalent to a damped Newton (Gauss-Newton) method within fixed partitions. We analyze this node-level optimization and, for a backtracking line-search variant, prove that the local objective decreases monotonically and converges; in practice, both fixed and adaptive damping yield fast, stable convergence and can be combined with optional ridge regularization. We further prove that HRT's model class is a universal approximator with an explicit $O(Î´^2)$ approximation rate, and show on synthetic and real-world benchmarks that it matches or outperforms single-tree baselines with more compact structures.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=3pZwJB6SX9",
+  "arxiv": "https://arxiv.org/abs/2602.05371",
+  "pdf": "https://proceedings.iclr.cc/paper_files/paper/2026/file/158ac5698e36a01ee5ca9e6732685b34-Paper-Conference.pdf",
+  "proceedings": "https://proceedings.iclr.cc/paper_files/paper/2026/hash/158ac5698e36a01ee5ca9e6732685b34-Abstract-Conference.html",
+  "virtual": "https://iclr.cc/virtual/2026/poster/10011609",
+  "code": "https://github.com/Hongyi-Li-sz/Hinge-Regression-Tree"
+ },
+ "license": "http://arxiv.org/licenses/nonexclusive-distrib/1.0/",
+ "img": "none",
+ "image_url": null,
+ "thumb_url": null,
+ "figure_page": 6,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.6
+}

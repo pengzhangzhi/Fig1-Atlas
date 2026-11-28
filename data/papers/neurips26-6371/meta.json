@@ -1,0 +1,49 @@
+{
+ "id": "neurips26-6371",
+ "title": "Distributionally Robust Mixture-of-Experts Training",
+ "authors": [
+  "Xin Teng",
+  "Muxiao Li",
+  "Hongyi Wen"
+ ],
+ "venue": "NeurIPS 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "Deep Learning->Algorithms",
+ "role": "pipeline",
+ "role2": null,
+ "claim": "A robustness objective is built by attributing losses to experts, smoothing them, and reweighting toward high-loss components, all inside a standard architecture.",
+ "layout": "3 panels, left-to-right, zoom-in dashed callout from panel a to b",
+ "tags": [
+  "mixture-of-experts",
+  "distributionally-robust-optimization",
+  "reweighting",
+  "routing",
+  "training-objective"
+ ],
+ "style": [
+  "colorful",
+  "math-heavy",
+  "icon-heavy"
+ ],
+ "description": "Three labeled panels run left to right. Panel (a) shows a vertical Sparse MoE Transformer stack: input tokens in colored squares for mixed domains, then Embedding, Multi-Head Self-Attention, Add & Norm, an orange-highlighted MoE Layer, Add & Norm, and LM Head. Per-token loss bars sit at the top. Panel (b) is a dashed zoom-in on the MoE layer. It shows the router, the probability bars p_{l,i}, shared and routed FFN blocks with the top-k ones highlighted in blue, and an activation-weighted credit box. A yellow box for the expert-attributed loss feeds panel (c). Panel (c) shows per-expert loss bars, an EMA update, a softmax reweighting of expert weights μ, and the final L_DRO sum. A teal dashed gradient arrow loops back along the bottom to panel (a). A legend at the bottom explains the arrow styles. Equations are embedded in the boxes, and orange and teal accents guide the eye.",
+ "caption": "Distributionally Robust MoE Training workflow. DRMoET treats experts as layer-wise robustness groups and adaptively upweights high-loss routing outcomes, strengthening plausible non-optimal paths rather than only encouraging uniform utilization.",
+ "caption_source": "latex",
+ "abstract": "Mixture-of-Experts (MoE) transformers scale capacity by activating only a few experts per token, but this sparsity creates a hidden reliability problem: when routing is imperfect, load-balanced models may send tokens to experts that are insufficiently trained for the assigned inputs. We propose Distributionally Robust MoE Training (DRMoET), a drop-in objective that treats layer-wise experts as endogenous robustness groups and optimizes high-loss routing outcomes rather than merely equalizing traffic. DRMoET updates a per-layer expert distribution by an entropy-regularized softmax rule on EMA-smoothed, activation-weighted expert losses, strengthening plausible non-top routing paths while preserving standard MoE computation. Under the FLAME-MoE recipe at 746M-total and 10.3B-total scales, DRMoET improves downstream averages over both standard FLAME-MoE and auxiliary-loss-free balancing. At 10.3B total parameters and 67B training tokens, DRMoET improves the seven-task average from 0.6625 to 0.6767, while the auxiliary-loss-free baseline achieves 0.6431. Mechanistic analyses show lower expert-loss variance with nearly unchanged mean loss, 4.3% lower excess loss under forced mid-$k$ misrouting, and improved domain-expert specialization. These results position routing robustness-not only utilization balance-as a practical objective for reliable sparse MoE scaling. Project page and code are available at: https://drmoet.github.io/.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=hk7uVfp5W3",
+  "arxiv": "https://arxiv.org/abs/2610.07207",
+  "pdf": "https://arxiv.org/pdf/2610.07207",
+  "proceedings": null,
+  "virtual": "https://neurips.cc/virtual/2026/poster/150482",
+  "code": "http://drmoet.github.io"
+ },
+ "license": "http://creativecommons.org/licenses/by/4.0/",
+ "img": "cc-by",
+ "image_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/images/neurips26-6371.png",
+ "thumb_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/thumbs/neurips26-6371.webp",
+ "figure_page": 1,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.9
+}

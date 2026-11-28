@@ -1,0 +1,50 @@
+{
+ "id": "iclr26-0284",
+ "title": "OPPO: Accelerating PPO-based RLHF via Pipeline Overlap",
+ "authors": [
+  "Kaizhuo Yan",
+  "YingJie Yu",
+  "Yifan Yu",
+  "Haizhong Zheng",
+  "Fan Lai"
+ ],
+ "venue": "ICLR 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "Reinforcement Learning->Everything Else",
+ "role": "prior-vs-ours",
+ "role2": "pipeline",
+ "claim": "Sequential stages leave downstream work idle until upstream finishes; overlapping them within and across steps removes the stall and tail latency.",
+ "layout": "2 panels, left-to-right, timeline bars with dashed step boundaries and curved carry-over arrows",
+ "tags": [
+  "pipeline-overlap",
+  "streaming",
+  "rlhf",
+  "efficiency",
+  "tail-latency"
+ ],
+ "style": [
+  "minimal",
+  "colorful"
+ ],
+ "description": "A shared legend sits on top: dark gray for prompt, light gray for decoding, blue for scoring prefill, red for streaming generation, and red-hatched for paused streaming generation. Panel (a), Existing paradigm, shows four horizontal bars of different lengths, a prompt block followed by decoding. One big blue scoring block sits at the right and starts only after the longest sequence ends. Panel (b), OPPO paradigm, has two sub-panels. Intra-step Overlap shows the same four bars with small blue scoring chunks staggered beneath each one, so scoring runs during decoding. Inter-step Overlap shows step k and step k+1 split by dashed lines (Δ=2). Hatched unfinished sequences are carried by curved gray arrows into the next step. The large blue block in (a) is the first thing the eye lands on, set against the fragmented blue chunks in (b).",
+ "caption": "(a) In the existing paradigm, the scoring stage begins only after the response is fully generated. In contrast, (b) the OPPO paradigm interleaves scoring with generation without altering the final responses (intra-step overlap), and carries unfinished overcommitted sequences into the next iteration (inter-step overlap). A batch size of 4 and an overcommitment degree of 2 in illustrations.",
+ "caption_source": "latex",
+ "abstract": "Proximal Policy Optimization (PPO)-based reinforcement learning from human feedback (RLHF) is a widely adopted paradigm for aligning large language models (LLMs) with human preferences. However, its training pipeline suffers from substantial inefficiencies due to sequential multi-model dependencies (e.g., reward model depends on actor outputs) and long-tail response lengths, where a few long responses straggle the stage completion. We present OPPO, a novel, lightweight, and model-agnostic PPO-based RLHF framework that improves training efficiency by overlapping pipeline execution. OPPO introduces two novel techniques: (1) Intra-step overlap, which streams upstream model outputs (e.g., actor model) in right-sized chunks, enabling the downstream model (e.g., reward) to begin prefill while the upstream continues decoding; and (2) Inter-step overlap, which adaptively overcommits a few prompts and defers long generations to future steps, mitigating tail latency without discarding partial work. OPPO integrates easily with existing PPO implementations with a lightweight wrapper. Extensive evaluations show that OPPO accelerates PPO-based RLHF training by $1.8\\times$--$2.8\\times$ and improves GPU utilization by $1.4\\times$--$2.1\\times$ without compromising training convergence.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=31Mr6wLBeF",
+  "arxiv": "https://arxiv.org/abs/2509.25762",
+  "pdf": "https://proceedings.iclr.cc/paper_files/paper/2026/file/6b4fd4a4607f57fe65b5e276bdb17ed1-Paper-Conference.pdf",
+  "proceedings": "https://proceedings.iclr.cc/paper_files/paper/2026/hash/6b4fd4a4607f57fe65b5e276bdb17ed1-Abstract-Conference.html",
+  "virtual": "https://iclr.cc/virtual/2026/poster/10011684",
+  "code": null
+ },
+ "license": "http://creativecommons.org/licenses/by/4.0/",
+ "img": "cc-by",
+ "image_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/images/iclr26-0284.png",
+ "thumb_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/thumbs/iclr26-0284.webp",
+ "figure_page": 1,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.8
+}

@@ -1,0 +1,52 @@
+{
+ "id": "neurips26-8475",
+ "title": "Newton-PINet: A fast physics-informed neural network with Newton linearization for meta-learning nonlinear PDEs",
+ "authors": [
+  "Yuchen Fan",
+  "Chang Wei",
+  "Pao-Hsiung Chiu",
+  "Chin Chun Ooi",
+  "Heyang Wang",
+  "Jian Cheng Wong"
+ ],
+ "venue": "NeurIPS 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "Applications->Physics",
+ "role": "pipeline",
+ "role2": "prior-vs-ours",
+ "claim": "A two-stage procedure meta-learns shared representations by gradient descent, then adapts only the output layer gradient-free, with a faster linearization.",
+ "layout": "3 panels: stage 1 left, stage 2 right, comparison bottom; nested loops",
+ "tags": [
+  "meta-learning",
+  "two-stage",
+  "least-squares",
+  "linearization",
+  "efficiency"
+ ],
+ "style": [
+  "math-heavy",
+  "colorful",
+  "icon-heavy"
+ ],
+ "description": "A framework diagram split into Stage 1 (meta-learning on training tasks, left) and Stage 2 (gradient-free fine-tuning on new tasks, right) by a dashed vertical line. Each stage shows a neural network with inputs x and t, orange and blue hidden nodes, skip connections, and output u. Stage 1 also has a gray box labeled linearization of nonlinear terms, a dotted-border inner loop of nonlinear iterations, and a Tikhonov least-squares formula. Outer and inner loops use black and orange arrows. Loss definitions are at the lower left. Stage 2 has a beige frozen-parameter region and a task-specific inference loop. A bottom strip compares Picard linearization (blue) with Newton linearization (green). A speedometer icon and arrow between them mean acceleration. The eye goes first to the network diagrams, then to the formulas.",
+ "caption": "Newton-PINet model framework. Stage 1 (pre-training) meta-learns the task-agnostic parameters $\\Theta=\\{\\boldsymbol{\\tilde{w}},\\lambda_pde,\\lambda_reg\\}$ by gradient descent (outer loop), while the output-layer weights $\\boldsymbol{w}$ of each training task are updated by gradient-free Tikhonov-regularized least squares (inner loop); Stage 2 (inference) freezes $\\Theta$ and adapts only $\\boldsymbol{w}$ to new tasks. The bottom panel compares Picard and Newton linearization; the latter accelerates the convergence of nonlinear iterations for solving nonlinear PDEs.",
+ "caption_source": "latex",
+ "abstract": "Scientific machine learning has opened new avenues for solving parameterized partial differential equations (PDEs), enabling models to learn a family of PDEs and generalize to unseen instances. In this context, data-driven operator learning methods typically require large training datasets, while physics-informed neural networks (PINNs) suffer from difficult optimization and limited generalization, especially for nonlinear PDEs. We propose Newton-PINet, a physics-informed network enhanced by Newton linearization, offering an effective meta-learning framework for nonlinear PDEs. Newton-PINet (i) employs a physics-informed multilayer network with skip connections, where the output-layer weights are solved by least squares; (ii) adopts a two-stage learning strategy that first leverages gradient-based training to learn robust representations from the available training tasks, and then performs gradient-free fine-tuning on the output layer for fast task-specific generalization; and (iii) incorporates a Newton linearization method to speed up the least-squares iteration for nonlinear PDE problems. On a challenging nonlinear reaction-diffusion benchmark, Newton-PINet achieves up to three orders of magnitude lower relative error than recent neural solvers, while using 16x fewer training tasks and over an order of magnitude less training time (about 5 minutes versus several hours). This work advances the meta-learning of PINNs toward data-efficient, fast, and generalizable physics solvers. The code and datasets are publicly available at: https://github.com/fycAIwj/Newton-PINet.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=wUNTVhsOr7",
+  "arxiv": "https://arxiv.org/abs/2611.20609",
+  "pdf": "https://arxiv.org/pdf/2611.20609",
+  "proceedings": null,
+  "virtual": "https://neurips.cc/virtual/2026/poster/148607",
+  "code": "https://github.com/fycAIwj/Newton-PINet"
+ },
+ "license": "http://creativecommons.org/licenses/by/4.0/",
+ "img": "cc-by",
+ "image_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/images/neurips26-8475.png",
+ "thumb_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/thumbs/neurips26-8475.webp",
+ "figure_page": 2,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.9
+}

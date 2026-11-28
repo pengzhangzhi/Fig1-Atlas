@@ -1,0 +1,49 @@
+{
+ "id": "neurips26-8190",
+ "title": "NADS: Navigator-Guided Data Selection for Mitigating Catastrophic Forgetting in Fine-Tuning",
+ "authors": [
+  "JIANHAO ZHANG",
+  "Ou Wu",
+  "Yi Du"
+ ],
+ "venue": "NeurIPS 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "Data-centric AI->Data-centric AI methods and tools",
+ "role": "pipeline",
+ "role2": null,
+ "claim": "A three-stage procedure first exposes capability drift with a navigator, then selects constraint data, then distills it to preserve old knowledge.",
+ "layout": "3 step panels: left column, then top-right and bottom-right, arrows between stages",
+ "tags": [
+  "data-selection",
+  "knowledge-distillation",
+  "catastrophic-forgetting",
+  "fine-tuning",
+  "determinantal-point-process"
+ ],
+ "style": [
+  "icon-heavy",
+  "colorful",
+  "math-heavy"
+ ],
+ "description": "A three-step framework diagram. Step 1, a tall left panel, shows a pretrained llama mascot that knows old knowledge but not new. It is trained on D_new with no regularization, early stopping and a validation set. This produces a navigator llama that has gained new knowledge and lost old knowledge. Step 2, the top-right panel, shows a candidate document sitting between an 'I know' llama and an 'I don't know' llama. Blue and tan distributions are labeled KL drift. The utility formula u_i sits below them. Arrows lead to a candidate pool of dots, then a diversity-selected subset, then D_constraint, with a DPP log-det objective underneath. Step 3, the bottom-right panel, shows D_new and D_constraint feeding a frozen llama and a trainable llama. The frozen one constrains and the trainable one learns, under the loss L_final = L_task + λ L_KD. The result is a crowned final llama with both new and old knowledge. Thick navy arrows connect the stages. Rounded outlined panels carry step titles.",
+ "caption": "The overall framework of NADS. First, we train a navigator $M_{nav}$ from $M_{pretrain}$ on $\\mathcal{D}_{new}$ without regularization. Next, we score sample utility from the predictive divergence between $M_{nav}$ and $M_{pretrain}$, and construct $\\mathcal{D}_{constraint}$ via utility--diversity selection with DPPs. Finally, we train $M_{final}$ on $\\mathcal{D}_{new}$ with distillation on $\\mathcal{D}_{constraint}$ to preserve general capabilities during new-task adaptation.",
+ "caption_source": "latex",
+ "abstract": "Catastrophic forgetting is a central obstacle in single-stage fine-tuning of large language models (LLMs) on a new task, especially when the original pretraining data are unavailable. Synthetic data offers a practical mitigation path, but candidate pools are often noisy and redundant, making effective selection essential. Existing methods often rely on indirect proxy signals whose alignment with actual training benefit can be limited, while utility--diversity selection over large candidate pools remains computationally demanding. To address these challenges, we propose NAvigator-guided Data Selection (NADS), a fine-tuning framework for LLMs. NADS first follows the target fine-tuning recipe without preservation regularization to obtain a navigator model, whose deviation from the pretrained model exposes recipe-induced capability drift. It then uses the predictive divergence between the navigator and the pretrained model to score forgetting-aware utility for each synthetic candidate, and constructs a constraint set through an efficient utility--diversity selection strategy. Finally, NADS fine-tunes on the new-task data while distilling pretrained behavior on the selected constraints to preserve general capabilities. Experiments show that NADS delivers a stronger balance between new-task performance and general capability preservation, while reducing utility--diversity selection overhead. Code at: https://github.com/zjh-vinky/NADS.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=uZIL1Rr7jG",
+  "arxiv": "https://arxiv.org/abs/2610.25751",
+  "pdf": "https://arxiv.org/pdf/2610.25751",
+  "proceedings": null,
+  "virtual": "https://neurips.cc/virtual/2026/poster/148869",
+  "code": null
+ },
+ "license": "http://creativecommons.org/licenses/by/4.0/",
+ "img": "cc-by",
+ "image_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/images/neurips26-8190.png",
+ "thumb_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/thumbs/neurips26-8190.webp",
+ "figure_page": 2,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.95
+}

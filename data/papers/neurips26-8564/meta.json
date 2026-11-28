@@ -1,0 +1,51 @@
+{
+ "id": "neurips26-8564",
+ "title": "LLM Agents Already Know When to Call Tools - Even Without Reasoning",
+ "authors": [
+  "Chung-En Sun",
+  "Linbo Liu",
+  "Ge Yan",
+  "Zimo Wang",
+  "Lily Weng"
+ ],
+ "venue": "NeurIPS 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "Applications->Language, Speech and Dialog",
+ "role": "overview-framework",
+ "role2": "pipeline",
+ "claim": "A controlled benchmark exposes when tools are needed, and a hidden-state probe plus prefill steers tool-call decisions with better tradeoffs.",
+ "layout": "2 stacked parts: benchmark grid on top, 3-step pipeline plus trade-off plot below",
+ "tags": [
+  "benchmark",
+  "tool-use",
+  "linear-probe",
+  "hidden-states",
+  "efficiency-tradeoff"
+ ],
+ "style": [
+  "colorful",
+  "icon-heavy",
+  "text-heavy"
+ ],
+ "description": "The figure has two stacked parts. Part 1 is titled 'When2Tool benchmark: Do agents know when they need tools?'. It shows a grid with three colored category columns: A (compute, orange), B (knowledge, purple) and C (execution reliability, blue). Each column has a row of small icons for its environments. Three difficulty rows run underneath: Easy (green), Medium (yellow, the decision boundary) and Hard (red). Each cell gives an example task description. Part 2 is titled 'Probe&Prefill: From hidden state to better tool-call decisions'. It is a left-to-right pipeline of three rounded panels. Step 1 extracts the last hidden state from stacked LLM decoder blocks. Step 2 runs a linear probe that predicts tool necessity, shown as a small bar chart. Step 3 prefills a steering sentence, with a green high-probability arrow and a red low-probability arrow. At the far right, a small accuracy vs. tool-call-budget plot shows a green curve for Probe&Prefill above a red prompt-engineering line.",
+ "caption": "Overview. Part 1: We design \\benchmark{} for studying whether LLM agents know when they need tools, spanning 15 single and 3 multi-hop environments across three categories, each with three difficulty levels. Part 2: \\method{} reads the model's hidden state via a linear probe and prefills a steering sentence to guide the tool-call decision, achieving better tradeoffs.",
+ "caption_source": "latex",
+ "abstract": "Tool-augmented LLM agents tend to call tools indiscriminately, even when the model can answer directly. Each unnecessary call wastes API fees and latency, yet no existing benchmark systematically studies when a tool call is actually needed. We propose When2Tool, a benchmark of 18 environments (15 single-hop, 3 multi-hop) spanning three categories of tool necessity -- computational scale, knowledge boundaries, and execution reliability -- each with controlled difficulty levels that create a clear decision boundary between tool-necessary and tool-unnecessary tasks. We evaluate two families of training-free baselines: Prompt-only (varying the prompt to discourage unnecessary calls) and Reason-then-Act (requiring the model to reason about tool necessity before acting). Both provide limited control: Prompt-only suppresses necessary calls alongside unnecessary ones, and Reason-then-Act still incurs a disproportionate accuracy cost on hard tasks. To understand why these baselines fail, we probe the models' hidden states and find that tool necessity is linearly decodable from the pre-generation representation with AUROC 0.89--0.96 across six models, substantially exceeding the model's own verbalized reasoning. This reveals that models already know when tools are needed, but fail to act on this knowledge during generation. Building on this finding, we propose Probe&Prefill, which uses a lightweight linear probe to read the hidden-state signal and prefills the model's response with a steering sentence. Across all models tested, Probe&Prefill reduces tool calls by 38\\% with only 1.7\\% accuracy loss, while the best baseline at comparable accuracy only reduces 6% of tool calls, or achieves a similar tool call reduction but incurs a 5$\\times$ higher accuracy loss. Our code is available at https://github.com/Trustworthy-ML-Lab/when2tool",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=xCTlbKHWcR",
+  "arxiv": "https://arxiv.org/abs/2605.09252",
+  "pdf": "https://arxiv.org/pdf/2605.09252",
+  "proceedings": null,
+  "virtual": "https://neurips.cc/virtual/2026/poster/148531",
+  "code": "https://lilywenglab.github.io/when2tool/"
+ },
+ "license": "http://arxiv.org/licenses/nonexclusive-distrib/1.0/",
+ "img": "none",
+ "image_url": null,
+ "thumb_url": null,
+ "figure_page": 2,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.6
+}

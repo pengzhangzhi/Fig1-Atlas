@@ -1,0 +1,57 @@
+{
+ "id": "neurips26-4396",
+ "title": "DropKV: Decoupling Residual-Output Perturbation for Near-Optimal KV-Cache Eviction",
+ "authors": [
+  "Aozhong Zhang",
+  "Selcuk Gurses",
+  "Yanxia Deng",
+  "Naigang Wang",
+  "Chi-Chun (Charlie) Liu",
+  "Davis Wertheimer",
+  "Derrick Liu",
+  "Xin Li",
+  "Zi Yang",
+  "Felix X.-.F Ye",
+  "Penghang Yin"
+ ],
+ "venue": "NeurIPS 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "Deep Learning->Everything Else",
+ "role": "analysis-finding",
+ "role2": "concept",
+ "claim": "A geometric cone condition on residual vectors, shown schematically, holds empirically across most layers and models, justifying the approximation guarantee.",
+ "layout": "3 panels, left-to-right: cone sketch, layerwise line plot, histogram",
+ "tags": [
+  "cone-condition",
+  "empirical-verification",
+  "assumption-validation",
+  "kv-cache",
+  "geometry"
+ ],
+ "style": [
+  "plot",
+  "math-heavy",
+  "colorful"
+ ],
+ "description": "Three-panel figure. Panel (a) is a geometric sketch: a shaded light-purple circular sector with dashed blue boundary lines emanating from origin O. Five black arrows r1 to r5 lie inside the sector, and a thick red arrow u marks the central direction. A blue double-headed arrow labeled arccos(c) shows the half-angle. Panel (b) is a line plot of layer index against Pr[c*>0] for three models (Llama-3.1-8B in blue circles, MegaBeam-Mistral-7B in orange squares, Qwen2.5-7B-1M in green triangles). Most values sit near 0.9 to 1.0. Qwen starts near 0.1 for the first layers, then jumps up. Panel (c) is an overlaid histogram of c* density for the three models. Most mass lies right of a dotted line at 0, with a smaller green bump on the negative side. Captions sit below each panel.",
+ "caption": "Cone condition: definition and empirical verification at $n{=}128\\mathrm{K}$ on three long-context models. (a) Residuals $\\r_i:=\\a-\\v_i$ inside a cone of half-angle $\\arccos(c)$ about a single direction $\\u$, so no positive combination cancels to zero. (b) Layerwise prevalence of $c^\\star>0$ across (head, query-position) triples, with binomial standard-error bands. (c) Distribution of $c^\\star$ per model; mass to the right of the dotted line at $c^\\star{=}0$ is the cone-holds region.",
+ "caption_source": "latex",
+ "abstract": "Key-value (KV) cache management has become a critical bottleneck for scaling Large Language Models (LLMs) to long-context scenarios due to linear memory growth. While recent eviction methods have moved beyond simple attention-score heuristics to incorporate value representations, they typically face a fundamental trade-off: the underlying optimization for minimizing output perturbation is an NP-hard combinatorial problem, leading to mathematically suboptimal heuristics or implementations that are difficult to kernelize. In this work, we propose DropKV, a simple principled eviction framework based on Decoupled Residual-Output Perturbation. By decoupling the joint eviction decision into independent per-token scoring, DropKV circumvents combinatorial intractability and admits a provable constant-factor approximation guarantee under a cone condition that we empirically verify on three long-context LLMs. To ensure practical viability, we provide a high-performance implementation using fused Triton kernels that avoid materializing the full attention matrix, delivering a 19.8x scoring-kernel speedup that translates to up to a 9.9% matched-batch end-to-end prefill speedup. Extensive evaluations on the RULER and LongBench benchmarks demonstrate that DropKV consistently outperforms state-of-the-art baselines at equivalent cache budgets, achieving the lowest inference latency among eviction methods while also remaining faster than the dynamic cache baseline.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=UVbaJoD3Qa",
+  "arxiv": "https://arxiv.org/abs/2610.22130",
+  "pdf": "https://arxiv.org/pdf/2610.22130",
+  "proceedings": null,
+  "virtual": "https://neurips.cc/virtual/2026/poster/152246",
+  "code": "https://github.com/AozhongZhang/DropKV"
+ },
+ "license": "http://creativecommons.org/licenses/by/4.0/",
+ "img": "cc-by",
+ "image_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/images/neurips26-4396.png",
+ "thumb_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/thumbs/neurips26-4396.webp",
+ "figure_page": 5,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.7
+}

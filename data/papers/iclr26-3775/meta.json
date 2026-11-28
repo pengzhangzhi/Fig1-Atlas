@@ -1,0 +1,47 @@
+{
+ "id": "iclr26-3775",
+ "title": "Self-Speculative Decoding Accelerates Lossless Inference in Any-Order and Any-Subset Autoregressive Models",
+ "authors": [
+  "Gabe Guo",
+  "Stefano Ermon"
+ ],
+ "venue": "ICLR 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "Deep Learning->Generative Models and Autoencoders",
+ "role": "concept",
+ "role2": "pipeline",
+ "claim": "One attention-mask mechanism lets a model sample tokens in parallel and also score a sequence's density in a single step.",
+ "layout": "2 side-by-side panels, query-by-key grids, red/green dots, dashed box on parallel tokens",
+ "tags": [
+  "attention-mask",
+  "parallel-sampling",
+  "density-estimation",
+  "any-order",
+  "autoregressive"
+ ],
+ "style": [
+  "minimal",
+  "colorful"
+ ],
+ "description": "Two side-by-side panels show 4x4 attention-mask grids for the sentence \"This is machine learning\". Queries (blue token boxes) run down the left. Keys/values (lavender token boxes) run across the top. Each token has a small numbered tag for its generation order. Cells are green circles where attention is allowed and red circles where it is blocked. Panel (a), \"Parallel Sampling Attention Mask\", greys out \"machine\" and \"learning\" and gives both order 2. A dashed rounded box around their two rows shows they attend to the same context and not to each other. Panel (b), \"Density Estimation Attention Mask\", shows all four tokens with orders 1, 0, 3, 2. Its permuted causal-like mask lets each token attend only to earlier-ordered tokens. The eye goes first to the green/red dot patterns.",
+ "caption": "Attention Masks in \\asarm: Red means that attention is not allowed, while green means that attention is allowed from the query to the key/value. The numbers on each token represent the generation order, where lower-numbered tokens come first. Panel [ref] shows how, by attending to the same conditioning (\"This\", \"is\"), the tokens \"machine\" and \"learning\" can be generated in parallel. They do not attend to themselves nor each other. Panel [ref] shows how we can conduct one-step density estimation on a sequence, with a permuted causal-like attention mask. The mask enforces the order \"is\", \"This\", \"learning\", \"machine\", where each token only attends to those decoded before it.",
+ "caption_source": "latex",
+ "abstract": "In arbitrary-order language models, it is an open question how to sample tokens in parallel from the correct joint distribution. With discrete diffusion models, the more tokens they generate in parallel, the less their predicted distributions adhere to the originally learned data distribution, as they rely on a conditional independence assumption that only works with infinitesimally small timesteps. We find that a different class of models, any-subset autoregressive models (AS-ARMs), holds the solution. As implied by the name, AS-ARMs can generate tokens in any order, and in parallel. Moreover, AS-ARMs support parallelized joint probability density estimation, allowing them to correct their own parallel-generated token distributions, via our Any-Subset Speculative Decoding (ASSD) algorithm. ASSD provably enables generation of tokens from the correct joint distribution, with the number of neural network calls upper bounded by the number of tokens predicted – notably, previous speculative decoding algorithms lack our efficiency guarantee. We empirically verify that ASSD speeds up language generation, without sacrificing quality. Furthermore, we provide a mathematically justified scheme for training AS-ARMs for generation, and show that AS-ARMs achieve state-of-the-art performance among sub-200M parameter models on infilling benchmark tasks, and nearly match the performance of models 50X larger on code generation. Our theoretical and empirical results indicate that the once-forgotten AS-ARMs are a promising direction of language modeling.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=hZnibTOke7",
+  "arxiv": "https://arxiv.org/abs/2504.20456",
+  "pdf": "https://proceedings.iclr.cc/paper_files/paper/2026/file/d29b8d53678015079e1d245c023e49d2-Paper-Conference.pdf",
+  "proceedings": "https://proceedings.iclr.cc/paper_files/paper/2026/hash/d29b8d53678015079e1d245c023e49d2-Abstract-Conference.html",
+  "virtual": "https://iclr.cc/virtual/2026/poster/10008045",
+  "code": "https://github.com/gabeguo/any-order-speculative-decoding"
+ },
+ "license": "http://creativecommons.org/licenses/by/4.0/",
+ "img": "cc-by",
+ "image_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/images/iclr26-3775.png",
+ "thumb_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/thumbs/iclr26-3775.webp",
+ "figure_page": 4,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.55
+}

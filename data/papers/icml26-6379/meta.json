@@ -1,0 +1,52 @@
+{
+ "id": "icml26-6379",
+ "title": "RT-Lynx: Putting the GEMM Sparsity In a Right Way for Diffusion Models",
+ "authors": [
+  "Xing Cong",
+  "Hanlin Tang",
+  "Kan Liu",
+  "Lan Tao",
+  "Lin Qu",
+  "chenhao xie"
+ ],
+ "venue": "ICML 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "Deep Learning->Generative Models and Autoencoders",
+ "role": "analysis-finding",
+ "role2": "prior-vs-ours",
+ "claim": "Activations are far sparser and more concentrated near zero than weights, so structured sparsification induces much smaller error on activations.",
+ "layout": "3 panels, left-to-right, dashed dividers, 3D distributions under heatmaps",
+ "tags": [
+  "activation-sparsity",
+  "semi-structured-sparsity",
+  "diffusion-transformer",
+  "efficiency",
+  "empirical-observation"
+ ],
+ "style": [
+  "plot",
+  "colorful",
+  "photo/real data"
+ ],
+ "description": "Three vertical-divided panels. Panels (a) and (b) share a layout. Each has a red-white-blue row-wise heatmap on top and a 3D ridgeline plot of normalized value distributions across six layer depths below. A red arrow links the ridgeline to the heatmap. Panel (a) is titled 'Sparse Weight' with a red cross. Its heatmap is dense and speckled, and its distributions are broad. Panel (b) is titled 'Sparse Activation' with a green check. Its heatmap is mostly white with sparse red streaks, and its distributions are sharp spikes at zero. Panel (c) has two stacked bar charts of relative Frobenius error by layer ID, 0–29 on top and 30–59 below. Blue bars for weights are much taller than pink bars for activations. The eye goes first to the titles and the heatmaps.",
+ "caption": "Rethinking sparsity in DiT through distributions and induced errors. (a)–(b) compare weights and activations in mlp.down layers of Qwen-Image: the lower parts show normalized value distributions across six depths (with [-1,1] divided into 50 bins and lighter regions indicating values below the median), while the upper parts visualize row-wise heatmaps from the 36th layer. The lighter colors denote values closer to zero. (c) reports the relative errors induced by Top-$K$ 2:4 sparsification across layer depths.",
+ "caption_source": "latex",
+ "abstract": "Diffusion Transformers (DiT) achieve strong performance in image generation but incur substantial inference costs. While prior work has reduced this cost via quantization and distillation, semi-structured sparsity—which can nearly halve FLOPs—remains underexplored. A key reason is that most existing approaches focus on weight sparsification, and pruning 50\\% of the weights can remove critical model capacity and degrade generation quality. Our study, however, shows that DiT activations are intrinsically sparse and significantly more robust to N:M semi-structured sparsification than weights. Motivated by this observation, we advocate a paradigm shift from weight sparsification to activation sparsification. We propose RT-Lynx, which applies N:M sparsification to activations and incorporates error-compensation techniques to mitigate accuracy loss. We further implement highly optimized CUDA kernels tailored to this setting, achieving up to a 1.55× speedup on average in linear layers. Extensive experiments across multiple diffusion models demonstrate that our method preserves the generation quality of the original models while substantially accelerating inference.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=yBSqPjKmU0",
+  "arxiv": "https://arxiv.org/abs/2605.26632",
+  "pdf": "https://raw.githubusercontent.com/mlresearch/v306/main/assets/cong26a/cong26a.pdf",
+  "proceedings": "https://proceedings.mlr.press/v306/cong26a.html",
+  "virtual": "https://icml.cc/virtual/2026/poster/60642",
+  "code": null
+ },
+ "license": "http://arxiv.org/licenses/nonexclusive-distrib/1.0/",
+ "img": "none",
+ "image_url": null,
+ "thumb_url": null,
+ "figure_page": 1,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.8
+}

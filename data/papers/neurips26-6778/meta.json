@@ -1,0 +1,50 @@
+{
+ "id": "neurips26-6778",
+ "title": "Revisiting Continual Learning in Language Models: A Three-Interface Diagnosis of Stability and Plasticity",
+ "authors": [
+  "Keuntae Kim",
+  "Beomseok Lee",
+  "Hyunwoo Kim",
+  "Yong Suk Choi"
+ ],
+ "venue": "NeurIPS 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "General Machine Learning->Representation Learning",
+ "role": "overview-framework",
+ "role2": "prior-vs-ours",
+ "claim": "The same incrementally trained model yields different forgetting and transfer conclusions depending on which evaluation interface (head, probe, or backbone) measures it.",
+ "layout": "Top task sequence, middle pipeline, three dashed bottom panels (a)-(c) with color coding",
+ "tags": [
+  "evaluation-protocol",
+  "continual-learning",
+  "diagnostic",
+  "interface-comparison",
+  "forgetting"
+ ],
+ "style": [
+  "colorful",
+  "plot",
+  "icon-heavy"
+ ],
+ "description": "The figure opens with a title strip showing a task sequence (Task 1, Task 2, Task 3 highlighted in orange as current, then faded future tasks 4 and N), linked by arrows. Below is a generic pipeline: text input, a backbone feature extractor, a feature vector h, and an LM head/classifier. The bottom half has three dashed-border panels. (a) Trained head, in blue, has a bar chart that is high only for the current task and near zero for seen and future tasks. (b) Probe, in green, has a frozen backbone feeding a newly trained linear probe, with uniformly high bars. (c) Backbone diagnostic, in orange, has a classifier-free clustering of per-task feature clouds. Each panel carries BWT and FWT arrows pointing toward seen and unseen tasks. The eye goes first to the colorful bar charts.",
+ "caption": "Overview of evaluating BWT and operational FWT at three interfaces in discriminative backbones. We measure transfer through (a) the trained head, (b) a probe, and (c) the backbone diagnostic, a classifier-free proxy for representation separability. The backbone diagnostic does not replace task accuracy; it evaluates separability without using the trained head. In generative backbones, the last-token hidden state of the prompt, from which the label is generated, replaces the [CLS] feature, and the LM head serves as the trained head. Details are in Appendix [ref].",
+ "caption_source": "latex",
+ "abstract": "Continual learning in language models is commonly studied in the incremental learning (IL) setting, where a model learns a sequence of tasks and is evaluated through its final classifier or language-model (LM) head. This interface, however, does not indicate where forgetting occurs: a drop in accuracy may reflect representation degradation in the backbone, readout mismatch in the head, or both. We therefore argue that backward transfer (BWT) and forward transfer (FWT) should be interpreted as interface-dependent quantities rather than as single modellevel properties. We study three evaluation interfaces: the trained head, which is updated sequentially with the backbone; a probe newly trained on frozen backbone features; and a classifier-free backbone diagnostic. They measure deployed performance, recoverability under a new readout, and representation separability, respectively. Across class-incremental experiments with encoder and decoder language backbones, plus task-incremental sanity checks, conclusions about forgetting and plasticity change with the interface: the trained head often indicates severe forgetting, the probe near-complete recoverability, and the backbone diagnostic intermediate representation drift with a consistent negative relation between stability and plasticity. This relation holds for clustering-free diagnostics such as nearest-class-mean accuracy and across five clustering algorithms and three metrics. Finally, Just LM-Head Tuning (JLT), a head-only intervention on a fixed incrementally trained backbone, recovers 96-99% of the gap to joint training for replayand distillation-based methods but only about three quarters for plain sequential fine-tuning, suggesting that many failures attributed to catastrophic forgetting reflect head-backbone mismatch plus partial representation drift. Our results call for reporting where forgetting is measured, not only how much.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=kX9Kbog4s6",
+  "arxiv": "https://arxiv.org/abs/2611.30151",
+  "pdf": "https://arxiv.org/pdf/2611.30151",
+  "proceedings": null,
+  "virtual": "https://neurips.cc/virtual/2026/poster/150119",
+  "code": null
+ },
+ "license": "http://creativecommons.org/licenses/by/4.0/",
+ "img": "cc-by",
+ "image_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/images/neurips26-6778.png",
+ "thumb_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/thumbs/neurips26-6778.webp",
+ "figure_page": 1,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.5
+}

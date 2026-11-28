@@ -1,0 +1,54 @@
+{
+ "id": "iclr26-2506",
+ "title": "Downgrade to Upgrade: Optimizer Simplification Enhances Robustness in LLM Unlearning",
+ "authors": [
+  "Yicheng Lang",
+  "Yihua Zhang",
+  "Chongyu Fan",
+  "Changsheng Wang",
+  "Jinghan Jia",
+  "Sijia Liu"
+ ],
+ "venue": "ICLR 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "Social Aspects->Fairness, Equity, Justice and Safety",
+ "role": "analysis-finding",
+ "role2": null,
+ "claim": "Mixing a noisier, lower-grade update rule into a standard optimizer changes whether forgetting survives post-hoc perturbation, and the effect depends on the mix.",
+ "layout": "4 line plots in one row, shared legend on top, interpolation x-axes",
+ "tags": [
+  "optimizer-interpolation",
+  "zeroth-order",
+  "robustness",
+  "unlearning",
+  "ablation"
+ ],
+ "style": [
+  "plot",
+  "minimal",
+  "colorful"
+ ],
+ "description": "A single horizontal row of four small line plots under one shared legend. The legend has three colored lines: pink for VerbMem on D_f, purple for KnowMem on D_f, and dark navy for KnowMem on D_r. Each plot has a gray background and white gridlines. The x-axis interpolates from 0 to 1 in steps of 0.25. At the left end it is labeled with a lower-grade optimizer (signSGD, signAdam, RS, ZO), and at the right end with Adam. The y-axis runs from 0 to about 60. In the first three plots the pink and purple forgetting curves sit flat at zero and the navy utility curve stays around 45–55. In the fourth plot (ZO) the curves vary a lot. The navy curve peaks near 65, and the pink and purple curves rise and fall before dropping to zero at Adam. The eye goes first to the fourth panel, where the curves move the most.",
+ "caption": "{Unlearning performance under 4-bit weight quantization using NPO on MUSE with different optimizers (Sophia, Adam, 8-bit Adam, and 1-bit Adam). Performance is measured by unlearning effectiveness (VerbMem and KnowMem on $\\mathcal{D}_{\\mathrm{f}}$, left plots in each sub-figure) and utility (KnowMem on $\\mathcal{D}_{\\mathrm{r}}$, right plots in each sub-figure). \"Pre-unlearn\" represents the target model to conduct unlearning, and \"before Q\" (the circle) and \"after Q\" (the diamond) represent the unlearned models before and after 4-bit weight quantization. (a) Unlearning on MUSE-News. (b) Unlearning on MUSE-Books.}",
+ "caption_source": "latex",
+ "abstract": "Large language model (LLM) unlearning aims to surgically remove the influence of undesired data or knowledge from an existing model while preserving its utility on unrelated tasks. This paradigm has shown promise in addressing privacy and safety concerns. However, recent findings reveal that unlearning effects are often fragile: post-unlearning manipulations such as weight quantization or fine-tuning can quickly neutralize the intended forgetting. Prior efforts to improve robustness primarily reformulate unlearning objectives by explicitly assuming the role of vulnerability sources. In this work, we take a different perspective by investigating the role of the optimizer, independent of unlearning objectives and formulations, in shaping unlearning robustness. We show that the 'grade' of the optimizer, defined by the level of information it exploits, ranging from zeroth-order (gradient-free) to first-order (gradient-based) to second-order (Hessian-based), is tightly linked to the resilience of unlearning. Surprisingly, we find that downgrading the optimizer, such as using zeroth-order methods or compressed-gradient variants (e.g., gradient sign-based optimizers), often leads to stronger robustness. While these optimizers produce noisier and less precise updates, they encourage convergence to harder-to-disturb basins in the loss landscape, thereby resisting post-training perturbations. By connecting zeroth-order methods with randomized smoothing, we further highlight their natural advantage for robust unlearning. Motivated by these insights, we propose a hybrid optimizer that combines first-order and zeroth-order updates, preserving unlearning efficacy while enhancing robustness. Extensive experiments on the MUSE and WMDP benchmarks, across multiple LLM unlearning algorithms, validate that our approach achieves more resilient forgetting without sacrificing unlearning quality.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=Sswng2ToR4",
+  "arxiv": "https://arxiv.org/abs/2510.00761",
+  "pdf": "https://proceedings.iclr.cc/paper_files/paper/2026/file/8c9384f688b0abd0af49ff16bad2c798-Paper-Conference.pdf",
+  "proceedings": "https://proceedings.iclr.cc/paper_files/paper/2026/hash/8c9384f688b0abd0af49ff16bad2c798-Abstract-Conference.html",
+  "virtual": "https://iclr.cc/virtual/2026/poster/10009373",
+  "code": null
+ },
+ "license": "http://creativecommons.org/licenses/by/4.0/",
+ "img": "cc-by",
+ "image_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/images/iclr26-2506.png",
+ "thumb_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/thumbs/iclr26-2506.webp",
+ "figure_page": 6,
+ "qc_flags": [
+  "bad-crop"
+ ],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.6
+}

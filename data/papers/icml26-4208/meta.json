@@ -1,0 +1,53 @@
+{
+ "id": "icml26-4208",
+ "title": "The Easy, the Hard, and the Learnable: Confidence and Difficulty-Adaptive Policy Optimization for LLM Reasoning",
+ "authors": [
+  "(Andrew) Zhanke Zhou",
+  "Xiangyu Lu",
+  "Chentao Cao",
+  "Brando Miranda",
+  "Tongliang Liu",
+  "Bo Han",
+  "Sanmi Koyejo"
+ ],
+ "venue": "ICML 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "Deep Learning->Large Language Models",
+ "role": "prior-vs-ours",
+ "role2": "pipeline",
+ "claim": "Standard training weights all samples uniformly; ours scores each sample's value, weights updates by it, and resamples high-value ones.",
+ "layout": "2 stacked panels, left-to-right rows, red dashed resampling loop",
+ "tags": [
+  "reinforcement-learning",
+  "adaptive-weighting",
+  "resampling",
+  "curriculum",
+  "llm-reasoning"
+ ],
+ "style": [
+  "colorful",
+  "icon-heavy",
+  "minimal"
+ ],
+ "description": "The figure has two stacked rows separated by a dotted line. Row (a), GRPO, runs left to right: a 2x2 mini-batch of questions q1–q4 goes through 'Model Outputting' to a grid of trajectories. Each question sits in the middle of a block of circles around it, blue for wrong trajectories and red for correct ones. These feed a bar chart of equal-height white bars labelled 'Uniform Values', then 'Learning' leads to 'Updated Model'. Row (b), CoDaPO, repeats the flow with 'CoDaWeighting' producing bars of different heights and shades of blue and red, labelled 'CoDa Values'. A red dashed box marks the tallest bars as 'High-value questions'. A red dashed arrow, 'CoDaSampling', loops down to a resampled batch (q3, q3, q4, q4). That batch repeats the rollout and weighting steps, with larger values, and ends in 'CoDaLearning' and 'Updated Model'. Red is used for the new components.",
+ "caption": "Illustration of GRPO and CoDaPO. (a) GRPO updates the model with uniformly weighted trajectories generated from a random mini-batch. (b) CoDaPO computes per-question CoDa values from confidence and difficulty, uses them to weight updates, and resamples high-value questions for a rollout-and-update step.",
+ "caption_source": "latex",
+ "abstract": "RL with verifiable rewards can substantially improve LLM reasoning, yet standard GRPO-style training often treats easy, hard, and learnable questions alike through uniform sampling and weighting, leading to inefficient compute allocation. We study GRPO by tracking token log-probabilities, group-normalized advantages, and the induced token-level update weights. This reveals three recurring dynamics as training proceeds: (1) confidence inflation, (2) advantage contraction, and (3) hierarchical convergence. These findings suggest that the utility of each update depends strongly on both question difficulty and the model's current competence. Motivated by this, we propose Confidence and Difficulty-adaptive Policy Optimization (CoDaPO), which assigns each question a bounded value from rollout confidence and empirical difficulty. CoDaPO then uses this value to reweight policy updates and resample high-value learnable questions within mini-batches, thereby increasing discovery within the learnable band under a fixed compute budget. Across twelve benchmarks, CoDaPO consistently improves accuracy over existing RL methods. Our code is publicly available at https://github.com/tmlr-group/CoDaPO.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=dnpLavxTXv",
+  "arxiv": "https://arxiv.org/abs/2606.07950",
+  "pdf": "https://raw.githubusercontent.com/mlresearch/v306/main/assets/zhou26ah/zhou26ah.pdf",
+  "proceedings": "https://proceedings.mlr.press/v306/zhou26ah.html",
+  "virtual": "https://icml.cc/virtual/2026/poster/62741",
+  "code": "https://github.com/tmlr-group/CoDaPO"
+ },
+ "license": "http://arxiv.org/licenses/nonexclusive-distrib/1.0/",
+ "img": "none",
+ "image_url": null,
+ "thumb_url": null,
+ "figure_page": 0,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.6
+}

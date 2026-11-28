@@ -1,0 +1,50 @@
+{
+ "id": "icml26-5337",
+ "title": "Long-Context Modeling with Dynamic Hierarchical Sparse Attention for Memory-Constrained LLM Inference",
+ "authors": [
+  "Siheng Xiong",
+  "Joe Zou",
+  "Faramarz Fekri",
+  "Yae Jee Cho"
+ ],
+ "venue": "ICML 2026",
+ "tier": "spotlight",
+ "track": "main",
+ "topic": "Deep Learning->Large Language Models",
+ "role": "pipeline",
+ "role2": null,
+ "claim": "A plug-in module predicts sparsity hierarchically, from token boundaries to chunk similarity to indices, and slots into a standard transformer block.",
+ "layout": "2 panels: transformer block at right, zoomed 4-step pipeline at left, dashed callout",
+ "tags": [
+  "sparse-attention",
+  "hierarchical-routing",
+  "chunking",
+  "plug-in-module",
+  "long-context"
+ ],
+ "style": [
+  "colorful",
+  "icon-heavy",
+  "math-heavy"
+ ],
+ "description": "The figure has two parts. On the right is a transformer layer in a gray rounded box labeled ×N. It contains Multi-Head Attention, Add & Norm, Feed Forward, and Add & Norm, with residual arrows. Input tokens t0..t13 sit at the bottom as colored blocks, with positional encoding added through a ⊕. The output is labeled Output embeddings. A bright yellow box, 'Our Proposed DHSA module', feeds into attention. A dashed yellow arrow links it to a large dashed yellow panel on the left, titled 'Dynamic Hierarchical Sparsity Prediction'. That panel shows four steps from bottom to top. Step 1 is boundary prediction: tokens split by red dashed lines b0..b6. Step 2 is chunk aggregation: chunks C0..C5. Step 3 is dot-product similarity: a grayscale chunk-similarity matrix. Step 4 is index routing and TopK selection: lists of selected key indices per query chunk. Colors group tokens into chunks. The eye goes first to the yellow module.",
+ "caption": "Performance of DHSA on LLaMA-3.1-8B (4-bit). (a) Needle-in-a-Haystack accuracy under a fixed density of 6.25%, where DHSA preserves high retrieval accuracy up to 100K context length. (b) Time-to-first-token (TTFT) on a single NVIDIA RTX 3090 (24\\,GB). DHSA scales to long contexts while remaining feasible in memory-constrained settings.",
+ "caption_source": "latex",
+ "abstract": "The quadratic cost of attention limits the scalability of long-context LLMs, especially under limited hardware memory budgets. While attention is often sparse, existing static sparse methods cannot adapt to task- or input-dependent variations, and recent dynamic approaches rely on predefined templates or heuristics that may sacrifice generality. We propose Dynamic Hierarchical Sparse Attention (DHSA), a data-driven framework that predicts attention sparsity online while keeping the LLM backbone frozen. DHSA performs hierarchical routing by estimating importance at the chunk level and propagating it to token-level interactions, preserving causally important dependencies while enabling efficient sparsification. Across Needle-in-a-Haystack test, LongBench and RULER, DHSA maintains near-dense accuracy in highly sparse regimes, achieving 12--20% relative accuracy gains over Block Sparse Attention at comparable prefill cost. With a memory-efficient tiled backend, DHSA delivers up to $10\\times$ prefill speedup at 128K context length. On LLaMA-3.1-8B (4-bit), DHSA scales to 100K context on a single 24GB GPU, where dense attention fails. We provide complementary GPU and CPU backends, enabling DHSA to run across diverse hardware environments and multiple open-weight model families. These results demonstrate DHSA as an efficient and adaptable solution for memory-constrained long-context LLM inference.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=o3gN27ITWV",
+  "arxiv": "https://arxiv.org/abs/2510.24606",
+  "pdf": "https://raw.githubusercontent.com/mlresearch/v306/main/assets/xiong26q/xiong26q.pdf",
+  "proceedings": "https://proceedings.mlr.press/v306/xiong26q.html",
+  "virtual": "https://icml.cc/virtual/2026/poster/61654",
+  "code": "https://github.com/xiongsiheng/DHSA"
+ },
+ "license": "http://creativecommons.org/licenses/by/4.0/",
+ "img": "cc-by",
+ "image_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/images/icml26-5337.png",
+ "thumb_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/thumbs/icml26-5337.webp",
+ "figure_page": 2,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.9
+}

@@ -1,0 +1,51 @@
+{
+ "id": "iclr26-2967",
+ "title": "QuoKA: Query-Oriented KV Selection for Efficient LLM Prefill",
+ "authors": [
+  "Dalton Jones",
+  "Junyoung Park",
+  "Matthew Morse",
+  "Mingu Lee",
+  "Matthew Harper Langston",
+  "Christopher Lott"
+ ],
+ "venue": "ICLR 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "Deep Learning->Attention Mechanisms",
+ "role": "pipeline",
+ "role2": null,
+ "claim": "Selecting a small subset of cached keys via representative queries lets chunked processing feed a reduced cache to dense attention.",
+ "layout": "2 panels, left-to-right; chunk-by-chunk timeline plus zoomed selection detail",
+ "tags": [
+  "sparse-attention",
+  "kv-selection",
+  "chunked-prefill",
+  "efficiency",
+  "training-free"
+ ],
+ "style": [
+  "minimal",
+  "colorful"
+ ],
+ "description": "Two panels. Panel (a), Chunked Prefill with QuoKA, shows three successive stages left to right. Each stage has numbered token boxes on top: orange for the current input chunk and blue for cached tokens, with a blue shaded region marking the KV cache. Below them are stacked QuoKA and Attention blocks. Arrows lead to output tokens in blue boxes. The output of each stage feeds the next stage's cache, and the cache grows from tokens 0-1 to tokens 0-5. Panel (b), KV selection with QuoKA, zooms into one QuoKA block. Cached Keys 0-3 (blue) and Current Queries 4-5 (orange) enter a CosSim Scoring block and a Query Selection block. Query 4 is kept and query 5 is greyed out. A Gather block then keeps key 3 in blue and greys out keys 0-2. Blue and orange carry the meaning throughout.",
+ "caption": "\\textbf{Overview of chunked prefill with \\ourmethod{}:} (a) A prompt of 6 tokens is divided into three chunks of 2 tokens each. For each chunk, \\ourmethod{} subselects the KV cache and feeds the reduced cache into a dense attention kernel. (b) Subselection is performed by applying query subselection based on cosine dissimilarity, followed by key subselection using query–key cosine similarity.",
+ "caption_source": "latex",
+ "abstract": "We present QUOKA: Query-oriented KV selection for efficient attention, a training-free and hardware agnostic sparse attention algorithm for accelerating transformer inference under chunked prefill. While many queries focus on a smaller group of keys in the attention operator, we observe that queries with low cosine similarity with respect to the mean query interact more strongly with more keys and have the greatest contribution to final attention logits. By prioritizing these low cosine similarity queries, the behavior of full attention during the prefill stage can be closely approximated. QUOKA leverages this observation, accelerating attention by (1) first retaining a small set of representative queries and (2) then subselectin the keys most aligned with those queries. Through experiments on Needle-In-A-Haystack, LongBench, RULER, and Math500, we show that, while realizing a 3x reduction in time-to-first-token, 5x speedup in attention on Nvidia GPUs and up to nearly a 7x speedup on Intel Xeon CPUs, QUOKA achieves near-baseline accuracy, utilizing 88% fewer key-value pairs per attention evaluation.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=YS4N1YxXSM",
+  "arxiv": "https://arxiv.org/abs/2602.08722",
+  "pdf": "https://proceedings.iclr.cc/paper_files/paper/2026/file/760fe89b5a5e5792b33f23a2db1b9fbf-Paper-Conference.pdf",
+  "proceedings": "https://proceedings.iclr.cc/paper_files/paper/2026/hash/760fe89b5a5e5792b33f23a2db1b9fbf-Abstract-Conference.html",
+  "virtual": "https://iclr.cc/virtual/2026/poster/10008892",
+  "code": null
+ },
+ "license": "http://creativecommons.org/licenses/by/4.0/",
+ "img": "cc-by",
+ "image_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/images/iclr26-2967.png",
+ "thumb_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/thumbs/iclr26-2967.webp",
+ "figure_page": 1,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.8
+}

@@ -1,0 +1,54 @@
+{
+ "id": "neurips26-1491",
+ "title": "Learning What's Real: Disentangling Signals and Measurement Artifacts in Multi-Sensor Data, with Applications to Astrophysics",
+ "authors": [
+  "Pablo Mercader-Perez",
+  "Carolina Cuesta Lazaro",
+  "Daniel Muthukrishna",
+  "Jeroen Audenaert",
+  "V Villar",
+  "David W Hogg",
+  "Marc Huertas-Company",
+  "Bill Freeman"
+ ],
+ "venue": "NeurIPS 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "General Machine Learning->Representation Learning",
+ "role": "pipeline",
+ "role2": null,
+ "claim": "Disentangle invariant signal from sensor effects by encoding augmented views separately and generating the held-out anchor counterfactually.",
+ "layout": "1 panel, left-to-right flow, anchor fans into two augmented branches, dashed arrow to decoder",
+ "tags": [
+  "disentanglement",
+  "counterfactual-generation",
+  "dual-encoder",
+  "flow-matching",
+  "multi-sensor"
+ ],
+ "style": [
+  "colorful",
+  "photo/real data",
+  "icon-heavy"
+ ],
+ "description": "A left-to-right pipeline diagram. At far left, a green 'Anchor image' card (Galaxy ID 99, HSC) with a galaxy cutout. Two curved arrows labeled 'Natural augmentations' lead to two input cards under 'Input data'. The top card is 'Same galaxy' (ID 99, Legacy Survey) and the bottom card is 'Same instrument' (ID 88, HSC), each with a small galaxy image. Each card feeds a grey trapezoid encoder, one labeled physics with a yellow outline and one labeled instrument with a blue outline. These produce a yellow blob (Z_physics) and a blue blob (Z_instrument) containing white dots as latent codes. Both blobs feed a grey 'Generative decoder' trapezoid. A dashed arrow from the decoder points to a green dashed box, 'Conditional Flow Matching'. Inside, noise passes through a UNet toward the target anchor image, with the likelihood p(data | Z_instrument, Z_physics) below. The yellow and blue color coding stands out first.",
+ "caption": "Counterfactual Reconstruction. The model learns to disentangle intrinsic galaxy properties from instrument systematics by reconstructing an anchor image. Training uses data triplets: an anchor observation (signal source $s$ from instrument $i$), an instrument-augmented observation (same source $s$, a different instrument $i'$), and a physics-augmented observation (a different source $s'$, same instrument $i$). The physics encoder extracts latents from the instrument-augmented pair to capture invariant physical features, while the instrument encoder processes the physics-augmented observation \\newcamr{to capture instrument-specific effects}. These latent variables jointly condition the flow-matching decoder. Crucially, the anchor image is never fed into the encoders; it is used only as a target for the flow-matching loss, forcing the model to generate the reconstruction counterfactually.",
+ "caption_source": "latex",
+ "abstract": "Data collected from the physical world is always a combination of multiple sources: an underlying signal from the physical process of interest and a signal from measurement-dependent artifacts from the sensor or instrument. This secondary signal acts as a confounding factor, limiting our ability to extract information about the physics underlying the phenomena we observe. Furthermore, it complicates the combination of observations in heterogeneous or multi-instrument settings. We propose a deep learning framework that leverages overlapping observations, a dual-encoder architecture, and a counterfactual generation objective to disentangle these factors of variation. The resulting representations explicitly separate intrinsic signals from sensor-specific distortions and noise, and can be used for counterfactual view generation, parameter inference unconfounded by measurement distortions, and instrument-independent similarity search. We demonstrate the effectiveness of our approach on astrophysical galaxy images from the DESI Legacy Imaging Survey (Legacy) and the Hyper Suprime-Cam (HSC) Survey as a representative multi-instrument setting. This framework provides a general recipe for scientific and multi-modal self-supervised pretraining: construct training pairs from overlapping observations of the same physical system, treat sensor- or modality-specific effects as augmentations, and learn invariant representations through counterfactual generation.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=AfLBTcI0f8",
+  "arxiv": "https://arxiv.org/abs/2604.09787",
+  "pdf": "https://arxiv.org/pdf/2604.09787",
+  "proceedings": null,
+  "virtual": "https://neurips.cc/virtual/2026/poster/154825",
+  "code": null
+ },
+ "license": "http://creativecommons.org/licenses/by/4.0/",
+ "img": "cc-by",
+ "image_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/images/neurips26-1491.png",
+ "thumb_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/thumbs/neurips26-1491.webp",
+ "figure_page": 1,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.9
+}

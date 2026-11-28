@@ -1,0 +1,51 @@
+{
+ "id": "iclr26-5274",
+ "title": "DualMap: Enabling Both Cache Affinity and Load Balancing for Distributed LLM Serving",
+ "authors": [
+  "Ying Yuan",
+  "Pengfei Zuo",
+  "Bo Wang",
+  "Zhangyu Chen",
+  "Zhipeng Tan",
+  "Zhou Yu"
+ ],
+ "venue": "ICLR 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "Optimization->Large Scale, Parallel and Distributed",
+ "role": "teaser-result",
+ "role2": "analysis-finding",
+ "claim": "Existing schedulers trade cache hit rate against load balance; ours alone achieves both high hit rate and low imbalance.",
+ "layout": "2 scatter panels side-by-side, shared axes, red star highlights ours in corner",
+ "tags": [
+  "pareto-trade-off",
+  "scheduling",
+  "cache-reuse",
+  "load-balancing",
+  "efficiency"
+ ],
+ "style": [
+  "plot",
+  "minimal"
+ ],
+ "description": "Two side-by-side scatter plots, one per dataset: (a) Conversation and (b) Tool&Agent. Each plots Cache Hit Rate (%) on the y-axis against Load balance ratio (CV) on the x-axis, where lower CV means more even load. Baseline schedulers appear as small gray circles with text labels: Cache Affinity (high hit rate but very high CV, top right), Min TTFT (middle), Preble, and Least Loaded (low hit rate, low CV, bottom left). DualMap is a bold red star with a bold label at the top-left corner, giving the highest hit rate and near-zero CV. The eye goes first to the red star, which sits alone in the ideal corner. The points form a trade-off frontier that DualMap breaks. Sub-captions sit below each panel, with light dotted gridlines and black boxed axes.",
+ "caption": "Pareto trade-off between cache hit rate and load balance ratio (coefficient of variation, CV) across different scheduling strategies on the Conversation and Tool&Agent datasets. A lower CV indicates more even load distribution across instances.",
+ "caption_source": "latex",
+ "abstract": "In LLM serving, reusing the KV cache of prompts across requests is critical for reducing TTFT and serving costs. Cache-affinity scheduling, which co-locates requests with the same prompt prefix to maximize KV cache reuse, often conflicts with load-balancing scheduling that distributes requests evenly across compute instances. Existing schedulers fail to reconcile this trade-off as they operate within a single mapping space, typically applying cache-affinity routing to a subset of requests and load-balanced routing to the rest, without a unified solution to achieve both goals. To address this limitation, we propose DualMap, a dual-mapping scheduling strategy for distributed LLM serving that achieves both cache affinity and load balancing. Its key idea is to map each request to two candidate instances via two independent hash functions based on the request prompt, then intelligently select the better candidate based on current system states. This design increases the likelihood that requests with shared prefixes are co-located, while evenly dispersing distinct prefixes across the cluster via ``the power of two choices''. To make DualMap robust under dynamic and skewed real-world workloads, we incorporate three techniques: 1) SLO-aware request routing, which prioritizes cache affinity but switches to load-aware scheduling when TTFT exceeds the SLO, enhancing load balance without sacrificing cache reuse; 2) hotspot-aware rebalancing, which dynamically migrates requests from overloaded to underloaded instances, mitigating hotspots and rebalancing the system; 3) lightweight dual-hash-ring scaling, which leverages a dual-hash-ring mapping to support fast and low-overhead instance scaling without costly global remapping. Experiments on real-world workloads show that DualMap improves effective request capacity by up to 2.25$\\times$ under the same TTFT SLO constraints compared with SOTA work.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=zCadrJ32Xn",
+  "arxiv": "https://arxiv.org/abs/2602.06502",
+  "pdf": "https://proceedings.iclr.cc/paper_files/paper/2026/file/475f7a3a807cee549684e367d1fa13a0-Paper-Conference.pdf",
+  "proceedings": "https://proceedings.iclr.cc/paper_files/paper/2026/hash/475f7a3a807cee549684e367d1fa13a0-Abstract-Conference.html",
+  "virtual": "https://iclr.cc/virtual/2026/poster/10006475",
+  "code": "https://github.com/ASISys/DualMap"
+ },
+ "license": "http://arxiv.org/licenses/nonexclusive-distrib/1.0/",
+ "img": "none",
+ "image_url": null,
+ "thumb_url": null,
+ "figure_page": 2,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.8
+}

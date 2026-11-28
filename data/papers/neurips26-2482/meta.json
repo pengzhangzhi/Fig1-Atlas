@@ -1,0 +1,55 @@
+{
+ "id": "neurips26-2482",
+ "title": "From Table to Cell: Attention for Better Reasoning with TABALIGN",
+ "authors": [
+  "Tung Sum Thomas Kwok",
+  "Zeyong Zhang",
+  "Xinyu Wang",
+  "Chunhe Wang",
+  "Xiaofeng Lin",
+  "Hanwei Wu",
+  "Lei Ding",
+  "Guang Cheng",
+  "Zhijiang Guo"
+ ],
+ "venue": "NeurIPS 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "Deep Learning->Generative Models and Autoencoders",
+ "role": "prior-vs-ours",
+ "role2": "problem-setup",
+ "claim": "Existing planners and verifiers ignore cell grounding and fail at planning and reasoning; our approach fixes both bottlenecks together.",
+ "layout": "4 panels, left-to-right: task, two bottlenecks, solution; warning icons vs green check",
+ "tags": [
+  "table-reasoning",
+  "diffusion-planner",
+  "verifier",
+  "bottleneck-analysis",
+  "cell-grounding"
+ ],
+ "style": [
+  "colorful",
+  "icon-heavy",
+  "text-heavy"
+ ],
+ "description": "Four rounded, color-coded panels run left to right. The blue panel shows a table and the question \"What is the average profit of all non-total costs?\", plus a target icon listing the required steps. The red panel, \"Bottleneck 1: Left-to-right bias\", has a warning icon. It shows an autoregressive token order arrow and two column-permuted tables marked \"Same semantics\". Below them is a three-step plan with a red X for a wrong step. The orange panel, \"Bottleneck 2: Unverified intermediate attention\", shows a table with the relevant cells highlighted green. Beneath it is a red heatmap of wrong agent attention. The green panel, \"TABALIGN addresses both bottlenecks\", stacks three icon cards: Diffusion planner, AR executor and TABATTN verifier. A trophy box at the bottom reads \"More reliable multi-turn table reasoning\". The eye goes first to the red warning headers.",
+ "caption": "Existing methods leave the cell-grounding contract implicit, producing failures at both planning and reasoning stages. At planning time, AR models impose an order-sensitive prior that conflicts with table permutation invariance, producing a globally inconsistent plan. At reasoning time, content-based PRMs score the generated state alone, leaving cell grounding to chance. \\ourmodel{} operationalizes the contract through a diffusion-based bidirectional planner and the \\tabattn{} verifier.",
+ "caption_source": "latex",
+ "abstract": "Multi-step LLM reasoning over structured tables fails because planning and execution share no explicit cell-grounding contract. Existing methods constrain the planner to a left-to-right factorization at odds with table permutation invariance, and score intermediate states by generated content alone, overlooking cell grounding. We conduct a pilot study showing that diffusion language models (DLMs) produce more human-aligned and permutation-stable cell attention on tables than autoregressive models, with a 40.2% median reduction in attention-AUROC variability under row reordering. Motivated by this, we propose TABALIGN, a planned table reasoning framework that operationalizes the contract. TABALIGN pairs a masked DLM planner, whose bidirectional denoising emits plan steps as binary cell masks, with TABATTN, a lightweight verifier trained on 1,600 human-verified attention standards to score each step by its attention overlap with the plan-designated mask. Across eight benchmarks covering table question answering and fact verification, TABALIGN improves average accuracy by 15.76 percentage points over the strongest open-source baseline at comparable 8B-class scale, with a matched-backbone ablation attributing 2.87 percentage points of this gain to the DLM planner over an AR planner on a fixed reasoner. Cleaner DLM plans also accelerate downstream reasoning execution by 44.64%.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=HOEBdl2bk0",
+  "arxiv": "https://arxiv.org/abs/2605.14465",
+  "pdf": "https://arxiv.org/pdf/2605.14465",
+  "proceedings": null,
+  "virtual": "https://neurips.cc/virtual/2026/poster/153945",
+  "code": "https://github.com/ThomasK1018/TabAlign"
+ },
+ "license": "http://creativecommons.org/licenses/by/4.0/",
+ "img": "cc-by",
+ "image_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/images/neurips26-2482.png",
+ "thumb_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/thumbs/neurips26-2482.webp",
+ "figure_page": 1,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.6
+}

@@ -1,0 +1,58 @@
+{
+ "id": "icml26-0872",
+ "title": "Temporal Self-Rewarding Language Models: Decoupling Chosen-Rejected via Past-Future",
+ "authors": [
+  "Yidong Wang",
+  "Xin Wang",
+  "Cunxiang Wang",
+  "Junfeng Fang",
+  "Qiufeng Wang",
+  "Jianing Chu",
+  "Xuran Meng",
+  "Shu-Xun Yang",
+  "Andrew Feng",
+  "Libo Qin",
+  "Wei Ye",
+  "Shikun Zhang"
+ ],
+ "venue": "ICML 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": null,
+ "role": "analysis-finding",
+ "role2": "teaser-result",
+ "claim": "Iterative self-improvement shrinks the quality gap between preferred and rejected samples, while anchoring the rejected side preserves a strong learning signal.",
+ "layout": "2 side-by-side grouped bar charts, left-to-right iterations, dashed divider separating baseline from ours",
+ "tags": [
+  "self-rewarding",
+  "preference-optimization",
+  "signal-collapse",
+  "iterative-training",
+  "llm-alignment"
+ ],
+ "style": [
+  "plot",
+  "colorful",
+  "minimal"
+ ],
+ "description": "Two side-by-side grouped bar charts share one color scheme: light, medium and dark blue bars for Llama3.1-8B, Qwen2.5-7B and Mistral-7B. The left chart plots the score difference (chosen minus rejected). The right chart plots the cosine similarity between chosen and rejected responses. In each chart the x-axis lists iterations. A vertical dashed line splits the Self-Rewarding iterations (iter0 to iter3) from the Temporal SR iterations (iter0 and iter1). On the left, the Self-Rewarding bars drop sharply after iter0, from about 0.9–1.0 to about 0.1–0.3. The Temporal SR bars stay high or rise, reaching about 1.2. On the right, Self-Rewarding similarity climbs from about 0.75–0.87 toward 0.95. Temporal SR similarity stays lower. The eye goes first to the steep drop in the left chart.",
+ "caption": "Comparison of response preference dynamics between Self-Rewarding and Temporal Self-Rewarding (Temporal SR) frameworks across iterations. We track: (1) the score difference (chosen - rejected) evaluated by GPT-4o-mini (the scoring prompt is the same as that used in Temporal Self-Rewarding, detailed in Appendix A) and (2) similarity between chosen and rejected responses(cosin similarity calculated through the last layer's features). With similar computational budgets (4 vs. 2 iterations), Self-Rewarding shows rapid degradation with score gap shrinking 9 times and rapid similarity improvement between chosen and rejected responses of Llama3.1-8B, indicating a progressive narrowing of the quality gap between chosen and rejected samples. Our Temporal approach effectively mitigates this quality convergence.",
+ "caption_source": "latex",
+ "abstract": "Self-Rewarding Language Models propose an architecture in which the Large Language Models(LLMs) both generates responses and evaluates its own outputs via LLM-as-a-Judge prompting, dynamically improving its generative capabilities through iterative Direct Preference Optimization (DPO). However, our analysis reveals a critical limitation in existing Self-Rewarding paradigms: the synchronized improvement of chosen and rejected responses progressively narrows the representational difference between contrasting samples, undermining effective preference learning. We propose \\textbf{Temporal Self-Rewarding Language Models} that strategically coordinate past, present, and future model generations to sustain learning signals. Our dual-phase framework introduces: (1) \\textit{Anchored Rejection} - fixing rejected responses using the past initial model's outputs and (2) \\textit{Future-Guided Chosen} - dynamically curating chosen samples using next-generation model predictions. Extensive experiments across three model families (Llama, Qwen, Mistral) and different model sizes (Llama3B/8B/70B) demonstrate significant improvements when trained with our method compared to Self-Rewarding using same computation resources. For example, Llama3.1-8B reaches a 29.44 win rate on AlpacaEval 2.0 with our method, outperforming the Self-Rewarding baseline (19.69) by 9.75. Notably, our method also demonstrates superior out-of-distribution generalization across mathematical reasoning (GSM8K), knowledge-based QA (ARC, TruthfulQA), and code generation (HumanEval) tasks, even though we do not specifically collect such training data.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=8G0XzmQRG9",
+  "arxiv": "https://arxiv.org/abs/2508.06026",
+  "pdf": "https://raw.githubusercontent.com/mlresearch/v306/main/assets/wang26ik/wang26ik.pdf",
+  "proceedings": "https://proceedings.mlr.press/v306/wang26ik.html",
+  "virtual": "https://icml.cc/virtual/2026/poster/65978",
+  "code": null
+ },
+ "license": "http://creativecommons.org/licenses/by/4.0/",
+ "img": "cc-by",
+ "image_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/images/icml26-0872.png",
+ "thumb_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/thumbs/icml26-0872.webp",
+ "figure_page": 1,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.6
+}

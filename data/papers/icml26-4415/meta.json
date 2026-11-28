@@ -1,0 +1,53 @@
+{
+ "id": "icml26-4415",
+ "title": "Memory-Distilled Selection for Noise-Robust Anomaly Detection",
+ "authors": [
+  "Sirojbek Safarov",
+  "Jaewoo Park",
+  "Yoon Gyo Jung",
+  "Kuan-Chuan Peng",
+  "Wonchul Kim",
+  "Seongdeok Bang",
+  "Octavia Camps"
+ ],
+ "venue": "ICML 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "Applications->Computer Vision",
+ "role": "pipeline",
+ "role2": null,
+ "claim": "A three-stage procedure turns noisy data into clean supervision: subsample ensembles flag contamination, distillation refines scores, and selected data drives fine-tuning.",
+ "layout": "3 panels in grid, left-to-right, legend box bottom-right",
+ "tags": [
+  "data-selection",
+  "distillation",
+  "ensemble",
+  "noise-robustness",
+  "anomaly-detection"
+ ],
+ "style": [
+  "colorful",
+  "icon-heavy",
+  "math-heavy"
+ ],
+ "description": "A multi-panel pipeline diagram with rounded gray boxes. Panel (1), top-left, shows the dataset cylinder D feeding a blue frozen teacher trapezoid g. Feature-map cubes are patchified into rows of tokens, subsampled into memory banks M1 to MB, and ensembled into a green M node. Panel (2), top-right, shows the input x passing through a teacher/student block (blue g inside orange f_theta). The teacher and student feature grids are compared to give the score s_theta. This score is trained against the memory score s_M with a min-norm loss. Panel (3), bottom-left, shows the dataset D going to a light-blue box of score histograms (green normal, red anomalous) at t=0, 1, ..., T with thresholds. This selects a subset S_t, which fine-tunes the student, with a feedback arrow looping back. A yellow legend box at bottom-right defines the notation. The eye goes first to the blue teacher blocks and the green ensemble node.",
+ "caption": "Overview of the three-stage MeDS pipeline. First stage: memory construction. From each training image $x \\in \\mathcal{D}$, a frozen teacher network $g$ extracts patch features $g(x)_{hw} \\in \\mathbb{R}^{C}$ for all spatial positions $(h, w)$. The pooled feature collection $g(\\mathcal{D}) \\subseteq \\mathbb{R}^{C}$ of size $\\lvert g(\\mathcal{D}) \\rvert = \\lvert \\mathcal{D} \\rvert \\cdot H \\cdot W$ is randomly subsampled $B$ times at ratio $\\rho$ to form partial memory banks $\\lbrace \\mathcal{M}_b \\rbrace_{b=1}^{B}$. Each memory bank $\\mathcal{M}_b$ produces a per-patch nearest-neighbor distance score $s_{\\mathcal{M}_b}(x) \\in \\mathbb{R}^{H \\times W}$, and averaging these scores across all $B$ memory banks yields the ensemble score $s_{\\mathbb{M}}(x) \\in \\mathbb{R}^{H \\times W}$. The sparse subsampling acts as a low-pass filter that downweights anomalous patches. Second stage: memory score distillation. For further enhancement, the memory score $s_{\\mathbb{M}}$ is distilled into a network-based reconstruction score $s_\\theta$ via $\\min_\\theta \\lVert s_{\\mathbb{M}}(x) - s_\\theta(x) \\rVert_2$, where $s_\\theta(x) \\in \\mathbb{R}^{H \\times W}$ is the distance between teacher features $g(x)$ and the features $f_\\theta(x) \\in \\mathbb{R}^{H \\times W \\times C}$ extracted from a student network $f_\\theta$. Third stage: fine-tuning with progressive selection. Finally, the reconstruction score $s_\\theta$ is fine-tuned on a clean subset $\\mathcal{S}_t \\subseteq \\mathcal{D}$ obtained by a progressive selection criterion.",
+ "caption_source": "latex",
+ "abstract": "Anomaly detection (AD) under data contamination is critical for deploying unsupervised defect detection in industrial environments, where curating perfectly clean training sets is impractical. However, existing methods are sensitive to contamination, suffering significant performance degradation as the noise ratio increases. In this paper, we propose Memory-Distilled Selection (MeDS), a training algorithm based on data selection. MeDS constructs an ensemble of partial memories via random subsampling, where the resulting sparsity acts as a low-pass filter that captures nominal patterns across a wide range of noise ratios, enabling coarse-level identification of contaminated samples. The aggregated distances to the bootstrapped memories are then distilled into a reconstruction score network, which is subsequently fine-tuned on clean data filtered using scores from the distilled model, enabling fine-grained localization of anomalies. MeDS is robust across a wide range of noise ratios without requiring noise-ratio-specific hyperparameter tuning, achieving 99.16\\% image-level AUROC on MVTecAD at a 40\\% noise ratio, and attaining state-of-the-art performance on both VisA and Real-IAD under noisy settings. We thoroughly verify the efficacy of MeDS on industrial AD benchmarks under noisy data scenarios, accompanied by in-depth empirical analyses.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=fhXqiit0CW",
+  "arxiv": "https://arxiv.org/abs/2605.26676",
+  "pdf": "https://raw.githubusercontent.com/mlresearch/v306/main/assets/safarov26a/safarov26a.pdf",
+  "proceedings": "https://proceedings.mlr.press/v306/safarov26a.html",
+  "virtual": "https://icml.cc/virtual/2026/poster/62541",
+  "code": "https://sirojbeksafarov.github.io/MeDS_project_page/"
+ },
+ "license": "http://creativecommons.org/licenses/by/4.0/",
+ "img": "cc-by",
+ "image_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/images/icml26-4415.png",
+ "thumb_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/thumbs/icml26-4415.webp",
+ "figure_page": 3,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.95
+}

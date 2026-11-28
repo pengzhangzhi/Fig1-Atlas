@@ -1,0 +1,53 @@
+{
+ "id": "neurips26-7656",
+ "title": "ELSA3D: Elastic Semantic Anchoring for Unified 3D Understanding and Generation",
+ "authors": [
+  "Tianjiao (Joey) Yu",
+  "Xinzhuo Li",
+  "Yifan Shen",
+  "Onkar Susladkar",
+  "YUANZHE LIU",
+  "Xiaona Zhou",
+  "Ismini Lourentzou"
+ ],
+ "venue": "NeurIPS 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "Computer Vision->3D Rendering & Reconstruction",
+ "role": "pipeline",
+ "role2": "overview-framework",
+ "claim": "A lightweight router jointly decides which blocks run, at what width, and which tokens anchor at which scale, making computation and grounding elastic.",
+ "layout": "3 panels, left-to-right; router heads, block stack, anchor-building steps",
+ "tags": [
+  "routing",
+  "dynamic-computation",
+  "cross-modal-alignment",
+  "multi-scale",
+  "efficiency"
+ ],
+ "style": [
+  "colorful",
+  "icon-heavy",
+  "math-heavy"
+ ],
+ "description": "Wide three-panel diagram with rounded containers labeled (i) Router Structure, (ii) Transformer Block, (iii) Anchor Building. On the left, a column of unified hidden states passes through RMSNorm and a shared linear projection. The projection fans out into three dotted-box heads built from small colored modules. The Gating Head (Avg, Linear, Sigmoid) outputs p^i, skip or run. The Width Head (Avg, Linear, SoftMax) outputs q^i. The Anchor Routing Head (Avg, Concat, Linear, Sigmoid/Softmax) outputs β and α, with example per-token scores. The middle panel shows a stack of orange Blocks i to i+3 with Router and Anchors boxes. Skipped blocks are hatched, and the p ≥ τ conditions sit beside the routers. The right panel has three small illustrations of steps 1 to 3: tokens assigned to scales, related geometric tokens found, and tokens merged into an anchor set. Orange arrows and warm pastel tones dominate.",
+ "caption": "\\textbf{\\modelname{} overview.} \\modelname{} is built around elastic semantic anchoring, where routing jointly controls computation and semantic--geometric grounding. (i) The router has three heads: a Gating Head ($p^i$, skip or run), a Width Head ($q^i$, MLP width), and an Anchor Routing Head ($\\beta^i, \\alpha^i$, which text tokens become anchors and at which scale). (ii) Blocks with $p^i \\geq \\tau$ execute at the selected width; others are skipped. (iii) Selected text tokens are routed to their preferred scale, cross-attended to the 3D tokens at that scale, and fused into the anchor set.",
+ "caption_source": "latex",
+ "abstract": "Unified 3D foundation models aspire to generate 3D assets and reason about them in language within a single backbone, but their text-3D interaction remains largely implicit. Existing methods concatenate text and 3D tokens into a flat sequence and rely on self-attention, collapsing coarse structural cues and fine geometric details into one undifferentiated representation. We introduce ELSA3D, a unified 3D model that addresses this with elastic semantic anchoring, structuring language and geometric reasoning jointly along matched abstraction scales. ELSA3D represents geometry with a scale-aware octree tokenizer and introduces Anchor Tokens, sparse cross-modal units that select semantic cues, route them to the most relevant 3D scale, retrieve scale-specific geometric evidence, and write the fused signal back into the unified representation, keeping interaction sparse yet precise. A lightweight per-block router makes both computation and reasoning elastic, choosing which text tokens instantiate anchors at which geometric scale so that cross-modal capacity concentrates where alignment is most needed. ELSA3D achieves state-of-the-art performance across image-to-3D generation, text-to-3D generation, and 3D captioning, outperforming the strongest unified baseline while roughly halving FLOPs and inference latency relative to the non-elastic version of the same model.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=qoh4UZPjM8",
+  "arxiv": "https://arxiv.org/abs/2607.06565",
+  "pdf": "https://arxiv.org/pdf/2607.06565",
+  "proceedings": null,
+  "virtual": "https://neurips.cc/virtual/2026/poster/149339",
+  "code": "https://plan-lab.github.io/elsa3D"
+ },
+ "license": "http://arxiv.org/licenses/nonexclusive-distrib/1.0/",
+ "img": "none",
+ "image_url": null,
+ "thumb_url": null,
+ "figure_page": 2,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.8
+}

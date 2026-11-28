@@ -1,0 +1,47 @@
+{
+ "id": "icml26-5827",
+ "title": "Attention Projection Mixing with Exogenous Anchors",
+ "authors": [
+  "Jonathan Su"
+ ],
+ "venue": "ICML 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "Deep Learning->Large Language Models",
+ "role": "pipeline",
+ "role2": "prior-vs-ours",
+ "claim": "One shared attention block mixes normalized anchor projections into each layer's projections, and only the anchor's source differs between designs.",
+ "layout": "Single bottom-up tree diagram; two legend labels at top define anchor source",
+ "tags": [
+  "attention",
+  "anchor-reuse",
+  "normalized-mixing",
+  "gating",
+  "architecture"
+ ],
+ "style": [
+  "colorful",
+  "minimal",
+  "icon-heavy"
+ ],
+ "description": "A bottom-up block diagram of one attention layer. The bottom row has four pairs of rounded boxes, colored blue (Q), red (K), green (V) and yellow (G). Each pair is a layer-n projection (Q_n, K_n, V_n, G_n) next to an anchor projection (Q_anc and so on). The layer projections come from solid lines labeled W_q, W_k, W_q and W_g. The anchor projections come from dotted lines labeled RMSNorm. Each pair feeds a circled plus node weighted by λ1 and λ2. The Q, K and V sums go into a wide purple SDPA bar. The SDPA output goes up into an orange Gate box, which also receives the G sum through a line on the right. The Gate feeds a teal O box, labeled W_o, with an arrow going up. Dark legend pills at the top left and right read 'anc = Exogenous' for ExoFormer and 'anc = First Layer' for NuResFormer.",
+ "caption": "For NuResFormer, the anchor components are sourced from the first layer. For ExoFormer, they are provided by dedicated exogenous projections. All residualized sources are normalized before being mixed with the current layer's projections, and the scaled dot product attention (SDPA) output is gated.",
+ "caption_source": "latex",
+ "abstract": "Cross-layer reuse of early attention projections can improve optimization and data efficiency, but it creates a structural conflict: the first layer must simultaneously act as a stable, reusable anchor for all deeper layers and as an effective computational block. We demonstrate that this tension constrains the performance of internal-anchor designs. We propose ExoFormer, which resolves the conflict by learning exogenous anchor projections outside the sequential layer stack. We introduce a unified normalized mixing framework that mixes queries, keys, values, and gate logits using learnable coefficients (exploring coefficient granularities: elementwise, headwise, and scalar), and we show that normalizing anchor sources is key to stable reuse. ExoFormer variants consistently outperform their internal-anchor counterparts, and the dynamic variant yields 1.5x downstream accuracy points while matching validation loss using 1.5x fewer tokens than Gated Attention. We explain this efficacy via an Offloading Hypothesis: external anchors preserve essential token identity, allowing layers to specialize exclusively in feature transformation. We release code and models to facilitate future research.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=t1tt3rzN7s",
+  "arxiv": "https://arxiv.org/abs/2601.08131",
+  "pdf": "https://raw.githubusercontent.com/mlresearch/v306/main/assets/su26a/su26a.pdf",
+  "proceedings": "https://proceedings.mlr.press/v306/su26a.html",
+  "virtual": "https://icml.cc/virtual/2026/poster/61175",
+  "code": "https://github.com/jon123boss/ExoFormer"
+ },
+ "license": "http://arxiv.org/licenses/nonexclusive-distrib/1.0/",
+ "img": "none",
+ "image_url": null,
+ "thumb_url": null,
+ "figure_page": 0,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.8
+}

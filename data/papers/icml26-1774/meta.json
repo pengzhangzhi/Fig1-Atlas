@@ -1,0 +1,51 @@
+{
+ "id": "icml26-1774",
+ "title": "MuonSSM: Orthogonalizing State Space Models for Sequence Modeling",
+ "authors": [
+  "Thai Khanh Nguyen",
+  "Uyen N.B. Vo",
+  "Thieu Vo",
+  "Tan Nguyen",
+  "Cuong Pham"
+ ],
+ "venue": "ICML 2026",
+ "tier": "oral",
+ "track": "main",
+ "topic": null,
+ "role": "pipeline",
+ "role2": null,
+ "claim": "A per-timestep recurrent update is stabilized by orthogonalizing the input injection and accumulating it through a momentum state before memory update.",
+ "layout": "Single panel, left-to-right data flow, dashed vertical dividers, shaded Newton-Schulz inset",
+ "tags": [
+  "pipeline",
+  "state-space-model",
+  "orthogonalization",
+  "momentum",
+  "sequence-modeling"
+ ],
+ "style": [
+  "colorful",
+  "icon-heavy",
+  "math-heavy"
+ ],
+ "description": "A single wide diagram of one MuonSSM timestep, flowing left to right. Input v_t (purple block) is projected to k_t (blue block) at the lower left. A τ multiplication node feeds a low-rank injection into an orange rounded box labeled Newton-Schulz(). The box holds four stacked token bars with crossing arrows and two small heatmap insets showing the matrix being normalized. The normalized output is added (⊕) to the previous momentum M_{t-1} (green), which is scaled by γ, to give M_t. In the right section, the previous memory S_{t-1} (yellow) passes through the transition α_t(I − β_t η k_t k_t^T) (blue block). It is then summed with M_t to give S_t, and q_t reads S_t to produce the output y_t (purple). A dashed line carries β_t, drawn as a blue cube. Dashed vertical lines separate time steps. The eye goes first to the orange Newton-Schulz box.",
+ "caption": "The MuonSSM architecture. At each timestep, the model forms a low-rank input injection $\\tau\\beta_tv_tk_t^\\top$, applies a lightweight Newton--Schulz normalization, accumulates the normalized update through a momentum state $M_t$, and updates the memory state $S_t$ through an input-dependent transition. The output is computed as $y_t=S_tq_t$.",
+ "caption_source": "latex",
+ "abstract": "State space models (SSMs) have emerged as efficient linear-time alternatives to attention for long-sequence modeling. However, existing SSMs often suffer from instability and memory degradation over extended horizons due to poorly conditioned first-order updates and unbalanced update geometry. We introduce MuonSSM, a general framework that stabilizes SSM training by explicitly conditioning the geometry of memory updates rather than the recurrent transition matrix. MuonSSM augments SSMs with a momentum-based pathway and a lightweight Newton Schulz transformation on low-rank input injections, yielding bounded and spectrally conditioned updates while preserving parallel scan complexity. Theory shows that MuonSSM improves gradient propagation, mitigates spectral amplification, and enriches memory representations over long horizons. Extensive experiments across language, vision, and time-series benchmarks show consistent gains in accuracy, robustness, and long-context performance when integrated into diverse SSM backbones. These results establish geometric conditioning of updates as a principled pathway to stable, scalable sequence modeling.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=GmP3VcfHi0",
+  "arxiv": "https://arxiv.org/abs/2606.30461",
+  "pdf": "https://raw.githubusercontent.com/mlresearch/v306/main/assets/nguyen26t/nguyen26t.pdf",
+  "proceedings": "https://proceedings.mlr.press/v306/nguyen26t.html",
+  "virtual": "https://icml.cc/virtual/2026/oral/71058",
+  "code": null
+ },
+ "license": "http://creativecommons.org/licenses/by/4.0/",
+ "img": "cc-by",
+ "image_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/images/icml26-1774.png",
+ "thumb_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/thumbs/icml26-1774.webp",
+ "figure_page": 2,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.95
+}

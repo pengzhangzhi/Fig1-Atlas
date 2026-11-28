@@ -1,0 +1,50 @@
+{
+ "id": "neurips26-6088",
+ "title": "Improving the Diffusability of Motion Tokenizer",
+ "authors": [
+  "Guanhe Huang",
+  "Songqiao Han",
+  "Tangzheng Lian",
+  "Oya Celiktutan"
+ ],
+ "venue": "NeurIPS 2026",
+ "tier": "spotlight",
+ "track": "main",
+ "topic": "Computer Vision->3D Rendering & Reconstruction",
+ "role": "analysis-finding",
+ "role2": "prior-vs-ours",
+ "claim": "Baseline components leave excess high-frequency energy that departs from real data; our spectral corrections bring the profile close to ground truth.",
+ "layout": "2 side-by-side line plots, left-to-right, shaded high-frequency region, log y-axis",
+ "tags": [
+  "spectral-analysis",
+  "frequency-mismatch",
+  "latent-diffusion",
+  "tokenizer",
+  "baseline-comparison"
+ ],
+ "style": [
+  "plot",
+  "minimal",
+  "colorful"
+ ],
+ "description": "Two side-by-side log-scale line plots of normalized spectral density. Panel (a), 'Latent spectral profile', plots density against zigzag frequency from 0 to 1. A noisy dashed gray ground-truth curve sits well below a red encoder-baseline curve. A blue curve for the baseline with CSA lies slightly below the red one but still above ground truth. A pale pink band marks the high-frequency region. Panel (b), 'Motion spectral profile', plots density against temporal frequency from 0 to 14. The red decoder baseline plateaus far above the dashed ground truth at high frequencies. The blue baseline with AMD follows the ground truth almost exactly. The eye goes first to the gap between the red curve and the dashed gray curve inside the pink shaded region. Legends sit in the upper right of each panel.",
+ "caption": "Spectral mismatch in motion tokenizers. (a) The baseline encoder produces high-frequency shortcut outliers into the latent space. Our Critic Spectral Adaptation (CSA) uses the pre-trained diffusion as a frequency-specific critic to suppress this shortcut high-frequency energy. (b) The baseline deterministic decoder introduces severe high-frequency artifacts into the reconstructed motion. The Alpha-Flow Motion Decoder (AMD) calibrates the spectral profile to closely approximate the real motion dynamics.",
+ "caption_source": "latex",
+ "abstract": "Latent diffusion models paired with a variational auto-encoder (VAE) tokenizer have shown promising performance for efficient text-driven human motion generation. However, motion latent diffusion suffers from a generation-reconstruction trade-off: simply increasing tokenizer capacity enhances reconstruction but fails to proportionally improve text-conditioned generation quality. We assume this trade-off stems from a spectral mismatch inside the VAE tokenizer: the encoder yields a latent space biased toward high frequencies, and the decoder introduces temporal artifacts. In this paper, we propose the Diffusable Motion Tokenizer (DiMoT) to improve the diffusability of the tokenizer, rather than scaling up the diffusion backbone. To improve text-conditioned optimization, Critic Spectral Adaptation (CSA) leverages a pretrained diffusion model as the critic to suppress high-frequency latent energy. To preserve motion dynamics, the Alpha-Flow Motion Decoder (AMD) performs generative decoding via average-velocity prediction, enabling efficient one-step decoding. Extensive experiments demonstrate that DiMoT achieves state-of-the-art performance across various challenging text-to-motion benchmarks, yielding superior motion fidelity and text-motion alignment. Project page: https://githubhgh.github.io/dimot/.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=fnQkgTUCzX",
+  "arxiv": "https://arxiv.org/abs/2611.10160",
+  "pdf": "https://arxiv.org/pdf/2611.10160",
+  "proceedings": null,
+  "virtual": "https://neurips.cc/virtual/2026/poster/150734",
+  "code": "https://githubhgh.github.io/dimot/"
+ },
+ "license": "http://creativecommons.org/licenses/by/4.0/",
+ "img": "cc-by",
+ "image_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/images/neurips26-6088.png",
+ "thumb_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/thumbs/neurips26-6088.webp",
+ "figure_page": 0,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.6
+}

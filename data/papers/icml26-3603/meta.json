@@ -1,0 +1,59 @@
+{
+ "id": "icml26-3603",
+ "title": "GDPO: Group reward-Decoupled Normalization Policy Optimization for Multi-reward RL Optimization",
+ "authors": [
+  "Shih-Yang Liu",
+  "Xin Dong",
+  "Ximing Lu",
+  "Shizhe Diao",
+  "Peter Belcak",
+  "Mingjie Liu",
+  "Min-Hung Chen",
+  "Hongxu (Danny) Yin",
+  "Yu-Chiang Wang",
+  "Kwang-Ting Cheng",
+  "Yejin Choi",
+  "Jan Kautz",
+  "Pavlo Molchanov"
+ ],
+ "venue": "ICML 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "Deep Learning->Large Language Models",
+ "role": "pipeline",
+ "role2": "teaser-result",
+ "claim": "Normalizing each reward separately, then across the batch, keeps reward signals distinct and gives better, more stable convergence than joint normalization.",
+ "layout": "2 panels: left formula-based method diagram, right stacked training curves; dashed callouts with arrows",
+ "tags": [
+  "multi-reward",
+  "policy-optimization",
+  "normalization",
+  "reinforcement-learning",
+  "training-stability"
+ ],
+ "style": [
+  "math-heavy",
+  "plot",
+  "colorful"
+ ],
+ "description": "Panel (a) is a math-centric overview. A red dashed box at top left holds the GRPO baseline: the summed reward and its group-normalized advantage. A blue dashed box at top right lists the notation. Below, a large green dashed box holds GDPO. Its first sub-box computes a separate normalized advantage for each reward, then sums them. Its second sub-box applies batch-wise normalization to the summed advantage. Two green callout labels, 'Decouple Normalization' and 'Batch normalization to maintain a stable numerical range', have dashed arrows pointing at those sub-boxes. Panel (b) on the right has two stacked line plots of format reward and correctness reward over 100 training steps. The green GDPO curve rises earlier and ends higher than the grey GRPO curve. A shaded IQR band surrounds each curve.",
+ "caption": "(a): An overview of GDPO, which performs group-wise normalization per reward and then applies batch-wise advantage normalization to preserve a stable numerical range independent of reward count and improve update stability. (b): Median and IQR reward curves over five runs of Qwen2.5-Instruct-1.5B tool-calling RL, demonstrating that GDPO consistently converges to higher correctness and format reward score than GRPO.",
+ "caption_source": "latex",
+ "abstract": "As language models become increasingly capable, users expect them to provide not only accurate responses but also behaviors aligned with diverse human preferences across a variety of scenarios. To achieve this, Reinforcement learning (RL) pipelines have begun incorporating multiple rewards, each capturing a distinct preference, to guide models toward these desired behaviors. However, recent work has defaulted to apply Group Relative Policy Optimization (GRPO) under multi-reward setting without examining its suitability. In this paper, we demonstrate that directly applying GRPO to normalize distinct rollout reward combinations causes them to collapse into identical advantage values, reducing the resolution of the training signal and resulting in suboptimal convergence and, in some cases, early training failure. We then introduce Group reward-Decoupled Normalization Policy Optimization (GDPO), a new policy optimization method to resolve these issues by decoupling the normalization of individual rewards, more faithfully preserving their relative differences and enabling more accurate multi-reward optimization, along with substantially improved training stability. We compare GDPO with GRPO across three tasks: tool calling, math reasoning, and coding reasoning, evaluating both correctness metrics (accuracy, bug ratio) and constraint adherence metrics (format, length). Across all settings, GDPO consistently outperforms GRPO, demonstrating its effectiveness and generalizability for multi-reward reinforcement learning optimization.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=Y1rHxA58If",
+  "arxiv": "https://arxiv.org/abs/2601.05242",
+  "pdf": "https://raw.githubusercontent.com/mlresearch/v306/main/assets/liu26aa/liu26aa.pdf",
+  "proceedings": "https://proceedings.mlr.press/v306/liu26aa.html",
+  "virtual": "https://icml.cc/virtual/2026/poster/63333",
+  "code": "https://nvlabs.github.io/GDPO/"
+ },
+ "license": "http://creativecommons.org/licenses/by/4.0/",
+ "img": "cc-by",
+ "image_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/images/icml26-3603.png",
+ "thumb_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/thumbs/icml26-3603.webp",
+ "figure_page": 0,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.55
+}

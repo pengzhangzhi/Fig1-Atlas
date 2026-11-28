@@ -1,0 +1,49 @@
+{
+ "id": "neurips26-6384",
+ "title": "Beyond Masked Sparsity: SNACK Enables Truly Sparse Neural Networks on GPU",
+ "authors": [
+  "Jafar Badour",
+  "Maurice Keulen",
+  "Elena Mocanu"
+ ],
+ "venue": "NeurIPS 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "Optimization->Large Scale, Parallel and Distributed",
+ "role": "overview-framework",
+ "role2": "pipeline",
+ "claim": "A sparse layer stores and computes only the active connections, so it can replace dense layers while the dense graph stays implicit.",
+ "layout": "2 regions: network graph left, sparse matrices right; orange dashed block boxes",
+ "tags": [
+  "sparse-training",
+  "gpu-kernel",
+  "drop-in-layer",
+  "coo-format",
+  "efficiency"
+ ],
+ "style": [
+  "minimal",
+  "colorful",
+  "icon-heavy"
+ ],
+ "description": "The left side shows a small three-layer neural network with Input (3 nodes), Hidden (4 nodes) and Output (2 nodes). Faded grey dotted arrows show the full dense connectivity. Bold blue arrows show the few active sparse edges. Overlapping orange dotted rounded rectangles labeled SNACK(A) and SNACK(B) mark the two stacked sparse blocks. A is input to hidden and B is hidden to output. On the right, two beige matrices labeled SpM(A) (4x3) and SpM(B) (2x4) hold zeros and 'e' entries for non-zeros. Together they link the graph edges to the stored sparse weights. The eye goes first to the blue edges and the orange boxes. The caption mentions a COO triple, but it is not drawn.",
+ "caption": "SNACK layer overview. Two stacked SNACK blocks ($A$ and $B$) act as drop-in replacements for standard nn.Linear layers. Each block stores its weight matrix $\\mathrm{SpM}(\\cdot)$ on the GPU as the COO triple $(A_v, A_r, A_c)$ over its non-zeros only: the highlighted (blue) edges are the active sparse subnetwork that consumes memory and FLOPs, while the faded (grey) edges depict the underlying dense linear layer that SNACK never materializes during training or inference. The forward pass is computed by SNACK-COO directly on the triple, the backward pass uses a sparse outer product over $\\mathrm{supp}(W)$, and DST methods may add or drop active connections in place, so SNACK and dense blocks can be freely interleaved in a network without changing any caller code.",
+ "caption_source": "latex",
+ "abstract": "Deep neural networks continue to grow in parameter count, driving up training and inference cost on GPUs. Sparse neural networks and Dynamic Sparse Training (DST) promise to reduce these costs, but most implementations rely on binary masks over dense tensors and recover little of the theoretical compute, memory, or energy savings. We propose SNACK, a truly sparse GPU layer that stores and computes only non-zero connections. SNACK exposes a simple PyTorch API for restructuring connections and backpropagating gradients entirely in the sparse paradigm, and ships SNACK-COO, a custom COO-format SpMM CUDA kernel with a batch-to-Streaming-Multiprocessor mapping tuned for the small-batch, high-sparsity regime typical of large-model training and single-stream inference. At the kernel level, SNACK is up to 7x faster than the masked dense baseline (Dense+Mask) and competitive with cuSPARSE, Sputnik, and FlashSparse at 95% sparsity. At 90% sparsity, a single SNACK layer accelerates training by 8x and 3.7x, and inference by 4x and 2x, over Dense+Mask and fully dense layers, respectively, while using 72% less memory than dense and substantially less energy. End-to-end, SNACK reduces GPT-2 peak training memory by up to 40% and graph-style inference latency by 4.8x over Dense+Mask at 99% sparsity.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=hoB9d0ONXQ",
+  "arxiv": "https://arxiv.org/abs/2610.04093",
+  "pdf": "https://arxiv.org/pdf/2610.04093",
+  "proceedings": null,
+  "virtual": "https://neurips.cc/virtual/2026/poster/150469",
+  "code": "https://github.com/JafarBadour/Snack-SNN"
+ },
+ "license": "http://creativecommons.org/licenses/by/4.0/",
+ "img": "cc-by",
+ "image_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/images/neurips26-6384.png",
+ "thumb_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/thumbs/neurips26-6384.webp",
+ "figure_page": 2,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.5
+}

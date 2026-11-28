@@ -1,0 +1,53 @@
+{
+ "id": "iclr26-3644",
+ "title": "Achieving low-bit Muon through subspace preservation and grid quantization",
+ "authors": [
+  "Huaijin Wu",
+  "Bingrui Li",
+  "Yebin Yang",
+  "Yi Tu",
+  "Zhanpeng Zhou",
+  "Jianfei Chen",
+  "Junchi Yan"
+ ],
+ "venue": "ICLR 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "Deep Learning->Algorithms",
+ "role": "analysis-finding",
+ "role2": null,
+ "claim": "Quantization error that is negligible in raw momentum is greatly amplified after orthogonalization, which distorts the singular spectrum.",
+ "layout": "4 panels in one row, paired distribution and singular-value plots, NE annotations",
+ "tags": [
+  "quantization",
+  "orthogonalization",
+  "error-amplification",
+  "optimizer-states",
+  "singular-spectrum"
+ ],
+ "style": [
+  "plot",
+  "minimal",
+  "photo/real data"
+ ],
+ "description": "Four line plots in one row, labeled (a) to (d), each with red and blue curves. Panels (a) and (b) show density histograms. In (a), the real momentum (red solid) and its 4-bit quantized version (blue dash-dot) overlap almost exactly, and the panel is annotated NE=0.07. In (b), after Newton-Schulz orthogonalization, the NS(real) curve is a tall narrow peak and the NS(quant) curve is visibly lower and wider, annotated NE=1.78. Panels (c) and (d) show singular values on a log scale against index from 0 to about 2000. In (c) real and quant curves are close in shape. In (d) the NS(quant) curve sits clearly apart from the NS(real) curve across most indices. The eye goes first to the mismatch between the curves in (b) and (d).",
+ "caption": "Visualization of momentum in transformer.layers.7.attn.o proj in a LLaMA model. (a) The distribution of matrix (real) and their 4-bit compressions (quant). (b) Distribution of the matrix after NS iteration (NS(real)) and its 4-bit compressions after NS iterations (NS(quant)). (c) and (d): Distribution of singular values of the matrices in (a) and (b), displayed on a log10 scale.",
+ "caption_source": "pdf",
+ "abstract": "Training Large Language Models (LLMs) faces severe memory constraints due to the increasing size of model parameters and optimizer states. The Muon optimizer, which is based on matrix orthogonalization, has recently demonstrated significant potential and offers considerable memory advantages over AdamW by utilizing only the first moment. However, how to apply memory-reduction techniques to further compress the optimizer states of Muon remains underexplored. Directly applying existing methods may encounter significant difficulties due to the orthogonalization process. In this work, we investigate the low-bit compression of Muon and systematically analyze the quantization error exacerbated by orthogonalization. We identify that the error primarily originates from the top singular subspace and the outlier patterns of moment matrix appearing across both dimensions. To address this, we propose 4-bit-Muon-GRASP (GRid And Subspace Preserving), which compresses the Muon optimizer states to 4 bits using grid quantization, while preserving the top singular subspace with minimal overhead. We evaluate 4-bit-Muon-GRASP through pre-training on LLaMA-130M, 350M, and 1.1B architectures and fine-tuning on 7B models for various reasoning tasks. Extensive experiment results show that our 4-bit-Muon-GRASP achieves accuracy comparable to full-precision counterparts while reducing training memory consumption by up to 28\\%. The source code is publicly available at ~\\url{https://github.com/wuhuaijin/lowbit-Muon}.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=g2l9bg9DWx",
+  "arxiv": null,
+  "pdf": "https://proceedings.iclr.cc/paper_files/paper/2026/file/e1af74bc0a8ab547b27e507d71be506a-Paper-Conference.pdf",
+  "proceedings": "https://proceedings.iclr.cc/paper_files/paper/2026/hash/e1af74bc0a8ab547b27e507d71be506a-Abstract-Conference.html",
+  "virtual": "https://iclr.cc/virtual/2026/poster/10008183",
+  "code": null
+ },
+ "license": null,
+ "img": "none",
+ "image_url": null,
+ "thumb_url": null,
+ "figure_page": 3,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.8
+}

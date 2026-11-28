@@ -1,0 +1,50 @@
+{
+ "id": "neurips26-1537",
+ "title": "B2P-Corr: Batch-to-Population Gradient Estimators for Non-Decomposable Correlation Losses",
+ "authors": [
+  "Jingquan Yan",
+  "Yuwei Miao",
+  "Peiran Yu",
+  "Junzhou Huang"
+ ],
+ "venue": "NeurIPS 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "Deep Learning->Algorithms",
+ "role": "prior-vs-ours",
+ "role2": "pipeline",
+ "claim": "Naive mini-batch estimation of a dataset-level objective gives biased updates; adding a lagged, detached global statistic sketch restores the population gradient.",
+ "layout": "2 panels split by dashed line, left-to-right flow, red vs blue color coding",
+ "tags": [
+  "non-decomposable-loss",
+  "stochastic-optimization",
+  "gradient-bias",
+  "moving-average",
+  "correlation-metrics"
+ ],
+ "style": [
+  "colorful",
+  "math-heavy",
+  "minimal"
+ ],
+ "description": "A wide, short figure split by a vertical dashed gray line. The left panel, in red, is titled 'Naive Mini-Batch Correlation (Biased)'. It shows a three-step chain of red boxes: mini-batch moments, a coupled batch objective, and a biased update. The last step is labeled with the inequality E[∇ρ̂_B] ≠ ∇ρ. The right panel, in blue and titled 'B2P-Corr Framework (Ours)', shows a chain of boxes: current mini-batch (gray), live predictions (blue), and a decomposable pseudo-loss (blue). The chain ends in 'Population gradient', which is labeled as correct when the sketch is correct. Above this chain sits a green box for the lagged moment sketch, updated by a detached EMA from the mini-batch. A dashed 'stop-grad' arrow leads to a yellow 'Frozen moments' box. A second dashed arrow feeds those moments into the pseudo-loss as plug-in constants. The eye goes first to the red and blue titles.",
+ "caption": "Batch-to-population mismatch in naive mini-batch and our proposed B2P-Corr fix.",
+ "caption_source": "latex",
+ "abstract": "Correlation metrics such as the Pearson Correlation Coefficient (PCC) and Concordance Correlation Coefficient (CCC) are standard regression metrics and learning objectives, but their non-decomposable nature poses a challenge for stochastic optimization. Since these metrics depend on dataset-level moments (mean, variance, covariance), naive mini-batch training with local statistics yields biased, high-variance gradients whose expectation does not align with the population gradient. To bridge this ``batch-to-population'' (B2P) gap, we propose B2P-Corr, a novel framework that transforms correlation objectives into decomposable pseudo-losses driven by lightweight global ``moment sketches''. We introduce two efficient variants: B2P-EMA, which utilizes exponential moving averages and stop-gradient operators to ensure asymptotic gradient tracking with $O(B)$ cost ($B$ is batch size); and B2P-U, which uses sampled cross-batch U-statistic estimators and a reservoir-based stabilization with an $O(B)$ implementation. Theoretically, we quantify the $O(B^{-1})$ bias of naive mini-batch optimization, prove a moving-target tracking result for B2P-EMA under a fast-sketch / slow-parameter regime, and provide an idealized control-variate analysis for B2P-U. Experiments on two synthetic and three real-world datasets demonstrate B2P-Corr achieves stable optimization and higher correlation than naive mini-batch optimization with negligible overhead.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=B0h745L8OJ",
+  "arxiv": "https://arxiv.org/abs/2610.38171",
+  "pdf": "https://arxiv.org/pdf/2610.38171",
+  "proceedings": null,
+  "virtual": "https://neurips.cc/virtual/2026/poster/154786",
+  "code": "https://github.com/jyan97/B2P-Corr"
+ },
+ "license": "http://creativecommons.org/licenses/by/4.0/",
+ "img": "cc-by",
+ "image_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/images/neurips26-1537.png",
+ "thumb_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/thumbs/neurips26-1537.webp",
+ "figure_page": 3,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.6
+}

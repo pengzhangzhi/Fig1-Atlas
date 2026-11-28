@@ -1,0 +1,53 @@
+{
+ "id": "neurips26-3377",
+ "title": "DirectUV: Image-Conditioned UV Texture Generation with Surface-Aware Positional Encoding",
+ "authors": [
+  "Jiantao Lin",
+  "Yingjie Xu",
+  "Mingzhi Sheng",
+  "Yangkai Wei",
+  "Hao Chen",
+  "Yingcong Chen"
+ ],
+ "venue": "NeurIPS 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "Computer Vision->3D Rendering & Reconstruction",
+ "role": "pipeline",
+ "role2": null,
+ "claim": "A conditioned diffusion model is trained with geometry-aware attention coordinates, then run at inference with generated coarse inputs to produce the final output.",
+ "layout": "2 stacked panels (training/inference), left-to-right flow, extra block-details panel at far right",
+ "tags": [
+  "diffusion-transformer",
+  "conditional-generation",
+  "positional-encoding",
+  "training-vs-inference",
+  "3d-geometry"
+ ],
+ "style": [
+  "icon-heavy",
+  "colorful",
+  "photo/real data",
+  "text-heavy"
+ ],
+ "description": "A wide two-row diagram. The top row, TRAINING, and the bottom row, INFERENCE, are separated by a dashed line. Both rows read left to right under the column headers Inputs, Encoders, DiT, and Output. Inputs are a cartoon character reference image, a coarse UV atlas, a ground-truth UV atlas, and a 3D mesh wireframe. Pastel rounded boxes mark the CLIP, DINOv2, Flux VAE, and Rasterize CCM encoders. They feed small token and latent icons, which are concatenated and passed into a grey DiT stack of repeated blocks. In training, a yellow output panel shows the flow-matching loss. A grey dashed panel at the far right shows the DiT block internals, with AdaLN and self-attention using SAPE RoPE. In inference, a multi-view generator and a Project-to-UV step feed a single DiT with an Euler loop. The DiT output goes to a Flux VAE decoder, a UV texture, and a textured mesh. A dashed arrow labeled RoPE coords carries the colorful CCM map to the DiT.",
+ "caption": "Overview of DirectUV. Top (training). The reference image is encoded by CLIP [ref] into a pooled feature that drives AdaLN modulation, and by DINOv2 [ref] into patch tokens that feed the joint-attention stream. A coarse UV map is encoded by the frozen Flux VAE and channel-concatenated with the noisy UV latent to form the DiT input. The CCM supplies per-head RoPE coordinates for Multi-Level SAPE. The model is trained with the rectified flow-matching objective. Bottom (inference). The reference image drives both an off-the-shelf multi-view generator, whose outputs are projected to a coarse UV map, and the CLIP/DINOv2 encoders. Under this conditioning, $N$ Euler steps denoise $z_1$ to $z_0$, which is decoded by the frozen Flux VAE and wrapped onto the mesh as the final texture.",
+ "caption_source": "latex",
+ "abstract": "Generating high-quality UV textures for 3D meshes remains challenging. Multi-view projection pipelines suffer from occlusion and view inconsistency, and recent methods that generate textures directly in UV space still rely on auxiliary modules to supply 3D information, leaving the attention mechanism tied to UV-grid positions rather than to the underlying surface geometry. This mismatch limits coherence across seams and disconnected UV islands. We propose DirectUV, an image-conditioned UV texture diffusion framework that operates in the latent UV space of a pretrained image VAE, in which a Diffusion Transformer denoises the UV latent given a single input image and a coarse UV map. At its core, Surface-Aware Positional Encoding (SAPE) replaces the standard 2D-grid positional encoding with encodings derived from per-token 3D surface coordinates obtained via UV-to-surface correspondence. As positional encodings define the distance metric used by attention, SAPE enables tokens to interact according to 3D positional proximity derived from surface correspondence rather than UV-grid distance, restoring coherence across seams and disconnected islands. A multi-level extension further assigns different attention heads to progressively finer subdivisions of the same latent UV patch, allowing the model to reason about surface structure at multiple granularities. Experiments show that DirectUV produces sharper and more globally consistent textures than other baselines, with the largest improvements in occluded and view-unseen regions where projection-based methods leave gaps or stretched textures.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=NWZOrQHECk",
+  "arxiv": "https://arxiv.org/abs/2609.34651",
+  "pdf": "https://arxiv.org/pdf/2609.34651",
+  "proceedings": null,
+  "virtual": "https://neurips.cc/virtual/2026/poster/153147",
+  "code": null
+ },
+ "license": "http://arxiv.org/licenses/nonexclusive-distrib/1.0/",
+ "img": "none",
+ "image_url": null,
+ "thumb_url": null,
+ "figure_page": 3,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.95
+}

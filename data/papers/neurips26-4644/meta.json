@@ -1,0 +1,52 @@
+{
+ "id": "neurips26-4644",
+ "title": "Learning to Assimilate: Amortized Control for Autoregressive Diffusion",
+ "authors": [
+  "Prakhar Srivastava",
+  "Farrin Marouf Sofian",
+  "Francesco Immorlano",
+  "Kushagra Pandey",
+  "Stephan Mandt"
+ ],
+ "venue": "NeurIPS 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "Deep Learning->Generative Models and Autoencoders",
+ "role": "pipeline",
+ "role2": "before-after",
+ "claim": "A small learned controller steers a frozen generative dynamics model toward future observations, giving outputs closest to ground truth.",
+ "layout": "2 panels: left pipeline with zoomed inset, right image grid vs baselines",
+ "tags": [
+  "controller",
+  "frozen-backbone",
+  "data-assimilation",
+  "autoregressive-diffusion",
+  "amortized-control"
+ ],
+ "style": [
+  "icon-heavy",
+  "math-heavy",
+  "colorful",
+  "photo/real data"
+ ],
+ "description": "Two-panel figure. Panel (a), Overview, on the left, shows the method as a diagram. A zoomed inset on the far left details one physical step. It shows a trained controller u_psi (orange, flame icon) taking the observation y_tau and the previous state x_{t-1}. Its output is added to the frozen mean network mu (gray, snowflake icon) at each denoising step s = S...1, producing x_t. The main diagram unrolls this over physical time. At the top is a green preview window containing 'no obs' diamonds and a final observation y_tau. Below it, orange controllers feed gray frozen ARDM boxes. Blue circles for states x_{t-1}, x_t, x_{t+1}, ..., x_tau are chained by arrows. Panel (b), ERA5, on the right, is a grid of vorticity maps. Rows are times t=28, 29, 36 and 37. Columns are Obs (sparse dots or 'no obs'), Ground Truth, CADA (ours) and four baselines. The maps are dark red and blue.",
+ "caption": "A learned controller steers a frozen autoregressive diffusion model toward upcoming observations. (a) At each physical step, the controller $\\vu_\\psi$ (orange, trained) shifts every denoising step of the frozen \\acrshort{ardm} (gray) using the previous state $\\rvx_{t-1}$ and the (possibly empty) preview window (green). (b) \\acrshort{era5} 500 hPa vorticity under \\textsc{\\acrshort{ms}}-4 observations; rows are forecast times, columns show observations (gray: none; dots: sparse measurements), ground truth, and reconstructions. \\acrshort{cada} stays closest to ground truth, including at unobserved steps (full comparison: Fig. [ref]).",
+ "caption_source": "latex",
+ "abstract": "Autoregressive diffusion models (ARDMs) offer expressive priors for forecasting chaotic dynamics. However, maintaining consistency with sparse observations over long rollouts can require substantial test-time computation. We introduce Control-Augmented Data Assimilation (CADA), which trains a lightweight controller on top of a frozen ARDM to steer predictions toward future observations. Using a KL-regularized stochastic optimal control objective, the controller learns from short autoregressive rollouts to anticipate observations while staying close to the pretrained dynamics. At inference, it injects corrections at each denoising step without per-forecast optimization. Across two chaotic PDE benchmarks, CADA improves long-horizon accuracy, stability, and physical fidelity under sparse observations. On compact ERA5, it outperforms diffusion-based baselines in most regimes with over $10\\times$ faster inference than conditional diffusion baselines. Applied to frozen GenCast, CADA also reduces temperature errors across 12--48-hour forecasts with spatially sparse observations. Code is available at https://github.com/mandt-lab/cada.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=W4x1rXfdP2",
+  "arxiv": "https://arxiv.org/abs/2510.06637",
+  "pdf": "https://arxiv.org/pdf/2510.06637",
+  "proceedings": null,
+  "virtual": "https://neurips.cc/virtual/2026/poster/152028",
+  "code": "https://github.com/mandt-lab/cada"
+ },
+ "license": "http://creativecommons.org/licenses/by/4.0/",
+ "img": "cc-by",
+ "image_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/images/neurips26-4644.png",
+ "thumb_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/thumbs/neurips26-4644.webp",
+ "figure_page": 1,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.8
+}

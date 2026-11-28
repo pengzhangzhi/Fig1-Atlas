@@ -1,0 +1,53 @@
+{
+ "id": "iclr26-5044",
+ "title": "Planned Diffusion",
+ "authors": [
+  "Daniel Israel",
+  "Tian Jin",
+  "Ellie Cheng",
+  "Guy Van den Broeck",
+  "Aditya Grover",
+  "Suvinay Subramanian",
+  "Michael Carbin"
+ ],
+ "venue": "ICLR 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "Deep Learning->Everything Else",
+ "role": "pipeline",
+ "role2": null,
+ "claim": "A model first writes a sequential plan that sets the structure, then fills all independent chunks in parallel.",
+ "layout": "3 panels, top-to-bottom then right; color-coded boxes show one worked example",
+ "tags": [
+  "parallel-decoding",
+  "discrete-diffusion",
+  "autoregressive-planning",
+  "latency",
+  "language-models"
+ ],
+ "style": [
+  "text-heavy",
+  "colorful",
+  "minimal"
+ ],
+ "description": "The figure shows one real worked example in three numbered panels. Panel 1, \"Autoregressive Plan\", is at top left. It has a red box with the user prompt \"What is Aurora Borealis? Please be concise.\" Below it is a green box of control tags: topic=definition len=30, topic=description len=30, topic=location len=10, and eos. Panel 2, \"Programmatic Scaffold\", sits below it. It has three dashed span boxes labeled A (definition), B (description) and C (location). Each holds a row of [M] mask tokens with a total count of 30, 30 and 10. Panel 3, \"Diffusion Denoise\", fills the right column. Its three dashed span boxes contain the filled-in blue monospace sentences for definition, description and location. A red box at the bottom holds the final concatenated assistant answer. Color separates the stages: red for input and output, green for plan, blue for spans. The eye goes first to the colored boxes at top left.",
+ "caption": "A real example of planned diffusion. (1) The model first generates a sequential plan using control tags to define the structure and length of independent text chunks. (2) The runtime then translates this plan into a scaffold, initializing each chunk with a corresponding number of mask tokens. (3) The model denoises all chunks in parallel with diffusion, generating the text for each section simultaneously to produce the complete response.",
+ "caption_source": "latex",
+ "abstract": "Most large language models are autoregressive: they generate tokens one at a time. Discrete diffusion language models can generate multiple tokens in parallel, but sampling from them requires a denoising order: a strategy for deciding which tokens to decode at each step. Determining a good denoising order is difficult, and existing approaches use heuristics that create a steep trade-off between quality and latency. We propose planned diffusion, a system that trains the model to determine its own denoising order. Planned diffusion uses a single model that transitions between autoregressive and diffusion-based generation: first, the model autoregressively generates a plan that partitions the response into semantically independent chunks; second, the model denoises all chunks in parallel. The autoregressive plan enables the model to define the denoising order itself. On AlpacaEval, planned diffusion achieves 1.27x to 1.81x speedup over autoregressive generation with only 0.87% to 5.4% drop in win rate, establishing a new Pareto frontier for parallel generation with discrete diffusion. Additionally, planned diffusion's instruction following quality continues to improve with more finetuning compute, while the autoregressive baseline plateaus. Our implementation provides simple runtime knobs that offer tunable control over the quality-latency trade-off.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=wZN8debH4W",
+  "arxiv": "https://arxiv.org/abs/2510.18087",
+  "pdf": "https://proceedings.iclr.cc/paper_files/paper/2026/file/9fbae6362539ef7a151303c86cb51c00-Paper-Conference.pdf",
+  "proceedings": "https://proceedings.iclr.cc/paper_files/paper/2026/hash/9fbae6362539ef7a151303c86cb51c00-Abstract-Conference.html",
+  "virtual": "https://iclr.cc/virtual/2026/poster/10006720",
+  "code": "https://planned-diffusion.github.io/"
+ },
+ "license": "http://creativecommons.org/licenses/by/4.0/",
+ "img": "cc-by",
+ "image_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/images/iclr26-5044.png",
+ "thumb_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/thumbs/iclr26-5044.webp",
+ "figure_page": 1,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.9
+}

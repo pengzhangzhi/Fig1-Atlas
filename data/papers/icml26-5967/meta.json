@@ -1,0 +1,50 @@
+{
+ "id": "icml26-5967",
+ "title": "From Backward Spreading to Forward Replay: Revisiting Target Construction in LLM Parameter Editing",
+ "authors": [
+  "Wei Liu",
+  "Hongkai Liu",
+  "Zhiying Deng",
+  "Yee-Whye Teh",
+  "Wee Sun Lee"
+ ],
+ "venue": "ICML 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": null,
+ "role": "pipeline",
+ "role2": "prior-vs-ours",
+ "claim": "Existing editing methods compute one target at a late layer and spread it backward to earlier layers to guide edits.",
+ "layout": "3 stacked rows, top-to-bottom flow, numbered colored arrows with step circles",
+ "tags": [
+  "backward-spreading",
+  "parameter-editing",
+  "target-construction",
+  "baseline-procedure",
+  "layer-wise-targets"
+ ],
+ "style": [
+  "minimal",
+  "math-heavy"
+ ],
+ "description": "A black-and-white block diagram with colored arrows in three horizontal rows. The top row is the forward pass: input X flows through Layer1, Layer2 and Layer3, producing hidden states h0 to hn and ending at the loss H(Y, Y_target). A blue arrow labeled 'gradient descent' and circled ① leads from the loss back to a boxed target m3. A green arrow labeled 'backward spreading' and circled ② fans out from m3 to boxes m1, m2 and m3. Orange 'edit' arrows labeled ③ drop from each box onto the bottom row. The bottom row repeats the forward pass with edited layers (Layer1', Layer2', Layer3' in blue) whose outputs are m1, m2 and m3, then h'n-1, h'n and Y_target. The eye goes first to the colored arrows tracing the numbered steps.",
+ "caption": "(a) A toy example of the backward spreading of ideal hidden states (i.e., $m$) in model editing. \\textcolor{blue}{\\ding{172}} Getting the target hidden state of the final decisive layer by taking it as optimizable parameters and minimizing cross-entropy. \\textcolor{green}{\\ding{173}} Getting all the target hidden states of the decisive layers with backward spreading. \\textcolor{orange}{\\ding{174}} Using the target hidden states to guide the parameter editing.",
+ "caption_source": "latex",
+ "abstract": "LLM parameter editing methods commonly rely on computing an ideal target hidden-state at a target layer (referred as anchor point) and distributing the target vector to multiple preceding layers (commonly known as backward spreading) for cooperative editing. Although widely used for a long time, its underlying basis have not been systematically investigated. In this paper, we first conduct a systematic study of its foundations, which helps clarify its capability boundaries, practical considerations, and potential failure modes. Then, we propose a simple and elegant alternative that replaces backward spreading with forward-propagation. Instead of optimizing the target at the last editing layer, we optimize the anchor point at the first editing layer, and then propagate it forward to obtain accurate and mutually compatible target hidden-states for all subsequent editing layers. This approach achieves the same computational complexity as existing methods while producing more accurate layer-wise targets. Our method is simple, without interfering with either the computation of the initial target hidden state or any other components of the subsequent editing pipeline, and thus constituting a benefit for a wide range of LLM parameter editing methods.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=uIs0uPLrX4",
+  "arxiv": "https://arxiv.org/abs/2605.00358",
+  "pdf": "https://raw.githubusercontent.com/mlresearch/v306/main/assets/liu26ax/liu26ax.pdf",
+  "proceedings": "https://proceedings.mlr.press/v306/liu26ax.html",
+  "virtual": "https://icml.cc/virtual/2026/poster/61038",
+  "code": null
+ },
+ "license": "http://arxiv.org/licenses/nonexclusive-distrib/1.0/",
+ "img": "none",
+ "image_url": null,
+ "thumb_url": null,
+ "figure_page": 0,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.6
+}

@@ -1,0 +1,50 @@
+{
+ "id": "neurips26-0928",
+ "title": "DiffeoMorph: Learning Distributed 3D Morphogenesis with Rotation-Invariant Spectral Shape Matching",
+ "authors": [
+  "Seong Ho Pahng",
+  "Guoye Guan",
+  "Benjamin Fefferman",
+  "Sahand Hormoz"
+ ],
+ "venue": "NeurIPS 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "Applications->Genetics, Cell Biology, etc",
+ "role": "pipeline",
+ "role2": "concept",
+ "claim": "Matching shapes via rotation-aligned spectral coefficients lets a shared local update rule be trained end-to-end to self-organize into a target form.",
+ "layout": "3 panels: top spectral expansion strip, bottom-left pipeline boxes, right training progression",
+ "tags": [
+  "differentiable-simulation",
+  "spectral-representation",
+  "bilevel-optimization",
+  "multi-agent",
+  "rotation-invariance"
+ ],
+ "style": [
+  "math-heavy",
+  "plot",
+  "colorful"
+ ],
+ "description": "Three-panel figure. Panel (a), across the top, shows a bunny point cloud approximated as a sum of weighted 3D Zernike basis functions. Each term pairs a radial profile plot with a colored sphere, set equal to a cut-open colored sphere and multiplied by a coefficient such as c200 or c831. Panel (b), at lower left, is a boxed pipeline. A Morphogenesis box runs a differentiable agent-based simulation from t=0 to t=1, with a cell-communication graph and update equations beneath it. It feeds a Shape matching box with three steps: compute the Zernike spectrum, learn a quaternion to align spectra, and evaluate the L2 loss. An Optimization box below states the bilevel problem, and a thick feedback arrow labeled Iterate loops back to the start. Panel (c), at right, plots loss against outer-optimization step, with three marked points. Below it, a grid of point clouds shows a noisy ball gradually forming the bunny as optimization proceeds. Black, white and gray dominate, with colored spheres as accents.",
+ "caption": "Schematic of DiffeoMorph. (a) A 3D shape represented as a point cloud can be expressed as a linear combination of the 3D Zernike polynomials, composed of radial and angular parts. The expansion coefficients \\( C {\\coloneq} \\{c_{n\\ell m} \\} \\) are the Zernike moments. (b) The morphogenesis force model evolves the positions and gene expressions of agents based on their gene expressions and distances to neighbors, without access to absolute position information. The final evolved shape is compared to a target shape using their spectra given by 3D Zernike moments. A bilevel optimization procedure aligns the spectra by learning the unit quaternion (inner optimization) and updates model parameters to minimize the shape‐matching loss (outer optimization). (c) As the outer optimization proceeds, the simulation produces the desired target shape.",
+ "caption_source": "latex",
+ "abstract": "Biological systems can form complex three-dimensional structures through the collective behavior of agents that share a common update rule and operate without central control. How such distributed control gives rise to precise global patterns remains a central question not only in developmental biology but also in distributed robotics, programmable matter, and multi-agent learning. Here, we introduce DiffeoMorph, an end-to-end differentiable framework for learning a morphogenesis protocol that guides a population of agents to morph into a target 3D shape. Each agent updates its position and internal state using an SE(3)-equivariant graph neural network, based on its own internal state and signals received from other agents. To train this system, we introduce a new shape-matching loss based on 3D Zernike polynomials, which compares the predicted and target shapes as continuous spatial distributions, not as discrete point clouds, and is invariant to agent ordering, number of agents, and global orientation. To achieve rotation invariance while preserving reflection sensitivity, we include an alignment step that optimally rotates the predicted Zernike spectrum to match the target before computing the loss. We perform benchmarking to establish the advantages of our shape-matching loss over other standard distance metrics for shape comparison tasks. We then demonstrate that DiffeoMorph can form a range of complex shapes from minimally patterned initial conditions. DiffeoMorph provides a general framework for learning distributed control strategies for morphogenesis, swarm robotics, and programmable self-assembly.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=6WbQEdAa2e",
+  "arxiv": "https://arxiv.org/abs/2512.17129",
+  "pdf": "https://arxiv.org/pdf/2512.17129",
+  "proceedings": null,
+  "virtual": "https://neurips.cc/virtual/2026/poster/155314",
+  "code": "https://github.com/hormoz-lab/diffeomorph"
+ },
+ "license": "http://arxiv.org/licenses/nonexclusive-distrib/1.0/",
+ "img": "none",
+ "image_url": null,
+ "thumb_url": null,
+ "figure_page": 2,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.85
+}

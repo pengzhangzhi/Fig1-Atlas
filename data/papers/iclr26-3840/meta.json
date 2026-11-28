@@ -1,0 +1,53 @@
+{
+ "id": "iclr26-3840",
+ "title": "Revisiting Parameter Server in LLM Post-Training",
+ "authors": [
+  "Xinyi Wan",
+  "Penghui Qi",
+  "Guangxing Huang",
+  "Chaoyi Ruan",
+  "Min Lin",
+  "Jialin Li"
+ ],
+ "venue": "ICLR 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": null,
+ "role": "problem-setup",
+ "role2": "analysis-finding",
+ "claim": "Collective communication forces per-layer synchronization barriers, so devices with lighter workloads sit idle while waiting for the slowest one.",
+ "layout": "1 panel, 2 stacked device timelines, left-to-right, vertical barrier lines",
+ "tags": [
+  "synchronization-barrier",
+  "load-imbalance",
+  "data-parallel",
+  "idle-time",
+  "collective-communication"
+ ],
+ "style": [
+  "minimal",
+  "colorful"
+ ],
+ "description": "A single Gantt-style timeline with two rows, Device 0 on top and Device 1 below, and a Time arrow at the bottom left. Each row is split into colored blocks labeled F (forward) and B (backward). Blue shades cover the first group of layers and green shades cover the second. Bold vertical black lines run through both rows at each layer boundary and mark the synchronization barriers. In most segments Device 1's block is shorter than Device 0's. The difference appears as gray idle blocks that fill the rest of the segment up to the next barrier. The eye is drawn to these gray gaps. An orange OS block (optimizer step) spans both rows at the far right. The figure shows that devices with smaller workloads wait on the slowest device at every layer.",
+ "caption": "Collective communications introduces per-layer synchronization barriers in FSDP.",
+ "caption_source": "latex",
+ "abstract": "Modern data parallel (DP) training favors collective communication over parameter servers (PS) for its simplicity and efficiency under balanced workloads. However, the balanced workload assumption no longer holds in large language model (LLM) post-training due to the high variance in sequence lengths. Under imbalanced workloads, collective communication creates synchronization barriers, leading to under-utilization of devices with smaller workloads. This change in training dynamics calls for a revisit of the PS paradigm for its robustness to such imbalance. We propose \\textbf{On-Demand Communication (ODC)}, which adapts PS into Fully Sharded Data Parallel (FSDP) by replacing collective all-gather and reduce-scatter with direct point-to-point communication. Compared to FSDP, ODC reduces the synchronization barrier from once per layer to once per minibatch and decouples the workload on each device so that faster workers are not stalled. It also enables simpler and more effective load balancing at the minibatch level. Across diverse LLM post-training tasks, ODC consistently improves device utilization and training throughput, achieving up to a 36\\% speedup over standard FSDP. These results demonstrate that ODC is a superior fit for the prevalent imbalanced workloads in LLM post-training. Our implementation of ODC and integration with FSDP is open-sourced at https://github.com/sail-sg/odc.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=iIEEgI6WsF",
+  "arxiv": "https://arxiv.org/abs/2601.19362",
+  "pdf": "https://proceedings.iclr.cc/paper_files/paper/2026/file/e372bfe389adbf742a759396f0170356-Paper-Conference.pdf",
+  "proceedings": "https://proceedings.iclr.cc/paper_files/paper/2026/hash/e372bfe389adbf742a759396f0170356-Abstract-Conference.html",
+  "virtual": "https://iclr.cc/virtual/2026/poster/10007979",
+  "code": null
+ },
+ "license": "http://creativecommons.org/licenses/by/4.0/",
+ "img": "cc-by",
+ "image_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/images/iclr26-3840.png",
+ "thumb_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/thumbs/iclr26-3840.webp",
+ "figure_page": 1,
+ "qc_flags": [
+  "tiny-crop"
+ ],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.6
+}

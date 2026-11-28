@@ -1,0 +1,53 @@
+{
+ "id": "icml26-3039",
+ "title": "Prism: Spectral-Aware Block-Sparse Attention",
+ "authors": [
+  "Xinghao Wang",
+  "Pengyu Wang",
+  "Xiaoran Liu",
+  "Fangxu Liu",
+  "Jason Chu",
+  "Kai Song",
+  "Xipeng Qiu"
+ ],
+ "venue": "ICML 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "Deep Learning->Attention Mechanisms",
+ "role": "analysis-finding",
+ "role2": "concept",
+ "claim": "Attention decomposes by frequency band: low-frequency dimensions yield global semantic structure, while high-frequency dimensions yield local positional patterns, and the full spectrum is their sum.",
+ "layout": "3 square heatmaps in a row, left-to-right, low, high, full spectrum",
+ "tags": [
+  "attention-patterns",
+  "spectral-decomposition",
+  "rope",
+  "sparse-attention",
+  "long-context"
+ ],
+ "style": [
+  "plot",
+  "photo/real data",
+  "colorful"
+ ],
+ "description": "Three side-by-side heatmaps show lower-triangular causal attention score matrices drawn in the viridis colormap (dark purple to yellow). The upper-right triangle of each is flat dark purple because of the causal mask. The left panel, the low-frequency band, shows mostly vertical and horizontal stripes and blocky streaks, which are global, semantic, column-like dependencies. The middle panel, the high-frequency band, shows many diagonal slash lines parallel to the main diagonal, which are local relative-position patterns, and a bright diagonal edge. The right panel, the full spectrum, superimposes both: vertical stripes appear together with diagonal slashes. There are no arrows, labels or text inside the image. The eye goes first to the bright diagonal textures in the middle and right panels.",
+ "caption": "Spectral Disentanglement of Attention Patterns. We visualize the attention score matrices computed using different spectral bands of RoPE. (Left) Low-Frequency Band: Captures global semantic dependencies (e.g., block-sparse patterns / vertical lines), acting as the semantic backbone. (Middle) High-Frequency Band: Strictly encodes fine-grained relative locality (e.g., slash lines), which is critical for local coherence. (Right) Full Spectrum: The superposition of both patterns.",
+ "caption_source": "latex",
+ "abstract": "Block-sparse attention is promising for accelerating long-context LLM pre-filling, yet identifying relevant blocks efficiently remains a bottleneck. Existing methods typically employ coarse-grained attention as a proxy for block importance estimation, but often resort to expensive token-level searching or scoring, resulting in significant selection overhead. In this work, we trace the inaccuracy of standard coarse-grained attention via mean pooling to a theoretical root cause: the interaction between mean pooling and Rotary Positional Embeddings (RoPE). We prove that mean pooling acts as a low-pass filter that induces destructive interference in high-frequency dimensions, effectively creating a \"blind spot\" for local positional information (e.g., slash patterns). To address this, we introduce Prism, a training-free spectral-aware approach that decomposes block selection into high-frequency and low-frequency branches. By applying energy-based temperature calibration, Prism restores the attenuated positional signals directly from pooled representations, enabling block importance estimation using purely block-level operations, thereby improving efficiency. Extensive evaluations confirm that Prism maintains accuracy parity with full attention while delivering up to $\\mathbf{5.1\\times}$ speedup.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=SpQABsjB9Y",
+  "arxiv": "https://arxiv.org/abs/2602.08426",
+  "pdf": "https://raw.githubusercontent.com/mlresearch/v306/main/assets/wang26ic/wang26ic.pdf",
+  "proceedings": "https://proceedings.mlr.press/v306/wang26ic.html",
+  "virtual": "https://icml.cc/virtual/2026/poster/63882",
+  "code": "https://github.com/xinghaow99/prism"
+ },
+ "license": "http://creativecommons.org/licenses/by/4.0/",
+ "img": "cc-by",
+ "image_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/images/icml26-3039.png",
+ "thumb_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/thumbs/icml26-3039.webp",
+ "figure_page": 1,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.85
+}

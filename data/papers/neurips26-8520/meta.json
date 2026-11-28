@@ -1,0 +1,51 @@
+{
+ "id": "neurips26-8520",
+ "title": "RefDecoder: Enhancing Visual Generation with Conditional Video Decoding",
+ "authors": [
+  "Xiang Fan",
+  "Yuheng Wang",
+  "Bohan Fang",
+  "Jason Ren",
+  "Ranjay Krishna"
+ ],
+ "venue": "NeurIPS 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "Computer Vision->Image and Video Generation",
+ "role": "prior-vs-ours",
+ "role2": "before-after",
+ "claim": "Standard decoders lose fine detail after the latent round trip; adding a high-fidelity reference signal restores it without changing the generator.",
+ "layout": "Top: input image plus two stacked rows; bottom: 3×4 sample gallery; red zoom boxes",
+ "tags": [
+  "reference-conditioning",
+  "decoder",
+  "detail-preservation",
+  "plug-and-play",
+  "video-generation"
+ ],
+ "style": [
+  "photo/real data",
+  "colorful",
+  "minimal"
+ ],
+ "description": "The top half has a large aerial photo of a city skyline on the left, which serves as the reference image. To its right are two stacked rows separated by a black rule. The first row is labeled \"Traditional Video Gen\" and shows a gray box (VAE Encoder + Video DiT) feeding a gray VAE Decoder trapezoid. The second row is labeled \"RefDecoder\" in blue. It has the same VAE Encoder + Video DiT box, plus a blue-outlined \"Reference Encoder (high-fidelity)\" box feeding a blue RefDecoder trapezoid. Each row ends in an output frame with a red box and dotted lines zooming into a skyscraper facade, so the sharper detail in the RefDecoder output can be compared. The bottom half is a 3×4 grid of generated video frames: a watch mechanism, a café street scene and a floating castle. It shows temporal consistency across frames.",
+ "caption": "(a) \\model improves video VAE decoders by conditioning on a high-fidelity reference signal that bypasses the lossy VAE latent round trip. Given the encoded latents, the decoder injects fine-grained details that are not preserved in the VAE latent space, improving reconstruction fidelity and downstream generation quality. (b) \\model integrates with existing video generation pipelines (Wan 2.1 shown) without requiring costly re-training of the diffusion model.",
+ "caption_source": "latex",
+ "abstract": "Video generation powers a vast array of downstream applications. However, while the de facto standard, i.e., latent diffusion models, typically employ heavily conditioned denoising networks, their decoders often remain unconditional. We observe that this architectural asymmetry leads to significant loss of detail and inconsistency relative to the input image. To address this, we argue that the decoder requires equal conditioning to preserve structural integrity. We introduce RefDecoder, a reference-conditioned video VAE decoder by injecting high-fidelity reference image signal directly into the decoding process via reference attention. Specifically, a lightweight image encoder maps the reference frame into the detail-rich high-dimensional tokens, which are co-processed with the denoised video latent tokens at each decoder up-sampling stage. We demonstrate consistent improvements across several distinct decoder backbones (e.g., Wan 2.1 and VideoVAE+), achieving up to +2.1 dB PSNR over the unconditional baselines on the Inter4K, WebVid, and Large Motion reconstruction benchmarks. Notably, RefDecoder can be directly swapped into existing video generation systems without additional fine-tuning, and we report across-the-board improvements in subject consistency, background consistency, and overall quality scores on the VBench I2V benchmark. Beyond I2V, RefDecoder generalizes well to a wide range of visual generation tasks such as style transfer and video editing refinement.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=wtsf0kmI37",
+  "arxiv": "https://arxiv.org/abs/2605.15196",
+  "pdf": "https://arxiv.org/pdf/2605.15196",
+  "proceedings": null,
+  "virtual": "https://neurips.cc/virtual/2026/poster/148568",
+  "code": "https://refdecoder.github.io/"
+ },
+ "license": "http://creativecommons.org/licenses/by-sa/4.0/",
+ "img": "cc-by-sa",
+ "image_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/images/neurips26-8520.png",
+ "thumb_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/thumbs/neurips26-8520.webp",
+ "figure_page": 0,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.6
+}

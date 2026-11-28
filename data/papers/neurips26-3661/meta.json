@@ -1,0 +1,51 @@
+{
+ "id": "neurips26-3661",
+ "title": "Fractional Power-of-Two Quantization for Efficient and Effective Multiplier-Free LLM Inference",
+ "authors": [
+  "Sunghyun Wee",
+  "Geunjae Choi",
+  "Hyeonjin Kim",
+  "Suyoung Kim",
+  "Nojun Kwak"
+ ],
+ "venue": "NeurIPS 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "Applications->Language, Speech and Dialog",
+ "role": "prior-vs-ours",
+ "role2": "pipeline",
+ "claim": "Conventional multiplier and shift-only datapaths are costly or inaccurate; ours adds a tiny adder for a middle-ground hardware cost.",
+ "layout": "4 panels, left-to-right, cost labels under each, detail inset (d)",
+ "tags": [
+  "hardware-efficiency",
+  "quantization",
+  "power-of-two",
+  "datapath",
+  "cost-comparison"
+ ],
+ "style": [
+  "minimal",
+  "colorful",
+  "icon-heavy"
+ ],
+ "description": "Four small block diagrams sit side by side. Panels (a) INT4 MAC, (b) PoT and (c) FPoT (Ours) each show inputs at the top (blue activation box, yellow weight or exponent box). The inputs feed a compute block: a red 4x4 multiplier in (a), a green barrel shifter in (b), and in (c) a barrel shifter plus a pink ×√2 (1-add) block. The compute blocks feed a light-green ACC box. Italic colored cost labels sit below each panel: 1.00× in red, 0.38× in green, ~0.50× in orange. Panel (c) has even e and odd e routing labels. Panel (d) details the √2 approximation: y = x≪⌊e/2⌋ branches into y and y≫1, which feed an ADD box. The text below reads 1.5y with a 6.1% error. The eye goes first to the colored blocks and the cost labels.",
+ "caption": "PE architecture: INT4 multiplier, PoT barrel shifter, and FPoT (Ours). FPoT adds one adder and a MUX; $\\sqrt{2}\\,y \\approx y+y{\\gg}1 = 1.5y$ ($6.1%$ error, absorbed by approximate-grid quantization, \\S[ref]).",
+ "caption_source": "latex",
+ "abstract": "Large Language Models (LLMs) demand efficient inference, where the multiply-accumulate (MAC) operations in linear projections dominate compute and energy cost. Post-training quantization (PTQ) reduces this cost by mapping weights and activations to low-bit integers. Power-of-Two (PoT) weight quantization promises efficient multiplier-free LLM inference via shift-add logic, but suffers significant accuracy degradation at low bit-widths due to its coarse base-2 quantization grid. We introduce Fractional PoT (FPoT), a base-$\\sqrt{2}$ (half-octave) fractional PoT grid that achieves practical 4-bit weight quantization while preserving a fully integer shift-add datapath. The method combines (i) the base-$\\sqrt{2}$ weight grid with uniform integer activations, (ii) a calibration-time grid-alignment refinement absorbed into the static per-channel scale, and (iii) a lightweight 1-adder $\\sqrt{2}$ approximation whose error is absorbed during weight calibration via approximate-grid quantization, yielding a processing element (PE) with significantly fewer gates than a 4-bit integer multiplier. On Llama-3-8B with 4-bit weight and activation quantization, FPoT improves zero-shot commonsense reasoning performance by 8.72% relative to the PoT baseline, while maintaining performance close to the uniform integer baseline, with only a negligible 0.4%p degradation. These results hold across various configurations spanning seven models and three bit-widths. Furthermore, FPoT can be integrated with state-of-the-art LLM PTQ methods, demonstrating framework-agnostic applicability.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=PZZZiYPLst",
+  "arxiv": "https://arxiv.org/abs/2610.21257",
+  "pdf": "https://arxiv.org/pdf/2610.21257",
+  "proceedings": null,
+  "virtual": "https://neurips.cc/virtual/2026/poster/152899",
+  "code": null
+ },
+ "license": "http://arxiv.org/licenses/nonexclusive-distrib/1.0/",
+ "img": "none",
+ "image_url": null,
+ "thumb_url": null,
+ "figure_page": 3,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.8
+}

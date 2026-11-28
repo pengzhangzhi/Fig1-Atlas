@@ -1,0 +1,49 @@
+{
+ "id": "icml26-3255",
+ "title": "When Is Rank-1 Enough? Geometry-Guided Initialization for Parameter-Efficient Fine-Tuning",
+ "authors": [
+  "Haoran Zhao",
+  "Caren Han",
+  "Eduard Hovy"
+ ],
+ "venue": "ICML 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "Deep Learning->Foundation Models",
+ "role": "teaser-result",
+ "role2": "concept",
+ "claim": "A geometry-aware initialization aligned with the dominant gap direction rescues extreme low-rank adaptation, matching or beating higher-rank baselines.",
+ "layout": "3 panels: two stacked bar charts left, large 3D cone diagram right",
+ "tags": [
+  "low-rank",
+  "initialization",
+  "modality-gap",
+  "parameter-efficiency",
+  "geometric-intuition"
+ ],
+ "style": [
+  "plot",
+  "colorful",
+  "3d-render"
+ ],
+ "description": "The figure has three panels. On the left, two stacked bar charts compare Random (r=1), Random (r=8) and Gap-Init (r=1). Panel (a) shows COCO captioning CIDEr: r=1 is low (about 98), r=8 is about 138, and Gap-Init is highlighted in green at about 140, just above a dashed red 'Full Fine-tuning Limit (140.4)' line labeled 'Surpasses Full FT'. Panel (b) shows VQAv2 accuracy: random r=1 collapses to about 15 (red 'Collapse!' label), r=8 is about 50, and Gap-Init is about 57 with '+41.6% vs Random'. On the right, panel (c) shows a blue cone for vision embeddings and a salmon cone for text embeddings, both filled with scattered dots. A long green arrow labeled 'Modality Gap / Translation' joins them, marked as aligned and optimal gradient flow. A red arrow perpendicular to it is labeled orthogonal, gradient ≈ 0, stuck. Green highlights Gap-Init throughout.",
+ "caption": "Gap-Init stabilizes rank-1 adaptation via geometry-aware initialization across multimodal tasks and training settings. (a) Image Captioning (COCO). Rank-1 Gap-Init matches or slightly exceeds strong rank-8 baselines in this setting while using substantially fewer trainable parameters. (b) Visual Question Answering (VQAv2). Gap-Init improves rank-1 accuracy over random initialization and yields stable convergence. (c) Geometric intuition. Vision and text embeddings form anisotropic cones; their mismatch admits a translation-like component that is particularly consequential for optimization at rank 1. Random rank-1 initialization typically has negligible projection onto this axis, suppressing useful gradient flow. Gap-Init aligns the update direction with the estimated gap vector, improving optimization dynamics from the first step and throughout training across tasks.",
+ "caption_source": "latex",
+ "abstract": "Parameter-efficient fine-tuning (PEFT) is a standard way to adapt multimodal large language models, yet extremely low-rank settings -- especially rank-1 LoRA -- are often unstable. We show that this instability is not solely due to limited capacity: in the rank-1 regime, optimization is highly sensitive to the update direction. Concretely, pretrained vision and text features form mismatched anisotropic regions, yielding a dominant \"gap\" direction that acts like a translation component and disproportionately steers early gradients under rank-1 constraints. Analyzing pretrained representations, we identify a modality-gap axis that dominates early gradient flow, while a random rank-1 initialization is unlikely to align with it, leading to weak gradients and training collapse. We propose Gap-Init, a geometry-aware initialization that aligns the rank-1 LoRA direction with an estimated modality-gap vector from a small calibration set, while keeping the initial LoRA update zero. Across multiple vision-language tasks and backbones, Gap-Init consistently stabilizes rank-1 training and can match or outperform strong rank-8 baselines. Our results suggest that at the extreme low-rank limit, initial alignment can matter as much as rank itself.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=Umu6IsAUbS",
+  "arxiv": "https://arxiv.org/abs/2602.01522",
+  "pdf": "https://raw.githubusercontent.com/mlresearch/v306/main/assets/zhao26o/zhao26o.pdf",
+  "proceedings": "https://proceedings.mlr.press/v306/zhao26o.html",
+  "virtual": "https://icml.cc/virtual/2026/poster/63669",
+  "code": null
+ },
+ "license": "http://arxiv.org/licenses/nonexclusive-distrib/1.0/",
+ "img": "none",
+ "image_url": null,
+ "thumb_url": null,
+ "figure_page": 1,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.6
+}

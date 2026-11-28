@@ -1,0 +1,56 @@
+{
+ "id": "icml26-4869",
+ "title": "Credit-assigned Policy Gradient for Early Stage Retrieval in Two-stage Ranking",
+ "authors": [
+  "Haruka Kiyohara",
+  "Mihaela Curmei",
+  "Ariel Evnine",
+  "Shankar Kalyanaraman",
+  "Israel Nir",
+  "Ana-Roxana Pop",
+  "Nitzan Razin",
+  "Sarah Dean",
+  "Thorsten Joachims",
+  "Udi Weinsberg"
+ ],
+ "venue": "ICML 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "Reinforcement Learning->Online",
+ "role": "problem-setup",
+ "role2": "pipeline",
+ "claim": "Only the early stage of a two-stage ranker is trainable, and its learning signal must propagate back through a fixed downstream stage.",
+ "layout": "1 panel, left-to-right flow, curved gradient arrows over top, brackets below",
+ "tags": [
+  "two-stage-ranking",
+  "recommender-systems",
+  "policy-gradient",
+  "credit-assignment",
+  "candidate-retrieval"
+ ],
+ "style": [
+  "icon-heavy",
+  "colorful",
+  "minimal"
+ ],
+ "description": "A single left-to-right diagram of a two-stage recommender pipeline. On the left, an item pool A drawn as a rounded box with music-note icons, grouped in blobs, and a database icon. Black arrows pass through a pink column labelled model 1, model 2, ..., model M, the early-stage ranker, into a box of top-K candidates. From there an arrow passes through a light-blue column labelled (complex) model, the late-stage ranker, into a stack of bars forming a ranked list of L items. A red solid arrow labelled policy gradient propagation arcs over the top from the ranked list back to the early stage. A blue dashed arrow points back to the late stage. Beneath, a red bracket marks the Early-Stage Ranker (optimize) and a blue bracket marks the Late-Stage Ranker (fixed/given). Bottom right shows |A| >> K > L. The eye goes first to the pink and blue columns and the red arrow.",
+ "caption": "Illustration of the two-stage ranking problem in a large-scale recommender system.",
+ "caption_source": "latex",
+ "abstract": "Large-scale search, recommendation, and retrieval-augmented generation (RAG) systems typically employ a two-stage architecture: an early-stage ranker (ESR) generates a candidate set, which is subsequently re-ranked by a late-stage ranker (LSR). While there are many reinforcement learning (RL) methods for training the LSR, end-to-end training of the ESR has proven challenging. In particular, naive application of \"vanilla\" policy gradient (V-PG) is not scalable for candidate-set sizes relevant for practical use due to exploding variance. This issue arises because V-PG propagates the gradient to the joint probability of the candidate sets, ignoring the contribution of each specific item in the candidate set to the reward. To mitigate this issue, we propose a novel \"credit-assigned\" policy gradient (CA-PG), which computes gradients with respect to the probability that the target item is chosen in any candidate set, i.e. marginalizing over all candidate sets that contain it. Our theoretical analysis reveals that CA-PG significantly reduces the variance of V-PG by marginalizing over the specific composition of the candidate set, while preserving the ability to learn the correct ranking of items under a reasonably aligned LSR policy. Experiments on both synthetic and real-world data demonstrate that CA-PG improves the convergence speed and training stability for ESRs utilizing the canonical Plackett-Luce model, especially when the candidate-set size is large.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=jnguJEJmYP",
+  "arxiv": "https://arxiv.org/abs/2605.26385",
+  "pdf": "https://raw.githubusercontent.com/mlresearch/v306/main/assets/kiyohara26a/kiyohara26a.pdf",
+  "proceedings": "https://proceedings.mlr.press/v306/kiyohara26a.html",
+  "virtual": "https://icml.cc/virtual/2026/poster/62104",
+  "code": "https://github.com/facebookresearch/early_stage_retrieval"
+ },
+ "license": "http://arxiv.org/licenses/nonexclusive-distrib/1.0/",
+ "img": "none",
+ "image_url": null,
+ "thumb_url": null,
+ "figure_page": 0,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.6
+}

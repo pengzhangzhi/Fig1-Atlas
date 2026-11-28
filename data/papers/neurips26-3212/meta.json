@@ -1,0 +1,50 @@
+{
+ "id": "neurips26-3212",
+ "title": "VIGOR: Zero-Shot Visual Generalization via Latent-Space Consistency in Model-Based Reinforcement Learning",
+ "authors": [
+  "Mingyu Park",
+  "Samyeul Noh",
+  "Hyun Myung",
+  "Donghwan Lee"
+ ],
+ "venue": "NeurIPS 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "Reinforcement Learning->Deep RL",
+ "role": "problem-setup",
+ "role2": "concept",
+ "claim": "Visual distractions push latents out of distribution, and errors compound over rollouts; our method realigns perturbed trajectories with in-distribution ones.",
+ "layout": "2 panels split by dashed line, left-to-right, latent manifold diagrams with arrow",
+ "tags": [
+  "model-based-rl",
+  "distribution-shift",
+  "error-compounding",
+  "latent-space",
+  "robustness"
+ ],
+ "style": [
+  "colorful",
+  "icon-heavy",
+  "math-heavy"
+ ],
+ "description": "The left panel is a two-row pipeline. The top row shows clean training frames of a walker, passed through a gray encoder h_θ to give z_t. A blue latent-dynamics block d_θ, inside a green dashed box marked 'H×', takes z_t and the action a_t and outputs z_{t+1}. The bottom row repeats this for a distracted bedroom-background frame. Its latents and outputs are drawn in red as z'_t and z'_{t+1}. A thick dashed vertical line separates the panels. The right panel shows a large ellipse for the latent space Z. A blue circle inside it, Z^train, holds a black trajectory. Red trajectories sit outside the circle and drift away. A gold arrow labeled VIGOR points to a circle where the red and black trajectories overlap. A legend at the bottom explains the encoder and dynamics icons.",
+ "caption": "Challenges of unseen visual distractions. Left: During training (top), clean observations $x_t^{train}$ are encoded into in-distribution latents $z_t \\in \\mathcal{Z}^{train}$, where the dynamics model $d_\\theta$ produces accurate transitions. At test time (bottom), visually distracted observations $x_t^{test}$ yield out-of-distribution latents $z'_t \\notin \\mathcal{Z}^{train}$, causing erroneous transitions. Right: These deviations compound over horizon $H$, leading to divergent rollouts and planning failures. The proposed VIGOR framework targets this failure mode by aligning perturbed rollouts $(z'_t, z'_{t+1}, \\dots, z'_{t+H})$ with their in-distribution counterparts $(z_t, z_{t+1}, \\dots, z_{t+H})$, anchoring predictions to the task-relevant manifold $\\mathcal{Z}^{train}$ (mechanism described in Section [ref]).",
+ "caption_source": "latex",
+ "abstract": "Model-based reinforcement learning (MBRL) achieves strong sample efficiency by planning in learned latent dynamics but degrades substantially under unseen visual distractions such as background, lighting, or camera changes. Unlike model-free RL, where encoder perturbations affect only single-step predictions, MBRL suffers from a two-level vulnerability: distractions push encoder outputs out of distribution, and these errors compound through recursive latent rollouts. We propose visual generalization via latent-space consistency in model-based RL (VIGOR), which enables zero-shot generalization to unseen distractions while retaining its backbone's sample efficiency. VIGOR comprises three interdependent components: (i) asymmetric weak-to-strong augmentation, which pairs weak-only and weak-to-strong latent views within a batch; (ii) dynamics-level consistency, which enforces augmentation-invariant transition predictions via direct latent regression; and (iii) encoder-level stabilization, which prevents encoder drift under the cross-augmentation supervision of (ii). On the DeepMind Control Suite (DMC) and Robosuite, VIGOR instantiated on TD-MPC2 outperforms state-of-the-art model-free and model-based baselines in zero-shot generalization, surpassing the second-best baseline by 3.4% on DMC and 43.6% on Robosuite, with sample efficiency comparable to its backbone and fewer environment interactions than the other baselines. Ablations show that VIGOR is augmentation-agnostic: augmentations from distinct perturbation families preserve strong generalization, confirming that latent-space consistency, not the augmentation choice, drives robustness. A second instantiation on DreamerV3, a structurally distinct recurrent state-space model, also improves zero-shot generalization on both benchmarks, indicating backbone-agnostic benefits. Code and videos: https://vigor-gen.github.io/.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=MKDlrS5Ftr",
+  "arxiv": "https://arxiv.org/abs/2610.02801",
+  "pdf": "https://arxiv.org/pdf/2610.02801",
+  "proceedings": null,
+  "virtual": "https://neurips.cc/virtual/2026/poster/153294",
+  "code": "https://vigor-gen.github.io"
+ },
+ "license": "http://creativecommons.org/licenses/by/4.0/",
+ "img": "cc-by",
+ "image_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/images/neurips26-3212.png",
+ "thumb_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/thumbs/neurips26-3212.webp",
+ "figure_page": 1,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.62
+}

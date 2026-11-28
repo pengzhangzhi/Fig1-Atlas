@@ -1,0 +1,51 @@
+{
+ "id": "icml26-4028",
+ "title": "DuetServe: Harmonizing Prefill and Decode for LLM Serving via Adaptive GPU Multiplexing",
+ "authors": [
+  "Lei Gao",
+  "Chaoyi Jiang",
+  "Hossein Entezari Zarch",
+  "Daniel Wong",
+  "Mark D. HIll",
+  "Murali Annavaram"
+ ],
+ "venue": "ICML 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "General Machine Learning->Hardware and Software",
+ "role": "analysis-finding",
+ "role2": "problem-setup",
+ "claim": "Profiling shows that a fixed token budget causes saturation and attention growth that inflate latency, which motivates adaptive phase-aware resource allocation.",
+ "layout": "3 panels left-to-right, twin y-axes with line overlaid on stacked bars",
+ "tags": [
+  "profiling",
+  "latency-breakdown",
+  "llm-serving",
+  "bottleneck-analysis",
+  "motivation"
+ ],
+ "style": [
+  "plot",
+  "colorful"
+ ],
+ "description": "Three side-by-side plots with a shared legend palette. The left panel, 'Linear Layer Benchmarking', plots normalized TFLOPS (blue, left axis) and latency in ms (orange, right axis) against token budget from 32 to 16384. Solid lines are H100 and dashed lines are A100. Throughput saturates near 2K tokens for A100 and 8K for H100, while latency shoots up past saturation. The middle panel, 'Prefill Phase', shows stacked bars of latency by component (linear in blue, norm in orange, silu in green, attn in red) across batch size × prompt length configurations. A black line with dots shows the attention share of total time, rising to about 23%. The right panel, 'Decode Phase', has the same layout across batch size × context length. Attention grows to dominate the bars, and its share rises to about 85%.",
+ "caption": "(a) Linear layer benchmarking shows A100 and H100 saturate near 2K and 8K tokens. (b) Prefill latency under an 8K budget violates TBT SLOs despite full utilization. (c) Decode latency rises with longer contexts as KV cache grows even under the same budget.",
+ "caption_source": "latex",
+ "abstract": "Modern LLM serving systems must sustain high throughput while meeting strict latency SLOs across two distinct inference phases: compute-intensive prefill and memory-bound decode phases. Existing approaches either (1) aggregate both phases on shared GPUs, leading to interference between prefill and decode phases, which degrades Time-Between-Tokens (TBT); or (2) disaggregate the two phases across GPUs, improving latency but wasting resources through duplicated models and KV cache transfers. We present DuetServe, a unified LLM serving framework that achieves disaggregation-level isolation within a single GPU. DuetServe operates in aggregated mode by default and dynamically activates SM-level GPU spatial multiplexing when TBT degradation is predicted. Its key idea is to decouple prefill and decode execution only when needed through fine-grained, adaptive SM partitioning that provides phase isolation only when contention threatens latency service level objectives. DuetServe integrates (1) an attention-aware roofline model to forecast iteration latency, (2) a partitioning optimizer that selects the optimal SM split to maximize throughput under TBT constraints, and (3) an interruption-free execution engine that eliminates CPU-GPU synchronization overhead. Evaluations show that DuetServe improves total throughput by up to 1.3x while maintaining low generation latency compared to state-of-the-art frameworks.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=bu2Pcce6Rq",
+  "arxiv": "https://arxiv.org/abs/2511.04791",
+  "pdf": "https://raw.githubusercontent.com/mlresearch/v306/main/assets/gao26m/gao26m.pdf",
+  "proceedings": "https://proceedings.mlr.press/v306/gao26m.html",
+  "virtual": "https://icml.cc/virtual/2026/poster/62917",
+  "code": null
+ },
+ "license": "http://creativecommons.org/licenses/by-nc-nd/4.0/",
+ "img": "none",
+ "image_url": null,
+ "thumb_url": null,
+ "figure_page": 2,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.8
+}

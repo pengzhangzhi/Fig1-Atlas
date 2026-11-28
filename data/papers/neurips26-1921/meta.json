@@ -1,0 +1,52 @@
+{
+ "id": "neurips26-1921",
+ "title": "Midpoint Generative Models",
+ "authors": [
+  "Daniil Shlenskii",
+  "Nikita Gushchin",
+  "Lev Novitskiy",
+  "Dmitry V. Dylov",
+  "Aleksandr Korotin"
+ ],
+ "venue": "NeurIPS 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "Deep Learning->Generative Models and Autoencoders",
+ "role": "pipeline",
+ "role2": null,
+ "claim": "A generator's output is paired with real data, randomly time-flipped via a symmetric interpolant, and judged by a critic, giving a one-step training loop.",
+ "layout": "Single wide panel, left-to-right; central boxed interpolation module, dashed feedback loop below",
+ "tags": [
+  "one-step",
+  "generative-model",
+  "minimax",
+  "interpolation",
+  "critic"
+ ],
+ "style": [
+  "colorful",
+  "photo/real data",
+  "math-heavy",
+  "icon-heavy"
+ ],
+ "description": "A wide left-to-right diagram of the training loop. On the left, a noise image goes through a red generator network G_θ, with a flame icon marking it as trained, and produces a fluffy white dog image x0. A blue-outlined real dog photo x1 sits below it. Both feed into a central beige box titled 'Flipped Interpolation'. The box has a time node t and a timeline from 0 to 1/2 to 1. Two blended images appear in it: x_t on top for B=0 and x_{1-t} below for B=1. A coin-flip node B selects between them, with a cloud above showing B~Bernoulli(1/2). The chosen blend x̃_t goes into a green vector-valued critic f_ψ, which feeds the purple loss box L_MGM. A red dashed arrow returns from the loss to the generator. A bottom-left 'Main Idea' box shows the symmetry argument that ends in f_ψ≡0.",
+ "caption": "Overview of our Midpoint Generative Models. A latent $z \\sim p_z$ is mapped by the generator $G_\\theta$ to a sample $x_0\\sim p_\\theta$, which is then paired with a data sample $x_1 \\sim p_{\\mathrm{data}}$. The two endpoints are joined by a symmetric stochastic interpolant [ref] at time $t \\sim \\mathcal{U}[0,1/2]$, producing both the interpolation $x_t \\sim p_t$ and its time-flipped counterpart $x_{1-t} \\sim p_{1-t}$. A hidden flip $B$ then selects between the two, $\\tilde{x}_t = (1-B)\\,x_t + B\\,x_{1-t}$, yielding the symmetrized observation $\\tilde{x}_t \\sim \\tilde{p}_t$ \\new{(the flip $B$ itself is never observed)}. This flip is the key ingredient of MGM: by restoring endpoint symmetry, it forces the symmetrized displacement field $\\tilde v_t$ in [ref] \\new{to vanish whenever $p_\\theta = p_{\\mathrm{data}}$}, making the generalized Midpoint Divergence [ref] a definite discrepancy (Theorem [ref]). The \\new{vector-valued \\critic} $f_\\psi$ approximates $\\tilde{v}_t$ by regressing onto $x_1 - x_0$ given $\\tilde{x}_t$ and $t$, while the generator $G_\\theta$ minimizes the resulting divergence; the two are trained jointly in a minimax fashion through the variational midpoint objective [ref]. The complete procedure is detailed in Algorithm [ref].",
+ "caption_source": "latex",
+ "abstract": "We introduce Midpoint Generative Models (MGM), a principled framework for training one-step generative models. MGM is based on a simple symmetry of Flow Matching with linear interpolation: when the two endpoint distributions coincide, the corresponding velocity field vanishes at the midpoint time, $t=1/2$. We show that the norm of this field defines a valid discrepancy between distributions, which we call the Midpoint Divergence. We extend this discrepancy beyond the midpoint by introducing randomly flipped interpolations and further generalize it by replacing deterministic linear Flow Matching interpolations with symmetric stochastic interpolants, yielding a generalized Midpoint Divergence. Finally, we derive a variational formulation of our generalized divergence, yielding a tractable objective for training a one-step generator. The resulting MGM algorithm offers an effective and theoretically grounded approach to generative modeling, achieving competitive performance against existing one-step generative modeling methods.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=Dbpj9Jvyqt",
+  "arxiv": "https://arxiv.org/abs/2605.29920",
+  "pdf": "https://arxiv.org/pdf/2605.29920",
+  "proceedings": null,
+  "virtual": "https://neurips.cc/virtual/2026/poster/154433",
+  "code": null
+ },
+ "license": "http://creativecommons.org/licenses/by/4.0/",
+ "img": "cc-by",
+ "image_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/images/neurips26-1921.png",
+ "thumb_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/thumbs/neurips26-1921.webp",
+ "figure_page": 0,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.93
+}

@@ -1,0 +1,49 @@
+{
+ "id": "neurips26-8270",
+ "title": "When LLM Routers Overpay: The Cost of Strong-Model Preference",
+ "authors": [
+  "Guannan Lai",
+  "Long Chen",
+  "Han-Jia Ye"
+ ],
+ "venue": "NeurIPS 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "Deep Learning->Algorithms",
+ "role": "analysis-finding",
+ "role2": "teaser-result",
+ "claim": "Existing selectors escalate to the strongest, costliest option as budgets loosen, while an oracle keeps using cheaper options for most queries.",
+ "layout": "2 panels, left line plot and right donut chart, shared model-cost shading",
+ "tags": [
+  "routing",
+  "over-selection",
+  "cost-efficiency",
+  "oracle-comparison",
+  "budget-sensitivity"
+ ],
+ "style": [
+  "plot",
+  "colorful",
+  "minimal"
+ ],
+ "description": "Two panels. (a) A line plot with cost budget from 0.5 to 1.0 on the x-axis and the strongest-model (GPT-4) call rate from 0 to 1 on the y-axis. Five dashed or dotted router curves (AvengersPro, EmbedLLM, GraphRouter, MIRT, MLPRouter) sit low at small budgets, then rise steeply near budgets of 0.9 to 1.0, with some reaching about 0.8 to 1.0. A thick red Oracle line stays nearly flat and ends below 0.15. A legend sits at top left and a grid is drawn behind the curves. (b) A donut chart of the Oracle's per-model call frequency on RouterBench. Eleven segments are shaded from dark blue (GPT-4, 14%) to pale blue (Wizard LM 13B, 7.3%), with percentage labels. A vertical gradient bar on the right is marked High Cost to Low Cost. The eye goes first to the thick red Oracle line and the steep router curves.",
+ "caption": "Illustration of strong-model over-selection under loose budgets on RouterBench [ref]. Left: As the cost budget increases, existing routers rapidly increase their call rate to the strongest model, GPT-4, and several methods nearly saturate at 100%. Right: In contrast, the Oracle, which has access to per-query outcomes and applies cost-based tie breaking, selects GPT-4 for fewer than 20% of queries and continues to use cheaper models for a substantial fraction of cases.",
+ "caption_source": "latex",
+ "abstract": "LLM routing aims to reduce inference costs by assigning easy queries to less expensive models and reserving stronger models for cases in which they are needed. However, we find that existing routers often violate this principle under loose cost budgets: as the budget increases, they increasingly select the strongest and most expensive model even when less expensive feasible candidates provide comparable or identical utility. We refer to this behavior as strong-model over-selection under loose budgets. Our analysis shows that ambiguity alone does not explain this phenomenon. Substantial overpayment can arise when differently priced models offer equivalent or near-equivalent utility and the router retains a persistent model-level preference for costly models; budget relaxation exposes this preference by making premium candidates feasible. Motivated by this diagnosis, we propose EquiRouter, a decision-aligned router that learns query-dependent model rankings, preserves meaningful utility differences, and explicitly prefers lower-cost models among equivalent candidates through a Cost-Aware Ranking Objective and a lightweight Query--Model Interaction Representation. Experiments across diverse text, multimodal, continuous-utility, and large-model-pool settings show that EquiRouter consistently improves cost efficiency while maintaining competitive peak and whole-curve performance. Code is available at https://github.com/LAMDA-Model-Reuse/EquiRouter.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=v2DOrFK8Wp",
+  "arxiv": "https://arxiv.org/abs/2602.03478",
+  "pdf": "https://arxiv.org/pdf/2602.03478",
+  "proceedings": null,
+  "virtual": "https://neurips.cc/virtual/2026/poster/148797",
+  "code": "https://github.com/LAMDA-Model-Reuse/EquiRouter"
+ },
+ "license": "http://creativecommons.org/licenses/by/4.0/",
+ "img": "cc-by",
+ "image_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/images/neurips26-8270.png",
+ "thumb_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/thumbs/neurips26-8270.webp",
+ "figure_page": 1,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.8
+}

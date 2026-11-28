@@ -1,0 +1,50 @@
+{
+ "id": "icml26-2270",
+ "title": "DAPD: Dependency-Aware Parallel Decoding via Attention for Diffusion LLMs",
+ "authors": [
+  "Bumjun Kim",
+  "Dongjae Jeon",
+  "Moongyu Jeon",
+  "Albert No"
+ ],
+ "venue": "ICML 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "Deep Learning->Generative Models and Autoencoders",
+ "role": "prior-vs-ours",
+ "role2": "before-after",
+ "claim": "Prior decoders unmask tokens in a sequential left-to-right pattern; ours unmasks many independent segments at once for global parallelism.",
+ "layout": "2 panels side-by-side, token grids with green shading, numbered markers on ours",
+ "tags": [
+  "parallel-decoding",
+  "diffusion-llm",
+  "dependency-graph",
+  "efficiency",
+  "unmasking-trajectory"
+ ],
+ "style": [
+  "colorful",
+  "text-heavy",
+  "photo/real data"
+ ],
+ "description": "Two side-by-side panels show token grids of a diffusion LLM's partially decoded output after half of the decoding steps. Each token is a rounded box. Green boxes are already unmasked, and grey [M] boxes are still masked. Darker green marks the earliest unmasked tokens. Panel (a), DAPD (Ours), has unmasked text scattered across the whole sequence. Dark numbered markers [1] to [5] show five independent questions being answered at once, each with its own reasoning text such as the capital of North Korea and the Battle of Balaclava. Panel (b), Fast-dLLM, shows a solid green block at the start of the sequence, with only the first two or three questions filled in and a large masked region after it. The eye goes first to the scattered dark markers on the left and then to the contrast with the contiguous block on the right.",
+ "caption": "Visualization of unmasking trajectories for DAPD (ours) and Fast-dLLM during the initial 50% of decoding steps. While DAPD processes independent questions simultaneously to maximize global parallelism, Fast-dLLM exhibits a highly sequential unmasking pattern. Other baselines demonstrate similar sequential behaviors (see [ref]). Detailed discussion is provided in Sec. [ref].",
+ "caption_source": "latex",
+ "abstract": "Parallel decoding for Diffusion LLMs (dLLMs) is difficult because each denoising step provides only token-wise marginal distributions, while unmasking multiple tokens simultaneously requires accounting for inter-token dependencies. We propose Dependency-Aware Parallel Decoding (DAPD), a simple, training-free decoding method that uses self-attention to induce a conditional dependency graph over masked tokens. At each iteration, edges in this graph capture strong token interactions, while non-edges indicate weak dependence. Parallel decoding is then reduced to selecting an independent set on the graph and unmasking the selected tokens in parallel. This avoids co-updating strongly coupled tokens without auxiliary models or retraining. Experiments on LLaDA and Dream show that DAPD improves the accuracy-steps trade-off over existing methods and enables more globally distributed parallel updates that better exploit the any-order generation capability of dLLMs. The project is available at https://ai-isl.github.io/dapd",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=LZro8iqjiA",
+  "arxiv": "https://arxiv.org/abs/2603.12996",
+  "pdf": "https://raw.githubusercontent.com/mlresearch/v306/main/assets/kim26t/kim26t.pdf",
+  "proceedings": "https://proceedings.mlr.press/v306/kim26t.html",
+  "virtual": "https://icml.cc/virtual/2026/poster/64624",
+  "code": "https://ai-isl.github.io/dapd"
+ },
+ "license": "http://creativecommons.org/licenses/by/4.0/",
+ "img": "cc-by",
+ "image_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/images/icml26-2270.png",
+ "thumb_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/thumbs/icml26-2270.webp",
+ "figure_page": 1,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.85
+}

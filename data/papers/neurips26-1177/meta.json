@@ -1,0 +1,53 @@
+{
+ "id": "neurips26-1177",
+ "title": "Mixture-Trained Merging for Unified Multi-Objective Models",
+ "authors": [
+  "SeongHyeon Kim",
+  "Chaeyun Jang",
+  "Seungyoo Lee",
+  "Jiyeon Ham",
+  "Yunju Bak",
+  "Boseop Kim",
+  "Juho Lee"
+ ],
+ "venue": "NeurIPS 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": null,
+ "role": "analysis-finding",
+ "role2": "prior-vs-ours",
+ "claim": "Merging single-objective experts sharply degrades one capability as mixing ratio shifts; merging mixture-trained branches keeps both stable.",
+ "layout": "2 side-by-side line plots, shared y-axis, Hard vs Soft, shared legend below",
+ "tags": [
+  "model-merging",
+  "mixture-training",
+  "robustness",
+  "interpolation-curves",
+  "multi-objective"
+ ],
+ "style": [
+  "plot",
+  "minimal",
+  "colorful"
+ ],
+ "description": "Two side-by-side line plots share a y-axis labeled accuracy. The left panel is titled 'Hard' and the right panel 'Soft'. The x-axis in both is the code expert ratio, from 0.1 to 0.9. Each panel has a red circle line for MATH-500 and a blue square line for MBPP+, with a shared legend centered below. In the Hard panel, MATH-500 starts around 85 and stays high until ratio 0.4. It then falls steeply to about 47 at 0.8, while MBPP+ stays flat near 66-68. In the Soft panel, both curves stay roughly flat: MATH-500 holds at about 80-85 and MBPP+ at about 67-69. The eye goes first to the steep red drop in the left panel, which contrasts with the stable right panel.",
+ "caption": "Domain-expert merging on Qwen3-4B-Base. Following [ref], Hard branches are trained on single domains, whereas Soft branches use complementary Math/Code mixtures with a $(0.7,0.3)$ split.",
+ "caption_source": "latex",
+ "abstract": "Unified language models are increasingly expected to combine heterogeneous capabilities, such as mathematics, code, instruction following, and controllable thinking behavior, within a single set of parameters. A common solution is sequential post-training on multiple objectives, but this entangles all objectives along one optimization trajectory and makes the final model highly sensitive to training order, data ratios, schedules, and stopping criteria. Weight-space merging offers a modular alternative, but naive merging of single-objective experts often fails: domain capabilities degrade sharply, or think/non-think modes collapse into one dominant behavior. We attribute both failures to incompatible weight-space geometry: experts trained on single objectives drift to distant regions of parameter space, placing their interpolations outside any shared low-loss basin. We propose Mixture-Trained Merging (MTM), which trains each branch on an objective-biased data mixture rather than a single objective, exposing it to cross-objective interactions and making branches compatible at merge time. MTM uses merged-model evaluations as a low-cost signal for selecting branch mixtures, avoiding expensive data-mixture ablations. The procedure is iterative: each round promotes the base model using globally selected merge coefficients and refines each branch mixture using domain-preferred coefficients under constraints that preserve other objectives. To scale beyond simplex grid search, MTM uses qNEHVI-based multi-objective Bayesian optimization. Across code, mathematics, instruction following, and think/non-think control, MTM outperforms naive merging and preserves behavioral separation where single-objective merging collapses, suggesting that effective unified models require branches trained to be mergeable.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=8Ljh5OkXTi",
+  "arxiv": "https://arxiv.org/abs/2610.01238",
+  "pdf": "https://arxiv.org/pdf/2610.01238",
+  "proceedings": null,
+  "virtual": "https://neurips.cc/virtual/2026/poster/155106",
+  "code": null
+ },
+ "license": "http://creativecommons.org/licenses/by/4.0/",
+ "img": "cc-by",
+ "image_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/images/neurips26-1177.png",
+ "thumb_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/thumbs/neurips26-1177.webp",
+ "figure_page": 2,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.6
+}

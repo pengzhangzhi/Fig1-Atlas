@@ -1,0 +1,49 @@
+{
+ "id": "neurips26-7754",
+ "title": "Transferable, Time-Parallel Graph Dynamics via Space-Time Factorization",
+ "authors": [
+  "Wencong Yang",
+  "Chaopeng Shen",
+  "Abdolmehdi Behroozi"
+ ],
+ "venue": "NeurIPS 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "Applications->Physics",
+ "role": "pipeline",
+ "role2": "prior-vs-ours",
+ "claim": "Factorizing computation into graph-independent local temporal operators and a parameter-free spatial mixer replaces recurrence, enabling transfer to unseen graphs and parallel-in-time evaluation.",
+ "layout": "3 stacked panels: recurrent baseline, our block pipeline, capability insets; left-to-right",
+ "tags": [
+  "space-time-factorization",
+  "time-parallel",
+  "zero-shot-transfer",
+  "graph-dynamics",
+  "non-recurrent"
+ ],
+ "style": [
+  "minimal",
+  "colorful",
+  "text-heavy"
+ ],
+ "description": "A three-part schematic. Panel (a), in gray, shows the existing recurrent design: h(t) enters a single box labeled 'Graph mixing A + recurrent update', with a feedback loop and output h(t+1), annotated 'step by step'. Panel (b), titled in blue 'Ours: space-time factorization + leak control', shows a left-to-right pipeline: Input window (N×T_in×d) → blue 'Local temporal operator' box (shared θ, no adjacency) → green 'Spatial mixer' box (fixed G(A), no learned weights) → Readout output window (N×T_out×d_y). A bracket underneath reads 'stack or iterate blocks', and a line lists the three leaks to control. Panel (c), in a shaded box, shows two capabilities. On the left is cross-graph transfer: a small training graph, a 'Reuse learned weights θ' box and an unseen graph. On the right is time-parallel computation: an input window feeds a non-recurrent window solver that outputs ŷ(t1), ŷ(t2) and ŷ(tT) at once. Blue and green accents mark the method.",
+ "caption": "Method schematic: space-time factorization and its enabled capabilities. $N$ is the node count, $\\mathbf A$ the adjacency matrix, $\\theta$ the shared learned parameters, and $T_{\\rm in}/T_{\\rm out}$ the input/output window lengths.",
+ "caption_source": "latex",
+ "abstract": "Time-parallel neural operators (FNO and successors) have transformed PDE surrogates on regular grids. Mesh-based operators (MeshGraphNets, Transolver) extend operator learning to irregular geometries, but jointly learning across diverse topologies while retaining non-recurrent temporal evaluation remains challenging. We propose space-time factorization: partition the model into local temporal operators (learned, graph-independent) and a spatial mixer that propagates information across nodes without graph-dependent learned parameters. This structural condition lets the same parameters run on unseen graphs; non-recurrent instances also admit time-parallel evaluation. Accurate zero-shot transfer further depends on controlling three information leaks (graph-dependent weights, graph-specific features, and graph-correlated training distributions) and on suitable task physics and training coverage. The protocol applies to two distinct spatial-mixer families, fixed-spectral and learned-attention. We validate the principle in three domains. For floodwave propagation in river networks, a 27K-parameter model trained on the Yangtze transfers zero-shot to the Mississippi with median NSE 0.998 in boundary-conditioned operational evaluation, training 5.5x faster than a stabilized recurrent baseline. On cross-geometry Navier-Stokes, the three-seed SepFNO mean relative vorticity error on five unseen targets falls by about 28% from 5 to 12 training geometries, with a consistent single-run SepTransolver trend. On cross-city traffic forecasting, zero-shot transfer reaches within 12.9% of an oracle trained on the target city. Across settings, cross-geometry error decreases with both the number of training geometries and their relatedness to the test, at a rate depending on the spatial mixer. This opens the path to pooled-data, foundation-style models for graph dynamics on irregular topologies.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=rjusfdj0um",
+  "arxiv": "https://arxiv.org/abs/2611.31479",
+  "pdf": "https://arxiv.org/pdf/2611.31479",
+  "proceedings": null,
+  "virtual": "https://neurips.cc/virtual/2026/poster/149253",
+  "code": null
+ },
+ "license": "http://creativecommons.org/licenses/by/4.0/",
+ "img": "cc-by",
+ "image_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/images/neurips26-7754.png",
+ "thumb_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/thumbs/neurips26-7754.webp",
+ "figure_page": 3,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.72
+}

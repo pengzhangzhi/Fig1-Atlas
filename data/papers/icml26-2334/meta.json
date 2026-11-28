@@ -1,0 +1,50 @@
+{
+ "id": "icml26-2334",
+ "title": "LazyAttention: Efficient Retrieval-Augmented Generation with Deferred Positional Encoding",
+ "authors": [
+  "Haocheng Xia",
+  "Mihir Pamnani",
+  "Hanxi Fang",
+  "Supawit Chockchowwat",
+  "Yongjoo Park"
+ ],
+ "venue": "ICML 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "Deep Learning->Large Language Models",
+ "role": "prior-vs-ours",
+ "role2": "pipeline",
+ "claim": "Existing methods apply positions eagerly before caching, making caches position-bound; ours applies them lazily inside a fused kernel, enabling reuse.",
+ "layout": "2 side-by-side panels, bottom-to-top flow, reordered boxes, brace labels fused kernel",
+ "tags": [
+  "kv-caching",
+  "positional-encoding",
+  "deferred-computation",
+  "kernel-fusion",
+  "reuse"
+ ],
+ "style": [
+  "minimal",
+  "colorful"
+ ],
+ "description": "Two dashed-border panels show a Transformer block as stacked boxes, with arrows flowing upward from K, Q and V inputs to Attention and then Feed Forward. In panel (a), a blue 'add position' box sits below a yellow 'save as KV cache!' box, so positions are baked into the cache before attention. In panel (b), the order is swapped. The yellow cache box comes first and the blue 'add position' box sits next to Attention, inside a curly brace labeled 'our fused kernel'. The V path bypasses the position step in both panels. Color carries the argument: blue marks positional encoding and yellow marks caching. Captions below each panel explain 'eagerly' versus 'lazily' applied positions, with the colored words matching the boxes. The eye goes to the swapped yellow and blue boxes.",
+ "caption": "Comparison of positional encoding strategies within a Transform block. Existing methods, even the state-of-the-art Block-Attention for KV cache reuse, eagerly apply positions before caching, making KV caches position-dependent and non-shareable. \\ourmethod applies positions lazily inside the fused attention kernel, enabling reuse and sharing without duplication.",
+ "caption_source": "latex",
+ "abstract": "Key-value (KV) caching accelerates inference of large language models (LLMs) by reusing past computations for generated tokens. Its importance becomes even greater in long-context applications such as retrieval-augmented generation (RAG) and in-context learning (ICL). However, conventional KV caching embeds positional information directly into the cache, limiting its reusability. Existing solutions either restrict reuse to prefixes or require expensive memory materialization for positional re-encoding. We introduce LazyAttention, a novel attention mechanism that kernelizes deferred positional encoding to enable zero-copy, position-agnostic KV reuse. By adjusting positional encoding within attention kernels on-the-fly, LazyAttention resolves the materialization bottleneck, allowing a single physical KV copy to serve multiple logical requests at arbitrary positions. Leveraging attention kernels tailored for prefilling and decoding, our system achieves significant efficiency improvements: under skewed document distributions, it reduces time-to-first-token (TTFT) by 1.37$\\times$ and increases inference throughput by 1.40$\\times$ compared to the state-of-the-art Block-Attention, while maintaining comparable output quality.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=M9kHwqreN9",
+  "arxiv": "https://arxiv.org/abs/2606.04302",
+  "pdf": "https://raw.githubusercontent.com/mlresearch/v306/main/assets/xia26f/xia26f.pdf",
+  "proceedings": "https://proceedings.mlr.press/v306/xia26f.html",
+  "virtual": "https://icml.cc/virtual/2026/poster/64563",
+  "code": null
+ },
+ "license": "http://creativecommons.org/licenses/by/4.0/",
+ "img": "cc-by",
+ "image_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/images/icml26-2334.png",
+ "thumb_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/thumbs/icml26-2334.webp",
+ "figure_page": 1,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.93
+}

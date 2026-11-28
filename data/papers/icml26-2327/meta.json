@@ -1,0 +1,50 @@
+{
+ "id": "icml26-2327",
+ "title": "Multi-Head LatentMoE and Head Parallel: Communication-Efficient and Deterministic MoE Parallelism",
+ "authors": [
+  "Chenwei Cui",
+  "Rockwell Jackson",
+  "Benjamin Joseph Herrera",
+  "Ana Tarano",
+  "Hannah Kerner"
+ ],
+ "venue": "ICML 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "Deep Learning->Large Language Models",
+ "role": "prior-vs-ours",
+ "role2": "pipeline",
+ "claim": "Dense, standard sparse, and latent sparse layers each fall short; extending them into multiple independently routed sub-token heads gives our design.",
+ "layout": "4 panels, left-to-right, dashed dividers, widest panel for ours",
+ "tags": [
+  "mixture-of-experts",
+  "architecture-comparison",
+  "parallelism",
+  "efficiency",
+  "routing"
+ ],
+ "style": [
+  "minimal",
+  "colorful"
+ ],
+ "description": "Four vertical data-flow diagrams separated by dashed lines, each with an arrow running bottom to top. (a) Standard MLP is a single orange block. (b) Standard MoE has a Router feeding a rounded group of expert blocks (MLP 1, ..., MLP Ne), with one expert in orange and the rest gray. (c) LatentMoE adds Linear Downcast and Linear Upcast boxes around the expert group, with the Router below. (d) Multi-Head LatentMoE (Ours) is the widest panel. It starts with a Linear + Split box that fans out to several expert groups, each with its own Router (Router 1, Router 2, ..., Router Nh) and one orange activated expert. A Concat + Linear box at the top merges the heads. The eye goes first to the wide, detailed panel (d) on the right.",
+ "caption": "Comparison of feedforward architectures. (a) Standard MLP applies a single feedforward network to each token. (b) Standard MoE uses a router to dynamically select experts from a single set. (c) LatentMoE performs routing first, then applies linear down-projection before expert computation and linear up-projection afterward. (d) Multi-Head LatentMoE projects each token into multiple sub-tokens, each processed by an independent MoE module with its own separately-trained router and expert set. Orange blocks denote activated experts; gray blocks denote inactive experts. Black lines indicate data flow.",
+ "caption_source": "latex",
+ "abstract": "Large language models have transformed many applications but remain expensive to train. Sparse Mixture of Experts (MoE) addresses this through conditional computation, with Expert Parallel (EP) as the standard distributed training method. However, EP has three limitations: communication cost grows linearly with the number of activated experts $k$, load imbalance affects latency and memory usage, and data-dependent communication requires metadata exchange. We propose Multi-Head LatentMoE and Head Parallel (HP), a new architecture and parallelism achieving $O(1)$ communication cost regardless of $k$, completely balanced traffic, and deterministic communication, all while remaining compatible with EP. To accelerate Multi-Head LatentMoE, we propose IO-aware routing and expert computation. Compared to MoE with EP, Multi-Head LatentMoE with HP trains up to $1.61\\times$ faster while having identical performance. With doubled granularity, it achieves higher overall performance while still being $1.11\\times$ faster. Our method makes multi-billion-parameter foundation model research more accessible.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=M6h4vUgvl4",
+  "arxiv": "https://arxiv.org/abs/2602.04870",
+  "pdf": "https://raw.githubusercontent.com/mlresearch/v306/main/assets/cui26c/cui26c.pdf",
+  "proceedings": "https://proceedings.mlr.press/v306/cui26c.html",
+  "virtual": "https://icml.cc/virtual/2026/poster/64570",
+  "code": null
+ },
+ "license": "http://creativecommons.org/licenses/by/4.0/",
+ "img": "cc-by",
+ "image_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/images/icml26-2327.png",
+ "thumb_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/thumbs/icml26-2327.webp",
+ "figure_page": 2,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.8
+}

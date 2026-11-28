@@ -1,0 +1,53 @@
+{
+ "id": "neurips26-7121",
+ "title": "GenRec: Knowing Where to Reconstruct and Where to Generate",
+ "authors": [
+  "Ata Çelen",
+  "Jaewoo Jung",
+  "Federico Tombari",
+  "Marc Pollefeys",
+  "Sunghwan Hong",
+  "Michael Niemeyer",
+  "Daniel Barath"
+ ],
+ "venue": "NeurIPS 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "Computer Vision->3D Rendering & Reconstruction",
+ "role": "pipeline",
+ "role2": "prior-vs-ours",
+ "claim": "Splitting generation and reconstruction into separate, mask-gated pathways yields fidelity on observed regions while preserving generative priors elsewhere.",
+ "layout": "Single wide panel, left-to-right; stacked modality inputs feed two color-coded branches",
+ "tags": [
+  "novel-view-synthesis",
+  "flow-matching",
+  "reconstruction-vs-generation",
+  "dual-branch",
+  "mask-gating"
+ ],
+ "style": [
+  "colorful",
+  "icon-heavy",
+  "photo/real data"
+ ],
+ "description": "A wide left-to-right pipeline diagram. On the far left is a sparse input view with a point-cloud-warped scene of a temple interior with white holes where pixels are unobserved. Below it, small camera frustums mark the input and target views, with a depth estimation arrow. Two stacked inputs follow: a green RGB modality box (point cloud render, observation mask, Plücker rays) and a pink scene-coordinate modality box with the same kinds of layers. Both feed an orange Multi-View Flow Matching Model with encoders, decoders, cross-view and cross-modal attention blocks in yellow, a skip connection and a LoRA tag. Above it, a blue Reconstruction Branch uses KV and Q projections, sparse 3D cross-attention and self-attention to refine the output. Outputs are a refined RGB image and a colorful depth-like scene-coordinate map.",
+ "caption": "\\textbf{Overview of \\methodname{} (right) vs.\\ prior generative reconstruction methods (left).} Prior methods condition multi-view image or video models on warped point clouds or Pl\\\"ucker rays, supervising output pixels with one generative loss regardless of source coverage. \\methodname{} factors the task by an observation mask: a generative backbone predicts every pixel, and a pixel-space reconstruction module refines the observed ones under a dedicated loss. The two pathways share neither parameters nor gradients, preserving the generative prior in unobserved regions.",
+ "caption_source": "latex",
+ "abstract": "Generative novel view synthesis from sparse input images is rarely all reconstruction or all generation: pixels visible in some source view have a unique correct value modulated only by view-dependent shading, while pixels in disocclusions or beyond the captured volume admit a distribution of plausible completions. Existing generative novel-view-synthesis methods conflate these regimes under a single uniform loss, blurring the line between geometric fidelity and creative hallucinations even when scene geometry is injected through warped point clouds or projected depth. We introduce GenRec, a multi-view flow matching model that builds the reconstruction--generation split directly into its architecture, supervision, and gradient flow. Guided by an observation mask derived from the source cameras and a monocular depth estimator, a flow matching backbone jointly denoises RGB and scene-coordinate maps across all target views, while a pixel-space refinement stage restores high-frequency detail on observed pixels; the same mask gates supervision so regression signals do not contaminate the generative prior. Across RealEstate10K, DL3DV-10K, and Mip-NeRF~360, in both single-view extrapolation and two-view interpolation, GenRec attains the best reconstruction fidelity in observed regions while also surpassing purely generative baselines on perceptual quality in unobserved ones, showing the effectiveness of our approach.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=n68heFQnNa",
+  "arxiv": "https://arxiv.org/abs/2608.17832",
+  "pdf": "https://arxiv.org/pdf/2608.17832",
+  "proceedings": null,
+  "virtual": "https://neurips.cc/virtual/2026/poster/149818",
+  "code": "https://atcelen.github.io/GenRec/"
+ },
+ "license": "http://creativecommons.org/licenses/by-nc-sa/4.0/",
+ "img": "cc-by-nc-sa",
+ "image_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/images/neurips26-7121.png",
+ "thumb_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/thumbs/neurips26-7121.webp",
+ "figure_page": 3,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.85
+}

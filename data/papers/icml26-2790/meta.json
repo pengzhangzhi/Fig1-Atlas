@@ -1,0 +1,53 @@
+{
+ "id": "icml26-2790",
+ "title": "WBMM: Windowed Batch Matrix Multiplication for Efficient Large Receptive Field Convolution",
+ "authors": [
+  "Wan Song",
+  "Zhou Wei",
+  "Rui Wang",
+  "Jun Yu",
+  "Toru Kurihara",
+  "Xu Jiajia",
+  "shu zhan"
+ ],
+ "venue": "ICML 2026",
+ "tier": "spotlight",
+ "track": "main",
+ "topic": "Deep Learning->Algorithms",
+ "role": "prior-vs-ours",
+ "role2": "pipeline",
+ "claim": "Prior operators gather scattered neighbors per output with irregular memory access; ours partitions into contiguous windows and uses regular batched matrix multiplication.",
+ "layout": "2 panels split by dashed divider, left-to-right flow, color-coded windows",
+ "tags": [
+  "batched-matmul",
+  "depthwise-convolution",
+  "memory-efficiency",
+  "large-receptive-field",
+  "operator-design"
+ ],
+ "style": [
+  "colorful",
+  "icon-heavy",
+  "math-heavy"
+ ],
+ "description": "Two panels separated by a dashed vertical line. Panel (a), \"Depthwise Convolution\", shows a light-blue input grid with a 7x7 orange neighborhood around a red center pixel (i,j). A 7x7 orange kernel W sits on the right, with a convolution asterisk below it. A gray arrow labeled \"gather 7²=49 neighbors\" points to a single green output cell y[i,j]. Panel (b), \"WBMM (Ours)\", shows an input split into four colored 7x7 windows (blue, green, yellow, purple). A relative position table R (C×169) feeds an \"index\" arrow into a pink Matrix M (C×49×49). A green \"Batched MatMul\" arrow from the windows leads to M, and a pink arrow leads to a 2x2 colored output Y. The eye goes first to the colorful grids and the contrast between the single gathered pixel and the windowed blocks.",
+ "caption": "Depthwise convolution vs.\\ WBMM. (a) Depthwise convolution gathers $k^2$ scattered neighbors per output, causing irregular memory access that worsens with kernel size. (b) WBMM partitions input into contiguous windows and constructs weights via table indexing, enabling regular memory access through batched matrix multiplication.",
+ "caption_source": "latex",
+ "abstract": "Large kernel depthwise convolutions achieve strong performance but suffer from significant degradation as kernel size grows due to irregular memory access from gather-based computation; while Large Kernel Acceleration (LKA) helps on small feature maps, it becomes counterproductive on large feature maps, even slower than non-accelerated implementations. We propose Windowed Batch Matrix Multiplication (WBMM), which partitions input into contiguous windows and indexes a compact relative position bias table to construct weight matrices, enabling regular memory access via batched matrix multiplication. This yields a unique property: WBMM's throughput improves with larger windows, opposite to depthwise convolutions that degrade with larger kernels. Operator-level benchmarks show WBMM with 14x14 windows outperforms 5x5 depthwise convolution baselines in speed while providing a 7.8x larger per-layer receptive field. Combined with inter-block cross-window communication and hierarchical window reparameterization, WBMM achieves comparable or higher accuracy on ImageNet-1K, COCO, and ADE20K with 1.31-1.88x training speedup, and demonstrates consistent advantages across GPU, CPU, and edge devices without requiring specialized acceleration kernels. Our code is available at https://github.com/wansong-s/WBMM.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=Qg9Jcy788i",
+  "arxiv": "https://arxiv.org/abs/2607.02097",
+  "pdf": "https://raw.githubusercontent.com/mlresearch/v306/main/assets/song26ae/song26ae.pdf",
+  "proceedings": "https://proceedings.mlr.press/v306/song26ae.html",
+  "virtual": "https://icml.cc/virtual/2026/poster/64126",
+  "code": "https://github.com/wansong-s/WBMM"
+ },
+ "license": "http://arxiv.org/licenses/nonexclusive-distrib/1.0/",
+ "img": "none",
+ "image_url": null,
+ "thumb_url": null,
+ "figure_page": 0,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.85
+}

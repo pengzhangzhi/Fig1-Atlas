@@ -1,0 +1,48 @@
+{
+ "id": "neurips26-2778",
+ "title": "Cyclic Denoising Reveals Ultrastable Memories in Diffusion Models",
+ "authors": [
+  "Rishabh Sharma",
+  "Stefano Martiniani"
+ ],
+ "venue": "NeurIPS 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "Deep Learning->Generative Models and Autoencoders",
+ "role": "analysis-finding",
+ "role2": "teaser-result",
+ "claim": "Iterated noising-denoising dynamics lock into long-lived, stable attractors that regenerate after near-total corruption and match duplicated training content.",
+ "layout": "3 panels: large image grid left, similarity trace top-right, image strips bottom-right",
+ "tags": [
+  "cyclic-denoising",
+  "attractors",
+  "memorization",
+  "diffusion-models",
+  "extraction-attack"
+ ],
+ "style": [
+  "photo/real data",
+  "plot",
+  "colorful"
+ ],
+ "description": "A three-panel figure. Panel (a), on the left, is a 15x15 grid of decoded image snapshots read in order. The first row is mixed random photos. Then a long run of near-identical rooms with a yellow chair, then a brief transient, then a long run of white-couch scenes with small paintings that vary. Panel (b), at top right, is a blue line plot of cosine similarity between consecutive latents against cycle number (0 to 10,000). It shows noisy low values early, then plateaus near 1.0 broken by sharp dips at basin transitions. Panel (c), at bottom right, has two rows, one per attractor. Each row runs gamma=0, then a noise-saturated image at gamma=0.86, then gamma=0 again, then a reverse-image-search match. Black arrows connect the first three columns. The eye goes first to the big image grid.",
+ "caption": "Unconditional cyclic denoising drives latents toward attractors in the Stable Diffusion v1.4 landscape. (a) Decoded snapshots from a $10^4$-cycle unconditional cycling trajectory at $\\gamma=0.86$, starting from a single ImageNet test image; the $15\\times15$ grid shows every 44th cycle, in reading order, starting from the top-left. After an initial transient (snapshots change cycle-to-cycle), the dynamics lock into the first attractor — a room with a yellow chair — that persists for over 2000 cycles. A brief transient carries the trajectory into a second attractor (white-couch scene, paintings on a gray wall), which survives for a comparable number of cycles before another, longer transient returns the trajectory to the same second basin. (b) Cosine similarity between consecutive latents $z_n$ and $z_{n-1}$ along the trajectory. Plateaus near unity correspond to residence within a basin; sharp drops mark inter-basin transitions, matching the qualitative changes in (a). Cosine similarities throughout this work are measured stroboscopically — at the end of each completed cycle. (c) A single forward--reverse cycle, $\\gamma=0 \\rightarrow 0.86 \\rightarrow 0$, for an example latent drawn from each attractor. The room layout is regenerated after near-total corruption, while fine details such as wall artwork fluctuate stochastically---the signature of an attracting basin in which the dominant scene template is locked while peripheral content remains diffusive. Right column: reverse image search retrieves near-duplicate web images for both attractors, corresponding to e-commerce template scenes in which different artworks are repeatedly composited onto the same room layout. These templates recur across many vendor websites, making them very likely to be duplicated in the web-scale training crawl. Independently, [ref] flag these same two scenes (their Fig. 2) among the most heavily replicated Stable Diffusion v1.4 generations and trace them to duplicated LAION training images---training-set-grounded confirmation that the attractors recovered here by cycling alone, with no training-set access, are genuine memorized content. The two scenes also appear under similar product captions referring to the displayed artwork rather than the room itself, suggesting a possible mechanism for their proximity in the learned generative landscape. Cyclic denoising thus exposes these memorized templates from the model's dynamics alone. The URLs for the reverse image search are listed in the Appendix (Table [ref]).",
+ "caption_source": "latex",
+ "abstract": "We introduce cyclic denoising -- repeated forward and reverse diffusion at controlled noise amplitudes -- as an extraction attack for image diffusion models. Inspired by random organization in disordered solids, cyclic denoising exposes regions of the learned distribution that are largely inaccessible to standard sampling. The dynamics drive samples toward attractors with a broad stability spectrum. The deepest attractors are ultrastable: they regenerate after near-total corruption and persist through thousands of noising-denoising cycles. Many of these attractors correspond to memorized training images, including stock photographs, brand watermarks, and web-crawl artifacts. The attack requires only sampler-level control, with no gradients, weight inspection, prompts, captions, or prior knowledge of the training data. Unlike generate-and-filter attacks, which rely on large-scale prompted generation and post-hoc similarity or membership-inference filtering, our main protocol is fully unconditioned. We demonstrate the phenomenon in Stable Diffusion v1.4 and in a pixel-space DDPM, showing consistent behavior across latent- and pixel-space diffusion models. Across noise amplitudes, we observe a yielding-like transition: low-amplitude cycling produces trivial absorbing fixed points or limit cycles, while larger amplitudes induce rearrangements, basin hopping, and long-lived trapping in structured memorized attractor basins. We also observe hierarchical partial absorption, prompt-stabilized basins, and cross-initial-condition universality of the recovered attractor set. Our results therefore show that cyclic denoising is both a physics-inspired probe of generative landscapes and a practical tool for memorization auditing, with implications for privacy, copyright compliance, and model fingerprinting.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=JaiESGVAVn",
+  "arxiv": "https://arxiv.org/abs/2606.24000",
+  "pdf": "https://arxiv.org/pdf/2606.24000",
+  "proceedings": null,
+  "virtual": "https://neurips.cc/virtual/2026/poster/153681",
+  "code": "https://rishabh-tifr.github.io/cyclic-denoising"
+ },
+ "license": "http://creativecommons.org/licenses/by/4.0/",
+ "img": "cc-by",
+ "image_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/images/neurips26-2778.png",
+ "thumb_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/thumbs/neurips26-2778.webp",
+ "figure_page": 3,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.6
+}

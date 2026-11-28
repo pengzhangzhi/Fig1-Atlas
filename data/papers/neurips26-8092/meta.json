@@ -1,0 +1,51 @@
+{
+ "id": "neurips26-8092",
+ "title": "3D-PLOT-LLM: Part-Level Object Tokens for 3D Large Language Models",
+ "authors": [
+  "Jintang Xue",
+  "Xinyu Wang",
+  "Yixing Wu",
+  "Jingwen Chen",
+  "C.-C. J Kuo"
+ ],
+ "venue": "NeurIPS 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "Computer Vision->Vision Models & Multimodal",
+ "role": "pipeline",
+ "role2": "concept",
+ "claim": "Partitioning encoder tokens into a fixed set of regions with reserved vocabulary tokens makes parts directly readable and writable by the language model.",
+ "layout": "3 rounded panels, left-to-right, big arrows between, colored part callouts on center object",
+ "tags": [
+  "part-level",
+  "vocabulary-tokens",
+  "frozen-encoder",
+  "addressable-regions",
+  "multimodal-llm"
+ ],
+ "style": [
+  "colorful",
+  "icon-heavy",
+  "photo/real data"
+ ],
+ "description": "Three rounded panels read left to right, linked by large dark arrows. Panel 1 (blue), 'Input Point Cloud', shows a gray stool point cloud with a yellow seat. Below it, arrows lead through a 'Frozen Point Encoder' box (snowflake and lock icons) to a token row: [CLS], x1, x2, ..., xN. Panel 2 (green), 'Parts as Vocabulary', shows the stool recolored into regions (red, purple, orange, green, blue). Each region has a colored callout box such as <part_8>, <part_12>, <part_0> and <part_3>, joined by a leader line. The caption reads 'Fixed set of K geometric regions'. Panel 3 (purple), 'Bidirectional Dialog', shows a token sequence ([CLS], <part_0>, m̂0, G0, ...) feeding a Large Language Model box. Below are two chat examples: Caption→Slots, where the model outputs part tokens, and Slots→Caption, where the model describes the named parts. The colorful stool in the center draws the eye first.",
+ "caption": "3D-PLOT-LLM treats each geometric region of a 3D object as a first-class addressable token in the LLM's vocabulary. A frozen point encoder's patch tokens are partitioned into a fixed set of $K$ geometric regions (center panel), and a reserved vocabulary slot \\partk{k} makes each region readable and writable through the same interface the LLM uses for text (right panel). No segmentation decoder is used; the interface addresses coarse geometric regions, not point-wise masks.",
+ "caption_source": "latex",
+ "abstract": "3D multimodal large language models (3D MLLMs) describe a 3D object as a whole but cannot address, name, or reason about its parts. Prior part-aware attempts add segmentation decoders, heavier 3D encoders, or bounding-box grammars at substantial parameter cost. We take a fundamentally different path: we reorganize the input token stream so that parts become directly addressable through the LLM's own vocabulary. Our model, 3D-PLOT-LLM, partitions the frozen point encoder's patches into K locally coherent regions and inserts, before each region's patch tokens, a learnable per-region marker and a reserved vocabulary token <part_k>; a Marker-Space Refinement (MSR) module then conditions each marker on its region's spatial statistics and adjacency neighbors. The model thus cites parts in its output and follows prompts that refer to parts by token, a capability absent from prior object-level 3D MLLMs. To probe this interface, we construct PartVerse-QA, a vocabulary-level part-QA benchmark adapted from PartVerse mesh annotations (77K training pairs and 588 held-out queries on disjoint object splits), on which 3D-PLOT-LLM reaches caption-to-slots Jaccard 0.459 and Exact-match 13.78%, with a slot-to-caption GPT-4o judge of 44.68. On the text-description track of the 3DCoMPaT-GrIn part-aware grounded description benchmark, 3D-PLOT-LLM outperforms PointLLM, Kestrel, PARIS3D, and SegPoint on every reported text metric, and ShapeLLM on 3 of 4, with up to +3.03 GPT-4o judge over PointLLM. On Objaverse whole-object captioning, adding PartVerse-QA at Stage 2 yields +0.65 SBERT and +1.85 GPT-4o over PointLLM, and tops PointLLM-PiSA on 4 of 5 traditional metrics despite its part-grounded objective. All with under 1M new trainable parameters on a frozen point encoder, an order of magnitude below prior part-aware 3D MLLMs, and no learned part detector, segmentation decoder, or bounding-box head.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=tubVmG86qx",
+  "arxiv": "https://arxiv.org/abs/2606.19828",
+  "pdf": "https://arxiv.org/pdf/2606.19828",
+  "proceedings": null,
+  "virtual": "https://neurips.cc/virtual/2026/poster/148954",
+  "code": "https://github.com/jintangxue/3D-PLOT-LLM"
+ },
+ "license": "http://arxiv.org/licenses/nonexclusive-distrib/1.0/",
+ "img": "none",
+ "image_url": null,
+ "thumb_url": null,
+ "figure_page": 1,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.8
+}

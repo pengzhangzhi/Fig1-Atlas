@@ -1,0 +1,50 @@
+{
+ "id": "icml26-4725",
+ "title": "A Random Matrix Perspective on the Consistency of Diffusion Models",
+ "authors": [
+  "Binxu Wang",
+  "Jacob A Zavatone-Veth",
+  "Cengiz Pehlevan"
+ ],
+ "venue": "ICML 2026",
+ "tier": "oral",
+ "track": "main",
+ "topic": null,
+ "role": "analysis-finding",
+ "role2": "teaser-result",
+ "claim": "Independently trained models on disjoint data splits generate near-identical samples, matching a simple linear Gaussian prediction rather than memorized training examples.",
+ "layout": "2 panels: sample image grid left, MSE distance heatmap right with colored boxes",
+ "tags": [
+  "consistency",
+  "linear-theory",
+  "diffusion-models",
+  "reproducibility",
+  "generalization"
+ ],
+ "style": [
+  "photo/real data",
+  "plot",
+  "colorful",
+  "text-heavy"
+ ],
+ "description": "Panel A is a grid of face images. The top and bottom rows show the closest training faces in split 1 and split 2 as 2x2 thumbnails. The middle shows generated samples from the same noise seed. Rows are models trained on split 1 and split 2. Columns are UNet-CNN, DiT, and the linear prediction on each data split. A single blurrier linear-theory sample sits to the right, labeled 'on whole data', with the linear denoiser formula above it. All the generated faces look alike, wearing a graduation cap. Panel B is a 9x9 annotated heatmap of pairwise pixel MSE between CNN, DiT, linear, and nearest-training-sample outputs. It uses a purple-to-yellow colormap. Dashed boxes in red, orange, blue and green mark the types of distances, with a legend beneath. The dark low-MSE block at top-left draws the eye first.",
+ "caption": "Motivating observation and the linear theory. A. Diffusion models trained on non-overlapping data splits generate similar images from the same initial noise, even with different neural network architectures, consistent with results in [ref]. Notably, generated samples from both splits are visually similar to the prediction from the Gaussian linear theory [ref]. B. Quantification of A by paired image distances (MSE) averaging from 512 initial noises. The low-MSE block structure of the four DNNs and linear solution emphasize that this consistency effect is related to the linear structure. CNN1 denotes the CNN trained on split1, similar for CNN2, DiT1, DiT2; CNN1 nearest denotes the set of closest training set sample for the 512 generated image. We hide results for linear predictor of two splits since their samples are nearly identical with the linear predictor for the full dataset. Similar analysis for FFHQ64 is shown in Fig. [ref].",
+ "caption_source": "latex",
+ "abstract": "Diffusion models trained on different, non-overlapping subsets of a dataset often produce strikingly similar outputs when given the same noise seed. We trace this consistency to a simple linear effect: the shared Gaussian statistics across splits already predict much of the generated images. To formalize this, we develop a random matrix theory (RMT) framework that quantifies how finite datasets shape the expectation and variance of the learned denoiser and sampling map in the linear setting. For expectations, sampling variability acts as a renormalization of the noise level through a self-consistent relation $Ï^2 \\mapsto Îº(Ï^2)$, explaining why limited data overshrink low-variance directions and pull samples toward the dataset mean. For fluctuations, our variance formulas reveal three key factors behind cross-split disagreement: \\textit{anisotropy} across eigenmodes, \\textit{inhomogeneity} across inputs, and overall scaling with dataset size. Extending deterministic-equivalence tools to fractional matrix powers further allows us to analyze entire sampling trajectories. The theory sharply predicts the behavior of linear diffusion models, and we validate its predictions on UNet and DiT architectures in their non-memorization regime, identifying where and how samples deviates across training data split. This provides a principled baseline for reproducibility in diffusion training, linking spectral properties of data to the stability of generative outputs.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=iPjuUQbkfl",
+  "arxiv": "https://arxiv.org/abs/2602.02908",
+  "pdf": "https://raw.githubusercontent.com/mlresearch/v306/main/assets/wang26kf/wang26kf.pdf",
+  "proceedings": "https://proceedings.mlr.press/v306/wang26kf.html",
+  "virtual": "https://icml.cc/virtual/2026/oral/71191",
+  "code": null
+ },
+ "license": "http://creativecommons.org/licenses/by/4.0/",
+ "img": "cc-by",
+ "image_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/images/icml26-4725.png",
+ "thumb_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/thumbs/icml26-4725.webp",
+ "figure_page": 1,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.6
+}

@@ -1,0 +1,50 @@
+{
+ "id": "neurips26-3704",
+ "title": "Order Matters: Competition-Guided Query Ordering for RNN-Based Object Detection",
+ "authors": [
+  "SHENGJIAN WU",
+  "Li Sun",
+  "Yu Shangguan",
+  "Qingli Li"
+ ],
+ "venue": "NeurIPS 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "Computer Vision->Classification and Understanding",
+ "role": "pipeline",
+ "role2": null,
+ "claim": "Order-agnostic decoders yield duplicates; ordering queries by confidence and similarity lets a recurrent module softly suppress redundancy inside the decoder.",
+ "layout": "Left-to-right, 4 columns: prior predictions, query ordering, decoder, input; dashed feedback loop",
+ "tags": [
+  "query-ordering",
+  "recurrent-refinement",
+  "de-duplication",
+  "plug-and-play",
+  "detection"
+ ],
+ "style": [
+  "colorful",
+  "icon-heavy",
+  "photo/real data"
+ ],
+ "description": "A detailed method diagram. At far left are a tennis photo with colored boxes and scores for four queries (Q1–Q4), plus a similarity matrix. Dashed arrows carry these into a grey 'Query Ordering' panel in the middle. The panel is read bottom to top: Object Queries, then Sorting By Score, then Clustering By Similarity, then Bidirectional Scanning. The colored query tokens are reordered at each step. A grey 'Decoder' panel on the right stacks Bidirectional RNN (orange), Add & Norm, Cross Attention, FFN and class/box heads. Red arrows loop around the reordered query row, and the input image and Encoder feed in from the right. A dashed line returns the class and box outputs to the prior predictions. The eye goes first to the colored query tokens and the orange RNN block.",
+ "caption": "A comparison of de-duplication mechanisms. Classical NMS de-duplicates by removing highly overlapping proposals with a fixed IoU threshold (a). DETR predicts end-to-end, but its order-agnostic decoder can still yield duplicated results (b). DETRNN internalizes de-duplication into the decoder: CGQO builds a competition-aware query order, and a Bi-RNN refines queries sequentially to softly suppress redundant predictions (dashed boxes) without discarding outputs (c).",
+ "caption_source": "latex",
+ "abstract": "DETR-style detectors use one-to-one bipartite matching during training to assign object queries to ground-truth objects, enabling end-to-end set prediction without non-maximum suppression (NMS). However, without an explicit de-duplication procedure, multiple queries can still produce highly similar hypotheses for the same object, making training unstable and predictions less decisive. Inspired by the sequential ordering of NMS, we propose DETRNN, a plug-and-play module that turns unordered object queries into a competition-aware sequence for recurrent refinement. DETRNN builds an explicit confidence-and-similarity based order from prior predictions, then refines queries with an RNN along this order to model competition inside the decoder. This ordered recurrent refinement reduces redundant predictions, stabilizes optimization, and improves final detection accuracy. Experiments on multiple DETR-style detectors show consistent gains with comparable efficiency. Code repository: https://github.com/nigelwoo2008-coder/DETRNN.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=PoXySrgd0e",
+  "arxiv": "https://arxiv.org/abs/2610.05191",
+  "pdf": "https://arxiv.org/pdf/2610.05191",
+  "proceedings": null,
+  "virtual": "https://neurips.cc/virtual/2026/poster/152864",
+  "code": null
+ },
+ "license": "http://arxiv.org/licenses/nonexclusive-distrib/1.0/",
+ "img": "none",
+ "image_url": null,
+ "thumb_url": null,
+ "figure_page": 3,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.85
+}

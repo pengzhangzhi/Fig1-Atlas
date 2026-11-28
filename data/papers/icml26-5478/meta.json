@@ -1,0 +1,54 @@
+{
+ "id": "icml26-5478",
+ "title": "Just-In-Time Reinforcement Learning: Continual Learning in LLM Agents Without Gradient Updates",
+ "authors": [
+  "yibo li",
+  "Zijie Lin",
+  "Ailin Deng",
+  "Xuan (Billy) Zhang",
+  "Yufei He",
+  "Shuo Ji",
+  "Tri Cao",
+  "Bryan Hooi"
+ ],
+ "venue": "ICML 2026",
+ "tier": "spotlight",
+ "track": "main",
+ "topic": null,
+ "role": "prior-vs-ours",
+ "role2": "pipeline",
+ "claim": "Standard RL updates weights via gradients at training time; ours adjusts a frozen model's logits at test time using retrieved experience.",
+ "layout": "2 side-by-side panels, blue vs orange, top-to-bottom flow, formula boxes at bottom",
+ "tags": [
+  "test-time-adaptation",
+  "training-free",
+  "retrieval",
+  "policy-optimization",
+  "gradient-free"
+ ],
+ "style": [
+  "icon-heavy",
+  "colorful",
+  "math-heavy"
+ ],
+ "description": "Two rounded panels sit side by side. The left, light blue panel is titled 'Standard RL (Training Time)'. A database icon labeled 'Previous Trajectories' points by arrow to a robot icon labeled 'Learnable LLM Policy (π_θ)'. A long arrow then leads down to a box 'Gradient Updates' containing the formula ∇_θ(A·log π_θ − βKL(π_θ‖π_0)). The right, light orange panel is titled 'Just-In-Time RL (Test Time)'. It shows 'Current state S' with a 'Retrieve' arrow down to a database icon labeled 'Relevant Trajectories'. That feeds 'Advantage Estimation', which also receives input from a 'Frozen LLM Policy (π_0)' robot. An arrow labeled A leads to a 'Logit Adjustment' box with arg max_π(E[A] − βKL(π‖π_0)). Color contrast between the panels draws the eye first.",
+ "caption": "While standard RL performs policy gradient updates during training using previous trajectories, JitRL operates at test time. Specifically, it retrieves trajectories relevant to the current state to estimate advantages $A$, subsequently refining the output logits through a KL-regularized policy optimization objective.",
+ "caption_source": "latex",
+ "abstract": "While Large Language Model (LLM) agents excel at general tasks, they inherently struggle with continual adaptation due to the frozen weights after deployment. Conventional reinforcement learning (RL) offers a solution but incurs prohibitive computational costs and the risk of catastrophic forgetting. We introduce Just-In-Time Reinforcement Learning (JitRL), a training-free framework that enables test-time policy optimization without any gradient updates. JitRL maintains a dynamic, non-parametric memory of experiences and retrieves relevant trajectories to estimate action advantages on-the-fly. These estimates are then used to directly modulate the LLM's output logits. We theoretically prove that this additive update rule is the exact closed-form solution to the KL-constrained policy optimization objective. Extensive experiments on WebArena and Jericho demonstrate that JitRL establishes a new state-of-the-art among training-free methods. Crucially, JitRL outperforms the performance of computationally expensive fine-tuning methods (e.g., WebRL) while reducing monetary costs by over 30 times, offering a scalable path for continual learning agents. The code is available at https://github.com/liushiliushi/JitRL.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=pLvye0zHUC",
+  "arxiv": "https://arxiv.org/abs/2601.18510",
+  "pdf": "https://raw.githubusercontent.com/mlresearch/v306/main/assets/li26cv/li26cv.pdf",
+  "proceedings": "https://proceedings.mlr.press/v306/li26cv.html",
+  "virtual": "https://icml.cc/virtual/2026/poster/61517",
+  "code": null
+ },
+ "license": "http://creativecommons.org/licenses/by/4.0/",
+ "img": "cc-by",
+ "image_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/images/icml26-5478.png",
+ "thumb_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/thumbs/icml26-5478.webp",
+ "figure_page": 0,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.9
+}

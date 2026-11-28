@@ -1,0 +1,57 @@
+{
+ "id": "iclr26-2098",
+ "title": "Learning an Image Editing Model without Image Editing Pairs",
+ "authors": [
+  "Nupur Kumari",
+  "Sheng-Yu Wang",
+  "Cherry Zhao",
+  "Yotam Nitzan",
+  "Yuheng Li",
+  "Krishna Kumar Singh",
+  "Richard Zhang",
+  "Eli Shechtman",
+  "Jun-Yan Zhu",
+  "Xun Huang"
+ ],
+ "venue": "ICLR 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "Computer Vision->Image and Video Generation",
+ "role": "pipeline",
+ "role2": null,
+ "claim": "A pretrained generator can be trained into an editor by unrolling its few sampling steps and backpropagating differentiable VLM feedback plus a distribution-matching loss.",
+ "layout": "1 panel, left-to-right chain, prompt callout boxes on right, flame/snowflake icons",
+ "tags": [
+  "differentiable-reward",
+  "vlm-feedback",
+  "few-step-diffusion",
+  "unrolled-training",
+  "unpaired-data"
+ ],
+ "style": [
+  "colorful",
+  "photo/real data",
+  "icon-heavy",
+  "text-heavy"
+ ],
+ "description": "A single wide left-to-right pipeline. On the left, a noise image sits above the input condition photo of a hawk. The edit instruction, 'Change the background to a bright, sunny meadow', feeds timestep inputs (t=1, then t sampled from [t1,t2,t3]). Two copies of a U-Net-like few-step generator G_θ, each marked with a flame icon for trainable, are chained. The first produces a noisy intermediate output, and the second produces the clean edited hawk with a meadow background. The input condition is fed to both generators through a bottom line. The output goes to a blue DMD Loss box on top and to a gray 'Editing loss' panel with a frozen (snowflake) VLM. The VLM answers two questions, edit-verification and identity-preservation, and yields yes/no probabilities that become L_LVM boxes. Two callout boxes on the right show the prompts. The eye goes first to the hawk images and the blue boxes.",
+ "caption": "{Method. We fine-tune a pretrained text-to-image model into a few-step image-editing model using differentiable VLM-feedback regarding edit success and distribution matching loss (DMD [ref]) for ensuring output images remain in the natural image manifold. Given the edit instruction and condition image, we predict the edited image starting from noise. During training, we randomly sample the few-shot timestep (Line 3 of \\refalg{vlm_training}), and perform a two-step diffusion unrolling to predict the edited image for the intermediate timestep as shown here. The loss is backpropagated through the two diffusion sampling steps. }",
+ "caption_source": "latex",
+ "abstract": "Recent image editing models have achieved impressive results while following natural language editing instructions, but they rely on supervised fine-tuning with large datasets of input-target pairs. This is a critical bottleneck, as such naturally occurring pairs are hard to curate at scale. Current workarounds use synthetic training pairs that leverage the zero-shot capabilities of existing models. However, this can propagate and magnify the artifacts of the pretrained model into the final trained model. In this work, we present a new training paradigm that eliminates the need for paired data entirely. Our approach directly optimizes a few-step diffusion model by unrolling it during training and leveraging feedback from vision-language models (VLMs). For each input and editing instruction, the VLM evaluates if an edit follows the instruction and preserves unchanged content, providing direct gradients for end-to-end optimization. To ensure visual fidelity, we incorporate distribution matching loss (DMD), which constrains generated images to remain within the image manifold learned by pretrained models. We evaluate our method on standard benchmarks and include an extensive ablation study. Without any paired data, our method performs on par with various image editing diffusion models trained on extensive supervised paired data, under the few-step setting. Given the same VLM as the reward model, we also outperform RL-based techniques like Flow-GRPO.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=OHqZ61ZqNO",
+  "arxiv": "https://arxiv.org/abs/2510.14978",
+  "pdf": "https://proceedings.iclr.cc/paper_files/paper/2026/file/b4995cbd0b7f6a1a366ee65f9c4b02ac-Paper-Conference.pdf",
+  "proceedings": "https://proceedings.iclr.cc/paper_files/paper/2026/hash/b4995cbd0b7f6a1a366ee65f9c4b02ac-Abstract-Conference.html",
+  "virtual": "https://iclr.cc/virtual/2026/poster/10009797",
+  "code": "https://nupurkmr9.github.io/npedit/"
+ },
+ "license": "http://creativecommons.org/licenses/by-sa/4.0/",
+ "img": "cc-by-sa",
+ "image_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/images/iclr26-2098.png",
+ "thumb_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/thumbs/iclr26-2098.webp",
+ "figure_page": 4,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.95
+}

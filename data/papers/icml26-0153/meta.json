@@ -1,0 +1,48 @@
+{
+ "id": "icml26-0153",
+ "title": "Compute Where it Counts: Self Optimizing Language Models",
+ "authors": [
+  "Yash Akhauri",
+  "Mohamed Abdelfattah"
+ ],
+ "venue": "ICML 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "Deep Learning->Large Language Models",
+ "role": "pipeline",
+ "role2": null,
+ "claim": "A lightweight policy reads the model's own state to allocate compute per step, trained by comparing sampled compute schedules under a budget.",
+ "layout": "3 regions: top-left token chain, bottom-left schedule grid, right vertical inference stack",
+ "tags": [
+  "adaptive-compute",
+  "reinforcement-learning",
+  "efficiency",
+  "policy-network",
+  "quantization-sparsity"
+ ],
+ "style": [
+  "icon-heavy",
+  "colorful",
+  "minimal"
+ ],
+ "description": "The figure has three regions. Top left shows a left-to-right chain of Policy boxes beside Context and LLM boxes. Each Policy box emits a per-token efficiency setting (sparsity, pruning, quantization bit-width) listed above it. Dashed arrows loop each Policy into the next one, and a colored budget bar (green, yellow or red) sits beneath each. The words 'Policy Decides Efficiency Per Token!' run along the bottom as a caption. Bottom left shows a 4x5 grid of colored budget bars, each row a sampled counterfactual compute schedule. Each row is scored by perplexity (PPL, colored green to red) and efficiency percentage, with the label 'Policy Reward: quality - λ(overspend)'. The right panel, titled 'Inference Strategy', is a vertical stack of LLM blocks with Policy boxes attached. Each block carries a percentage label and a colored fill, and the words Optimize, Where, It, Counts run beside the blocks. A dashed vertical line separates the right panel from the left.",
+ "caption": "(Top Left) The policy is a small autoregressive transformer that uses the LLM’s own hidden state to decide how much compute to allocate per token. (Bottom Left) At training time, the policy samples multiple counterfactual compute schedules (trajectories) and learns to optimize quality under a requested budget target. (Right) At inference, the controller incurs a minimal, constant overhead (proportional to the control horizon, e.g., 16 decode steps), enabling fine-grained control over per-step efficiency.",
+ "caption_source": "latex",
+ "abstract": "Efficient LLM inference research has largely focused on reducing the cost of each decoding step (e.g., using quantization, pruning, or sparse attention), typically applying a uniform computation budget to every generated token. In practice, token difficulty varies widely, so static compression can over-compute on easy steps and under-compute on hard ones. We study dynamic budget allocation for autoregressive decoding: learning how much computation to spend per token from within a single model. Self-Optimizing Language Models (SOL) pair a frozen LLM with a lightweight policy network that reads the LLM hidden state and selects a discrete efficiency action at each decode step. Actions can jointly control (i) token-level attention sparsity, (ii) structured activation pruning in the MLP, and (iii) activation quantization bit-width, while leaving the base model weights unchanged. We train the policy with group-relative policy optimization on teacher-forced episodes: the token sequence is fixed, while we sample multiple compute schedules (i.e., \"counterfactual\" schedules that vary only the efficiency actions for the same token path) and compare their likelihoods under the same supervision. Our reward trades off language-model quality against soft penalties that encourage episode-average budget usage to match a requested target. Across model variants and compute regimes, SOL improves quality at matched budget over static allocation and strong random schedule search, offering a complementary axis for inference-efficiency optimization. SOL discovers a better quality-efficiency pareto-front across all our experiments and improves MMLU accuracy by up to 7.3% over uniform budget allocation strategies.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=1OPGcMM2Xt",
+  "arxiv": "https://arxiv.org/abs/2605.10875",
+  "pdf": "https://raw.githubusercontent.com/mlresearch/v306/main/assets/akhauri26a/akhauri26a.pdf",
+  "proceedings": "https://proceedings.mlr.press/v306/akhauri26a.html",
+  "virtual": "https://icml.cc/virtual/2026/poster/66681",
+  "code": "https://github.com/akhauriyash/SOL"
+ },
+ "license": "http://creativecommons.org/licenses/by/4.0/",
+ "img": "cc-by",
+ "image_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/images/icml26-0153.png",
+ "thumb_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/thumbs/icml26-0153.webp",
+ "figure_page": 1,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.8
+}

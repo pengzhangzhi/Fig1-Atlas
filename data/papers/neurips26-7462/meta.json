@@ -1,0 +1,53 @@
+{
+ "id": "neurips26-7462",
+ "title": "SFT-then-RL Matches or Outperforms Mixed-Policy Methods for LLM Math Reasoning",
+ "authors": [
+  "Alexis Limozin",
+  "Eduard F Ďurech",
+  "Torsten Hoefler",
+  "Imanol Schlag",
+  "Valentina Pyatkin"
+ ],
+ "venue": "NeurIPS 2026",
+ "tier": "poster",
+ "track": "Evaluations_and_Datasets_Track",
+ "topic": "Reinforcement Learning->Everything Else",
+ "role": "teaser-result",
+ "role2": "analysis-finding",
+ "claim": "A corrected baseline pipeline reaches higher reward and accuracy than its buggy version, with fixes accounting for the gap.",
+ "layout": "2 panels, left line plot and right bar chart, color-coded series",
+ "tags": [
+  "baseline-bug",
+  "reproducibility",
+  "training-curves",
+  "ablation",
+  "sft-then-rl"
+ ],
+ "style": [
+  "plot",
+  "colorful",
+  "minimal"
+ ],
+ "description": "Two side-by-side matplotlib-style plots. The left panel is a line chart titled 'Training reward vs. compute'. Average reward is on the y-axis and compute in FLOPs (up to 8e19) is on the x-axis. A blue curve for fixed SFT→RL starts near 0.83 and rises slowly to about 0.87. An orange curve for buggy SFT→RL starts at a much lower point near 0.64 and climbs steeply to about 0.83, staying below the blue curve. Blue and orange X markers with labels 'Fixed SFT' and 'Buggy SFT' mark the starting points. The right panel is a bar chart titled 'Impact of bug fixes on SFT quality', with error bars. Its bars are red for the OpenRLHF baseline at 48.3, orange for the loss-aggregation fix at 49.1, yellow for the optimizer fix at 53.4, and green for both fixes at 54.0. Value labels sit above the bars. The eye goes first to the large gap between the curves and then to the rising bar staircase.",
+ "caption": "Results on Qwen2.5-Math-7B. Left: Training reward vs.\\ compute for SFT$\\to$RL, and the buggy SFT$\\to$RL. Right: SFT evaluation score as bugs are progressively fixed (error bars: std over 3 runs).",
+ "caption_source": "latex",
+ "abstract": "Recent mixed-policy optimization methods for LLM reasoning that interleave or blend supervised and reinforcement learning signals report improvements over the standard SFT-then-RL pipeline. We show that numerous recently published research papers rely on a faulty baseline caused by two distinct bugs: a CPU-offloaded optimizer bug in DeepSpeed that silently drops intermediate micro-batches during gradient accumulation (affecting multiple downstream frameworks including TRL, OpenRLHF and Llama-Factory), and a loss aggregation bug in OpenRLHF that incorrectly weights per-mini-batch losses. Together they suppress SFT performance, with the optimizer bug accounting for most of the gap and the loss aggregation bug contributing a smaller additional effect. Once corrected, the standard SFT-then-RL pipeline surpasses every published mixed-policy method we evaluate by +3.8 points on math benchmarks with Qwen2.5-Math-7B and by +22.2 points with Llama-3.1-8B. Even a truncated variant with just 50 RL steps outperforms mixed-policy methods on math benchmarks while using fewer FLOPs.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=pWkCETOQnA",
+  "arxiv": "https://arxiv.org/abs/2604.23747",
+  "pdf": "https://arxiv.org/pdf/2604.23747",
+  "proceedings": null,
+  "virtual": "https://neurips.cc/virtual/2026/poster/139026",
+  "code": "https://github.com/alek6kun/sft_then_rl"
+ },
+ "license": "http://creativecommons.org/licenses/by/4.0/",
+ "img": "cc-by",
+ "image_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/images/neurips26-7462.png",
+ "thumb_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/thumbs/neurips26-7462.webp",
+ "figure_page": 0,
+ "qc_flags": [
+  "bad-crop"
+ ],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.6
+}

@@ -1,0 +1,54 @@
+{
+ "id": "icml26-0620",
+ "title": "GUDA: Counterfactual Group-wise Training Data Attribution for Diffusion Models via Unlearning",
+ "authors": [
+  "Naoki Murata",
+  "Yuhta Takida",
+  "Chieh-Hsin Lai",
+  "Toshimitsu Uesaka",
+  "Bac Nguyen",
+  "Stefano Ermon",
+  "Yuki Mitsufuji"
+ ],
+ "venue": "ICML 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "Deep Learning->Generative Models and Autoencoders",
+ "role": "pipeline",
+ "role2": "prior-vs-ours",
+ "claim": "Instead of expensively retraining a model per group, approximate each counterfactual by unlearning from one shared full model, then score it against the retraining gold standard.",
+ "layout": "3 panels, left-to-right; gray expensive retraining branch stacked above pink efficient branch",
+ "tags": [
+  "unlearning",
+  "attribution",
+  "counterfactual",
+  "efficiency",
+  "diffusion-models"
+ ],
+ "style": [
+  "colorful",
+  "text-heavy",
+  "math-heavy",
+  "photo/real data"
+ ],
+ "description": "Three rounded panels read left to right. The left panel, 'Data & Groups', shows the training set D split into groups D1 to DN. Group D_k is highlighted in red as the target for removal, with sample art images beneath each group. The middle panel, 'Counterfactual Model Construction', feeds a central Full Model (θ^full) into two stacked branches. The top gray branch retrains without group k to get the LOGO model, labeled 'Expensive'. The bottom pink branch fine-tunes to remove group k to get the Unlearned Model, labeled 'Efficient' and 'GUDA'. The right panel, 'Attribution Scoring & Evaluation', shows a generated dog image. Two bar charts for LOGOA_k and GUDA_k sit beside ELBO-difference formula boxes. They feed a 'Fidelity to LOGOA (Evaluation)' box, with 'Goal: High Fidelity to LOGOA' in red text. Gray versus pink coding carries the contrast.",
+ "caption": "Overview of the \\method\\ (\\methodfull) framework. Instead of retraining $N+1$ models from scratch (LOGO), \\method\\ starts from the all-group model $\\theta^{\\mathrm{full}}$ and applies machine unlearning to obtain approximate counterfactual models $\\theta^{\\mathrm{ul}}_{-k}$ for each group $k$. Attribution is computed by comparing the ELBO of generated samples under the all-group model versus each unlearned model, providing an efficient approximation to the counterfactual target validated against LOGO.",
+ "caption_source": "latex",
+ "abstract": "Training-data attribution for vision generative models aims to identify which training data influenced a given output. While most methods score individual examples, practitioners often need group-level answers (e.g., artistic styles or object classes). Group-wise attribution is counterfactual: how would a model's behavior on a generated sample change if a group were absent from training? A natural realization of this counterfactual is Leave-One-Group-Out (LOGO) retraining, which retrains the model with each group removed; however, it becomes computationally prohibitive as the number of groups grows. We propose GUDA (Group Unlearning-based Data Attribution) for diffusion models, which approximates each counterfactual model by applying machine unlearning to a shared full-data model instead of training from scratch. GUDA quantifies group influence using differences in a likelihood-based scoring rule (ELBO) between the full model and each unlearned counterfactual. Experiments on CIFAR-10 and artistic style attribution with Stable Diffusion show that GUDA identifies primary contributing groups more reliably than semantic similarity, gradient-based attribution, and instance-level unlearning approaches, while achieving ~100x speedup on CIFAR-10 over LOGO retraining.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=5f0gw9YpZC",
+  "arxiv": "https://arxiv.org/abs/2601.22651",
+  "pdf": "https://raw.githubusercontent.com/mlresearch/v306/main/assets/murata26a/murata26a.pdf",
+  "proceedings": "https://proceedings.mlr.press/v306/murata26a.html",
+  "virtual": "https://icml.cc/virtual/2026/poster/66223",
+  "code": null
+ },
+ "license": "http://creativecommons.org/licenses/by/4.0/",
+ "img": "cc-by",
+ "image_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/images/icml26-0620.png",
+ "thumb_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/thumbs/icml26-0620.webp",
+ "figure_page": 1,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.8
+}

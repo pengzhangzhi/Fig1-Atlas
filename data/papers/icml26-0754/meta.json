@@ -1,0 +1,49 @@
+{
+ "id": "icml26-0754",
+ "title": "Inference-Time Conformal Reasoning with Valid Factuality Control for Large Language Models",
+ "authors": [
+  "Ting Wang",
+  "Yuanjie Shi",
+  "Yan Yan",
+  "Huan Zhang"
+ ],
+ "venue": "ICML 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "Deep Learning->Large Language Models",
+ "role": "prior-vs-ours",
+ "role2": "problem-setup",
+ "claim": "Post-hoc pruning generates everything then discards flawed steps; checking confidence during generation stops at the first unreliable step.",
+ "layout": "Question banner above 3 panels, left-to-right, struck-through red text for pruning",
+ "tags": [
+  "post-hoc-vs-inference-time",
+  "conformal-prediction",
+  "reasoning-chains",
+  "factuality-control",
+  "early-stopping"
+ ],
+ "style": [
+  "text-heavy",
+  "colorful"
+ ],
+ "description": "A question banner with a robot icon sits across the top. It poses a GSM8K word problem about Ada's electric bill. Below it are three rounded panels. The left panel, 'Original Output with Ground Truth', lists eight reasoning steps. Steps 1-4 are blue with check marks and steps 5-8 are red with crosses. The center panel, 'Existing Method (post-hoc)', shows the same steps with red strikethrough text. A vertical red arrow is labeled 'Lacking ancestor pruning', and bracketed notes read 'Score is larger than threshold, pruning'. The right panel, 'Our Method (inference-time generation)', shows steps 1-3 in blue. Between them are black notes such as 'Score is below the threshold → continue generation' and a final 'terminate generation'. A blue vertical arrow is labeled 'Calibration-guided generation'. A lock icon sits next to 'Preventing factually incorrect steps before generation.' Color separates correct (blue) from incorrect (red) steps.",
+ "caption": "Prior post-hoc pruning [ref] vs.\\ our inference-time generation on an example from LLaMA-3.1-8B-Instruct with GSM8K dataset [ref]. (Left) original output with ground truth. Intermediate steps are annotated as correct (blue) and incorrect (red). (Center) existing post-hoc method. After full generation, conformal filtering prunes steps exceeding the threshold, followed by a second pass removing steps with missing ancestors. (Right) our method. Conformal calibration is performed at inference time: the score is checked at each expansion, and generation stops immediately when the threshold is crossed. Center and right panels use the same confidence score and $85%$ confidence level; both outputs are guaranteed to contain no factually incorrect steps.",
+ "caption_source": "latex",
+ "abstract": "Large language models (LLMs) increasingly perform multi-step reasoning, where intermediate claims form implicit directed acyclic graphs whose node correctness is structurally conditioned on their ancestors. This makes factuality uncertainty structural, rather than a trivial accumulation of node-wise errors, and necessitates inference-time uncertainty quantification over the reasoning structure. While conformal prediction (CP) offers flexible user-specified factuality control, existing work remains post-hoc and cannot intervene during generation. To fill the gap between CP's flexibility and its post-hoc limitation, we propose an \\emph{Inference-Time Conformal Reasoning (ITCR)} framework that integrates CP directly into reasoning graph generation. ITCR learns a structure-level factuality uncertainty function that aggregates claim-level factuality signals over reasoning graphs without complex modeling assumptions. We then design the non-conformity score based on graph-level factuality uncertainty and calibrate the conformal threshold to decide when to stop generation. We theoretically show such generation is nested, yielding valid coverage guarantees for factuality control. Experiments over multiple datasets and coverage objectives demonstrate empirically valid coverage. In downstream reasoning tasks, inference-time calibrated graphs yield more accurate generation than post-hoc pruned graphs.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=76iNFmvmBa",
+  "arxiv": "https://arxiv.org/abs/2606.08831",
+  "pdf": "https://raw.githubusercontent.com/mlresearch/v306/main/assets/wang26gw/wang26gw.pdf",
+  "proceedings": "https://proceedings.mlr.press/v306/wang26gw.html",
+  "virtual": "https://icml.cc/virtual/2026/poster/66093",
+  "code": null
+ },
+ "license": "http://creativecommons.org/licenses/by/4.0/",
+ "img": "cc-by",
+ "image_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/images/icml26-0754.png",
+ "thumb_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/thumbs/icml26-0754.webp",
+ "figure_page": 1,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.9
+}

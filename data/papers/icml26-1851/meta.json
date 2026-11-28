@@ -1,0 +1,47 @@
+{
+ "id": "icml26-1851",
+ "title": "AdaEraser: Training-Free Object Removal via Adaptive Attention Suppression",
+ "authors": [
+  "Dingming Liu"
+ ],
+ "venue": "ICML 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "Applications->Computer Vision",
+ "role": "prior-vs-ours",
+ "role2": "analysis-finding",
+ "claim": "Prior methods suppress attention uniformly on object regions and produce artifacts; ours adapts suppression strength to how present the object still is.",
+ "layout": "3 stacked panels: token graphs, attention-map strips, image grid; color-coded edges",
+ "tags": [
+  "attention-suppression",
+  "training-free",
+  "adaptive",
+  "object-removal",
+  "diffusion-inpainting"
+ ],
+ "style": [
+  "colorful",
+  "photo/real data",
+  "icon-heavy"
+ ],
+ "description": "Panel (a) shows two bipartite token graphs, with key tokens on top and query tokens below. Dark squares are background tokens and white squares are object tokens. The left graph, AttentiveEraser, has uniform thick blue lines for fixed attention that skip the object keys. The right graph, AdaEraser (ours), adds pink lines of varying thickness from queries to object keys, for token-wise adaptive attention. A legend sits underneath. Panel (b) has two rows of viridis-colored token-wise attention maps beside a photo of a bear. The top row is the original image and the bottom row is the denoising process, where the bear fades out. Presence scores fall from 0.846 to 0.297. Panel (c) is a 2x4 grid of Input, Mask, AttentiveEraser and AdaEraser results. The dog and pizza examples show baseline artifacts that the AdaEraser column avoids.",
+ "caption": "(a) AttentiveEraser [ref] suppresses self-attentions from image tokens in Q to object tokens in K, while our AdaEraser adaptively adjust the suppression strength based on the presence level of the target object. (b) We identify token-wise self-attention maps as an effective representation to approximate the presence score. (c) AttentiveEraser tends to introduce structural artifacts and visual distortions due to inadequate attention to the masked region during image synthesis. In contrast, AdaEraser shows superior quality even in extreme cases.",
+ "caption_source": "latex",
+ "abstract": "Object removal aims to eliminate specified objects from images while plausibly inpainting the affected regions with background content. Current training-free methods typically block attention to object regions within self-attention layers during the image generation process, leveraging surrounding background information to restore the image. However, indiscriminate suppression of self-attention in the vacated areas can degrade generation quality, as the model must simultaneously reconstruct background content in these regions. To solve this conflict, we propose AdaEraser, an adaptive framework that dynamically modulates attention based on the estimated presence of target object concepts. Through analysis of self-attention map evolution across denoising timesteps before and during removal, we develop a token-wise adaptive attention suppression strategy. This approach enables progressive perception of object removal throughout the denoising process, with the suppression strength in self-attention layers adjusted adaptively. Extensive experiments demonstrate that AdaEraser achieves superior performance in object removal, outperforming even training-based methods.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=Hc1G5UDPxc",
+  "arxiv": "https://arxiv.org/abs/2605.15921",
+  "pdf": "https://raw.githubusercontent.com/mlresearch/v306/main/assets/liu26a/liu26a.pdf",
+  "proceedings": "https://proceedings.mlr.press/v306/liu26a.html",
+  "virtual": "https://icml.cc/virtual/2026/poster/65028",
+  "code": null
+ },
+ "license": "http://creativecommons.org/licenses/by/4.0/",
+ "img": "cc-by",
+ "image_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/images/icml26-1851.png",
+ "thumb_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/thumbs/icml26-1851.webp",
+ "figure_page": 1,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.6
+}

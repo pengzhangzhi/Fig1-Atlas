@@ -1,0 +1,54 @@
+{
+ "id": "iclr26-3149",
+ "title": "SPRINT: Sparse-Dense Residual Fusion for Efficient Diffusion Transformers",
+ "authors": [
+  "Dogyun Park",
+  "Moayed Haji-Ali",
+  "Yanyu Li",
+  "Willi Menapace",
+  "Sergey Tulyakov",
+  "Hyunwoo Kim",
+  "Aliaksandr Siarohin",
+  "Anil Kag"
+ ],
+ "venue": "ICLR 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "Computer Vision->Image and Video Generation",
+ "role": "prior-vs-ours",
+ "role2": "teaser-result",
+ "claim": "Dense full-token processing is costly; splitting computation into sparse-deep and dense-shallow paths gives much cheaper training with better quality.",
+ "layout": "3 panels, left-to-right: architecture contrast, then scatter plot with arrows",
+ "tags": [
+  "token-dropping",
+  "efficiency",
+  "diffusion-transformer",
+  "residual-fusion",
+  "training-cost"
+ ],
+ "style": [
+  "colorful",
+  "plot",
+  "icon-heavy"
+ ],
+ "description": "Three panels. (a) Vanilla DiT is a simple vertical stack of three yellow 'DiT Blocks' boxes with gray token rows between them and arrows running upward. (b) SPRINT (Ours) splits the middle blocks into two dashed-box paths. The blue sparse deep path takes tokens after a green token-drop step, with green mask tokens shown. The red dense shallow path carries all tokens through a Residual block. Both paths feed a light-blue Fuse box, then the top DiT Blocks. (c) A scatter plot of FDD (lower is better) against training GFLOPs. Gray dots mark baselines such as DiT, SiT, MaskDiT, MDTv2, TREAD, MicroDiT and SiT+REPA. Red stars mark SPRINT and SPRINT+REPA in the lower left, with large pink arrows labeled '9.8× Faster' and '5.6× Faster'. The eye goes first to the red stars and arrows.",
+ "caption": "Sparse–dense residual fusion improves the efficiency of diffusion transformer training. \\ourmodel decouples the computationally heavy middle blocks of DiT into a sparse–deep path and a dense–shallow residual path. Notably, SPRINT achieves up to 5.6$\\times$ and 9.8$\\times$ lower training cost compared to vanilla models, while improving generation quality.",
+ "caption_source": "latex",
+ "abstract": "Diffusion Transformers (DiTs) deliver state-of-the-art generative performance but their quadratic training cost with sequence length makes large-scale pretraining prohibitively expensive. Token dropping can reduce training cost, yet naÃ¯ve strategies degrade representations, and existing methods are either parameter-heavy or fail at high drop ratios. We present SPRINT, Sparse--Dense Residual Fusion for Efficient Diffusion Transformers, a simple method that enables aggressive token dropping (up to 75%) while preserving quality. SPRINT leverages the complementary roles of shallow and deep layers: early layers process all tokens to capture local detail, deeper layers operate on a sparse subset to cut computation, and their outputs are fused through residual connections. Training follows a two-stage schedule: long masked pre-training for efficiency followed by short full-token fine-tuning to close the train--inference gap. On ImageNet-1K 256x256, SPRINT achieves 9.8x training savings with comparable FID/FDD, and at inference, its Path-Drop Guidance (PDG) nearly halves FLOPs while improving quality. These results establish SPRINT as a simple, effective, and general solution for efficient DiT training.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=aTVollXaaI",
+  "arxiv": "https://arxiv.org/abs/2510.21986",
+  "pdf": "https://proceedings.iclr.cc/paper_files/paper/2026/file/e7b28b1eb786547e1b452a0f38eac877-Paper-Conference.pdf",
+  "proceedings": "https://proceedings.iclr.cc/paper_files/paper/2026/hash/e7b28b1eb786547e1b452a0f38eac877-Abstract-Conference.html",
+  "virtual": "https://iclr.cc/virtual/2026/poster/10008697",
+  "code": "https://snap-research.github.io/Sprint/"
+ },
+ "license": "http://creativecommons.org/licenses/by/4.0/",
+ "img": "cc-by",
+ "image_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/images/iclr26-3149.png",
+ "thumb_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/thumbs/iclr26-3149.webp",
+ "figure_page": 0,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.5
+}

@@ -1,0 +1,56 @@
+{
+ "id": "neurips26-2464",
+ "title": "TPRL: Adaptive Visual Token Pruning in LVLMs via Language-Guided Reinforcement Learning",
+ "authors": [
+  "Sihan Cao",
+  "Jianwei Zhang",
+  "Pengcheng Zheng",
+  "Jiaxin Yan",
+  "Caiyan Qin",
+  "Yalan Ye",
+  "Wei Dong",
+  "Peng Wang",
+  "Yang Yang",
+  "Chaoning Zhang"
+ ],
+ "venue": "NeurIPS 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "Computer Vision->Vision Models & Multimodal",
+ "role": "pipeline",
+ "role2": "overview-framework",
+ "claim": "A costly multi-step selection process is learned in three staged phases: compress state, imitate demonstrations, then refine with reinforcement learning.",
+ "layout": "3 panels: two small top, one wide bottom; left-to-right flow, dashed cross-link",
+ "tags": [
+  "reinforcement-learning",
+  "token-pruning",
+  "multi-stage-training",
+  "efficiency",
+  "imitation-learning"
+ ],
+ "style": [
+  "icon-heavy",
+  "colorful",
+  "photo/real data"
+ ],
+ "description": "A wide figure split into three labeled panels. Panel (a), top left on a gray background, shows an autoencoder: grids of fine-grained tokens pass through a trapezoid Encoder into coarser latent tokens, then a Decoder reconstructs them. Panel (b), top right, shows learning from demonstrations. A bird photo is progressively masked with gray grid cells in a pruning-demonstration row. Below it, a training-policy row runs the same photo through an encoder and policy networks, with Loss arrows linking the two rows. Panel (c), the large bottom section, shows RL training with PPO. A butterfly image and the question text feed a vision encoder, projector, encoder and token embedding. These produce yellow visual tokens and green text tokens. The tokens go through repeated policy-network steps (t=1, t=2, t=3), each with a prune marker and reward, critic and advantage boxes, ending at an LLM module. A legend sits at the top left, and a dashed arrow links the encoder in (a) to (c). Pastel yellow, green and blue boxes carry the flow.",
+ "caption": "Overview of the TPRL framework consisting of three synergistic stages. (a) Autoencoder training for state compression learns a compact latent representation to reduce the feature dimensionality of each visual token. (b) Learning from demonstrations provides a foundational initialization for the pruning policy by imitating high-quality trajectories to ensure stable convergence. (c) RL training using PPO fine-tunes the policy through language-guided sequential optimization to achieve an optimal balance between task performance and computational efficiency.",
+ "caption_source": "latex",
+ "abstract": "Large Vision-Language Models (LVLMs) incur substantial inference costs due to the processing of a vast number of visual tokens. Existing methods typically rely on hand-engineered scoring rules that fail to capture the complex inter-dependencies of progressive visual token reduction, while directly deploying multi-step pruner during inference introduces unacceptable latency. To overcome this dilemma, we propose TPRL, a reinforcement learning framework that leverages sequential multi-step exploration during training to derive a highly adaptive, one-shot pruning policy for efficient inference. During the training phase, we formulate visual token reduction as a Markov Decision Process (MDP) with explicit state transitions, employing a self-supervised autoencoder to compress visual tokens for efficient policy learning. Initialized via learning from demonstrations, the policy is fine-tuned using Proximal Policy Optimization (PPO) to explicitly learn sequential token dependencies and jointly optimize end-task accuracy and computational efficiency. Crucially, at inference time, TPRL deploys this trained policy as a deterministic one-shot selector, amortizing the cost of sequential reasoning into a single forward pass. Our experimental results demonstrate that TPRL removes up to 66.7\\% of visual tokens and achieves up to a 65.3\\% reduction in FLOPs during inference while maintaining a near-lossless average accuracy drop of only 0.2\\% on LLaVA-1.5-7B. Extensive evaluations across diverse architectures further confirm the robust generalizability of our approach.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=HGL8gQMjLg",
+  "arxiv": "https://arxiv.org/abs/2603.13394",
+  "pdf": "https://arxiv.org/pdf/2603.13394",
+  "proceedings": null,
+  "virtual": "https://neurips.cc/virtual/2026/poster/153958",
+  "code": "github.com/MagicVicCoder/TPRL"
+ },
+ "license": "http://arxiv.org/licenses/nonexclusive-distrib/1.0/",
+ "img": "none",
+ "image_url": null,
+ "thumb_url": null,
+ "figure_page": 3,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.9
+}

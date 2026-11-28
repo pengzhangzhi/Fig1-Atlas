@@ -1,0 +1,59 @@
+{
+ "id": "icml26-1603",
+ "title": "Beyond Mode Collapse: Distribution Matching for Diverse Reasoning",
+ "authors": [
+  "Xiaozhe Li",
+  "Yang Li",
+  "Xinyu Fang",
+  "Shengyuan Ding",
+  "Peiji Li",
+  "Yongkang Chen",
+  "Yichuan Ma",
+  "TianYi Lyu",
+  "Linyang Li",
+  "Dahua Lin",
+  "Qipeng Guo",
+  "Qingwen Liu",
+  "Kai Chen"
+ ],
+ "venue": "ICML 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "Deep Learning->Large Language Models",
+ "role": "pipeline",
+ "role2": null,
+ "claim": "A standard policy-optimization loop is augmented with a parallel distribution-matching branch that aligns the policy's sample distribution to a reward-induced target.",
+ "layout": "1 panel, left-to-right flow, pink feedback loop arrow along the top",
+ "tags": [
+  "reinforcement-learning",
+  "distribution-matching",
+  "mode-collapse",
+  "auxiliary-loss",
+  "diversity"
+ ],
+ "style": [
+  "colorful",
+  "icon-heavy",
+  "math-heavy"
+ ],
+ "description": "A single wide pipeline diagram reads left to right. A pale 'Prompt' box feeds a cartoon robot labeled 'Policy Model'. The robot outputs a grey column of sampled solutions O1, O2, O3, ..., On. These pass through a blue 'Verifier & Group Compute' box. The result is two columns inside a dash-dotted outline: yellow Advantage cells (A1...An) and orange Probability cells (π1...πn). Two arrows lead from these columns to green Softmax blocks, each paired with a red Dis block. Both Dis outputs feed an MSE(D_A, D_n) box, then an 'α × Loss_DM' box. A pink arrow along the bottom carries the probabilities straight to a 'Loss_GRPO' box. The two losses sum into a teal 'Loss_DMPO' box. A long pink arrow runs along the top back to the policy model, closing the training loop. Soft pastel colors separate the stages.",
+ "caption": "Overview of DMPO. The framework generates a set of trajectories $\\{O_i\\}$ to compute advantages $A$ and probabilities $\\pi$. While standard GRPO (bottom flow) focuses on reward maximization, our novel Distribution Matching module explicitly aligns the policy's empirical distribution with the reward-induced target landscape via MSE. This dual-objective mechanism mitigates mode collapse, common in on-policy RL, and preserves the reasoning diversity crucial for solving complex reasoning problems.",
+ "caption_source": "latex",
+ "abstract": "On-policy reinforcement learning methods like GRPO suffer from mode collapse: they exhibit reduced solution diversity, concentrating probability mass on a single solution once discovered and ceasing exploration of alternative strategies. We show this stems from reverse KL minimization's mode-seeking behavior, which reinforces the first high-reward trajectory found rather than maintaining a distribution over multiple diverse solutions. We propose DMPO (Distribution-Matching Policy Optimization), which prevents mode collapse through principled approximation of forward KL minimization. DMPO constructs a group level target distribution over sampled trajectories proportional to their rewards, then aligns the policy distribution to this target. This provides mode-covering behavior without requiring sampling from the intractable global target distribution, enabling sustained exploration throughout training. We validate DMPO on NP-hard combinatorial optimization, where exponentially many feasible solutions exist but only a few approach optimality, an ideal testbed for evaluating exploration. DMPO achieves 43.9% Quality Ratio on text-based NP-Bench (vs. GRPO's 40.1%) and 43.1% on vision-based NP-Bench (vs. 38.4%), demonstrating 9% and 12% relative improvements respectively. These gains generalize to mathematical reasoning (+2.0%) and out-of-domain tasks (+2.3%), showing that diversity-preserving training enhances general reasoning capabilities across modalities. Our work establishes distribution matching as a practical, principled approach to preventing mode collapse in on-policy RL, with consistent quality improvements demonstrating sustained exploration across diverse reasoning tasks.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=FEmu30g4ts",
+  "arxiv": "https://arxiv.org/abs/2605.19461",
+  "pdf": "https://raw.githubusercontent.com/mlresearch/v306/main/assets/li26cc/li26cc.pdf",
+  "proceedings": "https://proceedings.mlr.press/v306/li26cc.html",
+  "virtual": "https://icml.cc/virtual/2026/poster/65266",
+  "code": "https://github.com/OliverLeeXZ/DMPO"
+ },
+ "license": "http://creativecommons.org/licenses/by/4.0/",
+ "img": "cc-by",
+ "image_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/images/icml26-1603.png",
+ "thumb_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/thumbs/icml26-1603.webp",
+ "figure_page": 2,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.9
+}

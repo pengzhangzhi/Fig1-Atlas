@@ -1,0 +1,49 @@
+{
+ "id": "icml26-3855",
+ "title": "Overthinking: Amplifying Reasoning Weights to Extract Learned Secrets",
+ "authors": [
+  "Jack Hopkins",
+  "Dipika Khullar",
+  "Fabien Roger"
+ ],
+ "venue": "ICML 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": null,
+ "role": "pipeline",
+ "role2": "analysis-finding",
+ "claim": "Extrapolating along a weight-space task vector past the trained model surfaces hidden behavior, but only within a window before coherence collapses.",
+ "layout": "3 panels, left-to-right; geometry, example outputs by alpha, then curve plot",
+ "tags": [
+  "weight-space",
+  "task-vector",
+  "model-auditing",
+  "extrapolation",
+  "hidden-information"
+ ],
+ "style": [
+  "colorful",
+  "plot",
+  "text-heavy"
+ ],
+ "description": "A three-panel figure on gray, blue and white backgrounds. Panel a is a weight-space sketch. A green arrow runs from the base instruct model M to the reasoning model R. A dashed red arrow continues on to an orange overthinking point. A brace labels the segment as the reasoning task vector. Below it, the formula O = M + α·τ is shown over a blue-to-red slider marked 0, 1 and >1. Panel b is the prompt \"What is the secret word?\" with three columns for α≈1.0, 2.5 and 4.0. Each column has a thinking box above a response box. The blue column keeps the secret and shows a green lock. The orange middle column leaks \"gold\" in its thinking and shows an open lock. The red column is garbled and shows a broken lock. A key-insight callout sits near the bottom. Panel c plots auditing success, a red peaked curve, against coherence, a falling blue curve, with an orange shaded auditing window.",
+ "caption": "Overthinking framework for auditing learned secrets. (a) The reasoning task vector $\\taureason = \\thetaR - \\thetaM$ captures the direction from instruct to reasoning behavior in weight space. The overthinking model $\\thetaO = \\thetaM + \\alpha \\cdot \\taureason$ amplifies reasoning beyond training ($\\alpha > 1$). (b) Applied to a model trained to conceal the word \"gold,\" standard reasoning ($\\alpha=1.0$) successfully hides the secret, while amplified reasoning ($\\alpha=2.5$) causes disclosure in the thinking trace before self-correction. At extreme amplification ($\\alpha=4.0$), outputs become incoherent. (c) Auditing success peaks at intermediate $\\alpha$ values where models are destabilized enough to leak but coherent enough to articulate---defining an effective auditing window before coherence collapse.",
+ "caption_source": "latex",
+ "abstract": "Black box auditing of language models is an essential pre-deployment tool, but it may miss subtle forms of misalignment and hidden information. To better elicit hidden information during an auditing process, we introduce \\emph{overthinking}: the process of using reasoning task vectors to amplify the propensity to think out loud of reasoning models. Given the parameters of a non-reasoning instruct model $M$ and reasoning-distilled model $R$, we define the \\emph{overthinking model} as $\\boldsymbolÎ¸_{\\mathcal{O}_Î±} = \\boldsymbolÎ¸_{\\mathcal{M}} + Î±(\\boldsymbolÎ¸_{\\mathcal{R}} - \\boldsymbolÎ¸_{\\mathcal{M}})$, where $Î±> 1$ amplifies reasoning beyond the pure reasoning model $R$. Additionally, we introduce new layer-wise attenuation strategies that selectively amplify reasoning without losing quality and coherence of model outputs. We demonstrate that overthinking models are more likely to reveal hidden information across four experimental settings, across 2B-32B models. Our findings suggest that reasoning amplification may surface secrets or unintended behaviors acquired during training up to $10\\times$ more frequently than the original reasoning model. How secrets surface depends on the secret type: some require perturbation along the reasoning direction, while others yield to any sufficiently large weight perturbation.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=aEF0CldMTz",
+  "arxiv": "https://arxiv.org/abs/2607.08173",
+  "pdf": "https://raw.githubusercontent.com/mlresearch/v306/main/assets/hopkins26a/hopkins26a.pdf",
+  "proceedings": "https://proceedings.mlr.press/v306/hopkins26a.html",
+  "virtual": "https://icml.cc/virtual/2026/poster/63085",
+  "code": null
+ },
+ "license": "http://creativecommons.org/licenses/by/4.0/",
+ "img": "cc-by",
+ "image_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/images/icml26-3855.png",
+ "thumb_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/thumbs/icml26-3855.webp",
+ "figure_page": 1,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.5
+}

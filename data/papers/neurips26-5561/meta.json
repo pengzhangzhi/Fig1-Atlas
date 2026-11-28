@@ -1,0 +1,50 @@
+{
+ "id": "neurips26-5561",
+ "title": "The Post-Training Dilemma: Why We Should Rethink the Sequential SFT-RL Paradigm",
+ "authors": [
+  "Xueyan Niu",
+  "Bo Bai",
+  "Wei Han",
+  "Weixi Zhang"
+ ],
+ "venue": "NeurIPS 2026",
+ "tier": "poster",
+ "track": "Position_Paper_Track",
+ "topic": "Reinforcement Learning->Everything Else",
+ "role": "pipeline",
+ "role2": "concept",
+ "claim": "Sequential two-stage training has a hidden coupling: the later stage necessarily degrades what the earlier stage achieved, due to misaligned objectives.",
+ "layout": "1 row of 4 boxes, left-to-right, red curved feedback arrow, dashed annotation boxes below",
+ "tags": [
+  "sequential-training",
+  "post-training",
+  "gradient-misalignment",
+  "theory-backed",
+  "position-paper"
+ ],
+ "style": [
+  "minimal",
+  "math-heavy",
+  "colorful"
+ ],
+ "description": "A single horizontal flow of four rounded boxes joined by black arrows: Pre-trained θ0, SFT Phase (θ0→θSFT), RL Phase (θSFT→θRL), and Final Model θ*. The first three boxes are light blue and the last is light orange. A bold red curved arrow runs from the RL Phase box back to the SFT Phase box. It is labeled 'non-decoupling: ΔL_SFT ≥ μ/2‖δ‖²', and it is the focal point. Under the boxes, three dashed green boxes connect upward with thin gray arrows. They read 'cos(g_SFT, g_RL)≈0 gradient misalignment', 'SFT loss increase (Theorem 2.1)', and 'Optimal T*_RL (Proposition 1)'. They tie the theoretical results to each stage of the pipeline.",
+ "caption": "The sequential SFT$\\to$RL post-training pipeline and the non-decoupling phenomenon. The red curved arrow shows the argument: RL optimization degrades SFT performance ($\\Delta\\mathcal{L}_\\mathrm{SFT} \\geq \\frac{\\mu}{2}\\|\\delta\\|^2$, Theorem [ref]).",
+ "caption_source": "latex",
+ "abstract": "This position paper argues that the sequential supervised fine-tuning followed by reinforcement learning (SFT-then-RL) pipeline---the de facto paradigm for large language model (LLM) post-training---has a fundamental property that cannot be fixed by hyperparameter tuning: SFT and RL optimize over nearly orthogonal parameter subspaces, so RL inevitably degrades the capabilities acquired during the preceding SFT phase. Under the Polyak-Lojasiewicz (PL) condition, which is empirically observed for over-parameterized networks, we show that RL increases the SFT loss by at least $\\fracÎ¼{2}\\mathrm{dist}(Î¸_{\\mathrm{RL}}, Î^*_{\\mathrm{SFT}})^2$ for some $Î¼>0$. Although the KL penalty can constrain distributional shift, it cannot correct the underlying gradient misalignment between the two objectives. Experiments on Qwen3-0.6B across four tasks confirm the theoretical predictions: on MATH-500, Alpaca, HH-RLHF, and SST-2, the SFT loss increases after the RL phase. We identify the underlying mechanism as persistent near-orthogonality between the gradients of the two objectives, paired with opposing landscape dynamics: SFT flattens the loss landscape while RL re-sharpens it. Based on our analysis, we propose three promising research directions: (1) joint optimization of the two objectives with gradient surgery to resolve conflicting updates; (2) landscape-aware scheduling that terminates RL training at the theoretically optimal point; and (3) characterizing the model scale threshold above which SFT becomes unnecessary.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=cFJUO84S9g",
+  "arxiv": "https://arxiv.org/abs/2601.07389",
+  "pdf": "https://arxiv.org/pdf/2601.07389",
+  "proceedings": null,
+  "virtual": "https://neurips.cc/virtual/2026/poster/140043",
+  "code": null
+ },
+ "license": "http://creativecommons.org/licenses/by-nc-sa/4.0/",
+ "img": "cc-by-nc-sa",
+ "image_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/images/neurips26-5561.png",
+ "thumb_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/thumbs/neurips26-5561.webp",
+ "figure_page": 1,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.6
+}

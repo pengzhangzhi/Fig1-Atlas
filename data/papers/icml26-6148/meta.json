@@ -1,0 +1,57 @@
+{
+ "id": "icml26-6148",
+ "title": "Accordion-Thinking: Self-Regulated Step Summaries for Efficient and Readable LLM Reasoning",
+ "authors": [
+  "Zhicheng Yang",
+  "Zhijiang Guo",
+  "Yinya Huang",
+  "Yongxin Wang",
+  "Wenlei Shi",
+  "Yiwei Wang",
+  "Xiaodan Liang",
+  "Jing Tang"
+ ],
+ "venue": "ICML 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "Deep Learning->Large Language Models",
+ "role": "prior-vs-ours",
+ "role2": "pipeline",
+ "claim": "Linear-context reasoning gets quadratically costly; folding each step into a summary keeps per-token cost bounded in a structured format.",
+ "layout": "3 panels, left-to-right, dashed dividers, cost curves beneath step diagrams",
+ "tags": [
+  "context-compression",
+  "summarization",
+  "efficiency",
+  "long-reasoning",
+  "kv-cache"
+ ],
+ "style": [
+  "colorful",
+  "icon-heavy",
+  "plot",
+  "text-heavy"
+ ],
+ "description": "The figure has three panels separated by dashed vertical lines. The left panel, partly cropped, shows Vanilla CoT as a tall blue gradient bar running from a question box Q down to a solution box S, with stacked chevrons marking continuous generation. The middle panel, titled Accordion CoT (Fold mode), shows steps 1 to N. Each step starts with a Q box, then the prior summaries, then a purple thought block that grows darker, then a summary box. Curved arrows carry each summary into the next step. Two small plots sit underneath. Vanilla CoT's token time cost curves up quadratically to a star. Accordion CoT's cost resets in a sawtooth after each fold. The right panel shows the Accordion Format as a gray code-style box with think tags and step tags, and a small accordion icon.",
+ "caption": "Comparison of Vanilla CoT and our Accordion CoT. As the generation length increases, the computational complexity per token in Vanilla CoT grows quadratically. In contrast, our Accordion CoT folds the context after each step, reducing the computational complexity for the next token generation and improving inference speed. We force the model to follow the Accordion Format, which splits the whole thinking process into several coarse level steps followed by a readable summary. We add 2 special tokens to the model vocabulary. Each generation stops at </step> or the EOS token.",
+ "caption_source": "latex",
+ "abstract": "Scaling test-time compute via long Chain-of-Thought unlocks remarkable gains in reasoning capabilities, yet it faces practical limits due to the linear growth of KV cache and quadratic attention complexity. In this paper, we introduce Accordion-Thinking, an end-to-end framework where LLMs learn to self-regulate the granularity of the reasoning steps through dynamic summarization. This mechanism enables a Fold inference mode, where the model periodically summarizes its thought process and discards former thoughts to reduce dependency on historical tokens. We apply reinforcement learning to incentivize this capability further, uncovering a critical insight: the accuracy gap between the highly efficient Fold mode and the exhaustive Unfold mode progressively narrows and eventually vanishes over the course of training. This phenomenon demonstrates that the model learns to encode essential reasoning information into compact summaries, achieving effective compression of the reasoning context. Our Accordion-Thinking demonstrates that with learned self-compression, LLMs can tackle complex reasoning tasks with minimal dependency token overhead without compromising solution quality, and it achieves a three times throughput while maintaining accuracy on a 48GB GPU memory configuration, while the structured step summaries provide a human-readable account of the reasoning process.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=vz23iIMvyd",
+  "arxiv": "https://arxiv.org/abs/2602.03249",
+  "pdf": "https://raw.githubusercontent.com/mlresearch/v306/main/assets/yang26r/yang26r.pdf",
+  "proceedings": "https://proceedings.mlr.press/v306/yang26r.html",
+  "virtual": "https://icml.cc/virtual/2026/poster/60860",
+  "code": "https://github.com/yangzhch6/Accordion-Thinking"
+ },
+ "license": "http://creativecommons.org/licenses/by/4.0/",
+ "img": "cc-by",
+ "image_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/images/icml26-6148.png",
+ "thumb_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/thumbs/icml26-6148.webp",
+ "figure_page": 2,
+ "qc_flags": [
+  "bad-crop"
+ ],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.6
+}

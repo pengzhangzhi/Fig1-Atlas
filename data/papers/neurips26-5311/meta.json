@@ -1,0 +1,52 @@
+{
+ "id": "neurips26-5311",
+ "title": "D-DOIT: Training-free Adaptation of Discrete Diffusion via Doob's h-Transform",
+ "authors": [
+  "Jieke Wu",
+  "Qijie Zhu",
+  "Weimin Wu",
+  "Zeqi Ye",
+  "Minshuo Chen",
+  "Han Liu"
+ ],
+ "venue": "NeurIPS 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "Deep Learning->Generative Models and Autoencoders",
+ "role": "pipeline",
+ "role2": "prior-vs-ours",
+ "claim": "Reward-unaware sampling can be turned into reward-guided sampling by scoring sampled candidates through a one-pass completion and resampling by reward.",
+ "layout": "3 regions: left baseline, right zoom-in steps 1-4, bottom branch; color-coded tokens",
+ "tags": [
+  "discrete-diffusion",
+  "inference-time-guidance",
+  "candidate-resampling",
+  "reward-guided",
+  "training-free"
+ ],
+ "style": [
+  "colorful",
+  "icon-heavy",
+  "text-heavy"
+ ],
+ "description": "A three-region diagram using colored token boxes (green A, red T, blue C, yellow G, gray M for masked). The top-left blue panel, 'Standard Discrete Sampling', shows a time axis running from t=L, with all tokens masked, down to t=0, with a clean sequence. Small bar charts sit under the masked positions to show independent per-position reveals. A caption says 'look once → sample once; cheap & blind to reward'. The top-right red panel, 'D-DOIT (one guided reverse step — zoom-in)', lays out four numbered steps. It proposes M=3 candidate sequences, runs a forward pass that completes each into x̂0, scores each with a reward landscape, and draws the next state from a bar chart of h-values. A bottom dashed panel shows optional late-stage best-of-K: one state branches into 4 sequences with reward values, and the highest-reward one is picked. A legend runs along the bottom.",
+ "caption": "Overview of D-DOIT. Left: Standard masked diffusion unmasks positions independently at each reverse step [ref]; it is cheap but reward-unaware. Right: One guided step approximately tilts the reverse kernel: it draws $M{=}3$ candidates from a tempered proposal [ref], completes and scores them with the prediction head and reward to obtain proxy $h$-values, and selects the next state with sharpened $h$-weights [ref]. Bottom: Optional best-of-$K$ refinement duplicates each trajectory into $K{=}4$ copies after the split and keeps the highest-reward suffix [ref], sharing prefix computation. Revealed tokens stay fixed; the practical sampler does not inherit the exact-target guarantee.",
+ "caption_source": "latex",
+ "abstract": "We propose D-DOIT (Discrete Doob-Oriented Inference-time Transformation), a training-free and efficient adaptation method for discrete diffusion models with generic rewards. D-DOIT formulates adaptation as sampling from a reward-tilted target distribution and realizes this transport through Doob's h-transform of the discrete diffusion reverse kernel, using only reward values rather than reward gradients. Unlike continuous diffusion, masked discrete diffusion samples categorical token-reveal transitions rather than continuous state updates. D-DOIT derives the corresponding discrete Doob's h-transform, which guides sampling by reweighting reverse transition probabilities instead of adding a drift correction. To make this transformation practical, D-DOIT avoids expensive future rollouts. At each guided step, D-DOIT samples candidate next states, uses the model prediction head to complete each candidate into a clean sequence, evaluates each completion with the reward oracle, and resamples the next state with probabilities proportional to the rewards. An optional late-stage best-of-K refinement further improves sample quality by branching trajectories only near the end of denoising, avoiding the $K$-fold cost over the full trajectory. Empirically, across regulatory DNA design and protein inverse folding benchmarks, D-DOIT outperforms training-free guidance baselines. It improves enhancer activity and cell-type specificity while preserving sequence naturalness, and achieves the highest success rate in protein inverse folding.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=amRYWewE5M",
+  "arxiv": "https://arxiv.org/abs/2610.04938",
+  "pdf": "https://arxiv.org/pdf/2610.04938",
+  "proceedings": null,
+  "virtual": "https://neurips.cc/virtual/2026/poster/151429",
+  "code": null
+ },
+ "license": "http://creativecommons.org/licenses/by/4.0/",
+ "img": "cc-by",
+ "image_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/images/neurips26-5311.png",
+ "thumb_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/thumbs/neurips26-5311.webp",
+ "figure_page": 4,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.82
+}

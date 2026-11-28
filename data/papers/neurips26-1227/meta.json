@@ -1,0 +1,49 @@
+{
+ "id": "neurips26-1227",
+ "title": "Birth-Death Structural Learning for 3D Gaussian Splatting",
+ "authors": [
+  "Tran Hong Quan",
+  "Long Nguyen-Chi",
+  "Binh T. Nguyen"
+ ],
+ "venue": "NeurIPS 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "Computer Vision->3D Rendering & Reconstruction",
+ "role": "pipeline",
+ "role2": null,
+ "claim": "A principled score from differentiating the loss w.r.t. auxiliary coordinates replaces heuristics to decide where to add and remove model capacity.",
+ "layout": "3 numbered panels, left-to-right, color-coded borders, math under each stage",
+ "tags": [
+  "birth-death",
+  "density-control",
+  "first-variation",
+  "gaussian-splatting",
+  "adaptive-allocation"
+ ],
+ "style": [
+  "colorful",
+  "math-heavy",
+  "photo/real data"
+ ],
+ "description": "Three rounded panels with numbered circular badges and color-coded borders (blue, orange, green) show a left-to-right pipeline. Panel 1, 'Frozen parameter state', shows a rendered bonsai scene with xyz axes, blue ellipses marking Gaussians, and the formula a_i(x) ↦ m_i a_i(x) labeled 'mass coordinate'. Panel 2, 'Score by multi-view loss', shows stacks of rendered and ground-truth camera views feeding a box with the score q_i = -∂F/∂m_i, plus an orange heat-mapped point cloud with a high-to-low colorbar. Panel 3, 'Birth-death relocation', shows gray death candidates, a score-guided selection box, and a new child Gaussian on the bonsai. Below it are a score gap objective, max⟨q,δm⟩, and red 'Death' and green 'Birth' rule boxes. The eye goes first to the colorful bonsai in panel 1.",
+ "caption": "Overview of the score-guided birth--death controller. At each structural update, we freeze the current Gaussian parameters and expose one auxiliary mass coordinate per primitive, implemented as \\(a_i(x)\\mapsto m_i a_i(x)\\). A batched multiview backward pass computes the first-variation score \\(q_i=-\\partial \\widehat F_t(\\mathbf m)/\\partial m_i|_{\\mathbf m=\\mathbf 1}\\). Higher scores explicitly predict a larger first-order loss reduction from assigning mass to that primitive. Guided by these scores, the controller kills low-opacity, low-score slots and births new capacity at high-score parent sites using the 3DGS-MCMC transitions.",
+ "caption_source": "latex",
+ "abstract": "3D Gaussian Splatting (3DGS) has become a standard representation for real-time novel-view synthesis. Yet, its quality-efficiency trade-off still relies heavily on adaptive density control. Existing cloning, splitting, and pruning rules use proxy signals, such as position gradients, opacity, and image-space error. Although effective in practice, these signals do not directly answer the structural question behind density control: where should new Gaussians be allocated to reduce the multi-view reconstruction loss, and which existing primitives can be pruned with minimal penalty. To address this, we propose first-variation birth-death control for 3DGS, a principled approach that replaces heuristic structural decisions with a variational score derived from the reconstruction loss. At each structural update, we freeze the current Gaussian population, attach auxiliary mass coordinates to each primitive, and differentiate the multiview loss with respect to these coordinates. We demonstrate that this score is a coordinate of the first variation of the Splat Regression Model, giving a rigorous local descent surrogate for birth-death moves: high-score Gaussians are selected as birth sites, while low-score, low-opacity Gaussians are selected for removal. Across standard 3DGS benchmarks, integrating this score into 3DGS-MCMC yields state-of-the-art reconstruction quality and outperforms existing methods, delivering the most significant gains under tight Gaussian budgets. Ultimately, our work provides compelling evidence that gradient-based variational metrics offer a principled alternative to proxy heuristics in 3DGS.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=8kpY9DyWuJ",
+  "arxiv": "https://arxiv.org/abs/2610.34344",
+  "pdf": "https://arxiv.org/pdf/2610.34344",
+  "proceedings": null,
+  "virtual": "https://neurips.cc/virtual/2026/poster/155061",
+  "code": null
+ },
+ "license": "http://creativecommons.org/licenses/by/4.0/",
+ "img": "cc-by",
+ "image_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/images/neurips26-1227.png",
+ "thumb_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/thumbs/neurips26-1227.webp",
+ "figure_page": 3,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.93
+}

@@ -1,0 +1,56 @@
+{
+ "id": "neurips26-2290",
+ "title": "PRECISE: SDE-Consistent Stochastic Sampling for RL Post-Training of Flow-Matching Models",
+ "authors": [
+  "Bo Peng",
+  "Tao Huang",
+  "Weijie Kong",
+  "Junzhe Li",
+  "Yue Wu",
+  "Qi Tian",
+  "Jiangfeng Xiong",
+  "Jian-Wei Zhang",
+  "Liefeng Bo",
+  "Zhao Zhong"
+ ],
+ "venue": "NeurIPS 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "Computer Vision->Image and Video Generation",
+ "role": "prior-vs-ours",
+ "role2": "concept",
+ "claim": "Existing methods trade off along two coupled axes or fail in distinct ways; ours improves both and avoids their failure modes.",
+ "layout": "2 panels: left 2-D schematic scatter, right 2x3 grid of ring samples",
+ "tags": [
+  "stochastic-sampling",
+  "flow-matching",
+  "reinforcement-learning",
+  "trade-off",
+  "toy-example"
+ ],
+ "style": [
+  "plot",
+  "colorful",
+  "minimal"
+ ],
+ "description": "The figure has two panels. The left panel is a conceptual 2-D schematic. The y-axis is 'SDE consistency' and the x-axis is 'Exploration vs Stability balance'. Hollow colored circles mark the existing samplers: Dance-GRPO in purple at the bottom left, Flow-GRPO in blue at the middle right, and CPS in orange at the upper left. A teal star marks Precise at the top right, where both axes are best. The right panel is a 2x3 grid of double-ring toy samples. Columns are Flow-GRPO (blue), CPS (orange) and Precise (teal). Rows are N=20 and N=80 steps. Each cell shows two concentric rings of points with a small 1-D density plot in the corner. Flow-GRPO's rings look diffuse and noisy. CPS's rings look sharp but biased in density. Precise's rings look clean. Color coding is consistent across both panels.",
+ "caption": "Left (conceptual schematic): Sampler design has two coupled axes: the exploration-stability balance and SDE consistency. Existing stochastic samplers occupy different trade-offs, while Precise improves both. Right: The double-ring example illustrates failure modes of existing samplers: Flow-GRPO [ref] introduces excess noise, while CPS [ref] biases the marginal distribution.",
+ "caption_source": "latex",
+ "abstract": "Reinforcement learning (RL) has become an effective way to improve prompt alignment and perceptual quality in diffusion and flow-matching generators. A critical step for applying online RL to flow matching is turning the deterministic sampling trajectory into a stochastic policy, typically by replacing the reverse-time Ordinary Differential Equation (ODE) with a Stochastic Differential Equation (SDE). The stochastic sampler, controlling the exploration behavior and denoising dynamics, is thus part of the policy, and its design can significantly affect the reward optimization performance. We break down the sampler design into two interdependent components: choosing the right amount of stochastic exploration, and discretizing the resulting SDE faithfully at the small step counts used in RL. To address the first component, we analyze the inherent tension between exploration and stability in denoising and derive an SDE schedule that balances the two. Turning to the discretization challenge, we use a toy example to show that existing samplers can deviate from the flow-matching process, either by introducing excessive discretization noise or by relying on heuristic rules that do not guarantee convergence to the data distribution. To address these issues, we propose Precise, a new stochastic sampler that balances effective exploration with stability. Crucially, Precise keeps the denoising trajectory SDE-consistent through a novel approximation that freezes the clean-latent posterior mean, resolving the excess noise issue in standard samplers. Extensive experiments demonstrate that this formulation leads to significantly faster and more stable reward optimization via reinforcement learning, achieving state-of-the-art alignment scores (e.g., PickScore, HPSv2.1) while requiring 13.1-53.2% less wall-clock training time to match the best in-domain performance of prior samplers.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=GDousLQnYE",
+  "arxiv": "https://arxiv.org/abs/2605.23522",
+  "pdf": "https://arxiv.org/pdf/2605.23522",
+  "proceedings": null,
+  "virtual": "https://neurips.cc/virtual/2026/poster/154105",
+  "code": "https://totalhuang.github.io/Precise-SDE-Project-Page/"
+ },
+ "license": "http://arxiv.org/licenses/nonexclusive-distrib/1.0/",
+ "img": "none",
+ "image_url": null,
+ "thumb_url": null,
+ "figure_page": 1,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.6
+}

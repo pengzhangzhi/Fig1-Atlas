@@ -1,0 +1,52 @@
+{
+ "id": "iclr26-3064",
+ "title": "TyphoonMLA: A Mixed Naive-Absorb MLA Kernel For Shared Prefix",
+ "authors": [
+  "Ahmet Yüzügüler",
+  "Ahmet Çelik",
+  "Jiawei Zhuang",
+  "Lukas Cavigelli"
+ ],
+ "venue": "ICLR 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "Deep Learning->Attention Mechanisms",
+ "role": "pipeline",
+ "role2": "prior-vs-ours",
+ "claim": "Two standard computation formulations each have a drawback; a hybrid pipeline uses each where it fits, splitting shared and non-shared data.",
+ "layout": "3 panels: two stacked on left, large one on right; left-to-right dataflow",
+ "tags": [
+  "hybrid-kernel",
+  "attention",
+  "dataflow-diagram",
+  "efficiency",
+  "shared-prefix"
+ ],
+ "style": [
+  "colorful",
+  "icon-heavy",
+  "text-heavy"
+ ],
+ "description": "The figure shows three block diagrams of attention computation. Panel (a), Naive, is top left. Panel (b), Absorb, is bottom left. Both show queries on the left that fan out through orange weight-matrix boxes (W_Qa, W_Qb, W_KVa, W_KVb) and green normalization or rotary-embedding boxes. Red hatched cache boxes (K, V, PE, noPE) feed circled multiply nodes and softmax boxes, all inside a dashed box labeled FlashAttention or FlashMLA, ending in a W_O box and a blue 'outputs' box. Panel (c), TyphoonMLA, takes the right half. At the top it shows a prefill stage: a system prompt and four user prompts go through a 'Prefill (naive)' arrow, then up-projection into the K and V caches. Below, a decode stage combines both pipelines, with a 'combine LSE' block. Colors separate module types: orange for weights, green for norms, red for caches, blue for inputs.",
+ "caption": "a) The naive formulation of MLA. b) The absorb formulation of MLA. c) The prefill and decode stages of TyphoonMLA.",
+ "caption_source": "latex",
+ "abstract": "Multi-Head Latent Attention (MLA) is a recent attention mechanism adopted in state-of-the-art LLMs such as DeepSeek-v3 and Kimi K2. Thanks to its novel formulation, MLA allows two functionally equivalent but computationally distinct kernel implementations: naive and absorb. While the naive kernels (e.g., FlashAttention) are typically preferred in training and prefill for their computational efficiency, existing decoding kernels (e.g., FlashMLA) rely on the absorb method to minimize HBM bandwidth usage. However, the compute-bound nature of the absorb implementations prohibits performance benefits from data reuse opportunities in attention calculations, such as shared prefixes. In this work, we introduce TyphoonMLA, a hybrid approach that combines naive and absorb formulations to harness the strengths of both. TyphoonMLA effectively leverages the shared prefix by applying the naive formulation to the compute-bound parts of attention calculations, while reducing the bandwidth requirements for non-shared parts by using the absorb formulation. As a result, TyphoonMLA improves the throughput of attention calculations in MLA architectures by up to 3x and 3.24x on NPU and GPUs, with only a 3% overhead in HBM size.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=ZfCCwJ4Wcs",
+  "arxiv": "https://arxiv.org/abs/2509.21081",
+  "pdf": "https://proceedings.iclr.cc/paper_files/paper/2026/file/e2e98d179f2f9645a20b11ae5e64bc78-Paper-Conference.pdf",
+  "proceedings": "https://proceedings.iclr.cc/paper_files/paper/2026/hash/e2e98d179f2f9645a20b11ae5e64bc78-Abstract-Conference.html",
+  "virtual": "https://iclr.cc/virtual/2026/poster/10008790",
+  "code": "https://github.com/huawei-csl/TyphoonMLA-community"
+ },
+ "license": "http://arxiv.org/licenses/nonexclusive-distrib/1.0/",
+ "img": "none",
+ "image_url": null,
+ "thumb_url": null,
+ "figure_page": 2,
+ "qc_flags": [
+  "bad-crop"
+ ],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.8
+}

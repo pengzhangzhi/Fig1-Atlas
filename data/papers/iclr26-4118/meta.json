@@ -1,0 +1,50 @@
+{
+ "id": "iclr26-4118",
+ "title": "Why Adversarially Train Diffusion Models?",
+ "authors": [
+  "Maria Rosaria Briglia",
+  "Mujtaba Mirza",
+  "Giuseppe Lisanti",
+  "Iacopo Masi"
+ ],
+ "venue": "ICLR 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "Deep Learning->Robustness",
+ "role": "concept",
+ "role2": "pipeline",
+ "claim": "Locally perturbing intermediate states and enforcing equivariance adds a corrective denoising step, smoothing trajectories against outliers and noisy data.",
+ "layout": "2 panels, left-to-right: trajectory density sketch, then Markov chain graph with perturbation node",
+ "tags": [
+  "diffusion-models",
+  "adversarial-training",
+  "equivariance",
+  "robustness",
+  "randomized-smoothing"
+ ],
+ "style": [
+  "math-heavy",
+  "colorful",
+  "photo/real data"
+ ],
+ "description": "The figure has two panels. On the left is a purple heatmap sketch of diffusion trajectories. A narrow Gaussian q(x_T) on the far left spreads into a branching, bimodal density. Small dashed circles of different sizes mark perturbation balls. In the largest circle, x_t is perturbed by an orange arrow δ to x_t+δ. A white arrow then goes from x_t+δ to x_{t-1}, and a green dotted arrow ε_θ(x_t,t) goes from x_t to x_{t-1}. Faded copies of this motif appear earlier and later along the path. A density curve on the right edge shows p_data(x_0) with a small p_noise(x_0) bump. The right panel is a Markov chain of circular nodes: x_T, …, x_t, x_{t-1}, …, x_0. A raised node x_t+δ forms a triangle with x_t and x_{t-1}. Solid arrows show the forward process and dashed arrows show the reverse process. Small noisy-to-clean dog images sit under the nodes, and a noisy image plus noise sits beside the perturbed node.",
+ "caption": "Smooth trajectories. We train the denoising network to follow the score function i.e., xt →↑xt→1 using just εε(xt, t), but we also perturb locally xt as xt+ω inside a ωp ball and then imposing equivariance: xt+ω →↑εε(xt, t) + ω ↭xt→1. This equals adding an intermediate step in the Markov Chain, behaving as an additional denoising step, making the model resilient to possible outliers or noise in the dataset—pnoise(x0)—not proper of pdata(x0). The local perturbation can be implemented as adversarial or as random (randomized smoothing). Perturbation strength starts large and progressively shrinks when T ↑0. indicates the forward process; the reverse process.",
+ "caption_source": "pdf",
+ "abstract": "Adversarial Training (AT) is a known, powerful, well-established technique for improving classifier robustness to input perturbations, yet its applicability beyond discriminative settings remains limited. Motivated by the widespread use of score-based generative models and their need to operate robustly under substantial noisy or corrupted input data, we propose an adaptation of AT for these models, providing a thorough empirical assessment. We introduce a principled formulation of AT for Diffusion Models (DMs) that replaces the conventional invariance objective with an equivariance constraint aligned to the denoising dynamics of score matching. Our method integrates seamlessly into diffusion training by adding either random perturbations--similar to randomized smoothing--or adversarial ones--akin to AT. Our approach offers several advantages: (a) tolerance to heavy noise and corruption, (b) reduced memorization, (c) robustness to outliers and extreme data variability and (d) resilience to iterative adversarial attacks. We validate these claims on proof-of-concept low- and high-dimensional datasets with known ground-truth distributions, enabling precise error analysis. We further evaluate on standard benchmarks (CIFAR-10, CelebA, and LSUN Bedroom), where our approach shows improved robustness and preserved sample fidelity under severe noise, data corruption, and adversarial evaluation. Code available at github.com/OmnAI-Lab/Adversarial-Training-DM",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=lL6htAaolp",
+  "arxiv": null,
+  "pdf": "https://proceedings.iclr.cc/paper_files/paper/2026/file/5a5ddf0ab751861025c00700093c5677-Paper-Conference.pdf",
+  "proceedings": "https://proceedings.iclr.cc/paper_files/paper/2026/hash/5a5ddf0ab751861025c00700093c5677-Abstract-Conference.html",
+  "virtual": "https://iclr.cc/virtual/2026/poster/10007688",
+  "code": null
+ },
+ "license": null,
+ "img": "none",
+ "image_url": null,
+ "thumb_url": null,
+ "figure_page": 1,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.6
+}

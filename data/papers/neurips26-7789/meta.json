@@ -1,0 +1,49 @@
+{
+ "id": "neurips26-7789",
+ "title": "Knowing When to Ask: Segment-Level Credit Assignment for LLM Tool Use",
+ "authors": [
+  "Abhijit Kumar",
+  "Zoey WU",
+  "Mohit Suley"
+ ],
+ "venue": "NeurIPS 2026",
+ "tier": "spotlight",
+ "track": "main",
+ "topic": "Reinforcement Learning->Everything Else",
+ "role": "pipeline",
+ "role2": null,
+ "claim": "Decomposing a trajectory at observable boundaries lets a critic assign separate, signed credit to each step from one final outcome.",
+ "layout": "Top warm-up strip, then 5 stacked rows left-to-right, critic and advantage columns at right",
+ "tags": [
+  "credit-assignment",
+  "reinforcement-learning",
+  "tool-use",
+  "critic",
+  "segment-level"
+ ],
+ "style": [
+  "text-heavy",
+  "colorful",
+  "icon-heavy"
+ ],
+ "description": "The figure has two phases. A thin top strip shows Phase 1, critic warm-up, as a left-to-right chain of beige boxes: question pool, k-means clustering, rollout test, rollout buckets, a red-outlined critic V_phi box, and a verification gate. Phase 2 sits below a token legend of colored squares for prompt, reasoning, code, stdout, context and answer. Five rows, labeled Seg. 1 to 5 as invoke, assimilate, invoke, assimilate and commit, show growing token sequences with policy boxes (π) and code-execution gears. Each row ends in a red diamond critic value V and a pill showing the advantage, for example V(s1)-V(s0)=+0.15. The last row ends in a green R box. The eye goes first to the large phase titles, then to the colored token rows and the red diamonds on the right.",
+ "caption": "Rollout pipeline in CARL. Each tool-use trajectory decomposes into three segment types (invoke, assimilate, commit) with structurally observable boundaries. After invoke, the rollout loop executes the code and captures stdout; after assimilate, it replaces the raw stdout with the model's <context> block. The critic $V_\\phi$ evaluates the context at each boundary; the advantage of each segment is the change in $V_\\phi$ across it, with the terminal reward $R$ replacing the final $V_\\phi$ at EOS. MuSiQue is excluded from training, MuSiQue example shown is for illustration only.",
+ "caption_source": "latex",
+ "abstract": "Humans know when to reach for help e.g. $347 \\times 28$ warrants a calculator while $2+2$ does not. Language models do not. Prompt-based approaches can instruct a model when to invoke tools, but this scaffolding does not teach it to recognize the boundary of its own knowledge. RL approaches that assign a single outcome reward to the whole trajectory fare no better: trajectory-level credit cannot isolate which tool call in a successful episode actually helped, nor penalize unnecessary calls. We propose CARL (Competence-Aware Reinforcement Learning), which trains a critic on the model's own rollouts to learn where parametric knowledge suffices and where it needs external help. By decomposing each rollout at natural tool-use boundaries (e.g., code fence delimiters and context block transitions), CARL assigns independent credit to each segment from a single binary outcome, without external judges or step-level annotations. As a result, erroneous tool calls, incorrect extractions, and unnecessary calls each receive appropriately signed advantages. The trained critic captures the model's domain competence: it separates parametrically solvable from tool-dependent questions with AUC 0.93 at 7B. On five benchmarks spanning arithmetic, multi-hop factual QA, and numerical reasoning over financial tables, CARL improves average exact-match accuracy on the three search benchmarks by 6.7 points at 7B and 9.6 points at 3B over the best RL baseline, with the largest gain (+8.3 EM at 7B, +12.5 EM at 3B) on MuSiQue. At 7B, CARL has a 53% lower tool-use rate than Search-R1 PPO on parametrically answerable questions while remaining 9.8 EM points more accurate on them. Gains are largest at small scale: the 3B improvement is $1.4\\times$ the 7B improvement, suggesting that knowing when to ask disproportionately benefits models with smaller parametric memory.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=rzZuYaw8zp",
+  "arxiv": "https://arxiv.org/abs/2605.27788",
+  "pdf": "https://arxiv.org/pdf/2605.27788",
+  "proceedings": null,
+  "virtual": "https://neurips.cc/virtual/2026/poster/149224",
+  "code": "https://aka.ms/know-when-to-ask"
+ },
+ "license": "http://creativecommons.org/licenses/by/4.0/",
+ "img": "cc-by",
+ "image_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/images/neurips26-7789.png",
+ "thumb_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/thumbs/neurips26-7789.webp",
+ "figure_page": 2,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.93
+}

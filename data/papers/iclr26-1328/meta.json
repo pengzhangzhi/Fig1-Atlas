@@ -1,0 +1,53 @@
+{
+ "id": "iclr26-1328",
+ "title": "Do Not Let Low-Probability Tokens Over-Dominate in RL for LLMs",
+ "authors": [
+  "Zhihe Yang",
+  "Xufang Luo",
+  "Zilong Wang",
+  "Dongqi Han",
+  "Zhiyuan He",
+  "Dongsheng Li",
+  "Yunjian Xu"
+ ],
+ "venue": "ICLR 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": null,
+ "role": "analysis-finding",
+ "role2": "concept",
+ "claim": "Rare low-confidence elements produce disproportionately large gradients and drive most updates, suppressing the common high-confidence elements that matter.",
+ "layout": "3 grouped columns, 6 panels, left-to-right; flame/snowflake icons mark updated vs frozen groups",
+ "tags": [
+  "gradient-norm",
+  "reinforcement-learning",
+  "token-probability",
+  "selective-update",
+  "llm-reasoning"
+ ],
+ "style": [
+  "plot",
+  "colorful",
+  "text-heavy"
+ ],
+ "description": "A three-column figure with six data panels. The left column, 'Sampling & Rating', has (a), a log-scale bar chart of token frequency across four probability quartiles with an orange density curve overlaid. Below it, (b) shows violin plots of advantage per quartile. The middle column, 'Training', has (c), violins of probability change per quartile, and (d), a purple line plot of gradient norm falling from low to high probability, with a dashed 'updating all' reference line. The right column shows (e) and (f), violin plots from updating only the lowest or only the highest quartile. Flame and snowflake icons mark updated and frozen groups. Gray arrows and red/blue callout notes explain the result. Rounded panel borders group the columns.",
+ "caption": "Experimental analysis on the K&K Logic Puzzle dataset during GRPO training of Qwen2.5-7B-Instruct-1M. Tokens are divided into four groups based on probability quartiles. (a) Token probability distribution and (b) corresponding advantages. (c) Token probability changes after updates (using SGD with lr=1e-3) and (d) gradient norms for each probability group. Effects of selective updates: (e) Probability changes when only tokens in the lowest quartile (probability < 0.25) are updated, and (f) when only tokens in the highest quartile (probability > 0.75) are updated. To ensure clarity, the top 1% of outlier samples in the violin plots for token probability changes are excluded. Results are averaged over 10 randomly sampled batches.",
+ "caption_source": "latex",
+ "abstract": "Reinforcement learning (RL) has become a cornerstone for enhancing the reasoning capabilities of large language models (LLMs), with recent innovations such as Group Relative Policy Optimization (GRPO) demonstrating exceptional effectiveness. In this study, we identify a critical yet underexplored issue in RL training: low-probability tokens disproportionately influence model updates due to their large gradient magnitudes. This dominance hinders the effective learning of high-probability tokens, whose gradients are essential for LLMs' performance but are substantially suppressed. To mitigate this interference, we propose two novel methods: Advantage Reweighting and Low-Probability Token Isolation (Lopti), both of which effectively attenuate gradients from low-probability tokens while emphasizing parameter updates driven by high-probability tokens. Our approaches promote balanced updates across tokens with varying probabilities, thereby enhancing the efficiency of RL training. Experimental results demonstrate that they substantially improve the performance of GRPO-trained LLMs, achieving up to a 46.2% improvement in K&K Logic Puzzle reasoning tasks. Our implementation is available at https://github.com/zhyang2226/AR-Lopti.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=FOnAdLo0tM",
+  "arxiv": "https://arxiv.org/abs/2505.12929",
+  "pdf": "https://proceedings.iclr.cc/paper_files/paper/2026/file/be0e41aa31bb4bc7e882035d82f2d781-Paper-Conference.pdf",
+  "proceedings": "https://proceedings.iclr.cc/paper_files/paper/2026/hash/be0e41aa31bb4bc7e882035d82f2d781-Abstract-Conference.html",
+  "virtual": "https://iclr.cc/virtual/2026/poster/10010601",
+  "code": null
+ },
+ "license": "http://arxiv.org/licenses/nonexclusive-distrib/1.0/",
+ "img": "none",
+ "image_url": null,
+ "thumb_url": null,
+ "figure_page": 1,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.85
+}

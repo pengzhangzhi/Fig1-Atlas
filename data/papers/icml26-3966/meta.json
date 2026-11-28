@@ -1,0 +1,56 @@
+{
+ "id": "icml26-3966",
+ "title": "FAIR-Calib: Frontier-Aware Instability-Reweighted Calibration for Post-Training Quantization of Diffusion Large Language Models",
+ "authors": [
+  "Haoyu Huang",
+  "Linlin Yang",
+  "Sheng Xu",
+  "Boyu Liu",
+  "Guodong Guo",
+  "Zhongqian Fu",
+  "Hang Zhou",
+  "Baochang Zhang"
+ ],
+ "venue": "ICML 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "Deep Learning->Large Language Models",
+ "role": "problem-setup",
+ "role2": "analysis-finding",
+ "claim": "Small perturbations flip fragile borderline decisions that are then irreversibly committed, and the resulting error persists and amplifies over later steps.",
+ "layout": "Top schematic spanning two panels, bottom row with CCDF plot and stacked line plots",
+ "tags": [
+  "quantization",
+  "failure-mode",
+  "irreversible-commitment",
+  "diffusion-decoding",
+  "error-amplification"
+ ],
+ "style": [
+  "plot",
+  "colorful",
+  "icon-heavy"
+ ],
+ "description": "The figure has three parts. Panel (a) at the top compares two side-by-side bar charts of the top-3 token logits at a write step. On the left, the full-precision model has Token A slightly ahead of Token B (a \"Tiny Margin\"), so a closed padlock commits Token A. On the right, a red \"Quantization Error\" arrow makes Token B's bar longer than Token A's, so a red crossed-out padlock marks an irreversible commit of Token B. Panel (b), bottom left, is a log-scale CCDF of stability lag. A solid blue FP curve sits under a dashed orange calibrated-baseline curve, and the orange curve has the heavier tail. Panel (c), bottom right, has two stacked line plots of decode divergence against diffusion step. In both, error rises after a red dot marking the first false commit. The eye goes first to the bar schematic.",
+ "caption": "(a) Schematic: naive quantization perturbs relative logits and permanently commits the wrong token, highlighting a key failure mode of current quantization methods under diffusion decoding. (b) Complementary cumulative distribution function (CCDF) of the stability lag $\\delta_{lag}$ in the generation region ($N_{samples}=32$). Although most positions stabilize shortly after commit, the heavy tail indicates fragile commit states that keep oscillating post-commit, showing that commitment $\\neq$ stabilization. The calibrated baseline exhibits an even heavier tail than FP, implying that standard calibration does not remove fragility. (c) Decode divergence w.r.t the FP (metric: $\\mathrm{mse\\_prob}$) as a function of diffusion step. The baseline shows progressive, step-wise amplification of error once a false commit occurs (red marker), indicating that small local perturbations can trigger sustained divergence across subsequent steps.",
+ "caption_source": "latex",
+ "abstract": "Diffusion Large Language Models (dLLMs) refine tokens iteratively but commit them irreversibly, leading to a \"stability lag\" where early decisions remain fragile even after being written. We reveal that Post-Training Quantization (PTQ) error easily flips these borderline decisions at the write frontier, which are then permanently locked in and amplified. To address this, we propose Frontier-Aware Instability-Reweighted Calibration (FAIR-Calib), a two-stage PTQ framework for dLLMs. Stage I probes a full-precision teacher to estimate a position prior that combines frontier hits and masked-stage reliability. Stage II performs off-policy, layer-wise calibration by minimizing a reweighted hidden-state MSE, effectively prioritizing the protection of fragile frontier states without requiring expensive end-to-end diffusion rollouts. We further theoretically justify our weighted objective as a surrogate for output KL divergence. Empirically, FAIR-Calib consistently outperforms state-of-the-art baselines on LLaDA and Dream (W4A4), significantly reducing frontier decision flips and suppressing post-commit mismatches across diverse benchmarks.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=bIHzsBaiu8",
+  "arxiv": "https://arxiv.org/abs/2606.06547",
+  "pdf": "https://raw.githubusercontent.com/mlresearch/v306/main/assets/huang26br/huang26br.pdf",
+  "proceedings": "https://proceedings.mlr.press/v306/huang26br.html",
+  "virtual": "https://icml.cc/virtual/2026/poster/62977",
+  "code": null
+ },
+ "license": "http://creativecommons.org/licenses/by/4.0/",
+ "img": "cc-by",
+ "image_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/images/icml26-3966.png",
+ "thumb_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/thumbs/icml26-3966.webp",
+ "figure_page": 0,
+ "qc_flags": [
+  "bad-crop"
+ ],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.8
+}

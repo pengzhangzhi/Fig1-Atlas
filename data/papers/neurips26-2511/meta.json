@@ -1,0 +1,50 @@
+{
+ "id": "neurips26-2511",
+ "title": "AERO: Adaptive Ensemble-Disagreement Routing for Oracle Feedback in Sample-Efficient Online RLHF",
+ "authors": [
+  "Shrey Singhal",
+  "Nannan Huang",
+  "Haytham Fayek"
+ ],
+ "venue": "NeurIPS 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "Reinforcement Learning->Everything Else",
+ "role": "pipeline",
+ "role2": null,
+ "claim": "Route each context by ensemble disagreement: uncertain ones go to the expensive oracle, confident ones get cheap synthetic labels.",
+ "layout": "Single large flow diagram, top-to-bottom with two branches merging into a policy update; step list at left",
+ "tags": [
+  "routing",
+  "active-learning",
+  "ensemble-disagreement",
+  "synthetic-labels",
+  "query-efficiency"
+ ],
+ "style": [
+  "math-heavy",
+  "icon-heavy",
+  "colorful",
+  "text-heavy"
+ ],
+ "description": "A large flow diagram with a four-step legend at top left. Two example prompts, x1 and x2, sit at the top and each passes through a policy icon (π_θ) to produce a grid of eight candidate responses drawn as chat bubbles. The left box is green and labeled Low Vote-Entropy, with its bubbles mostly uniform. The right box is yellow and labeled High Vote-Entropy, with red bubbles tagged by ensemble member φ1 to φ4. A central gray panel shows four small neural networks, which are the ensemble reward model. The left branch has the ERM pick the most confident pair, then assign a synthetic label. The right branch applies Thompson Sampling to pick two actions, then the oracle labels the contentious pair. Dashed arrows from both branches feed a bottom box, Pairwise DAP-Agnostic Policy Update. The preference oracle is shown as a human or AI icon at top right. Green and yellow fills tell the two branches apart.",
+ "caption": "Overview of AERO. Contexts with high ensemble disagreement are routed to the oracle, while the rest receive synthetic labels from the ERM. $\\mathbb{P}$ denotes the Preference Oracle, $\\mathcal{R}_\\Phi$ the ERM, $\\pi_\\theta$ the policy. Thompson Sampling explores the exact disagreement measured by vote entropy. High vote entropy ensures $y$ is drawn from severe disagreement.",
+ "caption_source": "latex",
+ "abstract": "Aligning Large Language Models (LLMs) with human preferences via Reinforcement Learning from Human Feedback (RLHF) has driven substantial improvements across a wide range of tasks, but the cost of acquiring preference labels remains the dominant bottleneck in the alignment pipeline. While many recent alignment methods improve sample efficiency through active exploration over candidate responses, they typically query the oracle uniformly across contexts, even for contexts where the learned reward estimates are already reliable enough to provide synthetic labels. We propose Adaptive Ensemble-disagreement Routing for Oracle feedback (AERO), a fully online RLHF algorithm built on a Dyna-style model-based RL architecture, in which an ensemble-based Epistemic Reward Model (ERM) serves both as a reward posterior for exploration and as a learned preference-feedback model for synthetic labeling. AERO uses ensemble vote entropy, a Query-by-Committee disagreement measure, combined with an adaptive thresholding mechanism to decide which contexts require oracle feedback and which can instead receive ERM-based synthetic preference labels, concentrating expensive labels where they are most informative. Empirical results across different model families and scales show that AERO achieves highly competitive alignment performance while reducing the required oracle-query budget compared to online DPO and strong active-exploration baselines.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=HexbOT3aCq",
+  "arxiv": "https://arxiv.org/abs/2611.10750",
+  "pdf": "https://arxiv.org/pdf/2611.10750",
+  "proceedings": null,
+  "virtual": "https://neurips.cc/virtual/2026/poster/153918",
+  "code": null
+ },
+ "license": "http://arxiv.org/licenses/nonexclusive-distrib/1.0/",
+ "img": "none",
+ "image_url": null,
+ "thumb_url": null,
+ "figure_page": 1,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.9
+}

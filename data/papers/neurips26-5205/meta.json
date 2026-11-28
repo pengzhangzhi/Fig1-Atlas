@@ -1,0 +1,52 @@
+{
+ "id": "neurips26-5205",
+ "title": "CodecSplat: Ultra-Compact Latent Coding for Feed-Forward 3D Gaussian Splatting",
+ "authors": [
+  "Pengpeng Yu",
+  "Runqing Jiang",
+  "Qi Zhang",
+  "Dingquan Li",
+  "Jing Wang",
+  "Yulan Guo"
+ ],
+ "venue": "NeurIPS 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "Computer Vision->3D Rendering & Reconstruction",
+ "role": "pipeline",
+ "role2": null,
+ "claim": "Compression is built into the feed-forward generation pipeline: features are encoded into a bitstream, then decoded into 3D primitives.",
+ "layout": "3 grouped stages (inputs, encoder, decoder), left-to-right, central bitstream hub",
+ "tags": [
+  "encoder-decoder",
+  "entropy-coding",
+  "latent-compression",
+  "feed-forward",
+  "rate-control"
+ ],
+ "style": [
+  "colorful",
+  "icon-heavy",
+  "photo/real data"
+ ],
+ "description": "A wide left-to-right block diagram with three headers: grey Inputs, blue Encoder and green Decoder. Inputs show stacked context-view photos of an arcade scene and a camera-parameters icon. The blue encoder holds multi-view feature extraction and refinement, drawn as a 3D feature cube. Next to it is a latent-encoding stack: analysis transform, quantization and entropy encoding, with a rate-control λ box below. An orange bitstream box shaped like a package sits in the centre. The green decoder mirrors the encoder: entropy decoding and synthesis transform, then depth prediction and feature refinement, then Gaussian prediction heads for opacity, scale, rotation and color/SH. A 2D-to-3D mapping block with camera icons outputs scattered coloured 3D Gaussian blobs. A separate lower path routes camera parameters through Deflate compression and decompression. Colour codes the stages, and the eye goes first to the central orange bitstream.",
+ "caption": "Main architecture of CodecSplat.",
+ "caption_source": "latex",
+ "abstract": "While feed-forward 3D Gaussian splatting reconstructs renderable Gaussian primitives from sparse context views without per-scene optimization, existing pipelines do not provide a compact scene representation for storage or transmission. A natural solution is to apply existing 3DGS compression methods to the generated Gaussian primitives. However, this approach operates on the final irregular 3D representation and is decoupled from the internal feature-to-Gaussian generation process, which limits compression efficiency. To address this, we introduce CodecSplat, an ultra-compact latent coding framework for feed-forward 3D Gaussian splatting. CodecSplat first encodes an intermediate 2D Gaussian-generation feature into an entropy-coded scene bitstream. At the decoder, the latent feature is reconstructed and used to predict depth and Gaussian parameters, which are then mapped to 3D Gaussian primitives. By integrating compression into the feed-forward Gaussian generation pipeline, CodecSplat avoids inefficient compression over irregular 3D Gaussian primitives and allows the codec to exploit the structured intermediate feature representation. We instantiate CodecSplat on a feed-forward Gaussian splatting backbone with depth-guided multi-view feature refinement and a hierarchical learned feature codec. On DL3DV and RealEstate10K datasets, CodecSplat achieves 23.56-26.36 dB and 24.76-27.05 dB PSNR with only 20.00-107.77 KiB and 3.37-12.51 KiB per scene, respectively. This is roughly one order of magnitude smaller than compressing feed-forward generated Gaussian primitives, while preserving controllable rate-distortion behavior. Code is available at https://github.com/pengpeng-yu/CodecSplat.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=ZzyjwkoqaX",
+  "arxiv": "https://arxiv.org/abs/2605.25563",
+  "pdf": "https://arxiv.org/pdf/2605.25563",
+  "proceedings": null,
+  "virtual": "https://neurips.cc/virtual/2026/poster/151528",
+  "code": "https://github.com/pengpeng-yu/CodecSplat"
+ },
+ "license": "http://arxiv.org/licenses/nonexclusive-distrib/1.0/",
+ "img": "none",
+ "image_url": null,
+ "thumb_url": null,
+ "figure_page": 3,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.97
+}

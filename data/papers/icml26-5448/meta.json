@@ -1,0 +1,50 @@
+{
+ "id": "icml26-5448",
+ "title": "Scalable Option Learning in High-Throughput Environments",
+ "authors": [
+  "Mikael Henaff",
+  "Scott Fujimoto",
+  "Michael Matthews",
+  "Michael Rabbat"
+ ],
+ "venue": "ICML 2026",
+ "tier": "spotlight",
+ "track": "main",
+ "topic": null,
+ "role": "pipeline",
+ "role2": "overview-framework",
+ "claim": "A single shared network lets actors and a learner process all policies in batched, tensorized form, so hierarchical training scales.",
+ "layout": "2 regions, left-to-right: actor workers feed learner worker, with grids of tensors",
+ "tags": [
+  "system-architecture",
+  "hierarchical-rl",
+  "batching",
+  "scalability",
+  "actor-learner"
+ ],
+ "style": [
+  "colorful",
+  "icon-heavy",
+  "minimal"
+ ],
+ "description": "The figure is a system diagram split into two labeled regions. On the left, \"Actor Workers (xN)\" is drawn as a stack of cards. Each card holds an ENV box, a Policy Index box and a POLICY NETWORK box, joined by arrows labeled observations, env actions and controller actions. In the middle, arrows labeled \"Batched trajectories\" and \"Policy weights\" connect the actors to the right region, \"Learner Worker\". The learner shows B×T grids of rewards (yellow/orange), policy indices (black/gray/white) and observations (brown). A callout notes that a single FOR loop computes discounted returns for all policies in parallel. Per-policy reward grids come in different shades of red. These lead to advantages (red) and target values (teal), then to a second POLICY NETWORK that outputs predicted values and action probabilities. The grids feed VALUE LOSS and POLICY LOSS boxes. The eye goes first to the colorful grids.",
+ "caption": "System overview. We use a single network with an augmented action space to represent both option policies and the controller policy, enabling batched forward passes for all policies at once. In the actor workers, a modified environment wrapper tracks the policy index based on the high-level controller actions, and routes the low-level actions to the environment. The learner worker continuously updates the policy with batched forward passes through the policy network and efficient tensorized return computations. Different shades indicate quantities associated with different policies: darkest is the controller, the other two are options $\\omega_1$ and $\\omega_2$. All grids (rewards, policy indicies, advantages, values...) are of size $B \\times T$: rows are batch indices, columns are time steps.",
+ "caption_source": "latex",
+ "abstract": "Hierarchical reinforcement learning (RL) has the potential to enable effective decision-making over long timescales. Existing approaches, while promising, have yet to realize the benefits of large-scale training. In this work, we identify and solve several key challenges in scaling online hierarchical RL to high-throughput environments. We propose Scalable Option Learning (SOL), a highly scalable hierarchical RL algorithm which achieves a ~35x higher throughput compared to existing hierarchical methods. To demonstrate SOL's performance and scalability, we train hierarchical agents using 30 billion frames of experience on the complex game of NetHack, significantly surpassing flat agents and demonstrating positive scaling trends. We also validate SOL on MiniHack and Mujoco environments, showcasing its general applicability. Our code is open sourced at: github.com/facebookresearch/sol.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=p2RPRTPPMO",
+  "arxiv": "https://arxiv.org/abs/2509.00338",
+  "pdf": "https://raw.githubusercontent.com/mlresearch/v306/main/assets/henaff26a/henaff26a.pdf",
+  "proceedings": "https://proceedings.mlr.press/v306/henaff26a.html",
+  "virtual": "https://icml.cc/virtual/2026/poster/61547",
+  "code": null
+ },
+ "license": "http://creativecommons.org/licenses/by/4.0/",
+ "img": "cc-by",
+ "image_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/images/icml26-5448.png",
+ "thumb_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/thumbs/icml26-5448.webp",
+ "figure_page": 4,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.85
+}

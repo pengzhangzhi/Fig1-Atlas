@@ -1,0 +1,49 @@
+{
+ "id": "iclr26-1542",
+ "title": "Efficient-SAM2: Accelerating SAM2 with Object-Aware Visual Encoding and Memory Retrieval",
+ "authors": [
+  "Jing Zhang",
+  "Zhikai Li",
+  "Xuewen Liu",
+  "Qingyi Gu"
+ ],
+ "venue": "ICLR 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "Computer Vision->Vision Models & Multimodal",
+ "role": "analysis-finding",
+ "role2": null,
+ "claim": "Early-stage encoders attend broadly over the whole scene, while the later decoder attends narrowly to prompt-relevant objects, revealing redundant computation.",
+ "layout": "2x3 grid of images, left-to-right, rows are different prompted objects",
+ "tags": [
+  "attention-maps",
+  "sparsity",
+  "efficiency",
+  "video-segmentation",
+  "redundancy"
+ ],
+ "style": [
+  "photo/real data",
+  "colorful"
+ ],
+ "description": "A 2-row by 3-column grid of real video frames showing two goldfish in a tank. Column headers read Prompts, Image Encoder and Mask Decoder. Row labels on the left read Object A and Object B. In the first column, a magenta box and magenta mask mark the prompted fish. Row A prompts the right fish and row B prompts the left fish. In the middle column, the image encoder attention is shown as a green overlay. It is diffuse and spread across both fish and the background, with a grid-like speckle. In the right column, the mask decoder attention is a bright green glow on only the prompted fish. The rest of the frame is dark. The eye goes first to the bright green fish in the decoder column. The contrast with the diffuse middle column carries the point.",
+ "caption": "The image encoder exhibits broad attention coverage, but the mask decoder focuses narrowly on prompt-relevant objects.",
+ "caption_source": "latex",
+ "abstract": "Segment Anything Model 2 (SAM2) shows excellent performance in video object segmentation tasks; however, the heavy computational burden hinders its application in real-time video processing. Although there have been efforts to improve the efficiency of SAM2, most of them focus on retraining a lightweight backbone, with little exploration into post-training acceleration. In this paper, we observe that SAM2 exhibits sparse perception pattern as biological vision, which provides opportunities for eliminating redundant computation and acceleration: i) In mask decoder, the attention primarily focuses on the foreground objects, whereas the image encoder in the earlier stage exhibits a broad attention span, which results in unnecessary computation to background regions. ii) In memory bank, only a small subset of tokens in each frame contribute significantly to memory attention, and the salient regions exhibit temporal consistency, making full-token computation redundant. With these insights, we propose Efficient-SAM2, which promotes SAM2 to adaptively focus on object regions while eliminating task-irrelevant computations, thereby significantly improving inference efficiency. Specifically, for image encoder, we propose object-aware Sparse Window Routing (SWR), a window-level computation allocation mechanism that leverages the consistency and saliency cues from the previous-frame decoder to route background regions into a lightweight shortcut branch. Moreover, for memory attention, we propose object-aware Sparse Memory Retrieval (SMR), which allows only the salient memory tokens in each frame to participate in computation, with the saliency pattern reused from their first recollection. With negligible additional parameters and minimal training overhead, Efficient-SAM2 delivers 1.68x speedup on SAM2.1-L model with only 1.0% accuracy drop on SA-V test set.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=HcivRSezJp",
+  "arxiv": "https://arxiv.org/abs/2602.08224",
+  "pdf": "https://proceedings.iclr.cc/paper_files/paper/2026/file/aaa0ac4253da75faf9b0dc0dda062612-Paper-Conference.pdf",
+  "proceedings": "https://proceedings.iclr.cc/paper_files/paper/2026/hash/aaa0ac4253da75faf9b0dc0dda062612-Abstract-Conference.html",
+  "virtual": "https://iclr.cc/virtual/2026/poster/10010375",
+  "code": "https://github.com/jingjing0419/Efficient-SAM2"
+ },
+ "license": "http://arxiv.org/licenses/nonexclusive-distrib/1.0/",
+ "img": "none",
+ "image_url": null,
+ "thumb_url": null,
+ "figure_page": 1,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.85
+}

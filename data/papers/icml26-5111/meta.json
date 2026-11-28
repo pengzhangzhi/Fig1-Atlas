@@ -1,0 +1,52 @@
+{
+ "id": "icml26-5111",
+ "title": "A²RBench: An Automatic Paradigm for Formally Verifiable Abstract Reasoning Benchmark Generation",
+ "authors": [
+  "Qingchuan Ma",
+  "Yuexiao Ma",
+  "Yongkang Xie",
+  "Tianyu Xie",
+  "Xiawu Zheng",
+  "Rongrong Ji"
+ ],
+ "venue": "ICML 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "Deep Learning->Large Language Models",
+ "role": "pipeline",
+ "role2": "overview-framework",
+ "claim": "A staged automated pipeline with verification loops generates, expands, evaluates and analyzes tasks, with every step grounded in a concrete worked example.",
+ "layout": "4 colored stage panels in a clockwise loop, with robot-agent icons and a worked example",
+ "tags": [
+  "automated-pipeline",
+  "benchmark-generation",
+  "llm-as-judge",
+  "cycle-consistency",
+  "formal-verification"
+ ],
+ "style": [
+  "icon-heavy",
+  "colorful",
+  "text-heavy"
+ ],
+ "description": "A four-stage pipeline drawn as rounded dashed panels in different pastel colors, arranged in a loop. Top, yellow: Seed Generation. A robot Author leads to a Rule box, then a Judge, then a Code box, then a Cycle Consistency Check box with a green check, then another Judge. Right, green: Task Expansion. An Expander robot and a Judge sit around an Augmented Set box that lists Standard, Edge Case and Complex variations, plus a second Cycle Consistency Check. Bottom left, blue: Evaluation. Examples and a question go to an Answer robot, then reasoning output, a Judge, and a justification JSON. Bottom left corner, purple: Analysis, listing Performance, Complexity and Cognitive Quality. Big hollow arrows connect the stages. Each box holds concrete example text, such as letters, index lists and code.",
+ "caption": "The A$^2$RBench automated pipeline illustrated with an example (rule: \"index permutation via modular arithmetic\"). The rule permutes positions: given input length $n$, find smallest integer $k$ where $2 \\leq k \\leq n-1$ and $\\gcd(k,n)=1$, then map position $i$ to $(i \\times k) \\bmod n$. With $n=14$, smallest coprime is $k=3$, mapping $0\\to0$, $1\\to3$, $2\\to6$, etc. Stage 1 (Seed Generation): Author model generates rule description validated by Judge model. Author implements forward function $f$ (encoder), inverse function $g$ (decoder), example inputs and query input in Python. Cycle Consistency Check verifies $g(f(x))=x$ for all inputs, followed by Judge filtering of trivial cases. Stage 2 (Task Expansion): Expander model generates input variations across three difficulty levels (Standard, Edge Case, Complex), reusing validated rule code. Each variation undergoes cycle consistency and judge validation. Stage 3 (Evaluation): Solver models receive examples, infer rule, and answer queries. Judge model verifies correctness against ground truth; for symbolic tasks, symbol remapping ($\\phi$) measures reliance on familiar tokens. Stage 4 (Analysis): We analyze across three dimensions: performance statistics (accuracy metrics), code complexity (AST-based difficulty), and cognitive quality (reasoning classification). This pipeline generates formally verified tasks at scale while enabling diagnostic evaluation beyond binary correctness.",
+ "caption_source": "latex",
+ "abstract": "Abstract reasoning ability reflects the intelligence and generalization capacity of LLMs to extract and apply abstract rules. However, accurately measuring this ability remains challenging: existing benchmarks either rely on expensive manual annotation, limiting their scale, or risk measuring memorization rather than genuine reasoning. To address this, we introduce an automated pipeline named A2RBench, encompassing generation, expansion, evaluation, and analysis. Specifically, in the generation stage, LLMs create diverse tasks demanding genuine reasoning; in the expansion stage, LLMs reuse validated rules and expand new input spaces to generate task variations, achieving scaling. However, such a process may cause hallucinations. To eliminate it, we further establish a theoretical framework and prove that programmatic verification--testing whether the inverse operation perfectly reverses the forward operation (cycle consistency)--guarantees a unique solution. Through extensive evaluations on mainstream LLMs, we find: (1) Current LLMs exhibit fundamental deficiencies in abstract reasoning, with top models significantly underperforming humans on a representative subset (39.8% vs. 68.5%). (2) Current LLMs fall far short of 2D and 1D in the complexity of generated 3D tasks, revealing their lack of understanding of high-dimensional tasks. (3) Counterintuitively, inputs with higher information complexity can simplify the reasoning process.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=mD8DMkl7Tu",
+  "arxiv": "https://arxiv.org/abs/2605.17278",
+  "pdf": "https://raw.githubusercontent.com/mlresearch/v306/main/assets/ma26y/ma26y.pdf",
+  "proceedings": "https://proceedings.mlr.press/v306/ma26y.html",
+  "virtual": "https://icml.cc/virtual/2026/poster/61871",
+  "code": "https://github.com/MAC-AutoML/A2Rbench"
+ },
+ "license": "http://creativecommons.org/licenses/by/4.0/",
+ "img": "cc-by",
+ "image_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/images/icml26-5111.png",
+ "thumb_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/thumbs/icml26-5111.webp",
+ "figure_page": 1,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.9
+}

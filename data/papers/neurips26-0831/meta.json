@@ -1,0 +1,57 @@
+{
+ "id": "neurips26-0831",
+ "title": "Step-dLLM: Adaptive Step-aware Sparse Attention for Efficient Diffusion LLM Inference",
+ "authors": [
+  "Zhichen Zeng",
+  "Xichong zhang",
+  "Junpan Wu",
+  "Yifei Zuo",
+  "Chi-Chih Chang",
+  "Jiayi Wang",
+  "Maohua Nie",
+  "Ji Liu",
+  "Ang Li",
+  "Banghua Zhu"
+ ],
+ "venue": "NeurIPS 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": null,
+ "role": "analysis-finding",
+ "role2": null,
+ "claim": "Attention patterns stay similar over nearby steps but shift at certain transitions, so a fixed mask goes stale.",
+ "layout": "3 panels in a row, shared legend below, dashed query marker",
+ "tags": [
+  "attention-dynamics",
+  "sparse-attention",
+  "diffusion-llm",
+  "empirical-observation",
+  "efficiency"
+ ],
+ "style": [
+  "plot",
+  "minimal"
+ ],
+ "description": "Three side-by-side line/bar plots show attention weight (y-axis, 0 to about 0.05) against key position (x-axis, 0 to 320). Each plot comes from a different denoising step. Thin blue vertical spikes mark attention weights. A dashed yellow vertical line marks the query at position 172, and every panel has a tall cluster of attention mass around it. A few isolated spikes appear at other positions, such as near 95, 60 or 140. Their locations and heights differ between panels, which suggests the pattern drifts across steps. A shared legend sits centered below the panels with a blue solid line for Attention and a yellow dashed line for Query (pos 172). The eye goes first to the yellow query line and the blue peaks around it. The style is clean, with a white background and serif fonts.",
+ "caption": "Attention pattern dynamics across denoising steps.",
+ "caption_source": "latex",
+ "abstract": "Diffusion large language models (dLLMs) generate tokens in parallel via iterative denoising, but their bidirectional attention prevents the KV caching used by autoregressive models and recomputes the full attention map at every step, incurring quadratic per-step cost. Existing sparse attention methods for dLLMs construct a sparse mask after an initial full-attention warm-up and reuse it for the remaining steps, while allocating the sparsity budget uniformly across heads. We argue both choices ignore key structural properties of attention in dLLMs: empirically, attention patterns are only locally consistent across steps and shift abruptly at certain transitions, and different heads concentrate their attention mass to very different extents. To this end, we design Step-dLLM, which periodically refreshes a block-sparse mask at anchor steps along the denoising trajectory and reuses it within each locally consistent interval, while employing a head-adaptive global budget that more aggressively compresses heads with concentrated attention. Backed by a fused IO-aware Triton kernel for block-sparse attention, Step-dLLM applies to pre-trained LLaDA-1.5 and Dream-7B-Instruct without retraining, achieving a 2.78x end-to-end speedup over dense FlashAttention on LLaDA-1.5 at 8K context with 256 denoising steps and 90% sparsity, while improving the accuracy-latency trade-off over prior sparse-attention methods.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=5sFFGPtDy2",
+  "arxiv": "https://arxiv.org/abs/2611.01320",
+  "pdf": "https://arxiv.org/pdf/2611.01320",
+  "proceedings": null,
+  "virtual": "https://neurips.cc/virtual/2026/poster/155406",
+  "code": null
+ },
+ "license": "http://arxiv.org/licenses/nonexclusive-distrib/1.0/",
+ "img": "none",
+ "image_url": null,
+ "thumb_url": null,
+ "figure_page": 3,
+ "qc_flags": [
+  "bad-crop"
+ ],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.8
+}

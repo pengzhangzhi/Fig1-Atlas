@@ -1,0 +1,49 @@
+{
+ "id": "iclr26-2564",
+ "title": "Batch Pruning by Activation Stability",
+ "authors": [
+  "Md Mustakin Alam",
+  "Shaker Islam",
+  "Aminul Islam"
+ ],
+ "venue": "ICLR 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "Deep Learning->Everything Else",
+ "role": "pipeline",
+ "role2": null,
+ "claim": "A lightweight plug-in monitors activation statistics across epochs and feeds back to prune low-utility batches from training.",
+ "layout": "2 stacked panels, left-to-right then down; feedback loop and decision diamond",
+ "tags": [
+  "plug-in",
+  "dynamic-pruning",
+  "training-efficiency",
+  "feedback-loop",
+  "activation-statistics"
+ ],
+ "style": [
+  "icon-heavy",
+  "colorful",
+  "math-heavy"
+ ],
+ "description": "A large figure with two stacked panels. Panel A, in a rounded box at the top, shows a standard CNN pipeline. A dog image goes through blue and green convolution plus ReLU and pooling blocks, then flatten, fully connected layers and a softmax output (Cat, Dog, Fish). A color-coded cylinder labeled Dataset holds batches B1, B2, B3 and so on, and some of them are crossed out. A dashed feedback arrow runs from the right back to the dataset. A large hollow arrow labeled Plug-in points down to Panel B. Panel B, in a dashed purple box, shows flattened output tensors per batch. Below them are three epoch tables (i-1, i, i+1) with per-layer standard deviations and the mean per batch. A decision diamond on the right compares the change ΔX̄ with a threshold δ(i). It leads to either Prune Batch (red X) or Keep Batch (green check), and both feed back into the dataset.",
+ "caption": "Overview of the proposed Batch Pruning by Activation Stability (B-PAS) plug-in integrated into a prevalent Convolutional Neural Network (CNN) training pipeline. (A) The conventional CNN architecture processes input images in batches through convolutional, ReLU activation, and pooling layers, followed by a fully connected classifier. (B) The B-PAS module monitors the standard deviation of ReLU-activated convolutional outputs for each batch across epochs. For each epoch, the standard deviation is recorded per convolutional layer (columns) and aggregated across layers to compute the mean standard deviation for each batch (rows). These per-batch means are then compared across consecutive epochs to assess activation stability. If the change (∆¯X) for a batch Bni falls below a dynamic threshold δ(i), the batch is deemed to have low learning utility and is pruned from subsequent training. By updating the dataset at the end of each epoch using this feedback, the process dynamically focuses training on batches that continue to provide meaningful gradient information, thereby improving efficiency without compromising accuracy.",
+ "caption_source": "pdf",
+ "abstract": "Training deep neural networks remains costly in terms of data, time, and energy, limiting their deployment in large-scale and resource-constrained settings. To address this, we propose Batch Pruning by Activation Stability ( B-PAS ), a dynamic plug-in strategy that accelerates training by removing batches that contribute less to learning. B-PAS monitors the stability of activation representations across epochs and prunes batches whose activation variance exhibits minimal change, indicating diminishing learning utility. Applied to ResNet-18, ResNet-50, and the Convolutional vision Transformer (CvT) on CIFAR-10, CIFAR-100, SVHN, and ImageNet-1K, B-PAS reduces training batch usage by up to 57\\% with no loss in accuracy, and by 47\\% while slightly improving accuracy. Moreover, it achieves up to 61\\% savings in GPU node-hours, outperforming prior state-of-the-art pruning methods with up to 29\\% higher data savings and 21\\% greater GPU node-hour savings. We further demonstrate the generalization of B-PAS by extending it to GPT-2 fine-tuning, showing that activation stability can serve as an effective pruning signal beyond vision models. These results highlight activation stability as a powerful internal signal for efficient training, offering a practical and sustainable path toward data and energy-efficient deep learning.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=TUADW7db5n",
+  "arxiv": null,
+  "pdf": "https://proceedings.iclr.cc/paper_files/paper/2026/file/380afe1a245a3b2134010620eae88865-Paper-Conference.pdf",
+  "proceedings": "https://proceedings.iclr.cc/paper_files/paper/2026/hash/380afe1a245a3b2134010620eae88865-Abstract-Conference.html",
+  "virtual": "https://iclr.cc/virtual/2026/poster/10009310",
+  "code": "https://github.com/mustakinalam/Batch-Pruning-by-Activation-Stability"
+ },
+ "license": null,
+ "img": "none",
+ "image_url": null,
+ "thumb_url": null,
+ "figure_page": 2,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.9
+}

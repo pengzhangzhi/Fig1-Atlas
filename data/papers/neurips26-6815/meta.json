@@ -1,0 +1,61 @@
+{
+ "id": "neurips26-6815",
+ "title": "SPANUQ: Span-Level Uncertainty Quantification for Large Language Model Generation",
+ "authors": [
+  "Yimeng Zhang",
+  "Yingying Zhuang",
+  "Ziyi Wang",
+  "Yuxuan Lu",
+  "Pei Chen",
+  "Aman Gupta",
+  "Jing Huang",
+  "Ming Tan",
+  "Zhilin Zhang",
+  "Qun Liu",
+  "Manikandarajan Ramanathan",
+  "Rajashekar Maragoud",
+  "Edward Vul",
+  "Jing Huang",
+  "Dakuo Wang"
+ ],
+ "venue": "NeurIPS 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "Social Aspects->Trustworthy Machine Learning",
+ "role": "prior-vs-ours",
+ "role2": "problem-setup",
+ "claim": "Existing uncertainty scores are too fine-grained or too coarse to be useful; scoring semantic units localizes errors interpretably.",
+ "layout": "3 stacked rows (a)-(c), top-down, shared example sentence with color-coded uncertainty",
+ "tags": [
+  "uncertainty-estimation",
+  "granularity",
+  "hallucination-localization",
+  "span-level",
+  "interpretability"
+ ],
+ "style": [
+  "colorful",
+  "text-heavy",
+  "minimal"
+ ],
+ "description": "The figure shows a query ('Who is Marie Curie?') and a response containing a factual error (Nobel Prize in 1901). Three stacked rows show the same sentence at different granularities. (a) Token-level: each token sits in its own box shaded green to yellow to red, noisy and hard to interpret, with '19' and '01' in red. (b) Sequence-level: the whole sentence sits in one yellow box with a single score u=0.52, which cannot localize the error. (c) Span-level (Ours): the sentence is split into claim spans such as 'Polish physicist', 'the Nobel Prize' and '1901'. Each has its own score, green at 0.08 and 0.12 and red at 0.81. A green-to-red gradient legend for u in [0,1] sits at the bottom. The eye goes first to the red boxes.",
+ "caption": "Comparison of uncertainty estimation granularities for an LLM response containing a factual error (the Nobel Prize in Physics was awarded in 1903, not 1901). (a) Token-level methods assign per-token scores that are noisy and hard to interpret. (b) Sequence-level methods produce a single score, unable to localize which part is unreliable. (c) Our span-level approach identifies claim spans and assigns each an uncertainty score, enabling precise hallucination localization.",
+ "caption_source": "latex",
+ "abstract": "Uncertainty estimation is essential for the trustworthy deployment of LLMs: it underpins self-refinement and serves as a decision signal for downstream systems, from verifiers to collaborating agents. However, existing approaches operate at suboptimal granularities: token-level scores lack semantic coherence, while sequence-level scores fail to localize errors. We formalize Span-Level Uncertainty Estimation (SLUE), a new task that targets the natural granularity for uncertainty: semantically coherent text spans, each conveying a single assessable unit of meaning. To address this task, we introduce SPANUQ, a lightweight probe that distills the uncertainty knowledge from expensive multi-sample inference into a single forward pass over LLM hidden states. SPANUQ employs a DETR-style span decoder to simultaneously detect spans and estimate their uncertainty via a Mixture of Beta distribution, trained with a principled combination of Beta NLL regression and contrastive ranking objectives. We construct SPANUQ-BENCH, the first span-level uncertainty benchmark comprising 20K prompts, 293K annotated spans, and continuous soft labels derived from multi-sample claim verification. Experiments on five LLM backbones show that SPANUQ consistently achieves the best span-level uncertainty quality , outperforming the strongest probe baseline and all sampling-based methods while being 10~20x faster. Its DETR-based span detector attains 0.910 F1, surpassing the best heuristic by 39.4%, enabling precise error localization that sequence-level methods cannot provide. The same architecture ports to five LLMs spanning two model families, with one probe trained per backbone, and we additionally observe that sequence-level uncertainty is partially decomposable, suggesting that span-level estimation subsumes sequence-level as a special case. The project page is available damon-demon.github.io/SpanUQ.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=kn5hr1973d",
+  "arxiv": "https://arxiv.org/abs/2607.05721",
+  "pdf": "https://arxiv.org/pdf/2607.05721",
+  "proceedings": null,
+  "virtual": "https://neurips.cc/virtual/2026/poster/150088",
+  "code": "https://damon-demon.github.io/SpanUQ.html"
+ },
+ "license": "http://creativecommons.org/licenses/by/4.0/",
+ "img": "cc-by",
+ "image_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/images/neurips26-6815.png",
+ "thumb_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/thumbs/neurips26-6815.webp",
+ "figure_page": 1,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.8
+}

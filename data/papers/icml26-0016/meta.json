@@ -1,0 +1,55 @@
+{
+ "id": "icml26-0016",
+ "title": "Latent Spherical Flow Policy for Reinforcement Learning with Combinatorial Actions",
+ "authors": [
+  "Lingkai Kong",
+  "Anagha Satish",
+  "Hezi Jiang",
+  "Akseli Kangaslahti",
+  "Andrew Ma",
+  "Wenbo Chen",
+  "Mingxiao Song",
+  "Lily Xu",
+  "Milind Tambe"
+ ],
+ "venue": "ICML 2026",
+ "tier": "spotlight",
+ "track": "main",
+ "topic": "Reinforcement Learning->Deep RL",
+ "role": "pipeline",
+ "role2": "overview-framework",
+ "claim": "A solver maps latent samples to feasible actions, so policy and critic learn together in one continuous latent space.",
+ "layout": "Nested colored regions, left-to-right flow with feedback loops, sphere heatmap at top-left",
+ "tags": [
+  "generative-policy",
+  "flow-matching",
+  "combinatorial-optimization",
+  "actor-critic",
+  "feasibility-by-design"
+ ],
+ "style": [
+  "colorful",
+  "math-heavy",
+  "icon-heavy"
+ ],
+ "description": "A block diagram split into color-coded dashed regions. The top gray 'Inference' band holds a blue 'Actor' box. State s feeds a spherical flow, drawn as a sphere with a red-orange-blue density heatmap. The sampled cost direction c goes to a blue CO solver box, which outputs the action a*(s,c). Below, a pink 'Flow training' region holds a weighted flow matching loss, with a dashed backprop arrow back to the sphere. In the center, a white critic box Q̃φ passes weights w ∝ Q̃φ(s,c) to the loss. A green 'Critic training' region holds a vMF kernel and a smoothed Bellman target. A yellow 'Env. interaction' region holds a second CO solver and Env, which return reward and next state. A gray 'Latent space' label covers the lower half. The eye goes first to the sphere and the blue top path.",
+ "caption": "Overall framework of \\ours. To enable expressive stochastic policies under hard combinatorial constraints, we shift policy learning to a continuous spherical cost-direction space and let a combinatorial optimization (CO) solver enforce feasibility ([ref]). Crucially, both policy and critic are learned directly in this latent cost space. We train the flow policy $\\pi_\\theta$ via weighted flow matching, using weights $w\\propto \\tilde{Q}_\\phi(\\vs,\\vc)$ predicted by a latent-space critic ([ref]). To stabilize cost-space critic learning under solver-induced discontinuities, we apply vMF smoothing by sampling $\\tilde{\\vc}\\sim K_\\kappa(\\cdot\\mid \\vc)$ when constructing Bellman targets ([ref]).",
+ "caption_source": "latex",
+ "abstract": "Reinforcement learning (RL) with combinatorial action spaces remains challenging because feasible action sets are exponentially large and governed by complex feasibility constraints, making direct policy parameterization impractical. Existing approaches embed task-specific value functions into constrained optimization programs or learn deterministic structured policies, sacrificing generality and policy expressiveness. We propose a solver-induced \\emph{latent spherical flow policy} that brings the expressiveness of modern generative policies to combinatorial RL while guaranteeing feasibility by design. Our method, LSFlow, learns a \\emph{stochastic} policy in a compact continuous latent space via spherical flow matching, and delegates feasibility to a combinatorial optimization solver that maps each latent sample to a valid structured action. To improve efficiency, we train the value network directly in the latent space, avoiding repeated solver calls during policy optimization. To address the piecewise-constant and discontinuous value landscape induced by solver-based action selection, we introduce a smoothed Bellman operator that yields stable, well-defined learning targets. Empirically, our approach outperforms state-of-the-art baselines by an average of 20.6\\% across a range of challenging combinatorial RL tasks.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=07wwDFdi3k",
+  "arxiv": "https://arxiv.org/abs/2601.22211",
+  "pdf": "https://raw.githubusercontent.com/mlresearch/v306/main/assets/kong26e/kong26e.pdf",
+  "proceedings": "https://proceedings.mlr.press/v306/kong26e.html",
+  "virtual": "https://icml.cc/virtual/2026/poster/66809",
+  "code": null
+ },
+ "license": "http://creativecommons.org/licenses/by/4.0/",
+ "img": "cc-by",
+ "image_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/images/icml26-0016.png",
+ "thumb_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/thumbs/icml26-0016.webp",
+ "figure_page": 2,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.85
+}

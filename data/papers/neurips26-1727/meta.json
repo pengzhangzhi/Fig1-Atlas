@@ -1,0 +1,54 @@
+{
+ "id": "neurips26-1727",
+ "title": "Black-Box Inference of LLM Architectural Properties with Restrictive API Access",
+ "authors": [
+  "Christopher Ellis",
+  "Mei-Yu Wang",
+  "Shreyas Chaudhari",
+  "Leighton P Barnes",
+  "Giulia Fanti",
+  "José M F Moura"
+ ],
+ "venue": "NeurIPS 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "Social Aspects->Accountability, Transparency and Interpretability",
+ "role": "pipeline",
+ "role2": null,
+ "claim": "A two-stage attack first estimates an internal property from restricted queries, then feeds it into a second stage to recover further properties.",
+ "layout": "Single panel, left-to-right with vertical flow; dashed box groups the method",
+ "tags": [
+  "black-box-attack",
+  "two-stage",
+  "model-extraction",
+  "budget-allocation",
+  "side-channel"
+ ],
+ "style": [
+  "minimal",
+  "colorful"
+ ],
+ "description": "A single block diagram of the NightVision attack. On the left, a white box labeled black-box API contains a dark-blue Target LLM box. A green Token Budget B box sits below it. Inside a dashed rectangle titled NightVision are two light-blue boxes stacked vertically: 1. Common-Set Prompting Attack on top and 2. Timing Attack below. Thick blue double-headed arrows connect the API to both stages. Green arrows split the budget, with 10M tokens going to the timing attack and B minus 10M going to the prompting attack. A blue arrow carries the estimated hidden dimension d-hat from stage 1 down into stage 2. It also exits to the right as an output. Stage 2 outputs Depth and Parameters on the right. The eye goes first to the bold title and the two blue stage boxes.",
+ "caption": "\\algo overview",
+ "caption_source": "latex",
+ "abstract": "In practice, most commercial LLM providers do not publicly release details of underlying LLM architectures. However, prior work has shown that given limited API access to an LLM (namely, top-$k$ logits and/or a logit bias function), one can recover certain architectural details of an LLM, such as the hidden dimension of the feed-forward network. Perhaps in response to these results, most commercial LLM providers have restricted their APIs to expose only the single logit for each decoded token, and they no longer give users the ability to bias logits. We show that even under current restrictive APIs, several architectural parameters are still recoverable. We present NightVision, an attack that uses restrictive black-box API access to estimate the hidden dimension, depth, and parameter count of an LLM. Algorithmically, NightVision relies on a novel common set prompting technique in which multiple prompts expose log probabilities for the same set of output tokens; a spectral analysis of these results is used to infer hidden dimension. NightVision additionally uses end-to-end time to first token (TTFT) measurements and the estimated hidden dimension to estimate depth and parameter count. We empirically evaluate NightVision on 32 open-source LLMs, recovering hidden dimension to within 23% average relative error across all models (9% on MoE models), and depth and parameter count to within 53% for models exceeding three billion parameters. We run extensive ablations to demonstrate how these accuracies scale with token budget and model properties. Overall, our results suggest that current LLM APIs are not sufficiently restricted to fully obfuscate the architectural details of their underlying models.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=CIzvFzuUoV",
+  "arxiv": "https://arxiv.org/abs/2607.01313",
+  "pdf": "https://arxiv.org/pdf/2607.01313",
+  "proceedings": null,
+  "virtual": "https://neurips.cc/virtual/2026/poster/154610",
+  "code": null
+ },
+ "license": "http://arxiv.org/licenses/nonexclusive-distrib/1.0/",
+ "img": "none",
+ "image_url": null,
+ "thumb_url": null,
+ "figure_page": 3,
+ "qc_flags": [
+  "tiny-crop",
+  "bad-crop"
+ ],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.93
+}

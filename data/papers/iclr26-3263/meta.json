@@ -1,0 +1,49 @@
+{
+ "id": "iclr26-3263",
+ "title": "ELMUR: External Layer Memory with Update/Rewrite for Long-Horizon RL Problems",
+ "authors": [
+  "Egor Cherepanov",
+  "Alexey Kovalev",
+  "Aleksandr Panov"
+ ],
+ "venue": "ICLR 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": null,
+ "role": "pipeline",
+ "role2": null,
+ "claim": "Augmenting each layer with a parallel, bounded external memory track lets the model read and rewrite persistent state across long horizons.",
+ "layout": "1 panel, left-to-right, two stacked tracks with feedback loop and legend",
+ "tags": [
+  "external-memory",
+  "transformer",
+  "long-horizon",
+  "partial-observability",
+  "reinforcement-learning"
+ ],
+ "style": [
+  "colorful",
+  "icon-heavy",
+  "text-heavy"
+ ],
+ "description": "A single block diagram reads left to right. On the left, three stacks of robot-manipulation frames (first, middle, last segment) sit along a vertical 'sequence of observations' arrow. They feed an Obs. Encoder, then a top 'Token Track' repeated N layers: Self-Attention, Add&Norm, a purple mem2tok block, TokenFFN and an Action Head that outputs an action to a robot-arm icon. Below it a 'Memory Track' runs Memory, a purple tok2mem block, MemoryFFN, New Memory and a red LRU block. A red feedback arrow returns the rewritten memory to the start, and gray arrows link the two tracks. Colors encode roles: gray is classic transformer parts, green is memory, purple is token-memory interaction, red is rewriting. A legend sits along the bottom.",
+ "caption": "ELMUR overview. Each transformer layer is augmented with an external memory track that runs in parallel with the token track. Tokens attend to memory through a mem2tok block, while memory embeddings are updated from tokens through a tok2mem block. LRU block selectively rewrites memory via replacement or convex blending, ensuring bounded yet persistent storage. This design enables token-memory interaction and long-horizon recall beyond the attention window.",
+ "caption_source": "latex",
+ "abstract": "Real-world robotic agents must act under partial observability and long horizons, where key cues may appear long before they affect decision making. However, most modern approaches rely solely on instantaneous information, without incorporating insights from the past. Standard recurrent or transformer models struggle with retaining and leveraging long-term dependencies: context windows truncate history, while naive memory extensions fail under scale and sparsity. We propose ELMUR (External Layer Memory with Update/Rewrite), a transformer architecture with structured external memory. Each layer maintains memory embeddings, interacts with them via bidirectional cross-attention, and updates them through an Least Recently Used (LRU) memory module using replacement or convex blending. ELMUR extends effective horizons up to 100,000 times beyond the attention window and achieves a 100% success rate on a synthetic T-Maze task with corridors up to one million steps. In POPGym, it outperforms baselines on more than half of the tasks. On MIKASA-Robo sparse-reward manipulation tasks with visual observations, it nearly doubles the performance of strong baselines, achieving the best success rate on 21 out of 23 tasks and improving the aggregate success rate across all tasks by about 70% over the previous best baseline. These results demonstrate that structured, layer-local external memory offers a simple and scalable approach to decision making under partial observability. Code and project page: https://elmur-paper.github.io/.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=bm3rbtEMFj",
+  "arxiv": "https://arxiv.org/abs/2510.07151",
+  "pdf": "https://proceedings.iclr.cc/paper_files/paper/2026/file/e58dfd0157cb9de91e7a513d3148aad5-Paper-Conference.pdf",
+  "proceedings": "https://proceedings.iclr.cc/paper_files/paper/2026/hash/e58dfd0157cb9de91e7a513d3148aad5-Abstract-Conference.html",
+  "virtual": "https://iclr.cc/virtual/2026/poster/10008579",
+  "code": null
+ },
+ "license": "http://creativecommons.org/licenses/by/4.0/",
+ "img": "cc-by",
+ "image_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/images/iclr26-3263.png",
+ "thumb_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/thumbs/iclr26-3263.webp",
+ "figure_page": 1,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.93
+}

@@ -1,0 +1,50 @@
+{
+ "id": "neurips26-4039",
+ "title": "Generating Physically Consistent Molecules with Energy-Based Models",
+ "authors": [
+  "Christoph Griesbacher",
+  "Lea Bogensperger",
+  "Andreas Habring",
+  "Thomas Pock"
+ ],
+ "venue": "NeurIPS 2026",
+ "tier": "spotlight",
+ "track": "main",
+ "topic": "Applications->Chemistry and Drug Discovery",
+ "role": "concept",
+ "role2": "pipeline",
+ "claim": "Training a scalar energy so its negative gradient points toward data from both prior and extrapolated sides shapes minima at data.",
+ "layout": "single panel, 3D energy surface, arrows on both slopes, math labels above",
+ "tags": [
+  "energy-based-model",
+  "energy-landscape",
+  "score-matching",
+  "interpolation-extrapolation",
+  "molecule-generation"
+ ],
+ "style": [
+  "3d-render",
+  "colorful",
+  "math-heavy"
+ ],
+ "description": "A single 3D rendered energy surface, a colored mesh running from yellow at the upper left to purple at the bottom center, forms a valley. Molecule ball-and-stick structures sit along the surface. They are noisy and distorted on both slopes and become a clean, well-formed molecule at the minimum in the center. Labels above the surface read x_1 ~ p_prior on the left, x_0 ~ p_data in the center, and x_{-1} = 2x_0 - x_1 on the right. Two thick black arrows run down the left and right slopes toward the minimum. They are labeled -∇E_θ ≈ v_{t=1} and -∇E_θ ≈ -v_{t=-1}. The eye goes first to the valley floor and the clean molecule, then follows the arrows. The figure is symmetric: interpolation from the prior on one side, extrapolation beyond the data on the other.",
+ "caption": "Overview of Restoring Field Matching. The RFM loss shapes a scalar energy landscape with data points $x_0\\sim p_{data}$ as local minima by training the negative gradient $-\\nabla E_{\\theta}$ to point toward data from both sides: from the prior (interpolation, $t \\in [0,1]$) and from beyond the data (extrapolation, $t \\in [-1,0]$).",
+ "caption_source": "latex",
+ "abstract": "Molecules in equilibrium follow a Boltzmann distribution, making the underlying energy landscape a physically grounded modeling objective. However, such landscapes are difficult to learn from data and, once learned, hard to sample from. Diffusion and flow-matching models sidestep these difficulties by learning a time-conditional score or transport field between noise and data, losing the energy inductive bias in exchange for a more tractable training objective. We introduce EBMol, an energy-based model (EBM) that restores this inductive bias by learning an atom-additive scalar potential without explicit simulation during training. Our method employs a flow-inspired Restoring Field Matching objective to approximate the energy landscape. We adopt the Mirror-Langevin algorithm for sampling, enabling unified updates of atomic positions and types, and incorporate parallel tempering for inference-time compute scaling. EBMol is the first EBM for 3D molecular generation to achieve state-of-the-art performance on QM9 and GEOM-Drugs. Moreover, we show that the learned energy landscape serves as a principled quality metric for ranking and filtering configurations, and demonstrate controllable generation without retraining through shape-steered sampling via potential composition and zero-shot linker design.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=SEBAsCmCg3",
+  "arxiv": "https://arxiv.org/abs/2605.18381",
+  "pdf": "https://arxiv.org/pdf/2605.18381",
+  "proceedings": null,
+  "virtual": "https://neurips.cc/virtual/2026/poster/152559",
+  "code": "https://github.com/griesbchr/EBMol"
+ },
+ "license": "http://creativecommons.org/licenses/by/4.0/",
+ "img": "cc-by",
+ "image_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/images/neurips26-4039.png",
+ "thumb_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/thumbs/neurips26-4039.webp",
+ "figure_page": 1,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.62
+}

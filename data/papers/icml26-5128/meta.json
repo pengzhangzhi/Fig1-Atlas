@@ -1,0 +1,49 @@
+{
+ "id": "icml26-5128",
+ "title": "MACD: Model-Aware Contrastive Decoding via Counterfactual Data for Video-LLMs",
+ "authors": [
+  "Qixin Xiao",
+  "Kun Zhou"
+ ],
+ "venue": "ICML 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": null,
+ "role": "pipeline",
+ "role2": "prior-vs-ours",
+ "claim": "Optimizing object-level masks with model gradients yields targeted counterfactual inputs, and contrasting their outputs with the originals grounds token selection.",
+ "layout": "2 regions, left-to-right flow: construction on left, decoding bars on right",
+ "tags": [
+  "contrastive-decoding",
+  "counterfactual",
+  "hallucination-mitigation",
+  "gradient-optimization",
+  "inference-time"
+ ],
+ "style": [
+  "colorful",
+  "icon-heavy",
+  "photo/real data",
+  "math-heavy"
+ ],
+ "description": "The figure shows a two-part pipeline. At top left, an original video of a beluga and a child is shown as four frames, beside the text query \"What is the beluga doing to the child?\". The lower-left green panel, \"Counterfactual Construction\", contains a gradient-based optimization box. Initial mask strengths r1..rn go through a loss-landscape sketch with a \"Maximize Loss\" arrow and the update rule r ← r + η∇L(r), producing optimized strengths r*. These strengths drive object masks and frame masks, which blank out regions of the frames to give the counterfactual video Vd. Both the original branch and the counterfactual branch feed a central Video-LLM box. The right peach panel, \"Contrastive Decoding\", compares logit bar charts for the original and counterfactual video over four candidate words: smiling, approaching, vocalizing and ignoring. \"Vocalizing\" is highlighted in red. The contrastive formula follows, with ✗ marks on the wrong candidates and a ✓ on \"vocalizing\". The final output sentence appears at the bottom.",
+ "caption": "The overview of our proposed method. It consists of the model-aware counterfactual data augmentation using object-level and frame-level masks that can be optimized via the gradients from the VLM, and the contrastive decoding strategy to boost the probability of important tokens relevant to the masked part in the video.",
+ "caption_source": "latex",
+ "abstract": "Video language models (Video-LLMs) are prone to hallucinations, generating plausible but ungrounded content when visual evidence is weak, ambiguous, or biased. Existing methods, such as contrastive decoding (CD), rely on random perturbations to construct contrastive data for hallucination mitigation, but often fail to target the visual cues that drive hallucination or align with model weaknesses. We propose Model-Aware Counterfactual Data based Contrastive Decoding (MACD), an inference strategy that combines model-guided counterfactual construction with contrastive decoding. MACD uses the Video-LLM's own feedback to identify object regions most responsible for hallucination, generating targeted object-level counterfactual inputs rather than arbitrary frame or temporal modifications. These counterfactual inputs are integrated into CD to enforce evidence-grounded token selection during decoding. Experiments on EventHallusion, MVBench, Perception-test, and Video-MME show that MACD consistently reduces hallucination while maintaining or improving task accuracy across diverse Video-LLMs, including Qwen and InternVL, with especially strong gains in scenarios involving small, occluded, or co-occurring objects.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=mLR6OD6kKR",
+  "arxiv": "https://arxiv.org/abs/2602.01740",
+  "pdf": "https://raw.githubusercontent.com/mlresearch/v306/main/assets/xiao26w/xiao26w.pdf",
+  "proceedings": "https://proceedings.mlr.press/v306/xiao26w.html",
+  "virtual": "https://icml.cc/virtual/2026/poster/61854",
+  "code": null
+ },
+ "license": "http://arxiv.org/licenses/nonexclusive-distrib/1.0/",
+ "img": "none",
+ "image_url": null,
+ "thumb_url": null,
+ "figure_page": 3,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.85
+}

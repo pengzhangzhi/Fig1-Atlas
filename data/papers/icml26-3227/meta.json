@@ -1,0 +1,50 @@
+{
+ "id": "icml26-3227",
+ "title": "Quantifying LLM Attention-Head Stability: Implications for Circuit Universality",
+ "authors": [
+  "Karan Bali",
+  "Jack Stanley",
+  "Praneet Suresh",
+  "Danilo Bzdok"
+ ],
+ "venue": "ICML 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "Social Aspects->Robustness",
+ "role": "pipeline",
+ "role2": null,
+ "claim": "A staged procedure compares attention heads across independently trained model instances to yield a per-head stability score.",
+ "layout": "Multi-stage flow: top inputs, central anchor/pair columns, steps 1-4 looping bottom-right to left",
+ "tags": [
+  "pipeline",
+  "evaluation-protocol",
+  "cosine-similarity",
+  "interpretability",
+  "reproducibility"
+ ],
+ "style": [
+  "colorful",
+  "icon-heavy",
+  "text-heavy"
+ ],
+ "description": "A flowchart of the stability evaluation procedure. At top left, an 'Evaluation Dataset' box lists Prompt 1, p, and P, each with a document icon. A thick arrow labeled 'Feed into' points to a bar of LLM re-fits (1, m, n, N) trained from scratch with different seeds. Re-fit m is shaded blue and goes down to an 'Anchor Model' panel. Re-fit n is shaded red and goes to a 'Pair Model' panel. Each panel shows stacked layer-l attention heads, repeated x l. Dashed lines carry prompt p into both models. Below them sit a blue and a red pixelated attention-score heatmap. These feed STEP 1 (cosine similarity), then STEP 2 (average similarity across prompts), then STEP 3 (best matching head). The flow ends at a green STEP 4 box that computes head stability. Blue and red contrast marks the anchor and pair models.",
+ "caption": "Experimental workflow for assessing attention head stability. For each of our 26 architectural configurations, we instantiate $N$ GPT-2-small LLMs, each with a different initial random seed. Each LLM is pre-trained from scratch with the OpenWebText or C4 datasets, depending on the architectural configuration. After pre-training, we take $\\mathcal{P}$ evaluation prompts and compute attention score matrices for each head in each layer. An anchor model $m$ is selected and compared to a pair model $n$, recursively for each randomly initialized and pre-trained LLM in that architectural subset. Cosine similarity is used to assess the similarity of each attention score matrix from each head, and a \"Stability\" score is computed from the best matching heads across refits of the architectural subset. See Methods [ref] for definitions of these terms.",
+ "caption_source": "latex",
+ "abstract": "In mechanistic interpretability, recent work scrutinizes transformer \"circuits\" - sparse, mono or multi layer sub computations, that may reflect human understandable functions. Yet, these network circuits are rarely acid-tested for their stability across different instances of the same deep learning architecture. Without this, it remains unclear whether reported circuits emerge universally across labs or turn out to be idiosyncratic to a particular estimation instance, potentially limiting confidence in safety-critical settings. Here, we systematically study stability across-refits in increasingly complex transformer language models of various sizes. We quantify, layer by layer, how similarly attention heads learn representations across independently initialized training runs. Our rigorous experiments show that (1) middle-layer heads are the least stable yet the most representationally distinct; (2) deeper models exhibit stronger mid-depth divergence; (3) unstable heads in deeper layers become more functionally important than their peers from the same layer; (4) applying weight decay optimization substantially improves attention-head stability across random model initializations; and (5) the residual stream is comparatively stable. Our findings establish the cross-instance robustness of circuits as an essential yet underappreciated prerequisite for scalable oversight, drawing contours around possible white-box monitorability of AI systems.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=UXzfLdXrBJ",
+  "arxiv": "https://arxiv.org/abs/2602.16740",
+  "pdf": "https://raw.githubusercontent.com/mlresearch/v306/main/assets/bali26a/bali26a.pdf",
+  "proceedings": "https://proceedings.mlr.press/v306/bali26a.html",
+  "virtual": "https://icml.cc/virtual/2026/poster/63696",
+  "code": "https://github.com/karanbali/attention_head_seed_stability"
+ },
+ "license": "http://creativecommons.org/licenses/by/4.0/",
+ "img": "cc-by",
+ "image_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/images/icml26-3227.png",
+ "thumb_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/thumbs/icml26-3227.webp",
+ "figure_page": 2,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.95
+}

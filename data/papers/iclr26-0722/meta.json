@@ -1,0 +1,51 @@
+{
+ "id": "iclr26-0722",
+ "title": "LoFT: Low-Rank Adaptation That Behaves Like Full Fine-Tuning",
+ "authors": [
+  "Nurbek Tastan",
+  "Stefanos Laskaridis",
+  "Martin Takáč",
+  "Karthik Nandakumar",
+  "Samuel Horváth"
+ ],
+ "venue": "ICLR 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "Deep Learning->Algorithms",
+ "role": "prior-vs-ours",
+ "role2": "pipeline",
+ "claim": "Full fine-tuning updates all weights with full-gradient optimizer moments; ours reproduces this inside a low-rank subspace by projecting gradients and moments.",
+ "layout": "2 panels split by dotted line, left-to-right, parallel equations contrasted",
+ "tags": [
+  "low-rank-adaptation",
+  "parameter-efficient",
+  "optimizer-dynamics",
+  "fine-tuning",
+  "full-vs-lowrank"
+ ],
+ "style": [
+  "math-heavy",
+  "colorful",
+  "minimal"
+ ],
+ "description": "The figure has two side-by-side panels separated by a vertical dotted line. The left panel, titled 'Full Fine-Tuning AdamW', shows a single orange-red weight block W (m×n) labeled 'Always Updated', with a 'Full Gradients g1…gk' box at top right. Beside it are stacked equations for momentum, second moment, and the Adam update. The right panel, 'LoFT-AdamW', has a legend box defining the projected gradient g_i^V and the projection matrix P_V. It repeats the same three equations, with the projected terms in red. A boxed diagram shows a frozen navy W plus a gradient-shaded U (m×r), times V^T (r×n), with arrows pointing upward. A legend marks 'Frozen' in navy and 'Alternating Update' in a gradient. The eye goes first to the colored blocks, then to the parallel equations.",
+ "caption": "LoFT visualization. LoFT can be interpreted as the tightest approximation to full fine-tuning under the constraint that each update lies in the subspace defined by $V$ (when updating $U$). The LoFT-AdamW update consists of a momentum and second-moment estimate constructed using projected gradients. The final update is then projected back onto the subspace of $V$ to respect the low-rank constraint. When $V$ is the updated component instead of $U$, the roles of $U$ and $V$ are simply exchanged, and the update is applied to $W^\\top$ instead of $W$.",
+ "caption_source": "latex",
+ "abstract": "Large pre-trained models are commonly adapted to downstream tasks using parameter-efficient fine-tuning methods such as Low-Rank Adaptation (LoRA), which injects small trainable low-rank matrices instead of updating all weights. While LoRA dramatically reduces trainable parameters with little overhead, it can still underperform full fine-tuning in accuracy and often converges more slowly. We introduce LoFT, a novel low-rank adaptation method that behaves like full fine-tuning by aligning the optimizer's internal dynamics with those of updating all model weights. LoFT not only learns weight updates in a low-rank subspace (like LoRA) but also properly projects the optimizer's first and second moments (Adam's momentum and variance) into the same subspace, mirroring full-model updates. By aligning the low-rank update itself with the full update, LoFT eliminates the need for tuning extra hyperparameters, e.g., the LoRA scaling factor $Î±$. Empirically, this approach substantially narrows the performance gap between adapter-based tuning and full fine-tuning and consistently outperforms standard LoRA-style methods, all without increasing inference cost.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=86P3sb1dpr",
+  "arxiv": "https://arxiv.org/abs/2505.21289",
+  "pdf": "https://proceedings.iclr.cc/paper_files/paper/2026/file/7428310c0f97f1c6bb2ef1be99c1ec2a-Paper-Conference.pdf",
+  "proceedings": "https://proceedings.iclr.cc/paper_files/paper/2026/hash/7428310c0f97f1c6bb2ef1be99c1ec2a-Abstract-Conference.html",
+  "virtual": "https://iclr.cc/virtual/2026/poster/10011234",
+  "code": "https://github.com/tnurbek/loft"
+ },
+ "license": "http://creativecommons.org/licenses/by/4.0/",
+ "img": "cc-by",
+ "image_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/images/iclr26-0722.png",
+ "thumb_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/thumbs/iclr26-0722.webp",
+ "figure_page": 1,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.6
+}

@@ -1,0 +1,53 @@
+{
+ "id": "icml26-1037",
+ "title": "CAT-Q: Cost-efficient and Accurate Ternary Quantization for LLMs",
+ "authors": [
+  "Shigeng Wang",
+  "Chao Li",
+  "Yangyuxuan Kang",
+  "Jiawei Fan",
+  "Anbang Yao"
+ ],
+ "venue": "ICML 2026",
+ "tier": "oral",
+ "track": "main",
+ "topic": "Deep Learning->Algorithms",
+ "role": "pipeline",
+ "role2": null,
+ "claim": "A weight is redistributed with learnable factors, then softly and hard ternarized, so one cheap procedure replaces costly retraining.",
+ "layout": "Single wide panel, left-to-right top flow, with a math legend row below",
+ "tags": [
+  "post-training-quantization",
+  "ternary",
+  "learnable-modulation",
+  "pipeline",
+  "efficiency"
+ ],
+ "style": [
+  "minimal",
+  "math-heavy",
+  "text-heavy"
+ ],
+ "description": "A wide, black-and-white schematic with a top row and a bottom row. The top row flows left to right: original weights W, then a Redistribute box with the formula Ŵ = (W − μ)/α, then the redistribution proxy Ŵ. Next come two adjacent boxes, Differentiable ternarization and Hard ternarization, grouped by a brace labeled Softened ternarization. The row ends at the ternary weights T. An arrow runs down from T to Weight reconstruction (inference), where W ≈ αT. The bottom row has a large box labeled Learnable modulation. It defines μ, α and Δ as combinations of learnable factors (red δ terms) and statistics-based priors (blue μ0, α0, Δ0). A dashed box to its right gives the piecewise ternary rule T_i ∈ {1, 0, −1} using threshold Δ. A dashed double arrow links this box to T. Red and blue mark learnable factors and priors.",
+ "caption": "Overview of the CAT-Q's learning flow for ternarizing the weights of a linear layer in any pre-trained LLM and its hardware-friendly weight reconstruction for ternary model deployment. Please see Figure [ref] for an illustration of the softened ternarization process.",
+ "caption_source": "latex",
+ "abstract": "In this paper, we present CAT-Q, Cost-efficient and Accurate Ternary Quantization, for compressing and accelerating LLMs. Unlike existing state-of-the-art ternary quantization methods that rely on data-intensive and costly quantization-aware training to mitigate severe performance degradation, CAT-Q is a simple yet effective post-training quantization scheme that is readily applicable to LLMs with diverse architectures and model sizes. It has two key components, learnable modulation (LM) and softened ternarization (ST), which are coupled from an optimization perspective. LM leverages a composition of learnable factors to modulate the distribution of pre-trained high-precision weights and the ternary threshold, making them less sensitive to ternarization. ST further introduces a differentiable transition function to guide the ternarization process toward stable convergence. We show that, for pre-trained LLMs with 1.7B to 8B parameters, CAT-Q can efficiently quantize them into ternary models using only 512 calibration samples, while achieving superior performance than the seminal BitNet 1.58-bit v1 and v2 families (with 1.3B to 7B parameters) trained with 100B tokens, yielding about a 100,000X reduction in training tokens. Moreover, we show for the first time that CAT-Q can quantize much larger pre-trained LLMs having 14B to 235B parameters into leading ternary models within just 8 to 60 hours on 8 A100-80GB GPUs. Code is available at https://github.com/IntelChina-AI/BitTern.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=9uZJLXt7fq",
+  "arxiv": "https://arxiv.org/abs/2606.26650",
+  "pdf": "https://raw.githubusercontent.com/mlresearch/v306/main/assets/wang26dr/wang26dr.pdf",
+  "proceedings": "https://proceedings.mlr.press/v306/wang26dr.html",
+  "virtual": "https://icml.cc/virtual/2026/poster/65816",
+  "code": "https://github.com/IntelChina-AI/BitTern"
+ },
+ "license": "http://arxiv.org/licenses/nonexclusive-distrib/1.0/",
+ "img": "none",
+ "image_url": null,
+ "thumb_url": null,
+ "figure_page": 2,
+ "qc_flags": [
+  "bad-crop"
+ ],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.9
+}

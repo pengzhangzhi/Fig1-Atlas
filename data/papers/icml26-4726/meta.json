@@ -1,0 +1,61 @@
+{
+ "id": "icml26-4726",
+ "title": "Revisiting Efficiency–Accuracy Scaling in Mixture-of-Experts Architectures",
+ "authors": [
+  "Venmugil Elango",
+  "Nidhi Bhatia",
+  "Roger Waleffe",
+  "Rasoul Shafipour",
+  "Tomer Asida",
+  "Abhinav Khattar",
+  "Nave Assaf",
+  "Maximilian Golub",
+  "Joseph Guman",
+  "Tiyasa Mitra",
+  "Ritchie Zhao",
+  "Ritika Borkar",
+  "Ran Zilberstein",
+  "Mostofa Patwary",
+  "Mohammad Shoeybi",
+  "Bita Darvish Rouhani"
+ ],
+ "venue": "ICML 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "Deep Learning->Large Language Models",
+ "role": "prior-vs-ours",
+ "role2": "pipeline",
+ "claim": "The standard design routes full-width tokens to few experts; adding down- and up-projections lets many more experts run at similar cost.",
+ "layout": "2 panels side-by-side, bottom-to-top data flow, green-highlighted new modules in right panel",
+ "tags": [
+  "mixture-of-experts",
+  "architecture-comparison",
+  "latent-projection",
+  "efficiency",
+  "accuracy-per-compute"
+ ],
+ "style": [
+  "minimal",
+  "colorful"
+ ],
+ "description": "Two block diagrams sit side by side, each read bottom-to-top. Panel (a) shows a standard MoE layer. Input from the previous layer passes through Self-Attention and a residual add. Tokens then go to a Router, an All-to-All dispatch, a row of experts (SE, E1–E4, with E2 and E3 hatched as the active ones), multiplication nodes, an All-to-All combine, and a final residual add to the next layer. Panel (b) shows LatentMoE with the same skeleton. It adds two green boxes, 'Latent down-proj' before dispatch and 'Latent up-proj' after combine. It also has eight experts (E1–E8) in two rows, with four hatched as active. Dashed arrows carry router weights to the multiply nodes. The eye goes first to the green boxes and the larger expert grid in (b).",
+ "caption": "Standard MoE vs. LatentMoE architectures. In LatentMoE, tokens are projected from the model hidden dimension $d$ into a smaller latent dimension $\\ell$ for expert routing and computation, which reduces routed parameter loads and all‑to‑all traffic by a factor of $d / \\ell$. We use this efficiency to increase the total number of experts and the top-k active experts per token by the same factor $d/\\ell$, which improves the accuracy of the model while keeping overall inference cost approximately constant.",
+ "caption_source": "latex",
+ "abstract": "Mixture-of-Experts (MoEs) have become a central component of many state-of-the-art open-source and proprietary large language models. Despite their widespread adoption, it remains unclear how close existing MoE architectures are to optimal for inference cost, as measured by accuracy per floating-point operation and per parameter. In this work, we revisit MoE design from a hardware-software co-design perspective, grounded in empirical and theoretical considerations. We characterize key performance bottlenecks across diverse deployment regimes, spanning offline high-throughput execution and online, latency-critical inference. Guided by these insights, we introduce LatentMoE , a new model architecture resulting from systematic design exploration and optimized for maximal accuracy per unit of compute. Empirical design space exploration at scales of up to 95B parameters and over a 1T-token training horizon, together with supporting theoretical analysis, shows that LatentMoE consistently outperforms standard MoE architectures in terms of accuracy per FLOP and per parameter. Given its strong performance, the LatentMoE architecture has been adopted by the flagship Nemotron-3 Super and Ultra models and scaled to substantially larger regimes, including longer token horizons and larger model sizes, as reported in (NVIDIA et al., 2025, arXiv:2512.20856).",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=iQRy0io4sb",
+  "arxiv": "https://arxiv.org/abs/2601.18089",
+  "pdf": "https://raw.githubusercontent.com/mlresearch/v306/main/assets/elango26a/elango26a.pdf",
+  "proceedings": "https://proceedings.mlr.press/v306/elango26a.html",
+  "virtual": "https://icml.cc/virtual/2026/poster/62240",
+  "code": null
+ },
+ "license": "http://creativecommons.org/licenses/by/4.0/",
+ "img": "cc-by",
+ "image_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/images/icml26-4726.png",
+ "thumb_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/thumbs/icml26-4726.webp",
+ "figure_page": 1,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.8
+}

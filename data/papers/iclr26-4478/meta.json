@@ -1,0 +1,53 @@
+{
+ "id": "iclr26-4478",
+ "title": "SSDi8: Accurate and Efficient 8-bit Quantization for State Space Duality",
+ "authors": [
+  "Hyunwoo Kim",
+  "BYOUNGCHAN KO",
+  "Minseok Kang",
+  "Minwoo Kim",
+  "Dongjin Lee",
+  "Jaehoon Lee",
+  "Sungroh Yoon",
+  "Dahuin Jung"
+ ],
+ "venue": "ICLR 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "Deep Learning->Everything Else",
+ "role": "pipeline",
+ "role2": "prior-vs-ours",
+ "claim": "A standard block's computation is reformulated so quantized activations are reused along a persistent low-precision path, with high-precision correction only where needed.",
+ "layout": "2 panels, left-to-right; small baseline block beside large dataflow graph with color-coded precision",
+ "tags": [
+  "quantization",
+  "pipeline",
+  "low-precision",
+  "efficiency",
+  "activation-reuse"
+ ],
+ "style": [
+  "colorful",
+  "icon-heavy"
+ ],
+ "description": "The figure has two panels. Panel (a), on the left, shows the Mamba-2 block as a vertical stack in a rounded box: RMSNorm, In Proj, Conv, SSD (the blue focal block), RMSNorm, and Out Proj, with arrows for the x, B, C, Δ and z branches and σ gates. A dashed line separates it from panel (b). Panel (b) is a large green-bordered gray box titled 'Persistent INT8 Representation', with a green arrow running along the top. It expands SSD into blue INT8 modules (Chunk State, State Passing, Chunk Scan(1), Quantize_B/C, Chunk BMM) and pink FP16 modules (Chunk Cumsum, Chunk Scan(2)). Inputs x, B, C, Δ enter from the left on pink dashed arrows. Blue and pink arrows route data to output Y, with a 'Correction' node attached. A green recycle icon marks activation reuse, and a legend maps blue to Int 8 and pink to FP16.",
+ "caption": "(a) Mamba-2 block architecture. (b) SSD pipeline in SSDi8. SSDi8 enables the persistent INT8 representation path through reformulation and quantized activation reuse, while mitigating performance degradation via channel-aware quantization and mean correction.",
+ "caption_source": "latex",
+ "abstract": "Recent advances in sequence modeling have highlighted Mamba as a state space architecture offering efficient long-range dependency modeling and providing a viable alternative to Transformers. Building upon this, Mamba-2 introduces the Structured State Space Duality (SSD), which integrates recurrent and attention modes to achieve efficiency and scalability. However, this architectural expansion substantially increases memory and latency overhead, underscoring the need for efficient compression strategies tailored to SSD. In this work, we present SSDi8, the first post-training quantization framework specifically designed for SSD to maintain a persistent INT8 path. SSDi8 introduces a reformulation that decouples element-wise multiplications from matrix multiplications, enabling reuse of quantized activations across modules. Moreover, SSDi8 adaptively quantizes channel-varying activations at cost-effective points, further reducing latency. On the accuracy side, SSDi8 explicitly leverages the intrinsic dimensional decomposition of SSD, exploiting distinct outlier distributions across axes, and incorporates an error correction term based on per-channel error statistics. Comprehensive experiments demonstrate that SSDi8 achieves accuracy comparable to FP16 while delivering up to 1.4x speedup in W4A8 and W8A8 settings. We further validate its robustness in resource-constrained environments by deploying it on the Orin NX device.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=pjMDZJd4rT",
+  "arxiv": "https://arxiv.org/abs/2608.21952",
+  "pdf": "https://proceedings.iclr.cc/paper_files/paper/2026/file/9d3852f2b1fc883fc41011cb0257f0d0-Paper-Conference.pdf",
+  "proceedings": "https://proceedings.iclr.cc/paper_files/paper/2026/hash/9d3852f2b1fc883fc41011cb0257f0d0-Abstract-Conference.html",
+  "virtual": "https://iclr.cc/virtual/2026/poster/10007309",
+  "code": "https://github.com/cau-hai-lab/SSDi8"
+ },
+ "license": "http://arxiv.org/licenses/nonexclusive-distrib/1.0/",
+ "img": "none",
+ "image_url": null,
+ "thumb_url": null,
+ "figure_page": 3,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.82
+}

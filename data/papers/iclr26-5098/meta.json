@@ -1,0 +1,54 @@
+{
+ "id": "iclr26-5098",
+ "title": "Slow-Fast Policy Optimization: Reposition-Before-Update for LLM Reasoning",
+ "authors": [
+  "Ziyan Wang",
+  "Zheng Wang",
+  "Xingwei Qu",
+  "Qi Cheng",
+  "Jie Fu",
+  "Shengpu Tang",
+  "Minjia Zhang",
+  "Xiaoming Huo"
+ ],
+ "venue": "ICLR 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "Deep Learning->Algorithms",
+ "role": "pipeline",
+ "role2": null,
+ "claim": "A method decomposes each update into sequential stages, with data and parameters flowing through distinct modules to produce the next iterate.",
+ "layout": "4 dashed stage panels, left-to-right, color-coded arrows, update formula in third panel",
+ "tags": [
+  "pipeline",
+  "policy-optimization",
+  "reinforcement-learning",
+  "multi-stage",
+  "plug-in-compatible"
+ ],
+ "style": [
+  "colorful",
+  "math-heavy",
+  "icon-heavy"
+ ],
+ "description": "A left-to-right flow diagram with four dashed gray panels. Each has a blue-bordered title tab: Rollout Generation, Stage 1 Fast Trajectory, Stage 2 Reposition, Stage 3 Slow Correction. The first panel shows a row of query boxes q1..qN feeding a green Policy Model box, which produces a row of orange response boxes R1..RN. Blue arrows carry the queries and rollouts into a large red circular arrow labeled Policy Gradient Update × K. Olive-green arrows carry the starting and updated policy models into an interpolation formula, theta-tilde = theta0 + alpha(thetaK − theta0). A red arrow carries the interpolated model to a pink model box. A final update × 1 yields the next policy in a green box at top right. Arrow color marks the data type.",
+ "caption": "Pipeline of SFPO at iteration $s$. Starting from the current policy $\\pi_{\\theta^{s,0}}$, we first generate rollouts for training. Stage I (Fast Trajectory): apply $K$ successive gradient updates on the same batch to obtain $\\theta^{s,K}$. Stage II (Reposition): interpolate between $\\theta^{s,K}$ and the starting point $\\theta^{s,0}$ to form $\\tilde{\\theta}^{s,K}$, controlling off-policy drift. Stage III (Slow Correction): perform one additional update on $\\tilde{\\theta}^{s,K}$, yielding $\\pi_{\\theta^{s+1,0}}$ for the next iteration.",
+ "caption_source": "latex",
+ "abstract": "Reinforcement learning (RL) has become central to enhancing reasoning in large language models (LLMs). Yet on-policy algorithms such as Group Relative Policy Optimization (GRPO) often suffer in early training: noisy gradients from low-quality rollouts lead to unstable updates and inefficient exploration. We introduce Slow-Fast Policy Optimization (SFPO), a simple yet efficient framework to address the above limitations via decomposing each step into three stages: a short fast trajectory of inner steps on the same batch, a reposition mechanism to control off-policy drift, and a final slow correction. This reposition-before-update design preserves the objective and rollout process unchanged, making SFPO plug-compatible with existing policy-gradient pipelines. Extensive experiments demonstrate that SFPO consistently improves stability, reduces number of rollouts, and accelerates convergence of reasoning RL training. Specifically, it outperforms GRPO by up to 2.80 points in average on math reasoning benchmarks. It also achieves up to 4.93\\texttimes{} fewer rollouts and an up to 4.19\\texttimes{} reduction in wall-clock time to match GRPO's best accuracy. Project website is available at https://slow-fast-po.github.io/.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=xBlHiHdXap",
+  "arxiv": "https://arxiv.org/abs/2510.04072",
+  "pdf": "https://proceedings.iclr.cc/paper_files/paper/2026/file/1ac50421cc847c5866eb8ff920e6d790-Paper-Conference.pdf",
+  "proceedings": "https://proceedings.iclr.cc/paper_files/paper/2026/hash/1ac50421cc847c5866eb8ff920e6d790-Abstract-Conference.html",
+  "virtual": "https://iclr.cc/virtual/2026/poster/10006661",
+  "code": "https://slow-fast-po.github.io/"
+ },
+ "license": "http://creativecommons.org/licenses/by/4.0/",
+ "img": "cc-by",
+ "image_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/images/iclr26-5098.png",
+ "thumb_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/thumbs/iclr26-5098.webp",
+ "figure_page": 1,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.97
+}

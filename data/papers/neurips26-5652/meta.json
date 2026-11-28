@@ -1,0 +1,50 @@
+{
+ "id": "neurips26-5652",
+ "title": "Non-Expanding Gated Continued Fraction Architecture for Feedforward Layers in Language Models",
+ "authors": [
+  "Amit Dhurandhar",
+  "Vijil Chenthamarakshan",
+  "Karthikeyan Natesan Ramamurthy",
+  "Dennis Wei",
+  "Rahul Nair"
+ ],
+ "venue": "NeurIPS 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "Deep Learning->Generative Models and Autoencoders",
+ "role": "pipeline",
+ "role2": "prior-vs-ours",
+ "claim": "A gated, non-expanding ladder module can drop into any standard feedforward block while keeping the same input and output interface.",
+ "layout": "3 panels, left-to-right, Replace arrow, dashed zoom-in on one ladder unit",
+ "tags": [
+  "drop-in-replacement",
+  "continued-fraction",
+  "parameter-efficiency",
+  "feedforward",
+  "gating"
+ ],
+ "style": [
+  "minimal",
+  "math-heavy"
+ ],
+ "description": "The figure has three parts, read left to right. On the left, a rounded box titled \"LLM Feedforward Architectures\" holds three colored boxes: yellow for vanilla feedforward (GPT-2), green for gated linear unit (Llama, Mamba), and purple for expert modules (Llama MoE, Deepseek, Mixtral). A blue \"Replace\" arrow points to a large rounded box in the center. That box is a neuron-level diagram of the proposed architecture. The inputs x1..xp go through two parallel linear layers. One of them is followed by a swish activation. The two outputs are combined by an element-wise product, drawn as ⊗, to give z1..zp. The z vector feeds parallel vertical ladders of nodes. Each node shows a small 1/x hyperbola icon, and skip connections run up the side to the output row. A dashed circle around one node leads to a zoomed-in view on the right. That view labels the node with w_d z and the continued-fraction expression w_{d-1}^T z + 1/(w_d^T z).",
+ "caption": "Above we see our continued fraction inspired architecture that can replace feedforward layers in dense as well as MoE architectures. Our architecture performs a non-expansive gating of the input that then passes through an (ensemble of) continued fraction ladders. The fact that we do not expand the hidden representation and each layer of our ladders requires only a linear number of parameters we obtain significant parameter savings over typical (gated and vanilla) feedforward layers leading to dense models that are $\\approx \\frac{2}{3}$ the size and MoEs that are $\\approx \\frac{1}{2}$ the size. In our implementations we create a different class for CoFrGeNet that has the same api as the FFN class, that is, same parameters are passed and the same size output tensor (equal to embedding size) is returned. The depth and width parameters for CoFrGeNet could be additionally passed or just set in the CoFrGeNet class itself. Hence, no changes are made to the residual stream or other aspects of the original architecture. The input $x_1,..., x_p$ in the figure is thus simply the output of the attention or SSM layer where the residual stream is added and the representation normalized in the particular block. In other words, nothing else in the model architectures changes and the input and output tensors are both size embedding dimension.",
+ "caption_source": "latex",
+ "abstract": "Recent work has shown that continued fraction inspired neural architectures (CoFrGeNets) can be highly parameter efficient yet performant for language modeling. In this work, we revisit continued fraction-based channel mixing with the goal of improving its performance and simplifying integration into standard pre-training protocols for language models. We achieve this by two simple yet critical contributions: i) we propose a novel non-expanding gated continued fraction inspired architectural component to replace feedforward layers in established language model architectures that may use vanilla multilayer perceptrons or gated linear units or (vanilla/gated) experts in mixture-of-experts (MoE) type architectures. ii) We propose a way to re-implement divisions -- the non-linearity in these architectures -- in terms of logarithms and exponentials. By experimenting on different language modeling architectures such as GPT-2, Llama-3, Mamba-2 and (nano) Llama-MoE we find that our proposed architecture performs similarly or significantly better than the continued fraction architecture proposed in prior work along with having higher throughput. In addition, our re-implementation of divisions makes training of deeper CoFrGeNets stable without the need for incremental training which was proposed in prior work as a means to stabilize training, but added notable complexity to existing large language model training implementations. Code is available at http://github.com/IBM/CoFrNets",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=csNiporPZm",
+  "arxiv": "https://arxiv.org/abs/2611.26835",
+  "pdf": "https://arxiv.org/pdf/2611.26835",
+  "proceedings": null,
+  "virtual": "https://neurips.cc/virtual/2026/poster/151115",
+  "code": null
+ },
+ "license": "http://creativecommons.org/licenses/by/4.0/",
+ "img": "cc-by",
+ "image_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/images/neurips26-5652.png",
+ "thumb_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/thumbs/neurips26-5652.webp",
+ "figure_page": 2,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.6
+}

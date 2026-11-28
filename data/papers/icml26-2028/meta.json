@@ -1,0 +1,53 @@
+{
+ "id": "icml26-2028",
+ "title": "Entropy-Aware On-Policy Distillation of Language Models",
+ "authors": [
+  "Woogyeol Jin",
+  "Taywon Min",
+  "Yongjin Yang",
+  "Dennis Wei",
+  "Yi Zhou",
+  "Swanand Kadhe",
+  "Nathalie Baracaldo",
+  "Kimin Lee"
+ ],
+ "venue": "ICML 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "Deep Learning->Large Language Models",
+ "role": "analysis-finding",
+ "role2": "problem-setup",
+ "claim": "Under a high-entropy teacher, mode-seeking reverse-KL training fails to converge and keeps fluctuating, while a low-entropy teacher gives stable convergence.",
+ "layout": "single line plot, two colored curves with shaded seed variance bands",
+ "tags": [
+  "reverse-kl",
+  "on-policy-distillation",
+  "teacher-entropy",
+  "training-instability",
+  "failure-mode"
+ ],
+ "style": [
+  "plot",
+  "minimal"
+ ],
+ "description": "A single line chart with Training Steps (0 to 1000) on the x-axis and Top-10 Change Rate (0 to 0.25) on the y-axis. Light dashed gridlines are visible. Two curves are drawn with shaded bands showing variance across seeds. The blue curve, labeled Low Entropy, starts near 0.18, falls steeply after about 100 steps, and settles near 0.01 by step 300, which indicates a stable, converged student. The red curve, labeled High Entropy, rises to about 0.14 by step 120, peaks near 0.15 around step 400, then drifts and fluctuates between about 0.06 and 0.11 through step 1000, with wide shaded bands. The legend is in the upper right. The eye goes first to the contrast between the collapsing blue curve and the persistently high, noisy red curve.",
+ "caption": "Top-10 change rate for Scenario A (blue), where the teacher distribution has low entropy, and Scenario B (red), where the teacher distribution has high entropy across 3 seeds. For Scenario B, a student optimized with reverse KL fails to capture the teacher’s distribution, as evidenced by persistently high and fluctuating Top-10 change rates.",
+ "caption_source": "latex",
+ "abstract": "On-policy distillation is a promising approach for transferring knowledge between language models, where a student learns from dense token-level signals along its own trajectories. This framework typically uses reverse KL divergence, encouraging the student to match the teacher's high-confidence predictions. However, we show that the mode-seeking property of reverse KL reduces generation diversity and yields unstable learning signals when the teacher distribution has high entropy. To address this, we introduce Entropy-Aware On-Policy Distillation. Our key idea is augmenting the standard reverse KL objective with forward KL when teacher entropy is high, capturing the full range of plausible outputs while retaining precise imitation elsewhere. It balances mode-seeking precision with mode-covering robustness without sacrificing on-policy training efficiency. Experiments show that our method maintains generation diversity (sustained token-level entropy) and improves student-teacher alignment (lower forward KL on high-entropy tokens). Across six math reasoning benchmarks, this yields Pass@8 accuracy gains of +1.37 for Qwen3-0.6B-Base, +2.39 for Qwen3-1.7B-Base, and +5.05 for Qwen3-4B-Base compared to baseline on-policy distillation methods. These results demonstrate that accounting for teacher uncertainty is essential for maintaining diversity and achieving effective knowledge transfer.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=J5i09faOOf",
+  "arxiv": "https://arxiv.org/abs/2603.07079",
+  "pdf": "https://raw.githubusercontent.com/mlresearch/v306/main/assets/jin26e/jin26e.pdf",
+  "proceedings": "https://proceedings.mlr.press/v306/jin26e.html",
+  "virtual": "https://icml.cc/virtual/2026/poster/64855",
+  "code": null
+ },
+ "license": "http://arxiv.org/licenses/nonexclusive-distrib/1.0/",
+ "img": "none",
+ "image_url": null,
+ "thumb_url": null,
+ "figure_page": 2,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.85
+}

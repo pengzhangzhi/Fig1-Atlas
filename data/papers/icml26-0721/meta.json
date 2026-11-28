@@ -1,0 +1,55 @@
+{
+ "id": "icml26-0721",
+ "title": "Fast and Expressive Multi-Byte Prediction with Probabilistic Circuits",
+ "authors": [
+  "Andreas Grivas",
+  "Lorenzo Loconte",
+  "Emile van Krieken",
+  "Piotr Nawrot",
+  "Yu Zhao",
+  "Euan Wielewski",
+  "Pasquale Minervini",
+  "Edoardo Ponti",
+  "Antonio Vergari"
+ ],
+ "venue": "ICML 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "Deep Learning->Generative Models and Autoencoders",
+ "role": "teaser-result",
+ "role2": "analysis-finding",
+ "claim": "Design choices trade off latency against expressiveness, and the best configuration reaches the highest throughput among the alternatives.",
+ "layout": "1 scatter panel, latency vs accepted tokens, diagonal iso-throughput dashed lines",
+ "tags": [
+  "trade-off",
+  "speculative-decoding",
+  "efficiency",
+  "pareto",
+  "design-space"
+ ],
+ "style": [
+  "plot",
+  "colorful",
+  "minimal"
+ ],
+ "description": "A single scatter plot with accepted tokens on the x-axis (5 to 7.5) and latency in seconds on the y-axis (0.028 to 0.044, arrows showing lower is better). Dashed diagonal lines mark iso-throughput levels, from 155 tok/s at the lower left to 205 tok/s at the upper right, with labels along the left and right edges. Each point is a circle containing 8 or 16 for the MTP window size. Colour shows the circuit architecture: blue BTree, orange CP, green FF, red HMM. Border thickness shows the number of LoRA layers: none, grey for 1, thick black for 2. A legend box sits at the top left. The blue BTree points with 16 bytes, at the right edge, lie on the highest-throughput lines and draw the eye first.",
+ "caption": "\\ours allows us to trade-off efficiency (latency) and expressiveness (token acceptance) with different MTP designs by choosing 1) the \\gls{pc} architecture ([ref], [ref], [ref], [ref]); 2) the number of layers shared between draft and verifier models in self-speculative sampling. Dotted lines indicate iso-throughput (bytes/sec) regions, highlighting designs such as [ref] for $16$ bytes and $1$ LoRA layer that achieve the best throughput for our retrofitted \\ebmtp{} model ([ref]).",
+ "caption_source": "latex",
+ "abstract": "Multi-token prediction (MTP) is a prominent strategy to significantly speed up generation in large language models (LLMs), especially in byte-level LLMs, which are tokeniser-free but prohibitively slow. However, many existing MTP methods either assume independence between future tokens, sacrificing expressiveness, or generate tokens one at a time within the window, increasing latency. In this work, we investigate the trade-off between expressiveness and latency in MTP within the framework of probabilistic circuits (PCs). Our framework, MTPC, allows one to explore different ways to encode the joint distributions over future tokens by selecting circuit architectures, generalising classical models such as (hierarchical) mixture models, hidden Markov models, and tensor networks. We show the efficacy of MTPC by retrofitting existing byte-level LLMs, such as EvaByte, and byte-fied subword models, such as Llama3.2 3B. Our experiments show that, when combined with speculative decoding, MTPC substantially speeds up generation compared to MTP with independence assumptions, while guaranteeing to retain the performance of the original verifier LLM. We also rigorously study the optimal trade-off between expressiveness and latency when exploring the possible parameterisations of MTPC, such as PC architectures and partial layer sharing between the verifier and draft LLMs.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=6kCEyw9god",
+  "arxiv": "https://arxiv.org/abs/2511.11346",
+  "pdf": "https://raw.githubusercontent.com/mlresearch/v306/main/assets/grivas26a/grivas26a.pdf",
+  "proceedings": "https://proceedings.mlr.press/v306/grivas26a.html",
+  "virtual": "https://icml.cc/virtual/2026/poster/66125",
+  "code": "https://github.com/april-tools/mtpc"
+ },
+ "license": "http://creativecommons.org/licenses/by/4.0/",
+ "img": "cc-by",
+ "image_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/images/icml26-0721.png",
+ "thumb_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/thumbs/icml26-0721.webp",
+ "figure_page": 0,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.7
+}

@@ -1,0 +1,51 @@
+{
+ "id": "iclr26-0943",
+ "title": "Temperature as a Meta-Policy: Adaptive Temperature in LLM Reinforcement Learning",
+ "authors": [
+  "Haoran Dang",
+  "Cuiling Lan",
+  "Hai Wan",
+  "Xibin Zhao",
+  "Yan Lu"
+ ],
+ "venue": "ICLR 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "Reinforcement Learning->Online",
+ "role": "pipeline",
+ "role2": "overview-framework",
+ "claim": "A learnable outer loop selects the sampling temperature by scoring trajectory likelihoods, while a standard inner RL loop trains the policy.",
+ "layout": "Two nested loops, flowing left-to-right then clockwise, color-coded trajectory grids",
+ "tags": [
+  "hierarchical-optimization",
+  "meta-policy",
+  "two-loop",
+  "reinforcement-learning",
+  "adaptive-hyperparameter"
+ ],
+ "style": [
+  "math-heavy",
+  "colorful",
+  "icon-heavy"
+ ],
+ "description": "A single diagram split into two regions. The upper-right light-blue rounded box is the inner loop, titled 'Inner loop (critic-free LLM RL)'. A query q feeds the policy model π_{θ,T}, which produces trajectories τ1…τG. These go through reference and reward models, then to rewards r1…rG, then group computation, then advantages A1…AG. Arrows loop back to the policy model, and a KL arrow runs from the reference model. The outer loop is titled in red at top left and runs along the bottom and left. The trajectories and policy model feed a 'Calculate likelihoods' box. This produces a grid of normalized likelihoods over virtual temperatures T1…TK. An element-wise product with the advantages gives a grid of temperature-specific advantages (TSA). An EMA of TSA then updates the Meta-policy π, which outputs temperature T into the policy model. Rows are color-coded orange, blue and green. Pastel boxes, gray grouping panels, and math notation throughout.",
+ "caption": "Overview of Temperature Adaptive Meta Policy Optimization (TAMPO). The framework operates through a hierarchical two-loop process. In the inner loop, the LLM policy is optimized with critic-free RL (\\egno, GRPO) using rollouts sampled at the temperature chosen by the meta-policy. In the \\tcr{outer loop}, the meta-policy is updated by evaluating trajectory likelihoods under virtual temperatures, deriving temperature-specific advantages ($\\mathcal{A}_{i}^{(T_k)} = \\hat{\\ell}_{T_k}(\\tau_i) \\cdot A_i$ for trajectory $\\tau_i$ w.r.t. virtual temperature $T_k$), and reinforcing those that yield high-advantage rollouts (see \\S[ref]). This design establishes temperature as a learnable meta-policy, enabling online adaptation and effective optimization of LLM policy without extra rollouts.",
+ "caption_source": "latex",
+ "abstract": "Temperature is a crucial hyperparameter in large language models (LLMs), controlling the trade-off between exploration and exploitation during text generation. High temperatures encourage diverse but noisy outputs, while low temperatures produce focused outputs but may cause premature convergence. Yet static or heuristic temperature schedules fail to adapt to the dynamic demands of reinforcement learning (RL) throughout training, often limiting policy improvement. We propose Temperature Adaptive Meta Policy Optimization (TAMPO), a new framework that recasts temperature control as a learnable meta-policy. TAMPO operates through a hierarchical two-loop process. In the inner loop, the LLM policy is updated (e.g., using GRPO) with trajectories sampled at the temperature selected by the meta-policy. In the outer loop, meta-policy updates the distribution over candidate temperatures by rewarding those that maximize the likelihood of high-advantage trajectories. This trajectory-guided, reward-driven mechanism enables online adaptation without additional rollouts, directly aligning exploration with policy improvement. On five mathematical reasoning benchmarks, TAMPO outperforms baselines using fixed or heuristic temperatures, establishing temperature as an effective learnable meta-policy for adaptive exploration in LLM reinforcement learning. Accepted at ICLR 2026.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=AoTHU2OmS6",
+  "arxiv": "https://arxiv.org/abs/2602.11779",
+  "pdf": "https://proceedings.iclr.cc/paper_files/paper/2026/file/fac53ffd015140927453fa7b00ceb329-Paper-Conference.pdf",
+  "proceedings": "https://proceedings.iclr.cc/paper_files/paper/2026/hash/fac53ffd015140927453fa7b00ceb329-Abstract-Conference.html",
+  "virtual": "https://iclr.cc/virtual/2026/poster/10011000",
+  "code": null
+ },
+ "license": "http://arxiv.org/licenses/nonexclusive-distrib/1.0/",
+ "img": "none",
+ "image_url": null,
+ "thumb_url": null,
+ "figure_page": 1,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.9
+}

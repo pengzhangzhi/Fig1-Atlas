@@ -1,0 +1,59 @@
+{
+ "id": "iclr26-0854",
+ "title": "Fastcar: Cache Attentive Replay for Fast Auto-Regressive Video Generation on the Edge",
+ "authors": [
+  "Xuan Shen",
+  "Weize Ma",
+  "Yufa Zhou",
+  "Enhao Tang",
+  "Yanyue Xie",
+  "Zhengang Li",
+  "Yifan Gong",
+  "Quanyi Wang",
+  "Henghui Ding",
+  "Yiwei Wang",
+  "Pu Zhao",
+  "Jun Lin",
+  "Jiuxiang Gu"
+ ],
+ "venue": "ICLR 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": null,
+ "role": "pipeline",
+ "role2": "analysis-finding",
+ "claim": "Decoding dominates latency, and its cost sits in MLP modules, so reusing cached MLP outputs when a similarity score passes a threshold skips that compute.",
+ "layout": "2 regions: left flow diagram, right stacked bar and pie charts; traffic-light gate",
+ "tags": [
+  "cache-reuse",
+  "inference-acceleration",
+  "autoregressive",
+  "temporal-redundancy",
+  "latency-profiling"
+ ],
+ "style": [
+  "colorful",
+  "plot",
+  "icon-heavy"
+ ],
+ "description": "The left half is a two-column data-flow diagram. Previous-frame tokens (grey boxes numbered 1 to 256) and current-frame tokens (blue boxes) each pass through a KV cache, a Whole Attn module and a Feedforward (MLP) module, then into residual-sum nodes. A stack of triangular attention maps feeds an 'Average TAS' traffic-light icon that compares a score with threshold tau. A green path leads to 'Replay' and a Replay Cache box, which bypasses the current frame's MLP. A red path leads to normal MLP computation. The right half has a 3D bar chart of prefill versus decoding latency at 2k, 4k, 6k and 8k sequence lengths, with decoding dominating. Below it are four pie charts of the decode-phase breakdown, where MLP Linear is the largest slice. The colors are light blue, grey, green and red.",
+ "caption": "Left: FastCar framework. We replay the cache from the previous frame to skip the computations for MLP in decoding. Replay is triggered when the average TAS exceeds a predefined threshold $\\tau$. Right Top: Latency cost of both prefill and decode phases for different sequence lengths. Right Bottom: Detailed latency cost of the decode phase for different sequence lengths.",
+ "caption_source": "latex",
+ "abstract": "Auto-regressive (AR) models, initially successful in language generation, have recently shown promise in visual generation tasks due to their superior sampling efficiency. Unlike image generation, video generation requires a substantially larger number of tokens to produce coherent temporal frames, resulting in significant overhead during the decoding phase. Our key observations are: (i) MLP modules in the decode phase dominate the inference latency, and (ii) there exists high temporal redundancy in MLP outputs of adjacent frames. In this paper, we propose the \\textbf{FastCar} framework to accelerate the decode phase for the AR video generation by exploring the temporal redundancy. The Temporal Attention Score (TAS) is proposed to determine whether to apply the replay strategy (\\textit{i.e.}, reusing cached MLP outputs from the previous frame to reduce redundant computations) with detailed theoretical analysis and justification. Also, we develop a hardware accelerator on FPGA with Dynamic Resource Scheduling (DRS) based on TAS to enable better resource utilization and faster inference. Experimental results demonstrate the effectiveness of our method, which outperforms traditional sparse attention approaches with more than 2.1x decoding speedup and higher energy efficiency on the edge. Furthermore, by combining FastCar and sparse attention, FastCar can boost the performance of sparse attention with alleviated drifting, demonstrating our unique advantages for high-resolution and long-duration video generation. Code: https://github.com/shawnricecake/fast-car",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=9f3Nukn6BA",
+  "arxiv": "https://arxiv.org/abs/2505.14709",
+  "pdf": "https://proceedings.iclr.cc/paper_files/paper/2026/file/8488454077cb0fd9d31772274c78115d-Paper-Conference.pdf",
+  "proceedings": "https://proceedings.iclr.cc/paper_files/paper/2026/hash/8488454077cb0fd9d31772274c78115d-Abstract-Conference.html",
+  "virtual": "https://iclr.cc/virtual/2026/poster/10011095",
+  "code": null
+ },
+ "license": "http://creativecommons.org/licenses/by-nc-nd/4.0/",
+ "img": "none",
+ "image_url": null,
+ "thumb_url": null,
+ "figure_page": 1,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.7
+}

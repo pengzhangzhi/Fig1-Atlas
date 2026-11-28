@@ -1,0 +1,50 @@
+{
+ "id": "icml26-2420",
+ "title": "SRPO: Self-Reflective Policy Optimization for Long-Horizon Reasoning",
+ "authors": [
+  "Jialong Liu",
+  "Yuling Shi",
+  "Ning Yang",
+  "Xiaodong Gu",
+  "Zuchao Li"
+ ],
+ "venue": "ICML 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "Reinforcement Learning->Deep RL",
+ "role": "prior-vs-ours",
+ "role2": "pipeline",
+ "claim": "Standard training yields rollouts and advantages directly; ours adds a self-reflection refine-then-resample loop to produce better, denser learning signals.",
+ "layout": "2 panels split by vertical line, left-to-right, dashed stage boxes on right",
+ "tags": [
+  "self-reflection",
+  "policy-optimization",
+  "two-stage",
+  "credit-assignment",
+  "reinforcement-learning"
+ ],
+ "style": [
+  "minimal",
+  "colorful"
+ ],
+ "description": "The figure has two panels divided by a vertical black line. The left panel, titled 'Standard training', shows a simple vertical flow. An initial prompt x goes into a yellow Policy Model box. From there an arrow leads to a rollout trajectory o_G, and a thick arrow leads on to advantages A_G. The right panel, titled 'SRPO', has a larger yellow Policy Model box spanning two dashed rounded regions, 'Stage1: Refine' and 'Stage2: Resample'. In Stage 1, x feeds the model, the model outputs o, and a red 'Self-Reflection' arrow feeds back into the model. The model also produces a pink c, which is added to x. In Stage 2, x plus c go into the model, which produces a pink o*_G and then A*_G. Pink and red highlight the new elements, and the eye goes first to the yellow boxes.",
+ "caption": "Overview of the SRPO Framework. The process consists of two stages using the same model $\\pi_\\theta$. Stage 1: Given a prompt $x$ and a sparse outcome $o$ from an initial attempt, the model generates a concise Reflection Patch ($p$). This patch is prepended to the prompt (Reset-with-Memory) to guide the model in generating a high-quality \"Teacher\" distribution $\\pi_\\theta(\\cdot\\mid[p;x])$. Stage 2: The base model (Student), seeing only the original prompt $x$, generates on-policy rollouts. It is optimized to minimize the Reverse KL divergence between its output distribution and the Teacher's distribution, effectively converting sparse outcomes into dense, token-level supervision.",
+ "caption_source": "latex",
+ "abstract": "Self-reflection is a powerful mechanism for credit assignment in human learning, converting sparse outcome feedback into actionable guidance. However, its potential for post-training Large Language Models (LLMs) remains underexplored. We propose Self-Reflective Policy Optimization (SRPO), a framework that internalizes this capability. SRPO enables LLMs to analyze their own completed trajectories, synthesize errors into concise \"reflection patches,\" and use reflection-conditioned teacher scores on student on-policy rollouts as dense token-level training signals. This process effectively transforms sparse terminal supervision into dense, token-level learning signals without requiring external critics, separate reward models, or larger teacher models. We demonstrate that SRPO achieves state-of-the-art performance across mathematical reasoning and long-horizon agentic benchmarks with exceptional data efficiency. Using a Qwen3-8B base model, SRPO attains 73.3% on AIME'24 using only 8% (0.08x) of the training FLOPs required by scaled supervised fine-tuning, while significantly improving success rates on WebShop (64.7%), ALFWorld (76.8%), and SWE-Bench-Lite (31.2%). Code is available at https://github.com/Galleons2029/SRPO",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=N8aP1JWy03",
+  "arxiv": "https://arxiv.org/abs/2608.23493",
+  "pdf": "https://raw.githubusercontent.com/mlresearch/v306/main/assets/liu26ds/liu26ds.pdf",
+  "proceedings": "https://proceedings.mlr.press/v306/liu26ds.html",
+  "virtual": "https://icml.cc/virtual/2026/poster/64480",
+  "code": null
+ },
+ "license": "http://creativecommons.org/licenses/by/4.0/",
+ "img": "cc-by",
+ "image_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/images/icml26-2420.png",
+ "thumb_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/thumbs/icml26-2420.webp",
+ "figure_page": 2,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.6
+}

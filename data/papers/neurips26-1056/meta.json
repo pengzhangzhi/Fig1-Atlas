@@ -1,0 +1,51 @@
+{
+ "id": "neurips26-1056",
+ "title": "Verifiers in the Loop: Decoding Time Verification for Code Translation",
+ "authors": [
+  "Tianyang Zhou",
+  "Somesh Jha",
+  "Mihai Christodorescu",
+  "Kirill Levchenko",
+  "Varun Chandrasekaran"
+ ],
+ "venue": "NeurIPS 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "Applications->Language, Speech and Dialog",
+ "role": "pipeline",
+ "role2": null,
+ "claim": "Verifier-guided decoding interleaves generation, checking, and rollback in a closed loop, so errors are caught and fixed before they propagate.",
+ "layout": "3 grouped stages plus terminate box, left-to-right, color-coded feedback loop arrows",
+ "tags": [
+  "state-machine",
+  "verifier-guided-decoding",
+  "rollback",
+  "inference-time-compute",
+  "code-translation"
+ ],
+ "style": [
+  "colorful",
+  "text-heavy",
+  "minimal"
+ ],
+ "description": "A flowchart in three tinted rounded containers laid out left to right: blue GENERATION, purple VERIFICATION, orange RECOVERY. Each holds boxes with a bold title, a one-line description and an italic note. GENERATE sends a blue arrow labeled 'at boundary' to VERIFY. VERIFY sends a green 'pass' arrow down to COMMIT, then a green 'Finish program' arrow to a grey TERMINATE box below. A red 'fail' arrow goes from VERIFY to FEEDBACK, then an orange arrow down to ROLLBACK. From ROLLBACK a red 'bailout' arrow goes to TERMINATE. A long orange arrow along the bottom, 'with augmented context', returns to GENERATE. Arrow colors encode outcome. The eye starts at the blue GENERATE box and follows the arrows.",
+ "caption": "GENERATION extends the target prefix to the next structural boundary (statement, block, function, or program). VERIFICATION renders the prefix and runs applicable oracles, committing on pass. RECOVERY parses diagnostics on fail, rolls back to the last checkpoint with augmented context, and escalates scope on repeated failure. The loop terminates on program-level success or budget bailout.\\vspace{-7mm}",
+ "caption_source": "latex",
+ "abstract": "Test-time scaling is an important mechanism for improving large language models, especially on tasks with deterministic verifiers. Code translation is a canonical example: the source program constrains valid outputs, while compilers, type checkers, and behavioral checks provide exact pass/fail feedback. Outcome-only approaches apply these verifiers only after generation, which is inefficient because early errors corrupt the autoregressive context and are rarely corrected later. We introduce Decoding Time Verification (DTV), a framework that treats structural boundaries as meta steps for verifier-guided decoding. DTV interleaves generation with verifier calls under a state-machine controller that commits verified prefixes, using structural-boundary checks and structure-aware rollback to prevent error propagation while reducing wasted tokens. We evaluate DTV on C-to-Rust and JavaScript-to-TypeScript translation. Using Qwen3-4B as the primary generator under matched token budgets, DTV improves pass rates from 72.3% to 82.0% on C-to-Rust and from 33.3% to 46.0% on JavaScript-to-TypeScript relative to matched self-refinement baselines, while using fewer tokens per case; the same trend largely transfers to Gemma-4-E4B and Qwen3-30B-A3B. In the evaluated cost-matched grid, DTV achieves a more favorable tradeoff between pass rate and generated-token cost than post-hoc verification or sampling-based scaling. These results show that verifier-guided decoding is an effective use of inference-time compute for code translation.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=7RvjiiRX0n",
+  "arxiv": "https://arxiv.org/abs/2605.17626",
+  "pdf": "https://arxiv.org/pdf/2605.17626",
+  "proceedings": null,
+  "virtual": "https://neurips.cc/virtual/2026/poster/155211",
+  "code": "https://github.com/qsdrqs/meta_step_translation"
+ },
+ "license": "http://creativecommons.org/licenses/by/4.0/",
+ "img": "cc-by",
+ "image_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/images/neurips26-1056.png",
+ "thumb_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/thumbs/neurips26-1056.webp",
+ "figure_page": 1,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.93
+}

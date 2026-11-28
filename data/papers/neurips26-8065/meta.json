@@ -1,0 +1,54 @@
+{
+ "id": "neurips26-8065",
+ "title": "PiD: Fast and High-Resolution Latent Decoding with Pixel Diffusion",
+ "authors": [
+  "Yifan Lu",
+  "Qi Wu",
+  "Jay Zhangjie Wu",
+  "Zian Wang",
+  "Huan Ling",
+  "Sanja Fidler",
+  "Xuanchi Ren"
+ ],
+ "venue": "NeurIPS 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "Computer Vision->Image and Video Generation",
+ "role": "teaser-result",
+ "role2": "prior-vs-ours",
+ "claim": "Replacing the decode-then-upsample cascade with one generative decoder gives sharper high-resolution outputs and beats baselines on speed and quality.",
+ "layout": "3 stacked parts: sample gallery, pipeline contrast strip, three bar charts",
+ "tags": [
+  "decoding",
+  "upsampling",
+  "efficiency",
+  "pixel-diffusion",
+  "latency-quality"
+ ],
+ "style": [
+  "photo/real data",
+  "colorful",
+  "plot",
+  "icon-heavy"
+ ],
+ "description": "The figure has three stacked parts. The top is a mosaic gallery of high-resolution PiD-decoded images: a cat by a yellow cabinet, a portrait of a woman, a sushi garden scene, and an owl on a billboard. Each image has a small low-quality 'VAE Decode' inset in a corner, and labels in green name the latent source (SD3, DINOv2, FLUX.1, Z Image, FLUX.2). The middle is a flow diagram. The top row shows the conventional cascaded pipeline from Low-Res Latent through VAE Dec., Upsampler DM and VAE Dec. to High-Res Image, drawn in a dashed grey box. Below it, a green bypass arrow goes through a single 'PiD: Decoding with Upsampling' box. The bottom is a row of three bar charts for a 512² to 2048² decode. They show latency (PiD at 211 ms, 5.9x faster), UniPercept IQA, and Gemini judge win rate. PiD is highlighted in green and baselines in grey. The eye goes first to the large photos.",
+ "caption": "\\ours directly decodes latents from VAE or vision encoders into higher-resolution images, replacing the decode--then--upsample cascade while achieving lower latency and higher visual quality.",
+ "caption_source": "latex",
+ "abstract": "Most practical high-resolution text-to-image systems, including latent diffusion and autoregressive models, perform generation in a compact latent space, and a decoder maps the generated latents back to pixels. Yet the latent-to-pixel decoder is reconstruction-oriented, optimized to invert the encoder rather than synthesize more details, and becomes increasingly costly at megapixel scale. This drawback calls for a more expressive and efficient decoding paradigm. Motivated by recent progress in scalable pixel-space diffusion, we introduce PiD, a Pixel diffusion Decoder that reformulates latent decoding as conditional pixel diffusion, unifying decoding and upsampling into one generative module. By denoising directly in high-resolution pixel space, PiD synthesizes $4\\times$ and even $8\\times$ upscaled images with low latency. For latent conditioning, a lightweight sigma-aware adapter injects noise-corrupted latents into the pixel diffusion backbone, enabling PiD to decode partially denoised latents and terminate the latent diffusion process early. To further improve efficiency, we distill the model using DMD2, reducing inference to just 4 steps. PiD applies to both conventional VAE latents and semantic latents (e.g., SigLIP, DINOv2) used in recent RAE-based models. PiD decodes latents of $512 \\times 512$ images into $2048 \\times 2048$ pixels in under 1 second with 13 GB peak memory on a consumer RTX 5090, and as fast as 210 ms on a GB200 GPU, about $6\\times$ faster than cascaded diffusion-based super-resolution pipelines with better visual fidelity.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=tkGw4mDy71",
+  "arxiv": "https://arxiv.org/abs/2605.23902",
+  "pdf": "https://arxiv.org/pdf/2605.23902",
+  "proceedings": null,
+  "virtual": "https://neurips.cc/virtual/2026/poster/148976",
+  "code": "https://research.nvidia.com/labs/sil/projects/pid/"
+ },
+ "license": "http://arxiv.org/licenses/nonexclusive-distrib/1.0/",
+ "img": "none",
+ "image_url": null,
+ "thumb_url": null,
+ "figure_page": 0,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.8
+}

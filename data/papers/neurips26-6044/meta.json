@@ -1,0 +1,52 @@
+{
+ "id": "neurips26-6044",
+ "title": "Fast and Stable Triangular Inversion for Delta-Rule Linear Transformers",
+ "authors": [
+  "Aleksandros Sobczyk",
+  "Gioele Gottardo",
+  "Christos K Matzoros",
+  "Mirko De Vita",
+  "Filip Skogh",
+  "Anastasios Zouzias",
+  "Jiawei Zhuang"
+ ],
+ "venue": "NeurIPS 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "Deep Learning->Attention Mechanisms",
+ "role": "teaser-result",
+ "role2": null,
+ "claim": "A bottleneck operation dominates runtime and breaks accuracy when done naively; our fast, stable version cuts latency while preserving accuracy.",
+ "layout": "2 panels, left-to-right, stacked runtime bars beside grouped accuracy bars",
+ "tags": [
+  "runtime-breakdown",
+  "numerical-stability",
+  "efficiency",
+  "linear-attention",
+  "accuracy-preservation"
+ ],
+ "style": [
+  "plot",
+  "colorful"
+ ],
+ "description": "Two side-by-side bar charts. The left panel is a stacked bar chart of total duration in microseconds for a single GDN layer, comparing \"Fast stable Inv. (This work)\" at about 1100 us with \"Baseline (Triton)\" at about 1750 us. Segments are kernels in a green and purple palette, listed in a legend below. The baseline's green inverse_16x16 and 16x16_to_64x64 blocks are replaced by a smaller mxr_inverse block in ours. The right panel is a grouped bar chart of MMLU average accuracy for three Qwen models across three methods: Baseline (Triton), Fast Unstable Alg. (MCH), and Fast Stable Alg. (MXR). The unstable method collapses to near zero, while the stable method matches the baseline, with values labelled above the bars. The eye goes first to the tall black and green bars and the collapse in the middle group.",
+ "caption": "Left: Runtime breakdown of single GDN layer. Right: Accuracy drop in end-to-end benchmark evaluation due to inversion error accumulation.",
+ "caption_source": "latex",
+ "abstract": "Linear attention has emerged as a cornerstone for efficient long-context architectures, as evidenced by its integration into state-of-the-art open-source models including Qwen3.5/3.6, Kimi Linear/K3, and RWKV-7. Models that incorporate linear attention layers with the so-called Delta-Rule involve the inversion of triangular matrices as a core sub-routine. This operation often forms a performance bottleneck, and, due to its high-sensitivity to numerical errors, it can significantly deteriorate end-to-end model accuracy if it is not carefully implemented. This work provides a systematic analysis of both direct and iterative triangular inversion algorithms, targeting methods that are rich in matrix products, and, therefore, have the potential to efficiently utilize modern hardware. To that end, our analysis covers a broad spectrum of mathematical and practical aspects, with a heavy focus on numerical stability, computational complexity, and, ultimately, hardware efficiency and practical considerations. We provide a rigorous experimental evaluation to verify these properties in practical scenarios, and in low-precision floating-point representations, highlighting the strengths and limitations of each method. Performance benchmarks on NPUs reveal up to $4.3\\times$ speed-up against the state-of-the-art implementations of SGLang for triangular matrix inversion, leading to significant performance improvements on the entire layer level, while maintaining end-to-end model accuracy.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=fU54rMdv6G",
+  "arxiv": "https://arxiv.org/abs/2605.21325",
+  "pdf": "https://arxiv.org/pdf/2605.21325",
+  "proceedings": null,
+  "virtual": "https://neurips.cc/virtual/2026/poster/150772",
+  "code": null
+ },
+ "license": "http://arxiv.org/licenses/nonexclusive-distrib/1.0/",
+ "img": "none",
+ "image_url": null,
+ "thumb_url": null,
+ "figure_page": 3,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.6
+}

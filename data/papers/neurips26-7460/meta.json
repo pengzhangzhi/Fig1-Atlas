@@ -1,0 +1,53 @@
+{
+ "id": "neurips26-7460",
+ "title": "Learning Visual Speech Representations via Cross-Modal Distillation and Joint Face-Lip Modeling",
+ "authors": [
+  "Jingxuan Zhang",
+  "Genshun Wan",
+  "Jia Pan",
+  "Jianqing Gao",
+  "Yumei Zhang",
+  "Lichen Zhang"
+ ],
+ "venue": "NeurIPS 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "Computer Vision->Vision Models & Multimodal",
+ "role": "pipeline",
+ "role2": null,
+ "claim": "A teacher-derived discrete target supervises a dual-stream masked-prediction encoder, which then transfers to downstream decoders for robust recognition.",
+ "layout": "2 panels split by dashed divider; bottom-to-top flow, pretraining left, finetuning right",
+ "tags": [
+  "distillation",
+  "masked-prediction",
+  "multimodal",
+  "dual-stream",
+  "self-supervised"
+ ],
+ "style": [
+  "icon-heavy",
+  "colorful",
+  "photo/real data",
+  "text-heavy"
+ ],
+ "description": "A wide architecture diagram split by a red dashed vertical line. The left, larger panel is labeled Pretraining. Video frames of a full face and a cropped lip region enter two parallel stacks of a 3D Conv and ConvNeXt blocks, the visual frontends. A masked audio spectrogram goes through an FFN. These features pass through modality dropout into a stack of Enhanced Conformer blocks, the context encoder. The encoder's projection heads predict discrete tokens. A frozen Whisper Large model processes raw audio, followed by random projection. A quantizer with a random embedding codebook turns this into the target token IDs, shown as green boxes at the top left. The right panel is labeled Finetuning & Testing and has a snowflake legend for frozen parts. It reuses the pretrained dual-stream encoder with modality dropout. Its output feeds either (a) a light-weight attention decoder or (b) an LLM with LoRA through an adaptor. Colors are blue for visual, green for audio and orange for decoders.",
+ "caption": "Overview of our proposed method.",
+ "caption_source": "latex",
+ "abstract": "Lipreading remains challenging due to the inherent ambiguity of visual speech cues and their sensitivity to head pose and video resolution. In this work, we propose FLARE, a framework for robust visual speech representation learning via cross-modal distillation and joint face-lip modeling. FLARE leverages semantically rich Whisper representations as the acoustic teacher signal, converting them into discrete distillation targets through a random-projection quantizer and pretraining the model with a masked prediction objective. To capture complementary visual information, FLARE employs a dual-stream architecture that jointly processes lip region-of-interest (ROI) and full-face inputs, where the lip stream captures finegrained articulatory motion and the face stream encodes broader facial dynamics. During pretraining, auxiliary audio input is incorporated to facilitate cross-modal alignment, and modality dropout is applied to encourage robust visual-only representations. For downstream lipreading, FLARE serves as a visual encoder coupled with either a lightweight Transformer decoder or an LLM-based decoder. Evaluated on LRS2, LRS3, and the out-of-domain WildVSR benchmark, FLARE achieves strong lipreading performance, with word error rates of 11.7%, 13.2%, and 34.3%, respectively. A progressive design study confirms the contribution of each major component. Further analyses demonstrate that joint face-lip modeling improves robustness under degraded video resolution and large head pose variation, while yielding more phoneme-discriminative visual representations. Code and pretrained models are available at https://github.com/jxzhanggg/FLARE.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=pVrKNRkHe2",
+  "arxiv": "https://arxiv.org/abs/2610.19559",
+  "pdf": "https://arxiv.org/pdf/2610.19559",
+  "proceedings": null,
+  "virtual": "https://neurips.cc/virtual/2026/poster/149522",
+  "code": null
+ },
+ "license": "http://creativecommons.org/licenses/by/4.0/",
+ "img": "cc-by",
+ "image_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/images/neurips26-7460.png",
+ "thumb_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/thumbs/neurips26-7460.webp",
+ "figure_page": 2,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.93
+}

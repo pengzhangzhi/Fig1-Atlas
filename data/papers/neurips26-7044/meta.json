@@ -1,0 +1,49 @@
+{
+ "id": "neurips26-7044",
+ "title": "Revisiting Cross-View Completion: Self-Supervised Pre-Training via Reconstruction Error Comparison",
+ "authors": [
+  "Thibaut Loiseau",
+  "Vincent Lepetit",
+  "Guillaume Bourmaud"
+ ],
+ "venue": "NeurIPS 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "Computer Vision->Everything Else",
+ "role": "pipeline",
+ "role2": null,
+ "claim": "One shared network, run three times with different inputs, turns the gap between two reconstruction errors into a free supervision signal.",
+ "layout": "3 stacked colored rows, left-to-right, green gap-formula banner linking rows",
+ "tags": [
+  "self-supervised",
+  "cross-view-completion",
+  "multi-pass",
+  "co-visibility",
+  "no-annotation"
+ ],
+ "style": [
+  "colorful",
+  "photo/real data",
+  "math-heavy"
+ ],
+ "description": "Three horizontal bands, color-coded blue, orange and green, read top to bottom. Each band runs left to right through the same green 'Gekko' gecko-logo box. Row 1 (cross-view completion) feeds a heavily masked target image and a reference photo into Gekko. This outputs a blurry reconstruction, which goes to an ℓ_CroCo loss box. Row 2 (masked autoencoding) uses the same masked target, but the reference is replaced by a dashed 'no reference' box. This gives a second reconstruction and an ℓ_MAE loss. A green banner in the middle holds the formula C(p) = [ℓ_MAE − ℓ_CroCo]/ℓ_MAE, with green arrows from both losses into it. Row 3 (relative improvement prediction) feeds the unmasked target and the reference into Gekko. This outputs a purple-to-yellow heatmap with a 0–1 colorbar, and the output goes to an ℓ_RI loss box. The eye goes first to the three gecko boxes, then to the heatmap.",
+ "caption": "\\ourmethod: one network, three passes, no 3D annotation. A single network $F$ is run three times on the same video frame pair: (1) it reconstructs a $90%$-masked target with the reference view, (2) it reconstructs the same masked target without it, and (3) it regresses their per-pixel gap $\\m{C}(\\bp)$ from the unmasked pair through one extra output channel $\\hat{\\m{C}}$. That gap is large where a pixel is co-visible and vanishes where it is not, with no depth, pose or label anywhere in the pipeline. Regressing it is what turns cross-view completion's blind spot into supervision: it supplies a binocular training signal for all masked regions, including the non-co-visible ones, where CroCo's signal is implicitly monocular. \\\\[2pt] \\textcolor{gkpink}{\\href{https://thibautloiseau.github.io/projects/gekko/}{Project page: thibautloiseau.github.io/projects/gekko}}",
+ "caption_source": "latex",
+ "abstract": "Self-supervised pre-training via cross-view completion learns strong features for 3D vision from co-visible regions of image pairs. However, the reference view provides little information for reconstructing non-co-visible patches, implicitly yielding a monocular training signal in these regions. We introduce Gekko, which turns this limitation into a useful signal. The relative improvement of the cross-view reconstruction error over a masked-autoencoder error is a self-supervised proxy for co-visibility: large improvements indicate co-visible regions, negligible ones non-co-visible areas. Gekko is a network, trained from scratch, that jointly performs cross-view completion, masked autoencoding, and per-pixel prediction of this relative improvement, providing an additional binocular signal for all masked regions without any ground-truth 3D annotation. Under identical architectures and training data, Gekko consistently outperforms CroCo on zero-shot correspondence estimation, relative pose estimation, and pointmap regression, with up to 6 times higher accuracy at the strictest relative-pose threshold and a 22% drop in end-point error on ETH3D. The extra channel it learns is itself a strong co-visibility detector on unseen scenes, and Gekko's frozen features outperform released cross-view backbones of comparable or larger size. It can also be trained directly from raw videos with a simple stride-based curriculum, removing the cumbersome 3D preprocessing prior methods require while matching models trained on curated data. Code and pre-trained models are publicly available.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=mUKb5eCadx",
+  "arxiv": "https://arxiv.org/abs/2609.01530",
+  "pdf": "https://arxiv.org/pdf/2609.01530",
+  "proceedings": null,
+  "virtual": "https://neurips.cc/virtual/2026/poster/149886",
+  "code": "https://thibautloiseau.github.io/projects/gekko/"
+ },
+ "license": "http://arxiv.org/licenses/nonexclusive-distrib/1.0/",
+ "img": "none",
+ "image_url": null,
+ "thumb_url": null,
+ "figure_page": 0,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.9
+}

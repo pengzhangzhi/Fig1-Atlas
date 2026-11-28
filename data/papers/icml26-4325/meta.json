@@ -1,0 +1,54 @@
+{
+ "id": "icml26-4325",
+ "title": "RealisMotion: Decomposed Human Motion Control and Video Generation in the World Space",
+ "authors": [
+  "Jingyun Liang",
+  "Jingkai Zhou",
+  "Shikai Li",
+  "Chenjie Cao",
+  "Lei Sun",
+  "Yichen Qian",
+  "Weihua Chen",
+  "Fan Wang"
+ ],
+ "venue": "ICML 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "Applications->Computer Vision",
+ "role": "pipeline",
+ "role2": null,
+ "claim": "A staged system first edits trajectory and action in a 3D space, then conditions a diffusion transformer on subject, background and motion guidance to generate video.",
+ "layout": "3 colored panels, top editing strip then left-to-right encoding and generation, legend bottom-right",
+ "tags": [
+  "pipeline",
+  "diffusion-transformer",
+  "controllable-generation",
+  "motion-editing",
+  "multi-condition"
+ ],
+ "style": [
+  "colorful",
+  "icon-heavy",
+  "photo/real data"
+ ],
+ "description": "A wide architecture diagram split into three tinted bands. The top yellow band, (a) Motion Editing, flows right to left. A 2D trajectory goes through Unprojection to a 3D trajectory and global orientation. An action bank or a text-to-motion module driven by an action text prompt supplies the action. These feed SMPL-X, then a Render block, with camera parameters entering from a camera icon. The blue panel, (b) Latent Encoding, stacks rendered guidance, background video, mask, foreground subject and text prompt (via umT5). These pass through a tall VAE Encoder into latent stacks and a noisy latent. The green panel, (c) Guided Video Generation, turns the latents into colored token columns for two DiT block rows. Addition and concatenation symbols mark the injections. A VAE Decoder outputs the final frames. The eye goes first to the yellow strip, then the video frames.",
+ "caption": "The architecture of the proposed RealisMotion. It has two stages: 1) we first build a ground-aware 3D world coordinate system for the human motion, and conduct trajectory and action editing separately within the 3D space. 2) we then generate human videos conditional on the foreground subject image, background video and rendered motion guidance videos.",
+ "caption_source": "latex",
+ "abstract": "Generating human videos with realistic and controllable motions is a challenging task. While existing methods can generate visually compelling videos, they lack separate control over four key video elements: foreground subject, background video, human trajectory and action patterns. In this paper, we propose a decomposed human motion control and video generation framework that explicitly decouples motion from appearance, subject from background, and action from trajectory, enabling flexible mix-and-match composition of these elements. Concretely, we first build a ground-aware 3D world coordinate system and perform motion editing directly in the 3D space. Trajectory control is implemented by unprojecting edited 2D trajectories into 3D with focal-length calibration and coordinate transformation, followed by speed alignment and orientation adjustment; actions are supplied by a motion bank or generated via text-to-motion methods. Then, based on modern text-to-video diffusion transformer models, we inject the subject as tokens for full attention, concatenate the background along the channel dimension, and add motion (trajectory and action) control signals by addition. Such a design opens up the possibility for us to generate realistic videos of anyone doing anything anywhere. Extensive experiments on benchmark datasets and real-world cases demonstrate that our method achieves state-of-the-art performance on both element-wise controllability and overall video quality.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=epVORy8H4y",
+  "arxiv": "https://arxiv.org/abs/2508.08588",
+  "pdf": "https://raw.githubusercontent.com/mlresearch/v306/main/assets/liang26ad/liang26ad.pdf",
+  "proceedings": "https://proceedings.mlr.press/v306/liang26ad.html",
+  "virtual": "https://icml.cc/virtual/2026/poster/62630",
+  "code": "https://jingyunliang.github.io/RealisMotion/"
+ },
+ "license": "http://creativecommons.org/licenses/by-nc-nd/4.0/",
+ "img": "none",
+ "image_url": null,
+ "thumb_url": null,
+ "figure_page": 3,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.95
+}

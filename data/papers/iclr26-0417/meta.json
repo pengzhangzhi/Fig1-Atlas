@@ -1,0 +1,51 @@
+{
+ "id": "iclr26-0417",
+ "title": "Textual Equilibrium Propagation for Deep Compound AI Systems",
+ "authors": [
+  "Minghui Chen",
+  "Wenlong Deng",
+  "James Y Zou",
+  "Han Yu",
+  "Xiaoxiao Li"
+ ],
+ "venue": "ICLR 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "Deep Learning->Algorithms",
+ "role": "problem-setup",
+ "role2": "analysis-finding",
+ "claim": "Propagating textual feedback through deep multi-stage pipelines either balloons into buried, unusable text or compresses into vague, non-actionable advice.",
+ "layout": "2 stacked panels, right-to-left feedback flow over left-to-right agent chain, dashed text boxes",
+ "tags": [
+  "textual-gradient",
+  "failure-modes",
+  "multi-agent",
+  "long-horizon",
+  "depth-scaling"
+ ],
+ "style": [
+  "text-heavy",
+  "icon-heavy",
+  "colorful"
+ ],
+ "description": "The figure has two horizontal bands separated by a dashed line, one for exploding and one for vanishing textual gradients. In each band, four colored robot icons form a left-to-right chain: Problem Analysis, Code Generator, Unit Test Generator and Final Code Generator. Orange arrows run right-to-left above the chain to show feedback back-propagating. Dashed rounded boxes hold the feedback text at each hop, with lightbulb icons marking fix suggestions. In the top band the boxes grow longer and denser with code and file listings, ending in a box that notes '1,624 tokens'. In the bottom band the boxes shrink to generic advice such as 'Consider refining comparison logic'. A red callout on the left labels the exploding case and a blue callout labels the vanishing case. A black 'Oracle Textual Gradient' note shows the ideal one-line fix. A legend sits at top right.",
+ "caption": "Textual gradient failure modes in deep compound AI systems, an example bug report propagates through a multi-agent code generation pipeline (Problem Analyzer → Code Generator → Test Generator → Final Validator). Top--Exploding gradients: Each agent adds context to preserve information, causing exponential token growth that buries the actionable one-line fix beneath layers of accumulated texts. Bottom--Vanishing gradients: Compression to manage gradient explosion strips away critical specifics (file paths, line numbers, test cases), leaving only generic, non-actionable advice.",
+ "caption_source": "latex",
+ "abstract": "Large language models (LLMs) are increasingly deployed as part of compound AI systems that coordinate multiple modules (e.g., retrievers, tools, verifiers) over long-horizon workflows. Recent approaches that propagate textual feedback globally (e.g., TextGrad) make it feasible to optimize such pipelines, but we find that performance degrades as system depth grows. In particular, long-horizon agentic workflows exhibit two depth-scaling failure modes: 1) exploding textual gradient, where textual feedback grows exponentially with depth, leading to prohibitively long message and amplifies evaluation biases; and 2) vanishing textual gradient, where limited long-context ability causes models overemphasize partial feedback and compression of lengthy feedback causes downstream messages to lose specificity gradually as they propagate many hops upstream. To mitigate these issues, we introduce Textual Equilibrium Propagation (TEP), a local learning principle inspired by Equilibrium Propagation in energy-based models. TEP includes two phases: 1) a free phase where a local LLM critics iteratively refine prompts until reaching equilibrium (no further improvements are suggested); and 2) a nudged phase which applies proximal prompt edits with bounded modification intensity, using task-level objectives that propagate via forward signaling rather than backward feedback chains. This design supports local prompt optimization followed by controlled adaptation toward global goals without the computational burden and signal degradation of global textual backpropagation. Across long-horizon QA benchmarks and multi-agent tool-use dataset, TEP consistently improves accuracy and efficiency over global propagation methods such as TextGrad. The gains grows with depth, while preserving the practicality of black-box LLM components in deep compound AI system.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=4XsV5Qoj0j",
+  "arxiv": "https://arxiv.org/abs/2601.21064",
+  "pdf": "https://proceedings.iclr.cc/paper_files/paper/2026/file/f5a8b5e5d007e66c929b971c2bc21d76-Paper-Conference.pdf",
+  "proceedings": "https://proceedings.iclr.cc/paper_files/paper/2026/hash/f5a8b5e5d007e66c929b971c2bc21d76-Abstract-Conference.html",
+  "virtual": "https://iclr.cc/virtual/2026/poster/10011547",
+  "code": "https://github.com/MinghuiChen43/TEP"
+ },
+ "license": "http://arxiv.org/licenses/nonexclusive-distrib/1.0/",
+ "img": "none",
+ "image_url": null,
+ "thumb_url": null,
+ "figure_page": 1,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.85
+}

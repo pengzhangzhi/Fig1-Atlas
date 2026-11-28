@@ -1,0 +1,53 @@
+{
+ "id": "icml26-4941",
+ "title": "UniSVQ: 2-bit Unified Scalar-Vector Quantization",
+ "authors": [
+  "Haoyu Wang",
+  "Haiyan Zhao",
+  "Xingyu Yu",
+  "Zhangyang Yao",
+  "Xu Han",
+  "Zhiyuan Liu",
+  "Maosong Sun"
+ ],
+ "venue": "ICML 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": null,
+ "role": "pipeline",
+ "role2": null,
+ "claim": "A weight matrix is transformed, chunked, affine-mapped, and passed through standard integer kernels, so the scheme drops into existing architectures at little extra cost.",
+ "layout": "2 rows, left-to-right; dashed zoom-in from a Transformer block to one layer",
+ "tags": [
+  "quantization",
+  "pipeline",
+  "affine-transform",
+  "hadamard-rotation",
+  "efficiency"
+ ],
+ "style": [
+  "colorful",
+  "icon-heavy",
+  "math-heavy"
+ ],
+ "description": "The figure has two stacked rows. The top row, inside a large dashed box, is a zoomed-in view of one projection. Input X (green bar) goes through a yellow 'Left Hadamard Transform' block (R^U_Q) and becomes a green heatmap matrix. The matrix is chunked into four small row blocks. These feed a pink '4*4' Affine box. The output is another green matrix. A blue grid of integers (0–3) feeds a 'Scalar Quantization Matmul Kernel' with a chip icon. The result goes to a yellow 'Right Hadamard Transform' block (R^V_Q) and a final matrix, then out. The bottom row shows the full attention and MLP stack. Each linear layer is a yellow–blue–yellow triple, R^U, W̄, R^V, for Q, K, V, O, Up, Gate and Down. The triples are joined by ⊙ and ⊗ nodes. A dashed box on W_Q links up to the zoomed view.",
+ "caption": "Architecture of the UniSVQ method. UniSVQ introduces only 20 additional parameters ($4 \\times 4$ for the affine matrix and $4$ for the bias vector) per weight matrix, which are significantly fewer than VQ. Besides, the block-wise affine transformation can be pre-applied to the activations, enabling the reuse of well-optimized scalar quantization Matmul kernels. The operation $R^U_Q=US_U$ denotes the inverse Randomized Hadamard Transform, utilized to suppress outliers and ensure a more uniform weight distribution.",
+ "caption_source": "latex",
+ "abstract": "Post-training quantization at the 2-bit level enables low-cost deployment and inference acceleration for large language models (LLMs). Scalar quantization (SQ) and vector quantization (VQ) are two primary quantization methods, however, the former suffers from significant performance degradation, and the latter incurs computational and storage overhead. We propose UniSVQ, a unified 2-bit quantization framework that bridges scalar and vector quantization by parameterizing codewords as an affine transform of integer lattices. This structure preserves compatibility with optimized integer kernels while retaining much of VQ's flexibility. We further introduce a data-driven block-wise fine-tuning strategy to directly minimize quantization reconstruction error. Extensive experiments across multiple LLM families and zero-shot benchmarks demonstrate that UniSVQ consistently outperforms state-of-the-art SQ methods and achieves performance comparable to advanced VQ methods, while providing higher inference throughput. Codes are publicly available at https://github.com/AI9Stars/UniSVQ.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=kVBDNMTGWh",
+  "arxiv": "https://arxiv.org/abs/2606.10520",
+  "pdf": "https://raw.githubusercontent.com/mlresearch/v306/main/assets/wang26lg/wang26lg.pdf",
+  "proceedings": "https://proceedings.mlr.press/v306/wang26lg.html",
+  "virtual": "https://icml.cc/virtual/2026/poster/62033",
+  "code": null
+ },
+ "license": "http://creativecommons.org/licenses/by/4.0/",
+ "img": "cc-by",
+ "image_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/images/icml26-4941.png",
+ "thumb_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/thumbs/icml26-4941.webp",
+ "figure_page": 2,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.93
+}

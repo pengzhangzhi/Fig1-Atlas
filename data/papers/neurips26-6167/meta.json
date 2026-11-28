@@ -1,0 +1,53 @@
+{
+ "id": "neurips26-6167",
+ "title": "AlphaQ: Calibration-Free Bit Allocation for Mixture-of-Experts Quantization",
+ "authors": [
+  "Wanqi Yang",
+  "Yuexiao Ma",
+  "Alexander Conzelmann",
+  "Xiawu Zheng",
+  "Michael Mahoney",
+  "T. Konstantin Rusch",
+  "Shiwei Liu"
+ ],
+ "venue": "NeurIPS 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "Deep Learning->Algorithms",
+ "role": "analysis-finding",
+ "role2": "teaser-result",
+ "claim": "Data-driven allocation overfits to its calibration domain and hurts unseen tasks, while a calibration-free method stays robust across domains.",
+ "layout": "2 panels, left heatmaps stacked vertically, right grouped bar chart; legend top-right",
+ "tags": [
+  "calibration-bias",
+  "mixed-precision",
+  "quantization",
+  "mixture-of-experts",
+  "generalization"
+ ],
+ "style": [
+  "plot",
+  "colorful",
+  "minimal"
+ ],
+ "description": "The figure has two panels. On the left, three stacked heatmaps show per-expert, per-block bit-width allocations (1, 2 or 3 bits) when calibrated on C4, MATH and GitHub-Code. Each is a grid of 8 experts by about 32 blocks. Cells are dark blue, light blue or salmon, and the patterns visibly differ between datasets. Row labels on the left name the dataset, and a color bar sits at the right edge of each heatmap. On the right, a grouped bar chart shows accuracy (%) on MMLU, HumanEval and GSM8K. Each group has four bars: calibrated on C4 (gray), MATH (green), GitHub-Code (tan) and AlphaQ (red, ours). Values are printed above the bars. The red bars are highest or near-highest, and the MATH-calibrated bar collapses on HumanEval (13.7). The eye goes first to the tall red bars.",
+ "caption": "Domain bias introduced by data-driven bit-width allocation in Mixtral-8$\\times$7B. Left: bit-width allocations calibrated on datasets across domains (C4 [ref], MATH [ref], GitHub-Code [ref]) illustrate calibration-data-induced variations. Right: Mixtral-8$\\times$7B calibrated on these datasets with a 2.5-bit budget exhibits performance bias, overfitting to the calibration domain and degrading on unseen tasks. This indicates that data-driven bit allocation reduces cross-domain generalization by coupling performance to the calibration distribution.",
+ "caption_source": "latex",
+ "abstract": "Mixture-of-Experts (MoE) architectures scale model capacity through sparse expert activation, but their deployment remains memory-bound because all expert weights must reside in memory. Mixed-precision quantization can substantially reduce this footprint by assigning different bit-widths to different experts. Existing approaches, however, typically rely on calibration data to estimate expert importance and determine bit allocation. For frontier MoE LLMs, the original training data, and hence the true training distribution, is proprietary and inaccessible. As a result, calibration sets are inevitably imperfect surrogates, and this can misestimate expert utilization and lead to suboptimal bit allocation. Motivated by the substantial cross-expert quality variability observed in modern MoE models, and by the success of Heavy-Tailed Self-Regularization (HT-SR) theory at predicting neural network model quality without access to training or testing data, we propose AlphaQ, a calibration-free bit-allocation method for MoE quantization. AlphaQ draws on HT-SR theory and follows a simple principle: experts with more heavy-tailed weight spectra are typically better trained and hence should receive higher bit-widths, while experts with weaker heavy-tailed structure can be quantized more aggressively. AlphaQ operationalizes this principle by measuring expert-wise spectral heavy-tailedness and solving a budget-constrained optimization problem that minimizes total quantization error under a global bit-budget constraint. Across several MoE models, AlphaQ consistently outperforms calibration-based baselines under matched bit budgets. Notably, on Qwen1.5-MoE, AlphaQ achieves near full-precision accuracy with an average expert precision of only 3.5 bits, while delivering more than 4$\\times$ memory compression. Our code is available at https://github.com/Superone77/AlphaQ.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=gNcuTCbBdm",
+  "arxiv": "https://arxiv.org/abs/2606.04980",
+  "pdf": "https://arxiv.org/pdf/2606.04980",
+  "proceedings": null,
+  "virtual": "https://neurips.cc/virtual/2026/poster/150665",
+  "code": "https://superone77.github.io/AlphaQ/"
+ },
+ "license": "http://arxiv.org/licenses/nonexclusive-distrib/1.0/",
+ "img": "none",
+ "image_url": null,
+ "thumb_url": null,
+ "figure_page": 1,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.6
+}

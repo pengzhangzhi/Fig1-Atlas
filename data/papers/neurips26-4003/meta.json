@@ -1,0 +1,49 @@
+{
+ "id": "neurips26-4003",
+ "title": "EmoTrack: Clinical-Semantic Modeling for Text-Based Depression Severity Estimation",
+ "authors": [
+  "Zhaomin Wu",
+  "Jiayi Li",
+  "Bingsheng He"
+ ],
+ "venue": "NeurIPS 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "Applications->Health",
+ "role": "pipeline",
+ "role2": null,
+ "claim": "A modular architecture fuses clinical-feature tokens and frozen utterance embeddings, then queries symptom-specific evidence to predict severity, with optional memory from prior sessions.",
+ "layout": "1 large diagram, bottom-to-top flow, three dashed module groups, color-coded trainable/frozen legend",
+ "tags": [
+  "encoder-decoder",
+  "cross-attention",
+  "query-decoder",
+  "memory-module",
+  "multimodal-fusion"
+ ],
+ "style": [
+  "text-heavy",
+  "colorful",
+  "icon-heavy"
+ ],
+ "description": "A dense architecture diagram that reads bottom-to-top. A legend at top left colors boxes by type: yellow for inputs and outputs, pink for trainable modules (flame icon), and blue for frozen components (snowflake icon). At lower left, the session transcript goes through a Judge LLM to give 23 clinical scores, and the client utterances go through Qwen3-Embedding. Both feed projection layers, then a Concatenate block, then a dashed Encoder Layer stack of self-attention, add and norm, and feed-forward blocks. In the center, a PHQ-Symptom Query Decoder takes learned symptom queries through self-attention and cross-attention over the encoder's K and V. It ends in a Sigmoid Prediction Head, which outputs PHQ-8 item scores and the total. At right, a dashed optional Previous-Session Memory module takes the previous session's utterances through compression, cross-attention and gated updates. It loops back to the prediction head. Blue bold tensor-shape labels annotate the arrows.",
+ "caption": "EmoTrack architecture for PHQ-8 severity estimation with optional previous-session memory.",
+ "caption_source": "latex",
+ "abstract": "Text-based counseling is widely adopted across online mental health platforms, where automatically estimating depressive symptom severity from transcripts is vital for client safety and clinical monitoring. We therefore study prediction of the standard eight-item Patient Health Questionnaire (PHQ-8) total score directly from counseling sessions. Existing clinical-based methods obtain structured assessments through large language model inference but summarize away individual client turns. Training-based methods preserve turn semantics but must learn clinical structure from limited labels. Integrating these representations requires preserving clinical-feature identity and selecting evidence relevant to each symptom. We propose EmoTrack, which jointly encodes clinical-feature tokens and frozen client-turn embeddings, then uses PHQ-8 item queries to estimate total severity. Optional gated memory incorporates evidence from the preceding session. To support controlled evaluation in the multi-session setting, we introduce CounselArc, a synthetic counseling dataset with session-level PHQ-8 supervision for predicting current-session severity with optional prior-session context. Across real DAIC-WOZ interviews, transfer to E-DAIC, and three longitudinal datasets, EmoTrack achieves the lowest normalized aggregate error. It reduces DAIC-WOZ mean absolute error by 12.5% and aggregate error by approximately 8.6%, each relative to the strongest baseline for that measure.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=RxhWFgA7GC",
+  "arxiv": "https://arxiv.org/abs/2605.22286",
+  "pdf": "https://arxiv.org/pdf/2605.22286",
+  "proceedings": null,
+  "virtual": "https://neurips.cc/virtual/2026/poster/152590",
+  "code": null
+ },
+ "license": "http://creativecommons.org/licenses/by/4.0/",
+ "img": "cc-by",
+ "image_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/images/neurips26-4003.png",
+ "thumb_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/thumbs/neurips26-4003.webp",
+ "figure_page": 3,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.95
+}

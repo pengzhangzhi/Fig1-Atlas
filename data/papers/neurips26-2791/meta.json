@@ -1,0 +1,47 @@
+{
+ "id": "neurips26-2791",
+ "title": "Causal Edit Serialization",
+ "authors": [
+  "Louis Robinson"
+ ],
+ "venue": "NeurIPS 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "Deep Learning->Generative Models and Autoencoders",
+ "role": "overview-framework",
+ "role2": "pipeline",
+ "claim": "Revisions of any kind can be written as pointer-addressed programs inside one causal token stream, supported by a small architectural change.",
+ "layout": "2 regions: stacked example rows left, vertical architecture diagram right; arcs show pointers",
+ "tags": [
+  "edit-serialization",
+  "autoregressive",
+  "pointer-tokens",
+  "text-editing",
+  "positional-encoding"
+ ],
+ "style": [
+  "colorful",
+  "text-heavy",
+  "icon-heavy"
+ ],
+ "description": "The left region has four stacked examples (replace one word, delete a repeated word and insert a new one, replace a two-token span, insert a phrase then continue). Each example shows a row of numbered token boxes. Standard tokens are grey, with the edited ones in red. Edit-program tokens such as EDIT START, REPLACE OPEN and INSERT LOC are blue, and the generated words are green. Pointer tokens have dotted purple borders and carry @ addresses. Purple arrows curve from those tokens back to the source positions. Under each row, a serialized form uses math symbols, followed by an APPLY arrow and the corrected sentence. The right region is a vertical architecture diagram. Tokens, indices and pointers feed token embedding and a dual-index RoPE. The signal then passes through a transformer block containing RMSNorm, causal attention and a transition layer, repeated L times. A red-outlined localization head with query and key projections ends in predicted address logits. Red marks the CES additions.",
+ "caption": "Causal edit programs and CES architecture. Left: edit programs and their applied results. Numbers denote stream positions; @ labels give predicted source addresses. Dotted borders mark masked pretraining vocabulary targets; pointer addresses remain supervised. Right: dual-index RoPE and the localization head, with CES additions in red. $C$ denotes model width.",
+ "caption_source": "latex",
+ "abstract": "Standard autoregressive language models generate text sequentially, but revision requires referring back to tokens in the input context or those already generated. Causal Edit Serialization (CES) is introduced as a framework for expressing such revisions within the same causal token stream. Special pointer tokens are paired with predicted source addresses, allowing insertion, deletion, replacement, copying and movement to be localized explicitly. A lightweight localization head and dual-index rotary position encoding support both address prediction and conditioning on previously emitted pointers, while retaining a standard causal attention mask. A pretraining procedure combines ordinary language modeling with serialized repairs derived from random corruptions, model-generated edits and repeated text. Across model scales and editing baselines, CES models demonstrate complete applied edits with modestly higher clean-text bits per byte than clean autoregressive models. Supervised and reinforcement-learning post-training provide a grammatical-error-correction proof of concept, producing more beneficial than harmful changes under reference-blind model judging. Correct repair programs also improve subsequent text prediction while the original context and its cached states are retained. CES provides a common interface for generation and localized revision, with potential extensions to iterative refinement and additional pointer-addressed transformations.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=Jed6Feg5uv",
+  "arxiv": "https://arxiv.org/abs/2610.22820",
+  "pdf": "https://arxiv.org/pdf/2610.22820",
+  "proceedings": null,
+  "virtual": "https://neurips.cc/virtual/2026/poster/153668",
+  "code": "https://github.com/Louiii/CES"
+ },
+ "license": "http://creativecommons.org/licenses/by/4.0/",
+ "img": "cc-by",
+ "image_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/images/neurips26-2791.png",
+ "thumb_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/thumbs/neurips26-2791.webp",
+ "figure_page": 2,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.5
+}

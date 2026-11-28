@@ -1,0 +1,52 @@
+{
+ "id": "neurips26-3601",
+ "title": "Attention Drift: What Auto-Regressive Speculative Decoding Models Learn",
+ "authors": [
+  "Doğaç Eldenk",
+  "Payal Mohapatra",
+  "Yigitcan Comlek",
+  "Kaan Oktay",
+  "Hongyang Zhang",
+  "Stephen Xia"
+ ],
+ "venue": "NeurIPS 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "Deep Learning->Attention Mechanisms",
+ "role": "analysis-finding",
+ "role2": "concept",
+ "claim": "During sequential generation, attention shifts away from a stable anchor onto the model's own recent outputs, a previously unreported drift.",
+ "layout": "3 panels, left-to-right: real heatmap, schematic triangle, line plot; dashed speculation boundary",
+ "tags": [
+  "attention-drift",
+  "speculative-decoding",
+  "attention-sink",
+  "phenomenon",
+  "empirical-analysis"
+ ],
+ "style": [
+  "plot",
+  "colorful",
+  "minimal"
+ ],
+ "description": "Three panels show one phenomenon at increasing abstraction. On the left, a lower-triangular attention heatmap in red and black has rows as queries (-6 to 11) and columns as keys. A dark sink column sits at the far left, and dashed lines mark where drafting begins. Early drafted rows attend strongly to the sink, but later rows put their darkest cells on the diagonal, meaning their own recent tokens. In the middle, a schematic triangle has a red sink strip on the left and a red gradient at the lower right. A 'Speculation starts' dashed line is crossed by a curved arrow sweeping from the sink toward recent tokens, titled 'Attention Drift'. On the right, a line chart titled 'Amount of Attention' has an orange sink-token curve falling and a blue recently-generated curve rising after a dashed vertical line. The eye goes first to the heatmap's dark diagonal.",
+ "caption": "Attention drift. During speculation, the drafter's attention moves from the prompt's sink token onto its own recently-generated tokens. Left: Emergence of the attention sink demonstrated on drafter's attention heatmap, rows = query, columns = key; darker = higher attention. Center: Graphical visualization of attention drift on a drafter. Right: Attention per token position on $x$ axis, with speculated tokens to the right of the dashed line.",
+ "caption_source": "latex",
+ "abstract": "Speculative decoding accelerates LLM inference by drafting future tokens with a small model, but drafter models degrade sharply under template perturbation and long-context inputs. We identify a previously-unreported phenomenon we call \\textbf{attention drift}: as the drafter generates successive tokens within a speculation chain, attention progressively moves from the prompt onto its own recently-generated tokens. We observe this across both \\emph{EAGLE3} drafters and \\emph{MTP heads}, suggesting drift is a property of drafter designs. We trace this to the un-normalized residual path between chain steps: the drafter's hidden state magnitude grows monotonically with chain depth, which exhibits dynamics consistent with additional pre-norm transformer layers stacked on the target rather than as a standalone autoregressive predictor. In order to limit the growth, we propose two architectural changes: Post-norm on the drafter hidden states and per-hidden-state RMSNorm after capturing target hidden states. Our interventions improve acceptance length over the current leading model, pre-norm EAGLE3, by up to $2\\times$ under template perturbation, $1.18\\times$ on long-context tasks, and $1.10\\times$ on seven standard benchmarks spanning multi-turn chat, math, and coding. Our changes also allow shorter train-time-test depths to generalize over longer drafting sequences.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=P9bn0DEION",
+  "arxiv": "https://arxiv.org/abs/2605.09992",
+  "pdf": "https://arxiv.org/pdf/2605.09992",
+  "proceedings": null,
+  "virtual": "https://neurips.cc/virtual/2026/poster/152952",
+  "code": null
+ },
+ "license": "http://creativecommons.org/licenses/by/4.0/",
+ "img": "cc-by",
+ "image_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/images/neurips26-3601.png",
+ "thumb_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/thumbs/neurips26-3601.webp",
+ "figure_page": 0,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.8
+}

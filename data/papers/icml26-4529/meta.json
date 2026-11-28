@@ -1,0 +1,49 @@
+{
+ "id": "icml26-4529",
+ "title": "SCOPE: Selective Conformal Optimized Pairwise LLM Judging",
+ "authors": [
+  "Sher Badshah",
+  "Ali Emami",
+  "Hassan Sajjad"
+ ],
+ "venue": "ICML 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "Deep Learning->Large Language Models",
+ "role": "pipeline",
+ "role2": null,
+ "claim": "A reliable judge pipeline: score both orderings into an entropy uncertainty signal, then calibrate a threshold that bounds error among accepted outputs.",
+ "layout": "3 panels, left-to-right, chevrons between, worked numeric example flowing top-down",
+ "tags": [
+  "conformal-prediction",
+  "selective-prediction",
+  "llm-as-judge",
+  "uncertainty-estimation",
+  "risk-control"
+ ],
+ "style": [
+  "colorful",
+  "math-heavy",
+  "text-heavy"
+ ],
+ "description": "Three rounded panels read left to right, linked by grey chevrons: 1. Pairwise Judging, 2. BPE Uncertainty, 3. SCOPE. Panel 1 stacks a task box, a user question (\"Explain why the sky looks blue\"), a green Assistant A box and a red Assistant B box, a blue LLM judge box with a small neural-net icon, and an example verdict [[A]] with a doubt note. Panel 2 runs top-down through forward pass (p_fwd=0.95), reverse swapped pass (p_rev=0.85), aggregation (p̄=0.90), and an entropy score with a green-to-red gradient bar marking s=0.33 and the formula worked out. Panel 3 starts with the target risk α=0.10, then conformal calibration (maximize λ s.t. risk ≤ α), an inference check on a gradient bar with s=0.33 against λ̂=0.41, and a green Decision: Accept box. Pastel pill labels and vertical arrows guide the eye.",
+ "caption": "Overview of the SCOPE framework. (1) Pairwise judging: for a user query $q$ and two candidate responses $(r_A, r_B)$, the LLM judge returns a single preference token. This raw verdict is sensitive to the order in which the two responses are presented. (2) Bidirectional Preference Entropy (BPE): to neutralize potential position bias, the pair is scored in both orders. The forward pass gives $p_{\\mathrm{fwd}} = P_\\theta(y{=}A \\mid x_{\\mathrm{fwd}})$ and the reverse pass gives $p_{\\mathrm{rev}} = P_\\theta(y{=}B \\mid x_{\\mathrm{rev}})$, since preferring $r_A$ corresponds to label $A$ in the forward order and label $B$ in the reverse order. The two are averaged into a bias-neutral preference $\\bar{p} = (p_{\\mathrm{fwd}} + p_{\\mathrm{rev}})/2$, and its binary entropy $s(x) = -[\\bar{p}\\ln\\bar{p} + (1-\\bar{p})\\ln(1-\\bar{p})]$ (in nats, maximized at $\\bar{p}{=}0.5$ with value $\\ln 2 \\approx 0.69$) is the uncertainty score: small $s(x)$ reflects a confident, order-stable preference, whereas large $s(x)$ reflects ambivalence or disagreement across orders. (3) SCOPE: the user specifies a target risk $\\alpha$ (e.g., $0.10$), the largest acceptable error rate among accepted judgments. Conformal calibration on a labeled set returns the largest threshold $\\hat{\\lambda}$ certified to keep this error within $\\alpha$. At test time, the judgment is accepted when $s(x) \\le \\hat{\\lambda}$ and is abstained otherwise.",
+ "caption_source": "latex",
+ "abstract": "Large language models (LLMs) are increasingly used as scalable judges in pairwise evaluation, but they remain prone to miscalibration and biases. We propose \\textsc{Scope} (Selective Conformal Optimized Pairwise Evaluation), a framework that calibrates an acceptance threshold so that, under exchangeability, the error rate among non-abstained judgments is at most a user-specified level $Î±$. To supply \\textsc{Scope} with a bias-neutral uncertainty signal, we introduce Bidirectional Preference Entropy (BPE), which queries the judge under both response positions and converts the order-averaged preference probability into an entropy-based score. Across various pairwise judging benchmarks, BPE outperforms standard confidence proxies in calibration and discrimination, while \\textsc{Scope} consistently satisfies the target risk bound (empirical FDR $\\approx 0.097$--$0.099$ at $Î±=0.10$) and retains substantial coverage. Compared to vanilla baselines, \\textsc{Scope} accepts up to $2.4\\times$ more judgments under the same risk constraint, demonstrating that BPE enables reliable and high-coverage LLM-based evaluation.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=ggrMMfC3Gw",
+  "arxiv": "https://arxiv.org/abs/2602.13110",
+  "pdf": "https://raw.githubusercontent.com/mlresearch/v306/main/assets/badshah26a/badshah26a.pdf",
+  "proceedings": "https://proceedings.mlr.press/v306/badshah26a.html",
+  "virtual": "https://icml.cc/virtual/2026/poster/62431",
+  "code": null
+ },
+ "license": "http://creativecommons.org/licenses/by/4.0/",
+ "img": "cc-by",
+ "image_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/images/icml26-4529.png",
+ "thumb_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/thumbs/icml26-4529.webp",
+ "figure_page": 2,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.93
+}

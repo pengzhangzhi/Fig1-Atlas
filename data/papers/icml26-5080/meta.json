@@ -1,0 +1,50 @@
+{
+ "id": "icml26-5080",
+ "title": "Focus, Align, and Sustain: Counteracting Gradient Dilution in Incremental Object Detection",
+ "authors": [
+  "Aoting Zhang",
+  "Dongbao Yang",
+  "Chang Liu",
+  "Xiaopeng Hong",
+  "Yu ZHOU"
+ ],
+ "venue": "ICML 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "Applications->Computer Vision",
+ "role": "analysis-finding",
+ "role2": "teaser-result",
+ "claim": "Optimization signals for old knowledge erode during sequential learning: gradients are swamped by background noise and query-target assignments scatter, while ours preserves them.",
+ "layout": "2 panels side by side: line plot left, bar histogram right",
+ "tags": [
+  "gradient-dilution",
+  "incremental-learning",
+  "object-detection",
+  "diagnostic-plot",
+  "instability"
+ ],
+ "style": [
+  "plot",
+  "minimal"
+ ],
+ "description": "Two matplotlib-style plots sit side by side with captions below each. Panel (a) is a line chart of foreground-to-background gradient ratio against training steps (0 to 2000). The blue FAS (ours) curve is high and fluctuating, between about 0.7 and 1.7. The orange Baseline curve stays flat near zero the whole time. Panel (b) is a bar chart of the number of matched epochs for each matched query index (12, 27, 41, 58, 73, 135, 183). Seven blue bars with counts of 5 to 10 are labeled on top, showing one old-class object matched to many different queries across epochs. The two panels use a blue/orange palette, a legend appears only in (a), and the eye goes first to the large gap between the curves in (a).",
+ "caption": "Evidence of Gradient Dilution during the incremental phase on COCO 70+10. (a) Foreground-to-background gradient ratio over training steps, showing that FAS alleviates Signal Dispersion by reducing background-dominated optimization and preserving stronger foreground-relevant gradients. (b) Distribution of matched query indices for the same old-class object across training epochs, revealing severe Assignment Drift with scattered assignments over many queries.",
+ "caption_source": "latex",
+ "abstract": "Adapting Detection Transformers to Incremental Object Detection (IOD) poses a systemic challenge, as set-based optimization is inherently destabilized by sequential learning. In this work, we identify Gradient Dilution as the root cause of performance degradation, wherein optimization signals required to preserve old knowledge are progressively weakened. This phenomenon manifests as a cascading erosion of preservation gradients in magnitude, direction, and support coverage, driven by three tightly coupled factors: Signal Dispersion, where foreground gradients are overwhelmed by background noise; Assignment Drift, where stochastic query-target matching induces inconsistent gradient trajectories; and Support Attrition, where gradients from retained samples insufficiently cover the old-class feature space, weakening decision boundaries under interference from new classes. To counteract this, we propose FAS, a unified framework that Focuses, Aligns, and Sustains gradient flow throughout incremental learning. Specifically, we introduce prior-injected queries to focus discriminative signals by filtering background interference at the source. We further propose deterministic anchor distillation to align query-target assignments and enforce semantic consistency across stages under unstable matching. Finally, we devise manifold-support replay to sustain distributional support of old classes, counteracting representational erosion induced by continual updates. Extensive experiments show that FAS restores robust optimization dynamics and outperforms state-of-the-art methods, achieving over 5.0 AP improvement in the challenging 40+10x4 incremental setting.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=lrCseHVGjc",
+  "arxiv": "https://arxiv.org/abs/2606.15253",
+  "pdf": "https://raw.githubusercontent.com/mlresearch/v306/main/assets/zhang26hl/zhang26hl.pdf",
+  "proceedings": "https://proceedings.mlr.press/v306/zhang26hl.html",
+  "virtual": "https://icml.cc/virtual/2026/poster/61899",
+  "code": null
+ },
+ "license": "http://creativecommons.org/licenses/by/4.0/",
+ "img": "cc-by",
+ "image_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/images/icml26-5080.png",
+ "thumb_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/thumbs/icml26-5080.webp",
+ "figure_page": 2,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.8
+}

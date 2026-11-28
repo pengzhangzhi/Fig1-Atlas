@@ -1,0 +1,48 @@
+{
+ "id": "icml26-4580",
+ "title": "Efficient Parallel Samplers for Recurrent-Depth Models",
+ "authors": [
+  "Jonas Geiping",
+  "Xinyu Yang",
+  "Guinan Su"
+ ],
+ "venue": "ICML 2026",
+ "tier": "spotlight",
+ "track": "main",
+ "topic": "Deep Learning->Large Language Models",
+ "role": "prior-vs-ours",
+ "role2": null,
+ "claim": "Sequential generation computes one step at a time; our sampler parallelizes diagonally, refining many positions simultaneously within the same step count.",
+ "layout": "2 panels side by side, stacked-block grids on token-position vs recurrence-step axes, legend",
+ "tags": [
+  "parallel-sampling",
+  "recurrent-depth",
+  "diffusion-forcing",
+  "efficiency",
+  "autoregressive"
+ ],
+ "style": [
+  "minimal",
+  "colorful"
+ ],
+ "description": "Two side-by-side panels share the same axes: Token Position on the horizontal axis and Recurrence Steps on the vertical axis. The left panel shows standard sequential generation. Two columns of boxes are stacked, one for each token. The first column holds green boxes numbered 1 to 6, and the second holds green boxes numbered 7, 8 and an orange box 9. A short upward arrow marks the current step, so the time-step integers run strictly one after another. The right panel shows the diffusion forcing sampler. Its boxes form a staircase, with columns of decreasing height. Each column has green prior steps and a single orange current step labeled 5, and all the orange boxes share the same time step. A diagonal arrow points up and to the right, and a legend box distinguishes prior compute steps (green) from the current compute step (orange). The orange boxes draw the eye first.",
+ "caption": "Different generation schemes for autoregressive, recurrent-depth models. Left: Standard sequential generation, which proceeds one token and step of the recurrence at a time (time steps denoted by integers). Right: A diffusion forcing sampler used for the same model can parallelize generation \"diagonally\", by computing one step of the recurrence per token position, iteratively refining its estimate of the generated sequence.",
+ "caption_source": "latex",
+ "abstract": "Language models with recurrent depth, also referred to as universal or looped when considering transformers, are defined by the capacity to increase their computation through the repetition of layers. Recent efforts in pretraining have demonstrated that these architectures can scale to modern language modeling tasks while exhibiting advantages in reasoning tasks. In this work, we examine the relationship between recurrent-depth models and diffusion language models. Building on their similarities, we develop a new diffusion forcing sampler for these models to accelerate generation. The sampler advances by decoding new tokens at every forward pass of the model, while the latent states of these tokens can be further refined in parallel through recurrence. Theoretically, generation with our sampler is strictly more expressive than the baseline autoregressive generation using the same time budget on modern hardware. Moreover, this sampler, based on principles from diffusion literature, can be directly applied to existing 3.5B recurrent-depth transformers without any tuning, leading to up to a 5x speedup.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=h7WBYYJF1Q",
+  "arxiv": "https://arxiv.org/abs/2510.14961",
+  "pdf": "https://raw.githubusercontent.com/mlresearch/v306/main/assets/geiping26a/geiping26a.pdf",
+  "proceedings": "https://proceedings.mlr.press/v306/geiping26a.html",
+  "virtual": "https://icml.cc/virtual/2026/poster/62383",
+  "code": "https://github.com/seal-rg/recurrent-pretraining"
+ },
+ "license": "http://creativecommons.org/licenses/by/4.0/",
+ "img": "cc-by",
+ "image_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/images/icml26-4580.png",
+ "thumb_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/thumbs/icml26-4580.webp",
+ "figure_page": 1,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.8
+}

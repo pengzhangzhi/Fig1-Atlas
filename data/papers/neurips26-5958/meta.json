@@ -1,0 +1,51 @@
+{
+ "id": "neurips26-5958",
+ "title": "Generate in Reconstruction Space, Match in Semantic Space: Transport Geometry for One-Step Generation",
+ "authors": [
+  "Hugues Van Assel",
+  "Edward De Brouwer",
+  "Saeed Saremi",
+  "Gabriele Scalia",
+  "Aviv Regev"
+ ],
+ "venue": "NeurIPS 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": null,
+ "role": "pipeline",
+ "role2": "concept",
+ "claim": "Generate in a reconstruction-friendly space, but compute the training transport loss in a separate frozen semantic feature space.",
+ "layout": "3 stacked colored bands, top-to-bottom, vertical arrows between spaces, dashed loss arrow",
+ "tags": [
+  "one-step-generation",
+  "feature-space-matching",
+  "sinkhorn-transport",
+  "self-supervised-features",
+  "decoupled-spaces"
+ ],
+ "style": [
+  "minimal",
+  "math-heavy",
+  "colorful"
+ ],
+ "description": "A block diagram with three horizontal rounded bands stacked vertically, each labeled with a bold title: Ambient space X (light blue, top), Generation space M (light orange, middle), Feature space F (light green, bottom). The left column carries the real data path: x ~ p goes down through an Enc box to u^r = Enc(x), then through a gray phi box to h^r = phi(u^r). The right column carries the generated path: u0 ~ p0 passes through an orange g_theta box to u1 = g_theta(u0). From u1 an arrow goes up through Dec to x-hat = Dec(u1), and another goes down through phi to h = phi(u1). A dashed green arrow runs right-to-left in the feature band from h to h^r, labeled with the Sinkhorn transport map. The eye lands first on the colored bands and the dashed loss arrow at the bottom.",
+ "caption": "Overview of \\semot{}. A prior state $\\vu_0 \\sim p_0$ is mapped in one step by $\\gen_\\theta$ to a generated state $\\vu_1$ in generation space $\\gM$, then decoded to the ambient sample $\\hat{\\vx}=\\Dec(\\vu_1)$. In parallel, a real datum $\\vx \\sim p$ is encoded into the generation-space target $\\vu^r=\\Enc(\\vx)$. Both states are embedded by the frozen SSL feature extractor $\\phi$ into feature vectors $\\vh=\\phi(\\vu_1)$ and $\\vh^r=\\phi(\\vu^r)$, and the training loss is a Sinkhorn transport problem in feature space $\\gF$. Thus, generation is performed in generation space, while the transport geometry used for training is defined in feature space. In practice, the loss is evaluated over minibatches; the figure shows the same construction schematically for a single pair of states. In input-space models, $\\gM=\\gX$ and $\\Enc=\\Dec=\\mathrm{Id}$. In latent-space models, applying $\\phi$ directly on the compact generation space $\\gM$ (e.g., a VAE latent) avoids decoding to pixels; in our experiments, $\\phi$ is obtained by training from scratch or distilling ambient feature extractors (DINOv3, Inception) into generation space.",
+ "caption_source": "latex",
+ "abstract": "Generative modeling and self-supervised representation learning (SSL) optimize structurally different objectives: generative training rewards distributional fidelity, while SSL rewards semantic coherence. Yet recent work repeatedly finds that SSL features improve generative training, though the mechanism of this synergy remains unclear. Here, we study the benefits of SSL in generative modeling in the framework of one-step generation where the role of representation is explicit: frozen SSL features are used to match generated samples to real data. We use the Sinkhorn divergence in that feature space, providing a tractable surrogate for the Wasserstein distance, the population-level discrepancy approximated by FrÃ©chet-style evaluation metrics (such as FID). We find that this objective becomes highly effective when computed in a semantically structured SSL feature space (a 39$\\times$ reduction in ImageNet FID). We trace this behavior primarily to matching estimation: semantic SSL features that suppress nuisance reconstruction details induce a more compact geometry, making distribution matching more tractable. As a consequence, the best training SSL features need not match the features used by the evaluation metric. In particular, we show that using Inception as the feature extractor can improve FID while degrading matching stability and sample quality, revealing a form of metric hacking. Using extensive experiments on ImageNet, we identify which SSL feature families lead to best generation performance and show that matching stability is a quantitative criterion for selecting them. Code is available at https://github.com/Genentech/semantic-transport-generation.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=etwEuQt1jd",
+  "arxiv": "https://arxiv.org/abs/2606.00514",
+  "pdf": "https://arxiv.org/pdf/2606.00514",
+  "proceedings": null,
+  "virtual": "https://neurips.cc/virtual/2026/poster/150849",
+  "code": null
+ },
+ "license": "http://arxiv.org/licenses/nonexclusive-distrib/1.0/",
+ "img": "none",
+ "image_url": null,
+ "thumb_url": null,
+ "figure_page": 2,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.8
+}

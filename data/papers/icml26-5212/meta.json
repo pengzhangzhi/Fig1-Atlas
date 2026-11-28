@@ -1,0 +1,49 @@
+{
+ "id": "icml26-5212",
+ "title": "PinTok: Tokenizers Deserve Dedicated Pinned CPU-Compute and Memory",
+ "authors": [
+  "Sean Choi",
+  "Myungheon Chin",
+  "Ernest Ryu"
+ ],
+ "venue": "ICML 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "Deep Learning->Large Language Models",
+ "role": "analysis-finding",
+ "role2": "problem-setup",
+ "claim": "Preprocessing that seems negligible consumes a large share of end-to-end time once the main model is small.",
+ "layout": "1 panel, stacked bar chart, three models left-to-right, value labels",
+ "tags": [
+  "tokenization",
+  "latency",
+  "profiling",
+  "bottleneck",
+  "small-models"
+ ],
+ "style": [
+  "plot",
+  "minimal",
+  "colorful"
+ ],
+ "description": "A single stacked bar chart with three bars, one each for e5-base-v2, ModernBERT-base and embeddinggemma-300m. The y-axis is time in milliseconds, from 0 to 80. Each bar has an orange bottom segment for tokenizer time and a blue top segment for the remainder. The totals are 18.3, 40.4 and 61.4 ms, printed above the bars. The tokenizer times are 8.8, 15.5 and 11.9 ms, printed inside the orange segments. A legend sits at the top left. The orange share is nearly half of the smallest model's bar and shrinks as the models get larger. The eye goes first to the orange base of the leftmost bar, which is proportionally the largest.",
+ "caption": "The proportion of wall-clock time spent on the Python tokenizer implementation becomes significant for small language models. Details of the experiments are described in Section 4.",
+ "caption_source": "pdf",
+ "abstract": "Tokenization is the first point of contact between large language models (LLMs) and text data, yet it has not been viewed by many as a component of LLMs worth accelerating. During inference, tokenizers typically rely on simple dictionary lookups and are executed on CPUs as standard processes. This approach, however, introduces significant overhead from scheduling delays, core selection, data copying, and other system-level costs. These inefficiencies become problematic in latency-sensitive applications such as embedding, small language models, and agentic AI. In this paper, we present the Pinned Tokenizer (PinTok), a novel tokenizer architecture that reduces redundant hardware, operating system, and networking overhead through three key innovations: core and memory pinning, scheduling and context switch avoidance, and duplicate network packet copy and processing avoidance. Our implementation of PinTok can serve as a drop-in replacement for existing tokenizer deployments, delivering latency reductions of up to 95% (average), 97% (P50), 94% (P90), and 87% (P99) along with throughput improvements of up to 2,084%.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=n4tTOeRa0a",
+  "arxiv": null,
+  "pdf": "https://raw.githubusercontent.com/mlresearch/v306/main/assets/choi26b/choi26b.pdf",
+  "proceedings": "https://proceedings.mlr.press/v306/choi26b.html",
+  "virtual": "https://icml.cc/virtual/2026/poster/61774",
+  "code": "https://github.com/The-Cloud-Lab/PinTok"
+ },
+ "license": null,
+ "img": "none",
+ "image_url": null,
+ "thumb_url": null,
+ "figure_page": 0,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.6
+}

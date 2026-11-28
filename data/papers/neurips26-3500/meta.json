@@ -1,0 +1,49 @@
+{
+ "id": "neurips26-3500",
+ "title": "Differentiable Learning of Lifted Action Schemas for Classical Planning",
+ "authors": [
+  "Jonas Reiter",
+  "Jakob Gebler",
+  "Hector Geffner"
+ ],
+ "venue": "NeurIPS 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "General Machine Learning->Representation Learning",
+ "role": "pipeline",
+ "role2": null,
+ "claim": "A differentiable architecture jointly identifies hidden action arguments and learns lifted schemas by predicting next states, then yields symbolic domain definitions.",
+ "layout": "Single wide panel, left-to-right data flow, with a top bracket for post-training derivation",
+ "tags": [
+  "differentiable-architecture",
+  "neuro-symbolic",
+  "action-schema-learning",
+  "graph-neural-network",
+  "planning"
+ ],
+ "style": [
+  "colorful",
+  "icon-heavy",
+  "math-heavy"
+ ],
+ "description": "A single wide diagram of the full pipeline. At top left, a transition s → s' under action a is drawn as stacked orange bar charts. Braces send these states into a graph of colored nodes, labeled G. The graph passes through a GNN to give object embeddings K, drawn as a grayscale heatmap. A selection step combines K with lifted parameters Q^a and w^a to give S̃^a. A gray rounded box at top holds the lifted parameters: Q^a, w^a, P_pre+, P_add and more, drawn as blue, green and red stacked matrices. Arrows from these parameters, labeled 'grounding', produce the grounded matrices P̃. The state adjacency matrix A at lower left feeds a long arrow labeled 'precondition check and effect application' to the predicted Â'. A bracket labeled 'action schema derivation (after training)' leads to a PDDL code snippet at upper right.",
+ "caption": "Overview of the \\acs{dias} architecture. A transition $\\tuple{s, s'}$ is encoded as a graph $G$. A \\acs{gnn} computes object embeddings $K$, which are matched with object queries $Q^a$ for action $a$. Together with slot weights $w^a$, this yields an object selection $\\tilde{S}^a$. Lifted preconditions and effects $P^a_{\\mathrm{pre}^+}$, $P^a_{\\mathrm{pre}^-}$, $P^a_\\mathrm{add}$, and $P^a_\\mathrm{del}$ are then grounded with $\\tilde{S}^a$ into adjacency-matrix space as $\\tilde{P}^a_{\\dots}$. Given the adjacency matrix $A$ of state $s$, grounded preconditions are checked and effects are applied to predict the successor-state adjacency matrix $\\hat{A}'$. Training minimizes a prediction loss between $\\hat{A}'$ and $A'$ while additionally maximizing and minimizing lifted preconditions and effects, respectively. After training, the action schema for each action $a$ can be derived from its lifted parameters.",
+ "caption_source": "latex",
+ "abstract": "Classical planners can effectively solve very large deterministic MDPs represented in STRIPS or PDDL where states are sets of atoms over objects and relations, and lifted action schemas add or delete these atoms. This compact representation yields strong search heuristics and provides an ideal setting for structural generalization, since lifted relations and action schemas give rise to infinitely many domain instances. A central challenge is to learn these relations and action schemas from data, and recent approaches have addressed this problem using different types of observations. In this work, we develop a novel neural network architecture for learning action schemas from traces where states are fully observed but action arguments are unobserved. The problem is a simplification but an important step towards learning planning domains from sequences of images and action labels, and we aim to solve this simplification in a nearly perfect manner. The challenge lies in learning the action schemas while simultaneously identifying the action arguments from observed state changes. Our approach yields a robust differentiable component that can then be integrated into larger neuro-symbolic models. We evaluate the architecture on various planning domains, where the learned lifted action schemas must recover the ground-truth structure. Additionally, we report experiments on robustness to observation noise, on component ablations, and on a variation related to slot-based dynamics models.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=OSDbmV3Glw",
+  "arxiv": "https://arxiv.org/abs/2605.13282",
+  "pdf": "https://arxiv.org/pdf/2605.13282",
+  "proceedings": null,
+  "virtual": "https://neurips.cc/virtual/2026/poster/153043",
+  "code": null
+ },
+ "license": "http://creativecommons.org/licenses/by/4.0/",
+ "img": "cc-by",
+ "image_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/images/neurips26-3500.png",
+ "thumb_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/thumbs/neurips26-3500.webp",
+ "figure_page": 1,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.93
+}

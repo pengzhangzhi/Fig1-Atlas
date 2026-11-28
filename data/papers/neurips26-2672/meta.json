@@ -1,0 +1,54 @@
+{
+ "id": "neurips26-2672",
+ "title": "Cross-Model KV Cache Transfer in LLM Families: A Closed-Form Linear Mapping for Prefill Reuse",
+ "authors": [
+  "Taekyung Heo",
+  "Rasoul Shafipour",
+  "Ritchie Zhao",
+  "Maximilian Golub",
+  "Mohammad Mahdi Kamani",
+  "Ritika Borkar",
+  "Makesh T Chandran",
+  "Pantea Zardoshti",
+  "Bita Darvish Rouhani"
+ ],
+ "venue": "NeurIPS 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "Deep Learning->Attention Mechanisms",
+ "role": "pipeline",
+ "role2": null,
+ "claim": "A learned linear map converts one model's cached states into another's format, so the receiver skips its own prefill.",
+ "layout": "Single row, left-to-right, two-row flow, dashed bypass loop beneath",
+ "tags": [
+  "pipeline",
+  "cache-transfer",
+  "linear-mapping",
+  "efficiency",
+  "model-families"
+ ],
+ "style": [
+  "minimal",
+  "colorful"
+ ],
+ "description": "A horizontal flow diagram of rounded boxes joined by arrows. At top left, a gray Prompt box points to a blue Source Model box (e.g. Qwen3-14B). A blue arrow labeled Prefill runs down to a blue Source KV Cache box. A blue arrow then runs right into a central orange, bold Linear Mapper box, captioned 'Per-head ridge regression (closed-form, ~1 hour on 8xH100)'. A green arrow leads from the mapper to a green Mapped KV Cache box. A green arrow labeled 'Decoding (no prefill)' goes up to a green Target Model box (e.g. Qwen3-32B), which points to a gray Generation box at top right. A gray dashed loop runs from beneath the prompt, along the bottom, and up to the target model. It is labeled 'Target prefill (eliminated)'. Color marks source (blue), mapper (orange) and target (green). The eye goes first to the orange mapper.",
+ "caption": "Cross-model KV cache transfer pipeline. A per-head linear map converts the source's prefilled KV cache into the target's expected format, so the target decodes without re-prefilling.",
+ "caption_source": "latex",
+ "abstract": "Production deployments often swap between different-sized models in a family for cost-quality cascading, mid-conversation switching, and routing, and each swap forces the receiver to repay the prefill from scratch. We propose cross-model KV cache transfer, where the receiver reuses the source's KV cache, skipping prefill. We find that cross-model KV has substantial linear structure across matched-KV pairs, where source and target share KV head count and per-head dimension. On Qwen3 14B->32B, one source layer explains 56% of variance in the target's keys and 32% in values, rising to 79% and 65% with multiple source layers. Building on this, we design a closed-form ridge mapper that operates per head and proceeds in three steps. First, for each target layer we select the top-k most predictive source layers and concatenate their KV as input. Second, we strip RoPE from the keys before mapping, so the fit is position-free and reusable across context lengths. Third, we fit ridge regression on a small calibration set of 500 FineWeb-Edu sequences of 1,024 tokens each. Surprisingly, across six pairs in three families, this linear mapper retains 73-98% of the receiver's standalone-prefill accuracy on four pairs, while two degrade sharply. A nonlinear MLP recovers up to +37 pp HellaSwag retention on the failures. The mapper runs 2.7-25x faster than re-prefill and remains stable across multi-turn handoff, making cross-model KV cache transfer practical.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=ImLkPKhbKo",
+  "arxiv": "https://arxiv.org/abs/2608.03893",
+  "pdf": "https://arxiv.org/pdf/2608.03893",
+  "proceedings": null,
+  "virtual": "https://neurips.cc/virtual/2026/poster/153772",
+  "code": null
+ },
+ "license": "http://creativecommons.org/licenses/by/4.0/",
+ "img": "cc-by",
+ "image_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/images/neurips26-2672.png",
+ "thumb_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/thumbs/neurips26-2672.webp",
+ "figure_page": 1,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.93
+}

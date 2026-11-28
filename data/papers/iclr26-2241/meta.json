@@ -1,0 +1,49 @@
+{
+ "id": "iclr26-2241",
+ "title": "Enhancing Language Model Reasoning with Structured Multi-Level Modeling",
+ "authors": [
+  "Siheng Xiong",
+  "Ali Payani",
+  "Faramarz Fekri"
+ ],
+ "venue": "ICLR 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "Reinforcement Learning->Planning",
+ "role": "problem-setup",
+ "role2": "prior-vs-ours",
+ "claim": "Long reasoning traces decompose into a compact high-level plan of step descriptors and a much longer low-level execution of the same steps.",
+ "layout": "Question banner on top, 2 side-by-side panels, top-to-bottom steps with arrows",
+ "tags": [
+  "hierarchical-reasoning",
+  "plan-execute",
+  "chain-of-thought",
+  "abstraction",
+  "worked-example"
+ ],
+ "style": [
+  "text-heavy",
+  "colorful",
+  "minimal"
+ ],
+ "description": "A gray banner at the top holds a geometry question: find the angle between two lines in 3D given their equations. Below it are two dashed-border panels. The left panel is titled 'High-level Abstraction (284 tokens)'. The right panel is titled 'Low-level Details (2477 tokens)'. Each panel shows three stacked steps: Problem Understanding, Calculation and Verification. A vertical ellipsis between the second and third steps shows that steps are omitted. Every step has a green header bar naming the reasoning mode and subgoal, and a blue body box beneath it. In the left panel the body is a terse summary. In the right panel the body is verbose, stream-of-consciousness reasoning such as 'Okay, so I need to...' and 'But wait...'. Both panels end at the same answer, 90 degrees. Small black arrows link the steps. The eye goes first to the question, then to the two panel titles with their token counts.",
+ "caption": "Long-horizon accuracy on MATH500, AIME24, and a mixture benchmark (MATH500 / AIME24 / GPQA / BoardGameQA). Top: Qwen-2.5-1.5B; bottom: Llama-3.1-8B. Problems are concatenated in the prompt to simulate long horizons; MLR degrades more slowly than baselines (see [ref] for details).",
+ "caption_source": "latex",
+ "abstract": "Inference-time scaling enhances a model's reasoning by extending its chain-of-thought (CoT). However, existing approaches typically rely on a single policy trained with outcome-reward reinforcement learning (RL), which often suffers from long-horizon plan failures where the implicit plan drifts from valid strategies, especially for small LMs with limited capacity. To address this, we propose Multi-Level Reasoning (MLR), which reformulates long-CoT generation as a two-level stochastic process. A high-level planner generates structured step descriptors specifying both the reasoning mode and the semantic subgoal. The low-level executor then produces detailed reasoning conditioned on these descriptors, forming an alternating plan--execute loop. To maintain scalability, we adopt a minimal design where the base model serves as the low-level policy and a lightweight LoRA module implements the high-level policy. For training, we observe that outcome-reward RL provides sparse and delayed feedback for long trajectories (e.g., several thousand tokens), hindering credit assignment. We therefore introduce iterative Step-DPO, a process-level preference optimization scheme that leverages Twisted Sequential Monte Carlo (TSMC) to provide scalable stepwise supervision. This yields more effective training, improved stability, and higher accuracy. Extensive experiments on challenging math, science, and logical reasoning benchmarks show that, under the same reduced data budget (10% SFT and 5% preference relative to the DeepSeek-R1 distillation setup), MLR outperforms both SFT-based distillation and strong RL/preference-optimization baselines across multiple base models and tasks. Moreover, MLR exhibits slower performance degradation on long-horizon reasoning, demonstrating stronger robustness under extended CoT generation.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=PlkzZhqBCd",
+  "arxiv": "https://arxiv.org/abs/2611.00616",
+  "pdf": "https://proceedings.iclr.cc/paper_files/paper/2026/file/3db7d123a316fc690f02818b21967af4-Paper-Conference.pdf",
+  "proceedings": "https://proceedings.iclr.cc/paper_files/paper/2026/hash/3db7d123a316fc690f02818b21967af4-Abstract-Conference.html",
+  "virtual": "https://iclr.cc/virtual/2026/poster/10009645",
+  "code": "https://github.com/xiongsiheng/MLR"
+ },
+ "license": "http://creativecommons.org/licenses/by/4.0/",
+ "img": "cc-by",
+ "image_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/images/iclr26-2241.png",
+ "thumb_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/thumbs/iclr26-2241.webp",
+ "figure_page": 3,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.5
+}

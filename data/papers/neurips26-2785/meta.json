@@ -1,0 +1,49 @@
+{
+ "id": "neurips26-2785",
+ "title": "Diffusion-State Policy Optimization for Masked Diffusion Language Models",
+ "authors": [
+  "Daisuke Oba",
+  "Hiroki Furuta",
+  "Naoaki Okazaki"
+ ],
+ "venue": "NeurIPS 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "Deep Learning->Generative Models and Autoencoders",
+ "role": "pipeline",
+ "role2": "prior-vs-ours",
+ "claim": "Instead of rewarding only the final output, branch from intermediate states to score and update newly filled decisions with the same rollouts.",
+ "layout": "Left-to-right flow, terminal loss left and branching step loss right, merging into joint loss",
+ "tags": [
+  "credit-assignment",
+  "policy-optimization",
+  "masked-diffusion",
+  "plug-in",
+  "branching"
+ ],
+ "style": [
+  "colorful",
+  "icon-heavy",
+  "text-heavy"
+ ],
+ "description": "A wide diagram of two coupled data flows. On the left, three denoising trajectories are drawn as columns of 5-cell token rows, with white masked cells gradually turning blue-gray as they become unmasked. They end in a gray-dotted box of final completions. These feed two pale-yellow pills, Reward and Log Prob, which go into a purple GRPO Loss (terminal) node. One intermediate state is circled in an orange dashed box and an orange arrow carries it to the upper right. There, a state row is resampled via logits into teal-green action tokens 1..Z. These are filled into drafts, shown in a dotted gray box. The drafts feed their own Reward and Log Prob pills and a pink GRPO Loss (step) node. Both loss nodes join in a gray Joint Loss node. Orange labels mark states and green labels mark actions.",
+ "caption": "Conceptual overview. Left: Terminal-feedback PO assigns reward to the final denoising trajectory. Right: DiSPO branches from \\state{intermediate masked states} using cached logits, scores the branched completions with the same reward, and updates only \\action{newly filled tokens.}",
+ "caption_source": "latex",
+ "abstract": "Masked diffusion language models generate text through iterative masked-token filling, but terminal-only rewards on final completions provide coarse credit assignment for the intermediate filling decisions that shape the generation process. We propose Diffusion-State Policy Optimization (DiSPO), a plug-in credit-assignment layer that directly optimizes intermediate filling decisions. At selected intermediate masked states, DiSPO branches by resampling the currently masked positions from rollout-cached logits, scores the resulting completions, and updates only the newly filled tokens, requiring no additional multi-step diffusion rollouts or optimizer steps. We formalize a fixed-state objective for branched completions and derive a policy-gradient estimator that reuses the same rollouts as terminal-feedback policy optimization. Experiments on LLaDA-8B-Instruct show that DiSPO consistently improves terminal-feedback baselines, including diffu-GRPO and SPG, on math and planning benchmarks under matched rollout compute and optimizer steps, supporting its use as a general plug-in for masked diffusion policy optimization. Our project page is available at https://daioba.github.io/dispo .",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=Jd9XMjrCiK",
+  "arxiv": "https://arxiv.org/abs/2602.06462",
+  "pdf": "https://arxiv.org/pdf/2602.06462",
+  "proceedings": null,
+  "virtual": "https://neurips.cc/virtual/2026/poster/153673",
+  "code": "https://daioba.github.io/dispo/"
+ },
+ "license": "http://creativecommons.org/licenses/by/4.0/",
+ "img": "cc-by",
+ "image_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/images/neurips26-2785.png",
+ "thumb_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/thumbs/neurips26-2785.webp",
+ "figure_page": 1,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.6
+}

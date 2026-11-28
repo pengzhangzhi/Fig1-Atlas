@@ -1,0 +1,50 @@
+{
+ "id": "iclr26-0095",
+ "title": "StreamingThinker: Large Language Models Can Think While Reading",
+ "authors": [
+  "Junlong Tong",
+  "Yingqi Fan",
+  "Anhao Zhao",
+  "Yunpu Ma",
+  "Xiaoyu Shen"
+ ],
+ "venue": "ICLR 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": null,
+ "role": "prior-vs-ours",
+ "role2": "problem-setup",
+ "claim": "Standard reasoning waits for the full input before thinking, causing delay; interleaving thinking with reading removes the wait and supports adjustable depth.",
+ "layout": "2 panels, batch bottom-left vs streaming right, shared source input, red delay brackets",
+ "tags": [
+  "streaming",
+  "latency",
+  "chain-of-thought",
+  "incremental-processing",
+  "efficiency"
+ ],
+ "style": [
+  "text-heavy",
+  "colorful"
+ ],
+ "description": "Panel (a) puts a gray Source Input box in the center. It holds a word problem about Charlie's conference schedule, split into four numbered sentences. On the left, arrows labeled Read feed a Source Input Buffer. A red bracket marked Wait to Think and a Prefill at once arrow lead down to the orange Batch Thinking box. That box holds a single long chain of thought, and a Large Language Model block sits beside it. On the right, a blue Large Language Model block reads each sentence and emits a matching Think step into the blue Streaming Thinking box. Red Delay brackets mark the gap before the answer in each case. A vertical Information Flow arrow runs down the left edge. Panel (b), at the bottom right, stacks three blue boxes showing increasing think depth, from a direct answer to global thinking to self-reflection. Orange marks batch and blue marks streaming.",
+ "caption": "(a) Standard LLM reasoning follows the batch thinking paradigm, where reasoning begins only after the entire input is received, leading to high latency and imbalanced attention to the input. The proposed streaming thinking paradigm enables LLMs to think while reading during input reception, substantially reducing latency and maintaining attention aligned with the order of input. (b) Streaming thinking paradigm supports multi-depth reasoning, balancing latency with performance.",
+ "caption_source": "latex",
+ "abstract": "Large language models (LLMs) have demonstrated remarkable capabilities in chain of thought (CoT) reasoning. However, the current LLM reasoning paradigm initiates thinking only after the entire input is available, which introduces unnecessary latency and weakens attention to earlier information in dynamic scenarios. Inspired by human cognition of thinking while reading, we first design a \\textit{\\textbf{streaming thinking}} paradigm for LLMs, where reasoning unfolds in the order of input and further adjusts its depth once reading is complete. We instantiate this paradigm with \\textit{StreamingThinker}, a framework that enables LLMs to think while reading through the integration of streaming CoT generation, streaming-constraint training, and streaming parallel inference. Specifically, StreamingThinker employs streaming reasoning units with quality control for CoT generation, enforces order-preserving reasoning through streaming attention masks and position encoding, and leverages parallel KV caches that decouple input encoding from reasoning generation, thereby ensuring alignment and enabling true concurrency. We evaluate StreamingThinker on the Qwen3 model family across math reasoning, logical reasoning, and context-based QA reasoning tasks. Experimental results show that the StreamingThinker preserves performance comparable to batch thinking, while yielding an 80\\% reduction in token waiting before the onset of reasoning and a more than 60\\% reduction in time-level latency for producing the final answer, demonstrating the effectiveness of the streaming paradigm for LLM reasoning. Code is publicly available at https://github.com/EIT-NLP/StreamingLLM/tree/main/StreamingThinker.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=10Iiew095e",
+  "arxiv": "https://arxiv.org/abs/2510.17238",
+  "pdf": "https://proceedings.iclr.cc/paper_files/paper/2026/file/34fd0c77c4defad532e27ae34a7ea278-Paper-Conference.pdf",
+  "proceedings": "https://proceedings.iclr.cc/paper_files/paper/2026/hash/34fd0c77c4defad532e27ae34a7ea278-Abstract-Conference.html",
+  "virtual": "https://iclr.cc/virtual/2026/poster/10011879",
+  "code": "https://jl-tong.github.io/streamingthinker"
+ },
+ "license": "http://arxiv.org/licenses/nonexclusive-distrib/1.0/",
+ "img": "none",
+ "image_url": null,
+ "thumb_url": null,
+ "figure_page": 1,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.85
+}

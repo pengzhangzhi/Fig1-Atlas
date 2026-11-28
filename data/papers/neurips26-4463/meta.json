@@ -1,0 +1,55 @@
+{
+ "id": "neurips26-4463",
+ "title": "PrismFlow: Residual Dynamics for Flow Matching in Time-Series Generation",
+ "authors": [
+  "JUNRU ZHANG",
+  "Lang Feng",
+  "Jinbo Wang",
+  "Xu Guo",
+  "Yucheng Wang",
+  "Han Yu",
+  "Min Wu",
+  "Yabo Dong",
+  "Duanqing Xu"
+ ],
+ "venue": "NeurIPS 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "Applications->Time Series",
+ "role": "pipeline",
+ "role2": null,
+ "claim": "A global transport backbone is augmented by a bank of specialized linear residual experts, selected by a router and trained with winner-take-all signals.",
+ "layout": "Single wide panel, left-to-right data flow, dashed green backward gradient path, sampling inset top-right",
+ "tags": [
+  "mixture-of-experts",
+  "flow-matching",
+  "residual-correction",
+  "winner-take-all",
+  "time-series"
+ ],
+ "style": [
+  "colorful",
+  "math-heavy",
+  "icon-heavy"
+ ],
+ "description": "A wide block diagram reading left to right. A tall input box on the left holds flow time t and the noisy time-series state x_t. The state goes into an encoder trapezoid. From the encoder, one path goes up to a gray Global Transport Field box and a decoder, producing the global velocity v_t^θ. A second path goes into a shaded bank of stacked Koopman expert cards. The front expert is highlighted orange and contains a projector, latent z_t, a linear operator A, and a latent velocity. The expert outputs feed a decoder g_ψ, which produces candidate residual velocities. These go to a WTA Score and Selection box. A router box produces the probabilities π. Three green loss boxes (L_CFM, L_WTA, L_BAL) sit on the right. Dashed green arrows show backward gradient flow. A small Sampling Phase inset at top right shows trajectories splitting into blue and orange modes. Colors separate the backbone (gray), the experts (orange), the network modules (blue) and the losses (green).",
+ "caption": "Overall architecture of \\methodname{}. Given a flow state \\(x_t\\), a flow matching backbone predicts a global transport velocity \\(v_t^\\theta\\). In parallel, a shared encoder and projector map \\(x_t\\) into a latent Koopman space, where a bank of linear experts models different temporal modes. Each expert evolves its latent state through a linear velocity, which is decoded by \\(g_\\psi\\) into a candidate residual velocity \\(\\{v_t^{\\psi,k}\\}_{k=1}^K\\). A router produces expert probabilities \\(\\pi_t\\), and a WTA score selects the dominant expert \\(k_t^*\\). During training, \\(\\mathcal{L}_{\\mathrm{WTA}}\\) assigns the specialization signal to the selected expert, \\(\\mathcal{L}_{\\mathrm{CFM}}\\) aligns the global transport with the target distribution, and \\(\\mathcal{L}_{\\mathrm{BAL}}\\) encourages balanced expert usage. During sampling, the selected expert provides a residual correction to the global transport field.",
+ "caption_source": "latex",
+ "abstract": "Generating high-quality time-series data is challenging because real-world signals often exhibit multimodal patterns and multiscale dynamics, including oscillations and high-frequency variations. Flow Matching (FM) offers an efficient alternative to diffusion models, but practical implementations typically rely on a single finite-capacity global vector-field estimator. In such heterogeneous temporal distributions, distinct regimes may pass through nearby flow states while requiring incompatible conditional velocities. A monolithic estimator trained with the standard $\\ell_2$ velocity-matching objective may therefore learn an overly smoothed approximation of the local transport field. This estimator-level smoothing can attenuate branch-specific dynamics, leading to spectral distortion and poor mode coverage. To address this, we propose PrismFlow, a new FM method with Koopman-inspired dynamical experts. Each expert learns residual corrections in a latent space where local nonlinear temporal evolution can be approximated by linear transitions. We further propose a confidence-aware Winner-Take-All (WTA) objective that updates only the expert best aligned with each sample while masking gradients to the others, encouraging mode-specific specialization. During sampling, the selected expert adds a residual dynamical correction to the global transport field, preserving FM stability while recovering fine-grained and high-frequency temporal structures. Across various benchmarks, PrismFlow effectively mitigates the spectral contraction in standard FM and achieves state-of-the-art performance, with a 15.6% gain in Context-FID and a 38.6% improvement in Discriminative Score, while remaining robust in low-data settings and effective for forecasting and imputation.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=UrxwEBaiit",
+  "arxiv": "https://arxiv.org/abs/2605.28867",
+  "pdf": "https://arxiv.org/pdf/2605.28867",
+  "proceedings": null,
+  "virtual": "https://neurips.cc/virtual/2026/poster/152192",
+  "code": null
+ },
+ "license": "http://arxiv.org/licenses/nonexclusive-distrib/1.0/",
+ "img": "none",
+ "image_url": null,
+ "thumb_url": null,
+ "figure_page": 3,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.93
+}

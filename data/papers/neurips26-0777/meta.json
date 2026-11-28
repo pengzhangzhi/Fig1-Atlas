@@ -1,0 +1,49 @@
+{
+ "id": "neurips26-0777",
+ "title": "\\texttt{FEROM}: Frontier Endogenous Reveal-Order Marginal Policy Optimization for Masked Diffusion LMs",
+ "authors": [
+  "Zian Su",
+  "Ziyang Huang",
+  "Kaiyuan Zhang",
+  "Xiangyu Zhang"
+ ],
+ "venue": "NeurIPS 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "Deep Learning->Everything Else",
+ "role": "prior-vs-ours",
+ "role2": "concept",
+ "claim": "Prior methods train on arbitrary states or credit a single sampled path; ours aggregates credit over all paths via posterior edge occupancy.",
+ "layout": "3 panels left-to-right, same lattice DAG, color-coded edge occupancy",
+ "tags": [
+  "prior-vs-ours",
+  "marginalization",
+  "latent-order",
+  "diffusion-lm",
+  "policy-optimization"
+ ],
+ "style": [
+  "minimal",
+  "colorful"
+ ],
+ "description": "Three side-by-side panels show the same 4-position reveal-state DAG. Nodes are subsets such as {1,2,3,4} at the top and {} at the bottom, arranged in five layers and linked by edges. Panel (a), Order-agnostic modeling, draws every node and edge in uniform pale teal, so no state is favored. Panel (b), Single trajectory modeling, greys out the lattice and highlights one orange path with numbered steps 1 to 4, so only visited edges get credit. Panel (c), Reveal-order marginal modeling, uses purple. Node shade and edge width vary to show occupancy, with thick dark edges near the top and bottom. The eye goes first to the bold orange path in the middle, then to the purple panel's varying thickness.",
+ "caption": "Reveal-order modeling on an example 4-position reveal-state DAG. Nodes show the still-masked sets \\([n]\\setminus S\\), where \\(S\\) is the revealed set. Each edge reveals one position. Node color denotes state occupancy, and edge color/width denotes reveal-edge occupancy. (a) Order-agnostic denoising uses training states from an exogenous masking process rather than the adaptive rollout distribution. (b) Single-trajectory modeling follows one sampled reveal path, assigning credit only to visited edges and retaining latent reveal-order variance. (c) \\methodname aggregates reveal-order contributions using posterior edge occupancies on the DAG.",
+ "caption_source": "latex",
+ "abstract": "Masked diffusion language models generate text by iteratively unmasking positions, with practical samplers often selecting reveal positions from the model's own logits. The reveal order is therefore an endogenous latent variable of the rollout process with an enormous discrete latent space. Policy optimization objectives relying on pre-defined schedules or sampled trajectories introduce either bias or high variance. In this paper, we propose FEROM, Frontier Endogenous Reveal-Order Marginal Policy Optimization, which approximates policy gradients for the rollout-induced marginal response policy of masked diffusion LMs. FEROM derives a Rao-Blackwellized policy-gradient identity over latent reveal orders and expresses the resulting estimator as posterior edge occupancy on a reveal-state DAG. To make marginalization practical, we introduce Frontier Reveal Marginalization, a budgeted estimator that approximates this marginal edge structure by combining CDF-based computation of local probabilities of the endogenous reveal process with frontier expansion of high-mass partial states. Integrated into a GRPO-style objective, FEROM replaces single-path log-scores with a detached token-score surrogate over posterior-relevant reveal edges. Experiments on math and coding tasks show comparable or improved results over existing methods under matched scoring-state budgets. An offline proxy study further shows improved marginal-gradient approximation with increased scoring budgets.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=5Tnt9zpIFJ",
+  "arxiv": "https://arxiv.org/abs/2611.10369",
+  "pdf": "https://arxiv.org/pdf/2611.10369",
+  "proceedings": null,
+  "virtual": "https://neurips.cc/virtual/2026/poster/155453",
+  "code": null
+ },
+ "license": "http://creativecommons.org/licenses/by/4.0/",
+ "img": "cc-by",
+ "image_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/images/neurips26-0777.png",
+ "thumb_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/thumbs/neurips26-0777.webp",
+ "figure_page": 2,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.8
+}

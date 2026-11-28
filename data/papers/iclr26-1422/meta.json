@@ -1,0 +1,52 @@
+{
+ "id": "iclr26-1422",
+ "title": "LoRA-Mixer: Coordinate Modular LoRA Experts Through Serial Attention Routing",
+ "authors": [
+  "Wenbing Li",
+  "Zikai Song",
+  "Hang Zhou",
+  "Junqing Yu",
+  "Yunyao Zhang",
+  "Wei Yang"
+ ],
+ "venue": "ICLR 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "Deep Learning->Algorithms",
+ "role": "prior-vs-ours",
+ "role2": "pipeline",
+ "claim": "Prior expert-augmented models swap whole blocks or add parallel branches; ours inserts routed low-rank experts into the existing projection layers.",
+ "layout": "4 grouped panels left-to-right; numbered prior variants, then zoomed-in ours",
+ "tags": [
+  "mixture-of-experts",
+  "low-rank-adaptation",
+  "parameter-efficiency",
+  "routing",
+  "transformer-architecture"
+ ],
+ "style": [
+  "icon-heavy",
+  "colorful",
+  "minimal"
+ ],
+ "description": "The figure is a row of dashed-border block diagrams. On the left, a standard Transformer block stacks Attn and FFN with residual connections, and circled numbers 1–4 mark the places where experts can be added. The next two columns show prior designs. 'Vanilla' replaces the FFN (1) or Attn (2) with several parallel expert blocks chosen by a Top-K router. 'Fuse with LoRA-MoE' (3, 4) keeps the FFN or Attn and adds a parallel branch of LoRA experts, drawn as small trapezoid pairs, that merges back at a plus node. On the right, the large 'LoRA-Mixer' panel shows an attention module (Q, K, V → Linear → scaled dot-product attention → Concat → Linear → O). Arrows zoom the input and output Linear layers into a detail view with a frozen Linear (snowflake icon) beside trainable LoRA experts (flame icon). Colors are pastel, and the yellow Linear boxes with gear icons draw the eye first.",
+ "caption": "LoRA and MoE integration methods. (1) and (2): replace the attention or FNNs with switch experts; (3) and (4): introduce LoRA experts branches in parallel with the attention or feedforward layers, and fuse the output into the main branch. Our LoRA-Mixer (right) applies mixture of LoRA experts to the projection layers, which can effectively leverages the attention mechanism.",
+ "caption_source": "latex",
+ "abstract": "Recent attempts to combine low-rank adaptation (LoRA) with mixture-of-experts (MoE) for multi-task adaptation of Large Language Models (LLMs) often replace whole attention/FFN layers with switch experts or append parallel expert branches, undermining parameter efficiency and limiting task specialization. We introduce LoRA-Mixer, a modular MoE framework that routes task-specific LoRA experts into the core projection matrices of the attention module, namely input and output linear layers, rather than primarily targeting FFN blocks. The design delivers fine-grained token-level specialization by fully exploiting the attention mechanism, while remaining drop-in compatible with Transformers and state-space models (SSMs), since linear projection layers are ubiquitous. To train robust routers from limited data while promoting stable, selective decisions and high expert reuse, LoRA-Mixer employs an adaptive Routing Specialization Loss (RSL) that jointly enforces global load balance and input-aware specialization via an entropy-shaping objective. The framework supports two regimes: (i) joint optimization of adapters and router with a differentiable hard-soft top-k routing scheme, and (ii) plug-and-play routing over frozen, pre-trained LoRA modules sourced from public repositories. Across 15 benchmarks, including MedQA, GSM8K, HumanEval, and GLUE, RSL-optimized LoRA-Mixer outperforms state-of-the-art routing and LoRA-MoE baselines while using 48 percent of their trainable parameters, with gains of 3.79, 2.90, and 3.95 percentage points on GSM8K, CoLA, and ARC-C, respectively. Cross-model transfer and adapter reuse experiments further demonstrate the approach's versatility and data efficiency. Our code is available at https://github.com/hustcselwb/LoRA-Mixer.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=GMP1S4R6Ke",
+  "arxiv": "https://arxiv.org/abs/2507.00029",
+  "pdf": "https://proceedings.iclr.cc/paper_files/paper/2026/file/18610cbcd1da57854aa05ebdc5cd3168-Paper-Conference.pdf",
+  "proceedings": "https://proceedings.iclr.cc/paper_files/paper/2026/hash/18610cbcd1da57854aa05ebdc5cd3168-Abstract-Conference.html",
+  "virtual": "https://iclr.cc/virtual/2026/poster/10010501",
+  "code": null
+ },
+ "license": "http://creativecommons.org/licenses/by/4.0/",
+ "img": "cc-by",
+ "image_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/images/iclr26-1422.png",
+ "thumb_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/thumbs/iclr26-1422.webp",
+ "figure_page": 1,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.8
+}

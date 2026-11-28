@@ -1,0 +1,48 @@
+{
+ "id": "icml26-0611",
+ "title": "Predictive Prefetching for Retrieval-Augmented Generation",
+ "authors": [
+  "Wuyang Zhang",
+  "Shichao Pei"
+ ],
+ "venue": "ICML 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "Deep Learning->Large Language Models",
+ "role": "prior-vs-ours",
+ "role2": "pipeline",
+ "claim": "Synchronous and parallel retrieval block generation or use stale queries; predicting future needs ahead of time yields aligned, zero-blocking retrieval.",
+ "layout": "3 stacked panels, left-to-right token timelines, color-coded retrieval bars beneath each",
+ "tags": [
+  "asynchronous-retrieval",
+  "prefetching",
+  "latency",
+  "rag",
+  "staleness"
+ ],
+ "style": [
+  "colorful",
+  "icon-heavy",
+  "text-heavy"
+ ],
+ "description": "Three horizontally stacked, rounded-box panels, each showing a left-to-right timeline of circular token nodes (T1 to T19) joined by arrows. Panel (a) Reactive RAG has hatched red 'IDLE (BLOCKED)' bars of 287ms where generation stalls, with blue Ret1 and Ret2 bars below and a 'Total blocking: 574ms' arrow. Panel (b) PipeRAG shows a shorter cold-start idle block, then orange tokens T13 to T19 and a dashed orange arrow marked '✗ Stale', with a caption explaining that the query was built from T12 context but used at T19. Panel (c) Ours has no idle blocks, only yellow diamond predictions P1 to P3 that issue blue retrievals for future tokens, and green 'Aligned' checkmarks, ending with 'Total blocking: 0ms'. Green and blue dominate, with red and orange marking problems.",
+ "caption": "Comparison of RAG architectures. (a) Synchronous RAG: generation blocks during each retrieval (287ms). (b) PipeRAG: retrieval runs in parallel but suffers from query staleness, since queries use outdated context (e.g., RET$_2$ at token 12 is applied at token 16 when context has shifted). (c) Ours: predictive prefetching anticipates future needs. At token 2, we predict token 5 will require retrieval and issue a query for token 5's anticipated context. Retrieved content arrives aligned with actual needs, reducing end-to-end latency by 43.5%.",
+ "caption_source": "latex",
+ "abstract": "Retrieval-Augmented Generation (RAG) improves factual grounding in large language models but suffers from substantial latency due to synchronous retrieval. While recent work explores asynchronous retrieval, existing approaches rely on heuristic coordination between retrieval and generation and assume stable information demands during decoding that often break in complex, multi-domain settings. In this paper, we propose an advanced asynchronous retrieval framework that enables predictive prefetching aligned with evolving information needs. The framework explicitly predicts when retrieval should be triggered and what information should be retrieved using three components, a retrieval predictor, a context monitor, and a query generator, by exploiting semantic precursors in generation dynamics that emerge several tokens before uncertainty becomes critical. Experiments on multiple benchmarks demonstrate up to 43.5% end-to-end latency reduction and 62.4% improvement in time-to-first-token, while maintaining answer quality comparable to synchronous RAG baselines.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=5a321ueqgs",
+  "arxiv": "https://arxiv.org/abs/2605.17989",
+  "pdf": "https://raw.githubusercontent.com/mlresearch/v306/main/assets/zhang26eu/zhang26eu.pdf",
+  "proceedings": "https://proceedings.mlr.press/v306/zhang26eu.html",
+  "virtual": "https://icml.cc/virtual/2026/poster/66231",
+  "code": null
+ },
+ "license": "http://creativecommons.org/licenses/by/4.0/",
+ "img": "cc-by",
+ "image_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/images/icml26-0611.png",
+ "thumb_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/thumbs/icml26-0611.webp",
+ "figure_page": 1,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.9
+}

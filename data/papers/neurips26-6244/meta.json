@@ -1,0 +1,50 @@
+{
+ "id": "neurips26-6244",
+ "title": "Skill-Adaptive Noise Scheduling for Diffusion Policies",
+ "authors": [
+  "Woo Kyung Kim",
+  "Gwangpyo Yoo",
+  "Eunyoung Park",
+  "Honguk Woo"
+ ],
+ "venue": "NeurIPS 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "Applications->Robotics",
+ "role": "teaser-result",
+ "role2": "analysis-finding",
+ "claim": "Different sub-tasks resolve their action dimensions at different denoising stages, so adapting the schedule per skill improves success over a fixed one.",
+ "layout": "3 panels, left-to-right; two heatmap panels, then a bar chart; red arrows",
+ "tags": [
+  "adaptive-noise-schedule",
+  "diffusion-policy",
+  "skill-conditioned",
+  "per-dimension",
+  "efficiency"
+ ],
+ "style": [
+  "plot",
+  "colorful",
+  "photo/real data"
+ ],
+ "description": "A wide figure with three panels. The two left panels, titled \"[Skill A] Approaching the target object\" and \"[Skill B] Grasping the object and move\", each show three simulator frames of a robot hand and a small object. Under the frames is a stack of four heatmap rows, one per action dimension (y-axis, x-axis, roll, yaw for Skill A; x-axis, z-axis, yaw, gripper for Skill B). The heatmaps use a viridis palette, with a bright yellow blob at the left that tapers to the right along the denoising step axis (9 to 1). Red arrows mark where each dimension converges. The arrows sit at different steps in each skill. The rightmost panel is a bar chart titled \"Performance Comparison\". It compares SkillDiffuser (blue) and SaND (orange) success rates on Contact-Rich (MimicGen) and Dexterous (DexMimicGen) tasks. SaND scores 64.0 and 64.1, against 52.3 and 51.1 for SkillDiffuser. The eye goes first to the red arrows, then to the tall orange bars.",
+ "caption": "Concept of $\\ours$: The first two panels visualize per-step denoising residuals along each action dimension for two different skills (approaching and grasping), illustrating that $\\ours$ learns distinct per-dimension denoising priorities for each skill. Red arrows mark the convergence point of each action dimension, showing that dimensions are resolved at distinct stages of the denoising process. The rightmost panel compares success rates of $\\ours$ with those of SkillDiffuser, which uses a fixed noise schedule, on contact-rich and dexterous manipulation tasks, showing consistent gains.",
+ "caption_source": "latex",
+ "abstract": "Recent advances in diffusion policies have demonstrated strong effectiveness when integrated into hierarchical skill-based learning frameworks, leveraging offline data to capture multimodal and temporally abstracted behaviors. However, prior approaches have rarely considered the diffusion process as a learnable component, adopting fixed noise schedules applied uniformly across skills, regardless of their distinct behavioral contexts. Such a design fundamentally limits the achievable performance, particularly for contact-rich and dexterous manipulation tasks where different skills exhibit distinct couplings between action dimensions. In this paper, we present a skill-adaptive noise diffusion framework (SaND) which introduces a learnable, skill-conditioned noise schedule that modulates the diffusion process per action dimension, adapting the noising dynamics to each skill. To prevent the learned noise schedule from collapsing into trivial solutions, we employ an auxiliary inverse objective that reconstructs the skill embedding from the Legendre coefficients of the derivative of the noise schedule, encouraging the schedules to remain skill-discriminative. This formulation naturally enables adaptive control over the denoising steps for each skill, where noise schedules are clustered in the Legendre coefficient space, and the appropriate number of denoising steps is determined at the point where reconstruction error abruptly increases. At inference, we identify each skill embedding's cluster from its noise schedule and apply the corresponding number of denoising steps, dedicating more compute to skills requiring fine-grained control and less to simpler ones. In simulation and on real robot hardware, SaND outperforms existing skill learning and planning baselines on contact-rich and dexterous manipulation tasks, achieving higher success rates while requiring fewer denoising steps.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=gy1X23GoMB",
+  "arxiv": "https://arxiv.org/abs/2611.30264",
+  "pdf": "https://arxiv.org/pdf/2611.30264",
+  "proceedings": null,
+  "virtual": "https://neurips.cc/virtual/2026/poster/150596",
+  "code": null
+ },
+ "license": "http://creativecommons.org/licenses/by/4.0/",
+ "img": "cc-by",
+ "image_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/images/neurips26-6244.png",
+ "thumb_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/thumbs/neurips26-6244.webp",
+ "figure_page": 1,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.5
+}

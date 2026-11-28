@@ -1,0 +1,51 @@
+{
+ "id": "neurips26-8862",
+ "title": "Efficient Agentic GPU Kernel Optimization with a Compact Domain-Specific Language and Speed-of-Light Guidance",
+ "authors": [
+  "Siva Kumar Sastry Hari",
+  "Vignesh Balaji",
+  "Sana Damani",
+  "Qijing Huang",
+  "Christos Kozyrakis"
+ ],
+ "venue": "NeurIPS 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "Optimization->Large Scale, Parallel and Distributed",
+ "role": "pipeline",
+ "role2": null,
+ "claim": "A compact DSL program is compiled through parsing, validation, and code emission stages into a final deployable kernel wrapper.",
+ "layout": "Boxes in 2 rows, left-to-right then looping back; dashed optional branch",
+ "tags": [
+  "compiler-pipeline",
+  "domain-specific-language",
+  "code-generation",
+  "gpu-kernels",
+  "lowering"
+ ],
+ "style": [
+  "text-heavy",
+  "colorful",
+  "minimal"
+ ],
+ "description": "A flowchart of rounded, pastel-colored boxes connected by arrows showing the compilation pipeline. The top row runs left to right. A blue input box shows kernel.dsl GEMM code with chained .with_* calls. A green 'Parse and Lower' box (Lark grammar to configuration IR) leads to a green 'Static Validation' box. These feed a large pink 'Emit Code + Wrapper' box containing a C++ namespace snippet. A dashed arrow labeled 'optional' drops from validation to a lower purple row. That row has three boxes: 'Emit CUTLASS Python API' (kernel.py), 'cutlass_cppgen', and 'Generated kernel.cu'. Labeled arrows ('send', 'emit') link them, and a dashed 'emit + wrap' arrow returns to the pink box. The boxes hold monospace code. The eye goes first to the blue input box at the top left.",
+ "caption": "$\\mu$CUTLASS compilation pipeline. The compiler parses and lowers a kernel.dsl program to a typed configuration IR, validates architecture and other constraints, and emits the CUTLASS C++ code in a wrapper header (ucutlass\\_hash.h). Optionally, it emits a CUTLASS Python API plan (kernel.py) and invokes cutlass\\_cppgen to produce kernel.cu, which is then wrapped into the final header.",
+ "caption_source": "latex",
+ "abstract": "LLM agents can optimize GPU kernels, but each candidate requires generation, compilation, correctness testing, and profiling. Our objective is to reduce the number of expensive attempts needed to find a correct, fast kernel. We study two complementary ways to improve this attempt efficiency by changing the representation that the agent writes in and adding a first-principles performance signal that estimates remaining headroom. We introduce $\\mu$CUTLASS, a compact in-context learnable DSL that exposes high-impact CUTLASS optimization choices while hiding template plumbing, and pair it with Speed-of-Light (SOL) guidance for search steering, budget allocation, and integrity checking. On 59 KernelBench problems on H100, switching GPT-5-mini from low-level code generation to $\\mu$CUTLASS changes a $0.40\\times$ geomean regression versus PyTorch into a $1.27\\times$ speedup. Adding SOL-guided steering, it reaches $1.56\\times$. Across model tiers, this combination lets weaker models match or exceed stronger raw-code baselines, and SOL-guided scheduling saves 19--43\\% of tokens while retaining at least 95\\% geomean speedup. We also show that integrity filtering is essential because, without SOL-assisted checks, reported speedups can be inflated by up to $1.9\\times$ by benchmark-gaming or PyTorch-only solutions.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=z71DjAr4OZ",
+  "arxiv": "https://arxiv.org/abs/2603.29010",
+  "pdf": "https://arxiv.org/pdf/2603.29010",
+  "proceedings": null,
+  "virtual": "https://neurips.cc/virtual/2026/poster/148269",
+  "code": null
+ },
+ "license": "http://arxiv.org/licenses/nonexclusive-distrib/1.0/",
+ "img": "none",
+ "image_url": null,
+ "thumb_url": null,
+ "figure_page": 5,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.95
+}

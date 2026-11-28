@@ -1,0 +1,48 @@
+{
+ "id": "neurips26-8324",
+ "title": "Full Fine-Tuning Is Not the Problem: Why Adam Fails and SGD Succeeds in Few-Shot CLIP Adaptation",
+ "authors": [
+  "Nairouz Mrabah",
+  "Ismail Ayed",
+  "Eric Granger"
+ ],
+ "venue": "NeurIPS 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "Theory->Domain Adaptation and Transfer Learning",
+ "role": "analysis-finding",
+ "role2": "teaser-result",
+ "claim": "Under identical conditions, adaptive optimizers collapse while plain SGD gives large gains, so the optimizer rather than the parameterization drives failure.",
+ "layout": "3 panels left-to-right by backbone, grouped bars over shot counts, hatched gain stacks",
+ "tags": [
+  "optimizer-comparison",
+  "few-shot",
+  "full-fine-tuning",
+  "adam-collapse",
+  "empirical-finding"
+ ],
+ "style": [
+  "plot",
+  "colorful"
+ ],
+ "description": "Three side-by-side bar charts, one per CLIP backbone (ViT-B32, ViT-B16, ViT-L14), share a Top-1 Accuracy (%) y-axis from 0 to 90. The x-axis shows shots per class (1, 2, 4, 8, 16). Each shot level has three grouped bars: orange Adam, blue SGD and green SGD+momentum. Adam bars are very low, roughly 10 to 48 percent. The SGD and SGD+momentum bars stay near the zero-shot level and are capped with blue or green diagonal-hatched segments for gains over CLIP zero-shot. Rotated labels such as +13.1% or +24.7% sit beside the hatched segments. A shared legend runs along the top. The eye goes first to the short orange bars next to the tall blue and green ones.",
+ "caption": "Average test-set accuracy using SGD, SGD with momentum, and Adam for few-shot CLIP adaptation over 11 datasets. Hatched labels report relative accuracy gains over zero-shot CLIP.",
+ "caption_source": "latex",
+ "abstract": "Few-shot CLIP adaptation is often treated as a parameterization problem. Full fine-tuning is assumed to overfit, so parameter-efficient fine-tuning (PEFT) methods are preferred. In this paper, we show that this conclusion conflates parameterization with optimization. Across 11 datasets, 3 CLIP backbones, and 5 shot levels, dense full fine-tuning with plain SGD outperforms representative PEFT methods under the reported evaluation protocol, whereas Adam/AdamW collapses. We trace this collapse to unreliable support-set preconditioning. The few-shot second moment systematically underestimates the corresponding full-data statistic, already at initialization. Adam's inverse-square-root normalization converts this error into an oversized adaptive update. Matching Adam's first-step update budget to SGD resolves most of the collapse, whereas numerator-side alignment does not explain the failure. Shampoo and SOAP also fail, so richer preconditioning alone does not resolve the problem. Theory formalizes how few-shot estimation error is amplified into unsafe updates. SGD succeeds because it avoids unreliable preconditioners and stays close to pretrained CLIP. Interpolation probes show low-loss connections along tested directions, and curvature probes show favorable directional curvature. These results identify optimizer-induced preconditioning, not dense full fine-tuning itself, as the main source of failure in few-shot CLIP adaptation.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=vMIIW94Dzm",
+  "arxiv": "https://arxiv.org/abs/2611.11152",
+  "pdf": "https://arxiv.org/pdf/2611.11152",
+  "proceedings": null,
+  "virtual": "https://neurips.cc/virtual/2026/poster/148745",
+  "code": null
+ },
+ "license": "http://arxiv.org/licenses/nonexclusive-distrib/1.0/",
+ "img": "none",
+ "image_url": null,
+ "thumb_url": null,
+ "figure_page": 1,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.6
+}

@@ -1,0 +1,49 @@
+{
+ "id": "neurips26-7302",
+ "title": "Geometry Matters in Packed 3D Attention",
+ "authors": [
+  "Amil Khan",
+  "Anantajit Subrahmanya",
+  "B.S. Manjunath"
+ ],
+ "venue": "NeurIPS 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "Deep Learning->Attention Mechanisms",
+ "role": "pipeline",
+ "role2": "concept",
+ "claim": "Decoupling memory layout from coordinate-based attention geometry via rotated keys and pooled summaries gives layout-invariant local-global attention.",
+ "layout": "5 numbered panels plus right panel, left-to-right, isometric cube icons throughout",
+ "tags": [
+  "attention",
+  "3d-volumes",
+  "positional-encoding",
+  "layout-invariance",
+  "local-global"
+ ],
+ "style": [
+  "icon-heavy",
+  "colorful",
+  "math-heavy"
+ ],
+ "description": "A wide figure with six bordered panels read left to right. Panel 1 shows a 3D grid of cubes (the token field) with one orange query token, then a Pack for Memory step showing scattered pink blocks, with a note that coordinates travel with each token. Panel 3 shows a 3D axis box with coordinates c_i = (z, y, x). Panel 4 shows axial RoPE: pink, green and blue cube stacks for the x, y and z axes, rotated in separate subspaces. The large teal panel 5 shows keys rotated before pooling into block summaries, values left unrotated, and an equation for the query-to-summary logit. The right panel shows a sparse 3D field view with local neighborhood, compressed summaries and the combination of the two. Purple, pink, green and teal are the main colors.",
+ "caption": "\\textbf{\\method{} separates memory layout from attention geometry.} Panels 1--2: a 3D token field may be packed in any memory order for efficient execution, but each token's grid coordinate \\(c_i=(z_i,y_i,x_i)\\) travels with it. Panels 3--4: axial RoPE rotates queries and keys by their coordinates, one subspace per axis, and leaves values unrotated, so query--key compatibility depends on the relative displacement \\(c_j-c_i\\), not on sequence position. Panel 5: the compressed branch rotates keys before pooling them into block summaries, so each query-to-summary logit is a weighted sum of query--key terms evaluated at the displacements of the tokens that formed the summary (Proposition [ref]). Right: each query (orange) attends exactly to its coordinate neighborhood (A) and to summaries across the field (B), combining exact local and compressed global context (C). The schematic draws one summary per block; the reported models add a second pooling stage and use the layouts described in \\S[ref].",
+ "caption_source": "latex",
+ "abstract": "Packing a 3D field into a token sequence gives every token two indices: a coordinate in the sample and a position in memory. Raster, Morton, and block-contiguous layouts change the position and leave the coordinate alone. A positional mechanism indexed by sequence position can therefore learn the memory layout rather than the object, and accuracy on the training layout cannot reveal that it has. We introduce PACK3D, a local-global attention operator that separates memory layout from attention geometry. It attends exactly within a coordinate-defined neighborhood, sees the whole field through pooled summaries, and rotates queries and keys with axial RoPE at token-grid coordinates. Because keys are rotated before pooling, each query-to-summary logit is a weighted sum of query-key terms evaluated at the summarized tokens' displacements from the query. The operator is equivariant to any repacking that carries coordinates, neighborhoods, summary memberships, and within-block slots along with the tokens. When evaluated on Allen WTC-11 microscopy at 262k tokens, PACK3D and a matched packed-sequence RoPE control reach comparable Dice on the training layout. Repacking the same validation volumes then costs the packed control 0.048 macro Dice on average, with a loss in all six seeds, while PACK3D changes by 0.0001. On MSD Heart and Spleen, sequence indexing again changes more predictions under repacking, at little cost in Dice. PACK3D also exceeds a parameter-matched 3D U-Net by 0.009 Dice over six seeds, and a full PACK3D layer runs within 7-31% of window-attention latency while adding a global pathway. Geometry, not storage order, should index attention over packed 3D fields. Code is available at https://github.com/amilworks/Pack3D.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=oLN3S4iIZn",
+  "arxiv": "https://arxiv.org/abs/2610.38694",
+  "pdf": "https://arxiv.org/pdf/2610.38694",
+  "proceedings": null,
+  "virtual": "https://neurips.cc/virtual/2026/poster/149667",
+  "code": "https://amilworks.github.io/Pack3D/"
+ },
+ "license": "http://creativecommons.org/licenses/by-nc-sa/4.0/",
+ "img": "cc-by-nc-sa",
+ "image_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/images/neurips26-7302.png",
+ "thumb_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/thumbs/neurips26-7302.webp",
+ "figure_page": 1,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.8
+}

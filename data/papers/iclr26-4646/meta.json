@@ -1,0 +1,49 @@
+{
+ "id": "iclr26-4646",
+ "title": "Chunking the Critic: A Transformer-based Soft Actor-Critic with N-Step Returns",
+ "authors": [
+  "Dong Tian",
+  "Onur Celik",
+  "Gerhard Neumann"
+ ],
+ "venue": "ICLR 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "Reinforcement Learning->Function Approximation",
+ "role": "pipeline",
+ "role2": "teaser-result",
+ "claim": "Conditioning the critic on short action sequences via a causal Transformer yields markedly higher success than step-based and episodic baselines.",
+ "layout": "2 panels, left-to-right: architecture diagram, then learning-curve plot with confidence bands",
+ "tags": [
+  "transformer-critic",
+  "n-step-returns",
+  "reinforcement-learning",
+  "sequence-modeling",
+  "sample-efficiency"
+ ],
+ "style": [
+  "plot",
+  "colorful",
+  "minimal"
+ ],
+ "description": "Two side-by-side panels. The left panel is a block diagram read bottom to top. A row of input tokens sits at the bottom: one green box for the state s_t, then blue boxes for actions a_t, a_{t+1}, a_{t+2}, an ellipsis, and a_{t+n}. Arrows lead up into a large gray rounded box labeled 'Transformer Critic (Causality Mask)'. Further arrows lead to a row of light-cyan output boxes: Q(s_t,a_t), Q(s_t,a_{t:t+1}), Q(s_t,a_{t:t+2}), an ellipsis, and Q(s_t,a_{t:t+n}). The right panel is a line plot of Meta-World ML1 success-rate IQM against steps (0 to 5×10^6). It has shaded confidence bands and a legend of eight methods. The pink T-SAC curve is highlighted, rises fastest and ends near 0.85, well above the other methods. Captions sit below each panel.",
+ "caption": "T–SAC overview and aggregate Meta-World ML1 results.",
+ "caption_source": "latex",
+ "abstract": "We introduce a sequence-conditioned critic for Soft Actor-Critic (SAC) that models trajectory context with a lightweight Transformer and trains on aggregated $N$-step targets. Unlike prior approaches that (i) score state-action pairs in isolation or (ii) rely on actor-side action chunking to handle long horizons, our method strengthens the critic itself by conditioning on short trajectory segments and integrating multi-step returns -- without importance sampling (IS). The resulting sequence-aware value estimates capture the critical temporal structure for extended-horizon and sparse-reward problems. On local-motion benchmarks, we further show that freezing critic parameters for several steps makes our update compatible with CrossQ's core idea, enabling stable training \\emph{without} a target network. Despite its simplicity -- a 2-layer Transformer with 128-256 hidden units and a maximum update-to-data ratio (UTD) of $1$ -- the approach consistently outperforms standard SAC and strong off-policy baselines, with particularly large gains on long-trajectory control. These results highlight the value of sequence modeling and $N$-step bootstrapping on the critic side for long-horizon reinforcement learning.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=rb5eTktqbc",
+  "arxiv": "https://arxiv.org/abs/2503.03660",
+  "pdf": "https://proceedings.iclr.cc/paper_files/paper/2026/file/c33cd281f8cd784626a57de340e43fe4-Paper-Conference.pdf",
+  "proceedings": "https://proceedings.iclr.cc/paper_files/paper/2026/hash/c33cd281f8cd784626a57de340e43fe4-Abstract-Conference.html",
+  "virtual": "https://iclr.cc/virtual/2026/poster/10007136",
+  "code": "https://github.com/DongTian95/T-SAC-Official"
+ },
+ "license": "http://arxiv.org/licenses/nonexclusive-distrib/1.0/",
+ "img": "none",
+ "image_url": null,
+ "thumb_url": null,
+ "figure_page": 0,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.6
+}

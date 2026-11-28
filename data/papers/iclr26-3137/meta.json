@@ -1,0 +1,49 @@
+{
+ "id": "iclr26-3137",
+ "title": "Speculative Speculative Decoding",
+ "authors": [
+  "Tanishq Kumar",
+  "Tri Dao",
+  "Avner May"
+ ],
+ "venue": "ICLR 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": null,
+ "role": "prior-vs-ours",
+ "role2": "teaser-result",
+ "claim": "Sequential speculate-then-verify leaves one component idle; ours overlaps them by precomputing speculations for likely outcomes, yielding higher throughput.",
+ "layout": "3 panels, left-to-right: timeline, parallel timeline with tree, bar chart",
+ "tags": [
+  "speculative-decoding",
+  "parallelism",
+  "inference-efficiency",
+  "latency",
+  "throughput"
+ ],
+ "style": [
+  "colorful",
+  "plot",
+  "icon-heavy"
+ ],
+ "description": "Three panels. Left: a vertical sequential timeline for ordinary speculative decoding. A single arrow runs down through Speculate/Draft, Verify/Target, then Speculate/Draft again. Small node chains show a draft, verification check and cross marks, and a new red draft. Center: the proposed method as two parallel vertical timelines, Target on the left and Draft on the right, joined by horizontal arrows that pass tokens and verification results. The draft side shows a branching tree of precomputed speculations labelled Predict & Speculate. One highlighted path is labelled Successful Prediction!. Right: a bar chart of decode tokens/s for AR, SD and SSD. Bars are green (vLLM), red (SGLang) and blue (Ours). Speedup labels run from 1.0x up to 4.0x for SSD. The eye goes first to the tall blue bar and the tree.",
+ "caption": "(Left) Ordinary speculative decoding (SD) requires the verifier to wait idly for the draft to speculate. (Center) In our algorithm, speculation runs on a separate device (1$\\times$H100) in parallel with verification; the draft precomputes speculations for many possible verification outcomes and returns the speculated tokens immediately if one occurs. (Right) End-to-end performance of SSD, SD, and autoregressive (AR) decoding averaged over four datasets spanning math, code and chat, for Llama-3.1-70B on TP=4 H100s, batch size 1, greedy decoding, Llama-3.2-1B draft model.",
+ "caption_source": "latex",
+ "abstract": "Autoregressive decoding is bottlenecked by its sequential nature. Speculative decoding has become a standard way to accelerate inference by using a fast draft model to predict upcoming tokens from a slower target model, and then verifying them in parallel with a single target model forward pass. However, speculative decoding itself relies on a sequential dependence between speculation and verification. We introduce speculative speculative decoding (SSD) to parallelize these operations. While a verification is ongoing, the draft model predicts likely verification outcomes and prepares speculations pre-emptively for them. If the actual verification outcome is then in the predicted set, a speculation can be returned immediately, eliminating drafting overhead entirely. We identify three key challenges presented by speculative speculative decoding, and suggest principled methods to solve each. The result is Saguaro, an optimized SSD algorithm. Our implementation is on average 30% faster than optimized speculative decoding baselines and up to 5x faster than autoregressive decoding with open source inference engines.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=aL1Wnml9Ef",
+  "arxiv": "https://arxiv.org/abs/2603.03251",
+  "pdf": "https://proceedings.iclr.cc/paper_files/paper/2026/file/1b96f01343ff10150e6719eb163e1536-Paper-Conference.pdf",
+  "proceedings": "https://proceedings.iclr.cc/paper_files/paper/2026/hash/1b96f01343ff10150e6719eb163e1536-Abstract-Conference.html",
+  "virtual": "https://iclr.cc/virtual/2026/poster/10008711",
+  "code": null
+ },
+ "license": "http://creativecommons.org/licenses/by/4.0/",
+ "img": "cc-by",
+ "image_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/images/iclr26-3137.png",
+ "thumb_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/thumbs/iclr26-3137.webp",
+ "figure_page": 1,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.6
+}

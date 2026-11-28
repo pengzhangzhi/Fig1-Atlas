@@ -1,0 +1,50 @@
+{
+ "id": "iclr26-0080",
+ "title": "LeSTD: LLM Compression via Learning-based Sparse Tensor Decomposition",
+ "authors": [
+  "Yi Li",
+  "Zhichun Guo",
+  "Miao Yin",
+  "Bingzhe Li"
+ ],
+ "venue": "ICLR 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "Deep Learning->Algorithms",
+ "role": "analysis-finding",
+ "role2": null,
+ "claim": "A basis learned from one component captures its own energy but transfers poorly to others, and sharing improves as more components are included.",
+ "layout": "2x3 grid of line plots, shared legend on top, rows are models",
+ "tags": [
+  "subspace-sharing",
+  "low-rank",
+  "empirical-diagnostic",
+  "shared-basis",
+  "compression"
+ ],
+ "style": [
+  "plot",
+  "colorful",
+  "minimal"
+ ],
+ "description": "A six-panel grid of line plots, with two rows (OPT-6.7B on top, Llama-2-7B on bottom) and three columns (basis fit on one, two or three attention heads). A shared legend above the grid names three series: self (orange circles), intra-layer (blue triangles) and inter-layer (green squares). Each panel plots explained energy (0 to 1) against rank r from 0 to about 1024. The orange self curve rises quickly toward 1.0 in every panel. In the one-head panels (a, d) the blue and green curves stay low and plateau near 0.2 and 0.15. In the two- and three-head panels (b, c, e, f) the blue curve climbs to about 0.4–0.6, while green stays near 0.27. Panel letters sit inside each plot. Bold column labels under the bottom row give the number of heads. The eye goes first to the gap between the orange curve and the other two.",
+ "caption": "Subspace-sharing diagnostic on OPT-6.7B and Llama2-7B across multiple heads. For each column, we compute a rank-r orthonormal basis from the concatenated weights [W Q|W K|W V |(W O)⊤] of layer-15 using: (Figure (a),(d)) one head (head 0), (Figure (b), (e)) two heads (heads 0, 1), and (Figure (c), (f)) three heads (heads 0, 1, and 2), and evaluate the explained energy on self, intra-layer (other heads in layer 15), and inter-layer (layer-25 head 0), with r ∈{2, 4, 8, 16, 32, 64, 128, 256, 512, 1024}. The top row shows OPT-6.7B and the bottom row shows Llama2-7B.",
+ "caption_source": "pdf",
+ "abstract": "Large Language Models (LLMs) achieve remarkable success, but their massive parameter counts present significant deployment challenges. Post-training tensor decomposition offers a promising, data-free compression strategy by exploiting structural redundancies within the model weights. However, existing tensor methods face a critical limitation: the dense core tensor bottleneck. While these methods find a shared low-rank basis, the resulting dense core tensor grows polynomially with the chosen ranks, becoming a new storage bottleneck and capping the maximum achievable compression. To overcome this fundamental barrier, we introduce LeSTD (\\textbf{Le}arning-based \\textbf{S}parse \\textbf{T}ensor \\textbf{D}ecomposition), a novel two-stage framework for the high-ratio compression of Multi-Head Attention (MHA) blocks. LeSTD first employs an iterative algorithm to identify a high-quality, and shared orthogonal basis that jointly represents all attention heads. Subsequently, it introduces a principled, importance-based pruning algorithm that learns an ultra-sparse core tensor by systematically removing the least salient elements and refitting the remaining ones to preserve model fidelity. By decoupling basis optimization from core sparsification, LeSTD breaks the compression ceiling imposed by the dense core, enabling significantly higher compression ratios than prior methods.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=0oHaazjMUX",
+  "arxiv": null,
+  "pdf": "https://proceedings.iclr.cc/paper_files/paper/2026/file/d695f1d2b37df1310f3b9d2bbc7e0a2f-Paper-Conference.pdf",
+  "proceedings": "https://proceedings.iclr.cc/paper_files/paper/2026/hash/d695f1d2b37df1310f3b9d2bbc7e0a2f-Abstract-Conference.html",
+  "virtual": "https://iclr.cc/virtual/2026/poster/10011895",
+  "code": null
+ },
+ "license": null,
+ "img": "none",
+ "image_url": null,
+ "thumb_url": null,
+ "figure_page": 1,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.9
+}

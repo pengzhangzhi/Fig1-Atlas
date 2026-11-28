@@ -1,0 +1,55 @@
+{
+ "id": "iclr26-3321",
+ "title": "When LLMs get significantly worse: A statistical approach to detect model degradations",
+ "authors": [
+  "Jonas Kübler",
+  "Kailash Budhathoki",
+  "Matthäus Kleindessner",
+  "Xiong Zhou",
+  "Junming Yin",
+  "Ashish Khetan",
+  "George Karypis"
+ ],
+ "venue": "ICLR 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "Deep Learning->Generative Models and Autoencoders",
+ "role": "analysis-finding",
+ "role2": "prior-vs-ours",
+ "claim": "Treating paired accuracy estimates as independent inflates variance and hides small degradations; per-sample paired testing reveals them as significant.",
+ "layout": "3 panels, left-to-right, shared style, red X crossing out middle panel",
+ "tags": [
+  "hypothesis-testing",
+  "paired-comparison",
+  "statistical-significance",
+  "model-degradation",
+  "uncertainty"
+ ],
+ "style": [
+  "plot",
+  "minimal",
+  "colorful"
+ ],
+ "description": "Three side-by-side probability density plots that step through the paper's statistical argument. The left panel, titled Individual Model Accuracies, shows two heavily overlapping Gaussians: a red one for the optimized model, centered near 41.6%, and a blue one for the baseline, centered near 42.4%. Dashed vertical lines mark the means. The middle panel, titled Naive Variance, shows a wide green bell curve of the accuracy difference. A large red X is drawn across it to mark it as the wrong approach, and the observed difference falls inside the shaded acceptance region. The right panel, titled One-Sided McNemar Test, shows a narrow green bell curve centered at 0.5 degradation probability. The observed value, marked by a red dashed line near 0.54, lies far outside the shaded region, so it is significant. The red X in the middle panel draws the eye first.",
+ "caption": "Detecting accuracy degradation on Llama-3.1 8B Instruct based on empirical estimates and their uncertainties. The optimized model $\\Tilde{M}$ quantizes the KV cache and the attention and results in an empirical accuracy drop of $0.79%$ over different datasets ([ref]). When naively treating the accuracy estimates as independent, the sampling error of the difference is overestimated [ref], hindering the detection of actual accuracy differences (middle). Instead, we advocate to compare the per-sample scores. Our proposed exact one-sided McNemar's test focuses on the degradation probability. In cases where there is no accuracy difference, the degradation probability is $0.5$ and we can exactly characterize its empirical distribution. This allows to detect small accuracy degradations as statistically significant, here with a $p$-value of 1.69e-05 (right).",
+ "caption_source": "latex",
+ "abstract": "Minimizing the inference cost and latency of foundation models has become a crucial area of research. Optimization approaches include theoretically lossless methods and others without accuracy guarantees like quantization. In all of these cases it is crucial to ensure that the model quality has not degraded. However, even at temperature zero, model generations are not necessarily robust even to theoretically lossless model optimizations due to numerical errors. We thus require statistical tools to decide whether a finite-sample accuracy deviation is an evidence of a model's degradation or whether it can be attributed to (harmless) noise in the evaluation. We propose a statistically sound hypothesis testing framework based on McNemar's test allowing to efficiently detect model degradations, while guaranteeing a controlled rate of false positives. The crucial insight is that we have to confront the model scores on each sample, rather than aggregated on the task level. Furthermore, we propose three approaches to aggregate accuracy estimates across multiple benchmarks into a single decision. We provide an implementation on top of the largely adopted open source LM Evaluation Harness and provide a case study illustrating that the method correctly flags degraded models, while not flagging model optimizations that are provably lossless. We find that with our tests even empirical accuracy degradations of 0.3% can be confidently attributed to actual degradations rather than noise.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=cM3gsqEI4K",
+  "arxiv": "https://arxiv.org/abs/2602.10144",
+  "pdf": "https://proceedings.iclr.cc/paper_files/paper/2026/file/70de9e3948645a1be2de657f14d85c6d-Paper-Conference.pdf",
+  "proceedings": "https://proceedings.iclr.cc/paper_files/paper/2026/hash/70de9e3948645a1be2de657f14d85c6d-Abstract-Conference.html",
+  "virtual": "https://iclr.cc/virtual/2026/poster/10008517",
+  "code": null
+ },
+ "license": "http://creativecommons.org/licenses/by/4.0/",
+ "img": "cc-by",
+ "image_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/images/iclr26-3321.png",
+ "thumb_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/thumbs/iclr26-3321.webp",
+ "figure_page": 3,
+ "qc_flags": [
+  "low-role-confidence"
+ ],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.4
+}

@@ -1,0 +1,54 @@
+{
+ "id": "neurips26-1872",
+ "title": "A World Model of Radiologist Reading for Medical Image Representation Learning",
+ "authors": [
+  "Yiwei Li",
+  "Zihao Wu",
+  "huaqin zhao",
+  "Yifan Zhou",
+  "Chao Cao",
+  "Dajiang Zhu",
+  "Tianming Liu",
+  "Lin Zhao"
+ ],
+ "venue": "NeurIPS 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "Computer Vision->Vision Models & Multimodal",
+ "role": "pipeline",
+ "role2": null,
+ "claim": "Learning from expert gaze by predicting the next fixated representation, plus completing unvisited regions, yields features that serve both scanpath and diagnosis tasks.",
+ "layout": "4 panels A–D, left-to-right with a lower branch, dashed module boxes",
+ "tags": [
+  "world-model",
+  "autoregressive",
+  "latent-prediction",
+  "eye-tracking",
+  "self-supervised"
+ ],
+ "style": [
+  "icon-heavy",
+  "colorful",
+  "text-heavy"
+ ],
+ "description": "A four-part pipeline diagram on a white background with dashed module boxes and pastel blue, peach and yellow blocks. Panel A (left) shows a chest radiograph with numbered fixation points 1–7 connected by arrows. Below it, a peach visual-encoder trapezoid leads to a grid of gray image patches, with the visited ones highlighted in blue. Panel B (top middle) is the next-fixation prediction branch. Visited patch tokens go into a fixation embedder, a stack of visual patch token, spatial embedding, temporal embedding and duration feature. The result feeds an autoregressive predictor drawn as a row of e1…eL tokens with curved arrows from the prefix to the masked e_i. This produces a gaze-context representation shown as a column of blue tokens. Panel C (bottom middle) is the spatial completion branch. Unvisited patches go through query formation with learnable tokens, then a cross-attention decoder with Q, K and V, and end in a spatial completion loss. Panel D (right) shows a scanpath decoder producing a predicted scanpath, and a linear probe producing a predicted label.",
+ "caption": "GazeWorld overview. After the chest radiograph and radiologist fixation sequence are processed in Part A, the image is converted into patch-level semantic tokens and the patch grid is divided into visited and unvisited regions. In Part B, visited patch tokens are combined with spatial, temporal, and duration information by the fixation embedder, and an autoregressive predictor performs latent-space prediction of the next expert-fixated representation from the prefix context. The resulting gaze-context representation is then used in Part C, where unvisited patch queries are formed from learnable tokens and spatial embeddings and completed through a cross-attention decoder. Finally, Part D evaluates the representations via scanpath decoding and diagnostic linear probing.",
+ "caption_source": "latex",
+ "abstract": "Radiologist eye-tracking data provide a rich record of how experts search, compare, and accumulate evidence during image reading; yet, existing methods exploit this signal only partially, either as a static spatial prior or as an auxiliary prediction target decoupled from diagnosis. We propose GazeWorld, a medical imaging world model that treats the image as the world and the radiologist's fixation sequence as a trajectory through it. GazeWorld autoregressively predicts the latent representation of the next fixated patch from all previously visited ones, while a spatial-completion branch covers unvisited regions. At inference, GazeWorld generates a sequence of patch representations from the image alone without requiring real gaze data. Frozen GazeWorld features achieve state-of-the-art diagnostic accuracy across all nine supervised settings on CheXpert, RSNA Pneumonia, and SIIM-ACR Pneumothorax, as well as the highest zero-shot accuracy on all three benchmarks. On the GazeSearch benchmark, a generic decoder trained on the same frozen features outperforms the purpose-built LogitGaze-Med by over 16\\% in ScanMatch and 22\\% in SED, despite not being explicitly trained to predict gaze. GazeWorld demonstrates that modeling how experts read, not just what they conclude, offers a promising pretraining paradigm for medical imaging AI.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=DJzM2q9amM",
+  "arxiv": "https://arxiv.org/abs/2605.23992",
+  "pdf": "https://arxiv.org/pdf/2605.23992",
+  "proceedings": null,
+  "virtual": "https://neurips.cc/virtual/2026/poster/154476",
+  "code": "levyisthebest.github.io/gazeworld"
+ },
+ "license": "http://creativecommons.org/licenses/by/4.0/",
+ "img": "cc-by",
+ "image_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/images/neurips26-1872.png",
+ "thumb_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/thumbs/neurips26-1872.webp",
+ "figure_page": 3,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.95
+}

@@ -1,0 +1,55 @@
+{
+ "id": "icml26-3322",
+ "title": "$V_0$: A Generalist Value Model for Any Policy at State Zero",
+ "authors": [
+  "Yi-Kai Zhang",
+  "Zhiyuan Yao",
+  "Hongyan Hao",
+  "Yueqing Sun",
+  "Qi GU",
+  "Hui Su",
+  "Xunliang Cai",
+  "De-Chuan Zhan",
+  "Han-Jia Ye"
+ ],
+ "venue": "ICML 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "Deep Learning->Large Language Models",
+ "role": "prior-vs-ours",
+ "role2": "pipeline",
+ "claim": "Prior value models need continual synchronous updates to track an evolving policy; ours conditions on history in-context with no parameter updates.",
+ "layout": "2 stacked panels, left-to-right timelines, shared training-steps axis, color-coded contrast",
+ "tags": [
+  "in-context-learning",
+  "value-model",
+  "actor-critic",
+  "efficiency",
+  "frozen-model"
+ ],
+ "style": [
+  "colorful",
+  "icon-heavy",
+  "minimal"
+ ],
+ "description": "Two horizontal timelines stacked vertically, each ending in a 'Training Steps' arrow. Panel (a), 'Coupled Value Model in Actor-Critic (e.g., PPO)', shows grey dashed policy blocks π1, π2, π3 on the upper track. Below them, orange-gradient value blocks V^π0, V^π1, V^π2 and V^π3 alternate with 'infer' and 'update' arrows. Flame icons mark parameters that are being trained. Panel (b), 'V0: Generalist Value Model via In-Context Prediction', replaces these with light-blue frozen boxes V(C_π, x). Snowflake icons mark the frozen weights. Dotted and dashed arrows feed the policy's history context into each box. The orange versus blue contrast and the flame versus snowflake icons carry the comparison. Money-bag icons at the left mark the cost.",
+ "caption": "Comparison of Training Paradigms: Traditional Value Model vs. $V_{0}$. Top: The traditional Actor-Critic paradigm (e.g., PPO) suffers from a coupling dilemma, where the value model $V^{\\pi}$ requires continuous, synchronous parameter updates to track the evolving policy $\\pi$. Bottom: Our proposed $V_{0}$ reframes value estimation as In-Context Learning (ICL). By treating historical instruction-performance pairs $\\mathcal{C}_{\\pi}$ as explicit context, $V_{0}$ perceives policy capability shifts through a single forward pass.",
+ "caption_source": "latex",
+ "abstract": "Policy gradient methods rely on a baseline to measure the relative advantage of an action, ensuring the model reinforces behaviors that outperform its current average capability. In the training of Large Language Models (LLMs) using Actor-Critic methods (e.g., PPO), this baseline is typically estimated by a Value Model (Critic) often as large as the policy model itself. However, as the policy continuously evolves, the value model requires expensive, synchronous incremental training to accurately track the shifting capabilities of the policy. To avoid this overhead, Group Relative Policy Optimization (GRPO) eliminates the coupled value model by using the average reward of a group of rollouts as the baseline; yet, this approach necessitates extensive sampling to maintain estimation stability. In this paper, we propose $V_0$, a Generalist Value Model capable of estimating the expected performance of any model on unseen prompts without requiring parameter updates. We reframe value estimation by treating the policy's dynamic capability as an explicit context input; specifically, we leverage a history of instruction-performance pairs to dynamically profile the model, departing from the traditional paradigm that relies on parameter fitting to perceive capability shifts. Focusing on value estimation at State Zero (i.e., the initial prompt, hence $V_0$), our model serves as a critical resource scheduler. During GRPO training, $V_0$ predicts success rates prior to rollout, allowing for efficient sampling budget allocation; during deployment, it functions as a router, dispatching instructions to the most cost-effective and suitable model. Empirical results demonstrate that $V_0$ significantly outperforms heuristic budget allocation and achieves a Pareto-optimal trade-off between performance and cost in LLM routing tasks.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=VYTU8l8WO9",
+  "arxiv": "https://arxiv.org/abs/2602.03584",
+  "pdf": "https://raw.githubusercontent.com/mlresearch/v306/main/assets/zhang26hu/zhang26hu.pdf",
+  "proceedings": "https://proceedings.mlr.press/v306/zhang26hu.html",
+  "virtual": "https://icml.cc/virtual/2026/poster/63604",
+  "code": "https://now-join-us.github.io/V0"
+ },
+ "license": "http://arxiv.org/licenses/nonexclusive-distrib/1.0/",
+ "img": "none",
+ "image_url": null,
+ "thumb_url": null,
+ "figure_page": 1,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.85
+}

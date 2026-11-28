@@ -1,0 +1,51 @@
+{
+ "id": "icml26-2652",
+ "title": "Multilingual Unlearning in LLMs: Transfer, Dynamics, and Reversibility",
+ "authors": [
+  "Chaoyi Xiang",
+  "Olga Ohrimenko",
+  "Benjamin Rubinstein",
+  "Lea Frermann"
+ ],
+ "venue": "ICML 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "Social Aspects->Privacy",
+ "role": "analysis-finding",
+ "role2": null,
+ "claim": "Cross-lingual representations stay aligned in early layers and diverge only in late layers, so changes concentrate in later decoding.",
+ "layout": "2x3 grid of line plots, shared axes, per-language colored curves with confidence bands",
+ "tags": [
+  "layer-wise-analysis",
+  "representation-similarity",
+  "cross-lingual",
+  "unlearning",
+  "empirical-trend"
+ ],
+ "style": [
+  "plot",
+  "colorful"
+ ],
+ "description": "A grid of line plots, two rows by three columns. The last column is cut off at the right edge. Every panel plots cosine similarity (y-axis, about 0.3 to 1.0) against layer index (x-axis, 0 to about 28). Colored curves with light shaded confidence bands show languages: Ch (red), De (green), En (blue, bottom row only), Ru (purple) and Tu (orange). Top-row panels are titled 'Base Model', 'FT English' and a truncated 'FT…'. They compare an English question with its translations. Bottom-row panels are titled 'vs Random', 'vs Base Model' and a truncated 'vs Ba…'. They compare across models. In almost every panel, similarity stays high (0.9–1.0) through roughly layer 19. It then drops sharply in the final layers, with Ch and Ru falling lowest (to about 0.3 in some panels). A legend box sits at the lower left of the first column's panels.",
+ "caption": "Layer-wise cosine similarity of final-token hidden states $h_m^{(l)}(x)$. { Top row: cross-language comparison} between embeddings of an English question and its translation (Ch, De, Ru, Tu) in the same model (Qwen2.5-7B variants; see panel titles). FT = fine-tuning, UN = unlearning and Cross-lingual prompting means that for non-English questions, the model is instructed to answer in English. Bottom row: cross-model comparison within each column between models indicated in the top panel title and bottom panel title. E.g., the bottom right panel compares representations in the unlearned English vs. the fine-tuned English model. Curves show the mean across questions, shaded regions denote 95% confidence intervals.",
+ "caption_source": "latex",
+ "abstract": "Large language models (LLMs) can memorize sensitive facts, motivating unlearning methods that remove targeted knowledge without costly retraining. However, unlearning research remains heavily English-centric. We study multilingual unlearning by extending the TOFU benchmark to five languages, and fine-tune, unlearn, and query our models with different permutations of languages. We find that unlearning transfer, the ability of an unlearned model to \"forget\" facts in languages other than the unlearning language, is highly variable: e.g., it is strongest between languages sharing scripts and families, and we show that the unlearning language predicts which query languages are most likely to yield the strongest transfer. Layer-wise analysis reveals that unlearning leaves the shared cross-lingual latent space largely intact in early layers, instead operating primarily in later decoding layers. This suggests that unlearning does not truly erase knowledge, but rather induces superficial suppression. Exploiting this structure, a single inference-time steering direction reverses much of this suppression across languages, recovering 50% (Qwen) and 90% (Gemma) of the unlearned knowledge.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=PQqbcFehs4",
+  "arxiv": "https://arxiv.org/abs/2606.03291",
+  "pdf": "https://raw.githubusercontent.com/mlresearch/v306/main/assets/xiang26b/xiang26b.pdf",
+  "proceedings": "https://proceedings.mlr.press/v306/xiang26b.html",
+  "virtual": "https://icml.cc/virtual/2026/poster/64258",
+  "code": "https://github.com/MLCY1/multilingual-unlearning-in-llms"
+ },
+ "license": "http://arxiv.org/licenses/nonexclusive-distrib/1.0/",
+ "img": "none",
+ "image_url": null,
+ "thumb_url": null,
+ "figure_page": 6,
+ "qc_flags": [
+  "bad-crop"
+ ],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.9
+}

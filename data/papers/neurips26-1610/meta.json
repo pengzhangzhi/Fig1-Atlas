@@ -1,0 +1,58 @@
+{
+ "id": "neurips26-1610",
+ "title": "Continuous Latent Diffusion Language Model",
+ "authors": [
+  "Hongcan Guo",
+  "Qinyu Zhao",
+  "Yian Zhao",
+  "Shen Nie",
+  "Rui Zhu",
+  "Qiushan Guo",
+  "Feng Wang",
+  "Tao Yang",
+  "Hengshuang Zhao",
+  "Guoqiang Wei",
+  "Yan Zeng"
+ ],
+ "venue": "NeurIPS 2026",
+ "tier": "spotlight",
+ "track": "main",
+ "topic": "Deep Learning->Generative Models and Autoencoders",
+ "role": "pipeline",
+ "role2": null,
+ "claim": "A multi-stage pipeline first learns a stable latent text space, then trains a diffusion prior over it, then decodes efficiently with caching.",
+ "layout": "3 panels, left-to-right: stage 1, large stage 2 with attention-mask inset, inference",
+ "tags": [
+  "latent-diffusion",
+  "multi-stage-training",
+  "text-generation",
+  "non-autoregressive",
+  "kv-cache"
+ ],
+ "style": [
+  "colorful",
+  "icon-heavy",
+  "math-heavy",
+  "text-heavy"
+ ],
+ "description": "A wide three-panel diagram with dashed borders. The left panel, Training Stage 1, is a vertical stack: a masked token sequence goes into a pink Text VAE Encoder, then a clean/mask-mix latent block, then a Text VAE Decoder, and ends in a reconstructed token row marked with green checks and red crosses. Dashed red arrows label the reconstruction, KL and BERT losses. The large middle panel, Training Stage 2, is mostly blue and purple. It shows a Text VAE Encoder, clean latent, noise injection, Diffusion Transformer Blocks (block causal), denoised latent, and a Text VAE Decoder. A wide pink banner carries the VAE loss equation, and a reference encoder branch feeds a diffusion MSE loss. Insets show notation and a block-causal attention-mask grid. Flame and snowflake icons mark which modules are trained and which are frozen. The right panel, Inference Stage, is a vertical flow from prefix prompt through encoder, noised latent and DiT with a KV cache to decoder and output text, with a blue arrow pointing up.",
+ "caption": "The Overall Workflow of Cola DLM. Detailed illustration of the training and inference pipeline of Cola DLM. Training Stage 1 shows Text VAE pretraining with reconstruction, BERT, and KL losses. Training Stage 2 shows joint pretraining of the Text VAE and Text DiT with gradient control for stable optimization, where a specialized block-causal mechanism is adopted in the DiT. Inference Stage illustrates the decoding process with KV cache.",
+ "caption_source": "pdf",
+ "abstract": "Large language models have achieved remarkable success under the autoregressive paradigm, yet high-quality text generation need not be tied to a fixed left-to-right order. Existing alternatives still struggle to jointly achieve generation efficiency, scalable representation learning, and effective global semantic modeling. We propose Cola DLM, a hierarchical latent diffusion language model that frames text generation through hierarchical information decomposition. Cola DLM first learns a stable text-to-latent mapping with a Text VAE, then models a global semantic prior in continuous latent space with a block-causal DiT, and finally generates text through conditional decoding. From a unified Markov-path perspective, its diffusion process performs latent prior transport rather than token-level observation recovery, thereby separating global semantic organization from local textual realization. This design yields a more flexible non-autoregressive inductive bias, supports semantic compression and prior fitting in continuous space, and naturally extends to other continuous modalities. Through experiments spanning 4 research questions, 8 benchmarks, strictly matched ~2B-parameter autoregressive and LLaDA baselines, and scaling curves up to about 2000 EFLOPs, we identify an effective overall configuration of Cola DLM and verify its strong scaling behavior for text generation. Taken together, the results establish hierarchical continuous latent prior modeling as a principled alternative to strictly token-level language modeling, where generation quality and scaling behavior may better reflect model capability than likelihood, while also suggesting a concrete path toward unified modeling across discrete text and continuous modalities.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=BXGQBSGCtv",
+  "arxiv": "https://arxiv.org/abs/2605.06548",
+  "pdf": "https://arxiv.org/pdf/2605.06548",
+  "proceedings": null,
+  "virtual": "https://neurips.cc/virtual/2026/poster/154716",
+  "code": "https://hongcanguo.github.io/Cola-DLM/"
+ },
+ "license": "http://creativecommons.org/licenses/by/4.0/",
+ "img": "cc-by",
+ "image_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/images/neurips26-1610.png",
+ "thumb_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/thumbs/neurips26-1610.webp",
+ "figure_page": 5,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.93
+}

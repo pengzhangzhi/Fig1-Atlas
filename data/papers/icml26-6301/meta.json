@@ -1,0 +1,50 @@
+{
+ "id": "icml26-6301",
+ "title": "DualOptim+: Bridging Shared and Decoupled Optimizer States for Better Machine Unlearning in Large Language Models",
+ "authors": [
+  "Xuyang Zhong",
+  "Qizhang Li",
+  "Yiwen Guo",
+  "Chen Liu"
+ ],
+ "venue": "ICML 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "Social Aspects->Safety",
+ "role": "prior-vs-ours",
+ "role2": "pipeline",
+ "claim": "Existing schemes either share one optimizer state or fully separate states per objective; ours bridges both with a shared base plus per-objective deltas.",
+ "layout": "4 panels, left-to-right progression, final panel enlarged with shaded background",
+ "tags": [
+  "optimizer-state",
+  "unlearning",
+  "shared-vs-decoupled",
+  "multi-objective",
+  "llm"
+ ],
+ "style": [
+  "minimal",
+  "colorful",
+  "math-heavy"
+ ],
+ "description": "Four side-by-side schematic panels labeled (a) Joint, (b) Alternate, (c) DualOptim and (d) DualOptim+. In (a) and (b), a single yellow 'Share' box takes gradients from the forget and retain losses and produces θ. Panel (b) has two separate gradient arrows labeled for forget data and for retain data. In (c), separate orange 'Forget' and green 'Retain' boxes each feed θ. The last panel is larger and has a pink 'for forget data' band above a green 'for retain data' band. A central blue 'Base' box receives both gradients. Subtraction nodes feed orange Δf and green Δr boxes, and addition nodes recombine them with Base into θ. Gradient notation ∇θLf and ∇θLr sits at the left of each panel. The eye goes first to the colorful, bolded panel (d).",
+ "caption": "Comparison of baselines and DualOptim+. The block represents the optimizer state. (a) Joint updating scheme sums both the forgetting and retaining losses and executes a single back-propagation step. (b) Alternate updating scheme minimizes ([ref]) by gradients from either $\\gL_f$ or $\\gL_r$ at each iteration, and alternates between the two objectives. (c) DualOptim introduces an independent optimizer state for each objective based on Alternate. (d) DualOptim+ bridges the shared and decoupled states by introducing base and delta states. The base state is jointly updated by $\\nabla_\\theta \\gL_f$ and $\\nabla_\\theta \\gL_r$, and $\\Delta_f$ / $\\Delta_r$ is updated by the difference between $\\nabla_\\theta \\gL_f$ / $\\nabla_\\theta \\gL_r$ and base state. Ultimately, the momentum term used for the parameter update is reconstructed by combining the base state with the respective delta state.",
+ "caption_source": "latex",
+ "abstract": "We propose DualOptim+, a novel optimization framework for improving machine unlearning in large language models. It introduces a base state to capture common representations shared by forgetting and retaining objectives and delta states to preserve objective-specific residuals. This architecture allows the optimizer to adaptively bridge shared and decoupled states based on the directional conflict between forgetting and retaining gradients. We further introduce DualOptim+ 8bit, a quantized variant that reduces memory overhead without compromising performance. Extensive experiments across fictitious and real-world unlearning, safety alignment, and multi-task learning tasks demonstrate that DualOptim+ consistently achieves a superior trade-off between different objectives. Codes are available at https://github.com/CityU-MLO/DualOptimPlus.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=xGfnQajGPQ",
+  "arxiv": "https://arxiv.org/abs/2605.21539",
+  "pdf": "https://raw.githubusercontent.com/mlresearch/v306/main/assets/zhong26j/zhong26j.pdf",
+  "proceedings": "https://proceedings.mlr.press/v306/zhong26j.html",
+  "virtual": "https://icml.cc/virtual/2026/poster/60714",
+  "code": null
+ },
+ "license": "http://creativecommons.org/licenses/by/4.0/",
+ "img": "cc-by",
+ "image_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/images/icml26-6301.png",
+ "thumb_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/thumbs/icml26-6301.webp",
+ "figure_page": 2,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.8
+}

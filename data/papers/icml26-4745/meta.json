@@ -1,0 +1,53 @@
+{
+ "id": "icml26-4745",
+ "title": "Alterbute: Editing Intrinsic Attributes of Objects in Images",
+ "authors": [
+  "Tal Reiss",
+  "Daniel Winter",
+  "Matan Cohen",
+  "Alex Rav-Acha",
+  "Yael Pritch",
+  "Ariel Shamir",
+  "Yedid Hoshen"
+ ],
+ "venue": "ICML 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "Applications->Computer Vision",
+ "role": "pipeline",
+ "role2": null,
+ "claim": "A model trained with a relaxed objective on a grid of reference, background, and mask inputs can edit intrinsic attributes at inference by reusing the original context.",
+ "layout": "2 panels split by a vertical line, left-to-right flow, training vs inference, dashed boxes",
+ "tags": [
+  "diffusion",
+  "image-editing",
+  "identity-preservation",
+  "conditioning",
+  "training-inference"
+ ],
+ "style": [
+  "colorful",
+  "photo/real data",
+  "icon-heavy"
+ ],
+ "description": "The figure is split by a vertical divider into Training (left) and Inference (right). In Training, a mask, a background and a noised target image sit next to a reference image, each in a dashed light-blue box. A text prompt box lists Color, Texture, Shape and Material, and it feeds a purple Text Encoder. Purple cross-attention arrows run from the encoder into a blue hourglass labelled Our Model. The model's output is compared with the ground truth under a pink dashed L2 Loss box, using car photos. Inference has two rows split by a dashed line. The top row shows a color, texture or material edit of a blue armchair, using a precise mask, a background and a reference. The bottom row shows a shape edit that uses a coarse bounding-box mask and produces a sofa. Each row has a short text prompt above Our Model, and the output image is on the right.",
+ "caption": "Overview of \\methodName. \\methodName fine-tunes a diffusion model for text-guided intrinsic attribute editing. Left (Training): Inputs are arranged in a $1 \\times 2$ image grid. The left half contains the noisy latent of the target image, while the right half contains a reference image sampled from the same VNE cluster. The model is conditioned on this reference image, a textual prompt describing the desired intrinsic attributes, a background image, and a binary object mask (both represented as grids). The diffusion loss is applied only to the left half to focus the learning on the edited region. Right (Inference): Using the same architecture (grid omitted for clarity), \\methodName edits the input image directly by reusing its original background and mask. For color, texture, or material edits, we use precise segmentation masks (top). For shape edits where the target geometry is unknown, we use coarse bounding-box masks (bottom).",
+ "caption_source": "latex",
+ "abstract": "We introduce Alterbute, a diffusion-based method for editing an object's intrinsic attributes in an image. We allow changing color, texture, material, and even the shape of an object, while preserving its perceived identity and scene context. Existing approaches either rely on unsupervised priors that often fail to preserve identity or use overly restrictive supervision that prevents meaningful intrinsic variations. Our method relies on: (i) a relaxed training objective that allows the model to change both intrinsic and extrinsic attributes conditioned on an identity reference image, a textual prompt describing the target intrinsic attributes, and a background image and object mask defining the extrinsic context. At inference, we restrict extrinsic changes by reusing the original background and object mask, thereby ensuring that only the desired intrinsic attributes are altered; (ii) Visual Named Entities (VNEs) - fine-grained visual identity categories (e.g., ''Porsche 911 Carrera'') that group objects sharing identity-defining features while allowing variation in intrinsic attributes. We use a vision-language model to automatically extract VNE labels and intrinsic attribute descriptions from a large public image dataset, enabling scalable, identity-preserving supervision. Alterbute outperforms existing methods on identity-preserving object intrinsic attribute editing.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=iZ2Enqf9Kn",
+  "arxiv": "https://arxiv.org/abs/2601.10714",
+  "pdf": "https://raw.githubusercontent.com/mlresearch/v306/main/assets/reiss26a/reiss26a.pdf",
+  "proceedings": "https://proceedings.mlr.press/v306/reiss26a.html",
+  "virtual": "https://icml.cc/virtual/2026/poster/62221",
+  "code": "https://talreiss.github.io/alterbute/"
+ },
+ "license": "http://arxiv.org/licenses/nonexclusive-distrib/1.0/",
+ "img": "none",
+ "image_url": null,
+ "thumb_url": null,
+ "figure_page": 2,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.93
+}

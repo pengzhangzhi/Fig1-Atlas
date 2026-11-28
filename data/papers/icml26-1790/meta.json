@@ -1,0 +1,49 @@
+{
+ "id": "icml26-1790",
+ "title": "When Does Adaptation Win? Scaling Laws for Meta-Learning in Quantum Control",
+ "authors": [
+  "Nima Leclerc",
+  "Chris Miller",
+  "Nicholas Brawand"
+ ],
+ "venue": "ICML 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "Applications->Chemistry, Physics, and Earth Sciences",
+ "role": "pipeline",
+ "role2": "concept",
+ "claim": "Meta-train a controller on a simulated ensemble of noisy devices, then adapt it with a few gradient steps on each real device.",
+ "layout": "3 panels, left-to-right, dashed meta-training box, saturation-curve inset",
+ "tags": [
+  "meta-learning",
+  "simulate-then-deploy",
+  "few-step-adaptation",
+  "scaling-law",
+  "device-heterogeneity"
+ ],
+ "style": [
+  "math-heavy",
+  "colorful",
+  "plot"
+ ],
+ "description": "A three-panel horizontal workflow. Panel (a), \"Task ensemble\", shows a 3x3 grid of transmon qubits drawn as circles colored by noise rate Γ with a viridis colorbar from low to high. Below it are the distribution ξ ~ P(ξ) and the heterogeneity variance σ²_τ. Panel (b), \"Simulate — meta-train on simulator\", sits inside a dashed purple box. A differentiable Lindblad simulator box and a FOMAML outer-loop box are joined by arrows carrying ∇L and θ. An arrow labeled \"sample\" runs from (a) into this box. Panel (c), \"Deploy — per-device adaptation\", shows one device feeding ξ into a K-gradient-steps box. That box takes θ0 from (b) and outputs θ_K(ξ) and a red control pulse waveform. Below it, a red exponential saturation curve G_K marks A∞ and K*. Gray italic notes along the bottom give the gradient method for each panel. The eye goes first to the central boxes and arrows.",
+ "caption": "Simulate-then-deploy workflow for meta-learned quantum control. (a) A heterogeneous processor of transmons with noise rates $\\xi = (\\Gamma_{\\mathrm{deph}}, \\Gamma_{\\mathrm{relax}}) \\sim \\mathcal{P}(\\xi)$; heterogeneity is summarized by $\\sigma_\\tau^{2} = \\mathrm{Var}(\\Gamma_{\\mathrm{deph}}) + \\mathrm{Var}(\\Gamma_{\\mathrm{rel}})$. (b) A differentiable Lindblad simulator ($\\dot{\\rho} = \\mathcal{L}_{\\xi}[\\rho]$), with noise model fit from device characterization, is meta-trained via first-order model-agnostic meta-learning (FOMAML) on tasks $\\{\\xi_i\\} \\sim \\mathcal{P}$ to yield initialization $\\theta_0$. $\\eta_0$ and $g_{meta}$ are the outer loop learning rate and meta-gradient. (c) At deployment, relaxation and dephasing times ($T_1$ and $T_2$) via Rabi and Ramsey characterization supplies $\\xi$; $K$ gradient steps produce $\\theta_K(\\xi)$ parameterizing the emitted control pulse $u(t;\\theta_K)$. The saturation curve $G_K = A_{\\infty}(1 - e^{-\\beta K})$ (inset) characterizes the adaptation gain, with $K^{*}$ marking diminishing returns.",
+ "caption_source": "latex",
+ "abstract": "Quantum hardware suffers from intrinsic device heterogeneity and environmental drift, forcing practitioners to choose between suboptimal non-adaptive controllers or costly per-device recalibration. We derive a scaling law lower bound for meta-learning showing that the adaptation gain (expected fidelity improvement from task-specific gradient steps) saturates exponentially with gradient steps and scales linearly with task variance, providing a quantitative criterion for when adaptation justifies its overhead. Validation on quantum gate calibration shows negligible benefits for low-variance tasks but >40% fidelity gains on two-qubit gates under extreme out-of-distribution conditions (10$\\times$ the training noise), with implications for reducing per-device calibration time on cloud quantum processors. Further validation on classical linear-quadratic control confirms these laws emerge from general optimization geometry rather than quantum-specific physics. We further introduce a few-shot pre-adaptation protocol that estimates the optimal adaptation budget from $N{=}3$-5 probe steps within 3-19% relative error across out-of-distribution regimes.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=Gu9pw3D6vT",
+  "arxiv": "https://arxiv.org/abs/2601.18973",
+  "pdf": "https://raw.githubusercontent.com/mlresearch/v306/main/assets/leclerc26a/leclerc26a.pdf",
+  "proceedings": "https://proceedings.mlr.press/v306/leclerc26a.html",
+  "virtual": "https://icml.cc/virtual/2026/poster/65086",
+  "code": "https://github.com/nimalec/metalearning-quantum-control"
+ },
+ "license": "http://creativecommons.org/licenses/by-nc-nd/4.0/",
+ "img": "none",
+ "image_url": null,
+ "thumb_url": null,
+ "figure_page": 1,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.85
+}

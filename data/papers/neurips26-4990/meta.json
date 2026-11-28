@@ -1,0 +1,49 @@
+{
+ "id": "neurips26-4990",
+ "title": "EMO: Pretraining Mixture of Experts for Emergent Modularity",
+ "authors": [
+  "Ryan Wang",
+  "Akshita Bhagia",
+  "Sewon Min"
+ ],
+ "venue": "NeurIPS 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "Deep Learning->Everything Else",
+ "role": "teaser-result",
+ "role2": "concept",
+ "claim": "One modular model lets users pick small expert subsets per domain and keep near-full accuracy, beating standard sparse models under tight memory budgets.",
+ "layout": "2 panels, left-to-right: expert-subset diagram, then line plot with highlighted curve",
+ "tags": [
+  "mixture-of-experts",
+  "modularity",
+  "memory-efficiency",
+  "pareto-frontier",
+  "selective-deployment"
+ ],
+ "style": [
+  "plot",
+  "colorful",
+  "minimal"
+ ],
+ "description": "The left panel is a schematic. A large rounded box labeled EMO (128 experts) holds a row of expert tiles E1, E2, E3, E4 … E128 above a Router pill. Three colored arrows (pink, purple, green) fan out to three smaller boxes. Each box holds a different subset of expert tiles with its own Router pill: Coding (62 experts), Web Dev (8 experts) and Biomedical (34 experts). The box colors match the labels beneath them. The right panel is a line chart of MMLU accuracy against expert subset size (memory budget), from 128 down to 8. The purple EMO curve stays high, from 39.8 to 34.5. The green Reg. MoE curve drops steeply, from 39.0 to 24.2, and nearly reaches the dashed random baseline. A teal diamond (Reg. MoE @32, trained) and an orange star (Dense @8, trained) mark fixed-budget models trained from scratch. The eye goes first to the purple line sitting above the green one.",
+ "caption": "(Left) \\methodname\\ is an MoE trained with modularity as a first-class objective. For a given domain (e.g., math, code, biomedical), users can select a small subset of experts of any size and retain near full-model performance. This turns a single model into a composable architecture, enabling flexible deployment with improved memory-accuracy tradeoffs for large, sparse MoEs. (Right) Averaged performance over 16 MMLU categories across different memory budgets. \\methodname (purple) and Reg. MoE (green) are single models evaluated with expert subsets of different sizes. \\methodname expert subsets push the Pareto frontier in memory-accuracy trade-off, outperforming standard MoEs and even fixed-budget models trained from scratch.",
+ "caption_source": "latex",
+ "abstract": "Large language models are typically deployed as monolithic systems, requiring the full model even when applications need only a narrow subset of capabilities, e.g., code, math, or domain-specific knowledge. Mixture-of-Experts (MoEs) seemingly offer a potential alternative by activating only a subset of experts per input, but in practice, restricting inference to a subset of experts for a given domain leads to severe performance degradation. This limits their practicality in memory-constrained settings, especially as models grow larger and sparser. We introduce EMO, an MoE designed for modularity-the independent use and composition of expert subsets-without requiring human-defined priors. Our key idea is to encourage tokens from similar domains to rely on similar experts. Since tokens within a document often share a domain, EMO restricts them to select experts from a shared pool, while allowing different documents to use different pools. This simple constraint enables coherent expert groupings to emerge during pretraining using document boundaries alone. We pretrain a 1B-active, 14B-total EMO on 1T tokens. As a full model, it matches standard MoE performance. Crucially, it enables selective expert use: retaining only 25% (12.5%) of experts incurs just a 1% (3%) absolute drop, whereas standard MoEs break under the same setting. We further find that expert subsets in EMO specialize at semantic levels (e.g., domains such as math or code), in contrast to the low-level syntactic specialization observed in standard MoEs. Altogether, our results demonstrate a path toward modular, memory-efficient deployment of large, sparse models and open new opportunities for composable architectures.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=YavQQZ3cUM",
+  "arxiv": "https://arxiv.org/abs/2605.06663",
+  "pdf": "https://arxiv.org/pdf/2605.06663",
+  "proceedings": null,
+  "virtual": "https://neurips.cc/virtual/2026/poster/151720",
+  "code": null
+ },
+ "license": "http://creativecommons.org/licenses/by/4.0/",
+ "img": "cc-by",
+ "image_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/images/neurips26-4990.png",
+ "thumb_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/thumbs/neurips26-4990.webp",
+ "figure_page": 1,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.6
+}

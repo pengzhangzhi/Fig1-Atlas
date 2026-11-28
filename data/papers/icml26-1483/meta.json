@@ -1,0 +1,54 @@
+{
+ "id": "icml26-1483",
+ "title": "AutoQRA: Joint Optimization of Mixed-Precision Quantization and Low-rank Adapters for Efficient LLM Fine-Tuning",
+ "authors": [
+  "Changhai Zhou",
+  "Shiyang Zhang",
+  "Yuhua Zhou",
+  "Qian Qiao",
+  "Jun Gao",
+  "Cheng Jin",
+  "KAIZHOU QIN",
+  "Weizhong Zhang"
+ ],
+ "venue": "ICML 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "Deep Learning->Large Language Models",
+ "role": "pipeline",
+ "role2": null,
+ "claim": "A two-stage search first evolves candidate configurations globally, then refines promising regions locally to find the best configuration under a budget.",
+ "layout": "3 regions, left-to-right, dashed evolutionary loop feeding a Pareto plot and 3D landscape",
+ "tags": [
+  "evolutionary-search",
+  "bayesian-optimization",
+  "mixed-precision",
+  "multi-fidelity",
+  "joint-optimization"
+ ],
+ "style": [
+  "icon-heavy",
+  "colorful",
+  "plot"
+ ],
+ "description": "A method diagram in three connected regions. On the left, a warm-start population box (an importance-ranked column of layers, arrow to blue population dots) feeds a dashed evolutionary loop. The loop has population, elite selection, crossover and importance-guided mutation, and offspring population, joined by yellow and orange arrows and a circular iteration icon. A multi-fidelity evaluation box at the top (low-fidelity to high-fidelity) is linked to the loop. In the middle, a Pareto plot of performance against negative memory shows a red frontier curve, orange points, a gray feasible region and a non-dominated set. On the right, a 3D blue-green landscape over rank and bit-width axes has orange trust-region clusters, an expected-improvement arrow and a refinement-loop icon. At the bottom, the output lists the best rank and bit configuration lists. Orange curves connect the Pareto points to the trust regions.",
+ "caption": "Empirical Motivation for Joint Optimization. (a) Impact of Joint Allocation: We visualize the accuracy distribution of feasible mixed-precision configurations across tasks. The substantial performance spread demonstrates that distinct pairings of bit-width ($q$) and rank ($r$) yield vastly different outcomes even under the same memory budget. (b) Proxy-Objective Mismatch: Standard calibration metrics (Perplexity, x-axis) fail to predict post-finetuning accuracy (y-axis). The weak correlation ($\\rho{=}0.46$) and frequent rank reversals indicate that static proxies cannot reliably identify configurations where learnable adapters compensate for quantization noise.",
+ "caption_source": "latex",
+ "abstract": "Quantization followed by parameter-efficient fine-tuning has emerged as a promising paradigm for downstream adaptation under tight GPU memory constraints. However, this sequential pipeline fails to leverage the intricate interaction between quantization bit-width and LoRA rank. Specifically, a carefully optimized quantization allocation with low quantization error does not always translate to strong fine-tuning performance, and different bit-width and rank configurations can lead to significantly varying outcomes under the same memory budget. To address this limitation, we propose AutoQRA, a joint optimization framework that simultaneously optimizes the bit-width and LoRA rank configuration for each layer during the mixed quantized fine-tuning process. To tackle the challenges posed by the large discrete search space and the high evaluation cost associated with frequent fine-tuning iterations, AutoQRA decomposes the optimization process into two stages. First, it first conducts a global multi-fidelity evolutionary search, where the initial population is warm-started by injecting layer-wise importance priors. This stage employs specific operators and a performance model to efficiently screen candidate configurations. Second, trust-region Bayesian optimization is applied to locally refine promising regions of the search space and identify optimal configurations under the given memory budget. This approach enables active compensation for quantization noise in specific layers during training. Experiments show that AutoQRA achieves performance close to full-precision fine-tuning with a memory footprint comparable to uniform 4-bit methods.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=EB8MHApOav",
+  "arxiv": "https://arxiv.org/abs/2602.22268",
+  "pdf": "https://raw.githubusercontent.com/mlresearch/v306/main/assets/zhou26bm/zhou26bm.pdf",
+  "proceedings": "https://proceedings.mlr.press/v306/zhou26bm.html",
+  "virtual": "https://icml.cc/virtual/2026/poster/65383",
+  "code": "https://github.com/manlenzzz/tidal-ai"
+ },
+ "license": "http://arxiv.org/licenses/nonexclusive-distrib/1.0/",
+ "img": "none",
+ "image_url": null,
+ "thumb_url": null,
+ "figure_page": 3,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.85
+}

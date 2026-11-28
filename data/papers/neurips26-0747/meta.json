@@ -1,0 +1,52 @@
+{
+ "id": "neurips26-0747",
+ "title": "SquidAgent: Parallelize Wisely, Coordinate Efficiently",
+ "authors": [
+  "Yexiong Lin",
+  "Shanshan Ye",
+  "Yu Yao",
+  "Zhen Fang",
+  "Bo Han",
+  "Tongliang Liu"
+ ],
+ "venue": "NeurIPS 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "Reinforcement Learning->Multi-agent",
+ "role": "prior-vs-ours",
+ "role2": "problem-setup",
+ "claim": "Naive parallelization of a task adds hidden re-exploration and alignment costs that make it slower than simply running serially.",
+ "layout": "2 side-by-side panels, top-to-bottom flow, token-cost equations at bottom",
+ "tags": [
+  "parallel-agents",
+  "multi-agent",
+  "latency",
+  "coordination-overhead",
+  "failure-analysis"
+ ],
+ "style": [
+  "icon-heavy",
+  "colorful",
+  "text-heavy"
+ ],
+ "description": "Two framed panels compare ways of running a task: 'Write a tutorial for machine learning.' Panel (a), Sequential, in blue, shows a single robot agent that does preparation and then three slides in order (Foundations, Linear Models, Neural Networks). Each slide is labeled with a token cost (1200, 1000, 1400). The total is T_ser = 3600 tok. Panel (b), Naive Parallel, in green, shows an orchestrator that does preparation and launches three color-coded worker robots, plus a reviewer. Dashed blue arrows mark re-exploration of saved materials (C_explore = 1000 tok). Worker slides use inconsistent notation, shown in red. Green dashed arrows lead into a merge step, where the reviewer fixes the inconsistencies (C_align = 1500 tok). The bottom equation, T_par = 3900 tok > T_ser, is highlighted in red.",
+ "caption": "Comparison of two execution strategies on a task with four subtasks. (a) Sequential: a single agent executes all tasks one by one with no overhead. (b) Naive parallel: workers run concurrently but incur re-exploration cost (orange: orchestrator planning plus per-worker rediscovery of shared context) and alignment cost (red: fixing conflicts between independently produced outputs), making the total time exceed the sequential baseline.",
+ "caption_source": "latex",
+ "abstract": "LLM-based agents solve complex multi-step tasks, but sequential execution incurs substantial latency. In principle, parallelizing work across multiple agents should yield near-linear speedups. Yet existing parallel multi-agent systems often run slower than a single-agent baseline. We attribute this gap to two hidden costs that parallel execution incurs but a serial agent avoids. First, there is a re-exploration cost: redundant effort spent by parallel workers reconstructing context that the orchestrator already possesses, such as prior decisions, that would otherwise be inherited implicitly in a serial execution. Second, there is an alignment cost: the overhead required to reconcile inconsistencies across independently generated outputs. We thus derive a principled decision criterion: a layer should be parallelized only when its critical-path cost, plus re-exploration and alignment overheads, is lower than the corresponding serial cost. While this criterion is naturally expressed in wall-clock time, we observe that LLMs are poorly calibrated when asked to estimate task duration. To address this, we instead measure cost in predicted output tokens, which we empirically find LLMs can estimate substantially more reliably than wall-clock time. Building on this token-based criterion, we propose SquidAgent. It estimates all token budgets in a single planning step, forks each worker directly from the orchestrator's session to eliminate re-exploration cost, and replaces post-hoc reconciliation with a pre-generated shared convention block that converts alignment into a bounded upfront cost. A deterministic scheduler then applies the criterion layer by layer. Empirically, SquidAgent achieves a 2.2$\\times$ mean throughput improvement and a 2.6$\\times$ mean wall-time speedup over Claude Code, and a 2.0$\\times$ throughput improvement over the strongest multi-agent baseline.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=5ISO2WDCul",
+  "arxiv": "https://arxiv.org/abs/2610.08647",
+  "pdf": "https://arxiv.org/pdf/2610.08647",
+  "proceedings": null,
+  "virtual": "https://neurips.cc/virtual/2026/poster/155478",
+  "code": "https://github.com/tmllab/2026_NeurIPS_SquidAgent"
+ },
+ "license": "http://creativecommons.org/licenses/by/4.0/",
+ "img": "cc-by",
+ "image_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/images/neurips26-0747.png",
+ "thumb_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/thumbs/neurips26-0747.webp",
+ "figure_page": 1,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.5
+}

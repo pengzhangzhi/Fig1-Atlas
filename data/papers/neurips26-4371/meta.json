@@ -1,0 +1,49 @@
+{
+ "id": "neurips26-4371",
+ "title": "The Algorithm Is Not the Behavior: Learned Priors Override Look-Ahead in a Chess-Playing Neural Network",
+ "authors": [
+  "Elias Sandmann",
+  "Sebastian Lapuschkin",
+  "Wojciech Samek"
+ ],
+ "venue": "NeurIPS 2026",
+ "tier": "oral",
+ "track": "main",
+ "topic": "Social Aspects->Accountability, Transparency and Interpretability",
+ "role": "analysis-finding",
+ "role2": "problem-setup",
+ "claim": "A model can internally compute the correct answer at intermediate layers yet override it in the final output, contradicting its own evaluation.",
+ "layout": "3 chess boards over line plot at left; two board-plus-bar panels at right; dashed connectors",
+ "tags": [
+  "logit-lens",
+  "layerwise-analysis",
+  "interpretability",
+  "internal-vs-output-mismatch",
+  "chess"
+ ],
+ "style": [
+  "plot",
+  "photo/real data",
+  "colorful"
+ ],
+ "description": "The left side has a line plot of probability (%) against network layer, from Input to Final. A green line marks the winning move. It rises to about 88% near layer 12, then falls sharply at the end. A red line marks the losing move. It stays near zero until the last layers, then jumps to about 37% and becomes the top choice. Grey lines show other moves. Above the plot, three small chess boards (Layer 2, Layer 9, Model output) carry green or red arrows showing the preferred move at each layer. Dashed black lines link the boards to points on the x-axis. A legend at the top center explains move type by color. On the right, dashed red and green arrows lead from the final-layer endpoints to two larger boards: the position after the losing move and the position after the winning move. Each board has a Win/Draw/Loss bar chart. The losing position shows 98.9% loss in red. The winning position shows 99.8% win in green.",
+ "caption": "Our extended logit lens maps intermediate activations to policy distributions across transformer layers in Leela Chess Zero, revealing a forgotten mate-in-two puzzle with optimal line of play—the principal variation—1. \\protect\\wmove{Qxf1+} \\protect\\wmove{Kxf1} 2. \\protect\\wmove{Rd1\\mate}. Left: The \\firsttarget{correct} queen sacrifice \\protect\\wmove{Qxf1+} maintains high probability through most layers, peaking at layer $12$, before dropping sharply in the final layers. The \\corrupted{losing} move \\protect\\wmove{Qc8}—a quiet queen retreat to the back rank—remains near zero throughout the network and rises only in the final layer to become the top choice. Right: The value head, trained to predict game outcomes, correctly assesses both resulting positions, indicating that the policy head's final move selection contradicts the model's own evaluation of the consequences. At the puzzle position itself, the value head does not see the win. Full probabilities are provided in Appendix [ref], with additional examples in Appendix [ref].",
+ "caption_source": "latex",
+ "abstract": "Recent mechanistic work has uncovered learned algorithms within neural networks, from modular arithmetic to search and planning in game-playing agents. But does algorithmic structure guarantee algorithmic behavior? We investigate this in Leela Chess Zero, the strongest neural chess engine, where prior work identified learned look-ahead. By extending the logit lens to its move-selecting policy network, we discover that correct puzzle solutions--including immediate checkmates--often appear in intermediate layers but are systematically overridden in the final output, a phenomenon we term \"forgotten puzzles\". Replicating prior analyses on these positions, we find that look-ahead operates normally--future moves of the correct continuation are represented, causally important, and linearly decodable--ruling out a failure of the algorithm. Instead, late layers increasingly shift toward safe play over aggression. To test whether this shift drives the override, we steer the model against these preferences and recover 71.7% of forgotten puzzles, providing causal evidence that safety priors override algorithmically computed solutions. These findings show that algorithmic structure does not guarantee algorithmic behavior: a model can internally solve a problem and still output the wrong answer.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=ULhusDnCQy",
+  "arxiv": "https://arxiv.org/abs/2508.21380",
+  "pdf": "https://arxiv.org/pdf/2508.21380",
+  "proceedings": null,
+  "virtual": "https://neurips.cc/virtual/2026/poster/152268",
+  "code": "https://leela-logit-lens.github.io/"
+ },
+ "license": "http://creativecommons.org/licenses/by/4.0/",
+ "img": "cc-by",
+ "image_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/images/neurips26-4371.png",
+ "thumb_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/thumbs/neurips26-4371.webp",
+ "figure_page": 1,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.8
+}

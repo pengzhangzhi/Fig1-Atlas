@@ -1,0 +1,51 @@
+{
+ "id": "iclr26-3449",
+ "title": "Internal Planning in Language Models: Characterizing Horizon and Branch Awareness",
+ "authors": [
+  "Muhammed Ustaomeroglu",
+  "Baris Askin",
+  "Gauri Joshi",
+  "Carlee Joe-Wong",
+  "Guannan Qu"
+ ],
+ "venue": "ICLR 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "Theory->Interpretability and Visualization",
+ "role": "pipeline",
+ "role2": null,
+ "claim": "A three-step procedure compresses hidden states into discrete codes, then uses their co-occurrence statistics to measure information shared between components.",
+ "layout": "3 panels: top-left and top-right boxes, bottom banner; left-to-right flow",
+ "tags": [
+  "vq-vae",
+  "mutual-information",
+  "interpretability",
+  "discrete-codes",
+  "pipeline"
+ ],
+ "style": [
+  "minimal",
+  "icon-heavy",
+  "colorful"
+ ],
+ "description": "A three-part diagram of rounded boxes. The large left box, Step 1 (Train VQ-VAEs), shows a black Language Model block with a grey hidden-state block G_S inside it, taking Prefix as input and producing Output. Below it, a left-to-right chain runs from grey G_S through a blue trapezoid Encoder, a vertical discretization codebook column with one green cell highlighted, a green code Z, a codebook vector bar, and a blue Decoder, ending at a reconstructed grey G-hat_S. The right box, Step 2 (Save (Z_A, Z_B) statistics), stacks two parallel encoders, Encoder A and Encoder B. Each takes a grey G_S block and outputs a green discrete code, Z_A or Z_B. A wide bottom banner, Step 3, states that mutual information I(Z_A; Z_B) is calculated from the statistics. Blue, grey, black and green are the main colors. The eye goes first to the black Language Model block and the blue encoders.",
+ "caption": "The proposed method. Step 1 (training): For a frozen LM $\\mdl$, hidden states from selected transformer blocks $G_S$ are passed through a VQ-VAE encoder, which maps each block to a latent vector and then to a discrete codebook index $Z_S\\in[K]$, providing coarse summaries of internal computations. Step 2 (analysis): For two sets of hidden-state blocks, $G_{S_A}$ and $G_{S_B}$, we apply the trained encoder and codebook to the dataset to obtain discrete variables $Z_A$ and $Z_B$ and collect their empirical co-occurrence counts. Step 3: Using these statistics, we estimate joint and marginal distributions $p(z_a,z_b)$, $p(z_a)$, and $p(z_b)$ to compute mutual information $I(Z_A; Z_B)$ (and its normalized variant). Then, we analyze how information is shared between different components of the model's computation.",
+ "caption_source": "latex",
+ "abstract": "The extent to which decoder-only language models (LMs) engage in planning, that is, organizing intermediate computations to support coherent long-range generation, remains an important question, with implications for interpretability, reliability, and principled model design. Planning involves structuring computations over long horizons, and considering multiple possible continuations, but how far transformer-based LMs exhibit them without external scaffolds, e.g., chain-of-thought prompting, is unclear. We address these questions by analyzing the hidden states at the core of transformer computations, which capture intermediate results and act as carriers of information. Since these hidden representations are redundant and encumbered with fine-grained details, we develop a pipeline based on vector-quantized variational autoencoders that compresses them into compact summary codes. These codes enable measuring mutual information and analyzing the computational structure of the underlying model behavior. Using this framework, we study planning in LMs across synthetic grammar, path-finding tasks, and natural language datasets, focusing on two planning properties: (i) the planning horizon of pre-output computations, and (ii) the extent to which the model considers alternative valid continuations. As a separate downstream use of the same pipeline, we also analyze how decision-relevant information is distributed across layers and earlier prefix blocks when producing next-token predictions. Together, these analyses advance our understanding of planning in LMs and provide a general-purpose pipeline for inspecting internal model dynamics. Our results reveal that the effective planning horizon is task-dependent, that models implicitly preserve information about unused correct continuations, and that predictions draw most on recent computations, though earlier blocks remain informative.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=dqGWQdFdTC",
+  "arxiv": "https://arxiv.org/abs/2509.25260",
+  "pdf": "https://proceedings.iclr.cc/paper_files/paper/2026/file/da004051ce3fb70898f12395fc0c1fc3-Paper-Conference.pdf",
+  "proceedings": "https://proceedings.iclr.cc/paper_files/paper/2026/hash/da004051ce3fb70898f12395fc0c1fc3-Abstract-Conference.html",
+  "virtual": "https://iclr.cc/virtual/2026/poster/10008380",
+  "code": null
+ },
+ "license": "http://arxiv.org/licenses/nonexclusive-distrib/1.0/",
+ "img": "none",
+ "image_url": null,
+ "thumb_url": null,
+ "figure_page": 4,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.97
+}

@@ -1,0 +1,49 @@
+{
+ "id": "iclr26-5057",
+ "title": "Predicting Training Re-evaluation Curves Enables Effective Data Curriculums for LLMs",
+ "authors": [
+  "Shane Bergsma",
+  "Nolan Dey",
+  "Joel Hestness"
+ ],
+ "venue": "ICLR 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "Deep Learning->Theory",
+ "role": "analysis-finding",
+ "role2": "teaser-result",
+ "claim": "Retrospective re-evaluation reveals a predictable, scale-invariant profile of data retention that determines the best place to put high-quality data.",
+ "layout": "3 panels, left-to-right line plots, dotted vertical line marking learning-rate drop",
+ "tags": [
+  "training-curves",
+  "data-curriculum",
+  "scaling",
+  "diagnostic",
+  "optimizer-dynamics"
+ ],
+ "style": [
+  "plot",
+  "minimal",
+  "colorful"
+ ],
+ "description": "Three side-by-side line plots. The left panel plots loss against ordered training tokens. A noisy orange train-loss curve falls steadily and drops sharply at a dotted vertical line marking the learning-rate drop. A flat green TREC curve dips at that same line. Blue dotted points show validation loss for high-quality data placed at different positions, and they are lowest just before the drop. The middle panel shows normalized TREC against the fraction of training tokens, with a blue-to-red gradient of curves for different weight decay values. The valley moves later as weight decay grows. The right panel shows TREC against the fraction of training tokens for five model sizes, from 111M to 3.3B parameters, in a purple-to-yellow palette. The curves are vertically offset but share the same shape, with a dip near the end and a final rise. Each panel has a legend inside the plot area.",
+ "caption": "$\\Leftfig$: (610M parameters): train loss steadily falls after learning rate drops to $0.01\\eta_{\\max}$ (after 70% of steps), but the optimal position for placing high-quality (HQ) data is before the LR drop, in the TREC valley. $\\Middlefig$: (610M, linear LR decay): TREC shape varies with AdamW timescale $\\tema$ (varied via weight decay $\\lambda$). $\\Rightfig$: (size varies, linear LR decay-to-zero, all 20 tokens-per-parameter): TRECs align across 1000$\\times$ scaling of training compute, when $\\tema$ matches.",
+ "caption_source": "latex",
+ "abstract": "Data curriculums have become central to successful LLM training, yet principles governing optimal data placement remain unclear. We introduce the *training re-evaluation curve (TREC)*, a diagnostic that retrospectively evaluates training batches *using the final model weights*. The TREC characterizes how well a trained model retains training data as a function of *when* the data was encountered during training. Analyzing TRECs for models from 111M to 3.9B parameters, we show that placing high-quality data at low points on the TREC significantly improves performance. Importantly, while a TREC is initially observable only after training, we demonstrate it can be *predicted in advance* from AdamW's implicit EMA coefficients, enabling proactive curriculum design. By predicting TRECs for published training recipes, we explain prior ablations and reveal suboptimal data placements. We also align high-quality data with TREC minima in order to improve continual pre-training of a 3.9B-parameter LLM trained on 900B tokens.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=wjaTz8nYjD",
+  "arxiv": "https://arxiv.org/abs/2509.25380",
+  "pdf": "https://proceedings.iclr.cc/paper_files/paper/2026/file/bff09ce4b210b185a265c9bcd58048bb-Paper-Conference.pdf",
+  "proceedings": "https://proceedings.iclr.cc/paper_files/paper/2026/hash/bff09ce4b210b185a265c9bcd58048bb-Abstract-Conference.html",
+  "virtual": "https://iclr.cc/virtual/2026/poster/10006706",
+  "code": null
+ },
+ "license": "http://creativecommons.org/licenses/by/4.0/",
+ "img": "cc-by",
+ "image_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/images/iclr26-5057.png",
+ "thumb_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/thumbs/iclr26-5057.webp",
+ "figure_page": 0,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.8
+}

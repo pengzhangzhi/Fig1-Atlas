@@ -1,0 +1,47 @@
+{
+ "id": "iclr26-1133",
+ "title": "Shift-and-Sum Quantization for Visual Autoregressive Models",
+ "authors": [
+  "Jaehyeon Moon",
+  "Bumsub Ham"
+ ],
+ "venue": "ICLR 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "Deep Learning->Generative Models and Autoencoders",
+ "role": "analysis-finding",
+ "role2": "problem-setup",
+ "claim": "Quantization error concentrates at coarse scales, and sampled frequencies diverge from predicted probabilities, revealing two failure modes to address.",
+ "layout": "3 plots in two groups (a),(b), left-to-right; paired probability/frequency histograms",
+ "tags": [
+  "post-training-quantization",
+  "autoregressive",
+  "reconstruction-error",
+  "calibration-data",
+  "empirical-observation"
+ ],
+ "style": [
+  "plot",
+  "minimal"
+ ],
+ "description": "Three plots in a row, grouped as (a) and (b). Panel (a) is a line chart of reconstruction error (×10^-2) against feature resolution (1 to 16) for two models, VAR-d16 (blue circles) and VAR-d20 (orange squares). Both curves fall steeply from about 2 at coarse resolutions to under 1 at fine resolutions. Group (b) has two bar histograms over codebook entries 1950 to 2050. The left, in blue, shows predicted probability (×10^-3), a dense spread of bars with a tall spike near 1996. The right, in orange, shows sampling frequency from calibration data, which is sparse and spiky, with many entries at zero and a few peaks up to 18. The mismatch between the two histograms is the point. Axes are plain, with serif labels, and the figure has no arrows or diagrams.",
+ "caption": "(a) Visualization of reconstruction errors for the multiplication of attention scores and value tokens across scales, for a particular transformer block of VAR-d16 and VAR-d20; (b) Comparison between predicted probabilities and sampling frequencies of codebook entries, aggregated from 256 calibration samples in VAR-d24. Note that we show 100 codebook entries only for visualization. We can see that attention-value products tend to incur large reconstruction errors at coarse scales, and sampling frequencies of codebook entries do not align with their predicted probabilities.",
+ "caption_source": "latex",
+ "abstract": "Post-training quantization (PTQ) enables efficient deployment of deep networks using a small set of data. Its application to visual autoregressive models (VAR), however, remains relatively unexplored. We identify two key challenges for applying PTQ to VAR: (i) large reconstruction errors in attention-value products, especially at coarse scales where high attention scores occur more frequently; and (ii) a discrepancy between the sampling frequencies of codebook entries and their predicted probabilities due to limited calibration data. To address these challenges, we propose a PTQ framework tailored for VAR. First, we introduce a shift-and-sum quantization method that reduces reconstruction errors by aggregating quantized results from symmetrically shifted duplicates of value tokens. Second, we present a resampling strategy for calibration data that aligns sampling frequencies of codebook entries with their predicted probabilities. Experiments on class-conditional image generation, inpainting, outpainting, and class-conditional editing show consistent improvements across VAR architectures, establishing a new state of the art in PTQ for VAR.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=DAZvMAlZRp",
+  "arxiv": "https://arxiv.org/abs/2606.16131",
+  "pdf": "https://proceedings.iclr.cc/paper_files/paper/2026/file/89379d5fc6eb34ff98488202fb52b9d0-Paper-Conference.pdf",
+  "proceedings": "https://proceedings.iclr.cc/paper_files/paper/2026/hash/89379d5fc6eb34ff98488202fb52b9d0-Abstract-Conference.html",
+  "virtual": "https://iclr.cc/virtual/2026/poster/10010803",
+  "code": "http://cvlab.yonsei.ac.kr/projects/Shift-and-Sum/"
+ },
+ "license": "http://creativecommons.org/licenses/by-nc-sa/4.0/",
+ "img": "cc-by-nc-sa",
+ "image_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/images/iclr26-1133.png",
+ "thumb_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/thumbs/iclr26-1133.webp",
+ "figure_page": 1,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.8
+}

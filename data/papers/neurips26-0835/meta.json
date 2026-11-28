@@ -1,0 +1,51 @@
+{
+ "id": "neurips26-0835",
+ "title": "The BatchNorm Illusion: Diagnosing Normalization Artifacts in Machine Unlearning Evaluation",
+ "authors": [
+  "Aaryaman Kalani",
+  "Murari Mandal",
+  "Dhruv Kumar",
+  "Mohan Kankanhalli",
+  "Yash Sinha"
+ ],
+ "venue": "NeurIPS 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "Social Aspects->Privacy-preserving Statistics and Machine Learning",
+ "role": "teaser-result",
+ "role2": "analysis-finding",
+ "claim": "A tiny set of unlabeled samples lets an attacker recover most of the accuracy masked by the evaluation artifact, approaching the full-data auditor ceiling.",
+ "layout": "2 panels, left bar chart, right line plot, dashed auditor reference lines",
+ "tags": [
+  "adversarial-recovery",
+  "unlearning",
+  "evaluation-artifact",
+  "budget-sensitivity",
+  "robustness"
+ ],
+ "style": [
+  "plot",
+  "colorful",
+  "minimal"
+ ],
+ "description": "Two side-by-side plots. Panel (a) is a horizontal grouped bar chart for six unlearning methods (NoiseInject, BadTeacher, SSD, SalUn, IncompTeacher, PGU). Each method has three bars: blue for pre-recalibration forget accuracy, red for adversarial recovery with 100 images (black error bars show seed range), and green for the auditor ceiling. The x-axis is forget-class accuracy from 0 to 100. The red bars sit far above the blue ones, especially for NoiseInject and BadTeacher, and often come close to the green ones. Panel (b) is a line plot of forget accuracy against attacker budget B on a log axis from 10^1 to 10^4. It shows three methods as lines with markers: NoiseInject in navy, BadTeacher in orange and SalUn in purple. Dashed horizontal lines labeled with auditor values mark each method's reference level. The curves rise quickly and then plateau near those lines. A legend sits in each panel.",
+ "caption": "Adversarial recovery on BN-vulnerable methods (CIFAR-10, ResNet-18). (a) Forget-class accuracy before recalibration (blue), after recovery using $B=100$ in-distribution unlabeled images (red; three-seed mean and seed-range error bars), and after full-retain auditor recalibration (green). (b) Forget-class accuracy versus attacker budget $B$ for three representative methods; dashed horizontal lines mark their auditor references. Substantial recovery is already visible at $B=10$.",
+ "caption_source": "latex",
+ "abstract": "Approximate machine unlearning aims to remove the influence of specific training data from a trained model without retraining from scratch. We identify a previously undocumented confound in how unlearning is evaluated on BatchNorm-based architectures: a single forward pass over retain data, an operation that modifies no weight, can deterministically rewrite the model's normalization state and reverse the apparent surface-metric forgetting. We formalize this operation as a weight-preserving fixed-point operator and prove that any pre-versus-post gap it induces is provably attributable to BN running statistics rather than to any modification the unlearning method made to the weights. This attribution claim cleanly separates measurement failure (BN artifact) from encoder failure (residual weight-encoded information, recently documented in concurrent work), and the same operator framework yields a unique decomposition of linear-probe elevation into BN-measurement-bias and encoder-geometry components. Empirically, the artifact reverses headline forget accuracy by up to 78 pp across nine evaluated methods on standard benchmarks; an attacker with as few as 10 unlabeled images recovers most of the masked accuracy; and a strict GroupNorm control reduces the artifact to zero across all methods. The tested membership-inference attacks change little under recalibration, locating the observed evaluation failure in forget accuracy and linear probing.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=5uiFZ0FfMq",
+  "arxiv": "https://arxiv.org/abs/2609.08901",
+  "pdf": "https://arxiv.org/pdf/2609.08901",
+  "proceedings": null,
+  "virtual": "https://neurips.cc/virtual/2026/poster/155403",
+  "code": null
+ },
+ "license": "http://creativecommons.org/licenses/by-nc-nd/4.0/",
+ "img": "none",
+ "image_url": null,
+ "thumb_url": null,
+ "figure_page": 7,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.6
+}

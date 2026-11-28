@@ -1,0 +1,49 @@
+{
+ "id": "neurips26-3908",
+ "title": "KiteNorm: Variance Regularisation for Stable and Scalable Post-LN Transformers",
+ "authors": [
+  "Leon Aviv Trochelmann",
+  "Sajad Movahedi",
+  "Shiwei Liu",
+  "Antonio Orvieto"
+ ],
+ "venue": "NeurIPS 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "Optimization",
+ "role": "analysis-finding",
+ "role2": "prior-vs-ours",
+ "claim": "Unscaled post-norm training lets hidden variance explode and tokens collapse together; shrinking the residual branch curbs both failures.",
+ "layout": "4 line plots in a row, vanilla then scaled, shared step axis",
+ "tags": [
+  "post-norm",
+  "variance-growth",
+  "rank-collapse",
+  "residual-scaling",
+  "training-stability"
+ ],
+ "style": [
+  "plot",
+  "minimal"
+ ],
+ "description": "Four line plots sit side by side, each with training step on the x-axis and a short caption below. Panel (a) shows hidden variance for vanilla post-norm (c=1) on a log scale. It climbs steadily from about 10 to over 10^5 in roughly 400 steps. Panel (b) shows token alignment for the same run. It rises quickly to 1.0 and stays there, apart from one brief dip, which indicates collapse. Panels (c) and (d) repeat the two metrics for residual scaling factors c=1/3, 1/6, 1/12 and 1/24, each drawn in its own colour (orange, green, pink, yellow). In (c), token alignment spikes and then falls for smaller c. In (d), hidden variance peaks and returns to about 1, with the peak lower for smaller c. The eye goes first to the steep blue curve in (a).",
+ "caption": "Effect of residual scaling on training failures observed when training a 12-layer post-norm Transformer according to the setup in Appendix [ref] with learning rate $10^{-2}$. We report statistics over the hidden state after the residual addition in the final Attention sublayer. Figures [ref] & [ref] show the behaviour of vanilla post-norm with residual scaling factor $c=1$, whereas figures [ref] and [ref] show the effects of other choices of $c$.",
+ "caption_source": "latex",
+ "abstract": "Post-LayerNorm Transformers have seen limited practical adoption due to enduring difficulties in scaling them to large depths. While prior research has focused on stabilising Post-LayerNorm by improving conditioning at initialisation, stability often deteriorates when models are trained with large learning rates, forcing additional compromises. In the decoder-only settings we study, existing Post-LayerNorm methods fail to outperform strong Pre-LayerNorm baselines. We propose KiteNorm, a post-norm training method designed to break this trend by constraining hidden-state variance. This approach is motivated by a bound on the LayerNorm Jacobian suggesting that variance growth contributes to gradient vanishing, alongside empirical evidence linking it to rank collapse. KiteNorm combines residual scaling and variance regularisation to maintain stability throughout training, supported by scalarised double-normalisation that provides separately learnable scales for the skip and residual branches. Across decoder-only Transformers up to 1.3B parameters, KiteNorm improves training stability and outperforms leading baselines at their optimal learning rates, with scaling laws favouring KiteNorm across depth, width, batch size, and training budget. Ablations show that each component is necessary for the full stability and performance gains.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=RHBoN3I3Z4",
+  "arxiv": "https://arxiv.org/abs/2611.12729",
+  "pdf": "https://arxiv.org/pdf/2611.12729",
+  "proceedings": null,
+  "virtual": "https://neurips.cc/virtual/2026/poster/152670",
+  "code": null
+ },
+ "license": "http://creativecommons.org/licenses/by/4.0/",
+ "img": "cc-by",
+ "image_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/images/neurips26-3908.png",
+ "thumb_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/thumbs/neurips26-3908.webp",
+ "figure_page": 4,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.8
+}

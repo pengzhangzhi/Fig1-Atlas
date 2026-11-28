@@ -1,0 +1,58 @@
+{
+ "id": "iclr26-4296",
+ "title": "Geometric-Mean Policy Optimization",
+ "authors": [
+  "Yuzhong Zhao",
+  "Yue Liu",
+  "Junpeng Liu",
+  "Jingye Chen",
+  "xun wu",
+  "Yaru Hao",
+  "Tengchao Lv",
+  "Shaohan Huang",
+  "Lei Cui",
+  "Qixiang Ye",
+  "Fang Wan",
+  "Furu Wei"
+ ],
+ "venue": "ICLR 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "Reinforcement Learning->Everything Else",
+ "role": "prior-vs-ours",
+ "role2": "teaser-result",
+ "claim": "The standard method optimizes an arithmetic mean and suffers extreme outliers; our geometric-mean alternative keeps the training ratio stable.",
+ "layout": "2 stacked formula boxes left, one training-curve plot right; color-coded formulas",
+ "tags": [
+  "policy-optimization",
+  "reinforcement-learning",
+  "stability",
+  "outlier-suppression",
+  "geometric-mean"
+ ],
+ "style": [
+  "math-heavy",
+  "plot",
+  "colorful"
+ ],
+ "description": "The figure has two parts. On the left, two rounded boxes are stacked vertically. The top box is titled GRPO. It shows the arithmetic-mean objective, a 1/|o| sum over tokens of min[ρ_t Â, clip(ρ_t, ε_low, ε_high) Â], with the averaging and sum terms in red. The bottom box is titled GMPO (Ours). It shows the geometric-mean objective, a product over tokens raised to the power 1/|o| and multiplied by sgn(Â), with the product and exponent in blue. On the right is a line plot titled 'Range of importance sampling ratio: log(ρ_t(θ))', plotted against training steps. The red GRPO band has large, spiky downward excursions down to about -15. The blue GMPO band stays tight and stable. A red annotation reads 'Unstable policy updates!'. Red and blue color-code the two methods across both parts.",
+ "caption": "Comparison between GRPO and our \\Ours. GRPO optimizes the arithmetic mean of token-level rewards while \\Ours the geometric mean (left). When training with GRPO, the important sample ratio $\\big(\\rho_{t}(\\theta)=\\frac{\\pi_{\\theta}(o_{t}|q,o_{<t})}{\\pi_{\\theta_{\\mathrm{old}}}(o_{t}|q,o_{<t})}\\big)$ frequently reaches extreme values, leading to unstable policy updates. In contrast, \\Ours enjoys more stable important sample ratio with fewer outliers (right).",
+ "caption_source": "latex",
+ "abstract": "Group Relative Policy Optimization (GRPO) has significantly enhanced the reasoning capability of large language models by optimizing the arithmetic mean of token-level rewards. Unfortunately, GRPO is observed to suffer from unstable policy updates when facing tokens with outlier importance-weighted rewards, which manifest as extreme importance sampling ratios during training. In this study, we propose Geometric-Mean Policy Optimization (GMPO), with the aim to improve the stability of GRPO through suppressing token reward outliers. Instead of optimizing the arithmetic mean, GMPO maximizes the geometric mean of token-level rewards, which is inherently less sensitive to outliers and maintains a more stable range of importance sampling ratio. GMPO is plug-and-play-simply replacing GRPO's arithmetic mean with the geometric mean of token-level rewards, as the latter is inherently less sensitive to outliers. GMPO is theoretically plausible-analysis reveals that both GMPO and GRPO are weighted forms of the policy gradient while the former enjoys more stable weights, which consequently benefits policy optimization and performance. Experiments on multiple mathematical reasoning benchmarks show that GMPO-7B improves the average Pass@1 of GRPO by up to 4.1%, outperforming many state-of-the-art approaches. Code is available at https://github.com/callsys/GMPO.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=nCEs0tSwc2",
+  "arxiv": "https://arxiv.org/abs/2507.20673",
+  "pdf": "https://proceedings.iclr.cc/paper_files/paper/2026/file/44a1f18afd6d5cc34d7e5c3d8a80f63b-Paper-Conference.pdf",
+  "proceedings": "https://proceedings.iclr.cc/paper_files/paper/2026/hash/44a1f18afd6d5cc34d7e5c3d8a80f63b-Abstract-Conference.html",
+  "virtual": "https://iclr.cc/virtual/2026/poster/10007499",
+  "code": "https://github.com/callsys/GMPO"
+ },
+ "license": "http://arxiv.org/licenses/nonexclusive-distrib/1.0/",
+ "img": "none",
+ "image_url": null,
+ "thumb_url": null,
+ "figure_page": 0,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.6
+}

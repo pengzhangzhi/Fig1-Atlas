@@ -1,0 +1,52 @@
+{
+ "id": "iclr26-3227",
+ "title": "DASH: Deterministic Attention Scheduling for High-throughput Reproducible LLM Training",
+ "authors": [
+  "Xinwei Qiang",
+  "Hongmin chen",
+  "Shixuan Sun",
+  "Jingwen Leng",
+  "Xin Liu",
+  "Minyi Guo"
+ ],
+ "venue": "ICLR 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "Optimization->Large Scale, Parallel and Distributed",
+ "role": "analysis-finding",
+ "role2": "concept",
+ "claim": "Serializing gradient reductions to guarantee determinism leaves hardware underutilized and causes a large, consistent throughput drop versus the non-deterministic baseline.",
+ "layout": "3 panels, left-to-right, dashed dividers, bar chart on right",
+ "tags": [
+  "determinism",
+  "gradient-reduction",
+  "gpu-scheduling",
+  "throughput-drop",
+  "attention"
+ ],
+ "style": [
+  "colorful",
+  "plot",
+  "minimal"
+ ],
+ "description": "Three panels separated by dashed gray lines. The left panel, 'Computation of FlashAttention Backward', shows an 8x8 grid of query rows (Q0–Q7) by key/value columns (KV0–KV7), shaded from light to dark blue. A vertical dark arrow marks local reduction (intra-SM) and a horizontal red arrow marks global reduction (inter-SM). Local buffers sit below the grid and global buffers sit to its right. The middle panel, 'Global Reduction', has two stacked diagrams. The top one shows SM0–SM7 all sending arrows into one box, labeled 'Reduction with Atomic Operation'. The bottom one shows SMs reducing in sequence with barriers and red curved arrows, labeled 'Reduction with Barrier'. The right panel, 'Performance Drop', is a bar chart of normalized throughput. Four red bars (73%, 78%, 77%, 62%) fall below a dashed 100% non-deterministic baseline. The bars are grouped by full or causal mask and head dimension 64 or 128.",
+ "caption": "Overview of the deterministic FlashAttention. Left: Tiled computation structure of the backward pass, highlighting the local and global reductions. Middle: Comparison between the non-deterministic (atomic-based) and deterministic (ordered) global reduction. Right: Performance degradation under causal and full attention masks, HD stands for head dimension.",
+ "caption_source": "latex",
+ "abstract": "Determinism is indispensable for reproducibility in large language model (LLM) training, yet it often exacts a steep performance cost. In widely used attention implementations such as FlashAttention-3, the deterministic backward pass can incur up to a 37.9% throughput reduction relative to its non-deterministic counterpart, primarily because gradient accumulation operations must be serialized to guarantee numerical consistency. This performance loss stems from suboptimal scheduling of compute and gradient-reduction phases, leading to significant hardware underutilization. To address this challenge, we formulate the backward pass of deterministic attention as a scheduling problem on a Directed Acyclic Graph (DAG) and derive schedules that minimize the critical path length. Building on this formulation, we present DASH (Deterministic Attention Scheduling for High-Throughput), which encapsulates two complementary scheduling strategies: (i) Descending Q-Tile Iteration, a reversed query-block traversal that shrinks pipeline stalls in causal attention, and (ii) Shift Scheduling, a theoretically optimal schedule within our DAG model that reduces pipeline stalls for both full and causal masks. Our empirical evaluations on NVIDIA H800 GPUs demonstrate that DASH narrows the performance gap of deterministic attention. The proposed strategies improve the throughput of the attention backward pass by up to 1.28$\\times$ compared to the baseline, significantly advancing the efficiency of reproducible LLM training. Our code is open-sourced at https://github.com/SJTU-Liquid/deterministic-FA3.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=bMi5ssfPoM",
+  "arxiv": "https://arxiv.org/abs/2601.21824",
+  "pdf": "https://proceedings.iclr.cc/paper_files/paper/2026/file/ea2d9874341c7434707ca897daaf0616-Paper-Conference.pdf",
+  "proceedings": "https://proceedings.iclr.cc/paper_files/paper/2026/hash/ea2d9874341c7434707ca897daaf0616-Abstract-Conference.html",
+  "virtual": "https://iclr.cc/virtual/2026/poster/10008616",
+  "code": "https://github.com/SJTU-Liquid/deterministic-FA3"
+ },
+ "license": "http://creativecommons.org/licenses/by/4.0/",
+ "img": "cc-by",
+ "image_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/images/iclr26-3227.png",
+ "thumb_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/thumbs/iclr26-3227.webp",
+ "figure_page": 1,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.5
+}

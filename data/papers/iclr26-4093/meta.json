@@ -1,0 +1,54 @@
+{
+ "id": "iclr26-4093",
+ "title": "WINA: Weight Informed Neuron Activation for Accelerating Large Language Model Inference",
+ "authors": [
+  "Sihan Chen",
+  "Dan Zhao",
+  "Jongwoo Ko",
+  "Colby Banbury",
+  "Huiping Zhuang",
+  "Luming Liang",
+  "Pashmina Cameron",
+  "Tianyi Chen"
+ ],
+ "venue": "ICLR 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "Deep Learning->Algorithms",
+ "role": "pipeline",
+ "role2": null,
+ "claim": "Weighting input activations by weight column norms selects which dimensions to keep, giving a sparse sub-network that cuts compute across precisions.",
+ "layout": "2 panels, left-to-right; left flow chart zooms into right matrix diagram",
+ "tags": [
+  "sparse-activation",
+  "training-free",
+  "llm-inference",
+  "efficiency",
+  "quantization"
+ ],
+ "style": [
+  "colorful",
+  "icon-heavy",
+  "math-heavy"
+ ],
+ "description": "The left panel is a vertical flow chart. A yellow 'Dense Linear Layer' box points to a green 'WINA Linear Layer' box. That box feeds a gray 'LLM' block, which sits between two small density curves: a teal 'Weight Norm' curve and a pink 'Activation' curve. An arrow then leads to an orange 'Reduced FLOPs' box. A faint gray wedge zooms from the WINA layer into the right panel. The right panel compares two matrix-vector products. On the left, a full blue weight matrix W (labeled FP16, INT8, INT4 and so on) multiplies a pink vector x. On the right, W'_WINA has gray, pruned columns and multiplies a sparsified x' = x ⊙ g. Below, the column-wise ℓ2-norm of W is multiplied element-wise by x^T to give the gate g. This gate is a gray and white strip, labeled 'Weight Informed Gate Function'. A dash-dot line divides the dense and sparse sides. The eye goes first to the large blue matrices.",
+ "caption": "Overview of WINA. WINA performs training-free sparse activation by selecting the most influential input dimensions based on both activation magnitude and the column-wise ℓ2-norms of weight matrices. This joint criterion effectively extends to layers of varying precision, including quantized layers, ensuring accurate sub-network activation at each layer during inference.",
+ "caption_source": "pdf",
+ "abstract": "The growing computational demands of large language models (LLMs) make efficient inference and activation strategies increasingly critical. While recent approaches, such as Mixture-of-Experts (MoE), leverage selective activation but require specialized training, training-free sparse activation methods offer broader applicability and superior resource efficiency through their plug-and-play design. However, many existing methods rely solely on hidden state magnitudes to determine activation, resulting in high approximation errors and suboptimal inference accuracy. To address these limitations, we propose WINA (Weight Informed Neuron Activation), a novel, simple, and training-free sparse activation framework that jointly considers hidden state magnitudes and the column-wise $\\ell_2$-norms of weight matrices. We show that this leads to a sparsification strategy that obtains optimal approximation error bounds with theoretical guarantees tighter than existing techniques. Empirically, WINA also outperforms state-of-the-art methods (e.g., TEAL) by up to $2.94\\%$ in average performance at the same sparsity levels, across a diverse set of LLM architectures and datasets. These results position WINA as a new performance frontier for training-free sparse activation in LLM inference, advancing training-free sparse activation methods and setting a robust baseline for efficient inference. The source code is available at https://github.com/microsoft/wina.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=l7Vb3yxmuz",
+  "arxiv": "https://arxiv.org/abs/2505.19427",
+  "pdf": "https://proceedings.iclr.cc/paper_files/paper/2026/file/c7b9810b2e27bccdc8d605a3a54c8cd6-Paper-Conference.pdf",
+  "proceedings": "https://proceedings.iclr.cc/paper_files/paper/2026/hash/c7b9810b2e27bccdc8d605a3a54c8cd6-Abstract-Conference.html",
+  "virtual": "https://iclr.cc/virtual/2026/poster/10007715",
+  "code": "https://github.com/microsoft/wina"
+ },
+ "license": "http://creativecommons.org/licenses/by/4.0/",
+ "img": "cc-by",
+ "image_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/images/iclr26-4093.png",
+ "thumb_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/thumbs/iclr26-4093.webp",
+ "figure_page": 2,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.8
+}

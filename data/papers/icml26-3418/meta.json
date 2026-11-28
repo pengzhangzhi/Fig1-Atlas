@@ -1,0 +1,53 @@
+{
+ "id": "icml26-3418",
+ "title": "Finding the Correct Visual Evidence Without Forgetting: Mitigating Hallucination in LVLMs via Inter-Layer Visual Attention Discrepancy",
+ "authors": [
+  "Yutong Xie",
+  "Zhenglin Hua",
+  "Ran Wang",
+  "Wing W. Y. Ng",
+  "Xizhao Wang",
+  "Yuheng Jia"
+ ],
+ "venue": "ICML 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "Deep Learning->Foundation Models",
+ "role": "analysis-finding",
+ "role2": "problem-setup",
+ "claim": "Models fail by under-attending to and gradually forgetting correct evidence, yet specific layers reveal it, motivating an attention-based fix.",
+ "layout": "4 colored panels: example center, stats left and below, layer analysis right",
+ "tags": [
+  "hallucination",
+  "attention-analysis",
+  "training-free",
+  "visual-grounding",
+  "layer-wise-discrepancy"
+ ],
+ "style": [
+  "colorful",
+  "plot",
+  "photo/real data",
+  "text-heavy"
+ ],
+ "description": "A four-panel figure with a pastel color-coded box for each insight. The center-top blue box shows a typical case. A tennis photo asks whether a sports ball is present. The baseline model answers wrongly with no attention on the ball, while the method's heatmap highlights the ball and answers correctly. The left yellow box (i) has two overlaid red and blue histograms, for LLaVA and Qwen. They show that hallucinated responses have lower attention to visual evidence than correct ones. The green box (ii) at the bottom center plots attention decaying over generation steps, with red stems for hallucinated word counts. The right gray box (iii) has a line chart of relative attention per layer for evidence, non-evidence and sink tokens. Below it, a grid of eight layer heatmaps is marked with red and yellow stars, ending with the caption 'We can find the Correct Visual Evidence by ILVAD!'.",
+ "caption": "This figure showcases our insights. The (0) blue box illustrates that LVLMs are prone to hallucination due to the neglect of relevant visual evidence. The baseline model hardly attends to the visual evidence, while our method correctly identifies the object by enhancing attention to the visual evidence. The (i) yellow box shows the attention distribution over visual evidence for hallucinated versus correct textual responses at the sample-level in LLaVA-1.5-7B and Qwen2-VL-7B. The (ii) green box illustrates how the model's attention to visual evidence and the frequency of hallucinations change over the generation step-levels. The (iii) gray box shows the attention to visual evidence, visual sinks, and non-evidence across different layers. Attention exhibits Inter-Layer Visual Attention Discrepancy at the layer-level. The example below more clearly demonstrates this observation through the attention distribution at specific layers.",
+ "caption_source": "latex",
+ "abstract": "Large Vision-Language Models (LVLMs) have shown remarkable performance on a wide range of vision-language tasks. Despite this progress, they are still prone to hallucination, generating responses that are inconsistent with visual content. In this work, we find that LVLMs tend to hallucinate when they pay insufficient attention to the correct visual evidence and gradually forget it during the generation process. We empirically find that although LVLMs overall attend insufficiently to visual evidence, they exhibit sensitivity to the correct visual evidence in specific layers, with notable inter-layer discrepancy. Motivated by this observation, we propose a novel hallucination mitigation method that enhances visual evidence based on Inter-Layer Visual Attention Discrepancy (ILVAD). Specifically, we obtain the attention weights from early generated tokens to visual tokens across layers and identify the tokens that are repeatedly activated as visual evidence, forming a saliency map. We then enhance attention to visual evidence during generation through the saliency map to reduce visual forgetting. In addition, we leverage the saliency map to obtain attention scores of generated text to visual evidence, in order to select and emphasize text tokens that are strongly grounded in visual evidence. Our method is training-free and plug-and-play. Multiple benchmark evaluations conducted on five recently released models show that our method can consistently mitigate hallucinations in different LVLMs over various architectures. Code is available at https://github.com/ytx-ML/ILVAD.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=WUjRCkjKC7",
+  "arxiv": "https://arxiv.org/abs/2605.20965",
+  "pdf": "https://raw.githubusercontent.com/mlresearch/v306/main/assets/xie26m/xie26m.pdf",
+  "proceedings": "https://proceedings.mlr.press/v306/xie26m.html",
+  "virtual": "https://icml.cc/virtual/2026/poster/63514",
+  "code": "https://github.com/ytx-ML/ILVAD"
+ },
+ "license": "http://arxiv.org/licenses/nonexclusive-distrib/1.0/",
+ "img": "none",
+ "image_url": null,
+ "thumb_url": null,
+ "figure_page": 1,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.8
+}

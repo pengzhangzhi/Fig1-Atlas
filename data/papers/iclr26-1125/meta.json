@@ -1,0 +1,50 @@
+{
+ "id": "iclr26-1125",
+ "title": "TS$^2$: Training with Sparsemax+, Testing with Softmax for Accurate and Diverse LLM Fine-Tuning",
+ "authors": [
+  "Ziyang Xu",
+  "Ananthu Rajendran Pillai",
+  "Yinghua Yao",
+  "Yuangang Pan"
+ ],
+ "venue": "ICLR 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "Deep Learning->Algorithms",
+ "role": "teaser-result",
+ "role2": "prior-vs-ours",
+ "claim": "Standard fine-tuning collapses output probability onto one token or leaves mass on junk tokens; ours keeps a calibrated, diverse distribution.",
+ "layout": "4 bar-chart panels in a row, color-coded per method, red boxes and X marks",
+ "tags": [
+  "fine-tuning",
+  "output-diversity",
+  "token-distribution",
+  "loss-function",
+  "calibration"
+ ],
+ "style": [
+  "plot",
+  "colorful",
+  "minimal"
+ ],
+ "description": "A single row of four bar charts that share a Probability y-axis from 0 to 1. Each panel shows the next-token distribution for single-digit generation under a different model, with the tokens labeled on a rotated x-axis. The panels are, left to right: Pretrained (green), CE (blue), GEM (orange) and TS² (Ours, red). Pretrained has a spread-out distribution that peaks near 0.4 on token '1'. CE puts almost all its mass, about 1.0, on '42' and nothing on other tokens. GEM puts about 0.95 on '42' with small bars on a few others. TS² has a flatter distribution with 42 at about 0.33, followed by several plausible alternatives. Red boxes and bold X marks sit on the low-probability junk tokens such as punctuation. A legend across the top maps colors to methods and explains the X as 'Meaningless Token'. The eye goes first to the tall blue bar and then to the red panel.",
+ "caption": "Token Distribution for single digit generation (detailed in Appendix C.4).",
+ "caption_source": "pdf",
+ "abstract": "Large Language Models typically rely on Supervised Fine-Tuning (SFT) with Cross-Entropy (CE) loss to specialize in downstream tasks. However, CE forces the distribution toward one-hot targets and ignores alternative continuations, thereby limiting output diversity, a key drawback for generative applications that rely on sampling-based exploration. In this paper, we propose ``Training with Sparsemax$+$, Testing with Softmax (TS$^2$)''. Intuitively, sparsemax and its tailored loss mask the gradients of probabilities outside the support set, leaving excessive probability mass on irrelevant tail classes when evaluating with softmax. To address this issue, we propose an improved variant, Sparsemax$+$, for training, which augments the sparsemax loss with a suppression term that penalizes the out-of-support probabilities. At testing, we decode with softmax, yielding calibrated, non-degenerate probabilities where plausible near-ties survive. We fine-tuned Llama-3.1-8B and Qwen-2.5-7B with TS$^2$, achieving consistent improvements in accuracy and output diversity across chat, code, and open-domain benchmarks. Together, these results demonstrate that TS$^2$ provides a practical, drop-in solution for fine-tuning LLMs that are both more accurate and more creative. The code is available at https://github.com/xzy-bit/TS-2-ICLR-2026.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=CylRqa82Rk",
+  "arxiv": null,
+  "pdf": "https://proceedings.iclr.cc/paper_files/paper/2026/file/4e61213c224ce1dea6b5db29642c5adc-Paper-Conference.pdf",
+  "proceedings": "https://proceedings.iclr.cc/paper_files/paper/2026/hash/4e61213c224ce1dea6b5db29642c5adc-Abstract-Conference.html",
+  "virtual": "https://iclr.cc/virtual/2026/poster/10010811",
+  "code": "https://github.com/xzy-bit/TS-2-ICLR-2026"
+ },
+ "license": null,
+ "img": "none",
+ "image_url": null,
+ "thumb_url": null,
+ "figure_page": 1,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.6
+}

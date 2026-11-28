@@ -1,0 +1,51 @@
+{
+ "id": "icml26-2523",
+ "title": "MuLoCo: Muon is a Practical Inner Optimizer for DiLoCo",
+ "authors": [
+  "Benjamin Thérien",
+  "Xiaolong Huang",
+  "Aaron Defazio",
+  "Irina Rish",
+  "Eugene Belilovsky"
+ ],
+ "venue": "ICML 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "Optimization->Large Scale, Parallel and Distributed",
+ "role": "teaser-result",
+ "role2": "analysis-finding",
+ "claim": "Our method degrades less than the baseline as parallelism grows and reaches a better Pareto frontier at larger batch sizes.",
+ "layout": "2 panels, left-to-right, line plots with highlighted markers and a 'Better' arrow",
+ "tags": [
+  "scaling-curves",
+  "pareto-frontier",
+  "optimizer",
+  "distributed-training",
+  "efficiency"
+ ],
+ "style": [
+  "plot",
+  "colorful",
+  "minimal"
+ ],
+ "description": "Two line plots side by side. The left plot shows percent increase in evaluation loss over the data-parallel baseline against number of workers K (1 to 16). A blue triangle line (DiLoCo/DP AdamW) climbs steeply to about 4.5%. A dark red square line (MuLoCo/DP Muon) rises more slowly to about 2.7%. The two lines cross near K=4. A legend with fractions sits top-left, and a box in the lower right gives the baseline final losses. The right plot shows performance normalized by AdamW DP against FLOPs per batch size on a log axis. Four colored curves (AdamW DP, Muon DP, DiLoCo K=1, MuLoCo K=1) have stars marking optimal batch size and squares marking critical batch size. A gray dashed Pareto frontier and a 'Better' arrow point to the upper left. The pink-red MuLoCo curve sits highest. Each panel has a bold caption below it.",
+ "caption": "Subfigure (a) reports the percentage increase in loss for DiLoCo and MuLoCo relative to their DP baselines. We observe that the relative performance of each method degrades as K is increased, but that MuLoCo shows clear improvements over DiLoCo relative to their data parallel baselines as workers are increased. Subfigure (b) reports the performance of different optimizers in an iso-FLOP setting as a function of FLOPs/Batch Size (a proxy for training time). The optimal batch size ($\\bopt$) is the batch size achieving the best performance, while the critical batch size ($\\bcrit$) is taken to be the largest batch size achieving a final evaluation loss that is: $L(\\bcrit)\\leq1.01\\times L(\\bopt)$. We observe that at the 3.1B scale, our proposed MuLoCo K=1 achieves stronger performance than other optimizers while also being compatible with much larger batch sizes.",
+ "caption_source": "latex",
+ "abstract": "DiLoCo is a powerful framework for training large language models (LLMs), enabling larger optimal batch sizes and increased accelerator utilization under networking constraints. However, DiLoCo's performance has been shown to degrade as the number of workers (K) increases (Charles et al., 2025). In this work, we posit that a related but often overlooked factor in DiLoCo's behavior is the choice of inner optimizer, which shapes the pseudogradient used by the outer optimizer. Given the recent success of Muon relative to AdamW for data parallel (DP) training, we examine how Muon's normalized optimizer steps can affect the pseudogradient's quality. We find that, relative to AdamW, Muon yields more directionally correct pseudogradients as the number of workers ($K$) increases. In our experiments pre-training language models, we conduct extensive hyperparameter tuning across 150M, 416M, 914M, 1.76B, and 3.1B models for DiLoCo, MuLoCo, AdamW DP, and Muon DP. Consistently across all scales, we find that with $K\\geq1$ workers, MuLoCo (Muon inner optimizer DiLoCo) achieves superior performance to DiLoCo in absolute terms and for $K>2$ it outperforms DiLoCo relative to their data parallel baselines, while being compatible with quantization, streaming, and long synchronization intervals. At $K=1$, we find that MuLoCo can even outperform the data-parallel gold standard while having larger critical batch sizes. Finally, we extrapolate optimal hyperparameters to 15B scale and train a model with each method (six in total) using $K=1$ and $K=16$ workers. We find that $K=16$ MuLoCo nearly matches single-worker performance at this scale, while MuLoCo $K=1$ matches the best performing baseline while using a much larger $16$M token batch size.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=OBXBXSgwcD",
+  "arxiv": "https://arxiv.org/abs/2505.23725",
+  "pdf": "https://raw.githubusercontent.com/mlresearch/v306/main/assets/therien26a/therien26a.pdf",
+  "proceedings": "https://proceedings.mlr.press/v306/therien26a.html",
+  "virtual": "https://icml.cc/virtual/2026/poster/64378",
+  "code": "https://bentherien.github.io/muloco-1/"
+ },
+ "license": "http://creativecommons.org/licenses/by-nc-sa/4.0/",
+ "img": "cc-by-nc-sa",
+ "image_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/images/icml26-2523.png",
+ "thumb_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/thumbs/icml26-2523.webp",
+ "figure_page": 1,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.8
+}

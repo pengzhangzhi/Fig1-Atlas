@@ -1,0 +1,48 @@
+{
+ "id": "neurips26-3033",
+ "title": "Consolidating Rewarded Perturbations for LLM Post-Training",
+ "authors": [
+  "Zheyu Zhang",
+  "Shuo Yang",
+  "Gjergji Kasneci"
+ ],
+ "venue": "NeurIPS 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "Deep Learning->Everything Else",
+ "role": "prior-vs-ours",
+ "role2": "pipeline",
+ "claim": "Output-space post-training updates via gradients on sampled trajectories; ours perturbs weights and merges rewarded variants into one model.",
+ "layout": "2 stacked rows of 4 boxes, left-to-right, parallel verbs on arrows",
+ "tags": [
+  "weight-space",
+  "gradient-free",
+  "post-training",
+  "model-merging",
+  "parallel-pipelines"
+ ],
+ "style": [
+  "minimal",
+  "colorful"
+ ],
+ "description": "Two horizontal flow diagrams are stacked, one above the other, with matching structure. The top row is the output-space route. It runs Base model θ0, then Sampled trajectories τ, then Reward / teacher signal, then Updated θ′. The arrows are labeled sample, score and gradient. The label RLVR, OPD sits at the right. The bottom row is the weight-space route. It runs Base weights θ0, then Perturbations θ0+Δi, then Support-set rewards ri, then Updated θ̂. The arrows are labeled sample, score and select. The labels RandOpt: vote and bold CoRP: merge sit at the right. The boxes are rounded and light gray. The two final boxes are highlighted, the top one blue and the bottom one green. The eye goes to the colored end boxes and the differing arrow verbs.",
+ "caption": "Two routes for self-elicitation post-training. Output-space methods sample trajectories and fold reward or teacher feedback back through gradients. Weight-space methods sample perturbations around $\\theta_0$ and fold rewarded variation back by aggregation. CoRP follows the weight-space route and returns a single deployable model instead of an inference-time ensemble.",
+ "caption_source": "latex",
+ "abstract": "Post-training of language models is commonly framed as a sample-score-update loop implemented by gradient descent. A recent line of work, exemplified by RandOpt, relocates this loop to weight space, sampling Gaussian perturbations around a pretrained model and ensembling the top-K rewarded specialists at inference. While competitive with PPO and GRPO under matched training compute, this prediction-level ensemble incurs K forward passes per test example and does not extend cleanly to free-form generation. We ask whether the rewarded population can instead be folded into a single deployable model, replacing the inference-time ensemble with one consolidated update. A split-half analysis over 25 model-task pairs reveals reproducible low-rank structure in every case. We turn this geometry into CoRP (Consolidating Rewarded Perturbations), a gradient-free operator that combines reward-weighted aggregation, compatibility-aware reweighting, and a held-out validation gate, with no gradient flowing through the language model. Across five language models from 0.5B to 8B and five tasks covering math, code, and creative writing, CoRP improves the base model by 8.1 points on average. Using one tenth of RandOpt's perturbation budget, CoRP exceeds single-inference RandOpt by 6.5 points and recovers more than half of the gain of the 50-pass majority-vote ensemble, at one forward pass per test example.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=L9ncjOTwgM",
+  "arxiv": "https://arxiv.org/abs/2605.31494",
+  "pdf": "https://arxiv.org/pdf/2605.31494",
+  "proceedings": null,
+  "virtual": "https://neurips.cc/virtual/2026/poster/153456",
+  "code": null
+ },
+ "license": "http://creativecommons.org/licenses/by/4.0/",
+ "img": "cc-by",
+ "image_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/images/neurips26-3033.png",
+ "thumb_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/thumbs/neurips26-3033.webp",
+ "figure_page": 1,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.62
+}

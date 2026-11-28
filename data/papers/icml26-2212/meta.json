@@ -1,0 +1,51 @@
+{
+ "id": "icml26-2212",
+ "title": "Why Tree-Style Branching Matters for Thought Advantage Estimation in GRPO",
+ "authors": [
+  "Hongcheng Wang",
+  "Yinuo Huang",
+  "Sukai Wang",
+  "Guanghui Ren",
+  "Hao Dong"
+ ],
+ "venue": "ICML 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "Deep Learning->Large Language Models",
+ "role": "pipeline",
+ "role2": "prior-vs-ours",
+ "claim": "Baseline couples thought and answer advantages through one sampled pair; sampling multiple answers per thought decouples and sharpens thought-level advantage estimation.",
+ "layout": "2 stacked panels split by dashed line, left-to-right flow, legend box at right",
+ "tags": [
+  "advantage-estimation",
+  "branching",
+  "variance-reduction",
+  "reinforcement-learning",
+  "reasoning"
+ ],
+ "style": [
+  "colorful",
+  "math-heavy",
+  "icon-heavy"
+ ],
+ "description": "The figure has two horizontal pipelines stacked and separated by a dashed line, with a legend box at top right. The top panel, GRPO, runs left to right: Prompt, then Policy Model (yellow), then K rows of thought-answer pairs, then a blue Reward Function, then green reward boxes R1..RK, then one 'Thought and Answer Advantage Estimation' box carrying an orange 'Coupling' tag, then red advantage boxes A(o_i). A dotted arrow returns to the policy model as the PPO-like update. The bottom panel, GRPO-MA, is larger and nested. It samples K thoughts, then samples M answers per thought, which gives a K×M reward grid. Two zoom-in rounded boxes show answer sampling and reward computation, and row-wise mean computation giving purple V(th_i) values. Thought advantage estimation and answer advantage estimation are split by an orange 'Decoupling' tag. The outputs are red advantage grids. Pastel colors encode the roles of the boxes, and the legend defines them.",
+ "caption": "The operational flow of advantage estimation in GRPO and GRPO-MA. In the baseline GRPO framework (top), the advantage is computed from a single thought--answer pair, coupling thought and answer advantages to one reward signal. GRPO-MA (bottom) samples multiple answers for each thought.",
+ "caption_source": "latex",
+ "abstract": "Group Relative Policy Optimization (GRPO) trains Chain-of-Thought reasoning with verifiable rewards, but estimating thought-level advantages without value functions often suffers from high variance. Although tree-style branching is used in practice to reduce variance, it lacks a theoretical explanation of why it works and whether it is important or potentially necessary. We study thought-level advantage estimation in GRPO from a variance perspective under a minimal tree-style setting where multiple continuations are sampled for each thought. Using the multivariate delta method, we reveal a sampling-dimension asymmetry. Increasing sampled thoughts ($K$) leaves a strictly positive estimation-variance floor, whereas increasing continuations per thought ($M$) drives the leading-order estimation variance to zero at rate $1/M$. This implies that, within the fixed-temperature GRPO-style estimator without value models studied here, accurate thought-level advantage estimation cannot be achieved by scaling thought sampling alone, making continuation-level branching a principled and potentially necessary mechanism rather than a heuristic. Experiments further provide empirical evidence for its effectiveness and potential necessity, demonstrating improved optimization stability, training efficiency, and final performance not only in math but also across vision domains and under different model architectures and sizes.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=KwO83Ao6BW",
+  "arxiv": "https://arxiv.org/abs/2509.24494",
+  "pdf": "https://raw.githubusercontent.com/mlresearch/v306/main/assets/wang26ci/wang26ci.pdf",
+  "proceedings": "https://proceedings.mlr.press/v306/wang26ci.html",
+  "virtual": "https://icml.cc/virtual/2026/poster/64680",
+  "code": null
+ },
+ "license": "http://creativecommons.org/licenses/by/4.0/",
+ "img": "cc-by",
+ "image_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/images/icml26-2212.png",
+ "thumb_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/thumbs/icml26-2212.webp",
+ "figure_page": 4,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.8
+}

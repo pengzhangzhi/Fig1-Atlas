@@ -1,0 +1,53 @@
+{
+ "id": "icml26-6540",
+ "title": "ForesightKV: Optimizing KV Cache Eviction for Reasoning Models by Learning Long-Term Contribution",
+ "authors": [
+  "Zican Dong",
+  "Peiyu Liu",
+  "Junyi Li",
+  "Zhipeng Chen",
+  "Han Peng",
+  "Shuo Wang",
+  "Xin Zhao"
+ ],
+ "venue": "ICML 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "Deep Learning->Large Language Models",
+ "role": "analysis-finding",
+ "role2": null,
+ "claim": "Attention over cached context follows a few recurring structural patterns, global, positional and semantic, which simple eviction heuristics fail to capture.",
+ "layout": "4 heatmap panels in a row, red boxes highlighting pattern regions",
+ "tags": [
+  "attention-patterns",
+  "kv-cache",
+  "eviction",
+  "heatmap",
+  "empirical-observation"
+ ],
+ "style": [
+  "plot",
+  "colorful",
+  "photo/real data"
+ ],
+ "description": "A single row of four lower-triangular attention heatmaps from Qwen3-4B. Each panel is titled with a layer and head (Layer 1 Head 10, Layer 2 Head 14, Layer 13 Head 0, Layer 20 Head 27). Both axes run from 0 to about 4000 tokens. Each panel has a coolwarm colorbar on the right, with log-scale values from about -5 to 0. Most cells are blue, meaning low attention, with some lighter or orange cells. Red rectangles mark the pattern in each panel. Panel 1 has a tall vertical box at one key position, a global pattern. Panel 2 has a narrow diagonal band along the main diagonal, a position-dependent pattern. Panels 3 and 4 have small boxes and a wide horizontal box across the bottom rows, semantic-dependent patterns. The red outlines draw the eye first.",
+ "caption": "KV patterns in Qwen3-4B, including three patterns: (A) Global; (B) Position-dependent; (C) and (D) Semantic-dependent.",
+ "caption_source": "latex",
+ "abstract": "Recently, large language models (LLMs) have shown remarkable reasoning abilities by producing long reasoning traces. However, as the sequence length grows, the key-value (KV) cache expands linearly, incurring significant memory and computation costs. Existing KV cache eviction methods mitigate this issue by discarding less important KV pairs, but often fail to capture complex KV dependencies, resulting in performance degradation. To better balance efficiency and performance, we introduce ForesightKV, a training-based KV cache eviction framework that learns to predict which KV pairs to evict during long-text generations. We first design the Golden Eviction algorithm, which identifies the optimal eviction KV pairs at each step using future attention scores. These traces and the scores at each step are then distilled via supervised training with a Pairwise Ranking Loss. Furthermore, we formulate cache eviction as a Markov Decision Process and apply the GRPO algorithm to mitigate the significant language modeling loss increase on low-entropy tokens. Experiments on AIME2024 and AIME2025 benchmarks of three reasoning models demonstrate that ForesightKV consistently outperforms prior methods under only half the cache budget, while benefiting synergistically from both supervised and reinforcement learning approaches. Code is available at https://github.com/RUCAIBox/ForesightKV.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=znV8JHv8b8",
+  "arxiv": "https://arxiv.org/abs/2602.03203",
+  "pdf": "https://raw.githubusercontent.com/mlresearch/v306/main/assets/dong26h/dong26h.pdf",
+  "proceedings": "https://proceedings.mlr.press/v306/dong26h.html",
+  "virtual": "https://icml.cc/virtual/2026/poster/60486",
+  "code": "https://github.com/RUCAIBox/ForesightKV"
+ },
+ "license": "http://creativecommons.org/licenses/by/4.0/",
+ "img": "cc-by",
+ "image_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/images/icml26-6540.png",
+ "thumb_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/thumbs/icml26-6540.webp",
+ "figure_page": 2,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.9
+}

@@ -1,0 +1,51 @@
+{
+ "id": "neurips26-1766",
+ "title": "SiliconBench: Speed, Memory, and Fidelity for LLM Serving on Unified-Memory Desktops",
+ "authors": [
+  "Ranran Haoran Zhang",
+  "Aysa Fan",
+  "David M Correia",
+  "Alex Cheema",
+  "Rui Zhang"
+ ],
+ "venue": "NeurIPS 2026",
+ "tier": "poster",
+ "track": "Evaluations_and_Datasets_Track",
+ "topic": "Optimization->Neural Network Optimization",
+ "role": "analysis-finding",
+ "role2": "problem-setup",
+ "claim": "The same workload that runs fine on a large-memory machine thrashes and slows sharply on a smaller one due to memory pressure.",
+ "layout": "2 side-by-side line plots, shared axes, shaded compression region on left",
+ "tags": [
+  "memory-pressure",
+  "unified-memory",
+  "concurrency",
+  "llm-serving",
+  "hardware-comparison"
+ ],
+ "style": [
+  "plot",
+  "colorful",
+  "minimal"
+ ],
+ "description": "Two side-by-side line charts plot GPU memory allocated in GB against elapsed seconds. The left panel is an Apple M1 Pro with 32 GB. It shows a gray sequential run that ends at 75 s. An orange concurrent run has a sawtooth memory climb up to about 22 GB and ends at 190 s, labeled 2.5×. A peach shaded band marks where compression is active. A dotted red line shows compressed-memory growth of about 4.6 GB. The right panel is an Apple M1 Max with 64 GB. It shows the same two runs with concurrent ending at 45 s (1.1×) and sequential at 40 s, with no shaded region. A shared legend sits across the top. The eye goes first to the shaded left panel and the long orange curve.",
+ "caption": "The workload that fits in 64\\,GB thrashes in 32\\,GB. mlx\\_lm padded queries and batch-contiguous KV (30K + 5K + 10 input tokens), sequential vs.\\ concurrent, on a 32\\,GB M1 Pro (left) and a 64\\,GB M1 Max (right). Concurrent padding triggers page compression and a $2.5\\times$ slowdown on the smaller machine.",
+ "caption_source": "latex",
+ "abstract": "Concurrent local LLM serving on unified-memory desktops must preserve memory headroom and output fidelity, which speed-only rankings overlook. We introduce SiliconBench, which evaluates nine Apple Silicon serving engines through three lenses: speed, memory, and fidelity. We evaluate chat and agent serving on Qwen3, Qwen3.5, and Gemma 4. We use a classification task to check for quality regressions against an NVIDIA reference. DGX Spark provides a complementary serving-performance reference. Three desiderata guide interpretation: serving architecture readiness, memory discipline, and multi-node scaling. On Qwen3-0.6B, vllm-metal alone more than doubles throughput on both workloads from concurrency 1 to 16. CUDA vLLM and SGLang show stronger concurrency scaling on the same prompts. Explicit memory budgets do not guarantee memory headroom: two stacks complete every request while memory use approaches physical capacity and throughput declines. The newer model architectures have narrower engine support. Their evaluated implementations match the fidelity reference. Only three stacks satisfy the completion, fidelity, and model-coverage gates. Comparisons on larger dense and MoE models reinforce the importance of scheduling prompt processing alongside ongoing generation: vllm-metal's packed prefill-decode path maintains lower first-token latency than omlx under concurrent load. In the tested two-machine configurations, tensor parallelism over Thunderbolt RDMA scales while pipeline parallelism over TCP regresses. We release benchmark code, per-run results, and maintenance journals, supported by a workflow combining bounded agent fixes with human review.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=CYtU8IXAgH",
+  "arxiv": "https://arxiv.org/abs/2609.19169",
+  "pdf": "https://arxiv.org/pdf/2609.19169",
+  "proceedings": null,
+  "virtual": "https://neurips.cc/virtual/2026/poster/139658",
+  "code": "https://ranranhaoranzhang.com/siliconbench/"
+ },
+ "license": "http://creativecommons.org/licenses/by/4.0/",
+ "img": "cc-by",
+ "image_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/images/neurips26-1766.png",
+ "thumb_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/thumbs/neurips26-1766.webp",
+ "figure_page": 4,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.6
+}

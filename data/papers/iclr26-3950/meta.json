@@ -1,0 +1,52 @@
+{
+ "id": "iclr26-3950",
+ "title": "PTQ4ARVG: Post-Training Quantization for AutoRegressive Visual Generation Models",
+ "authors": [
+  "Xuewen Liu",
+  "Zhikai Li",
+  "Jing Zhang",
+  "Mengjuan Chen",
+  "Jianquan Li",
+  "Qingyi Gu"
+ ],
+ "venue": "ICLR 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": null,
+ "role": "analysis-finding",
+ "role2": "problem-setup",
+ "claim": "Activations in this model show severe channel outliers, token-wise variability, and sample-wise distribution mismatch that break standard quantization.",
+ "layout": "4 panels in a row, 3D surface plots, each with its own caption",
+ "tags": [
+  "quantization",
+  "outliers",
+  "activation-distribution",
+  "autoregressive",
+  "post-training"
+ ],
+ "style": [
+  "plot",
+  "colorful",
+  "photo/real data"
+ ],
+ "description": "A row of four 3D surface plots, each showing activation values from the RAR-B block 'blocks.23' on a blue-to-red heatmap. (a) is the input of the MHSA module, with axes Channel and Token. Tall red spikes are concentrated at certain channels, which are the channel-wise outliers. (b) is the input of the AdaLN module, with axes Token and Channel. A large red mound sits in the middle, showing strong variation across tokens. (c) is the input of the MHSA.proj layer. A green arrow and the label 'sink token' point to one token with very high values, while the other tokens stay low and blue. (d) is the output of the block, with axes Sample and Channel. Red and blue braces labeled 'cond' and 'uncond' mark two groups with different distributions. The eye goes first to the red peaks in each panel.",
+ "caption": "Challenges of ARVG quantization. (a) Severe outliers at channel-wise level. (b)(c) Highly dynamic activations at token-wise level. (d) Mismatched distribution information at sample-wise level. Data from the RAR-B block \"blocks.23\".",
+ "caption_source": "latex",
+ "abstract": "AutoRegressive Visual Generation (ARVG) models retain an architecture compatible with language models, while achieving performance comparable to diffusion-based models. Quantization is commonly employed in neural networks to reduce model size and computational latency. However, applying quantization to ARVG remains largely underexplored, and existing quantization methods fail to generalize effectively to ARVG models. In this paper, we explore this issue and identify three key challenges: (1) severe outliers at channel-wise level, (2) highly dynamic activations at token-wise level, and (3) mismatched distribution information at sample-wise level. To these ends, we propose PTQ4ARVG, a training-free post-training quantization (PTQ) framework consisting of: (1) Gain-Projected Scaling (GPS) mitigates the channel-wise outliers, which expands the quantization loss via a Taylor series to quantify the gain of scaling for activation-weight quantization, and derives the optimal scaling factor through differentiation.(2) Static Token-Wise Quantization (STWQ) leverages the inherent properties of ARVG, fixed token length and position-invariant distribution across samples, to address token-wise variance without incurring dynamic calibration overhead.(3) Distribution-Guided Calibration (DGC) selects samples that contribute most to distributional entropy, eliminating the sample-wise distribution mismatch. Extensive experiments show that PTQ4ARVG can effectively quantize the ARVG family models to 8-bit and 6-bit while maintaining competitive performance. Code is available at http://github.com/BienLuky/PTQ4ARVG .",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=jZnmOOJX1e",
+  "arxiv": "https://arxiv.org/abs/2601.21238",
+  "pdf": "https://proceedings.iclr.cc/paper_files/paper/2026/file/81a28be483155f802ddef448d6fc4b57-Paper-Conference.pdf",
+  "proceedings": "https://proceedings.iclr.cc/paper_files/paper/2026/hash/81a28be483155f802ddef448d6fc4b57-Abstract-Conference.html",
+  "virtual": "https://iclr.cc/virtual/2026/poster/10007867",
+  "code": null
+ },
+ "license": "http://creativecommons.org/licenses/by/4.0/",
+ "img": "cc-by",
+ "image_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/images/iclr26-3950.png",
+ "thumb_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/thumbs/iclr26-3950.webp",
+ "figure_page": 1,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.8
+}

@@ -1,0 +1,47 @@
+{
+ "id": "icml26-3623",
+ "title": "Per-example Gradients: a New Frontier for Understanding and Improving Optimizers",
+ "authors": [
+  "Vincent Roulet",
+  "Atish Agarwala"
+ ],
+ "venue": "ICML 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "Deep Learning->Algorithms",
+ "role": "analysis-finding",
+ "role2": null,
+ "claim": "A per-example variant of a standard algorithm reaches the same peak memory as the baseline, with only a slightly longer execution tail.",
+ "layout": "single line plot, left-to-right, two overlaid curves with legend",
+ "tags": [
+  "memory-profiling",
+  "per-example-gradients",
+  "efficiency",
+  "optimizer",
+  "automatic-differentiation"
+ ],
+ "style": [
+  "plot",
+  "minimal"
+ ],
+ "description": "A single line chart titled \"Cumulative Memory Usage\". The x-axis is Operation Index, from 0 to about 10,000. The y-axis is Allocated Memory in GiB, from 0 to about 85. Two curves are overlaid. Adam is a solid blue line and Micro-Adam is a dashed orange line. Both rise in a staircase pattern to a shared peak of about 85 GiB near operation 2,800. They then decline almost identically. The blue Adam curve ends at about operation 8,800. The orange Micro-Adam curve has a longer tail that runs to about 10,500 operations. The legend sits in the upper right. A light dashed grid is drawn behind the curves. The eye goes first to the single large peak where the two curves coincide. It then moves to the extended orange tail on the right.",
+ "caption": "Memory footprint along program execution as reported by a code profiler of a train step. We compare the usual \\adam algorithm and its per-example variant, \\muadam (Section [ref]) implemented in JAX using the automatic vectorization tool \\vmap. The peak memory corresponds to the accumulation of the memory during the forward pass of automatic differentiation necessary to compute gradients. We observe that the per-example variant may incur more operations (longer tail) that translate in longer execution time. But the peak memory is the same.",
+ "caption_source": "latex",
+ "abstract": "Training algorithms in deep learning usually treat a mini-batch of samples as a single object; they average gradients over the mini-batch, and then process the average in various ways. Computing other statistics beyond the average may have been seen as prohibitively resource intensive in automatic differentiation (AD) frameworks. We show that this is not the case. Generally, gradient statistics can be implemented through a surgery of the AD graph, which, in some cases, incur almost no computational and memory overheads compared to the mini-batch gradient computation. Additionally, we show that in certain classes of models, including transformers, JAX's vectorization transformation offers a viable implementation for prototyping and experimentation. We then revise our understanding of two nonlinear operations in optimization through the lens of per-example gradient transformations. We first study signSGD and show that the optimal placement of the sign operation in the gradient processing chain is crucial to success and can be predicted with a simple signal-to-noise ratio argument. Next we study per-example variations of the Adam preconditioner, and show that optimization is best served when the preconditioner is dominated by the mean rather than the variance of the gradient distribution - in contrast to conventional wisdom. Overall we demonstrate that per-example gradient information enables new analyses and possibilities for algorithm design.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=YB6U1yWcGy",
+  "arxiv": "https://arxiv.org/abs/2510.00236",
+  "pdf": "https://raw.githubusercontent.com/mlresearch/v306/main/assets/roulet26a/roulet26a.pdf",
+  "proceedings": "https://proceedings.mlr.press/v306/roulet26a.html",
+  "virtual": "https://icml.cc/virtual/2026/poster/63313",
+  "code": null
+ },
+ "license": "http://creativecommons.org/licenses/by-nc-sa/4.0/",
+ "img": "cc-by-nc-sa",
+ "image_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/images/icml26-3623.png",
+ "thumb_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/thumbs/icml26-3623.webp",
+ "figure_page": 2,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.6
+}

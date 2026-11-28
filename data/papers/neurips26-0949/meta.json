@@ -1,0 +1,53 @@
+{
+ "id": "neurips26-0949",
+ "title": "Virtual Head Attention",
+ "authors": [
+  "Xibo Ding",
+  "Guoxia Wang",
+  "Jinle Zeng",
+  "Jiabin Yang",
+  "Sirui Tao",
+  "Chao Yang",
+  "Dianhai Yu"
+ ],
+ "venue": "NeurIPS 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "Deep Learning->Attention Mechanisms",
+ "role": "pipeline",
+ "role2": "teaser-result",
+ "claim": "Two cheap linear mixing modules around a standard block beat existing designs on cost and quality at once, then fold away at inference.",
+ "layout": "3 panels left-to-right: large architecture diagram, small triangle, two bubble plots",
+ "tags": [
+  "attention",
+  "linear-modules",
+  "efficiency",
+  "trade-off",
+  "inference-folding"
+ ],
+ "style": [
+  "colorful",
+  "plot",
+  "math-heavy"
+ ],
+ "description": "A wide figure split into three dashed-border panels. Panel (a), the largest, is a block diagram of the attention layer. The input X feeds three branches (W_Q, W_K, W_V) into a gray Attention box. An orange dashed Premix box with W_g^premix sits after W_Q. A purple dashed Postmix box sits after Attention, with an identity skip path and a low-rank A→B^T bottleneck added back through a ⊕, followed by W_O and the output Y. Tensor shapes are written under each block, and a footnote says both modules are absorbed into W_Q and W_O at inference. Panel (b) is a small gradient triangle with Quality, FLOPs and KV Cache at its corners, plus a goal line. Panel (c) has two stacked bubble charts, for 1.7B and 4B, plotting KV cache against training FLOPs. Bubble size shows accuracy, and the red VHA bubble sits at the lower left, the best corner.",
+ "caption": "Overview of Virtual Head Attention. (a) VHA improves the trade-off among KV cache size, training/prefill FLOPs, and model quality by combining Q Premix and Linear Postmix during training, while absorbing both linear modules into standard GQA projections at inference. (b) Schematic of the KV cache--FLOPs--quality impossible triangle faced by existing attention designs. (c) Method comparison at 1.7B and 4B scales, plotting KV cache size against training FLOPs, with bubble area proportional to 8-task average accuracy.",
+ "caption_source": "latex",
+ "abstract": "The design of attention mechanisms in long-context large language models faces an ``impossible triangle'' among KV cache size, training and prefill FLOPs, and model quality. GQA achieves strong quality but incurs high KV cache overhead; alternative approaches such as MLA and MFA can compress the cache, but MLA suffers from quality loss while MFA substantially increases training and prefill compute. We propose Virtual Head Attention (VHA), which simultaneously improves all three vertices through two lightweight linear operations: Q Premix applies a near-identity transformation to queries within each KV group to recover virtual head diversity from halved physical query heads, and Linear Postmix fuses inter-head features via a low-rank $I + AB^\\top$ residual structure. Since VHA introduces no nonlinear operations, Premix can be folded into the query projection and Postmix into the output projection at inference time, reducing the model to a standard GQA-2 architecture that directly reuses all existing GQA inference optimizations. With only two KV heads, the group size in large models readily reaches 64, fully exploiting Tensor Core parallelism during decoding. Across four scales with 4K-context 50B-token pretraining, VHA consistently surpasses the standard GQA baseline at every scale ($+$0.05\\% to $+$0.81\\%), while reducing KV cache by $4\\times$ vs.\\ GQA-8 at dense scales and $2\\times$ vs.\\ GQA-4 at the MoE scale, and lowering training and prefill FLOPs by 7.9\\% (1.7B, $S{=}4096$). On an industrial 30B-A3B MoE model trained on 500B tokens at 8K context, VHA outperforms both MLA and GQA-4 by $+$0.70\\,/\\,$+$2.60\\,\\% on a 12-benchmark base-model evaluation suite; in a separate matched 10B-A1B MoE comparison after long-context mid-training, VHA attains an average RULER score of 84.4 over 8K--128K versus 73.0 for GQA, while using two rather than four KV heads in the full-attention layers.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=6chRc0Xfxr",
+  "arxiv": "https://arxiv.org/abs/2610.17959",
+  "pdf": "https://arxiv.org/pdf/2610.17959",
+  "proceedings": null,
+  "virtual": "https://neurips.cc/virtual/2026/poster/155297",
+  "code": null
+ },
+ "license": "http://arxiv.org/licenses/nonexclusive-distrib/1.0/",
+ "img": "none",
+ "image_url": null,
+ "thumb_url": null,
+ "figure_page": 3,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.6
+}

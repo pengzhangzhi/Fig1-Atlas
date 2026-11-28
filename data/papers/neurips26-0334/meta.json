@@ -1,0 +1,51 @@
+{
+ "id": "neurips26-0334",
+ "title": "LoRaQ: Optimized Low Rank Approximation for 4-bit Quantization",
+ "authors": [
+  "Yann Bouquet",
+  "Alireza Khodamoradi",
+  "Sophie Y Shen",
+  "Kristof Denolf",
+  "Mathieu Salzmann"
+ ],
+ "venue": "NeurIPS 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "Deep Learning->Algorithms",
+ "role": "pipeline",
+ "role2": null,
+ "claim": "Compensating quantization error with a rotated, quantized low-rank branch beside the quantized residual adds no inference overhead.",
+ "layout": "1 panel, left-to-right, two parallel branches merging at a sum node",
+ "tags": [
+  "quantization",
+  "low-rank",
+  "parallel-branches",
+  "rotation",
+  "efficiency"
+ ],
+ "style": [
+  "minimal",
+  "colorful",
+  "math-heavy"
+ ],
+ "description": "A single block diagram of one linear layer, read left to right. An input line on the left splits into two parallel branches. The top branch is the low-rank path. It has two green dashed rounded boxes, each holding a purple trapezoid. The first trapezoid is labeled L and the second is labeled R. Small orange boxes labeled Ω and Ω^T sit between them. The bottom branch is a single purple square labeled P inside a light-blue dashed box. Both branches meet at a circled plus sign, and an arrow leaves to the right. The branch lines are coloured red or orange to mark data type, and the output lines are gray. A legend at the bottom left maps blue to Q1, green to Q2, red to Data Type 1 and orange to Data Type 2. The eye goes first to the large L and R trapezoids and the green quantization regions.",
+ "caption": "Overview of the \\method pipeline. A linear layer's weight matrix $\\mW$ is decomposed into two parallel branches. The residual branch contains the quantized residual matrix $\\mP = \\mW - Q_2(\\mL\\mOmega)Q_2(\\mOmega^T\\mR)$, quantized with operator $Q_1$. The low-rank branch contains the matrices $\\mL$ and $\\mR$, which are rotated by $\\mOmega$ and quantized using operator $Q_2$. We show that inserting $\\mOmega$ between $\\mL$ and $\\mR$ minimizes quantization error. The rotation matrix is fused with the low-rank matrices and adds no overhead at inference.",
+ "caption_source": "latex",
+ "abstract": "Post-training quantization (PTQ) is essential for deploying large diffusion transformers on resource-constrained hardware, but aggressive 4-bit quantization significantly degrades generative performance. Low-rank approximation methods have emerged as a promising solution by appending auxiliary linear branches to restore performance. However, current state-of-the-art approaches assume these branches must retain high precision (W16A16) and rely on heavy, data-dependent calibration for initialization. We challenge both limitations with LoRaQ (Low-Rank Approximated Quantization), a simple, data-free calibration approach that optimizes quantization error compensation. By overcoming the need for high-precision branches, LoRaQ enables the first fully sub-16 bit pipeline, allowing the low-rank branch itself to be quantized. We demonstrate that, at equal memory overhead, LoRaQ outperforms the state-of-the-art methods in their native implementations on Pixart-$Î£$ and SANA. We also analyze mixed-precision configurations, showing that setups such as W8A8, W6A6, and W4A8 for the low-rank branch, alongside a W4 main layer, yield superior results while maintaining a fully quantized architecture compatible with modern mixed-precision hardware.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=2S5ArH5uJa",
+  "arxiv": "https://arxiv.org/abs/2604.18117",
+  "pdf": "https://arxiv.org/pdf/2604.18117",
+  "proceedings": null,
+  "virtual": "https://neurips.cc/virtual/2026/poster/155848",
+  "code": null
+ },
+ "license": "http://arxiv.org/licenses/nonexclusive-distrib/1.0/",
+ "img": "none",
+ "image_url": null,
+ "thumb_url": null,
+ "figure_page": 1,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.85
+}

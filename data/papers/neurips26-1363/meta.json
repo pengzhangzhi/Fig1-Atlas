@@ -1,0 +1,49 @@
+{
+ "id": "neurips26-1363",
+ "title": "Mixture-of-Memory Embeddings for Context-Aware Sparse Lookup",
+ "authors": [
+  "Muchen Li",
+  "Leonid Sigal",
+  "Renjie Liao"
+ ],
+ "venue": "NeurIPS 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": null,
+ "role": "pipeline",
+ "role2": "prior-vs-ours",
+ "claim": "Prior lookups map a token's surface form to one fixed entry; ours gates over hidden state to read context-dependent memory.",
+ "layout": "3 panels, left-to-right; example box, block stack, zoomed block detail",
+ "tags": [
+  "conditional-memory",
+  "sparse-lookup",
+  "routing",
+  "context-aware",
+  "polysemy"
+ ],
+ "style": [
+  "colorful",
+  "icon-heavy",
+  "text-heavy"
+ ],
+ "description": "The figure has three parts. At left, a boxed panel shows two sentences using the word 'bug', one tagged 'insect' and one tagged 'software', with 'bug' highlighted. Below them, three methods are listed: VE/STEM gives id(bug) for both senses, Engram gives hash(of a bug) and hash(to a bug), and Ours gives f(bug), g_θ(h¹) and f(bug), g_θ(h²). In the centre is a vertical stack of an embedding layer, a transformer block and a purple memory-augmented transformer block, topped by an LM head. A '×N' loop wraps the stack. Dotted lines zoom the memory-augmented block into the right panel. That panel shows Q/K/V projections, grouped query attention and feed forward, with residual plus signs. A memory router and a gate read a memory table of idle (grey) and activated (coloured) slots and inject the result into the value stream. Purple marks the memory components, blue the standard transformer parts.",
+ "caption": "Left: the same token can carry different senses, and prior token-indexed methods (VE/STEM, canonical Engram) commit each row to a single fixed memory while \\ours{} dispatches to different slots depending on the hidden state (see Figure [ref] and Section [ref] for the learned routing). Right: \\ours{} alternates regular transformer blocks with memory-augmented blocks; in each memory-augmented block, a context-aware router retrieves a memory vector and injects it into the attention value stream.",
+ "caption_source": "latex",
+ "abstract": "Scaling large language models efficiently has motivated sparse capacity mechanisms such as Mixture-of-Experts and, more recently, conditional memory: token-indexed embedding tables that augment the backbone with cheap parametric lookups. Existing memory-embedding methods retrieve via a deterministic function of the surface form, which collapses different contextual senses of the same token (e.g., python the language vs. the animal) into a single fixed entry. We introduce Mixture of Memory Embeddings (MoME), a context-aware memory mechanism that replaces each token's single memory row with a mixture of M slots and uses a learned gate over the hidden state to choose which slots to read at each position. In controlled pretraining experiments across nanochat, Llama-3/MobileLLM, and Qwen3 backbones, MoME improves over Value Embedding, Bigram, and STEM baselines in iso-parameter and iso-training-FLOP settings, shows a more promising memory-size scaling trend at sub-billion scale, and remains efficient in training and inference. Qualitative routing analyses on polysemous tokens further suggest that the learned mixture exhibits a degree of semantic interpretability, dispatching the same surface token to distinct memory slots under different senses.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=9mjuvwVddL",
+  "arxiv": "https://arxiv.org/abs/2609.15126",
+  "pdf": "https://arxiv.org/pdf/2609.15126",
+  "proceedings": null,
+  "virtual": "https://neurips.cc/virtual/2026/poster/154940",
+  "code": "https://github.com/jojo23333/Mixutre-Of-Memory-Embedding"
+ },
+ "license": "http://creativecommons.org/licenses/by/4.0/",
+ "img": "cc-by",
+ "image_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/images/neurips26-1363.png",
+ "thumb_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/thumbs/neurips26-1363.webp",
+ "figure_page": 3,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.6
+}

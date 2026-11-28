@@ -1,0 +1,52 @@
+{
+ "id": "iclr26-4391",
+ "title": "Trust-Region Adaptive Policy Optimization",
+ "authors": [
+  "Mingyu Su",
+  "Jian Guan",
+  "Yuxian Gu",
+  "Minlie Huang",
+  "Hongning Wang"
+ ],
+ "venue": "ICLR 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "Reinforcement Learning->Deep RL",
+ "role": "pipeline",
+ "role2": "concept",
+ "claim": "Clipping the gradient weight stabilizes supervised updates, and adaptive expert prefix length keyed to rollout return guides learning where the model fails.",
+ "layout": "2 halves: left gradient-clipping math and plot, right rollout tree; return-to-prefix arrows",
+ "tags": [
+  "hybrid-sft-rl",
+  "trust-region",
+  "adaptive-guidance",
+  "expert-prefix",
+  "reasoning"
+ ],
+ "style": [
+  "colorful",
+  "plot",
+  "math-heavy",
+  "icon-heavy"
+ ],
+ "description": "The figure has two halves. On the left, a small table compares the SFT and TrSFT objectives. Each row has an orange or blue label and a red dashed box around the gradient weight, 1/p versus 1/max(p, α). Below the table, a plot of gradient weight against token probability shows the SFT curve (dashed blue) shooting up near zero. The TrSFT curve (solid orange) is flat at 1/α inside a marked trust region. A boxed math problem sits beside the plot. On the right, a green bracket groups rollouts from the target policy, drawn as black and navy curves branching from a point. Each rollout ends in a red X or a green check. Further down, rollouts start from expert prefixes of 25%, 50% and 100% length, shown as blue horizontal lines. A dashed gray curve links the prefix starts. On the far right, columns of cumulative return (0.25, 0.17, 0.29) map by arrows to expert prefix ratios of 25%, 50% and 100%. Robot and whale icons mark the target policy model and the expert model.",
+ "caption": "An overview of our \\mySolution framework, which synergistically combines two key components: Trust-Region SFT (TrSFT) and Adaptive Expert Guidance. Left: By clipping the gradient weight with a trust-region parameter $\\alpha$, \\mySFT\\ prevents exploding gradients on low-probability tokens, ensuring a stable learning signal when combining with RL. Right: The adaptive guidance mechanism implements a \"learn-while-practicing\" loop. When the target model fails a rollout, its cumulative return dynamically dictates the length of an expert prefix provided for guidance. The model then continues generation and the full trajectory is optimized using both the \\mySFT\\ loss on expert prefixes and a standard RL objective on the model rollout.",
+ "caption_source": "latex",
+ "abstract": "Post-training methods, especially Supervised Fine-Tuning (SFT) and Reinforcement Learning (RL), play an important role in improving large language models' (LLMs) complex reasoning abilities. However, the dominant two-stage pipeline (SFT then RL) suffers from a key inconsistency: SFT enforces rigid imitation that suppresses exploration and induces forgetting, limiting RL's potential for improvements. We address this inefficiency with TRAPO (\\textbf{T}rust-\\textbf{R}egion \\textbf{A}daptive \\textbf{P}olicy \\textbf{O}ptimization), a hybrid framework that interleaves SFT and RL within each training instance by optimizing SFT loss on expert prefixes and RL loss on the model's own completions, unifying external supervision and self-exploration. To stabilize training, we introduce Trust-Region SFT (TrSFT), which minimizes forward KL divergence inside a trust region but attenuates optimization outside, effectively shifting toward reverse KL and yielding stable, mode-seeking updates favorable for RL. An adaptive prefix-selection mechanism further allocates expert guidance based on measured utility. Experiments on five mathematical reasoning benchmarks show that TRAPO consistently surpasses standard SFT, RL, and SFT-then-RL pipelines, as well as recent state-of-the-art approaches, establishing a strong new paradigm for reasoning-enhanced LLMs.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=oXlSEcxD6N",
+  "arxiv": "https://arxiv.org/abs/2512.17636",
+  "pdf": "https://proceedings.iclr.cc/paper_files/paper/2026/file/54e1381d0c0598127b90af4c940fd3d9-Paper-Conference.pdf",
+  "proceedings": "https://proceedings.iclr.cc/paper_files/paper/2026/hash/54e1381d0c0598127b90af4c940fd3d9-Abstract-Conference.html",
+  "virtual": "https://iclr.cc/virtual/2026/poster/10007400",
+  "code": null
+ },
+ "license": "http://arxiv.org/licenses/nonexclusive-distrib/1.0/",
+ "img": "none",
+ "image_url": null,
+ "thumb_url": null,
+ "figure_page": 1,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.8
+}

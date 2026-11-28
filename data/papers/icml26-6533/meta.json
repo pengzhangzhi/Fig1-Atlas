@@ -1,0 +1,50 @@
+{
+ "id": "icml26-6533",
+ "title": "Optimizing Inference-Time Compute for Medical Reasoning via Uncertainty Quantification",
+ "authors": [
+  "Shaohao Rui",
+  "Kaitao Chen",
+  "Weijie Ma",
+  "Xiaosong Wang"
+ ],
+ "venue": "ICML 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "Applications->Health / Medicine",
+ "role": "pipeline",
+ "role2": "overview-framework",
+ "claim": "A two-stage training pipeline uses rollout correctness and entropy-based uncertainty to estimate difficulty and calibrate reward length, so the model reasons briefly on easy problems and at length on hard ones.",
+ "layout": "2 stacked panels: top staged training, bottom detailed flow, left-to-right, color-coded legend",
+ "tags": [
+  "adaptive-reasoning",
+  "reinforcement-fine-tuning",
+  "uncertainty-estimation",
+  "reward-shaping",
+  "efficiency"
+ ],
+ "style": [
+  "icon-heavy",
+  "colorful",
+  "math-heavy"
+ ],
+ "description": "The figure has two dashed-border panels. Panel (a), on top, is a left-to-right strip. A base instruct robot icon goes through RFT on a green Med-QA cylinder to become a medical reasoning model. Ada-RFT on a second Med-QA cylinder then produces an adaptive medical reasoning model, shown with a thinking figure and a small bar-chart icon. Big sketchy arrows link the stages. Panel (b), below, shows the adaptive phase in detail. Med-QA feeds a policy-model robot, which produces two rounded gray boxes. 'Rollout Outputs' holds rows O1..OG of yellow step tokens S ending in answers A. 'Rollout Entropies' holds rows of H tokens. These feed 'Reward Calculation' (format f plus correctness c) and 'Difficulty Estimation' (entropy e modulated by c). Both boxes point to the adaptive model. A legend at bottom left explains the dashed colors and the Add and Modulate symbols (⊕ and ⊗).",
+ "caption": "Overview of the AdaThink-Med framework. (a) Staged Adaptive Training: The training process consists of two stages. First, a Base Instruct Model is trained via standard Reinforcement Fine-Tuning (RFT) to establish medical reasoning capabilities. Subsequently, the model undergoes Adaptive RFT (Ada-RFT) to optimize reasoning efficiency. (b) Uncertainty-Guided Difficulty Estimation and Length Calibration: During the adaptive phase, the model generates multiple rollout outputs ($O_1 \\dots O_G$). The framework simultaneously calculates standard rewards (correctness and format) and estimates output uncertainty via Top-K token entropies. By combining correctness ($c_i$) and uncertainty ($e_i$), the system estimates problem difficulty, which dynamically calibrates the length reward to incentivize concise answers for simple questions and extended reasoning for complex ones.",
+ "caption_source": "latex",
+ "abstract": "Extended Chain-of-Thought (CoT) reasoning has significantly bolstered the capabilities of medical large language models (LLMs). However, current models exhibit static computational expenditure, applying lengthy reasoning processes indiscriminately to both simple queries and complex diagnostic cases. This inefficiency is particularly prohibitive in real-world healthcare, where clinical scenarios range from time-sensitive emergencies requiring rapid response to intricate pathologies demanding deep analysis. To address this, we propose \\textbf{AdaThink-Med}\\footnote{Code available at https://github.com/shaohao011/AdaThinkMed}, an end-to-end framework for adaptive reasoning via uncertainty-guided length calibration. Although the underlying mechanism is generalizable, we demonstrate its critical value in the medical domain, where balancing inference latency with diagnostic precision is paramount. AdaThink-Med leverages entropy-based uncertainty estimation within reinforcement fine-tuning to dynamically shape reward signals: it penalizes verbosity for high-confidence correct answers (e.g., straightforward knowledge retrieval) while incentivizing extended exploration for uncertain or ambiguous scenarios. Across six medical benchmarks, AdaThink-Med reduces inference token consumption by \\textbf{4.7$\\times$ to 6.4$\\times$} on Qwen and Llama architectures, respectively, with minimal performance trade-offs. Notably, our reward design naturally produces distinct ``non-thinking'' and ``thinking'' modes within a single model, enabling efficient allocation of computational resources without any external router or classifier.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=zlJehQJATy",
+  "arxiv": "https://arxiv.org/abs/2509.24560",
+  "pdf": "https://raw.githubusercontent.com/mlresearch/v306/main/assets/rui26a/rui26a.pdf",
+  "proceedings": "https://proceedings.mlr.press/v306/rui26a.html",
+  "virtual": "https://icml.cc/virtual/2026/poster/60493",
+  "code": "https://github.com/shaohao011/AdaThinkMed"
+ },
+ "license": "http://creativecommons.org/licenses/by/4.0/",
+ "img": "cc-by",
+ "image_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/images/icml26-6533.png",
+ "thumb_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/thumbs/icml26-6533.webp",
+ "figure_page": 3,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.9
+}

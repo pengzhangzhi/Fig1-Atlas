@@ -1,0 +1,52 @@
+{
+ "id": "icml26-5794",
+ "title": "cMoLLM at Scale: Horizontal Scaling Laws for Convolutionally-Gated Mixture-of-LLMs",
+ "authors": [
+  "Xin Yang",
+  "Yemin Wang",
+  "Mingda Liu",
+  "Letian Li",
+  "Shuaishuai Cao",
+  "ZhengXiao He",
+  "Ryan Dong"
+ ],
+ "venue": "ICML 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "Deep Learning->Everything Else",
+ "role": "pipeline",
+ "role2": "prior-vs-ours",
+ "claim": "Replacing discrete sparse expert routing with parallel multi-head gated convolution over streams yields a differentiable, scalable mixture inside a transformer.",
+ "layout": "3 regions: top motivation contrast, bottom left-to-right pipeline, right transformer stack",
+ "tags": [
+  "mixture-of-experts",
+  "dynamic-convolution",
+  "gating",
+  "scaling",
+  "differentiable-routing"
+ ],
+ "style": [
+  "icon-heavy",
+  "colorful"
+ ],
+ "description": "A dense composite diagram. The top-left shows 'Discrete Routing': input X goes through a Switch to one of several Experts, with one dark arrow and the others grey, next to a neutral emoji. A gradient arrow leads to 'Multi-Head Expansion (ours)': X fans out in red, teal and blue curves to parallel Experts, each with a kernel grid icon, and merges again, next to a smiling emoji. The bottom shows the main pipeline. Input X is multiplied into Conv Head 1..n, each with its own kernel size. A gating bar chart (α1, α2, α3) and a global residual path feed a multi-layer Transformer block. The result is summed, then Smooth/Norm, then Output Y. On the right is a vertical multi-layer Transformer stack (embedding, attention, FFN, next-token prediction). Below it, green checkmarks list 'Dynamic Kernel Mixing', 'Horizontal Scaling Laws' and 'Fully Differentiable Gating'.",
+ "caption": "Teaser of cMoLLM. cMoLLM scales capacity at the pipeline level via convolutionally-gated mixture over end-to-end streams, yielding better perplexity and downstream accuracy than dense baselines under matched compute, without virtual tokens or auxiliary heads.",
+ "caption_source": "latex",
+ "abstract": "Scaling large language models (LLMs) has driven their success, yet dense Transformers couple capacity and computation: every parameter is activated for every token, making training and inference costs grow linearly with model size—a critical bottleneck as models approach trillion-parameter regimes. We aim to scale capacity through MoE-style mixture throughout the LLM pipeline rather than only the FFN. Prior pipeline-level approaches include ParaScale, which introduces virtual tokens and parallel streams but incurs substantial overhead and suffers from homogenized routing and gradient collapse, and AltUp, which uses an auxiliary prediction branch but offers limited adaptivity and slow convergence. We establish that MoE-style mixture layers can be reformulated as variable-kernel dynamic convolutions, where each expert corresponds to a $1{\\times}1$ convolutional kernel and routing implements input-conditioned kernel aggregation. Building on this equivalence, we introduce cMoLLM: a convolutionally gated mixture-of-LLMs that routes over end-to-end streams through fully differentiable dynamic convolution. In GPT-2-style models trained on FineWeb, cMoLLM improves language modeling perplexity and downstream GLUE and SQuAD accuracy under matched compute, with better stream utilization, more stable optimization, and favorable scaling compared to ParaScale- and AltUp-style baselines.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=sfjLeIbTAi",
+  "arxiv": "https://arxiv.org/abs/2607.22577",
+  "pdf": "https://raw.githubusercontent.com/mlresearch/v306/main/assets/yang26cc/yang26cc.pdf",
+  "proceedings": "https://proceedings.mlr.press/v306/yang26cc.html",
+  "virtual": "https://icml.cc/virtual/2026/poster/61208",
+  "code": null
+ },
+ "license": "http://arxiv.org/licenses/nonexclusive-distrib/1.0/",
+ "img": "none",
+ "image_url": null,
+ "thumb_url": null,
+ "figure_page": 1,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.6
+}

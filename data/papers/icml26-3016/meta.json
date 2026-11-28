@@ -1,0 +1,53 @@
+{
+ "id": "icml26-3016",
+ "title": "ReSeek: A Self-Correcting Framework for Search Agents with Instructive Rewards",
+ "authors": [
+  "Shiyu Li",
+  "Yifan Wang",
+  "Peiming Li",
+  "Zheng Wei",
+  "Yang Tang"
+ ],
+ "venue": "ICML 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "Reinforcement Learning->Planning",
+ "role": "prior-vs-ours",
+ "role2": "problem-setup",
+ "claim": "Standard retrieval and prior agents commit to a first search path and err; ours judges intermediate results and revises to the right answer.",
+ "layout": "3 stacked rows top-to-bottom, shared question banner, icon legend at bottom",
+ "tags": [
+  "self-correction",
+  "search-agent",
+  "process-reward",
+  "multi-hop-reasoning",
+  "failure-case"
+ ],
+ "style": [
+  "icon-heavy",
+  "colorful",
+  "text-heavy"
+ ],
+ "description": "A dashed banner at the top poses a multi-hop question: \"When was the creator of Saddle Rash born?\" Below, three horizontal rows are separated by dashed lines: RAG, Previous Agent Methods, and Ours. RAG runs one search and returns a wrong answer, 1967. The previous agent has a lightbulb think step, then a search, then docs, and also returns 1967. Ours follows a longer, looping path with think, search (S1), docs, and a red judge icon. A low process reward r_p, written in blue, triggers a retry (S2) that retrieves the creator's birth date. A second judge then yields the correct answer, October 10, 1969, marked with a green check. A legend at the bottom explains the icons: think, docs, yes, search, judge, no. The eye goes first to the banner, then to the loop in the bottom row.",
+ "caption": "A comparison of reasoning processes on a multi-hop question about an obscure entity. Standard RAG fails as it cannot perform sequential reasoning. Vanilla agent reasons sequentially but gets stuck on its initial path. In contrast, our agent demonstrates robust self-correction: it uses a low process reward $(r_p)$ to identify the unproductive intermediate step, triggers a judge action to revise its strategy, and successfully navigates to the correct answer. The full trace for this example is provided in Appendix [ref].",
+ "caption_source": "latex",
+ "abstract": "Search agents powered by Large Language Models (LLMs) have demonstrated significant potential in tackling knowledge-intensive tasks. Reinforcement learning (RL) has emerged as a powerful paradigm for training these agents to perform complex, multi-step reasoning. However, prior RL-based methods often rely on sparse or rule-based rewards, which can lead agents to commit to suboptimal or erroneous reasoning paths without the ability to recover. To address these limitations, we propose ReSeek, a novel self-correcting framework for training search agents. Our framework introduces a self-correction mechanism that empowers the agent to dynamically identify and recover from erroneous search paths during an episode. By invoking a special JUDGE action, the agent can judge the information and re-plan its search strategy. To guide this process, we design a dense, instructive process reward function, which decomposes into a correctness reward for retrieving factual information and a utility reward for finding information genuinely useful for the query. Furthermore, to mitigate the risk of data contamination in existing datasets, we introduce FictionalHot, a new and challenging benchmark with recently curated questions requiring complex reasoning. Being intuitively reasonable and practically simple, extensive experiments show that agents trained with ReSeek significantly outperform SOTA baselines in task success rate and path faithfulness.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=SeO8pLS44H",
+  "arxiv": "https://arxiv.org/abs/2510.00568",
+  "pdf": "https://raw.githubusercontent.com/mlresearch/v306/main/assets/li26gq/li26gq.pdf",
+  "proceedings": "https://proceedings.mlr.press/v306/li26gq.html",
+  "virtual": "https://icml.cc/virtual/2026/poster/63905",
+  "code": "https://tencentbac.github.io/ReSeek/"
+ },
+ "license": "http://creativecommons.org/licenses/by-nc-nd/4.0/",
+ "img": "none",
+ "image_url": null,
+ "thumb_url": null,
+ "figure_page": 0,
+ "qc_flags": [
+  "bad-crop"
+ ],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.8
+}

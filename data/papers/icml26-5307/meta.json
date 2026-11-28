@@ -1,0 +1,48 @@
+{
+ "id": "icml26-5307",
+ "title": "Post-Training with Policy Gradients: Optimality and the Base Model Barrier",
+ "authors": [
+  "Alireza Mousavi-Hosseini",
+  "Murat Erdogdu"
+ ],
+ "venue": "ICML 2026",
+ "tier": "spotlight",
+ "track": "main",
+ "topic": "Deep Learning->Theory",
+ "role": "analysis-finding",
+ "role2": "teaser-result",
+ "claim": "Training with outcome rewards stalls on examples the base model cannot already solve; process rewards keep improving and break through.",
+ "layout": "3 line plots in a row, shared x-axis (PG steps), log-scale colorbar at right",
+ "tags": [
+  "policy-gradient",
+  "reward-models",
+  "post-training",
+  "base-model-barrier",
+  "empirical-trend"
+ ],
+ "style": [
+  "plot",
+  "colorful",
+  "minimal"
+ ],
+ "description": "Three side-by-side line plots, all with PG step on the x-axis. Left: average likelihood of off-support samples. The orange process-reward curve climbs from 0 to about 0.7, while the blue outcome-reward curve stays flat at 0. Center: test error. The blue outcome-reward curve drops slightly and plateaus near 0.22, while the orange process-reward curve falls steadily from 0.18 to about 0.14. Right: per-sample likelihood trajectories under outcome rewards, drawn as thin lines colored by initial likelihood with a plasma colorbar from dark purple (0) to yellow (1). Samples that start high converge to 1 quickly. Mid-range samples rise later. Samples that start near 0 stay at 0, apart from one that takes off after about 10 steps. A blue/orange legend in the left panel carries the model comparison.",
+ "caption": "The evolution of the model's likelihood to generate the correct response over different contexts throughout PG. (Left) The average likelihood over samples with initial likelihood $\\approx 0$ under the base model. On-policy PG with PRM is able to improve this average while with ORM stays at $0$. (Center) The comparison between the expected test error with ORM where the error plateaus at a threshold, and with PRM where the error continues to decrease. (Right) The likelihood of individual samples throughout PG with ORM, where the color denotes initial likelihood. Experiment details are presented in [ref].",
+ "caption_source": "latex",
+ "abstract": "We study post-training linear autoregressive models with outcome and process rewards. Given a context $\\boldsymbol{x}$, the model must predict the response $\\boldsymbol{y} \\in Y^N$, a sequence of length $N$ that satisfies a $Î³$ margin condition, an extension of the standard separability to sequences. We prove that on test samples where the base model achieves a non-trivial likelihood $Î±$, a variant of policy gradient (PG) can achieve likelihood $1 - \\varepsilon$ with an essentially minimax optimal number of reward queries $\\tilde{O}((Î±^{-1} + \\varepsilon^{-1})/Î³^2)$. However, a barrier arises for going beyond the support of the base model. We prove that the overall expected error after post-training with outcome rewards is governed by a property of the base model called the Likelihood Quantile (LQ), and that variants of PG, while minimax optimal, may require a number of reward queries exponential in $N$ to go beyond this support, regardless of the pre-training algorithm. To overcome this barrier, we study post-training with a process reward model, and demonstrate how PG variants in this setting avoid the curse of dimensionality in $N$ via dependence on a token-level LQ. Along the way, we prove that under the margin condition, SGD with adaptive learning rate (LR) achieves a near optimal test error for statistical learning, and PG with adaptive LR achieves a near optimal number of mistakes for online learning while being computationally efficient whenever possible, both of which may be of independent interest.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=nnWlTi7A7a",
+  "arxiv": "https://arxiv.org/abs/2603.06957",
+  "pdf": "https://raw.githubusercontent.com/mlresearch/v306/main/assets/mousavi-hosseini26a/mousavi-hosseini26a.pdf",
+  "proceedings": "https://proceedings.mlr.press/v306/mousavi-hosseini26a.html",
+  "virtual": "https://icml.cc/virtual/2026/poster/61683",
+  "code": null
+ },
+ "license": "http://arxiv.org/licenses/nonexclusive-distrib/1.0/",
+ "img": "none",
+ "image_url": null,
+ "thumb_url": null,
+ "figure_page": 1,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.6
+}

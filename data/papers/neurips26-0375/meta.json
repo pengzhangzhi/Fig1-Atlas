@@ -1,0 +1,52 @@
+{
+ "id": "neurips26-0375",
+ "title": "Towards Understanding the Power and Limits of the Muon Optimizer: A River-Valley Perspective",
+ "authors": [
+  "Tianqi Shen",
+  "Runze SHI",
+  "Jinji Yang",
+  "Jianhao Ma",
+  "Jiaye Teng",
+  "Ziye Ma"
+ ],
+ "venue": "NeurIPS 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "Optimization->Neural Network Optimization",
+ "role": "analysis-finding",
+ "role2": "concept",
+ "claim": "One optimizer is fast early but stalls late while another is slow early but wins late, explained by a toy landscape.",
+ "layout": "3 panels: two stacked loss curves left, large 2-D trajectory plot right with inset",
+ "tags": [
+  "optimizer-dynamics",
+  "training-trajectory",
+  "early-vs-late-stage",
+  "toy-model",
+  "learning-rate-sensitivity"
+ ],
+ "style": [
+  "plot",
+  "colorful",
+  "text-heavy"
+ ],
+ "description": "Left column has two stacked line plots of training loss (a) and validation loss (b) against iteration, from 0 to 1500. The background is shaded in three stages: early (green), mid (gray) and late (lavender). Blue AdamW, dark red Muon and orange Muon with cos_inf curves have shaded spread bands. Text labels such as 'fast exploration', 'slow exploitation' and 'slow exploration' mark where each optimizer is quick or slow. The large right panel (c) is a 2-D toy landscape with weak and strong spectral coordinates. A pink straight line labeled 'direct path to target' shows Muon moving from the initial point to the ground-truth star. Yellow (Adam) and cyan (Momentum-GD) curves follow curved paths, with a 'weak-curvature slowdown' annotation. An inset plot shows loss against iteration for the three methods. Arrows mark direction.",
+ "caption": "Key observations comparing Non-Euclidean & Euclidean gradient-based optimizers. (a) and (b) report the losses for pre-training NanoChat on the Shakespeare dataset. The shaded bands denote the spread of losses obtained under different learning rates, reflecting each optimizer's sensitivity to the scheduler. (c) illustrates our proposed MSMS testbed in a simplified two-dimensional setting (see Appendix [ref]), designed to capture salient features of LLM training dynamics.",
+ "caption_source": "latex",
+ "abstract": "Momentum Orthogonalized by Newton-Schulz (Muon) has emerged as a promising optimizer for large language model (LLM) training, yet when and why it outperforms established alternatives such as AdamW remain insufficiently understood. This gap matters in practice, as a sub-optimal choice of optimizer or even hyper-parameters can slow progress throughout expensive pre-training and waste substantial computational resources. Existing theories largely adopt a local-improvement perspective, emphasizing singular-value flattening or implicit curvature adaptation, but they neither determine which optimizer is preferable nor explain why Muon is typically fast only during early training. To better explain Muon's complicated behavior over the entire training trajectory, we develop a trajectory-level characterization of Muon dynamics based on a new mixed-spectrum matrix sensing (MSMS) model motivated by the river-valley view of LLM loss landscapes. Under simplifying assumptions, our continuous-time analysis reveals a qualitatively different convergence mechanism: Muon advances piecewise linearly toward the solution, whereas gradient descent and Adam-like flows approach it asymptotically along curved paths. With finite step sizes, however, the same normalized update magnitude makes Muon prone to overshooting near the solution, so its admissible step size shrinks with the residual scale. This links Muon's early advantage and late-stage limitations to a common mechanism and explains its sensitivity to learning-rate scheduling. Language model pre-training experiments support our discovery and suggest that switching from Muon to AdamW can preserve rapid initial progress while improving late-stage refinement.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=2hczCV54xy",
+  "arxiv": "https://arxiv.org/abs/2606.21514",
+  "pdf": "https://arxiv.org/pdf/2606.21514",
+  "proceedings": null,
+  "virtual": "https://neurips.cc/virtual/2026/poster/155813",
+  "code": "https://github.com/MOFA-LAB/River-Valley-Muon"
+ },
+ "license": "http://arxiv.org/licenses/nonexclusive-distrib/1.0/",
+ "img": "none",
+ "image_url": null,
+ "thumb_url": null,
+ "figure_page": 1,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.6
+}

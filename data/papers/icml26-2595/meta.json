@@ -1,0 +1,49 @@
+{
+ "id": "icml26-2595",
+ "title": "AugMask: Training Diffusion Models on Incomplete Tabular Data via Stochastic Augmentation and Masking",
+ "authors": [
+  "Jungkyu Kim",
+  "Taeyoung Park",
+  "Kibok Lee"
+ ],
+ "venue": "ICML 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "Deep Learning->Algorithms",
+ "role": "prior-vs-ours",
+ "role2": "pipeline",
+ "claim": "Filling missing inputs with a fixed placeholder and training on all outputs is flawed; stochastic augmentation plus loss masking on observed targets fixes it.",
+ "layout": "3 side-by-side columns plus bottom augmentation strip and legend; bottom-up flow",
+ "tags": [
+  "missing-data",
+  "stochastic-augmentation",
+  "loss-masking",
+  "diffusion",
+  "baseline-comparison"
+ ],
+ "style": [
+  "icon-heavy",
+  "colorful",
+  "minimal"
+ ],
+ "description": "The figure compares three columns of the same denoiser pipeline for incomplete tabular data. The left column, the NoAug + Full Loss baseline, feeds a fixed placeholder c^pl for the missing entry. The middle column, AugFull, replaces it with a green diamond that stands for a stochastic augmentation, but it still computes loss on every output. The right column, AugMask, uses the same augmentation and masks the loss on the augmented coordinate, shown as a dashed empty output box. Each column flows bottom to top: training input, noise waveform, blue noisy input, a Denoiser D_θ box, then outputs. A green strip at the bottom shows Step 1, where incomplete data x̃ passes through T(·|x^obs, m) to give augmented data x^A, with dotted arrows from the observed entries. A legend row sits at the very bottom.",
+ "caption": "AugMask: Two-step training strategy. Stochastic conditional augmentation for inputs and loss masking for targets.",
+ "caption_source": "latex",
+ "abstract": "Score-based diffusion models have emerged as prominent deep generative models; however, their application to tabular data remains challenging because their backbones assume fully specified inputs, whereas real-world tabular data often contain missing values. We propose AugMask, a plug-and-play training framework that adapts missing-unaware backbones to incomplete data by separating conditioning from supervision. AugMask 1) constructs numeric inputs via conditional stochastic augmentation using lightweight auxiliary models, and 2) applies denoising supervision only to observed coordinates. In effect, augmented missing entries serve as uncertain conditioning context rather than training targets. We connect this training rule to a Rao--Blackwellized objective and show that marginalizing missing entries yields a variance-weighted sensitivity penalty, discouraging over-reliance on uncertain completions. Across diverse datasets and missingness regimes, AugMask enables standard diffusion-based tabular generators to outperform specialized missing-aware baselines.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=Ot8lh7vvGe",
+  "arxiv": "https://arxiv.org/abs/2606.03347",
+  "pdf": "https://raw.githubusercontent.com/mlresearch/v306/main/assets/kim26bh/kim26bh.pdf",
+  "proceedings": "https://proceedings.mlr.press/v306/kim26bh.html",
+  "virtual": "https://icml.cc/virtual/2026/poster/64311",
+  "code": null
+ },
+ "license": "http://creativecommons.org/licenses/by/4.0/",
+ "img": "cc-by",
+ "image_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/images/icml26-2595.png",
+ "thumb_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/thumbs/icml26-2595.webp",
+ "figure_page": 2,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.6
+}

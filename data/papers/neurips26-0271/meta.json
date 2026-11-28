@@ -1,0 +1,52 @@
+{
+ "id": "neurips26-0271",
+ "title": "More Value per Key: Asymmetric Sparse Attention for Faster LLM Decoding",
+ "authors": [
+  "Noam Elata",
+  "Itay Lamprecht",
+  "Mikey Shechter",
+  "Daniel Ohayon",
+  "Itay Hubara",
+  "Daniel Soudry"
+ ],
+ "venue": "NeurIPS 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "Deep Learning->Attention Mechanisms",
+ "role": "pipeline",
+ "role2": "problem-setup",
+ "claim": "Two cost bottlenecks sit in a standard processing pipeline, and each gets its own targeted fix.",
+ "layout": "3 panels: top pipeline, two solution panels below; red highlights link bottlenecks",
+ "tags": [
+  "sparse-attention",
+  "bottleneck-analysis",
+  "efficiency",
+  "asymmetric-heads",
+  "llm-decoding"
+ ],
+ "style": [
+  "minimal",
+  "colorful",
+  "icon-heavy"
+ ],
+ "description": "The figure has three rounded gray panels. The top panel, titled 'Attention Mechanism', shows a left-to-right chain of six blue boxes joined by arrows: Input, Linear Projections, Query-Key Multiplication (Eq. 2), Scaling + Softmax, Probability-Value Multiplication (Eq. 4), and Output. Two of the boxes have thick red outlines and red labels reading 'Bottleneck I' and 'Bottleneck II'. The bottom-left panel, 'Bottleneck I Solution: Asymmetric Key-Value heads', shows columns of query heads, key heads and value heads. Groups of four query heads converge on one key head, which fans out to two value heads. The bottom-right panel, 'Bottleneck II Solution: Atop-N Attention', shows a row of keys, a row of purple QK Atop-N scores with three highlighted, and a row of values. Arrows from the highlighted scores and their matching values feed the output. Red titles tie each solution panel to its bottleneck. The eye goes first to the red boxes.",
+ "caption": "Diagram of SAGA. There are two significant decoding bottlenecks in attention mechanisms: key-query multiplications and probability-value multiplications (top). SAGA addresses the query-key bottleneck by reducing the number of key heads (left). The probability-value bottleneck is mitigated by utilizing Atop-N to select important values (right).",
+ "caption_source": "latex",
+ "abstract": "Autoregressive generation in Large Language Models (LLMs) is constrained by the memory and computational demands of attention mechanisms. Sparse attention methods mitigate this cost by selecting only high-probability entries of the attention matrix. We observe that in many such methods, this renders the probability-value multiplication negligible, shifting the bottleneck to the query-key step. Key heads can therefore be reduced to accelerate inference, while retaining more value heads preserves capacity with limited additional decoding cost. We introduce Sparse Asymmetric Group-Query Attention (SAGA), which decouples key and value head counts to exploit this principle, and pair it with approximate top-N (Atop-N) attention, a simple sparse attention method designed to study the interaction between sparsity and head-count asymmetry. We formalize the benefits of this asymmetry theoretically and validate them empirically through latency measurements and quality evaluations on models up to 1.5B parameters. Together, SAGA and Atop-N achieve end-to-end decoding speedups exceeding $2\\times$ over our full-attention GQA baseline at long contexts. Models trained from scratch with SAGA nearly match the quality of comparable GQA variants on the evaluated benchmarks. To facilitate adoption, we introduce an efficient fine-tuning method that converts pretrained models to the SAGA architecture, enabling practitioners to benefit from our approach without costly retraining.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=1xplSJVRNV",
+  "arxiv": "https://arxiv.org/abs/2610.04753",
+  "pdf": "https://arxiv.org/pdf/2610.04753",
+  "proceedings": null,
+  "virtual": "https://neurips.cc/virtual/2026/poster/155905",
+  "code": null
+ },
+ "license": "http://creativecommons.org/licenses/by/4.0/",
+ "img": "cc-by",
+ "image_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/images/neurips26-0271.png",
+ "thumb_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/thumbs/neurips26-0271.webp",
+ "figure_page": 3,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.6
+}

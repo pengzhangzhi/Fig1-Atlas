@@ -1,0 +1,50 @@
+{
+ "id": "icml26-0990",
+ "title": "Bounded Hyperbolic Tangent: A Stable and Efficient Alternative to Pre-Layer Normalization in Large Language Models",
+ "authors": [
+  "Hoyoon Byun",
+  "Youngjun Choi",
+  "Taero Kim",
+  "Sungrae Park",
+  "Kyungwoo Song"
+ ],
+ "venue": "ICML 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "Deep Learning->Large Language Models",
+ "role": "prior-vs-ours",
+ "role2": "pipeline",
+ "claim": "Existing normalization schemes either add overhead or remain unstable; ours adds bounded activation with a cheap shared variance approximation.",
+ "layout": "4 side-by-side block diagrams, bottom-to-top flow, ours highlighted with a variance-approximation side box",
+ "tags": [
+  "normalization",
+  "transformer-architecture",
+  "efficiency",
+  "stability",
+  "drop-in-replacement"
+ ],
+ "style": [
+  "colorful",
+  "minimal"
+ ],
+ "description": "Four vertical Transformer-block diagrams sit side by side, titled RMSNorm, Peri-LN, DyT and BHyT. Each shows data flowing bottom to top through an Attention sublayer (pink) and an MLP sublayer (blue). Residual skip connections loop around each sublayer and end in circled plus nodes. The normalization layers differ in color. RMSNorm and Peri-LN use yellow boxes, with Peri-LN placing them both before and after each sublayer. DyT uses green boxes before each sublayer. BHyT, the rightmost panel, uses red/salmon boxes before the sublayers. It adds a rounded 'Variance Approximation' box on the right. An arrow carries the exact variance s_x^2 from the first BHyT into that box. A second arrow carries the approximated variance s̃_x'^2 to the second BHyT. The red boxes draw the eye first.",
+ "caption": "Architectural comparison of normalization strategies in Transformer blocks. RMSNorm applies normalization before each sublayer to stabilize activations but suffers from variance growth at scale. Peri-LN reinforces stability by normalizing both before and after each sublayer. DyT replaces normalization with a lightweight scaled tanh nonlinearity with learnable scalar $\\alpha$. BHyT (ours) combines bounded $\\tanh$ with data-driven variance control: it computes input variance once per block, approximates subsequent variance for efficiency, and explicitly constrains activations to a non-saturating range, thereby unifying stability and efficiency.",
+ "caption_source": "latex",
+ "abstract": "Pre-Layer Normalization (Pre-LN) is the de facto choice for large language models (LLMs) and is crucial for stable pretraining and effective transfer learning. However, Pre-LN incurs repeated statistical-computation overhead and remains vulnerable to the curse of depth, where hidden-state magnitudes and variances grow as the number of layers increases, destabilizing training. Efficiency-oriented normalization-free methods such as Dynamic Tanh (DyT) improve throughput but remain fragile at depth. To jointly address stability and efficiency, we propose Bounded Hyperbolic Tanh (BHyT), a drop-in replacement for Pre-LN. BHyT combines a tanh nonlinearity with explicit, data-driven input bounding to keep activations within a non-saturating range. It prevents depth-wise growth in activation magnitude and variance and provides a theoretical stability guarantee. For efficiency, BHyT computes exact statistics once per block and replaces a second normalization with a lightweight variance approximation. Empirically, BHyT demonstrates improved stability and efficiency during pretraining, achieving an average of 1.6\\% faster training and an average of 1.77\\% higher token generation throughput compared to RMSNorm, while maintaining strong pretraining-only and post-SFT performance across language understanding and reasoning benchmarks\\footnote{Code is available at: https://github.com/MLAI-Yonsei/BHyT}.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=9M6kY6yuAy",
+  "arxiv": "https://arxiv.org/abs/2601.09719",
+  "pdf": "https://raw.githubusercontent.com/mlresearch/v306/main/assets/byun26a/byun26a.pdf",
+  "proceedings": "https://proceedings.mlr.press/v306/byun26a.html",
+  "virtual": "https://icml.cc/virtual/2026/poster/65861",
+  "code": null
+ },
+ "license": "http://creativecommons.org/licenses/by/4.0/",
+ "img": "cc-by",
+ "image_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/images/icml26-0990.png",
+ "thumb_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/thumbs/icml26-0990.webp",
+ "figure_page": 1,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.85
+}

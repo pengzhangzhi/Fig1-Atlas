@@ -1,0 +1,57 @@
+{
+ "id": "icml26-1773",
+ "title": "ViTok-v2: Scaling Native Resolution Autoencoders to 5 Billion Parameters",
+ "authors": [
+  "Philippe Hansen-Estruch",
+  "Jiahui Chen",
+  "Vivek Ramanujan",
+  "Orr Zohar",
+  "Markos Georgopoulos",
+  "Animesh Sinha",
+  "Ji Hou",
+  "Edgar Schönfeld",
+  "Felix Juefei-Xu",
+  "Sriram Vishwanath",
+  "Ali Thabet"
+ ],
+ "venue": "ICML 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "Applications->Computer Vision",
+ "role": "pipeline",
+ "role2": null,
+ "claim": "An asymmetric encoder-decoder with a perceptual feature-space loss reconstructs native-resolution inputs without adversarial or LPIPS objectives.",
+ "layout": "Single wide panel, left-to-right main flow, loss branch along bottom",
+ "tags": [
+  "autoencoder",
+  "tokenizer",
+  "perceptual-loss",
+  "native-resolution",
+  "asymmetric-architecture"
+ ],
+ "style": [
+  "colorful",
+  "photo/real data",
+  "icon-heavy"
+ ],
+ "description": "A wide horizontal pipeline diagram. On the far left is an input koala photo overlaid with a patch grid and dashed orange crop boxes, padded at the bottom. Arrows lead through raw tokens (tan column, with a RoPE 2D positional embedding note) and image tokens. These feed a small blue trapezoid labeled Shallow ViT Encoder. Next come rounded pills for Bottleneck, LayerNorm, Latents and Upsample. A much larger green trapezoid, the Large ViT Decoder, follows. Its output is pink reconstructed tokens, then a reconstructed koala image padded with gray at right. A bottom row takes crops of the real and reconstructed images through DINOv3 feature stacks (Layer 1 … Layer N). These meet in a central DINO Perceptual Loss box, and a Total Loss label (Charbonnier + DINO Perceptual + SSIM) sits at the far right. The eye goes first to the large green decoder and the koala images.",
+ "caption": "\\model method overview. Input images at native aspect ratios are processed through an asymmetric encoder-decoder architecture: a shallow ViT encoder compresses tokens through a bottleneck into compact latents, which are then upsampled and decoded by a large (5--10$\\times$ encoder size) ViT decoder. Training combines Charbonnier, SSIM, and DINOv3 perceptual losses on $\\sim$2B images, requiring no GAN or LPIPS losses. Key advances: (1) NaFlex training enables generalization to arbitrary resolutions and aspect ratios; (2) models trained with full attention are robust to sliding window attention at inference, enabling efficiency at high resolutions; (3) models scale to 5B parameters, over 14$\\times$ larger than prior ViT tokenizers.",
+ "caption_source": "latex",
+ "abstract": "Vision Transformer (ViT) autoencoders have emerged as compelling tokenizers for images, offering improved reconstruction over convolutional tokenizers. However, existing ViT tokenizers cannot explore this landscape as performance degrades outside training resolutions, and reliance on adversarial losses prevents stable scaling. ViTok (Hansen-Estruch et al., 2025) found that the compression ratio r mediates a reconstruction-generation trade-off where lower r means better reconstructions but harder generations, so improving tokenizer reconstruction is key to more Pareto-optimal tokenizers. We introduce ViTok-v2, which addresses these limitations with native resolution support via NaFlex for generalization across resolutions and aspect ratios, and a novel DINOv3 perceptual loss that replaces both LPIPS and GAN objectives for stable training at any scale. ViTok-v2 is trained on about 2B images and scaled to 5B parameters, the largest image autoencoder to date. ViTok-v2 matches or exceeds state-of-the-art reconstruction at 256p and outperforms all baselines at 512p and above. In joint scaling experiments with flow matching generators, we show that scaling both the autoencoder and the generator advances the Pareto frontier of this trade-off.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=GkNfX22VXf",
+  "arxiv": "https://arxiv.org/abs/2605.05331",
+  "pdf": "https://raw.githubusercontent.com/mlresearch/v306/main/assets/hansen-estruch26a/hansen-estruch26a.pdf",
+  "proceedings": "https://proceedings.mlr.press/v306/hansen-estruch26a.html",
+  "virtual": "https://icml.cc/virtual/2026/poster/65103",
+  "code": "https://github.com/Na-VAE/vitok-release"
+ },
+ "license": "http://creativecommons.org/licenses/by-nc-nd/4.0/",
+ "img": "none",
+ "image_url": null,
+ "thumb_url": null,
+ "figure_page": 1,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.93
+}

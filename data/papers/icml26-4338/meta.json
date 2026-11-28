@@ -1,0 +1,52 @@
+{
+ "id": "icml26-4338",
+ "title": "RealtimeTool: Parallel Decoding for Real-Time LLM Function Calling",
+ "authors": [
+  "Xiaoxin Shi",
+  "Jiaxin Wan",
+  "Linkang Dong",
+  "Wei Jiang",
+  "Yue Liu",
+  "Zengfeng Huang"
+ ],
+ "venue": "ICML 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "Deep Learning->Large Language Models",
+ "role": "pipeline",
+ "role2": null,
+ "claim": "One shared prefill feeds parallel heads that each generate a different output segment independently, so latency falls to the slowest head.",
+ "layout": "Single column, top-to-bottom, fan-out to 5 colored heads then merge; latency box at bottom",
+ "tags": [
+  "parallel-decoding",
+  "function-calling",
+  "shared-kv-cache",
+  "latency",
+  "fan-out-fan-in"
+ ],
+ "style": [
+  "colorful",
+  "minimal",
+  "text-heavy"
+ ],
+ "description": "A top-to-bottom flow diagram of rounded boxes. At the top is a light-blue 'User Query' box with the example 'What's the weather in Tokyo tomorrow?'. A black arrow leads to a purple 'Shared Prefix (Prompt + Tools) [Single Prefill]' box. Five arrows fan out from it to five side-by-side, differently colored head boxes: Head 0 (blue, <content> checking.), Head 1 (orange, <function> get_weather), Head 2 (green, <arg1> Tokyo), Head 3 (purple, <arg2> tomorrow) and Head 4 (red, <arg3> celsius). Each box shows its special-token tags around its output. Five arrows then converge on a wide green 'Assembled Output' box showing get_weather(city='Tokyo', date='tomorrow', unit='celsius'). At the bottom, a red dashed box states 'Latency: max(T_head) ≪ ∑ T_tokens'.",
+ "caption": "Overview of \\method{}. Given an input prompt with tool definitions, parallel heads generate function name and arguments independently while sharing the prefix KV cache.",
+ "caption_source": "latex",
+ "abstract": "LLM-based function calling enables intelligent agents to interact with external tools and environments, yet autoregressive decoding imposes a fundamental latency bottleneck that limits real-time applications such as embodied intelligence, game AI, and interactive avatars (e.g., 10 Hz control frequency). We observe that function calling differs fundamentally from free-form text generation: structured outputs exhibit substantial token redundancy (delimiters, parameter names), and arguments exhibit weak causal dependencies. Crucially, these two properties must be exploited jointly to achieve real-time performance. We present SimpleTool, which introduces special tokens that serve a dual role: compressing low-entropy tokens (4-6x reduction) while acting as mode selectors that enable independent parallel generation of function name and arguments. This synergistic design achieves 3-6x end-to-end speedup (up to 9.6x) with only +8.2% parallelization overhead. Experiments on five benchmarks across Qwen-series models (0.5B-14B) demonstrate substantial speedup while maintaining competitive or improved accuracy. On Mobile Actions, ST-Qwen-0.5B outperforms Google's FunctionGemma in both accuracy and latency consistency. With quantization on consumer-grade GPU, SimpleTool achieves 61.2ms P50 latency, enabling 16 Hz real-time control at 4B model scale, bridging the gap between LLM function calling and latency-critical real-world deployment.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=f0IWycligk",
+  "arxiv": "https://arxiv.org/abs/2603.00030",
+  "pdf": "https://raw.githubusercontent.com/mlresearch/v306/main/assets/shi26w/shi26w.pdf",
+  "proceedings": "https://proceedings.mlr.press/v306/shi26w.html",
+  "virtual": "https://icml.cc/virtual/2026/poster/62617",
+  "code": null
+ },
+ "license": "http://arxiv.org/licenses/nonexclusive-distrib/1.0/",
+ "img": "none",
+ "image_url": null,
+ "thumb_url": null,
+ "figure_page": 2,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.9
+}

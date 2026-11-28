@@ -1,0 +1,48 @@
+{
+ "id": "neurips26-0182",
+ "title": "Benchmarking Attention for Tabular Foundation Models",
+ "authors": [
+  "Maximilian Schambach",
+  "Clemens Biehl",
+  "Sam Thelin"
+ ],
+ "venue": "NeurIPS 2026",
+ "tier": "poster",
+ "track": "Evaluations_and_Datasets_Track",
+ "topic": "Deep Learning->Attention Mechanisms",
+ "role": "analysis-finding",
+ "role2": "teaser-result",
+ "claim": "Optimal attention backend depends on attention axis and hardware generation, with crossover points as sequence length grows.",
+ "layout": "3×2 grid of line plots; rows are GPUs, columns are column/row attention",
+ "tags": [
+  "benchmarking",
+  "attention-kernels",
+  "hardware-dependence",
+  "throughput",
+  "crossover-points"
+ ],
+ "style": [
+  "plot",
+  "colorful"
+ ],
+ "description": "A three-row by two-column grid of line charts with TFLOPS on the y-axis and sequence length on the x-axis. Rows are labelled (a) A100, (b) H100 and (c) B200. The left column shows column attention forward throughput, with sequence length in columns from 16 to 2k. The right column shows row attention forward throughput, with sequence length in rows from 32 up to 32k on A100 and H100 and up to 96k on B200. Each plot has four coloured lines with markers and light shaded variance bands: SDPA efficient (blue), SDPA cuDNN (orange), FA2 (green), and FA3 (red) or FA4 (purple). A legend sits in the top-left corner of each plot. Curves rise and saturate, and the leading backend changes between panels. cuDNN leads for column attention on H100 and B200, and FA3 or FA4 lead for row attention on A100 and H100.",
+ "caption": "Forward throughput for column attention (left) and row attention (right) across three GPU generations. Configuration: $H{=}12$ heads, $D{=}64$, bfloat16. Note that FA3 is unavailable on B200 and FA4 does not support $D{=}64$ on H100. Missing measurements due to GPU memory constraints.",
+ "caption_source": "latex",
+ "abstract": "Tabular in-context learners such as TabPFN, Mitra, or ConTextTab rely on alternating row and column attention over 2D sequences of latent embeddings. These attention patterns differ markedly from the one-dimensional case in language models: row attention involves longer sequences while column attention operates on much shorter ones, and the strided memory layout of tabular data makes producing contiguous tensors costly. Moreover, the hidden dimensions used in current models are small compared to recent language models. Yet efficient attention has been studied mostly for one-dimensional sequences, leaving the two-dimensional tabular setting unexplored. To this end, we create a reproducible benchmarking setup and study the unique characteristics of tabular attention across several backends -- Torch SDPA (efficient and cuDNN), FlashAttention-2/3/4, and the inference-only backends vLLM and SageAttention -- measuring forward and backward throughput across realistic tabular shapes on three GPU generations (A100, H100, B200). We find that the optimal backend choice differs between column and row attention and varies across hardware as well as model specifics: While the FlashAttention implementations tailored for each GPU generation perform overall best, they are at times outperformed by CuDNN in the case of column attention at longer sequences with cross-over points depending on the head dimension. Among inference-only backends, SageAttention performs well for row attention and large sequences beyond 16\\,k rows. Our reproducible benchmark lays the foundation for future improvements to table-native attention. The self-contained benchmarking and evaluation code is openly available at: https://github.com/SAP-samples/tabular-attention-benchmark",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=1MbSbrblLi",
+  "arxiv": "https://arxiv.org/abs/2609.31306",
+  "pdf": "https://arxiv.org/pdf/2609.31306",
+  "proceedings": null,
+  "virtual": "https://neurips.cc/virtual/2026/poster/139839",
+  "code": "https://github.com/SAP-samples/tabular-attention-benchmark"
+ },
+ "license": "http://arxiv.org/licenses/nonexclusive-distrib/1.0/",
+ "img": "none",
+ "image_url": null,
+ "thumb_url": null,
+ "figure_page": 4,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.6
+}

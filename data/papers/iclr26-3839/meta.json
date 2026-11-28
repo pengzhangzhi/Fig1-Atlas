@@ -1,0 +1,55 @@
+{
+ "id": "iclr26-3839",
+ "title": "Understanding and Improving Length Generalization in Hierarchical Sparse Attention Models",
+ "authors": [
+  "Jiaqi Leng",
+  "Xiang Hu",
+  "Junxiong Wang",
+  "Jianguo Li",
+  "Wei Wu",
+  "Yucheng Lu"
+ ],
+ "venue": "ICLR 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "Deep Learning->Attention Mechanisms",
+ "role": "prior-vs-ours",
+ "role2": null,
+ "claim": "Mean-pooling chunk representations into a landmark is replaced by a dedicated learned CLS token that produces the retrieval landmark.",
+ "layout": "2 panels side by side, bottom-to-top flow through a chunking block, (a)/(b) labels",
+ "tags": [
+  "chunk-encoder",
+  "landmark-token",
+  "sparse-attention",
+  "long-context",
+  "architecture-ablation"
+ ],
+ "style": [
+  "minimal",
+  "colorful",
+  "icon-heavy"
+ ],
+ "description": "Two side-by-side panels, (a) and (b), each showing a vertical flow from bottom to top. At the bottom is a row of light-blue squares labeled H^{L/2}, the hidden states from the lower decoders. They pass through a wide yellow 'Chunking' box, drawn with faded yellow funnel shapes. Above it is a row of encoded chunks labeled E, shown as blue, orange, green and gray rounded squares. In panel (a), a light-blue triangle labeled 'Mean Pool' converges the four encoded chunks into a single gold circle labeled lmk. In panel (b), a fifth red-and-white striped square, labeled cls, is appended to the input row. After chunking it becomes a gradient circle (blending the chunk colors) labeled lmk, placed at the right end of E. The eye goes first to the colored squares and the lmk circles.",
+ "caption": "SWA+HSA Architecture. Our SWA+HSA model is primarily composed of Transformers with Sliding Window Attention (SWA), with layers divided into upper layers and lower layers. Lower decoders are composed of SWA followed by an FFN. At the architectural midpoint, a chunking layer splits representations from lower decoders into chunks, and encode them by chunk to build a global memory, each chunk of which contains a landmark vectors ($lmk$) and encoded chunks ($E$). Upper decoders each contains a local self-attention layer for local context, followed by an HSA to attend selected global memory and then an FFN.",
+ "caption_source": "latex",
+ "abstract": "Effectively processing long contexts is a critical challenge for language models. While standard Transformers are limited by quadratic complexity and poor length extrapolation, alternative architectures like sliding window attention and state space models sacrifice the ability to effectively utilize the full context due to their fixed-size memory. Chunk-based sparse attention has emerged as a promising paradigm for extreme length generalization, yet the key architectural principles underpinning its success are not yet fully understood. In this work, we present a systematic dissection of these models to identify the core components driving their performance. Through a unified framework and comprehensive ablation studies, we demonstrate that a combination of three design principles is critical: (1) an expressive, non-linear Chunk Encoder with a dedicated CLS token to produce representations for retrieval; (2) a Bypassing Residual Path to stably integrate retrieved global information without it being overridden by the local residual stream; and (3) enforced selection sparsity during pre-training to bridge the train-test distribution gap. We provide a theoretical motivation for intra-chunk information processing and landmark generation. By combining these principles, we establish a new state-of-the-art for training-free length extrapolation, successfully generalizing models trained on a 4K context to 32 million tokens on RULER and BABILong. Our findings provide a clear and empirically-grounded set of design principles for developing future, highly-capable long-context language models.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=iHqdSQk6qc",
+  "arxiv": "https://arxiv.org/abs/2510.17196",
+  "pdf": "https://proceedings.iclr.cc/paper_files/paper/2026/file/cba76ef96c4cd625631ab4d33285b045-Paper-Conference.pdf",
+  "proceedings": "https://proceedings.iclr.cc/paper_files/paper/2026/hash/cba76ef96c4cd625631ab4d33285b045-Abstract-Conference.html",
+  "virtual": "https://iclr.cc/virtual/2026/poster/10007980",
+  "code": "https://github.com/jacky-leng/length-generalizable-sparse-attention"
+ },
+ "license": "http://arxiv.org/licenses/nonexclusive-distrib/1.0/",
+ "img": "none",
+ "image_url": null,
+ "thumb_url": null,
+ "figure_page": 3,
+ "qc_flags": [
+  "tiny-crop",
+  "bad-crop"
+ ],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.55
+}

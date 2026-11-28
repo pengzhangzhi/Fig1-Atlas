@@ -1,0 +1,52 @@
+{
+ "id": "neurips26-2372",
+ "title": "Orthros: Phase-Aware Heterogeneous Attention for Efficient Transformers",
+ "authors": [
+  "Yuhong CHOU",
+  "Zehao Liu",
+  "Yuqi Pan",
+  "Qian Liu",
+  "Xianwei Chen",
+  "Jibin Wu"
+ ],
+ "venue": "NeurIPS 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "Deep Learning->Attention Mechanisms",
+ "role": "pipeline",
+ "role2": "overview-framework",
+ "claim": "A single unified module switches computation pattern across training and inference phases, using local attention for context and full cross-attention for output.",
+ "layout": "6 panels: two architecture diagrams on top, four regime variants below",
+ "tags": [
+  "phase-aware",
+  "efficient-attention",
+  "architecture",
+  "linear-complexity",
+  "long-context"
+ ],
+ "style": [
+  "colorful",
+  "icon-heavy",
+  "minimal"
+ ],
+ "description": "The figure has six panels. Panel (a) shows the Orthros LM block, repeated L times. It stacks RMSNorm, OrthrosAttn, a residual add, RMSNorm, FFN and a second residual add. OrthrosAttn has a purple-to-pink gradient, and a dashed arrow links it to panel (b). Panel (b) expands the attention into two branches. A purple sliding-window attention branch takes Q, K, V and a diagonal-band mask and outputs O. A pink full cross-attention branch takes Q_cross and a mask with T_in and T_out regions and outputs O_cross. Both branches use dot-product and softmax boxes. Four small panels run along the bottom: (c) PT, (d) SFT, (e) Prefill and (f) Decode. Each shows an SWA→CA block repeated xL, with small input bars underneath showing how the token segments feed each branch in that regime. The eye goes first to the colorful attention diagram at the top right.",
+ "caption": "Overview of Orthros attention. The top two sub-figures describe the Orthros architecture and the bottom four sub-figures show the comparison of four sequence-processing regimes. SWA stands for sliding window attention, and CA stands for full cross-attention.",
+ "caption_source": "latex",
+ "abstract": "Efficient attention mechanisms, such as linear and sliding window attention, aim to reduce the computational complexity of Transformers from quadratic to linear. However, their degraded in-context recall often necessitates interleaving full attention layers, leaving the quadratic bottleneck unresolved in long-context processing. To address this, we introduce Orthros attention, which shifts the efficiency paradigm from structural allocation to phase-aware decoupling. As a unified module, it dynamically switches its computation pattern across different phases of sequence processing, enabling linear complexity prefilling and full attention decoding. Our design grants Orthros attention a lower asymptotic complexity compared to vanilla Transformers in prevalent long-context scenarios characterized by heavy prefilling and light decoding. Beyond theoretical formulation and complexity analysis, extensive empirical evaluations demonstrate Orthros's superiority across multiple dimensions. First, we validate its fundamental language modeling capabilities, demonstrating scalability across varying model sizes and strong competitiveness in comprehensive architectural comparisons. Second, Orthros exhibits exceptional conversion feasibility via a data-efficient Transformer-to-Orthros conversion, yielding performance that even surpasses the original Transformer. Finally, Orthros achieves a $21.9\\times$ prefilling speedup over Transformers with end-to-end inference gains, while preserving long-context capabilities, as demonstrated by near-perfect 128K needle-in-a-haystack results and Transformer-level performance on real-world in-context recall tasks. Overall, these advantages in high performance, flexibility, and efficiency position Orthros as a promising candidate to succeed the Transformer in industrial applications.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=Ggocm0VXS9",
+  "arxiv": "https://arxiv.org/abs/2610.13735",
+  "pdf": "https://arxiv.org/pdf/2610.13735",
+  "proceedings": null,
+  "virtual": "https://neurips.cc/virtual/2026/poster/154037",
+  "code": null
+ },
+ "license": "http://creativecommons.org/licenses/by-nc-nd/4.0/",
+ "img": "none",
+ "image_url": null,
+ "thumb_url": null,
+ "figure_page": 4,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.85
+}

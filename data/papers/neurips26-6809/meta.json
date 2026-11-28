@@ -1,0 +1,52 @@
+{
+ "id": "neurips26-6809",
+ "title": "DegradeQuery: Counterfactual Tuple Pretraining for Context-Aware PROTAC Degradation Prediction",
+ "authors": [
+  "Dong Xu",
+  "Zhangfan Yang",
+  "Jiantao Wu",
+  "Zexuan Zhu",
+  "Jianqiang Li",
+  "Junkai Ji"
+ ],
+ "venue": "NeurIPS 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "Applications->Chemistry and Drug Discovery",
+ "role": "pipeline",
+ "role2": "overview-framework",
+ "claim": "Unlabeled multi-entity records can supervise representation learning via counterfactual replacement contrasts, then fine-tune on scarce labels.",
+ "layout": "5 panels: pretraining on top, fine-tuning and counterfactual in middle, losses at bottom",
+ "tags": [
+  "counterfactual-contrastive",
+  "pretraining-finetuning",
+  "label-scarcity",
+  "multi-modal-fusion",
+  "negative-sampling"
+ ],
+ "style": [
+  "colorful",
+  "icon-heavy",
+  "plot"
+ ],
+ "description": "A five-panel composite figure. Panel (a), a large peach banner on top, shows the pretraining pipeline. An Unlabeled Set (PROTAC molecule, target protein, E3 ligase icons) feeds a Molecule Encoder and a Protein Encoder. These produce colored token-bar representations that go to a Projection Head with a tuple-level loss. The bars are also fused and passed through a Counterfactual module into a Scoring Head with a molecule-level loss. Panel (b) shows fine-tuning: a Labeled Set goes into a Pretrained Tuple Encoder, then a Degradation Prediction Head, then a High/Low output with a supervised loss curve and an optional assay input. Panel (c) shows counterfactual alternatives: target, E3 or both are replaced, with gray bars marking replaced parts. Panel (d) is a scatter of tuple scores for observed and replaced tuples. Panel (e) shows subgraph masking, SMILES enumeration and an embedding-space similarity sketch.",
+ "caption": "Overview of DegradeQuery. DegradeQuery treats the molecule--target--E3 tuple as the unit of unlabeled supervision. In counterfactual tuple pretraining, observed PROTAC tuples from labeled and unlabeled training records are contrasted with alternatives formed by replacing the target, the E3 ligase, or both. This stage learns a tuple-conditioned representation without assigning pseudo-labels to unlabeled records. The pretrained encoder is then fine-tuned on labeled degradation data for binary high/low prediction.",
+ "caption_source": "latex",
+ "abstract": "Proteolysis-targeting chimeras (PROTACs) induce protein degradation by recruiting a target protein to an E3 ubiquitin ligase, making degradation a joint outcome of the degrader molecule and its biological context. Although public databases contain thousands of structured molecule-target-E3 records, degradation measurements are available for only a small fraction of them. Existing supervised approaches therefore leave most recorded chemical-biological relationships unused. We introduce DegradeQuery, a context-aware prediction framework that converts these label-missing records into a pretraining signal. Its counterfactual tuple pretraining objective contrasts recorded tuples with alternatives formed by replacing the target, the E3 ligase, or both, enabling the model to learn contextual associations without assigning activity pseudo-labels. The resulting representation is then fine-tuned to predict degradation from the complete molecule-target-E3 context. On the official PROTAC-8K benchmark, DegradeQuery achieves an area under the receiver operating characteristic curve of 0.9065 and an accuracy of 0.8500, outperforming the compared methods. Controlled analyses further show that the improvement is primarily attributable to tuple-level pretraining, can be recovered using only label-missing records, and remains complementary to protein language model representations. These findings demonstrate that incompletely labeled PROTAC databases contain useful relational supervision and provide a practical route for learning context-aware degradation predictors from scarce experimental labels.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=kkmgMw3XBB",
+  "arxiv": "https://arxiv.org/abs/2608.10595",
+  "pdf": "https://arxiv.org/pdf/2608.10595",
+  "proceedings": null,
+  "virtual": "https://neurips.cc/virtual/2026/poster/150093",
+  "code": null
+ },
+ "license": "http://arxiv.org/licenses/nonexclusive-distrib/1.0/",
+ "img": "none",
+ "image_url": null,
+ "thumb_url": null,
+ "figure_page": 3,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.8
+}

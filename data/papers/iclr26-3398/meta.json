@@ -1,0 +1,51 @@
+{
+ "id": "iclr26-3398",
+ "title": "RLAC: Reinforcement Learning with Adversarial Critic for Free-Form Generation Tasks",
+ "authors": [
+  "Mian Wu",
+  "Gavin Zhang",
+  "Sewon Min",
+  "Sergey Levine",
+  "Aviral Kumar"
+ ],
+ "venue": "ICLR 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "Reinforcement Learning->Deep RL",
+ "role": "prior-vs-ours",
+ "role2": "pipeline",
+ "claim": "Exhaustive verification is costly and learned reward models are hackable; verifying only a critic-proposed likely failure is cheap and reliable.",
+ "layout": "3 panels side-by-side, top-down flow, shared example text, feedback loops",
+ "tags": [
+  "adversarial-critic",
+  "reinforcement-learning",
+  "verification",
+  "reward-modeling",
+  "efficiency"
+ ],
+ "style": [
+  "colorful",
+  "icon-heavy",
+  "text-heavy"
+ ],
+ "description": "Three side-by-side flow diagrams share one example: the query 'Tell me a bio of Michael' goes to a Generator, which writes a biography with a factual error (a French songwriter born in Paris). Panel (a), the enumerative method, splits the text into atomic facts. Each fact gets a verified mark (✗, ✓, …), and the results aggregate into Reward 0.7 fed back to the Generator. Panel (b), the reward model, sends the text straight to a yellow Reward Model, which outputs Reward 0.5. Panel (c), ours, adds an orange Critic that picks one suspect claim ('Michael Jackson was a French songwriter'). That claim is verified, and the ✗ result routes Reward 1 to the critic and Reward 0 to the generator. Blue, orange, green and yellow boxes carry the flow. Blue arrows loop back as feedback.",
+ "caption": "Comparison of three post-training paradigms on a biography example (“Michael Jackson”). (a) Enumerative verification explicitly extracts and checks every atomic fact before aggregating a scalar reward, which is accurate but expensive. (b) Reward-model methods skip verification and directly predict a scalar reward from a learned judge, which is efficient but prone to reward hacking. In contrast, (c) RLAC trains a learned critic to propose one likely-wrong fact (rubric) and verifies it via an external validator. If the fact indeed fails, the critic receives reward 1 and the generator 0; otherwise the generator receives 1 and the critic 0. This dynamic, adversarial feedback yields prompt-specific, verifiable, and scalable supervision for free-form generation tasks.",
+ "caption_source": "latex",
+ "abstract": "Open-ended generation tasks require outputs to satisfy diverse and often implicit task-specific evaluation rubrics. The sheer number of relevant rubrics leads to prohibitively high verification costs and incomplete assessments of a response, making reinforcement learning (RL) post-training with rubric-based rewards difficult to scale. This problem is exacerbated by the fact that often the best way to combine these rubrics into one single reward is also highly prompt-specific. We propose Reinforcement Learning with Adversarial Critic (RLAC), a post-training approach that addresses these challenges via dynamic rubric verification. Our approach employs a large language model (LLM) as a critic that dynamically identifies only the most likely failure modes (e.g., a factual error or unhandled edge case), which are then verified by an external validator to optimize both generator and critic jointly. By training both the generator and the critic, this game enhances the critic's error detection and the generator's output quality while reducing required verifications. Our experiments demonstrate that RLAC improves factual accuracy in text generation and correctness in code generation, while also outperforming exhaustive verification and reward model methods. We show that dynamic critics are more effective than fixed critics, showcasing the potential of RLAC for scaling RL post-training to free-form generation tasks.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=dBmjnRR1bC",
+  "arxiv": "https://arxiv.org/abs/2511.01758",
+  "pdf": "https://proceedings.iclr.cc/paper_files/paper/2026/file/e1bb743495a56babd23a99909bfc151e-Paper-Conference.pdf",
+  "proceedings": "https://proceedings.iclr.cc/paper_files/paper/2026/hash/e1bb743495a56babd23a99909bfc151e-Abstract-Conference.html",
+  "virtual": "https://iclr.cc/virtual/2026/poster/10008432",
+  "code": null
+ },
+ "license": "http://arxiv.org/licenses/nonexclusive-distrib/1.0/",
+ "img": "none",
+ "image_url": null,
+ "thumb_url": null,
+ "figure_page": 1,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.9
+}

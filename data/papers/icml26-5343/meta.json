@@ -1,0 +1,52 @@
+{
+ "id": "icml26-5343",
+ "title": "InfoFlow KV: Information-Flow-Aware KV Recomputation for Long Context",
+ "authors": [
+  "Xin Teng",
+  "Canyu Zhang",
+  "Shaoyi Zheng",
+  "Danyang Zhuo",
+  "Tianyi Zhou",
+  "Shenji Wan"
+ ],
+ "venue": "ICML 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "Deep Learning->Attention Mechanisms",
+ "role": "pipeline",
+ "role2": null,
+ "claim": "A cached-chunk system precomputes independent caches, then uses query-conditioned attention scores to pick a few tokens to recompute, restoring global dependencies cheaply.",
+ "layout": "5 numbered stage boxes in a loop plus a right detail panel; arrows, dashed border",
+ "tags": [
+  "kv-cache",
+  "selective-recomputation",
+  "retrieval-augmented-generation",
+  "efficiency",
+  "attention-based-selection"
+ ],
+ "style": [
+  "icon-heavy",
+  "colorful",
+  "text-heavy"
+ ],
+ "description": "A wide figure inside a dashed blue border showing a five-stage cyclic pipeline with numbered circular badges. On the left is a KVCache Storage warehouse icon. Stage 1 builds an immutable KV cache database from passages through a KV extractor. A user icon sends an input query to Stage 2, code-base context retrieval (RAG), which returns chunks of KV cache. Stage 3 scores positions by query-based attention norm: it shows colored KV chunk bars, original RoPE indices, global RoPE indices, and an attention-norm bar chart with red boxes marking selected tokens. Stage 4 does partial KV recompute with full-context attention. Stage 5 runs inference with the recomputed KV cache in a VLM or LLM, and the new cache is stored back in storage. A rightmost orange panel, 'Our + Reorder', lists four numbered substeps: compute the norm, reorder chunks, restore global RoPE, and re-select tokens. Pastel colors and colored borders separate the stages.",
+ "caption": "Context chunks are prefetched independently using chunk-local RoPE. At inference time, retrieved chunks are concatenated with the prompt, global RoPE positions are reconstructed, and prompt-conditioned attention norms are used to select high-impact tokens for full-context KV recomputation. The recomputed KV states are concatenated with cached chunks, restoring cross-chunk interactions. An optional chunk reordering step places more informative chunks closer to the prompt.",
+ "caption_source": "latex",
+ "abstract": "Retrieval-augmented generation (RAG) for long-context question answering is bottlenecked by inference-time prefilling over large retrieved contexts. A common strategy is to precompute key-value (KV) caches for individual documents and selectively recompute a small subset of tokens to restore global causal dependencies, but existing methods rely on heuristics or representation discrepancies without modeling whether selected tokens can effectively influence generation. We cast selective KV recomputation as an information flow problem and show that a simple attention-norm signal from the query reliably identifies tokens that are both semantically relevant and structurally positioned to propagate information, when computed under an inference-consistent RoPE geometry. We therefore reconstruct global positional assignments for retrieved chunks and introduce an information-flow-guided chunk reordering strategy. Experiments on Large Language Model and Vision-Language Model benchmarks demonstrate consistent gains over prior methods under comparable latency.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=o8y6CoJsWA",
+  "arxiv": "https://arxiv.org/abs/2603.05353",
+  "pdf": "https://raw.githubusercontent.com/mlresearch/v306/main/assets/teng26b/teng26b.pdf",
+  "proceedings": "https://proceedings.mlr.press/v306/teng26b.html",
+  "virtual": "https://icml.cc/virtual/2026/poster/61648",
+  "code": "https://infoflow-kv.github.io/"
+ },
+ "license": "http://creativecommons.org/licenses/by/4.0/",
+ "img": "cc-by",
+ "image_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/images/icml26-5343.png",
+ "thumb_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/thumbs/icml26-5343.webp",
+ "figure_page": 1,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.93
+}

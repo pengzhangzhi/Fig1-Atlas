@@ -1,0 +1,51 @@
+{
+ "id": "neurips26-4151",
+ "title": "Exact Unlearning via Quantized Sufficient Statistics",
+ "authors": [
+  "Ami Tavory",
+  "Shripad Gade",
+  "Tal Sarig",
+  "Noam Touitou",
+  "Ido Guy"
+ ],
+ "venue": "NeurIPS 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "Social Aspects->Trustworthy Machine Learning",
+ "role": "concept",
+ "role2": "pipeline",
+ "claim": "Quantizing an embedding space in nested levels turns label modeling into residual correction, shrinking variance at each level like boosting.",
+ "layout": "3 circular panels, left-to-right, blue then green partitions, variance note top right",
+ "tags": [
+  "residual-quantization",
+  "gradient-boosting",
+  "sufficient-statistics",
+  "unlearning",
+  "variance-reduction"
+ ],
+ "style": [
+  "minimal",
+  "plot",
+  "colorful"
+ ],
+ "description": "Three side-by-side circular scatter panels show a toy 2-D embedding space. Panel (a), 'Absolute space', has a circle split into three Voronoi cells by solid blue lines. Points use circle, triangle or square markers by cell, shaded from dark to light by target value, with visible spread inside each cell. Panel (b), 'Nested joint-count regions', adds green dashed sub-cell boundaries inside each cell and a green label N_{1,2}[j',j] marking the co-occurrence counts. Panel (c), 'Pooled residual space', shows all points collapsed into one cloud around the center, with a narrow gray intensity band. It has green dashed Level 2 boundaries and a μ_{2,j} label. A note at top right reads Var(r1) ≪ Var(y). Bold captions sit below each panel. The eye goes first to the blue Voronoi lines on the left.",
+ "caption": "QSS translates Residual Quantization on embeddings to residual boosting on labels. Marker shape ($\\circ$, $\\triangle$, $\\square$) encodes cell assignment; intensity encodes the target $y_i$ (dark${=}$high, light${=}$low). (a) Level 1 Voronoi cells ($b{=}3$) partition the embedding space; each cell has a distinct intensity level with visible internal spread. (b) A nested Level 2 codebook subdivides each cell; the intersection regions define the co-occurrence counts $N_{1,2}[j',j]$ stored as sum-decomposable statistics, enabling exact unlearning via simple count decrements. (c) After subtracting Level 1 cell means, all points collapse into the pooled residual space. The wide intensity spread collapses to a narrow, uniform band, visualizing that label residuals carry far less variance than the original labels, since each RQ level corrects the previous, analogous to gradient boosting [ref] with quantization centroids as weak learners.",
+ "caption_source": "latex",
+ "abstract": "Exact unlearning requires a deployed predictor to match one rebuilt without the information named by a deletion request. Existing general-purpose exact methods localize retraining through disjoint shards, but every request still invalidates a model, and smaller shards reduce the data available to each constituent predictor. We introduce Quantized Sufficient Statistics (QSS), which separates a small frozen schema from mutable, sum-decomposable content. The schema learns global structure; the content stores local prediction corrections as additive statistics indexed by quantized regions. Deleting content is therefore exact subtraction rather than optimization. We distinguish two guarantees: QSS-L exactly removes a label while retaining the unlabelled input, whereas QSS-E exactly removes both input and label by learning the schema without deletable examples. A deletion takes the arithmetic fast path with probability $1-Ï$ and triggers a full rebuild with probability $Ï$; all reported expected latencies include both events. Across 15 vision, text, and tabular datasets at $Ï=0.5\\%$, QSS-L is within 2 percentage points of SISA on 11 tasks and provides 4--483$\\times$ lower expected deletion latency on the low-class-count tasks where a compact schema is effective. QSS-E quantifies the additional accuracy cost of removing every trace of an input.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=SyxiOl962F",
+  "arxiv": "https://arxiv.org/abs/2610.07197",
+  "pdf": "https://arxiv.org/pdf/2610.07197",
+  "proceedings": null,
+  "virtual": "https://neurips.cc/virtual/2026/poster/152457",
+  "code": null
+ },
+ "license": "http://creativecommons.org/licenses/by/4.0/",
+ "img": "cc-by",
+ "image_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/images/neurips26-4151.png",
+ "thumb_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/thumbs/neurips26-4151.webp",
+ "figure_page": 1,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.7
+}

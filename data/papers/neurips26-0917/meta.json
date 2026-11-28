@@ -1,0 +1,53 @@
+{
+ "id": "neurips26-0917",
+ "title": "Geometric Latent Reasoning Induces Shorter Generations in LLMs",
+ "authors": [
+  "Shashi Kumar",
+  "Yacouba Kaloga",
+  "Petr Motlicek",
+  "Ina Kodrasi",
+  "Andrea Cavallaro"
+ ],
+ "venue": "NeurIPS 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "Deep Learning->Algorithms",
+ "role": "pipeline",
+ "role2": null,
+ "claim": "Training runs two forward passes: the first collects embedding transitions as targets, and the second supervises a transition head on latent steps.",
+ "layout": "2 stacked-module columns joined by a center collector, left-to-right, math under arrows",
+ "tags": [
+  "two-pass-training",
+  "latent-reasoning",
+  "transition-head",
+  "embedding-space",
+  "supervision"
+ ],
+ "style": [
+  "colorful",
+  "math-heavy",
+  "minimal"
+ ],
+ "description": "A left-to-right training diagram with two vertical stacks of rounded boxes, labeled 'Training 1st Forward' (left) and 'Training 2nd Forward' (right). Each stack runs bottom to top. The first stack goes from input tokens q, t and a through a snowflake-marked orange Embedding box, embeddings e, purple Qwen3 Blocks, and hidden states h. The hidden states feed a green Vocab Head and a red Transition Head, which outputs predicted displacements. A center box, 'collect transition', gathers the targets Δ = e_{k+1} − e_k. Magenta arrows labeled 'Transition objective' and 'Cross entropy' link the two passes to their losses. On the right, the second pass repeats the stack with latent embeddings ê, updated by ê_{p+1} = e_p + Δ̂_p. Pastel module colors set against black arrows and bold magenta annotations draw the eye first.",
+ "caption": "Geometric view of latent reasoning as an embedding-space trajectory. (a) Standard chain-of-thought forces reasoning through a sequence (black arrows) of exact vocabulary embeddings (purple dots). (b) \\GLR{} learns continuous displacement vectors (red arrows) to approximate these transitions. Dashed circles denote local neighborhoods where continuous states may remain meaningful model inputs. (c) At inference, continuous latent steps deviate from the explicit text path. By not forcing intermediate steps into discrete tokens, the model bypasses redundant transitions, taking a geometric shortcut before resuming standard token generation.",
+ "caption_source": "latex",
+ "abstract": "Large language models solve complex problems by generating lengthy chains of explicit reasoning tokens. While effective, this makes reasoning expensive, length-sensitive, and constrained to (discrete) natural language. While latent reasoning offers a continuous alternative, determining useful structures for intermediate latent states is an open challenge. In this paper, we formulate latent reasoning as a geometric path-approximation problem within the model's pretrained token-embedding space. We introduce Geometric Latent Reasoning (GLR), which uses a lightweight transition head to predict iterative direction updates in embedding space. Using textual chain-of-thought traces as anchors, GLR learns to approximate discrete reasoning trajectories while permitting continuous deviations from exact token embeddings. Evaluations on mathematical reasoning benchmarks using Qwen3 models reveal an emergent phenomenon: geometric latent reasoning induces substantially shorter generations without an explicit length objective. By replacing early explicit reasoning with continuous latent steps, models often reach correct answers using substantially fewer total generation steps. These findings suggest that continuous trajectories act as compact intermediate reasoning states, exposing a new tradeoff between latent computation budget, output length, and accuracy. Our code is publicly available at: https://github.com/idiap/GLR. The project page is available at: https://glr-llm.github.io/.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=6TX25lR2SG",
+  "arxiv": "https://arxiv.org/abs/2606.02248",
+  "pdf": "https://arxiv.org/pdf/2606.02248",
+  "proceedings": null,
+  "virtual": "https://neurips.cc/virtual/2026/poster/155324",
+  "code": "https://glr-llm.github.io/"
+ },
+ "license": "http://creativecommons.org/licenses/by/4.0/",
+ "img": "cc-by",
+ "image_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/images/neurips26-0917.png",
+ "thumb_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/thumbs/neurips26-0917.webp",
+ "figure_page": 4,
+ "qc_flags": [
+  "bad-crop"
+ ],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.85
+}

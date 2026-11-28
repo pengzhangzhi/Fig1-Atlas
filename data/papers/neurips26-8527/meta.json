@@ -1,0 +1,52 @@
+{
+ "id": "neurips26-8527",
+ "title": "BayesJudge: Uncertainty-Aware Bayesian Meta-Evaluation of Human and LLM Judgments",
+ "authors": [
+  "Jiahao Zhang",
+  "Pengbin Feng",
+  "Chunlei Meng",
+  "Hang He",
+  "Tianyong Hao"
+ ],
+ "venue": "NeurIPS 2026",
+ "tier": "poster",
+ "track": "Evaluations_and_Datasets_Track",
+ "topic": "Probabilistic Methods->Bayesian Models and Methods",
+ "role": "overview-framework",
+ "role2": "prior-vs-ours",
+ "claim": "Conflicting judgments are collapsed by hard labels; our Bayesian layer models evaluator biases jointly and outputs explicit posterior uncertainty.",
+ "layout": "3 columns, left-to-right with arrows, green/blue boxed modules, hard-label inset",
+ "tags": [
+  "bayesian-inference",
+  "evaluator-bias",
+  "uncertainty",
+  "llm-as-judge",
+  "hard-label-baselines"
+ ],
+ "style": [
+  "icon-heavy",
+  "colorful",
+  "math-heavy",
+  "plot"
+ ],
+ "description": "A wide three-column figure in a rounded frame, with column headers joined by arrows: Conflicting judgments, BayesJudge, Posterior and diagnostics. The left column shows Response A vs. B cards. Below them are expert, crowd and LLM judge channels (J_AB, J_BA) with their verdicts, and a ternary simplex marking where each evaluator's judgments fall. A dashed box at the bottom shows three hard-label alternatives (majority vote, single-order, swap rule) as bar charts. The center column stacks green and blue boxed modules. These are the latent verdict (preference θ and ambiguity τ through a softmax to π), the rater confusion matrix, the position bias β with ±β branches, and an online Bayesian update strip (prior, MAP fit, SMC, Dirichlet, posterior). The right column stacks small plots: a verdict bar chart, confusion-matrix heatmaps for expert and crowd, a β density, and a decide/review entropy bar. Blue is used for A and pink for B.",
+ "caption": "BayesJudge overview. Left: For one response pair, experts ($E$) lean toward $A$ or a near tie, crowdworkers ($C$) toward $B$, and an LLM judge flips its verdict across presentation orders ($J_{AB}\\!\\to\\!A$, $J_{BA}\\!\\to\\!B$); the simplex locates each evaluator's judgments over $\\{A,T,B\\}$, and the inset shows that hard-label alternatives resolve this conflict differently. Center: Preference $\\theta_t$ and ambiguity $\\tau_t$ define the verdict distribution $\\pi_t$; a rater-specific latent verdict $z_{tr}\\sim\\pi_t$ selects the row of $C_r$ generating label $y_{tr}^H$, while position bias $\\beta_j$ enters with opposite signs under AB/BA orders. Online inference combines local MAP fits, SMC bias particles, and Dirichlet updates. Right: a posterior verdict distribution, evaluator diagnostics, and entropy $H$ for decision or review. $T$: tie/ambiguity; $y^H$ abbreviates $y_{tr}^H$; all plots are schematic.",
+ "caption_source": "latex",
+ "abstract": "AI evaluation pipelines often produce conflicting judgments rather than clean labels. Yet existing methods largely collapse disagreement into a single hard label. As a result, item ambiguity, rater biases, and the position preferences of LLM judges are erased together: evaluation outcomes appear deterministic while concealing the underlying uncertainty, and may even systematically favor one response. This conflict is especially acute in pairwise LLM evaluation. We propose \\textbf{BayesJudge}, an online Bayesian meta-evaluation layer for conflicting human-LLM judgment streams. BayesJudge treats the latent preference of each item as a latent variable and jointly models two sources of evaluator bias: rater-specific confusion matrices for human annotation bias, and an explicit order parameter for the position preference of LLM judges, thereby separating response quality from evaluator bias. We derive an exact online posterior recursion and adopt a scalable Rao-Blackwellized assumed-density sequential Monte Carlo (SMC) approximation for streaming inference. Consequently, each comparison yields not a single hard label but a posterior distribution over each response winning (as well as a tie or ambiguity state), together with posterior estimates of the bias parameters, making evaluation uncertainty explicit and quantifiable. On synthetic data, BayesJudge accurately recovers human annotation biases and LLM position biases online, and strictly outperforms variants that freeze either bias channel in held-out predictive log-likelihood. On the real-world SummEval dataset, BayesJudge detects systematic order effects in LLM judgments, distinguishes the behavioral signatures of experts and crowdworkers without rater metadata, and yields posterior uncertainty that reflects genuine human disagreement. Our code is available at https://github.com/Killerofthecard/BayesJudge.git",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=wxiKp62nSu",
+  "arxiv": "https://arxiv.org/abs/2610.11116",
+  "pdf": "https://arxiv.org/pdf/2610.11116",
+  "proceedings": null,
+  "virtual": "https://neurips.cc/virtual/2026/poster/138918",
+  "code": null
+ },
+ "license": "http://arxiv.org/licenses/nonexclusive-distrib/1.0/",
+ "img": "none",
+ "image_url": null,
+ "thumb_url": null,
+ "figure_page": 1,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.5
+}

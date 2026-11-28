@@ -1,0 +1,57 @@
+{
+ "id": "neurips26-8245",
+ "title": "AdaCodec: A Predictive Visual Code for Video MLLMs",
+ "authors": [
+  "Haowen Hou",
+  "Zhen Huang",
+  "Zheming Liang",
+  "Qingyi Si",
+  "Chenglin Li",
+  "Shuai Dong",
+  "Kele Shao",
+  "Ruilin Li",
+  "Dianyi Wang",
+  "Nan Duan",
+  "Jiaqi Wang"
+ ],
+ "venue": "NeurIPS 2026",
+ "tier": "spotlight",
+ "track": "main",
+ "topic": "Computer Vision->Vision Models & Multimodal",
+ "role": "pipeline",
+ "role2": null,
+ "claim": "Encode each new frame as a compact motion vector plus residual against a reference, and route I-frames and P-frames through different tokenizers into the LLM.",
+ "layout": "2 panels, left-to-right; block-matching diagram, then GOP tokenizer pipeline into LLM",
+ "tags": [
+  "video",
+  "predictive-coding",
+  "motion-estimation",
+  "token-efficiency",
+  "tokenizer"
+ ],
+ "style": [
+  "photo/real data",
+  "icon-heavy",
+  "minimal"
+ ],
+ "description": "The figure has two panels. The left panel is titled Motion and Residual Encoding. It shows the same car photo twice, as Current Frame (t) and Reference Frame (t-1). Dashed white boxes mark the motion search range. A cyan macroblock sits at (X, Y) in the current frame. A green best-match block sits at (X', Y') in the reference frame. Below the photos, formulas define Residual as the cyan patch minus the green patch, and Motion vector as (X'-X, Y'-Y). The right panel is titled Deployable Model. It shows a GOP box with one I Frame and two P Frames. The I Frame photo goes through a trapezoid ViT and produces six token squares. Each P Frame is a gray residual image with a motion grid and green arrows. It goes through a P-Tokenizer and produces two token squares. An ellipsis and the label 'More GOPs and text' follow. A wide LLM bar sits at the bottom. The eye goes first to the car photos and the trapezoid tokenizers.",
+ "caption": "AdaCodec method overview. Left: Motion-and-residual encoding for a P-frame. For each macroblock in the target frame, AdaCodec searches a local window in the reference frame for the best-matching block; the displacement gives the motion vector and the per-pixel difference gives the residual. Right: Deployable model. Each GOP encodes its I-frame with the ViT and each P-frame with the P-tokenizer.",
+ "caption_source": "latex",
+ "abstract": "Video is temporally redundant: adjacent frames usually share most objects, background, and layout. Yet existing video multimodal large language models (video MLLMs) usually encode each sampled frame as an independent RGB image, causing visual tokens to repeat content already present in earlier frames. This suggests a more direct video interface: send a full reference frame only when the scene cannot be predicted well from prior context, and otherwise transmit a compact description of inter-frame changes. We call this interface a \\emph{predictive visual code}, and instantiate it for video MLLMs as \\textbf{AdaCodec}. AdaCodec spends full visual tokens on a reference frame only when its conditional predictive cost is high; otherwise, it encodes inter-frame changes, including motion and prediction residuals, as compact P-tokens. Across all eleven benchmarks, AdaCodec improves over the Qwen3-VL-8B per-frame RGB baseline at a matched visual-token budget. Even at $1/7$ the budget, AdaCodec with 32k tokens surpasses the 224k baseline on all long-video benchmarks; on five general-video benchmarks, it raises the average score while substantially cutting time-to-first-token from 9.26s to 1.62s.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=utdVAXHnlv",
+  "arxiv": "https://arxiv.org/abs/2606.02569",
+  "pdf": "https://arxiv.org/pdf/2606.02569",
+  "proceedings": null,
+  "virtual": "https://neurips.cc/virtual/2026/poster/148821",
+  "code": null
+ },
+ "license": "http://arxiv.org/licenses/nonexclusive-distrib/1.0/",
+ "img": "none",
+ "image_url": null,
+ "thumb_url": null,
+ "figure_page": 3,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.85
+}

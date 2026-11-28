@@ -1,0 +1,52 @@
+{
+ "id": "iclr26-1035",
+ "title": "SpecBranch: Speculative Decoding via Hybrid Drafting and Rollback-Aware Branch Parallelism",
+ "authors": [
+  "Yuhao Shen",
+  "Junyi Shen",
+  "Quan Kong",
+  "Tianyu Liu",
+  "Yao Lu",
+  "Cong Wang"
+ ],
+ "venue": "ICLR 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "Deep Learning->Generative Models and Autoencoders",
+ "role": "prior-vs-ours",
+ "role2": "analysis-finding",
+ "claim": "Prior serialized and static-parallel pipelines waste work on doomed tokens; adaptive branching cuts rollback and waiting.",
+ "layout": "3 panels: left timeline diagrams stacked top-to-bottom, right two plots; colored token boxes",
+ "tags": [
+  "speculative-decoding",
+  "branch-parallelism",
+  "rollback",
+  "llm-inference",
+  "efficiency"
+ ],
+ "style": [
+  "colorful",
+  "icon-heavy",
+  "plot"
+ ],
+ "description": "The left panel (a) stacks three token-timeline diagrams. Vanilla SD shows a target model block with a hatched 'Idling' waiting bubble. PEARL, below it, shows a parallel target block and a red bracket labeled 'Rollback!' over rejected tokens x4–x10. SpecBranch, at the bottom, has two parallel draft branches, a cartoon mascot with thought bubbles ('Unconfident! Need more branches!', 'All tokens are correct!'), dotted arrows, and a red 'Shortened Wall time!' arrow. Green boxes mark draft tokens, yellow marks the target model, blue marks new branches, and red outlines mark rollback tokens. A legend sits below. The right side has two plots. (b) is a bar chart of accepted-token distribution with a red theoretical curve, showing a truncated geometric shape. (c) is a stacked bar chart comparing rollback token percentages across SD, Lookahead, AdaEDL, PEARL and SpecBranch, where SpecBranch is lowest at 41.9%.",
+ "caption": "{Architectural comparison and empirical analysis of SD frameworks: a) Vanilla SD, Parallel SD (PEARL), and Parallel SD with Rollback Awareness (SpecBranch). When rejection occurs at token $x_4$, PEARL's static pipeline forces verification of those \"doomed tokens\" $x_5-x_{10}$; SpecBranch dynamically terminates invalid branches and spawns new branches. b) Distribution of accepted tokens generally follows a truncated geometric distribution with longer token length (Vicuna 68M&13B, $\\gamma = 8$); c) Percentage of rollback tokens under different mechanisms.}",
+ "caption_source": "latex",
+ "abstract": "Recently, speculative decoding (SD) has emerged as a promising technique to accelerate LLM inference by employing a small draft model to propose draft tokens in advance, and validating them in parallel with the large target model. However, the existing SD methods still remain fundamentally constrained by their serialized execution, which causes the mutual waiting bubbles between the draft and target models. To address this challenge, we draw inspiration from branch prediction in modern processors and propose a novel framework \\textbf{SpecBranch} to unlock branch parallelism in SD. Specifically, we first take an in-depth analysis of the potential of branch parallelism in SD, and recognize that the key challenge lies in the trade-offs between parallelization and token rollback. Based on the analysis, we strategically introduce parallel speculative branches to preemptively hedge against likely rejections. Meanwhile, to enhance parallelism, we jointly orchestrate adaptive draft lengths with a hybrid combination of the implicit draft model confidence and explicit reusing of target model features. Extensive experiments across various models and benchmarks show that SpecBranch achieves over \\textbf{1.8}$\\times \\sim$ \\textbf{4.5}$\\times$ speedups against the auto-regressive decoding and reduces rollback tokens by $\\textbf{50}$\\% for poorly aligned models, realizing its applicability for real-world deployments.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=BrnlCSqO6n",
+  "arxiv": "https://arxiv.org/abs/2506.01979",
+  "pdf": "https://proceedings.iclr.cc/paper_files/paper/2026/file/67089958e98b243d5cc1881ad60418b8-Paper-Conference.pdf",
+  "proceedings": "https://proceedings.iclr.cc/paper_files/paper/2026/hash/67089958e98b243d5cc1881ad60418b8-Abstract-Conference.html",
+  "virtual": "https://iclr.cc/virtual/2026/poster/10010904",
+  "code": "https://github.com/Sylvan820/Specbranch"
+ },
+ "license": "http://arxiv.org/licenses/nonexclusive-distrib/1.0/",
+ "img": "none",
+ "image_url": null,
+ "thumb_url": null,
+ "figure_page": 1,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.6
+}

@@ -1,0 +1,46 @@
+{
+ "id": "icml26-4081",
+ "title": "Reducing Per-Sample Harm in Stochastic Optimization",
+ "authors": [
+  "Apostolos Avranas"
+ ],
+ "venue": "ICML 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "Optimization->Stochastic",
+ "role": "analysis-finding",
+ "role2": "teaser-result",
+ "claim": "A cheap restricted approximation preserves the full problem's structure, and its objective gains are almost always positive across architectures.",
+ "layout": "2x2 grid, columns are models, top error curves, bottom density plots",
+ "tags": [
+  "approximation-quality",
+  "last-layer",
+  "gram-matrix",
+  "efficiency",
+  "empirical-validation"
+ ],
+ "style": [
+  "plot",
+  "minimal"
+ ],
+ "description": "Two columns of plots, one per model: (a) ResNet-20 on CIFAR-10 and (b) ViT-small on CIFAR-100. The top row has line plots of relative L2 error against layer index, from all layers to the last layer. A solid blue curve with markers shows the mean, and dotted blue curves show one standard deviation above and below. Error stays low and then rises steeply near the last layer in the ResNet. It rises more gradually in the ViT, reaching about 0.42. The bottom row has kernel density plots of the relative effective objective reduction. The region above zero is shaded teal and the region below zero is shaded gray. Annotations give P(REOR>0) = 82.7% for the ResNet and 93.7% for the ViT. Grid lines are light gray, and the two-model contrast is the main visual device.",
+ "caption": "Approximation quality at epoch 100. Top Row: Relative $L_2$ error of the Gram matrix approximation, $\\frac{\\|Q - \\alpha Q_{\\ell:L}\\|_F }{ \\|Q\\|_F}$, as a function of included layers (lower is better). The solid curve shows the mean, and the two dotted curves show one standard deviation above and below the mean at each point. Bottom Row: Distribution of the relative effective objective reduction (REOR), $\\frac{J(\\Delta\\boldsymbol{\\theta}_b) - J(\\Delta\\boldsymbol{\\theta}^\\star)}{J(\\Delta\\boldsymbol{\\theta}_b)}$, on the original problem (higher is better).",
+ "caption_source": "latex",
+ "abstract": "Modern optimizers combine gradients from the current mini-batch with historical optimization state, such as momentum or adaptive moments. While highly effective, aggregating across the batch and incorporating this history can produce parameter updates that increase the loss of individual samples. We term this effect harm and formalize the parameter update as an optimization problem that explicitly minimizes the conflicting impact of both batch averaging and past optimization state on current data. Because the exact formulation is intractable, we introduce a highly efficient proxy. We first reduce the problem's dimensionality to the batch size, and then drastically cut memory and speed bottlenecks by successfully restricting the optimization to the last linear layer. This hinges on the unexpected finding that this layer alone reliably captures the second-order statistics of the per-sample gradients . The resulting surrogate problem integrates readily into standard optimizers like SGD and AdamW, and can be solved using a small number of GPU-friendly iterations. Crucially, the method exhibits favorable scaling properties , as the relative computational overhead shrinks as the model size or input grows. Experiments on image classification benchmarks confirm reduced per-sample interference and improved generalization .",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=cPuBsl2L6Z",
+  "arxiv": "https://arxiv.org/abs/2607.16261",
+  "pdf": "https://raw.githubusercontent.com/mlresearch/v306/main/assets/avranas26a/avranas26a.pdf",
+  "proceedings": "https://proceedings.mlr.press/v306/avranas26a.html",
+  "virtual": "https://icml.cc/virtual/2026/poster/62866",
+  "code": "https://github.com/avranasa/sample-harm-reduction"
+ },
+ "license": "http://creativecommons.org/licenses/by-nc-nd/4.0/",
+ "img": "none",
+ "image_url": null,
+ "thumb_url": null,
+ "figure_page": 4,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.6
+}

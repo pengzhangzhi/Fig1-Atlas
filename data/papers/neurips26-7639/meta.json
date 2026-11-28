@@ -1,0 +1,52 @@
+{
+ "id": "neurips26-7639",
+ "title": "MAGE: All-[MASK] Block Already Knows Where to Look in Block Diffusion LLM",
+ "authors": [
+  "Omin Kwon",
+  "Yeonjae Kim",
+  "Doyeon Kim",
+  "Minseo Kim",
+  "Yeonhong Park",
+  "Jae W. Lee"
+ ],
+ "venue": "NeurIPS 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "Deep Learning->Attention Mechanisms",
+ "role": "analysis-finding",
+ "role2": "problem-setup",
+ "claim": "Forcing a whole block to share one retrieved subset breaks sparse selection: needed index sets balloon and estimation accuracy drops consistently.",
+ "layout": "2 panels side by side, left density curves, right grouped bars with drop arrows",
+ "tags": [
+  "sparse-attention",
+  "kv-cache",
+  "block-diffusion",
+  "bottleneck-analysis",
+  "efficiency"
+ ],
+ "style": [
+  "plot",
+  "colorful",
+  "minimal"
+ ],
+ "description": "Two plots sit side by side under a shared legend for three models: SDAR-8B-Chat in blue, Fast-dLLM v2 in orange, and LLaDA 2.0 mini in green. Panel (a) shows overlaid, shaded density curves of the union of per-token top-k sets divided by k. All three peak near 3.5 and have a long right tail out to 12. Dotted vertical lines mark the means at roughly 4.4 to 4.6. This means one block needs several times more KV entries than a single token does. Panel (b) is a grouped bar chart of Quest estimation accuracy at page sizes 16, 8, 4 and 2. Each model has a solid bar for per-token top-k and a hatched, paler bar for per-block top-k. Black arrows mark the drop from solid to hatched, which is about 5 to 12 points. Accuracy rises as page size shrinks, but the per-block gap persists.",
+ "caption": "Sparse attention challenge on block dLLMs on LongBench, across three block-diffusion families. (a) Distribution of $|\\bigcup_p \\mathrm{Top}-k(p)| / k$ at $k{=}512$, $t{=}1$. (b) Quest [ref] estimation accuracy at $k{=}512$, $t{=}1$, page sizes $p \\in \\{16, 8, 4, 2\\}$.",
+ "caption_source": "latex",
+ "abstract": "Block diffusion LLMs are an emerging paradigm for parallel language generation, but their KV caching makes memory access the dominant bottleneck in long-context inference. Sparse attention, which attends only to a small KV subset per query, can reduce this latency with minimal accuracy loss. In block diffusion, however, the B tokens of each block must share a single KV subset, and we show this per-block constraint degrades existing sparse KV estimators by up to 25% in recall. We address this challenge by exploiting a property that emerges from the block-diffusion training objective: it aligns the block-average query across denoising steps, so the All-[MASK] block at the first step already reveals the per-block KV subset for the entire trajectory. We exploit this in MAGE ([MASK]-Guided Sparse Attention), a training-free method that runs one exact attention pass at the first step and reuses its top-k index sets for all remaining steps within the block. Across three block-diffusion families on LongBench, MAGE matches Exact Attention at k=512 with near-lossless accuracy, achieves up to 6.82x end-to-end speedup at 128K context, and runs up to 3.35x and 2.28x faster than Quest and SparseD, designed for AR LLMs and fully bidirectional diffusion LLMs, respectively.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=qf4h7O2aYi",
+  "arxiv": "https://arxiv.org/abs/2602.14209",
+  "pdf": "https://arxiv.org/pdf/2602.14209",
+  "proceedings": null,
+  "virtual": "https://neurips.cc/virtual/2026/poster/149356",
+  "code": null
+ },
+ "license": "http://creativecommons.org/licenses/by-nc-sa/4.0/",
+ "img": "cc-by-nc-sa",
+ "image_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/images/neurips26-7639.png",
+ "thumb_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/thumbs/neurips26-7639.webp",
+ "figure_page": 3,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.8
+}

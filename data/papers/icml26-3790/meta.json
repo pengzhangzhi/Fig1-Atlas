@@ -1,0 +1,47 @@
+{
+ "id": "icml26-3790",
+ "title": "Incremental BPE Tokenization",
+ "authors": [
+  "Shenghu Jiang",
+  "Ruihao Gong"
+ ],
+ "venue": "ICML 2026",
+ "tier": "spotlight",
+ "track": "main",
+ "topic": "Deep Learning->Large Language Models",
+ "role": "pipeline",
+ "role2": "problem-setup",
+ "claim": "Standard text processing is a fixed sequence of stages, and our contribution targets only the final stage, leaving the others unchanged.",
+ "layout": "4 rows by 2 columns, snaking left-to-right then down, final box bolded",
+ "tags": [
+  "pipeline",
+  "tokenization",
+  "streaming",
+  "modular-drop-in",
+  "preprocessing"
+ ],
+ "style": [
+  "minimal",
+  "colorful"
+ ],
+ "description": "A snaking flowchart with four rows, each holding a data box on the left and a process box on the right. Arrows run left to right within a row, then drop from the right box to the left box of the next row. Data boxes are plain gray rectangles: Raw Text (UTF-8), Text Segments, Normalized Segments, Text Chunks. Process boxes are rounded and tinted. Special-Token Splitting and Normalization (NFC, ...) are light blue, and Pre-Tokenization (Regex, ...) is light orange. The last box, BPE Tokenization (Per Chunk), is purple with a thick outline and bold text. That box is where the eye lands, because it marks the stage the paper changes. The figure has no math and no icons.",
+ "caption": "A representative pipeline in modern LLM tokenization. Raw text is processed by a sequence of model-specific preprocessing stages before applying BPE tokenization to each resulting chunk. Our work focuses on making the BPE stage incremental without altering the correctness and the surrounding stages.",
+ "caption_source": "latex",
+ "abstract": "We propose a novel algorithm for incremental Byte Pair Encoding (BPE) tokenization. The algorithm processes each input byte in worst-case $\\mathcal{O}(\\log^2 t)$ time, leading to an overall complexity of $\\mathcal{O}(n \\log^2 t)$, where $n$ is the input length and $t$ is the maximum token length. The algorithm incrementally maintains BPE tokenization results for every prefix of the input text, implementing the standard BPE merge procedure defined by a fixed set of merge rules. This enables efficient partial tokenization in streaming settings. Functioning as a drop-in replacement for standard BPE, our approach achieves a speedup of up to ${\\sim}3\\times$ over Hugging Face's tokenizers, and demonstrates significant latency reductions over OpenAI's tiktoken on pathological inputs. We further introduce an eager output algorithm that enables streaming output, emitting tokens as soon as token boundaries are determined during incremental tokenization. Overall, our results demonstrate that BPE tokenization can be performed incrementally with strong worst-case guarantees, while providing practical latency benefits in modern large language model pipelines. Code: https://github.com/ModelTC/mtc-inc-bpe",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=ZbWgrDzCQo",
+  "arxiv": "https://arxiv.org/abs/2605.30813",
+  "pdf": "https://raw.githubusercontent.com/mlresearch/v306/main/assets/jiang26l/jiang26l.pdf",
+  "proceedings": "https://proceedings.mlr.press/v306/jiang26l.html",
+  "virtual": "https://icml.cc/virtual/2026/poster/63148",
+  "code": "https://github.com/ModelTC/mtc-inc-bpe"
+ },
+ "license": "http://creativecommons.org/licenses/by/4.0/",
+ "img": "cc-by",
+ "image_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/images/icml26-3790.png",
+ "thumb_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/thumbs/icml26-3790.webp",
+ "figure_page": 0,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.82
+}

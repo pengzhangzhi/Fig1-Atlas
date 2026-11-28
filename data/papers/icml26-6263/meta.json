@@ -1,0 +1,51 @@
+{
+ "id": "icml26-6263",
+ "title": "ParisKV: Fast and Drift-Robust KV-Cache Retrieval for Long-Context LLMs",
+ "authors": [
+  "Yanlin Qi",
+  "Xinhang Chen",
+  "Huiqiang Jiang",
+  "Qitong Wang",
+  "Botao Peng",
+  "Themis Palpanas"
+ ],
+ "venue": "ICML 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "Deep Learning->Large Language Models",
+ "role": "analysis-finding",
+ "role2": "teaser-result",
+ "claim": "Retrieval quality of prior methods degrades over decoding because cluster centroids drift away from true key distributions, while ours stays stable.",
+ "layout": "2 panels side-by-side; line plot left, PCA scatter right with connecting lines",
+ "tags": [
+  "distribution-drift",
+  "kv-cache",
+  "retrieval",
+  "recall-decay",
+  "robustness"
+ ],
+ "style": [
+  "plot",
+  "colorful"
+ ],
+ "description": "Two side-by-side plots with bold serif titles. Panel (a), 'Retrieval Recall Comparison', is a line chart of Recall@100 (%) against decode step (0 to 10000) for three methods. The green ParisKV line stays high at about 80%. The red PQCache line starts near 40% and decays to about 5%. The purple MagicPIG line sits near zero throughout. A legend gives the average recall for each method (81.9%, 2.6%, 10.0%). Panel (b), 'Centroids Drift', is a PCA scatter plot with blue circles for original (prefill-only) centroids and red squares for correct centroids. Faint colored lines connect each pair. The blue points cluster on the right and the red points spread to the left, which shows the displacement. The eye goes first to the diverging recall curves in (a).",
+ "caption": "Retrieval drift results. (a) Recall comparison of different methods on AIME. (b) Centroid drift induced by decoding keys, measured as the mismatch between prefill-only centroids (original centroids in blue) and reference centroids (correct centroids in red) obtained by clustering all keys from both prefill and decoding.",
+ "caption_source": "latex",
+ "abstract": "KV-cache retrieval is essential for long-context LLM inference, yet existing methods struggle with distribution drift and high latency at scale. We introduce ParisKV, a drift-robust, GPU-native KV-cache retrieval framework based on collision-based candidate selection, followed by a quantized inner-product reranking estimator. For million-token contexts, ParisKV supports CPU-offloaded KV caches via Unified Virtual Addressing (UVA), enabling on-demand top-$k$ fetching with minimal overhead. ParisKV matches or outperforms full attention quality on long-input and long-generation benchmarks. It achieves state-of-the-art long-context decoding efficiency: it matches or exceeds full attention speed even at batch size 1 for long contexts, delivers up to 2.8$\\times$ higher throughput within full attention's runnable range, and scales to million-token contexts where full attention runs out of memory. At million-token scale, ParisKV reduces decode latency by 17$\\times$ and 44$\\times$ compared to MagicPIG and PQCache, respectively, two state-of-the-art KV-cache Top-$k$ retrieval baselines, code is available at https://github.com/amy-77/ParisKV/tree/main.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=wxD4wTYQXt",
+  "arxiv": "https://arxiv.org/abs/2602.07721",
+  "pdf": "https://raw.githubusercontent.com/mlresearch/v306/main/assets/qi26b/qi26b.pdf",
+  "proceedings": "https://proceedings.mlr.press/v306/qi26b.html",
+  "virtual": "https://icml.cc/virtual/2026/poster/60751",
+  "code": "https://github.com/amy-77/ParisKV"
+ },
+ "license": "http://creativecommons.org/licenses/by/4.0/",
+ "img": "cc-by",
+ "image_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/images/icml26-6263.png",
+ "thumb_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/thumbs/icml26-6263.webp",
+ "figure_page": 0,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.6
+}

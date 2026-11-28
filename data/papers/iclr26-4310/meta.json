@@ -1,0 +1,50 @@
+{
+ "id": "iclr26-4310",
+ "title": "DefensiveKV: Taming the Fragility of KV Cache Eviction in LLM Inference",
+ "authors": [
+  "yuan feng",
+  "Haoyu Guo",
+  "Junlin Lv",
+  "S Kevin Zhou",
+  "Xike Xie"
+ ],
+ "venue": "ICLR 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": null,
+ "role": "analysis-finding",
+ "role2": "teaser-result",
+ "claim": "Mean aggregation of importance collapses in worst cases; a defensive aggregation stays high and stable, so its worst-case risk is much lower.",
+ "layout": "single wide line plot, x over steps, legend overlaid bottom-left",
+ "tags": [
+  "worst-case-risk",
+  "aggregation",
+  "robustness",
+  "kv-cache",
+  "fragile-assumption"
+ ],
+ "style": [
+  "plot",
+  "colorful"
+ ],
+ "description": "A single wide line chart with cache importance on the y-axis (0.3 to 1.0) and generation step on the x-axis (0 to about 540). Three thin pale lines in green, pink and light blue show the importance of single historical tokens (2nd, 16th, 32nd). They fluctuate heavily and dip to roughly 0.4 to 0.5. A thick blue line with square markers shows mean aggregation. It swings widely and drops to a worst-case value of 0.45. A thick red line with circle markers shows defensive aggregation. It stays mostly between 0.75 and 0.95, with a worst-case value of 0.65. The legend at bottom-left lists each series with its worst-case value. The eye goes first to the dense red and blue oscillations, where the red line sits above the blue in the troughs.",
+ "caption": "Defensive aggregation demonstrates robustness against fragile stability assumption (Llama- 3.1-8B, 50% cache size, layer 14, summary task). Appendix I provides additional visualizations.",
+ "caption_source": "pdf",
+ "abstract": "Large language models have revolutionized natural language processing, yet their deployment remains hampered by the substantial memory and runtime overhead of the transformer's Key-Value cache. To mitigate this, recent methods employ a scoring-aggregation framework to evict unimportant cache entries, based on the stability assumption-that a fixed subset of entries remains consistently important during generation. However, prior work has largely focused on refining importance indicators for scoring, while defaulting to mean aggregation due to a faithful trust in the stability assumption. In this work, we argue that this underlying assumption is inherently fragile, making mean aggregation highly vulnerable in extreme cases. To counter this, we propose a simple yet elegant defensive aggregation strategy: a two-step, linear-time approach that controls worst-case risk, thereby defending against extreme cases with negligible computational overhead. Embodying this strategy, we propose a novel cache eviction method, DefensiveKV and its extension, Layer-DefensiveKV, which incorporates layer-wise budget allocation. Across seven task domains (18 datasets), our methods reduce generation quality loss by 2.3x and 4.3x respectively, versus the strongest baseline under a 20% cache size. These results set new performance benchmarks and pioneer a promising direction for optimizing cache eviction against underlying fragility through worst-case risk management. Our code is available at https://github.com/FFY0/DefensiveKV.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=nJgS06sX3O",
+  "arxiv": "https://arxiv.org/abs/2510.13334",
+  "pdf": "https://proceedings.iclr.cc/paper_files/paper/2026/file/47a89cb212e0607d773e6d2b380e1131-Paper-Conference.pdf",
+  "proceedings": "https://proceedings.iclr.cc/paper_files/paper/2026/hash/47a89cb212e0607d773e6d2b380e1131-Abstract-Conference.html",
+  "virtual": "https://iclr.cc/virtual/2026/poster/10007483",
+  "code": null
+ },
+ "license": "http://creativecommons.org/licenses/by/4.0/",
+ "img": "cc-by",
+ "image_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/images/iclr26-4310.png",
+ "thumb_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/thumbs/iclr26-4310.webp",
+ "figure_page": 1,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.6
+}

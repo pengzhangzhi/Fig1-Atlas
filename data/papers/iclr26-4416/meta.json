@@ -1,0 +1,53 @@
+{
+ "id": "iclr26-4416",
+ "title": "Agentic Reinforcement Learning with Implicit Step Rewards",
+ "authors": [
+  "Xiaoqian Liu",
+  "Ke Wang",
+  "Yuchuan Wu",
+  "Fei Huang",
+  "Yongbin Li",
+  "Jianbin Jiao",
+  "Junge Zhang"
+ ],
+ "venue": "ICLR 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "Reinforcement Learning->Everything Else",
+ "role": "pipeline",
+ "role2": null,
+ "claim": "A closed training loop where rollouts, outcome rewards, and a jointly trained implicit reward model yield step-level credit for the policy.",
+ "layout": "Single cyclic flow diagram, boxes with arrows, self-loop arrows for updates, formula inset",
+ "tags": [
+  "credit-assignment",
+  "process-reward-model",
+  "reinforcement-learning",
+  "self-reinforcing-loop",
+  "llm-agents"
+ ],
+ "style": [
+  "colorful",
+  "math-heavy",
+  "minimal"
+ ],
+ "description": "A single cyclic block diagram with color-coded boxes connected by black arrows. On the left, an Environment box and an LLM Agent (Policy Model) box in teal exchange Observations and Actions. Actions feed into a light-blue Multi-Step Rollouts box at the top. From there, arrows lead down to an Outcome Reward Verifier/Model box and right to a purple Implicit Process Reward Model box. Outcome rewards, labeled in blue, flow to both the PRM and the agent. The PRM outputs to a lavender Implicit Step Rewards box at the bottom, with a pink DPO log-ratio formula for r_t^i beside it. Pink Step Rewards flow back to the agent. Curved self-loop arrows mark the RL Update (teal) and the Trajectory-based DPO Update (purple). The eye goes first to the purple and teal boxes.",
+ "caption": "Overview of iStar. At each training step, an LLM agent interacts with the environment to generate multi‑step rollouts ranked by an outcome reward verifier (or model) to construct positive-negative trajectory pairs. These pairs are used to train an implicit PRM via a trajectory-based DPO objective, which generates implicit step rewards for each action produced by the agent. Finally, calculate step-level advantages using the implicit step rewards and episode-level advantages using outcome rewards to optimize the LLM agent (policy model) through RL.",
+ "caption_source": "latex",
+ "abstract": "Large language models (LLMs) are increasingly developed as autonomous agents using reinforcement learning (agentic RL) that reason and act in interactive environments. However, sparse and sometimes unverifiable rewards make it extremely challenging to assign credit when training LLM agents that serve as a policy. Recent work attempts to integrate process supervision into RL but suffers from biased annotation, reward hacking, high-variance from overly fine-grained rewards or failtures when state overlap is rare. We therefore introduce implicit step rewards for agentic RL (iStar), a general credit-assignment strategy that integrates seamlessly with standard RL algorithms without relying on additional rollouts or explicit step labels. Particularly, we alternatively optimize an implicit process reward model (PRM) with the policy model to generate implicit step rewards via a trajectory-based DPO objective. Theoretical analysis shows that this learning objective produces a step-wise reward function. Then the implicit step rewards are used to compute step-level advantages, which are combined with trajectory (or episode)-level advantages for policy updates, creating a self-reinforcing training loop. We evaluate our method on three challenging agent benchmarks, including WebShop and VisualSokoban, as well as open-ended social interactions with unverifiable rewards in SOTOPIA. Crucially, iStar shows superior performance over frontier LLMs and strong RL baselines across domains, achieving state-of-the-art results with higher sample-efficiency and training stability. Further analysis also demonstrates efficient exploration by iStar with increased rewards in both step- and episode-level while maintaining fewer steps to achieve task success. Code will be available soon.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=ooROvpmxMV",
+  "arxiv": "https://arxiv.org/abs/2509.19199",
+  "pdf": "https://proceedings.iclr.cc/paper_files/paper/2026/file/d1e6739f319be4ba8e748cc05f23bba1-Paper-Conference.pdf",
+  "proceedings": "https://proceedings.iclr.cc/paper_files/paper/2026/hash/d1e6739f319be4ba8e748cc05f23bba1-Abstract-Conference.html",
+  "virtual": "https://iclr.cc/virtual/2026/poster/10007373",
+  "code": "https://github.com/Tongyi-ConvAI/Qwen-Character/tree/main/CharacterRL-iStar"
+ },
+ "license": "http://arxiv.org/licenses/nonexclusive-distrib/1.0/",
+ "img": "none",
+ "image_url": null,
+ "thumb_url": null,
+ "figure_page": 2,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.9
+}

@@ -1,0 +1,54 @@
+{
+ "id": "neurips26-7360",
+ "title": "CRESiST: Self-Enhancing Explorative Policy Learning for Simultaneous Speech Translation",
+ "authors": [
+  "Chenyang Le",
+  "Pei Zhang",
+  "Yuxiang Chen",
+  "Xi Chen",
+  "Bing Han",
+  "Derek Wong",
+  "Baosong Yang",
+  "Yanmin Qian"
+ ],
+ "venue": "NeurIPS 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "Applications->Language, Speech and Dialog",
+ "role": "pipeline",
+ "role2": null,
+ "claim": "A single interleaved speech-text model is trained with an aligner-derived policy distilled into a router, then runs streaming inference by read/write decisions.",
+ "layout": "3 regions: training left, distill-policy top-right, inference bottom-right; dotted dividers",
+ "tags": [
+  "interleaved-sequence",
+  "actor-critic",
+  "policy-distillation",
+  "streaming",
+  "read-write-policy"
+ ],
+ "style": [
+  "colorful",
+  "icon-heavy",
+  "minimal"
+ ],
+ "description": "A block diagram split into Training on the left and two stacked panels on the right, Distill Policy above and Inference below, separated by dotted lines. In training, speech tokens (S1–S4, circles) and text tokens (T1–T3, squares) feed a red RNN-T Aligner. The aligner produces a lattice-style Policy grid. The grid samples an interleaved trajectory, which goes into a blue Speech LLM and a purple Refiner. A Router outputs per-position probability scores, thresholded by a p<τ diamond. Target tokens are colored red or green to show the masking. The Distill Policy panel shows scores being binarized and trained with BCE loss. The Inference panel shows the Router deciding Write or Read as the next speech chunk arrives. The eye goes first to the large colored Speech LLM, Refiner and Aligner boxes.",
+ "caption": "Training and inference diagram of CRESiST. In the interleaved sequence, red and green target tokens mark whether the Router score at that position passes the decision threshold, i.e., whether the LLM body loss $\\mathcal{L}_{body}$ is computed there (tokens judged to be emitted too early are masked out). The Refiner loss $\\mathcal{L}_{refiner}$ is computed at every text position, and the two losses are summed; the same ground-truth token is thus the target of two prediction heads over one sequence, not duplicated in it.",
+ "caption_source": "latex",
+ "abstract": "Simultaneous Speech Translation (SimulST) requires balancing translation quality and latency. While Large Language Models (LLMs) excel in offline translation, current LLM-based SimulST systems predominantly rely on prefix-incremental generation. This paradigm suffers from redundant Key-Value cache recomputation and necessitates external Voice Activity Detection to process unbounded streams. To overcome these bottlenecks, we propose an end-to-end interleaved read-write framework built upon an omni-modal LLM. By interleaving speech chunks and text tokens, our architecture achieves full KV cache reuse, natively supporting segmentation-free, infinite-length inference. Furthermore, to learn optimal streaming policies without rigid offline alignments, we introduce a novel Actor-Critic self-enhancement pipeline. An RNN-T Actor dynamically samples read-write trajectories, while an LLM-based Critic evaluates these paths via intrinsic semantic and latency rewards, distilling the optimal policy back to the Actor. Extensive experiments on sentence-level (FLEURS, CoVoST2) and document-level (MuST-C, ACL 60/60) benchmarks demonstrate that our model establishes new state-of-the-art quality-latency Pareto frontiers, substantially outperforming existing cascaded and static-alignment baselines.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=omv2djtEFF",
+  "arxiv": "https://arxiv.org/abs/2611.06501",
+  "pdf": "https://arxiv.org/pdf/2611.06501",
+  "proceedings": null,
+  "virtual": "https://neurips.cc/virtual/2026/poster/149613",
+  "code": null
+ },
+ "license": "http://creativecommons.org/licenses/by/4.0/",
+ "img": "cc-by",
+ "image_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/images/neurips26-7360.png",
+ "thumb_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/thumbs/neurips26-7360.webp",
+ "figure_page": 2,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.9
+}

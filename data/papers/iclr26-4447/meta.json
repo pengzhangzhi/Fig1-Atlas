@@ -1,0 +1,54 @@
+{
+ "id": "iclr26-4447",
+ "title": "CoLA: Co-Calibrated Logit Adjustment for Long-Tailed Semi-Supervised Learning",
+ "authors": [
+  "Qian Shao",
+  "Qiyuan Chen",
+  "Jiahe Chen",
+  "Zepeng Li",
+  "Qianqian Tang",
+  "Hongxia Xu",
+  "JIAN Wu"
+ ],
+ "venue": "ICLR 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "General Machine Learning->Everything Else",
+ "role": "analysis-finding",
+ "role2": "problem-setup",
+ "claim": "Count-based class-wise adjustment over-suppresses head classes because of sample redundancy, and the best overall adjustment strength shifts with the distribution.",
+ "layout": "2 panels, left-to-right: cartoon decision boundaries beside line plot with dashed optima",
+ "tags": [
+  "long-tailed",
+  "logit-adjustment",
+  "semi-supervised",
+  "failure-mode",
+  "hyperparameter-sensitivity"
+ ],
+ "style": [
+  "colorful",
+  "plot",
+  "photo/real data",
+  "icon-heavy"
+ ],
+ "description": "Two panels. Panel (a) is a cartoon of long-tailed binary classification. On the left is a stack of cartoon dog images, a vertical ellipsis, and dashed black lines pointing to a dense cluster of dark blue spheres. These stand for redundant head-class samples. They sit inside a large dashed grey circle labelled Head Class, with light blue dots scattered around. A smaller overlapping circle labelled Tail Class holds beige dots. A solid grey line marks the unadjusted boundary. A red dashed line is shifted far into the head region and shows over-suppression. A green dashed line sits in between and shows the de-duplicated boundary. Red and green arrows point from the grey line to each. Panel (b) is a line plot of accuracy against overall adjustment strength from 0 to 4. It has four coloured curves with shaded bands (C10 with γl = 100 and 150, C100 with γl = 10 and 15). Dashed vertical lines mark each curve's peak, and the peaks fall at different places.",
+ "caption": "(a) An unadjusted classifier is biased towards head classes (grey solid line), which naively uses class frequency for class-wise adjustment, leading to over-suppression (red dashed line). This is because frequency counting ignores sample redundancy (dark blue spheres), inflating the estimated importance of head classes. De-duplication could mitigate this issue (green dashed line). (b) The optimal overall adjustment strength (four dashed lines) is highly sensitive to the distribution and the number of classes. Counter-intuitively, it does not always correlate positively with the imbalance ratio γl. For instance, on CIFAR-10-LT (C10), the optimal strength for γl = 100 is greater than for γl = 150, highlighting the difficulty of relying on a pre-defined strength in complex scenarios.",
+ "caption_source": "pdf",
+ "abstract": "Long-tailed semi-supervised learning is hampered by a vicious cycle of confirmation bias, where skewed pseudo-labeling progressively marginalizes tail classes. This challenge is compounded in real-world scenarios by a class distribution mismatch between labeled and unlabeled data, rendering the bias unpredictable and difficult to mitigate. While existing methods adapt Logit Adjustment (LA) using dynamic estimates of the unlabeled distribution, we argue their effectiveness is undermined by two critical limitations stemming from LA's core design, *i.e.*, its class-wise and overall adjustment mechanisms. First, their reliance on simple frequency counting overestimates the prevalence of head classes due to sample redundancy, leading to harmful over-suppression. Second, and more critically, they overlook the interplay between the above two types of adjustment, treating the overall adjustment strength as a fixed hyperparameter. This is a significant oversight, as we empirically find that the optimal strength is highly sensitive to the estimated distribution. To address these limitations, we propose Co-Calibrated Logit Adjustment (CoLA), a framework that co-designs the class-wise and overall LA components. Specifically, CoLA refines the class-wise adjustment by estimating each class's effective sample size via the effective rank of its representations. Subsequently, it formulates the overall adjustment strength as a learnable parameter, which is optimized through a meta-learning procedure on a proxy validation set constructed to mirror the refined distribution. Supported by a theoretical generalization bound, our extensive experiments show that CoLA outperforms existing baselines on $4$ public benchmarks across standard long-tail setups.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=pI9n8wAR80",
+  "arxiv": null,
+  "pdf": "https://proceedings.iclr.cc/paper_files/paper/2026/file/b0303773962ea1b5394c3a83cc7dd066-Paper-Conference.pdf",
+  "proceedings": "https://proceedings.iclr.cc/paper_files/paper/2026/hash/b0303773962ea1b5394c3a83cc7dd066-Abstract-Conference.html",
+  "virtual": "https://iclr.cc/virtual/2026/poster/10007342",
+  "code": null
+ },
+ "license": null,
+ "img": "none",
+ "image_url": null,
+ "thumb_url": null,
+ "figure_page": 1,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.55
+}

@@ -1,0 +1,52 @@
+{
+ "id": "neurips26-4762",
+ "title": "NormLift: From Lifted Features To Semantic Reliability In 3D Gaussian Splatting",
+ "authors": [
+  "Yihan Zang",
+  "Da Li",
+  "Dominik Engel",
+  "Shinkyu Park",
+  "Ivan Viola"
+ ],
+ "venue": "NeurIPS 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "Computer Vision->Segmentation",
+ "role": "pipeline",
+ "role2": "overview-framework",
+ "claim": "A training-free per-Gaussian method derives a reliability signal from feature norm and uses it to guide refinement for downstream tasks.",
+ "layout": "4 top panels a–d plus bottom pipeline strip, left-to-right, blue arrows linking",
+ "tags": [
+  "training-free",
+  "feature-lifting",
+  "reliability-score",
+  "mode-voting",
+  "3d-segmentation"
+ ],
+ "style": [
+  "colorful",
+  "math-heavy",
+  "photo/real data",
+  "icon-heavy"
+ ],
+ "description": "A wide figure with four boxed panels on top and a long pipeline strip below. Panel a, on a gray background, shows multi-view camera images projecting onto a CLIP unit sphere, with the closed-form equations f_j and u_j* = f_j/||f_j|| below. The norm term is circled in blue. Panel b, in a dashed box, shows C_inter and C_intra bars and a view-support diagram. An arrow runs from there to 'Effective view' and then 'Reliability score'. Panel c shows a KNN graph in which a red 'Mode' node is copied to a blue node, with a red ✗ for linear average and a green ✓ for copy mode. Panel d lists downstream tasks: 2D segmentation, a 3D Gaussian chair query and a 3D segmentation. The bottom strip runs from a 3D mesh to a 3D segmentation, then a reliability heatmap, then the refined segmentation after KNN mode vote. White ellipses highlight corrected regions, and thick blue arrows connect the top panels to the bottom strip.",
+ "caption": "Method overview of NormLift. Top: a) Per-Gaussian features are lifted via cosine alignment on the CLIP sphere, giving the closed-form $u_j^\\star = f_j/\\|f_j\\|$. b) The norm $\\|f_j\\|$ factors into intra- and inter-view consistency, calibrated to the reliability score $R(j)$ by effective view support. c) KNN mode voting copies the most-supported neighbor's feature, avoiding the blur of linear averaging. d) NormLift supports 2D and 3D downstream tasks. Bottom: a visualization of the 3D segmentation pipeline. The framework is training-free and operates entirely at the per-Gaussian level.",
+ "caption_source": "latex",
+ "abstract": "Training-free weighted aggregation is widely used to lift 2D semantic features onto 3D Gaussians for open-vocabulary scene understanding, yet its theoretical role remains insufficiently understood. Existing analyses typically justify this operation from the rendering side, treating Gaussian features as linearly composable Euclidean variables for reconstructing 2D feature maps. However, this view does not match downstream 3D usage, where each Gaussian is often queried independently in a cosine-based embedding space. We revisit feature lifting from the 3D side and formulate per-Gaussian assignment as a cosine alignment problem on the CLIP unit sphere. Under this objective, the $\\ell_2$-normalized semantic back-projected feature emerges as the closed-form solution, providing a complementary interpretation of the standard lifting rule from the perspective of per-Gaussian semantic assignment. This solution is still a convex combination of the observed directions, so every lifted feature is inherently a mixture. Such mixing is unavoidable for any per-Gaussian estimator, and the question is whether it can be measured. The same formulation answers this: the norm of the back-projected feature decomposes into intra-view and inter-view consistency, so the feature magnitude quantifies how mixed the observations are and serves as a semantic reliability signal. Calibrated by effective multi-view support, this reliability score identifies the Gaussians whose lifted direction has drifted and guides a mode-voting refinement that corrects them by copying a single observed CLIP direction instead of averaging. Experiments on open-vocabulary 3D semantic segmentation show that NormLift is an efficient, training-free framework that achieves strong performance across evaluation protocols. Our code is available at https://github.com/kaust-violab/NormLift_release",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=WvJHXxwn2e",
+  "arxiv": "https://arxiv.org/abs/2609.18898",
+  "pdf": "https://arxiv.org/pdf/2609.18898",
+  "proceedings": null,
+  "virtual": "https://neurips.cc/virtual/2026/poster/151918",
+  "code": null
+ },
+ "license": "http://creativecommons.org/licenses/by/4.0/",
+ "img": "cc-by",
+ "image_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/images/neurips26-4762.png",
+ "thumb_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/thumbs/neurips26-4762.webp",
+ "figure_page": 3,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.7
+}

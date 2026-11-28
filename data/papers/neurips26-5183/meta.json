@@ -1,0 +1,52 @@
+{
+ "id": "neurips26-5183",
+ "title": "Reinforcement Learning with Verifiable Physics: Post-training LLMs with Continuous Rewards",
+ "authors": [
+  "Pengfei Cai",
+  "Utkarsh Utkarsh",
+  "Alan Edelman",
+  "Christopher Rackauckas",
+  "Rafael Gomez-Bombarelli"
+ ],
+ "venue": "NeurIPS 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "Reinforcement Learning->Everything Else",
+ "role": "pipeline",
+ "role2": "overview-framework",
+ "claim": "A multi-stage training loop combines supervised warm-start, sampled rollouts, a hybrid continuous reward, and a policy update with a KL anchor.",
+ "layout": "4 colored stage panels left-to-right, top formula banner, feedback loop arrow",
+ "tags": [
+  "post-training",
+  "reinforcement-learning",
+  "verifiable-rewards",
+  "continuous-reward",
+  "code-generation"
+ ],
+ "style": [
+  "colorful",
+  "math-heavy",
+  "text-heavy",
+  "minimal"
+ ],
+ "description": "A wide four-panel pipeline figure with a purple banner on top giving the RLVP policy-gradient update with a KL term. Purple arrows run from the banner down to each panel. Panel 1 (blue) is Prompts + Solver bank SFT, with boxes for 8 PDE tasks, prompt formats and a teacher solver bank. Panel 2 (green) is Sample rollouts: a policy box feeds n candidate solver programs shown as code snippets. Panel 3 (purple) is Verifiable Physics Reward, with three sub-boxes for validity, physical accuracy (predicted vs reference heatmaps) and residual consistency. Below them is the combined reward formula R = V·R_traj·R_phys, with dashed arrows to scalar rewards r1…rn. Panel 4 (orange) is the RLVP update, with group-relative advantages leading to the updated policy and its benefits. Black arrows link the panels, and a return arrow loops back to sampling.",
+ "caption": "Overview of RLVP for multi-PDE solver code generation. We warm-start the policy with supervised fine-tuning (SFT) on a multi-PDE solver bank across diverse PDE problems. During RL, sampled solver programs are executed by the RLVP verifier and scored by a reward combining validity, physical accuracy against hidden numerical references, and physics residual consistency. Group-relative advantages update the policy with a KL anchor to the SFT model.",
+ "caption_source": "latex",
+ "abstract": "Partial differential equations (PDEs) are foundational to modeling in science and engineering, but constructing reliable numerical solvers remains labor-intensive, demanding expert knowledge of discretization schemes, stability conditions, and boundary treatments. Recent work has begun to frame PDE solving as a code-generation task for large language models (LLMs), yet existing approaches operate primarily at inference time: relying on prompting, debugging, self-refinement, and test-time scaling rather than adapting the model itself. In parallel, reinforcement learning with verifiable rewards has emerged as a post-training paradigm for code and math reasoning, but its verifiers are typically binary: a compiler runs, or a test passes. Such signals discard the graded structure of scientific correctness, where two solvers may both execute and yet differ in solution accuracy by orders of magnitude. In this work, we introduce RLVP: Reinforcement Learning with Verifiable Physics, an RL post-training framework for multi-PDE solver code generation. RLVP addresses this verifiability gap with a hybrid verifier: hard program-validity checks ensure executability, while continuous physics rewards score function-space accuracy and PDE-residual consistency. A single policy is post-trained across diverse PDE families spanning hyperbolic, parabolic, elliptic, and incompressible-flow systems. RLVP improves over both pre-trained and supervised-only baselines on PDE benchmarks, and shows zero-shot improvement transfer to held-out PDEs. We show that a smaller LLM post-trained with RLVP can outperform prompting a frontier model on in-distribution PDE solver generation. The trained policy shows evidence of compositionality in numerical motifs: it recombines stencils, time-stepping schemes, and boundary-handling primitives learned from the PDEs used in training into generated solvers for unseen PDE problems.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=ZopflnQLAZ",
+  "arxiv": "https://arxiv.org/abs/2607.10474",
+  "pdf": "https://arxiv.org/pdf/2607.10474",
+  "proceedings": null,
+  "virtual": "https://neurips.cc/virtual/2026/poster/151548",
+  "code": "https://caipengfei.me/rlvp.html"
+ },
+ "license": "http://arxiv.org/licenses/nonexclusive-distrib/1.0/",
+ "img": "none",
+ "image_url": null,
+ "thumb_url": null,
+ "figure_page": 2,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.9
+}

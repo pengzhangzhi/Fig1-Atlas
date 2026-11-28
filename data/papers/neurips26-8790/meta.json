@@ -1,0 +1,47 @@
+{
+ "id": "neurips26-8790",
+ "title": "Modality-Aware Expert Pruning for MoE-Based Multimodal Large Language Models",
+ "authors": [
+  "Donggeun Kim"
+ ],
+ "venue": "NeurIPS 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "Computer Vision->Vision Models & Multimodal",
+ "role": "pipeline",
+ "role2": null,
+ "claim": "Score each modality's expert importance separately, combine them with opposite signs, and rank globally to prune low-value components.",
+ "layout": "Left-to-right, 4 stages, dashed box with math, pruned grid at right",
+ "tags": [
+  "pruning",
+  "mixture-of-experts",
+  "training-free",
+  "multimodal",
+  "modality-aware"
+ ],
+ "style": [
+  "math-heavy",
+  "icon-heavy",
+  "colorful"
+ ],
+ "description": "A left-to-right pipeline in four labeled stages. At far left, a stack of image-text documents is the calibration set. It splits into blue text tokens and a grid of beige low-attention vision tokens with a few orange cells highlighted. Both streams enter a large dashed box titled Expert importance calculation. Inside, a router with an original path and an expert-removed path feeds the H_MoE output-difference formula (ΔH). The result goes to two layer-wise normalize boxes, one blue for text (+) and one orange for vision (−). They combine in a scoring equation s = (1−α)z_text − α z_la. Next is a global ranking bar chart with the bottom r% marked in red as pruned. At far right, a grid of kept (dark) and pruned (dashed pink) experts across five layers shows layer-varying pruning. Blue and orange coding carries through the figure, and a legend sits at lower left.",
+ "caption": "Pipeline of \\method. Text and low-attention vision tokens are scored separately via $\\DeltaH^{(l,j)}$, layer-wise normalized, combined with asymmetric signs---text preservation ($+$) and low-attention vision pruning ($-$); see Eq. [ref]---and ranked globally.",
+ "caption_source": "latex",
+ "abstract": "Mixture-of-Experts (MoE) enables multimodal large language models (MLLMs) to scale capacity efficiently, but expert parameters dominate memory even though only a few experts are activated per token: they account for over 90% of model size in modern MoE-MLLMs (e.g., 54 GB out of about 58 GB in BF16 for InternVL3.5-30B-A3B and Qwen3-VL-30B-A3B). Expert pruning has emerged as an effective compression strategy, but existing methods aggregate importance uniformly across tokens, ignoring that the same expert may serve different roles for vision versus language processing. To address this, we propose MAEP (Modality-Aware Expert Pruning), a training-free framework that decomposes expert importance by modality in a single forward pass. MAEP introduces (1) Delta-H Output ($ÎH$), a redistribution-aware metric measuring the MoE output change when an expert is removed, and (2) low-attention vision tokens as a vision-side pruning signal that is dataset-stable: its expert-importance ranking remains stable across different datasets. Text-side importance serves as a preservation signal while vision-side importance serves as a pruning signal, and experts are ranked globally across layers. Experiments on three MoE-based MLLMs across multimodal and text benchmarks show that MAEP outperforms modality-agnostic baselines on the majority of multimodal benchmarks while remaining competitive on text-only tasks, reducing the BF16 expert weight footprint by about 27 GB (about 47% of total memory) so that the full weight footprint of an approximately 58 GB model fits within a single 40 GB GPU. Code is available at https://github.com/nota-github/MAEP.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=ycGTW508pr",
+  "arxiv": "https://arxiv.org/abs/2611.05927",
+  "pdf": "https://arxiv.org/pdf/2611.05927",
+  "proceedings": null,
+  "virtual": "https://neurips.cc/virtual/2026/poster/148334",
+  "code": null
+ },
+ "license": "http://arxiv.org/licenses/nonexclusive-distrib/1.0/",
+ "img": "none",
+ "image_url": null,
+ "thumb_url": null,
+ "figure_page": 3,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.97
+}

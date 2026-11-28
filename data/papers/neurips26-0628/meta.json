@@ -1,0 +1,51 @@
+{
+ "id": "neurips26-0628",
+ "title": "The Sign Code: The Hidden Binary Nature of Deep Networks",
+ "authors": [
+  "Niclas A Göring",
+  "Shuofeng Zhang",
+  "Roi Holtzman",
+  "yoonsoo nam",
+  "Ard Louis"
+ ],
+ "venue": "NeurIPS 2026",
+ "tier": "oral",
+ "track": "main",
+ "topic": null,
+ "role": "pipeline",
+ "role2": "analysis-finding",
+ "claim": "Decomposing each neuron's output into sign and magnitude shows that classification relies on the sign, not the magnitude.",
+ "layout": "3 panels, left-to-right, neuron decomposition in the middle, results plot on the right",
+ "tags": [
+  "sign-magnitude-decomposition",
+  "intervention",
+  "interpretability",
+  "binary-representation",
+  "ablation"
+ ],
+ "style": [
+  "plot",
+  "math-heavy",
+  "minimal"
+ ],
+ "description": "The figure has three panels in one row. Panel a) shows a small feedforward network of grayscale-shaded nodes, with one hidden neuron boxed in magenta. A magenta arrow runs from that box to panel b). Panel b) zooms in on the neuron as a circle with input z and output h = S ⊙ M = φ(z). Above it, a teal box defines the sign S = sgn(h), with the red label 'Intervention 1: Randomly swap signs'. Below it, a teal box defines the magnitude M = |h|, with the blue label 'Intervention 2: Replace magnitudes by |η| ~ N(0,1)'. Panel c) is a line plot titled SiLU, with accuracy against intervention strength α. The red curve (sign flips) falls quickly to the dashed random-chance line. The blue curve (magnitude replacement) stays much higher. A double arrow marks a 54 pp gap between them. The eye goes first to the plot's red and blue curves.",
+ "caption": "a) Every neuron in a feedforward network computes a pre-activation $z_j^{(\\ell)}$, which the activation function maps to $h_j^{(\\ell)} = \\varphi(z_j^{(\\ell)})$. b) For any sign-preserving activation, this output decomposes as $h_j = S_j \\odot M_j$: a binary sign $S_j \\in \\{-1,+1\\}$ encoding which side of the neuron's hyperplane the input falls on, and a non-negative magnitude $M_j = |h_j|$ encoding how far. We test the causal role of each component with two channel-isolating interventions: randomly flipping signs while preserving magnitudes, or replacing magnitudes while enforcing the sign code. c) Flipping just 20% of sign bits collapses accuracy to chance (red); replacing every magnitude in every layer preserves far more classification performance (blue), and is nearly lossless for residual networks. The forward computation is dominated by binary routing decisions rather than raw activation strengths.",
+ "caption_source": "latex",
+ "abstract": "Every neuron in a trained network outputs a number that can be separated into its sign (positive or negative) and its magnitude (absolute size). We call the set of all neuron signs the \\textit{sign code}. This raises a key question: does classification depend more on the sign code or on the magnitudes? For overparameterized vision classifiers with sign-preserving activations, the answer is overwhelmingly the sign code. A $k$-nearest neighbor classifier operating only on this binary sign code achieves accuracy comparable to the full model across different architectures, activation functions, and datasets. Moreover, replacing all magnitudes in every layer with random noise while keeping the original signs barely changes residual network performance. In contrast, flipping just 20\\% of the signs reduces accuracy to chance. Models generalize well when same-class inputs share similar sign codes. When this overlap is disrupted by a regularizer, training accuracy remains high, but test performance collapses. A margin decomposition helps explain these results: the sign-only contribution to each logit grows as $\\sqrt{d}$ in network width, dominating the magnitude residual. The natural unit of analysis for these networks may not be through their continuous weight space but instead through their discrete sign codes.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=4WN4vV8RCR",
+  "arxiv": "https://arxiv.org/abs/2610.23616",
+  "pdf": "https://arxiv.org/pdf/2610.23616",
+  "proceedings": null,
+  "virtual": "https://neurips.cc/virtual/2026/oral/155586",
+  "code": null
+ },
+ "license": "http://creativecommons.org/licenses/by/4.0/",
+ "img": "cc-by",
+ "image_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/images/neurips26-0628.png",
+ "thumb_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/thumbs/neurips26-0628.webp",
+ "figure_page": 1,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.5
+}

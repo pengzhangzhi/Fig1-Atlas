@@ -1,0 +1,51 @@
+{
+ "id": "icml26-6245",
+ "title": "ProjQ: Project-and-Quantize for Adapter-Aware LLM Compression",
+ "authors": [
+  "Wenya Yu",
+  "Chao Zhang",
+  "Li Wang",
+  "Samson Lasaulce",
+  "Merouane DEBBAH"
+ ],
+ "venue": "ICML 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "Deep Learning->Large Language Models",
+ "role": "pipeline",
+ "role2": "prior-vs-ours",
+ "claim": "Unlike standard quantization that leaves diffuse noise, ours alternates projection and quantization to shape error into a correctable low-rank subspace.",
+ "layout": "3 panels, left-to-right; central panel has a looping two-step cycle with a geometry plot",
+ "tags": [
+  "quantization",
+  "low-rank-adaptation",
+  "iterative-algorithm",
+  "subspace-projection",
+  "efficiency"
+ ],
+ "style": [
+  "math-heavy",
+  "colorful",
+  "text-heavy"
+ ],
+ "description": "Three rounded-border panels read left to right. Panel (a), in gray, shows standard PTQ. Full-precision weights W and calibration activations X feed a dark 'PTQ on X' box, which outputs quantized weights Wc. Below it, the activation-space residual E is drawn as a diffuse scatter of noise with bullet points about wasted LoRA capacity. Panel (b), in blue, is the main panel. It shows a loop between a Projection step (truncated SVD, subspace S) and a Projected quantization step (PTQ solver on X⊥). Beside the loop, a 2-D plot shows a correctable orange line EP and a green orthogonal residual E(I-P), with the objective below. Panel (c), in teal, shows the final weights, the LoRA init, and a capacity bar comparison of standard PTQ and ProjQ.",
+ "caption": "Overview of the proposed framework ProjQ. ProjQ shapes activation-space quantization error into a low-rank subspace that LoRA can correct easily, while minimizing the uncorrectable orthogonal residual.",
+ "caption_source": "latex",
+ "abstract": "Post-Training Quantization (PTQ) and Low-Rank Adaptation (LoRA) constitute the standard pipeline for efficient Large Language Model (LLM) deployment. However, applying them sequentially poses a problem: PTQ often leaves behind random noise that is spread out (across the model's weights) in a way LoRA can't easily fix, meaning that LoRA ends up wasting its limited capacity trying to fix uncorrectable noise instead of improving task performance. In this paper, we propose \\textbf{ProjQ}, a novel framework for constraining quantization noise to the low-rank manifold via orthogonal subspace projection. We derive an efficient alternating algorithm that shapes the quantization noise into a low-rank structure, effectively offloading dominant error components to the subsequent adapter while minimizing the residual error in the orthogonal \"uncorrectable\" subspace. Our theoretical analysis demonstrates that ProjQ preserves strictly greater model plasticity for downstream tasks compared to standard PTQ. Extensive experiments on LLaMA-2, Qwen2.5 and Qwen3 confirm that ProjQ consistently outperforms existing methods in both quantization error compensation and downstream task fine-tuning, achieving up to $2\\times$ lower evaluation loss for compensation and matching the performance of standard 4-bit baselines on language modeling tasks with only 3 bits. The code is available on https://github.com/yy9301/ProjQ .",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=wqhWZhfaWK",
+  "arxiv": "https://arxiv.org/abs/2606.00494",
+  "pdf": "https://raw.githubusercontent.com/mlresearch/v306/main/assets/yu26bs/yu26bs.pdf",
+  "proceedings": "https://proceedings.mlr.press/v306/yu26bs.html",
+  "virtual": "https://icml.cc/virtual/2026/poster/60769",
+  "code": null
+ },
+ "license": "http://creativecommons.org/licenses/by-nc-nd/4.0/",
+ "img": "none",
+ "image_url": null,
+ "thumb_url": null,
+ "figure_page": 2,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.72
+}

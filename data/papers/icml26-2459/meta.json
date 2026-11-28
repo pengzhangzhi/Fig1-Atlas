@@ -1,0 +1,48 @@
+{
+ "id": "icml26-2459",
+ "title": "SparseSSM: Efficient Selective Structured State Space Models Can Be Pruned in One-Shot",
+ "authors": [
+  "Kaiwen TUO",
+  "Huan Wang"
+ ],
+ "venue": "ICML 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "Applications->Everything Else",
+ "role": "pipeline",
+ "role2": null,
+ "claim": "A per-timestep second-order saliency mask is computed, then merged across all time steps to prune a shared recurrent transition matrix in one shot.",
+ "layout": "2 rows, left-to-right; top shows matrices and module inset, bottom shows mask merging",
+ "tags": [
+  "pruning",
+  "one-shot",
+  "state-space-models",
+  "second-order-saliency",
+  "mask-aggregation"
+ ],
+ "style": [
+  "colorful",
+  "icon-heavy",
+  "minimal"
+ ],
+ "description": "A two-row grid-matrix diagram. The top row shows the diagonal A_log[d,:] matrix, then A[d,:], then stacked ΔA[d,:] sheets, a circled-dot operator, and stacked hidden-state sheets h_i. On the right, a dashed box labeled 'SSM module' holds a block diagram: x → B → h → C → D, with a ΔA feedback loop and a 'Hidden State' arrow. Black arrows drop from A_log to the bottom row. The bottom row shows the H_i matrix, the Hessian Score grid in brown and tan tones, and several gray binary masks (Mask_1, Mask_2, … Mask_L). An arrow leads from the masks to the SparseSSM Score grid, then to the final Pruned A_log grid, where pruned entries are marked with red circled crosses. Beige, brown and gray fills carry the colour. The eye goes first to the grid of matrices and the pruned result at the bottom right.",
+ "caption": "Illustration of \\modelname. The first row depicts the evolution of the diagonal parameter matrix $A_{log}$ within the SSM module in Mamba, together with a schematic of the forward-propagation process. In the second row, the left panel shows the procedure for obtaining a mask from the Hessian estimate at a single time step (see Section [ref]), while the right panel presents our strategy for merging the masks across all time steps (see Section [ref]).",
+ "caption_source": "latex",
+ "abstract": "State-space language models such as Mamba match Transformer quality while permitting linear complexity inference, yet still comprise billions of parameters that hinder deployment. Existing one-shot pruning methods are tailored to attention blocks and fail to account for the time-shared and discretized state-transition matrix at the heart of the selective state-space module (SSM). In this paper, we introduce SparseSSM, the first training-free pruning framework that extends the classic optimal brain surgeon (OBS) framework to state space architectures. Our layer-wise algorithm (i) derives an approximate second-order saliency score that aggregates Hessian-trace information across time steps, (ii) incorporates a component sensitivity analysis to guide feed-forward network (FFN) pruning, which also sheds light on where redundancy resides in mamba architecture, (iii) can be easily extended to semi-structured and structured sparsity. Empirically, we prune 50% of SSM weights without fine-tuning and observe no zero-shot accuracy loss, achieving the current state-of-the-art pruning algorithm for Mamba-based LLMs.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=NX0uokLuv7",
+  "arxiv": "https://arxiv.org/abs/2506.09613",
+  "pdf": "https://raw.githubusercontent.com/mlresearch/v306/main/assets/tuo26a/tuo26a.pdf",
+  "proceedings": "https://proceedings.mlr.press/v306/tuo26a.html",
+  "virtual": "https://icml.cc/virtual/2026/poster/64442",
+  "code": null
+ },
+ "license": "http://arxiv.org/licenses/nonexclusive-distrib/1.0/",
+ "img": "none",
+ "image_url": null,
+ "thumb_url": null,
+ "figure_page": 1,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.9
+}

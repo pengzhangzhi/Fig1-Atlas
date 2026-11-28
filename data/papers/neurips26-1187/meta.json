@@ -1,0 +1,47 @@
+{
+ "id": "neurips26-1187",
+ "title": "Transformers Linearly Represent Constrained-based World Models in Sudoku",
+ "authors": [
+  "Roman Kniazev",
+  "Nathanaël Fijalkow"
+ ],
+ "venue": "NeurIPS 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "Deep Learning->Everything Else",
+ "role": "analysis-finding",
+ "role2": null,
+ "claim": "Constraint-level substructure information is linearly decodable and causally used in middle layers, more cleanly than per-cell surface facts.",
+ "layout": "2 side-by-side line plots, left-to-right, shared layer axis L1–L8",
+ "tags": [
+  "probing",
+  "interpretability",
+  "world-model",
+  "activation-patching",
+  "layerwise-analysis"
+ ],
+ "style": [
+  "plot",
+  "minimal"
+ ],
+ "description": "Two line plots sit side by side, both with transformer layers L1 to L8 on the x-axis. The left plot shows mean exact-match accuracy of three linear probe families. Blue circles (cell state) hover around 0.5 early, then plateau near 0.8 from L4. Orange squares (cell candidates) start near 0.07, jump to 1.0 at L4–L7, then crash to about 0.35 at L8. Green triangles (substructure state) rise from about 0.35 to 1.0 by L4 and stay near 1.0 through L8. The right plot is a single blue line with error bars showing the top-1 logit drop after patching probe directions at each layer. It dips at L2, peaks near 25 at L5, and declines to about 19 at L8. A dotted zero baseline runs along the bottom, and the legend sits inside each plot.",
+ "caption": "(Left) Mean exact match accuracy of three families of linear probes trained at \\cluesend token over different layers. Blue: 81 multi-class probes predicting the digit in a cell (top-1 accuracy); Orange: 729 binary probes predicting if a digit is a valid candidate in a cell (exact match across cell); Green: 243 binary probes predicting if a digit is present in a substructure (exact match over a substructure); (Right) Logit score drop of the top-1 target token after activation patching of substructure probe directions across layers.",
+ "caption_source": "latex",
+ "abstract": "Do transformers, when trained on sequential reasoning traces, build internal models of the underlying task? And if so, does the structure of those internal representations mirror the structure of the domain? We train an 8-layer transformer on Sudoku solving traces and perform a mechanistic analysis of its internal computation. We find a linearly represented substructure world model: it does not represent the board state cell by cell, as a human analyst would expect, but organizes information around the rows, columns, and boxes that Sudoku's constraints act on. We see that mid-layer attention heads organize around Sudoku's substructures, suppressing placement logits for digits already present and promoting those for absent digits. We identify a naked-single circuit: a small set of dedicated neurons in the final MLP layer, each individually detecting when exactly one digit remains possible for a specific cell, and reliably promoting that digit. These findings suggest that transformers trained on solving traces may encode constraint-relevant information more cleanly than individual surface facts. For interpretability, probing only the obvious surface decomposition of a task may therefore underestimate what the model has learned.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=8RPfEpnyrk",
+  "arxiv": "https://arxiv.org/abs/2605.18847",
+  "pdf": "https://arxiv.org/pdf/2605.18847",
+  "proceedings": null,
+  "virtual": "https://neurips.cc/virtual/2026/poster/155096",
+  "code": null
+ },
+ "license": "http://creativecommons.org/licenses/by/4.0/",
+ "img": "cc-by",
+ "image_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/images/neurips26-1187.png",
+ "thumb_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/thumbs/neurips26-1187.webp",
+ "figure_page": 3,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.85
+}

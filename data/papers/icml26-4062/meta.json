@@ -1,0 +1,52 @@
+{
+ "id": "icml26-4062",
+ "title": "BLISS: A Lightweight Bilevel Influence Scoring Method for Data Selection in Language Model Pretraining",
+ "authors": [
+  "Jie Hao",
+  "Rui Yu",
+  "Wei Zhang",
+  "Huixia Judy Wang",
+  "Jie Xu",
+  "Mingrui Liu"
+ ],
+ "venue": "ICML 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "Deep Learning->Large Language Models",
+ "role": "pipeline",
+ "role2": null,
+ "claim": "A multi-stage loop warms up a model, scores data via bilevel optimization, selects top samples, retrains, and evaluates, repeating across rounds.",
+ "layout": "1 panel, left-to-right flow in a rounded box, feedback loop arrow on top",
+ "tags": [
+  "data-selection",
+  "bilevel-optimization",
+  "proxy-model",
+  "iterative-loop",
+  "pretraining"
+ ],
+ "style": [
+  "colorful",
+  "icon-heavy",
+  "minimal"
+ ],
+ "description": "A single flowchart with pastel boxes and black arrows. At top, an orange LLM box labeled Step 0 (warm up with random data) feeds down into a large rounded rectangle for Step 1, bilevel optimization. Inside it, Validation Data (gray-green) and Training Data (light blue) feed a blue Proxy Model. The Proxy Model feeds a green Score Model, which feeds a purple 'Predicts data scores' box. An arrow leaves the rounded box to a gray 'Select data' box (Step 2). From there an arrow goes up to a second orange LLM box (Step 3, pretrain). That box has a 'Next round' arrow looping back to the top LLM, and another arrow going down to a 'Downstream task' box (Step 4, evaluate). Small robot icons mark the models. The eye goes first to the large rounded box with its colored model blocks.",
+ "caption": "The pipeline of data selection and pretraining procedure. There are four main steps in one round training, 1) Warm up LLM using randomly selected training data (e.g. 10k step); 2) Bilevel optimization for score and proxy model, 3) Predict the data influence, and select Top-20% training data based on their score ranking; 4) Retrain the LLM using the selected data (e.g., 10k steps); 5) Evaluate on the downstream task. Repeating the above steps can achieve multiple-round training.",
+ "caption_source": "latex",
+ "abstract": "Effective data selection is essential for pretraining large language models (LLMs), enhancing efficiency and improving generalization to downstream tasks. However, existing approaches often require leveraging external pretrained models, making it difficult to disentangle the effects of data selection from those of the external pretrained models. In addition, they often overlook the long-term impact of selected data if the model is trained to convergence, primarily due to the prohibitive cost of full-scale LLM pretraining. In this paper, we introduce BLISS (\\textbf{B}ileve\\textbf{L} \\textbf{I}nfluence \\textbf{S}coring method for data \\textbf{S}election): a lightweight data selection method that operates entirely \\emph{from scratch}, without relying on any external pretrained oracle models, while explicitly accounting for the long-term impact of selected data. BLISS leverages a small proxy model as a surrogate for the LLM and employs a score model to estimate the long-term influence of training samples if the proxy model is trained to convergence. We formulate data selection as a bilevel optimization problem, where the upper-level objective optimizes the score model to assign importance weights to training samples, ensuring that minimizing the lower-level objective (i.e., training the proxy model over the weighted training loss until convergence) leads to best validation performance. Once optimized, the trained score model predicts influence scores for the dataset, enabling efficient selection of high-quality samples for LLM pretraining. We validate BLISS by pretraining 410M/1B/2.8B Pythia and LLaMA-0.5B models on selected subsets of the C4 dataset. Notably, under the 1B model setting, BLISS achieves $1.7\\times$ speedup in reaching the same performance as the state-of-the-art method, demonstrating superior performance across multiple downstream tasks.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=cFWgTYm1hW",
+  "arxiv": "https://arxiv.org/abs/2510.06048",
+  "pdf": "https://raw.githubusercontent.com/mlresearch/v306/main/assets/hao26b/hao26b.pdf",
+  "proceedings": "https://proceedings.mlr.press/v306/hao26b.html",
+  "virtual": "https://icml.cc/virtual/2026/poster/62884",
+  "code": null
+ },
+ "license": "http://arxiv.org/licenses/nonexclusive-distrib/1.0/",
+ "img": "none",
+ "image_url": null,
+ "thumb_url": null,
+ "figure_page": 1,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.95
+}

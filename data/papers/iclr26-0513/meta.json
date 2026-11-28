@@ -1,0 +1,56 @@
+{
+ "id": "iclr26-0513",
+ "title": "STITCH: Simultaneous Thinking and Talking with Chunked Reasoning for Spoken Language Models",
+ "authors": [
+  "Cheng-Han Chiang",
+  "Xiaofei Wang",
+  "Linjie Li",
+  "Chung-Ching Lin",
+  "Kevin Lin",
+  "Shujie LIU",
+  "Zhendong Wang",
+  "Zhengyuan Yang",
+  "Hung-yi Lee",
+  "Lijuan Wang"
+ ],
+ "venue": "ICLR 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "Applications->Language, Speech and Dialog",
+ "role": "pipeline",
+ "role2": null,
+ "claim": "Interleaving hidden reasoning chunks with spoken chunks lets the model keep thinking while earlier audio plays, hiding latency.",
+ "layout": "2 horizontal timelines, left-to-right, speech decoders linking tokens to audio chunks, legend right",
+ "tags": [
+  "timing-diagram",
+  "chunked-generation",
+  "latency",
+  "interleaved-reasoning",
+  "speech-generation"
+ ],
+ "style": [
+  "icon-heavy",
+  "colorful",
+  "minimal"
+ ],
+ "description": "A timing diagram with two horizontal timelines running left to right. The top line, labeled 'User received speech timeline' with an ear icon, shows pink blocks S1, S2 and S3. Each block is marked as a t_chunk interval. A 'First package latency' span precedes S1, and dashed gray vertical lines mark when each chunk starts and ends playing. The bottom line, labeled 'SLM token output timeline' with a robot icon, shows a dense sequence of thin bars: green reasoning tokens, then orange text tokens, then red speech tokens, repeating. Brackets under the S1, S2 and S3 speech tokens feed purple trapezoid speech decoders. Black arrows lead from each decoder up to its pink block. A legend box on the right maps the colors to token types and the decoder shape. The eye goes first to the pink chunks and the arrows.",
+ "caption": "The timing diagram during generation for Stitch-R. The model first generates the first $N_{reason}$ CoT reasoning tokens, $N_{text}$ text tokens, and $N_{speech}$ speech tokens. Once the first $N_{speech}$ speech tokens are generated, the speech decoder synthesizes the output audio that lasts $t_{chunk}$ seconds. When the speech waveform is synthesized and played to the user, the SLM uses this time to generate the next $N_{reason}$ reasoning tokens, $N_{text}$ text tokens, and $N_{speech}$ speech tokens and synthesize the speech output. The duration $t_{chunk}$ is much longer than the time for generating the text tokens and speech tokens corresponding to $S_{i}$, and we use the remaining time to generate the reasoning tokens.",
+ "caption_source": "latex",
+ "abstract": "Spoken Language Models (SLMs) are designed to take speech inputs and produce spoken responses. However, current SLMs lack the ability to perform an internal, unspoken thinking process before responding. In contrast, humans typically engage in complex mental reasoning internally, enabling them to communicate ideas clearly and concisely. Thus, integrating an unspoken thought process into SLMs is highly desirable. While naively generating a complete chain-of-thought (CoT) reasoning before starting to talk can enable thinking for SLMs, this induces additional latency for the speech response, as the CoT reasoning can be arbitrarily long. To solve this issue, we propose Stitch, a novel generation method that alternates between the generation of unspoken reasoning chunks and spoken response chunks. Since the audio duration of a chunk of spoken response is much longer than the time to generate the tokens in a chunk of spoken response, we use the remaining free time to generate the unspoken reasoning tokens. When a chunk of audio is played to the user, the model continues to generate the next unspoken reasoning chunk, achieving simultaneous thinking and talking. Remarkably, Stitch matches the latency of baselines that cannot generate unspoken CoT by design while outperforming those baselines by 15% on math reasoning datasets; Stitch also performs equally well on non-reasoning datasets as those baseline models. Some animations and demonstrations are on the project page: https://d223302.github.io/STITCH.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=5Z1eMhCeTb",
+  "arxiv": "https://arxiv.org/abs/2507.15375",
+  "pdf": "https://proceedings.iclr.cc/paper_files/paper/2026/file/47ee3941a6f1d23c39b788e0f450e2a7-Paper-Conference.pdf",
+  "proceedings": "https://proceedings.iclr.cc/paper_files/paper/2026/hash/47ee3941a6f1d23c39b788e0f450e2a7-Abstract-Conference.html",
+  "virtual": "https://iclr.cc/virtual/2026/poster/10011448",
+  "code": "https://d223302.github.io/STITCH/"
+ },
+ "license": "http://creativecommons.org/licenses/by/4.0/",
+ "img": "cc-by",
+ "image_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/images/iclr26-0513.png",
+ "thumb_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/thumbs/iclr26-0513.webp",
+ "figure_page": 1,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.6
+}

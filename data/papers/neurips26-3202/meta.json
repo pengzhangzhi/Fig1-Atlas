@@ -1,0 +1,49 @@
+{
+ "id": "neurips26-3202",
+ "title": "RigPAPR: Rig-Based Animation of Static Neural Point Clouds from a Fixed-Viewpoint Video",
+ "authors": [
+  "Shichong Peng",
+  "Yanshu Zhang",
+  "Ke Li"
+ ],
+ "venue": "NeurIPS 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "Computer Vision->3D Rendering & Reconstruction",
+ "role": "prior-vs-ours",
+ "role2": "concept",
+ "claim": "Prior primitives with fixed individual shapes break when deformed; ours, built from shape-free points, re-forms the surface cleanly.",
+ "layout": "3 columns plus label column; top toy cross-section, bottom fox; red circles mark artifacts",
+ "tags": [
+  "deformation",
+  "skinning",
+  "splatting",
+  "artifact-analysis",
+  "representation-comparison"
+ ],
+ "style": [
+  "colorful",
+  "photo/real data",
+  "minimal"
+ ],
+ "description": "A grid with three method columns (Anisotropic GS, Isotropic GS, Ours (PAPR-based)) and a left label column. The top row shows a green-to-red gradient limb strip in the canonical pose, labeled 'fit in rest pose'. An arrow labeled LBS leads to the deformed row, labeled 'unseen during fitting'. The deformed limb is bent into an arch. Red circles and italic red labels mark 'spike' on the anisotropic column and 'blob' on the isotropic column, where the surface is smeared or fuzzy. The PAPR column shows a clean bend with small white points along the boundary. The bottom row shows a canonical fox and three renderings of the deformed fox. Red circles mark spikes and blobs on the baselines, and the fox in the PAPR column looks clean. The eye goes first to the red circles.",
+ "caption": "Top: a cross-section of a limb, fitted in the canonical pose and then bent at a joint with linear blend skinning (LBS). Bottom: anisotropic splats, isotropic splats and ours on the fox, driven by its ground-truth motion. Each Gaussian splat carries its own individual shape, fitted in the canonical pose without knowing how the surface will later deform. LBS bends the surface non-rigidly: the outer side stretches, and the inner side compresses and thins. A splat, however, can only be moved, rotated, or rescaled, so its shape stays an ellipsoid and cannot bend with the surface. Long, thin anisotropic splats no longer lie along the bent surface and stick out as spikes. Making the splats isotropic removes the spikes, but the large round splats that fill the interior keep their size as the limb thins, and push through the surface as blobs. PAPR instead builds shape from a set of shape-free points: each pixel is recomposed at render time from its deformed neighbours, so the surface follows the bend.",
+ "caption_source": "latex",
+ "abstract": "Static neural point reconstructions capture a subject at high fidelity from posed images. Given such a reconstruction, we aim to animate it to follow a monocular fixed-viewpoint driving video of the subject, whether captured or produced by image-to-video (I2V) generation, and to recover a rigged, re-posable 3D asset. Existing methods deform Gaussian splats through direct linear blend skinning (LBS) or mesh proxies, both of which are prone to joint-boundary artifacts under articulation, even with per-primitive corrections. We trace the artifact to the representation: each splat carries an individual shape calibrated in the canonical pose to tile with its neighbours. Under LBS each splat can be moved, rotated, or rescaled but never bent, so the canonical tiling comes apart at joint boundaries. Proximity attention point rendering (PAPR) instead carries no per-primitive shape; each pixel is recomposed at render time from the deformed primitives' positions, so the surface re-forms naturally with the articulation. We present RigPAPR, which auto-rigs a static PAPR cloud and drives it under direct LBS from a single fixed-viewpoint video, without a category template or a pose-dependent correction network. RigPAPR is competitive with the strongest baseline at the supervised view and outperforms splatting-based and mesh-based baselines at novel views, by 3~dB PSNR on synthetic subjects and about 2~dB on real-world subjects, with cleaner joint-boundary renderings.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=MGb08Jhfew",
+  "arxiv": "https://arxiv.org/abs/2606.06685",
+  "pdf": "https://arxiv.org/pdf/2606.06685",
+  "proceedings": null,
+  "virtual": "https://neurips.cc/virtual/2026/poster/153305",
+  "code": "https://niopeng.github.io/RigPAPR/"
+ },
+ "license": "http://arxiv.org/licenses/nonexclusive-distrib/1.0/",
+ "img": "none",
+ "image_url": null,
+ "thumb_url": null,
+ "figure_page": 1,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.85
+}

@@ -1,0 +1,50 @@
+{
+ "id": "icml26-3677",
+ "title": "DocVAL: Validated Chain-of-Thought Distillation for Grounded Document VQA",
+ "authors": [
+  "Pinaki Prasad Guha Neogi",
+  "Ahmad Mohammadshirazi",
+  "Ser-Nam Lim",
+  "Rajiv Ramnath"
+ ],
+ "venue": "ICML 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "Deep Learning->Large Language Models",
+ "role": "pipeline",
+ "role2": "overview-framework",
+ "claim": "A multi-phase pipeline distills validated reasoning traces from a large teacher into a compact student, refined iteratively through verifier feedback.",
+ "layout": "4 color-coded phases, left-to-right, red dotted feedback loop with phase bar underneath",
+ "tags": [
+  "distillation",
+  "chain-of-thought",
+  "validation-loop",
+  "document-vqa",
+  "iterative-refinement"
+ ],
+ "style": [
+  "icon-heavy",
+  "colorful",
+  "text-heavy"
+ ],
+ "description": "A wide horizontal flow diagram split into four phases by a colored bar along the bottom: purple Phase A (teacher data generation), pink B1 (student fine-tuning), yellow B2 (CoT instruction tuning), and green C (evaluation). On the left, a raw document dataset passes through text detection to a pretrained Gemini teacher VLM. The teacher's generated CoT traces go through a 'VAL filter', then a 95k split into a CoT dataset. A pretrained Gemma3-12B student is fine-tuned on that dataset. A red dotted loop holds the fine-tuned VLM, which emits step-by-step CoT output. The VAL verifier checks this output and returns check/cross feedback with reasons, which routes back to the model. The final VLM then produces stepwise reasoning and an 'Answer & BBox' output. Thick blue arrows connect the stages, and the neural-net and document icons draw the eye first.",
+ "caption": "Overview of the DocVAL Framework. A three-phase pipeline for validated chain-of-thought (CoT) distillation. \\colorbox{phaseApurple}{Phase A: Teacher Data Generation}—The teacher VLM (Gemini 2.5 Pro) generates CoT traces from raw documents, which are filtered by DocVAL for quality assurance. \\colorbox{phaseB1pink}{Phase B1: Student Fine-Tuning}—A smaller VLM (Gemma3-12B) is fine-tuned on the validated CoT dataset. \\colorbox{phaseB2yellow}{Phase B2: Instruction Tuning}—The student model iteratively refines its reasoning with DocVAL feedback until convergence. \\colorbox{phaseCgreen}{Phase C: Evaluation}—The final model generates stepwise reasoning to produce the answer and bounding boxes.",
+ "caption_source": "latex",
+ "abstract": "Document visual question answering requires models not only to answer questions correctly, but also to precisely localize answers within complex document layouts. While large vision-language models (VLMs) achieve strong spatial grounding, their inference cost and latency limit real-world deployment. Compact VLMs are more efficient, but they often suffer substantial localization degradation under standard fine-tuning or distillation. To address this gap, we propose DocVAL, a validated chain-of-thought (CoT) distillation framework that transfers explicit spatial reasoning from large teacher models to compact, deployable student VLMs. DocVAL combines (1) teacher-generated spatial CoT supervision, (2) a rule-based dual-mode validator that filters low-quality training signals and provides fine-grained, pixel-level corrective feedback, and (3) a validation-driven two-stage training procedure with iterative refinement. Text detection is used only as training-time scaffolding for supervision and validation, enabling the final student to operate as a pure VLM without OCR or detection at inference. Across multiple document understanding benchmarks, DocVAL yields consistent improvements of up to 6-7 ANLS points over comparable compact VLMs. We further introduce mean Average Precision (mAP) as a localization metric for document question answering and report strong spatial grounding performance under this new evaluation. We release 95K validator-verified CoT traces and show that high-quality, validated supervision is more effective than scaling unfiltered data, enabling efficient and trustworthy document grounding. Code/Data: https://github.com/ahmad-shirazi/DocVAL",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=Ygg3KJPeT6",
+  "arxiv": "https://arxiv.org/abs/2511.22521",
+  "pdf": "https://raw.githubusercontent.com/mlresearch/v306/main/assets/neogi26a/neogi26a.pdf",
+  "proceedings": "https://proceedings.mlr.press/v306/neogi26a.html",
+  "virtual": "https://icml.cc/virtual/2026/poster/63260",
+  "code": null
+ },
+ "license": "http://creativecommons.org/licenses/by/4.0/",
+ "img": "cc-by",
+ "image_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/images/icml26-3677.png",
+ "thumb_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/thumbs/icml26-3677.webp",
+ "figure_page": 1,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.9
+}

@@ -1,0 +1,51 @@
+{
+ "id": "iclr26-2747",
+ "title": "Mastering Sparse CUDA Generation through Pretrained Models and Deep Reinforcement Learning",
+ "authors": [
+  "Yaoyu Wang",
+  "Hankun Dai",
+  "Zhidong Yang",
+  "Junmin Xiao",
+  "Guangming Tan"
+ ],
+ "venue": "ICLR 2026",
+ "tier": "oral",
+ "track": "main",
+ "topic": "Reinforcement Learning->Deep RL",
+ "role": "overview-framework",
+ "role2": "problem-setup",
+ "claim": "Casting generation as a reinforcement-learning loop lets a pretrained model optimize correctness and runtime for irregular, runtime-dependent inputs.",
+ "layout": "2 panels, left RL loop diagram, right worked example, arrows downward and rightward",
+ "tags": [
+  "reinforcement-learning",
+  "code-generation",
+  "actor-critic",
+  "dynamic-input",
+  "efficiency"
+ ],
+ "style": [
+  "colorful",
+  "text-heavy",
+  "icon-heavy"
+ ],
+ "description": "The figure has two panels. The left panel is an actor-critic reinforcement-learning loop drawn as stacked rounded boxes: a green Sparse Matrix input feeds a blue Policy box (pretrained LM actor), a Value Function critic, a red Correctness/Time box, and a blue Environment box (compiler and executor). Arrows are labeled Action, Values, State, Reward and CUDA Code, and feedback arrows loop around the sides. The right panel is a rounded frame showing a worked example task. At the top is a sparse matrix given as row and column index lists, next to a small grid with dots and the label 'Dynamic input at runtime'. Below it are two blue CUDA code listings, Solution Program1 and Solution Program2. A bottom strip reads Input → Generate → Output → Execute, ending in red execution times (21.95 s and 10.62 s) and a check mark.",
+ "caption": "An example task (Right): Each task is defined by a sparse matrix, which contains row and column indices of non-zero elements. The expected output is an SpMV program to be checked for functional correctness and execution efficiency. The input sparse matrix is the dynamic input at runtime and closely related to execution time. A high-level overview of our SparseRL method for sparse CUDA code generation (Left): we treat a pre-trained language model (LM) as a stochastic policy, code generation steps as actions, and rewards can be estimated based on the functional correctness and execution time of output programs from the compiler and executor (environment).",
+ "caption_source": "pdf",
+ "abstract": "Code generation is a crucial research area in the field of artificial intelligence, holding the potential to revolutionize software development and streamline programming processes. However, generating the high-performance code, which need to be executed in a shorter time for the low-latency scenario, remains a formidable challenge. Existing methods often struggle to account for the irregularity of input sparse data in sparse programs and the need for domain-specific architectural knowledge, leading to sub-optimal performance. To tackle these issues, we propose the SparseRL framework. SparseRL leverages deep reinforcement learning, treating a pre-trained language model as a stochastic policy. It takes the row and column indices of non-zero elements in the sparse matrix as input and generates CUDA code as output for sparse matrix operations. We also introduce a domain-specific code generation mechanism for the dynamic input, a sinusoidal embedding technique tailored for sparse matrices, and a hierarchical reward function that considers both code correctness and execution efficiency. Experimental results demonstrate SparseRL achieves state-of-the-art performance. In sparse matrix-vector multiplication (SpMV) tasks, it improves the compilation rate by 20% compared to existing methods, and the generated code runs 30% faster on average. For sparse matrix-dense matrix multiplication (SpMM) tasks, SparseRL also shows significant performance gains. These results highlight the effectiveness of SparseRL in generating high-performance CUDA code for sparse matrix operations.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=VdLEaGPYWT",
+  "arxiv": null,
+  "pdf": "https://proceedings.iclr.cc/paper_files/paper/2026/file/32400dbdd8b99abe47a49e43dcb1fcf5-Paper-Conference.pdf",
+  "proceedings": "https://proceedings.iclr.cc/paper_files/paper/2026/hash/32400dbdd8b99abe47a49e43dcb1fcf5-Abstract-Conference.html",
+  "virtual": "https://iclr.cc/virtual/2026/poster/10009120",
+  "code": "https://github.com/QiWu-NCIC/SparseRL"
+ },
+ "license": null,
+ "img": "none",
+ "image_url": null,
+ "thumb_url": null,
+ "figure_page": 1,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.5
+}

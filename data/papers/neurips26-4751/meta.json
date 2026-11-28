@@ -1,0 +1,52 @@
+{
+ "id": "neurips26-4751",
+ "title": "MESSENGER: Memory-Enhanced Sequential Scene Flow Estimation via Autoregressive Next-Frame Forecasting",
+ "authors": [
+  "Jiuming Liu",
+  "Jianing Li",
+  "Mengmeng Liu",
+  "Hongyang He",
+  "Hesheng Wang",
+  "Per O Kristensson"
+ ],
+ "venue": "NeurIPS 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "Computer Vision->3D Rendering & Reconstruction",
+ "role": "prior-vs-ours",
+ "role2": "before-after",
+ "claim": "Prior sequence-to-sequence methods are costly and lose accuracy over long horizons; ours uses memory-based autoregression to stay accurate.",
+ "layout": "2 halves split by dashed line; left stacked pipelines (a)/(b), right baseline-vs-ours grid with zoom insets",
+ "tags": [
+  "autoregressive",
+  "memory-buffer",
+  "scene-flow",
+  "long-horizon-prediction",
+  "error-accumulation"
+ ],
+ "style": [
+  "colorful",
+  "photo/real data",
+  "icon-heavy"
+ ],
+ "description": "The figure is split by a vertical dashed line. On the left, panel (a) shows a sequence-to-sequence method (Flow4D). Four point-cloud frames (P_t-2 to P_t+1) in purple, blue, red and yellow feed through one bracket and arrows into separate scene-flow outputs SF_t-1, SF_t and SF_t+1. Panel (b) shows the memory-enhanced autoregressive method. It has a memory buffer M_t of stacked flow maps, a next-frame forecasting arrow, a flow refinement step fed by P_t-1 and P_t, and a memory update step that produces buffer M_t+1. Orange, green, blue and yellow color-code these stages. On the right, a qualitative grid compares GenFlow3D (top) and Ours (bottom) at frames 1, 6 and 9. Each cell has a zoomed inset. Cyan predicted flow arrows are drawn against red ground-truth arrows. GenFlow3D's red error grows over frames, while Ours stays aligned.",
+ "caption": "Comparison with previous multi-frame scene flow methods. (Left) Compared to sequence-to-sequence methods with heavy computational costs, our method adopt an autoregressive sequential estimation paradigm, which retrieves multiple history flow priors from a memory buffer. (Right) Compared to recent SOTA flow prediction method GenFlow3D [ref] suffering from degraded accuracy in longer-horizon predictions, our uncertainty-aware memory reweighting can mitigate long-term compounding errors by measuring history-present motion discrepancy.",
+ "caption_source": "latex",
+ "abstract": "Scene flow can capture low-level 3D motion displacements in dynamic scenarios. Early pairwise estimators relying on instantaneous two-frame motion lack long-term temporal correlation and also struggle with poor extrapolation ability in future prediction. Although some recent methods attempt to explore multi-frame scene flow estimation in a sequence-to-sequence manner, they typically suffer from heavy computational overhead with increasing input frames and long-horizon prediction degradation due to ineffective motion propagation. To address these problems, we propose a novel memory-enhanced sequential scene flow pipeline, called MESSENGER. To sufficiently mine long-term temporal dependencies naturally within consecutive sequences, a memory buffer is designed by explicitly storing multiple history flow estimates and latent states. For each input frame, the temporally stored flows and states are correlated and retrieved to predict the current initialized flow in a next-frame forecasting manner. Furthermore, we develop an uncertainty-aware reweighting module to filter unreliable retrievals and mitigate accumulated errors. Extensive experiments on nuScenes and Argoverse 2 demonstrate state-of-the-art performance of our MESSENGER, reducing EPE3D by 71.6% on nuScenes and 67.7% on Argoverse 2 in long-horizon future extrapolation. This superiority can be attributed to our designed autoregressive forecasting paradigm, which naturally forces the network to progressively learn the next-frame distribution based on history observations. Code will be released at https://github.com/liujiuming123/Messenger.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=Wo3mKBsHLA",
+  "arxiv": "https://arxiv.org/abs/2610.10759",
+  "pdf": "https://arxiv.org/pdf/2610.10759",
+  "proceedings": null,
+  "virtual": "https://neurips.cc/virtual/2026/poster/151929",
+  "code": null
+ },
+ "license": "http://arxiv.org/licenses/nonexclusive-distrib/1.0/",
+ "img": "none",
+ "image_url": null,
+ "thumb_url": null,
+ "figure_page": 1,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.85
+}

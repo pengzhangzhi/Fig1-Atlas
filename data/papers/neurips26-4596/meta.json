@@ -1,0 +1,49 @@
+{
+ "id": "neurips26-4596",
+ "title": "GRASP: Guided Residual Adapters with Sample-wise Partitioning",
+ "authors": [
+  "Felix Nützel",
+  "Mischa Dombrowski",
+  "Bernhard Kainz"
+ ],
+ "venue": "NeurIPS 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "Computer Vision->Image and Video Generation",
+ "role": "prior-vs-ours",
+ "role2": "pipeline",
+ "claim": "A single shared adapter yields conflicting gradients and poor rare-class outputs; partitioned residual adapters align gradients and improve quality and diversity.",
+ "layout": "2 stacked rows, left-to-right flow, baseline above, ours below, color-coded partitions",
+ "tags": [
+  "partitioned-adapters",
+  "gradient-alignment",
+  "long-tail",
+  "mixture-of-experts",
+  "diversity-quality"
+ ],
+ "style": [
+  "colorful",
+  "photo/real data",
+  "icon-heavy"
+ ],
+ "description": "Two horizontal rows are stacked and labeled 'Baseline' (gray, top) and 'GRASP' (orange/yellow, bottom). Each row flows left to right. First is a 3x3 grid of rare-class photos (stingray, lynx, turtle). Then comes an arrow to a neural-network icon, a small gradient-vector plot, and an arrow to a 3x3 grid of generated images. The baseline row uses one shared adapter, and its gradient arrows point in scattered directions. A pink box reads 'Low Image Diversity & Quality'. The GRASP row colors the input images into orange, green and blue partitions. Three color-matched adapter icons sit in a column, and the gradient arrows are tightly aligned. The outputs look sharper and a green box reads 'High Image Diversity & Quality'. The eye goes first to the color contrast between the gray and orange rows.",
+ "caption": "Our proposed method uses parallel GRASP adapters to gain more aligned gradient updates when training a diffusion transformer. This enables the model to generate images of higher quality and diversity, in particular for rare classes.",
+ "caption_source": "latex",
+ "abstract": "Text-to-image flow matching transformers degrade sharply in long-tail settings: tail-class outputs collapse in fidelity and diversity, limiting their value as synthetic augmentation for rare conditions. We trace this to low head-versus-tail gradient alignment during fine-tuning, an optimization-level pathology that conditioning- and sampling-side interventions do not address. We propose GRASP (Guided Residual Adapters with Sample-wise Partitioning): a deterministic partition of the conditioning space, paired with group-specific residual adapters in the transformer feedforward layers, that leaves the flow-matching objective and the sampler untouched. In conditional flow matching, condition values index distinct sets of probability paths, which makes the conditioning a structurally natural axis along which to factorize residual updates. Because the partition is static, every tail sample is guaranteed to update its assigned expert, which bypasses extreme long-tail failure modes. GRASP is non-invasive and composable: on MIMIC-CXR-LT, combining GRASP with self-guided minority sampling at inference outperforms its learned counterpart on 10 of 12 metrics. Performance is stable across random reassignments of labels to experts and across expert counts, as long as no expert is starved of samples. Used as training data for a downstream DenseNet classifier on NIH-CXR-LT, GRASP synthetics significantly outperform every non-GRASP alternative on macro F1 and yield nonzero F1 on 9 of 13 classes versus 3 of 13 from real data, while maintaining comparable macro F1. Results on ImageNet-LT confirm the mechanism is not tied to medical inductive bias. Code is available at https://github.com/Felix-012/GRASP-LT",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=VfoRDHdZvl",
+  "arxiv": "https://arxiv.org/abs/2512.01675",
+  "pdf": "https://arxiv.org/pdf/2512.01675",
+  "proceedings": null,
+  "virtual": "https://neurips.cc/virtual/2026/poster/152072",
+  "code": "https://github.com/Felix-012/GRASP-LT"
+ },
+ "license": "http://creativecommons.org/licenses/by/4.0/",
+ "img": "cc-by",
+ "image_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/images/neurips26-4596.png",
+ "thumb_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/thumbs/neurips26-4596.webp",
+ "figure_page": 1,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.85
+}

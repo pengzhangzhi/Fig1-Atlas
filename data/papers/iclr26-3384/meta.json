@@ -1,0 +1,51 @@
+{
+ "id": "iclr26-3384",
+ "title": "EquAct: An SE(3)-Equivariant Multi-Task Transformer for 3D Robotic Manipulation",
+ "authors": [
+  "Xupeng Zhu",
+  "Yu Qi",
+  "Yizhe Zhu",
+  "Robin Walters",
+  "Robert Platt"
+ ],
+ "venue": "ICLR 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "Applications->Robotics",
+ "role": "pipeline",
+ "role2": null,
+ "claim": "A language-conditioned equivariant encoder yields spherical features that are decoded stage by stage into translation, gripper-open and rotation action values.",
+ "layout": "Single wide panel, left-to-right with a lower return branch; hexagon feature tiles",
+ "tags": [
+  "equivariant-network",
+  "language-conditioning",
+  "coarse-to-fine",
+  "robot-manipulation",
+  "action-prediction"
+ ],
+ "style": [
+  "icon-heavy",
+  "colorful",
+  "3d-render"
+ ],
+ "description": "A wide, single-panel pipeline diagram that reads left to right. At the lower left, a point-cloud scene of a robot arm and colored pegs, labeled s and e, feeds a blue encoder trapezoid called enc_o. Above it, the instruction \"Insert onto the yellow peg\" passes through a frozen CLIP and a trainable Transformer, then enters enc_o via an iFiLM arrow. The encoder outputs a hexagonal tile of latent spherical features h. From h, a blue q block leads to three point-cloud scenes where red query points shrink toward the peg. These are labeled Q_t, Q_open. A lower branch passes through a q_r block and two spheres, phi and psi, joined by a star convolution symbol. The result is a Q_r distribution over SO(3), drawn as a world-map-style ellipse. A brace on the right merges the outputs into the final robot scene, with the gripper pose and gripper open labels.",
+ "caption": "Overview of EquAct. EquAct first encodes the observation $o = \\{s, e\\}$ into latent spherical features $h$ using a $\\SE(3)$-equivariant U-Net, $enc_o$, while conditioning the natural language instruction $n$ through invariant iFiLM layers. Based on the encoded features $h$, EquAct then samples and refines translational query actions and gripper open actions using an equivariant field network, resulting in action value functions $Q_t$ and $Q_{\\mathrm{open}}$. Finally, a rotational field network aggregates spherical features from $h$ centered at the predicted translation $a_t^*$ to obtain a latent feature $\\phi$, which is subsequently convolved with a learned filter $\\psi$ to produce the rotational action value function $Q_r$.",
+ "caption_source": "latex",
+ "abstract": "Transformer architectures can effectively learn language-conditioned, multi-task 3D open-loop manipulation policies from demonstrations by jointly processing natural language instructions and 3D observations. However, although both the robot policy and language instructions inherently encode rich 3D geometric structures, standard transformers lack built-in guarantees of geometric consistency, often resulting in unpredictable behavior under SE(3) transformations of the scene. In this paper, we leverage SE(3) equivariance as a key structural property shared by both policy and language, and propose EquAct-a novel SE(3)-equivariant multi-task transformer. EquAct is theoretically guaranteed to be SE(3) equivariant and consists of two key components: (1) an efficient SE(3)-equivariant point cloud-based U-net with spherical Fourier features for policy reasoning, and (2) SE(3)-invariant Feature-wise Linear Modulation (iFiLM) layers for language conditioning. To evaluate its spatial generalization ability, we benchmark EquAct on 18 RLBench simulation tasks with both SE(3) and SE(2) scene perturbations, and on 4 physical tasks. EquAct performs state-of-the-art across these simulation and physical tasks.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=d1wuA8oIH0",
+  "arxiv": "https://arxiv.org/abs/2505.21351",
+  "pdf": "https://proceedings.iclr.cc/paper_files/paper/2026/file/0dadf17389895a1d660a178d1140e07c-Paper-Conference.pdf",
+  "proceedings": "https://proceedings.iclr.cc/paper_files/paper/2026/hash/0dadf17389895a1d660a178d1140e07c-Abstract-Conference.html",
+  "virtual": "https://iclr.cc/virtual/2026/poster/10008448",
+  "code": "https://github.com/ZXP-S-works/EquAct"
+ },
+ "license": "http://creativecommons.org/licenses/by/4.0/",
+ "img": "cc-by",
+ "image_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/images/iclr26-3384.png",
+ "thumb_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/thumbs/iclr26-3384.webp",
+ "figure_page": 3,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.93
+}

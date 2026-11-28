@@ -1,0 +1,52 @@
+{
+ "id": "iclr26-1455",
+ "title": "ByteFlow: Language Modeling through Adaptive Byte Compression without a Tokenizer",
+ "authors": [
+  "Chunyuan Deng",
+  "Sanket Lokegaonkar",
+  "Colin Lockard",
+  "Besnik Fetahu",
+  "Nasser Zalmout",
+  "Xian Li"
+ ],
+ "venue": "ICLR 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": null,
+ "role": "pipeline",
+ "role2": "overview-framework",
+ "claim": "A hierarchical architecture compresses low-level input into adaptive chunks, so heavy compute runs on short high-level sequences while light modules handle fine detail.",
+ "layout": "Large architecture diagram left, three dashed inset panels right, bottom-to-top flow",
+ "tags": [
+  "hierarchical",
+  "tokenizer-free",
+  "adaptive-chunking",
+  "efficiency",
+  "byte-level"
+ ],
+ "style": [
+  "colorful",
+  "icon-heavy",
+  "math-heavy"
+ ],
+ "description": "The left two-thirds shows a vertical encoder–decoder stack. Raw byte characters ('Have a nice day') enter at the bottom through a Local Encoder, then a tapered Downsampler produces a few dark purple chunk blocks. These feed a huge rounded purple Global Transformer, followed by an Upsampler and Local Decoder that output the shifted byte sequence ending in '!'. A blue line links the middle of the stack to the right column. Three dashed rounded insets sit on the right. (a) Coding-rate based chunking shows light squares reduced to purple squares, blob manifolds, and an argmin R(·)−R(·) formula. (b) Canon Layer shows the causal conv equation with orange arrows over a Sliding Window Attn → Canon → SwiGLU → Canon block row. (c) FLOPs assignment compares isotropic and hierarchical models. The eye goes first to the big purple Global Transformer.",
+ "caption": "Architecture of ByteFlow Net. (a) ByteFlow Net’s chunking strategy is primarily driven by the coding rate $R$ of latent representations. As shown in the figure, the model is encouraged to select token boundaries that form pooled subsequences which best compress the original input. (b) Since byte-level sequences are roughly $4\\times$ longer, directly applying $O(n^2 d)$ softmax attention becomes prohibitively expensive. To address this, we adopt sliding-window attention (SWA) combined with canon layers [ref], enabling efficient and low-cost token mixing. (c) The beauty of the hierarchical architecture lies in allocating the majority of FLOPs operating at the high-level information (a deep and wide global transformer), while using lightweight local encoders/decoders (shallow and narrow) to quickly process low-level information.",
+ "caption_source": "latex",
+ "abstract": "Modern language models still rely on fixed, pre-defined subword tokenizations. Once a tokenizer is trained, the LM can only operate at this fixed level of granularity, which often leads to brittle and counterintuitive behaviors even in otherwise strong reasoning models. We introduce \\textbf{ByteFlow Net}, a new hierarchical architecture that removes tokenizers entirely and instead enables models to learn their own segmentation of raw byte streams into semantically meaningful units. ByteFlow Net performs compression-driven segmentation based on the coding rate of latent representations, yielding adaptive boundaries \\emph{while preserving a static computation graph via Top-$K$ selection}. Unlike prior self-tokenizing methods that depend on brittle heuristics with human-designed inductive biases, ByteFlow Net adapts its internal representation granularity to the input itself. Experiments demonstrate that this compression-based chunking strategy yields substantial performance gains, with ByteFlow Net outperforming both BPE-based Transformers and previous byte-level architectures. These results suggest that end-to-end, tokenizer-free modeling is not only feasible but also more effective, opening a path toward more adaptive and information-grounded language models.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=GhJIa921j7",
+  "arxiv": "https://arxiv.org/abs/2603.03583",
+  "pdf": "https://proceedings.iclr.cc/paper_files/paper/2026/file/eaf5d2cdb582c058a078d4fdf52a20f9-Paper-Conference.pdf",
+  "proceedings": "https://proceedings.iclr.cc/paper_files/paper/2026/hash/eaf5d2cdb582c058a078d4fdf52a20f9-Abstract-Conference.html",
+  "virtual": "https://iclr.cc/virtual/2026/poster/10010468",
+  "code": null
+ },
+ "license": "http://creativecommons.org/licenses/by-nc-sa/4.0/",
+ "img": "cc-by-nc-sa",
+ "image_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/images/iclr26-1455.png",
+ "thumb_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/thumbs/iclr26-1455.webp",
+ "figure_page": 1,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.8
+}

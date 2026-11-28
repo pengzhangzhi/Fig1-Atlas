@@ -1,0 +1,48 @@
+{
+ "id": "neurips26-6168",
+ "title": "DAGent: Evaluate-then-Grow Planning for Deep Research Agents",
+ "authors": [
+  "Hanwen Liu",
+  "Yuanfu Sun",
+  "Qiaoyu Tan"
+ ],
+ "venue": "NeurIPS 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "Reinforcement Learning->Multi-agent",
+ "role": "prior-vs-ours",
+ "role2": "pipeline",
+ "claim": "Plan-then-Patch commits to a full plan and repairs it after failures; evaluating then growing incrementally yields better answers with fewer layers.",
+ "layout": "2 stacked rows, left-to-right, red failure highlights vs. orange self-refine",
+ "tags": [
+  "incremental-planning",
+  "dag",
+  "multi-agent",
+  "prior-vs-ours",
+  "uncertainty-aware"
+ ],
+ "style": [
+  "icon-heavy",
+  "colorful"
+ ],
+ "description": "Two stacked rows compare planning paradigms for a multi-agent system, each drawn as a three-stage left-to-right DAG sequence. The top row, Plan-then-Patch, shows a Root Node teacher cartoon with child agent avatars. The full plan is committed at once and then executed. Some nodes fail, shown with red circles and sleeping avatars. Patching follows, with red Refine, Delete and Add labels, and ends in a low-quality answer after 4 layers. The bottom row, Evaluate-then-Grow (Ours), starts with a small initial plan. An uncertain node is flagged in red, and an orange self-refine loop leads to a new layer. The graph grows layer by layer and ends in a high-quality answer after 3 layers. Chibi character avatars, red and blue annotations, and cream title boxes carry the contrast.",
+ "caption": "Comparison of Plan-then-Patch (top) and Evaluate-then-Grow (bottom) paradigms.",
+ "caption_source": "latex",
+ "abstract": "Deep research tasks require agents to navigate large knowledge spaces, synthesize evidence across many sources, and adapt their plans as findings emerge. Directed acyclic graph (DAG)-based multi-agent systems suit this setting because they support parallel execution and isolate each sub-task within a focused dependency context. Yet existing DAG-based agents instantiate a task-level plan before execution and repair the graph only after failures or missing evidence are observed. This Plan-then-Patch strategy is brittle for deep research: the system commits most strongly when its evidence is weakest, and later revisions waste computation on branches that should not have been planned. We propose DAGent, a DAG-based multi-agent framework with Evaluate-then-Grow incremental planning: an Orchestrator grows the task graph one batch at a time, conditioning each expansion on confidence and uncertainty signals from completed nodes. A hierarchical context layer propagates compact QueryDocs by default while preserving full execution traces for on-demand recall. The recorded DAG topology admits structural RL signals that outcome-only recipes cannot define; DAGRPO, a GRPO adaptation, injects topology-conditioned credit on Executor rollouts and a structural compliance regularization on Orchestrator plans. Across BrowseComp-Plus, GAIA, and xbench-DeepSearch, DAGent surpasses the strongest open-source baseline by 5.3 / 5.8 / 2.0 points at the Qwen3-235B-A22B scale, and the lead replicates across four open-source backbones and extends to GPT-5 at 327K context. At the Qwen3-8B scale, DAGRPO improves over a same-budget outcome-only GRPO baseline by 3.0 average Pass@1 points. A same-architecture comparison shows that evidence-conditioned planning reaches higher accuracy at lower per-task token, tool-call, and step footprints than its Plan-then-Patch counterpart. Code: https://github.com/hanwenliu6825/DAGent",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=gNnU6UhVDm",
+  "arxiv": "https://arxiv.org/abs/2609.39154",
+  "pdf": "https://arxiv.org/pdf/2609.39154",
+  "proceedings": null,
+  "virtual": "https://neurips.cc/virtual/2026/poster/150664",
+  "code": null
+ },
+ "license": "http://arxiv.org/licenses/nonexclusive-distrib/1.0/",
+ "img": "none",
+ "image_url": null,
+ "thumb_url": null,
+ "figure_page": 1,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.9
+}

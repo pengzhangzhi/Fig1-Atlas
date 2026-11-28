@@ -1,0 +1,48 @@
+{
+ "id": "icml26-3965",
+ "title": "RAT+: Train Dense, Infer Sparse - Recurrence Augmented Attention for Dilated Inference",
+ "authors": [
+  "Xiuying Wei",
+  "Caglar Gulcehre"
+ ],
+ "venue": "ICML 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "Deep Learning->Attention Mechanisms",
+ "role": "pipeline",
+ "role2": "concept",
+ "claim": "One densely pretrained model, trained jointly with a recurrence-augmented objective, can switch to many sparse inference patterns without retraining.",
+ "layout": "3 groups, left-to-right: module diagram, training tree, three attention-mask grids",
+ "tags": [
+  "dense-pretraining",
+  "sparse-inference",
+  "dilated-attention",
+  "recurrence",
+  "efficiency"
+ ],
+ "style": [
+  "minimal",
+  "colorful",
+  "plot"
+ ],
+ "description": "The figure has three parts. On the left is a small architecture block. Inputs k, g, v feed an orange 'Full-sequence Recurrence' box, which outputs k-tilde and v-tilde. These go into a pink 'Attention' box, and q enters from the side. In the middle is a training tree. 'Joint' branches to D=1 and D=64. D=1 leads to plain D=1, and D=64 leads to 'enforce L*=64'. On the right are three square lower-triangular attention-mask grids with blue cells. They are labelled 'dilated (D=4)', 'dilated w/ local (D=4, W=4)' and 'top-k block (D=2, K=3)'. The blue cells show vertical stripes and diagonals for the sparse patterns. The eye goes first to the colored boxes on the left, then to the mask grids.",
+ "caption": "(a) For architectural simplicity, we adopt an extreme overlapped setting, i.e., full-sequence recurrence with \\clv{T}. (b) Joint training to preserve dense attention capability while enforcing active recurrence learning with desired effective length \\(\\mathtt{L^*}=64\\). (c) After pretraining, the resulting model can be efficiently adapted to various sparse inference patterns including effective results on dilated attention (optional local attention). It also has better performance on top-k block attention compared to attention.",
+ "caption_source": "latex",
+ "abstract": "Structured dilated attention has an appealing inference-time efficiency knob: it reduces the FLOPs of attention and the KV cache size by a factor of the dilation size D, while preserving long-range connectivity. While prior work studies it by training each configuration from scratch, directly sparsifying a pretrained attention model into a dilated pattern leads to severe accuracy degradation, preventing flexible reuse across inference scenarios. We introduce RAT+, a dense-pretraining architecture that augments attention with full-sequence recurrence and active recurrence learning. A single RAT+ model is pretrained densely once and can then be flexibly switched at inference time to dilated attention (optionally with local windows) or hybrid layer/head compositions, requiring only a short 1B-token resolution adaptation rather than retraining separate sparse models. At 1.5B parameters trained on 100B tokens, RAT+ closely matches dense accuracy at D = 16, and drops by about 2-3 points at D = 64 on commonsense reasoning and LongBench tasks. We further scale to 2.6B and 7.6B parameters and observe even more promising performance (e.g., a 1-point average accuracy loss with a 64x reduction in attention FLOPs and KV cache size). Code is available at https://github.com/wimh966/rat-plus.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=bIF47tRlP4",
+  "arxiv": "https://arxiv.org/abs/2602.18196",
+  "pdf": "https://raw.githubusercontent.com/mlresearch/v306/main/assets/wei26h/wei26h.pdf",
+  "proceedings": "https://proceedings.mlr.press/v306/wei26h.html",
+  "virtual": "https://icml.cc/virtual/2026/poster/62978",
+  "code": "https://github.com/wimh966/rat-plus"
+ },
+ "license": "http://arxiv.org/licenses/nonexclusive-distrib/1.0/",
+ "img": "none",
+ "image_url": null,
+ "thumb_url": null,
+ "figure_page": 3,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.6
+}

@@ -1,0 +1,53 @@
+{
+ "id": "neurips26-1898",
+ "title": "DiversePlace: Diversity-Seeking Curriculum Reinforcement Learning for Macro Placement",
+ "authors": [
+  "Wenrui Zhou",
+  "Jiashun Liu",
+  "Wenji Fang",
+  "Zhiyao Xie",
+  "Ling Pan"
+ ],
+ "venue": "NeurIPS 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "Reinforcement Learning->Everything Else",
+ "role": "problem-setup",
+ "role2": "analysis-finding",
+ "claim": "Optimizing on a cheap proxy before downstream outcomes are measurable is unreliable, so keeping a diverse set of candidates improves final selection.",
+ "layout": "Top flow strip of stages, bottom three plots left-to-right; scatter highlights mismatch",
+ "tags": [
+  "proxy-objective",
+  "diversity",
+  "archive",
+  "reinforcement-learning",
+  "physical-design"
+ ],
+ "style": [
+  "plot",
+  "icon-heavy",
+  "colorful"
+ ],
+ "description": "The top half is a two-part pipeline diagram in dotted teal boxes. Part 1, \"Physical Design Flow to Macro Placement\", shows Netlist/Floorplan Setup feeding a highlighted Macro Placement box with HPWL, MS-HPWL and RUDY icons. Part 2, \"Downstream Physical Design after Macro Placement\", shows Standard Cell Placement, Clock Tree Synthesis, Routing and Final PPA Evaluation, linked by arrows and illustrated with icons such as a tree, a routing layout and a gauge. A purple callout on the right says the measurements at the placement stage are only proxies, and an hourglass icon sits beside it. The bottom half has three plots. The first two are twin-axis training curves for DiversePlace and EfficientPlace, plotting HPWL (blue solid line) and Top-5 RUDY (orange dashed line) against training episodes. DiversePlace's RUDY falls steadily, while EfficientPlace's RUDY stays high. The third is a scatter of HPWL against RUDY congestion, with DiversePlace as orange circles and EfficientPlace as blue squares. A diamond and a circle mark the best-HPWL and best-RUDY points, joined by a dotted line to show they differ.",
+ "caption": "Proxy-driven macro placement benefits from diverse candidate archives. Top: Macro placement is optimized before downstream outcomes such as routing and final PPA can be accurately measured, making placement-stage objectives imperfect proxies. Bottom left/middle: On adaptec1, we evaluate five independent runs (seeds 0--4). Each seed's HPWL-ranked top-5 archive undergoes mixed-size placement and RUDY congestion evaluation. DiversePlace, trained without downstream feedback, yields archives whose best RUDY improves as HPWL decreases, while the similar-mode EfficientPlace archive lacks consistent proxy-to-congestion transfer. Bottom right: Best-HPWL and best-RUDY placements do not always coincide. We show that diverse HPWL-competitive archives improve the chance of selecting layouts strong under both HPWL and downstream congestion proxies.",
+ "caption_source": "latex",
+ "abstract": "Macro placement is a critical early-stage decision in physical design because macro locations strongly constrain subsequent implementation stages. The task is difficult because these high-impact discrete decisions must be made before downstream quality can be measured accurately, forcing training to rely on fast but imperfect training-time oracles such as half-perimeter wirelength (HPWL). Existing RL-based placers therefore mostly optimize single HPWL-driven solutions, and their long sequential horizons often require heavy search assistance or offline expert data while leaving little room to preserve multiple competitive layouts. We address this gap by making quality-controlled diversity an explicit objective for macro placement. Instead of relying on a single proxy-optimal solution, we maintain a compact archive of HPWL-competitive yet meaningfully different placements for downstream selection. We realize this idea in DiversePlace, a curriculum proximal policy optimization (PPO) framework that combines a quality-gated diversity reward with an expanding placement horizon, enabling from-scratch RL optimization while keeping exploration inside competitive HPWL regions. On the ISPD2005 benchmarks, DiversePlace consistently improves top-5, top-10, and top-20 archive diversity and achieves lower or virtually identical HPWL on all eight designs with better efficiency. Code: https://github.com/William030422/NIPS2026-DiversePlace.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=DSqfxgcLo1",
+  "arxiv": "https://arxiv.org/abs/2611.34472",
+  "pdf": "https://arxiv.org/pdf/2611.34472",
+  "proceedings": null,
+  "virtual": "https://neurips.cc/virtual/2026/poster/154452",
+  "code": null
+ },
+ "license": "http://creativecommons.org/licenses/by/4.0/",
+ "img": "cc-by",
+ "image_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/images/neurips26-1898.png",
+ "thumb_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/thumbs/neurips26-1898.webp",
+ "figure_page": 1,
+ "qc_flags": [
+  "low-role-confidence"
+ ],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.45
+}

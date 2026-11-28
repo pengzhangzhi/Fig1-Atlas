@@ -1,0 +1,52 @@
+{
+ "id": "neurips26-2845",
+ "title": "Likelihood-free inference of phylogenetic tree posterior distributions",
+ "authors": [
+  "Luc Blassel",
+  "Noémie Sauvage",
+  "Pierre Barrat-Charlaix",
+  "Bastien Boussau",
+  "Nicolas Lartillot",
+  "Laurent Jacob"
+ ],
+ "venue": "NeurIPS 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "Applications->Genetics, Cell Biology, etc",
+ "role": "pipeline",
+ "role2": "overview-framework",
+ "claim": "A model is built from an encoder and a factorized merge-based probability head, reused for both training evaluation and sampling.",
+ "layout": "3 panels: wide top encoder, bottom-left sampling, bottom-right evaluation; arrows left-to-right",
+ "tags": [
+  "pipeline",
+  "transformer-encoder",
+  "likelihood-free",
+  "autoregressive-factorization",
+  "bayesian-inference"
+ ],
+ "style": [
+  "colorful",
+  "icon-heavy",
+  "minimal"
+ ],
+ "description": "A three-panel architecture diagram on grey rounded backgrounds. The top panel (a) shows the evoPF encoder. A stacked pink MSA heatmap and a blue triangular pair-embedding stack enter on the left. They pass through a bordered '12 blocks' box that holds pink attention modules (column-wise with pair bias, row-wise, pair attention), green transition modules and a purple outer-product-mean module. Blue arrows with residual skip loops and circled plus signs link the modules, and updated MSA and pair stacks leave on the right. A dotted line labeled 'Average across sites' carries the result to the center node embedding. The bottom row has panel c on the left and panel b on the right, each with an 's-1 blocks' box. Panel b evaluates the probability of a known phylogeny with bilinear, softmin and Gamma/Beta modules combined by multiplication. Panel c samples merges and branch lengths. Small animal silhouettes label the taxa, and tree sketches show the merges.",
+ "caption": "Architecture of Phyloformer\\,2. \\bi{Panel a}: evoPF, an EvoFormer-inspired module updating $N\\times L$ embeddings for a set of aligned sequences (MSA) $x$ and $N(N-1)/2$ embeddings for pairs of sequences. Each of its blocks applies self-attention within both the MSA and representation, and ensures information sharing between them. After 12 blocks, we extract one embedding for each sequence by averaging the MSA embeddings across sites. \\bi{Panel b}: BayesNJ (Algorithm [ref]) computes the posterior probability of a phylogeny given an MSA represented by the sequence and pair embeddings provided by evoPF. The probability is a product over a recursive operation where two taxa are merged into their parent, and the taxon representation is updated accordingly. \\bi{Panel c}: at inference time, we apply the same succession of operations as for evaluating the probability, but either sampling or taking the modes of the distributions (Algorithm [ref]).",
+ "caption_source": "latex",
+ "abstract": "Phylogenetic inference, the task of reconstructing how related sequences evolved from common ancestors, is a central objective in evolutionary genomics. The current state-of-the-art methods exploit probabilistic models of sequence evolution along phylogenetic trees, by searching for the tree maximizing the likelihood of observed sequences, or by estimating the posterior of the tree given the sequences in a Bayesian framework. Both approaches typically require to compute likelihoods, which is only feasible under simplifying assumptions such as independence of the evolution at the different positions of the sequence, and even then remains a costly operation. Here we present the first likelihood-free inference method for posterior distributions over phylogenies. It exploits a novel expressive encoding for pairs of sequences, and a parameterized probability distribution factorized over a succession of subtree merges. The resulting network provides well-calibrated estimates of the posterior distribution leading to more accurate tree topologies than existing methods, even under models amenable to likelihood computation. We further show that its edge against likelihood-based methods dramatically increases under models of sequence evolution with intractable likelihoods.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=K2eL2jNv9K",
+  "arxiv": "https://arxiv.org/abs/2510.12976",
+  "pdf": "https://arxiv.org/pdf/2510.12976",
+  "proceedings": null,
+  "virtual": "https://neurips.cc/virtual/2026/poster/153620",
+  "code": "https://gitlab.in2p3.fr/deelogeny/wp1/phyloformer-2"
+ },
+ "license": "http://creativecommons.org/licenses/by/4.0/",
+ "img": "cc-by",
+ "image_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/images/neurips26-2845.png",
+ "thumb_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/thumbs/neurips26-2845.webp",
+ "figure_page": 4,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.9
+}

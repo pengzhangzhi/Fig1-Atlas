@@ -1,0 +1,51 @@
+{
+ "id": "neurips26-4443",
+ "title": "OpticalRAG: Pixel-Space Compression for Token-Efficient Retrieval-Augmented Generation",
+ "authors": [
+  "Senhao Liu",
+  "Yuheng Zhang",
+  "Chunyu Wei",
+  "Yueguo Chen",
+  "Xinran Zhang"
+ ],
+ "venue": "NeurIPS 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "General Machine Learning->Representation Learning",
+ "role": "prior-vs-ours",
+ "role2": "pipeline",
+ "claim": "Prior compression methods lose information by pruning text or collapsing to one vector; ours compresses in pixel space, preserving detail with few tokens.",
+ "layout": "3 stacked panels (a),(b),(c) plus mini scatter inset; left-to-right flow in each",
+ "tags": [
+  "compression",
+  "retrieval-augmented-generation",
+  "modality-shift",
+  "token-efficiency",
+  "cross-attention"
+ ],
+ "style": [
+  "icon-heavy",
+  "colorful",
+  "minimal"
+ ],
+ "description": "The figure has three horizontally flowing rows, each ending in an LLM box. Panel (a), top left, shows a long document (~12K tokens) turned into a 1D token sequence. Scissors and crossed-out tokens indicate pruning or summarizing, and the text tokens go to the LLM. A red warning reads 'Permanent information loss'. Panel (b), top right and separated by a dotted line, shows the document squeezed through a funnel-like projector into a dense vector of stacked colored blocks. The injected tokens go to the LLM, with a red warning, 'Fine-grained details collapse'. Panel (c), at the bottom in a large rounded, tinted box, shows rendered page images passing through a frozen ViT into a grid of compact pixel tokens. A cross-attention block takes a user query bubble as input and outputs a few distilled tokens to the LLM. At the bottom right, a small scatter plot of task fidelity against fewer tokens places 'our' star highest, with (a) and (b) lower.",
+ "caption": "Illustration of OpticalRAG. (a) Token-space methods prune or summarize the 1D text sequence, causing permanent information loss at high compression ratios. (b) Dense-vector methods squeeze each document into a single embedding, collapsing fine-grained details. (c) Our OpticalRAG renders documents into page images and encodes them into compact visual tokens via a frozen ViT. At query time, a cross-attention module distills retrieved visual tokens into a small set of injected tokens conditioned on the user query.",
+ "caption_source": "latex",
+ "abstract": "Retrieval-augmented generation (RAG) is bottlenecked by the token budget of large language models: feeding long documents into the context window is expensive, while aggressive textual compression discards fine-grained information that is irreversibly lost in a one-dimensional token sequence. We argue that this bottleneck is not fundamental to information density but to the choice of compression \\emph{modality}. Modern visual encoders can pack the contents of a rendered text page into roughly a hundred visual tokens with little semantic loss, opening a new compression-fidelity tradeoff that purely textual methods cannot reach. We present \\textbf{OpticalRAG}, a framework that renders documents as page images, encodes them with a frozen vision encoder, and distills the retrieved visual tokens into as few as $16$ injected tokens before passing them to the LLM. Two ingredients make this work without expensive cross-modal training: (i) \\emph{Encoder-Bridged Retrieval}, which projects text-query states into the visual feature space of the frozen encoder, through a projection shared with the compressor, to retrieve visual tokens from a text query, with no contrastive training; and (ii) \\emph{Query-Driven Distillation}, a lightweight cross-attention compressor that condenses the retrieved visual tokens into a small set of query-conditioned prefix tokens. On LongBench-v2, BAMBOO, and LooGLE-v2, OpticalRAG achieves the best compression-aware accuracy (CAP) on all three benchmarks while injecting only $16$ tokens, and improves the closed-book Qwen2.5-7B-Instruct backbone by $5.17$ points on LongBench-v2. Code is available at https://github.com/brighterr/OpticalRAG.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=UloVevL5nW",
+  "arxiv": "https://arxiv.org/abs/2611.13675",
+  "pdf": "https://arxiv.org/pdf/2611.13675",
+  "proceedings": null,
+  "virtual": "https://neurips.cc/virtual/2026/poster/152209",
+  "code": null
+ },
+ "license": "http://creativecommons.org/licenses/by/4.0/",
+ "img": "cc-by",
+ "image_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/images/neurips26-4443.png",
+ "thumb_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/thumbs/neurips26-4443.webp",
+ "figure_page": 1,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.82
+}

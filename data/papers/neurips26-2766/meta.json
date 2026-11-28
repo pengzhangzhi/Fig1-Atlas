@@ -1,0 +1,56 @@
+{
+ "id": "neurips26-2766",
+ "title": "FLASH: Efficient Visuomotor Policy via Sparse Sampling",
+ "authors": [
+  "Jiaqi Bai",
+  "Jindou Jia",
+  "Yuxuan Hu",
+  "Gen Li",
+  "Xiangyu Chen",
+  "Tuo An",
+  "Kuangji Zuo",
+  "Jianfei Yang"
+ ],
+ "venue": "NeurIPS 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "Applications->Robotics",
+ "role": "prior-vs-ours",
+ "role2": "pipeline",
+ "claim": "Prior generative policies denoise noise into discrete actions over many steps; ours transfers history coefficients to a smooth continuous trajectory in one step.",
+ "layout": "2 panels split by dashed line; left-to-right flows, top-bottom contrast in panel (b)",
+ "tags": [
+  "one-step",
+  "polynomial-trajectory",
+  "flow-matching",
+  "efficiency",
+  "continuous-representation"
+ ],
+ "style": [
+  "colorful",
+  "icon-heavy",
+  "minimal"
+ ],
+ "description": "The figure has two panels separated by a vertical dashed line. Panel (a), on the left, shows sparse sampling. A thick expert sine-like trajectory is sampled into sparse dots by grey downward arrows and fitted to polynomial coefficients C*_c. A reconstruction part then turns predicted coefficients Ĉ into dense curves with position and velocity signals (blue and orange arrows, d/dt) that feed a robot arm icon. A dashed legend box defines the polynomial curve. Panel (b), on the right, contrasts two rows. The top row runs from a scatter of Gaussian noise through a Diffusion box, labelled multi-step denoising, to a jagged discrete action sequence. The bottom row runs from Historical C* through a FLASH Policy box, labelled one-step transfer, to Future Ĉ and a smooth curve. Blue tones dominate, with orange accents and grey boxes.",
+ "caption": "Overview of FLASH Policy. (a) Sparse sampling strategy: expert trajectories are fitted to polynomial coefficients $C^{\\star}_{c}$ at a significant long temporal stride. During deployment, we perform dense temporal upsampling on the predicted coefficients $\\hat{C}$. Both position and velocity signals are fed to the controller. (b) Traditional paradigms vs.\\ FLASH: conventional generative policies (top) generate discrete, non-smooth action points through multi-step denoising from uninformative noise. FLASH (bottom) operates in the coefficient space, transferring the historical coefficients to future coefficients with only one step, yielding a smooth continuous trajectory.",
+ "caption_source": "latex",
+ "abstract": "Generative models such as diffusion and flow matching have become dominant paradigms for visuomotor policy learning, yet their reliance on iterative denoising incurs high inference latency incompatible with real-time robotic control. We present Fast Legendre-polynomial Action policy via Sparse History-anchored flow (FLASH Policy), which replaces discrete action-chunk generation with continuous Legendre polynomial trajectory representation. Specifically, by fitting expert demonstrations under sparse temporal sampling, FLASH enables a single inference to cover a significantly extended action horizon. To further accelerate generation, FLASH initiates the flow matching process from history polynomial coefficients rather than uninformative Gaussian noise, shortening the transport distance and enabling accurate single-step inference. Moreover, analytic polynomial differentiation directly provides desired velocity feed-forward signals to the torque controller without numerical approximation. Extensive experiments on five simulated and two real-world manipulation tasks demonstrate that FLASH achieves state-of-the-art success rates ($\\ge 92\\%$ across all tasks), a per-episode inference time of $31.40\\,ms$ (up to $175\\times$ faster than diffusion policies and $18\\times$ faster than prior flow matching policies), up to $4\\times$ faster training convergence than ACT, and $5\\times$ to $7\\times$ reduction in controller tracking error compared to discrete-action baselines.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=JViY8zwERh",
+  "arxiv": "https://arxiv.org/abs/2605.15492",
+  "pdf": "https://arxiv.org/pdf/2605.15492",
+  "proceedings": null,
+  "virtual": "https://neurips.cc/virtual/2026/poster/153691",
+  "code": "https://b1ue-jay.github.io/FLASH/"
+ },
+ "license": "http://arxiv.org/licenses/nonexclusive-distrib/1.0/",
+ "img": "none",
+ "image_url": null,
+ "thumb_url": null,
+ "figure_page": 1,
+ "qc_flags": [
+  "bad-crop"
+ ],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.55
+}

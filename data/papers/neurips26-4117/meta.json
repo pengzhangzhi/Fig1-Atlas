@@ -1,0 +1,51 @@
+{
+ "id": "neurips26-4117",
+ "title": "Accelerating Diffusion Language Models via Structured Suffix Modeling",
+ "authors": [
+  "Zifeng Cheng",
+  "Keda Li",
+  "Zhiwei Jiang",
+  "Cong Wang",
+  "Fei Shen",
+  "Qing Gu"
+ ],
+ "venue": "NeurIPS 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "Applications->Language, Speech and Dialog",
+ "role": "analysis-finding",
+ "role2": null,
+ "claim": "Attention to suffix tokens is highly non-uniform: strongest nearby, flat through the middle, and rising again at the far tail.",
+ "layout": "2 panels side by side, line plots, shaded vertical bands marking suffix regions",
+ "tags": [
+  "attention-analysis",
+  "suffix-tokens",
+  "diffusion-language-models",
+  "efficiency",
+  "structural-heterogeneity"
+ ],
+ "style": [
+  "plot",
+  "minimal"
+ ],
+ "description": "Two side-by-side line plots share the same axes. The x-axis is suffix distance, from 0 to about 224. The y-axis is mean attention score, from roughly 0.0003 to 0.0035. The left panel plots MATH in green and GSM8K in blue. The right panel plots MBPP in blue and HumanEval in green. Each curve has the same U-like shape. It starts high near distance 0 and drops steeply over the first 30–50 tokens. It then stays low and flat through the middle, with small noisy spikes. Near the far end it rises again, with a sharp spike at the last position. Light grey vertical bands split the suffix into four regions of 32 tokens each. Legends sit in the top right corner. The eye goes first to the steep decay at the left and the spike at the right.",
+ "caption": "Average attention scores assigned to suffix tokens across all attention heads on four datasets using LLaDA-Instruct, with the generation length set to 256 and the block size set to 32.",
+ "caption_source": "latex",
+ "abstract": "Diffusion Language Models (DLMs) exhibit strong parallel decoding capabilities by denoising multiple tokens in a single generation step. However, this parallelism comes with substantial computational overhead, as each step requires interactions with all suffix tokens. Existing methods typically reduce this cost by retaining only a local suffix window as a substitute for the full suffix. Despite their effectiveness, these methods overlook the structural heterogeneity across suffix regions and re-initialize suffix tokens with identical representations at each timestep. To this end, we propose a structured suffix modeling method for efficient DLM inference. Specifically, we divide the suffix into three regions, i.e., the local, middle, and tail regions, and retain different numbers of suffix tokens in each region according to their structural roles. Moreover, we incorporate the decoding results from the previous step into the suffix token representations at the current step, allowing them to carry evolving denoising information across generation steps. Notably, our method is training-free and orthogonal to several existing acceleration techniques, such as parallel decoding strategies and KV cache. Empirical results across multiple benchmarks on three DLMs demonstrate that our method can further accelerate DLM inference and improve performance in most cases. In particular, in long-sequence inference, our method achieves up to a \\(72.81\\times\\) speedup when combined with other acceleration techniques. Our code is available at https://github.com/zifengcheng/SSM.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=SkQxO613nL",
+  "arxiv": "https://arxiv.org/abs/2608.23167",
+  "pdf": "https://arxiv.org/pdf/2608.23167",
+  "proceedings": null,
+  "virtual": "https://neurips.cc/virtual/2026/poster/152485",
+  "code": null
+ },
+ "license": "http://arxiv.org/licenses/nonexclusive-distrib/1.0/",
+ "img": "none",
+ "image_url": null,
+ "thumb_url": null,
+ "figure_page": 2,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.9
+}

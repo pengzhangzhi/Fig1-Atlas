@@ -1,0 +1,52 @@
+{
+ "id": "icml26-0379",
+ "title": "Spike-HTR: Spiking Neural Transformer for Handwritten Text Recognition",
+ "authors": [
+  "Xiubo Liang",
+  "Jinxing Han",
+  "Yuke Li",
+  "Haoqi Zhu",
+  "Yu Zhao",
+  "Hongzhi Wang"
+ ],
+ "venue": "ICML 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "Applications->Neuroscience, Cognitive Science",
+ "role": "pipeline",
+ "role2": "overview-framework",
+ "claim": "A hybrid spiking recognizer processes a static image through a gated spiking encoder, sequence reduction and a mixer, all built from modular blocks.",
+ "layout": "Top main pipeline left-to-right; zoomed dashed insets below; legend bottom-left",
+ "tags": [
+  "spiking-neural-network",
+  "modular-architecture",
+  "efficiency",
+  "sequence-modeling",
+  "handwriting-recognition"
+ ],
+ "style": [
+  "icon-heavy",
+  "colorful",
+  "text-heavy"
+ ],
+ "description": "A dense architecture diagram. The top row is the main pipeline: input X goes through a Conv2D/GroupNorm/SiLU stem and an InkCoder box, joining at a temporal-entry dot-product node to form X_t. X_t then enters a gray Multi-step Spiking 2D Encoder. This holds three stages of green trapezoid Downsampling blocks and blue ConvMix2dBlocks, with feature sizes H×W×C, H/2×W/2×2C and H/4×W/4×4C. After the encoder come Height Pool, CPE, a large 1D Mixer and a Head, each a colored block. Dashed lines lead from the ConvMix2dBlock, 1D Mixer, Q-K Attention and Spiking LKBlock to zoomed-in insets below. The 1D Sequence Mixer inset shows stacked MS Conv, attention and spiking MLP blocks. A QK attention inset and a Spiking LKBlock inset show the detailed internals. A symbol legend sits at bottom-left. The pastel boxes are color-coded by module type.",
+ "caption": "Overview of Spike-HTR architecture. A lightweight stem first extracts a shared feature map from the input line image. InkCoder derives a short sequence of spatial gates from the static image: early steps preserve broad stroke regions, and later steps emphasize sharper stroke details. A spiking 2D encoder extracts features and pools them over height to form a 1D sequence along the image width. Before the deep 1D mixer, a lightweight predictor keeps likely character or uncertain positions and compresses long blank regions. The shortened sequence is then mixed, fused across timesteps, and decoded with a CTC classifier.",
+ "caption_source": "latex",
+ "abstract": "Handwritten Text Recognition (HTR) is computationally imbalanced in two ways: most image pixels are background, and many width-axis sequence positions are blank-dominated. This creates a mismatch for Spiking Neural Networks (SNNs): handwriting is observed as a static image, whereas spiking computation unfolds over timesteps. We propose Spike-HTR, a hybrid spiking recognizer that controls both the number of spiking steps and the number of width positions processed by the deep sequence mixer. To make a static image suitable for short-horizon spiking inference, InkCoder converts it into a coarse-to-fine input stream, where early steps cover broad stroke regions and later steps emphasize sharper stroke details. To reduce sequence computation, a CTC-guided length reducer keeps likely character or uncertain positions and compresses long blank-dominated stretches before deep mixing. With $T{=}2$, Spike-HTR trains only on target data, decodes without language models or lexicons, and reaches validation/test CERs of 3.5/5.4, 2.3/2.5, and 4.2/3.9 on IAM, LAM, and READ2016. Codes are available at https://github.com/QomolangmaH/SpikeHTR.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=3UcWAgr0jx",
+  "arxiv": "https://arxiv.org/abs/2608.01646",
+  "pdf": "https://raw.githubusercontent.com/mlresearch/v306/main/assets/liang26j/liang26j.pdf",
+  "proceedings": "https://proceedings.mlr.press/v306/liang26j.html",
+  "virtual": "https://icml.cc/virtual/2026/poster/66461",
+  "code": null
+ },
+ "license": "http://creativecommons.org/licenses/by/4.0/",
+ "img": "cc-by",
+ "image_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/images/icml26-0379.png",
+ "thumb_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/thumbs/icml26-0379.webp",
+ "figure_page": 1,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.8
+}

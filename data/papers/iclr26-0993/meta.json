@@ -1,0 +1,53 @@
+{
+ "id": "iclr26-0993",
+ "title": "Unbiased Gradient Estimation for Event Binning via Functional Backpropagation",
+ "authors": [
+  "Jinze Chen",
+  "Wei Zhai",
+  "Han Han",
+  "Tiankai Ma",
+  "Yang Cao",
+  "Bin Li",
+  "Zheng-Jun Zha"
+ ],
+ "venue": "ICLR 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "Theory->Learning Theory",
+ "role": "problem-setup",
+ "role2": "pipeline",
+ "claim": "Discontinuous binning breaks backpropagation, so the computed gradient deviates from the true finite-difference gradient and is biased.",
+ "layout": "Top row of 4 image panels above a forward/backward flow diagram, left-to-right",
+ "tags": [
+  "event-camera",
+  "binning",
+  "gradient-bias",
+  "backpropagation",
+  "discontinuity"
+ ],
+ "style": [
+  "photo/real data",
+  "colorful",
+  "math-heavy"
+ ],
+ "description": "The figure has two rows. The top row has four boxed panels labeled Events, Params, Warped Events and IWE. Events is a 3D spatio-temporal cloud of red and blue points. Params is a grid of gray flow arrows. Warped Events is a motion-compensated 3D point cloud. IWE is a 2D red and blue edge image of a person at a desk. The bottom row is a left-to-right flow diagram. Inputs E and θ feed into P(θ;E), shown with a bell-curve icon, then into the binning function h_d (IWE). A dashed vertical line separates Forward from Backward. After it come boxes v_{h_d} (with a sine-wave icon showing a Dirac-like spike), v_p and v_θ. An arrow leads to a circular contour plot where the orange G_fd arrow and the purple G_bp arrow diverge, labeled in red 'Biased!'. Pastel box colors group the stages.",
+ "caption": "\\red{Event binning and the gradient bias problem. Top: Spatio-temporal event clouds (Events) are geometrically warped using motion parameters (Params) and aggregated into an Image of Warped Events (IWE) using a binning function. Bottom Left (Forward): The warping function $P(\\theta;E)$ transforms input events $E$ and parameters $\\theta$ into warped coordinates. These are processed by a discontinuous binning function $h_d$ to produce the IWE. Bottom Right (Backward): The adjoint (cotangent vector) of the IWE, denoted as $v_{h_d}$, is propagated back to update parameters. However, the discontinuity of $h_d$ results in non-computable Dirac delta functions when computing the gradient $v_p$ for the warped events. Result: The computed backpropagation gradient $G_{bp}$ deviates from the true finite difference gradient $G_{fd}$, shown in the contour plot as a \"Biased!\" estimation.}",
+ "caption_source": "latex",
+ "abstract": "Event-based vision encodes dynamic scenes as asynchronous spatio-temporal spikes called events. To leverage conventional image processing pipelines, events are typically binned into frames. However, binning functions are discontinuous, which truncates gradients at the frame level and forces most event-based algorithms to rely solely on frame-based features. Attempts to directly learn from raw events avoid this restriction but instead suffer from biased gradient estimation due to the discontinuities of the binning operation, ultimately limiting their learning efficiency. To address this challenge, we propose a novel framework for unbiased gradient estimation of arbitrary binning functions by synthesizing weak derivatives during backpropagation while keeping the forward output unchanged. The key idea is to exploit integration by parts: lifting the target functions to functionals yields an integral form of the derivative of the binning function during backpropagation, where the cotangent function naturally arises. By reconstructing this cotangent function from the sampled cotangent vector, we compute weak derivatives that provably match long-range finite differences of both smooth and non-smooth targets. Experimentally, our method improves simple optimization-based egomotion estimation with 3.2\\% lower RMS error and 1.57$\\times$ faster convergence. On complex downstream tasks, we achieve 9.4\\% lower EPE in self-supervised optical flow, and 5.1\\% lower RMS error in SLAM, demonstrating broad benefits for event-based visual perception. Source code can be found at https://github.com/chjz1024/EventFBP.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=BRj3HvQnSZ",
+  "arxiv": "https://arxiv.org/abs/2602.12590",
+  "pdf": "https://proceedings.iclr.cc/paper_files/paper/2026/file/bec8b667016a73bb195b611aa1f41026-Paper-Conference.pdf",
+  "proceedings": "https://proceedings.iclr.cc/paper_files/paper/2026/hash/bec8b667016a73bb195b611aa1f41026-Abstract-Conference.html",
+  "virtual": "https://iclr.cc/virtual/2026/poster/10010949",
+  "code": null
+ },
+ "license": "http://creativecommons.org/licenses/by/4.0/",
+ "img": "cc-by",
+ "image_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/images/iclr26-0993.png",
+ "thumb_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/thumbs/iclr26-0993.webp",
+ "figure_page": 1,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.6
+}

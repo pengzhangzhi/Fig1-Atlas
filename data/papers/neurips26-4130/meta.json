@@ -1,0 +1,49 @@
+{
+ "id": "neurips26-4130",
+ "title": "Reconsidering Positional Supervision in Masked Diffusion Language Model Training",
+ "authors": [
+  "Mengyu Ye",
+  "Keito Kudo",
+  "Ryosuke Takahashi",
+  "Jun Suzuki"
+ ],
+ "venue": "NeurIPS 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "Applications->Language, Speech and Dialog",
+ "role": "analysis-finding",
+ "role2": null,
+ "claim": "Displacing even a tiny fraction of generated tokens by one position sharply degrades parallel-decoder output quality, revealing positional sensitivity.",
+ "layout": "single bar chart, left-to-right increasing shift fraction, dashed 50% reference line",
+ "tags": [
+  "positional-sensitivity",
+  "masked-diffusion",
+  "parallel-decoding",
+  "robustness",
+  "intervention-study"
+ ],
+ "style": [
+  "plot",
+  "minimal"
+ ],
+ "description": "A single bar chart with four light-blue bars for shifted-token fractions of 1%, 2%, 4% and 6% on the x-axis. The y-axis is win rate (%) from 0 to 60. Each bar has a black error bar showing the 95% confidence interval. Bar heights fall monotonically from about 36% at 1% to about 26% at 6%. A grey dashed horizontal line at 50%, labeled 'No-intervention (50%)', marks the reference. Every bar sits well below it. Light dotted gridlines run across the plot. The design is minimal, with a serif font and no legend. The eye goes first to the gap between the bars and the dashed line, then to the downward trend across bars.",
+ "caption": "Win rate (%) on Arena-Hard of intervened LLaDA-8B-Instruct generations against their non-intervened counterparts. The dashed line at 50% marks the no-intervention reference. Error bars indicate 95% confidence intervals.",
+ "caption_source": "latex",
+ "abstract": "Masked diffusion language models (MDLMs) generate text by unmasking tokens in parallel and have recently emerged as alternatives to autoregressive language models. They can be viewed as parallel decoders trained with a position-wise cross-entropy (CE) loss, the same setup as non-autoregressive translation (NAT). In NAT, CE-trained parallel decoders have been argued to be sensitive to small positional shifts, since CE penalizes them harshly. We ask whether CE-trained MDLMs are similarly sensitive to such shifts under iterative decoding. To probe this, we apply a controlled intervention that introduces them during decoding. On LLaDA-8B-Instruct with Arena-Hard, displacing as little as 1% of generated tokens by one position substantially reduces win rates against the unintervened model, showing that MDLMs are sensitive to such small shifts under iterative parallel decoding. Motivated by this, we adapt connectionist temporal classification (CTC), an alignment-flexible objective known to mitigate it there, to MDLM supervised fine-tuning. By relaxing the strict position-wise match that CE imposes, CTC gives the loss room to absorb small positional shifts; concretely, we modified CTC objective to use a special <slack> token that absorbs positional uncertainty between target tokens and output positions, and a updated collapse map that preserves target surface forms. Across four open-ended generation benchmarks, the resulting model consistently improves over both the original model and a matched cross-entropy-trained baseline, with statistically significant gains on all four. These results identify training-side alignment flexibility as a useful design dimension for MDLM SFT, complementary to the inference-time approaches explored in prior work.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=SoXwBAJ8w9",
+  "arxiv": "https://arxiv.org/abs/2601.22947",
+  "pdf": "https://arxiv.org/pdf/2601.22947",
+  "proceedings": null,
+  "virtual": "https://neurips.cc/virtual/2026/poster/152472",
+  "code": "https://muyo8692.com/projects/mdlm-slack/"
+ },
+ "license": "http://creativecommons.org/licenses/by/4.0/",
+ "img": "cc-by",
+ "image_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/images/neurips26-4130.png",
+ "thumb_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/thumbs/neurips26-4130.webp",
+ "figure_page": 3,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.85
+}

@@ -1,0 +1,50 @@
+{
+ "id": "neurips26-0871",
+ "title": "ReuScope: Auditing Data Reuse and Evaluation Sensitivity in Capsule Vision 2024",
+ "authors": [
+  "Eunseob Choi",
+  "Kyeonghun Kim",
+  "Hyuk-Jae Lee",
+  "Nam-Joon Kim"
+ ],
+ "venue": "NeurIPS 2026",
+ "tier": "poster",
+ "track": "Evaluations_and_Datasets_Track",
+ "topic": "Applications->Health",
+ "role": "pipeline",
+ "role2": "analysis-finding",
+ "claim": "Auditing separates observed data overlap from score effects by varying training data and evaluation population independently, so sensitivity is not read as inflation.",
+ "layout": "4 panels A–D, left-to-right; crossing solid/dashed arrows link models to views, bar chart at right",
+ "tags": [
+  "audit-protocol",
+  "data-leakage",
+  "ablation",
+  "evaluation-sensitivity",
+  "paired-comparison"
+ ],
+ "style": [
+  "minimal",
+  "plot",
+  "text-heavy"
+ ],
+ "description": "A four-panel horizontal figure with gray, black and white boxes and no color. Panel A, \"Data relationships\", shows Val (16,132) and Train (37,607) stacks of frames, split by a dashed line. Three icon rows below mark byte-identical files, a shared video and similar frames. Panel B, \"Training conditions\", sends Train to two DINOv2-L/14 models. The Full model uses 37,607 rows. The Removal model drops KVASIR and 5 flagged rows and uses 10,591 rows. A bracket marks 10 paired seeds. Panel C, \"Evaluation views\", has three boxes (Public, Non-KVASIR, Filtered). Solid lines come from the Full model and dashed lines from the Removal model, and they cross on the way to the boxes. Panel D is a horizontal bar chart of Removal minus Full: -21.32, +1.38 and +0.51, with confidence-interval whiskers. A bottom caption reads \"Observed reuse ≠ identified score inflation\". A long line carries validation rows from Val to the Filtered box.",
+ "caption": "Data relationships and training comparisons across evaluation views in ReuScope. The protocol audits file identity, shared videos and similarity candidates across data splits. Paired Full and Removal models are evaluated on three validation populations, which separates training changes from evaluation changes. These performance contrasts show sensitivity to the evaluation population; they do not establish score inflation from data reuse.",
+ "caption_source": "latex",
+ "abstract": "We develop ReuScope, a protocol for auditing data reuse and evaluation sensitivity, using Capsule Vision 2024 as a case study. It combines measurements of data relationships with two comparisons: changing the evaluation population while holding predictions fixed, and changing training data while holding evaluation fixed. Byte-identical files cross the public training-validation boundary, and all 41 Kvasir-Capsule recordings that contribute frames occur in both partitions. Shared source recordings establish cross-split overlap; missing cross-recording patient identifiers prevent counting unique shared patients. Across ten paired seeds, removing all training rows attributed to Kvasir-Capsule, plus five rows from other sources flagged as near-matches to it, lowers public-validation balanced accuracy from 82.5% to 61.2%. Evaluating the same fitted models on the validation rows of the other sources reverses the comparison: removal improves balanced accuracy by 1.38 percentage points. The public-validation drop measures sensitivity to source removal, not an amount of leakage-induced inflation. Matched controls show that sample size and class counts alone do not explain the observed score differences. An exploratory experiment removes the training neighbors of validation frames that have close training matches, or equally many distant training rows, and yields a difference-in-differences estimate, relative to matched unflagged frames, of -0.355 percentage points in true-class probability; the paired-t interval for accuracy spans zero. The resulting procedure distinguishes observed reuse from conditional performance sensitivity and specifies the population, class support and uncertainty unit for each conclusion.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=69GCzBgr1S",
+  "arxiv": "https://arxiv.org/abs/2610.41835",
+  "pdf": "https://arxiv.org/pdf/2610.41835",
+  "proceedings": null,
+  "virtual": "https://neurips.cc/virtual/2026/poster/139763",
+  "code": null
+ },
+ "license": "http://creativecommons.org/licenses/by/4.0/",
+ "img": "cc-by",
+ "image_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/images/neurips26-0871.png",
+ "thumb_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/thumbs/neurips26-0871.webp",
+ "figure_page": 2,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.6
+}

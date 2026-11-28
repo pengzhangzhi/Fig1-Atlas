@@ -1,0 +1,49 @@
+{
+ "id": "neurips26-8943",
+ "title": "DisSparse: Pipelined Top-$p$ Sparse Attention for Long-Context LLM Serving",
+ "authors": [
+  "Nurlan Nazaraliyev",
+  "Elaheh Sadredini",
+  "Nael Abu-Ghazaleh"
+ ],
+ "venue": "NeurIPS 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "Deep Learning->Attention Mechanisms",
+ "role": "analysis-finding",
+ "role2": "problem-setup",
+ "claim": "Resource needs vary widely across layers and time steps, so any fixed per-step budget is mismatched to actual demand.",
+ "layout": "single wide heatmap, layers on y-axis, decode steps on x-axis, colorbar right",
+ "tags": [
+  "heatmap",
+  "dynamic-sparsity",
+  "adaptive-budget",
+  "kv-cache",
+  "empirical-observation"
+ ],
+ "style": [
+  "plot",
+  "colorful",
+  "photo/real data"
+ ],
+ "description": "A single wide heatmap of real measurements. The x-axis is decode step, running 0 to about 310. The y-axis is layer index, running 0 to about 31. Colour shows the average number of tokens selected, on a yellow-to-dark-red scale, with a colorbar on the right running from about 250 to over 1500. Layer 0 is a saturated dark red band across the bottom, so it needs far more tokens than other layers. Most other layers are pale yellow to orange. Horizontal stripes around layers 8-12, 16-22 and 28 are darker. Vertical variation over decode steps is also visible. For example, steps 170-250 are darker in the middle layers, and the colours fade after step 250. The eye goes first to the red bottom band, then to the blotchy orange regions.",
+ "caption": "Llama-3.1-8B-Instruct [ref] on NarrativeQA from LongBench [ref]: critical token counts per layer per decode step vary substantially, showing why fixed-$k$ budgets are mismatched. Results on other models are in Appendix [ref].",
+ "caption_source": "latex",
+ "abstract": "Long-context LLM inference is bottlenecked by the memory demands of the key-value (KV) cache, whose size scales linearly with context length. Dynamic sparse attention reduces this bottleneck by fetching and attending only to a critical subset of tokens. The dominant primitive in dynamic sparse attention research and deployment is fixed-budget top-$k$ selection, which is favored because its deterministic block count aligns with the static memory allocation that systems like vLLM rely on. Top-$k$ uses a fixed budget regardless of how attention mass is distributed across heads, layers, and decode steps, leading to either wasted bandwidth on heads with peaky attention or dropped context on heads with diffuse attention. Top-$p$ (nucleus) selection adapts naturally to this variation but has seen limited adoption in production serving systems due to two system-level challenges: variable block counts that break deterministic block allocation and computationally expensive selection kernels that exceed the cost of attention itself. We present DisSparse, a serving system that integrates top-$p$ sparse attention into vLLM end-to-end. DisSparse decouples block selection from the scheduler's critical path, hides selection latency behind layer computation via a two-stream pipeline, and introduces a single-pass histogram-based top-$p$ kernel. We further observe intra-block sparsity, the inflation of selection budgets caused by mixing high- and low-importance tokens within fixed-size KV cache blocks, and address it with a token relocation kernel guided by accumulated prefill attention scores. Across long- and medium-context benchmarks on multiple models, DisSparse achieves 1.17x to 1.80x speedup in sparsity analysis (block selection) over state-of-the-art top-$p$ methods with negligible accuracy loss and supports up to 8x larger maximum batch sizes than dense vLLM under the same memory budget.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=zcxTKrFsxv",
+  "arxiv": "https://arxiv.org/abs/2611.28522",
+  "pdf": "https://arxiv.org/pdf/2611.28522",
+  "proceedings": null,
+  "virtual": "https://neurips.cc/virtual/2026/poster/148193",
+  "code": null
+ },
+ "license": "http://creativecommons.org/licenses/by/4.0/",
+ "img": "cc-by",
+ "image_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/images/neurips26-8943.png",
+ "thumb_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/thumbs/neurips26-8943.webp",
+ "figure_page": 1,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.85
+}

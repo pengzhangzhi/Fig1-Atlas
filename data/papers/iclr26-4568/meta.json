@@ -1,0 +1,52 @@
+{
+ "id": "iclr26-4568",
+ "title": "Pretrain Value, Not Reward: Decoupled Value Policy Optimization",
+ "authors": [
+  "Chenghua Huang",
+  "Lu Wang",
+  "Fangkai Yang",
+  "Pu Zhao",
+  "Qingwei Lin",
+  "Dongmei Zhang",
+  "Saravan Rajmohan"
+ ],
+ "venue": "ICLR 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "Reinforcement Learning->Deep RL",
+ "role": "pipeline",
+ "role2": "prior-vs-ours",
+ "claim": "The standard pipeline trains a reward model, then learns a critic online; ours pretrains a value model offline and freezes it for policy learning.",
+ "layout": "4 quadrant panels (2x2), left-to-right flow, training stages beside downstream use, color-coded frames",
+ "tags": [
+  "rlhf",
+  "value-model",
+  "decoupled-training",
+  "offline-pretraining",
+  "credit-assignment"
+ ],
+ "style": [
+  "colorful",
+  "icon-heavy"
+ ],
+ "description": "A 2x2 grid of dashed rounded panels with a legend at the top: yellow boxes are trained models, blue boxes are frozen models. The top-left panel (blue border), RM Training, shows input x fanning out to Policy Models 1..n, producing responses y1..yn and rewards r1..rn. These feed a BT loss and then a Reward Model. The top-right panel, PPO, shows x, Policy Model, y, then the Reference Model, Reward Model and Value Learning boxes, a trained Value Model, and Q. A feedback loop returns to the policy. The bottom-left panel (green border), GVM Training, is the same fan-out, but it adds Q1..Qn and uses TD Learning to train a Value Model. The bottom-right panel, DVPO, is a simpler chain of x, Policy Model, y, Reference Model, Value Model and Q. A long arrow carries the pretrained value model across from GVM Training. Blue frames mark the existing RLHF pipeline and green frames mark the proposed one.",
+ "caption": "Overview of DVPO. PPO requires a pre-trained reward model to provide environmental feedback. It combines this reward signal with a learned value function to estimate the action--value \\(Q(s,a)\\). In contrast, DVPO trains a Global Value Model (GVM) on the same offline data to produce fine-grained value estimates. This design removes the need for additional ground-truth rewards during policy training and decouples policy learning from value learning.",
+ "caption_source": "latex",
+ "abstract": "In this paper, we explore how directly pretraining a value model simplifies and stabilizes reinforcement learning from human feedback (RLHF). In reinforcement learning, value estimation is the key to policy optimization, distinct from reward supervision. The value function predicts the \\emph{return-to-go} of a partial answer, that is, how promising the partial answer is if it were continued to completion. In RLHF, however, the standard pipeline first pretrains a reward model and then learns a value function online, even though no new reward signals are available once preference data is collected. This makes critic learning redundant, as the process of training a reward model and then deriving a value model is informationally equivalent to directly pretraining a value model. Importantly, this requires no additional supervision, and our value model is trained on exactly the same data used for reward modeling. Building on this insight, we introduce \\emph{Decoupled Value Policy Optimization} (DVPO), a framework that pretrains a \\emph{Global Value Model} (GVM) offline and freezes it as a universal critic for policy learning. The GVM provides stable, fine-grained credit assignment without critic drift or trajectory sampling. Experiments across MT-Bench, Alpaca-Eval, and Arena-Hard demonstrate that DVPO matches or surpasses state-of-the-art RLHF methods. These results highlight RLHF can be reframed as policy-only optimization guided by a single pretrained value model.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=qirGds1BmK",
+  "arxiv": "https://arxiv.org/abs/2502.16944",
+  "pdf": "https://proceedings.iclr.cc/paper_files/paper/2026/file/bb2405685bc44cbf1e7bf5a5de5cd4f2-Paper-Conference.pdf",
+  "proceedings": "https://proceedings.iclr.cc/paper_files/paper/2026/hash/bb2405685bc44cbf1e7bf5a5de5cd4f2-Abstract-Conference.html",
+  "virtual": "https://iclr.cc/virtual/2026/poster/10007217",
+  "code": null
+ },
+ "license": "http://arxiv.org/licenses/nonexclusive-distrib/1.0/",
+ "img": "none",
+ "image_url": null,
+ "thumb_url": null,
+ "figure_page": 2,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.8
+}

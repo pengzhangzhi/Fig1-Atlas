@@ -1,0 +1,47 @@
+{
+ "id": "neurips26-2815",
+ "title": "Cross-Fitting for Neural Posterior Estimation",
+ "authors": [
+  "Jeffrey Regier"
+ ],
+ "venue": "NeurIPS 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "Probabilistic Methods->Bayesian Models and Methods",
+ "role": "analysis-finding",
+ "role2": "problem-setup",
+ "claim": "Standard training trajectories reveal that held-out accuracy and calibration diverge, so early stopping cannot fix the mean and variance together.",
+ "layout": "2 panels side-by-side, training curves with shared vertical early-stopping line",
+ "tags": [
+  "training-dynamics",
+  "overfitting",
+  "calibration",
+  "early-stopping",
+  "posterior-estimation"
+ ],
+ "style": [
+  "plot",
+  "minimal",
+  "colorful"
+ ],
+ "description": "Two line plots sit side by side under a shared top legend. The legend lists a blue test trajectory, a black early-stopping line, an orange MSE endpoint line, and a dashed grey perfect-calibration line. Panel (a), 'Conditional-mean accuracy', plots test MSE against training epoch (0–500). The blue noisy curve falls steeply, bottoms out near epoch 350 at about 0.050, then rises slightly. A flat orange line at about 0.040 shows a better achievable MSE endpoint. Panel (b), 'Posterior calibration', plots test χ²_d against epoch. The blue curve climbs from 1 to about 1.45 and keeps rising, well above the dashed perfect-calibration line at 1. A vertical black line at about epoch 280 marks early stopping in both panels. The eye goes first to the blue curves and the black vertical line.",
+ "caption": "Raw per-epoch training trajectories for standard NPE (three width-256 hidden layers) on the Gaussian--Gaussian problem ($d=d_\\rvx=200$, $N=10{,}000$), shown for one seed. Left: held-out mean squared error (MSE) to the analytic posterior mean. Right: $\\chi^2_d(q;P)$ over a test set, with the expectation over $\\rvz\\mid \\rvx$ evaluated analytically and averaged over 10,000 fixed test inputs.",
+ "caption_source": "latex",
+ "abstract": "Neural Posterior Estimation (NPE) fits an amortized conditional density estimator to a simulated training set of complete-data realizations. NPE's training objective, log-likelihood, favors posterior approximations that assign arbitrarily high density to the training points, and typical families of amortized conditional density estimators (e.g., normalizing flows, Gaussian encoders) are flexible enough to oblige. The resulting policy of extreme overconfidence translates poorly to held-out data. Early stopping and other regularizers can prevent this degeneracy, but they are limited to selecting posterior approximations along an unfavorable optimization trajectory set by in-sample residuals, where the posterior mean is underfit while the posterior variance is overfit. To avoid this trade-off, we propose Cross-Fitting NPE (CF-NPE), which uses sample splitting to separate conditional-mean estimation from the estimation of the posterior's higher moments. Using $K$-fold cross-fitting, CF-NPE fits $K$ posterior-mean regressors and then fits a conditional density estimator to the resulting out-of-fold residuals. In experiments with synthetic data and in a cosmological application, CF-NPE achieves higher held-out log-likelihood than standard NPE and typically improves calibration. CF-NPE is most useful in high-dimensional, simulation-limited settings.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=JmM3HShlbu",
+  "arxiv": "https://arxiv.org/abs/2610.26733",
+  "pdf": "https://arxiv.org/pdf/2610.26733",
+  "proceedings": null,
+  "virtual": "https://neurips.cc/virtual/2026/poster/153646",
+  "code": "https://github.com/jeff-regier/cf-npe"
+ },
+ "license": "http://arxiv.org/licenses/nonexclusive-distrib/1.0/",
+ "img": "none",
+ "image_url": null,
+ "thumb_url": null,
+ "figure_page": 1,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.85
+}

@@ -1,0 +1,52 @@
+{
+ "id": "neurips26-5072",
+ "title": "ReorgGS: Equivalent Distribution Reorganization for 3D Gaussian Splatting",
+ "authors": [
+  "Luchao Wang",
+  "Kaimin Liao",
+  "Hua Wang",
+  "Qian Ren",
+  "Zhi Chen",
+  "Yaohua Tang"
+ ],
+ "venue": "NeurIPS 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "Computer Vision->3D Rendering & Reconstruction",
+ "role": "prior-vs-ours",
+ "role2": "pipeline",
+ "claim": "Directly continuing optimization from a messy overlapped model leaves details blurred; resampling first lets the same optimization recover sharp detail.",
+ "layout": "2x4 grid, left-to-right, top baseline row versus bottom ours row, orange arrows",
+ "tags": [
+  "resampling",
+  "post-training",
+  "gradient-deadlock",
+  "reparameterization",
+  "3d-gaussian-splatting"
+ ],
+ "style": [
+  "colorful",
+  "photo/real data",
+  "minimal"
+ ],
+ "description": "A two-row, four-column figure that contrasts two paths from the same starting point. The top row, in red, is the plain post-training path. It runs from Baseline, to Baseline Gaussians (overlapping pink ellipses along a dashed curve), to Post-training Gaussians (still clumped, with an 'Overlapped (Deadlock)' dotted circle), to a Post-training Result that is blurry. The bottom row, in green, is the ReorgGS path. It starts at Ground Truth in a lavender box, then shows Reorg Gaussians as sparse teal points resampled around the curve. Next come Reorg Post-training Gaussians, tightly aligned on the curve, and finally a sharp Reorg Post-training Result in a green box. Orange labels and arrows mark 'Reorg: Probability Resampling' and 'Continued Optimization'. Red-boxed zoom-ins on an indoor scene show the blur versus the sharp detail. The eye goes first to the red and green rows.",
+ "caption": "Reorganization unlocks the full potential of post-training. Given a suboptimal baseline (e.g., LiteGS, top-left), directly applying post-training methods (top row) fails to resolve the underlying thick and messy geometric topology. This overlapped configuration causes gradient deadlock during optimization, leaving fine details persistently blurred in the final rendering (top-right). In contrast, our ReorgGS (bottom row) first resamples the baseline's chaotic probability field into discrete, unoccluded primitives. This fundamental topological reset smooths the optimization landscape, allowing the same post-training process to explicitly align the points to the local manifold and easily recover high-fidelity details (bottom-right) that closely match the Ground Truth (bottom-left).",
+ "caption_source": "latex",
+ "abstract": "A converged 3D Gaussian Splatting (3DGS) model may approximate the target scene while remaining poorly parameterized for further optimization. We identify this failure mode as \\emph{parameterization degeneration}: high-opacity floaters attenuate gradients to true surfaces through alpha compositing, and redundant overlapping clusters create strongly coupled parameter blocks with nearly collinear Jacobian responses. These effects explain why continued optimization can plateau even when the model still contains removable artifacts. We propose ReorgGS, an equivalent distribution reorganization method for converged 3DGS models. ReorgGS treats the existing Gaussian set as an empirical probability field, resamples centers from it, estimates local anisotropic covariances with kNN, initializes low opacity, and continues optimization with the original 3DGS renderer and loss. Unlike opacity reset, which only rescales opacity on the old overlap graph, ReorgGS rebuilds centers, covariances, and visibility structure, thereby changing the graph itself. Our analysis shows that distributional equivalence is not optimization equivalence. The reorganized model preserves scene support while improving gradient accessibility under alpha compositing and reducing opacity-weighted overlap, thereby weakening local parameter coupling during subsequent optimization. Under the same additional optimization budget, ReorgGS improves fitting quality at a fixed Gaussian count, suppresses persistent floaters, and reduces rendering overhead from redundant overlap.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=Z4xgDCwiYE",
+  "arxiv": "https://arxiv.org/abs/2605.08739",
+  "pdf": "https://arxiv.org/pdf/2605.08739",
+  "proceedings": null,
+  "virtual": "https://neurips.cc/virtual/2026/poster/151643",
+  "code": null
+ },
+ "license": "http://creativecommons.org/licenses/by-nc-sa/4.0/",
+ "img": "cc-by-nc-sa",
+ "image_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/images/neurips26-5072.png",
+ "thumb_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/thumbs/neurips26-5072.webp",
+ "figure_page": 1,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.6
+}

@@ -1,0 +1,52 @@
+{
+ "id": "icml26-5449",
+ "title": "Compress then Merge: From Multiple LoRAs into One Low-Rank Adapter",
+ "authors": [
+  "Zhengbao He",
+  "Ruiqi Ding",
+  "Zhehao Huang",
+  "Ruikai Yang",
+  "Tao Li",
+  "Xiaolin Huang"
+ ],
+ "venue": "ICML 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "Deep Learning->Large Language Models",
+ "role": "prior-vs-ours",
+ "role2": "pipeline",
+ "claim": "Prior pipelines merge in full space then truncate, losing directions; ours enforces the rank bottleneck first, so low-rank structure holds by construction.",
+ "layout": "2 stacked panels, left-to-right, numbered steps, formula box in lower panel",
+ "tags": [
+  "model-merging",
+  "low-rank-adaptation",
+  "compress-then-merge",
+  "rank-constraint",
+  "parameter-efficient"
+ ],
+ "style": [
+  "colorful",
+  "math-heavy",
+  "icon-heavy"
+ ],
+ "description": "Two stacked dashed-border panels compare pipelines for merging multiple LoRA adapters into one. Panel (a), 'MtC: Merge-then-Compress', is in green with three numbered steps: form full updates ΔW(t)=B(t)A(t) from stacked hourglass-shaped B/A factor icons, merge into a single large ΔW_merged block (annotated 'Rank can grow much higher'), then truncate with SVD. Scissors and red scattered shards labeled 'lost directions' mark what truncation discards. Panel (b), 'CtM: Compress-then-Merge', adds orange hourglass icons for shared bases U and V. Step 1 learns U,V. Step 2 projects each adapter into a small r×r core O(t). Step 3 merges those cores into O_merged, sandwiched between U^T and V. A yellow box titled 'How to learn U,V' holds the rescaling and optimization equations. Gray arrows carry the flow. The eye goes first to the contrasting green and orange pipelines.",
+ "caption": "A rank-aware pipeline for merging multiple LoRA adapters into one: Compress-then-Merge (CtM) commits to the rank constraint before merging, avoiding brittle and unstable post-hoc truncation.",
+ "caption_source": "latex",
+ "abstract": "Low-rank adaptation (LoRA) enables parameter-efficient specialization of foundation models, but the proliferation of task-specific adapters fragments capabilities across many adapters, complicating reuse and deployment. We study the problem of merging $T$ LoRAs into a single rank-$r$ LoRA, thereby preserving the benefits of low-rank structure. Existing Merge-then-Compress pipelines treat the rank constraint as an afterthought: they merge adapters in the full parameter space, then compress the merged result to rank $r$ via truncated SVD. However, full-parameter merging may destroy the low-rank structure, making it difficult for subsequent compression to recover an effective rank-$r$ LoRA. We propose Compress-then-Merge (CtM), a reversed pipeline that enforces the rank-$r$ bottleneck before merging: CtM computes shared $r$-dimensional subspaces using only the LoRA weights to capture cross-adapter common structure, projects each adapter into the shared subspaces to obtain $r\\times r$ coordinates, and then applies standard merging rules in this reduced space. CtM guarantees a rank-$r$ LoRA by construction, avoiding post-hoc truncation, and enables efficient computation in the core space spanned by concatenated LoRA factors. Experiments across multiple models and tasks show that CtM consistently outperforms existing single-LoRA-output baselines while narrowing the performance gap to full-parameter merging methods.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=p32nWlgwYC",
+  "arxiv": "https://arxiv.org/abs/2606.03723",
+  "pdf": "https://raw.githubusercontent.com/mlresearch/v306/main/assets/he26h/he26h.pdf",
+  "proceedings": "https://proceedings.mlr.press/v306/he26h.html",
+  "virtual": "https://icml.cc/virtual/2026/poster/61546",
+  "code": null
+ },
+ "license": "http://arxiv.org/licenses/nonexclusive-distrib/1.0/",
+ "img": "none",
+ "image_url": null,
+ "thumb_url": null,
+ "figure_page": 1,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.85
+}

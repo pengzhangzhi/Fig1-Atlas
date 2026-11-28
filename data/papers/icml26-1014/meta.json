@@ -1,0 +1,57 @@
+{
+ "id": "icml26-1014",
+ "title": "SpanNorm: Reconciling Training Stability and Performance in Deep Transformers",
+ "authors": [
+  "Chao Wang",
+  "Bei Li",
+  "Jiaqi Zhang",
+  "Xinyu Liu",
+  "Yuchun Fan",
+  "Linkun Lyu",
+  "Xin Chen",
+  "Jingang Wang",
+  "Tong Xiao",
+  "Peng Pei",
+  "Xunliang Cai"
+ ],
+ "venue": "ICML 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "Deep Learning->Large Language Models",
+ "role": "prior-vs-ours",
+ "role2": null,
+ "claim": "Existing normalization placements either sit after or inside the residual branch; ours adds a clean spanning residual with output normalization.",
+ "layout": "3 grouped dashed panels, left-to-right, red skip connection highlights ours",
+ "tags": [
+  "normalization",
+  "transformer",
+  "architecture-comparison",
+  "training-stability",
+  "residual-connection"
+ ],
+ "style": [
+  "colorful",
+  "icon-heavy",
+  "minimal"
+ ],
+ "description": "Side-by-side block diagrams of one transformer layer under different normalization schemes. The left dashed box is labeled Post-Norm Family and shows Post-Norm and HybridNorm. The middle box is labeled Pre-Norm Family and shows Pre-Norm, Peri-LN and LN Scale. The right box is titled SpanNorm in large red text and shows the proposed method. Each diagram uses the same vertical data flow from X'_l through an MHA sub-block to Y_l, then an FFN sub-block to X'_{l+1}, with circled plus nodes for residual additions. MHA and FFN are red or pink boxes, Norm boxes are yellow, and Scale boxes are orange. Black arrows carry the flow. In the SpanNorm panel, a bold red arrow runs from the input around the whole block to the final addition, followed by a Norm box. This red arrow is where the eye goes first.",
+ "caption": "Comparisons of our proposed SpanNorm with PostNorm, PreNorm, and other advanced variants. Here, we take the dense model as an instance, and MHA denotes the multi-head attention, FFN denotes the feedforward network. Note that MHA can also be replaced by GQA, MLA and other attention variants. When switching to the MoE models, FFN could be replaced by MoE modules.",
+ "caption_source": "latex",
+ "abstract": "The success of Large Language Models (LLMs) hinges on the stable training of deep Transformer architectures. A critical design choice is the placement of normalization layers, leading to a fundamental trade-off: the ``PreNorm'' architecture ensures training stability at the cost of potential performance degradation in deep models, while the ``PostNorm'' architecture offers strong performance but suffers from severe training instability. In this work, we propose SpanNorm, a novel technique designed to resolve this dilemma by integrating the strengths of both paradigms. Structurally, SpanNorm establishes a clean residual connection that spans the entire transformer block to stabilize signal propagation, while employing a PostNorm-style computation that normalizes the aggregated output to enhance model performance. We provide a theoretical analysis demonstrating that SpanNorm, combined with a principled scaling strategy, maintains bounded signal variance throughout the network, preventing the gradient issues that plague PostNorm models, and also alleviating the representation collapse of PreNorm. Empirically, SpanNorm consistently outperforms standard normalization schemes in both dense and Mixture-of-Experts (MoE) scenarios, paving the way for more powerful and stable Transformer architectures.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=9bLiqb6Vec",
+  "arxiv": "https://arxiv.org/abs/2601.22580",
+  "pdf": "https://raw.githubusercontent.com/mlresearch/v306/main/assets/chao26b/chao26b.pdf",
+  "proceedings": "https://proceedings.mlr.press/v306/chao26b.html",
+  "virtual": "https://icml.cc/virtual/2026/poster/65837",
+  "code": null
+ },
+ "license": "http://arxiv.org/licenses/nonexclusive-distrib/1.0/",
+ "img": "none",
+ "image_url": null,
+ "thumb_url": null,
+ "figure_page": 2,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.9
+}

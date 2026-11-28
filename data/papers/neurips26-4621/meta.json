@@ -1,0 +1,53 @@
+{
+ "id": "neurips26-4621",
+ "title": "SCOPE-RL: Stable and Quantitative Control of Policy Entropy in RL Post-Training",
+ "authors": [
+  "Chen Wang",
+  "Zhaochun Li",
+  "Bai Jionghao",
+  "Hexuan Deng",
+  "Guanting Dong",
+  "Ge Lan",
+  "Yue Wang"
+ ],
+ "venue": "NeurIPS 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "Reinforcement Learning->Everything Else",
+ "role": "pipeline",
+ "role2": "overview-framework",
+ "claim": "Diagnosing a failure mode and its causal asymmetry motivates a method that adaptively controls sampling to keep a key quantity in an optimal range.",
+ "layout": "4 panels: three motivation panels on top, full-width method pipeline below",
+ "tags": [
+  "entropy-control",
+  "rl-post-training",
+  "adaptive-sampling",
+  "exploration",
+  "motivation-to-method"
+ ],
+ "style": [
+  "colorful",
+  "icon-heavy",
+  "math-heavy"
+ ],
+ "description": "A two-tier figure. The top row has three rounded panels. 'Vanilla GRPO' shows an LLM icon fanning out to grids of colored sample tokens, with a blue-to-orange arrow and a decaying entropy curve labeled 'Entropy Collapse'. 'Observation' is a 2x2 grid: low-T and high-T, each with positive and negative samples. Snowflake and flame icons, check and cross marks, and up/down entropy arrows show that high-T positive samples raise entropy. 'Quantitative exploration' shows sample grids turning from orange to blue, above an inverted-U curve of reasoning performance against entropy, with the peak labeled 'Optimal Exploration'. The bottom green 'Method' panel is a pipeline. Query goes to Policy, then to an Entropy monitor that compares H(π_old) with H0. That comparison routes to high-temperature or low-temperature positive sampling, using the temperature clip formula. Standard GRPO and the sampled outputs merge into the SCOPE-RL Object, then Policy Update. Blue and orange mark the two regimes, with green boxes for the method.",
+ "caption": "The overview of SCOPE-RL.",
+ "caption_source": "latex",
+ "abstract": "Reinforcement learning (RL) is a key paradigm for post-training large language models (LLMs), but the widely used Group Relative Policy Optimization (GRPO) often suffers from entropy collapse: exploration quickly disappears, policies converge prematurely, and sample diversity declines, ultimately harming training effectiveness. Existing remedies, including entropy bonuses and clip-based methods, rarely keep entropy within a stable exploration regime and often introduce oscillatory entropy or reward degradation. In this work, we identify a previously overlooked asymmetry in entropy dynamics: under high-temperature sampling, positive and negative samples have opposite effects on policy entropy. Specifically, high-temperature positive samples promote entropy growth, whereas negative samples suppress it. We provide a qualitative theoretical explanation for this phenomenon: when entropy decreases during policy updates, its derivative with respect to temperature is strictly positive under positive sample updates, indicating that high-temperature positive samples can counteract entropy decay, thereby slowing entropy collapse and potentially reversing it. Motivated by this insight, we propose SCOPE-RL, a stable entropy control framework through a regularization term constructed from temperature-adaptive positive samples. Extensive experiments show that SCOPE-RL consistently outperforms strong RL baselines on both Pass@1 and Pass@k. Our results provide evidence that escaping entropy collapse can improve reasoning performance, while our quantitative empirical analysis further reveals a non-monotonic entropy-performance relationship, with an optimal level of exploration for RL post-training in reasoning LLMs. Our code is available at https://github.com/597358816/SCOPE-RL.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=Vt62uaRwMd",
+  "arxiv": "https://arxiv.org/abs/2510.08141",
+  "pdf": "https://arxiv.org/pdf/2510.08141",
+  "proceedings": null,
+  "virtual": "https://neurips.cc/virtual/2026/poster/152049",
+  "code": "https://github.com/597358816/SCOPE-RL"
+ },
+ "license": "http://arxiv.org/licenses/nonexclusive-distrib/1.0/",
+ "img": "none",
+ "image_url": null,
+ "thumb_url": null,
+ "figure_page": 1,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.6
+}

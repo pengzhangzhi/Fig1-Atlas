@@ -1,0 +1,57 @@
+{
+ "id": "icml26-3780",
+ "title": "Clipping Bottleneck: Stabilizing RLVR via Stochastic Recovery of Near-Boundary Signals",
+ "authors": [
+  "Shuo Yang",
+  "Jinda Lu",
+  "Chiyu Ma",
+  "Kexin Huang",
+  "Haoming Meng",
+  "Qihui Zhang",
+  "Yuyang Liu",
+  "Bolin Ding",
+  "Guoyin Wang",
+  "Li Yuan",
+  "Jingren Zhou"
+ ],
+ "venue": "ICML 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "Deep Learning->Large Language Models",
+ "role": "analysis-finding",
+ "role2": "concept",
+ "claim": "Training is insensitive to gradient magnitude but hypersensitive to the binary clipping decision, so softening that hard decision recovers lost signal.",
+ "layout": "2 panels, left-to-right, diagnosis table feeding via big arrow into distribution diagram",
+ "tags": [
+  "clipping",
+  "diagnosis",
+  "stochastic-rescue",
+  "reinforcement-learning",
+  "bottleneck"
+ ],
+ "style": [
+  "colorful",
+  "plot",
+  "text-heavy"
+ ],
+ "description": "Two framed panels read left to right. The left panel, \"Diagnosis: Hard Clipping Bottleneck\", is a grid with rows labeled Objective, Intervention and Impact. The Objective row shows the clipped loss formula, with arrows branching into a red path (gradient magnitude) and a blue path (clipping decision). Each path leads to an intervention box and then to a small training-curve plot. The red plot shows no impact and is labeled \"Robust to Magnitude\". The blue plot shows a large impact and is labeled \"Sensitive to Decision\". A large \"Further Ablation\" arrow, with a gem icon and the text \"Tokens slightly out-of-bounds have high value\", leads to the right panel. The right panel, \"The Mechanism of NSR\", shows two mirrored bell curves for negative and positive samples over the ratio r. Pink out-of-bound regions and blue in-bound regions are marked, with purple kept dots, gray crosses for dropped tokens, and dashed arrows showing rescued tokens.",
+ "caption": "Overview of Diagnosis and the NSR Solution. Left (Diagnosis): Controlled interventions reveal that training is robust to gradient magnitude (red) but hypersensitive to the binary clipping decision (blue), identifying the rigid discarding of boundary signals as a key bottleneck in the studied clipping-based setup. Right (Mechanism): NSR mitigates this by stochastically rescuing tokens that fall slightly outside the trust region, transforming the rigid binary decision into a probabilistic admission process that retains informative near-boundary signals.",
+ "caption_source": "latex",
+ "abstract": "Reinforcement Learning with Verifiable Rewards (RLVR) has emerged as a central paradigm for scaling LLM reasoning, yet its optimization often suffers from training instability and suboptimal convergence. Through a systematic dissection of clipping-based GRPO-style objectives, we identify the rigid clipping decision induced by hard clipping as a key practical bottleneck in the studied RLVR setups. Specifically, our analysis suggests that informative signals can lie in the near-boundary region just beyond the clipping threshold, and are therefore discarded by the standard hard-clipping rule. Notably, once this bottleneck is precisely identified, even simple stochastic perturbations at the boundary can recover meaningful performance gains. Building on this finding, we propose Near-boundary Stochastic Rescue (NSR), a minimal, plug-and-play modification that stochastically retains these slightly out-of-bound tokens to recover lost signals. While NSR, via stochastic sampling, can be interpreted as inducing an implicit gradient decay in expectation, our ablations reveal that its stochastic, boundary-local rescue mechanism is consistently more effective than deterministic gradient decay. Validated by extensive experiments across model sizes from 7B to 30B and both dense and MoE architectures, as a plug-and-play solution, NSR substantially improves training stability and delivers consistent gains over strong baselines such as DAPO and GSPO.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=ZXFTvoBZ1B",
+  "arxiv": "https://arxiv.org/abs/2605.22703",
+  "pdf": "https://raw.githubusercontent.com/mlresearch/v306/main/assets/yang26az/yang26az.pdf",
+  "proceedings": "https://proceedings.mlr.press/v306/yang26az.html",
+  "virtual": "https://icml.cc/virtual/2026/poster/63158",
+  "code": "https://github.com/qwenpilot/NSR"
+ },
+ "license": "http://creativecommons.org/licenses/by/4.0/",
+ "img": "cc-by",
+ "image_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/images/icml26-3780.png",
+ "thumb_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/thumbs/icml26-3780.webp",
+ "figure_page": 1,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.5
+}

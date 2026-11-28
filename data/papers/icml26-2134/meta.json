@@ -1,0 +1,50 @@
+{
+ "id": "icml26-2134",
+ "title": "Decouple and Cache: KV Cache Construction for Streaming Video Understanding",
+ "authors": [
+  "Zhanzhong Pang",
+  "Dibyadip Chatterjee",
+  "Fadime Sener",
+  "Angela Yao"
+ ],
+ "venue": "ICML 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "Applications->Computer Vision",
+ "role": "prior-vs-ours",
+ "role2": "pipeline",
+ "claim": "Offline sampling and uniform streaming caches lose recent detail or cost too much; decoupling past and instant caches keeps accuracy and efficiency.",
+ "layout": "Stacked horizontal rows over a shared frame timeline; colored bands separate offline and streaming; checkmarks and crosses at right",
+ "tags": [
+  "streaming",
+  "kv-cache",
+  "baseline-comparison",
+  "efficiency",
+  "decoupling"
+ ],
+ "style": [
+  "colorful",
+  "icon-heavy",
+  "minimal"
+ ],
+ "description": "A horizontal timeline of numbered frame tokens, 1 to 13 and continuing, runs along the top as blue squares. Below it are two tinted bands. The yellow Offline band has two rows, uniform sample and sliding window. Selected frames are blue and skipped or dropped frames are faded. The blue-green Streaming band has two rows, uniform cache and DSCache. Frames in these rows are orange for the cumulative past cache, and DSCache adds green squares for the instant cache. Evicted frames are faded grey. Curved arrows under the rows show cache updates. Red crosses and green checks list the drawbacks and benefits of each method. At the far right are accuracy values (71.12, 77.42, 76.92, 79.12) and complexity terms such as O(TW²) and O(T(W+C²)). A legend at the bottom explains the colors and the symbols T, W and C.",
+ "caption": "Illustration of \\dscache vs. existing methods. Inference over a video stream of length $T$ with a full context of size $W$ and a separate recent context of size $C \\ll W$. Offline models sample frames from the past, whereas the streaming baseline uniformly updates the KV cache while evicting older ones. \\dscache decouples the cumulative past and instant cache constructions to better preserve fine-grained recent information. Accuracy is reported on StreamingBench using Llava-OV-7B.",
+ "caption_source": "latex",
+ "abstract": "Streaming video understanding requires processing unbounded video streams with limited memory and computation, posing two key challenges. First, continuously constructing new and evicting old key-value(KV) caches is required for unbounded streams. Secondly, due to the high cost of collecting and training on unbounded streams, models must learn from short sequences while generalizing to long streams. Existing streaming VideoVLLMs fail to scale to unbounded video streams or focus on cache reuse strategies, leaving the impact of cache construction underexplored. In this paper, we propose Decoupled Streaming Cache(DSCache), a training-free cache construction mechanism that adapts pretrained offline models to streaming settings. DSCache maintains a cumulative past KV cache while constructing a separate instant cache on-demand, decoupled from past caches to preserve the informativeness of recent inputs. To enable position extrapolation beyond the training length, DSCache further incorporates a position-agnostic encoding strategy, ensuring KV caches to support unseen positions and preventing position overflow. Experiments on Streaming Video QA benchmarks demonstrate DSCache's state-of-the-art performance, with an average 2.5% accuracy gains over prior methods.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=KD59uBqvNR",
+  "arxiv": "https://arxiv.org/abs/2605.01858",
+  "pdf": "https://raw.githubusercontent.com/mlresearch/v306/main/assets/pang26a/pang26a.pdf",
+  "proceedings": "https://proceedings.mlr.press/v306/pang26a.html",
+  "virtual": "https://icml.cc/virtual/2026/poster/64752",
+  "code": null
+ },
+ "license": "http://arxiv.org/licenses/nonexclusive-distrib/1.0/",
+ "img": "none",
+ "image_url": null,
+ "thumb_url": null,
+ "figure_page": 1,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.82
+}

@@ -1,0 +1,53 @@
+{
+ "id": "iclr26-3919",
+ "title": "RE-PO: Robust Enhanced Policy Optimization as a General Framework for LLM Alignment",
+ "authors": [
+  "Xiaoyang Cao",
+  "Zelai Xu",
+  "Mo Guang",
+  "Kaiwen Long",
+  "Michiel Bakker",
+  "Yu Wang",
+  "Chao Yu"
+ ],
+ "venue": "ICLR 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "Applications->Language, Speech and Dialog",
+ "role": "pipeline",
+ "role2": null,
+ "claim": "Alternating inference of label reliability and model updates turns noisy supervision into robust training signal through an iterative loop.",
+ "layout": "3 regions, left-to-right with feedback loop; blue E-step above red M-step",
+ "tags": [
+  "expectation-maximization",
+  "noisy-labels",
+  "reweighting",
+  "iterative-loop",
+  "preference-alignment"
+ ],
+ "style": [
+  "colorful",
+  "icon-heavy",
+  "math-heavy"
+ ],
+ "description": "A gray 'Preference Data' column on the left stacks three cards: noisy binary preferences (speech bubbles y_w and y_l around annotators, with a puzzled face), a prompt with a response pair marked '?', and a 'Robust Signal' card with a happy face and 40%/60% bubbles. Gray arrows link this column to the right. On the right, a blue E-Step panel sits above a red M-Step panel. The E-step has a frozen-parameter box (language model θ(t), annotator reliability η_k(t)) and a confidence score box. That box has a bar chart and the formula w(t)=p(y_w ≻* y_l | ...). The M-step has a robust loss box with weighted log-likelihood terms and an update-parameter box (θ(t+1), η_k(t+1)). Large blue and red arrows form a loop labeled 'Confidence Score' and 'Model Parameter'. The eye goes first to the blue and red panels.",
+ "caption": "Overview of the Robust Enhanced Policy Optimization (RE-PO) framework. Starting from noisy pairwise feedback, RE-PO uses an Expectation-Maximization (EM) procedure to jointly refine label confidences and the policy. In each iteration, the E-step estimates a confidence score for every observed preference by inferring the posterior probability that the label is correct under the current model and annotator reliabilities. The M-step then uses these scores as adaptive weights to update both the LLM policy and the annotator reliability parameters, progressively down-weighting likely corrupted labels and emphasizing reliable supervision.",
+ "caption_source": "latex",
+ "abstract": "Standard human preference-based alignment methods, such as Reinforcement Learning from Human Feedback (RLHF), are a cornerstone for aligning large language models (LLMs) with human values. However, these methods typically assume that preference data is clean and that all labels are equally reliable. In practice, large-scale preference datasets contain substantial noise due to annotator mistakes, inconsistent instructions, varying expertise, and even adversarial or low-effort feedback. This mismatch between recorded labels and ground-truth preferences can misguide training and degrade model performance. To address this issue, we introduce Robust Enhanced Policy Optimization (RE-PO), which uses an expectation-maximization procedure to infer the posterior correctness of each label and then adaptively reweight data points in the training loss to mitigate label noise. We further generalize this idea by establishing a theoretical link between arbitrary preference losses and their underlying probabilistic models, enabling a systematic transformation of existing alignment algorithms into robust counterparts and elevating RE-PO from a single method to a general framework for robust preference alignment. Theoretically, we prove that, under a perfectly calibrated model, RE-PO recovers the true noise level of the dataset. Empirically, we show that RE-PO consistently improves four state-of-the-art alignment methods (DPO, IPO, SimPO, and CPO); when applied to Mistral and Llama 3 models, the RE-PO-enhanced variants increase AlpacaEval 2 win rates by up to 7.0 percent over their respective baselines.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=jDKpOvTCM8",
+  "arxiv": "https://arxiv.org/abs/2509.24159",
+  "pdf": "https://proceedings.iclr.cc/paper_files/paper/2026/file/b292ef48c211e2d8288146ff045dd61d-Paper-Conference.pdf",
+  "proceedings": "https://proceedings.iclr.cc/paper_files/paper/2026/hash/b292ef48c211e2d8288146ff045dd61d-Abstract-Conference.html",
+  "virtual": "https://iclr.cc/virtual/2026/poster/10007900",
+  "code": "https://repo-alignment.github.io/"
+ },
+ "license": "http://creativecommons.org/licenses/by/4.0/",
+ "img": "cc-by",
+ "image_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/images/iclr26-3919.png",
+ "thumb_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/thumbs/iclr26-3919.webp",
+ "figure_page": 1,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.93
+}

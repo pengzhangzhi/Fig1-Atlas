@@ -1,0 +1,54 @@
+{
+ "id": "neurips26-3413",
+ "title": "ScopeSAE: Model-Scope Feature Discovery with Interpretable Layer Selection",
+ "authors": [
+  "Qingwen Zeng",
+  "Craig Jin",
+  "Shuyu Meng",
+  "Linghan Huang",
+  "Jiayi Zhang",
+  "Chenglin Wu",
+  "Ling Chen",
+  "Huaming Chen"
+ ],
+ "venue": "NeurIPS 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "Social Aspects->Accountability, Transparency and Interpretability",
+ "role": "prior-vs-ours",
+ "role2": "pipeline",
+ "claim": "Fixing each SAE to one layer ignores which states drive predictions; selecting the most influential token-layer state per token fixes this.",
+ "layout": "3 panels: top-left prior, top-right ours, bottom inference strip; left-to-right flow",
+ "tags": [
+  "sparse-autoencoder",
+  "attribution",
+  "layer-selection",
+  "interpretability",
+  "prior-vs-ours"
+ ],
+ "style": [
+  "colorful",
+  "icon-heavy",
+  "minimal"
+ ],
+ "description": "The figure has three panels. Panel A, Layer-Fixed SAE, shows tokens passing through a stack of transformer layers. One fixed layer l* is highlighted in dark blue, and its hidden state feeds an encoder, sparse latents and decoder block. The output is a reconstructed state, with a training distribution D_l* below. Panel B, ScopeSAE, is wider. It has a grid of tokens t1 to tn across columns and layers l-2 to l+2 down rows. A different dark-blue cell with a medal icon is picked in each column. Orange arrows labeled Gradient Attribution Score point back along the layers. Dotted green arrows gather the selected states into one stacked hidden-state vector for the SAE, and the training distribution is D_scope. Panel C is a bottom strip showing the inference pipeline: selected hidden state, token-wise normalization, SAE, de-normalization, write-back to layer l*, then resume forward pass and next-token prediction. Blue, orange and yellow dominate.",
+ "caption": "Overview of the ScopeSAE framework. For each token, normalized gradient-based attribution scores identify the most prediction-relevant token-layer state, over which a sparse autoencoder is trained. At inference, the reconstruction is written back only to the selected position, enabling behaviorally grounded feature discovery while remaining compatible with standard SAE evaluation and intervention pipelines.",
+ "caption_source": "latex",
+ "abstract": "Sparse autoencoders (SAEs) are a central tool in mechanistic interpretability. However, existing SAEs are primarily trained per layer. The modeling subspace is therefore fixed by layer identity, independent of which token-layer states actually drive each prediction. We argue that this constraint contributes to several limitations observed in layer-wise SAEs, including low feature utilization, high dictionary redundancy, and features that lack direct behavioral grounding. In this paper, we propose ScopeSAE, which selects the modeling subspace per token by attributing each prediction to its most influential token-layer state via normalized gradient-based attribution, and learns features over the resulting prediction-relevant subspace. Empirically, ScopeSAE yields an effect we term reconstruction-better-than-original. Written-back reconstructions of the SAE produce lower next-token cross-entropy than the original activations, an outcome that, to our knowledge, has not previously been reported for SAEs. Through interventional analyses and a KL fine-tuning counter-experiment, we show that this effect is attributable to ScopeSAE's prediction-relevant subspace itself rather than to architectural changes. ScopeSAE further improves effective feature count, interpretability, utilization, and dictionary redundancy over existing layer-based baselines, suggesting that choosing the SAE modeling subspace by predictive relevance leads to more useful and behaviorally meaningful features.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=NnmH2t52Uc",
+  "arxiv": "https://arxiv.org/abs/2610.04905",
+  "pdf": "https://arxiv.org/pdf/2610.04905",
+  "proceedings": null,
+  "virtual": "https://neurips.cc/virtual/2026/poster/153114",
+  "code": null
+ },
+ "license": "http://creativecommons.org/licenses/by/4.0/",
+ "img": "cc-by",
+ "image_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/images/neurips26-3413.png",
+ "thumb_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/thumbs/neurips26-3413.webp",
+ "figure_page": 2,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.6
+}

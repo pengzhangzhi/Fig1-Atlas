@@ -1,0 +1,52 @@
+{
+ "id": "iclr26-2198",
+ "title": "Demystifying Robot Diffusion Policies: Action Memorization and a Simple Lookup Table Alternative",
+ "authors": [
+  "Chengyang He",
+  "Xu Liu",
+  "Gadiel Sznaier Camps",
+  "Joseph Bruno",
+  "Guillaume Sartoretti",
+  "Mac Schwager"
+ ],
+ "venue": "ICLR 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "Applications->Robotics",
+ "role": "concept",
+ "role2": "problem-setup",
+ "claim": "Inputs map to nearest stored training embeddings and recall associated actions, while far-off inputs are flagged out-of-distribution and rejected.",
+ "layout": "Central latent-space blob, images left, outputs right, dashed arrows linking them",
+ "tags": [
+  "latent-space",
+  "nearest-neighbor",
+  "lookup-table",
+  "ood-detection",
+  "memorization"
+ ],
+ "style": [
+  "colorful",
+  "photo/real data",
+  "plot"
+ ],
+ "description": "A central scatter of rainbow-colored points shows the contrastive-learning embedding space of the training data. Three test images sit on the left. Image 1 and Image 2 are robot workspace photos showing a dark cup on an orange mat. Image 3 is a photo of a white bulldog and is clearly unrelated to the task. Black dashed arrows carry each image to a red X in the embedding space. Images 1 and 2 land inside small gray ellipses next to a yellow dot, which marks the nearest training point. Green dotted arrows lead from the yellow dots to blue boxes holding action-chunk trajectories labeled a^1_{1:t} and a^2_{1:t}. Image 3 lands far outside the cloud, marked by a red double arrow labeled 'beyond threshold'. A red dotted arrow sends it to a yellow OOD warning triangle labeled a_safe. The eye goes first to the colorful blob.",
+ "caption": "Resulting latent space of our constrastive learning (CL) based ALT on our training data, illustrating the distribution of training examples and example in- (1,2) and out-of-distribution (3) test images.",
+ "caption_source": "latex",
+ "abstract": "Diffusion policies for visuomotor robot manipulation tasks achieve remarkable dexterity and robustness while only training on a small number of task demonstrations. However, the reason for this performance remains a mystery. In this paper, we offer a surprising hypothesis: diffusion policies essentially memorize an action lookup table---\\emph{and this is beneficial}. We posit that, at runtime, diffusion policies find the closest training image to the test image in a latent space, and recall the associated training action (i.e. action chunk), offering reactivity without the need for action generalization. This is effective in the sparse data regime, where there is not enough data density for the model to learn action generalization. We support this claim with systematic empirical evidence, showing that even when conditioned on highly out of distribution (OOD) images, Diffusion Policy still outputs an action chunk from the training data. We evaluate and compare three representative policy families on the same data set: Diffusion Policy, Action Chunking with Transformers (ACT), and GR00T, a pre-trained generalist Vision-Language-Action (VLA) model. We show that Diffusion Policy gives strong action memorization giving surprising robustness in OOD regimes, ACT shows action interpolation with poor robustness in OOD regimes, and GR00T (benefiting from substantial pre-training) shows both action interpolation and OOD robustness. As a simple alternative to Diffusion Policy, we introduce the Action Lookup Table (ALT) policy, showing that an explicit lookup table policy can perform comparably in this low data regime. Despite its simplicity, ALT attains Diffusion Policy–level performance while also providing faster inference and explicit OOD detection via latent-distance thresholds. These results reframe diffusion policies for robot manipulation as reactive memory retrieval under data sparsity, and provide practical tools for interpreting, evaluating, and monitoring such policies. More information can be found at: \\url{https://stanfordmsl.github.io/alt/}.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=PL0tJOfm7I",
+  "arxiv": "https://arxiv.org/abs/2505.05787",
+  "pdf": "https://proceedings.iclr.cc/paper_files/paper/2026/file/122ea6470232ee5e79a2649243348005-Paper-Conference.pdf",
+  "proceedings": "https://proceedings.iclr.cc/paper_files/paper/2026/hash/122ea6470232ee5e79a2649243348005-Abstract-Conference.html",
+  "virtual": "https://iclr.cc/virtual/2026/poster/10009689",
+  "code": "https://stanfordmsl.github.io/alt/"
+ },
+ "license": "http://creativecommons.org/licenses/by/4.0/",
+ "img": "cc-by",
+ "image_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/images/iclr26-2198.png",
+ "thumb_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/thumbs/iclr26-2198.webp",
+ "figure_page": 1,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.55
+}

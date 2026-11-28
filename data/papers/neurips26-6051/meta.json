@@ -1,0 +1,49 @@
+{
+ "id": "neurips26-6051",
+ "title": "A Free Lunch in LLM Compression: Revisiting Retraining after Pruning",
+ "authors": [
+  "Moritz Wagner",
+  "Christophe Roux",
+  "Max Zimmer",
+  "Sebastian Pokutta"
+ ],
+ "venue": "NeurIPS 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "Deep Learning->Algorithms",
+ "role": "concept",
+ "role2": "overview-framework",
+ "claim": "Reconstruction can be applied at nested granularities, from individual matrices up to multi-block windows, each defining a separate adaptation unit.",
+ "layout": "1 panel, left-to-right, nested dashed colored boxes over repeated transformer blocks",
+ "tags": [
+  "nested-granularity",
+  "reconstruction",
+  "pruning",
+  "transformer-blocks",
+  "llm-compression"
+ ],
+ "style": [
+  "minimal",
+  "colorful"
+ ],
+ "description": "A single wide diagram shows two consecutive transformer blocks in a residual stream that runs left to right. Each block is an Attention module and an MLP module. Each module contains rounded purple rectangles for the weight matrices: four in attention and three in MLP. Each module ends in a circled plus for the residual add, with a skip-connection arrow looping underneath. Small blue arrows labeled 'Per-matrix' point to the individual matrices. Nested dashed rectangles mark the granularities. Red boxes are 'Block size 1/2' and wrap each Attention or MLP unit. Teal boxes are 'Block size 1' and wrap an attention plus MLP pair. One large blue box is 'Block size 2' and wraps both blocks. The nesting is the main visual device, and the eye goes first to the outer blue label and then inward.",
+ "caption": "Illustration of reconstruction granularities. At the finest level, per-matrix reconstruction adapts each individual weight matrix separately. Block size $\\sfrac{1}{2}$ reconstructs the attention and MLP components of each transformer block independently. Block size $1$ reconstructs each full transformer block at a time, and block size $2$ reconstructs two consecutive transformer blocks together.",
+ "caption_source": "latex",
+ "abstract": "Post-training pruning can substantially reduce LLM inference costs, but it often degrades quality unless the remaining weights are adapted. Since global retraining is expensive at LLM scale, recent work has largely focused on increasingly sophisticated pruning criteria that aim to select better sparsity patterns without adaptation. We revisit this trade-off through local reconstruction: after pruning, we adapt one subset of the model parameters at a time on a calibration set, training it to match the corresponding intermediate activations of the dense model. We evaluate local reconstruction across model families and scales, up to 72B parameters, and establish three main findings. First, local reconstruction is an effective adaptation mechanism for LLMs: it matches post-pruning retraining while using over an order of magnitude less data and compute, even when using PEFT techniques. Second, reconstruction exhibits a broad \"free-lunch\" regime in granularity, i.e., the reconstruction parameter window: as long as the reconstructed region contains at least a nonlinear submodule, final quality is largely insensitive to the window size, allowing granularity to be chosen primarily based on memory constraints. In contrast, reconstructing individual matrices, despite being the natural approach often proposed in the literature, consistently underperforms, as small matrix-level errors accumulate into larger activation drift. Lastly, reconstruction reduces the relative importance of the pruning criterion: performance gaps between sophisticated criteria and simple baselines shrink with model scale, making simple methods competitive again. Overall, our results challenge the prevailing view that post-pruning adaptation is impractical for LLMs.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=fXCIZretcP",
+  "arxiv": "https://arxiv.org/abs/2510.14444",
+  "pdf": "https://arxiv.org/pdf/2510.14444",
+  "proceedings": null,
+  "virtual": "https://neurips.cc/virtual/2026/poster/150765",
+  "code": null
+ },
+ "license": "http://creativecommons.org/licenses/by/4.0/",
+ "img": "cc-by",
+ "image_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/images/neurips26-6051.png",
+ "thumb_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/thumbs/neurips26-6051.webp",
+ "figure_page": 1,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.55
+}

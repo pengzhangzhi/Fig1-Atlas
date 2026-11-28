@@ -1,0 +1,50 @@
+{
+ "id": "icml26-2281",
+ "title": "Shrinking the Variance: Shrinkage Baselines for Reinforcement Learning with Verifiable Rewards",
+ "authors": [
+  "Guanning Zeng",
+  "Zhaoyi Zhou",
+  "Daman Arora",
+  "Andrea Zanette"
+ ],
+ "venue": "ICML 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "Deep Learning->Large Language Models",
+ "role": "pipeline",
+ "role2": null,
+ "claim": "A baseline is built by combining per-prompt and batch-level reward means with an adaptive coefficient computed from batch statistics.",
+ "layout": "Left-to-right flow, 4 columns, color-coded formulas feeding into a final result box",
+ "tags": [
+  "shrinkage",
+  "baseline",
+  "variance-reduction",
+  "policy-gradient",
+  "rlvr"
+ ],
+ "style": [
+  "math-heavy",
+  "colorful",
+  "icon-heavy"
+ ],
+ "description": "A left-to-right pipeline with a white background and rounded boxes. At far left, an Actor Model (neural network icon) and a Dataset (database icon) feed into a large yellow box through arrows labeled Rollout and Sample. The yellow box, titled 'A Batch of n × m Generations', holds a grid with n prompts as rows and m rollouts per prompt as columns. One row is outlined in purple and one cell in red, labeled as a reward sample r_i^j. Arrows lead to a dotted gray group with two boxes: a purple 'Prompt Mean' formula and a green 'Batch Mean' formula. A third yellow box below holds the 'Shrinkage Coefficient' λ̂_i in orange. A large bracket merges all three into a yellow box on the right showing the formula b_i^j = (1−λ̂_i) μ̂_i^{−j} + λ̂_i μ̂̄_{−i}, with terms in matching colors. The eye goes first to the colorful formulas.",
+ "caption": "Overview of using the Shrinkage Baseline in RLVR of large reasoning models. Consider a step in RLVR with $n$ question prompts, each generating $m$ responses. For every response, our method computes a leave-one-out prompt-level reward mean $\\hat \\mu_i^{-j}$ and a leave-one-out batch-level reward mean $\\hat {\\bar \\mu}_{-i}$. It then estimates an optimal shrinkage coefficient $\\hat \\lambda_i$ from reward-sample statistics. These components are combined to produce a variance-reduced baseline $b_i^j$. By lowering the variance in policy-gradient estimation, the shrinkage baseline enables more stable and effective reinforcement learning for large reasoning models.",
+ "caption_source": "latex",
+ "abstract": "Reinforcement Learning with Verifiable Rewards (RLVR) has emerged as a powerful paradigm for post-training large reasoning models (LRMs) using policy-gradient methods such as GRPO. To stabilize training, these methods typically center trajectory rewards by subtracting the empirical mean reward for each prompt. Statistically, this centering acts as a control variate (baseline), reducing the variance of the policy-gradient estimator. In practice, the mean reward is estimated using per-prompt empirical averages computed from the generations for each prompt in a batch. Motivated by Stein's paradox, we propose shrinkage estimators that combine per-prompt and across-prompt means to improve per-prompt mean estimation accuracy, especially in the low-generation regime typical of RLVR. Theoretically, we construct a shrinkage-based baseline that provably yields lower-variance policy-gradient estimators across algorithms. Our baseline is a drop-in replacement for standard per-prompt mean baselines and requires no additional hyperparameters or computation. Empirically, shrinkage baselines consistently outperform empirical-mean baselines, producing lower-variance gradient updates and improved training stability.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=LffORETnav",
+  "arxiv": "https://arxiv.org/abs/2511.03710",
+  "pdf": "https://raw.githubusercontent.com/mlresearch/v306/main/assets/zeng26z/zeng26z.pdf",
+  "proceedings": "https://proceedings.mlr.press/v306/zeng26z.html",
+  "virtual": "https://icml.cc/virtual/2026/poster/64613",
+  "code": null
+ },
+ "license": "http://arxiv.org/licenses/nonexclusive-distrib/1.0/",
+ "img": "none",
+ "image_url": null,
+ "thumb_url": null,
+ "figure_page": 4,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.9
+}

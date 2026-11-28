@@ -1,0 +1,50 @@
+{
+ "id": "neurips26-4748",
+ "title": "OPPO: Bayesian Value Recursion for Token-Level Credit Assignment in LLM Reasoning",
+ "authors": [
+  "Yu Li",
+  "Rui Miao",
+  "Tian Lan",
+  "Zhengling Qi"
+ ],
+ "venue": "NeurIPS 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "Reinforcement Learning->Deep RL",
+ "role": "analysis-finding",
+ "role2": null,
+ "claim": "Per-token credit signals concentrate sharply on pivotal positions, and a stronger oracle sharpens them, while a bounded residual shows the recursion stays consistent.",
+ "layout": "3 panels in a row, left-to-right, each a different plot type",
+ "tags": [
+  "credit-assignment",
+  "empirical-analysis",
+  "token-level",
+  "reinforcement-learning",
+  "teacher-oracle"
+ ],
+ "style": [
+  "plot",
+  "colorful",
+  "photo/real data"
+ ],
+ "description": "A single-row figure of three line and bar plots built from 200 MATH-500 trajectories. Panel (a) is a cumulative-signal curve against top-k% positions. A solid red line with circles for |A_t| rises faster than a dashed orange line with squares for |log λ_t|, and a pink band marks the gap. Panel (b) is a bar chart of normalized |log λ_t| over token positions 0–80. Light-blue bars (self, 4B) and dark-blue bars (teacher, 32B) peak around position 22. A bracket labeled 'pivotal' marks that peak, and low background bars sit elsewhere. Panel (c) plots the telescoping residual across length quartiles Q1–Q4. Green (correct) and orange (incorrect) lines have confidence bands. Dashed p95 lines and a peach-shaded 'long-sequence regime' mark the long end. The eye goes first to the red curve in (a) and the tall central spike in (b).",
+ "caption": "Empirical analysis on 200 MATH-500 trajectories from Qwen3-4B-Instruct. (a) $|A_t|$ concentrates more sharply than $|\\log\\lambda_t|$, with the gap widest on incorrect trajectories where $V_t$ saturates early. (b) The 32B teacher produces sharper $|\\log\\lambda_t|$ at pivotal tokens and lower background in determined regions. (c) Telescoping budget residual stratified by length quartile and outcome. Solid lines mark the per-stratum mean of $|\\sum_t A_t - (R - \\hat V_0)|$ with 95% confidence bands. The shaded region marks the long-sequence regime where evidence clipping caps the recursion.",
+ "caption_source": "latex",
+ "abstract": "Reinforcement learning with verifiable rewards has become the standard recipe for improving LLM reasoning, but the dominant algorithm GRPO assigns a single trajectory-level advantage to every token, diluting the signal at pivotal reasoning steps and injecting noise at uninformative ones. Critic-free alternatives derived from on-policy distillation supply per-token signals through oracle-conditioned likelihood ratios, yet apply each signal in isolation from the trajectory-level evidence accumulated up to that position. We propose Oracle-Prompted Policy Optimization (OPPO), which rests on a single observation: the oracle signal used by prior distillation-style methods for local discrimination is also the natural Bayesian update of the model's belief about eventual success. Accumulating the signal along a trajectory yields, in closed form and at the cost of one extra forward pass, a running estimate of the success probability at every position, together with a token-level advantage that requires no learned value network and no additional rollouts. A first-order analysis factorizes the advantage into the per-token discrimination signal used by distillation methods modulated by a state weight that concentrates credit on genuinely pivotal tokens, with a directional variance-reduction guarantee. The framework admits two estimators differing only in which model scores the evidence: a \\textit{self-oracle} that reuses the student and recovers the on-policy distillation reward as a strict special case, and a \\textit{teacher-oracle} that delegates scoring to a stronger frozen model. On two base LLMs across seven mathematics, science, and code reasoning benchmarks, OPPO improves over GRPO, DAPO, and SDPO by up to $+6.0$ points on AMC'23 and $+5.2$ points on AIME'24, with gains that widen monotonically with response length.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=WkadvgDPwb",
+  "arxiv": "https://arxiv.org/abs/2605.21851",
+  "pdf": "https://arxiv.org/pdf/2605.21851",
+  "proceedings": null,
+  "virtual": "https://neurips.cc/virtual/2026/poster/151932",
+  "code": null
+ },
+ "license": "http://creativecommons.org/licenses/by/4.0/",
+ "img": "cc-by",
+ "image_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/images/neurips26-4748.png",
+ "thumb_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/thumbs/neurips26-4748.webp",
+ "figure_page": 4,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.9
+}

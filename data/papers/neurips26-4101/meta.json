@@ -1,0 +1,52 @@
+{
+ "id": "neurips26-4101",
+ "title": "Solver-Aware Decompositions for Programming-by-Example: When Dividing Requires Knowing how to Conquer",
+ "authors": [
+  "Janis Zenkner",
+  "Tobias Sesterhenn",
+  "Tim Grams",
+  "Christian Bartelt"
+ ],
+ "venue": "NeurIPS 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "General Machine Learning->Everything Else",
+ "role": "analysis-finding",
+ "role2": "teaser-result",
+ "claim": "Training a component to imitate ground-truth targets raises agreement with those targets but lowers downstream task success, which solver-aware training improves.",
+ "layout": "2 side-by-side bar-chart panels, paired bars, shared legend, contrast between panels",
+ "tags": [
+  "accuracy-paradox",
+  "paired-bars",
+  "decomposition",
+  "program-synthesis",
+  "imitation-vs-reward"
+ ],
+ "style": [
+  "plot",
+  "colorful",
+  "minimal"
+ ],
+ "description": "Two side-by-side grouped bar charts share a legend at the top: orange for SAD (the proposed method) and blue for Solver-blind (the baseline). Panel (a), Decomposition accuracy, shows in-distribution and length-generalization groups. Solver-blind is far higher than SAD in both: 79 vs 32 in-distribution and 63 vs 22 under length generalization. Panel (b), Synthesis accuracy (%), uses the same two groups, but the ordering reverses. SAD scores 87 vs 73 in-distribution and 80 vs 64 under length generalization. The y-axis runs from 0 to 100 on the right panel, with bold value labels above each bar and light gridlines. The reversal between the two panels is the main visual contrast, and it is the paradox the figure shows.",
+ "caption": "Accuracy paradox on Deepcoder. (a) Decomposition accuracy: predicted subgoal matches the \\ac{gt} subgoal exactly. (b) Synthesis accuracy: the synthesizer produces the correct subprogram from the predicted subgoal. Both are single-step metrics under teacher forcing. Solver-blind training reaches higher decomposition accuracy but lower synthesis accuracy than solver-aware training.",
+ "caption_source": "latex",
+ "abstract": "Decomposition-based Programming-by-Example splits a task into subtasks: a decomposer predicts intermediate subgoals, and a learned synthesizer generates a program for each subgoal. Execution-decomposition approaches train the decomposer to imitate ground-truth (GT) subgoals and thereby treat decomposition quality as a property of the task alone. A learned synthesizer, however, has its own inductive biases, and GT subgoals reflect how the annotator factorized the task, not what this synthesizer can solve. A decomposer that imitates them can therefore propose subgoals that are logically valid but intractable for the synthesizer. Motivated by this observation, we propose Solver-Aware Decompositions (SAD), which keeps supervised training on GT subgoals as a structural scaffold and additionally trains the decomposer online with self-critical policy gradients against a frozen synthesizer. Each sampled subgoal is rewarded with the negative cross-entropy of the synthesizer on the target program, a continuous signal of how difficult the subtask is for this synthesizer. Our experiments show an accuracy paradox: with the synthesizer fixed, a GT-supervised decomposer agrees more often with the GT subgoals, yet its subgoals lead to lower synthesis accuracy, although the synthesizer was trained on the same GT data. On two list-processing domains, SAD improves synthesis and task accuracy over the GT-supervised decomposer, both in-distribution and under length generalization; the same holds under zero-shot transfer to an external benchmark and for a fine-tuned language model. Even an oracle that receives the GT subgoals at inference time, with the same synthesizer and search, fails on tasks that SAD solves, and fewer than 2% of SAD's solutions to these tasks match the GT program. Decomposition quality is therefore not a property of the task: it depends on the synthesizer that executes the subgoals.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=SffA3K1Xus",
+  "arxiv": "https://arxiv.org/abs/2608.03461",
+  "pdf": "https://arxiv.org/pdf/2608.03461",
+  "proceedings": null,
+  "virtual": "https://neurips.cc/virtual/2026/poster/152502",
+  "code": "https://jzenkner.github.io/SAD/"
+ },
+ "license": "http://creativecommons.org/licenses/by/4.0/",
+ "img": "cc-by",
+ "image_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/images/neurips26-4101.png",
+ "thumb_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/thumbs/neurips26-4101.webp",
+ "figure_page": 1,
+ "qc_flags": [
+  "bad-crop"
+ ],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.6
+}

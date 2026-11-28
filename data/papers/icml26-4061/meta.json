@@ -1,0 +1,50 @@
+{
+ "id": "icml26-4061",
+ "title": "BESplit: Bias-Compensated Split Federated Learning with Evidential Aggregation",
+ "authors": [
+  "Yuhan Xie",
+  "Chen Lyu",
+  "Jingrong Huang"
+ ],
+ "venue": "ICML 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "Social Aspects->Robustness",
+ "role": "pipeline",
+ "role2": "overview-framework",
+ "claim": "Combining three complementary modules inside a split client-server workflow compensates for bias from heterogeneous clients and keeps their models in sync.",
+ "layout": "2 panels: large left workflow, right DTD detail plus legend; arrows left-to-right",
+ "tags": [
+  "split-learning",
+  "federated-learning",
+  "non-iid",
+  "uncertainty-aggregation",
+  "distillation"
+ ],
+ "style": [
+  "icon-heavy",
+  "colorful",
+  "math-heavy",
+  "text-heavy"
+ ],
+ "description": "A wide two-part diagram. The large left panel shows the split federated learning workflow. Client-side boxes (W_C1, W_CK-1, W_CK) are in red, blue and green. They feed smashed-data feature bars upward into server-side models (W_S1, W_SK-1, W_SK). The server models output evidential and uncertainty tables, the client state record (CSR), and aggregation weights. Dashed colored arrows cross between clients to show complementary pairing. A bias-compensated collaboration inset at the far left shows client pairs and distributions P_k and P_g. An Evidential Aggregation server and a FedServer on the right produce the global models W_g and W_Cg. The right panel zooms into Dual-Teacher Distillation. It shows server-side and client-side blocks, Dirichlet simplex triangles, and distillation losses. A legend of arrow types sits at the bottom right.",
+ "caption": "Illustration of BESplit. EA, BCC, and DTD modules are integrated into the SFL workflow. In each communication round, client $C_k$ processes a mini-batch of local samples through $W_{C_k}$ to produce smashed data, which are sent to the corresponding $W_{S_k}$ for evidential prediction. The server records these outputs in a client-specific CSR, capturing fine-grained prediction statistics. Based on CSR updates, EA adaptively adjusts the aggregation weights $w^{(k)}$. Then, the server estimates both the global data distribution $P_g$ and each client’s local distribution $P_k$ from CSR entries, and activates BCC mechanism to align subsets of smashed features between clients with complementary distributions (e.g., $C_{K-1}$ and $C_{K}$). Meanwhile, each client maintains an auxiliary model $W_{A_k}$ via DTD, using $W_{C_k}$ and the global model $W_g$ as dual teachers.",
+ "caption_source": "latex",
+ "abstract": "Split Federated Learning (SFL) enables privacy-preserving collaborative training by partitioning models between clients and a server. However, under non-IID data distributions, SFL often suffers from biased optimization and unstable convergence, while existing solutions largely adapt techniques from conventional federated learning. In this work, we observe that the split architecture of SFL inherently alters how client information is represented and coordinated, opening opportunities for bias compensation beyond parameter-level aggregation. Based on this insight, we propose BESplit, an architecture-aware framework that exploits the intrinsic structure of SFL to mitigate non-IID effects. First, to prevent biased local data from dominating global updates, we introduce Evidential Aggregation (EA) to perform fine-grained reweighting of client contributions based on evidential uncertainty. Second, to further reduce distributional skew, we develop Bias-Compensated Collaboration (BCC) to align split-layer representations by pairing complementary clients. Finally, Dual-Teacher Distillation (DTD) is incorporated to synchronize knowledge between decoupled client and server models, enabling independent local inference. Extensive experiments on five benchmark datasets demonstrate that BESplit consistently outperforms state-of-the-art methods in accuracy, convergence stability, and computational efficiency under diverse non-IID settings.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=cFEyszuOPF",
+  "arxiv": "https://arxiv.org/abs/2605.17508",
+  "pdf": "https://raw.githubusercontent.com/mlresearch/v306/main/assets/xie26s/xie26s.pdf",
+  "proceedings": "https://proceedings.mlr.press/v306/xie26s.html",
+  "virtual": "https://icml.cc/virtual/2026/poster/62885",
+  "code": null
+ },
+ "license": "http://arxiv.org/licenses/nonexclusive-distrib/1.0/",
+ "img": "none",
+ "image_url": null,
+ "thumb_url": null,
+ "figure_page": 3,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.85
+}

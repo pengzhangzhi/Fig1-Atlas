@@ -1,0 +1,54 @@
+{
+ "id": "neurips26-0830",
+ "title": "UniCustom: Unified Visual Conditioning for Multi-reference Image Generation",
+ "authors": [
+  "Yiyan Xu",
+  "Qiulin Wang",
+  "Wenjie Wang",
+  "Yunyao Mao",
+  "Xintao Wang",
+  "Pengfei Wan",
+  "Kun Gai",
+  "Fuli Feng"
+ ],
+ "venue": "NeurIPS 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "Computer Vision->Image and Video Generation",
+ "role": "prior-vs-ours",
+ "role2": "pipeline",
+ "claim": "Prior methods bind visual details to subjects implicitly after language encoding; ours fuses them explicitly before encoding for unified conditioning.",
+ "layout": "2 stacked panels (a) prior, (b) ours, shared legend between, red emphasis words",
+ "tags": [
+  "early-fusion",
+  "decoupled-vs-unified",
+  "multi-reference",
+  "diffusion-transformer",
+  "visual-binding"
+ ],
+ "style": [
+  "minimal",
+  "colorful",
+  "icon-heavy"
+ ],
+ "description": "Two stacked block diagrams share a legend panel placed between them. Panel (a), \"Existing Decoupled Visual Conditioning\", shows a VLM box with rows of green (ViT) and cream (text) tokens above and below it. A curved arrow carries the hidden states to a DiT box. Blue VAE tokens enter the DiT separately, and red dashed lines show the \"Implicit\" visual binding inside the DiT. The legend explains the token types: text token, dashed hidden state, checkered noisy VAE feature. It also shows that a reference image splits into VAE (blue) and ViT (green) features, which merge into a green-blue gradient \"Unified Visual Rep.\" Panel (b), \"Our UniCustom\", has the same layout, but the VLM input tokens are already gradient-fused. A dotted arrow marks this \"Explicit\" binding before VLM encoding. The red \"Implicit\" and \"Explicit\" words draw the eye first.",
+ "caption": "Illustration of decoupled and unified visual conditioning.",
+ "caption_source": "latex",
+ "abstract": "Multi-reference image generation aims to synthesize images from textual instructions while faithfully preserving subject identities from multiple reference images. Existing VLM-enhanced diffusion models commonly rely on decoupled visual conditioning: semantic ViT features are processed by the VLM for instruction understanding, whereas appearance-rich VAE features are injected later into the diffusion backbone. Despite its intuitive design, this separation makes it difficult for the model to associate each semantically grounded subject with visual details from the correct reference image. As a result, the model may recognize which subject is being referred to, but fail to preserve its identity and fine-grained appearance, leading to attribute leakage and cross-reference confusion in complex multi-reference settings. To address this issue, we propose UniCustom, a unified visual conditioning framework that fuses ViT and VAE features before VLM encoding. This early fusion exposes the VLM to both semantic cues and appearance-rich details, enabling its hidden states to jointly encode the referred subject and corresponding visual appearance with only a lightweight linear fusion layer. To learn such unified representations, we adopt a two-stage training strategy: reconstruction-oriented pretraining that preserves reference-specific appearance details in the fused hidden states, followed by supervised finetuning on single- and multi-reference generation tasks. We further introduce a slot-wise binding regularization that encourages each image slot to preserve low-level details of its corresponding reference, thereby reducing cross-reference entanglement. Experiments on two multi-reference generation benchmarks demonstrate that UniCustom consistently improves subject consistency, instruction following, and compositional fidelity over strong baselines.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=5sCkEfsOSE",
+  "arxiv": "https://arxiv.org/abs/2605.12088",
+  "pdf": "https://arxiv.org/pdf/2605.12088",
+  "proceedings": null,
+  "virtual": "https://neurips.cc/virtual/2026/poster/155407",
+  "code": "https://yiyanxu.github.io/UniCustom/"
+ },
+ "license": "http://arxiv.org/licenses/nonexclusive-distrib/1.0/",
+ "img": "none",
+ "image_url": null,
+ "thumb_url": null,
+ "figure_page": 1,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.93
+}

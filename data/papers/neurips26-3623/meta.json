@@ -1,0 +1,54 @@
+{
+ "id": "neurips26-3623",
+ "title": "MatrixSplat: Matrix-Parallel and Feature-Scalable 3D Gaussian Splatting Rendering on GPUs",
+ "authors": [
+  "Yangming Zhang",
+  "Siyi Wu",
+  "Jian Wang",
+  "Bingzhe Li",
+  "Wei Niu",
+  "Sheng Di",
+  "Ming Li",
+  "Miao Yin"
+ ],
+ "venue": "NeurIPS 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "Computer Vision->3D Rendering & Reconstruction",
+ "role": "analysis-finding",
+ "role2": "teaser-result",
+ "claim": "Baseline cost explodes as feature dimensionality grows, while our approach scales far more gracefully and the gap widens.",
+ "layout": "1 panel, log-scale line plot, shaded gap with speedup labels, one annotation arrow",
+ "tags": [
+  "scalability",
+  "feature-dimensionality",
+  "efficiency",
+  "speedup",
+  "gpu-memory"
+ ],
+ "style": [
+  "plot",
+  "minimal",
+  "colorful"
+ ],
+ "description": "A single line chart with a logarithmic y-axis, Render Time in ms from 2 to over 300. The x-axis is Dimension of Semantic Feature, from 3 to 512 on a log scale. A blue circle-marked line for 3DGS sits above an orange square-marked line for Ours. The light peach shaded region between them widens to the right. Small orange labels mark the speedup at three points: ×2.3 at low dimensions, ×1.5 in the middle, and ×10.7 at high dimensions. A black arrow points to the 128-dimension point, with the text 'Move semantic features from shared memory to global memory'. The legend sits at top left. The eye goes first to the steep blue curve rising at the right and the shaded gap.",
+ "caption": "Semantic feature scalability. Rendering performance degrades dramatically with increasing feature dimensionality.",
+ "caption_source": "latex",
+ "abstract": "3D Gaussian Splatting (3DGS) has emerged as a mainstream representation for real-time novel view synthesis and 3D reconstruction. However, existing 3DGS rendering pipelines are poorly aligned with modern GPU architectures: depth-sorted alpha compositing introduces strong per-pixel sequential dependencies, limiting parallelism and resulting in scalar FMA-dominated execution that underutilizes high-throughput matrix units such as Tensor Cores. This mismatch becomes more severe for multimodal and semantically enriched 3DGS, where high-dimensional features must be accumulated from millions of Gaussians, leading to rapidly increasing computation and memory costs. We propose MatrixSplat, a matrix-parallel rendering framework for feature-scalable 3DGS on modern GPUs. We first identify the sequential dependency of alpha compositing as a key obstacle to efficient high-dimensional feature rendering, and adopt an order-independent weighted accumulation formulation that transforms feature rendering into matrix-oriented computation. Our framework features three key designs: (i) a tile-based splatting pipeline that maps feature accumulation to warp-level matrix-multiply-accumulate execution on Tensor Cores; (ii) a warp-granularity Gaussian packing strategy that mitigates visibility irregularity and improves feature reuse; and (iii) a lazy channel-batched feature-fetching pipeline that reduces shared-memory pressure, maintains high warp occupancy, and overlaps memory access with matrix execution for high-dimensional features. On Mip-NeRF 360, LERF, and 3D-OVS, MatrixSplat achieves up to 3.8$\\times$ speedup over 3DGS and 2$\\times$ over TC-GS while maintaining rendering quality and semantic accuracy, and further reduces render-kernel time by up to 36.7$\\times$ for high-dimensional features. Integrated into existing fast renderers, it provides an additional 1.69-2.84$\\times$ speedup.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=PHnQZyfoZ1",
+  "arxiv": "https://arxiv.org/abs/2611.15153",
+  "pdf": "https://arxiv.org/pdf/2611.15153",
+  "proceedings": null,
+  "virtual": "https://neurips.cc/virtual/2026/poster/152933",
+  "code": null
+ },
+ "license": "http://arxiv.org/licenses/nonexclusive-distrib/1.0/",
+ "img": "none",
+ "image_url": null,
+ "thumb_url": null,
+ "figure_page": 1,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.6
+}

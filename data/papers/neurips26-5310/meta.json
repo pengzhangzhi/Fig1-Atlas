@@ -1,0 +1,49 @@
+{
+ "id": "neurips26-5310",
+ "title": "How New Reasoning Strategies Emerge in RL Post-Training: A Controlled Study",
+ "authors": [
+  "Azwar Azwar",
+  "Nishil Patel",
+  "Andrew Saxe"
+ ],
+ "venue": "NeurIPS 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "Theory->Reinforcement Learning and Planning",
+ "role": "overview-framework",
+ "role2": "pipeline",
+ "claim": "A controlled synthetic environment with known grammar, chained data, action formats and difficulty levels makes every reasoning step auditable.",
+ "layout": "5 panels in 3 boxed sections, top-left to bottom, right column for RL",
+ "tags": [
+  "synthetic-grammar",
+  "controlled-environment",
+  "data-generation",
+  "rewrite-rules",
+  "curriculum-difficulty"
+ ],
+ "style": [
+  "colorful",
+  "text-heavy",
+  "minimal"
+ ],
+ "description": "The figure is split into three rounded, boxed sections with dark-red banner titles: Data Generation, Reading a Training Triple, and RL Data Generation. Panel (a) shows a synthetic grammar where single characters (a, b, c, e) in blue-outlined boxes map via arrows to orange boxes holding one or more right-hand-side strings. Panel (b) shows chained pretraining rows (lhs_word | position | action | rule | rhs_word) linked by down arrows. Panel (c) breaks one training triple into expansion and contraction examples, with highlighted substrings and dotted callouts for position, type, rule, start and end. Panel (d) builds an RL prompt by repeated expansion, ending in a highlighted final prompt. Panel (e) has three difficulty cards with step boxes and a red dashed line marking the 256-token generation limit. Orange and red mark expansion and the rhs words, and blue marks contraction.",
+ "caption": "Controlled environment and training pipeline. (a) Each source character maps to one or more globally unique right-hand-side strings. (b) Pretraining data consists of multi-step sequences in which the output of one step becomes the input to the next. (c) Each training triple encodes a single primitive expansion or contraction. (d) RL prompts are constructed by repeated forward expansion from a target symbol. (e) Difficulty levels are defined by how many optimal contraction steps lie beyond the model's 256-token generation budget.",
+ "caption_source": "latex",
+ "abstract": "Does reinforcement learning (RL) post-training with verifiable rewards build new reasoning procedures, or merely reweight behaviors already latent in the base model? We study this question in a fully observable rewrite-grammar environment where the pretraining distribution is known and every generated rewrite can be audited. A Transformer is pretrained on primitive symbol-rewrite chains and post- trained with only a binary final-answer reward. RL solves held-out problems that remain rarely solved by the pretrained model even under much larger sampling bud- gets, while rejection fine-tuning (RFT) improves early but plateaus. Trace analysis reveals a phased mechanism: RL first strengthens primitive reductions, then enters a chunking phase, composing them into valid compressed procedures—macro con- tractions that collapse sequential reductions and parallel contractions that combine independent ones—which are reused and consolidated into a stable repertoire. RL’s advantage over RFT lies not in exploration volume but in selectivity: RFT produces many invalid shortcut-like rewrites, whereas RL concentrates exploration into valid reusable structure. Pretraining ablations show that strategy emergence depends on whether pretraining organizes primitive competence into reduction procedures that RL can later compress. The central result carries over to a pretrained LLM: on Boolean circuit simplification, GRPO makes valid compressed solutions accessible to Qwen3-4B at pass@16 that its starting policy rarely produces at pass@1024, and the learned macros transfer to new variable bindings and to a schema never required during training. The base model provides weak procedural ingredients; RL builds them into reliable higher-level strategies.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=amAQ0bvrH7",
+  "arxiv": "https://arxiv.org/abs/2607.07646",
+  "pdf": "https://arxiv.org/pdf/2607.07646",
+  "proceedings": null,
+  "virtual": "https://neurips.cc/virtual/2026/poster/151430",
+  "code": null
+ },
+ "license": "http://arxiv.org/licenses/nonexclusive-distrib/1.0/",
+ "img": "none",
+ "image_url": null,
+ "thumb_url": null,
+ "figure_page": 2,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.6
+}

@@ -1,0 +1,51 @@
+{
+ "id": "icml26-4498",
+ "title": "Insertion Based Sequence Generation with Learnable Order Dynamics",
+ "authors": [
+  "Dhruvesh Patel",
+  "Benjamin Rozonoyer",
+  "Gaurav Pandey",
+  "Tahira Naseem",
+  "Ramón Astudillo",
+  "Andrew McCallum"
+ ],
+ "venue": "ICML 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "Deep Learning->Generative Models and Autoencoders",
+ "role": "pipeline",
+ "role2": null,
+ "claim": "A learned, data-dependent rate model defines the target generation order, and a generator is trained to match its insertion and unmasking rates.",
+ "layout": "3 panels, left-to-right; target process timeline, rate-model/generator diagram, zoomed generator architecture inset",
+ "tags": [
+  "insertion-based",
+  "masked-diffusion",
+  "learnable-schedule",
+  "variable-length",
+  "discrete-flow-matching"
+ ],
+ "style": [
+  "math-heavy",
+  "colorful"
+ ],
+ "description": "Three framed panels read left to right. The left panel is a vertical timeline from t=0 (bottom) to t=1 (top) for an 8-token sequence a–h. Rows show the sequence growing from all drop tokens (blue [D]) to masks (red [M]) to revealed tokens. Colored vertical lines mark each position's insertion and unmasking times. The middle panel shows the clean sequence x1 feeding a 'Target Rate Model (φ)', which outputs per-token unmasking and insertion rates in red and blue squares. A 'Generator (θ)' takes the partial sequence x_t and predicts matching rates, linked to the target rates by dashed double arrows. Dashed arrows labelled f_expand and f_contract link the panels. The right panel zooms into the generator: a DDiT backbone feeds a Linear head and two MLP heads. Red is used for unmasking and blue for insertion throughout.",
+ "caption": "Left: The left subfigure illustrates how the endpoint-dependent target process grows the final sequence $x_1$ from the empty sequence (all $\\drop$ tokens) by sampling the insertion time $\\Tins^i \\sim f^{\\phi}_{\\Tins^i}(t; x_1)$ for the insertion transition $\\drop \\to \\mask$, followed by the unmasking time $\\Tumask^i \\sim f^{\\phi}_{\\Tumask^i|\\Tins^i}(t; x_1)$ for the unmasking transition $\\mask \\to x_1^i$, for each position $i$. The target process induces a target generation order: $j$ is generated after $i$ if $\\Tumask^j > \\Tumask^i$. Middle: The middle subfigure (top), shows the auxiliary neural network $\\phi$ that takes in a clean sequence $x_1$ and outputs per-token target insertion rates $\\lambda_{\\ins}^{\\phi}$ and unmasking rates $\\lambda_{\\unmask}^{\\phi}$, which induce the densities $f^\\phi$. The map $\\contract$ removes the $\\drop$ tokens from the intermediate $z_t$ to obtain a partial sequence $x_t$. The generator network (bottom right) takes $x_t$ and produces insertion $\\lambda_{\\ins}^{\\theta}$ and unmasking $\\lambda_{\\unmask}^{\\theta}\\cdot K^\\theta$ rates which are trained to match the endpoint-dependent target rates $\\lambda_{\\ins}^{\\phi}$ and $\\lambda_{\\unmask}^{\\phi}$ using Eq. (11) in Section 3.2. Right: The rightmost subfigure shows the generator network which consists of a transformer backbone, a linear LM head that produces token probabilities, and two rate heads that produce insertion and unmasking rates.",
+ "caption_source": "latex",
+ "abstract": "Existing insertion-based masked diffusion models that generate sequences by interleaving token insertion with unmasking use fixed schedules that are not dependent on the data. For structured sequences like graphs and molecules, learning data-dependent generation orders can improve generation quality by reducing uncertainty over the action space. We propose LoFlexMDM, an insertion-based masked diffusion model with learnable order dynamics that learns data-dependent insertion and unmasking rates. We generalize the discrete flow matching framework to work with variable-length sequences, propose a tractable schedule parameterization and a training objective for joint training of the generator and the target order dynamics. On De Novo and fragment-constrained molecule generation, LoFlexMDM improves sample quality over FlexMDM by up to 17.5% and 6.7%, respectively. These results show that learning the target generation order can improve insertion-based diffusion models without giving up tractable training. We open source the code at https://github.com/dhruvdcoder/LoFlexMDM.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=gPxxn38tAK",
+  "arxiv": "https://arxiv.org/abs/2602.18695",
+  "pdf": "https://raw.githubusercontent.com/mlresearch/v306/main/assets/patel26a/patel26a.pdf",
+  "proceedings": "https://proceedings.mlr.press/v306/patel26a.html",
+  "virtual": "https://icml.cc/virtual/2026/poster/62460",
+  "code": null
+ },
+ "license": "http://creativecommons.org/licenses/by/4.0/",
+ "img": "cc-by",
+ "image_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/images/icml26-4498.png",
+ "thumb_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/thumbs/icml26-4498.webp",
+ "figure_page": 1,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.9
+}

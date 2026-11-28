@@ -1,0 +1,48 @@
+{
+ "id": "iclr26-0106",
+ "title": "Emergent Discrete Controller Modules for Symbolic Planning in Transformers",
+ "authors": [
+  "S M Rafiuddin",
+  "Muntaha Khan"
+ ],
+ "venue": "ICLR 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "Deep Learning->Attention Mechanisms",
+ "role": "pipeline",
+ "role2": "overview-framework",
+ "claim": "A small discrete program-state controller plugs into standard layers, with outputs, traces and training signals, forming one interpretable end-to-end system.",
+ "layout": "Dense boxed flowchart, left-to-right then loops back; red/green/orange region frames",
+ "tags": [
+  "modular-architecture",
+  "discrete-controller",
+  "program-state",
+  "interpretability",
+  "length-generalization"
+ ],
+ "style": [
+  "icon-heavy",
+  "text-heavy",
+  "colorful"
+ ],
+ "description": "A dense, numbered block diagram inside a large red frame. The top row runs left to right through input tokens, embedding, a state-to-token projection, multi-head attention, feed-forward and a hexagonal token-to-state pooling block, all in light blue. Below, an orange program-state box holds registers, optional memory and flags. A green discrete-controller panel sits at lower right. It stacks four teal sub-blocks: Gumbel-Softmax operation selector, addressing, opcode semantics and a branch gate. An orange residual write-back box feeds the state change back to the tokens, with a dashed loop for repeated layers. A green frame underneath holds the task head, trace logger and interpretability probes in lime. It also holds a gray training-losses bar with yellow loss boxes. An orange text box at the bottom lists which layers carry the controller. Many arrows and equations connect the blocks.",
+ "caption": "Controller-augmented Transformer overview. Tokens flow through embed→attn→FFN, while a compact program state (registers, optional memory, flags) interacts with the token stream via state↔token projections. A discrete controller (Gumbel–Softmax) selects one of {ASSIGN, ADD, COMPARE, BRANCH, NOOP} and updates the state; the resulting change is written back into the residual stream. We instrument every p-th layer (multi-step execution across depth) and log traces (opcode, addresses, gate) only at instrumented layers; overhead is ≈5–7% FLOPs for p=2. Training uses task loss with optional trace/entropy/semantic regularizers.",
+ "caption_source": "pdf",
+ "abstract": "Transformers struggle with tasks that require symbolic planning loops, variable updates, and conditional branching, especially under length extrapolation. We introduce discrete controller modules that insert a small set of program primitives (ASSIGN, ADD, COMPARE, BRANCH) into Transformer blocks via a Gumbel–Softmax selector over operations and a compact program state of registers, flags, and optional memory. We prove that the augmented model can simulate any bounded-step program by mapping each primitive step to one controller step, and we bound the deviation of relaxed execution from its discrete trace by $O(\\tau+\\kappa^{-1})$ (selection temperature $\\tau$, comparison sharpness $\\kappa$). Empirically, the controller-augmented Transformer achieves strong length generalization on algorithmic benchmarks (Sorting, Sum-of-List, BFS), improving longest-length accuracy by up to $20$–$40$ points over strong baselines, and yields consistent gains on symbolic QA (DROP) and program-synthesis-style tasks (RobustFill) with reduced compositionality drop-off. The learned execution is interpretable: operation traces align with ground truth, register roles are linearly decodable, and targeted knockouts cause localized accuracy losses. The approach adds only $\\sim$5–7% FLOPs and can be applied sparsely (every $p$-th layer).",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=14dlTHVxDX",
+  "arxiv": null,
+  "pdf": "https://proceedings.iclr.cc/paper_files/paper/2026/file/2c8d9636f74d0207ff4f65956010f450-Paper-Conference.pdf",
+  "proceedings": "https://proceedings.iclr.cc/paper_files/paper/2026/hash/2c8d9636f74d0207ff4f65956010f450-Abstract-Conference.html",
+  "virtual": "https://iclr.cc/virtual/2026/poster/10011867",
+  "code": null
+ },
+ "license": null,
+ "img": "none",
+ "image_url": null,
+ "thumb_url": null,
+ "figure_page": 2,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.85
+}

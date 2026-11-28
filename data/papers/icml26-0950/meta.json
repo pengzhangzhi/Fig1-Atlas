@@ -1,0 +1,48 @@
+{
+ "id": "icml26-0950",
+ "title": "Neural Thickets: Diverse Task Experts Are Dense Around Pretrained Weights",
+ "authors": [
+  "Yulu Gan",
+  "Phillip Isola"
+ ],
+ "venue": "ICML 2026",
+ "tier": "spotlight",
+ "track": "main",
+ "topic": "Deep Learning->Foundation Models",
+ "role": "concept",
+ "role2": "teaser-result",
+ "claim": "Small models have sparse, hard-to-find task solutions near pretrained weights; large models are densely surrounded by diverse experts, so random sampling suffices.",
+ "layout": "3 panels left-to-right: paired schematics, scaling line plot, accuracy and FLOPs plots",
+ "tags": [
+  "weight-space",
+  "scaling",
+  "random-search",
+  "ensembling",
+  "post-training"
+ ],
+ "style": [
+  "colorful",
+  "plot",
+  "minimal"
+ ],
+ "description": "Three panels. Panel (a) has two boxed weight-space cartoons, small model and large model, each with a dotted circle for the Gaussian search window and a black star for the pretrained weights. The small-model circle holds a few isolated colored blobs in yellow, blue, pink and red, one per task. The large-model circle is densely packed with many blobs, labeled with arrows as chemistry, writing, programming and math experts. Panel (b) is a line plot titled Scaling Law. It shows solution density rising with model scale from 0.5B to 32B, with one colored line per task. Panel (c), titled Post-training with RandOpt, plots accuracy against training steps for GRPO and ES curves. RandOpt appears as a green triangle and star at step 1, well above the curves. A small bar chart of training FLOPs sits inset. The eye goes first to the colorful blob cartoons.",
+ "caption": "(a) Schematic of the main effects we observe (see Fig [ref] for a version with real data). Left: Small models live in a needle in a haystack regime, where good solutions to downstream tasks occupy a tiny fraction of the surrounding weights. In this regime, it is important to have a smart search algorithm, such as gradient descent or other forms of iterative optimization. Right: Large models are surrounded by a veritable thicket of task-specific solutions. In this regime, random sampling is sufficient to quickly land on promising adaptations, which can then be ensembled to yield strong behavior, an approach we call RandOpt. (b) Solution density -- i.e. density of task-improving weights in a Gaussian neighborhood of the pretrained weights -- scales with model size. (c) \\methodname is $\\mathcal{O}(1)$ in training steps, FLOP-efficient, and competitive in converged accuracy with GRPO and ES. Results are shown on the Countdown task with Olmo-3-7B-Instruct; \\methodname uses 5000 random weight guesses and ensembles the top $K$; K-pass baselines use Test-time Majority Vote (TT-MV). More results are shown in Fig. [ref] and Table [ref].",
+ "caption_source": "latex",
+ "abstract": "Pretraining produces a learned parameter vector that is typically treated as a starting point for further iterative adaptation. In this work, we instead view the outcome of pretraining as a distribution over parameter vectors, whose support already contains task-specific experts. We show that in small models such expert solutions occupy a negligible fraction of the volume of this distribution, making their discovery reliant on structured optimization methods such as gradient descent. In contrast, in large, well-pretrained models the density of task-experts increases dramatically, so that diverse, task-improving specialists populate a substantial fraction of the neighborhood around the pretrained weights. Motivated by this perspective, we explore a simple, fully parallel post-training method that samples $N$ parameter perturbations at random, selects the top $K$, and ensembles predictions via majority vote. Despite its simplicity, this approach is competitive with standard post-training methods such as PPO, GRPO, and ES for contemporary large-scale models.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=92oF5bU4cU",
+  "arxiv": "https://arxiv.org/abs/2603.12228",
+  "pdf": "https://raw.githubusercontent.com/mlresearch/v306/main/assets/gan26a/gan26a.pdf",
+  "proceedings": "https://proceedings.mlr.press/v306/gan26a.html",
+  "virtual": "https://icml.cc/virtual/2026/poster/65901",
+  "code": "https://thickets.mit.edu/"
+ },
+ "license": "http://arxiv.org/licenses/nonexclusive-distrib/1.0/",
+ "img": "none",
+ "image_url": null,
+ "thumb_url": null,
+ "figure_page": 0,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.6
+}

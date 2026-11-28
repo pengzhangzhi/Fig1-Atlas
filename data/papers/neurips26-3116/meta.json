@@ -1,0 +1,51 @@
+{
+ "id": "neurips26-3116",
+ "title": "Breaking Modality Heterogeneity in Low-Bit Quantization for Large Vision-Language Models",
+ "authors": [
+  "YI ZHONG",
+  "Haotong Qin",
+  "Xindong Zhang",
+  "Lei Zhang",
+  "Guolei Sun"
+ ],
+ "venue": "NeurIPS 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "Computer Vision->Vision Models & Multimodal",
+ "role": "pipeline",
+ "role2": "overview-framework",
+ "claim": "A two-stage framework first decouples modality-specific outlier channels, then calibrates remaining cross-modal discrepancies, so low-bit quantization of multimodal models stays accurate.",
+ "layout": "2 panels: (a) VLM pipeline left, (b) framework right with zoomed module insets below",
+ "tags": [
+  "post-training-quantization",
+  "vision-language-model",
+  "modular-pipeline",
+  "outlier-channels",
+  "efficiency"
+ ],
+ "style": [
+  "colorful",
+  "icon-heavy",
+  "math-heavy"
+ ],
+ "description": "The figure has two parts. Panel (a), on the left, shows a standard VLM inference pipeline: a user query, with text and a cat photo, goes through a Tokenizer and a Visual Encoder plus Projection. The two paths merge at a plus node and feed a Language Model, which outputs 'A tabby cat lying on the grass'. Panel (b), on the right, is a dashed top box showing the SplitQ flow. An activation matrix X, split into text and vision rows, goes through the MOCD block. Highlighted outlier channels are then split into three branches (X_t, X_m, X_v). Each branch goes through P, a quantizer and weights, and ACC handles the middle branch. The branches are summed into the output. Two zoomed insets sit below. The MOCD inset uses sampling, statistics, top-k, and consistency and magnitude rules to select channels C_t and C_v. The ACC inset shows two branches, CSW and MAC, with low-rank U/V adapters. Colors are yellow, red, blue, green and pink.",
+ "caption": "(a) VLM inference pipeline. (b) An overview of SplitQ framework. The two key components of SplitQ include modality-specific outlier channel decoupling (MOCD) module to separate modality-specific outlier channels ($\\mathcal{C}_t$ and $\\mathcal{C}_v$), and adaptive cross-modal calibration module to further reduce quantization errors caused by cross-modal distribution discrepancies.",
+ "caption_source": "latex",
+ "abstract": "Low-bit post-training quantization (PTQ) is a pivotal technique for deploying Vision-Language Models (VLMs) on resource-constrained devices. However, existing PTQ methods often degrade VLMs' accuracy due to the heterogeneous activation distributions of text and vision modalities during quantization. We find that this cross-modal heterogeneity is distributed unevenly across channels: a small subset of channels contains most modality-specific outliers, and these outliers typically reside in different channels for each modality. Motivated by this, we propose SplitQ, a channel-Splitting-driven post-training Quantization framework. At its core, SplitQ introduces a novel Modality-specific Outlier Channel Decoupling (MOCD) module that effectively isolates salient modality-specific outlier channels with minimal overhead. To further address the remaining cross-modal distribution discrepancies, we design an Adaptive Cross-Modal Calibration (ACC) module that employs dual lightweight learnable branches to dynamically mitigate modality-induced quantization errors. Extensive experiments on popular VLMs demonstrate that SplitQ significantly outperforms existing approaches across 6 popular multi-modal datasets under all evaluated quantization settings, including W4A8, W4A4, W3A3, and W3A2. Notably, SplitQ preserves 93.5% of FP16 performance under the challenging W3A3 setting (69.5 vs. 74.3), pushing the efficiency frontier for deploying advanced VLMs. Our code is available at https://github.com/EMVision-NK/SplitQ",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=LmpNnlBWG5",
+  "arxiv": "https://arxiv.org/abs/2605.19929",
+  "pdf": "https://arxiv.org/pdf/2605.19929",
+  "proceedings": null,
+  "virtual": "https://neurips.cc/virtual/2026/poster/153382",
+  "code": "https://github.com/EMVision-NK/SplitQ"
+ },
+ "license": "http://arxiv.org/licenses/nonexclusive-distrib/1.0/",
+ "img": "none",
+ "image_url": null,
+ "thumb_url": null,
+ "figure_page": 2,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.85
+}

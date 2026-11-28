@@ -1,0 +1,49 @@
+{
+ "id": "neurips26-5940",
+ "title": "Test-Time Speculation",
+ "authors": [
+  "Avinash Kumar",
+  "Sujay Sanghavi",
+  "Poulami Das"
+ ],
+ "venue": "NeurIPS 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "Deep Learning->Generative Models and Autoencoders",
+ "role": "analysis-finding",
+ "role2": "teaser-result",
+ "claim": "Existing fast approximators degrade toward no benefit as outputs grow longer; continuously adapting them at test time reverses the decline.",
+ "layout": "2 side-by-side line plots, left-to-right, blue dashed trend arrows with handwritten annotations",
+ "tags": [
+  "speculative-decoding",
+  "test-time-adaptation",
+  "online-distillation",
+  "long-generation",
+  "degradation-trend"
+ ],
+ "style": [
+  "plot",
+  "minimal",
+  "colorful"
+ ],
+ "description": "Two side-by-side line charts share a y-axis label, Acceptance Length, and an x-axis label, Output Length. Panel (a) plots three baseline speculators with different colors and markers: DFlash in red circles, EAGLE-3 in orange squares, and PARD in teal triangles. All three curves peak early at about 3 to 4 and then decline as output grows toward 35K tokens. EAGLE-3 falls to the dotted line at 1. Blue italic annotations read 'Degrades with Output Length' and 'No Speedup', and a blue dashed arrow slopes downward. Panel (b) compares the red dashed DFlash baseline, which stays flat or declines to about 2, with a solid dark-green TTS (Ours) line that climbs steadily to about 12. A blue arrow and the text 'Increases with Output Length' stress the upward trend. Labels (a) and (b) sit below the panels. The eye goes first to the blue annotations, then to the green rising line.",
+ "caption": "(a) Acceptance length (AL) for the LiveCodeBench dataset on Qwen3-8B with increasing output lengths for three speculators. Beyond a certain number of output tokens, the draft model fails to accurately approximate the target model and the AL becomes vanishingly low (too close to 1), yielding practically no benefits. (b) Our proposal, \\textit{Test-Time Speculation (\\ours{})}, adapts the draft model in real time to address this limitation and consistently improves acceptance lengths.",
+ "caption_source": "latex",
+ "abstract": "Speculative decoding accelerates LLM inference by using a fast draft model to generate tokens and a more accurate target model to verify them. Its performance depends on the $\\textit{acceptance length}$, or number of draft tokens accepted by the target. Our studies show that the acceptance length of even state-of-the-art speculators, like DFlash, EAGLE-3, and PARD, degrades with generation length, reaching values close to 1 (i.e., no speedup) within a few thousand output tokens, making speculators ineffective for long-response tasks. Acceptance lengths decline because most speculators are trained offline on short sequences, but are forced to match the target on much longer outputs at inference, well beyond their training distribution. To address this issue, we propose $\\textit{Test-Time Speculation (TTS)}$, an online distillation approach that continuously adapts the speculator at test time. TTS leverages the key insight that the token verification step already invokes the target model for each draft token, providing the training signal needed to adapt the draft at no additional cost. Treating the draft as the student and the target as the teacher, TTS adjusts the draft over several speculation rounds, with each update improving the draft's accuracy as generation proceeds. Our results across ten models from the Qwen-3, Qwen-3.5, DeepSeek-R1, GPT-OSS, MiniMax, and Llama3.1 families show that TTS improves acceptance lengths over state-of-the-art speculators by up to $72\\%$ and $41\\%$ on average, with the benefits scaling with generation lengths.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=elwxI8Nne1",
+  "arxiv": "https://arxiv.org/abs/2605.09329",
+  "pdf": "https://arxiv.org/pdf/2605.09329",
+  "proceedings": null,
+  "virtual": "https://neurips.cc/virtual/2026/poster/150865",
+  "code": "https://avinkumarut.github.io/TTS/"
+ },
+ "license": "http://creativecommons.org/licenses/by/4.0/",
+ "img": "cc-by",
+ "image_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/images/neurips26-5940.png",
+ "thumb_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/thumbs/neurips26-5940.webp",
+ "figure_page": 1,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.6
+}

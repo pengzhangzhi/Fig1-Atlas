@@ -1,0 +1,48 @@
+{
+ "id": "neurips26-1202",
+ "title": "Coverage-Verified Sparse Attention: Closed-Loop Quality Control for Long-Context LLM Decoding",
+ "authors": [
+  "Yan-Cheng Li",
+  "Chun-Yi Lee"
+ ],
+ "venue": "NeurIPS 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "Deep Learning->Attention Mechanisms",
+ "role": "teaser-result",
+ "role2": null,
+ "claim": "Our method reaches near-dense quality at much higher throughput than open-loop sparse baselines, dominating the quality-speed frontier across models.",
+ "layout": "3 panels side-by-side, shared legend on top, red highlighted marker with arrow callout",
+ "tags": [
+  "sparse-attention",
+  "quality-throughput",
+  "pareto-frontier",
+  "efficiency",
+  "long-context"
+ ],
+ "style": [
+  "plot",
+  "colorful",
+  "minimal"
+ ],
+ "description": "Three side-by-side scatter plots, one each for Llama-3.1-8B, Qwen2.5-7B and Mistral-7B. The x-axis is throughput in tokens/s (B=32, 8K) and the y-axis is LongBench quality. A shared legend on top lists Dense (black star), CVSA at three settings (red triangle, large red circle marked recommended, blue inverted triangle), grey diamond baselines, and a grey square for fixed sparse. In every panel the large red CVSA-c4 circle has error bars and sits near the dotted dense-quality line, far right of the grey baselines such as H2O, Quest, Ada-KV and SnapKV. Bold red text and an arrow call out the speedup, for example 1.76× or 2.44×. A grey line links the c2 and c4 points. The eye goes first to the red circle and its callout.",
+ "caption": "Quality--throughput frontier on three 7B models (LongBench 16-task average, 8K context, batch 32). Each marker represents one sparse-attention method at a fixed operating point; the $x$-axis is tokens/s derived from median decode-step latency and the $y$-axis is the benchmark score. Open-loop baselines are grey markers. \\ssa{} combines higher quality with competitive speed; SnapKV is faster on Qwen. Coverage checks and recovery run every $M$ steps.",
+ "caption_source": "latex",
+ "abstract": "Sparse attention accelerates long-context decoding by reading a subset of the KV cache, but existing methods are open-loop: the kernel commits to its selection with no signal indicating whether enough attention mass was preserved and no recovery path when it was not. The needed signal already exists inside the kernel. The fraction of softmax mass on the selected tokens, which we call coverage, satisfies an exact algebraic equality with per-step output error and serves a dual role as the acceptance criterion and the interpolation weight for recovery. Coverage-Verified Sparse Attention (CVSA) turns coverage into a training-free, closed-loop verify-then-correct decode loop that accepts high-coverage drafts and recovers only the heads that fall short, with no sampling, no draft model, and no speculative-decoding infrastructure. Quality varies by only $0.14$ points across the threshold sweep; budget and scheduling ablations characterize the deployed operating point. On LongBench at 7B and 70B, CVSA comes within $1.13$ points of dense attention, statistically matching it at 70B, and it loses $0.8$ points on RULER; measured median decode-step speedup reaches $6.21\\times$ at 128K context.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=8Z6u3YSO1c",
+  "arxiv": "https://arxiv.org/abs/2611.10634",
+  "pdf": "https://arxiv.org/pdf/2611.10634",
+  "proceedings": null,
+  "virtual": "https://neurips.cc/virtual/2026/poster/155083",
+  "code": null
+ },
+ "license": "http://arxiv.org/licenses/nonexclusive-distrib/1.0/",
+ "img": "none",
+ "image_url": null,
+ "thumb_url": null,
+ "figure_page": 1,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.93
+}

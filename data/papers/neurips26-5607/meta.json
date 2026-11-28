@@ -1,0 +1,50 @@
+{
+ "id": "neurips26-5607",
+ "title": "Complementing DINO Features with Image Structure for Part Discovery",
+ "authors": [
+  "Samyak Rawlekar",
+  "Nikhil C Paleti",
+  "Amey Gupta",
+  "Narendra Ahuja"
+ ],
+ "venue": "NeurIPS 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "Computer Vision->Vision Models & Multimodal",
+ "role": "analysis-finding",
+ "role2": "problem-setup",
+ "claim": "Fixed-grid patches that straddle part boundaries yield ambiguous features that blur boundaries, while low-level image edges stay sharp and complementary.",
+ "layout": "4 panels left-to-right; input, patch grid, trend plot, edge-map comparison",
+ "tags": [
+  "patch-boundaries",
+  "feature-ambiguity",
+  "complementary-signals",
+  "part-discovery",
+  "self-supervised-features"
+ ],
+ "style": [
+  "photo/real data",
+  "plot",
+  "colorful"
+ ],
+ "description": "A single-row, four-panel figure that builds an argument from left to right. (a) shows a photo of a colorful bird (blue head, green and red body) on a branch. (b) overlays a fine patch grid on the same bird. Three highlighted patches are labeled with colored tags: a red 'Pure Patch (Head)', a purple 'Boundary Patch' straddling head and body, and a teal 'Pure Patch (Body)'. (c) is a dual-axis line plot against distance to boundary in pixels. A blue dashed line shows feature entropy falling and an orange dash-dot line shows top-2 margin rising as patches move away from the boundary. (d) puts two red-orange heatmaps side by side: DINO Similarity, which gives thick blurry edges, and Image Contrast, which gives thin sharp edges that follow the bird's outline. Captions sit under each panel. The eye goes first to the bird photos, then to the plot, then to the sharp-versus-blurry edge maps.",
+ "caption": "Mixing of pixels from across part boundaries present in boundary-area patches blurs semantic boundaries. (a) Input image. (b) A boundary patch straddling the bird's head and body pools pixels from both regions, illustrating geometric mixing in pixel space. (c) Across 26K foreground patches, feature entropy rises and the top-2 assignment margin falls as patches approach part boundaries, showing mixing in feature space, which causes ambiguity in inferences of semantic part boundaries as can be seen in (d) where edges from DINO feature similarity (left) blur at part boundaries, while edges from image contrast (right) align with them. Recovery of sharp boundaries from DINO features may thus be expected to benefit from complementary geometric information.",
+ "caption_source": "latex",
+ "abstract": "Self-supervised Vision Transformers (ViTs) like DINO encode rich semantics, enabling training-free segmentation of objects from the background and discovery of their parts via feature clustering. This paper focuses on part discovery: partitioning a foreground object into semantic parts. Existing approaches produce imprecise part boundaries. We trace this to the rigid ViT patch grid used in training DINO, where patches straddling boundaries contain pixels from multiple parts. While DINO's invariance-based training could absorb this pixel-level mixing into clean features, experiments with over 26K foreground patches show it does not: boundary-overlapping patches produce features with higher entropy and lower assignment confidence, blurring predicted part boundaries. Rather than make the massive effort of retraining DINO over geometrically coherent regions, an easier approach is to take boundaries directly from a boundary detector, which supplies the geometric information DINO's features lack. Motivated by this, we introduce Part-DINO, a training-free framework that combines boundaries from low-level image segmentation with DINO's semantic features. We use the boundaries to partition the image into regions, pool DINO features within each region, and group them to discover parts. Without any training, Part-DINO produces structurally coherent part assignments, outperforming training-free baselines across four standard benchmarks (CUB, CelebA, PartImageNet-OOD, PartImageNet-Seg) and remaining competitive with weakly-supervised and unsupervised methods.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=cbLnr5GrNf",
+  "arxiv": "https://arxiv.org/abs/2610.32293",
+  "pdf": "https://arxiv.org/pdf/2610.32293",
+  "proceedings": null,
+  "virtual": "https://neurips.cc/virtual/2026/poster/151156",
+  "code": "https://samyakr99.github.io/Part_dino/"
+ },
+ "license": "http://creativecommons.org/licenses/by/4.0/",
+ "img": "cc-by",
+ "image_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/images/neurips26-5607.png",
+ "thumb_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/thumbs/neurips26-5607.webp",
+ "figure_page": 1,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.6
+}

@@ -1,0 +1,47 @@
+{
+ "id": "neurips26-7922",
+ "title": "Constrained Decoding for Diffusion Language Models via Efficient Inference over Finite Automata",
+ "authors": [
+  "Meihua Dang",
+  "Stefano Ermon"
+ ],
+ "venue": "NeurIPS 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": null,
+ "role": "concept",
+ "role2": "overview-framework",
+ "claim": "A constraint expressed as an automaton can be recast as a chain graphical model whose factors are simple structured matrices.",
+ "layout": "4 panels, left-to-right, automaton then chain model then two matrices",
+ "tags": [
+  "finite-automaton",
+  "graphical-model",
+  "constrained-decoding",
+  "factorization",
+  "formal-representation"
+ ],
+ "style": [
+  "minimal",
+  "math-heavy"
+ ],
+ "description": "A four-panel horizontal strip of black-and-white diagrams. Panel (a) shows a small DFA with states s0, s1 and s2, where s2 is a double-circled accepting state. Its edges are labeled with tokens and edge names: a (e0), a self-loop b,c (e1) on s1, d (e2), and a self-loop e (e3) on s2. Panel (b) shows a chain of latent edge variables z1 → z2 → … → zL → a gray terminal box z_{L+1}. Each z has a downward arrow to an observed token x1, x2, …, xL. Panel (c) is a 4x4 binary heatmap grid with rows and columns e0–e3. It is the transition matrix, with black cells where edges can chain. Panel (d) is a 4x5 binary grid of edges against tokens a–e, with a diagonal-like black pattern. The eye goes first to the automaton and then to the two black-and-white matrices.",
+ "caption": "(a) A finite automaton $\\mathcal{M}$ accepting $a(b|c)^* d e^*$. (b) The induced chain-structured graphical model over length-$L$ sequences, with edge-valued latents $z_{1:L}$ emitting observed tokens $x_{1:L}$. (c) The transition factor $p(z_t \\!\\mid \\! z_{t-1})$, nonzero when consecutive edges chain end-to-end ($\\dst(z_{t-1}) = \\mathrm{src}(z_t)$). (d) The emission factor $p(x_t \\!\\mid \\! z_t)$, nonzero when $x_t$ is in the label set of edge $z_t$.",
+ "caption_source": "latex",
+ "abstract": "Constrained decoding is essential for serving LLMs, ensuring that generated outputs follow specific structures such as JSON schema-formatted function calls. Existing systems are designed for autoregressive models and assume left-to-right generation, masking out invalid next tokens at each step. Diffusion language models, however, break this assumption: they sample multiple positions simultaneously from a fully-factorized mean-field distribution at each denoising step. In this paper, we present an exact and tractable algorithm for sampling from the constrained mean-field posterior under any constraint expressible as a finite automaton. Viewing finite automata as graphical models, we obtain tractable representations of the constrained distribution that enable efficient inference. The approach guarantees constraint satisfaction by construction, supports both greedy and sampling-based decoding, and is compatible with parallel and block-wise decoding under arbitrary remasking schedules. Applying depth-reduction techniques from arithmetic circuit theory, we further reduce sampling depth from linear to logarithmic in the sequence length. Empirical evaluations on Dream-7B and LLaDA-8B show substantial accuracy gains across various tasks including function calling (xLAM, BFCL), planning (Sudoku, Countdown), text-to-SQL (Spider), and math reasoning (GSM-Symbolic), with little inference overhead relative to unconstrained decoding. For example, on BFCL-Live, our approach improves Dream-7B's greedy decoding accuracy from 63.9% to 71.5%, and stochastic sampling accuracy from 22.3% to 69.0%, where the unconstrained baseline collapses, with under 5% wall-clock overhead.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=ssAyzXEqoT",
+  "arxiv": "https://arxiv.org/abs/2607.07026",
+  "pdf": "https://arxiv.org/pdf/2607.07026",
+  "proceedings": null,
+  "virtual": "https://neurips.cc/virtual/2026/poster/149103",
+  "code": null
+ },
+ "license": "http://arxiv.org/licenses/nonexclusive-distrib/1.0/",
+ "img": "none",
+ "image_url": null,
+ "thumb_url": null,
+ "figure_page": 2,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.55
+}

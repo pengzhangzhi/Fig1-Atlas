@@ -1,0 +1,50 @@
+{
+ "id": "neurips26-4558",
+ "title": "UniPrefill: Universal Long-Context Prefill Acceleration via Block-wise Dynamic Sparsification",
+ "authors": [
+  "Qihang Fan",
+  "Huaibo Huang",
+  "zhiyingwu",
+  "Bingning Wang",
+  "Ran He"
+ ],
+ "venue": "NeurIPS 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "Applications->Language, Speech and Dialog",
+ "role": "teaser-result",
+ "role2": null,
+ "claim": "Our acceleration method consistently beats the standard baseline in throughput across architectures, with gains growing at longer contexts and larger batches.",
+ "layout": "3 panels side-by-side, grouped bar charts, shared bottom legend, hatched bars for ours",
+ "tags": [
+  "throughput",
+  "prefill-acceleration",
+  "efficiency",
+  "architecture-agnostic",
+  "benchmark-comparison"
+ ],
+ "style": [
+  "plot",
+  "colorful"
+ ],
+ "description": "A single wide figure with three side-by-side grouped bar charts under one title. The panels are LLaMA-3.1-Instruct-8B, Qwen3-Next-80B-A3B and Gemma-3-12B. In each panel the x-axis is context length (4K to 128K) and the y-axis is prefill throughput in K tokens/s. At each context length there are eight bars, paired by batch size (1, 4, 16, 64). Each pair has a solid bar for Standard Prefill and a lighter hatched bar for UniPrefill. Batch sizes are coded as blue, green, red and purple (the legend lists orange for the hatched BS=16 bar). A shared legend sits at the bottom. The hatched bars are generally taller, and the gap widens at 64K and 128K. At long contexts the standard bars drop sharply while the hatched bars stay high. The eye goes first to the tall hatched bars.",
+ "caption": "Prefill throughput comparison between Standard Prefill and UniPrefill across three model architectures and varying batch sizes (tensor parallel size is set to 8). All experiments are conducted within vLLM, with UniPrefill deeply integrated into vLLM's continuous batching scheduler. We evaluate prefill throughput (K tokens/s) on LLaMA-3.1-Instruct-8B [ref] (full attention), Qwen3-Next-80B-A3B [ref] (linear/full attention hybrid), and Gemma-3-12B [ref] (sliding window/full attention hybrid) across context lengths from 4K to 128K and batch sizes of 1, 4, 16, and 64. Solid bars denote Standard Prefill and hatched bars denote UniPrefill. UniPrefill consistently achieves higher throughput across all three architectures, with gains becoming more pronounced at longer context lengths and larger batch sizes.",
+ "caption_source": "latex",
+ "abstract": "As large language models (LLMs) continue to advance rapidly, they are becoming increasingly capable while simultaneously demanding ever-longer context lengths. To improve the inference efficiency of long-context processing, several novel low-complexity hybrid architectures have recently been proposed, effectively alleviating the computational burden of long-context inference. However, existing research on long-context prefill acceleration remains predominantly focused on sparse attention mechanisms, which achieve their maximum speedup only on full-attention models. When transferred to emerging architectures--such as linear/full attention hybrids or sliding window/full attention hybrids--these prefill acceleration approaches suffer significant performance degradation. Furthermore, such methods are generally incompatible with continuous batching, making them difficult to integrate into modern inference engines such as vLLM. To this end, we propose UniPrefill, a prefill acceleration framework applicable to virtually any model architecture, which directly accelerates the model's computation at the token level. We further implement UniPrefill as a continuous batching operator and extend vLLM's scheduling strategy to natively support prefill-decode co-processing and tensor parallel for UniPrefill, enabling its seamless integration into vLLM. UniPrefill achieves up to 2.1x speedup in Time-To-First-Token (TTFT), with the acceleration becoming increasingly pronounced as the number of concurrent requests grows.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=VU9bHYAvdH",
+  "arxiv": "https://arxiv.org/abs/2605.06221",
+  "pdf": "https://arxiv.org/pdf/2605.06221",
+  "proceedings": null,
+  "virtual": "https://neurips.cc/virtual/2026/poster/152106",
+  "code": "https://github.com/qhfan/UniPrefill"
+ },
+ "license": "http://arxiv.org/licenses/nonexclusive-distrib/1.0/",
+ "img": "none",
+ "image_url": null,
+ "thumb_url": null,
+ "figure_page": 1,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.9
+}

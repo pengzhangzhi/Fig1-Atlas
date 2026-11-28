@@ -1,0 +1,48 @@
+{
+ "id": "neurips26-4395",
+ "title": "Unlocking Any-Order Generation in Pretrained Autoregressive Image Models",
+ "authors": [
+  "Rishav Pramanik",
+  "Marco Pedersoli",
+  "Zhaozheng Yin"
+ ],
+ "venue": "NeurIPS 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "Computer Vision->Image and Video Generation",
+ "role": "before-after",
+ "role2": "teaser-result",
+ "claim": "A fixed-order baseline fails at non-sequential conditioning tasks, while the adapted model handles them all with the same weights.",
+ "layout": "3 task panels side-by-side, each with input, baseline, ours columns; ours outlined",
+ "tags": [
+  "any-order-generation",
+  "inpainting",
+  "outpainting",
+  "image-editing",
+  "autoregressive"
+ ],
+ "style": [
+  "photo/real data",
+  "minimal"
+ ],
+ "description": "A wide horizontal strip split into three labeled panels with small-caps headers: Inpainting, Class-Conditional Editing, and Outpainting. Each panel has three image columns: the input (masked, input plus mask, or cropped), the pretrained raster-scan baseline, and the proposed model, labeled 'Ours' in bold. Inpainting shows a lake landscape with a black square hole. The baseline fills it with a dark, noisy blob, and ours restores a coherent shoreline. Editing shows a golden retriever with a red box over the head region. The baseline leaves faint white smudges, and ours replaces the head with a pineapple crown, captioned 'Golden Retriever → Pineapple'. Outpainting shows a panda face on a black background. The baseline gives a blurry green scene, and ours extends the panda's full body. The eye goes to the outlined 'Ours' columns.",
+ "caption": "A single autoregressive image model, adapted from a pretrained raster-scan generator, performs inpainting (left), region-conditioned editing (center), and outpainting (right) without task-specific training, sampler modification, or auxiliary networks. The \"Pretrained (raster)\" column shows the same LlamaGen-L [ref] model from which our model is adapted, prompted to perform the same tasks under the natural raster-scan generation procedure. Failure modes in this column reflect the structural incapacity of fixed-order AR models to condition on non-contiguous context, not weak performance at a shared task. After adaptation (\"Ours\"), the same weights produce coherent results across all three capabilities, varying only in which tokens are observed at inference time. Quantitative comparisons against MaskGIT [ref] on inpainting and outpainting are reported in Section [ref].",
+ "caption_source": "latex",
+ "abstract": "Autoregressive (AR) image generators are powerful in principle but inflexible in practice: training with a fixed raster-scan order hardcodes a single factorization of the image distribution into the model, leaving it unable to inpaint, outpaint, or edit at inference time. Existing solutions, including the modern discrete-diffusion family, train from scratch on a mixture of token orderings, paying roughly 3x the compute of standard raster-scan training; discrete diffusion further sacrifices compatibility with the AR inference ecosystem (KV caching, vLLM) by construction. We argue that this cost is unnecessary. A pretrained raster-scan AR model has already learned the joint distribution over image tokens; what it lacks is not knowledge but the ability to express that knowledge through non-sequential conditional pathways. We propose a recipe for adapting pretrained raster-scan models into any-order generators using two components: future-aware positional embeddings that resolve a target-position identifiability problem at negligible overhead, and an ordering curriculum that traces a stable optimization path from the pretrained solution to a good any-order basin. Applied to four base models across two architectures and two scales (LlamaGen-L/XL, RAR-L/XL), the recipe substantially outperforms MaskGIT on ImageNet inpainting (FID 6.21 vs. 10.44) and outpainting, is competitive with MAR-L, trades a 1.2-1.9 increase in class-conditional FID for this flexibility, and costs 13-33% additional compute beyond pretraining, while leaving the standard AR inference stack untouched. Inpainting, outpainting, and editing, our results suggest, need not be added to autoregressive image models. They can be unlocked from the ones that exist. Code is available at https://github.com/Ordered-AR/unlockedadaptation.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=UVG9WWadYE",
+  "arxiv": "https://arxiv.org/abs/2610.39293",
+  "pdf": "https://arxiv.org/pdf/2610.39293",
+  "proceedings": null,
+  "virtual": "https://neurips.cc/virtual/2026/poster/152247",
+  "code": null
+ },
+ "license": "http://creativecommons.org/licenses/by/4.0/",
+ "img": "cc-by",
+ "image_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/images/neurips26-4395.png",
+ "thumb_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/thumbs/neurips26-4395.webp",
+ "figure_page": 1,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.85
+}

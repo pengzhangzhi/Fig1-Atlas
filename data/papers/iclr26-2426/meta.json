@@ -1,0 +1,56 @@
+{
+ "id": "iclr26-2426",
+ "title": "SP-VLA: A Joint Model Scheduling and Token Pruning Approach for VLA Model Acceleration",
+ "authors": [
+  "Ye Li",
+  "Yuan Meng",
+  "Zewen Sun",
+  "Kangye Ji",
+  "Chen Tang",
+  "Jiajun Fan",
+  "Xinzhu Ma",
+  "Shu-Tao Xia",
+  "Zhi Wang",
+  "Wenwu Zhu"
+ ],
+ "venue": "ICLR 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": null,
+ "role": "prior-vs-ours",
+ "role2": "pipeline",
+ "claim": "Conventional models run the full heavy network at every step; ours switches between a lightweight generator and the full model, pruning tokens when the full model runs.",
+ "layout": "2 stacked panels, left-to-right flow, dashed boxes, feedback loop arrows underneath",
+ "tags": [
+  "model-scheduling",
+  "token-pruning",
+  "efficiency",
+  "robotics",
+  "adaptive-computation"
+ ],
+ "style": [
+  "icon-heavy",
+  "colorful",
+  "minimal"
+ ],
+ "description": "Two horizontal dashed-border panels are stacked. The top panel, titled 'Existing Vision Language Action Model', is drawn in gray. Images and a prompt go through a ViT encoder and a tokenizer. The resulting tokens feed a large language model (Llama 2 7B), then a D-Tokenizer, then an action vector (Δx, Δθ, ΔGrip), then a robot arm icon. A feedback arrow runs back to the input. The bottom panel, titled 'SP-VLA: Joint Model Scheduling and Token Pruning' in red, is the focus. Input images and an action buffer feed a Scheduler icon marked ①. The scheduler splits the flow into two branches. The upper branch, for deliberative actions, goes through an encoder and compressor, with the pruned space and semantic tokens (a heatmap) marked ②, then the LLM and D-Tokenizer. The lower branch, for intuitive actions, uses history actions and a lightweight action generator (<1K). Both branches reach the environment, and a feedback arrow returns to the start. Blue and red text labels and colored boxes mark the new components.",
+ "caption": "The main idea of \\sysname. Unlike traditional VLA models, \\sysname first determines the type of the current action. \\Circled{1} For intuitive actions, a lightweight action generator is employed to approximate the output, while for deliberative actions, the high-precision VLA model is used to ensure accuracy. \\Circled{2} When the VLA model is invoked, we further accelerate inference by adaptively pruning tokens based on integrated spatial and semantic information. By jointly leveraging the above two strategies, \\sysname effectively directs the model’s attention to critical actions and salient visual information, achieving substantial speedup without compromising accuracy.",
+ "caption_source": "latex",
+ "abstract": "Vision-Language-Action (VLA) models have attracted increasing attention for their strong control capabilities. However, their high computational cost and low execution frequency hinder their suitability for real-time tasks such as robotic manipulation and autonomous navigation. Existing VLA acceleration methods primarily focus on structural optimization, overlooking the fact that these models operate in sequential decision-making environments. As a result, temporal redundancy in sequential action generation and spatial redundancy in visual input remain unaddressed. To this end, we propose SP-VLA, a unified framework that accelerates VLA models by jointly scheduling models and pruning tokens. Specifically, we design an action-aware model scheduling mechanism that reduces temporal redundancy by dynamically switching between VLA model and a lightweight generator. Inspired by the human motion pattern of focusing on key decision points while relying on intuition for other actions, we categorize VLA actions into deliberative and intuitive, assigning the former to the VLA model and the latter to the lightweight generator, enabling frequency-adaptive execution through collaborative model scheduling. To address spatial redundancy, we further develop a spatio-semantic dual-aware token pruning method. Tokens are classified into spatial and semantic types and pruned based on their dual-aware importance to accelerate VLA inference. These two mechanisms work jointly to guide the VLA in focusing on critical actions and salient visual information, achieving effective acceleration while maintaining high accuracy. Extensive experiments show that our method achieves 1.5$\\times$ lossless acceleration in LIBERO and 2.4$\\times$ in SimplerEnv, with up to 6% average performance gain. Inference frequency and latency improve by 2.2$\\times$ in SimplerEnv and 1.4$\\times$ in LIBERO.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=RwdGIIjPlC",
+  "arxiv": "https://arxiv.org/abs/2506.12723",
+  "pdf": "https://proceedings.iclr.cc/paper_files/paper/2026/file/4072543747a14bbed76284cf2c04b9e9-Paper-Conference.pdf",
+  "proceedings": "https://proceedings.iclr.cc/paper_files/paper/2026/hash/4072543747a14bbed76284cf2c04b9e9-Abstract-Conference.html",
+  "virtual": "https://iclr.cc/virtual/2026/poster/10009455",
+  "code": null
+ },
+ "license": "http://creativecommons.org/licenses/by/4.0/",
+ "img": "cc-by",
+ "image_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/images/iclr26-2426.png",
+ "thumb_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/thumbs/iclr26-2426.webp",
+ "figure_page": 1,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.6
+}

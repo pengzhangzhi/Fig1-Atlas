@@ -1,0 +1,58 @@
+{
+ "id": "iclr26-4744",
+ "title": "Hallucination Begins Where Saliency Drops",
+ "authors": [
+  "Xiaofeng Zhang",
+  "Yuanchao Zhu",
+  "Chaochen Gu",
+  "Xiaosong Yuan",
+  "Qiyan Zhao",
+  "Jiawei Cao",
+  "Barrett Tang",
+  "Sinan Fan",
+  "Yaomin Shen",
+  "Chen Shen",
+  "Hao Tang"
+ ],
+ "venue": "ICLR 2026",
+ "tier": "oral",
+ "track": "main",
+ "topic": null,
+ "role": "analysis-finding",
+ "role2": "before-after",
+ "claim": "Attention maps look alike for correct and wrong outputs, but gradient-based saliency maps clearly separate grounded from failed predictions.",
+ "layout": "Top prompt and response; 4 heatmaps in 2 columns; token-arc diagrams below; green vs red",
+ "tags": [
+  "saliency",
+  "hallucination",
+  "diagnostic",
+  "attention-analysis",
+  "vision-language-models"
+ ],
+ "style": [
+  "colorful",
+  "photo/real data",
+  "plot",
+  "text-heavy"
+ ],
+ "description": "The top shows a photo of a striped-wallpaper attic bedroom beside a chat bubble. The user prompt reads 'Please describe this image in detail', and the model's reply highlights 'wallpaper' in green (correct) and 'blue' in red (hallucinated). Green and red arrows run from these words to four triangular heatmaps. The left pair, marked with green checks, shows an attention map labeled 'No pattern' and a saliency map with dense, structured 'high saliency' stripes in the output region. The right pair, marked with red crosses, shows a similar attention map labeled 'No pattern' and a saliency map with 'low saliency' and faded stripes. Below each pair, System/P/Output bars and curved-arrow diagrams show the next token attending to earlier tokens with a high or low saliency score. Green 'Correct pattern' and red 'Wrong pattern' banners close the figure.",
+ "caption": "Attention vs. Saliency Maps for Correct and Hallucinated Tokens (Qwen2-VL-7B). Left (correct token wallpaper): Attention maps show no distinctive pattern, while our LVLMs-Saliency maps reveal strong, structured grounding to prior outputs. Right (hallucinated token blue): Attention maps remain visually similar, but saliency maps collapse, signaling loss of contextual dependency.",
+ "caption_source": "latex",
+ "abstract": "Recent studies have examined attention dynamics in large vision-language models (LVLMs) to detect hallucinations. However, existing approaches remain limited in reliably distinguishing hallucinated from factually grounded outputs, as they rely solely on forward-pass attention patterns and neglect gradient-based signals that reveal how token influence propagates through the network. To bridge this gap, we introduce LVLMs-Saliency, a gradient-aware diagnostic framework that quantifies the visual grounding strength of each output token by fusing attention weights with their input gradients. Our analysis uncovers a decisive pattern: hallucinations frequently arise when preceding output tokens exhibit low saliency toward the prediction of the next token, signaling a breakdown in contextual memory retention. Leveraging this insight, we propose a dual-mechanism inference-time framework to mitigate hallucinations: (1) Saliency-Guided Rejection Sampling (SGRS), which dynamically filters candidate tokens during autoregressive decoding by rejecting those whose saliency falls below a context-adaptive threshold, thereby preventing coherence-breaking tokens from entering the output sequence; and (2) Local Coherence Reinforcement (LocoRE), a lightweight, plug-and-play module that strengthens attention from the current token to its most recent predecessors, actively counteracting the contextual forgetting behavior identified by LVLMs-Saliency. Extensive experiments across multiple LVLMs demonstrate that our method significantly reduces hallucination rates while preserving fluency and task performance, offering a robust and interpretable solution for enhancing model reliability. Code is available at: https://github.com/zhangbaijin/LVLMs-Saliency",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=sjnErRHXf3",
+  "arxiv": "https://arxiv.org/abs/2601.20279",
+  "pdf": "https://proceedings.iclr.cc/paper_files/paper/2026/file/196c8da9209b1977408d8771c4e7ee56-Paper-Conference.pdf",
+  "proceedings": "https://proceedings.iclr.cc/paper_files/paper/2026/hash/196c8da9209b1977408d8771c4e7ee56-Abstract-Conference.html",
+  "virtual": "https://iclr.cc/virtual/2026/poster/10007034",
+  "code": null
+ },
+ "license": "http://creativecommons.org/licenses/by-nc-sa/4.0/",
+ "img": "cc-by-nc-sa",
+ "image_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/images/iclr26-4744.png",
+ "thumb_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/thumbs/iclr26-4744.webp",
+ "figure_page": 1,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.8
+}

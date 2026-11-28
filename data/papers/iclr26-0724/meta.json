@@ -1,0 +1,52 @@
+{
+ "id": "iclr26-0724",
+ "title": "MoNE: Replacing Redundant Experts with Lightweight Novices for Structured Pruning of MoE",
+ "authors": [
+  "Geng Zhang",
+  "Han Yuxuan",
+  "Yuxuan Lou",
+  "Yiqi Zhang",
+  "Wangbo Zhao",
+  "Yang You"
+ ],
+ "venue": "ICLR 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "Deep Learning->Generative Models and Autoencoders",
+ "role": "prior-vs-ours",
+ "role2": "analysis-finding",
+ "claim": "Prior pruning methods drop whole layers, weights or experts; ours swaps redundant experts for cheap substitutes, guided by task-consistent expert statistics.",
+ "layout": "2 rows: top three pruning-diagram panels, bottom six heatmaps; left-to-right",
+ "tags": [
+  "structured-pruning",
+  "mixture-of-experts",
+  "model-compression",
+  "expert-redundancy",
+  "robustness"
+ ],
+ "style": [
+  "colorful",
+  "plot",
+  "icon-heavy"
+ ],
+ "description": "The top row (a) has three rounded panels that compare pruning strategies. The first, 'General structured pruning', shows layer pruning (a stack of Transformer Layer boxes with some faded and marked with scissors) beside weight pruning (a blue weight-matrix grid with rows cut). The second, 'Expert pruning', shows a router feeding experts E1 to EM with E2 and E3 faded and scissored out. The third, 'MoNE', matches the second but puts purple novice boxes N2 and N3 in place of the removed experts. The bottom row (b) has a 2x3 grid of orange heatmaps of layers against experts. Frequency is on top and variance below, for Arc, MMLU and Winogrande. Blue, red and green circles mark the same experts in every task. A colorbar sits on the right.",
+ "caption": "(a) Different structured pruning methods. (b) Layer-wise normalized expert access frequency and output variance of Deepseek-V2-Lite for three downstream tasks. Experts with high access frequency or output variances are the same across downstream tasks. Expert in blue circles \\textcolor[HTML]{005FFF}{has both high frequency and variance}. Expert in red circles \\textcolor[HTML]{FF0000}{only has high variance}. Expert in green circles \\textcolor[HTML]{28C800}{only has high frequency}. Similar observations on other models and tasks are in Appendix [ref].",
+ "caption_source": "latex",
+ "abstract": "Mixture-of-Experts (MoE) enables efficient scaling of large language models by activating only a subset of experts per input token. However, deploying MoE-based models incurs significant memory overhead due to the need to retain all experts in memory. While structured pruning is promising to reduce memory costs, existing methods often show suboptimal performance and unstable degradation in three dimensions: model architectures, calibration data sources, and calibration sample sizes. This paper proposes Mixture-of-Novices-and-Experts (MoNE), a novel expert pruning method that replaces redundant experts with lightweight novices to achieve effective and robust model compression. MoNE evaluates expert redundancy based on two metrics: access frequency and output variance. Experts exhibiting low usage and stable outputs are pruned and replaced with lightweight novices-unbiased estimations of their original outputs-minimizing performance degradation. Extensive experiments demonstrate that MoNE consistently outperforms baseline methods with minimal accuracy degradation across the three dimensions, confirming its effectiveness and robustness. Notably, it outperforms baselines by up to 2.72 for the average zero shot accuracy across nine downstream tasks under 25% pruning ratio, with only 0.14 performance drop for Qwen2-57B-A14B. The code is available at https://github.com/zxgx/mode-pd.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=881uEwToKQ",
+  "arxiv": "https://arxiv.org/abs/2507.00390",
+  "pdf": "https://proceedings.iclr.cc/paper_files/paper/2026/file/431c7c0b59aeafa2182b4d6617884b53-Paper-Conference.pdf",
+  "proceedings": "https://proceedings.iclr.cc/paper_files/paper/2026/hash/431c7c0b59aeafa2182b4d6617884b53-Abstract-Conference.html",
+  "virtual": "https://iclr.cc/virtual/2026/poster/10011232",
+  "code": "https://github.com/zxgx/mode-pd"
+ },
+ "license": "http://creativecommons.org/licenses/by/4.0/",
+ "img": "cc-by",
+ "image_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/images/iclr26-0724.png",
+ "thumb_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/thumbs/iclr26-0724.webp",
+ "figure_page": 1,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.6
+}

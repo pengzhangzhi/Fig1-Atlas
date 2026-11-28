@@ -1,0 +1,54 @@
+{
+ "id": "iclr26-1367",
+ "title": "FASA: FREQUENCY-AWARE SPARSE ATTENTION",
+ "authors": [
+  "Yifei Wang",
+  "Yueqi Wang",
+  "Zhenrui Yue",
+  "Huimin Zeng",
+  "Yong Wang",
+  "Ismini Lourentzou",
+  "Zhengzhong Tu",
+  "Xiangxiang Chu",
+  "Julian McAuley"
+ ],
+ "venue": "ICLR 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "Deep Learning->Attention Mechanisms",
+ "role": "analysis-finding",
+ "role2": null,
+ "claim": "A small, consistent subset of components carries most of the useful signal across units, revealing a hidden sparsity structure.",
+ "layout": "2 side-by-side heatmaps, shared axes, colorbars at right, low-to-high dim arrow",
+ "tags": [
+  "sparsity",
+  "heatmap",
+  "attention-heads",
+  "kv-cache",
+  "positional-encoding"
+ ],
+ "style": [
+  "plot",
+  "colorful"
+ ],
+ "description": "Two side-by-side heatmaps show contextual agreement scores for two models: Meta-Llama-3.1-8B (Layer 25) on the left and Mistral-7B (Layer 10) on the right. The x-axis lists frequency chunk indices 0 to 63, with an arrow above labeled from low dim to high dim. The y-axis lists head indices 1 to 31. Each cell is shaded from white to dark red, and each panel has a colorbar at its right. Most cells are pale. A few columns, mostly in the mid-to-high frequency range such as 16, 22, 26, 30, 58 and 62, form bright vertical bands of dark red. The eye goes first to these dark bands, which recur across many heads and show that a few frequency chunks dominate.",
+ "caption": "\\textbf{Functional sparsity of FCs revealed by Contextual Agreement ($\\overline{CA}$) heatmaps.} Each heatmap shows $\\overline{CA}$ per FC ($x$-axis) across all heads ($y$-axis). A few \"dominant\" FCs (bright vertical bands) consistently capture contextual information across attention heads. Results on Qasper ($\\mathcal{K}=256$); see Appendix [ref].",
+ "caption_source": "latex",
+ "abstract": "The deployment of Large Language Models (LLMs) faces a critical bottleneck when handling lengthy inputs: the prohibitive memory footprint of the Key Value (KV) cache. To address this bottleneck, the token pruning paradigm leverages attention sparsity to selectively retain a small, critical subset of tokens. However, existing approaches fall short, with static methods risking irreversible information loss and dynamic strategies employing heuristics that insufficiently capture the query-dependent nature of token importance. We propose FASA, a novel framework that achieves query-aware token eviction by dynamically predicting token importance. FASA stems from a novel insight into RoPE: the discovery of functional sparsity at the frequency-chunk (FC) level. Our key finding is that a small, identifiable subset of \"dominant\" FCs consistently exhibits high contextual agreement with the full attention head. This provides a robust and computationally free proxy for identifying salient tokens. Building on this insight, FASA first identifies a critical set of tokens using dominant FCs, and then performs focused attention computation solely on this pruned subset. Across a spectrum of long-context tasks, from sequence modeling to complex CoT reasoning, FASA consistently outperforms all token-eviction baselines and achieves near-oracle accuracy, demonstrating remarkable robustness even under constraint budgets. Notably, on LongBench-V1, FASA reaches nearly 100\\% of full-KV performance when only keeping 256 tokens, and achieves 2.56$\\times$ speedup using just 18.9\\% of the cache on AIME24.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=FnSgecCEwg",
+  "arxiv": "https://arxiv.org/abs/2602.03152",
+  "pdf": "https://proceedings.iclr.cc/paper_files/paper/2026/file/e839f274b3d3d682a0a82e5129d2cc4a-Paper-Conference.pdf",
+  "proceedings": "https://proceedings.iclr.cc/paper_files/paper/2026/hash/e839f274b3d3d682a0a82e5129d2cc4a-Abstract-Conference.html",
+  "virtual": "https://iclr.cc/virtual/2026/poster/10010559",
+  "code": null
+ },
+ "license": "http://creativecommons.org/licenses/by/4.0/",
+ "img": "cc-by",
+ "image_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/images/iclr26-1367.png",
+ "thumb_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/thumbs/iclr26-1367.webp",
+ "figure_page": 3,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.93
+}

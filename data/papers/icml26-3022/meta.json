@@ -1,0 +1,47 @@
+{
+ "id": "icml26-3022",
+ "title": "PRISM: Gauge-Invariant Tangent-Space Differentially Private LoRA",
+ "authors": [
+  "Shihao Wang",
+  "Xueru Zhang"
+ ],
+ "venue": "ICML 2026",
+ "tier": "oral",
+ "track": "main",
+ "topic": null,
+ "role": "analysis-finding",
+ "role2": "teaser-result",
+ "claim": "Naive factor-space privacy noise is consistently amplified relative to our intrinsic mechanism, by a stable margin throughout training.",
+ "layout": "single line plot, raw noisy curve with bold moving-average overlay and legend",
+ "tags": [
+  "noise-amplification",
+  "differential-privacy",
+  "lora",
+  "training-dynamics",
+  "baseline-comparison"
+ ],
+ "style": [
+  "plot",
+  "minimal"
+ ],
+ "description": "A single line chart with update step on the x-axis (0 to 300) and Amplification on the y-axis (about 1.25 to 2.35). A light blue, jittery line with dots shows the raw per-step amplification ratio. It swings between roughly 1.25 and 2.35 and has several sharp spikes. A thick orange line shows the moving average with window 25. It jumps from about 1.4 to about 1.7 in the first few steps. It then stays near 1.6 to 1.78, with a slight rise around step 100 and a dip near step 200. The legend sits in the top right and labels both curves. Light grid lines run behind the data. Because every value stays above 1, the eye goes to the orange trend line, which shows the amplification persists.",
+ "caption": "Intrinsic DP-noise amplification during training (Math-10K). We plot the per-step ratio $\\|N_Z\\|_F^{fac}/\\|N_Z\\|_F^{PRISM}$, where $\\|N_Z\\|_F$ is the Frobenius norm of the effective DP noise on the merged LoRA update $Z$. The blue curve reports the raw per-step ratio, and the orange curve reports its moving average (MA) with window size $w=25$ updates. Values $>1$ indicate that applying DP-SGD in factor space $(A,B)$ injects a larger intrinsic perturbation into $Z$ than PRISM under the same privacy budget.",
+ "caption_source": "latex",
+ "abstract": "Applying differential privacy (DP) via DP-SGD to Low-Rank Adaptation (LoRA) is a natural approach for privacy-preserving fine-tuning. However, LoRA's low-rank parameterization poses a fundamental challenge. In LoRA, each trainable update is represented as a low-rank matrix $Z = AB^\\top$, but this factorization is inherently non-identifiable: many factor pairs $(A,B)$ represent the same update $Z$. As a result, applying DP-SGD directly to the factors induces gauge-dependent perturbations on $Z$, and we show that this naive DP-LoRA can lead to unbounded noise amplification. We propose PRISM, an intrinsic DP mechanism for LoRA that is gauge invariant by construction, avoids bilinear noise amplification, and admits an efficient low-dimensional noise sampler. Moreover, PRISM yields a closed-form characterization of the effective intrinsic noise induced on $Z$, enabling stable privacy-utility trade-offs through bounded, gauge-invariant perturbations. We establish standard $(Îµ,Î´)$-DP guarantees for PRISM and introduce a DP-aware, gauge-invariant adaptive update rule that prevents adaptive optimization from amplifying injected privacy noise, improving numerical stability in practice.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=SiCjKmArjQ",
+  "arxiv": "https://arxiv.org/abs/2606.00944",
+  "pdf": "https://raw.githubusercontent.com/mlresearch/v306/main/assets/wang26kp/wang26kp.pdf",
+  "proceedings": "https://proceedings.mlr.press/v306/wang26kp.html",
+  "virtual": "https://icml.cc/virtual/2026/oral/71157",
+  "code": null
+ },
+ "license": "http://creativecommons.org/licenses/by/4.0/",
+ "img": "cc-by",
+ "image_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/images/icml26-3022.png",
+ "thumb_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/thumbs/icml26-3022.webp",
+ "figure_page": 8,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.6
+}

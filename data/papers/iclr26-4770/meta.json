@@ -1,0 +1,51 @@
+{
+ "id": "iclr26-4770",
+ "title": "RCPU: Rotation-Constrained Error Compensation for Structured Pruning of Large Language Models",
+ "authors": [
+  "Shuichiro Haruta",
+  "Kazunori Matsumoto",
+  "Zhi Li",
+  "Yanan Wang",
+  "Mori Kurokawa"
+ ],
+ "venue": "ICLR 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "Theory->Optimization",
+ "role": "pipeline",
+ "role2": null,
+ "claim": "Score and prune input columns by variance-aware importance, then rotate the pruned outputs to realign with the original outputs.",
+ "layout": "Multi-stage flow, wraps top-to-bottom, math beside boxes, vector insets at bottom right",
+ "tags": [
+  "structured-pruning",
+  "error-compensation",
+  "rotation-constraint",
+  "llm-compression",
+  "importance-scoring"
+ ],
+ "style": [
+  "math-heavy",
+  "colorful",
+  "minimal"
+ ],
+ "description": "A flow diagram of the pruning pipeline. Calibration data X enters a rounded box labeled W, which holds blue vertical bars. Three bars are pink-hatched with dashed red outlines to mark pruned columns. Under the box is the column pruning score formula γ_j. An arrow leads to a second box, W_K, with only the four retained blue bars. A connector then wraps down and left to the lower half. There, a peach box shows the original output Y = WX and a green box shows the pruned output Z = W_K X_K. A purple box gives the Q-constrained fit, a minimization of ||Y − QZ||_F under the orthogonality constraint Q^T Q = I. Two small panels show arrows. On the left, green pruned vectors diverge from orange original vectors. On the right, the rotated purple vectors line up with the orange ones. The update W_K = Q*W_K sits below.",
+ "caption": "Overview of RCPU framework. Input activations are scored by a variance-aware importance score, less important columns are pruned, and the retained subspace is updated through the rotation-constrained fitting. The pruned output vectors (arrows) are rotated to align with the original output vectors, showing how RCPU compensates for pruning errors.",
+ "caption_source": "latex",
+ "abstract": "In this paper, we propose a rotation-constrained compensation method to address the errors introduced by structured pruning of large language models (LLMs). LLMs are trained on massive datasets and accumulate rich semantic knowledge in their representation space. In contrast, pruning is typically carried out with only a small amount of calibration data, which makes output mismatches unavoidable. Although direct least-squares fitting can reduce such errors, it tends to overfit to the limited calibration set, destructively modifying pretrained weights. To overcome this difficulty, we update the pruned parameters under a rotation constraint. This constrained update preserves the geometry of output representations (i.e., norms and inner products) and simultaneously re-aligns the pruned subspace with the original outputs. Furthermore, in rotation-constrained compensation, removing components that strongly contribute to the principal directions of the output makes error recovery difficult. Since input dimensions with large variance strongly affect these principal directions, we design a variance-aware importance score that ensures such dimensions are preferentially kept in the pruned model. By combining this scoring rule with rotation-constrained updates, the proposed method effectively compensates errors while retaining the components likely to be more important in a geometry-preserving manner. In the experiments, we apply the proposed method to Llama-7B and Llama-2-13B, and evaluate it on WikiText2 and multiple language understanding benchmarks. The results demonstrate consistently better perplexity and task accuracy compared with existing baselines.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=t6xiPRvynD",
+  "arxiv": "https://arxiv.org/abs/2510.07782",
+  "pdf": "https://proceedings.iclr.cc/paper_files/paper/2026/file/e2fb048a8e37ad978fc895528102ce49-Paper-Conference.pdf",
+  "proceedings": "https://proceedings.iclr.cc/paper_files/paper/2026/hash/e2fb048a8e37ad978fc895528102ce49-Abstract-Conference.html",
+  "virtual": "https://iclr.cc/virtual/2026/poster/10007006",
+  "code": null
+ },
+ "license": "http://creativecommons.org/licenses/by/4.0/",
+ "img": "cc-by",
+ "image_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/images/iclr26-4770.png",
+ "thumb_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/thumbs/iclr26-4770.webp",
+ "figure_page": 1,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.9
+}

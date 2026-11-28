@@ -1,0 +1,49 @@
+{
+ "id": "neurips26-8446",
+ "title": "Scaling Laws for SAE Training Data",
+ "authors": [
+  "Nikita Koryagin",
+  "Nikita Balagansky",
+  "Daniil Gavrilov"
+ ],
+ "venue": "NeurIPS 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "Social Aspects->Accountability, Transparency and Interpretability",
+ "role": "prior-vs-ours",
+ "role2": "pipeline",
+ "claim": "Consuming fresh data throughout the budget requires storing everything; generating a small buffer once and replaying it matches the budget with far less storage.",
+ "layout": "2 side-by-side flowcharts, top-to-bottom, replay panel has feedback loop arrow",
+ "tags": [
+  "data-replay",
+  "storage-efficiency",
+  "sparse-autoencoders",
+  "fixed-budget",
+  "side-by-side-comparison"
+ ],
+ "style": [
+  "minimal",
+  "math-heavy",
+  "text-heavy"
+ ],
+ "description": "Two vertical flowcharts sit side by side. The left panel, titled 'Fresh activations', has three gray rounded boxes joined by downward arrows: generate N_total activations, store N_total vectors (footprint sN_total bytes), then one pass through the corpus with N_total SAE presentations. The right panel, titled 'Buffer replay', has the same three-step structure with U_buf in place of N_total. Its last box reads E = N_total/U_buf passes, N_total SAE presentations. A thick black arrow runs from that box back up to the store box to show replay. A centered line under both panels reads 'Same SAE budget. Storage ratio N_total/U_buf = E'. The figure is black and white with light gray boxes and no icons. The eye goes first to the two bold titles, then to the loop arrow.",
+ "caption": "Fresh activations and replay at a fixed SAE optimization budget. The replay pipeline generates and stores $U_{\\mathrm{buf}}$ activations once and uses $E=N_{\\mathrm{total}}/U_{\\mathrm{buf}}$ passes. $s$ denotes bytes per activation. Generation counts refer to token activations. Batching and sequence packing determine the number of calls to the base model.",
+ "caption_source": "latex",
+ "abstract": "Activation storage is often a bottleneck in sparse autoencoder (SAE) training. We study how many unique activations an SAE needs when its total training budget is fixed. Quality improves rapidly as the buffer grows, then reaches a plateau where replaying the buffer is nearly as effective as using fresh activations throughout training. Beyond this point, additional unique activations bring little benefit to reconstruction or interpretability, so the buffer need not grow with the training budget. We describe this tradeoff between diversity and repetition with a scaling law for limited data. We validate it across dictionary sizes and token budgets, early, middle, and late layers of Llama-3.1, Qwen3 model sizes, and BatchTopK, TopK, and JumpReLU SAEs. Sweeps using mathematical text and Python code test the effect of changing the activation source. Evaluation covers explained variance (EV), reconstruction MSE, feature absorption, automated interpretability, and sparse probing. These results give a practical training rule: choose the smallest buffer that reaches the quality plateau and replay it for the remaining budget. In our experiments, this reduces activation storage by $8\\text{--}64\\times$ with negligible quality loss.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=wGJ8YYzO5w",
+  "arxiv": "https://arxiv.org/abs/2611.07756",
+  "pdf": "https://arxiv.org/pdf/2611.07756",
+  "proceedings": null,
+  "virtual": "https://neurips.cc/virtual/2026/poster/148634",
+  "code": null
+ },
+ "license": "http://creativecommons.org/licenses/by/4.0/",
+ "img": "cc-by",
+ "image_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/images/neurips26-8446.png",
+ "thumb_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/thumbs/neurips26-8446.webp",
+ "figure_page": 1,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.6
+}

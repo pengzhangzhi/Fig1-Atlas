@@ -1,0 +1,49 @@
+{
+ "id": "neurips26-8973",
+ "title": "Revisiting the Adam-SGD Gap in LLM Pre-Training: The Role of Large Effective Learning Rates",
+ "authors": [
+  "Athanasios Glentis",
+  "Dawei Li",
+  "Chung-Yiu Yau",
+  "Mingyi Hong"
+ ],
+ "venue": "NeurIPS 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "Optimization->Neural Network Optimization",
+ "role": "analysis-finding",
+ "role2": "teaser-result",
+ "claim": "Adam sustains effective learning rates and update norms orders of magnitude larger than SGD, so SGD moves far less from initialization.",
+ "layout": "3 panels in a row, left-to-right, dual-axis plot in the first",
+ "tags": [
+  "optimizer-comparison",
+  "effective-learning-rate",
+  "adam-vs-sgd",
+  "pre-training",
+  "training-dynamics"
+ ],
+ "style": [
+  "plot",
+  "colorful"
+ ],
+ "description": "Three line and histogram plots in a row, labeled (a) to (c). Panel (a), \"Training Loss vs Weight Change\", has two y-axes. Loss is blue on the left and distance from initialization is red on the right (log scale). Solid lines are Adam and dashed lines are SGD. Adam's loss falls lower and its distance from initialization is far larger. Panel (b), \"Effective LR Distribution\", is a blue histogram of Adam's per-parameter effective learning rates, peaked near 10^2.7 on a log x-axis. Two vertical dashed lines mark the base LRs: green for Adam at 3e-3 and red for SGD at 5e-1. The red line carries a \"SGD diverges\" arrow. Panel (c), \"Update Norms: Adam vs SGD\", shows log-scale update norm over iterations. The blue Adam curve sits about two orders of magnitude above the orange SGD curve. The eye goes first to the colored curves and the gap between them.",
+ "caption": "(a) The pre-training dynamics of Adam and (momentum) SGD: (Left vertical axis) Training loss. (Right vertical axis) Distance from initialization $\\| { w}^{(t)} - { w}^{(0)} \\|_F$. The effective solution space of SGD is $50\\times$ smaller than that of Adam. (b) Effective learning rates (LR) $a^{(t)}_i$ at iteration $t=500$. For SGD $a^{(t)}_i\\equiv \\eta_t$ for all parameters; for Adam $a^{(t)}_i=\\eta_t/(\\sqrt{v^{(t)}_{i}} + \\varepsilon)$ for each $w_i^{(t)}$ (see Section [ref] for details). The effective LR of Adam are 2-4 orders of magnitude larger than SGD's. Base LR tuned to 3e-3 for Adam and 0.5 for SGD (dashed lines). Note that increasing SGD's LR further leads to divergence. (c) The update norm of Adam stays about 2 orders of magnitude larger than SGD's during training. All figures are from training LLaMA 130M on C4 with a 0.5M token batch size. \\vspace{-10pt}",
+ "caption_source": "latex",
+ "abstract": "It is widely believed that stochastic gradient descent (SGD) performs significantly worse than adaptive optimizers such as Adam in pre-training Large Language Models (LLMs). Yet the underlying reason for this gap remains unclear. In this work, we attribute a large part of the discrepancy to SGD's inability to sustain learning rates comparable to Adam's much larger effective learning rates. Through empirical and theoretical analysis of LLM pre-training dynamics, we identify that training is characterized by small gradient norms and large weight-to-gradient ratios, an effect that becomes more pronounced with larger batch sizes typical in pre-training, necessitating such large effective learning rates. However, we find that output-layer gradient magnitudes become highly uneven across token classes, and that large gradient spikes frequently occur during training. Together, these effects severely restrict the admissible learning rate of SGD. Guided by this understanding, we show that simple clipping mechanisms that stabilize SGD at large learning rates enable it to recover most of Adam's performance. In our large-scale experiments, the validation loss gap between large-learning-rate SGD and Adam shrinks from more than 50% to only about 3.5% when pre-training a 1B-parameter LLaMA model with a 1M-token batch size.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=zorIfxhDUM",
+  "arxiv": "https://arxiv.org/abs/2605.17787",
+  "pdf": "https://arxiv.org/pdf/2605.17787",
+  "proceedings": null,
+  "virtual": "https://neurips.cc/virtual/2026/poster/148165",
+  "code": null
+ },
+ "license": "http://arxiv.org/licenses/nonexclusive-distrib/1.0/",
+ "img": "none",
+ "image_url": null,
+ "thumb_url": null,
+ "figure_page": 0,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.8
+}

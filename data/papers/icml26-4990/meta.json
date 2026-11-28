@@ -1,0 +1,61 @@
+{
+ "id": "icml26-4990",
+ "title": "Mosaic: Unlocking Over 30$\\times$ Context Length for Diffusion LLMs Inference via Global Memory Planning and Dynamic Peak Taming",
+ "authors": [
+  "Liang Zheng",
+  "Bowen Shi",
+  "Yitao Hu",
+  "Jiawei Zhang",
+  "Ruofan Li",
+  "Guotao Yang",
+  "Zhixin Zhao",
+  "Zhengchao Wang",
+  "Sheng Chen",
+  "Wenxin Li",
+  "Dezhi Ran",
+  "Tao Xie",
+  "Keqiu Li"
+ ],
+ "venue": "ICML 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "Deep Learning->Large Language Models",
+ "role": "pipeline",
+ "role2": null,
+ "claim": "Generation proceeds by iteratively denoising masked tokens through attention, FFN and logits, committing high-confidence tokens each step until all are filled.",
+ "layout": "2 panels, left outer loop and right zoomed step, top-to-bottom flow",
+ "tags": [
+  "diffusion-llm",
+  "iterative-denoising",
+  "inference-pipeline",
+  "masked-tokens",
+  "memory-efficiency"
+ ],
+ "style": [
+  "colorful",
+  "icon-heavy",
+  "minimal"
+ ],
+ "description": "The figure shows the diffusion LLM inference loop. The left panel is a vertical stack of token rows. It starts with an all-MASK sequence, then a partly filled row with check-marked orange tokens, then a fully checked row. A circular-arrow icon labelled 'N times' marks the repetition. A curly brace links this outer loop to a zoomed-in panel on the right. That panel starts with a prompt token (blue) plus MASK tokens. They pass down through a yellow stacked block holding Bidirectional Attention and FFN, tagged 'Loop' in orange. The block outputs Logits, shown as two grey cards with per-token probability bars (Token 1, Token 2, ... Token n). The highest-probability tokens get check marks and are written into the output row. Orange and blue highlight the filled and prompt tokens.",
+ "caption": "dLLM inference pipeline.",
+ "caption_source": "latex",
+ "abstract": "Diffusion-based large language models (dLLMs) have emerged as a promising alternative to autoregressive models, leveraging simultaneous denoising to enable global planning and iterative refinement. These properties make dLLMs attractive for long-context generation. However, deploying dLLMs faces a prohibitive memory barrier, as existing inference systems are inefficient for the diffusion paradigm. We observe that current inference systems are misaligned with dLLMs. Unlike autoregressive models, whose memory footprint is dominated by the KV-Cache, dLLMs are bottlenecked by transient activations rematerialized per step. Moreover, generic memory reuse mechanisms lack the global visibility to handle dynamic memory peaks of dLLMs, which alternate between logits and feed-forward networks. To address these challenges, we present Mosaic, a memory-efficient inference system that shifts dLLM execution from local, static management to a global, dynamic paradigm. Mosaic integrates (i) a mask-only logits kernel eliminating redundant activation materialization, (ii) a lazy chunking optimizer using online heuristics to tame dynamic memory peaks, and (iii) a global memory manager leveraging virtual addressing to mitigate memory fragmentation. Evaluations show that Mosaic reduces the memory peak-to-average ratio by 2.71$\\times$ on average and increases the maximum inference sequence length on identical hardware by 15.30-32.34$\\times$. Crucially, Mosaic is training-free and preserves exact model outputs, while reducing end-to-end latency by 2.5%-55.4%. Our code is publicly available at https://github.com/flashserve/Mosaic.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=ky9RAeT6ie",
+  "arxiv": "https://arxiv.org/abs/2601.06562",
+  "pdf": "https://raw.githubusercontent.com/mlresearch/v306/main/assets/zheng26o/zheng26o.pdf",
+  "proceedings": "https://proceedings.mlr.press/v306/zheng26o.html",
+  "virtual": "https://icml.cc/virtual/2026/poster/61986",
+  "code": null
+ },
+ "license": "http://arxiv.org/licenses/nonexclusive-distrib/1.0/",
+ "img": "none",
+ "image_url": null,
+ "thumb_url": null,
+ "figure_page": 1,
+ "qc_flags": [
+  "bad-crop"
+ ],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.8
+}

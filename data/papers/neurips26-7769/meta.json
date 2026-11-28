@@ -1,0 +1,53 @@
+{
+ "id": "neurips26-7769",
+ "title": "AudioCALM: Continuous Autoregressive Language Modeling for Universal Audio Generation",
+ "authors": [
+  "Huadai Liu",
+  "Kaicheng Luo",
+  "Wen Wang",
+  "Qian Chen",
+  "Bin Ma",
+  "Xiangang Li",
+  "Wei Xue"
+ ],
+ "venue": "NeurIPS 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "Applications->Language, Speech and Dialog",
+ "role": "pipeline",
+ "role2": "overview-framework",
+ "claim": "A causal Transformer with a flow-matching head generates continuous latents block by block, with specialized attention and expert modules.",
+ "layout": "3 panels: large left pipeline, two stacked right insets; attention matrix device",
+ "tags": [
+  "autoregressive",
+  "flow-matching",
+  "continuous-latents",
+  "mixture-of-experts",
+  "unified-generation"
+ ],
+ "style": [
+  "colorful",
+  "icon-heavy",
+  "plot"
+ ],
+ "description": "The figure has a large left panel and two smaller panels stacked on the right. The left panel shows a causal Transformer. Rows of colored tokens sit above and below it: speaker embedding, text tokens, audio latents, hidden states and noised latents. Waveforms enter through a VAE encode step and leave through a VAE decode step. The flow-matching head is labeled in red and has arrows pointing up from the hidden states. Block 1, 2 and 3 are labeled. Below a dashed line, a sub-diagram called Iterative Denoising within Each Block shows a KV cache, a noise image being denoised, and a feedback loop. The top-right panel is a block-causal attention mask matrix. Light blue cells are attendable, white cells are masked, and teal squares on the diagonal mark intra-block bidirectional attention. The bottom-right panel shows the Asymmetric Mixture-of-Modality-Experts layer. A shared FFN and a dashed red speech-only FFN residual are summed. Color-coded modality tags sit at the top. The eye goes first to the left panel's Causal Transformer bar.",
+ "caption": "Overview of AudioCALM. Left: a causal Transformer autoregresses over fixed-size blocks of continuous audio latents; a flow-matching head and a stop head are attached to its hidden states (top), and each block is produced by iterative denoising with KV-cache reuse (bottom). Top right: the block-causal AR-Flow attention mask, causal across blocks and bidirectional within the active noisy block (red). Bottom right: the Asymmetric Mixture-of-Modality-Experts layer, in which a deterministically routed speech-only FFN is added to the shared backbone.",
+ "caption_source": "latex",
+ "abstract": "Unifying speech, sound, and music generation in one model is hindered by tradeoffs between fidelity, end-to-end training, in-context conditioning, and variable-length synthesis that no current paradigm fully resolves. To address this challenge, we present AudioCALM, a universal audio generation framework that extends autoregressive (AR) next-token prediction from discrete tokens to continuous audio latents: a thin flow-matching head replaces the softmax to predict rectified-flow velocities at each position, and a block-causal AR-Flow attention pattern produces arbitrary-length output. Joint training of multiple audio generation tasks faces an asymmetric text--audio mismatch: speech transcripts align to specific time spans and demand tight, time-aligned attention, whereas sound and music captions describe only overall semantics and rely on diffuse, holistic attention; mixing the two disproportionately degrades sound and music generation. We address this asymmetry at two levels: a data reformulation strategy that unifies all three tasks under a single description-style conditioning interface, and a novel architecture Asymmetric Mixture-of-Modality-Experts (A-MoME), which adds a dedicated residual expert for speech while sound and music share the backbone, incurring no inference overhead on non-speech inputs. Experimental results demonstrate that AudioCALM matches modality-specific state-of-the-art and outperforms prior unified baselines on speech, sound, and music generation benchmarks.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=rta7h4O2eL",
+  "arxiv": "https://arxiv.org/abs/2606.23080",
+  "pdf": "https://arxiv.org/pdf/2606.23080",
+  "proceedings": null,
+  "virtual": "https://neurips.cc/virtual/2026/poster/149240",
+  "code": null
+ },
+ "license": "http://arxiv.org/licenses/nonexclusive-distrib/1.0/",
+ "img": "none",
+ "image_url": null,
+ "thumb_url": null,
+ "figure_page": 3,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.85
+}

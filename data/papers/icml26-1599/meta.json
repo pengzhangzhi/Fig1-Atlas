@@ -1,0 +1,49 @@
+{
+ "id": "icml26-1599",
+ "title": "Image Restoration via Diffusion Models with Dynamic Resolution",
+ "authors": [
+  "Yang Zheng",
+  "Wen Li",
+  "Zhaoqiang Liu"
+ ],
+ "venue": "ICML 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": null,
+ "role": "pipeline",
+ "role2": "analysis-finding",
+ "claim": "Coarse-to-fine sampling with growing resolution recovers global structure early and refines high-frequency detail later, enabling efficient restoration.",
+ "layout": "2 regions: left 3D resolution stacks, right 3 stacked filmstrip rows over time arrow",
+ "tags": [
+  "coarse-to-fine",
+  "dynamic-resolution",
+  "diffusion",
+  "inverse-problems",
+  "efficiency"
+ ],
+ "style": [
+  "photo/real data",
+  "colorful",
+  "math-heavy"
+ ],
+ "description": "The left side shows a 3D perspective diagram of image stacks at three resolutions, small to large. The stacks are linked by dashed lines and 'Upsample' labels. A blurry 'Measurement' face sits at the bottom. The right side has a time arrow from t_N = T on the left to t_0 = 0 on the right. Under it are three color-coded horizontal bands, each a filmstrip of six face images. The orange band, x_t, goes from pure noise to a clean smiling child. The green band, x̃_0, goes from noisy blobs to blurry faces to sharp ones. The blue band, x̂_0, shows consistently plausible faces. The eye goes first to the colorful noise-to-image progression across the bands.",
+ "caption": "Overview of the proposed SubDAPS++ method. At each timestep $t_{i}$, the method utilizes the data prediction network $\\bx_{\\btheta}(\\cdot, \\cdot)$ to compute the unconditional estimate $\\hat{\\bx}_{0}$. Subsequently, the conjugate gradient method aligns $\\hat{\\bx}_{0}$ with the measurement $\\by$, yielding the conditional estimate $\\tilde{\\bx}_{0}$. If the dimensionality changes at timestep $t_{i}$, the algorithm upsamples $\\tilde{\\bx}_{0}$ and injects random noise to match the diffusion prior. When $d_{i} = d$, the method either injects random noise or executes deterministic sampling, depending on the difference $\\|\\hat{\\bx}_{0} - \\tilde{\\bx}_{0}\\|^{2}$. In our implementation, the resolution increases in two stages, from $64 \\times 64 \\times 3$ to $128 \\times 128 \\times 3$, and finally to $256 \\times 256 \\times 3$. It is observed that the model accurately recovers the global structure of the underlying image during early stages, while refining high-frequency details in later stages.",
+ "caption_source": "latex",
+ "abstract": "Diffusion models (DMs) have exhibited remarkable efficacy in various image restoration tasks. However, existing approaches typically operate within the high-dimensional pixel space, resulting in high computational overhead. While methods based on latent DMs seek to alleviate this issue by utilizing the compressed latent space of a variational autoencoder, they require repeated encoder-decoder inference. This introduces significant additional computational burdens, often resulting in runtime performance that is even inferior to that of their pixel-space counterparts. To mitigate the computational inefficiency, this work proposes projecting data into lower-dimensional subspaces using dynamic resolution DMs to accelerate the inference process. We first fine-tune pre-trained DMs for dynamic resolution priors and adapt DPS and DAPS, which are two widely used pixel-space methods for general image restoration tasks, into the proposed framework, yielding methods we refer to as SubDPS and SubDAPS, respectively. Given the favorable inference speed and reconstruction fidelity of SubDAPS, we introduce an enhanced variant termed SubDAPS++ to further boost both reconstruction efficiency and quality. Empirical evaluations across diverse image datasets and various restoration tasks demonstrate that the proposed methods outperform recent DM-based approaches in the majority of experimental scenarios. The code is available at https://github.com/StarNextDay/SubDAPS.git.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=FCUozD1Ayx",
+  "arxiv": "https://arxiv.org/abs/2605.14267",
+  "pdf": "https://raw.githubusercontent.com/mlresearch/v306/main/assets/zheng26f/zheng26f.pdf",
+  "proceedings": "https://proceedings.mlr.press/v306/zheng26f.html",
+  "virtual": "https://icml.cc/virtual/2026/poster/65270",
+  "code": null
+ },
+ "license": "http://arxiv.org/licenses/nonexclusive-distrib/1.0/",
+ "img": "none",
+ "image_url": null,
+ "thumb_url": null,
+ "figure_page": 3,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.7
+}

@@ -1,0 +1,47 @@
+{
+ "id": "icml26-0354",
+ "title": "MoLoRA: Composable Specialization via Per-Token Adapter Routing",
+ "authors": [
+  "Shrey Shah",
+  "Justin Wagle"
+ ],
+ "venue": "ICML 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "Deep Learning->Large Language Models",
+ "role": "prior-vs-ours",
+ "role2": "concept",
+ "claim": "Prior routing sends every item to one expert regardless of type; ours routes each item to its specialized expert.",
+ "layout": "2 panels, left-vs-right, dashed divider, colored arrows from input tokens to adapters",
+ "tags": [
+  "per-token-routing",
+  "adapters",
+  "multimodal",
+  "specialization",
+  "mixture-of-experts"
+ ],
+ "style": [
+  "minimal",
+  "colorful"
+ ],
+ "description": "Two side-by-side panels separated by a vertical dashed line. Each panel starts with an 'Input:' row of six colored squares labeled T, I, A, V, T, I (text blue, image orange, audio green, video pink). In the left panel, colored arrows from all six tokens converge on a single gray rounded box labeled 'Adapter 1', with red caption 'All tokens → same adapter (suboptimal for mixed content)'. In the right panel, the same tokens send arrows to four color-matched rounded boxes labeled Text, Image, Audio and Video. Some arrows curve to reach non-adjacent boxes. A green caption reads 'Each token → specialized adapter (optimal for multimodal)'. Red versus green captions and color-coded matching carry the contrast.",
+ "caption": "Per-sequence routing (left) sends all tokens in a sequence to the same adapter, even when tokens have different modalities (T=text, I=image, A=audio, V=video). Per-token routing (right) routes each token to its modality-specialized adapter within a single forward pass.",
+ "caption_source": "latex",
+ "abstract": "Multi-adapter serving systems route entire sequences to a single adapter, forcing a choice when requests span multiple domains. This assumption fails in two important settings: (1) multimodal generation, where text and image tokens require different adapters within the same sequence, and (2) mixed-capability requests like \"write code to solve this equation,\" which need expertise from multiple specialized adapters. We introduce per-token routing, which routes individual tokens to adapters based on either vocabulary structure (for multimodal models) or learned gating (for semantic specialization). Per-token routing is provably optimal, achieving work N for N tokens versus K \\cdot N for per-sequence routing with K adapter types. Our key contribution is MoLoRA (Mixture of LoRA), which enables composable specialization: load multiple domain-specific adapters and let a learned router select the appropriate adapter per-token. We demonstrate that specialization dramatically beats scale: MoLoRA enables Qwen3-1.7B to exceed Qwen3-8B across four reasoning benchmarks while being 4.7x smaller. This enables modular expertise at inference time: train focused LoRAs independently, combine them without retraining, and add new capabilities by simply loading new adapters.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=3GkzVlIfvP",
+  "arxiv": "https://arxiv.org/abs/2603.15965",
+  "pdf": "https://raw.githubusercontent.com/mlresearch/v306/main/assets/shah26d/shah26d.pdf",
+  "proceedings": "https://proceedings.mlr.press/v306/shah26d.html",
+  "virtual": "https://icml.cc/virtual/2026/poster/66486",
+  "code": null
+ },
+ "license": "http://arxiv.org/licenses/nonexclusive-distrib/1.0/",
+ "img": "none",
+ "image_url": null,
+ "thumb_url": null,
+ "figure_page": 1,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.9
+}

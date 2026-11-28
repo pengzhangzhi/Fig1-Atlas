@@ -1,0 +1,51 @@
+{
+ "id": "icml26-3473",
+ "title": "SALE : Low-bit Estimation for Efficient Sparse Attention in Long-context LLM Prefilling",
+ "authors": [
+  "Xiaodong Ji",
+  "Hailin Zhang",
+  "Fangcheng Fu",
+  "Bin Cui"
+ ],
+ "venue": "ICML 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "Deep Learning->Attention Mechanisms",
+ "role": "pipeline",
+ "role2": null,
+ "claim": "Cheap low-bit estimates of every element select which blocks to compute exactly, so the sparse mask is fine-grained yet efficient.",
+ "layout": "2 grids, left-to-right with arrow, block-size braces and shared legends",
+ "tags": [
+  "sparse-attention",
+  "low-bit-estimation",
+  "block-sparse",
+  "efficiency",
+  "long-context"
+ ],
+ "style": [
+  "colorful",
+  "minimal"
+ ],
+ "description": "The crop shows panel (b) only. On the left is an 8x8 grid of blocks called the Estimated Attention Map. Each block is subdivided into 2x2 cells, and braces at the top and left label the block size, b_k = 2 and b_q = 2. The lower-triangular causal region is coloured. Yellow cells are 4-bit estimated, and green cells are FP16 computed. These are the diagonal blocks and the first column. The upper triangle is grey. A hollow arrow points right to the Sparse Mask, a same-sized grid. In it, selected blocks are green (to compute) and the rest are grey (to skip). The eye goes first to the yellow staircase and then follows the arrow to the sparser green pattern. Legends sit under each grid, and the caption below reads '(b) Sparse mask obtained after estimation.'",
+ "caption": "(a) Attention maps of two different attention heads in Llama-3.1-8B-Instruct when processing different input sequences. (b) Illustration of \\ourMethod. The whole $16\\times16$ attention map is viewed as concatenation of many $2\\times2$ blocks. We first estimate the attention weights in an element-wise manner, and then construct a sparse mask at the block level based on these estimations.",
+ "caption_source": "latex",
+ "abstract": "Many advanced Large Language Model (LLM) applications require long-context processing, but the self-attention module becomes a bottleneck during the prefilling stage of inference due to its quadratic time complexity with respect to sequence length. Existing sparse attention methods accelerate attention computation by skipping less significant regions of the attention map. However, these approaches typically perform coarse-grained inspection of the attention map, rendering considerable loss in model accuracy. In this paper, we propose SALE, a fine-grained sparse attention method that accelerates the long-context prefilling stage of LLM with negligible loss in model accuracy. SALE achieves fast and accurate fine-grained attention weight estimation through 4-bit quantized query-key products, followed by block-sparse attention to accelerate prefilling computations. For importance evaluation for query-key pairs, we adopt our Relative Attention Score metric, which offers significantly higher efficiency within our framework. We implement a custom CUDA kernel optimized for our approach for hardware efficiency, reducing the additional overhead to approximately 11% of the full attention latency. Notably, SALE requires no parameter training and can be seamlessly integrated into existing systems with trivial code modifications. Experiments on long-context benchmarks demonstrate that our method outperforms existing approaches in accuracy-efficiency trade-offs, achieving at least 3.36x speedups on Llama-3.1-8B for sequences longer than 64K while maintaining model quality.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=WyGEJKjvJN",
+  "arxiv": "https://arxiv.org/abs/2505.24179",
+  "pdf": "https://raw.githubusercontent.com/mlresearch/v306/main/assets/ji26m/ji26m.pdf",
+  "proceedings": "https://proceedings.mlr.press/v306/ji26m.html",
+  "virtual": "https://icml.cc/virtual/2026/poster/63461",
+  "code": "https://github.com/BirdChristopher/SALE"
+ },
+ "license": "http://creativecommons.org/licenses/by/4.0/",
+ "img": "cc-by",
+ "image_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/images/icml26-3473.png",
+ "thumb_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/thumbs/icml26-3473.webp",
+ "figure_page": 3,
+ "qc_flags": [
+  "bad-crop"
+ ],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.8
+}

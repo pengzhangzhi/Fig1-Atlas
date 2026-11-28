@@ -1,0 +1,53 @@
+{
+ "id": "icml26-0828",
+ "title": "AdaSplash-2: Faster Differentiable Sparse Attention",
+ "authors": [
+  "Nuno M. T. Gonçalves",
+  "Hugo Pitorro",
+  "Vlad Niculae",
+  "Edoardo Ponti",
+  "Lei Li",
+  "Andre Martins",
+  "Marcos V. Treviso"
+ ],
+ "venue": "ICML 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "Deep Learning->Attention Mechanisms",
+ "role": "teaser-result",
+ "role2": null,
+ "claim": "Our method trades off sparsity and speed better than baselines, overtaking optimized dense kernels at moderate sparsity and gaining more at high sparsity.",
+ "layout": "single line plot, relative speed vs sparsity, dashed baseline lines versus solid curves",
+ "tags": [
+  "sparse-attention",
+  "efficiency",
+  "gpu-kernel",
+  "speedup",
+  "long-context"
+ ],
+ "style": [
+  "plot",
+  "minimal",
+  "colorful"
+ ],
+ "description": "A single line chart with block sparsity (%) from 0 to 100 on the x-axis and relative speed versus FlashAttention-2 Triton on the y-axis, from about 0.5 to 2.4. Two flat dashed brown lines are baselines: FlashAttention-2 Triton at 1.0 and FlashAttention-2 CUDA at about 1.22. Two solid curves rise with sparsity. The green AdaSplash curve starts near 0.48 and reaches about 1.7. The purple AdaSplash-2 curve starts near 0.67, crosses the Triton baseline at about 45% sparsity and the CUDA baseline at about 60%, then climbs to about 2.4 at 98% sparsity. The legend is at the top in two columns. The eye goes first to the steep purple curve at the upper right, which sits above the flat baselines.",
+ "caption": "Runtime (forward + backward) as a function of input sparsity for causal attention. \\methodname, implemented in Triton, improves the sparsity-efficiency tradeoff, outperforming a highly-optimized CUDA version of FlashAttention-2 in moderate sparsity regimes and yielding larger gains at high block sparsity.",
+ "caption_source": "latex",
+ "abstract": "Sparse attention has been proposed as a way to alleviate the quadratic cost of transformers, a central bottleneck in long-context training. A promising line of work is $Î±$-entmax attention, a differentiable sparse alternative to softmax that enables input-dependent sparsity yet has lagged behind softmax due to the computational overhead necessary to compute the normalizer $Ï$. In this paper, we introduce AdaSplash-2, which addresses this limitation through a novel histogram-based initialization that reduces the number of iterations needed to compute $Ï$ to typically 1--2. The key idea is to compute a coarse histogram of attention scores on the fly and store it in on-chip SRAM, yielding a more accurate initialization that enables fast forward and backward computation. Combined with a sparsity-aware GPU implementation that skips zero blocks with low overhead, AdaSplash-2 matches or improves per-step training time relative to FlashAttention-2 when block sparsity is moderate-to-high (e.g., $>$60\\%), which often occurs at long-context lengths. On downstream tasks, models trained with our efficient $Î±$-entmax attention match softmax baselines at short-context lengths and achieve substantial gains in long-context settings.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=7qpvff2gWI",
+  "arxiv": "https://arxiv.org/abs/2604.15180",
+  "pdf": "https://raw.githubusercontent.com/mlresearch/v306/main/assets/goncalves26a/goncalves26a.pdf",
+  "proceedings": "https://proceedings.mlr.press/v306/goncalves26a.html",
+  "virtual": "https://icml.cc/virtual/2026/poster/66022",
+  "code": null
+ },
+ "license": "http://creativecommons.org/licenses/by/4.0/",
+ "img": "cc-by",
+ "image_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/images/icml26-0828.png",
+ "thumb_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/thumbs/icml26-0828.webp",
+ "figure_page": 0,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.9
+}

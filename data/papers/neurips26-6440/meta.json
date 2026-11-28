@@ -1,0 +1,48 @@
+{
+ "id": "neurips26-6440",
+ "title": "How Much Is One Recurrence Worth? Iso-Depth Scaling Laws for Looped Language Models",
+ "authors": [
+  "Kristian Schwethelm",
+  "Daniel Rueckert",
+  "Georgios Kaissis"
+ ],
+ "venue": "NeurIPS 2026",
+ "tier": "spotlight",
+ "track": "main",
+ "topic": "Deep Learning->Generative Models and Autoencoders",
+ "role": "teaser-result",
+ "role2": "analysis-finding",
+ "claim": "Sharing parameters across recurrences gives less capacity than unique layers, and a fitted partial-equivalence law matches observed compute-optimal losses where the standard form does not.",
+ "layout": "2 plots side-by-side; left ratio curves with shaded gap, right loss-vs-compute fits",
+ "tags": [
+  "scaling-laws",
+  "looped-models",
+  "parameter-sharing",
+  "compute-optimal",
+  "empirical-fit"
+ ],
+ "style": [
+  "plot",
+  "minimal"
+ ],
+ "description": "Two line plots sit side by side. The left plot has recurrence count r (1, 2, 4, 8) on the x-axis and the ratio versus r=1 on the y-axis. A flat green line shows forward FLOPs staying constant. A dashed purple line with squares shows unique parameters falling to 0.31×. A bold blue line with diamonds shows effective shared capacity falling more slowly, to 0.47×. The gray shaded area between the green and blue lines is labeled parameter-sharing cost, and each point has a numeric annotation. The right plot shows compute-optimal validation loss against training compute on a log x-axis, with four colored curves for r=1, 2, 4 and 8. Crosses mark empirical optima that sit on the solid fitted curves. A thick dashed gray curve for the standard φ=1 form passes through the middle of the bundle and misses every curve. Legends are above both plots.",
+ "caption": "Left: at matched effective depth, per-token forward FLOPs $F(r)$ stay flat while unique parameters $N(r)$ drop as $r$ grows. Shared parameter capacity $N_once + r^{\\varphi} N_rec$ with $\\varphi{=}0.46$ drops more slowly. Right: compute-optimal validation loss per architecture against compute budget $C$. Empirical per-budget optima (crosses) track our $\\varphi{=}0.46$ fit (solid curves). The standard form ($\\varphi{=}1$) collapses all four architectures onto a single curve (dashed), which fits none of the empirical results.",
+ "caption_source": "latex",
+ "abstract": "We measure how much one recurrence is worth to a looped transformer in equivalent unique parameters. From an iso-depth pretraining sweep across recurrence counts $r \\in \\{1, 2, 4, 8\\}$ spanning ${\\sim}50\\times$ in training compute, we fit a joint scaling law $L = E + A\\,(N_\\text{once} + r^Ï N_\\text{rec})^{-Î±} + B\\,D^{-Î²}$ and measure a recurrence-equivalence exponent $Ï= 0.46$. Intuitively, $Ï$ tells us whether looping a block $r$ times is equivalent in validation loss to $r$ unique blocks of a non-looped model (full equivalence, $Ï{=}1$) or to a single block run repeatedly with no capacity gain ($Ï{=}0$). Our $Ï= 0.46$ sits in between, so replacing unique blocks with shared recurrences increases validation loss at matched training compute. For example, at $r{=}4$ a 410M looped model performs on par with a 580M non-looped model, but incurs the training cost of a 1B non-looped one. We demonstrate the utility of $Ï$ as a diagnostic tool on two case studies: commonly used truncated backpropagation lowers $Ï$ to $0.38$, indicating that the loop mechanism is poorly trained under truncation, even though validation loss decreases. Conversely, hyperconnections raise $Ï$ to $0.65$, a genuine capacity gain. Our method separates true loop improvements from training-side gains, a distinction raw validation loss cannot make. Code is available at https://github.com/kschwethelm/looped-lm-scaling.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=iBvm5lCnAJ",
+  "arxiv": "https://arxiv.org/abs/2604.21106",
+  "pdf": "https://arxiv.org/pdf/2604.21106",
+  "proceedings": null,
+  "virtual": "https://neurips.cc/virtual/2026/poster/150418",
+  "code": "https://kschwethelm.github.io/looped-lm-scaling/"
+ },
+ "license": "http://creativecommons.org/licenses/by/4.0/",
+ "img": "cc-by",
+ "image_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/images/neurips26-6440.png",
+ "thumb_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/thumbs/neurips26-6440.webp",
+ "figure_page": 1,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.6
+}

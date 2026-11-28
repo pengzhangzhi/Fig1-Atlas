@@ -1,0 +1,52 @@
+{
+ "id": "icml26-3324",
+ "title": "Unbiased Principles, Robust Rewards",
+ "authors": [
+  "Qingnan Ren",
+  "Zhen Fang",
+  "Shiting Huang",
+  "Yu Zeng",
+  "Lin Chen",
+  "Zehui Chen",
+  "Feng Zhao"
+ ],
+ "venue": "ICML 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "Deep Learning->Large Language Models",
+ "role": "prior-vs-ours",
+ "role2": "problem-setup",
+ "claim": "Judging a response before fixing criteria lets reward hacking bias the grader; deriving criteria from the question alone catches the violation.",
+ "layout": "Top prompt banner, two lower panels side by side, red vs green dashed boxes",
+ "tags": [
+  "reward-modeling",
+  "reward-hacking",
+  "case-study",
+  "decoupling",
+  "generative-reward-model"
+ ],
+ "style": [
+  "text-heavy",
+  "colorful"
+ ],
+ "description": "A text-only case study. A dashed navy box at the top holds the user prompt Q (a prose poem in Jian Zhen style, 200 words) and the actor's answer A. The answer's appended 'Analysis' self-justification is in red. Below are two panels, each with a heading formula. The left panel, in a red dashed rounded box, is labelled GenRM (Q+R -> P+J+S). It lists criteria and an analysis that praises the response, and ends with a red 'Score: 10'. The right panel is labelled IP-GenRM (1. Q->P, 2. Q+R+P->J+S). It has two green dashed boxes, one for evaluation principles and one for analysis with per-criterion scores. Green text flags the violation: extra analysis content, with a final score of 7.3. The eye goes first to the colored headings and the red and green highlighted text.",
+ "caption": "A Case Study of Reward Hacking: GRM vs. IP-GRM. The user prompts for a prose poem with strict constraints (200 words, specific imagery, Jian Zhen style). The actor model attempts reward hacking by appending a “Self-Analysis” section claiming to have met all requirements. Left (GRM): By observing the response before establishing principles (Q + R →P), the RM suffers from Principle Drift. It adopts the actor’s self-justification, ignores the formatting violation, and assigns a perfect score (10.0). Right (IP-GRM): By generating principles solely from the question (Q →P), IP-GRM can include constraints that are independent of the actor’s response (e.g., “no explanatory content”). Under these principles, the extra “Analysis” section is treated as a constraint violation and receives a lower score (7.3).",
+ "caption_source": "pdf",
+ "abstract": "Reward models are central to Reinforcement Learning from Human Feedback (RLHF), especially for open-ended tasks where evaluation is inherently multi-dimensional. Recent Generative Reward Models (GRMs) improve interpretability by producing natural-language rationales and task-specific evaluation principles. However, most existing GRMs generate principles after reading the actor's response, i.e., $Q+R \\rightarrow P$. We show that this coupling induces Principle Drift: when the actor performs reward hacking (e.g., verbosity, self-aggrandizement, or hallucinated self-justifications), the reward model may shift its criteria to rationalize the response, yielding inflated scores that in turn reinforce hacking during RL. We propose IP-GRM (Independent Principle GRM), a two-stage framework that first generates principles solely from the question ($Q \\rightarrow P$) and then evaluates the response conditioned on $(Q, R, P)$. This decoupling keeps criteria invariant to response content, producing more objective and stable reward signals. For efficient training, we further introduce a Principle Cache strategy that reuses principles within a group, improving GRPO throughput by 23.66\\% while maintaining strict intra-group consistency. In GRPO training on creative writing, IP-GRM suppresses reward hacking and improves WritingBench and CreativeWriting-v3 by up to +4.6 and +7.1 points based on Qwen3-8B, achieving state-of-the-art performance among open-source models. The model and dataset are open-sourced at https://github.com/ShadeCloak/IP-GRM.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=VZDlkXuIQc",
+  "arxiv": null,
+  "pdf": "https://raw.githubusercontent.com/mlresearch/v306/main/assets/ren26c/ren26c.pdf",
+  "proceedings": "https://proceedings.mlr.press/v306/ren26c.html",
+  "virtual": "https://icml.cc/virtual/2026/poster/63602",
+  "code": "https://github.com/ShadeCloak/IP-GRM"
+ },
+ "license": null,
+ "img": "none",
+ "image_url": null,
+ "thumb_url": null,
+ "figure_page": 2,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.8
+}

@@ -1,0 +1,49 @@
+{
+ "id": "neurips26-5398",
+ "title": "When Scores Conflict with Preferences: Pre-Alignment Diagnosis and Adaptive Correction of Constraint Drift in DPO",
+ "authors": [
+  "Ping Liu",
+  "Yan Yan"
+ ],
+ "venue": "NeurIPS 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "Applications->Everything Else",
+ "role": "concept",
+ "role2": "pipeline",
+ "claim": "Competing push and repair forces on a constraint determine when to intervene, handled by coarse reweighting plus fine margin shifting.",
+ "layout": "3 panels, left-to-right, color-coded pastel boxes with schematic curves",
+ "tags": [
+  "preference-optimization",
+  "constraint-drift",
+  "diagnostic",
+  "reweighting",
+  "adaptive-margin"
+ ],
+ "style": [
+  "colorful",
+  "plot",
+  "minimal",
+  "math-heavy"
+ ],
+ "description": "Three rounded, pastel-tinted panels sit side by side: blue (a), yellow (b), green (c). Panel (a), titled 'Pressure versus repair', shows two schematic cases separated by a dotted line. Each has a red up arrow for conflict pairs pushing cost up and a blue down arrow for matching pairs pulling it down, either side of a horizontal baseline. On the left the red arrow dominates, so cost rises, rho_eq < 1, and CoDPO is used. On the right the blue arrow dominates, so the data self-correct, rho_eq >= 1, and plain DPO is used. Panel (b) plots weight w against score gap Δs. A sharp orange CoDPO sigmoid is compared with a gray dashed PSDPO curve, with a green dotted line marking tau* and a blue 'matching' plateau at 1. Panel (c) plots drift against training steps. A gray dashed 'coarse only' line keeps rising, while a green 'margin shift' curve flattens. A margin-update formula appears beneath the plot.",
+ "caption": "Overview of CoDPO. (a) Under DPO, conflict pairs push the constraint cost up and matching pairs pull it down; $\\rho^*_\\mathrm{eq}$, computed before training, compares the two. If the push dominates ($\\rho^*_\\mathrm{eq} < 1$), CoDPO intervenes; otherwise the data are self-correcting and plain DPO is used. (b) Conflict pairs are down-weighted by severity, with $\\tau^*$ set from $\\rho^*_\\mathrm{eq}$. (c) During training, the DPO margin is shifted, more strongly when the constraint-risk estimate rises. Curves in (b) and (c) are schematic.",
+ "caption_source": "latex",
+ "abstract": "Direct Preference Optimization (DPO) is increasingly used in settings where pairwise preferences coexist with pointwise criteria such as response length, answer correctness, or safety scores. When the two disagree, standard DPO treats pairs whose preferred output scores worse on the pointwise criterion (conflict pairs) in the same way as the remaining (matching) pairs. We characterize a systematic failure mode, constraint drift: for sufficiently small updates, conflict pairs tend to increase constraint cost while matching pairs tend to repair it, and the net change depends on their balance. This balance yields a closed-form pre-alignment diagnostic, $Ï^{*}_{\\mathrm{eq}}$, computable from dataset statistics, that indicates whether a dataset is self-correcting or requires intervention. Building on this diagnostic, we propose Conflict-aware DPO (CoDPO), which down-weights conflict pairs with a strength set from $Ï^{*}_{\\mathrm{eq}}$ rather than tuned, and adds an adaptive margin shift that addresses residual drift during training. Empirically, drift grows monotonically with conflict exposure on the conflict-dominated domains, and the intervention decision given by $Ï^{*}_{\\mathrm{eq}}$ matches the observed drift on every domain, including one that it identifies as self-correcting. On all four domains of the main comparison, CoDPO reduces drift while largely preserving the preference learning of vanilla DPO. Compared with hard filtering and recent constrained and multi-objective baselines, CoDPO also achieves a more favorable drift-preference trade-off.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=bFc8A2Irjf",
+  "arxiv": "https://arxiv.org/abs/2611.07375",
+  "pdf": "https://arxiv.org/pdf/2611.07375",
+  "proceedings": null,
+  "virtual": "https://neurips.cc/virtual/2026/poster/151343",
+  "code": null
+ },
+ "license": "http://creativecommons.org/licenses/by/4.0/",
+ "img": "cc-by",
+ "image_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/images/neurips26-5398.png",
+ "thumb_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/thumbs/neurips26-5398.webp",
+ "figure_page": 1,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.5
+}

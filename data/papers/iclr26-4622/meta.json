@@ -1,0 +1,49 @@
+{
+ "id": "iclr26-4622",
+ "title": "OVSeg3R: Learn Open-vocabulary Instance Segmentation from 2D via 3D Reconstruction",
+ "authors": [
+  "Hongyang Li",
+  "Jinyuan Qu",
+  "Lei Zhang"
+ ],
+ "venue": "ICLR 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "Computer Vision->Segmentation",
+ "role": "prior-vs-ours",
+ "role2": "pipeline",
+ "claim": "Traditional training needs costly manual sensor data and annotation; ours builds training data automatically from 2D models and 3D reconstruction.",
+ "layout": "2 panels side by side, left-to-right flow, red vs green color coding",
+ "tags": [
+  "prior-vs-ours",
+  "3d-reconstruction",
+  "open-vocabulary",
+  "annotation-free",
+  "instance-segmentation"
+ ],
+ "style": [
+  "colorful",
+  "icon-heavy",
+  "photo/real data"
+ ],
+ "description": "Two boxed panels contrast training schemes. Panel (a), titled 'Traditional Training Scheme' in dark red, shows depth-camera images and RGB frames feeding a red icon of a human annotator at a workstation. The annotator produces a 3D scene point cloud, which goes to a '3D Seg.' box. A second annotator icon produces colored instance labels on the scene, which go to a 'Loss' box. Panel (b), 'OVSeg3R' in green, starts with RGB frames. These split into a '3D Recon.' box, which gives a reconstructed scene with a camera frustum, and a '2D Seg.' box, which gives masks on the frames. The reconstruction feeds '3D Seg.'. Green lines labeled 'assist segment' and 'assist supervision' cross between the two branches, and both end at a 'Loss' box. Red marks the manual pipeline and green marks the automated one.",
+ "caption": "(a) Traditional training scheme relies on costly manual efforts and non-routine sensors, such as depth cameras, to construct training data and annotations. (b) {\\methodname} leverages modern 3D reconstruction models and well-studied 2D perception models to construct training data and annotations. To further alleviate the issue of partial supervision and over-smoothness to improve training stability, we use the 2D-3D correspondences from 3D reconstruction models to partition scene-level predictions to assist supervision, and leverage 2D instance masks to constrain the superpoints, assisting segmentation.",
+ "caption_source": "latex",
+ "abstract": "In this paper, we propose a training scheme called OVSeg3R to learn open-vocabulary 3D instance segmentation from well-studied 2D perception models with the aid of 3D reconstruction. OVSeg3R directly adopts reconstructed scenes from 2D videos as input, avoiding costly manual adjustment while aligning input with real-world applications. By exploiting the 2D to 3D correspondences provided by 3D reconstruction models, OVSeg3R projects each view's 2D instance mask predictions, obtained from an open-vocabulary 2D model, onto 3D to generate annotations for the view's corresponding sub-scene. To avoid incorrectly introduced false positives as supervision due to partial annotations from 2D to 3D, we propose a View-wise Instance Partition algorithm, which partitions predictions to their respective views for supervision, stabilizing the training process. Furthermore, since 3D reconstruction models tend to over-smooth geometric details, clustering reconstructed points into representative super-points based solely on geometry, as commonly done in mainstream 3D segmentation methods, may overlook geometrically non-salient objects. We therefore introduce 2D Instance Boundary-aware Superpoint, which leverages 2D masks to constrain the superpoint clustering, preventing superpoints from violating instance boundaries. With these designs, OVSeg3R not only extends a state-of-the-art closed-vocabulary 3D instance segmentation model to open-vocabulary, but also substantially narrows the performance gap between tail and head classes, ultimately leading to an overall improvement of +2.3 mAP on the ScanNet200 benchmark. Furthermore, under the standard open-vocabulary setting, OVSeg3R surpasses previous methods by about +7.1 mAP on the novel classes, further validating its effectiveness.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=rIMOXvaLAe",
+  "arxiv": "https://arxiv.org/abs/2509.23541",
+  "pdf": "https://proceedings.iclr.cc/paper_files/paper/2026/file/c5169260ef32d1bd3597c14d8c89b034-Paper-Conference.pdf",
+  "proceedings": "https://proceedings.iclr.cc/paper_files/paper/2026/hash/c5169260ef32d1bd3597c14d8c89b034-Abstract-Conference.html",
+  "virtual": "https://iclr.cc/virtual/2026/poster/10007160",
+  "code": null
+ },
+ "license": "http://arxiv.org/licenses/nonexclusive-distrib/1.0/",
+ "img": "none",
+ "image_url": null,
+ "thumb_url": null,
+ "figure_page": 1,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.9
+}

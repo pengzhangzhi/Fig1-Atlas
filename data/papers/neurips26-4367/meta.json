@@ -1,0 +1,52 @@
+{
+ "id": "neurips26-4367",
+ "title": "Structural Rationale Distillation via Reasoning Space Compression",
+ "authors": [
+  "Jialin Yang",
+  "Jiankun Wang",
+  "Jiajun Wu",
+  "Henry Leung",
+  "Jiayu Zhou",
+  "Steve Drew"
+ ],
+ "venue": "NeurIPS 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "Deep Learning->Generative Models and Autoencoders",
+ "role": "pipeline",
+ "role2": null,
+ "claim": "A multi-stage procedure keeps supervision consistent by constraining generation to a compact, dynamically updated bank of reusable reasoning paths.",
+ "layout": "3 colored stage panels, left-to-right and top-down, with a central 3D bank and feedback loop",
+ "tags": [
+  "pipeline",
+  "distillation",
+  "retrieval-augmented",
+  "clustering",
+  "reasoning"
+ ],
+ "style": [
+  "icon-heavy",
+  "colorful",
+  "text-heavy"
+ ],
+ "description": "A three-stage pipeline diagram on colored panels. A green top band (Stage 1) shows a left-to-right flow: a folder of all training questions, categorization, 5% random sampling into a teacher LLM logo, then clustering into a bank-building icon. A large blue panel (Stage 2) holds a worked math question (eggs cost) that is encoded into question and intent embeddings. A 3D grid labeled Reasoning Path Bank is organized by category (Algebra, Probabilities, Geometry) and intent. Top-K retrieved paths feed a teacher judge, which branches yes/no to a JSON output. Novel correct paths go to a buffer, then re-cluster via DBSCAN and merge back into the bank. A peach right column (Stage 3) shows the collected teacher outputs, with an upward arrow labeled Finetune w/ LoRA to the student robot icon.",
+ "caption": "D-RPC pipeline. {Stage 1, Reasoning bank initialization.} A seed subset of questions is solved by the teacher; the resulting reasoning paths are clustered by intent to form the initial reasoning path bank. {Stage 2, Bank-guided supervision.} For each training question, retrieve the top-$K_{\\mathrm{ret}}$ candidate paths, condition the teacher to follow one, and collect the supervision tuple. Novel correct paths are buffered and periodically merged back into the bank via re-clustering. {Stage 3, Student model training.} The student SLM is fine-tuned with LoRA on the collected supervision tuples.",
+ "caption_source": "latex",
+ "abstract": "When distilling reasoning from large language models (LLMs) into smaller ones, teacher rationales for similar problems often vary wildly in structure and strategy. Like a chef who makes the same dish differently each time, this inconsistency burdens the student with noisy supervision that is hard to internalize. We propose Distillation through Reasoning Path Compression (D-RPC), which constrains the teacher to follow a compact, dynamically maintained bank of reusable high-level reasoning paths. For each training question, D-RPC retrieves the most relevant path and conditions the teacher to follow it, producing rationales that are consistent across similar problems yet diverse enough to cover different problem types. A PAC-Bayes analysis formalizes a trade-off between bank size and coverage, with smaller banks limiting path diversity at the risk of coverage gaps. Our ablations favor an intermediate bank size, consistent with this trade-off. Across five math and commonsense reasoning benchmarks with two student models, D-RPC achieves the highest average accuracy among the evaluated distillation methods, while using fewer tokens than template-heavy alternatives.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=UK2XjwZOOP",
+  "arxiv": "https://arxiv.org/abs/2605.07139",
+  "pdf": "https://arxiv.org/pdf/2605.07139",
+  "proceedings": null,
+  "virtual": "https://neurips.cc/virtual/2026/poster/152271",
+  "code": "https://github.com/denoslab/D-RPC"
+ },
+ "license": "http://creativecommons.org/licenses/by/4.0/",
+ "img": "cc-by",
+ "image_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/images/neurips26-4367.png",
+ "thumb_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/thumbs/neurips26-4367.webp",
+ "figure_page": 2,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.95
+}

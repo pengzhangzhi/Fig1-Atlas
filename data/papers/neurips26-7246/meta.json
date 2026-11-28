@@ -1,0 +1,51 @@
+{
+ "id": "neurips26-7246",
+ "title": "Trust Region Q Adjoint Matching",
+ "authors": [
+  "Yonghoon Dong",
+  "Kyungmin Lee",
+  "Changyeon Kim",
+  "Jaehyuk Kim",
+  "Jinwoo Shin"
+ ],
+ "venue": "NeurIPS 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "Reinforcement Learning->Deep RL",
+ "role": "prior-vs-ours",
+ "role2": "teaser-result",
+ "claim": "Naive critic-guided fine-tuning drifts destructively from the pretrained policy; ours bounds deviation with an adaptive trust region and wins on benchmarks.",
+ "layout": "2 panels: 3-step left-to-right cartoon with arrows, plus bar chart on right",
+ "tags": [
+  "trust-region",
+  "fine-tuning",
+  "stability",
+  "flow-policy",
+  "reinforcement-learning"
+ ],
+ "style": [
+  "minimal",
+  "colorful",
+  "plot"
+ ],
+ "description": "The figure has two panels. Panel (a) on the left shows three rounded boxes joined by black arrows. The first, in gray, shows a single smooth S-shaped gray trajectory labeled 'useful pretrained policy'. The second, also gray, shows the same trajectory with red branches that diverge from it. It is labeled 'destructive drift, e.g., QAM, QAM-E'. The third box is orange-tinted and shows the gray trajectory enclosed by two orange curves with arrowheads. It is labeled 'controlled deviation' and 'adapts via dual descent', with a λ symbol. Panel (b) on the right is a horizontal bar chart of offline RL success rate on OGBench. The bars are CGQL-L 23, FQL 28, IFQL 35, QAM 35, QAM-E 45, DSRL 46, and TRQAM 68. The baseline bars are in grayscale, and the TRQAM bar is orange and the longest. The orange highlight draws the eye first.",
+ "caption": "TRQAM builds adaptive trust-region control into the SOC sampling process. (a): Each curve is a sampling trajectory of the flow policy, from noise $X_0$ to action $X_1$. Fixed-temperature methods such as QAM and QAM-E [ref] suffer from destructive drift, where small critic errors can be exponentially amplified into large policy errors ([ref]). TRQAM instead bounds the deviation from the pretrained policy through a trust-region parameter $\\lambda$ internalized in the SOC sampling process, which limits how far critic errors can move the policy. (b): Offline RL success rate on 50 OGBench [ref] tasks, where TRQAM outperforms all baselines.",
+ "caption_source": "latex",
+ "abstract": "Off-policy reinforcement learning of pretrained flow policies remains challenging due to the instability of optimization arising from the multi-step sampling process. Recently, Q-learning with Adjoint Matching (QAM) addressed this by recasting policy improvement as a stochastic optimal control (SOC) problem guided by a learned critic. However, QAM inherits a fundamental fragility of critic-guided improvement, since small critic errors can be exponentially amplified and often lead to performance collapse. This paper introduces Trust Region Q Adjoint Matching (TRQAM), a stable off-policy fine-tuning algorithm that adaptively controls the path-space KL between the fine-tuned and pretrained policies through projected dual descent. Specifically, we adapt a trust-region parameter $Î»$ inside the sampling process of the flow policy and prove that $Î»$ exactly weights the path-space KL in the SOC objective. As a result, our method can tightly control the deviation from the pretrained policy within a prescribed KL budget, achieving stable off-policy RL. Through experiments on 50 OGBench tasks, TRQAM consistently outperforms prior methods in both offline RL and offline-to-online RL. In particular, TRQAM achieves an overall success rate of 68% in offline RL, substantially improving over the strongest baseline at 46%.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=o0QcqHlW1x",
+  "arxiv": "https://arxiv.org/abs/2605.27079",
+  "pdf": "https://arxiv.org/pdf/2605.27079",
+  "proceedings": null,
+  "virtual": "https://neurips.cc/virtual/2026/poster/149711",
+  "code": "https://yonghdong.github.io/blog/trqam/"
+ },
+ "license": "http://arxiv.org/licenses/nonexclusive-distrib/1.0/",
+ "img": "none",
+ "image_url": null,
+ "thumb_url": null,
+ "figure_page": 1,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.6
+}

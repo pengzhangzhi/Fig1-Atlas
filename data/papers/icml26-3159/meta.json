@@ -1,0 +1,53 @@
+{
+ "id": "icml26-3159",
+ "title": "JanusPipe: Efficient Pipeline Parallel Training for Machine Learning Interatomic Potentials",
+ "authors": [
+  "Hongyu Wang",
+  "Weijian Liu",
+  "Hongtao Xu",
+  "Yan Wang",
+  "Mingzhen Li",
+  "Weile Jia",
+  "Guangming Tan"
+ ],
+ "venue": "ICML 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "Applications->Chemistry, Physics, and Earth Sciences",
+ "role": "problem-setup",
+ "role2": "prior-vs-ours",
+ "claim": "Standard training has one forward and one backward pass, but force-conditioned training adds a double-backward phase that breaks existing parallel schedules.",
+ "layout": "2 stacked panels, left-to-right timelines, dashed phase boxes, example model lists at right",
+ "tags": [
+  "double-backward",
+  "pipeline-parallelism",
+  "second-order-training",
+  "systems-mismatch",
+  "interatomic-potentials"
+ ],
+ "style": [
+  "minimal",
+  "math-heavy",
+  "colorful"
+ ],
+ "description": "Two stacked timeline panels compare training workflows. Panel (a), first-order model training, shows a short two-stage flow: a yellow Forward box (FW Pass, s → y=f_θ(s)) followed by a blue Backward box (BW Pass, L_y). Bold arrows with the headers Forward and Backward run above the flow. A dashed box at the right lists example models: LLM (GPT, Llama), CNN (ResNet, VGG) and DiT (DiT, PixArt). Panel (b), conservative MLIP training (second-order), stretches the flow across four phases: 1. FE Pass (g → E=f_θ(g)), 2. FF Pass (F=−∇_xE), 3. BF Pass (∇²_θ, L_F), and 4. BE Pass (∇_θ, L_E). The headers read Forward, Backward, Double Backward and Backward. Long arrows loop from the early phases to the last one. A blue box at the right lists example MLIPs: UMA, PET, MACE, NequIP and SevenNet. Pastel fills mark the phases. The eye goes first to the colored phase boxes.",
+ "caption": "(a) First-order workloads perform one forward pass and one backward pass per micro-batch. (b) Conservative MLIPs compute forces by differentiating the predicted energy in the forward stage (${F}=-\\nabla_{{x}}E$), which introduces a double-backward execution pattern with four phases (FE/FF/BF/BE). See Table [ref] for notation.",
+ "caption_source": "latex",
+ "abstract": "Discovering atom-level phenomena requires molecular dynamics (MD) simulations with ab initio accuracy. Machine learning interatomic potentials (MLIPs) enable stable, high-accuracy MD simulations, and their models exhibit scaling-law trends similar to large language models. However, the lack of scalable and efficient distributed training systems for conservative MLIPs makes them difficult to scale. This is because conservative MLIPs inherently follow a double-backward execution pattern, which involves computing gradients during the forward pass. This pattern creates a mismatch with existing distributed training systems, especially for pipeline parallelism. Therefore, we present JanusPipe, an efficient 3D-parallel (PP/DP/GP) training system tailored for conservative MLIPs. It integrates SymFold to enable memory-efficient pipeline parallelism for conservative MLIPs, and WaveK to reduce pipeline bubbles by balancing the four-phase compute time. Experimental results on 32 GPUs show that JanusPipe improves throughput by $1.51\\times$ and $1.45\\times$ on average over 1F1B and Hanayo, respectively.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=TxWbgnFYCr",
+  "arxiv": "https://arxiv.org/abs/2605.18404",
+  "pdf": "https://raw.githubusercontent.com/mlresearch/v306/main/assets/wang26ey/wang26ey.pdf",
+  "proceedings": "https://proceedings.mlr.press/v306/wang26ey.html",
+  "virtual": "https://icml.cc/virtual/2026/poster/63763",
+  "code": null
+ },
+ "license": "http://creativecommons.org/licenses/by/4.0/",
+ "img": "cc-by",
+ "image_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/images/icml26-3159.png",
+ "thumb_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/thumbs/icml26-3159.webp",
+ "figure_page": 1,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.55
+}

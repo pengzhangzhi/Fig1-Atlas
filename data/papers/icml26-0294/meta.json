@@ -1,0 +1,50 @@
+{
+ "id": "icml26-0294",
+ "title": "FPTQuant: Function-Preserving Transforms for LLM Quantization",
+ "authors": [
+  "Boris van Breugel",
+  "Yelysei Bondarenko",
+  "Paul Whatmough",
+  "Markus Nagel"
+ ],
+ "venue": "ICML 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "Deep Learning->Everything Else",
+ "role": "pipeline",
+ "role2": null,
+ "claim": "Function-preserving transforms can be merged into a transformer's weights or applied as cheap per-token scales, so the quantized model keeps its function.",
+ "layout": "2 side-by-side blocks (attention, MLP), left-to-right, dashed green scale paths and zoom-in circles",
+ "tags": [
+  "quantization",
+  "function-preserving-transforms",
+  "transformer",
+  "outlier-suppression",
+  "weight-merging"
+ ],
+ "style": [
+  "colorful",
+  "icon-heavy",
+  "math-heavy"
+ ],
+ "description": "A wide architecture diagram of one transformer block pair, read left to right. The left half is the attention block. An input activation circle feeds an RMSNorm and then three parallel branches (query, key, value). Each branch is a gradient box holding a weight sandwiched between transform matrices such as T_r^-1 W_q T_k. The branches continue through RoPE, BMM, softmax, BMM and an output projection, then into a residual add. The right half is the MLP block. It has up and gate projections, SiLU, an elementwise product, T_d, and a down projection with transforms, then a second residual add. Dashed green lines run from a bottom S_n and S_n+1 track up to the places where scales are applied. Circular zoom-ins show the operation 'scale each batch/seq element'. Red crosses mark where the original network skips the RMSNorm. A color legend sits at the bottom: gray ops, blue frozen weights, yellow activations, green transforms, green-blue merged transforms.",
+ "caption": "\\NAME. \\NAME consists of 6 transform types. $(\\tT_k,\\bar{\\tT}_k)$ is a scale-and-rotate transform merged into the query and key weights; $(\\tT_v,\\bar{\\tT}_v)$ consists of invertible matrices per head merged into value and output weights; transforms $\\{\\tS_n\\}_{n=1}^N$ ($N=2\\times$number of transformer blocks for typical LLMs) are per-token scalers applied to the residual and within the attention and MLP blocks. The scales $\\tS_n$ are computed by existing RMSNorms, and in practice means now the RMSNorm is also applied to the residual (versus the original network, see $\\textcolor{darkred}{\\bm{\\times}}^*$). We also use $(\\tT_u,\\tT^{-1}_u)$ a per-channel scaler merged into up and down projection weights similar to [ref], partly online Hadamard transform $\\tT_d$ [ref] and mergeable rotation matrix $\\tT_r$ [ref].",
+ "caption_source": "latex",
+ "abstract": "Large language models (LLMs) require substantial compute, and thus energy, at inference time. While quantizing weights and activations is effective at improving efficiency, naive quantization of LLMs can significantly degrade performance due to large magnitude outliers. This paper describes FPTQuant, which introduces three novel, lightweight, and expressive function-preserving transforms (FPTs) to facilitate quantization of transformers: (1) a mergeable pre-RoPE transform for queries and keys, (2) a mergeable transform for values, and (3) a cheap, dynamic per-token scaling transform. By leveraging the equivariances and independencies inherent to canonical transformer operation, we designed these FPTs to maintain the model's function while shaping the intermediate activation distributions to be more quantization friendly. FPTQuant requires no custom kernels and adds virtually no overhead during inference. The FPTs are trained both locally to reduce outliers, and end-to-end such that the outputs of the quantized and full-precision models match. FPTQuant enables static INT4 quantization with minimal overhead and shows SOTA speed-up of up to 3.9X over FP. Empirically, FPTQuant has an excellent accuracy-speed trade-off -- it is performing on par or exceeding most prior work and only shows slightly lower accuracy compared to a method that is up to 29% slower.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=2jpCo5lnSZ",
+  "arxiv": "https://arxiv.org/abs/2506.04985",
+  "pdf": "https://raw.githubusercontent.com/mlresearch/v306/main/assets/van-breugel26a/van-breugel26a.pdf",
+  "proceedings": "https://proceedings.mlr.press/v306/van-breugel26a.html",
+  "virtual": "https://icml.cc/virtual/2026/poster/66544",
+  "code": null
+ },
+ "license": "http://creativecommons.org/licenses/by/4.0/",
+ "img": "cc-by",
+ "image_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/images/icml26-0294.png",
+ "thumb_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/thumbs/icml26-0294.webp",
+ "figure_page": 2,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.9
+}

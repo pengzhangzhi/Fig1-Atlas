@@ -1,0 +1,54 @@
+{
+ "id": "neurips26-0291",
+ "title": "DiscoLoop: Looping Discrete Embeddings and Continuous Hidden States for Multi-hop Reasoning",
+ "authors": [
+  "Hengyu Fu",
+  "Tianyu Guo",
+  "Zixuan Wang",
+  "Hanlin Zhu",
+  "Jason Lee",
+  "Jiantao Jiao",
+  "Stuart J Russell",
+  "Song Mei"
+ ],
+ "venue": "NeurIPS 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": null,
+ "role": "prior-vs-ours",
+ "role2": "pipeline",
+ "claim": "Standard models lack the needed memory where it is required, and recurrence alone leaves a representation mismatch; ours aligns recurrent state with embeddings.",
+ "layout": "Task banner on top, 3 colored panels left-to-right, red-yellow-green progression",
+ "tags": [
+  "looped-transformer",
+  "multi-hop-reasoning",
+  "representation-alignment",
+  "recurrence",
+  "failure-analysis"
+ ],
+ "style": [
+  "colorful",
+  "icon-heavy",
+  "minimal"
+ ],
+ "description": "A top banner shows the two-hop composition task. Alice is the son of Bob, Bob's wife is Carol, so Alice relates to Carol via a bridge entity. A goal statement sits to the right. Below are three rounded, color-coded panels. The red panel, Vanilla Transformers Fail, shows a layer stack from Transformer Layer 1 to Layer K, with dotted callouts. First-hop facts are stored early, and the second-hop fact is missing where it is needed. The yellow panel, Looping: Memory Reuse, shows one shared layer looped K times. Its callout says the bridge is decodable but its hidden state is not aligned with the bridge embedding. The green panel, DiscoLoop, adds a decode, soft-encode and norm+gate module that feeds a decoded embedding back into the residual stream. A zoomed inset shows this module. Each panel ends with a colored verdict line. The eye goes first to the panel titles and the red-to-green progression.",
+ "caption": "{ \\textbf{Overview of our analysis and \\name{}.} The figure summarizes the two-hop reasoning setup, the depth-local storage issue of vanilla non-looped transformers, the representation-mismatch issue that remains in vanilla looped transformers, and our \\name architecture that injects a soft decoded embedding into the recurrent residual stream. The rigorous two-hop task formulation is defined in Section [ref], and the \\name recurrence is formalized in Section [ref]. }",
+ "caption_source": "latex",
+ "abstract": "Large language models achieve strong performance on many reasoning tasks when allowed to externalize intermediate steps as Chain-of-Thought (CoT). However, many questions require the model to internalize the multi-step reasoning within a single forward pass before generating the answer. We study this challenge through two-hop reasoning, a representative task where the model must compose multiple pieces of parametric knowledge within a single forward pass. Standard non-recurrent Transformers suffer from a depth-local storage problem: facts learned in earlier layers are unavailable where second-hop retrieval happens. We found that Looped Transformers mitigate this issue by reusing the same memory, but still generalize imperfectly. We show that the remaining bottleneck is representational. In the two-hop reasoning task, the first loop often makes the correct bridge entity nearly perfectly decodable, yet the corresponding hidden state remains poorly aligned with the bridge token embedding. Surprisingly, an easy training-free realignment intervention nearly closes the generalization gap. Building upon this insight, we propose DiscoLoop, a looping architecture whose recurrence carries both a discrete embedding channel and a continuous hidden-state channel. DiscoLoop achieves near-perfect accuracy with substantially fewer training steps across symbolic and synthetic-language multi-hop reasoning tasks. When applied to real-world pretraining, DiscoLoop attains lower training loss and stronger benchmark performance than looped-transformer baselines, suggesting that the mixed-channel design transfers to practical language modeling.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=26R1JkrIyI",
+  "arxiv": "https://arxiv.org/abs/2607.00341",
+  "pdf": "https://arxiv.org/pdf/2607.00341",
+  "proceedings": null,
+  "virtual": "https://neurips.cc/virtual/2026/poster/155886",
+  "code": null
+ },
+ "license": "http://arxiv.org/licenses/nonexclusive-distrib/1.0/",
+ "img": "none",
+ "image_url": null,
+ "thumb_url": null,
+ "figure_page": 2,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.7
+}

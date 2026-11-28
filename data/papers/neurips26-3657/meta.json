@@ -1,0 +1,50 @@
+{
+ "id": "neurips26-3657",
+ "title": "Do Deep Networks Forget Initialization? A Forgetting-Time View of Practical Inductive Bias",
+ "authors": [
+  "Mohua Das",
+  "Pierfrancesco Beneventano",
+  "Shibshankar Dey",
+  "Gareth H McKinley",
+  "Tomaso Poggio"
+ ],
+ "venue": "NeurIPS 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "Optimization->Neural Network Optimization",
+ "role": "analysis-finding",
+ "role2": null,
+ "claim": "Under shared training settings, one optimizer family retains dependence on its initial scale while adaptive alternatives erase it.",
+ "layout": "2x3 grid of line plots, columns left-to-right, rows by batch size",
+ "tags": [
+  "optimizer-comparison",
+  "initialization",
+  "implicit-bias",
+  "generalization-gap",
+  "empirical-trend"
+ ],
+ "style": [
+  "plot",
+  "colorful"
+ ],
+ "description": "A 2x3 grid of line plots, labeled a–f, with a shared legend across the top. The legend lists SGD (blue circles), SGD with momentum (orange squares), Adam (green triangles), AdamW (red diamonds), Muon (purple triangles), and a dashed black line for the initial weight norm. Columns show train accuracy, generalization gap and Frobenius weight norm, each plotted against initialization scale σ_w. The top row is batch size 16 and the bottom row is batch size 128. Train accuracy is near 1 for all methods. In the gap panels, SGD curves rise steeply with σ_w while the adaptive methods stay flat and clustered near 0.1. In the norm panels, SGD tracks the dashed initial-norm line, while the adaptive methods sit in a flat band at a common higher norm. Shaded percentile bands surround each curve. The eye goes first to the diverging blue and orange curves in the gap panels.",
+ "caption": "SGD remembers initialization; Adam-family methods forget. ResNet-9 under a shared low-learning-rate training procedure. Each curve shows the mean over $n=10$ seeds; shaded bands indicate the $10^{\\mathrm{th}}-90^{\\mathrm{th}}$ percentile range. SGD interpolates, but its generalization gap grows with $\\sigw$. Adam, AdamW, and Muon show substantially weaker dependence on $\\sigw$. The norm panels show radial memory: SGD retains sensitivity to the initial norm (dashed line), whereas adaptive methods converge toward a common final norm scale. Top row: $b = 16$; bottom row: $b=128.$",
+ "caption_source": "latex",
+ "abstract": "Randomly initialized neural networks induce a prior over functions, but the predictor used in practice is produced only after training. We ask how much of this initial bias survives the training pipeline. To make the question measurable, we introduce initialization memory: the dependence of the validation-selected predictor on the scale of the random initialization. We perform controlled CIFAR-10 experiments on ResNets where initialization memory already sharply separates training regimes. Low-learning-rate SGD can interpolate while still remembering its initialization: on ResNet-9 with batch size $b=128$, test accuracy varies by $26.5$ percentage points across initialization scales despite $\\ge99.5\\%$ training accuracy. This is not undertraining: extending the same low-learning-rate regime to $5{,}000$ epochs leaves the spread essentially unchanged. In contrast, Adam-family methods largely erase the dependence. SGD can also be made to forget when larger learning rates are paired with explicit $L_2$ norm control. We interpret these findings in terms of the time scale of forgetting: gradient-flow-like dynamics can preserve initialization memory, whereas stochastic finite-step effects, explicit norm decay, and adaptive preconditioning erase it on scales governed by the size of explicit or implicit regularization. The practical inductive bias of a trained network is therefore not the architectural prior alone, but the architectural prior after being filtered by the forgetting dynamics of the training pipeline; and the same regularizers that improve generalization are precisely those that erase memory of initialization.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=PYoCtCiU8K",
+  "arxiv": "https://arxiv.org/abs/2605.29152",
+  "pdf": "https://arxiv.org/pdf/2605.29152",
+  "proceedings": null,
+  "virtual": "https://neurips.cc/virtual/2026/poster/152903",
+  "code": null
+ },
+ "license": "http://creativecommons.org/licenses/by/4.0/",
+ "img": "cc-by",
+ "image_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/images/neurips26-3657.png",
+ "thumb_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/thumbs/neurips26-3657.webp",
+ "figure_page": 1,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.9
+}

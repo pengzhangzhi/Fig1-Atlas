@@ -1,0 +1,56 @@
+{
+ "id": "icml26-0151",
+ "title": "Factored Gossip DiLoCo: Reducing Blocking Communication within DiLoCo",
+ "authors": [
+  "Chamin Hewa Koneputugodage",
+  "Thalaiyasingam Ajanthan",
+  "Sameera Ramasinghe",
+  "Hadi Mohaghegh Dolatabadi",
+  "Shamane Siriwardhana",
+  "Gil Avraham",
+  "Violetta Shevchenko",
+  "Karol Pajak",
+  "James Snewin",
+  "Alexander Long"
+ ],
+ "venue": "ICML 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "Optimization->Large Scale, Parallel and Distributed",
+ "role": "prior-vs-ours",
+ "role2": "pipeline",
+ "claim": "Prior synchronization blocks computation during a full global exchange; ours splits it into overlapped and minimal blocking mixing steps.",
+ "layout": "2 stacked timeline panels, left-to-right, dashed divider, braces marking rounds",
+ "tags": [
+  "distributed-training",
+  "communication-efficiency",
+  "overlap",
+  "gossip-mixing",
+  "prior-vs-ours"
+ ],
+ "style": [
+  "colorful",
+  "math-heavy",
+  "minimal"
+ ],
+ "description": "Two stacked horizontal timelines separated by a dashed line. The top panel, labeled DiLoCo, shows a blue block for inner computation, then a gap, then a short blue outer-optimizer block. A large red Global Average block hangs below the axis in the gap, so computation waits on communication. Curly braces above mark Round r+1 and r+2, and faded blocks hint at later rounds. The bottom panel, labeled Ours, uses the same layout. Here a red Mix1 block runs beneath the inner computation, overlapping it. A much shorter red Mix2 block sits just before the outer optimizer, so the blocking gap is small. Gray arrows point to math labels such as x_r, y_{m,r,H}, Δ_{m,r}, z_{m,r+1} and Δ-hat. Blue marks compute and red marks communication. The eye goes first to the red blocks.",
+ "caption": "Comparison of DiLoCo and our approach. We replace exact per-round synchronization with approximate synchronization via two operations: Mix1 mixes previous outer-step parameters (non-blocking, overlaps communication without temporal staleness) and Mix2 mixes the latest outer gradient (blocking). This enables us to use overlapped global averaging for Mix1 and a minimal amount of mixing that is sufficient for stability for Mix2. \\vspace{-4pt}",
+ "caption_source": "latex",
+ "abstract": "To make large-scale distributed training practical outside high-bandwidth datacenters, we must reduce blocking, high-volume synchronization. While DiLoCo communicates infrequently, its outer synchronization remains bandwidth-heavy and brittle to stragglers and transient failures. We relax exact synchronization to approximate synchronization via mixing/gossip, which degrades gracefully under delays and communication failures. This allows us to factorize DiLoCo synchronization into a non-blocking mixing step that overlaps computation with no staleness, and a blocking mixing step that tightens worker agreement, yielding a tunable trade-off between compute utilization and optimization stability. On up to billion-parameter language models in low-bandwidth settings, our framework substantially improves compute utilization compared to DiLoCo, with training progress ranging from comparable to closely matching it, and is more robust to failures.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=1MynM9hkFH",
+  "arxiv": "https://arxiv.org/abs/2606.22768",
+  "pdf": "https://raw.githubusercontent.com/mlresearch/v306/main/assets/hewa-koneputugodage26a/hewa-koneputugodage26a.pdf",
+  "proceedings": "https://proceedings.mlr.press/v306/hewa-koneputugodage26a.html",
+  "virtual": "https://icml.cc/virtual/2026/poster/66683",
+  "code": null
+ },
+ "license": "http://creativecommons.org/licenses/by/4.0/",
+ "img": "cc-by",
+ "image_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/images/icml26-0151.png",
+ "thumb_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/thumbs/icml26-0151.webp",
+ "figure_page": 1,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.85
+}

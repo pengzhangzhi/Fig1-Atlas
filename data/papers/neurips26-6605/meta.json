@@ -1,0 +1,50 @@
+{
+ "id": "neurips26-6605",
+ "title": "Externalized CPDAG Summaries Improve LLM Causal Deduction",
+ "authors": [
+  "Wentao Sun",
+  "João P Nogueira",
+  "Dominique Verchere",
+  "Mathieu Acher",
+  "Alonso Silva"
+ ],
+ "venue": "NeurIPS 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "General Machine Learning->Causality",
+ "role": "prior-vs-ours",
+ "role2": "pipeline",
+ "claim": "Free-text reasoning loses track of structure and errs; externalizing structure into a constrained schema lets the model verify claims correctly.",
+ "layout": "Input banner on top, 2 side-by-side panels, color-coded errors versus fixes",
+ "tags": [
+  "structured-reasoning",
+  "llm-reasoning",
+  "causal-inference",
+  "intermediate-representation",
+  "two-turn-prompting"
+ ],
+ "style": [
+  "text-heavy",
+  "colorful"
+ ],
+ "description": "A top banner gives a Corr2Cause test item: a premise about five variables A to E, a hypothesis about a collider, and the ground truth 'Yes'. Below it, two panels are split by a vertical line. Panel (a), BaselineEnhanced, shows an italic free-text reasoning excerpt with the faulty d-separation step in red. Under it is a small graph over A to E in which the A–D edge is a dashed red line labeled 'dropped'. Panel (b), Structured Thinking, has two turns. Turn 1 is a gray code box with a CausalAnalysis tool call listing skeleton, v-structures, directed and undirected edges, with the key edges in blue. Turn 2 pairs a quoted blue conclusion with the returned CPDAG, in which D and the edges into it are highlighted in blue and labeled R1 and R2.",
+ "caption": "Free-text reasoning versus Structured Thinking on Corr2Cause test item 590 (Qwen3.5-27B, abridged verbatim outputs). With the PC-algorithm prompt alone (left), the model misapplies d-separation (red), drops the edge $A$--$D$, and finds no common effect of $A$ and $C$. Structured Thinking (right) writes the CPDAG into a schema-constrained CausalAnalysis call; Turn 2 reads off $A\\to D\\leftarrow C$ and checks that this collider holds in every DAG of the equivalence class. R1 and R2 mark orientations forced by Meek's rules.",
+ "caption_source": "latex",
+ "abstract": "Observational data rarely identify a single causal structure. Such structures are typically modeled as directed acyclic graphs (DAGs) whose arrows point from direct causes to their effects, and observed correlations and conditional independencies usually leave a whole family of DAGs that fit the data equally well. A causal claim follows from the data only if it holds in every one of them. Classical causal discovery methods such as the Peter--Clark (PC) algorithm summarize this family as a completed partially directed acyclic graph (CPDAG): an edge is directed when every compatible graph orients it the same way, and undirected when the data leave its direction open. On the Corr2Cause benchmark, large language models (LLMs) that reason in free text often lose track of this family and decide from a few local edges. We propose \\emph{Structured Thinking}, a two-turn method in which the model first summarizes the CPDAG in a constrained schema and then checks the claim against that summary. Without fine-tuning or an external solver, it raises Qwen3.5-27B from $77.5$ to $86.5$ F$_1$ (mean of three seeds) over a baseline that receives explicit PC-algorithm instructions, whereas a second turn of free-text analysis does worse than that baseline. The gain holds on test splits with renamed variables or paraphrased hypotheses and on other models. Given only the graph and the claim, the model's answer flips when the graph is replaced by a valid CPDAG under which the claim has the opposite truth value. Moreover, replacing the model's graphs with reference CPDAGs on a fixed subset shows that most remaining errors arise in building the graph rather than in reading it. Making causal structure explicit can help LLMs reason more reliably, provided the intermediate representation is itself trustworthy.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=jNkJv4Cfma",
+  "arxiv": "https://arxiv.org/abs/2609.31071",
+  "pdf": "https://arxiv.org/pdf/2609.31071",
+  "proceedings": null,
+  "virtual": "https://neurips.cc/virtual/2026/poster/150273",
+  "code": null
+ },
+ "license": "http://arxiv.org/licenses/nonexclusive-distrib/1.0/",
+ "img": "none",
+ "image_url": null,
+ "thumb_url": null,
+ "figure_page": 1,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.85
+}

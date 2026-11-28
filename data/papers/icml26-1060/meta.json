@@ -1,0 +1,49 @@
+{
+ "id": "icml26-1060",
+ "title": "Towards Understanding Steering Strength",
+ "authors": [
+  "Magamed Taimeskhanov",
+  "Samuel Vaiter",
+  "Damien Garreau"
+ ],
+ "venue": "ICML 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "Theory->Deep Learning",
+ "role": "pipeline",
+ "role2": null,
+ "claim": "A steering vector is built from the difference of contrastive-prompt mean representations, then scaled by a strength and added at inference.",
+ "layout": "2 stacked panels, left-to-right flow, color-coded pink construction and green steering",
+ "tags": [
+  "steering-vector",
+  "activation-steering",
+  "contrastive-prompts",
+  "llm-control",
+  "inference-time-intervention"
+ ],
+ "style": [
+  "colorful",
+  "icon-heavy",
+  "math-heavy"
+ ],
+ "description": "Two stacked rounded panels show how a steering vector is built and then used. The top panel is pink. At left, a white box holds two contrastive prompts: a blue one warning that rm -rf /* causes data loss, and an orange one telling the user to run rm -rf /*. An arrow leads right into a row of transformer blocks: a faded 1st block, a bold outlined ℓth block labeled h−/h+, and faded LLM logits. Dotted orange and blue arrows labeled n− and n+ run from the ℓth block down to a scatter inset. In the inset, two point clouds have crosses at μ− and μ+, and a black arrow between them defines v := μ+ − μ−. The bottom panel is green. A prompt, 'Can I run sudo bash free_vpn.sh?', flows through the blocks. At the ℓth block, h gets +αv in purple, and the output is a blue 'No!'. A brace labeled 'L transformer blocks' sits above the top panel.",
+ "caption": "\\textbf{Top:} Constructing a steering vector $\\vbf$, for the target concept \"code safety\", at the $\\ell^{th}$ block. We run two contrastive prompt sets ($n_+$ safe and $n_-$ malicious) through an $L$-block LLM and collect the representations $\\{{\\color{neg} \\hbf_-}, {\\color{pos} \\hbf_+}\\}$ at layer $\\ell$ for each prompt. Averaging these representations over all safe prompts gives $\\color{pos} \\mu_+$, and for the malicious prompts it gives $\\color{neg}\\mu_-$ (both marked by a cross). We then define $\\vbf \\defeq \\mu_+ - \\mu_-$. \\textbf{Bottom:} Steering the model’s response toward safe behavior on a new prompt is done by adding $\\color{violet}\\alpha \\vbf$ to the residual stream $\\hbf$ at $\\ell^{th}$ block. The steering strength $\\alpha$ controls how far representations are moved along $v$.",
+ "caption_source": "latex",
+ "abstract": "A popular approach to post-training control of large language models (LLMs) is the steering of intermediate latent representations. Namely, identify a well-chosen direction depending on the task at hand and perturbs representations along this direction at inference time. While many propositions exist to pick this direction, considerably less is understood about how to choose the magnitude of the move, whereas its importance is clear: too little and the intended behavior does not emerge, too much and the model's performance degrades beyond repair. In this work, we propose the first theoretical analysis of steering strength. We characterize its effect on next token probability, presence of a concept, and cross-entropy, deriving precise qualitative laws governing these quantities. Our analysis reveals surprising behaviors, including non-monotonic effects of steering strength. We validate our theoretical predictions empirically on eleven language models, ranging from a small GPT architecture to modern models.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=A52LNgpGKy",
+  "arxiv": "https://arxiv.org/abs/2602.02712",
+  "pdf": "https://raw.githubusercontent.com/mlresearch/v306/main/assets/taimeskhanov26a/taimeskhanov26a.pdf",
+  "proceedings": "https://proceedings.mlr.press/v306/taimeskhanov26a.html",
+  "virtual": "https://icml.cc/virtual/2026/poster/65793",
+  "code": "https://github.com/MagamedT/steering"
+ },
+ "license": "http://creativecommons.org/licenses/by/4.0/",
+ "img": "cc-by",
+ "image_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/images/icml26-1060.png",
+ "thumb_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/thumbs/icml26-1060.webp",
+ "figure_page": 0,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.9
+}

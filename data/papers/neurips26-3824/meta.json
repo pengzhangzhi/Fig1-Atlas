@@ -1,0 +1,52 @@
+{
+ "id": "neurips26-3824",
+ "title": "The Piggyback Hypothesis of Generalization: Explaining and Mitigating Emergent Misalignment",
+ "authors": [
+  "Jiachen Zhao",
+  "Zhengxuan Wu",
+  "Aryaman Arora",
+  "Yiyou Sun",
+  "David Bau",
+  "Weiyan Shi"
+ ],
+ "venue": "NeurIPS 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "Social Aspects->Accountability, Transparency and Interpretability",
+ "role": "pipeline",
+ "role2": "prior-vs-ours",
+ "claim": "Shared template tokens carry finetuned behavior to unrelated queries; patching or regularizing their representations reverses it and mitigates the problem.",
+ "layout": "3 stacked rows, left-to-right token strips, dashed arrows show copying and pulling",
+ "tags": [
+  "hypothesis",
+  "regularization",
+  "finetuning",
+  "representation-patching",
+  "misalignment"
+ ],
+ "style": [
+  "colorful",
+  "icon-heavy",
+  "text-heavy"
+ ],
+ "description": "The figure opens with a beige box holding a test prompt. It is split into a blue prefix, a query and a postfix. Below it are three stacked rows, each with a bold heading. Row 1 states the Piggyback Hypothesis. An initial model plus a stack of financial queries with wrong advice goes through SFT to an EM model. The EM model is drawn as a strip of tokens: blue-outlined prefix boxes, then red boxes for the query and postfix. A devil icon and a red speech bubble show a misaligned reply. Row 2 shows the Initial model's green token strip. A dashed arrow labeled Copy KV carries the prefix KV cache into the Patched EM model, which then gives a green, benign reply. Row 3 shows TReFT, with a yellow strip and a Pull KV close arrow back to the Initial model. A smiley icon and a green reply sit at the right. Colors encode alignment: red is misaligned, green is aligned.",
+ "caption": "\\looseness=-1 We hypothesize that LLMs may use shared tokens that are not specific to input queries as a piggyback for training behaviors. We find prefix of the chat template may encode bias for misalignment after narrow finetuning on misaligned examples of a single domain. As the prefix is shared across inputs, it piggybacks the misalignment onto other queries in semantically unrelated domains. Replacing the KV cache of prefix tokens with those from the initial model can reduce EM. We propose to regularize the KV representations of those tokens in finetuning to mitigate EM.",
+ "caption_source": "latex",
+ "abstract": "The mechanisms behind LLMs' broad over-generalization beyond training examples remain unclear. Emergent misalignment (EM) offers a striking case study: finetuning on narrow tasks induces broad misalignment to semantically-unrelated test domains. In this work, we propose the Piggyback Hypothesis: the chat-template tokens can piggyback the finetuned behaviour onto out-of-domain queries. We validate this hypothesis by showing that subtle perturbations to the prefix (tokens preceding all user queries), or patching the prefix representations with those from the unfinetuned model, can restore alignment without changing the user query. Building on this finding, we propose Token-Regularized Finetuning (TReFT), which regularizes specific token representations during training to mitigate EM. Across different models and multiple EM-inducing datasets, TReFT reduces EM while preserving in-domain learning. On Llama-3.1-8B finetuned on the legal domain, TReFT achieves 33.5% more EM reduction than data interleaving with a retain set of aligned examples. We further show that TReFT extends to other narrow-finetuning settings, including abstention, tool use, and refusal (off-topic generalization is reduced by 54.3% on average), supporting the Piggyback Hypothesis. Broadly, our work highlights that LLMs may learn and generalize in unintended ways and suggests a path toward more constrained finetuning. It also calls for further study of how shared input features can piggyback model behavior across domains.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=QcDWdHgd06",
+  "arxiv": "https://arxiv.org/abs/2606.06667",
+  "pdf": "https://arxiv.org/pdf/2606.06667",
+  "proceedings": null,
+  "virtual": "https://neurips.cc/virtual/2026/poster/152749",
+  "code": null
+ },
+ "license": "http://creativecommons.org/licenses/by/4.0/",
+ "img": "cc-by",
+ "image_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/images/neurips26-3824.png",
+ "thumb_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/thumbs/neurips26-3824.webp",
+ "figure_page": 1,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.6
+}

@@ -1,0 +1,50 @@
+{
+ "id": "icml26-4004",
+ "title": "BeaconKV: Key-Value Cache Compression Guided by Beacon Queries for Efficient Large Reasoning Model Inference",
+ "authors": [
+  "Janghyeon Kim",
+  "Minsoo Kim",
+  "Kyuhong Shim",
+  "Jungwook Choi"
+ ],
+ "venue": "ICML 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "Deep Learning->Large Language Models",
+ "role": "analysis-finding",
+ "role2": "problem-setup",
+ "claim": "Recent queries are poor proxies for future attention: some decoding steps re-attend to distant context, producing long-range attention distances.",
+ "layout": "2 panels, left heatmap plus right stacked histograms, red query labels",
+ "tags": [
+  "kv-cache",
+  "attention-analysis",
+  "long-range-dependency",
+  "reasoning",
+  "compression"
+ ],
+ "style": [
+  "plot",
+  "photo/real data",
+  "colorful"
+ ],
+ "description": "The figure has two parts. On the left is a heatmap of attention weights. The x-axis is key cache index (0 to 1092) and the y-axis is query index (1066 to 1091). A log-scale viridis colorbar runs from 1e-4 to 1. Most queries attend to the recent keys on the right, shown as bright green and teal streaks. Two rows, labeled in red as Query-1068 and Query-1090, spread attention across early keys as well. On the right are two stacked histograms of attention distance between query and key, for Layer-6 Head-18 and Layer-10 Head-19. Red lines show local queries, which cluster at short distances. Blue lines show global queries, which have a long tail out to about 2100. The eye goes first to the heatmap and its red labels.",
+ "caption": "(a) Attention weight distribution at layer 18, head 16 and (b) attention distance between query and key (AIME24 sample-0 on R1-Distill-Qwen-7B).",
+ "caption_source": "latex",
+ "abstract": "Large Reasoning Models (LRMs) achieve superior problem-solving through extended Chain-of-Thought (CoT) generation, but the resulting key-value (KV) cache grows linearly with sequence length and creates severe memory bottlenecks, often exceeding GPU capacity for long reasoning traces. Existing KV cache compression methods rely on recent queries to estimate future token importance, implicitly assuming these serve as reliable proxies for future attention patterns. We demonstrate that this assumption fails in long-horizon reasoning: certain decoding steps generate Thought Revisiting Tokens (TRT) that re-attend to distant previous context, such as task-solving plans formulated early in the trace. Through systematic analysis, we discover that queries corresponding to the TRT cluster into a small number of similarity groups in the embedding space. Based on this insight, we propose BeaconKV, a training-free KV cache compression method that maintains beacon queries, compact representatives for each global query cluster, to anticipate which KV pairs will be revisited without storing the entire query history. Across four open-source LRMs and diverse reasoning benchmarks, BeaconKV generally outperforms existing compression methods, achieving up to $5.8\\times$ memory reduction while nearly preserving full cache accuracy and improving throughput by over $4.3\\times$.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=bgAbffQCrL",
+  "arxiv": "https://arxiv.org/abs/2609.04971",
+  "pdf": "https://raw.githubusercontent.com/mlresearch/v306/main/assets/kim26af/kim26af.pdf",
+  "proceedings": "https://proceedings.mlr.press/v306/kim26af.html",
+  "virtual": "https://icml.cc/virtual/2026/poster/62942",
+  "code": null
+ },
+ "license": "http://arxiv.org/licenses/nonexclusive-distrib/1.0/",
+ "img": "none",
+ "image_url": null,
+ "thumb_url": null,
+ "figure_page": 2,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.85
+}

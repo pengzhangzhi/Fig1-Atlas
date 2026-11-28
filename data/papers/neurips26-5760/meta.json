@@ -1,0 +1,50 @@
+{
+ "id": "neurips26-5760",
+ "title": "Predictive but Not Plannable: RC-aux for Latent World Models",
+ "authors": [
+  "Wenyuan Li",
+  "Guang Li",
+  "Keisuke Maeda",
+  "Takahiro Ogawa",
+  "Miki Haseyama"
+ ],
+ "venue": "NeurIPS 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "Reinforcement Learning->Everything Else",
+ "role": "concept",
+ "role2": "problem-setup",
+ "claim": "Points close in latent space may be unreachable within a finite action budget, so distance-based planners get lured by shortcuts.",
+ "layout": "2 panels split by dashed line, left-to-right, physical vs latent view",
+ "tags": [
+  "latent-shortcut",
+  "reachability",
+  "world-models",
+  "planning",
+  "failure-mode"
+ ],
+ "style": [
+  "minimal",
+  "colorful"
+ ],
+ "description": "Two panels separated by a vertical dashed black line, drawn in a hand-written cartoon font. The left panel shows the physical world. A blue 'start' node sits on the left and a green 'goal' node on the right. A red dashed straight line labeled 'Shortcut (blocked)' runs between them and passes through a gray rounded 'obstacle' rectangle marked with a red X. A thick green curved arrow loops under the obstacle, labeled 'feasible within budget'. The right panel, inside a rounded gray box titled 'latent space', shows the same situation as embeddings. A blue z0 and a green z_g are linked by a dashed green path of intermediate green dots. A red 'shortcut' dot sits next to z_g, joined by a short gray dashed line labeled 'small L2'. A caption at the bottom reads 'close in latent, not reachable in time'. Red marks the failure and green marks the feasible route.",
+ "caption": "Conceptual illustration of the latent-shortcut failure mode. A terminal latent-distance planner may favor a shortcut that is close in latent space but unreachable within the finite action budget. RC-aux encourages distance to align with finite-horizon reachability, making feasible trajectories more consistent with planning.",
+ "caption_source": "latex",
+ "abstract": "A latent world model may achieve accurate short-horizon prediction while still inducing a latent space that is poorly aligned with planning. A key issue is spatiotemporal mismatch: these models are often trained with local predictive supervision, but deployed for long-horizon goal-directed search in latent spaces where Euclidean distance may not reflect what is reachable within a finite action budget. We present the Reachability-Correction auxiliary objective (RC-aux), a lightweight correction for this mismatch in reconstruction-free latent world models. RC-aux keeps the world-model backbone unchanged and adds planning-aligned supervision along two axes. Along the time axis, multi-horizon open-loop prediction trains the model beyond one-step consistency. Along the space axis, budget-conditioned reachability supervision, together with temporal hard negatives, encourages the latent space to distinguish states that are eventually reachable from those reachable within the current planning horizon. At test time, the learned reachability signal can also be used by a reachability-aware planner to favor trajectories that are both goal-directed and attainable under the available budget. We instantiate RC-aux on LeWorldModel and evaluate it under both continuation-training and matched-from-scratch settings. Across goal-conditioned pixel-control tasks and a LIBERO-Goal extension, RC-aux improves LeWM-style planning with modest additional cost. These results suggest that planning with latent world models depends not only on predictive accuracy, but also on whether the learned representation encodes the temporal and geometric structure required by downstream search. The code is available at https://github.com/Guang000/RC-aux.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=dbTgKHgLeI",
+  "arxiv": "https://arxiv.org/abs/2605.07278",
+  "pdf": "https://arxiv.org/pdf/2605.07278",
+  "proceedings": null,
+  "virtual": "https://neurips.cc/virtual/2026/poster/151013",
+  "code": "https://guang000.github.io/RC-aux-Webpage/"
+ },
+ "license": "http://arxiv.org/licenses/nonexclusive-distrib/1.0/",
+ "img": "none",
+ "image_url": null,
+ "thumb_url": null,
+ "figure_page": 1,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.8
+}

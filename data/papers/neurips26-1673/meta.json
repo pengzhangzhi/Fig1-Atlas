@@ -1,0 +1,54 @@
+{
+ "id": "neurips26-1673",
+ "title": "OSCAR: Offline Spectral Covariance-Aware Rotation for 2-bit KV Cache Quantization",
+ "authors": [
+  "Zhongzhu Zhou",
+  "Donglin Zhuang",
+  "Jisen Li",
+  "Ziyan Chen",
+  "Shuaiwen Song",
+  "Ben Athiwaratkun",
+  "Xiaoxia Wu"
+ ],
+ "venue": "NeurIPS 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "Deep Learning->Attention Mechanisms",
+ "role": "overview-framework",
+ "role2": "teaser-result",
+ "claim": "A system with offline calibration, fixed-precision online paths and measured gains preserves accuracy while matching the speed of a fast baseline.",
+ "layout": "3 panels, left-to-right: offline visualization, inference paths, performance table and bar charts",
+ "tags": [
+  "quantization",
+  "kv-cache",
+  "serving-system",
+  "efficiency",
+  "accuracy-throughput"
+ ],
+ "style": [
+  "colorful",
+  "plot",
+  "text-heavy",
+  "3d-render"
+ ],
+ "description": "A wide figure split into three rounded, purple-bordered panels. The left panel, 'OSCAR Visualization', starts with a calibration-dataset cylinder (offline). Beside it are covariance-derivation equations for keys and values. Below them are 3D surface plots of K and V activations in three columns: raw, Hadamard-rotated and OSCAR-rotated. Red ✗ labels mark 'distorted' and 'biased'. Green ✓ labels mark 'query-aware' and 'attention-score-aware'. Purple arrows label the rotation and clip steps. It ends in an output box giving per-layer rotations and clip thresholds. The middle panel, 'Inference', shows the KV cache layout (Sink BF16, History INT2, Recent BF16) and small box flows for the write path and the read path. The right panel, 'Performance', has an accuracy table with the OSCAR row highlighted and grouped bar charts of throughput speedup at BS=1, 8 and 32, with orange OSCAR bars the tallest.",
+ "caption": "OSCAR pipeline overview. Offline, OSCAR estimates attention-aware key/value covariance rotation and shows how the resulting rotation makes KV activations more uniform: Hadamard mixing flattens raw peaks, while the OSCAR rotation separates directions that matter more or less to attention. Online, the serving path keeps sink and recent tokens in BF16 while applying the fixed rotate--clip--INT2 path to history KV tokens inside the paged SGLang cache. The right panels summarize that OSCAR preserves accuracy across models while achieving throughput close to the QuaRot(INT2) serving path and higher throughput than BF16.",
+ "caption_source": "latex",
+ "abstract": "INT2 KV-cache quantization is attractive for long-context LLM serving, yet making it both accurate and practical remains challenging. Data-oblivious rotations such as Hadamard transforms flatten channel outliers, but still degrade sharply at INT2 because they ignore how downstream attention queries the cache. We propose OSCAR, an ultra-low-bit KV-cache quantization method that estimates attention-aware covariance targets offline and uses them to derive fixed per-layer rotations and clipping thresholds. By aligning the quantization basis with the second-moment structures consumed by attention, OSCAR preserves attention fidelity at 2-bit precision. Beyond theoretical analysis under a frozen-error surrogate, we build a serving-ready OSCAR system with fused Triton write and decode kernels that preserve paged KV-cache layouts and prefix caching, integrating into modern serving engines such as SGLang and vLLM. We evaluate OSCAR on reasoning and coding benchmarks with generation traces of up to 32K tokens across five tasks. On Qwen3-4B-Thinking-2507 and Qwen3-8B, OSCAR narrows the BF16 accuracy gap to 3.78 and 1.21 points, respectively, where Hadamard-only INT2 collapses, and matches BF16 within run-to-run variance on Qwen3-32B and GLM-4.7 (358B parameters). On RULER-NIAH up to 128K tokens, OSCAR substantially outperforms QuaRot-style INT2 across context lengths. System-wise, OSCAR compresses KV-cache memory by nearly $8\\times$, boosts multi-request throughput by up to $7.8\\times$ at large batch sizes within the same memory budget, and accelerates batch-size-1 decoding by up to $3.1\\times$ over BF16 by cutting KV memory traffic.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=ByTqCb7VnS",
+  "arxiv": "https://arxiv.org/abs/2605.17757",
+  "pdf": "https://arxiv.org/pdf/2605.17757",
+  "proceedings": null,
+  "virtual": "https://neurips.cc/virtual/2026/poster/154658",
+  "code": "https://oscar-quantize.github.io/"
+ },
+ "license": "http://creativecommons.org/licenses/by/4.0/",
+ "img": "cc-by",
+ "image_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/images/neurips26-1673.png",
+ "thumb_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/thumbs/neurips26-1673.webp",
+ "figure_page": 1,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.5
+}

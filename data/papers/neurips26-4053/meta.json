@@ -1,0 +1,50 @@
+{
+ "id": "neurips26-4053",
+ "title": "To Copy or Not to Copy: Controlling Speculative Decoding via Intrinsic Model Signals",
+ "authors": [
+  "Roy Eisenstadt",
+  "Ido Cohen",
+  "Edo Cohen-Karlik",
+  "Lior Wolf",
+  "Itamar Zimerman"
+ ],
+ "venue": "NeurIPS 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": null,
+ "role": "pipeline",
+ "role2": null,
+ "claim": "A learned probe on the target model's internal state switches between neural drafting and context copying at each verification step.",
+ "layout": "1 wide panel, left-to-right, three cases with colored routing arrows from probe",
+ "tags": [
+  "speculative-decoding",
+  "adaptive-switching",
+  "probe",
+  "copy-mechanism",
+  "inference-efficiency"
+ ],
+ "style": [
+  "colorful",
+  "icon-heavy"
+ ],
+ "description": "A single wide diagram shows token generation over time, left to right. On the far left, a blue prompt bubble ('What do you think about the international conference on ML?') feeds a 'Target (Prefill)' box. Three Target (Decode) stages follow, each with blue generated-token boxes above. Beneath them are gray 'Draft' boxes for the neural draft, or one long orange 'Copy' bar in the middle stage. A dark-red trapezoid 'Probe' sits inside the decode boxes, and red arrows from it route to either Draft or Copy for the next step. Green boxes at the bottom mark the last accepted token. Dashed black arrows carry tokens between stages, underlined italic text marks repeated tokens, and trailing dots show the process continuing. The eye goes first to the orange Copy bar and the red routing arrows.",
+ "caption": "Token generation process under our method. After every verification step by the target model, given the final accepted token (shown in green), there are three possible cases: (i) No repetition contains the currently generated token. In this case, a standard neural draft model is used. Otherwise, a repetition containing the current token exists. In this case: (ii) if the probe (shown in red) identifies copy-intent, speculative tokens are drafted by copying from the context, and (iii) if no copy-intent is identified, the neural draft model is used. The neural draft model is shown in gray, the copy draft in orange, generated tokens in blue, and repeated input tokens with underline. The example in the figure contains the three cases in their numbered order.",
+ "caption_source": "latex",
+ "abstract": "Speculative Decoding (SD) has significantly accelerated Large Language Model (LLM) inference, yet existing approaches face a fundamental tradeoff between two drafting strategies: neural drafting and context-based copying. Neural drafts (e.g., EAGLE3) provide robust performance across diverse text settings, while copy-based methods achieve higher speedups in copy-intensive regimes by generating candidates faster and exploiting long repetition spans for near-perfect speculation. We analyze existing copy-based methods and find that they are prone to accidental repetitions where surface-level n-gram overlap does not reflect a structural intent to copy, leading to false-positive triggers that ultimately degrade throughput. We introduce SwitchSD, an adaptive framework that treats copying as a latent control signal of the LLM. By training lightweight probes on the target model's internal representations, SwitchSD identifies genuine copy-intent with high precision (AUC > 0.99). This allows the system to dynamically switch between neural drafting (e.g., EAGLE) and context-based copying. Our results across Llama and Qwen families demonstrate throughput gains of up to 15% over state-of-the-art baselines like EAGLE3, effectively turning copying from a noisy heuristic into a principled, model-aware decoding regime.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=SLqBK6yQPm",
+  "arxiv": "https://arxiv.org/abs/2609.20186",
+  "pdf": "https://arxiv.org/pdf/2609.20186",
+  "proceedings": null,
+  "virtual": "https://neurips.cc/virtual/2026/poster/152547",
+  "code": null
+ },
+ "license": "http://arxiv.org/licenses/nonexclusive-distrib/1.0/",
+ "img": "none",
+ "image_url": null,
+ "thumb_url": null,
+ "figure_page": 1,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.9
+}

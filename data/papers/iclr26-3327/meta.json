@@ -1,0 +1,55 @@
+{
+ "id": "iclr26-3327",
+ "title": "THE END OF MANUAL DECODING: TOWARDS TRULY END-TO-END LANGUAGE MODELS",
+ "authors": [
+  "Zhichao Wang",
+  "Dongyang Ma",
+  "Xinting Huang",
+  "Deng Cai",
+  "Tian Lan",
+  "Jiahao Xu",
+  "Haitao Mi",
+  "Xiaoying Tang",
+  "Yan Wang"
+ ],
+ "venue": "ICLR 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": null,
+ "role": "prior-vs-ours",
+ "role2": "pipeline",
+ "claim": "Static, hand-set decoding hyperparameters are replaced by lightweight heads that predict them per token from hidden states within one pass.",
+ "layout": "Two stacked dashed panels, left-to-right flow, greyed-out manual baseline below",
+ "tags": [
+  "adaptive-decoding",
+  "sampling",
+  "end-to-end",
+  "temperature-top-p",
+  "hyperparameter-free"
+ ],
+ "style": [
+  "colorful",
+  "icon-heavy",
+  "minimal"
+ ],
+ "description": "A wide diagram with two dashed boxes. The bottom-left shows the transformer: an 'Input Prefix' arrow enters Layer N-1 and Layer N, which hold hidden states h0, h1, ..., h_{t+1}. These feed a Softmax block that outputs a bar-chart token distribution. The top box, in brown and titled 'End-to-End Decoding', adds Temp and Top-p heads. Each head passes through a sigmoid and gives a value (0.72, 0.93). The values are combined into a JSON config, which feeds a Sampling histogram and then Next Token. A dashed arrow links the temperature value to the top-p head. The bottom-right box, in grey and titled 'Manual Decoding', shows a human head icon supplying fixed JSON values (temperature 0.4, top_p 0.85) to a faded sampling histogram. A large hollow arrow points up toward the end-to-end panel. The eye goes first to the brown, saturated top panel.",
+ "caption": "An overview of our proposed end-to-end decoding architecture compared to manual decoding. Our method dynamically predicts temperature and top-p values from the model's hidden states for each generation step. In contrast, manual decoding (bottom) relies on a single set of static, predefined hyperparameters for the entire sequence generation.",
+ "caption_source": "latex",
+ "abstract": "The \"end-to-end\" label for LLMs is a misnomer. In practice, they depend on a non-differentiable decoding process that requires laborious, hand-tuning of hyperparameters like temperature and top-p. This paper introduces AutoDeco, a novel architecture that enables truly \"end-to-end\" generation by learning to control its own decoding strategy. We augment the standard transformer with lightweight heads that, at each step, dynamically predict context-specific temperature and top-p values alongside the next-token logits. This approach transforms decoding into a parametric, token-level process, allowing the model to self-regulate its sampling strategy within a single forward pass. Through extensive experiments on eight benchmarks, we demonstrate that AutoDeco not only significantly outperforms default decoding strategies but also achieves performance comparable to an oracle-tuned baseline derived from \"hacking the test set\"-a practical upper bound for any static method. Crucially, we uncover an emergent capability for instruction-based decoding control: the model learns to interpret natural language commands (e.g., \"generate with low randomness\") and adjusts its predicted temperature and top-p on a token-by-token basis, opening a new paradigm for steerable and interactive LLM decoding.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=cPTgQDMD5p",
+  "arxiv": "https://arxiv.org/abs/2510.26697",
+  "pdf": "https://proceedings.iclr.cc/paper_files/paper/2026/file/1df27e31a0c0b916797a49198cb28d6a-Paper-Conference.pdf",
+  "proceedings": "https://proceedings.iclr.cc/paper_files/paper/2026/hash/1df27e31a0c0b916797a49198cb28d6a-Abstract-Conference.html",
+  "virtual": "https://iclr.cc/virtual/2026/poster/10008510",
+  "code": "https://github.com/Zacks917/AutoDeco"
+ },
+ "license": "http://creativecommons.org/licenses/by/4.0/",
+ "img": "cc-by",
+ "image_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/images/iclr26-3327.png",
+ "thumb_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/thumbs/iclr26-3327.webp",
+ "figure_page": 1,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.6
+}

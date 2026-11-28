@@ -1,0 +1,49 @@
+{
+ "id": "icml26-5125",
+ "title": "Efficient Training-Free Multi-Token Prediction via Embedding-Space Probing",
+ "authors": [
+  "Raghavv Goel",
+  "Mukul Gagrani",
+  "Mingu Lee",
+  "Christopher Lott"
+ ],
+ "venue": "ICML 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "Deep Learning->Large Language Models",
+ "role": "pipeline",
+ "role2": "prior-vs-ours",
+ "claim": "Standard one-token decoding extends to parallel multi-token prediction by appending probe tokens and verifying drafts in a single tree-masked pass.",
+ "layout": "3 panels, left-to-right progression, attention-mask matrices beneath each panel",
+ "tags": [
+  "multi-token-prediction",
+  "training-free",
+  "speculative-decoding",
+  "tree-attention",
+  "inference-efficiency"
+ ],
+ "style": [
+  "colorful",
+  "icon-heavy"
+ ],
+ "description": "Three side-by-side panels show an LLM as a wide white box, with input tokens below it and output tokens above it, joined by dashed arrows. Left: standard next-token prediction. Blue tokens x1…xt go in and a single x_{t+1} comes out. Middle: extra purple mask tokens m1 and m2 are appended to the prompt, so the LLM also outputs orange predicted tokens x̂_{t+2} and x̂_{t+3}. Right: the verification and generation stage. It has a longer input row of blue, orange and purple tokens, including x_s, x̂_{s+1}, x̂_{s+2} and several m tokens. Green checks and red X marks show accepted and rejected drafts, and red question marks mark the verification arrows. Under each panel, a staircase-shaped block matrix shows the attention mask. The left and middle masks are causal. The right mask is a sparse tree mask. The colors blue, orange and purple mark real, drafted and mask tokens.",
+ "caption": "(Left) Standard next-token prediction setup for autoregressive models, (middle) multi-token prediction during prefill-stage by probing mask tokens which are appended to prompt tokens, (right) multi-token prediction with parallel verification and generation. Mask tokens are associated with last generated token ($x_{s}$) and future tokens ($\\hat{x}_{s+1}, \\hat{x}_{s+2}$) through custom tree attention mask.",
+ "caption_source": "latex",
+ "abstract": "Large Language Models (LLMs) possess latent multi-token prediction (MTP) abilities despite being trained only for next-token generation. We introduce ESP (Embedding-Space Probing), a simple and training-free MTP method that probes an LLM using on-the-fly mask tokens drawn from its embedding space, enabling parallel future-token prediction without modifying weights or relying on draft models. ESP constructs a speculative token tree by sampling Top-K candidates from mask-token logits and applies a lightweight pruning rule to retain high-probability continuations. During generation, predictions are verified in parallel, yielding lossless decoding while significantly reducing model calls and increasing token throughput. ESP consistently outperforms existing training-free baselines, improving acceptance length by 7-11% over LADE on LLaMA3 and 7-8% on Qwen3, and increasing throughput by up to 15-19% over the strongest baseline. Finally, we provide theoretical insight and empirical evidence showing that decoder layers naturally align mask-token representations with next-token states, enabling accurate multi-step prediction without retraining or auxiliary models.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=mKj4fO0BU4",
+  "arxiv": "https://arxiv.org/abs/2603.17942",
+  "pdf": "https://raw.githubusercontent.com/mlresearch/v306/main/assets/goel26a/goel26a.pdf",
+  "proceedings": "https://proceedings.mlr.press/v306/goel26a.html",
+  "virtual": "https://icml.cc/virtual/2026/poster/61857",
+  "code": null
+ },
+ "license": "http://creativecommons.org/licenses/by/4.0/",
+ "img": "cc-by",
+ "image_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/images/icml26-5125.png",
+ "thumb_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/thumbs/icml26-5125.webp",
+ "figure_page": 2,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.6
+}

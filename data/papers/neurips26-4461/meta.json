@@ -1,0 +1,50 @@
+{
+ "id": "neurips26-4461",
+ "title": "Structured Transforms for Low-Overhead Quantization of Language Models",
+ "authors": [
+  "Daria Cherniuk",
+  "Alexander Rudikov",
+  "Boris Kashin",
+  "Ivan Oseledets"
+ ],
+ "venue": "NeurIPS 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "Deep Learning->Algorithms",
+ "role": "pipeline",
+ "role2": null,
+ "claim": "Each weight column is decomposed into two factors, each clustered into four peaks and quantized to 2 bits, iteratively.",
+ "layout": "4 labeled stages (a)-(d), left-to-right, branching into two parallel rows",
+ "tags": [
+  "quantization",
+  "pipeline",
+  "decomposition",
+  "2-bit",
+  "error-compensation"
+ ],
+ "style": [
+  "colorful",
+  "plot",
+  "minimal"
+ ],
+ "description": "A left-to-right pipeline with four stages labeled (a) to (d). On the far left is a weight matrix W drawn as an orange block (quantized weights), a thin highlighted column, and a blue block (unquantized weights), with a legend below. Arrow (a) leads to a single beige column vector x in R^N. Arrow (b) splits into two branches: a green vector U_{E,Φ} v_k at the top and a purple vector u_k at the bottom. Stage (c) shows a histogram for each branch with four sharp peaks and red dashed lines at the cluster centers. Stage (d) feeds each into a grid matrix, a green V-hat matrix on top and a purple U matrix below, both labeled 2-bit and partly filled column by column. The eye goes first to the colorful vectors and histograms in the center.",
+ "caption": "The proposed quantization pipeline consists of several stages: (a) move to the next column to quantize; (b) decompose with the proposed Greedy Algorithm with Alternating Updates (Algorithm [ref]) into $u$ and $\\hat{v}$; (c) quantize each factor to 2 bits via 4-peak clustering; (d) stack the quantized vectors into the output matrices $U$ and $\\hat{V}$; then add error compensation to the unquantized weights and return to (a).",
+ "caption_source": "latex",
+ "abstract": "We revisit Kashin-decomposition-based weight quantization for large language models and propose an improved algorithm with stronger convergence properties and structured, efficient orthogonal transforms. The method retains the core factorization of each weight into two components -- one with bounded infinity norm and the other with bounded infinity norm after an orthogonal transformation -- but replaces the dense random orthogonal matrix with a sign-randomized Discrete Cosine Transform (DCT), reducing the per-iteration cost from $\\mathcal{O}(N^2)$ to $\\mathcal{O}(N \\log N)$. The proposed greedy algorithm with alternating updates guarantees the four-peak distribution required for stable 2-bit clustering of each factor and admits closed-form initialization of cluster centers, removing the multi-restart k-means bottleneck of prior work. Composed with OPTQ-style sequential error compensation and QuIP-style incoherence preprocessing, the resulting JAX pipeline is competitive with OPTQ, QuIP, QuIP-RG and a fine-tuning- and vector-quantization-free variant of QuIP# at 4-bit per channel on OPT, Llama-2 and Pythia, with favorable wall-clock scaling. The bounded-$\\ell_\\infty$ factorization is also notably robust: on stress configurations where QuIP variants diverge to four-digit perplexity (Pythia-6.9B) or abort with NaNs in LDL back-substitution (Mistral-7B), Kashin-DCT remains numerically stable and stays close to FP16 baseline. At inference time, each weight decomposes into two 2-bit factor codes per channel that are structurally suited to native-2-bit hardware.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=UrdhHjjT3j",
+  "arxiv": "https://arxiv.org/abs/2609.11687",
+  "pdf": "https://arxiv.org/pdf/2609.11687",
+  "proceedings": null,
+  "virtual": "https://neurips.cc/virtual/2026/poster/152193",
+  "code": null
+ },
+ "license": "http://creativecommons.org/licenses/by/4.0/",
+ "img": "cc-by",
+ "image_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/images/neurips26-4461.png",
+ "thumb_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/thumbs/neurips26-4461.webp",
+ "figure_page": 2,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.97
+}

@@ -1,0 +1,59 @@
+{
+ "id": "neurips26-2507",
+ "title": "xHC: Expanded Hyper-Connections",
+ "authors": [
+  "Xiangdong Zhang",
+  "Xiaohan Qin",
+  "Tuo Dai",
+  "Xiaoming Shi",
+  "Huaijin Wu",
+  "Yebin Yang",
+  "Zhuo Xia",
+  "Shaofeng Zhang",
+  "Yu Wang",
+  "Yu Cheng",
+  "Junchi Yan"
+ ],
+ "venue": "NeurIPS 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": null,
+ "role": "teaser-result",
+ "role2": null,
+ "claim": "Scaling expansion with our method keeps cutting loss at nearly constant compute, while the baseline's gains flatten and cost balloons.",
+ "layout": "Single scatter plot, loss vs FLOPs, dashed arrows annotating deltas vs baseline",
+ "tags": [
+  "scaling",
+  "efficiency",
+  "pareto-frontier",
+  "residual-stream",
+  "compute-vs-loss"
+ ],
+ "style": [
+  "plot",
+  "colorful",
+  "minimal"
+ ],
+ "description": "A single line/scatter plot with training FLOPs (log-like axis, 4.5e19 to 1.5e20) on the x-axis and loss on the y-axis. A gray star marks the Vanilla baseline (loss 2.3071) with a horizontal dashed gray reference line. Blue squares trace mHC as N grows from 2 to 16, then fade at N=32. The line runs far to the right, so FLOPs cost grows. Red diamonds trace xHC for N=2 to 16 as a nearly vertical line sitting well below the blue curve. Dashed blue and red arrows from the baseline show FLOPs multipliers (x1.33 for mHC, x1.05 for xHC) and loss reductions (-2.0% and -2.8%). Each point is labeled with its N value, and a legend sits at upper right. The eye goes first to the red curve dropping steeply.",
+ "caption": "Expansion efficiency: loss vs.\\ FLOPs on a 2.5B MoE model (details in Table [ref]).",
+ "caption_source": "latex",
+ "abstract": "Hyper-Connections (HC) expand the residual stream of Transformers into $N$ parallel streams, providing a form of memory scaling beyond model width and depth. Manifold-Constrained HC (mHC) stabilizes this formulation at scale. The large gains from $N{=}1$ to $N{=}4$ suggest residual-stream expansion as a promising scaling axis. However, existing HC-family methods typically stop at $N{=}4$. Our experiments reveal why: scaling mHC beyond this point yields diminishing performance gains and rapidly increasing training cost. We attribute this limitation to two bottlenecks: insufficient write-back information for an expanding number of streams and residual-mixing generation whose cost scales cubically with $N$. To address both bottlenecks, we propose xHC (Expanded Hyper-Connections), the first HC-family method to achieve meaningful expansion beyond $N{=}4$. xHC combines temporal feature augmentation for richer write-back with a sparse residual-stream architecture that updates only $k=4$ of the $N=16$ streams while retaining dense access to the full residual state. Across 18B and 28B MoE models, xHC delivers strong and consistent downstream improvements. On an 18B MoE model, xHC improves the average downstream score by 4.0 points over mHC, while adding only modest training FLOPs over the vanilla baseline. Scaling-law experiments show that the vanilla and mHC require $1.50\\times$ and $1.19\\times$ the compute of xHC, respectively, to reach the same loss. Practical large-$N$ training also requires controlling memory traffic from the expanded residual state. We therefore introduce xHC-Flash, which reduces the per-sublayer memory traffic from $73.5C$ to $40C$, comparable to the $34C$ required by mHC at $N{=}4$, while retaining the gains of full xHC. Together, xHC and xHC-Flash make large-$N$ residual-stream expansion effective and practical for LLM pre-training.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=HdK3mMYusI",
+  "arxiv": "https://arxiv.org/abs/2607.14530",
+  "pdf": "https://arxiv.org/pdf/2607.14530",
+  "proceedings": null,
+  "virtual": "https://neurips.cc/virtual/2026/poster/153922",
+  "code": null
+ },
+ "license": "http://arxiv.org/licenses/nonexclusive-distrib/1.0/",
+ "img": "none",
+ "image_url": null,
+ "thumb_url": null,
+ "figure_page": 0,
+ "qc_flags": [
+  "low-role-confidence"
+ ],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": null
+}

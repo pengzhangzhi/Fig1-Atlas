@@ -1,0 +1,52 @@
+{
+ "id": "iclr26-4560",
+ "title": "On the Design of KL-Regularized Policy Gradient Algorithms for LLM Reasoning",
+ "authors": [
+  "Yifan Zhang",
+  "Yifeng Liu",
+  "Rina Hughes",
+  "Yang Yuan",
+  "Quanquan Gu",
+  "Andrew Yao"
+ ],
+ "venue": "ICLR 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "Reinforcement Learning->Deep RL",
+ "role": "pipeline",
+ "role2": "overview-framework",
+ "claim": "A single iterative loop turns policy inputs into an updated policy, with a few modular design choices configuring the core procedure.",
+ "layout": "Center engine with left-to-right flow, bottom config boxes, blue feedback loop below",
+ "tags": [
+  "iterative-loop",
+  "policy-gradient",
+  "design-space",
+  "modular-configuration",
+  "reinforcement-learning"
+ ],
+ "style": [
+  "colorful",
+  "math-heavy",
+  "text-heavy"
+ ],
+ "description": "A block diagram with a title at the top, \"Goal: Stable and Scalable LLM Reasoning\", and a gray arrow pointing down into a central green-bordered box labeled \"RPG Core Engine\". That box lists four numbered steps in math: construct the KL-regularized objective, derive the gradient, formulate the surrogate loss, and optimize to get the next policy. A light-blue \"Inputs (Iteration t)\" box on the left feeds the engine with a black arrow. The engine feeds a light-blue \"Outputs\" box on the right, which holds the updated policy. Beneath the engine, a \"Key Design Configuration\" heading sits above three orange-bordered boxes: Loss Estimator, KL Form and KL Divergence. Dashed orange arrows run from these boxes up to the engine. A blue arrow runs from the Outputs box through an \"Update Reference\" pill at the bottom and back to the Inputs box, closing the loop.",
+ "caption": "Overview of the iterative Regularized Policy Gradient (RPG) framework proposed in this work. At each iteration $t$, the central RPG Core Engine processes inputs: the current policy $\\pi_\\theta^{(t)}$, a reference policy $\\pi_{old}^{(t)}$, and associated rewards $R(x)$. The engine's operation encompasses four main steps: (1) constructing the KL-regularized objective $J(\\theta^{(t)})$, which combines the expected reward with a KL divergence term; (2) deriving the off-policy policy gradient $\\nabla_{\\theta^{(t)}} J(\\theta^{(t)})$; (3) formulating a corresponding surrogate loss function $\\mathcal{L}(\\theta^{(t)})$; and (4) optimizing the policy parameters to yield an updated policy $\\pi_\\theta^{(t+1)}$, aimed at enhancing LLM reasoning capabilities. The specific behavior of the RPG Core Engine is configured by three key design choices: (i) the {Loss Estimator} type (Fully Differentiable or REINFORCE-style with Stop-Gradient); (ii) the {KL Form} (Normalized or Un-normalized, e.g., using UKL / $k_3$ estimators); and (iii) the {KL Divergence Type} (Forward $\\KL(\\pi_{old} \\| \\pi_\\theta)$ or Reverse $\\KL(\\pi_\\theta \\| \\pi_{old})$). The framework operates iteratively, with the updated policy $\\pi_\\theta^{(t+1)}$ from one iteration informing the inputs for the next, including the update of the reference policy $\\pi_{old}^{(t+1)}$, to facilitate continuous learning and performance improvement. \\vspace{-3ex}",
+ "caption_source": "latex",
+ "abstract": "Policy gradient algorithms have been successfully applied to enhance the reasoning capabilities of large language models (LLMs). KL regularization is ubiquitous, yet the design surface, choice of KL direction (forward vs. reverse), normalization (normalized vs. unnormalized), and estimator ($k_1/k_2/k_3$), is scattered across the literature and often intertwined with off-policy estimation. We ask a focused question: under the off-policy setting, what weighting is required for each KL variant so that the surrogate we optimize yields the exact gradient of the intended KL-regularized objective? We answer this with a compact, unified derivation we call the Regularized Policy Gradient (RPG) view. RPG (i) unifies normalized and unnormalized KL variants and shows that the widely-used $k_3$ penalty is exactly the unnormalized KL; (ii) specifies conditions under which REINFORCE-style losses with stop-gradient are gradient-equivalent to fully differentiable surrogates; (iii) identifies and corrects an off-policy importance-weighting mismatch in GRPO's KL term; and (iv) introduces RPG-Style Clip, a clipped-importance-sampling step within RPG-REINFORCE that enables stable, off-policy policy-gradient training at scale. On mathematical reasoning benchmarks (AIME24, AIME25), RPG-REINFORCE with RPG-Style Clip improves accuracy by up to $+6$ absolute percentage points over DAPO. We extend our experiments to 8K context length, and RPG-REINFORCE with RPG-Style Clip achieves 52% accuracy on AIME25, surpassing the official Qwen3-4B-Instruct model (47%). Notably, RPG is a stable and scalable RL algorithm for LLM reasoning, realized via (a) a KL-correct objective, (b) clipped importance sampling, and (c) an iterative reference-policy update scheme. Project Page: https://github.com/complex-reasoning/RPG.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=qe060gmfm7",
+  "arxiv": "https://arxiv.org/abs/2505.17508",
+  "pdf": "https://proceedings.iclr.cc/paper_files/paper/2026/file/8e49d32f4668a41b013fbc1ed929c007-Paper-Conference.pdf",
+  "proceedings": "https://proceedings.iclr.cc/paper_files/paper/2026/hash/8e49d32f4668a41b013fbc1ed929c007-Abstract-Conference.html",
+  "virtual": "https://iclr.cc/virtual/2026/poster/10007225",
+  "code": "https://github.com/complex-reasoning/RPG"
+ },
+ "license": "http://arxiv.org/licenses/nonexclusive-distrib/1.0/",
+ "img": "none",
+ "image_url": null,
+ "thumb_url": null,
+ "figure_page": 1,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.8
+}

@@ -1,0 +1,53 @@
+{
+ "id": "neurips26-6232",
+ "title": "Beyond RAG for Agent Memory: Retrieval by Decoupling and Aggregation",
+ "authors": [
+  "Zhanghao Hu",
+  "Qinglin Zhu",
+  "Runcong Zhao",
+  "Di Liang",
+  "Hanqi Yan",
+  "Yulan He",
+  "Lin Gui"
+ ],
+ "venue": "NeurIPS 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "Applications->Language, Speech and Dialog",
+ "role": "prior-vs-ours",
+ "role2": "pipeline",
+ "claim": "Flat similarity retrieval returns redundant evidence and summary hierarchies blur details; decoupling then aggregating yields correct, complete answers.",
+ "layout": "3 panels, left-to-right, ✗/⚠/✓ markers above reader answers",
+ "tags": [
+  "retrieval",
+  "hierarchical-memory",
+  "decoupling",
+  "redundancy",
+  "llm-agents"
+ ],
+ "style": [
+  "icon-heavy",
+  "colorful",
+  "text-heavy"
+ ],
+ "description": "Three side-by-side panels separated by dashed lines compare memory retrieval strategies, each ending in a Reader LLM and an answer bubble. Left, 'Naive RAG': a cloud of original messages passes through Similarity Search (Top-k) to a stack of near-identical 'Sim: 0.9x' cards, then the Reader LLM. A red X marks the 'Wrong or Redundant Answer', and a confused robot sits below. Middle, 'Progressive Compression': a blue pyramid of nodes (original messages, local summaries, global summary) is labeled 'Blur key differences'. A yellow warning sign marks the 'Vague or Incomplete Answer', and a puzzled robot sits below. Right, 'Structured Memory: Decoupled & Adaptive Retrieval': messages feed segments, then component nodes (decoupling), then groups (aggregation), then a structure node. A selected context box goes to the Reader LLM. A green check marks the 'Correct & Complete Answer', and a happy robot with a lightbulb sits below. The eye goes first to the red X and the robots.",
+ "caption": "From similarity top-$k$ retrieval to evidence-oriented retrieval for agent memory. Agent memory forms a coherent and highly correlated interaction stream, in which many spans are near duplicates. As a result, fixed top-$k$ similarity retrieval often overweights redundant evidence instead of surfacing what is most useful for the query. \\frameworkname first decouples similar histories into memory components that isolate distinctive evidence, and then organises them into a retrieval hierarchy that yields shorter, more sufficient context.",
+ "caption_source": "latex",
+ "abstract": "Standard Retrieval Augmented Generation (RAG) is poorly matched to agent memory. Unlike large heterogeneous corpora, agent memory forms a bounded and coherent interaction stream in which many spans are highly correlated or near duplicates. As a result, flat top-$k$ similarity retrieval often returns redundant context, while summary-centric hierarchies can blur the subtle details that distinguish one candidate from another. We argue that agent memory should follow the principle of decoupling before aggregation: the system should first isolate reusable facts, updates, and distinguishing details from similar histories, and only then organise them for efficient retrieval. Based on this principle, we propose xMemory, which constructs a revisable hierarchical memory structure from original messages to segments, memory components, and groups. xMemory segments interaction history into local events, decouples each segment into memory components, aggregates related components into high-level groups using a sparsity--semantic faithfulness objective, and maintains this structure incrementally as memory evolves. At inference time, xMemory retrieves top-down, first selecting a compact backbone of complementary groups and components, and then expanding to segments and raw messages only when additional evidence reduces the reader's uncertainty. Experiments on LoCoMo and PerLTQA across diverse open source and closed source LLMs show consistent gains in answer quality and inference token efficiency, supported by analyses of redundancy, evidence density, and coverage.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=gtGRNOmx4m",
+  "arxiv": "https://arxiv.org/abs/2602.02007",
+  "pdf": "https://arxiv.org/pdf/2602.02007",
+  "proceedings": null,
+  "virtual": "https://neurips.cc/virtual/2026/poster/150607",
+  "code": "https://github.com/HU-xiaobai/xMemory"
+ },
+ "license": "http://creativecommons.org/licenses/by/4.0/",
+ "img": "cc-by",
+ "image_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/images/neurips26-6232.png",
+ "thumb_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/thumbs/neurips26-6232.webp",
+ "figure_page": 1,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.9
+}

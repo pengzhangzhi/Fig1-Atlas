@@ -1,0 +1,52 @@
+{
+ "id": "iclr26-0351",
+ "title": "Predicting LLM Output Length via Entropy-Guided Representations",
+ "authors": [
+  "Huanyi Xie",
+  "Yubin Chen",
+  "Liangyu Wang",
+  "Lijie Hu",
+  "Di Wang"
+ ],
+ "venue": "ICLR 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "Deep Learning->Generative Models and Autoencoders",
+ "role": "analysis-finding",
+ "role2": "problem-setup",
+ "claim": "Real workloads show long-tailed, widely varying output lengths, even for identical prompts under stochastic sampling, which makes length prediction hard.",
+ "layout": "3 plots: two density curves left, one variance band plot right",
+ "tags": [
+  "length-prediction",
+  "long-tail",
+  "distribution-shift",
+  "stochastic-sampling",
+  "llm-inference"
+ ],
+ "style": [
+  "plot",
+  "photo/real data"
+ ],
+ "description": "The figure has two parts. Part (a) on the left holds two kernel density plots that compare the LMSYS dataset (blue) with the proposed ForeLen benchmark (orange). The first plot shows prompt length. LMSYS spikes sharply near zero, while ForeLen has a flat, long tail out to about 12000 tokens. The second plot shows response length. ForeLen peaks early at around 1000 tokens, and LMSYS has a broader, longer tail. Part (b) on the right is a dense blue band plot of response length against group index during GRPO training. An orange line marks the average length. The band widens sharply as groups progress, and individual spikes reach about 6000 tokens. This shows large variance even though prompts within a group are identical. The eye goes first to the large blue band. Captions sit below each part.",
+ "caption": "Analysis of LLM Sequence Length Distributions in Representative Scenarios. Figure (a) illustrates the length characteristics of our proposed ForeLen benchmark and LMSYS, demonstrating a wider and longer-tailed distribution. Figure (b) showcases the high length variance for generations from identical prompts in an online RL training setting.",
+ "caption_source": "latex",
+ "abstract": "The long-tailed distribution of sequence lengths in LLM serving and reinforcement learning (RL) sampling causes significant computational waste due to excessive padding in batched inference. Existing methods rely on auxiliary models for static length prediction, but they incur high overhead, generalize poorly, and fail in stochastic \"one-to-many\" sampling scenarios. We introduce a lightweight framework that reuses the main model's internal hidden states for efficient length prediction. Our framework features two core components: 1) Entropy-Guided Token Pooling (EGTP), which uses on-the-fly activations and token entropy for highly accurate static prediction with negligible cost, and 2) Progressive Length Prediction (PLP), which dynamically estimates the remaining length at each decoding step to handle stochastic generation. To validate our approach, we build and release ForeLen, a comprehensive benchmark with long-sequence, Chain-of-Thought, and RL data. On ForeLen, EGTP achieves state-of-the-art accuracy, reducing MAE by 29.16\\% over the best baseline. Integrating our methods with a length-aware scheduler yields significant end-to-end throughput gains. Our work provides a new technical and evaluation baseline for efficient LLM inference.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=3loQDtveWI",
+  "arxiv": "https://arxiv.org/abs/2602.11812",
+  "pdf": "https://proceedings.iclr.cc/paper_files/paper/2026/file/6eee1da520ac78c56f3a3e0353a5da34-Paper-Conference.pdf",
+  "proceedings": "https://proceedings.iclr.cc/paper_files/paper/2026/hash/6eee1da520ac78c56f3a3e0353a5da34-Abstract-Conference.html",
+  "virtual": "https://iclr.cc/virtual/2026/poster/10011613",
+  "code": null
+ },
+ "license": "http://arxiv.org/licenses/nonexclusive-distrib/1.0/",
+ "img": "none",
+ "image_url": null,
+ "thumb_url": null,
+ "figure_page": 1,
+ "qc_flags": [
+  "bad-crop"
+ ],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.8
+}

@@ -1,0 +1,51 @@
+{
+ "id": "neurips26-7349",
+ "title": "CAPER: Clause-Aligned Process Supervision for Text-to-SQL",
+ "authors": [
+  "Lujie Ban",
+  "Jiasheng Shi",
+  "Jinyang Li",
+  "Xiaolin Han",
+  "Tsz Nam Chan",
+  "Chenhao Ma"
+ ],
+ "venue": "NeurIPS 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "Data-centric AI->Data-centric AI methods and tools",
+ "role": "problem-setup",
+ "role2": "prior-vs-ours",
+ "claim": "Outcome-level and token-level rewards blur which decision failed; supervising at the level of semantic units localizes the root-cause error.",
+ "layout": "3 panels, left-to-right; reward granularity stacked in rows, error highlighted in red",
+ "tags": [
+  "process-supervision",
+  "reward-granularity",
+  "error-localization",
+  "credit-assignment",
+  "text-to-sql"
+ ],
+ "style": [
+  "colorful",
+  "text-heavy"
+ ],
+ "description": "Three colored panels run left to right. The left panel (blue) shows a natural-language question plus a schema with two tables, course and enrollment, and a correct JOIN relation linking course_id. The middle panel (purple) compares gold SQL in green with predicted SQL in red. The two queries are identical except that the predicted JOIN condition uses e.student_id instead of e.course_id, and a red arrow is labeled 'Only the relational-unit is wrong'. The right panel (orange) compares three reward granularities stacked vertically. Execution reward gives a single Reward=0 on a wrong result. Token-level reward shows many small green and yellow token chips with +/~/- marks and 'signal diffused'. Clause-level reward (Ours) shows five clause boxes in which only FROM-JOIN is red, with 'error localized' and a check mark. The eye goes first to the red error and then to the right panel.",
+ "caption": "A near-miss Text-to-SQL case illustrating the granularity gap between execution-level outcomes, token-level feedback, and clause-level SQL decisions.",
+ "caption_source": "latex",
+ "abstract": "Text-to-SQL systems are typically evaluated by query-level execution correctness, but this terminal signal provides little guidance about which intermediate SQL decision caused success or failure. Token-level dense supervision is also ill-suited: SQL tokens do not align with complete semantic decisions, can penalize execution-equivalent queries, and are difficult to label reliably at scale. We therefore propose CAPER, which automatically derives clause-level supervision via counterfactual intervention on the SQL abstract syntax tree, enabling root-cause error localization for reward modeling; the resulting data is used to train CAPER-9B, a lightweight Clause-PRM that provides clause-boundary feedback for policy optimization and candidate verification. Experiments on BIRD and Spider show that clause-aligned supervision not only improves execution accuracy, achieving up to a 15.3% relative EX improvement over GPT-5.4, but also strengthens failure-localization capability, reaching 84.53% accuracy and 90.60% MRR on held-out failures. Our project page is at https://github.com/banrichard/RL-NL2SQL.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=oj9P3hyKy9",
+  "arxiv": "https://arxiv.org/abs/2606.03327",
+  "pdf": "https://arxiv.org/pdf/2606.03327",
+  "proceedings": null,
+  "virtual": "https://neurips.cc/virtual/2026/poster/149623",
+  "code": null
+ },
+ "license": "http://creativecommons.org/licenses/by/4.0/",
+ "img": "cc-by",
+ "image_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/images/neurips26-7349.png",
+ "thumb_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/thumbs/neurips26-7349.webp",
+ "figure_page": 1,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.6
+}

@@ -1,0 +1,55 @@
+{
+ "id": "icml26-3774",
+ "title": "Alleviating Sparse Rewards by Modeling Step-Wise and Long-Term Sampling Effects in Flow-Based GRPO",
+ "authors": [
+  "Yunze Tong",
+  "Mushui Liu",
+  "Canyu Zhao",
+  "Wanggui He",
+  "Shiyi Zhang",
+  "Peng Zhang",
+  "Hongwei Zhang",
+  "Jinlong Liu",
+  "Hao Jiang"
+ ],
+ "venue": "ICML 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "Applications->Computer Vision",
+ "role": "analysis-finding",
+ "role2": "problem-setup",
+ "claim": "Reward trajectories show certain intermediate steps flip the reward trend and shape final outcomes, so uniform credit assignment is misleading.",
+ "layout": "single line plot left-to-right, colored arrows annotate points, legend text at right",
+ "tags": [
+  "flow-matching",
+  "grpo",
+  "credit-assignment",
+  "sparse-rewards",
+  "trend-flips"
+ ],
+ "style": [
+  "plot",
+  "colorful",
+  "text-heavy"
+ ],
+ "description": "A single line chart plots PickScore reward (y-axis, about 21 to 25) against denoising timestep t (x-axis, from 10 down to 0) for six colored trajectories. Each trajectory is a line with round markers, and a star marks the leftmost point, which is full ODE sampling. Large arrows sit near the lines. Blue upward arrows mark steps where the trend flips from increasing to decreasing. Orange downward arrows mark flips from decreasing to increasing. Gray arrows mark steps with little effect on the future trend. A right-hand legend explains each arrow type in serif text. The eye goes first to the colorful crossing lines and the bold arrows at the kinks.",
+ "caption": "Rewards of several sampled trajectories. Each dot at $t$ is obtained by $(10-t)$ steps of SDE sampling followed by $t$ steps of ODE sampling. The leftmost point corresponds to full ODE sampling, and the rightmost to full SDE sampling (i.e., standard Flow-GRPO outputs).",
+ "caption_source": "latex",
+ "abstract": "Deploying GRPO on Flow Matching models has proven effective for text-to-image generation. However, existing paradigms typically propagate an outcome-based reward to all preceding denoising steps without distinguishing the local effect of each step. Moreover, current group-wise ranking mainly compares trajectories at matched timesteps and ignores within-trajectory dependencies, where certain early denoising actions can affect later states via delayed, implicit interactions. We propose TurningPoint-GRPO (TP-GRPO), a GRPO framework that alleviates step-wise reward sparsity and explicitly models long-term effects within the denoising trajectory. TP-GRPO makes two key innovations: (i) it replaces outcome-based rewards with step-level incremental rewards, providing a dense, step-aware learning signal that better isolates each denoising action's \"pure\" effect, and (ii) it identifies turning points-steps that flip the local reward trend and make subsequent reward evolution consistent with the overall trajectory trend-and assigns these actions an aggregated long-term reward to capture their delayed impact. Turning points are detected solely via sign changes in incremental rewards, making TP-GRPO efficient and hyperparameter-free. Extensive experiments also demonstrate that TP-GRPO exploits reward signals more effectively and consistently improves generation. Demo code is available at https://github.com/YunzeTong/TurningPoint-GRPO.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=ZSt77efXHI",
+  "arxiv": "https://arxiv.org/abs/2602.06422",
+  "pdf": "https://raw.githubusercontent.com/mlresearch/v306/main/assets/tong26h/tong26h.pdf",
+  "proceedings": "https://proceedings.mlr.press/v306/tong26h.html",
+  "virtual": "https://icml.cc/virtual/2026/poster/63164",
+  "code": "https://github.com/YunzeTong/TurningPoint-GRPO"
+ },
+ "license": "http://creativecommons.org/licenses/by/4.0/",
+ "img": "cc-by",
+ "image_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/images/icml26-3774.png",
+ "thumb_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/thumbs/icml26-3774.webp",
+ "figure_page": 1,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.8
+}

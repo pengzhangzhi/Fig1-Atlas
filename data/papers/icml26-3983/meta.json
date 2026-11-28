@@ -1,0 +1,51 @@
+{
+ "id": "icml26-3983",
+ "title": "Learning a Zeroth-Order Optimizer for Fine-Tuning LLMs",
+ "authors": [
+  "Kairun Zhang",
+  "Haoyu Li",
+  "Yanjun Zhao",
+  "Yifan Sun",
+  "Huan Zhang"
+ ],
+ "venue": "ICML 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "Optimization->Zero-order and Black-box Optimization",
+ "role": "pipeline",
+ "role2": null,
+ "claim": "A small per-block learned network adaptively sets perturbation scales inside a standard gradient-free update, replacing hand-crafted static sampling.",
+ "layout": "4 stage columns, left-to-right, per-block rows with arrows and equations",
+ "tags": [
+  "zeroth-order",
+  "learned-optimizer",
+  "perturbation",
+  "memory-efficiency",
+  "fine-tuning"
+ ],
+ "style": [
+  "colorful",
+  "math-heavy",
+  "icon-heavy"
+ ],
+ "description": "A left-to-right pipeline of four tinted panels, from Input to Output. The first panel, LLM_state, lists per-block statistics (Mean, Var and the previous sigma for Blocks 1 to L) and the last step's two losses, Loss+ and Loss-. Blue arrows feed these into the second panel, ZO_fine_tuner. There, a separate PertNN module for each block outputs a variance sigma^i. Below it, a dash-bordered box gives the normalized perturbation u ~ N(0, ...) and a curved 'Norm' arrow. The third panel, Perturbed_LLM, has Positive (theta + eps u) and Negative (theta - eps u) stacks of blocks. These feed Loss+ and Loss- in the last panel, Estimated gradient, which shows the finite-difference formula. Panel headings use distinct colors (blue, gold, orange, green) on soft backgrounds.",
+ "caption": "Fine-tune the LLM using trained \\nameblank. Each block of the LLM is equipped with a lightweight neural network that predicts its perturbation variance. For LLM parameter $\\theta_{ t}^{ i}$ in block $i$ at step $t$, $\\mathrm{PertNN}_{ i}$ takes in compact summarizing statistics the $\\operatorname{Mean}_{ t}^{ i}$, $\\operatorname{Var}_{ t}^{ i}$ of the $\\theta_{ t}^{ i}$. Additionally, it takes in the last perturbation variance $\\sigma_{ t-1}^{ i}$, and the two losses recorded at the last step. It outputs the updated perturbation variance $\\sigma_{ t}^{ i}$ and then applies normalization. By learning non-uniform, layer-specific perturbation scales and plugging them into standard zeroth-order updates, the fine-tuner enables efficient, high-performance gradient-free optimization of LLM.",
+ "caption_source": "latex",
+ "abstract": "Zeroth-order optimizers have recently emerged as an attractive approach for fine-tuning large language models (LLMs), as they avoid backpropagation and can substantially reduce memory overhead relative to standard first-order training. However, existing zeroth-order methods rely on hand-crafted, static sampling strategies that are not adaptable to model-specific structures. To address this, we propose ZO-Finetuner, a learning-based zeroth-order optimizer for LLMs that automatically learns efficient perturbation strategies through a compact and memory-efficient design. Motivated by the fact that a small set of base LLMs is repeatedly fine-tuned across tasks, ZO-Finetuner supports one-time per-model training and reuse across downstream tasks with minimal overhead. Therefore, learning the optimizer once for a given LLM and reusing it across diverse downstream tasks is both feasible and highly desirable. Accordingly, ZO-Finetuner is designed to scale learning to learn (L2L) to the foundation-model era by supporting one-time per-model training with minimal overhead. Experiments on 4 LLMs and 7 datasets show that ZO-Finetuner outperforms prior zeroth-order baselines in 82.1\\% of task-model combinations, thereby demonstrating strong performance and scalability for efficient LLM fine-tuning. The code can be found in https://github.com/ASTRAL-Group/ZO_Fine_tuner.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=bRS5iwbqlC",
+  "arxiv": "https://arxiv.org/abs/2510.00419",
+  "pdf": "https://raw.githubusercontent.com/mlresearch/v306/main/assets/zhang26da/zhang26da.pdf",
+  "proceedings": "https://proceedings.mlr.press/v306/zhang26da.html",
+  "virtual": "https://icml.cc/virtual/2026/poster/62961",
+  "code": null
+ },
+ "license": "http://creativecommons.org/licenses/by/4.0/",
+ "img": "cc-by",
+ "image_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/images/icml26-3983.png",
+ "thumb_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/thumbs/icml26-3983.webp",
+ "figure_page": 2,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.93
+}

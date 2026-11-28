@@ -1,0 +1,53 @@
+{
+ "id": "icml26-2123",
+ "title": "Scalable Training of 3D Gaussian Splatting via Out-of-Core Optimization",
+ "authors": [
+  "Chonghao Zhong",
+  "Shi Linfeng",
+  "ChenHua",
+  "Tiecheng Sun",
+  "Hao Zhao",
+  "Binhang Yuan",
+  "Chaojian Li"
+ ],
+ "venue": "ICML 2026",
+ "tier": "spotlight",
+ "track": "main",
+ "topic": "General Machine Learning->Hardware and Software",
+ "role": "prior-vs-ours",
+ "role2": "teaser-result",
+ "claim": "Naive single-device and costly distributed approaches fail or are expensive at huge scale; ours reaches it with a cheap hierarchical setup.",
+ "layout": "Left hero image branching into 3 stacked right-hand paths, with a highlighted bottom branch",
+ "tags": [
+  "out-of-core",
+  "memory-hierarchy",
+  "scalability",
+  "efficiency",
+  "3d-gaussian-splatting"
+ ],
+ "style": [
+  "icon-heavy",
+  "photo/real data",
+  "colorful"
+ ],
+ "description": "A large circular aerial photo of a dense city, labeled 'City Scale, 5.9×7.9 km², 1B+ Gaussians', sits on the left. Three pale-blue arrows fan out from it to the right. The top arrow, 'Naive Single-GPU', ends at a GPU card with a red X and warning triangle, captioned in red 'Out of Memory / Failure'. The middle arrow, 'Distributed Multi-GPU', leads to a mesh of five GPU cards joined by double-headed arrows, with a dollar sign and the label 'Multi-GPU Cluster (Complex & Expensive)'. The bottom arrow is a saturated blue and is labeled 'Ours (Hybrid SSD-CPU-GPU)'. It leads to an SSD, a CPU and a single GPU linked by bidirectional arrows, with a green check badge and the caption 'Efficient Pipeline'. The eye goes first to the city image, then to the bold blue bottom path.",
+ "caption": "TideGS enables city-scale 3DGS training on a single GPU by virtualizing the Gaussian parameter table across the SSD--CPU--GPU hierarchy and materializing only the trajectory-activated working set in VRAM.",
+ "caption_source": "latex",
+ "abstract": "Training 3D Gaussian Splatting (3DGS) at billion-primitive scale is fundamentally memory-bound: each Gaussian carries a large attribute vector, and the aggregate parameter table quickly exceeds GPU capacity, limiting prior systems to tens of millions of Gaussians on consumer hardware. We observe that 3DGS training is inherently sparse and trajectory-conditioned: each iteration activates only the Gaussians visible from the current camera batch, so GPU memory can serve as a working-set cache rather than a persistent parameter store. Building on this insight, we introduce \\textbf{TideGS}, an out-of-core training framework that manages parameters across an SSD--CPU--GPU hierarchy via three synergistic techniques: block-virtualized geometry for SSD-aligned spatial locality, a hierarchical asynchronous pipeline to overlap I/O with computation, and trajectory-adaptive differential streaming that transfers only incremental working-set deltas between iterations. Experiments show that TideGS enables training with \\textbf{over one billion Gaussians} on a single consumer GPU while achieving state-of-the-art reconstruction quality on large-scale scenes, exceeding prior out-of-core baselines (e.g., $\\sim$100M Gaussians) and standard in-memory training (e.g., $\\sim$11M Gaussians).",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=K8UWWJUNYf",
+  "arxiv": "https://arxiv.org/abs/2605.20150",
+  "pdf": "https://raw.githubusercontent.com/mlresearch/v306/main/assets/zhong26o/zhong26o.pdf",
+  "proceedings": "https://proceedings.mlr.press/v306/zhong26o.html",
+  "virtual": "https://icml.cc/virtual/2026/poster/64763",
+  "code": "https://sponge-lab.github.io/TideGS/"
+ },
+ "license": "http://arxiv.org/licenses/nonexclusive-distrib/1.0/",
+ "img": "none",
+ "image_url": null,
+ "thumb_url": null,
+ "figure_page": 0,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.62
+}

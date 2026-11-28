@@ -1,0 +1,49 @@
+{
+ "id": "icml26-5527",
+ "title": "Memory-Efficient LLM Pretraining via Minimalist Optimizer Design",
+ "authors": [
+  "Athanasios Glentis",
+  "Jiaxiang Li",
+  "Andi Han",
+  "Mingyi Hong"
+ ],
+ "venue": "ICML 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "Deep Learning->Large Language Models",
+ "role": "teaser-result",
+ "role2": null,
+ "claim": "Our method reaches lower perplexity at lower memory than all baselines, giving the best performance-versus-cost trade-off across model scales.",
+ "layout": "1 panel, perplexity vs log-memory line plot, legend right, ours in blue at bottom-left",
+ "tags": [
+  "pareto-frontier",
+  "memory-efficiency",
+  "optimizer",
+  "perplexity-vs-memory",
+  "scaling"
+ ],
+ "style": [
+  "plot",
+  "colorful"
+ ],
+ "description": "A single line plot with log-scaled memory in GB on the x-axis (about 0.15 to 20+) and perplexity on the y-axis (about 12 to 35). Each method is a colored polyline: SCALE (ours) in blue, Adam, Stable-SPAM, Muon, SWAN, GaLore, Fira, APOLLO and APOLLO-Mini in other colors. Marker shapes give model size: x for 60M, pentagon for 130M, triangle for 350M, star for 1B and circle for 7B. All curves slope down and to the right, because larger models use more memory and reach lower perplexity. The blue SCALE curve lies lowest and furthest left, below every baseline. Adam and GaLore sit toward the upper right. Two legends sit at the top right, one for model sizes and one for methods. A grid covers the plot area.",
+ "caption": "Perplexity v.s. memory consumption among a number of SOTA algorithms. Solutions achieved towards the left-bottom side of the plot represent better performance/memory trade-off (see Appendix [ref] for the details of the memory estimation).",
+ "caption_source": "latex",
+ "abstract": "Training large language models (LLMs) relies on adaptive optimizers such as Adam, which introduce extra operations and require significantly more memory to maintain first- and second-order moments than SGD. While recent works such as GaLore, Fira and APOLLO have proposed state-compressed memory-efficient variants, a fundamental question remains: What are the minimum modifications to plain SGD needed to match state-of-the-art pretraining performance? We systematically investigate this question using a bottom-up approach, and identify two simple yet highly (memory- and compute-) efficient techniques: (1) column-wise gradient normalization (normalizing the gradient along the output dimension), that boosts SGD performance without momentum; and (2) applying first-order momentum only to the output layer, where gradient variance is highest. Combining these two techniques lead to SCALE (Stochastic Column-normAlized Last-layer momEntum), a simple optimizer for memory efficient pretraining. Across multiple models (60M-1B), SCALE matches or exceeds the performance of Adam while using only 35-45% of the total memory. It also consistently outperforms memory-efficient optimizers such as GaLore, Fira and APOLLO, making it a strong candidate for large-scale pretraining under memory constraints. For LLaMA 7B, SCALE outperforms the state-of-the-art memory-efficient methods APOLLO and Muon in both perplexity and memory consumption.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=prvGhNz39e",
+  "arxiv": "https://arxiv.org/abs/2506.16659",
+  "pdf": "https://raw.githubusercontent.com/mlresearch/v306/main/assets/glentis26a/glentis26a.pdf",
+  "proceedings": "https://proceedings.mlr.press/v306/glentis26a.html",
+  "virtual": "https://icml.cc/virtual/2026/poster/61469",
+  "code": null
+ },
+ "license": "http://arxiv.org/licenses/nonexclusive-distrib/1.0/",
+ "img": "none",
+ "image_url": null,
+ "thumb_url": null,
+ "figure_page": 1,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.93
+}

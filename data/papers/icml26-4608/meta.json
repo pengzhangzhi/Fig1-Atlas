@@ -1,0 +1,50 @@
+{
+ "id": "icml26-4608",
+ "title": "RedVisor: Reasoning-Aware Prompt Injection Defense via Zero-Copy KV Cache Reuse",
+ "authors": [
+  "Mingrui Liu",
+  "Sixiao Zhang",
+  "Cheng Long",
+  "Kwok Yan Lam"
+ ],
+ "venue": "ICML 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "Social Aspects->Security",
+ "role": "pipeline",
+ "role2": "prior-vs-ours",
+ "claim": "A two-phase process first reasons with a removable adapter, then reuses the cached context with the adapter muted to answer safely.",
+ "layout": "2 stacked phase panels, left-to-right flow, KV cache arrow linking phases",
+ "tags": [
+  "two-phase",
+  "adapter",
+  "kv-cache-reuse",
+  "prompt-injection",
+  "safety"
+ ],
+ "style": [
+  "icon-heavy",
+  "colorful",
+  "text-heavy"
+ ],
+ "description": "The figure has two stacked rounded gray panels. The top panel is Phase 1, Inspection, with the adapter active. System Instruction and User Query boxes feed a blue Backbone LLM box. An arrow from the LLM points up to a red Security Adapter box labeled gated self-attention. A thought cloud, Detection & Reasoning, leads to a red Injection Report box listing locations and reasons. The bottom panel is Phase 2, Generation, with the adapter muted. The same inputs feed a second Backbone LLM. A green KV Cache stack comes down from Phase 1, and a green Guidance box comes from the report. The Security Adapter is faded and crossed out with a red X. The output is a green Safe & Robust Final Answer box. Red marks the threat and green marks the safe path, and the eye starts at the top-left.",
+ "caption": "The framework overview of RedVisor. Phase 1 employs the adapter for security reasoning, while Phase 2 mutes the adapter to generate the response guided by the retained reasoning context.",
+ "caption_source": "latex",
+ "abstract": "Large Language Models (LLMs) are increasingly vulnerable to Prompt Injection (PI) attacks, where adversarial instructions hidden within retrieved contexts hijack the model's execution flow. Current defenses typically face a critical trade-off: prevention-based fine-tuning often degrades general utility via the \"alignment tax\", while detection-based filtering incurs prohibitive latency and memory costs. To bridge this gap, we propose RedVisor, a unified framework that synthesizes the explainability of detection systems with the seamless integration of prevention strategies. To the best of our knowledge, RedVisor is the first approach to leverage fine-grained reasoning paths to simultaneously detect attacks and guide the model's safe response. We implement this via a lightweight, removable adapter positioned atop the frozen backbone. This adapter serves a dual function: it first generates an explainable analysis that precisely localizes the injection and articulates the threat, which then explicitly conditions the model to reject the malicious command. Uniquely, the adapter is active only during this reasoning phase and is effectively muted during the subsequent response generation. This architecture yields two distinct advantages: (1) it mathematically preserves the backbone's original utility on benign inputs; and (2) it enables a novel KV Cache Reuse strategy, eliminating the redundant prefill computation inherent to decoupled pipelines. We further pioneer the integration of this defense into the vLLM serving engine with custom kernels. Experiments demonstrate that RedVisor outperforms state-of-the-art defenses in detection accuracy and throughput while incurring negligible utility loss.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=hLLdM61qen",
+  "arxiv": "https://arxiv.org/abs/2602.01795",
+  "pdf": "https://raw.githubusercontent.com/mlresearch/v306/main/assets/liu26ga/liu26ga.pdf",
+  "proceedings": "https://proceedings.mlr.press/v306/liu26ga.html",
+  "virtual": "https://icml.cc/virtual/2026/poster/62356",
+  "code": null
+ },
+ "license": "http://creativecommons.org/licenses/by/4.0/",
+ "img": "cc-by",
+ "image_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/images/icml26-4608.png",
+ "thumb_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/thumbs/icml26-4608.webp",
+ "figure_page": 2,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.85
+}

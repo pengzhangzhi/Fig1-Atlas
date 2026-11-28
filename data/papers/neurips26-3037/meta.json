@@ -1,0 +1,53 @@
+{
+ "id": "neurips26-3037",
+ "title": "Dooly: Configuration-Agnostic, Redundancy-Aware Profiling for LLM Inference Simulation",
+ "authors": [
+  "Joon Ha Kim",
+  "Geon-Woo Kim",
+  "Anoop Rachakonda",
+  "Daehyeok Kim"
+ ],
+ "venue": "NeurIPS 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "Data-centric AI->Data-centric AI methods and tools",
+ "role": "pipeline",
+ "role2": null,
+ "claim": "A tainted trace feeds an operation-set finder and a duplication-aware profiler that fill a latency database used by a simulator.",
+ "layout": "2 stacked horizontal lanes, left-to-right, boxes with document icons between stages",
+ "tags": [
+  "profiling",
+  "taint-propagation",
+  "system-pipeline",
+  "redundancy-elimination",
+  "simulation"
+ ],
+ "style": [
+  "colorful",
+  "icon-heavy",
+  "minimal"
+ ],
+ "description": "The crop shows part of a two-lane system diagram. The top lane has a green rounded container with three green boxes: Tainted Runner, Operation Set Finder, and Duplication Aware Profiler. Document-shaped boxes labelled Tainted Trace and Runnable Set sit under the boxes and carry the outputs between stages with arrows. The profiler's output arrow goes to a cylinder (a database) cut off at the right edge, and an italic 'Signature' label sits above it. The bottom lane is a blue container with stacked Prompts documents, Engine's Scheduler, and Simulation Runner boxes, linked by arrows. Further labels on the right are cut off, including a bold 'Perf...' output. A black line from the left feeds both lanes. Large text and the green/blue lane contrast draw the eye first. The crop does not match the caption, which describes performance-variation plots.",
+ "caption": "Performance variation across configurations. TTFT and TPOT are reported for prefill and decode workloads. Red lines mark winner inversions; ties are within 0.5% of the best (FA: FlashAttention, FI: FlashInfer, TRI: TritonAttention).",
+ "caption_source": "latex",
+ "abstract": "Selecting the optimal LLM inference configuration requires evaluation across hardware, serving engines, attention backends, and model architectures, since no single choice performs best across all workloads. Profile-based simulators are the standard tool, yet they hardcode their operation set to a specific configuration and re-profile every operation from scratch, making exploration prohibitively expensive. This cost stems from a missing structural understanding: every input dimension of each operation is fixed by the model configuration or determined by the incoming request. Many model-configuration values (e.g., head size, layer count) recur across models, so the same operation runs in many configurations; a single sweep over the request-dependent dimensions can serve them all. We present Dooly, which exploits this structure to achieve configuration-agnostic, redundancy-aware profiling. Dooly performs a single inference pass, labels each input dimension with its origin via taint propagation, and selectively profiles only operations absent from its latency database; stateful operations such as attention are isolated by reusing the serving engine's own initialization code, eliminating manual instrumentation. From this database, it builds latency regression models that serve as a drop-in backend for existing simulators. Across two GPU platforms, three attention backends, and diverse model architectures, Dooly achieves simulation accuracy within 5% MAPE for TTFT and 8% for TPOT while reducing profiling GPU-hours across 12 models by 56.4% compared to the existing profiling approach. We have open-sourced Dooly at https://dooly-project.github.io.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=LBbB4IGtB6",
+  "arxiv": "https://arxiv.org/abs/2605.07985",
+  "pdf": "https://arxiv.org/pdf/2605.07985",
+  "proceedings": null,
+  "virtual": "https://neurips.cc/virtual/2026/poster/153452",
+  "code": "https://dooly-project.github.io/"
+ },
+ "license": "http://creativecommons.org/licenses/by/4.0/",
+ "img": "cc-by",
+ "image_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/images/neurips26-3037.png",
+ "thumb_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/thumbs/neurips26-3037.webp",
+ "figure_page": 3,
+ "qc_flags": [
+  "tiny-crop",
+  "bad-crop"
+ ],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.5
+}

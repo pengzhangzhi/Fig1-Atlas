@@ -1,0 +1,56 @@
+{
+ "id": "icml26-1894",
+ "title": "Scheduling LLM Inference with Uncertainty-Aware Output Length Predictions",
+ "authors": [
+  "Haoyu Zheng",
+  "Yongqiang Zhang",
+  "Fangcheng Fu",
+  "Xiaokai Zhou",
+  "Hao Luo",
+  "Hongchao Zhu",
+  "Yuanyuan Zhu",
+  "Hao Wang",
+  "Xiao Yan",
+  "Jiawei Jiang"
+ ],
+ "venue": "ICML 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "Deep Learning->Large Language Models",
+ "role": "analysis-finding",
+ "role2": null,
+ "claim": "Output length of a single prompt is stochastic and heavy-tailed, and a log-t distribution fits it well.",
+ "layout": "1 panel, histogram with overlaid red fitted curve and boxed legend",
+ "tags": [
+  "heavy-tailed",
+  "distribution-fitting",
+  "uncertainty",
+  "scheduling",
+  "empirical-observation"
+ ],
+ "style": [
+  "plot",
+  "minimal",
+  "photo/real data"
+ ],
+ "description": "A single histogram plot. The x-axis is output length in tokens, from 0 to 2000. The y-axis is probability density, scaled by 1e-3 up to 8. Light blue bars show the observed frequency of output lengths across 256 generations. Most of the mass is a tight peak around 300 tokens. A long sparse tail of tiny bars extends out to about 1900 tokens. A thick red curve is the fitted log-t distribution. It follows the peak closely and has a long right tail. A boxed legend at the upper right gives the fit parameters (μ=5.7, σ=0.2, ν=3.5) and a KS test p-value of 0.8898. The eye goes first to the red peak and the right-skewed tail.",
+ "caption": "Output length distribution for the first prompt in LMSYS-Chat-1M dataset [ref]. Bars are the output lengths in 256 generations, while red curve is the fitted log-t distribution.",
+ "caption_source": "latex",
+ "abstract": "To schedule LLM inference, the \\textit{shortest job first} (SJF) principle is favorable by prioritizing requests with short output lengths to avoid head-of-line (HOL) blocking. Existing methods usually predict a single output length for each request to facilitate scheduling. We argue that such a \\textit{point estimate} does not match the \\textit{stochastic} decoding process of LLM inference, where output length is \\textit{uncertain} by nature and determined by when the end-of-sequence (EOS) token is sampled. Hence, the output length of each request should be fitted with a distribution rather than a single value. With an in-depth analysis of empirical data and the stochastic decoding process, we observe that output length follows a heavy-tailed distribution and can be fitted with the log-t distribution. On this basis, we propose a simple metric called Tail Inflated Expectation (TIE) to replace the output length in SJF scheduling, which adjusts the expectation of a log-t distribution with its tail probabilities to account for the risk that a request generates long outputs. To evaluate our TIE scheduler, we compare it with three strong baselines, and the results show that TIE reduces the per-token latency by $2.31\\times$ for online inference and improves throughput by $1.42\\times$ for offline data generation.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=I5IMkvVKd7",
+  "arxiv": "https://arxiv.org/abs/2604.00499",
+  "pdf": "https://raw.githubusercontent.com/mlresearch/v306/main/assets/zheng26ae/zheng26ae.pdf",
+  "proceedings": "https://proceedings.mlr.press/v306/zheng26ae.html",
+  "virtual": "https://icml.cc/virtual/2026/poster/64987",
+  "code": "https://github.com/Hyzheng-code/TIE"
+ },
+ "license": "http://creativecommons.org/licenses/by/4.0/",
+ "img": "cc-by",
+ "image_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/images/icml26-1894.png",
+ "thumb_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/thumbs/icml26-1894.webp",
+ "figure_page": 0,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.85
+}

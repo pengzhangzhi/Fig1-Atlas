@@ -1,0 +1,50 @@
+{
+ "id": "iclr26-3203",
+ "title": "Not All Bits Are Equal: Scale-Dependent Memory Optimization Strategies for Reasoning Models",
+ "authors": [
+  "Junhyuck Kim",
+  "Ethan Ewer",
+  "Taehong Moon",
+  "Jongho Park",
+  "Dimitris Papailiopoulos"
+ ],
+ "venue": "ICLR 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "Deep Learning->Attention Mechanisms",
+ "role": "analysis-finding",
+ "role2": "teaser-result",
+ "claim": "Extending generation length to saturation is memory-inefficient for small models, while larger models and higher weight precision gain more per unit memory.",
+ "layout": "1 main scatter-line plot, log x-axis, with zoomed inset and dual legends",
+ "tags": [
+  "memory-efficiency",
+  "quantization",
+  "test-time-scaling",
+  "scale-dependence",
+  "kv-cache"
+ ],
+ "style": [
+  "plot",
+  "colorful"
+ ],
+ "description": "A single large scatter-line plot titled \"AIME25 — Total Memory vs. Accuracy (Qwen3)\". The x-axis is total memory in GB (weights plus KV cache) on a log scale from about 0.6 to 60. The y-axis is accuracy in percent, from 0 to 70. Each curve is one model size, from 0.6B in yellow to 32B in dark navy, on a plasma-like palette. Marker shape shows weight precision: circle for 16-bit, triangle for 8-bit, square for 4-bit. Marker size grows with token budget, from 2k to 30k tokens. Small models form flat, shallow curves at the lower left. Larger models form steep, near-vertical curves at the right. A red-boxed inset zooms in on the crossover region where 8B 8-bit and 14B 4-bit meet, with labelled callouts. The legend sits in the upper left.",
+ "caption": "Memory vs. Accuracy for serial test-time scaling on AIME25. The plot illustrates the trade-off between pass@1 accuracy and total memory (weights + KV cache) for the Qwen3 family. Model weights are quantized to 4- and 8-bit using GPTQ. Along each curve, the KV cache grows as the generation length increases via budget forcing. For models effectively smaller than an 8-bit 4B, increasing the token budget to saturation is memory-inefficient. Furthermore, for mathematical reasoning, higher weight precision (8- and 16-bit) proves more memory-efficient than 4-bit.",
+ "caption_source": "latex",
+ "abstract": "While 4-bit quantization has emerged as a memory-optimal choice for non-reasoning models and zero-shot tasks across scales, we show that this universal prescription fails for reasoning models, where the KV cache rather than model size can dominate memory. Through systematic experiments across 1,700 inference scenarios on AIME25 and GPQA-Diamond, we find a scale-dependent trade-off: models with an effective size below 8-bit 4B parameters achieve better accuracy by allocating memory to more weights rather than longer generation, while larger models achieve better accuracy by allocating memory to longer generations. This scale threshold also determines when parallel scaling becomes memory-efficient and whether KV cache eviction outperforms KV quantization. Our findings show that memory optimization for LLMs cannot be scale-agnostic, while providing principled guidelines: for small reasoning models, prioritize model capacity over test-time compute, while for larger ones, maximize test-time compute. Our results suggest that optimizing reasoning models for deployment requires fundamentally different strategies from those established for non-reasoning models.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=b6qQmQ2F13",
+  "arxiv": "https://arxiv.org/abs/2510.10964",
+  "pdf": "https://proceedings.iclr.cc/paper_files/paper/2026/file/71f003060ce1e8b6b4856023b67cda5d-Paper-Conference.pdf",
+  "proceedings": "https://proceedings.iclr.cc/paper_files/paper/2026/hash/71f003060ce1e8b6b4856023b67cda5d-Abstract-Conference.html",
+  "virtual": "https://iclr.cc/virtual/2026/poster/10008643",
+  "code": "https://github.com/krafton-ai/not-all-bits-are-equal"
+ },
+ "license": "http://creativecommons.org/licenses/by/4.0/",
+ "img": "cc-by",
+ "image_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/images/iclr26-3203.png",
+ "thumb_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/thumbs/iclr26-3203.webp",
+ "figure_page": 0,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.7
+}

@@ -1,0 +1,54 @@
+{
+ "id": "iclr26-2660",
+ "title": "Vision-R1: Incentivizing Reasoning Capability in Multimodal Large Language Models",
+ "authors": [
+  "Wenxuan Huang",
+  "Bohan Jia",
+  "Shaosheng Cao",
+  "Zheyu Ye",
+  "Fei zhao",
+  "Zhe Xu",
+  "Yao Hu",
+  "Shaohui Lin"
+ ],
+ "venue": "ICLR 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": null,
+ "role": "teaser-result",
+ "role2": "pipeline",
+ "claim": "A staged cold-start-then-RL recipe avoids failure modes of direct RL, and the trained small model rivals far larger ones.",
+ "layout": "Left vertical pipeline plus 2x3 grid of plots; arrows link pipeline to plots",
+ "tags": [
+  "cold-start",
+  "reinforcement-learning",
+  "reasoning",
+  "training-dynamics",
+  "curriculum"
+ ],
+ "style": [
+  "plot",
+  "colorful",
+  "text-heavy"
+ ],
+ "description": "The figure has two parts. A narrow left column shows a vertical flow of rounded boxes joined by gray arrows: VQA dataset, MLLM + R1, Multimodal CoT dataset, Base MLLM, Vision-R1-CI, and Vision-R1. A red curved arrow carries the CoT dataset into the base model, and the label 'Cold-start Initialization' sits on one step. To the right is a 2x3 grid of labeled plots (A–F). Plot A is a bar chart of token-length proportion against accuracy, with red arrows showing a shift toward shorter reasoning. Plot B is a bar chart of MathVista accuracy in which the 7B Vision-R1 matches much larger models. Plot C is a bar chart of 'Aha' words such as 'Wait', with Vision-R1 highlighted in orange. Plots D, E and F are line plots over RL training steps for CoT length, accuracy and reward. They compare Vision-R1-Zero, Vision-R1-Long and Vision-R1, and red stars and annotations mark the stages. A red arrow runs from plot E to plot B. Bold red and orange accents draw the eye first.",
+ "caption": "Left panel: Our Vision-R1 Pipeline. We first use the existing MLLM and DeepSeek-R1 to obtain a high-quantity Multimodal CoT dataset, which is used as the cold-start initialization data for the base MLLM to obtain the post-cold-start Vision-R1-CI, and then we perform the RL training on Vision-R1-CI to obtain the reasoning MLLM, Vision-R1. Right panel: We observe that directly applying RL to MLLMs fails to effectively incentivize strong reasoning capability (see (C) and (D)). Vision-R1-Zero, trained via RL without prior initialization, struggles to generalize from limited data (see (E), (F), notably, Vision-R1-Zero was applied in format reward function). Vision-R1-CI faces the Overthinking Optimization Problem, favoring shorter CoT reasoning, where correct reasoning processes mostly focus on the shorter CoT reasoning sequences (see (A)). During subsequent RL training, we observe a lengthening of reasoning steps but a decline in performance (see (D) and (E)), making optimization particularly challenging. For Vision-R1, it initially shortens CoT to refine the right thought process under RL training. PTST enables Vision-R1 to progressively acquire a more complex reasoning process (see (C), (D), and (E)) to improve the performance, such that our Vision-R1 with 7B parameters achieves comparable performance to the 70B+ strongest MLLMs (see (B)). Note that Vision-R1 used various colored lines to indicate the different stages in PTST.",
+ "caption_source": "latex",
+ "abstract": "DeepSeek-R1-Zero has successfully demonstrated the emergence of reasoning capabilities in LLMs purely through Reinforcement Learning (RL). Inspired by this breakthrough, we explore how RL can be utilized to enhance the reasoning capability of MLLMs. However, direct training with RL struggles to activate complex reasoning capabilities such as questioning and reflection in MLLMs, due to the absence of substantial high-quality multimodal reasoning data. To address this issue, we propose the reasoning MLLM, Vision-R1, to improve multimodal reasoning capability. Specifically, we first construct a high-quality multimodal CoT dataset without human annotations by leveraging an existing MLLM and DeepSeek-R1 through modality bridging and data filtering to obtain a 200K multimodal CoT dataset, Vision-R1-cold dataset. It serves as cold-start initialization data for Vision-R1. To mitigate the optimization challenges caused by overthinking after cold start, we propose Progressive Thinking Suppression Training (PTST) strategy and employ Group Relative Policy Optimization (GRPO) with the hard formatting result reward function to gradually refine the model's ability to learn correct and complex reasoning processes on a 10K multimodal math dataset. Comprehensive experiments show our model achieves an average improvement of $\\sim$6% across various multimodal math reasoning benchmarks. Vision-R1-7B achieves a 73.5% accuracy on the widely used MathVista benchmark, which is only 0.4% lower than the leading reasoning model, OpenAI O1. Scaling up the amount of multimodal math data in the RL training, Vision-R1-32B and Vison-R1-72B achieves 76.4% and 78.2% MathVista benchmark scores, respectively. The datasets and code will be released in: https://github.com/Osilly/Vision-R1 .",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=UZIjskfbfU",
+  "arxiv": "https://arxiv.org/abs/2503.06749",
+  "pdf": "https://proceedings.iclr.cc/paper_files/paper/2026/file/680b2a8135b9c71278a09cafb605869e-Paper-Conference.pdf",
+  "proceedings": "https://proceedings.iclr.cc/paper_files/paper/2026/hash/680b2a8135b9c71278a09cafb605869e-Abstract-Conference.html",
+  "virtual": "https://iclr.cc/virtual/2026/poster/10009210",
+  "code": null
+ },
+ "license": "http://arxiv.org/licenses/nonexclusive-distrib/1.0/",
+ "img": "none",
+ "image_url": null,
+ "thumb_url": null,
+ "figure_page": 1,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.5
+}

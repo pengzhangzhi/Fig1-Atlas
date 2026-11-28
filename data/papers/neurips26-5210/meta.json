@@ -1,0 +1,54 @@
+{
+ "id": "neurips26-5210",
+ "title": "Scaling Optimization-Oriented Hypernetworks for Implicit Neural Representations",
+ "authors": [
+  "Lulu Cai",
+  "Hanxiang Ren",
+  "Siyan Dong",
+  "Li Sun",
+  "Jiefeng Wu",
+  "Youyi Zheng",
+  "Yi Ma",
+  "Yanchao Yang"
+ ],
+ "venue": "NeurIPS 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "General Machine Learning->Representation Learning",
+ "role": "pipeline",
+ "role2": null,
+ "claim": "Our method mirrors one optimization step, forward and backward, with attention modules over tokens, giving a single-pass parameter generator.",
+ "layout": "Single wide panel, left-to-right; forward chain, backward block, ADD; color-coded legend strip",
+ "tags": [
+  "hypernetwork",
+  "cross-attention",
+  "iterative-refinement",
+  "optimization-oriented",
+  "chain-rule"
+ ],
+ "style": [
+  "math-heavy",
+  "colorful",
+  "icon-heavy"
+ ],
+ "description": "A single wide block diagram with a title banner on top and a legend strip at the bottom. On the left, a gray forward-chain box holds a CA block and three pink φ modules. They take parameter tokens ω_i^t (orange arrows) and output pseudo-activation tokens τ_i^t. A large central gray box holds the backward block. Blue ψ^τ modules and green ψ^ω modules produce Jacobian tokens J. A white inset holds the blue ψ^δ modules and a CA block, and passes the loss signals δ_i. Blue ψ^∇ modules then produce the gradient tokens ∇_ωi L. On the right, a tall ADD block with a λ^t step-size box outputs the updated ω_i^(t+1). A red line carries z_ζ across the top. The legend explains the Q/K/V color roles: pink, blue and green.",
+ "caption": "One iterative module of the proposed hypernetwork $\\mathcal{H}_\\Omega$, illustrated for a three-layer MLP target INR ($L=3$); the construction extends to arbitrary $L$. At iteration $t$, the forward chain (left, modules $\\phi_i$) produces the pseudo-activation tokens $\\boldsymbol{\\tau}_i^t$ from the parameter tokens $\\boldsymbol{\\omega}_i^{(t)}$, seeded by $\\boldsymbol{\\tau}_0^t$ from $z_\\zeta$ through the Cross-Attention (CA) block. The backward block (right) realizes one chain-rule step at each layer: $\\psi^{\\boldsymbol{\\tau}}_i$ and $\\psi^{\\boldsymbol{\\omega}}_i$ produce the local Jacobian tokens $\\boldsymbol{J}^{\\boldsymbol{\\tau},t}_{i-1}$ and $\\boldsymbol{J}^{\\boldsymbol{\\omega},t}_i$, which $\\psi^{\\boldsymbol{\\delta}}_{i-1}$ and $\\psi^{\\nabla}_i$ contract with $\\boldsymbol{\\delta}_i^t$ to produce the propagated loss-signal $\\boldsymbol{\\delta}_{i-1}^t$ and the parameter-gradient tokens $\\nabla_{\\boldsymbol{\\omega}_i}\\mathcal{L}$; the backward recursion is seeded by $\\boldsymbol{\\delta}_L^t$, formed from $\\boldsymbol{\\tau}_L^t$ and $z_\\zeta$ via the concat-plus-CA module. The ADD block then applies the refinement with predicted step size and forwards to the next module.",
+ "caption_source": "latex",
+ "abstract": "We present a hypernetwork that generates the parameters of an implicit neural representation (INR) for a given signal in a single forward pass, without test-time optimization. Existing hypernetworks for this problem either ignore the chain-rule structure of the test-time optimization that produces an INR or, when they preserve it, instantiate the structure with MLPs whose parameter count grows quartically in target-network width. Our central contribution is to show that this parameter-count cost is structural to the MLP instantiation, not to the optimization-oriented principle of preserving chain-rule structure, and to resolve it by replacing the MLP body with attention. The resulting hypernetwork combines three design choices: an output-neuron-centric tokenization that aligns the token axis with each layer's output-neuron axis; an information-flow consistency rule that fixes the role of every cross-attention module from the representation its output should occupy; and a token-space iterative rollout that realizes the five quantities one optimization step on the target INR computes as five cross-attention modules with parameter count independent of target-network width. Across five 2D and 3D INR generation benchmarks, our method outperforms the state-of-the-art single-pass and optimization-oriented baselines; scales to target-network widths at which the MLP-based optimization-oriented paradigm exhausts GPU memory; and produces the highest result on NeRF generation without ground-truth INR weights supervision.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=a2C8sbYUCs",
+  "arxiv": "https://arxiv.org/abs/2611.10509",
+  "pdf": "https://arxiv.org/pdf/2611.10509",
+  "proceedings": null,
+  "virtual": "https://neurips.cc/virtual/2026/poster/151523",
+  "code": "https://github.com/lulucai435/hyper-inrs"
+ },
+ "license": "http://arxiv.org/licenses/nonexclusive-distrib/1.0/",
+ "img": "none",
+ "image_url": null,
+ "thumb_url": null,
+ "figure_page": 3,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.95
+}

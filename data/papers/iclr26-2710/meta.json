@@ -1,0 +1,52 @@
+{
+ "id": "iclr26-2710",
+ "title": "Zeros can be Informative: Masked Binary U-Net for Image Segmentation on Tensor Cores",
+ "authors": [
+  "Chunshu Wu",
+  "Ruibing Song",
+  "Sushant Kondguli",
+  "Tony Geng",
+  "Ang Li"
+ ],
+ "venue": "ICLR 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": null,
+ "role": "pipeline",
+ "role2": "overview-framework",
+ "claim": "Two empirical findings motivate a cost-aware masking and hardware-deployment pipeline that yields full-precision accuracy at binary-level efficiency.",
+ "layout": "Top findings feed bottom left-to-right pipeline, ending in accuracy-efficiency plot",
+ "tags": [
+  "quantization",
+  "binary-networks",
+  "hardware-aware",
+  "efficiency",
+  "pipeline"
+ ],
+ "style": [
+  "icon-heavy",
+  "colorful",
+  "math-heavy",
+  "minimal"
+ ],
+ "description": "The figure has two stacked rows. The top row has two rounded panels. Finding 1 on the left compares a row of binary lock icons (-1/+1, balanced, low accuracy) with the same row after zero masks are applied. After masking, about 90% of the weights are zero, shown as a mostly blue bar, and accuracy is high. Finding 2 on the right shows two-layer U-Net blocks with a zero mask applied to either Layer 1 or Layer 2, marked as roughly equivalent. Thick arrows lead from both findings down to the bottom row. The bottom row runs left to right through three stages: a cost-aware masking strategy, which ranks layers by cost and adds masks step by step; Tensor Core deployment, with an activation matrix times a weight matrix and an XOR/popcount formula; and a final accuracy-versus-efficiency plot. In the plot, MBU-Net is marked with a star in the upper right, near full-precision U-Net, and binary U-Net sits at lower right. Blue face-mask icons mark where zeros are applied.",
+ "caption": "Overview. Obtained through a cost-aware masking strategy and optimized for Tensor Core on GPUs, MBU-Net achievs full-precision level accuracy and binary-level efficiency.",
+ "caption_source": "latex",
+ "abstract": "Real-time image segmentation is a key enabler for AR/VR, robotics, drones, and autonomous systems, where tight accuracy, latency, and energy budgets must be met on resource-constrained edge devices. While U-Net offers a favorable balance of accuracy and efficiency compared to large transformer-based models, achieving real-time performance on high-resolution input remains challenging due to compute, memory, and power limits. Extreme quantization, particularly binary networks, is appealing for its hardware-friendly operations. However, two obstacles limit practicality: (1) severe accuracy degradation, and (2) a lack of end-to-end implementations that deliver efficiency on general-purpose GPUs. We make two empirical observations that guide our design. (1) An explicit zero state is essential: training with zero masking to binary U-Net weights yields noticeable sparsity. (2) Quantization sensitivity is uniform across layers. Motivated by these findings, we introduce Masked Binary U-Net (MBU-Net), obtained through a cost-aware masking strategy that prioritizes masking where it yields the highest accuracy-per-cost, reconciling accuracy with near-binary efficiency. To realize these gains in practice, we develop a GPU execution framework that maps MBU-Net to Tensor Cores via a subtractive bit-encoding scheme, efficiently implementing masked binary weights with binary activations. This design leverages native binary Tensor Core BMMA instructions, enabling high throughput and energy savings on widely available GPUs. Across 3 segmentation benchmarks, MBU-Net attains near full-precision accuracy (3% average drop) while delivering 2.04x speedup and 3.54x energy reductions over a 16-bit floating point U-Net.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=VG55KBaUDo",
+  "arxiv": "https://arxiv.org/abs/2601.11660",
+  "pdf": "https://proceedings.iclr.cc/paper_files/paper/2026/file/9e30acdeff572463c1db9b7de59de64c-Paper-Conference.pdf",
+  "proceedings": "https://proceedings.iclr.cc/paper_files/paper/2026/hash/9e30acdeff572463c1db9b7de59de64c-Abstract-Conference.html",
+  "virtual": "https://iclr.cc/virtual/2026/poster/10009160",
+  "code": null
+ },
+ "license": "http://creativecommons.org/licenses/by/4.0/",
+ "img": "cc-by",
+ "image_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/images/iclr26-2710.png",
+ "thumb_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/thumbs/iclr26-2710.webp",
+ "figure_page": 1,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.7
+}

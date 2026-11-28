@@ -1,0 +1,51 @@
+{
+ "id": "icml26-4357",
+ "title": "Which Heads Matter for Reasoning? RL-Guided KV Cache Compression",
+ "authors": [
+  "Wenjie Du",
+  "Li Jiang",
+  "Keda TAO",
+  "Xue Liu",
+  "Huan Wang"
+ ],
+ "venue": "ICML 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "Deep Learning->Large Language Models",
+ "role": "prior-vs-ours",
+ "role2": "analysis-finding",
+ "claim": "Existing compression strategies, whether dropping tokens or reallocating heads, break down on long reasoning generations and fail in distinct ways.",
+ "layout": "3 panels, left-to-right: cache diagrams, line plot, stacked bars; color-coded cache blocks",
+ "tags": [
+  "kv-cache-compression",
+  "token-dropping",
+  "head-reallocation",
+  "failure-modes",
+  "reasoning-models"
+ ],
+ "style": [
+  "colorful",
+  "plot",
+  "icon-heavy"
+ ],
+ "description": "Panel (a) contrasts two KV cache compression schemes. On the left, token-dropping shows four rows (Head 1 to 4) of numbered blue cells with an orange-red incoming cell, each head keeping a different subset of tokens. On the right, head-reallocation shows rows where most heads keep a sink cell (yellow), a few tokens and an incoming cell, while Head 4 keeps a long full cache in purple. A dashed box labeled Layer i encloses both, with a color legend below. Panel (b) has a line plot of performance drop against KV cache budget sparsity, with orange token-dropping and red head-reallocation curves. Solid lines are the reasoning model and dashed lines the instruct model. The reasoning model drops steeply. A stacked bar chart on the right shows error rate by sparsity, split into overlength, repetitive and incorrect errors.",
+ "caption": "(a) Overviews of Two Methods Left: Token-dropping method removes less important tokens from each head's KV cache. Right: Head-reallocation method allocates full KV cache to critical heads while assigning constant-size KV cache to the remaining heads. (b) Case study. Left: The token-dropping method (R-KV) and the head-reallocation method (DuoAttention) maintain relatively stable performance on Llama-3.1-8B-Inst but degrade substantially on Llama-3.1-8B-R1, largely due to the longer generations produced by the reasoning model. Right: In terms of error modes, the token-dropping method (R-KV) tends to degenerate into repetitive behavior whereas the head-reallocation method (DuoAttention) often produces over-extended CoT that exhausts the length budget without reaching a correct solution. See [ref] for complete results.",
+ "caption_source": "latex",
+ "abstract": "Reasoning large language models exhibit complex reasoning behaviors via extended chain-of-thought generation that are highly fragile to information loss during decoding, creating critical challenges for KV cache compression. Existing token-dropping methods directly disrupt reasoning chains by removing intermediate steps, while head-reallocation methods, designed for retrieval tasks, fail to preserve the heads essential for generative reasoning. However, no existing method can identify which attention heads genuinely maintain reasoning consistency and control generation termination. To address this, we propose RLKV, which uses reinforcement learning as a probe to discover which heads contribute to reasoning quality by directly optimizing their cache usage against actual generation outcomes. This discovery naturally leads to an efficient compression strategy: we allocate full KV cache to reasoning-critical heads while aggressively compressing others with constant-size KV cache. Experiments reveal that a fraction of heads proves essential for reasoning, enabling 20--60% cache reduction with near-lossless performance across diverse tasks and models, and up to 2.06x end-to-end speedup at 60% reduction.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=fBRIgbTvId",
+  "arxiv": "https://arxiv.org/abs/2510.08525",
+  "pdf": "https://raw.githubusercontent.com/mlresearch/v306/main/assets/du26e/du26e.pdf",
+  "proceedings": "https://proceedings.mlr.press/v306/du26e.html",
+  "virtual": "https://icml.cc/virtual/2026/poster/62599",
+  "code": "https://kurt232.github.io/RLKV/"
+ },
+ "license": "http://arxiv.org/licenses/nonexclusive-distrib/1.0/",
+ "img": "none",
+ "image_url": null,
+ "thumb_url": null,
+ "figure_page": 1,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.5
+}

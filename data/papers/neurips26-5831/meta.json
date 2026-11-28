@@ -1,0 +1,49 @@
+{
+ "id": "neurips26-5831",
+ "title": "SnapAudit: Active Auditing of Differentially Private In-Context Learning via Snapshot-Based Simulation",
+ "authors": [
+  "Yuyang Xia",
+  "Ruixuan Liu",
+  "Li Xiong"
+ ],
+ "venue": "NeurIPS 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "Social Aspects->Privacy-preserving Statistics and Machine Learning",
+ "role": "prior-vs-ours",
+ "role2": "pipeline",
+ "claim": "Passive auditing repeats costly end-to-end trials; ours splits the pipeline into a reusable snapshot plus cheap simulated noise.",
+ "layout": "2 stacked panels, left-to-right flows, dashed boxes marking repeated phases",
+ "tags": [
+  "auditing",
+  "privacy",
+  "simulation",
+  "efficiency",
+  "decomposition"
+ ],
+ "style": [
+  "icon-heavy",
+  "minimal",
+  "colorful"
+ ],
+ "description": "Two horizontal flow diagrams stacked vertically and separated by a dashed line. Panel (a), Passive Auditing, is a single dashed box labeled 'Repeat N times'. Query and Audit Data feed into a DP-ICL block, which is parameterized by (ε_theory, δ). It produces Noisy Output, which goes to an MIA attacker icon (a hooded figure) and then to Empirical Privacy Loss. Panel (b), Active Auditing, has two dashed phases. Phase A, Snapshot Generation, repeats N1 times: Query and Audit Data go to an LLM icon, then to Clean Output. Phase B, Bootstrap and Adding Noise, repeats N2 times: Bootstrap Sampling goes to Noisy Output through noise injection with (ε_theory, δ). That then goes to MIA and Empirical Privacy Loss. Rounded blue-outlined boxes with simple icons. The eye starts at the top-left Query box.",
+ "caption": "Auditing Pipelines for DP-ICL: (a) Passive Auditing Pipeline; (b) Active Auditing Pipeline.",
+ "caption_source": "latex",
+ "abstract": "In-context learning (ICL) enables LLMs to adapt to tasks using demonstrations that may contain sensitive data. Differentially private (DP) ICL mechanisms mitigate this risk by adding noise during aggregation. However, verifying their claimed privacy bounds through repeated end-to-end membership-inference attacks is costly and yields unstable estimates. We propose SnapAudit, an active auditing framework that decomposes a DP-ICL pipeline into a deterministic clean-inference stage and a stochastic DP-noise stage, and audits the full pipeline by combining a small snapshot of the former with bootstrap simulation of the latter. Because clean LLM outputs are near-deterministic at low temperature, tens of thousands of clean LLM calls suffice to approximate the snapshot distribution; SnapAudit then bootstraps hundreds of thousands of noisy trials at negligible additional cost, controlling finite-sample uncertainty via an empirical Bernstein correction. For embedding-based mechanisms, a multi-sweep search constructs maximally separable audit signals. Compared with passive auditing, SnapAudit yields tighter, more stable privacy estimates that closely match theoretical guarantees. Across privacy budgets, SnapAudit reuses snapshots across noise configurations, whereas passive auditing requires fresh end-to-end trials. Across four DP-ICL pipelines and five privacy budgets, this reduces total wall-clock auditing time by $4.3$--$5.5\\times$. SnapAudit also uncovers two flaws in existing DP-ICL designs: (i) classical Gaussian noise calibrations underestimate leakage at large privacy budgets, allowing empirical leakage to exceed the theoretical bound; (ii) an embedding-aggregation mechanism's sensitivity analysis is incorrect when the number of partitions equals one, leading to undersized noise and a privacy violation.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=e433uTcElT",
+  "arxiv": "https://arxiv.org/abs/2511.13502",
+  "pdf": "https://arxiv.org/pdf/2511.13502",
+  "proceedings": null,
+  "virtual": "https://neurips.cc/virtual/2026/poster/150952",
+  "code": null
+ },
+ "license": "http://arxiv.org/licenses/nonexclusive-distrib/1.0/",
+ "img": "none",
+ "image_url": null,
+ "thumb_url": null,
+ "figure_page": 1,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.6
+}

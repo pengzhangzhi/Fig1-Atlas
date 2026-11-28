@@ -1,0 +1,50 @@
+{
+ "id": "iclr26-4611",
+ "title": "IA2: Alignment with ICL Activations improves Supervised Fine-Tuning",
+ "authors": [
+  "Aayush Mishra",
+  "Daniel Khashabi",
+  "Anqi Liu"
+ ],
+ "venue": "ICLR 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "Deep Learning->Attention Mechanisms",
+ "role": "pipeline",
+ "role2": "teaser-result",
+ "claim": "Aligning internal activations with in-context behavior before standard fine-tuning yields higher accuracy and better calibration than fine-tuning on outputs alone.",
+ "layout": "Left 3 stacked steps flowing downward; right 2 stacked bar charts",
+ "tags": [
+  "self-distillation",
+  "activation-alignment",
+  "fine-tuning",
+  "calibration",
+  "in-context-learning"
+ ],
+ "style": [
+  "icon-heavy",
+  "plot",
+  "colorful",
+  "text-heavy"
+ ],
+ "description": "The left two-thirds shows a three-step pipeline in horizontal bands separated by lines. Step 1 (orange label) feeds ICL demonstrations plus a query into a locked neural network. It outputs an ICL response and ICL activations A_ICL, drawn as a blue box. Step 2 passes the query and ICL response through a network with a blue lock. A red X blocks the token output, with a yellow note saying there is no training signal from the token outputs. The unaligned activations A are pulled toward A_ICL by minimizing ||A − A_ICL||. Step 3 is standard SFT, using a cross-entropy loss against the ground-truth response. The right third has two grouped bar charts, accuracy on top and ECE below. They compare ICL (blue), SFT only (green) and IA2→SFT (red) across 2 to 32 demonstrations. The red bars are highest on accuracy and mostly lowest on ECE among the trained methods.",
+ "caption": "An overview of our improved SFT pipeline. Standard SFT only enforces output space alignment (between the model's response and a target response---only step 3 above), resulting in subpar performance and mis-calibration in low-data settings. In contrast, our method \\act enforces functional alignment with ICL by matching the rich activation patterns produced when performing ICL. \\act priming before SFT boosts the quality of adaptation. We show this improvement through performance comparison charts aggregated across models and datasets. See section [ref] for details.",
+ "caption_source": "latex",
+ "abstract": "Supervised Fine-Tuning (SFT) is used to specialize model behavior by training weights to produce intended target responses for queries. In contrast, In-Context Learning (ICL) adapts models during inference with instructions or demonstrations in the prompt. ICL can offer better generalizability and more calibrated responses compared to SFT in data scarce settings, at the cost of more inference compute. In this work, we ask the question: Can ICL's internal computations be used to improve the qualities of SFT? We first show that ICL and SFT produce distinct activation patterns, indicating that the two methods achieve adaptation through different functional mechanisms. Motivated by this observation and to use ICL's rich functionality, we introduce ICL Activation Alignment (IA2), a self-distillation technique which aims to replicate ICL's activation patterns in SFT models and incentivizes ICL-like internal reasoning. Performing IA2 as a priming step before SFT significantly improves the accuracy and calibration of model outputs, as shown by our extensive empirical results on 12 popular benchmarks and two model families. This finding is not only practically useful, but also offers a conceptual window into the inner mechanics of model adaptation.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=r99m9ziONQ",
+  "arxiv": "https://arxiv.org/abs/2509.22621",
+  "pdf": "https://proceedings.iclr.cc/paper_files/paper/2026/file/f55f2c1e58254893f3c8437ae20816cd-Paper-Conference.pdf",
+  "proceedings": "https://proceedings.iclr.cc/paper_files/paper/2026/hash/f55f2c1e58254893f3c8437ae20816cd-Abstract-Conference.html",
+  "virtual": "https://iclr.cc/virtual/2026/poster/10007171",
+  "code": "https://github.com/aamixsh/ia2"
+ },
+ "license": "http://creativecommons.org/licenses/by/4.0/",
+ "img": "cc-by",
+ "image_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/images/iclr26-4611.png",
+ "thumb_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/thumbs/iclr26-4611.webp",
+ "figure_page": 1,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.8
+}

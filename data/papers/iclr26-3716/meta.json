@@ -1,0 +1,54 @@
+{
+ "id": "iclr26-3716",
+ "title": "STEM: SCALING TRANSFORMERS WITH EMBEDDING MODULES",
+ "authors": [
+  "Ranajoy Sadhukhan",
+  "Sheng Cao",
+  "Harry Dong",
+  "Changsheng Zhao",
+  "Attiano Purpura-Pontoniere",
+  "Yuandong Tian",
+  "Zechun Liu",
+  "Beidi Chen"
+ ],
+ "venue": "ICLR 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": null,
+ "role": "teaser-result",
+ "role2": "pipeline",
+ "claim": "Our sparse embedding-lookup layer beats the dense baseline on training loss and long-context accuracy while offloading parameters to cheaper memory.",
+ "layout": "3 panels, left-to-right: two line plots, then architecture diagram",
+ "tags": [
+  "sparsity",
+  "embedding-lookup",
+  "cpu-offload",
+  "long-context",
+  "efficiency"
+ ],
+ "style": [
+  "plot",
+  "colorful",
+  "icon-heavy"
+ ],
+ "description": "Three panels in a row. Panel (a) is a line plot of validation perplexity against training tokens (up to 1e12). The blue dense curve sits above the orange STEM (one-third) curve throughout. Panel (b) plots score against context length from 8k to 32k. Orange STEM starts near 69 and falls to about 56. Blue dense falls from about 62 to 43, so the gap widens with length. Panel (c) is a block diagram of the STEM layer. A yellow CPU-memory column on the left holds pink token embedding rows e_T1, e_T2 and e_T3. Dashed red prefetch arrows run from those rows into a grey GPU box. The grey box holds a dashed 'Up projection (removed)' block, a SiLU gate projection, an element-wise multiply and a down projection. Small CPU and GPU memory icons label the two sides. A legend sits at the lower right.",
+ "caption": "(a) Validation PPL vs. training tokens for 1B STEM vs. dense; (b) Needle-in-a-Haystack at 8k/16k/32k; (c) STEM layer: embedding tables offloaded to CPU and token-indexed ones are prefetched to GPU.",
+ "caption_source": "latex",
+ "abstract": "Fine-grained sparsity promises higher parametric capacity without proportional per-token compute, but often suffers from training instability, load balancing, and communication overhead. We introduce STEM (Scaling Transformers with Embedding Modules), a static, token-indexed approach that replaces the FFN up-projection with a layer-local embedding lookup while keeping the gate and down-projection dense. This removes runtime routing, enables CPU offload with asynchronous prefetch, and decouples capacity from both per-token FLOPs and cross-device communication. Empirically, STEM trains stably despite extreme sparsity. It improves downstream performance over dense baselines while reducing per-token FLOPs and parameter accesses (eliminating roughly one-third of FFN parameters). STEM learns embedding spaces with large angular spread which enhances its knowledge storage capacity. More interestingly, this enhanced knowledge capacity comes with better interpretability. The token-indexed nature of STEM embeddings allows simple ways to perform knowledge editing and knowledge injection in an interpretable manner without any intervention in the input text or additional computation. In addition, STEM strengthens long-context performance: as sequence length grows, more distinct parameters are activated, yielding practical test-time capacity scaling. Across 350M and 1B model scales, STEM delivers up to ~3--4% accuracy improvements overall, with notable gains on knowledge and reasoning-heavy benchmarks (ARC-Challenge, OpenBookQA, GSM8K, MMLU). Overall, STEM is an effective way of scaling parametric memory while providing better interpretability, better training stability and improved efficiency.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=gufRimweSQ",
+  "arxiv": "https://arxiv.org/abs/2601.10639",
+  "pdf": "https://proceedings.iclr.cc/paper_files/paper/2026/file/082ebebc722cea31791b68a868bcd48c-Paper-Conference.pdf",
+  "proceedings": "https://proceedings.iclr.cc/paper_files/paper/2026/hash/082ebebc722cea31791b68a868bcd48c-Abstract-Conference.html",
+  "virtual": "https://iclr.cc/virtual/2026/poster/10008106",
+  "code": null
+ },
+ "license": "http://creativecommons.org/licenses/by/4.0/",
+ "img": "cc-by",
+ "image_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/images/iclr26-3716.png",
+ "thumb_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/thumbs/iclr26-3716.webp",
+ "figure_page": 0,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.6
+}

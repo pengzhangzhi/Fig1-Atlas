@@ -1,0 +1,49 @@
+{
+ "id": "neurips26-4464",
+ "title": "Flash-dLLM: IO-Aware KV Caching and Parallel Decoding for Fast, Memory-Efficient Diffusion LLMs",
+ "authors": [
+  "Quan Nguyen-Tri",
+  "Mukul Ranjan",
+  "Zhiqiang Shen"
+ ],
+ "venue": "NeurIPS 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "Applications->Language, Speech and Dialog",
+ "role": "pipeline",
+ "role2": null,
+ "claim": "A two-stage system first selects and caches important tokens efficiently, then drafts and verifies them in parallel to decode more per step.",
+ "layout": "2 panels side-by-side, left-to-right flow, color-coded token legend on top",
+ "tags": [
+  "kv-caching",
+  "draft-and-verify",
+  "parallel-decoding",
+  "efficiency",
+  "diffusion-language-model"
+ ],
+ "style": [
+  "colorful",
+  "icon-heavy",
+  "text-heavy"
+ ],
+ "description": "A wide figure with a color legend across the top: green for attention, gray for no attention, orange for drafted tokens, dark slate for masked tokens, blue for cached tokens, and red for tracked tokens. The left panel, Flash-Cache (blue background), shows a row of KV tokens above a grid of bi-directional attention. Query tokens on the left feed into the grid. A dashed box marks the decoded-token attention. Arrows lead down to per-layer attention scores (Layer 1 … Layer L) that are accumulated, then top-k selected into red tracked tokens. The right panel, Flash-Verify (peach background), shows tracked tokens filled in, sorted by confidence, and arranged in causality order. A causal bi-directional attention mask with gray blocked cells follows. A threshold bar chart and check/cross marks decide which tokens are decoded, shown in a dashed box at top right.",
+ "caption": "Motivating observations (LLaDA-1.5). (a) Per-layer latency breakdown: the conventional cache pipeline is dominated by memory-bound operations; our fused kernel eliminates intermediate materialization for a 1.37$\\times$ speedup. (b) Top-32 most-attended decoded tokens capture up to 50% of total attention in middle layers, motivating selective tracking over full recomputation. (c) Average prediction confidence and number of early-decodable tokens are positively correlated across denoising steps, indicating that improving confidence directly increases tokens decoded per step.",
+ "caption_source": "latex",
+ "abstract": "Diffusion Large Language Models (dLLMs) have recently emerged as a promising alternative to autoregressive LLMs by enabling non-autoregressive text generation. However, their practical deployment remains limited by inefficient inference, largely due to the absence of effective Key-Value (KV) caching and scalable parallel decoding mechanisms. Existing acceleration methods typically study KV caching and parallel decoding in isolation, overlooking the I/O bottlenecks that arise when cache reuse and parallel token verification are jointly applied. In this work, we introduce $\\textbf{Flash-dLLM}$, a training-free inference acceleration framework for fast and memory-efficient dLLMs. Flash-dLLM first identifies GPU memory I/O as a dominant bottleneck in KV-cache-enabled dLLM inference and addresses it with an I/O-aware fused KV-cache kernel that reduces redundant memory movement. Building on this optimized cache mechanism, Flash-dLLM further proposes an efficient KV-cache-driven draft-and-verify decoding strategy, where the dLLM itself serves as both drafter and verifier without requiring an auxiliary model. This unified design enables faster decoding while preserving generation quality and improving scalability to longer sequences and larger batch size. Extensive experiments on mathematical reasoning and code-generation benchmarks demonstrate that Flash-dLLM consistently outperforms existing state-of-the-art dLLM acceleration methods in both inference speed and memory efficiency. In particular, it achieves $5.1\\times$ and $11.0\\times$ speedups over prior strongest baseline Elastic-Cache on GSM8K and HumanEval, respectively.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=UsksaoFwxx",
+  "arxiv": "https://arxiv.org/abs/2609.26796",
+  "pdf": "https://arxiv.org/pdf/2609.26796",
+  "proceedings": null,
+  "virtual": "https://neurips.cc/virtual/2026/poster/152191",
+  "code": "https://github.com/VILA-Lab/Flash-dLLM"
+ },
+ "license": "http://creativecommons.org/licenses/by/4.0/",
+ "img": "cc-by",
+ "image_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/images/neurips26-4464.png",
+ "thumb_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/thumbs/neurips26-4464.webp",
+ "figure_page": 2,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.9
+}

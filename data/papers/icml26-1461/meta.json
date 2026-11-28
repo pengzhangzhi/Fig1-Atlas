@@ -1,0 +1,51 @@
+{
+ "id": "icml26-1461",
+ "title": "EpiCache: Episodic KV Cache Management for Long-Term Conversation on Resource-Constrained Environments",
+ "authors": [
+  "Minsoo Kim",
+  "Arnav Kundu",
+  "Han-Byul Kim",
+  "Richa Dixit",
+  "Minsik Cho"
+ ],
+ "venue": "ICML 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "Deep Learning->Large Language Models",
+ "role": "prior-vs-ours",
+ "role2": "analysis-finding",
+ "claim": "Evicting after full prefill gives unbounded peak memory, and naive block-wise eviction bounds memory but degrades accuracy, whereas ours keeps both.",
+ "layout": "3 panels, left-to-right; two token-grid diagrams then stacked line plots, with ✓/✗ verdicts",
+ "tags": [
+  "kv-cache",
+  "memory-efficiency",
+  "block-prefill",
+  "tradeoff",
+  "long-context"
+ ],
+ "style": [
+  "colorful",
+  "plot",
+  "icon-heavy"
+ ],
+ "description": "Three panels. Panel (a) shows a staircase of blue rounded squares for input KV tokens, with a bottom row where most tokens are hatched grey (evicted), a few are green (selected) and one is tan (decoded). Under it are a green check for \"Reduced KVs at Decoding\" and a red cross for \"Unconstrained-Memory Usage\". Panel (b) shows the same idea in two blocks. Curved arrows mark cross-attention for scoring, a green-outlined patched prompt token sits at the end of each block, and a memory budget M=1 is marked. Under it are a check for constrained memory and a cross for accuracy degradation. A shared legend names the colors. Panel (c) has two stacked line plots. The top plot shows peak GPU memory against input length, with post-prefill rising linearly and block-prefill staying flat. The bottom plot shows accuracy against KV budget, with KVzip-Block dropping below the other lines and Ours-Block matching the top lines.",
+ "caption": "KV Cache Management Analysis. (a) Post prefill eviction: eviction after full-context prefill, reducing KV size at decoding but causing unbounded memory usage. (b) Block prefill eviction: input processed in 3-token blocks with patched prompts for scoring, then evicted down to 1 token. (c) Top: Peak GPU memory vs. input length on LLaMA-3.2-3B with A100. Bottom: LongConvQA accuracy of KV compression methods under post vs. block prefill on LLaMA-3.2-3B.",
+ "caption_source": "latex",
+ "abstract": "Modern large language models (LLMs) extend context lengths to millions of tokens, enabling coherent, personalized responses grounded in long conversational history. However, the Key-Value (KV) cache grows linearly with the extended dialogue history, causing the model's memory footprint to quickly exceed device limits. While recent KV cache compression methods attempt to reduce memory usage, most apply cache eviction after processing the entire context, incurring unbounded peak memory usage. Additionally, query-dependent eviction narrows the cache semantics to a single query, leading to failure cases in multi-turn conversations. In this paper, we introduce EpiCache, a training-free KV cache management framework for long conversational question answering (LongConvQA) under fixed memory budgets. EpiCache bounds cache growth through block-wise prefill and preserves topic-relevant context via episodic KV compression, which clusters conversation history into coherent episodes and performs episode-specific KV cache eviction. Across three LongConvQA benchmarks (LongMemEval, Realtalk, and LoCoMo), EpiCache improves accuracy by up to 30%, achieves near full-cache accuracy under 4-6x compression, and reduces latency and peak memory by up to 2.4x and 3.7x, respectively.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=DzvMz3I5HV",
+  "arxiv": "https://arxiv.org/abs/2509.17396",
+  "pdf": "https://raw.githubusercontent.com/mlresearch/v306/main/assets/kim26ag/kim26ag.pdf",
+  "proceedings": "https://proceedings.mlr.press/v306/kim26ag.html",
+  "virtual": "https://icml.cc/virtual/2026/poster/65405",
+  "code": "https://github.com/apple/ml-epicache"
+ },
+ "license": "http://creativecommons.org/licenses/by-nc-sa/4.0/",
+ "img": "cc-by-nc-sa",
+ "image_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/images/icml26-1461.png",
+ "thumb_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/thumbs/icml26-1461.webp",
+ "figure_page": 2,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.5
+}

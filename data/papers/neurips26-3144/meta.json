@@ -1,0 +1,50 @@
+{
+ "id": "neurips26-3144",
+ "title": "StatLUT: Statistical Feature-Driven Multimodal 3D LUT Generation for Photorealistic Style Transfer",
+ "authors": [
+  "Yifan Wang",
+  "Zhixiang Hao",
+  "Yu Wang",
+  "Congchao Zhu"
+ ],
+ "venue": "NeurIPS 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "Computer Vision->Image and Video Generation",
+ "role": "pipeline",
+ "role2": null,
+ "claim": "A unified framework turns either text or reference images into statistical features that drive a predicted lookup table for rendering.",
+ "layout": "4 columns, left-to-right, dual-colored branches with modality switch and legend",
+ "tags": [
+  "pipeline",
+  "multimodal",
+  "lookup-table",
+  "diffusion",
+  "style-transfer"
+ ],
+ "style": [
+  "colorful",
+  "icon-heavy",
+  "photo/real data"
+ ],
+ "description": "A wide four-column pipeline diagram on pale shaded panels: Multimodal Input, Features Representation, LUT Prediction, and Rendering. At left are a quoted text prompt (T_s), a sunset style photo (I_s) and a coastal content photo (I_c). The text goes through an H-Diffuser block, drawn as a trapezoid encoder-decoder. The images are downsized and passed to a Lab-Extractor. Each branch yields a stack of histogram, Lab color-plane and density-contour plots labeled Generated, Style and Content. A blue text branch and a red image branch meet at a modality switch. The switch feeds the MR-Mapper trapezoid, which produces K and V for a Cross-Attention block. An identity RGB cube supplies Q to that block. The attention output is added to the identity LUT to give the predicted LUT cube. That LUT is applied (⊗) to the content image to give the stylized photo. A dashed legend sits at bottom right. The eye goes first to the colorful photos and cubes.",
+ "caption": "Overview of the proposed StatLUT framework. (1) Feature Extraction: The Lab-Extractor extracts spatially-agnostic statistical features from resized input images. (2) LUT Prediction: The MR-Mapper fuses these features to guide a Cross-Attention module, which transforms an identity LUT into the predicted 3D LUT. (3) Text-Driven Mapping: For text conditions, the H-Diffuser directly generates target statistics. Finally, the predicted LUT is applied to stylize the high-resolution content image.",
+ "caption_source": "latex",
+ "abstract": "Photorealistic Style Transfer (PST) aims to transfer the color and tonal style of a reference to a content image while strictly preserving its structural integrity. However, existing deep learning-based methods inherently suffer from semantic entanglement caused by pre-trained image encoders, leading to unnatural spatial distortions. Moreover, current pixel-level mapping paradigms often ignore color gamut topology, resulting in color banding, while also lacking the multimodal capability for precise, tone-specific text-driven control. To address these bottlenecks, we propose StatLUT, an innovative multimodal framework for 3D LUT generation. First, we bypass traditional encoders and introduce a Lab-Extractor to derive spatially-agnostic statistical features, fundamentally decoupling color distributions from structural semantics to ensure artifact-free rendering. Second, we formulate LUT generation as a Transformer-based Seq2Seq translation task, utilizing a Multi-dimensional Residual Mapper (MR-Mapper) to predict topologically smooth 3D LUTs. Finally, to break the unimodal barrier, we propose the H-Diffuser, a lightweight Diffusion Transformer that directly synthesizes statistical features from tone-descriptive text prompts, enabling controllable and robust color grading. Extensive experiments on standard benchmarks demonstrate that StatLUT significantly outperforms state-of-the-art methods in both visual quality and quantitative metrics, pioneering a highly robust and versatile paradigm for multimodal photorealistic style transfer.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=Ly4kWIst8U",
+  "arxiv": "https://arxiv.org/abs/2607.08227",
+  "pdf": "https://arxiv.org/pdf/2607.08227",
+  "proceedings": null,
+  "virtual": "https://neurips.cc/virtual/2026/poster/153359",
+  "code": "https://yifan141060.github.io/StatLUT/"
+ },
+ "license": "http://arxiv.org/licenses/nonexclusive-distrib/1.0/",
+ "img": "none",
+ "image_url": null,
+ "thumb_url": null,
+ "figure_page": 2,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.93
+}

@@ -1,0 +1,49 @@
+{
+ "id": "icml26-3186",
+ "title": "De-Linearizing Agent Traces: Bayesian Inference of Latent Partial Orders for Efficient Execution",
+ "authors": [
+  "Dongqing Li",
+  "Zheqiao Cheng",
+  "Geoff Nicholls",
+  "Quyu Kong"
+ ],
+ "venue": "ICML 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "Probabilistic Methods->Bayesian Models and Methods",
+ "role": "pipeline",
+ "role2": "before-after",
+ "claim": "Differently ordered linear traces can be recovered as one latent dependency graph, which then replaces step-by-step LLM planning with graph execution.",
+ "layout": "3 panels, left-to-right, labeled infer and compile arrows, dashed frontier box",
+ "tags": [
+  "partial-order",
+  "latent-structure",
+  "bayesian-inference",
+  "agent-workflow",
+  "efficiency"
+ ],
+ "style": [
+  "colorful",
+  "icon-heavy"
+ ],
+ "description": "Three lettered panels read left to right. (a) Observed traces: three rows of colored boxes (VPC, VSW, SG, Auth, ECS) joined by small arrows. VSW and SG swap places across rows, and a note says different orders can be valid when actions are incomparable. A small 'infer' arrow leads to (b), Recovered partial order: a diamond-shaped DAG with VPC at the top, VSW and SG beneath it, Auth below SG, and ECS at the bottom. A dashed green line and label 'VSW || SG, incomparable' mark the parallel pair. A 'compile' arrow leads to (c), Compiled graph executor, which has two stacked cream and green boxes. The top box, Explore mode, shows a chain with an LLM call before every step. The bottom box, Expert mode, shows intent parse, then VPC, then a dashed frontier {VSW, SG} running in parallel, then Auth, then ECS. Color coding stays the same for each action across all panels.",
+ "caption": "Running Cloud-IaC example. Successful agent executions are observed as linear traces, but different traces may order independent actions differently. BPOP treats these traces as noisy linearizations of a latent partial-order workflow. Here, after CreateVPC, CreateVSwitch and CreateSG are incomparable; AuthorizeSG depends on CreateSG; and RunInstances depends on both CreateVSwitch and AuthorizeSG. The inferred graph can then be compiled into a frontier-based executor that replaces repeated step-by-step LLM planning with graph execution.",
+ "caption_source": "latex",
+ "abstract": "AI agents increasingly execute procedural workflows as sequential action traces, which obscures latent concurrency and induces repeated step-by-step reasoning. We introduce BPOP, a Bayesianframework that infers a latent dependency partial order from noisy linearized traces. BPOP models traces as stochastic linear extensions of an underlying graph and performs efficient MCMC inference via a tractable frontier-softmax likelihood that avoids #P-hard marginalization over linear extensions. We evaluate on our open-sourced Cloud-IaC-6, a suite of cloud provisioning tasks with heterogeneous LLM-generated traces, and WFCommons scientific workflows. BPOP recover dependency structure more accurately than trace-only and process-mining baselines, and the inferred graphs support a compiled executor that prunes irrelevant context, yielding substantial reductions in token usage and execution time.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=UAXQW194WT",
+  "arxiv": "https://arxiv.org/abs/2602.02806",
+  "pdf": "https://raw.githubusercontent.com/mlresearch/v306/main/assets/li26x/li26x.pdf",
+  "proceedings": "https://proceedings.mlr.press/v306/li26x.html",
+  "virtual": "https://icml.cc/virtual/2026/poster/63737",
+  "code": "https://www.bpopagent.live"
+ },
+ "license": "http://arxiv.org/licenses/nonexclusive-distrib/1.0/",
+ "img": "none",
+ "image_url": null,
+ "thumb_url": null,
+ "figure_page": 1,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.8
+}

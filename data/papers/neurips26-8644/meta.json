@@ -1,0 +1,52 @@
+{
+ "id": "neurips26-8644",
+ "title": "FrameScout: Scouting Query-Relevant Frames for Long Video Understanding",
+ "authors": [
+  "Haonan Hu",
+  "Shuhao Chen",
+  "Weisen Jiang",
+  "Lizhao Gao",
+  "James Kwok",
+  "Yu Zhang"
+ ],
+ "venue": "NeurIPS 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "Computer Vision->Vision Models & Multimodal",
+ "role": "pipeline",
+ "role2": null,
+ "claim": "A streaming selector turns frames and a query into contextual embeddings, picks the top relevant frames, and feeds them to a frozen model.",
+ "layout": "Single wide panel, left-to-right flow, film strip input, trainable/frozen legend",
+ "tags": [
+  "keyframe-selection",
+  "streaming",
+  "contrastive-embedding",
+  "long-video",
+  "retrieval-then-reasoning"
+ ],
+ "style": [
+  "icon-heavy",
+  "colorful",
+  "photo/real data"
+ ],
+ "description": "A wide left-to-right pipeline diagram. On the far left, a film strip of video frames F1 to FN labeled Long Video. Frames pass through a frozen Vision Encoder (snowflake icon) into a trainable Language Model (flame icon). A dashed orange arrow marks a sliding-window KV cache feeding back into the model. The model outputs hidden states h1..hN, which go into Successor Aggregation and then an Image Projector to give frame embeddings M1..MN in purple. A question in a speech bubble goes through the same Language Model and a Text Projector to produce a query embedding. A Similarity Selection box computes sim(MQ, Mi) and sends the Top K frames to a purple VideoLLM Inference panel. That panel holds the selected frames, the query, and a frozen Base VideoLLM, and it outputs a text answer. A legend marks trainable and frozen modules. Pastel box fills guide the eye.",
+ "caption": "Illustration of \\methodName.",
+ "caption_source": "latex",
+ "abstract": "Long video understanding requires VideoLLMs to answer queries about videos spanning tens of minutes to hours, but such long videos produce far more visual tokens than current VideoLLMs can process. To address this issue, keyframe selectors are proposed to select the most query-relevant frames by computing the similarity between frame and query embeddings. Existing selectors either encode frames independently without temporal context or process chunks in isolation with ranking objectives that are difficult to optimize. To alleviate those limitations, we propose FrameScout with two core designs: (i) a streaming selector architecture that leverages a sliding-window KV cache and successor aggregation to produce temporally-contextualized frame embeddings; (ii) a frame-query contrastive objective that aligns frame and query embeddings in a shared space, directly training the selector to distinguish relevant frames from irrelevant ones. Extensive experiments on three long-video benchmarks and six base VideoLLMs demonstrate that FrameScout consistently achieves state-of-the-art performance. Code is available at https://github.com/Hubert-1102/FrameScout.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=xesmedbJGk",
+  "arxiv": "https://arxiv.org/abs/2610.23975",
+  "pdf": "https://arxiv.org/pdf/2610.23975",
+  "proceedings": null,
+  "virtual": "https://neurips.cc/virtual/2026/poster/148460",
+  "code": null
+ },
+ "license": "http://arxiv.org/licenses/nonexclusive-distrib/1.0/",
+ "img": "none",
+ "image_url": null,
+ "thumb_url": null,
+ "figure_page": 3,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.93
+}

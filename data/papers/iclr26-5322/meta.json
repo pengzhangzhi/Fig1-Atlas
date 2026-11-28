@@ -1,0 +1,49 @@
+{
+ "id": "iclr26-5322",
+ "title": "Attention Is All You Need for KV Cache in Diffusion LLMs",
+ "authors": [
+  "Quan Nguyen-Tri",
+  "Mukul Ranjan",
+  "Zhiqiang Shen"
+ ],
+ "venue": "ICLR 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "Deep Learning->Generative Models and Autoencoders",
+ "role": "analysis-finding",
+ "role2": null,
+ "claim": "Cached states change little across most steps and shallow layers, and the most-attended tokens drift least, so selective refresh suffices.",
+ "layout": "4 heatmap panels, left-to-right, colored boxes and arrows annotating regions",
+ "tags": [
+  "kv-cache",
+  "diffusion-llm",
+  "redundancy",
+  "motivation",
+  "layer-depth"
+ ],
+ "style": [
+  "plot",
+  "colorful",
+  "photo/real data"
+ ],
+ "description": "A row of four heatmaps with shared viridis-style colormaps and colorbars. (a) Attention weights, with token position on x and decoding step on y. It is mostly dark purple, with a thin bright diagonal band. Orange annotations mark the prompt tokens, a red box marks the sliding window, and blue arrows mark far-away MASK tokens. (b) Key-value cosine similarity across layers and steps. It is yellow, meaning stable, in shallow layers and turns green and blue in deeper layers. A blue box labels the shallow layers and a red box labels the deep layers where the cache changes. (c) Attention-weight cosine similarity, shown as horizontal stripes. (d) The most-attended tokens, almost uniformly yellow except for two thin dark lines. The red and blue annotations draw the eye first.",
+ "caption": "Visualization of our motivation. (a) MASK tokens located near each other receive high attention, while those situated far apart have minimal influence. (b) Over time, the representations in the KV states of cached tokens evolve, with deeper layers experiencing more substantial changes. (c) The changes in attention weights of most-attended tokens exhibit similar patterns to the changes in KV states of all cached tokens. (d) KV states of the most-attended tokens have the least changes.",
+ "caption_source": "latex",
+ "abstract": "This work studies how to adaptively recompute key-value (KV) caches for diffusion large language models (DLMs) to maximize prediction accuracy while minimizing decoding latency. Prior methods' decoders recompute QKV for all tokens at every denoising step and layer, despite KV states changing little across most steps, especially in shallow layers, leading to substantial redundancy. We make three observations: (1) distant ${\\bf MASK}$ tokens primarily act as a length-bias and can be cached block-wise beyond the active prediction window; (2) KV dynamics increase with depth, suggesting that selective refresh starting from deeper layers is sufficient; and (3) the most-attended token exhibits the smallest KV drift, providing a conservative lower bound on cache change for other tokens. Building on these, we propose ${\\bf Elastic-Cache}$, a training-free, architecture-agnostic strategy that jointly decides ${when}$ to refresh (via an attention-aware drift test on the most-attended token) and ${where}$ to refresh (via a depth-aware schedule that recomputes from a chosen layer onward while reusing shallow-layer caches and off-window MASK caches). Unlike fixed-period schemes, Elastic-Cache performs adaptive, layer-aware cache updates for diffusion LLMs, reducing redundant computation and accelerating decoding with negligible loss in generation quality. Experiments on LLaDA-Instruct, LLaDA-1.5, and LLaDA-V across mathematical reasoning and code generation tasks demonstrate consistent speedups: $8.7\\times$ on GSM8K (256 tokens), and $45.1\\times$ on longer sequences, while consistently maintaining higher accuracy than the baseline. Our method achieves significantly higher throughput ($6.8\\times$ on GSM8K) than existing confidence-based approaches while preserving generation quality, enabling practical deployment of diffusion LLMs.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=zkUbhdAiFJ",
+  "arxiv": "https://arxiv.org/abs/2510.14973",
+  "pdf": "https://proceedings.iclr.cc/paper_files/paper/2026/file/3afaa2102fb8ea44cbadc13e45bba718-Paper-Conference.pdf",
+  "proceedings": "https://proceedings.iclr.cc/paper_files/paper/2026/hash/3afaa2102fb8ea44cbadc13e45bba718-Abstract-Conference.html",
+  "virtual": "https://iclr.cc/virtual/2026/poster/10006427",
+  "code": "https://vila-lab.github.io/elastic-cache-webpage/"
+ },
+ "license": "http://creativecommons.org/licenses/by/4.0/",
+ "img": "cc-by",
+ "image_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/images/iclr26-5322.png",
+ "thumb_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/thumbs/iclr26-5322.webp",
+ "figure_page": 2,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.85
+}

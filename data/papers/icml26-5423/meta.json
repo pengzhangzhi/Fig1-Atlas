@@ -1,0 +1,49 @@
+{
+ "id": "icml26-5423",
+ "title": "LRAgent: Efficient KV Cache Sharing for Multi-LoRA LLM Agents",
+ "authors": [
+  "Hyesung Jeon",
+  "Hyeongju Ha",
+  "jae-joon kim"
+ ],
+ "venue": "ICML 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "Deep Learning->Large Language Models",
+ "role": "analysis-finding",
+ "role2": "concept",
+ "claim": "Components from a shared backbone stay highly similar across specialized agents, while the full outputs diverge because of the adapter contribution.",
+ "layout": "3 panels: left vector sketch, right two line plots sharing one legend",
+ "tags": [
+  "kv-cache-sharing",
+  "lora",
+  "cosine-similarity",
+  "empirical-observation",
+  "multi-agent"
+ ],
+ "style": [
+  "plot",
+  "minimal",
+  "colorful"
+ ],
+ "description": "The left panel is a small geometric sketch on a gray background. Two agents, labeled i=0 (red) and i=1 (green), each have a full cache vector drawn as a thick arrow from a common origin. Each full cache is the sum of a shared gray base-cache arrow and a short dark adapter-output arrow, labeled ΔY_i. Dotted leader lines point to the labels. The two right panels are line plots of layer-wise cosine similarity against layer index, one for LLaMA-3.1-8B-Instruct and one for Ministral-8B-Instruct. Solid lines show base-cache similarity and dashed, faded lines show full-cache similarity, for three agent pairs (Plan/Action, Action/Reflect, Reflect/Plan) in red, green and blue. Solid curves sit above the dashed ones and dip in the middle layers. A shared legend sits below the plots.",
+ "caption": "\\noindent(Left) Relationship between the full cache, base cache, and adapter output. (Right) Layer-wise pairwise cosine similarity of the base and full caches, measured on the same context across three agent pairs using 128 samples of 2k tokens from the HotpotQA dataset.",
+ "caption_source": "latex",
+ "abstract": "Role specialization in multi-LLM agent systems is often realized via multi-LoRA, where agents share a pretrained backbone and differ only by lightweight adapters. Despite sharing base model weights, each agent independently builds and stores its own KV cache for the same long, tool-augmented trajectories, incurring substantial memory and compute overhead. Existing KV cache sharing methods largely overlook this multi-LoRA setting. We observe that, cache differences across agents are dominated by adapter outputs, while activations from the shared pretrained backbone remain highly similar. Based on this observation, we propose LRAgent, a KV cache sharing framework for multi-LoRA agents. It decomposes the cache into two components, a shared base component derived from pretrained weights and an adapter-dependent component derived from LoRA weights. LRAgent reduces memory overhead by sharing the base component across agents and storing the adapter component in its inherent low-rank form. It also reduces computational overhead by sharing the low-rank cache, enabled by a shared-A multi-LoRA architecture. This avoids redundant computations for contexts that have already been processed by other agents. To efficiently reconstruct adapter contributions at runtime, we introduce Flash-LoRA-Attention, a kernel that reorders attention computation to avoid materializing the low-rank cache to full dimension. LRAgent achieves throughput and time-to-first-token latency close to fully shared caching, while preserving accuracy near the non-shared caching baseline across agentic question-answering benchmarks.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=ooRukY3zjQ",
+  "arxiv": "https://arxiv.org/abs/2602.01053",
+  "pdf": "https://raw.githubusercontent.com/mlresearch/v306/main/assets/jeon26b/jeon26b.pdf",
+  "proceedings": "https://proceedings.mlr.press/v306/jeon26b.html",
+  "virtual": "https://icml.cc/virtual/2026/poster/61572",
+  "code": "https://github.com/hjeon2k/LRAgent.git"
+ },
+ "license": "http://creativecommons.org/licenses/by/4.0/",
+ "img": "cc-by",
+ "image_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/images/icml26-5423.png",
+ "thumb_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/thumbs/icml26-5423.webp",
+ "figure_page": 3,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.8
+}

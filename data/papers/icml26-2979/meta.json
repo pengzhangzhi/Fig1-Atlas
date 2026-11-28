@@ -1,0 +1,58 @@
+{
+ "id": "icml26-2979",
+ "title": "LoSA: Locality Aware Sparse Attention in Diffusion Language Models",
+ "authors": [
+  "Haocheng Xi",
+  "Harman Singh",
+  "Yuezhou Hu",
+  "Coleman Hooper",
+  "Rishabh Tiwari",
+  "Aditya Tomar",
+  "Minjae Lee",
+  "Wonjun Kang",
+  "Michael Mahoney",
+  "Chenfeng Xu",
+  "Kurt Keutzer",
+  "Amir Gholaminejad"
+ ],
+ "venue": "ICML 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "Deep Learning->Large Language Models",
+ "role": "prior-vs-ours",
+ "role2": "concept",
+ "claim": "Naively sparse methods let each query pick different KV entries, so their union grows large; ours computes only for active queries and reuses cached results, shrinking it.",
+ "layout": "2 stacked panels, top-to-bottom, shared legend on top, KV union row at bottom",
+ "tags": [
+  "sparse-attention",
+  "kv-cache",
+  "efficiency",
+  "caching-reuse",
+  "diffusion-language-models"
+ ],
+ "style": [
+  "minimal",
+  "colorful",
+  "icon-heavy"
+ ],
+ "description": "A legend at the top maps colors to token types: blue query tokens, dotted-blue active tokens, red KV tokens, gray static tokens, yellow computed attention and light-gray saved computation. Below are two stacked grids. Panel (a), 'Naive Quest Sparse Attention', has a row of red KV-cache tokens above five blue query rows. Each query row has a few yellow cells marking the KV positions it selects. A bottom 'KV Union' row is almost fully yellow, labeled in red 'Large KV Union, Low Speedup'. Panel (b), 'LoSA (Ours)', repeats the same grid, but three query tokens are gray static tokens whose cells become light-gray saved computation. Only two dotted-blue active queries keep yellow cells. Its KV Union row is mostly empty or gray, labeled in green 'Small KV Union, High Speedup'. The eye goes first to the contrast between the yellow-heavy union row in (a) and the sparse one in (b).",
+ "caption": "Illustration of the KV-union effect: in block diffusion, each query selects a small set of prefix KV positions, but the effective cost is determined by the union across the block, inflating KV access. Our method computes sparse attention only for selected (active) tokens during denoising and reuses cached results for the others (static tokens), substantially reducing the size of the KV union and the latency.",
+ "caption_source": "latex",
+ "abstract": "Block-wise diffusion language models (DLMs) generate multiple tokens in any order, offering a promising alternative to the autoregressive decoding pipeline. However, they still remain bottlenecked by memory-bound attention in long-context scenarios. Naive sparse attention fails on DLMs due to a KV Inflation problem, where different queries select different prefix positions, making the union of accessed KV pages large. To address this, we observe that between consecutive denoising steps, only a small fraction of active tokens exhibit significant hidden-state changes, while the majority of stable tokens remain nearly constant. Based on this insight, we propose LOSA (Locality-aware Sparse Attention), which reuses cached prefix-attention results for stable tokens and applies sparse attention only to active tokens. This substantially shrinks the number of KV indices that must be loaded, yielding both higher speedup and higher accuracy. Across multiple block-wise DLMs and benchmarks, LOSA preserves near-dense accuracy while significantly improving efficiency, achieving up to +9 points in average accuracy at aggressive sparsity levels while maintaining 1.54x lower attention density. It also achieves up to 4.14x attention speedup on RTX A6000 GPUs, demonstrating the effectiveness of the proposed method.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=SMhHoUepeR",
+  "arxiv": "https://arxiv.org/abs/2604.12056",
+  "pdf": "https://raw.githubusercontent.com/mlresearch/v306/main/assets/xi26d/xi26d.pdf",
+  "proceedings": "https://proceedings.mlr.press/v306/xi26d.html",
+  "virtual": "https://icml.cc/virtual/2026/poster/63941",
+  "code": null
+ },
+ "license": "http://creativecommons.org/licenses/by/4.0/",
+ "img": "cc-by",
+ "image_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/images/icml26-2979.png",
+ "thumb_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/thumbs/icml26-2979.webp",
+ "figure_page": 0,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.9
+}

@@ -1,0 +1,53 @@
+{
+ "id": "neurips26-8482",
+ "title": "Reflection Anchors for Propagation-Aware Visual Retention in Long-Chain Multimodal Reasoning",
+ "authors": [
+  "Xuan Gong",
+  "HanBo Huang",
+  "Hao Zheng",
+  "Yiran Zhang",
+  "Wenbin Dai",
+  "Weishu Zhao",
+  "Shiyu Liang"
+ ],
+ "venue": "NeurIPS 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "Computer Vision->Vision Models & Multimodal",
+ "role": "pipeline",
+ "role2": null,
+ "claim": "Contrasting each token's distribution with a vision-masked pass yields a KL signal that rewards visual influence propagating through the reasoning chain.",
+ "layout": "2 rows, left-to-right, dashed token blocks linked by vertical KL nodes",
+ "tags": [
+  "policy-optimization",
+  "grpo",
+  "vision-masking",
+  "kl-divergence",
+  "visual-grounding"
+ ],
+ "style": [
+  "icon-heavy",
+  "colorful",
+  "math-heavy"
+ ],
+ "description": "A left-to-right pipeline in two rows. The top row takes an image and question into a Policy icon, which produces a rollout of tokens. Each token appears as a pair of boxes, o_{i,t} above its distribution P_{i,t}. High-entropy anchor tokens are orange and low-entropy ones are grey. A Vision Information box feeds arrows down into the anchor tokens. The bottom row reuses the policy (dashed arrow) on the question and rollout text. It outputs vision-masked tokens P' in yellow, with hatched attention-mask boxes. Peach D_KL nodes connect the two rows vertically and are joined by a dashed horizontal line. They feed a boxed formula, 'Token Visual contrastive KL'. On the right, Answer Verify Group Estimation produces an advantage A_i. A plus node adds it to the KL term and feeds Policy Update, drawn as a robot with a flame. A legend sits at top right.",
+ "caption": "\\smallOverview of RAPO. Given an input, the policy generates the $i$-th reasoning rollout $\\{o_{i,t}, P_{i,t}\\}_{t=1}^T$, where $o_{i,t}$ is the $t$-th generated token and $P_{i,t}$ is the corresponding logit-induced next-token distribution. A chain-masked forward pass produces vision-masked distributions $\\{P'_{i,t}\\}_{t=1}^T$. RAPO targets high-entropy reflection anchors and uses the KL divergence between $P_{i,t}$ and $P_{i,t}'$ to encourage visual influence propagation across subsequent tokens, encouraging stronger visual-dependence along reasoning.",
+ "caption_source": "latex",
+ "abstract": "Long chain-of-thought (CoT) reasoning improves large vision--language models, but visual information often fades during generation, limiting long-horizon multimodal reasoning. Existing methods either re-inject vision at inference or train policies for stronger grounding, but where to intervene relies on perception heuristics rather than principled gain analysis, and how local visual influence propagates remains implicit. We study this problem from an information-theoretic standpoint and derive a lower bound on the downstream visual gain of a one-step intervention, which suggests two factors: local branching room (token entropy) and downstream visual propagation potential (suffix divergence from a vision-marginalized reference). Guided by this analysis, we propose reflection-anchor policy optimization (RAPO), a GRPO-based policy optimization method that selects high-entropy reflection anchors and optimizes a chain-masked finite-window KL surrogate for downstream visual dependence. Experiments on reasoning-intensive and general-domain benchmarks show that RAPO delivers substantial gains over strong baselines across multiple LVLM backbones. Mechanism analyses further indicate that reflection anchors are enriched for visually sensitive decision points and that RAPO increases contrastive visual-dependence signals along generated trajectories.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=wXHjf6ebtj",
+  "arxiv": "https://arxiv.org/abs/2605.09614",
+  "pdf": "https://arxiv.org/pdf/2605.09614",
+  "proceedings": null,
+  "virtual": "https://neurips.cc/virtual/2026/poster/148600",
+  "code": "https://coder-gx.github.io/RAPO/"
+ },
+ "license": "http://arxiv.org/licenses/nonexclusive-distrib/1.0/",
+ "img": "none",
+ "image_url": null,
+ "thumb_url": null,
+ "figure_page": 1,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.93
+}

@@ -1,0 +1,55 @@
+{
+ "id": "neurips26-7658",
+ "title": "AgriManager: A Framework and Benchmark for LLM-RL Generalization in Agricultural Management",
+ "authors": [
+  "Chi Gui",
+  "Junwen Zheng",
+  "Ritwik Nigam",
+  "Qianlan Yang",
+  "Meagan Lang",
+  "Vardhan Dongre",
+  "Jeremiah Barr",
+  "Yu-Xiong Wang",
+  "Vikram Adve"
+ ],
+ "venue": "NeurIPS 2026",
+ "tier": "poster",
+ "track": "Evaluations_and_Datasets_Track",
+ "topic": "Reinforcement Learning->Deep RL",
+ "role": "pipeline",
+ "role2": "overview-framework",
+ "claim": "A unified interface wraps heterogeneous simulators so numeric states and actions become text an LLM policy can act on and be trained on via RL.",
+ "layout": "3 columns, left-to-right, arrows looping through central vertical interface bar",
+ "tags": [
+  "llm-rl",
+  "unified-interface",
+  "simulator-adapters",
+  "text-observation",
+  "agriculture"
+ ],
+ "style": [
+  "icon-heavy",
+  "colorful",
+  "text-heavy"
+ ],
+ "description": "A wide three-zone diagram. On the left, a grey panel holds a cartoon of corn plants growing in soil with 'water' and 'nutrition' labels. Below it, three rows pair crop models (DSSAT, WOFOST, Cycles) with their gym wrappers (gym-DSSAT, WOFOST-Gym, Cycles-Gym) through double-headed arrows. In the center, a tall vertical bar labeled 'Unified Env Interface' sits between orange boxes. Numerical State [3.52, 0.255 ...] flows right and becomes Textual State: s, a natural-language sentence. Textual Action: a (a Think/Answer response) flows back and becomes Numerical Action [2.0]. A Numerical Reward box reads 'yield - cost'. On the right, a grey panel holds an 'AI' brain icon labeled Agricultural Decision Model. An upward 'Policy Update' arrow runs from stacked s, a, r rollout cards. Peach and orange boxes with bold black arrows.",
+ "caption": "The AgriManager framework architecture. The \"Agri-Gyms\" layer wraps the three crop simulators; the environment adapters and Unified Env Interface translate the numerical state-action representation into the text consumed by the LLM decision model; rollouts $(s, a, r)$ drive policy updates.",
+ "caption_source": "latex",
+ "abstract": "Agricultural management is heterogeneous along two axes. The first is distributional shift within a fixed task interface: weather, crops, and prices vary across years and locations while sensors, actions, and objective stay fixed. The second is structural shift across interfaces: different farms expose different observed variables, available actions, and management objectives. We formalize the second axis as schema shift: variation in the policy-facing schema $Î£= (Î£_O, Î£_A, Î£_R)$ between training and deployment. We test whether LLM-RL generalizes across both axes with AgriManager, to our knowledge the first framework that trains LLM policies with RL across multiple process-based crop simulators, unifying DSSAT, WOFOST, and Cycles. We design a three-tier generalization ladder: Tier 1 within-schema distributional shift, Tier 2 single-axis schema shift along $Î£_O / Î£_A / Î£_R$, Tier 3 compositional schema shift across simulators, all scored on a frozen held-out test suite with three training seeds per method. Within fixed schemas, Qwen3-4B trained by RL with explicit reasoning exceeds neural-network PPO trained with the same interaction budget; without reasoning, training stalls near no-action where the reward penalizes input use. Under single-axis schema shift, $Î£_O$ transfer needs decision-critical state, $Î£_A$ results are consistent with joint action-menu coverage, and with reasoning a policy trained on yield alone transfers to unseen objectives. Under compositional schema shift, single-source training mostly hurts zero-shot transfer across simulators, and a unified policy trained only on other combinations of the same components recovers about 86% of the gain of a specialist trained on the target combination on DSSAT and stays below the specialists on the WOFOST and Cycles profit targets. Project page: https://agrimanager-framework.github.io",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=qpBXkIWHNU",
+  "arxiv": "https://arxiv.org/abs/2611.28844",
+  "pdf": "https://arxiv.org/pdf/2611.28844",
+  "proceedings": null,
+  "virtual": "https://neurips.cc/virtual/2026/poster/139010",
+  "code": "https://agrimanager-framework.github.io/"
+ },
+ "license": "http://creativecommons.org/licenses/by/4.0/",
+ "img": "cc-by",
+ "image_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/images/neurips26-7658.png",
+ "thumb_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/thumbs/neurips26-7658.webp",
+ "figure_page": 2,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.8
+}

@@ -1,0 +1,49 @@
+{
+ "id": "iclr26-4500",
+ "title": "BA-LoRA: Bias-Alleviating Low-Rank Adaptation to Mitigate Catastrophic Inheritance in Large Language Models",
+ "authors": [
+  "Yupeng Chang",
+  "Yi Chang",
+  "Yuan Wu"
+ ],
+ "venue": "ICLR 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "General Machine Learning->Transfer, Multitask and Meta-learning",
+ "role": "prior-vs-ours",
+ "role2": "pipeline",
+ "claim": "Standard fine-tuning updates all weights or adds a plain low-rank adapter; ours adds SVD-based initialization plus targeted regularizers on the adapter.",
+ "layout": "3 panels, left-to-right, shared input/output bars, dashed box and purple loss column",
+ "tags": [
+  "low-rank-adaptation",
+  "parameter-efficient-fine-tuning",
+  "regularization",
+  "svd-initialization",
+  "architecture-comparison"
+ ],
+ "style": [
+  "minimal",
+  "colorful",
+  "math-heavy"
+ ],
+ "description": "Three side-by-side architecture diagrams share the same layout: a yellow input bar x at the bottom, a yellow output bar y at the top, and a weight block in between. Panel (a) Full Fine-tuning has one large orange Pretrained Matrix W in R^{m×n}. Panel (b) LoRA has a blue frozen Pretrained Matrix next to two orange trapezoids, B=0 and A~N(0,σ²), with rank r marked. Their output merges with the frozen path at a circled plus. Panel (c) BA-LoRA, labeled ours, has a blue Residual Matrix and orange trapezoids holding SVD factors S^{1/2}V^T and U S^{1/2}. A dashed rounded box encloses these trapezoids. A tall purple column on the right lists L_task + L_CR + L_DR + L_SVDR, labeled Training Objective and linked by dashed arrows. Blue marks frozen parameters and orange marks trainable ones. The eye goes first to the purple loss box and the dashed adapter in panel (c).",
+ "caption": "Comparison of three fine-tuning frameworks: (a) Full Fine-tuning updates the entire matrix $W$; (b) LoRA trains a low-rank adapter while keeping $W$ frozen; and (c) our proposed BA-LoRA. Blue and orange modules denote frozen and trainable parameters, respectively. BA-LoRA initializes its adapter and residual matrix ($W^{\\mathrm{res}}$) using the SVD of $W$ following PiSSA [ref]. It augments the task loss ($\\mathcal{L}_{task}$) with three regularizers, shown in purple, to mitigate Catastrophic Inheritance by preserving knowledge, promoting diversity, and emphasizing dominant data patterns.",
+ "caption_source": "latex",
+ "abstract": "Parameter-efficient fine-tuning (PEFT) has become a de facto standard for adapting large language models (LLMs). However, we identify a critical vulnerability within popular low-rank adaptation methods such as LoRA: they can exacerbate \"Catastrophic Inheritance\" - the unchecked propagation of biases, noise, and data imbalances from pre-training. This phenomenon can degrade model robustness and fairness, undermining the benefits of efficient adaptation. To address this, we introduce Bias-Alleviating Low-Rank Adaptation (BA-LoRA). Our approach is founded on a principled decomposition of Catastrophic Inheritance into three core challenges: Knowledge Drift, Representation Collapse, and Overfitting to Noise. BA-LoRA systematically mitigates these issues by incorporating a trio of targeted regularizers: consistency, diversity, and an SVD-based term, designed to preserve core knowledge, promote representational richness, and encourage robust, low-rank output representations, respectively. We conduct comprehensive evaluations on a suite of Natural Language Generation (NLG) and Natural Language Understanding (NLU) tasks using diverse, prominent open-source language models (e.g., LLaMA-2-7B and DeBERTa-v3-base). Our results show that BA-LoRA not only outperforms state-of-the-art LoRA variants in terms of performance and stability, but also demonstrates superior robustness and bias mitigation on targeted evaluations. These results provide evidence that BA-LoRA can counteract the adverse effects of Catastrophic Inheritance.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=q0X9SiXiRO",
+  "arxiv": "https://arxiv.org/abs/2408.04556",
+  "pdf": "https://proceedings.iclr.cc/paper_files/paper/2026/file/fd8872fcba4ba87312cdfe5ebba91ca9-Paper-Conference.pdf",
+  "proceedings": "https://proceedings.iclr.cc/paper_files/paper/2026/hash/fd8872fcba4ba87312cdfe5ebba91ca9-Abstract-Conference.html",
+  "virtual": "https://iclr.cc/virtual/2026/poster/10007287",
+  "code": null
+ },
+ "license": "http://arxiv.org/licenses/nonexclusive-distrib/1.0/",
+ "img": "none",
+ "image_url": null,
+ "thumb_url": null,
+ "figure_page": 1,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.6
+}

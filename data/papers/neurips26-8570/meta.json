@@ -1,0 +1,54 @@
+{
+ "id": "neurips26-8570",
+ "title": "Diffusion Masked Pretraining for Dynamic Point Cloud",
+ "authors": [
+  "Zhuoyue Zhang",
+  "Yiding Sun",
+  "Chaowei Fang",
+  "Haozhe Cheng",
+  "Jian Liu",
+  "Ajmal Mian",
+  "Jihua Zhu"
+ ],
+ "venue": "NeurIPS 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "Computer Vision->Classification and Understanding",
+ "role": "prior-vs-ours",
+ "role2": "analysis-finding",
+ "claim": "Deterministic and leaky baselines collapse multimodal targets and expose ground truth; our probabilistic, noise-based design avoids both and reconstructs faithfully.",
+ "layout": "4 panels; left-to-right; (a)(b) contrast cartoons, (c)(d) qualitative results; dashed dividers",
+ "tags": [
+  "diffusion",
+  "self-supervised-pretraining",
+  "multimodal-distribution",
+  "information-leakage",
+  "point-cloud"
+ ],
+ "style": [
+  "colorful",
+  "icon-heavy",
+  "photo/real data",
+  "text-heavy"
+ ],
+ "description": "Four-panel motivation figure separated by dashed lines. Panel (a), left: a strip of body-mesh frames labeled 'Spatiotemporal Context' branches into a green 'Deterministic Model' and a blue 'Probabilistic Model'. The deterministic branch ('Collapsed to Mean') ends in a grey averaged arm marked 'Low-Probability Region' with a sad face. The probabilistic branch ('Conditional Distribution') ends in several colored arm poses P1–P4 marked 'High-Probability Region' with a smiley. Panel (b), top middle: masked point tubes with noise ε^m. The left path injects ground-truth positions Pos_m_gt into a Position Embedding (sad face, leakage). The right path denoises to Pos_m_pre (smiley, leakage-free). Panel (c), bottom middle: blue predicted and red ground-truth displacement streaks at timesteps T=100 to 1900, with green boxes. Panel (d), right: a 4-column grid of Input (grey), Pred (blue) and GT (red) point-cloud human poses.",
+ "caption": "Motivation of DiMP. (a) Deterministic models collapse multimodal motion distributions to a single conditional mean, which lies in a low-probability region when trajectories are multimodal. DiMP targets the full conditional distribution under a variational surrogate. (b) Directly injecting ground-truth masked tube center coordinates as decoder positional embeddings causes positional leakage, whereas DiMP applies forward diffusion noise to masked centers and replaces ground-truth positions with denoised predictions, yielding a leakage-free positional embedding. (c) Qualitative comparisons of denoised inter-frame displacement predictions against the ground truth show that DiMP recovers motion patterns faithfully across representative motion diffusion timesteps $t_i^M$. Detailed analysis of why the model performs well at small and large $t$ is provided in the Appendix [ref]. (d) Qualitative reconstruction results show that DiMP recovers the overall human pose and preserves local geometric structures with high fidelity, yielding reconstructions that closely match the ground truth.",
+ "caption_source": "latex",
+ "abstract": "Dynamic point cloud pretraining is still dominated by masked reconstruction objectives. However, these objectives inherit two key limitations. Existing methods inject ground-truth tube centers as decoder positional embeddings, causing spatio-temporal positional leakage. Moreover, they supervise inter-frame motion with deterministic proxy targets that systematically discard distributional structure by collapsing multimodal trajectory uncertainty into conditional means. To address these limitations, we propose Diffusion Masked Pretraining (DiMP), a unified self-supervised framework for dynamic point clouds. DiMP introduces diffusion modeling into both positional inference and motion learning. It first applies forward diffusion noise only to masked tube centers, then predicts clean centers from visible spatio-temporal context. This removes positional leakage while preserving visible coordinates as clean temporal anchors. DiMP also reformulates point-wise inter-frame displacement supervision as a DDPM noise-prediction objective conditioned on decoded representations. This design drives the encoder to target the full conditional distribution of plausible motions under a variational surrogate, rather than collapsing to a single deterministic estimate. Extensive experiments demonstrate that DiMP consistently improves downstream accuracy over the backbone alone, with absolute gains of 11.21\\% on offline action segmentation and 13.65\\% under causally constrained online inference. Code is available at https://github.com/InitalZ/DiMP.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=xFR59J1lic",
+  "arxiv": "https://arxiv.org/abs/2605.03639",
+  "pdf": "https://arxiv.org/pdf/2605.03639",
+  "proceedings": null,
+  "virtual": "https://neurips.cc/virtual/2026/poster/148526",
+  "code": "https://github.com/InitalZ/DiMP"
+ },
+ "license": "http://creativecommons.org/licenses/by/4.0/",
+ "img": "cc-by",
+ "image_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/images/neurips26-8570.png",
+ "thumb_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/thumbs/neurips26-8570.webp",
+ "figure_page": 1,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.6
+}

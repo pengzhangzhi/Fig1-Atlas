@@ -1,0 +1,50 @@
+{
+ "id": "neurips26-4167",
+ "title": "MaxIM: Maximally Informative Incremental Summarization via Reinforcement Learning",
+ "authors": [
+  "Jihwan Jeong",
+  "Guy Tennenholtz",
+  "Yinlam Chow",
+  "Chih-wei Hsu",
+  "Craig Boutilier"
+ ],
+ "venue": "NeurIPS 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "Applications->Language, Speech and Dialog",
+ "role": "pipeline",
+ "role2": null,
+ "claim": "A policy compresses history into bounded memory at inference, while an asymmetric critic supplies dense shaping rewards only during training.",
+ "layout": "1 panel, left-to-right loop, solid inference vs dotted training arrows",
+ "tags": [
+  "incremental-summarization",
+  "reward-shaping",
+  "actor-critic",
+  "memory",
+  "credit-assignment"
+ ],
+ "style": [
+  "colorful",
+  "minimal"
+ ],
+ "description": "A single flow diagram of colored rounded boxes linked by arrows. Solid black arrows trace the inference loop. The Environment box (white) feeds an Observation o_t box, which joins the previous summary z_{t-1} at a junction dot and feeds the blue Actor π_θ. The actor outputs z_t, which goes into the green Bounded Memory box. Memory feeds the light-blue Frozen Agent, which acts back on the Environment. Dotted lines show the training path. A peach Parameterized Critic q_φ takes z_t, the gray Oracle Context Y_t and the history. It sends blue dotted arrows labeled recursive consistency and predictive sufficiency back to the actor. A large arc carries the sparse task reward R_task from the Environment to the actor. Orange reward tags and yellow summary tags stand out against the boxes. A legend at top right distinguishes training (dotted) from inference (solid).",
+ "caption": "The MaxIM framework. Streaming Inference (Solid Lines): A trained actor policy incrementally compresses prior summaries $z_{t-1}$ and incoming observations $o_t$ into a bounded memory $z_t$. This memory, alongside recent observations, provides the context for a frozen downstream agent interacting with the environment with zero critic calls at test time. Asymmetric Training (Dotted Lines): During training, a pretrained critic $q_\\phi$ evaluates the actor's summary using oracle context $Y_t$ and the immediate history $(z_{t-1}, o_t)$. It computes dense, information-theoretic shaping rewards (predictive sufficiency and recursive consistency) that step-wise guide the policy, bypassing the credit assignment bottleneck of the sparse terminal task reward $R_{task}$.",
+ "caption_source": "latex",
+ "abstract": "AI systems must often maintain bounded memory of unbounded interaction histories. However, optimizing the memory representation, and its updates, for downstream task utility is difficult for standard reinforcement learning (RL) due to severe credit assignment bottlenecks induced by sparse, delayed rewards. We introduce MaxIM (Maximally Informative Incremental Memory), a framework that formulates incremental summarization as a capacity-constrained, information-theoretic reward-shaping problem. Grounded in value suboptimality bounds, we show that bounding sequential information loss motivates maximizing the predictive log-likelihood of future, task-relevant targets, a variational lower bound on predictive sufficiency. We introduce a recursive consistency condition to ensure summaries are grounded by maximizing mutual information (MI) with the observed history. We mitigate credit assignment issues with a parameterized asymmetric critic that computes step-wise variational MI bounds for dense reward shaping. Empirical evaluation on long-horizon scientific reading and multi-turn dialogue benchmarks shows that MaxIM outperforms RL, supervised fine-tuning, and prompt-focused baselines on factual grounding, comprehensive autorater metrics, and downstream task utility across strict token budgets and extended horizons, without the need for expensive human preference labels.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=T6lIK4rfd3",
+  "arxiv": "https://arxiv.org/abs/2611.12825",
+  "pdf": "https://arxiv.org/pdf/2611.12825",
+  "proceedings": null,
+  "virtual": "https://neurips.cc/virtual/2026/poster/152443",
+  "code": null
+ },
+ "license": "http://arxiv.org/licenses/nonexclusive-distrib/1.0/",
+ "img": "none",
+ "image_url": null,
+ "thumb_url": null,
+ "figure_page": 1,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.9
+}

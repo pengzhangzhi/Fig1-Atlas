@@ -1,0 +1,55 @@
+{
+ "id": "neurips26-1051",
+ "title": "TokenPB: Enabling VLA Action Self-Verification via VLM Token Probability Bucketing",
+ "authors": [
+  "Chen Zhao",
+  "Zhuoran Wang",
+  "Haoyang Li",
+  "Guanlin Li",
+  "Shifeng Bao",
+  "Youhe Feng",
+  "Yang Li",
+  "Jie Tang",
+  "Jing Zhang"
+ ],
+ "venue": "NeurIPS 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "Applications->Robotics",
+ "role": "analysis-finding",
+ "role2": "teaser-result",
+ "claim": "Adding an auxiliary objective alongside the main loss speeds up optimization and gives higher downstream success at every training checkpoint.",
+ "layout": "2 panels side-by-side, left loss curves, right success-rate curves with shaded bands",
+ "tags": [
+  "co-training",
+  "auxiliary-loss",
+  "convergence",
+  "training-dynamics",
+  "ablation"
+ ],
+ "style": [
+  "plot",
+  "colorful",
+  "minimal"
+ ],
+ "description": "Two line plots sit side by side. The left plot shows flow-matching loss (log-like y-axis, 0 to 1.2) against training step (0 to 30k). A blue noisy curve for L_fm only and an orange curve for the joint L_fm + β L_bucket (TokenPB co-training) both fall steeply. The orange curve drops faster and stays lower, at about 0.01–0.02 against about 0.04 for blue. A legend sits at the top. The right plot shows success rate (%) against step, with three curves and shaded variance bands. A navy curve with circles is the joint-trained model evaluated with TokenPB at M=16. A gold curve with squares is the joint-trained model evaluated single-sample. A purple curve with triangles is the L_fm-only model evaluated single-sample. The navy curve is highest, gold is in the middle, and purple is lowest. All curves converge near 95–100% at 30k. The legend is at the lower right.",
+ "caption": "Bucket co-training improves optimization and success. Left: adding $\\mathcal{L}_{bucket}$ alongside the flow-matching loss $\\mathcal{L}_{fm}$ accelerates convergence (lower $\\mathcal{L}_{fm}$ at the same step). Right: at every checkpoint, joint training ($\\mathcal{L}_{fm}+\\beta\\,\\mathcal{L}_{bucket}$) yields higher downstream success rates than the $\\mathcal{L}_{fm}$-only baseline.",
+ "caption_source": "latex",
+ "abstract": "Test-time sampling can improve Vision-Language-Action (VLA) policies, but only if the model can efficiently select a good action from multiple candidates. Prior work often relies on separately trained external verifiers, adding extra models and inference overhead. We propose \\textbf{Token Probability Bucketing (TokenPB)}, a self-verification approach that discretizes continuous action chunks into bucket tokens and co-trains a single VLA checkpoint with a joint objective: a flow-matching loss for action generation and an auxiliary bucket loss $\\mathcal{L}_{\\text{bucket}}$ that teaches the VLM backbone to model observation-conditioned distributions over bucket-token sequences. At inference, TokenPB samples $M$ candidates, scores each via teacher-forced evaluation under the learned distribution, and selects the best---enabling efficient batched scoring with observation-prefix KV-cache reuse. We provide theory connecting the training objective to a monotonic ranking property and bounds on expected selection regret that separate candidate-set effects from calibration. Across multiple backbones and benchmarks, TokenPB yields consistent success-rate improvements over single-sample inference from the same checkpoint (+2.7 in simulation, +17.1 in real-world, +16.4 under out-of-distribution shifts), and further improves over external-verifier baselines under the same sampling budget. The code is publicly available at https://github.com/RUCKBReasoning/TokenPB.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=7Pyltnw11B",
+  "arxiv": "https://arxiv.org/abs/2603.18091",
+  "pdf": "https://arxiv.org/pdf/2603.18091",
+  "proceedings": null,
+  "virtual": "https://neurips.cc/virtual/2026/poster/155216",
+  "code": "https://github.com/RUCKBReasoning/TokenPB"
+ },
+ "license": "http://creativecommons.org/licenses/by/4.0/",
+ "img": "cc-by",
+ "image_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/images/neurips26-1051.png",
+ "thumb_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/thumbs/neurips26-1051.webp",
+ "figure_page": 1,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.55
+}

@@ -1,0 +1,50 @@
+{
+ "id": "iclr26-0148",
+ "title": "ParoQuant: Pairwise Rotation Quantization for Efficient Reasoning LLM Inference",
+ "authors": [
+  "Yesheng Liang",
+  "Haisheng Chen",
+  "Song Han",
+  "Zhijian Liu"
+ ],
+ "venue": "ICLR 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "Deep Learning->Generative Models and Autoencoders",
+ "role": "analysis-finding",
+ "role2": "before-after",
+ "claim": "A learned transform removes outlier channels and pulls values from different channels together, making the data easier to quantize.",
+ "layout": "4 panels in two pairs, original vs transformed, shared colorbar",
+ "tags": [
+  "quantization",
+  "outlier-suppression",
+  "rotation",
+  "weight-distribution",
+  "before-after-comparison"
+ ],
+ "style": [
+  "plot",
+  "colorful",
+  "minimal"
+ ],
+ "description": "Two paired comparisons, each labeled Original and Transformed. On the left are two heatmaps of weight magnitude, with channels on the y-axis and tokens on the x-axis. They use a viridis colorbar on a log scale from 1e-6 to 1e-2. The Original heatmap shows distinct horizontal stripes, which are outlier channels. The Transformed heatmap looks much more uniform. On the right are two scatter plots of Channel 1630 (x) against Channel 1573 (y). In the Original plot, red points lie in a flat horizontal band along the x-axis. In the Transformed plot, blue points cluster along the diagonal x=y line inside a larger gray box. Gray crosshairs mark the axes. The eye goes first to the colorful heatmaps, then to the scatter contrast.",
+ "caption": "Effect of optimized channel-wise scaling and rotations. Left: Magnitude of the k\\_proj weight in the first layer of \\llama-3-8B [ref] before and after the transform. The outlier channels have been eliminated effectively. Right: Scatter of two channels of the weight matrix before and after the transform. In addition to scaling, which concentrates values of the entire channel, rotations draw values from different channels closer at each token (clustering around the $x=y$ line).",
+ "caption_source": "latex",
+ "abstract": "Post-training quantization (PTQ) compresses the weights and activations of large language models (LLMs) into low-precision representations to reduce memory footprint and accelerate inference. However, the presence of outliers in weights and activations often leads to large quantization errors and severe accuracy degradation, especially in recent reasoning LLMs where errors accumulate across long chains of thought. Existing PTQ methods either fail to sufficiently suppress outliers or introduce significant overhead during inference. In this paper, we propose Pairwise Rotation Quantization (ParoQuant), a PTQ method that combines hardware-efficient and optimizable independent Givens rotations with channel-wise scaling to even out the magnitudes across channels and narrow the dynamic range within each quantization group, effectively addressing the outlier issue. We further co-design the inference kernel to fully exploit GPU parallelism and keep the rotations and scaling lightweight at runtime. Under weight-only quantization, ParoQuant achieves an average 2.4% accuracy improvement over AWQ on reasoning tasks, with less than 10% overhead. ParoQuant also matches the accuracy of state-of-the-art weight-activation quantization methods. This paves the way for more efficient and accurate deployment of reasoning LLMs.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=1USeVjsKau",
+  "arxiv": "https://arxiv.org/abs/2511.10645",
+  "pdf": "https://proceedings.iclr.cc/paper_files/paper/2026/file/7caf9d251b546bc78078b35b4a6f3b7e-Paper-Conference.pdf",
+  "proceedings": "https://proceedings.iclr.cc/paper_files/paper/2026/hash/7caf9d251b546bc78078b35b4a6f3b7e-Abstract-Conference.html",
+  "virtual": "https://iclr.cc/virtual/2026/poster/10011824",
+  "code": "https://paroquant.z-lab.ai"
+ },
+ "license": "http://arxiv.org/licenses/nonexclusive-distrib/1.0/",
+ "img": "none",
+ "image_url": null,
+ "thumb_url": null,
+ "figure_page": 1,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.5
+}

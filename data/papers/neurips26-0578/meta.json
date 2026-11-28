@@ -1,0 +1,53 @@
+{
+ "id": "neurips26-0578",
+ "title": "TrackCraft3R: Repurposing Video Diffusion Transformers for Dense 3D Tracking",
+ "authors": [
+  "Jisu Nam",
+  "Jahyeok Koo",
+  "Soowon Son",
+  "Jaewoo Jung",
+  "Honggyu An",
+  "Junhwa Hur",
+  "Seungryong Kim"
+ ],
+ "venue": "NeurIPS 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": null,
+ "role": "pipeline",
+ "role2": null,
+ "claim": "Reusing a pretrained generative backbone for reference-anchored prediction by feeding geometry and replicated reference queries with aligned positional timestamps in one pass.",
+ "layout": "Single wide panel, left-to-right flow, orange RoPE timestamp strip between inputs and DiT",
+ "tags": [
+  "feed-forward",
+  "video-diffusion",
+  "repurposing-pretrained",
+  "dense-tracking",
+  "positional-encoding"
+ ],
+ "style": [
+  "colorful",
+  "photo/real data",
+  "icon-heavy"
+ ],
+ "description": "A single wide left-to-right pipeline diagram. On the left, a monocular video (stacked dog frames I_0..I_F) and a reconstruction pointmap (rainbow-colored frames) each pass through separate VAE encoders (E^rgb, E^pm, drawn as gray trapezoids). These produce a grid of dashed latent tokens: a light-blue top group of track latents (z^rgb_0, z^pm_0 repeated across frames) and a lower group of geometry latents (z^rgb_j, z^pm_j). An orange strip of timestamps t_0..t_F labeled 'Temporal RoPE Alignment' sits between the two groups, with arrows pointing to each. A tall green 'Video DiT' block processes the tokens. Outputs are yellow residual-track tokens and gray visibility tokens, decoded by D^track and D^vis into residual track and visibility maps. A curved arrow '+P_0(t_0)' leads to the final 'Tracking Pointmap' overlaid with rainbow trajectories on the dog photo.",
+ "caption": "Overall architecture. Each RGB frame $I_j$ and its reconstruction pointmap $P_j(t_j)$ are encoded into RGB and pointmap latents using separate VAE encoders. A geometry latent is formed by channel-wise concatenation, and a track latent replicates the first-frame geometry latent across all frames. The latents are concatenated along the token dimension and processed by a video DiT, where RoPE assigns the same temporal index to each frame. The track latent outputs are decoded using separate VAE decoders into a residual track $\\hat{\\Delta}_j$ and visibility $\\hat{o}_j$.",
+ "caption_source": "latex",
+ "abstract": "Dense 3D tracking from monocular video is fundamental to dynamic scene understanding. While recent 3D foundation models provide reliable per-frame geometry, recovering object motion in this geometry remains challenging and benefits from strong motion priors learned from real-world videos. Existing 3D trackers either follow iterative paradigms trained from scratch on synthetic data or fine-tune 3D reconstruction models learned from static multi-view images, both lacking real-world motion priors. Pre-trained video diffusion transformers (video DiTs) offer rich spatio-temporal priors from internet-scale videos, making them a promising foundation for 3D tracking. However, their frame-anchored formulation, which generates each frame's content, is fundamentally mismatched with reference-anchored dense 3D tracking, which must follow the same physical points from a reference frame across time. We present TrackCraft3R, the first method to repurpose a video DiT as a feed-forward dense 3D tracker. Given a monocular video and its frame-anchored reconstruction pointmap, TrackCraft3R predicts a reference-anchored tracking pointmap that follows every pixel of the first frame across time in a single forward pass, along with its visibility. We achieve this through two designs: (i) a dual-latent representation that uses per-frame geometry latents and reference-anchored track latents as dense queries, and (ii) temporal RoPE alignment, which specifies the target timestamp of each track latent. Together, these designs convert the per-frame generative paradigm of video DiTs into a reference-anchored tracking formulation with LoRA fine-tuning. TrackCraft3R achieves state-of-the-art performance on standard sparse and dense 3D tracking benchmarks, while running 1.3x faster and using 4.6x less peak memory than the strongest prior method. We further demonstrate robustness to large motions and long videos.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=46qtUc033H",
+  "arxiv": "https://arxiv.org/abs/2605.12587",
+  "pdf": "https://arxiv.org/pdf/2605.12587",
+  "proceedings": null,
+  "virtual": "https://neurips.cc/virtual/2026/poster/155634",
+  "code": null
+ },
+ "license": "http://creativecommons.org/licenses/by/4.0/",
+ "img": "cc-by",
+ "image_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/images/neurips26-0578.png",
+ "thumb_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/thumbs/neurips26-0578.webp",
+ "figure_page": 3,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.95
+}

@@ -1,0 +1,50 @@
+{
+ "id": "neurips26-3012",
+ "title": "Not All Layers Are Equal in Image-to-Video Transfer",
+ "authors": [
+  "Thinesh Thiyakesan Ponbagavathi",
+  "Constantin Seibold",
+  "Alina Roitberg"
+ ],
+ "venue": "NeurIPS 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "Computer Vision->Classification and Understanding",
+ "role": "prior-vs-ours",
+ "role2": null,
+ "claim": "Prior methods apply the same adapter at every layer; ours places spatial then temporal adapters at a backbone-specific boundary.",
+ "layout": "2 panels split by dashed line; layer-block strips, color-coded spatial vs temporal",
+ "tags": [
+  "adapter-placement",
+  "parameter-efficient",
+  "layer-wise",
+  "backbone-specific",
+  "uniform-vs-adaptive"
+ ],
+ "style": [
+  "minimal",
+  "colorful"
+ ],
+ "description": "The figure has two panels divided by a vertical dashed line. The left panel, headed 'Uniform Placement (standard)', shows a single row of 12 identical blue blocks labeled 'Temporal-focused (1-12)', meaning the same image-to-video PEFT adapter is used across backbones. The right panel, headed 'STRAP Adapter Placement', has a central rounded box labeled STRAP^opt with two purple dashed arrows pointing to two layer strips. One strip is for DINOv2 (vision-only) and the other is for CLIP (vision-language). Each strip has red spatial blocks at the start (layers 1-6 for DINOv2, 1-4 for CLIP) and blue temporal-focused blocks after (7-12 and 5-12). The eye goes first to the contrast between the all-blue row and the red-to-blue strips. The top of the image is blank whitespace.",
+ "caption": "Existing image-to-video adapters place the same temporal adapter across all layers. Strap instead uses a sensitivity-derived, backbone-specific boundary to place spatial adapters in early layers and temporal adapters in later layers.",
+ "caption_source": "latex",
+ "abstract": "Parameter-efficient image-to-video transfer adapts frozen image foundation models to video via lightweight trainable adapters. Existing methods insert the same adapter at every transformer layer, implicitly assuming all layers require equal temporal modeling. A layer-wise sensitivity analysis across four video-native model families and two pretraining paradigms reveals that this assumption is wrong: temporal sensitivity increases with depth, and the pretraining paradigm determines its growth profile. Vision-only models exhibit a gradual rise, while vision-language models show early suppression followed by late recovery. This finding motivates STRAP, a training-free adapter placement rule that derives a spatial-to-temporal transition boundary from a paradigm-matched video model. Spatial adapters are assigned before this boundary and temporal adapters after it, without modifying the adapter architecture itself. On four fine-grained action recognition benchmarks, STRAP improves accuracy by up to 11.8% over uniform placement, reduces trainable parameters by 29 to 48%, and lowers inference time by up to 10%. On standard benchmarks, it matches accuracy with fewer parameters. Code is available at https://github.com/th-nesh/STRAP.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=L509wfhr0h",
+  "arxiv": "https://arxiv.org/abs/2611.11147",
+  "pdf": "https://arxiv.org/pdf/2611.11147",
+  "proceedings": null,
+  "virtual": "https://neurips.cc/virtual/2026/poster/153476",
+  "code": null
+ },
+ "license": "http://creativecommons.org/licenses/by/4.0/",
+ "img": "cc-by",
+ "image_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/images/neurips26-3012.png",
+ "thumb_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/thumbs/neurips26-3012.webp",
+ "figure_page": 0,
+ "qc_flags": [
+  "bad-crop"
+ ],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.9
+}

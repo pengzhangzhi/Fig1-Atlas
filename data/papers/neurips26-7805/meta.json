@@ -1,0 +1,51 @@
+{
+ "id": "neurips26-7805",
+ "title": "TabFORGE: A Tabular Foundation Model for Generative Modelling",
+ "authors": [
+  "Xiangjian Jiang",
+  "Mingxuan Liu",
+  "Nikola Simidjievski",
+  "Tassilo Klein",
+  "Mateja Jamnik"
+ ],
+ "venue": "NeurIPS 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "Deep Learning->Generative Models and Autoencoders",
+ "role": "pipeline",
+ "role2": null,
+ "claim": "A frozen structure-aware encoder feeds a diffusion model and a separately trained decoder, which together turn real data into synthetic data.",
+ "layout": "4 colored panels A–D, left-to-right, frozen/trainable badges and one-line takeaway under each",
+ "tags": [
+  "pipeline",
+  "two-stage",
+  "latent-diffusion",
+  "foundation-model",
+  "tabular"
+ ],
+ "style": [
+  "colorful",
+  "math-heavy",
+  "icon-heavy"
+ ],
+ "description": "A wide four-panel pipeline figure read left to right. Panel A (black) shows the input table with Age, City and Buy columns, labelled X in R^{N×(D+1)}. Panel B (blue) is the frozen, snowflake-marked structure-aware feature encoder. It has a tokeniser block and an early-to-middle encoder transformer block, and outputs a 3D stack of per-feature latent embeddings H. Panel C (purple) is the trainable, flame-marked score-based diffusion transformer. A forward process (latent normalisation, token perturbation) sits next to a reverse process (score-based denoiser, inverse normalisation). Panel D (orange) is the trainable denoising-aligned decoder transformer plus a detokeniser, which outputs a synthetic table. Arrows link the panels. Each panel has a bold italic takeaway in a dashed box at the bottom. The colored borders draw the eye first.",
+ "caption": "The architecture of \\modelname. (A) Given a tabular dataset with $D$ features and one target, \\modelname treats the target as an additional feature for generative modelling. (B) The frozen structure-aware feature encoder maps the table into per-feature latent embeddings by first tokenising the features and then contextualising them with inter-feature dependencies. (C) The trainable score-based diffusion transformer learns the latent distribution by denoising noisy latent embeddings while preserving the token structure. (D) Once the diffusion transformer has been fitted, the trainable denoising-aligned latent decoder is trained to map the denoised embeddings to the original feature space. During inference, noisy latent embeddings are denoised and decoded into synthetic data.",
+ "caption_source": "latex",
+ "abstract": "Generative modelling is a demanding test of foundation models, because it requires robust, holistic representation learning for a given data modality, rather than optimisation for a supervised prediction target alone. While recent work on tabular foundation models has achieved remarkable progress in predictive modelling, generative tabular foundation models remain underexplored. Existing tabular foundation generators, in particular, have not yet consistently matched strong dataset-specific generators in synthetic data quality. A key reason is their insufficient alignment with the inter-feature dependency structure of tabular data, which can reflect underlying causal relationships. In this paper, we address this gap by introducing a novel tabular foundation model, $\\textbf{TabFORGE}$, built on pretrained $\\textbf{Tab}$ular $\\textbf{FO}$undational $\\textbf{R}$epresentations for $\\textbf{GE}$neration. TabFORGE is designed to utilise transferable representations induced by a pretrained structure-aware feature encoder, which captures information useful for characterising inter-feature dependencies. It further decouples latent modelling from decoding through a two-stage design: we first pretrain a score-based diffusion transformer, and then pretrain a denoising-aligned decoder using the denoised latent embeddings. This design elegantly mitigates the distribution shifts in latent embeddings that typically arise between training and inference. We evaluate TabFORGE comprehensively against 22 benchmark methods on 45 real-world datasets. Our results show that TabFORGE effectively learns and leverages generalisable tabular representations, enabling efficient generation of high-quality synthetic tabular data, particularly with strong structural fidelity. Code is available at https://github.com/SilenceX12138/TabFORGE.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=s7BHCiG4IM",
+  "arxiv": "https://arxiv.org/abs/2605.09424",
+  "pdf": "https://arxiv.org/pdf/2605.09424",
+  "proceedings": null,
+  "virtual": "https://neurips.cc/virtual/2026/poster/149211",
+  "code": "https://silencex12138.github.io/TabFORGE/"
+ },
+ "license": "http://arxiv.org/licenses/nonexclusive-distrib/1.0/",
+ "img": "none",
+ "image_url": null,
+ "thumb_url": null,
+ "figure_page": 1,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.95
+}

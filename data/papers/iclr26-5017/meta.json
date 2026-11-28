@@ -1,0 +1,52 @@
+{
+ "id": "iclr26-5017",
+ "title": "FreqKV: Key-Value Compression in Frequency Domain for Context Window Extension",
+ "authors": [
+  "Jushi Kai",
+  "Yixuan Wang",
+  "Boyi Zeng",
+  "Haoli Bai",
+  "Bo Jiang",
+  "Ziwei He",
+  "Zhouhan Lin"
+ ],
+ "venue": "ICLR 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "Deep Learning->Attention Mechanisms",
+ "role": "analysis-finding",
+ "role2": null,
+ "claim": "Information in the hidden states concentrates in a few low-frequency components, with power decaying sharply across layers and across keys and values.",
+ "layout": "2 rows by 5 columns of line plots, one per layer, left-to-right",
+ "tags": [
+  "frequency-domain",
+  "power-spectrum",
+  "kv-cache",
+  "low-frequency-concentration",
+  "empirical-observation"
+ ],
+ "style": [
+  "plot",
+  "minimal"
+ ],
+ "description": "The figure has two rows of five small line plots. The top row (a) shows average power spectrums of key states. The bottom row (b) shows the same for value states. The columns are layers 0, 4, 8, 16 and 31 of LLaMA-2-7b. Every plot uses a single blue line on a light gray grid. The x-axis is frequency index, from 0 to about 1000. The y-axis is power. In layers 4, 8, 16 and 31, power spikes sharply at the lowest frequencies and then falls to a long flat tail near zero. This shows that energy is concentrated at low frequencies. Layer 0 is the exception. Its curve is noisy and rises to a broad hump around frequency 600 to 800. Italic captions under each row label the rows (a) and (b). The eye goes first to the sharp spike at the left edge of each plot.",
+ "caption": "The average power spectrums of key states and value states in different layers of LLaMA-2-7b. 1000 documents are sampled from CNN/Daily Mail [ref]. We transform key states and value states to the frequency domain, and average power spectrums over these samples and hidden dimensions.",
+ "caption_source": "latex",
+ "abstract": "Existing key-value (KV) cache compression methods for large language models (LLMs) often rely on token eviction, which risks losing critical local information in both long prefilling and decoding scenarios. When extrapolating beyond the pretrained context length, their performance degrades sharply on long-context benchmarks. Motivated by the observation in the frequency domain that the context information is concentrated in the low-frequency components, we propose FreqKV, a parameter-free and architecture-agnostic approach. It iteratively compresses the increasing KV cache in the frequency domain, allowing models to process lengthy contexts efficiently. With minimal training at 8K length, FreqKV extends the context window of LLaMA-2-7B up to 256K tokens while maintaining stable perplexity. Extensive experiments across prefilling and decoding demonstrate that FreqKV enables robust context window extension and consistently outperforms existing KV cache compression methods on LLaMA-2 and LLaMA-3, highlighting its effectiveness for both understanding and generation in long contexts.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=wFSOtyvQ9d",
+  "arxiv": "https://arxiv.org/abs/2505.00570",
+  "pdf": "https://proceedings.iclr.cc/paper_files/paper/2026/file/ac4c13a5c6ec1bba68c9ce1d908321d2-Paper-Conference.pdf",
+  "proceedings": "https://proceedings.iclr.cc/paper_files/paper/2026/hash/ac4c13a5c6ec1bba68c9ce1d908321d2-Abstract-Conference.html",
+  "virtual": "https://iclr.cc/virtual/2026/poster/10006748",
+  "code": "https://github.com/LUMIA-Group/FreqKV"
+ },
+ "license": "http://arxiv.org/licenses/nonexclusive-distrib/1.0/",
+ "img": "none",
+ "image_url": null,
+ "thumb_url": null,
+ "figure_page": 2,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.9
+}

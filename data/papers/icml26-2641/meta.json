@@ -1,0 +1,52 @@
+{
+ "id": "icml26-2641",
+ "title": "SIGMA-PPG: Statistical-prior Informed Generative Masking Architecture for PPG Foundation Model",
+ "authors": [
+  "ZONGHENG GUO",
+  "Tao Chen",
+  "Yang Jiao",
+  "Yi Pan",
+  "Xiao Hu",
+  "Manuela Ferrario"
+ ],
+ "venue": "ICML 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "Applications->Health / Medicine",
+ "role": "pipeline",
+ "role2": null,
+ "claim": "A two-stage pipeline first tokenizes signals into semantic discrete codes, then trains a student via a reward-driven teacher that adversarially masks tokens.",
+ "layout": "2 side-by-side stage panels, left-to-right, feedback loop arrows for teacher-student reward",
+ "tags": [
+  "two-stage",
+  "vq-tokenizer",
+  "masked-modeling",
+  "teacher-student",
+  "reinforcement-learning"
+ ],
+ "style": [
+  "colorful",
+  "icon-heavy",
+  "math-heavy"
+ ],
+ "description": "A wide figure split into two boxed panels with gray title bars. Stage 1 (left) shows a raw red PPG waveform feeding two parallel blue Tokenizer (E) trapezoids, one fed directly and one through a gray Data Augmentation box. A double-headed Consistency Constraint arrow links them. Both outputs go into a Codebook of colored bars, yielding a vertical stack of numbered colored discrete code tokens. These pass to a purple Decoder (D) that outputs a Reconstructed PSD plot. Stage 2 (right) shows a row of numbered tokens entering a green Teacher Network box. Amplitude and skewness histograms feed a Dynamic Mask Generator, which outputs a black-and-white mask. The mask is applied with a circle-dot operator to give partially [MASK]ed tokens. These go into a dark blue Student Network (Transformer Encoder) that outputs predicted indices. Green reward and loss arrows loop back to the teacher and student.",
+ "caption": "Overview of the SIGMA-PPG model framework. The architecture consists of two cascading stages: (1) Stage 1: Spectrum-Aware Semantic Tokenizer. At this stage, a VQ-VAE is used to map continuous raw PPG signals into discrete semantic tokens. A Power Spectral Density (PSD) reconstruction objective is employed to capture physiological frequency characteristics. Furthermore, a semantic consistency constraint is introduced by a vector quantization to ensure that physiologically identical waveforms, even those perturbed by artifacts or noise, map to consistent codebook indices. (2) Stage 2: Prior-Guided Masked Generative Pre-training. This stage employs a Reinforcement Learning-driven Teacher-Student framework to replace standard random masking. The Teacher network employs statistical priors (amplitude and skewness) to construct a dynamic curriculum and generate challenging masking policies, i.e., Prior-Guided Adversarial Masking. This mechanism effectively guides the Student network (a Transformer Encoder) to avoid noise overfitting and capture global morphological dependencies.",
+ "caption_source": "latex",
+ "abstract": "Current foundation model for photoplethysmography (PPG) signals is challenged by the intrinsic redundancy and noise of the signal. Standard masked modeling often yields trivial solutions while contrastive methods lack morphological precision. To address these limitations, we propose a Statistical-prior Informed Generative Masking Architecture (SIGMA-PPG), a generative foundation model featuring a Prior-Guided Adversarial Masking mechanism, where a reinforcement learning-driven teacher leverages statistical priors to create challenging learning paths that prevent overfitting to noise. We also incorporate a semantic consistency constraint via vector quantization to ensure that physiologically identical waveforms (even those altered by recording artifacts or minor perturbations) map to shared indices. This enhances codebook semantic density and eliminates redundant feature structures. Pre-trained on over 120,000 hours of data, SIGMA-PPG achieves superior average performance compared to five state-of-the-art baselines across 12 diverse downstream tasks. The code is available at https://github.com/ZonghengGuo/SigmaPPG.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=PKgGsbORt9",
+  "arxiv": "https://arxiv.org/abs/2601.21031",
+  "pdf": "https://raw.githubusercontent.com/mlresearch/v306/main/assets/guo26a/guo26a.pdf",
+  "proceedings": "https://proceedings.mlr.press/v306/guo26a.html",
+  "virtual": "https://icml.cc/virtual/2026/poster/64268",
+  "code": null
+ },
+ "license": "http://arxiv.org/licenses/nonexclusive-distrib/1.0/",
+ "img": "none",
+ "image_url": null,
+ "thumb_url": null,
+ "figure_page": 1,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.93
+}

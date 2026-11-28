@@ -1,0 +1,49 @@
+{
+ "id": "neurips26-8082",
+ "title": "A Generalized Tikhonov Layer for Interpretable-by-design Graph Neural Networks",
+ "authors": [
+  "Nicolas Tremblay",
+  "Filippo Maria Bianchi",
+  "Benjamin Ricaud"
+ ],
+ "venue": "NeurIPS 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "Deep Learning->Graph Neural Networks",
+ "role": "concept",
+ "role2": "analysis-finding",
+ "claim": "Learned parameters directly reveal which nodes rely on own features versus topology, and which spectral response the model exploits.",
+ "layout": "2 panels, left-to-right, graph heatmap beside spectral curves",
+ "tags": [
+  "interpretability",
+  "graph-neural-networks",
+  "explanation",
+  "spectral-filter",
+  "homophily-heterophily"
+ ],
+ "style": [
+  "minimal",
+  "colorful",
+  "plot"
+ ],
+ "description": "Two side-by-side panels. Panel (a), titled 'Node-level explanation', shows a small graph of seven nodes with edges of varying thickness. Nodes are colored on a red-to-blue gradient. A vertical colorbar at the left runs from warm pink (q_i ≫ 1, 'features only') at the top to cool blue-purple (q_i ≪ 1, 'topology only') at the bottom. Panel (b), titled 'Spectral explanation', is a simple axis plot of p(λ) against λ from 0 to 2, with y-values from 0 to 1. A thick blue curve rises and is labeled 'homophily'. A thick red curve falls and is labeled 'heterophily'. The two curves cross near the middle. Text uses bold serif titles and italic colored labels. The eye goes first to the colorful graph and the crossing curves.",
+ "caption": "\\textbf{The explanation $\\{\\{q_i\\}_{i\\in\\mathcal{V}}, p(\\cdot)\\}$.} (a) After training, the learned $q_i$ values provide a node-level explanation that can be plotted as a heatmap over $\\mathcal{G}$: warm nodes (large $q_i$) rely on their own features, cool nodes (small $q_i$) are governed by graph topology. (b) The shape of the learned polynomial $p(\\lambda)$ reveals how the graph topology influences the nodes with small $q_i$. For instance, an increasing profile penalizes high frequencies (favors homophily), a decreasing one penalizes low frequencies (favors heterophily). Together, $\\{\\{q_i\\}_{i\\in\\mathcal{V}}, p(\\cdot)\\}$ is the explanation.",
+ "caption_source": "latex",
+ "abstract": "We propose the Tikhonov layer, a graph neural network layer that is interpretable by design: once trained, its learned parameters directly reveal which node features and which aspects of the graph topology were leveraged for prediction. In practice, the layer's propagation matrix takes the closed-form $R = (p(L)+Q)^{-1} Q$, where $L$ is the normalized graph Laplacian, $Q = diag(q_1,...,q_n)$ a learnable diagonal matrix of positive node-importance scores, and $p(\\cdot)$ a learnable polynomial. For any input feature $x$, the layer output $Rx$ is the exact minimizer of a generalized graph Tikhonov problem that trades off node-level data fidelity against a topology-driven regularization penalty. The learned pair $\\{\\{q_i\\},p\\}$ constitutes a built-in explanation: large $q_i$ indicates that node $i$'s own features drive the prediction, while small $q_i$ signals reliance on the local graph topology; the shape of $p$ reveals whether homophily, heterophily, or a band-pass response is exploited. Expressivity is preserved by routing complexity through a dedicated, arbitrarily deep Q-network that produces the importance scores, while the Tikhonov layer itself remains transparent. We prove that distinct node-importance matrices yield distinct propagation operators, structurally coupling the explanation to the computation. Additionally, the Tikhonov layer provides, in a single layer, a global receptive field, mitigating both oversmoothing and oversquashing. Experiments on standard graph classification benchmarks confirm that the model matches (and sometimes outperforms) opaque baselines while producing interpretable and faithful explanations.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=tr3vYV6oRS",
+  "arxiv": "https://arxiv.org/abs/2605.28578",
+  "pdf": "https://arxiv.org/pdf/2605.28578",
+  "proceedings": null,
+  "virtual": "https://neurips.cc/virtual/2026/poster/148963",
+  "code": null
+ },
+ "license": "http://creativecommons.org/licenses/by/4.0/",
+ "img": "cc-by",
+ "image_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/images/neurips26-8082.png",
+ "thumb_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/thumbs/neurips26-8082.webp",
+ "figure_page": 1,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.6
+}

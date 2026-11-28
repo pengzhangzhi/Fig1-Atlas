@@ -1,0 +1,49 @@
+{
+ "id": "neurips26-4373",
+ "title": "Beyond Encoder Accumulation: Measuring Encoder Roles in Multi-Encoder VLMs",
+ "authors": [
+  "Wei Ding",
+  "Yudong Zhang"
+ ],
+ "venue": "NeurIPS 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": null,
+ "role": "analysis-finding",
+ "role2": "teaser-result",
+ "claim": "Evaluation protocol changes which component ranks first, and a small subset of components recovers nearly all gains of the full set.",
+ "layout": "3 panels left-to-right; schematic, line plot, 2-D quadrant scatter with arrow",
+ "tags": [
+  "ablation-protocol",
+  "rankings",
+  "diminishing-returns",
+  "multi-encoder",
+  "evaluation-methodology"
+ ],
+ "style": [
+  "plot",
+  "colorful",
+  "icon-heavy",
+  "minimal"
+ ],
+ "description": "Three-panel figure with bold lettered titles. Panel A contrasts two protocols, inference-time masking (left) and training-time removal (right). Each shows a row of colored shapes (blue square, orange circle, yellow triangle, pink diamond, teal pentagon) for train and inference, with an arrow down and one shape blanked or removed. Below is a 1-5 rank list. Red crossing arrows show the top two ranks swapping (EVA/ConvNeXt), and grey straight arrows show ranks 3-5 unchanged. Panel B is a line plot of overall score against encoder setting, from Clip to All 5. It jumps sharply at ConvNeXt (85%, orange) and CL+CN (97%, green), then plateaus along a dashed ceiling. Panel C is a Capacity vs Necessity plane split into four tinted quadrants. Encoders are plotted as the same shapes, and a green curved arrow marks the best pair.",
+ "caption": "Paradigm preview. (A) IM and TR rank a different encoder first: EVA-02 under IM, ConvNeXt under TR. The two protocols also swap at rank 2, while ranks 3 to 5 agree. (B) Best-at-$k$ overall score. With CLIP alone as the baseline and the full pool as the ceiling, ConvNeXt alone closes 85% of the gap and CLIP+ConvNeXt closes 97%. The third and fourth encoders add little. (C) Capacity--Necessity plane. The five encoders fall into the four regions of the plane. The arrow points to the best two-encoder pair, ConvNeXt+CLIP, which is not the pair formed by the two highest-Capacity encoders.",
+ "caption_source": "latex",
+ "abstract": "As foundation models scale toward fusing more heterogeneous visual streams, understanding how diverse encoders interact under joint training becomes a prerequisite for principled design. Yet large vision-language models (LVLMs) currently lack the tools to do so, and parameter-efficient encoder configurations remain hard to identify before training. To re-examine encoder roles under joint training, on the 16-benchmark Cambrian-1 suite we retrain and evaluate all 31 non-empty subsets of five common vision encoders under a unified pipeline (~20k GPU-hours total), and report three findings. First, retraining each subset from scratch reveals encoder rankings that differ from those obtained by masking encoders on a fixed checkpoint, including which encoder ranks first overall. Second, we decompose each encoder's contribution into two axes, Capacity, the score an encoder reaches on its own, and Necessity, the drop when it is removed from the full pool. The two axes are not interchangeable. Pairing the two highest-Capacity encoders is suboptimal, while pairing a high-Capacity anchor with an adaptive complement matches the full five-encoder model. Adding further encoders beyond this pair yields only marginal gains. Third, at fixed parameter count, per-encoder pre-projector effective rank explains the residual score variation. The strongest pairs combine an anchor whose rank survives joint training with a complement whose rank expands under it, suggesting that higher-rank, less-collapsed projector inputs correspond to a more favorable optimization regime at the encoder-projector interface. Together, the Capacity-Necessity decomposition and the pre-projector rank analysis, along with comprehensive evaluation through retraining, expose a methodological gap in multi-encoder LVLM design, and offer concrete primitives for closing it.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=ULmvjjKzd3",
+  "arxiv": "https://arxiv.org/abs/2606.03879",
+  "pdf": "https://arxiv.org/pdf/2606.03879",
+  "proceedings": null,
+  "virtual": "https://neurips.cc/virtual/2026/poster/152266",
+  "code": null
+ },
+ "license": "http://creativecommons.org/licenses/by/4.0/",
+ "img": "cc-by",
+ "image_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/images/neurips26-4373.png",
+ "thumb_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/thumbs/neurips26-4373.webp",
+ "figure_page": 1,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.55
+}

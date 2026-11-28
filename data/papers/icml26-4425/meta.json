@@ -1,0 +1,47 @@
+{
+ "id": "icml26-4425",
+ "title": "PS-PPO : Prefix-Sampling PPO for Critic-Free RLHF",
+ "authors": [
+  "Doo Hwan Hwang",
+  "Kee-Eung Kim"
+ ],
+ "venue": "ICML 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "Deep Learning->Large Language Models",
+ "role": "analysis-finding",
+ "role2": null,
+ "claim": "Outcome predictability saturates early: prefix success rate reaches near-certainty well before the full sequence ends, so later steps add little information.",
+ "layout": "single line plot, two curves, dashed threshold lines with annotated crossing points",
+ "tags": [
+  "prefix-sampling",
+  "truncation",
+  "efficiency",
+  "temporal-redundancy",
+  "reasoning"
+ ],
+ "style": [
+  "plot",
+  "minimal"
+ ],
+ "description": "A single matplotlib line chart. The x-axis is prefix progress as a percentage of full completion length, from 0 to about 75. The y-axis is success rate Pr(R=1 | prefix), from about 0.6 to 1.0. A green AIME 2024 curve and a purple MATH-500 curve both start near 0.65 and wander noisily around 0.7 to 0.8. The AIME curve then jumps sharply to 1.0 at about 25% of the length. The MATH-500 curve rises more gradually and levels off near 0.99 after about 40%. A horizontal dashed blue line marks the 'Threshold ≥ 0.95'. Two vertical dashed blue lines mark where each curve crosses it. Text labels give the token counts and percentages: AIME at 334 tokens (25.0%) and MATH-500 at 315 tokens (38.2%). The legend sits at the bottom right. The eye goes first to the steep green rise and the threshold crossings.",
+ "caption": "Prefix-conditioned success rate on AIME 2024 and MATH-500 versus prefix progress, where prefix progress denotes the percentage of the full completion length. We estimate the success rate using Qwen2.5-Math-7B with 32 suffix rollouts per prefix. The success rate often stabilizes well before the end of the full completion.",
+ "caption_source": "latex",
+ "abstract": "Reinforcement Learning from Human Feedback (RLHF) for Large Language Models increasingly relies on critic-free methods as a practical alternative to actor--critic training. Despite their simplicity, existing critic-free approaches propagate a trajectory-level learning signal uniformly across all tokens in a trajectory. This requires full-trajectory policy updates for every rollout, leading to substantial optimization cost for long reasoning traces, even though intermediate prefixes often contain enough information to largely determine the final outcome. We propose Prefix-Sampling Proximal Policy Optimization (PS-PPO), a compute-efficient critic-free method for RLHF that exploits this temporal redundancy. PS-PPO introduces a prompt-conditioned cutoff distribution and samples a cutoff timestep for each trajectory. During the update pass, PS-PPO backpropagates only through the sampled prefix of each trajectory and applies an importance-weighting correction so that the resulting truncated gradient estimator remains unbiased with respect to the full-trajectory objective. Experiments on mathematical reasoning and RLHF benchmarks show that PS-PPO achieves large reductions in training compute and peak GPU memory, while maintaining accuracy comparable to strong critic-free baselines.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=flDa73nyVx",
+  "arxiv": "https://arxiv.org/abs/2606.29758",
+  "pdf": "https://raw.githubusercontent.com/mlresearch/v306/main/assets/hwang26b/hwang26b.pdf",
+  "proceedings": "https://proceedings.mlr.press/v306/hwang26b.html",
+  "virtual": "https://icml.cc/virtual/2026/poster/62531",
+  "code": null
+ },
+ "license": "http://creativecommons.org/licenses/by/4.0/",
+ "img": "cc-by",
+ "image_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/images/icml26-4425.png",
+ "thumb_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/thumbs/icml26-4425.webp",
+ "figure_page": 0,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.85
+}

@@ -1,0 +1,47 @@
+{
+ "id": "neurips26-7809",
+ "title": "Closing the Reflection Gap: A Free Calibration Bonus for Agentic RL",
+ "authors": [
+  "Yinglun Zhu"
+ ],
+ "venue": "NeurIPS 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "Reinforcement Learning->Everything Else",
+ "role": "pipeline",
+ "role2": "concept",
+ "claim": "Contrasting the agent's post-feedback self-assessment with the actual outcome gives a free reward bonus that lifts calibrated rollouts above miscalibrated ones.",
+ "layout": "Trajectory strip on top, then arrows right-to-left into a 2x2 reward matrix",
+ "tags": [
+  "calibration",
+  "reward-shaping",
+  "self-verification",
+  "reinforcement-learning",
+  "agents"
+ ],
+ "style": [
+  "colorful",
+  "math-heavy",
+  "minimal"
+ ],
+ "description": "A top row shows an agent trajectory as colored rounded boxes: blue actions, orange environment observations, teal reflections and a pink outcome, with an ellipsis for repeated steps. A dotted box around the final reflection and the outcome leads to a downward arrow labeled 'contrast s_ref and r_k'. That arrow points to a green-bordered box listing the bonus c_k = 1(s_ref = r_k) and the augmented reward r_k + α(t)·c_k, which has a dynamic coefficient. A left arrow then points to a dotted panel with a 2x2 matrix of reflection score against outcome. Calibrated cells are green: honest error flag gets α(t) and confident success gets 1+α(t). Miscalibrated cells are gray: overconfident gets 0 and underconfident gets 1. A caption line below reads 'Calibrated rollouts are lifted above miscalibrated ones'.",
+ "caption": "High-level overview of our \\myalgo algorithm. We instruct the agent to reflect on environment feedback and generate a binary reflection score $\\refsc \\in \\{0,1\\}$. \\myalgo has two key ingredients: (i) a free calibration bonus $\\rawcal_k = \\indic(\\refsc_{k,H} = \\outcome_k)$ computed by contrasting post-feedback reflection with the outcome, requiring no additional reward model, LLM judge, or external annotation; it lifts well-calibrated rollouts above miscalibrated ones, giving honest reflection positive relative advantage regardless of task outcome. (ii) a dynamic schedule on the calibration coefficient, which enables the model to simultaneously improve reflection calibration and task performance. In effect, \\myalgo turns the agent into its own verifier grounded in environment feedback.",
+ "caption_source": "latex",
+ "abstract": "LLMs are increasingly deployed as agents that interact with external environments and observe feedback such as execution results, error messages, and tool outputs. A well-functioning agent should be able to leverage this feedback to accurately assess its own performance. Yet we find a persistent reflection gap: LLM agents tend to mis-assess their own outputs after observing concrete environment feedback -- even for questions they correctly answered -- and standard RL barely helps due to a credit-assignment mismatch. To close this gap, we propose RefGRPO, a simple yet effective fix that augments standard RL algorithms with two key ingredients: a free calibration bonus computed by contrasting the agent's own reflection with the actual outcome (requiring no additional reward model, LLM judge, or external annotation), and a dynamic schedule on its coefficient. Compared to standard RL baselines, our method simultaneously improves reflection calibration (e.g., reduces underconfidence rate $44.4\\% \\to 7.7\\%$) and task accuracy (e.g., $75.1\\% \\to 76.5\\%$) on text-to-SQL across five benchmarks. The resulting calibrated reflection turns the agent into its own verifier grounded in environment feedback, which further enables (i) better self-improvement that uses reflections as pseudo-rewards without outcome supervision, and (ii) more effective test-time selective prediction by committing only to rollouts flagged as correct.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=s8QIIohE8t",
+  "arxiv": "https://arxiv.org/abs/2606.14211",
+  "pdf": "https://arxiv.org/pdf/2606.14211",
+  "proceedings": null,
+  "virtual": "https://neurips.cc/virtual/2026/poster/149208",
+  "code": null
+ },
+ "license": "http://creativecommons.org/licenses/by/4.0/",
+ "img": "cc-by",
+ "image_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/images/neurips26-7809.png",
+ "thumb_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/thumbs/neurips26-7809.webp",
+ "figure_page": 0,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.8
+}

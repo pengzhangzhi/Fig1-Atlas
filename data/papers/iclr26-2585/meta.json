@@ -1,0 +1,51 @@
+{
+ "id": "iclr26-2585",
+ "title": "Trion: FFT-based Dynamic Subspace Selection for Low-Rank Adaptive Optimization of LLMs",
+ "authors": [
+  "Ionut-Vlad Modoranu",
+  "Mher Safaryan",
+  "Erik Schultheis",
+  "Maksim Riabinin",
+  "Artem Chumachenko",
+  "Dan Alistarh"
+ ],
+ "venue": "ICLR 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": null,
+ "role": "teaser-result",
+ "role2": null,
+ "claim": "Our method reaches lower training loss than the baseline at equal iterations and in less wall-clock time, across model scales.",
+ "layout": "2x3 grid of line plots, loss vs iterations (top) and time (bottom), zoom-in insets",
+ "tags": [
+  "low-rank-optimization",
+  "training-curves",
+  "efficiency",
+  "wall-clock-time",
+  "scaling-across-sizes"
+ ],
+ "style": [
+  "plot",
+  "minimal"
+ ],
+ "description": "A two-row, three-column grid of line charts comparing two optimizers, Trion (green) and Dion (blue), on Llama models of 350M, 800M and 1.3B parameters, labeled (a), (b) and (c) below each column. The top row plots training loss against iteration, with a zoomed inset in the upper right of each panel showing the last 5000 steps, where the green curve sits slightly below the blue one. The bottom row plots training loss against wall-clock time, where the green curve ends earlier or lower than the blue one. All panels have light gridlines, a legend in a corner, and loss axes running from 2.4 to 4.0. The eye goes first to the nearly overlapping curves and then to the insets that show the gap.",
+ "caption": "Training Loss across iterations (top row) and wall clock time (bottom row) for three Llama models trained with Dion and Trion optimizers on C4 using 20 tokens per parameter and rank $r=256$. For a clearer visualization, the training loss curve was smoothed using a moving average with a window size of 200 and we zoom-in on the last 5000 training steps.",
+ "caption_source": "latex",
+ "abstract": "Low-rank optimization has emerged as a promising direction in training large language models (LLMs) to improve running time and reduce the memory usage of adaptive optimizers by constraining learning to a lower-dimensional space. Prior work typically projects gradients of linear layers using approaches based on Singular Value Decomposition (SVD) or QR-decomposition. Applying these techniques individually to each layer in large models is computationally expensive and incurs additional memory costs due to storing the projection matrices. In this work, we propose a computationally efficient and conceptually simple, two-step procedure to approximate SVD/QR-based gradient projections into lower-dimensional spaces by using a predefined orthogonal matrix of the Discrete Cosine Transform (DCT). We dynamically select columns from the DCT matrix based on their alignment with the gradient of each layer. The effective projection matrices are obtained via a simple \\texttt{matmul} with the DCT matrix in $O(n^3)$ time, followed by a lightweight sorting step to identify the most relevant basis vectors. For large layers, DCT can be computed via \\texttt{Makhoul}'s $N$-point algorithm based on Fast Fourier Transform (FFT) in $O(n^2 \\log(n))$ time, yielding speed-ups for low-end GPUs. Due to the predefined nature of the orthogonal bases, they are computed once at the start of training. Our numerical experiments on both pre-training and fine-tuning tasks demonstrate the effectiveness of our dual strategy in approximating optimal low-rank projections, obtaining an approach with rank-independent running time that matches the performance of costly SVD/QR-based methods while achieving faster runtime and reduced memory usage by up to $25\\%$ across different model sizes. Our code is available at \\href{https://github.com/IST-DASLab/Trion}{\\texttt{https://github.com/IST-DASLab/Trion}}.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=TkHjRwbMNl",
+  "arxiv": "https://arxiv.org/abs/2505.17967",
+  "pdf": "https://proceedings.iclr.cc/paper_files/paper/2026/file/964484b27b2d9bf5b2bf571676242597-Paper-Conference.pdf",
+  "proceedings": "https://proceedings.iclr.cc/paper_files/paper/2026/hash/964484b27b2d9bf5b2bf571676242597-Abstract-Conference.html",
+  "virtual": "https://iclr.cc/virtual/2026/poster/10009288",
+  "code": null
+ },
+ "license": "http://creativecommons.org/licenses/by/4.0/",
+ "img": "cc-by",
+ "image_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/images/iclr26-2585.png",
+ "thumb_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/thumbs/iclr26-2585.webp",
+ "figure_page": 5,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.6
+}

@@ -1,0 +1,53 @@
+{
+ "id": "neurips26-3950",
+ "title": "DepthGraft: Structural Regularization through Hierarchical Cross-Layer KV Reconstruction",
+ "authors": [
+  "Xiaohan Qin",
+  "Xiangdong Zhang",
+  "Yu Wang",
+  "Huaijin Wu",
+  "Zhuo Xia",
+  "Yebin Yang",
+  "Junchi Yan"
+ ],
+ "venue": "NeurIPS 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": null,
+ "role": "teaser-result",
+ "role2": null,
+ "claim": "Our method trains to consistently higher accuracy than the baseline while cutting prefill latency and memory with negligible decoding cost.",
+ "layout": "4 plots in one row: two training curves, two grouped bar charts",
+ "tags": [
+  "kv-sharing",
+  "efficiency",
+  "training-curves",
+  "baseline-comparison",
+  "language-models"
+ ],
+ "style": [
+  "plot",
+  "colorful",
+  "minimal"
+ ],
+ "description": "A single horizontal strip of four plots comparing a GQA Baseline (blue) against DepthGraft (red) on a 16B MoE model. The first two panels are line charts of MMLU (5-shot) and CMMLU (5-shot) accuracy against training steps, from about 13K to 28K. The red DepthGraft curve rises above the blue baseline, and the gap widens late in training. The third panel is a grouped bar chart of time-to-first-token in ms at context lengths 16K to 128K. The fourth is a grouped bar chart of KV cache in MiB at output lengths 1K to 8K. In both bar charts the hatched red bars are clearly shorter than the blue ones, and the gap grows with length. Each plot has a small legend, light grid lines and serif axis labels.",
+ "caption": "Results on the 16B MoE model. Left two: DepthGraft demonstrates a consistent advantage throughout training. Right two: DepthGraft reduces prefill time (TTFT) and KV cache usage by approximately one-third, while incurring almost no loss in decoding speed.",
+ "caption_source": "latex",
+ "abstract": "Scaling depth is a key route to stronger large language models, but Pre-LN architectures often suffer from depth-wise information dilution, limiting the effective use of deep layers. While cross-layer connectivity has proven effective at mitigating this problem, existing designs usually introduce additional computation or memory access. We revisit cross-layer KV sharing as an efficient form of such connectivity. Beyond cache compression, each KV reuse edge creates a direct gradient path from deep layers to source KV projections, turning KV sharing into an implicit structural regularizer for KV representation geometry. We provide a systematic analysis of this mechanism, showing that proper sharing topologies sharpen key retrieval directions while enriching the value content subspace, whereas existing adjacent or global-anchor designs do not fully exploit this effect. Motivated by this, we propose DepthGraft, a hierarchical KV-sharing architecture that reconstructs deep-layer KV from stride-aligned shallow-middle source pairs. DepthGraft distributes non-local gradient flow across source layers, while preserving prefill early completion and reducing KV cache by roughly one third. Experiments on dense and MoE models from 0.5B to 16B parameters show consistent downstream improvements under both GQA and MLA. Notably, on the 16B MoE model, DepthGraft achieves a 7.0% absolute improvement on MMLU-Pro, along with gains of 6.6% on CMMLU and 6.4% on C3. These results validate the potential of DepthGraft as a scalable design for large-scale pretraining. The project page is available at https://github.com/jianke0604/DepthGraft.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=RaqeCKA8Ch",
+  "arxiv": "https://arxiv.org/abs/2611.03142",
+  "pdf": "https://arxiv.org/pdf/2611.03142",
+  "proceedings": null,
+  "virtual": "https://neurips.cc/virtual/2026/poster/152636",
+  "code": null
+ },
+ "license": "http://creativecommons.org/licenses/by/4.0/",
+ "img": "cc-by",
+ "image_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/images/neurips26-3950.png",
+ "thumb_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/thumbs/neurips26-3950.webp",
+ "figure_page": 0,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.9
+}

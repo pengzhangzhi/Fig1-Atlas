@@ -1,0 +1,48 @@
+{
+ "id": "neurips26-1747",
+ "title": "Symmetry-Compatible Principle for Optimizer Design: Embeddings, LM Heads, SwiGLU MLPs, and MoE Routers",
+ "authors": [
+  "Tim Tsz-Kit Lau",
+  "Weijie Su"
+ ],
+ "venue": "NeurIPS 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "Optimization->Neural Network Optimization",
+ "role": "prior-vs-ours",
+ "role2": "concept",
+ "claim": "Existing optimizers treat parameters as flat vectors and discard structure; rethinking geometry yields updates matched to each parameter's symmetry.",
+ "layout": "2 panels, left-to-right, four stacked boxes each, central 'rethink' arrow",
+ "tags": [
+  "optimizer-design",
+  "symmetry",
+  "equivariance",
+  "prior-vs-ours",
+  "matrix-geometry"
+ ],
+ "style": [
+  "minimal",
+  "colorful",
+  "text-heavy"
+ ],
+ "description": "Two large rounded containers sit side by side, joined by a central arrow labeled 'rethink optimizer geometry'. The left panel, 'Coordinate-wise view', holds four pink boxes linked by downward arrows. They read: parameters treated as a long vector; entrywise adaptive updates (Adam, AdaGrad, Adafactor, RMSprop); break orthogonal equivariance for matrix layers; discard spectral structure and induce mismatched geometry. The right panel, 'Symmetry-aware matrix view', mirrors this layout with four lavender boxes. They read: matrix parameters have layer-wise symmetry and geometry; update maps should match the symmetry of each parameter class; spectral, one-sided spectral, row-norm and hybrid optimizers; architecture-optimizer co-design for linear layers, SwiGLU MLPs, embeddings, heads and MoE routers. The eye goes first to the contrasting pink and lavender columns. There are no plots or images, only text in boxes.",
+ "caption": "Two perspectives on deep learning optimization. Left: coordinate-wise adaptive methods treat matrix parameters as vectors and ignore matrix geometry. Right: the symmetry- and equivariance-based viewpoint developed in this paper leads to a family of equivariant, layer-specific optimizer classes and architecture--optimizer co-design.",
+ "caption_source": "latex",
+ "abstract": "A striking geometric disparity has long persisted in the practice of deep learning. While modern neural network architectures naturally exhibit rich symmetry and equivariance properties, popular optimizers such as Adam and its variants operate inherently coordinate-wise, rendering them unable to respect the equivariance structures of the parameter space. We address this disparity by introducing a symmetry-compatible principle for optimizer design: the gradient update rule should be equivariant under the symmetry group acting on the corresponding weight block. Following this principle, we first provide a unified perspective on bi-orthogonally equivariant updates for general matrix layers, as employed by stochastic spectral descent, Muon, Scion, and polar gradient methods. More importantly, by moving from orthogonal groups to permutation and shared-shift symmetries, we derive symmetry-compatible optimizers for parameter blocks whose symmetries differ from those of general matrix layers: embedding and LM head matrices, SwiGLU MLP projections, and MoE router matrices. These constructions include one-sided spectral, row-norm, hybrid row-norm/spectral, row-aware, column-aware, centered row-norm, and left-spectral updates. They yield an end-to-end layerwise optimizer stack in which each major matrix-valued parameter class is assigned an update whose equivariance matches its symmetry group. We corroborate this principle through pre-training experiments on dense and sparse MoE language models, including Qwen3-0.6B-style, Gemma 3 1B-style, OLMoE-1B-7B-style, and downsized gpt-oss architectures. Across these experiments, symmetry-compatible update rules consistently improve final validation loss, reduce expert load imbalance in sparse MoE models, and in several cases control final vocabulary-logit growth, improve router stability, and overall training stability over the corresponding AdamW updates.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=CROYfMoFTK",
+  "arxiv": "https://arxiv.org/abs/2605.18106",
+  "pdf": "https://arxiv.org/pdf/2605.18106",
+  "proceedings": null,
+  "virtual": "https://neurips.cc/virtual/2026/poster/154592",
+  "code": "https://github.com/timlautk/equivariant_optimizers"
+ },
+ "license": "http://creativecommons.org/licenses/by/4.0/",
+ "img": "cc-by",
+ "image_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/images/neurips26-1747.png",
+ "thumb_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/thumbs/neurips26-1747.webp",
+ "figure_page": 2,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.88
+}

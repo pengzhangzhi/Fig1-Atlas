@@ -1,0 +1,51 @@
+{
+ "id": "neurips26-1452",
+ "title": "Enabling Preference-driven Unlearning in Few-step Distilled Text-to-Image Diffusion Models",
+ "authors": [
+  "Gaurav Patel",
+  "Jun Fang",
+  "Greg Ver Steeg",
+  "Qiang Qiu",
+  "Sravan Sripada"
+ ],
+ "venue": "NeurIPS 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "Social Aspects->Trustworthy Machine Learning",
+ "role": "analysis-finding",
+ "role2": "teaser-result",
+ "claim": "Distilled few-step models commit early and are more prone to unsafe outputs, so standard unlearning fails; ours unlearns stably.",
+ "layout": "3 panels left-to-right; trajectory plot, bar chart, image grid over iterations",
+ "tags": [
+  "unlearning",
+  "few-step-distillation",
+  "diffusion-safety",
+  "preference-optimization",
+  "failure-analysis"
+ ],
+ "style": [
+  "plot",
+  "photo/real data",
+  "colorful"
+ ],
+ "description": "Three panels, A to C, separated by vertical lines. Panel A shows the prompt 'a portrait of Brad Pitt' with two rows of six denoising snapshots: the base model (BM) starts blurry and sharpens slowly, while the distilled FSD model is sharp almost immediately. Below, a line plot of LPIPS-to-final against timesteps (0-50) shows the FSD curve (green) dropping faster than BM (blue). Panel B is a horizontal bar chart of NudeNet detections: BM 187 (blue), FSD before unlearning 774 (green, longest bar), FSD after unlearning 5 (tiny orange sliver). Panel C is a 3x4 grid of artwork-style nude images with black censor boxes, with rows for epsilon-error reward, x0-error reward and Consistency Error reward (Ours). An 'Iterations' arrow runs underneath. The eye goes first to the long green bar and the photo grids.",
+ "caption": "A. LPIPS-to-final vs. timesteps for the base model (BM) [ref] and its few-step distilled (FSD) variant [ref]. BM follows long, weakly constrained trajectories, while FSD shows steep LPIPS decay, committing within a few steps, limiting mid-path adaptability. B. Severity of unsafe generations in FSD. FSD model shows elevated detections pre-unlearning compared to its BM, which our method markedly reduces. C. SD-Turbo [ref] unlearning dynamics. Our method (last row) based on consistency error shows stable, gradual and effective unlearning during the course of training.",
+ "caption_source": "latex",
+ "abstract": "Text-to-image diffusion models are increasingly distilled into few-step variants and being deployed to enable fast inference. However, their ability to generate harmful or undesired content poses significant safety risks. Data-driven unlearning methods suppress targeted generations by fine-tuning model weights using specialized unlearning objectives. Crucially, these objectives implicitly rely on multi-step denoising dynamics, an assumption that breaks down for few-step distilled (FSD) models, resulting in ineffective forgetting. Furthermore, performing unlearning on the non-distilled base model and subsequently re-distilling it to obtain an unlearned FSD model incurs substantial computational and time overhead, making it impractical in many settings. Hence, we address this limitation with a preference-driven unlearning framework that revisits Direct Preference Optimization (DPO) for diffusion models. We show that standard DPO and its unlearning derivatives, formulated around noise-prediction error, transfer poorly to FSD models due to their altered generation dynamics. To overcome this, we introduce a modified preference optimization formulation explicitly aligned with the few-step generation properties, enabling direct concept removal in FSD models while preserving few-step efficiency and maintaining strong retention of desirable (non-targeted) capabilities. We evaluate our framework primarily on identity and NSFW (nudity) removal tasks and also extend our method to object-level unlearning. Extensive experiments demonstrate consistent and effective forgetting, and strong retention performance, establishing our method as a practical and principled solution for unlearning in FSD models.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=AMoAi3Al48",
+  "arxiv": "https://arxiv.org/abs/2610.10859",
+  "pdf": "https://arxiv.org/pdf/2610.10859",
+  "proceedings": null,
+  "virtual": "https://neurips.cc/virtual/2026/poster/154856",
+  "code": null
+ },
+ "license": "http://arxiv.org/licenses/nonexclusive-distrib/1.0/",
+ "img": "none",
+ "image_url": null,
+ "thumb_url": null,
+ "figure_page": 1,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.55
+}

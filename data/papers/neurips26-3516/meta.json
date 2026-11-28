@@ -1,0 +1,50 @@
+{
+ "id": "neurips26-3516",
+ "title": "Can Language Models Actually Retrieve In-Context? Drowning in Documents at Million Token Scale",
+ "authors": [
+  "Siddharth Gollapudi",
+  "Prasann Singhal",
+  "Nilesh Gupta",
+  "Sewon Min"
+ ],
+ "venue": "NeurIPS 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "Deep Learning->Attention Mechanisms",
+ "role": "analysis-finding",
+ "role2": "teaser-result",
+ "claim": "Retrieval accuracy of in-context models collapses as corpus size grows far past training length, while dense baselines degrade gracefully.",
+ "layout": "3 line-plot panels, left-to-right, shared legend below, dashed baselines vs solid variants",
+ "tags": [
+  "in-context-retrieval",
+  "length-generalization",
+  "scaling-curve",
+  "long-context",
+  "failure-analysis"
+ ],
+ "style": [
+  "plot",
+  "colorful",
+  "minimal"
+ ],
+ "description": "Three side-by-side line charts for Natural Questions, MS MARCO and HotpotQA. The x-axis is approximate prefill size in tokens on a log-like scale, from about 40k up to 1M. The y-axis is Recall@1 (%) from 0 to 100. Each panel has five series. Dashed lines with pentagon and diamond markers show the baselines Qwen3-dense-0.6B (blue) and MSA-4B (purple). Solid lines show the paper's model variants: M-position (pink triangles), M-offpolicy (green inverted triangles) and M (full) (orange circles). All curves start near 90-100% at small corpus size. The solid ICR variants fall steeply and reach about 0% at 1M tokens, while the dense baseline stays much higher. HotpotQA shows the sharpest cliff. A shared legend runs along the bottom. The eye goes first to the steep orange and green drops.",
+ "caption": "Recall@1 vs.\\ approximate prefill size ($N \\times$ mean doc length; see [ref]) on NQ, MS\\,MARCO, and HotpotQA. Solid: ICR variants (\\model, \\model-position, \\model-offpolicy); dashed: baselines (Qwen3-dense, MSA-4B). Vertical dotted line marks the Qwen3-0.6B native context limit ($\\sim$32k tokens).",
+ "caption_source": "latex",
+ "abstract": "Language models (LMs) raise an intriguing alternative to vector-based retrieval: conditioning on an in-context corpus and directly generating a relevant answer. However, prior work has largely focused on proprietary systems or the smaller-scale reranking task, leaving corpus-scale in-context retrieval largely unexplored. In this work, we present the first systematic study of in-context retrieval on two scales practical retrievers demand: million-token corpora and length-generalization far beyond training-time sizes. We first introduce BLOCKSEARCH, an 0.6B LCLM retriever whose architectural and training modifications improve over prior LM baselines and length-generalize up to 10x beyond its training regime. Nevertheless, its retrieval still collapses under more extreme extrapolation. We trace this failure to an attention dilution effect: as the corpus grows, irrelevant documents dominate the softmax denominator and the normalized mass on the gold document collapses. Individual attention heads continue to locate the gold document more reliably than the model decodes it, even at million-token scale, though this signal also weakens as the corpus grows. Motivated by this analysis, we introduce length-aware adjustments to the attention softmax and document-level sparse attention, improving retrieval at million-token scale to performance comparable to a same-backbone dense retriever. On the lexical LIMIT benchmark, these gains also transfer out of distribution: at a million-token corpus, Recall@1 reaches 13.5% versus 2.9% for the dense baseline. Together, our results position in-context retrieval a promising alternative to classical retrieval while emphasizing attention control under extreme context growth as a new challenge.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=OYj8yMVkLx",
+  "arxiv": "https://arxiv.org/abs/2607.01538",
+  "pdf": "https://arxiv.org/pdf/2607.01538",
+  "proceedings": null,
+  "virtual": "https://neurips.cc/virtual/2026/poster/153028",
+  "code": null
+ },
+ "license": "http://creativecommons.org/licenses/by/4.0/",
+ "img": "cc-by",
+ "image_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/images/neurips26-3516.png",
+ "thumb_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/thumbs/neurips26-3516.webp",
+ "figure_page": 4,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.6
+}

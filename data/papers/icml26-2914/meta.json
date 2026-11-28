@@ -1,0 +1,57 @@
+{
+ "id": "icml26-2914",
+ "title": "FourTune: Towards Fully 4-Bit Efficient Post-Training for Diffusion Models",
+ "authors": [
+  "Bowen Xue",
+  "Zihan Min",
+  "Xingyang Li",
+  "Zhekai Zhang",
+  "Haocheng Xi",
+  "Lvmin Zhang",
+  "Maneesh Agrawala",
+  "Jun-Yan Zhu",
+  "Song Han",
+  "Yujun Lin",
+  "Muyang Li"
+ ],
+ "venue": "ICML 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "Deep Learning->Generative Models and Autoencoders",
+ "role": "prior-vs-ours",
+ "role2": "pipeline",
+ "claim": "Prior methods compute in high precision or dequantize stored low-bit weights; ours quantizes everything and computes natively in low bit.",
+ "layout": "3 columns by 2 rows (forward/backward), left-to-right, dashed divider, color-coded precision",
+ "tags": [
+  "quantization",
+  "4-bit-training",
+  "parameter-efficient",
+  "memory-efficiency",
+  "low-precision-compute"
+ ],
+ "style": [
+  "minimal",
+  "colorful",
+  "math-heavy"
+ ],
+ "description": "A three-column comparison with forward-pass and backward-pass rows separated by a dashed line. Column (a) is LoRA (W16A16G16). It shows pink 16-bit blocks for the equations X × W = Y (forward) and ∂L/∂Y × Wᵀ = ∂L/∂X (backward). Column (b) is QLoRA (W4A16G16). It has the same large pink matrices, plus a green 4-bit W or Wᵀ block above or below. A blue trapezoid labeled Dequantize connects the green block to the matrix. Column (c) is FourTune (Ours, W4A4G4). A blue Quantize funnel turns the pink inputs into small green 4-bit blocks, so the whole multiplication is green and visibly smaller. A legend at the bottom right maps pink to 16-bit and green to 4-bit. The eye goes to the shift from large pink blocks to compact green ones.",
+ "caption": "Comparison of forward and backward pipelines across different PEFT methods. (a) LoRA follows the standard high-precision training pipeline, where weights ($W$), activations ($A$), and gradients ($G$) are all stored and computed in high precision. (b) QLoRA reduces the memory footprint by storing weights in 4-bit precision, but still requires on-the-fly dequantization to 16-bit for computation (W4A16G16). (c) Our \\name quantizes weights, activations, and gradients all to 4-bit (W4A4G4), enabling low-bit computation for both the forward and backward passes while preserving memory efficiency.",
+ "caption_source": "latex",
+ "abstract": "Diffusion models have become a dominant paradigm for high-quality generative modeling, while post-training is essential for adapting them to diverse downstream applications. However, post-training of large diffusion models is still challenging due to the prohibitive memory footprints and slow training speed, which existing parameter-efficient fine-tuning methods only partially address. To overcome these limitations, we propose FourTune, an efficient post-training framework for diffusion models based on an end-to-end W4A4G4 paradigm. FourTune introduces a triple-branch hybrid pipeline that augments the standard LoRA architecture with a frozen numerical stabilizer to isolate quantization-sensitive outliers, enabling stable training under native 4-bit computation. In addition, FourTune employs hardware-efficient block-wise quantization and customized fused kernels to support efficient quantized backpropagation and reduce memory bandwidth overhead. Across customization, reinforcement learning, and distillation tasks, FourTune matches the quality of full-precision fine-tuning. On FLUX.1-dev (12B), FourTune reduces memory overhead by 2.25$\\times$ and increases end-to-end training throughput by 2.27$\\times$ compared to BF16 LoRA.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=RpwnrBkht2",
+  "arxiv": "https://arxiv.org/abs/2607.05711",
+  "pdf": "https://raw.githubusercontent.com/mlresearch/v306/main/assets/xue26i/xue26i.pdf",
+  "proceedings": "https://proceedings.mlr.press/v306/xue26i.html",
+  "virtual": "https://icml.cc/virtual/2026/poster/64004",
+  "code": null
+ },
+ "license": "http://arxiv.org/licenses/nonexclusive-distrib/1.0/",
+ "img": "none",
+ "image_url": null,
+ "thumb_url": null,
+ "figure_page": 2,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.85
+}

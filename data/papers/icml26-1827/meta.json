@@ -1,0 +1,51 @@
+{
+ "id": "icml26-1827",
+ "title": "Posterior Behavioral Cloning: Pretraining BC Policies for Efficient RL Finetuning",
+ "authors": [
+  "Andrew Wagenmaker",
+  "Perry Dong",
+  "Raymond Tsao",
+  "Chelsea Finn",
+  "Sergey Levine"
+ ],
+ "venue": "ICML 2026",
+ "tier": "spotlight",
+ "track": "main",
+ "topic": "Reinforcement Learning->Online",
+ "role": "prior-vs-ours",
+ "role2": "problem-setup",
+ "claim": "Standard pretraining overcommits to observed behavior and yields poor finetuning; a wider, posterior-based pretrained policy enables effective improvement.",
+ "layout": "2 rows by 3 panels, left-to-right, ✗ versus ✓ markers",
+ "tags": [
+  "pretraining",
+  "finetuning",
+  "reinforcement-learning",
+  "robotics",
+  "coverage"
+ ],
+ "style": [
+  "icon-heavy",
+  "colorful",
+  "minimal"
+ ],
+ "description": "Two stacked rows of green rounded panels connected by large orange arrows, read left to right. The top row is standard BC pretraining followed by RL finetuning. Panel (a) shows a robot arm with blue demonstration arrows, one to a tomato and many bundled to broccoli. Panel (b) shows the BC policy as thin purple arrows, one per target. Panel (c) shows the RL-finetuned policy, with the tomato arrow missing its target, and a red X below. The bottom row is Posterior BC pretraining followed by RL finetuning. It repeats panel (a), then panel (d) shows a Posterior BC policy as a wide, blurry purple band toward the tomato. Panel (e) shows the finetuned policy reaching both targets, with a green check. Rotated row labels sit at the left. The eye goes first to the contrasting X and check marks.",
+ "caption": "(a) We consider the setting where we are given demonstration data for some tasks of interest. (b) Standard \\bc pretraining fits the behaviors in the demonstrations, leading to effective performance in regions with high demonstration data density, yet can overcommit to the observed behaviors in regions with low data density. (c) This leads to ineffective RL finetuning, since rollouts from the \\bc policy provide little meaningful reward signal in such low data density regions, which is typically necessary to enable effective improvement. (d) In contrast, we propose posterior behavioral cloning (\\pbc), which instead of directly mimicking the demonstrations, trains a generative policy to fit the posterior distribution of the demonstrator's behavior. This endows the pretrained policy with a wider distribution of actions in regions of low demonstrator data density, while in regions of high data density it reduces to approximately the standard \\bc policy. (e) This wider action distribution in low data density regions allows for collection of diverse observations with more informative reward signal, enabling more effective RL finetuning, while in regions of high data density performance converges to that of the demonstrator.\\loose",
+ "caption_source": "latex",
+ "abstract": "Standard practice across domains from robotics to language is to first pretrain a policy on a large-scale demonstration dataset, and then finetune this policy, typically with reinforcement learning (RL), in order to improve performance on deployment domains. This finetuning step has proved critical in achieving human or super-human performance, yet while much attention has been given to developing more effective finetuning algorithms, little attention has been given to ensuring the pretrained policy is an effective initialization for RL finetuning. In this work we seek to understand how the pretrained policy affects finetuning performance, and how to pretrain policies in order to ensure they are effective initializations for finetuning. We first show theoretically that standard behavioral cloning (BC) -- which trains a policy to directly match the actions played by the demonstrator -- can fail to ensure coverage over the demonstrator's actions, a minimal condition necessary for effective RL finetuning. We then show that if, instead of exactly fitting the observed demonstrations, we train a policy to model the posterior distribution of the demonstrator's behavior given the demonstration dataset, we do obtain a policy that ensures coverage over the demonstrator's actions, enabling more effective finetuning. Furthermore, this policy -- which we refer to as the posterior behavioral cloning (PostBC) policy -- achieves this while ensuring pretrained performance is no worse than that of the BC policy. We then show that PostBC is practically implementable with modern generative models in robotic control domains -- relying only on standard supervised learning -- and leads to significantly improved RL finetuning performance on both realistic robotic control benchmarks and real-world robotic manipulation tasks, as compared to standard behavioral cloning.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=HJ5F3R9Tmd",
+  "arxiv": "https://arxiv.org/abs/2512.16911",
+  "pdf": "https://raw.githubusercontent.com/mlresearch/v306/main/assets/wagenmaker26a/wagenmaker26a.pdf",
+  "proceedings": "https://proceedings.mlr.press/v306/wagenmaker26a.html",
+  "virtual": "https://icml.cc/virtual/2026/poster/65049",
+  "code": null
+ },
+ "license": "http://arxiv.org/licenses/nonexclusive-distrib/1.0/",
+ "img": "none",
+ "image_url": null,
+ "thumb_url": null,
+ "figure_page": 1,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.8
+}

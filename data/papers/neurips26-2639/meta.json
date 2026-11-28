@@ -1,0 +1,53 @@
+{
+ "id": "neurips26-2639",
+ "title": "CODA: Rewriting Transformer Blocks as GEMM-Epilogue Programs",
+ "authors": [
+  "Han Guo",
+  "Jack Zhang",
+  "Arjun Menon",
+  "Driss Guessous",
+  "Vijay Thakkar",
+  "Yoon Kim",
+  "Tri Dao"
+ ],
+ "venue": "NeurIPS 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "Deep Learning->Everything Else",
+ "role": "analysis-finding",
+ "role2": "problem-setup",
+ "claim": "Even in highly optimized training, the dense compute kernel takes under half of runtime, and surrounding memory-bound operations take a growing share at lower precision.",
+ "layout": "1 panel, two stacked bars (BF16, FP8), labels inside segments",
+ "tags": [
+  "runtime-breakdown",
+  "profiling",
+  "memory-bound",
+  "bottleneck",
+  "gpu-training"
+ ],
+ "style": [
+  "plot",
+  "minimal",
+  "colorful"
+ ],
+ "description": "A single stacked bar chart with two bars, BF16 on the left and FP8 on the right. The y-axis is '% of total GPU time' from 0 to 100. Each bar has four labeled segments, from bottom to top: GEMM in pale cream, Attention in light taupe, Optimizer in dark charcoal, and Others in salmon red. In BF16, GEMM takes about 47%, Attention about 23%, Optimizer about 13% and Others about 17%. In FP8, GEMM shrinks to about 33%, while Attention (about 25%), Optimizer (about 14%) and Others (about 28%) take up more of the total. The saturated red 'Others' block at the top draws the eye first. It marks the non-GEMM overhead that the paper targets. There is no legend, because labels sit inside the segments.",
+ "caption": "Runtime breakdown for LLaMA-3-style 1B model training on a single H100 using TorchTitan.",
+ "caption_source": "latex",
+ "abstract": "Transformer training systems are built around dense linear algebra, yet a nontrivial fraction of end-to-end time is spent on surrounding memory-bound operators. Normalization, activations, residual updates, reductions, and related computations repeatedly move large intermediate tensors through global memory while performing little arithmetic, making data movement an increasingly important bottleneck in otherwise highly optimized training stacks. We introduce CODA, a GPU kernel abstraction that expresses these computations as GEMM-plus-epilogue programs. CODA is based on the observation that many Transformer operators exposed as separate framework kernels can be algebraically reparameterized to execute while a GEMM output tile remains on chip, before it is written to memory. The abstraction fixes the GEMM mainloop and exposes a small set of composable epilogue primitives for scaling, reductions, pairwise transformations, and accumulation. This constrained interface preserves the performance structure of expert-written GEMMs while remaining expressive enough to cover nearly all non-attention computation in the forward and backward pass of a standard Transformer block. Across representative Transformer workloads, both human- and LLM-authored CODA kernels achieve high performance, suggesting that GEMM-plus-epilogue programming offers a practical path toward combining framework-level productivity with hardware-level efficiency.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=IbVBLfiHWM",
+  "arxiv": "https://arxiv.org/abs/2605.19269",
+  "pdf": "https://arxiv.org/pdf/2605.19269",
+  "proceedings": null,
+  "virtual": "https://neurips.cc/virtual/2026/poster/153802",
+  "code": null
+ },
+ "license": "http://arxiv.org/licenses/nonexclusive-distrib/1.0/",
+ "img": "none",
+ "image_url": null,
+ "thumb_url": null,
+ "figure_page": 0,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.8
+}

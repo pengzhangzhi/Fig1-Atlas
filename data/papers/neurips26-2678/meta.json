@@ -1,0 +1,47 @@
+{
+ "id": "neurips26-2678",
+ "title": "Reformulating KV Cache Eviction Problem for Long-Context LLM Inference",
+ "authors": [
+  "Tho Mai",
+  "Joo-Young Kim"
+ ],
+ "venue": "NeurIPS 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "Deep Learning->Algorithms",
+ "role": "analysis-finding",
+ "role2": null,
+ "claim": "Attention weights are small and vary differently from projected value magnitudes, so attention alone misjudges how much each token contributes to the output.",
+ "layout": "2 panels side-by-side, line plots, dual y-axis in right panel",
+ "tags": [
+  "kv-cache",
+  "attention-analysis",
+  "magnitude-mismatch",
+  "long-context",
+  "empirical-observation"
+ ],
+ "style": [
+  "plot",
+  "minimal"
+ ],
+ "description": "Two line-plot panels sit side by side. Panel (a) plots normalized magnitude against token index (22 to 51) for two series. The orange |VWo| line stays fairly flat near 0.01 to 0.02. The blue |A| line swings widely, with a spike near 0.04 at token 50, and the two lines are often out of phase. Panel (b) plots average strength against layer index (1 to 32) with dual y-axes. Green V magnitude rises steadily from near 0 to about 0.67. Orange Wo rises slowly on the right axis, which runs to 0.003. Blue A is a flat line near zero. Each panel has a legend and a caption below it, (a) 'A and VWO patterns.' and (b) 'Average strength.' The eye goes first to the blue spike in panel (a), then to the rising green curve in panel (b).",
+ "caption": "Pattern and magnitude of $A$ and $VW_O$.",
+ "caption_source": "latex",
+ "abstract": "Large language models (LLMs) support long-context inference but suffer from substantial memory and runtime overhead due to Key-Value (KV) Cache growth. Existing KV Cache eviction methods primarily rely on local attention weights, neglecting the influence of value representations, output projection, and inter-head interactions. In this work, we reformulate KV Cache eviction from a conventional head-wise, weight-averaging approach into an output-aware, layer-wise matrix multiplication approximation problem. We introduce LaProx, a novel eviction strategy that explicitly models the multiplicative interaction between attention maps and projected value states to accurately quantify token contributions while accounting for inter-head dependencies. Building on this metric, we propose the first unified eviction strategy that assigns globally comparable importance scores to tokens, enabling model-wide selection instead of local, head-wise decisions. Experimental results across 19 datasets on long-context benchmarks LongBench and Needle-In-A-Haystack demonstrate that our approach maintains model performance with only 5% of the KV cache and consistently outperforms prior works across all configurations. Notably, our method achieves up to 2$\\times$ accuracy loss reduction under extreme compression scenarios compared to existing state-of-the-art baselines with minimal overhead. Our code is available at https://github.com/huuthomai/LaProx.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=IomgdYliGM",
+  "arxiv": "https://arxiv.org/abs/2605.07234",
+  "pdf": "https://arxiv.org/pdf/2605.07234",
+  "proceedings": null,
+  "virtual": "https://neurips.cc/virtual/2026/poster/153767",
+  "code": null
+ },
+ "license": "http://arxiv.org/licenses/nonexclusive-distrib/1.0/",
+ "img": "none",
+ "image_url": null,
+ "thumb_url": null,
+ "figure_page": 2,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.85
+}

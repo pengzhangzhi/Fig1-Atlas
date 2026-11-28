@@ -1,0 +1,50 @@
+{
+ "id": "iclr26-0809",
+ "title": "SERE: Similarity-based Expert Re-routing for Efficient Batch Decoding in MoE Models",
+ "authors": [
+  "Juntong Wu",
+  "Jialiang Cheng",
+  "Fuyu Lv",
+  "Dan Ou",
+  "Li Yuan"
+ ],
+ "venue": "ICLR 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "Deep Learning->Algorithms",
+ "role": "analysis-finding",
+ "role2": null,
+ "claim": "Larger batches activate more of the sparse experts, and MoE decoding time grows roughly linearly with the number of active experts.",
+ "layout": "2 stacked line plots, top-to-bottom, shaded min-max band with annotated values",
+ "tags": [
+  "mixture-of-experts",
+  "batch-decoding",
+  "expert-activation",
+  "latency",
+  "memory-bound"
+ ],
+ "style": [
+  "plot",
+  "colorful"
+ ],
+ "description": "Two vertically stacked line charts. The top chart plots average activated experts (y, 0–120) against batch size (x, 1 to 128). A green line with open circular markers rises steeply from 8.0 at batch size 1 to 93.4 at batch size 128. Each marker has a rounded value label, and a light green shaded band shows the min–max range. A legend sits at the lower right. The bottom chart plots average MoE time in microseconds (y, 0–500) against active experts (x, 8 to about 128). Six colored lines with different markers, one per batch size from 16 to 96, follow a near-linear rise to about 440 µs. They scatter at small expert counts, where the brown and purple lines show spikes. A two-column legend sits at the lower right. The eye goes first to the annotated green curve at the top.",
+ "caption": "Larger batches activate more experts. With a fixed batch size, more experts increase decoding time.",
+ "caption_source": "latex",
+ "abstract": "Mixture-of-Experts (MoE) architectures employ sparse activation to deliver faster training and inference with higher accuracy than dense LLMs. However, in production serving, MoE models require batch inference to optimize hardware efficiency, which may cause excessive expert activation and thus slow the memory-bound decoding stage. To address the fundamental tension between batch decoding and expert sparsity, we present SERE, a Similarity-based Expert Re-routing method for Efficient batch decoding in MoE models. SERE dynamically reduces the number of active experts in an input-aware manner by re-routing tokens from secondary experts to their most similar primary counterparts. It also leverages similarity patterns to identify and preserve critical experts, thereby preventing capability loss. Notably, SERE avoids static expert pruning or merging, instead enabling dynamic expert skipping based on batch-level expert redundancy. Additionally, we provide an efficient custom CUDA kernel for SERE, enabling plug-and-play use in vLLM with only a single-line code change. Extensive experiments on various complex reasoning benchmarks demonstrate that SERE achieves up to 2.0x speedup with minimal quality loss, providing a practical solution for cost-efficient and latency-sensitive large-scale MoE deployment. Code implementation of SERE can be found in https://github.com/JL-Cheng/SERE.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=98IxaUQtMY",
+  "arxiv": "https://arxiv.org/abs/2602.07616",
+  "pdf": "https://proceedings.iclr.cc/paper_files/paper/2026/file/5d07eb2335d88b1dfcefcc3d2da2a230-Paper-Conference.pdf",
+  "proceedings": "https://proceedings.iclr.cc/paper_files/paper/2026/hash/5d07eb2335d88b1dfcefcc3d2da2a230-Abstract-Conference.html",
+  "virtual": "https://iclr.cc/virtual/2026/poster/10011142",
+  "code": "https://github.com/JL-Cheng/SERE"
+ },
+ "license": "http://creativecommons.org/licenses/by-nc-nd/4.0/",
+ "img": "none",
+ "image_url": null,
+ "thumb_url": null,
+ "figure_page": 0,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.82
+}

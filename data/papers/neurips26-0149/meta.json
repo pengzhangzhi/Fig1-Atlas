@@ -1,0 +1,51 @@
+{
+ "id": "neurips26-0149",
+ "title": "The Quantization Benefits of Residual-Free Transformers",
+ "authors": [
+  "Yiping Ji",
+  "Mahalakshmi Sabanayagam",
+  "Peyman Moghadam",
+  "Hemanth Saratchandran",
+  "Simon Lucey"
+ ],
+ "venue": "NeurIPS 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "Deep Learning->Everything Else",
+ "role": "teaser-result",
+ "role2": "analysis-finding",
+ "claim": "Removing residual connections keeps activations near-Gaussian, giving far better low-bit quantization robustness at nearly equal full-precision accuracy.",
+ "layout": "3 panels in a row, line plots, red vs blue throughout",
+ "tags": [
+  "quantization",
+  "residual-free",
+  "kurtosis",
+  "robustness",
+  "architecture-comparison"
+ ],
+ "style": [
+  "plot",
+  "colorful",
+  "minimal"
+ ],
+ "description": "A single row of three line plots that compare two models, with red for the residual transformer and blue for the residual-free transformer. The left panel plots accuracy against activation bits (4 to 16). Dashed horizontal lines mark each model's bf16 accuracy. The blue curve stays close to its dashed line, while the red curve sits clearly lower. The middle panel plots SQNR in dB against activation bits. The blue curve rises steeply to about 70 dB, and the red curve stays far below it. The right panel plots excess kurtosis on a log-style axis against layer index. Red points sit around 10^3 to 10^4, and blue points stay near zero. A legend in the left panel names all four lines. The eye goes first to the large gap between the red and blue curves in each panel.",
+ "caption": "Residual-free transformers remain near-Gaussian and quantization-robust. On $24$-layer models trained in bf16 precision, the residual-free model with orthogonal initialization and KL Shampoo achieves performance comparable to the residual one on $8$ downstream tasks and retains substantially high accuracy under aggressive quantization (int) of activations and 8-bit weights, while the residual model degrades sharply (left). This gap is explained by a higher signal-to-quantization-noise ratio (SQNR) (middle) and near-Gaussian activations measured by excess kurtosis (near-zero indicates near-Gaussian in the fourth-moment sense) across layers (right), whereas residual models develop heavy-tailed activations.",
+ "caption_source": "latex",
+ "abstract": "Large-scale transformer training and deployment are increasingly constrained by the transfer of activations, gradients, and optimizer states across accelerators. Low-bit quantization offers a natural remedy, but transformer activations are often heavy-tailed and outlier-dominated, making simple quantization highly lossy. We show that this difficulty is not only a property of the quantizer, but also of the architecture. Specifically, residual connections can drive transformer activations away from Gaussianity during training. Using controlled comparisons between residual and residual-free transformers, we demonstrate that this effect leads to substantially higher quantization error and accuracy degradation at low precision in residual models. We explain the phenomenon through an excess kurtosis analysis, showing that residual mixing can amplify non-Gaussianity, whereas dense mixing in residual-free models contracts non-Gaussianity. We then show that residual-free transformers can be made trainable using orthogonal initialization, spectral or second-order optimization, and depth-aware scaling of attention temperature. In language tasks, while there is a small drop in full precision performance, these models retain near-Gaussian activations and exhibit significantly improved robustness to low-bit quantization. Our results identify an accuracy--compressibility trade-off in transformer design and motivate architecture-level approaches to quantization-friendly foundation models.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=18XtiYe9Gk",
+  "arxiv": "https://arxiv.org/abs/2605.25880",
+  "pdf": "https://arxiv.org/pdf/2605.25880",
+  "proceedings": null,
+  "virtual": "https://neurips.cc/virtual/2026/poster/156016",
+  "code": null
+ },
+ "license": "http://creativecommons.org/licenses/by/4.0/",
+ "img": "cc-by",
+ "image_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/images/neurips26-0149.png",
+ "thumb_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/thumbs/neurips26-0149.webp",
+ "figure_page": 1,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.6
+}

@@ -1,0 +1,53 @@
+{
+ "id": "icml26-4345",
+ "title": "Rethinking the Trust Region in LLM Reinforcement Learning",
+ "authors": [
+  "Penghui Qi",
+  "Xiangxin Zhou",
+  "Zichen Liu",
+  "Tianyu Pang",
+  "Chao Du",
+  "Min Lin",
+  "Wee Sun Lee"
+ ],
+ "venue": "ICML 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "Deep Learning->Large Language Models",
+ "role": "teaser-result",
+ "role2": "prior-vs-ours",
+ "claim": "A principled divergence-based update mask replaces a heuristic ratio-based one, yielding clearly better and more stable training than the baseline.",
+ "layout": "2 panels: left stacked equations in colored boxes, right line plot; comparison via color",
+ "tags": [
+  "trust-region",
+  "policy-optimization",
+  "reinforcement-learning",
+  "heuristic-vs-principled",
+  "training-stability"
+ ],
+ "style": [
+  "math-heavy",
+  "plot",
+  "colorful"
+ ],
+ "description": "The figure has two halves. On the left, a surrogate objective L_mu(pi) is written at the top as an expectation of a sum over tokens, with a mask M_t multiplying the probability ratio and the advantage. Below it are two rounded boxes. The blue box defines the PPO mask as a piecewise function. It is 0 when the advantage is positive and the ratio exceeds 1+eps_high, or when the advantage is negative and the ratio falls below 1-eps_low, and 1 otherwise. The ratio terms are red. The green box defines the DPPO mask the same way, but it thresholds the probability difference pi minus mu against delta, with the difference terms in blue. On the right is a line plot titled AIME24, with training step on the x-axis and accuracy from 0.2 to 0.6 on the y-axis. It has four curves: GRPO (blue) at the bottom, GRPO w/ R3 (orange) in the middle, DPPO (green) above that, and DPPO w/ R3 (red) on top. The eye goes first to the large equations, then to the separated curves.",
+ "caption": "Comparison of PPO and the proposed DPPO (the Binary-TV variant in [ref]). (Left) The surrogate objective and corresponding masks for PPO and DPPO. PPO (and variants like GRPO) employs a heuristic mask based on the probability ratio, which over-penalizes low-probability tokens and under-penalizes high-probability ones ([ref]). In contrast, DPPO utilizes a more principled mask based on a direct approximation of policy divergence (e.g., Total Variation), ensuring updates stay within a theoretically grounded trust region ([ref]). (Right) Experimental results on the AIME24 using Qwen3-30B-A3B-Base. DPPO significantly outperforms GRPO baselines, achieving superior training efficiency and stability even without rollout routing replay (R3) ([ref]).",
+ "caption_source": "latex",
+ "abstract": "Reinforcement learning (RL) has become a cornerstone for fine-tuning Large Language Models (LLMs), with Proximal Policy Optimization (PPO) serving as the de facto standard algorithm. Despite its ubiquity, we argue that the core ratio clipping mechanism in PPO is structurally ill-suited for the large vocabularies inherent to LLMs. PPO constrains policy updates based on the probability ratio of sampled tokens, which serves as a noisy single-sample Monte Carlo estimate of the true policy divergence. This creates a sub-optimal learning dynamic: updates to low-probability tokens are aggressively over-penalized, while potentially catastrophic shifts in high-probability tokens are under-constrained, leading to training inefficiency and instability. To address this, we propose Divergence Proximal Policy Optimization (DPPO), which substitutes heuristic clipping with a more principled constraint based on a direct estimate of policy divergence (e.g., Total Variation or KL). To avoid huge memory footprint, we introduce the efficient Binary and Top-K approximations to capture the essential divergence with negligible overhead. Extensive empirical evaluations demonstrate that DPPO achieves superior training stability and efficiency compared to existing methods, offering a more robust foundation for RL-based LLM fine-tuning. Our code is available at https://github.com/sail-sg/Stable-RL.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=f4g8zblbwp",
+  "arxiv": "https://arxiv.org/abs/2602.04879",
+  "pdf": "https://raw.githubusercontent.com/mlresearch/v306/main/assets/qi26q/qi26q.pdf",
+  "proceedings": "https://proceedings.mlr.press/v306/qi26q.html",
+  "virtual": "https://icml.cc/virtual/2026/poster/62611",
+  "code": null
+ },
+ "license": "http://arxiv.org/licenses/nonexclusive-distrib/1.0/",
+ "img": "none",
+ "image_url": null,
+ "thumb_url": null,
+ "figure_page": 0,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.5
+}

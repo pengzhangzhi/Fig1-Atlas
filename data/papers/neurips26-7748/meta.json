@@ -1,0 +1,53 @@
+{
+ "id": "neurips26-7748",
+ "title": "STILL: Selecting Tokens for Intra-Layer Hybrid Attention to Linearize LLMs",
+ "authors": [
+  "Weikang Meng",
+  "Liangyu Huo",
+  "Yadan Luo",
+  "Jiawen Guan",
+  "Jingyi Zhang",
+  "Yingjian Li",
+  "Zheng Zhang"
+ ],
+ "venue": "NeurIPS 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "Deep Learning->Attention Mechanisms",
+ "role": "prior-vs-ours",
+ "role2": null,
+ "claim": "Prior hybrid methods either apply uniform linear attention or discard unselected tokens; ours selects salient tokens and keeps the rest.",
+ "layout": "3 panels left-to-right plus legend; causal attention-mask grids over the same sentence",
+ "tags": [
+  "hybrid-attention",
+  "linear-attention",
+  "token-selection",
+  "efficiency",
+  "long-context"
+ ],
+ "style": [
+  "colorful",
+  "minimal",
+  "icon-heavy"
+ ],
+ "description": "Three lower-triangular attention-mask grids sit side by side. Each grid is over the same token sequence, \"I hope every day brings you warm sweet joy.\", written diagonally beneath it. A legend on the right explains the colors: salmon is sliding-window softmax attention, blue is selected and compressed softmax attention, green is linear attention, and gray is NULL. In the left grid, the salmon diagonal band is backed by green linear attention across all earlier tokens. In the middle grid, the band is paired with blue columns for selected tokens and gray NULL cells for everything else, so unselected context is dropped. In the right grid, the salmon band is combined with blue selected columns, and green fills the remaining earlier context. The right grid is the proposed method, and its mix of blue and green is where the eye goes first.",
+ "caption": "Illustration of Intra-Layer Hybrid Attention. While both act as intra-layer hybrids using local Softmax Attention (SA), they differ in handling the remaining sequence. LoLCATs/Liger applies uniform Linear Attention (LA), which limits long-context capacity, while compressed sparse attention (CSA) utilizes sparse compressed SA but completely discards unselected tokens (NULL). STILL selects tokens for high-fidelity SA and preserves the context via LA without information loss.",
+ "caption_source": "latex",
+ "abstract": "Linearizing pretrained large language models (LLMs) primarily relies on intra-layer hybrid attention mechanisms to alleviate the quadratic complexity of standard softmax attention. Existing methods perform token routing based on sliding-window partitions, resulting in position-based selection and fails to capture token-specific global importance. Meanwhile, linear attention further suffers from distribution shift caused by learnable feature maps that distort pretrained feature magnitudes. Motivated by these limitations, we propose STILL, an intra-layer hybrid linearization framework for efficiently linearizing LLMs. STILL introduces a Self-Saliency Score with strong local-global consistency, enabling accurate token selection using sliding-window computation, and retains salient tokens for sparse softmax attention while summarizing the remaining context via linear attention. To preserve pretrained representations, we design a Norm-Preserved Feature Map (NP-Map) that decouples feature direction from magnitude and reinjects pretrained norms. We further adopt a unified training-inference architecture with chunk-wise parallelization and delayed selection to improve hardware efficiency. Experiments show that STILL matches or surpasses the original pretrained model on commonsense and general reasoning tasks, and achieves up to a 86.2% relative improvement over prior linearized attention methods on long-context benchmarks. Code is available at this URL.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=rgEJDjkYDK",
+  "arxiv": "https://arxiv.org/abs/2602.02180",
+  "pdf": "https://arxiv.org/pdf/2602.02180",
+  "proceedings": null,
+  "virtual": "https://neurips.cc/virtual/2026/poster/149260",
+  "code": "https://github.com/ZacharyMeng/STILL"
+ },
+ "license": "http://arxiv.org/licenses/nonexclusive-distrib/1.0/",
+ "img": "none",
+ "image_url": null,
+ "thumb_url": null,
+ "figure_page": 1,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.9
+}

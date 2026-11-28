@@ -1,0 +1,48 @@
+{
+ "id": "icml26-6337",
+ "title": "Open Materials Generation with Inference-Time Reinforcement Learning",
+ "authors": [
+  "Philipp Höllmer",
+  "Stefano Martiniani"
+ ],
+ "venue": "ICML 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "Applications->Chemistry, Physics, and Earth Sciences",
+ "role": "pipeline",
+ "role2": "concept",
+ "claim": "A frozen noisy surrogate of a deterministic flow enables group-relative policy-gradient updates on velocity fields without needing scores.",
+ "layout": "4 panels in 2x2 grid, trajectory cartoons plus a flow chart in (d)",
+ "tags": [
+  "reinforcement-learning",
+  "flow-models",
+  "policy-gradient",
+  "kl-regularization",
+  "inference-time"
+ ],
+ "style": [
+  "math-heavy",
+  "colorful",
+  "minimal"
+ ],
+ "description": "A 2x2 grid of panels. (a) shows a start sphere (purple) and a target sphere (gray). A black deterministic ODE path and a teal noisy surrogate SDE path run almost on top of each other to a final position, with a deviation bar to the target. (b) is a triangle at the current position. A black 'reinforced' arrow and a teal 'frozen surrogate' arrow each lead to a Gaussian transition density, with the equations shown. A KL regularization bar links the two. (c) shows several black stochastic rollouts from the start ending at spheres at different distances from the target, labeled large reward and small reward. (d) is a rounded purple box with a top-to-bottom chain of rollouts, rewards and GRPO advantages. Chevrons point down to 'PPO clip objective + KL regularization'. Purple and teal are the main colors, and the equations are typeset in LaTeX.",
+ "caption": "Inference-time RL for CSP in velocity-based OMatG-IRL. (a) The deterministic base ODE with pretrained velocity field $b^{\\theta_ref}(t,x_t)$ is augmented with a small noise schedule $\\sigma_ref(t)$, yielding a surrogate SDE that leaves evaluation metrics (e.g., deviation from a reference structure) of the final samples $x_{t=1}$ virtually unchanged. (b) The frozen surrogate defines a reference policy for KL regularization, while stochastic exploration is performed using a reinforced velocity field $b^\\theta(t,x_t)$ and a (potentially different) noise schedule $\\sigma(t)$. (c) GRPO compares terminal rewards $r^i=r(x^i_{t=1})$ obtained from multiple stochastic-policy rollouts under identical conditioning. (d) These rewards are transformed into GRPO group advantages and used, together with KL regularization, in a PPO-style clipped objective to update the policy.",
+ "caption_source": "latex",
+ "abstract": "Continuous-time generative models for crystalline materials enable inverse materials design by learning to predict stable crystal structures, but incorporating explicit target properties into the generative process remains challenging. Policy-gradient reinforcement learning (RL) provides a principled mechanism for aligning generative models with downstream objectives but typically requires access to the score, which has prevented its application to flow-based models that learn only velocity fields. We introduce Open Materials Generation with Inference-time Reinforcement Learning (OMatG-IRL), a policy-gradient RL framework that operates directly on the learned velocity fields and eliminates the need for the explicit computation of the score. OMatG-IRL leverages stochastic perturbations of the underlying generation dynamics preserving the baseline performance of the pretrained generative model while enabling exploration and policy-gradient estimation at inference time. Using OMatG-IRL, we present the first application of RL to crystal structure prediction (CSP). Our method enables effective reinforcement of an energy-based objective while preserving diversity through composition conditioning, and it achieves performance competitive with score-based RL approaches. Finally, we show that OMatG-IRL can learn time-dependent velocity-annealing schedules, enabling accurate CSP with order-of-magnitude improvements in sampling efficiency and, correspondingly, reduction in generation time. The OMatG-IRL code is included in a new release of the Open Materials Generation (OMatG) framework available at https://github.com/FERMat-ML/OMatG.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=xfHppnGXaH",
+  "arxiv": "https://arxiv.org/abs/2602.00424",
+  "pdf": "https://raw.githubusercontent.com/mlresearch/v306/main/assets/hollmer26a/hollmer26a.pdf",
+  "proceedings": "https://proceedings.mlr.press/v306/hollmer26a.html",
+  "virtual": "https://icml.cc/virtual/2026/poster/60682",
+  "code": "https://github.com/FERMat-ML/OMatG"
+ },
+ "license": "http://creativecommons.org/licenses/by/4.0/",
+ "img": "cc-by",
+ "image_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/images/icml26-6337.png",
+ "thumb_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/thumbs/icml26-6337.webp",
+ "figure_page": 2,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.8
+}

@@ -1,0 +1,52 @@
+{
+ "id": "neurips26-0411",
+ "title": "TabDLM: Free-Form Tabular Data Generation via Joint Numerical–Language Diffusion",
+ "authors": [
+  "Donghong Cai",
+  "Jiarui Feng",
+  "Yanbo Wang",
+  "Da Zheng",
+  "Yixin Chen",
+  "Muhan Zhang"
+ ],
+ "venue": "NeurIPS 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "Deep Learning->Generative Models and Autoencoders",
+ "role": "pipeline",
+ "role2": null,
+ "claim": "A single masked-diffusion language model can jointly denoise heterogeneous columns by routing each modality through its own noising and embedding path, training only small adapters.",
+ "layout": "Single stacked-layer diagram, bottom-to-top flow, four column groups, trainable/frozen icons",
+ "tags": [
+  "masked-diffusion",
+  "multimodal",
+  "tabular-generation",
+  "parameter-efficient",
+  "unified-model"
+ ],
+ "style": [
+  "colorful",
+  "icon-heavy",
+  "text-heavy"
+ ],
+ "description": "A bottom-to-top architecture diagram split into four horizontal bands labeled on the right: Real tabular data, Sample (noising), Feature to token, and Denoising and loss computation. At the bottom are input boxes for a schema prompt (gray), a categorical value 'Fantasy' (blue), free text 'Harry Potter, a magical world...' (green), and numerical values 24.99 and 5.0 (purple). Categorical and text pass through Masked Language Diffusion, producing [MASK] tokens. Numbers pass through Continuous Diffusion, giving noisy values. Embedding layers and a float encoder plus projector produce colored token squares. These feed one wide MDLM block with a LoRA module. LM Head and a float projector and decoder then output the L_text and L_num losses. A legend at the top marks frozen (snowflake) and trainable (flame) modules, with orange highlighting trainable parts.",
+ "caption": "Overview of \\name. During training, given an input tabular sample, \\name applies masked language diffusion to categorical and free-form textual features, and continuous diffusion to numerical features. Noisy inputs are mapped to token embeddings via a textual embedding layer and a numerical encoder. An MDLM then denoises these embeddings to reconstruct the original sample. Training updates only the projector in the numerical encoder and decoder, as well as the LoRA modules within each MDLM layer.",
+ "caption_source": "latex",
+ "abstract": "Synthetic tabular data generation has attracted growing attention due to its importance for data augmentation, foundation models, and privacy. However, real-world tabular datasets increasingly contain free-form text fields (e.g., reviews or clinical notes) alongside structured numerical and categorical attributes. Generating such heterogeneous tables with joint modeling of different modalities remains challenging. Existing approaches broadly fall into two categories: diffusion-based methods and LLM-based methods. Diffusion models can capture complex dependencies over numerical and categorical features in continuous or discrete spaces, but extending them to open-ended text is nontrivial, since they model each column as a continuous value or one of a closed set of categories, whereas text lives in an exponentially large sequence space. In contrast, LLM-based generators naturally produce fluent text, yet their discrete tokenization can distort precise or wide-range numerical values, hindering accurate modeling of both numbers and language. In this work, we propose TabDLM, a unified framework for free-form tabular data generation via a joint numerical-language diffusion model built on masked diffusion language models (MDLMs). TabDLM models textual and categorical features through masked diffusion, while modeling numerical features with a continuous diffusion process through learned specialized numeric tokens embedding; bidirectional attention then captures cross-modality interactions within a single model. Extensive experiments on diverse benchmarks demonstrate the effectiveness of TabDLM compared to strong diffusion- and LLM-based baselines. Our code is available at https://github.com/ilikevegetable/TabDLM.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=2wkDrJJ6B1",
+  "arxiv": "https://arxiv.org/abs/2602.22586",
+  "pdf": "https://arxiv.org/pdf/2602.22586",
+  "proceedings": null,
+  "virtual": "https://neurips.cc/virtual/2026/poster/155779",
+  "code": null
+ },
+ "license": "http://arxiv.org/licenses/nonexclusive-distrib/1.0/",
+ "img": "none",
+ "image_url": null,
+ "thumb_url": null,
+ "figure_page": 2,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.95
+}

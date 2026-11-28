@@ -1,0 +1,55 @@
+{
+ "id": "iclr26-1189",
+ "title": "Fast Proteome-Scale Protein Interaction Retrieval via Residue-Level Factorization",
+ "authors": [
+  "Jianan Zhao",
+  "Zhihao Zhan",
+  "Narendra Chaudhary",
+  "Xinyu Yuan",
+  "Zuobai Zhang",
+  "Qian Cong",
+  "Jian Zhou",
+  "Sanchit Misra",
+  "Jian Tang"
+ ],
+ "venue": "ICLR 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "Applications->Genetics, Cell Biology, Health, etc",
+ "role": "pipeline",
+ "role2": "prior-vs-ours",
+ "claim": "An expensive pairwise residue-level scoring pipeline can be approximated by a factorized per-item embedding pipeline enabling fast nearest-neighbor retrieval.",
+ "layout": "2 stacked panels, left-to-right flow, upward arrow linking complexity annotations",
+ "tags": [
+  "factorization",
+  "approximate-nearest-neighbor",
+  "efficiency",
+  "retrieval",
+  "kernel-approximation"
+ ],
+ "style": [
+  "icon-heavy",
+  "colorful",
+  "minimal"
+ ],
+ "description": "Two stacked rounded panels. The top panel, labeled Pred&Agg, shows the baseline. A ProteinLM box takes a pair of protein structure icons (Iterate 200M protein pairs) and feeds two blue boxes, Residue Contact Prediction and Residue pair Attention. These produce pink and blue heatmap matrices (Res-interaction Scores and Attention), which combine through a circled-dot product into a single PPI Score for a pair. The bottom panel, labeled RaftPPI, shows the proposed pipeline in green. A ProteinLM box takes a query protein (Iterate 20k query proteins) and feeds Random Fourier Transform, then Low-Rank Attention, then a Protein Query Fourier Feature vector. That vector goes to an ANN Search box, which queries an orange HNSW DB of key features and returns Top-K proteins. A blue upward arrow marked Approximates links O(NL^2) to O(N^2L^2). The eye goes first to the top panel's heatmaps, then down to the green modules.",
+ "caption": "Overview of RaftPPI. RaftPPI approximates a standard PPI pipeline Pred&Agg (above) that predicts residue-level contact scores and aggregates them using attention to a final PPI score. The Pred&Agg pipeline costs O(N 2L2) for proteome-wide retrieval. RaftPPI uses Random Fourier Features to approximate a Gaussian kernel and leverages low-rank attention. The pipeline is factorizable (below), enabling per-protein Fourier-feature embeddings and ultra-fast retrieval via approximate nearest neighbor search (e.g., HNSW) at proteome scale with O(NL2) precomputation.",
+ "caption_source": "pdf",
+ "abstract": "Protein-protein interactions (PPIs) are mediated at the residue level. Most sequence-based PPI models consider residue-residue interactions across two proteins, which can yield accurate interaction scores but are too slow to scale. At proteome scale, identifying candidate PPIs requires evaluating nearly *all possible protein pairs*. For $N$ proteins of average length $L$, exhaustive all-against-all search requires $\\mathcal{O}(N^2L^2)$ computation, rendering conventional approaches computationally impractical. We introduce RaftPPI, a scalable framework that approximates residue-level PPI modeling while enabling efficient large-scale retrieval. RaftPPI represents residue interactions with a Gaussian kernel, approximated efficiently via structured random Fourier features, and applies a low-rank factorized attention mechanism that admits pooling into a compact embedding per protein. Each protein is encoded once into an indexable embedding, allowing approximate nearest-neighbor search to replace exhaustive pairwise scoring, reducing proteome-wide retrieval from *months* to *minutes* on a single GPU or CPU. On the human proteome with the D-SCRIPT dataset, RaftPPI retrieves the top 20% pairs from $\\sim$200M candidate pairs in 5.7 minutes on an A100 GPU, or 3.3 minutes on an Intel Xeon 6980P CPU, covering 75.1% of the true interacting pairs, compared to 4.9 GPU months for the best prior method (61.2%). Across seven benchmarks with sequence- and degree-controlled splits, RaftPPI achieves state-of-the-art PPI classification and retrieval performance, while enabling residue-aware, retrieval-friendly screening at proteome scale.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=Dp1RM3gPg8",
+  "arxiv": null,
+  "pdf": "https://proceedings.iclr.cc/paper_files/paper/2026/file/47be2f7904894411db3c024d92fb5d13-Paper-Conference.pdf",
+  "proceedings": "https://proceedings.iclr.cc/paper_files/paper/2026/hash/47be2f7904894411db3c024d92fb5d13-Abstract-Conference.html",
+  "virtual": "https://iclr.cc/virtual/2026/poster/10010744",
+  "code": "https://github.com/AndyJZhao/RaftPPI"
+ },
+ "license": null,
+ "img": "none",
+ "image_url": null,
+ "thumb_url": null,
+ "figure_page": 2,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.8
+}

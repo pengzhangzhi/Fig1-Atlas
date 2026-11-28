@@ -1,0 +1,51 @@
+{
+ "id": "icml26-2687",
+ "title": "Training–Inference Consistent Segmented Execution for Long-Context LLMs",
+ "authors": [
+  "Xianpeng Shang",
+  "Jiang Li",
+  "Zehua Duo",
+  "Qianyi Cai",
+  "Xiangdong Su"
+ ],
+ "venue": "ICML 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "Deep Learning->Large Language Models",
+ "role": "teaser-result",
+ "role2": "analysis-finding",
+ "claim": "Baseline memory grows steeply with context length until out-of-memory, while ours stays nearly flat, enabling much longer contexts.",
+ "layout": "single line plot, memory vs context length, OOM crosses mark baseline failures",
+ "tags": [
+  "memory-efficiency",
+  "long-context",
+  "scalability",
+  "prefill",
+  "out-of-memory"
+ ],
+ "style": [
+  "plot",
+  "minimal",
+  "colorful"
+ ],
+ "description": "A single line chart with context length in tokens on the x-axis (4K to 64K) and peak GPU memory in GB on the y-axis (0 to 80). A legend above names three methods: FlashAttention-2 (orange, solid, circles), Chunked prefill (blue, dashed, squares) and Ours (green, dash-dot, triangles). The orange and blue curves climb steeply from about 18 GB at 4K. Orange reaches about 55 GB at 32K, then a faded dashed extension ends in a large X near 80 GB, marking out-of-memory. Blue reaches about 46 GB at 32K, then a faded line ends in an X near 80 GB around 56K. The green curve stays almost flat at about 18-20 GB all the way to 64K. The eye goes first to the flat green line against the diverging baselines.",
+ "caption": "Peak GPU memory consumption during long-context prefill.",
+ "caption_source": "latex",
+ "abstract": "Transformer-based large language models face severe scalability challenges in long-context generation due to the computational and memory costs of full-context attention. Under practical computation and memory constraints, many inference-efficient long-context methods improve efficiency by adopting bounded-context or segment-level execution only during inference, while continuing to train models under full-context attention, resulting in a mismatch between training and inference execution and state-transition semantics. Based on this insight, we propose a training-inference consistent segment-level generation framework, in which training and inference follow the same segment-level forward execution semantics. During training, consistency with inference is enforced by restricting gradient propagation to KV states carried over from the immediately preceding segment, while permitting head-specific access to past KV states during the forward pass without involving them in gradient propagation. Across long-context benchmarks, our approach achieves performance comparable to full-context attention, while achieving competitive latency-memory trade-offs against strong inference-efficient baselines, and substantially improving scalability at very long context lengths (e.g., approximately 6x lower peak prefill memory at 128K compared to full-context attention with FlashAttention).",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=PoRigyDOcC",
+  "arxiv": "https://arxiv.org/abs/2605.11744",
+  "pdf": "https://raw.githubusercontent.com/mlresearch/v306/main/assets/shang26c/shang26c.pdf",
+  "proceedings": "https://proceedings.mlr.press/v306/shang26c.html",
+  "virtual": "https://icml.cc/virtual/2026/poster/64223",
+  "code": "https://github.com/sxp11/Training-Inference-Consistent-Segmented-Execution"
+ },
+ "license": "http://arxiv.org/licenses/nonexclusive-distrib/1.0/",
+ "img": "none",
+ "image_url": null,
+ "thumb_url": null,
+ "figure_page": 0,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.85
+}

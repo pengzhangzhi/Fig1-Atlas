@@ -1,0 +1,51 @@
+{
+ "id": "iclr26-4701",
+ "title": "All Roads Lead to Likelihood: The Value of Reinforcement Learning in Fine-Tuning",
+ "authors": [
+  "Gokul Swamy",
+  "Sanjiban Choudhury",
+  "Wen Sun",
+  "Steven Wu",
+  "Drew Bagnell"
+ ],
+ "venue": "ICLR 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "Reinforcement Learning->Online",
+ "role": "concept",
+ "role2": "prior-vs-ours",
+ "claim": "Two-stage online fine-tuning searches a smaller policy subset, optimal for simple reward models, instead of the full policy space that offline MLE searches.",
+ "layout": "2 side-by-side set panels under a top node, arrows branching down, shaded RL band",
+ "tags": [
+  "reward-model",
+  "rlhf-vs-mle",
+  "hypothesis-space",
+  "two-stage-training",
+  "generation-verification-gap"
+ ],
+ "style": [
+  "minimal",
+  "math-heavy",
+  "colorful"
+ ],
+ "description": "A toy set-diagram on a white background. A black dot labeled D (the dataset) sits at top center, with two black arrows branching down to two large rounded gray boxes. The left box is the policy space Π (label in a bottom-right corner quarter-circle) and contains a gray dot, π̂_mle, reached directly from D. The right box is the reward model space ℛ and contains a blue rounded sub-region ℛ_sim with a blue dot r̂_sim, reached from D. A blue arrow and a translucent blue band labeled RL run from r̂_sim to a blue rounded sub-region Π(ℛ_sim) in the left box, which holds π̂_rlhf. Gray marks the offline MLE path. Blue marks the two-stage RLHF path. The eye goes first to D, then follows the arrows down to the blue RL band.",
+ "caption": "While offline {preference} fine-tuning (PFT) procedures (e.g., DPO [ref]) directly optimize policy parameters via (regularized) maximum likelihood estimation (MLE, i.e., $\\hat{\\pi}_{mle} \\in \\Pi$), online PFT procedures (e.g., standard RLHF [ref]) first fit a reward model (RM) via MLE before using the RM to provide online feedback for a downstream reinforcement learning (RL) procedure. Empirically, this latter two-stage procedure often works better, despite the loss of information caused by passing through an RM. We find evidence that for problems with a generation-verification gap, this result may be best explained by viewing the first stage as finding a relatively simple verifier / RM $\\hat{r}_{sim }\\in \\mathcal{R}_{sim}$, with the end-to-end search over generators / policies now simplified to just the subset of policies that are optimal for relatively simple verifiers (i.e., $\\hat{\\pi}_{rlhf} \\in \\Pi(\\mathcal{R}_{sim}) \\subset \\Pi$).",
+ "caption_source": "latex",
+ "abstract": "From a first-principles perspective, it may seem odd that the strongest results in foundation model fine-tuning (FT) are achieved via a relatively complex, two-stage training procedure. Specifically, one first trains a reward model (RM) on some dataset (e.g., human preferences) before using it to provide online feedback as part of a downstream reinforcement learning (RL) procedure, rather than directly optimizing the policy parameters on said dataset via offline maximum likelihood estimation. In fact, from an information-theoretic perspective, we can only lose information via passing through a reward model and cannot create any new information via on-policy sampling. To explain this discrepancy, we scrutinize several hypotheses on the value of RL in FT through both theoretical and empirical lenses. Of the hypotheses considered, we find the most support for the explanation that on problems with a generation-verification gap, (1) it is relatively easy to learn the relatively simple RM (verifier) from the preference data. Then, (2) the downstream RL procedure only returns policies (generators) that are optimal for such relatively simple verifiers. Thus, end-to-end, two-stage online FT only has to search over a reduced subset of the full space of policies, requiring less data than offline FT.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=sCL5mSTpKm",
+  "arxiv": "https://arxiv.org/abs/2503.01067",
+  "pdf": "https://proceedings.iclr.cc/paper_files/paper/2026/file/e77d684aae157abd84df1eeb76d8b9cd-Paper-Conference.pdf",
+  "proceedings": "https://proceedings.iclr.cc/paper_files/paper/2026/hash/e77d684aae157abd84df1eeb76d8b9cd-Abstract-Conference.html",
+  "virtual": "https://iclr.cc/virtual/2026/poster/10007079",
+  "code": null
+ },
+ "license": "http://creativecommons.org/licenses/by-sa/4.0/",
+ "img": "cc-by-sa",
+ "image_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/images/iclr26-4701.png",
+ "thumb_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/thumbs/iclr26-4701.webp",
+ "figure_page": 1,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.8
+}

@@ -1,0 +1,58 @@
+{
+ "id": "neurips26-7257",
+ "title": "Visual-Advantage On-Policy Distillation for Vision-Language Models",
+ "authors": [
+  "Ruiqi Liu",
+  "Xiaolei Lv",
+  "Gengsheng Li",
+  "Ximo Zhu",
+  "Zhiheng Wang",
+  "Zhengbo Zhang",
+  "Junkai Chen",
+  "Zhiheng Li",
+  "Bo Li",
+  "Jun Gao",
+  "Shu Wu"
+ ],
+ "venue": "NeurIPS 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "Computer Vision->Vision Models & Multimodal",
+ "role": "analysis-finding",
+ "role2": "problem-setup",
+ "claim": "Uniform distillation weighting dilutes the few vision-critical tokens, so the student's reliance on visual input stays flat unless those tokens are emphasized.",
+ "layout": "2 regions: left example with token chips, right two stacked line-plot panels, mascots below",
+ "tags": [
+  "distillation",
+  "vision-language-models",
+  "token-level-weighting",
+  "visual-reliance",
+  "on-policy"
+ ],
+ "style": [
+  "colorful",
+  "plot",
+  "icon-heavy",
+  "text-heavy"
+ ],
+ "description": "The left half shows the problem. A top strip has a flow of icons: Student generates, Teacher scores, KL Loss. Below it, a geometry question (a circle split into three angles, 'Q: Find x.') leads to a boxed 'Student Rollout' text. In that text, tokens that depend on the image (130 degrees, 95 degrees) are in red. Under it, a row of word chips is split into gray Language tokens and pink Vision tokens, next to a magnifier icon. A red question reads 'Which tokens rely on visual detail?'. The right half has two light panels. (a) Standard OPD has a line plot of mean visual advantage against training step that stays low and flat (about 0.10), with a robot saying 'Diluted by uniform KL'. (b) VA-OPD (Ours) has a plot that rises quickly to about 0.16, with a robot saying 'High VA tokens weighted more'. A red question reads 'Does the student rely on visual detail?'. The eye is drawn first to the red tokens and the two contrasting plots.",
+ "caption": "Token-level visual reliance in VLM distillation. Left: in a student rollout, only a minority of tokens (red) depend on the image, while the rest are language-template tokens (gray). Standard OPD applies a uniform KL weight to all tokens, diluting the learning signal on vision-critical positions. Right: teacher-scored visual advantage (VA), averaged over the student's rollouts, tracked across training, for two distillation methods. Under Standard OPD, student-rollout VA stays nearly flat: matching the teacher's outputs does not produce rollouts whose tokens actually require the image. Under VA-OPD, student-rollout VA rises steadily across training, indicating that the student increasingly relies on visual detail when generating image-dependent predictions.",
+ "caption_source": "latex",
+ "abstract": "On-policy knowledge distillation has proven effective for language models, yet its application to vision-language models (VLMs) remains underexplored. We observe that standard on-policy distillation can improve a student's output quality while failing to strengthen its reliance on visual input: on vision-critical tokens, the student's predictions remain largely unchanged whether or not fine-grained visual detail is present, even though the teacher's predictions depend heavily on it.To make this difference observable, we introduce visual advantage (VA), the token-level log-probability difference when the teacher scores a student-generated rollout with versus without access to fine-grained visual detail. VA is concentrated in a small minority of tokens, and these high-VA tokens are the ones that actually carry the visual supervision signal. This motivates a distillation objective that treats them differently from language scaffolding, so their contribution is not diluted by the abundant surrounding language tokens.We propose Visual-Advantage On-Policy Distillation (VA-OPD), which uses VA at two granularities: rollout-level reweighting by trajectory-averaged VA, and token-level KL averaged within high-VA and low-VA groups separately. We train on two math datasets (Geometry3K and ViRL39K) and evaluate on eight benchmarks covering both mathematical reasoning and visual understanding, across three teacher sizes (4B, 8B, and 32B) on the Qwen3-VL family. VA-OPD improves over standard on-policy distillation on every benchmark, with the gain growing monotonically along both the teacher-size and data-scale axes, suggesting that these factors compound consistently.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=o6AFRNewXC",
+  "arxiv": "https://arxiv.org/abs/2605.21924",
+  "pdf": "https://arxiv.org/pdf/2605.21924",
+  "proceedings": null,
+  "virtual": "https://neurips.cc/virtual/2026/poster/149701",
+  "code": "https://github.com/handsome-rich/VA-OPD"
+ },
+ "license": "http://creativecommons.org/licenses/by/4.0/",
+ "img": "cc-by",
+ "image_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/images/neurips26-7257.png",
+ "thumb_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/thumbs/neurips26-7257.webp",
+ "figure_page": 1,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.55
+}

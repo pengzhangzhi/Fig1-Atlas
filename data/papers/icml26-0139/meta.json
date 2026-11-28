@@ -1,0 +1,56 @@
+{
+ "id": "icml26-0139",
+ "title": "LiftQuant: Continuous Bit-Width Control for Pareto-Optimal LLM Deployment",
+ "authors": [
+  "Liulu He",
+  "Xuan Ang Liu",
+  "Juntao Liu",
+  "Taolue Feng",
+  "Ting Lu",
+  "Chunsheng Gan",
+  "ZHIYV PENG",
+  "Yuan Du",
+  "Li Du",
+  "Huanrui Yang",
+  "Yijiang Liu"
+ ],
+ "venue": "ICML 2026",
+ "tier": "spotlight",
+ "track": "main",
+ "topic": "Deep Learning->Large Language Models",
+ "role": "teaser-result",
+ "role2": "problem-setup",
+ "claim": "Integer-bit methods either waste memory or exceed the budget; continuous bit-width control fits the limit and achieves better quality.",
+ "layout": "1 scatter plot, memory vs perplexity, red shaded reserved zone with limit line",
+ "tags": [
+  "quantization",
+  "pareto-frontier",
+  "continuous-control",
+  "memory-budget",
+  "efficiency"
+ ],
+ "style": [
+  "plot",
+  "colorful"
+ ],
+ "description": "A single scatter and line plot. The x-axis is memory footprint in GB (16 to 26) and the y-axis is average perplexity (lower is better). Baseline methods appear as markers: QTIP as blue circles, QuIP# as yellow triangles, EfficientQAT as green squares. Each has 2-bit points on the left and 3-bit points on the right. A thick red curve with star markers shows LiftQuant running from 2-bit to 3-bit. A boxed red callout with an arrow marks LiftQuant 2.4-bit as Pareto optimal. A red gradient zone on the right is labeled 'Reserved for KV & Head & System' and ends at a vertical black line marked '24GB VRAM Limit'. A dashed horizontal line shows the FP16 baseline. A legend sits at the top right. The eye goes first to the red curve and the highlighted 2.4-bit star.",
+ "caption": "Pareto-Optimal Deployment on a 24GB GPU. Perplexity (WikiText-2 and C4) vs. Memory Footprint for Llama-3-70B. While advanced integer-based methods like QTIP and EfficientQAT leave memory wasted or exceed the limit, LiftQuant enables a 2.4-bit model that fully utilizes the available VRAM, significantly outperforming 2-bit baselines. Note that the reserved memory buffer (red zone) is dynamic, varying with deployment scenarios (e.g., KV cache length and precision, batch size, lm.head precision). LiftQuant allows for flexible bit-width tuning to precisely match the remaining available memory.",
+ "caption_source": "latex",
+ "abstract": "Existing quantization methods are fundamentally limited by rigid, integer-based bit-widths (e.g., 2, 3-bit), creating a \"deployment gap\" where LLMs cannot be optimally fitted to specific memory budgets. To bridge this gap, we introduce LiftQuant, a novel framework that enables continuous bit-width control for true Pareto-optimal deployment. The core innovation is a \"lift-then-project\" mechanism: we represent d-dimensional weight vectors by projecting a simple 1-bit lattice from a tunable D-dimensional \"lifted\" space. By adjusting the lifted dimension D, LiftQuant naturally yields an effective bit-width of D/d, allowing for seamless, continuous resolution adjustment rather than discrete steps. This projection generates a structured yet non-uniform codebook, capturing the expressive power of Vector Quantization. Crucially, its decoding path relies solely on linear transformations and 1-bit uniform quantizers, retaining hardware-friendly efficiency. This flexibility is transformative: LiftQuant enables a 70B LLM to be compressed to 2.4 bits to precisely fit a 24GB GPU, where its performance significantly surpasses state-of-the-art 2-bit models. With a decoding throughput up to 6.7x faster than FP16, LiftQuant redefines compression as a continuous optimization problem, paving the way for a new generation of hardware-aware LLM deployment.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=1GvXUhLIMP",
+  "arxiv": "https://arxiv.org/abs/2606.04050",
+  "pdf": "https://raw.githubusercontent.com/mlresearch/v306/main/assets/he26z/he26z.pdf",
+  "proceedings": "https://proceedings.mlr.press/v306/he26z.html",
+  "virtual": "https://icml.cc/virtual/2026/poster/66695",
+  "code": null
+ },
+ "license": "http://creativecommons.org/licenses/by-sa/4.0/",
+ "img": "cc-by-sa",
+ "image_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/images/icml26-0139.png",
+ "thumb_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/thumbs/icml26-0139.webp",
+ "figure_page": 1,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.85
+}

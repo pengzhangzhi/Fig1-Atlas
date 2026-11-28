@@ -1,0 +1,51 @@
+{
+ "id": "neurips26-8379",
+ "title": "DualKV: Shared-Prompt Flash Attention for Efficient RL Training with Large Rollouts and Long Contexts",
+ "authors": [
+  "Jiading Gai",
+  "Shuai Zhang",
+  "Xiang song",
+  "Yuyang (Bernie) Wang",
+  "George Karypis"
+ ],
+ "venue": "NeurIPS 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "Reinforcement Learning->Deep RL",
+ "role": "teaser-result",
+ "role2": null,
+ "claim": "Replacing the baseline kernel cuts step time by shrinking the dominant policy-update phase, while other phases stay constant or shrink.",
+ "layout": "single stacked bar chart, 4 bars, speedup labels in green/red above bars",
+ "tags": [
+  "stacked-bar",
+  "speedup",
+  "efficiency",
+  "per-phase-breakdown",
+  "kernel-optimization"
+ ],
+ "style": [
+  "plot",
+  "colorful",
+  "minimal"
+ ],
+ "description": "A single stacked bar chart of step time in seconds (y-axis 0–1200) for four configurations: FA2 mb=4 (baseline), FA3 mb=4, DualKV mb=4, and DualKV mb=8. Each bar stacks four phases in different colors: Rollout (tan, bottom), old_log_prob (light blue), ref_log_prob (medium blue) and Policy update (dark navy, top). Segment values are printed inside the bars. Total times sit above each bar: 1028s, 1065s, 693s and 621s. Speedup annotations appear above the totals: '(Baseline)' in gray, '(0.97×)' in red for FA3, and '(1.48×)' and '(1.66×)' in green for the DualKV bars. A legend sits in the upper right. The eye goes first to the tall baseline bars and then to the shorter green-annotated DualKV bars. The policy-update segment shrinks from 520s to 319s and then 247s.",
+ "caption": "Per-phase step breakdown.",
+ "caption_source": "latex",
+ "abstract": "Modern RL post-training methods such as GRPO and DAPO train on N response sequences of R tokens sampled from a shared prompt of P tokens, but standard FlashAttention replicates all P prompt tokens N times across both forward and backward passes -- duplicating compute and memory on identical hidden states. In large-rollout, long-context RL training (N>=16, P>=8K), this redundancy dominates the policy update cost. We observe that in decoder-only models, causal masking makes prompt representations invariant across sequences at every layer, so all per-token operations (norms, projections, MLP) and attention can process the prompt once -- a property not yet exploited at the kernel level for training. We propose DualKV, the first FlashAttention kernel variant that eliminates shared-prompt replication during RL training, via (1) fused CUDA forward and backward kernels that iterate over two disjoint KV regions -- shared context and per-sequence response -- in a single kernel launch, and (2) a data-pipeline redesign in veRL that repacks N(P+R) tokens into P+NR tokens per micro-batch, extending the token reduction from attention to the entire model by a factor rho = N(P+R)/(P+NR). DualKV is mathematically equivalent to standard attention and introduces no approximation. On Qwen3-8B GRPO training with 8xH100 GPUs (N=32, 8K-context), DualKV achieves 1.63--2.09x policy-update speedup, enables 2x larger micro-batches, and raises MFU from 36% to 76%. Similar gains hold for DAPO (2.47x speedup, 77% MFU). At 30B MoE scale on 16xH100, DualKV achieves 3.82x policy-update and 3.38x end-to-end step speedup over FlashAttention (which requires 4-way Ulysses sequence parallelism to avoid OOM). DualKV also extends to hybrid sliding/global attention with head dimension 512 (which FA2 does not support) and integrates with Ulysses sequence parallelism, demonstrated on Gemma-4-31B GRPO at 64K context.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=viyAwqIA4H",
+  "arxiv": "https://arxiv.org/abs/2605.15422",
+  "pdf": "https://arxiv.org/pdf/2605.15422",
+  "proceedings": null,
+  "virtual": "https://neurips.cc/virtual/2026/poster/148696",
+  "code": "https://github.com/amazon-science/dualkv-flash-attn-for-rl"
+ },
+ "license": "http://arxiv.org/licenses/nonexclusive-distrib/1.0/",
+ "img": "none",
+ "image_url": null,
+ "thumb_url": null,
+ "figure_page": 6,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.85
+}

@@ -1,0 +1,53 @@
+{
+ "id": "neurips26-0930",
+ "title": "vExpert: Virtualizing Expert Storage for Adaptive Load Balancing in Distributed MoE Inference",
+ "authors": [
+  "Wenxun Wang",
+  "Xiuhong Li",
+  "Yida Wang",
+  "Chen Tang",
+  "Zongle Huang",
+  "Ke Hong",
+  "Yu Wang",
+  "Yongpan Liu"
+ ],
+ "venue": "NeurIPS 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "Optimization->Large Scale, Parallel and Distributed",
+ "role": "analysis-finding",
+ "role2": "problem-setup",
+ "claim": "Static expert placement tuned to one workload's routing statistics balances load there but fails to generalize to another workload.",
+ "layout": "2 stacked bar-chart panels, shared x-axis, inset load-balance bar comparison",
+ "tags": [
+  "mixture-of-experts",
+  "load-imbalance",
+  "static-placement",
+  "routing-dynamism",
+  "distribution-shift"
+ ],
+ "style": [
+  "plot",
+  "minimal"
+ ],
+ "description": "Two vertically stacked bar charts show normalized activation counts for each of 256 experts (Expert ID on the shared x-axis, 0 to 250) at Layer 50 of DeepSeek-V3.1. The top panel uses LongBench data and the bottom panel uses ShareGPT data. Most experts appear as short gray bars. A handful of tall red bars mark the hot experts, which are activated far more often than the rest. The tallest bar reaches about 0.03. Each panel has an inset horizontal bar chart of Load Balance Ratio, comparing Random-Init (gray) with LongBench-Init (red). On LongBench, the ratio rises from 0.46 to 0.82. On ShareGPT, it stays nearly flat, 0.45 versus 0.46. The eye goes first to the tall red spikes, then to the inset bars, which show that a placement tuned to one workload does not carry over to another.",
+ "caption": "Distribution of activated expert for DeepSeek-V3.1. Random-init and LongBench-init denote expert placement initialized randomly and via LongBench statistics, respectively.",
+ "caption_source": "latex",
+ "abstract": "Mixture-of-Experts (MoE) models have become prevailing, yet their distributed deployment suffers from severe dynamic load imbalance due to the conflict between static expert placement and inherent routing dynamism. While host DRAM offers capacity to avoid static device storage for load balancing, we identify existing offloading works fundamentally fail in distributed inference due to two overlooked challenges: (1) coupled performance impacts of runtime Host-to-Device transfers due to load dynamism and shared PCIe topology; (2) system-level memory overhead incurred by DRAM usage at scale. In this paper, we propose vExpert that shifts DRAM offloading paradigm from partial residency to full redundancy through virtualized expert storage. We pioneer the first systematic performance model that jointly captures H2D latency, PCIe contention, and load imbalance, building a lightweight allocator to dynamically map physical experts to virtual slots runtime. A novel disaggregated manager is designed to reduce memory overhead in multi-process environments. Evaluated on DeepSeek-V3.1 within an 8-node H100 cluster, vExpert improves load balance ratio by up to 55% and achieves 1.2$\\times$ end-to-end speedup.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=6XDcsFJkyg",
+  "arxiv": "https://arxiv.org/abs/2611.06057",
+  "pdf": "https://arxiv.org/pdf/2611.06057",
+  "proceedings": null,
+  "virtual": "https://neurips.cc/virtual/2026/poster/155312",
+  "code": "https://github.com/Flying Cloud/vExpert"
+ },
+ "license": "http://arxiv.org/licenses/nonexclusive-distrib/1.0/",
+ "img": "none",
+ "image_url": null,
+ "thumb_url": null,
+ "figure_page": 0,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.85
+}

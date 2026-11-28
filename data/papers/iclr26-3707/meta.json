@@ -1,0 +1,47 @@
+{
+ "id": "iclr26-3707",
+ "title": "Global Resolution: Optimal Multi-Draft Speculative Sampling via Convex Optimization",
+ "authors": [
+  "Rahul Thomas",
+  "Arka Pal"
+ ],
+ "venue": "ICLR 2026",
+ "tier": "oral",
+ "track": "main",
+ "topic": "Deep Learning->Algorithms",
+ "role": "analysis-finding",
+ "role2": "teaser-result",
+ "claim": "Acceptance rate rises steadily with more drafts and larger top-k, then saturates, showing diminishing returns at high settings.",
+ "layout": "2 side-by-side line plots, shared axes, legend of top-k inside each panel",
+ "tags": [
+  "speculative-decoding",
+  "multi-draft",
+  "acceptance-rate",
+  "scaling-trend",
+  "top-k-sampling"
+ ],
+ "style": [
+  "plot",
+  "minimal"
+ ],
+ "description": "Two side-by-side line charts share the same axes. The x-axis is the number of draft tokens n, from 1 to 10. The y-axis is optimal acceptance rate, from 0.70 to 1.00. The left panel is titled for Gemma-2 27B/2B and the right for Llama-3 70B/8B. Each panel has colored lines with circular markers, one per top-k value: 10 (blue), 100 (orange), 1000 (green), and 10000, 100000 and the full vocabulary (red, purple, brown). The lines are concave and rise steeply from n=1 to n=3, then flatten. The k=10 curve sits lowest, near 0.82 to 0.85. The curves for k of 1000 and above cluster tightly near 0.95 to 0.98. A legend titled 'top-k sampling of draft' sits at the bottom right of each panel.",
+ "caption": "Optimal acceptance rates from $n$ i.i.d drafts with top-$k$ sampling with $n$ with target/draft pairs of Gemma-2 27B/2B and Llama-3 70/8B. Increasing $k$ improves acceptance rate significantly up to $k=1000$, and increasing $n$ also results in steady increase in optimal acceptance.",
+ "caption_source": "latex",
+ "abstract": "Speculative sampling reduces the latency of autoregressive decoding for target model LLMs without sacrificing inference quality, by using a cheap draft model to suggest a candidate token and a verification criterion to accept or resample this token. To improve acceptance and decoding efficiency, recent work has explored the multi-draft extension, where at each step $n$ draft tokens are generated, and the verification criterion is a distribution conditioned on these. When this criterion maximizes the probability of accepting some draft token, it is called the optimal transport (OT). However, finding the OT is difficult, as it is the solution of a linear program (OTLP) in over $V^n$ variables, with $V$ being the vocabulary size. Two recent theoretical works have reframed the OTLP in terms of importance sampling or subset selection. In this work, we prove that these formulations are equivalent to an exponentially large relaxed OTLP, so it remains infeasible to solve. Then, we reverse engineer subset selection to formulate the OTLP as a max-flow problem. With a novel application of polymatroid theory, we reduce the exponentially large OTLP to a convex optimization problem in at most $V$ variables. This allows us to devise an algorithm for optimal $n$-draft speculative sampling when the $n$ tokens are chosen i.i.d. from a single draft model, which can be tuned to arbitrary accuracy. Finally, we measure acceptance rates and algorithm runtimes for various $n$ and top-$k$ draft sampling settings. Our findings give the first multi-draft algorithm with 90% acceptance and under 100 ms of overhead per generated token with negligible deviation from the target model distribution.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=gpsczXOsHn",
+  "arxiv": "https://arxiv.org/abs/2511.15898",
+  "pdf": "https://proceedings.iclr.cc/paper_files/paper/2026/file/83995c2acef585ae0f0d647154cfdd85-Paper-Conference.pdf",
+  "proceedings": "https://proceedings.iclr.cc/paper_files/paper/2026/hash/83995c2acef585ae0f0d647154cfdd85-Abstract-Conference.html",
+  "virtual": "https://iclr.cc/virtual/2026/poster/10008115",
+  "code": null
+ },
+ "license": "http://creativecommons.org/licenses/by-nc-nd/4.0/",
+ "img": "none",
+ "image_url": null,
+ "thumb_url": null,
+ "figure_page": 8,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.6
+}

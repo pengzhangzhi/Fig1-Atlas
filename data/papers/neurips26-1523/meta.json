@@ -1,0 +1,50 @@
+{
+ "id": "neurips26-1523",
+ "title": "Elastic Spectral State Space Models for Train-Once Budgeted Inference",
+ "authors": [
+  "Dachuan Song",
+  "Junyu Yin",
+  "Zechen Hu",
+  "Xuan Wang"
+ ],
+ "venue": "NeurIPS 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "Deep Learning->Algorithms",
+ "role": "pipeline",
+ "role2": null,
+ "claim": "A single full-capacity module can be truncated to its first K components, giving compact models without retraining.",
+ "layout": "2 panels, left residual block plus main flow, arrows, dashed truncated tail",
+ "tags": [
+  "pipeline",
+  "elastic-inference",
+  "state-space-model",
+  "truncation",
+  "budgeted-gating"
+ ],
+ "style": [
+  "colorful",
+  "math-heavy",
+  "icon-heavy"
+ ],
+ "description": "Panel [A], a narrow strip on the left, shows a pre-norm residual block stacked vertically. The input r(in) goes through LayerNorm, ES-SSM and DropPath, then a residual add gives r(mid). That goes through LayerNorm, FFN and DropPath, then another residual add gives r(out). Panel [B], the large area on the right, expands the ES-SSM spectral sublayer. A dashed spectral branch at the top has three boxes: fixed Hankel channels, runtime budget K, and spectral features. Below it, a rounded bank holds K parallel yellow channel cards. Each card has a learned projection M_k, a gate multiplier g_k and an output z_k. A grey dotted box marks the tail channels that are dropped. A pink gate-MLP chain on the left feeds the gates. An aggregation sum at the bottom right produces the output. Pastel colors and equations label each box.",
+ "caption": "ES-SSM architecture overview. [A] ES-SSM is embedded in a pre-norm residual block with an ES-SSM spectral sublayer followed by an FFN; residual paths carry the block input around each sublayer. [B] The ES-SSM spectral sublayer $\\mathcal{S}_K$ combines fixed Hankel spectral channels with a tokenwise Gate MLP that produces input-adaptive, channel-wise budgeted gates. For a runtime budget $K\\le \\overline K$, direct prefix truncation keeps channels $1,\\ldots,K$ in the exported compact model and removes tail channels $k>K$. Each retained channel is projected by $M_k$, modulated by the scalar gate $g_k^{(K)}(t)$, and added to the retained-channel sum. Thus, one full-capacity training can be truncated into compact models at multiple runtime budgets.",
+ "caption_source": "latex",
+ "abstract": "Modern sequence models are typically trained at a fixed computational capacity, while real-world applications require deployment across platforms with different resource constraints. Existing approaches either train or distill separate compact models for selected budgets, or use elastic architectures that shrink dimensions such as width, depth, Feed-Forward Network (FFN) size, or SSM state dimension. In this paper, we propose Elastic Spectral State Space Models (ES-SSM), a train-once, export-many sequence modeling framework that gains elasticity through spectral approximation of the SSM sequence operator. ES-SSM builds on Hankel spectral filtering for state space models, where long-range token mixing is represented through fixed Hankel spectral channels that define an operator-level approximation resolution. To make this spectral elasticity reliably deployable, ES-SSM combines input-adaptive channel-wise gates with budget dropout, training the same spectral prefixes that are used by compact models at inference time. This encourages low-index channels to become predictive on their own, while higher-index channels provide refinements for larger budgets. We evaluate ES-SSM across byte-level language modeling, Long Range Arena, Speech Commands V2, and offline reinforcement learning benchmarks. Across these settings, a single trained ES-SSM can be truncated to competitive compact models compared with modern Transformer and SSM baselines at similar parameter scales. Furthermore, by testing under various runtime budgets, we observe smooth and stable quality-cost curves over a wide range of truncation levels. Code is available at https://github.com/GMU-MICO/ES-SSM.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=Asn9eGOVdP",
+  "arxiv": "https://arxiv.org/abs/2601.22488",
+  "pdf": "https://arxiv.org/pdf/2601.22488",
+  "proceedings": null,
+  "virtual": "https://neurips.cc/virtual/2026/poster/154798",
+  "code": null
+ },
+ "license": "http://arxiv.org/licenses/nonexclusive-distrib/1.0/",
+ "img": "none",
+ "image_url": null,
+ "thumb_url": null,
+ "figure_page": 4,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.9
+}

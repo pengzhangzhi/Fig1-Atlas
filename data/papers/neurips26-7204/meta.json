@@ -1,0 +1,50 @@
+{
+ "id": "neurips26-7204",
+ "title": "Express Language Modeling",
+ "authors": [
+  "Albert Gong",
+  "Annabelle M Carrell",
+  "Raaz Dwivedi",
+  "Lester Mackey"
+ ],
+ "venue": "NeurIPS 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "Deep Learning->Attention Mechanisms",
+ "role": "teaser-result",
+ "role2": "analysis-finding",
+ "claim": "Our approximation gives much larger speed-ups than prior fast methods at better accuracy, with error that stays bounded as length grows.",
+ "layout": "4 panels in 2x2 grid, line plots, shared color legend across panels",
+ "tags": [
+  "attention-approximation",
+  "speed-up",
+  "efficiency",
+  "long-context",
+  "runtime-accuracy-tradeoff"
+ ],
+ "style": [
+  "plot",
+  "colorful",
+  "minimal"
+ ],
+ "description": "A 2x2 grid of line plots, each with a bold panel title. (a) Masked prefill: speed-up over FlashAttention 2 against sequence length from 32k to 512k. The blue Thinformer Express (h=9) line climbs steeply to about 60x. The green h=10 line reaches about 30x. The orange HyperAttention line stops near 13x at 256k. (b) Relative perplexity against runtime in ms at n=32768, with a dashed grey 'Exact' line at 1.00. The Express curves lie at or below the orange HyperAttention curve. (c) Approximation error against token position on a log scale. Four shaded curves for h=7 to 10 jump from zero, then stay flat and bounded and drop as h grows. (d) Unmasked prefill speed-up for Thinformer Triton (solid blue) against Original (dashed red). Triton reaches about 32x and Original about 15x. The eye goes first to the steep blue line in (a).",
+ "caption": "Accelerating long-context prefill. For masked attention, Thinformer Express attains larger speed-ups over FlashAttention 2 than the Triton HyperAttention algorithm (a) while improving the runtime-perplexity trade-off on LongBench-E tasks (b). (c) As predicted by Thm. 3, the scaled Thinformer Express attention approximation error ∥bon −on∥∞/√log n log log n remains bounded for all n and decays with increasing cache size nout = 2h. (d) For unmasked attention, our I/O-aware Triton implementation also provides speed-ups over the original Torch-compiled Thinformer.",
+ "caption_source": "pdf",
+ "abstract": "We introduce a new tool, Express, for converting a non-causal attention approximation into a causal approximation with matching approximation guarantees. When combined with the state-of-the-art Thinformer approximation, Express improves upon the best known causal attention guarantees, delivering $\\log^{3/2}(n)/s$ approximation error with only $O(s)$ memory and $O(s^2 \\log^2(n))$ compression overhead for a sequence of length $n$. We pair these developments with an efficient I/O-aware Triton implementation, demonstrate substantial speedups over FlashAttention 2, and use Express to overcome four resource bottlenecks in the language modeling pipeline: long-context prefill, KV cache compression, long-form memory-constrained decoding, and long-form compute-constrained decoding.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=nf2SQeKcr9",
+  "arxiv": "https://arxiv.org/abs/2606.10944",
+  "pdf": "https://arxiv.org/pdf/2606.10944",
+  "proceedings": null,
+  "virtual": "https://neurips.cc/virtual/2026/poster/149745",
+  "code": "https://github.com/microsoft/thinformer"
+ },
+ "license": "http://creativecommons.org/licenses/by/4.0/",
+ "img": "cc-by",
+ "image_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/images/neurips26-7204.png",
+ "thumb_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/thumbs/neurips26-7204.webp",
+ "figure_page": 6,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.8
+}

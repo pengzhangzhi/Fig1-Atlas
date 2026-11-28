@@ -1,0 +1,49 @@
+{
+ "id": "neurips26-8945",
+ "title": "Gated DeltaNet-2: Decoupling Erase and Write in Linear Attention",
+ "authors": [
+  "Ali Hatamizadeh",
+  "Yejin Choi",
+  "Jan Kautz"
+ ],
+ "venue": "NeurIPS 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "Applications->Language, Speech and Dialog",
+ "role": "pipeline",
+ "role2": null,
+ "claim": "A new recurrent operator slots into a standard hybrid layer stack via a block with separate projection branches for each input.",
+ "layout": "2 panels, left-to-right, dashed arrow zooming from stack into block",
+ "tags": [
+  "linear-attention",
+  "architecture-diagram",
+  "hybrid-model",
+  "gating",
+  "block-design"
+ ],
+ "style": [
+  "icon-heavy",
+  "colorful",
+  "minimal"
+ ],
+ "description": "The figure has two rounded gray panels. The left panel, \"Hybrid Gated DeltaNet-2\", shows a vertical layer stack repeated N times: a yellow Gated DeltaNet-2 box, a blue MLP, a pink SWA (sliding-window attention) box and another blue MLP. Residual skip lines and ⊕ symbols link them. A dashed arrow runs from the Gated DeltaNet-2 box to the right panel, \"Block Design\". The right panel expands that block. A single input at the bottom splits into five branches: q/k, v, α, b and w. Each branch passes through trapezoid Linear layers, and some also pass through Conv, SiLU circles and an L2 norm. All branches feed a wide yellow \"Gated Delta Rule-2\" bar. Its output goes to Norm, then ⊗ with a gated Linear branch, then a final Linear layer. Pastel fills mark module types.",
+ "caption": "Visualization of the hybrid architecture and block design of Gated DeltaNet-2. The Hybrid Gated DeltaNet-2 model repeats a Gated DeltaNet-2 token mixer, an MLP, sliding-window attention (SWA), and another MLP. In the block design, query and key paths use linear projection, short convolution, SiLU, and L2 normalization. The value path uses linear projection, short convolution, and SiLU. The central recurrent operator is Gated Delta Rule-2. The decay branch produces $\\valpha$ from the log-decay projection. The channel-wise erase gate $\\vb$ and channel-wise write gate $\\vw$ each use linear projection followed by sigmoid. The recurrent output is normalized, multiplied by a SiLU output gate, and passed through the output projection.",
+ "caption_source": "latex",
+ "abstract": "Linear attention replaces the unbounded cache of softmax attention with a fixed-size recurrent state, reducing sequence mixing to linear time and decoding to constant memory. The hard part is not just what to forget, but how to edit this compressed memory without scrambling existing associations. Delta-rule models subtract the current read before writing a new value, and Kimi Delta Attention (KDA) sharpens forgetting with channel-wise decay. But the active edit still uses a single scalar gate to control two different things: how much old content to erase on the key side and how much new content to commit on the value side. We introduce Gated DeltaNet-2, which generalizes both Gated DeltaNet and KDA by inheriting adaptive forgetting and channel-wise decay while addressing their shared limitation, the scalar tie between erasing and writing. Gated Delta Rule-2 separates these roles with a channel-wise erase gate b_t and a channel-wise write gate w_t, reducing to KDA when both gates collapse to the same scalar and to Gated DeltaNet when the decay also collapses. We derive a fast-weight update view, a chunkwise WY algorithm with channel-wise decay absorbed into asymmetric erase factors, and a gate-aware backward pass that preserves efficient parallel training. At 1.3B parameters trained on 100B FineWeb-Edu tokens, Gated DeltaNet-2 achieves the strongest overall results among Mamba-2, Gated DeltaNet, KDA, and Mamba-3 variants across language modeling, commonsense reasoning, and retrieval. Its advantage is most pronounced on long-context RULER needle-in-a-haystack benchmarks, where it improves the evaluated multi-key retrieval setting and remains strong in both recurrent and hybrid settings. Code is available at https://github.com/NVlabs/GatedDeltaNet-2.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=zdcl2dDW9a",
+  "arxiv": "https://arxiv.org/abs/2605.22791",
+  "pdf": "https://arxiv.org/pdf/2605.22791",
+  "proceedings": null,
+  "virtual": "https://neurips.cc/virtual/2026/poster/148191",
+  "code": "https://github.com/nvlabs/gateddeltanet-2"
+ },
+ "license": "http://creativecommons.org/licenses/by-sa/4.0/",
+ "img": "cc-by-sa",
+ "image_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/images/neurips26-8945.png",
+ "thumb_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/thumbs/neurips26-8945.webp",
+ "figure_page": 6,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.9
+}

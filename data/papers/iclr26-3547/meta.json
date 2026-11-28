@@ -1,0 +1,58 @@
+{
+ "id": "iclr26-3547",
+ "title": "Unlocking Full Efficiency of Token Filtering in Large Language Model Training",
+ "authors": [
+  "Di Chai",
+  "LI Pengbo",
+  "Feiyuan Zhang",
+  "Yilun Jin",
+  "Han Tian",
+  "Kaiqiang Xu",
+  "Binhang Yuan",
+  "Dian Shen",
+  "Junxue Zhang",
+  "Kai Chen"
+ ],
+ "venue": "ICLR 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "Optimization->Large Scale, Parallel and Distributed",
+ "role": "prior-vs-ours",
+ "role2": null,
+ "claim": "A single backward node yields one dense and one sparse gradient computation, showing where sparsity from filtering does and does not carry through.",
+ "layout": "1 panel, bottom-to-top flow, equations labeling the arrows",
+ "tags": [
+  "token-filtering",
+  "backward-pass",
+  "sparsity",
+  "computation-graph",
+  "efficiency"
+ ],
+ "style": [
+  "minimal",
+  "math-heavy",
+  "colorful"
+ ],
+ "description": "A small computation-graph diagram of one backward node in autograd. A gray rounded box labeled 'Backward Node' sits at the bottom center. An arrow enters from below, labeled 'G (sparse)', the incoming gradient. A salmon-orange box on the left, 'Saved Variables (X, W, g)', connects to the node with a plain line. Two arrows leave the node upward. The left arrow goes to a blue 'Model Weight' box and is labeled 'G_w = X^T · G (dense)'. The right arrow goes to a gray 'Next Node' box and is labeled 'G_X = G · W or G_X = G ∘ g (sparse)'. Bold italic math and the sparse/dense annotations draw the eye first. Colors separate the node types.",
+ "caption": "An overview of existing token filter studies.",
+ "caption_source": "latex",
+ "abstract": "Token filtering has been proposed to enhance the utility of large language models (LLMs) by eliminating inconsequential tokens during training. While usingfewer tokens is expected to reduce computational workloads, existing methods have not yet achieved a real-world efficiency boost. This is primarily due to two factors: (1) existing work has inadequate sparsity for speedup, and (2) token filtering operates within a sparsity range that is non-standard in existing machine learning (ML) libraries and thus cannot be efficiently supported. This paper presents Centrifuge, a system that leverages algorithm and system co-design to unleash the full efficiency of token filtering in LLM training. At the algorithm level, Centrifuge filters activations of inconsequential tokens in the attention backward kernel to amplify the sparsity in backward computation. At the system level, Centrifuge proposes an automatic workflow that transforms sparse GEMM into dimension-reduced dense GEMM for optimized efficiency using standard ML libraries. Evaluations on models with various scales--from 1.1B to 40B--demonstrate that Centrifuge reduces backpropagation time by up to 49.9\\% and end-to-end training time by up to 34.7\\% when filtering 50\\% of tokens. Utility assessments indicate that Centrifuge preserves the utility benefits of token filtering and significantly enhances model performance by up to 26.6\\% compared to standard training. Centrifuge is designed for seamless integration into existing LLM training frameworks, enabling systems already utilizing token filtering to accelerate training with just one line of code.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=eshXwEnENV",
+  "arxiv": "https://arxiv.org/abs/2502.00340",
+  "pdf": "https://proceedings.iclr.cc/paper_files/paper/2026/file/d65c4ce22241138c1784ff753d4c746c-Paper-Conference.pdf",
+  "proceedings": "https://proceedings.iclr.cc/paper_files/paper/2026/hash/d65c4ce22241138c1784ff753d4c746c-Abstract-Conference.html",
+  "virtual": "https://iclr.cc/virtual/2026/poster/10008281",
+  "code": "https://github.com/Di-Chai/Centrifuge"
+ },
+ "license": "http://arxiv.org/licenses/nonexclusive-distrib/1.0/",
+ "img": "none",
+ "image_url": null,
+ "thumb_url": null,
+ "figure_page": 5,
+ "qc_flags": [
+  "low-role-confidence"
+ ],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.3
+}

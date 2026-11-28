@@ -1,0 +1,52 @@
+{
+ "id": "neurips26-7109",
+ "title": "Factorized Self-Supervised Speech Tokenization",
+ "authors": [
+  "Benjamin Van Niekerk",
+  "Jean-Philippe Letendre",
+  "Nicol Visser",
+  "Hugo Seuté",
+  "Herman Kamper",
+  "Mirco Ravanelli"
+ ],
+ "venue": "NeurIPS 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "Applications->Language, Speech and Dialog",
+ "role": "pipeline",
+ "role2": null,
+ "claim": "A tokenizer is built in three stages: factorize features across known entities, estimate and cluster the shared factor for new inputs, then decode.",
+ "layout": "3 panels, left-to-right, block diagrams with waveform icons and frozen-module snowflakes",
+ "tags": [
+  "pipeline",
+  "factorization",
+  "discrete-tokens",
+  "disentanglement",
+  "self-supervised"
+ ],
+ "style": [
+  "minimal",
+  "icon-heavy",
+  "math-heavy"
+ ],
+ "description": "Three side-by-side block diagrams on a white background, labeled (a) Factorization, (b) Content estimation, (c) Decoding. Panel (a) shows waveforms for Speaker 1–3 feeding a frozen Encoder (snowflake icon). Three arrows labeled X1, X2, X3 go into a Factorize box, which outputs CS1, CS2, CS3. A bracket underneath reads 'Fixed set of K training speakers'. Panel (b) stacks a frozen Encoder, a Linear box and a k-means box inside a gray 'C-Estimator' region. Arrows are labeled X and C, and the output is a gray row of token IDs (117 491 ... 759 321). Panel (c) shows the frozen Encoder feeding the frozen C-Estimator, with X and C routed into a Speaker box. The token IDs and the speaker output feed a trapezoid Decoder, which produces a waveform. Black outlines are used throughout, with bold math symbols and little color.",
+ "caption": "(a) Factorization: To separate speaker and content information, we jointly factorize self-supervised features across a fixed set of $K$ training speakers. We solve an optimization problem to decompose $X_1, \\ldots , X_K$ into the product of a shared content representation $C$ and speaker-specific transformations $S_k$. (b) Content estimation and clustering: To project unseen speech into the content space, we fit a least-squares estimator to predict $C$ directly from the self-supervised features. Then, we use $k$-means to cluster the content space. (c) Decoding: Finally, we train a decoder to reconstruct source speech from the content tokens and a learned speaker embedding.",
+ "caption_source": "latex",
+ "abstract": "Speech tokenizers convert audio into discrete units, enabling language models to process and generate speech. The goal is to learn compact, text-like representations while preserving enough detail to reconstruct a speaker's voice and delivery. We propose Facto: a factorized tokenizer that disentangles time-varying information (content and prosody) from static components (speaker identity and recording conditions). We build on a recent linear factorization method for self-supervised features, extending it to handle unseen speakers. Then, we cluster the factorized space and train a lightweight decoder to reconstruct audio from the resulting tokens. By removing the static components before clustering, our tokens are more robust to small noise perturbations. We validate this by testing token stability under various noise conditions. Next, we theoretically analyze Facto's convergence and scaling properties, quantifying how the factorization improves with the number of training speakers. Finally, we evaluate Facto on a range of downstream tasks. We show that greater token stability translates into improved text-to-speech performance and competitive results in voice conversion and spoken language modeling. Code and checkpoints at https://github.com/ubisoft/ubisoft-laforge-facto/ and demo page at https://ubisoft-laforge.github.io/speech/facto/.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=n0PEFDbLxC",
+  "arxiv": "https://arxiv.org/abs/2611.18898",
+  "pdf": "https://arxiv.org/pdf/2611.18898",
+  "proceedings": null,
+  "virtual": "https://neurips.cc/virtual/2026/poster/149827",
+  "code": "https://ubisoft-laforge.github.io/speech/facto/"
+ },
+ "license": "http://creativecommons.org/licenses/by/4.0/",
+ "img": "cc-by",
+ "image_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/images/neurips26-7109.png",
+ "thumb_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/thumbs/neurips26-7109.webp",
+ "figure_page": 1,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.93
+}

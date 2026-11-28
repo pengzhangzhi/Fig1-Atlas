@@ -1,0 +1,51 @@
+{
+ "id": "iclr26-4253",
+ "title": "MVAR: Visual Autoregressive Modeling with Scale and Spatial Markovian Conditioning",
+ "authors": [
+  "Jinhua Zhang",
+  "Wei Long",
+  "Minghao Han",
+  "Weiyi You",
+  "Shuhang Gu"
+ ],
+ "venue": "ICLR 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "Computer Vision->Image and Video Generation",
+ "role": "prior-vs-ours",
+ "role2": null,
+ "claim": "Conditioning on all prior context is redundant; restricting conditioning to adjacent scales and local neighborhoods retains modeling power with less computation.",
+ "layout": "3 panels, left-to-right, dashed dividers, probability formula above each, red local-window highlight",
+ "tags": [
+  "markov-assumption",
+  "autoregressive",
+  "efficiency",
+  "conditioning-structure",
+  "image-generation"
+ ],
+ "style": [
+  "colorful",
+  "photo/real data",
+  "math-heavy"
+ ],
+ "description": "Three panels separated by dashed vertical lines show progressively simpler conditioning in next-scale image generation. Each panel has a probability factorization on top and a stack of 3D slabs below. The slabs grow from tiny gray cubes to a large eagle photo with a grid overlay. Panel (a), vanilla next-scale prediction, has many overlapping blue, orange and green curved arrows from every earlier scale to later ones, which looks dense. Panel (b), scale Markovian conditioning, keeps only an arrow from each scale to the next, and the formula drops to p(r_l | r_{l-1}). Panel (c), MVAR, adds a red square window on the previous scale. A red arrow links it to a query patch on the next scale, labeled K and Q, and the formula gains a neighborhood operator η_k. The eye goes first to the tangled arrows on the left, then to the red highlight on the right.",
+ "caption": "Vanilla next-scale prediction vs. MVAR. Left: The vanilla next-scale method predicts each scale based on all previous scales and requires each token to consider all preceding tokens. Middle: A next-scale variant predicts the next scale using only the adjacent scale, leveraging scale Markovian conditioning across scales. Right: MVAR further disentangles the spatial constraint and predicts each token using the neighboring positions of adjacent scales, based on spatial Markovian conditioning.",
+ "caption_source": "latex",
+ "abstract": "Essential to visual generation is efficient modeling of visual data priors. Conventional next-token prediction methods define the process as learning the conditional probability distribution of successive tokens. Recently, next-scale prediction methods redefine the process to learn the distribution over multi-scale representations, significantly reducing generation latency. However, these methods condition each scale on all previous scales and require each token to consider all preceding tokens, exhibiting scale and spatial redundancy. To better model the distribution by mitigating redundancy, we propose Markovian Visual AutoRegressive modeling (MVAR), a novel autoregressive framework that introduces scale and spatial Markov assumptions to reduce the complexity of conditional probability modeling. Specifically, we introduce a scale-Markov trajectory that only takes as input the features of adjacent preceding scale for next-scale prediction, enabling the adoption of a parallel training strategy that significantly reduces GPU memory consumption. Furthermore, we propose spatial-Markov attention, which restricts the attention of each token to a localized neighborhood of size k at corresponding positions on adjacent scales, rather than attending to every token across these scales, for the pursuit of reduced modeling complexity. Building on these improvements, we reduce the computational complexity of attention calculation from O(N^2) to O(Nk), enabling training with just eight NVIDIA RTX 4090 GPUs and eliminating the need for KV cache during inference. Extensive experiments on ImageNet demonstrate that MVAR achieves comparable or superior performance with both small model trained from scratch and large fine-tuned models, while reducing the average GPU memory footprint by 3.0x.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=mkr1ZrwgeJ",
+  "arxiv": "https://arxiv.org/abs/2505.12742",
+  "pdf": "https://proceedings.iclr.cc/paper_files/paper/2026/file/37c6d0bc4d2917dcbea693b18504bd87-Paper-Conference.pdf",
+  "proceedings": "https://proceedings.iclr.cc/paper_files/paper/2026/hash/37c6d0bc4d2917dcbea693b18504bd87-Abstract-Conference.html",
+  "virtual": "https://iclr.cc/virtual/2026/poster/10007544",
+  "code": "https://nuanbaobao.github.io/MVAR"
+ },
+ "license": "http://arxiv.org/licenses/nonexclusive-distrib/1.0/",
+ "img": "none",
+ "image_url": null,
+ "thumb_url": null,
+ "figure_page": 0,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.85
+}

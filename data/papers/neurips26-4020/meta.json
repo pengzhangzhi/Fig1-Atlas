@@ -1,0 +1,55 @@
+{
+ "id": "neurips26-4020",
+ "title": "Pretraining Curricula Enable Selective Fine-tuning",
+ "authors": [
+  "Sebastian Bruijns",
+  "Jirko Rubruck",
+  "Mia Whitefield",
+  "Kai J Sandbrink",
+  "Laurence T Hunt",
+  "Fazl Barez",
+  "Christopher Summerfield"
+ ],
+ "venue": "NeurIPS 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "General Machine Learning->Representation Learning",
+ "role": "problem-setup",
+ "role2": "analysis-finding",
+ "claim": "A curriculum that starts with an imbalanced task mixture makes every training run generalize, while a fixed balanced mixture mostly yields memorization.",
+ "layout": "3 rows: task schematic on top, two rows of three training-curve plots below",
+ "tags": [
+  "curriculum-learning",
+  "in-context-learning",
+  "task-mixture",
+  "generalization",
+  "memorization"
+ ],
+ "style": [
+  "plot",
+  "colorful",
+  "minimal"
+ ],
+ "description": "Panel A is a top strip showing the copy-first and copy-last tasks as rows of letter-token sequences. Copy-first is labeled in red and copy-last in blue. Each row holds several context examples (five letters, a colon, then a label) followed by a faded '?' query. Red or blue boxes and curved arrows mark the first or last letter being copied to the label. Panels B and C are two rows of three plots each. B is the imbalanced curriculum and C is the balanced 50:50 mix. The left plots are stacked area charts of task fraction against epoch. B ramps red from about 10% to 50%, and C stays flat at 50%. The center plots show many overlaid per-seed test-accuracy curves. In B, red curves all rise to about 100%. In C, most curves stay near 50% and only a few jump to 100%. The right plots show training loss. In B, the curves have a plateau and then converge together. In C, the curves spread out and decay slowly. Red and blue are used consistently, and the eye goes first to the colored token strip.",
+ "caption": "Task and training dynamics under imbalanced versus balanced. (A) In the copy-first / copy-last task, each sequence contains $n=4$ labeled context examples followed by an unlabeled query. Within a sequence, all context examples share a latent rule: the label is either the first symbol (copy-first) or the last symbol (copy-last) of each example. To predict the query label, the model must infer the active rule from the context and apply it to the query. (B) Imbalanced training, in which the task mixture starts uneven and is gradually annealed to 50:50. Left: task fraction over training (red: copy-first, blue: copy-last). Center: held-out test accuracy on both tasks, lines show individual seeds. Right: training loss. Under the curriculum, all $100/100$ seeds converge to generalizing solutions, lines show individual seeds. (C) balanced training with a fixed 50:50 task mixture. While some seeds generalize, only $22/100$ reach high ($\\geq90%$) test accuracy. Remaining seeds achieve low training loss without corresponding test accuracy, consistent with a memorizing solution.",
+ "caption_source": "latex",
+ "abstract": "Transformers follow implicit curricula whereby some tasks are learned before others. However, how explicit pretraining curricula influence learning, generalization, and the selectivity of fine-tuning is unclear. This is important for AI safety, where fine-tuning is used to selectively suppress misaligned behaviors. Here, we compare curricula that pretrain tasks in a balanced (sampled uniformly) or an imbalanced (one task early, the other late) fashion. We show that imbalanced learning of two conflicting copy tasks promotes in-context learning and improves the selectivity of refusal fine-tuning. Ablations and activation patching show that this occurs because imbalanced pretraining encourages tasks to be disentangled in separable neural circuits, whereas balanced training routes both tasks through a common pathway. We extend these findings to a synthetic language learning task involving rule-consistent and rule-violating data, where imbalanced curricula similarly lead to more localized, less entangled rule representations, resulting in more robust rule-following behavior. Together, these results suggest that imbalanced pretraining curricula may be an important tool for promoting disentangled representations, with direct consequences for the precision and reliability of safety fine-tuning.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=S6FB3RvlmI",
+  "arxiv": "https://arxiv.org/abs/2607.04846",
+  "pdf": "https://arxiv.org/pdf/2607.04846",
+  "proceedings": null,
+  "virtual": "https://neurips.cc/virtual/2026/poster/152573",
+  "code": null
+ },
+ "license": "http://creativecommons.org/licenses/by/4.0/",
+ "img": "cc-by",
+ "image_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/images/neurips26-4020.png",
+ "thumb_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/thumbs/neurips26-4020.webp",
+ "figure_page": 2,
+ "qc_flags": [
+  "low-role-confidence"
+ ],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.45
+}

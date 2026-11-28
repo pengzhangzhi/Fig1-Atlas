@@ -1,0 +1,49 @@
+{
+ "id": "icml26-5944",
+ "title": "Faster Activation Functions at the Edge for Post-Training Speedups",
+ "authors": [
+  "Anton Lydike",
+  "Jun Bi",
+  "Jackson Woodruff"
+ ],
+ "venue": "ICML 2026",
+ "tier": "oral",
+ "track": "main",
+ "topic": null,
+ "role": "analysis-finding",
+ "role2": "problem-setup",
+ "claim": "Costly activation functions consume a large share of compute in small models but become negligible as model width grows.",
+ "layout": "single line plot, left-to-right, shaded red-to-green background regions",
+ "tags": [
+  "activation-functions",
+  "edge-inference",
+  "compute-overhead",
+  "scaling-trend",
+  "hardware-bottleneck"
+ ],
+ "style": [
+  "plot",
+  "minimal",
+  "colorful"
+ ],
+ "description": "A single line chart with input dimension on the x-axis (log scale, 32 to 8192) and percent of FLOPs on the y-axis (0 to 60). Three curves are shown: ReLU in blue stays near zero, SiLU on fast hardware in orange starts around 14% and decays, and SiLU on embedded hardware in green starts above 60% and falls steeply toward zero. The background fades from red on the left, labeled 'Embedded Models', to white in the middle, then to green on the right, labeled 'LLMs'. A legend sits in the upper right. The eye goes first to the steep green curve over the red region, which marks where activation cost is a problem.",
+ "caption": "Fraction of per-layer flops dedicated to activations as a",
+ "caption_source": "pdf",
+ "abstract": "On-device AI has gained significant attention for enabling efficient, low-latency inference on edge devices. However, tight resource constraints on these platforms make the deployment of accurate and lightweight deep learning models challenging. In particular, advanced activation functions (AFs) like Swish and GELU often incur high inference overhead due to the lack of hardware fast-paths for exponentiation and division, restricting edge-ML applications to simple AFs like ReLU, limiting model accuracy. To address this, we propose FFCC, a compiler that automatically generates efficient approximations of AFs through floating-point reinterpretation. These functions don’t require hardware fast-paths meaning they remain fast on edge devices. They do not incur great accurate losses, and allowing use as post-training replacements without negatively impacting model final accuracy. FFCC takes a specification of AFs using basic floating-point operators and applies derivation rules to lower these expressions into efficient instruction sequences. Our experiments show that we can provide fast approximations of AFs, achieving order-of-magnitude speed ups over accurate baselines on Arm M7, delivering performance on-par with Hardswish, while beating it on accuracy. Additionally, we show that our approximations – unlike Hardswish – can be used as drop-in replacements of exact version post-training without loss of model accuracy.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=u2o6hPE8ik",
+  "arxiv": null,
+  "pdf": "https://raw.githubusercontent.com/mlresearch/v306/main/assets/lydike26a/lydike26a.pdf",
+  "proceedings": "https://proceedings.mlr.press/v306/lydike26a.html",
+  "virtual": "https://icml.cc/virtual/2026/poster/61061",
+  "code": null
+ },
+ "license": null,
+ "img": "none",
+ "image_url": null,
+ "thumb_url": null,
+ "figure_page": 0,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.6
+}

@@ -1,0 +1,56 @@
+{
+ "id": "neurips26-6426",
+ "title": "ElegantVLA: Learning When to Think for Efficient Vision-Language-Action Models",
+ "authors": [
+  "Ye Li",
+  "Huanan Liu",
+  "Kangye Ji",
+  "Yuan Meng",
+  "Jiajun Fan",
+  "Yuansong Wang",
+  "Shiyu Qin",
+  "Chenglei Wu",
+  "Shu-Tao Xia",
+  "Zhi Wang"
+ ],
+ "venue": "NeurIPS 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": null,
+ "role": "analysis-finding",
+ "role2": "problem-setup",
+ "claim": "Sequential control shows non-uniform, phase-dependent computation demand, so a cheap early probe can decide when to reuse or recompute.",
+ "layout": "3 plot panels on top, filmstrip below; color-matched dashed boxes link phases",
+ "tags": [
+  "adaptive-compute",
+  "temporal-redundancy",
+  "caching",
+  "motivation",
+  "robot-manipulation"
+ ],
+ "style": [
+  "plot",
+  "photo/real data",
+  "colorful"
+ ],
+ "description": "The top row has three panels. (a) and (b) are square CKA similarity heatmaps over rollout steps, for layer 1 and layer 16, in a blue-to-yellow colormap with colorbars. Bright block-diagonal regions mark stable phases. Orange, blue and purple cross markers sit on the diagonal blocks. (c) has three stacked line plots of gripper, translation and rotation speed against step. Dashed orange, blue and purple boxes highlight three phase-onset windows (start of open drawer, start of open gripper, start of grasp apple). Below, panel (d) is a filmstrip of simulated robot frames opening a drawer and grasping an apple, with the same color-coded dashed boxes and labels. The matching colors tie similarity structure, motion spikes and task phases together.",
+ "caption": "Observation motivating phase-adaptive cache scheduling. VLA execution exhibits temporally varying inference demand rather than uniform step-wise complexity. In this drawer-opening and apple-grasping rollout, (a,b) show pairwise CKA similarities of the first and final LLM-layer representations, (c) shows robot motion speeds, and (d) shows the rollout. Similar changes appear in both final-layer and first-layer similarities, suggesting that a lightweight first-layer probe can inform cache/recompute scheduling.",
+ "caption_source": "latex",
+ "abstract": "Vision-Language-Action (VLA) models are a powerful paradigm for generalist robotic control. However, their high computational cost and limited control frequency hinder real-time robotic manipulation, especially when large vision-language backbones and iterative action heads run at every control step. Existing VLA acceleration methods often optimize individual components or rely on fixed acceleration rules, treating different control steps with largely fixed computation and overlooking the non-uniform reasoning demands of sequential embodied control. Inspired by human motor control, where cognitive and feedback resources concentrate on goal-sensitive stages, we argue that VLA models should learn when to invest full computation and when to reuse prior computation. We propose ElegantVLA, a plug-in phase-adaptive inference framework that accelerates VLA models through intra-model dynamic compute scheduling. ElegantVLA introduces a lightweight scheduler that observes temporal representation similarity, robot-motion cues, and episode progress to jointly allocate computation across the vision encoder, LLM, and action head. For perception-language reasoning, the scheduler selects a five-level Vision-LLM compute mode, from full recomputation to multi-step temporal reuse, based on visual-language representation stability. For action generation, it selects a three-level denoising mode, reusing intermediate denoising states during stable motion while preserving full refinement for goal-sensitive stages. By coordinating these decisions, ElegantVLA offers a general acceleration framework for modern VLA pipelines with explicit action-generation modules, without modifying or retraining the base model. Experiments on GR00T and CogACT achieve up to 2.55x and 3.77x speedup, and on six real-world GR00T tasks ElegantVLA cuts computation by 2.18x while raising control frequency from 13.8 Hz to 26.3 Hz.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=i69xSliZFV",
+  "arxiv": "https://arxiv.org/abs/2605.29438",
+  "pdf": "https://arxiv.org/pdf/2605.29438",
+  "proceedings": null,
+  "virtual": "https://neurips.cc/virtual/2026/poster/150432",
+  "code": null
+ },
+ "license": "http://creativecommons.org/licenses/by/4.0/",
+ "img": "cc-by",
+ "image_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/images/neurips26-6426.png",
+ "thumb_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/thumbs/neurips26-6426.webp",
+ "figure_page": 1,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.85
+}

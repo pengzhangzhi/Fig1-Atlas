@@ -1,0 +1,49 @@
+{
+ "id": "icml26-3367",
+ "title": "SAGE: Shaping Anchors for Guided Exploration in RLVR of LLMs",
+ "authors": [
+  "Chanuk Lee",
+  "Minki Kang",
+  "Sung Ju Hwang"
+ ],
+ "venue": "ICML 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "Deep Learning->Large Language Models",
+ "role": "concept",
+ "role2": "teaser-result",
+ "claim": "Standard anchored RL collapses onto dominant modes; reshaping the anchor lets the policy discover missed valid modes and improves results.",
+ "layout": "3 panels: two stacked before/after distribution pairs, then scatter plot, left-to-right",
+ "tags": [
+  "anchor-shaping",
+  "exploration",
+  "kl-regularization",
+  "mode-collapse",
+  "rlvr"
+ ],
+ "style": [
+  "plot",
+  "colorful",
+  "minimal"
+ ],
+ "description": "The left and middle columns each stack two boxed 1-D multimodal density sketches. Each column goes from t=0 (top) to t=T (bottom) via a gray arrow labeled 'Reverse KL RLVR'. A gray shaded optimal policy has three peaks. The left column uses a red dashed original anchor. After training, it covers only the main peak, marked with a dashed circle, 'Limited Support' and a red X. The middle column uses a blue dashed shaped anchor q·π_ref. After training, the policy fills the second peak, marked 'Mode Discovery' with a green check. A bold blue 'SAGE' arrow joins the two columns. The right panel is a Pass@1 vs Pass@256 scatter plot. Markers show the base model, DAPO, BNPO and GRPO. Red marks the original and blue marks SAGE, with dashed arrows pointing up and to the right from red to blue. Red and blue italic captions sit under the left two columns.",
+ "caption": "Conceptual illustration of SAGE. Left: Standard reverse-KL RLVR with the original anchor leads to mode collapse, failing to cover valid but low-density regions. Middle: SAGE introduces a multiplicative guide function $q$ that forms a shaped anchor $q \\cdot \\pi_{ref}$ to guide exploration, enabling the recovery of underexplored yet reward-compatible reasoning modes. Right: Performance comparison on math reasoning tasks (AIME, AMC23, MATH-500) shows that applying SAGE (blue) consistently outperform baselines in both Pass@1 and Pass@256 metrics across three different RL algorithms with Qwen-2.5-7B-Math model. See Section [ref] for more details.",
+ "caption_source": "latex",
+ "abstract": "Recent studies observe that reinforcement learning with verifiable rewards (RLVR) reliably improves pass@1 on reasoning tasks, yet often fails to yield comparable gains in pass@k, raising the question of whether RLVR genuinely enables large language models to acquire novel reasoning abilities or merely enhances the efficiency of sampling reasoning modes already present in the base model. Prior analyses largely support the latter view, attributing this limitation to structural properties of standard RLVR objectives that result in insufficient exploration pressure. In this work, we argue that a central structural constraint arises from reverse-KL regularization, which stabilizes training but inherently anchors the policy to the reference distribution, thereby suppressing the emergence of alternative reasoning modes. However, we show that neither removing the KL term nor replacing it with forward-KL provides a satisfactory solution, as both disrupt the efficiency-coverage trade-off by either inducing reward hacking or allocating probability mass to off-target regions. To resolve this tension, we propose SAGE, a principled framework that enables controllable empirical support expansion by reshaping the reverse-KL anchor distribution itself through a guide function q(x,y), achieving consistent improvements in both pass@1 and pass@k across challenging mathematical reasoning benchmarks. Our code is available at https://github.com/tally0818/SAGE.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=VzRUI5ZVkp",
+  "arxiv": "https://arxiv.org/abs/2605.18864",
+  "pdf": "https://raw.githubusercontent.com/mlresearch/v306/main/assets/lee26r/lee26r.pdf",
+  "proceedings": "https://proceedings.mlr.press/v306/lee26r.html",
+  "virtual": "https://icml.cc/virtual/2026/poster/63563",
+  "code": null
+ },
+ "license": "http://creativecommons.org/licenses/by/4.0/",
+ "img": "cc-by",
+ "image_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/images/icml26-3367.png",
+ "thumb_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/thumbs/icml26-3367.webp",
+ "figure_page": 1,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.6
+}

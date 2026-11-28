@@ -1,0 +1,50 @@
+{
+ "id": "icml26-4575",
+ "title": "Hidden in Plain Tokens: Simply Robust, Gradient-Free Watermark for Synthetic Audio",
+ "authors": [
+  "Georgios Milis",
+  "Yubin Qin",
+  "Yihan Wu",
+  "Heng Huang"
+ ],
+ "venue": "ICML 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "Social Aspects->Accountability, Transparency, and Interpretability",
+ "role": "pipeline",
+ "role2": null,
+ "claim": "Token-level watermarking biases sampling during generation, then detects it by re-encoding output and statistically testing biased-token counts.",
+ "layout": "2 rows, left-to-right then wraps; boxed generation stage, brace under detection tokens",
+ "tags": [
+  "watermarking",
+  "autoregressive",
+  "discrete-tokens",
+  "hypothesis-testing",
+  "provenance"
+ ],
+ "style": [
+  "minimal",
+  "colorful",
+  "icon-heavy"
+ ],
+ "description": "A two-row pipeline diagram. In the top-left, a rounded gray box shows bar charts of a token probability distribution. An orange arrow labeled 'Watermark' leads to a second bar chart where some bars gain green hatched extensions, representing a logit bias on a subset of tokens. A line labeled 'N times' leads to a row of colored token blocks, some hatched to mark biased tokens. These feed a yellow trapezoid decoder 'D', which outputs an audio waveform icon. The line then wraps to the second row, passing through a yellow trapezoid encoder 'E' to a recovered token sequence. One token turns red, showing a token error. A brace under the sequence reads 'Count biased tokens', and an arrow leads to 'p-value'. The eye goes first to the gray box, then follows the arrows.",
+ "caption": "Illustration of a token-level watermarking mechanism in the audio domain. During generation, the autoregressive model computes a probability distribution over the vocabulary at each time step. A logit bias is pseudorandomly applied to a specific subset of tokens, encouraging their selection, and the resulting token sequence is synthesized into a waveform by the decoder $D$. For detection, the waveform is re-encoded by the encoder $E$ to recover the token sequence. The detector then performs a statistical hypothesis test based on the number of biased tokens, returning a $p$-value representing the probability of random generation. A sufficiently low p-value is evidence towards the alternative hypothesis, meaning that a watermark signal is present.",
+ "caption_source": "latex",
+ "abstract": "As policy catches up with the capabilities of generative AI, watermarking is central to content provenance efforts. Inference-time watermarks for autoregressive models are unfit for continuous modalities due to discretization inconsistencies. Existing methods overcome this by finetuning the modality tokenizers, nullifying the watermark's training-free advantage. In this work, motivated by the vocabulary redundancy of discretization, we propose an elegant solution for powerful and robust watermarking of synthetic audio. We theoretically analyze the impact of token errors on watermark detection, and effectively mitigate them using a reduced vocabulary obtained via community detection. Thorough experiments showcase that our gradient-free method can boost detectability by several orders of magnitude, while also achieving built-in robustness to audio modifications. Broadly, we discover a new state-of-the-art for token-level watermarks in multimedia, which simply arises from the nature of discrete representation learning.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=h4bSJMaNgb",
+  "arxiv": "https://arxiv.org/abs/2605.25967",
+  "pdf": "https://raw.githubusercontent.com/mlresearch/v306/main/assets/milis26a/milis26a.pdf",
+  "proceedings": "https://proceedings.mlr.press/v306/milis26a.html",
+  "virtual": "https://icml.cc/virtual/2026/poster/62388",
+  "code": "https://g-milis.github.io/projects/nograd-audio-wm.html"
+ },
+ "license": "http://creativecommons.org/licenses/by/4.0/",
+ "img": "cc-by",
+ "image_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/images/icml26-4575.png",
+ "thumb_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/thumbs/icml26-4575.webp",
+ "figure_page": 2,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.93
+}

@@ -1,0 +1,47 @@
+{
+ "id": "neurips26-8913",
+ "title": "Hidden Measurement Error in LLM Pipelines Distorts Annotation, Evaluation, and Benchmarking",
+ "authors": [
+  "Solomon Messing"
+ ],
+ "venue": "NeurIPS 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "Data-centric AI->Data-centric AI methods and tools",
+ "role": "teaser-result",
+ "role2": "analysis-finding",
+ "claim": "Naive confidence intervals lose coverage as sample size grows because unmodeled pipeline variance persists; adding variance components restores nominal coverage.",
+ "layout": "2 panels, left plot and right stacked bars, color-matched scenarios",
+ "tags": [
+  "confidence-intervals",
+  "variance-decomposition",
+  "coverage",
+  "llm-as-judge",
+  "uncertainty-quantification"
+ ],
+ "style": [
+  "plot",
+  "colorful",
+  "minimal"
+ ],
+ "description": "Two-panel figure. Panel (a) is a line chart of 95% CI coverage (y-axis, 0–100%) against number of items N on a log scale (25 to 400), with a dashed horizontal line at 95%. Six colored lines show scenarios A–F. The naive black line A falls steeply from about 42% to 11%. Orange B sits near 60%. Red C sits near 87%. The gray, purple and green lines D–F overlap near 100%, above the dashed line. Panel (b) is a stacked-block diagram with one row per scenario. Each row shows colored tiles labeled with Greek symbols for variance components (φ, τ, λ, interactions such as φτ and αλ, and ε). Rows get longer from A to F as components are added. Tile colors match the line colors. The legend sits at the bottom. The eye goes first to the falling black line.",
+ "caption": "Naive confidence intervals fail because pipeline variance from prompt, judge, and temperature choice does not shrink with items ($N$). (a) 95% CI coverage versus $N$ in 6 scenarios (A-F). (b) Variance components accounted for in each scenario. Scenario A corresponds to the naive estimate $\\Phi^{-1}(0.975) \\times s/\\sqrt{N}$; scenarios B-F represent adding more variance parameters estimated according to the framework introduced below. Scenarios D-F overlap.",
+ "caption_source": "latex",
+ "abstract": "LLM evaluations drive model deployment, safety standards, research conclusions, and future projections, for example, about AI's impact on the labor market. Yet the way we often estimate noise from autoraters (LLM-as-judge) ignores variability from factors like judge model choice and prompt phrasing, which means we're underestimating error in a way that worsens with more data. This unmeasured variance can affect results enough to reverse conclusions. And judge-pipelines that fail to average this variation are more vulnerable to \"benchmark hacking\". This paper introduces a framework we call \"total evaluation error (TEE),\" which decomposes LLM pipeline uncertainty and uses design-study projections to reduce total error. In our safety and ideology applications, naive standard errors are 53-70% smaller than the corrected SE under our TEE framework. Using Chatbot Arena data, we show naive 95% CI coverage drops as n grows, while TEE-corrected coverage holds at 95%, and TEE-guided pipelines restrict the potential range of benchmark gaming by roughly 43%. We show further that a small pilot allows for the estimation of proper CIs, with the added benefit of projecting which design changes most improve precision. Using those projections to allocate API calls cut MMLU estimation error roughly in half against the answer key at the same budget, and increased per-match agreement with human voters on Chatbot Arena by 5.5 percentage points.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=zSWN22jVAz",
+  "arxiv": "https://arxiv.org/abs/2604.11581",
+  "pdf": "https://arxiv.org/pdf/2604.11581",
+  "proceedings": null,
+  "virtual": "https://neurips.cc/virtual/2026/poster/148222",
+  "code": "https://solomonmg.github.io/blog/hidden-measurement-error-llm-evals/"
+ },
+ "license": "http://creativecommons.org/licenses/by/4.0/",
+ "img": "cc-by",
+ "image_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/images/neurips26-8913.png",
+ "thumb_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/thumbs/neurips26-8913.webp",
+ "figure_page": 1,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.55
+}

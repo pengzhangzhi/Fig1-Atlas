@@ -1,0 +1,51 @@
+{
+ "id": "neurips26-8061",
+ "title": "Rethinking Contrastive Loss in CLIP Post-training: A Complementary Framework with Frozen Text Encoder",
+ "authors": [
+  "Zidan Wang",
+  "Yaqian Li",
+  "xiaokai zhang",
+  "Kun He",
+  "Kaiwen Long",
+  "Hanpeng Liu"
+ ],
+ "venue": "NeurIPS 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "Computer Vision->Vision Models & Multimodal",
+ "role": "teaser-result",
+ "role2": "analysis-finding",
+ "claim": "Prior post-training methods trade off some capabilities for others; ours improves on every evaluated dimension at once.",
+ "layout": "1 radar chart, 7 axes, legend top-right, red best values at vertices",
+ "tags": [
+  "radar-chart",
+  "multi-metric",
+  "trade-offs",
+  "post-training",
+  "vision-language"
+ ],
+ "style": [
+  "plot",
+  "colorful"
+ ],
+ "description": "A single radar (spider) chart with seven axes: Zero-shot CLS, MS COCO I->T R@1, MS COCO T->I R@1, Flickr30K I->T R@1, Flickr30K T->I R@1, Linear Probe and MMVP. Four colored polygons are overlaid: OpenAI CLIP in blue, KUEA in green, CLIP-Refine in orange, and ComCLIP (Ours) in red with a light red fill. Concentric rings are labeled Low, Mid and High. The red polygon is outermost on nearly every axis, and its best raw values are printed in bold red at the vertices, for example 67.75, 24.20, 56.99 and 82.60. The green polygon bulges only on Linear Probe, and the orange polygon is strong on retrieval axes. The legend sits at top right. The eye goes first to the large red outline.",
+ "caption": "Multi-dimensional comparison on ViT-L/14 (values from Table [ref]). Relative to the original OpenAI CLIP, ComCLIP improves all four evaluation dimensions (zero-shot classification, retrieval, linear probing, MMVP), whereas prior post-training methods exhibit characteristic trade-offs. Each axis is min--max normalized per metric; ComCLIP's MMVP is the $3$-seed mean (Sec. [ref]).",
+ "caption_source": "latex",
+ "abstract": "CLIP serves as a foundational vision-language model and the de facto vision encoder for downstream VLMs such as LLaVA. Post-training offers a lightweight route to refine CLIP, but recent work argues that the standard contrastive loss is unsuitable for post-training due to catastrophic forgetting under small batches, motivating designs that abandon the contrastive objective in favor of distillation. We revisit this premise and find that, for the InfoNCE objective, the reported forgetting is driven primarily not by insufficient negatives but by an inappropriate magnitude of the contrastive temperature $Ï$: with $Ï$ set sufficiently small, contrastive post-training improves rather than degrades the pretrained CLIP, which we explain through the temperature dependence of the InfoNCE gradient. Building on this finding, we propose \\textbf{ComCLIP}, a lightweight single-epoch post-training recipe that freezes CLIP's text encoder---so the refined vision encoder is a drop-in replacement with unchanged architecture and inference cost---and trains the vision encoder with a properly-tempered contrastive loss, an MSE anchoring loss against the original CLIP, and a relational distillation loss from DINOv2. Over multiple seeds, ComCLIP matches the self-distillation baseline CLIP-Refine on zero-shot classification while significantly improving the transferability of visual features, measured by linear probing ($48.99$ vs.\\ $42.28$ on ViT-B/16), and on ViT-L/14 it also improves MMVP over CLIP-Refine ($24.20$ vs.\\ $19.01$); CLIP-Refine remains stronger on image-text retrieval. Used as a drop-in vision encoder for LLaVA-1.5-7B without re-aligning the projector or LLM, ComCLIP yields no net change across $8$ VLM benchmarks, i.e., the refinement does not break downstream compatibility. Code and models are available at https://github.com/showstarpro/ComCLIP.git.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=tjKgJbAYn9",
+  "arxiv": "https://arxiv.org/abs/2610.11374",
+  "pdf": "https://arxiv.org/pdf/2610.11374",
+  "proceedings": null,
+  "virtual": "https://neurips.cc/virtual/2026/poster/148979",
+  "code": "https://showstarpro.github.io/ComCLIP/"
+ },
+ "license": "http://creativecommons.org/licenses/by/4.0/",
+ "img": "cc-by",
+ "image_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/images/neurips26-8061.png",
+ "thumb_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/thumbs/neurips26-8061.webp",
+ "figure_page": 1,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.9
+}

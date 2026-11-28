@@ -1,0 +1,48 @@
+{
+ "id": "icml26-3362",
+ "title": "QPKO: Differentiable QP-Embedded Deep Koopman Framework for Modeling Nonlinear Systems",
+ "authors": [
+  "Runze Tian",
+  "Peng Kou"
+ ],
+ "venue": "ICML 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "Deep Learning->Algorithms",
+ "role": "pipeline",
+ "role2": null,
+ "claim": "A differentiable optimization layer embedded in the training loop turns learned features into a model, enabling end-to-end optimization.",
+ "layout": "2 stacked panels, left-to-right flow, dashed zoom-in callout linking module to full pipeline",
+ "tags": [
+  "differentiable-optimization",
+  "end-to-end-training",
+  "koopman",
+  "qp-layer",
+  "modular-architecture"
+ ],
+ "style": [
+  "colorful",
+  "icon-heavy",
+  "math-heavy"
+ ],
+ "description": "The figure has two stacked panels. Top panel (a), in a dashed dark-red border, details the QP-based mapping module. Colored 3D tensor blocks for states x (blue) and controls u (pink) feed an Observable Module that holds an identity mapping and a small neural network. The module outputs Z(θ) and Z⁺(θ) into an OptNet-based differentiable QP layer. That layer shows an objective for one-step accuracy and constraints for multi-step accuracy. It decomposes into sub-QP problems 1..N that are solved in parallel on a GPU. These produce the global linear model, matrices A*(θ) in purple and B*(θ) in orange. Bottom panel (b), End-to-End Training, repeats the observable module. It feeds a compact QP-based mapping module box, which a dashed red funnel links to panel (a). The resulting A* and B* enter a Linear Recursion Module that iterates T times, with the update A*z + B*u → ẑ. The output goes to Loss, then Optimizer, then Trainable Parameter θ, which closes the loop. Red dashed boxes draw the eye first.",
+ "caption": "The architecture of QPKO. The core component of QPKO is the QP-based mapping module, which is detailed in part (a). Through this module, the mapping from observable functions (parameterized by the observable module with trainable parameters θ) to the global linear model is incorporated into the end-to-end training of QPKO, as shown in part (b). Specifically, at each training iteration, this module computes the global linear model (i.e., A∗(θ) and B∗(θ)) based on the current learned observable module. The resulting model is then fed into the linear recursion module to carry out T-step prediction for loss evaluation and end-to-end optimization of θ.",
+ "caption_source": "pdf",
+ "abstract": "Deep learning has been widely regarded as a powerful tool for Koopman operator theory-based modeling, as it provides a promising architecture for data-driven learning of observable functions. To fully leverage this advantage, a well-designed training paradigm is required. However, the existing training paradigms typically either incur high optimization complexity or hinder effective end-to-end training, limiting modeling accuracy and training efficiency. To address this issue, we propose a differentiable quadratic programming (QP)-embedded deep Koopman framework (QPKO). In QPKO, a QP problem, which comprises a one-step accuracy-oriented objective function and a set of multi-step accuracy-oriented constraints, is formulated to introduce a mapping from observable functions to the global linear model. By doing so, the global linear model no longer needs to be treated as an independent trainable component, thereby effectively reducing optimization complexity. This QP-based mapping is implemented as a differentiable and computationally efficient module by leveraging OptNet (a differentiable QP layer), enabling effective end-to-end training. Experiments on four nonlinear dynamical systems show that QPKO achieves satisfactory improvements in modeling accuracy, training efficiency, and control performance.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=VwVBmkAoc9",
+  "arxiv": null,
+  "pdf": "https://raw.githubusercontent.com/mlresearch/v306/main/assets/tian26f/tian26f.pdf",
+  "proceedings": "https://proceedings.mlr.press/v306/tian26f.html",
+  "virtual": "https://icml.cc/virtual/2026/poster/63566",
+  "code": null
+ },
+ "license": null,
+ "img": "none",
+ "image_url": null,
+ "thumb_url": null,
+ "figure_page": 3,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.93
+}

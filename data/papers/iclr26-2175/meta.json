@@ -12,30 +12,29 @@
  "topic": null,
  "role": "prior-vs-ours",
  "role2": "teaser-result",
- "claim": "Adding next-timestep conditioning to the final blocks of an unchanged backbone turns a velocity model into an average-velocity model that reaches the same quality in far fewer steps.",
- "layout": "3 panels, left-to-right: two architecture stacks side by side (baseline vs ours), then a line plot of FID vs NFE; green highlights show the changed parts",
+ "claim": "Making a small architectural change to a pretrained model lets it match baseline quality with orders of magnitude fewer sampling steps.",
+ "layout": "3 panels, left-to-right: two block stacks, then a line plot",
  "tags": [
   "flow-map",
   "few-step-sampling",
   "diffusion-transformer",
   "efficiency",
-  "fine-tuning",
-  "architecture-modification",
-  "pareto-tradeoff"
+  "architecture-modification"
  ],
  "style": [
-  "minimal",
   "colorful",
-  "plot"
+  "plot",
+  "minimal"
  ],
- "description": "The figure has three parts. The left and middle parts are vertical stacks of five DiT/SiT blocks with a row of noisy dog images at the bottom and a labeled output box on top. The left stack is blue and outputs 'Velocity'. The middle stack is the same architecture, but its top two blocks and its output box 'Average Velocity' are green. A 'Next Timestep' tag feeds those two green blocks. The remaining blocks, like every block in the left stack, receive a 'Current Timestep' tag through arrows from the right. The right part is a line plot of FID-50K (y-axis) against NFE (x-axis). A green curve for DMF-XL/2 (ours) falls to about 1.5 FID within 1 to 4 steps. A blue SiT-XL/2+REPA curve needs about 109 to 434 steps to reach similar FID. The eye goes first to the green blocks, then to the plot, where the green curve sits far to the left.",
+ "description": "The figure has three parts. The left and middle panels show two vertical stacks of five blue DiT/SiT blocks. Each stack starts from a noisy dog image at the bottom, and a 'Current Timestep' box feeds every block. The left stack outputs 'Velocity' at the top. In the middle stack, the top two blocks are recolored green and also receive a 'Next Timestep' input, and the stack outputs 'Average Velocity'. The green recoloring makes the small change stand out. The right panel is a line plot of FID-50K against NFE. A green curve for DMF-XL/2 (ours) falls quickly from about 2.2 at 1 step to about 1.5 at 4 steps. A blue SiT-XL/2+REPA curve needs about 109 to 434 steps to reach similar FID.",
  "caption": "Accelerating diffusion transformer via Decoupled MeanFlow. (Left) Our model, Decoupled MeanFlow (DMF), converts a flow model into a flow map by decoding the intermediate representation with next timestep $r$, while preserving the original architecture. (Right) Fine-tuning DMF-XL/2 to predict average velocity [ref] significantly accelerates the sampling speed of flow model (SiT-XL+REPA; \\citealt{yu2025representation}), while maintaining the performance.",
  "caption_source": "latex",
  "abstract": "Denoising generative models, such as diffusion and flow-based models, produce high-quality samples but require many denoising steps due to discretization error. Flow maps, which estimate the average velocity between timesteps, mitigate this error and enable faster sampling. However, their training typically demands architectural changes that limit compatibility with pretrained flow models. We introduce Decoupled MeanFlow, a simple decoding strategy that converts flow models into flow map models without architectural modifications. Our method conditions the final blocks of diffusion transformers on the subsequent timestep, allowing pretrained flow models to be directly repurposed as flow maps. Combined with enhanced training techniques, this design enables high-quality generation in as few as 1 to 4 steps. Notably, we find that training flow models and subsequently converting them is more efficient and effective than training flow maps from scratch. On ImageNet 256x256 and 512x512, our models attain 1-step FID of 2.16 and 2.12, respectively, surpassing prior art by a large margin. Furthermore, we achieve FID of 1.51 and 1.68 when increasing the steps to 4, which nearly matches the performance of flow models while delivering over 100x faster inference.",
  "links": {
   "openreview": "https://openreview.net/forum?id=P4VsQexEPe",
   "arxiv": "https://arxiv.org/abs/2510.24474",
-  "pdf": "https://arxiv.org/pdf/2510.24474",
+  "pdf": "https://proceedings.iclr.cc/paper_files/paper/2026/file/699124f548e4cb86674b20eae0fd8619-Paper-Conference.pdf",
+  "proceedings": "https://proceedings.iclr.cc/paper_files/paper/2026/hash/699124f548e4cb86674b20eae0fd8619-Abstract-Conference.html",
   "virtual": "https://iclr.cc/virtual/2026/poster/10009715",
   "code": null
  },
@@ -44,9 +43,7 @@
  "image_url": null,
  "thumb_url": null,
  "figure_page": 0,
- "qc_flags": [
-  "bad-crop"
- ],
+ "qc_flags": [],
  "annotator": "claude-cli:sonnet",
  "role_confidence": 0.6
 }

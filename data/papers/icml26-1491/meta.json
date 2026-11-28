@@ -1,0 +1,50 @@
+{
+ "id": "icml26-1491",
+ "title": "HO-SFL: Hybrid-Order Split Federated Learning with Backprop-Free Clients and Dimension-Free Aggregation",
+ "authors": [
+  "Qiyuan Chen",
+  "Xian Wu",
+  "Yi Wang",
+  "Xianhao Chen"
+ ],
+ "venue": "ICML 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "Optimization->Large Scale, Parallel and Distributed",
+ "role": "pipeline",
+ "role2": null,
+ "claim": "Splitting computation so the server does exact backprop while clients use scalar-only zeroth-order updates gives cheap, dimension-free communication.",
+ "layout": "2 side-by-side colored regions (client/server), cyclic arrows, math inside boxes, color-coded flows",
+ "tags": [
+  "split-learning",
+  "zeroth-order",
+  "federated",
+  "communication-efficiency",
+  "hybrid-optimization"
+ ],
+ "style": [
+  "math-heavy",
+  "colorful",
+  "icon-heavy"
+ ],
+ "description": "A two-zone block diagram with a lavender Client m region on the left and a peach Server region on the right. The client input x_m passes through f_c to produce activation z_m, which goes to the server's f_s, then to a prediction and a Loss box. Labels y_m enter by a long green line. The Server BP subbox splits into the activation gradient λ and the server parameter gradient, and a Server Update box sits below it. A purple arrow returns λ to the client's Client ZO box, which holds the ZO Perturbation and Scalar Projection formulas. A green arrow sends scalars v to the Scalar Aggregation box in the Dimension-Free Aggregation region at the bottom, and a purple arrow returns the averaged scalar to the Client Update box. Circled variables sit on the arrows. Green arrows mean uplink and purple arrows mean downlink. Formulas fill the boxes.",
+ "caption": "Overview of the HO-SFL training loop. Each selected client $m$ computes an activation $\\boldsymbol{z}_m^t=f_c(\\boldsymbol{x}_m;\\boldsymbol{\\theta}_c^t)$ and sends $(\\boldsymbol{z}_m^t,y_m)$ to the server. The server performs BP to update $\\boldsymbol{\\theta}_s$ and returns the activation-gradient feedback $\\boldsymbol{\\lambda}_m^t=\\nabla_{\\boldsymbol{z}_m}\\ell$. In parallel, the client runs $P$ ZO perturbation forward passes $\\tilde{\\boldsymbol{z}}_{m,p}^t=f_c(\\boldsymbol{x}_m;\\boldsymbol{\\theta}_c^t+\\mu\\boldsymbol{u}_p^t)$ and computes scalar projections $v_{m,p}^t=\\boldsymbol{\\lambda}_m^{t\\top}(\\tilde{\\boldsymbol{z}}_{m,p}^t-\\boldsymbol{z}_m^t)$. The server then aggregates these scalars into $\\bar{v}_p^t=\\frac{1}{K}\\sum_{m\\in\\mathcal{S}_t}v_{m,p}^t$, which are broadcast back for clients to construct $\\hat{\\boldsymbol{g}}_c^t=\\frac{1}{P\\mu}\\sum_{p=1}^P\\bar{v}_p^t\\boldsymbol{u}_p^t$ and update $\\boldsymbol{\\theta}_c$.",
+ "caption_source": "latex",
+ "abstract": "Fine-tuning large models on edge devices is severely hindered by the memory-intensive backpropagation (BP) in standard frameworks like federated learning and split learning. While substituting BP with zeroth-order optimization can significantly reduce memory footprints, it typically suffers from prohibitively degraded convergence speed. To resolve this dilemma, we propose Hybrid-Order Split Federated Learning (HO-SFL). By reformulating the split learning process within a Lagrangian framework, HO-SFL decouples the optimization landscape: The server performs precise first-order updates (i.e., BP), whereas clients conduct memory-efficient zeroth-order optimization. This hybrid design not only eliminates the need for client-side BP but also enables dimension-free model aggregation, drastically lowering communication costs. Crucially, we provide a theoretical convergence analysis, demonstrating that HO-SFL mitigates the dimension-dependent convergence slowdown of zeroth-order optimization, achieving a convergence rate comparable to first-order methods. Extensive experiments on tasks across vision and language modalities validate that HO-SFL achieves convergence speeds comparable to first-order baselines while significantly reducing communication costs and client memory footprints.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=EETUbVsG6X",
+  "arxiv": "https://arxiv.org/abs/2603.14773",
+  "pdf": "https://raw.githubusercontent.com/mlresearch/v306/main/assets/chen26fd/chen26fd.pdf",
+  "proceedings": "https://proceedings.mlr.press/v306/chen26fd.html",
+  "virtual": "https://icml.cc/virtual/2026/poster/65376",
+  "code": null
+ },
+ "license": "http://arxiv.org/licenses/nonexclusive-distrib/1.0/",
+ "img": "none",
+ "image_url": null,
+ "thumb_url": null,
+ "figure_page": 3,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.93
+}

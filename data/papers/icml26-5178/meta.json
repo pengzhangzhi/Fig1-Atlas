@@ -1,0 +1,51 @@
+{
+ "id": "icml26-5178",
+ "title": "No More, No Less: Least-Privilege Language Models",
+ "authors": [
+  "Paulius Rauba",
+  "Dominykas Seputis",
+  "Patrikas Vanagas",
+  "Mihaela van der Schaar"
+ ],
+ "venue": "ICML 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "Deep Learning->Large Language Models",
+ "role": "pipeline",
+ "role2": "prior-vs-ours",
+ "claim": "Replace a fixed, uniformly exposed model with a controller that allocates internal capability per request through a smooth, reversible enforcement knob.",
+ "layout": "2 panels, left-to-right; block diagrams on left, rank-slider schematic on right",
+ "tags": [
+  "inference-time-control",
+  "access-control",
+  "low-rank",
+  "safety",
+  "deployment"
+ ],
+ "style": [
+  "minimal",
+  "math-heavy"
+ ],
+ "description": "The figure has two panels. Panel A, on the left, has two gray boxes. The 'Standard' box shows input x going into a Frozen Model π_θ and then output y. The 'Least-Privilege' box shows input x going into an Allocator φ(s(x)), which sets a Privilege g slider running from g_min to g_max. The privilege value feeds an Enforcer T_g(θ), which modifies the Model π_θ,g that produces y. Panel B, on the right, is a framed diagram. A weight matrix W is written as B×A. A slider labeled k selects a prefix of nested rank factors g=1 through g=k, and the selected factors are highlighted in teal. These factors form W_g = B_g × A_g, labeled 'Shape-preserving rank-index control'. The palette is muted gray with teal accents. Long caption text sits below each panel.",
+ "caption": "Least-privilege inference as an internal control problem. (A) At deployment, the model parameters are fixed, but the amount of internal capability exercised need not be. Separating signals, allocation, and enforcement exposes a concrete action space for controllers: choose how much computation the model is allowed to use for each request. (B) We instantiate enforcement with rank-indexed, shape-preserving interventions that operate inside the forward pass. Together, these panels define a deployer-facing control surface on which allocation policies can be evaluated by utility, privilege cost, and runtime overhead.",
+ "caption_source": "latex",
+ "abstract": "Least privilege is a core security principle: grant each request only the minimum access needed to achieve its goal. Deployed language models almost never follow it, instead being exposed through a single API endpoint that serves all users and requests. This gap exists not because least privilege would be unhelpful; deployments would benefit greatly from reducing unnecessary capability exposure. The real obstacle is definitional and mechanistic: what does \"access\" mean inside a language model, and how can we enforce it without retraining or deploying multiple models? We take inspiration from least privilege in computer systems and define a class of models called least-privilege language models, where privilege is reachable internal computation during the forward pass. In this view, lowering privilege literally shrinks the model's accessible function class, as opposed to denying access via learned policies. We formalize deployment-time control as a monitor-allocator-enforcer stack, separating (i) request-time signals, (ii) a decision rule that allocates privilege, and (iii) an inference-time mechanism that selects privilege. We then propose Nested Least-Privilege Networks, a shape-preserving, rank-indexed intervention that provides a smooth, reversible control knob. We show that this knob yields policy-usable privilege-utility frontiers and enables selective suppression of targeted capabilities with limited collateral degradation across various policies. Most importantly, we argue for a new deployment paradigm that challenges the premise that language models can only be controlled at the output level.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=mlQlfZb2rC",
+  "arxiv": "https://arxiv.org/abs/2601.23157",
+  "pdf": "https://raw.githubusercontent.com/mlresearch/v306/main/assets/rauba26a/rauba26a.pdf",
+  "proceedings": "https://proceedings.mlr.press/v306/rauba26a.html",
+  "virtual": "https://icml.cc/virtual/2026/poster/61806",
+  "code": "https://github.com/pauliusrauba/least-privilege-language-models"
+ },
+ "license": "http://creativecommons.org/licenses/by/4.0/",
+ "img": "cc-by",
+ "image_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/images/icml26-5178.png",
+ "thumb_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/thumbs/icml26-5178.webp",
+ "figure_page": 1,
+ "qc_flags": [
+  "bad-crop"
+ ],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.8
+}

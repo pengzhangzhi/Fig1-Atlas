@@ -1,0 +1,55 @@
+{
+ "id": "neurips26-4349",
+ "title": "CECAR: Cache & Expert Co-Aware Routing Accelerates On-Device Inference of MoE LLMs",
+ "authors": [
+  "Byeongju Kim",
+  "Hoonki Lee",
+  "Byungjun Kim",
+  "Inyul Ra",
+  "Yongjin Kim",
+  "Yongseong Lee",
+  "Sangyeob Kim"
+ ],
+ "venue": "NeurIPS 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "Deep Learning->Everything Else",
+ "role": "problem-setup",
+ "role2": null,
+ "claim": "Large models must stream weights from a slow storage tier because faster memory tiers are too small or already occupied.",
+ "layout": "Single vertical memory hierarchy stack, bottom-to-top arrows, red blocked-path X",
+ "tags": [
+  "memory-hierarchy",
+  "bottleneck",
+  "on-device",
+  "offloading",
+  "moe-inference"
+ ],
+ "style": [
+  "icon-heavy",
+  "colorful",
+  "minimal"
+ ],
+ "description": "A three-tier memory hierarchy drawn top to bottom. At the top, a rounded box labeled VRAM(GPU) holds a dark gray 'Cached Weight' block and a small purple 'Runtime Memory' strip, marked ~8GB. In the middle, a pink box with a red outline labeled DRAM(CPU), ~16GB in bold red, is filled with app icons for Windows, Discord, Chrome and VS Code. At the bottom, a wide light-gray SSD box holds a large dark 'Model Weight (> 30GB)' block. Quadruple black arrows labeled ~64GB/s in blue point up from DRAM to VRAM. Two arrows labeled ~4GB/s in red point up from SSD to DRAM. A bold red arrow with an X and the text 'No Space to Hold Model Weights!' shows the model cannot fit in DRAM. Red draws the eye first.",
+ "caption": "Memory bottlenecks for MoE inference on consumer devices.",
+ "caption_source": "latex",
+ "abstract": "Despite growing interest in on-device LLM deployment, large-scale Mixture-of-Experts (MoE) models remain impractical on resource-constrained devices, as sparse expert activation still requires all expert weights to be memory-resident. To address this, we identify three key observations for on-device MoE inference: (a) cache hit rates are fundamentally bounded even under Belady's optimal policy; (b) these bounds are insufficient for low-latency on-device inference; and (c) prior cache-aware routing based on binary cache presence can induce routing instability. Based on these insights, we propose CECAR (Cache & Expert Co-Aware Routing), a MoE inference system that jointly considers expert routing and cache management. Unlike prior cache-aware routing methods, CECAR uses an ML-based cache policy to predict the expected reuse distance of each expert and prioritizes routing and execution toward experts with smaller predicted reuse distances. On the Qwen3-30B-A3B model, CECAR achieves 12.5 tokens/s on a consumer-grade GPU with only 16 GB of VRAM, where non-resident experts are fetched from SSD, delivering a 4.5x speedup over conventional MoE inference and exceeding the decode speed of baselines that keep the entire model fully resident in DRAM. Code is available at https://github.com/hoonki2002/CECAR.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=UBnFBfqZgu",
+  "arxiv": "https://arxiv.org/abs/2611.20119",
+  "pdf": "https://arxiv.org/pdf/2611.20119",
+  "proceedings": null,
+  "virtual": "https://neurips.cc/virtual/2026/poster/152287",
+  "code": null
+ },
+ "license": "http://creativecommons.org/licenses/by/4.0/",
+ "img": "cc-by",
+ "image_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/images/neurips26-4349.png",
+ "thumb_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/thumbs/neurips26-4349.webp",
+ "figure_page": 1,
+ "qc_flags": [
+  "tiny-crop"
+ ],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.8
+}

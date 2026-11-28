@@ -1,0 +1,49 @@
+{
+ "id": "neurips26-4074",
+ "title": "KG-Guard: Graph-Based Hallucination Detection for Knowledge Base Question Answering",
+ "authors": [
+  "Albert Sawczyn",
+  "Piotr Bielak",
+  "Tomasz Kajdanowicz"
+ ],
+ "venue": "NeurIPS 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "Deep Learning->Graph Neural Networks",
+ "role": "pipeline",
+ "role2": null,
+ "claim": "A lightweight black-box verifier wraps an existing generator in a feedback loop, flagging unreliable outputs for targeted refinement until none remain.",
+ "layout": "Single flow in 2 rows, snaking right then left, dashed red feedback arrow",
+ "tags": [
+  "feedback-loop",
+  "hallucination-detection",
+  "black-box-verifier",
+  "iterative-refinement",
+  "knowledge-graph"
+ ],
+ "style": [
+  "minimal",
+  "colorful",
+  "math-heavy"
+ ],
+ "description": "A flowchart of octagon and rounded boxes joined by arrows, in two rows. The top row runs left to right: a gray octagon \"KBQA instance (q,G,T)\", a blue box \"f_KBQA LLM-based KBQA\", and a gray octagon \"candidate answer nodes Â\". A downward arrow labeled \"verify each â ∈ Â\" leads to a bold-outlined blue box, \"KG-Guard f_θ(q,G,T,Â,â)\", at the bottom right. The bottom row runs right to left from KG-Guard to a red octagon, \"flagged set H = {â : ŷ_â = 1}\". From the flagged set, a dashed red arrow labeled \"while H ≠ ∅\" goes up to the LLM-based KBQA box and closes the loop. When H = ∅, a solid arrow goes to a green octagon, \"accepted answer set Â\", at the bottom left. Color marks the role of each box: blue for models, red for flagged items, green for the accepted output.",
+ "caption": "Role of \\methodname in the KBQA loop. The LLM-based KBQA method maps $(q,G,T)$ to candidate answer nodes $\\hat{A}$. \\methodname labels returned nodes and feeds flagged hallucinations $\\mathcal{H}$ back for targeted refinement until $\\mathcal{H}=\\emptyset$ or the iteration cap is reached (see Section [ref]).",
+ "caption_source": "latex",
+ "abstract": "Large language models (LLMs) are increasingly used for knowledge base question answering (KBQA), also referred to as knowledge graph question answering (KGQA), where answering requires selecting entities from a question-specific knowledge graph subgraph. Yet LLMs are known to hallucinate across tasks, and KBQA is no exception: even when we provide a graph as the knowledge source, the model may rely on parametric knowledge instead of graph evidence or perform invalid reasoning over the given relations. Such hallucinated answer nodes can limit the practical deployment of KBQA systems, especially in high-stakes domains such as healthcare. We formulate hallucination detection in KBQA as an answer-node classification problem and propose a lightweight graph-based framework that treats the answering LLM as a black box. KG-Guard represents each KBQA instance as an augmented graph. It initializes node features with semantic representations of KG entities, marks topic entities and LLM-proposed answer nodes with learned vectors, and connects a virtual question node to the topic entities. A graph encoder then produces verification-oriented node representations, and a small MLP classifies each proposed answer node using its graph representation together with the question embedding. Experiments on WebQSP, ComplexWebQuestions, and PUGG show that our detector achieves the best average rank across all three benchmarks (F1 82.0, 87.4, and 84.3), while using ${\\sim}$305$\\times$ fewer parameters than LLM-based baselines. It also retains the best average rank when jointly evaluated across an extended set of pipelines and settings. Beyond detection, the node-level feedback is actionable: when flagged answers are fed back to the KBQA system for iterative refinement, downstream KBQA F1 improves by 13.0-14.5 points and Exact Match by 16.9-17.6 points.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=STsaMODjS9",
+  "arxiv": "https://arxiv.org/abs/2606.00328",
+  "pdf": "https://arxiv.org/pdf/2606.00328",
+  "proceedings": null,
+  "virtual": "https://neurips.cc/virtual/2026/poster/152526",
+  "code": "https://github.com/graphml-lab-pwr/KG-Guard"
+ },
+ "license": "http://creativecommons.org/licenses/by-sa/4.0/",
+ "img": "cc-by-sa",
+ "image_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/images/neurips26-4074.png",
+ "thumb_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/thumbs/neurips26-4074.webp",
+ "figure_page": 1,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.9
+}

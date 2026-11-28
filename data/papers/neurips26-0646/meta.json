@@ -1,0 +1,53 @@
+{
+ "id": "neurips26-0646",
+ "title": "SEAD: Competence-Aware On-Policy Distillation via Entropy-Guided Supervision",
+ "authors": [
+  "Michael Lee",
+  "Zelei Cheng",
+  "Yu Wang",
+  "Renkun Ni",
+  "Sambit Sahu",
+  "Shi-Xiong Zhang",
+  "William Campbell"
+ ],
+ "venue": "NeurIPS 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "Reinforcement Learning->Everything Else",
+ "role": "pipeline",
+ "role2": null,
+ "claim": "Supervision should adapt to student competence: select prompts by ability, route tokens by entropy to tailored divergences, and anneal over training.",
+ "layout": "Single panel, loop from top-row flow to bottom zone box, with a dashed feedback arrow",
+ "tags": [
+  "on-policy-distillation",
+  "curriculum",
+  "entropy-guided",
+  "token-selection",
+  "kl-divergence"
+ ],
+ "style": [
+  "colorful",
+  "math-heavy",
+  "icon-heavy"
+ ],
+ "description": "A color-coded flow diagram. The top row runs left to right. A yellow rounded box, 'Competence-Gated Prompt Selection', feeds a green 'Student Policy π_θ' box. That feeds a 'Sample Tokens' box, then a row of gray dots, then a down arrow to a pink 'Teacher Policy π_te' box. A white 'Compute Entropy per Token (H_θ, H_te)' box sits below the teacher and points left into a large dashed gray container. Inside, a yellow 'Assign Token Zones via Entropy' header sits above three rounded zones. Zone A is gray (both entropies low, skip, black dots). Zone B is blue (H_te low, H_θ high, reverse KL, blue dots). Zone C is red (H_te high, forward KL, red dot). A yellow 'Temporal Annealing (Zone C only)' box with α·FKL + (1−α)·RKL connects to Zone C by a dashed arrow. A dashed arrow labeled 'Update Student Policy: Minimize Divergence' points back up to the student. The eye lands first on the colored zones.",
+ "caption": "Overview of SEAD. First, the competence-gated curriculum (left, yellow) selects prompts within the student's current ability frontier ($d_i \\leq c(t)$), ensuring rollouts are coherent enough for meaningful supervision. The student $\\pi_\\theta$ generates a rollout, which the teacher $\\pi_{te}$ scores with per-token logits. From these, we compute joint entropy ($H_\\theta$, $H_{te}$) and partition tokens into three zones: Zone A (gray)---both models confident, zero gradient (${\\sim}50%$ of tokens); Zone B (blue)---teacher confident but student uncertain, supervised via reverse KL to sharpen toward the teacher's mode; Zone C (red)---teacher uncertain at reasoning forks, supervised via forward KL to preserve multi-path diversity. A temporal annealing schedule (bottom-right) modulates Zone C as $\\alpha \\cdot \\mathcal{L}_{FKL} + (1-\\alpha) \\cdot \\mathcal{L}_{RKL}$, smoothly transitioning from exploration ($\\alpha{=}0.8$) to refinement ($\\alpha{=}0$) over training. The combined loss updates the student. See Algorithm [ref] for the full procedure.",
+ "caption_source": "latex",
+ "abstract": "On-policy distillation (OPD) has a property absent in offline distillation and RL: teacher supervision quality depends on student competence. Incoherent rollouts yield noisy gradients; already-mastered tokens yield redundant ones. This creates waste at three scales (tokens, training phases, and prompts) yet existing methods supervise uniformly. We introduce SEAD, which uses entropy as a unified probe of this competence-dependent degradation at three scales: (1) joint teacher-student entropy partitions tokens into zones receiving tailored divergences or zero gradient (approx. 50% skipped); (2) a cosine schedule anneals from forward to reverse KL as competence grows; (3) a competence-gated curriculum introduces prompts easy-to-hard. These components are symbiotically necessary: token selection requires coherent rollouts (curriculum), annealing requires monotonic improvement (also curriculum). On OLMo-3 (7B to 32B), SEAD achieves +4.8 avg accuracy over vanilla OPD across six math benchmarks, with ablations confirming super-additive interactions.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=4cZVcqbvw1",
+  "arxiv": "https://arxiv.org/abs/2606.28562",
+  "pdf": "https://arxiv.org/pdf/2606.28562",
+  "proceedings": null,
+  "virtual": "https://neurips.cc/virtual/2026/poster/155569",
+  "code": null
+ },
+ "license": "http://arxiv.org/licenses/nonexclusive-distrib/1.0/",
+ "img": "none",
+ "image_url": null,
+ "thumb_url": null,
+ "figure_page": 1,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.9
+}

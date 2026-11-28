@@ -1,0 +1,53 @@
+{
+ "id": "neurips26-8358",
+ "title": "Useful Memories Become Faulty When Continuously Updated by LLMs",
+ "authors": [
+  "Dylan Zhang",
+  "Yanshan Lin",
+  "Zhengkun Wu",
+  "Yihang Sun",
+  "Bingxuan Li",
+  "Dianqi Li",
+  "Hao Peng"
+ ],
+ "venue": "NeurIPS 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "Applications->Language, Speech and Dialog",
+ "role": "analysis-finding",
+ "role2": null,
+ "claim": "Memory built by continual LLM consolidation first improves utility, then erodes it below baseline, while raw episodes stay robust.",
+ "layout": "2 panels plus small bar inset, left-to-right, shaded phase regions and raw-vs-consolidated gap",
+ "tags": [
+  "memory-consolidation",
+  "degradation",
+  "scaling-curve",
+  "agent-memory",
+  "episodic-vs-abstract"
+ ],
+ "style": [
+  "plot",
+  "colorful",
+  "minimal"
+ ],
+ "description": "Two line-plot panels sit side by side, and a small bar chart is attached on the right. Panel (a), ScienceWorld with CLIN, plots utility against #Steps (0, 20, 100). A pink region labeled 'Utility Increase' covers steps 0 to 20, and a lavender region labeled 'Memory Erosion' covers steps 20 to 100. Three lines for memory sizes |M|=16, 50 and ∞ all rise to a peak at step 20, then fall. Panel (b), WebShop with AWM, plots success rate against the number of examples (8 to 128). An orange Raw Trajectories line stays high, near 0.6 to 0.76. A purple AWM line drops to about 0.4 and then to 0.2. A salmon shaded region marks the gap between them, and a dotted line marks the No Memory baseline. Each marker has its average score in parentheses. The small bar chart on the right compares No Mem (0.16) with AWM+BT (0.12) on train replay. The eye goes first to the diverging orange and purple curves and the shaded gap.",
+ "caption": "Memory utility degrades as consolidation continues. (\\subref{fig:science-world-bsz4}) ScienceWorld utility rises early then declines across memory sizes. (\\subref{fig:awm_webshop_scaling}) On WebShop, AWM-distilled memory degrades with scale while raw trajectories remain robust. The y-axis is success rate (number solved out of 50 held-out episodes); the parenthesized value next to each marker is the average score, a separate WebShop metric.",
+ "caption_source": "latex",
+ "abstract": "Learning from past experience benefits from two complementary forms of memory: episodic traces -- raw trajectories of what happened -- and consolidated abstractions distilled across many episodes into reusable, schema-like lessons. Recent agentic-memory systems pursue the consolidated form: an LLM rewrites past trajectories into a textual memory bank that it continuously updates with new interactions, promising self-improving agents without parameter updates. Yet we find that such consolidated memories produced by today's LLMs are often faulty even when derived from useful experiences. As consolidation proceeds, memory utility first rises, then degrades, and can fall below the no-memory baseline. More surprisingly, even when consolidating from ground-truth solutions, GPT-5.4 fails on 54% of a set of ARC-AGI problems it had previously solved without memory. We trace the regression to the consolidation step rather than the underlying experience: the same trajectories yield qualitatively different memories under different update schedules, and an episodic-only control that simply retains those trajectories remains competitive with the consolidators we test. In a controlled ARC-AGI Stream environment that exposes Retain, Delete, and Consolidate actions, agents preserve raw episodes by default and double the accuracy of their forced-consolidation counterparts; disabling consolidation entirely (episodic management only) matches this auto regime. Practically, robust agent memory should treat raw episodes as first-class evidence and gate consolidation explicitly rather than firing it after every interaction. Looking forward, reliable agentic memory will require LLMs that can consolidate without overwriting the evidence they depend on.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=vagovELSsT",
+  "arxiv": "https://arxiv.org/abs/2605.12978",
+  "pdf": "https://arxiv.org/pdf/2605.12978",
+  "proceedings": null,
+  "virtual": "https://neurips.cc/virtual/2026/poster/148715",
+  "code": "https://dylanzsz.github.io/faulty-memory/"
+ },
+ "license": "http://creativecommons.org/licenses/by/4.0/",
+ "img": "cc-by",
+ "image_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/images/neurips26-8358.png",
+ "thumb_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/thumbs/neurips26-8358.webp",
+ "figure_page": 1,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.9
+}

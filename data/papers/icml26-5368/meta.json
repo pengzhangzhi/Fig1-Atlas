@@ -1,0 +1,52 @@
+{
+ "id": "icml26-5368",
+ "title": "NITP: Next Implicit Token Prediction for LLM Pre-training",
+ "authors": [
+  "Xiangdong Zhang",
+  "Debing Zhang",
+  "Shaofeng Zhang",
+  "Xiaohan Qin",
+  "Yu Cheng",
+  "Junchi Yan"
+ ],
+ "venue": "ICML 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "Deep Learning->Large Language Models",
+ "role": "analysis-finding",
+ "role2": "teaser-result",
+ "claim": "Adding dense representation-space supervision prevents representational collapse (higher rank, lower similarity) and yields consistently better downstream performance throughout training.",
+ "layout": "4 panels in 2x2 grid; top geometry curves, bottom benchmark scatter with delta annotations",
+ "tags": [
+  "representation-geometry",
+  "effective-rank",
+  "regularization",
+  "auxiliary-loss",
+  "pretraining"
+ ],
+ "style": [
+  "plot",
+  "colorful",
+  "minimal"
+ ],
+ "description": "A 2x2 grid of line and scatter plots comparing NTP (blue) and NITP (red) over 40,000 training steps. Top-left (a) shows effective rank of last hidden states: both rise to a peak near 270 early on, then fall, but NTP collapses to about 25 while NITP stays around 60, with shaded variance bands. Top-right (b) shows cosine similarity between hidden states: NITP stays consistently lower (about 0.33) than NTP (about 0.37), indicating less anisotropy. Bottom-left (c) shows average benchmark score for the MoE model, with the red NITP dots above the blue NTP dots and an arrow annotated +3.32 at the end. Bottom-right (d) shows the same for the dense model, annotated +3.38. Legends sit inside each plot, and subpanel captions appear underneath.",
+ "caption": "Top: Representation geometry of the last hidden states under NTP and NITP. Bottom: Average downstream performance of 9B MoE and 2B dense models (details in [ref]).",
+ "caption_source": "latex",
+ "abstract": "Standard next-token prediction (NTP) supervises language models solely through discrete labels in the output logit space. We argue that this sparse one-hot supervision leaves the latent representation space under-constrained, allowing hidden states to drift into degenerate and anisotropic configurations that can limit generalization. To address this issue, we propose Next Implicit Token Prediction (NITP), which augments discrete prediction with dense continuous supervision directly in the representation space. NITP trains the model to predict the implicit semantic content of the next token, using shallow-layer representations from the same model as stable self-supervised targets. We provide theoretical analysis showing that NITP regularizes the optimization landscape by mitigating under-constrained degrees of freedom and encouraging a compact, structured representation geometry. Empirically, across dense and MoE models ranging from 0.5B to 9B parameters, NITP consistently improves downstream performance with negligible computational overhead. On a 9B MoE model, NITP achieves a 5.7% absolute improvement on MMLU-Pro, along with gains of 6.4% on C3 and 4.3% on CommonsenseQA, with approximately 2% additional training FLOPs and no additional inference cost. Our implementation is available at https://github.com/aHapBean/NITP.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=oPQmCKS1tV",
+  "arxiv": "https://arxiv.org/abs/2605.24956",
+  "pdf": "https://raw.githubusercontent.com/mlresearch/v306/main/assets/zhang26ix/zhang26ix.pdf",
+  "proceedings": "https://proceedings.mlr.press/v306/zhang26ix.html",
+  "virtual": "https://icml.cc/virtual/2026/poster/61625",
+  "code": null
+ },
+ "license": "http://arxiv.org/licenses/nonexclusive-distrib/1.0/",
+ "img": "none",
+ "image_url": null,
+ "thumb_url": null,
+ "figure_page": 0,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.6
+}

@@ -1,0 +1,51 @@
+{
+ "id": "icml26-4255",
+ "title": "EchoingPixels: Aliasing-Resistant Joint Token Reduction for Audio-Visual LLMs",
+ "authors": [
+  "Chao Gong",
+  "Depeng Wang",
+  "Zhipeng Wei",
+  "Ya Guo",
+  "Huijia Zhu",
+  "Jingjing Chen"
+ ],
+ "venue": "ICML 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "Deep Learning->Large Language Models",
+ "role": "analysis-finding",
+ "role2": "concept",
+ "claim": "High-frequency positional encodings make attention decay and oscillate with distance, while low-frequency components keep a smooth, stable signal.",
+ "layout": "single line plot, two curves, legend top-right, x-axis unlabeled ticks",
+ "tags": [
+  "positional-encoding",
+  "rope",
+  "frequency-analysis",
+  "attention-decay",
+  "token-reduction"
+ ],
+ "style": [
+  "plot",
+  "minimal"
+ ],
+ "description": "A single line chart titled 'Effect of RoPE Frequency on Temporal Attention'. The x-axis is relative temporal position Δ with no tick labels, and the y-axis is attention score from about -0.3 to 1.0. A smooth blue curve (Low-Freq.) starts at 1.0 and decays gradually and monotonically toward zero at the far right. A red curve (High-Freq.) drops sharply from 1.0 to near 0 within a short distance, then oscillates noisily between roughly -0.3 and +0.25 for the rest of the range, with larger spikes at long distances. The legend sits in the top right. Light dashed horizontal gridlines and a hand-drawn-style font are used. The eye goes first to the contrast between the smooth blue curve and the jagged red one.",
+ "caption": "Temporal RoPE dynamics. High-frequency temporal encodings in vanilla AV-LLMs, cause attention to decay and oscillate over distance. In contrast, low-frequency components, as used in our Sync-RoPE, maintain stable signals.",
+ "caption_source": "latex",
+ "abstract": "Audio-Visual Large Language Models (AV-LLMs) face prohibitive computational costs of processing massive, redundant audio-visual tokens. Existing unimodal compression techniques fail to capture the heterogeneous and mutually influential information density of joint audio-visual signals. Furthermore, we identify a fundamental and overlooked theoretical bottleneck in sparse token reduction: positional aliasing. We demonstrate that aggressive sparse sampling on standard position-encoded sequences violates the Nyquist limit relative to the effective token interval, causing phase-wrapping collisions that corrupt temporal monotonicity. To address this, we introduce EchoingPixels, a framework for aliasing-resistant joint token reduction. Our Cross-Modal Semantic Sieve performs extractive selection on the synergistic audio-visual stream, dynamically allocating budgets based on joint-modality saliency rather than fixed per-modality ratios. To resolve positional aliasing, we derive Sync-RoPE, a spectral low-pass filter for Rotary Positional Embeddings that adapts encoding bandwidth to the sparse sampling rate, preserving monotonic temporal relationships in the reduced stream. Experiments show that EchoingPixels achieves performance comparable to full models using only 5-20% of original tokens, validating theoretically grounded sparse learning as a robust solution for efficient AV-LLMs. Code is available at https://github.com/CharlesGong12/EchoingPixels.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=e8JTAKZYt6",
+  "arxiv": "https://arxiv.org/abs/2512.10324",
+  "pdf": "https://raw.githubusercontent.com/mlresearch/v306/main/assets/gong26g/gong26g.pdf",
+  "proceedings": "https://proceedings.mlr.press/v306/gong26g.html",
+  "virtual": "https://icml.cc/virtual/2026/poster/62697",
+  "code": "https://github.com/CharlesGong12/EchoingPixels"
+ },
+ "license": "http://arxiv.org/licenses/nonexclusive-distrib/1.0/",
+ "img": "none",
+ "image_url": null,
+ "thumb_url": null,
+ "figure_page": 0,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.6
+}

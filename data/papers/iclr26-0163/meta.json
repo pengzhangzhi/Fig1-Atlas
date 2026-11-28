@@ -1,0 +1,50 @@
+{
+ "id": "iclr26-0163",
+ "title": "MOLM: Mixture of LoRA Markers",
+ "authors": [
+  "Samar Fares",
+  "Nurbek Tastan",
+  "Noor Hussein",
+  "Karthik Nandakumar"
+ ],
+ "venue": "ICLR 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "Social Aspects->Trustworthy Machine Learning",
+ "role": "pipeline",
+ "role2": null,
+ "claim": "A frozen model and a key-perturbed copy are trained jointly with an extractor, then reused at deployment to recover keys and attribute outputs.",
+ "layout": "2 panels, left-to-right; training on warm background, deployment on cool background",
+ "tags": [
+  "watermarking",
+  "parameter-perturbation",
+  "key-extraction",
+  "train-deploy",
+  "attribution"
+ ],
+ "style": [
+  "icon-heavy",
+  "math-heavy",
+  "colorful"
+ ],
+ "description": "Two rounded panels side by side. The left panel, in orange and titled Training, shows a text prompt feeding two U-Net style generator blocks. The top block is the frozen generator G_Φ and produces a clean image x. The lower block is the perturbed generator G_{Φ+ΔΦ(κ)}, which receives a key icon through a plus sign and produces the watermarked image x̃. Arrows from x and x̃ go to the loss L_imp. x̃ also goes to the extractor V_η, which outputs a recovered key. A dashed arrow carries that key to the loss L_ver. The right panel, in blue and titled Deployment, shows a user icon sending the prompt 'A cat sitting in a chair' to the keyed generator, which outputs a cat photo. A dotted curve carries the image to a model owner/verifier icon. The extractor V_η recovers the key, a green check mark labeled Detected appears, and the key is matched against a set of colored keys under Attribute.",
+ "caption": "Proposed watermarking framework. During training (left), a text prompt $t$ is processed by both the frozen generator $\\mathcal{G}_\\Phi$ (producing clean image $x$) and the perturbed generator $\\mathcal{G}_{\\Phi + \\Delta\\Phi(\\kappa)}$ (producing watermarked image $\\tilde{x}$), where $\\Delta\\Phi(\\kappa)$ denotes a key-dependent parameter perturbation. The extractor $\\mathcal{V}_{\\eta}$ recovers the embedded key $\\tilde{\\kappa}$. The parameter perturbation function ($\\Delta\\Phi$) and extractor parameters ($\\eta$) are jointly learned by optimizing the perceptual loss $\\mathcal{L}_{imp}$ and key loss $\\mathcal{L}_{ver}$. During deployment (right), the model owner/verifier extracts the embedded key to verify the watermark and attribute generated images to a specific model.",
+ "caption_source": "latex",
+ "abstract": "Generative models can generate photorealistic images at scale. This raises urgent concerns about the ability to detect synthetically generated images and attribute these images to specific sources. While watermarking has emerged as a possible solution, existing methods remain fragile to realistic distortions, susceptible to adaptive removal, and expensive to update when the underlying watermarking key changes. We propose a general watermarking framework that formulates the encoding problem as key-dependent perturbation of the parameters of a generative model. Within this framework, we introduce Mixture of LoRA Markers (MOLM), a routing-based instantiation in which binary keys activate lightweight LoRA adapters inside residual and attention blocks. This design avoids key-specific re-training and achieves the desired properties such as imperceptibility, fidelity, verifiability, and robustness. Experiments on Stable Diffusion and FLUX show that MOLM preserves image quality while achieving robust key recovery against distortions, compression and regeneration, averaging attacks, and black-box adversarial attacks on the extractor.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=1fYQOZovHR",
+  "arxiv": "https://arxiv.org/abs/2510.00293",
+  "pdf": "https://proceedings.iclr.cc/paper_files/paper/2026/file/c4a581f8219f62e3e5c83d4d80be5c9d-Paper-Conference.pdf",
+  "proceedings": "https://proceedings.iclr.cc/paper_files/paper/2026/hash/c4a581f8219f62e3e5c83d4d80be5c9d-Abstract-Conference.html",
+  "virtual": "https://iclr.cc/virtual/2026/poster/10011809",
+  "code": "https://github.com/Samar-Fares/MOLM-Watermark"
+ },
+ "license": "http://arxiv.org/licenses/nonexclusive-distrib/1.0/",
+ "img": "none",
+ "image_url": null,
+ "thumb_url": null,
+ "figure_page": 1,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.9
+}

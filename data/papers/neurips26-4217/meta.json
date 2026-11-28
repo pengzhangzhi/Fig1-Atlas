@@ -1,0 +1,47 @@
+{
+ "id": "neurips26-4217",
+ "title": "Cumulative-Goodness Free-Riding in Forward-Forward Networks: Real, Repairable, but Not Accuracy-Dominant",
+ "authors": [
+  "Amirhossein Yousefiramandi"
+ ],
+ "venue": "NeurIPS 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "Deep Learning->Algorithms",
+ "role": "analysis-finding",
+ "role2": null,
+ "claim": "Cumulative history drives upstream margins up and makes downstream gradients decay exponentially, so deeper layers receive almost no learning signal.",
+ "layout": "2 panels side by side; line plot left, log-scale scatter with theory curves right",
+ "tags": [
+  "forward-forward",
+  "free-riding",
+  "gradient-decay",
+  "theory-validation",
+  "local-learning"
+ ],
+ "style": [
+  "plot",
+  "math-heavy",
+  "minimal"
+ ],
+ "description": "Two plots side by side with a shared colour code. Blue is γ=0 (history-free), orange is γ=0.7 (CP-FAIR-style) and green is γ=1.0 (LCFF). Panel (a) is a line plot of the free-riding index F_d against block index d=0..3. The blue line stays flat at 0. The orange and green lines jump to about 0.93–0.96 at block 1 and then plateau. The values 0.930, 0.952 and 0.955 are annotated, and error bars are shown. Panel (b) is titled 'Gradient at the deepest block, d=3'. It plots per-example gradient magnitude on a log y-axis against upstream margin P. Scattered points are overlaid with solid theory curves. The orange and green points fall off exponentially along the Theorem 3.1 curves, and the blue points stay roughly flat. A grey shaded region at negative margin marks the area outside the theorem. A legend explains the curves, points and shading.",
+ "caption": "Empirical check of Theorem [ref] on three CIFAR-10 L4/D128 Stage-1 checkpoints (seed 42, sharpness-aware minimization (SAM) off; first 1024 test images, one random wrong label each, $\\beta{=}4$). The runs share architecture, optimizer and schedule but not every loss weight: the $\\gamma{=}0.7$ run (cp-fair-style, i.e., the cumulative setting of \\S[ref]) also uses the depth-scaled auxiliary (Eq. [ref], $\\lambda_0{=}0.25$) and $\\lambda_depth{=}0.2$, both $0$ in the $\\gamma{=}0$ and $\\gamma{=}1$ (LCFF; \\S[ref]) runs. (a) Free-riding index $\\mathcal{F}_d{=}\\mathbb{E}[1{-}\\min(1,R_d)]$ (App. [ref]) with 95% confidence intervals (CIs). $\\mathcal{F}_d{=}0$ under $\\gamma{=}0$ and at block 0 holds by construction ($\\gamma P^{(d-1)}{=}0$ gives $R_d{\\equiv}1$); under $\\gamma{=}0.7$, $\\mathcal{F}_d{=}0.930/0.952/0.955$ at blocks 1--3. (b) Per-example $|\\partial\\ell_\\beta/\\partial m^{(3)}|$ against the upstream margin $P^{(2)}$ (all 1024 examples); curves: $\\beta\\sigma(-\\beta(\\tilde m+\\gamma P))$ with $\\tilde m$ the per-variant median of $m^{(3)}$. For $\\gamma{>}0$ the gradient decays exponentially in the upstream margin, as the theorem predicts; for $P{<}0$ (shaded, outside the theorem) cumulative history can amplify it. The snapshot uses raw weights and a non-trainer input normalization; recomputing on the exponential-moving-average (EMA) weights with the trainer's normalization changes $\\mathcal{F}_d$ by at most $0.003$.",
+ "caption_source": "latex",
+ "abstract": "Forward-Forward (FF) training lets each layer learn from a local goodness criterion. In cumulative-goodness variants, later layers can inherit a task that earlier layers have partly separated. We formalize this as layer free-riding: under the softplus FF criterion, the class-discrimination gradient reaching block $d$ decays exponentially with the positive margin accumulated by earlier blocks (Theorem 3.1); a squared-hinge barrier reproduces the pathology. History-free and hardness-gated repairs raise deeper-layer separation by up to $5\\times$ on CIFAR-100 and $45\\times$ in an 8-block CIFAR-10 model, yet these and a depth-scaled auxiliary term move accuracy by under one percentage point among non-degenerate variants; on Tiny ImageNet, a harder cross-dataset check of the selected configuration, layer health likewise does not track accuracy. A theory-derived attenuation-compensated objective raises deepest-block separation $5.9\\times$ at a consistent cost in the FF classifier's own accuracy that a probe trained on the frozen features recovers; in a smaller CIFAR-10 control, most of its separation gain comes from dropping the depth-scaled auxiliary term it replaces. Accuracy invariance is a property of the deployed sum-based scoring rule under redistribution (Proposition 3.2) and, empirically, of the structured trained readouts we test, not of what the network learns: retrained variants disagree on 13-26% of test predictions. Architecture and augmentation matter far more than the non-degenerate training rules studied. Cumulative free-riding is therefore a real and repairable pathology, but for the softplus and squared-hinge objectives, architectures, and datasets we study, it is not the dominant factor limiting accuracy.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=TN0FvatX6A",
+  "arxiv": "https://arxiv.org/abs/2605.06240",
+  "pdf": "https://arxiv.org/pdf/2605.06240",
+  "proceedings": null,
+  "virtual": "https://neurips.cc/virtual/2026/poster/152401",
+  "code": "https://amirhossein-yousefi.github.io/ff-free-riding/"
+ },
+ "license": "http://arxiv.org/licenses/nonexclusive-distrib/1.0/",
+ "img": "none",
+ "image_url": null,
+ "thumb_url": null,
+ "figure_page": 4,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.8
+}

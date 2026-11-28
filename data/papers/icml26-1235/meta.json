@@ -1,0 +1,52 @@
+{
+ "id": "icml26-1235",
+ "title": "EigenCache: Rethinking Diffusion Acceleration as Covariance-Optimal Forecasting and Submodular Information Allocation",
+ "authors": [
+  "Chenyang Xu",
+  "Dezhen Wang",
+  "Lin Chen",
+  "Kepeng Lin",
+  "Hao Wang"
+ ],
+ "venue": "ICML 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "Deep Learning->Generative Models and Autoencoders",
+ "role": "prior-vs-ours",
+ "role2": "pipeline",
+ "claim": "Fixed polynomial bases drift from non-stationary feature trajectories; covariance-adapted forecasting with uncertainty-guided anchor selection tracks them closely.",
+ "layout": "Left trajectory plot over pipeline boxes; right basis plots, greedy-selection strip, uncertainty funnel",
+ "tags": [
+  "feature-caching",
+  "gaussian-process",
+  "training-free",
+  "forecasting",
+  "submodular-selection"
+ ],
+ "style": [
+  "colorful",
+  "plot",
+  "math-heavy",
+  "icon-heavy"
+ ],
+ "description": "The figure has two halves. The left half is a large curve plot titled by axes Feature Evolution versus Diffusion timeline. A solid teal ground-truth curve oscillates. A red dashed polynomial/Taylor baseline rises smoothly and misses the oscillations. A green dashed EigenCache forecast follows the teal curve closely. Below the plot, a row of Compute and Skip boxes marks anchor steps. Arrows from the Compute boxes lead to a Cache-then-Forecast Inference label and a green box of cached layer-wise features, written as Δ^kF(X_t). Red arrows show polynomial extrapolation accumulating bias. Dash-dotted green arrows show the covariance-adapted basis. The right half has four small plots of basis functions for orders k=1 to 4, with Hermite curves in green and Taylor curves in red dashed. Below them is a blue Greedy Selection strip of timestep blocks, and below that an orange funnel showing uncertainty shrinking as anchor dots are added.",
+ "caption": "The EigenCache Framework. Unlike prior polynomial-based methods (left) that force feature trajectories to fit rigid Taylor or",
+ "caption_source": "pdf",
+ "abstract": "Accelerating diffusion models via feature caching has progressed from static feature reuse to polynomial extrapolation, yet current cache-then-forecast strategies still rely on hand-crafted approximation families (e.g., Taylor or Hermite bases) that can misalign with the non-stationary, layer-specific dynamics of generative features. This paper introduces EigenCache, a training-free framework that re-frames diffusion acceleration as covariance-adaptive feature forecasting and uncertainty-aware temporal design. EigenCache models cached feature trajectories as time-indexed stochastic processes and estimates layer-wise temporal kernels from a small calibration set. Under the resulting scalar temporal-kernel approximation, the Gaussian-process posterior mean, i.e., Kriging, is risk-optimal within the scalar-weighted linear predictor class; under joint Gaussianity, it further coincides with the MMSE estimator. This formulation generalizes fixed-basis forecasting from a covariance-adaptive perspective while providing a closed-form posterior-variance proxy for prediction uncertainty. Leveraging this proxy, EigenCache selects computation anchors by maximizing a log-determinant information-gain objective over denoising timesteps, a monotone submodular objective with a near-optimal greedy solution. Across image, video, transformer, U-Net, and LoRA-adapted diffusion models, EigenCache achieves a strong speed--fidelity Pareto frontier and provides a principled mechanism for robust compute allocation.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=BjMsVqss9N",
+  "arxiv": null,
+  "pdf": "https://raw.githubusercontent.com/mlresearch/v306/main/assets/xu26be/xu26be.pdf",
+  "proceedings": "https://proceedings.mlr.press/v306/xu26be.html",
+  "virtual": "https://icml.cc/virtual/2026/poster/65624",
+  "code": null
+ },
+ "license": null,
+ "img": "none",
+ "image_url": null,
+ "thumb_url": null,
+ "figure_page": 2,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.6
+}

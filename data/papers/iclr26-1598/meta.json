@@ -1,0 +1,48 @@
+{
+ "id": "iclr26-1598",
+ "title": "Prosperity before Collapse: How Far Can Off-Policy RL Reach with Stale Data on LLMs?",
+ "authors": [
+  "Haizhong Zheng",
+  "Jiawei Zhao",
+  "Beidi Chen"
+ ],
+ "venue": "ICLR 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": null,
+ "role": "teaser-result",
+ "role2": "analysis-finding",
+ "claim": "Under heavy data staleness, baselines degrade or collapse, while ours stays stable, matches the on-policy baseline, and clips far fewer tokens.",
+ "layout": "2 side-by-side line plots, shared legend style, ours highlighted in red",
+ "tags": [
+  "off-policy-rl",
+  "stale-data",
+  "training-stability",
+  "trust-region",
+  "llm-reasoning"
+ ],
+ "style": [
+  "plot",
+  "colorful"
+ ],
+ "description": "Two side-by-side line charts, both titled Qwen-2.5-32B, with model updates (0–4000) on the x-axis. The left chart plots accuracy. A dashed gray on-policy GRPO curve rises to about 0.50. The red M2PO (Ours) curve follows it closely and peaks near 0.52. A blue 256-staleness GRPO curve stays well below, between 0.33 and 0.47. A yellow GRPO-without-trust-region curve rises with M2PO, then drops off a cliff near step 1300. The right chart plots token clipping ratio. The blue GRPO curve is noisy and high, between 0.005 and 0.02. The red M2PO curve and the gray on-policy curve stay near zero. Legends sit inside the lower part of each plot. The red line draws the eye first.",
+ "caption": "Comparison of on-policy GRPO and off-policy training under a staleness of 256 model updates on Qwen-2.5-32B. Left: Standard GRPO suffers from degradation with stale rollouts, while removing the trust region (GRPO no TR) reveals a clear prosperity-before-collapse phenomenon. In contrast, M2PO achieves stable training and matches on-policy performance even under high staleness. Right: Token clipping ratio comparison shows that M2PO dramatically reduces clipping events compared to GRPO with the same staleness, while avoiding training collapse.",
+ "caption_source": "latex",
+ "abstract": "Reinforcement learning has been central to recent advances in large language model reasoning, but most algorithms rely on on-policy training that demands fresh rollouts at every update, limiting efficiency and scalability. Asynchronous RL systems alleviate this by decoupling rollout generation from training, yet their effectiveness hinges on tolerating large staleness in rollout data, a setting where existing methods either degrade in performance or collapse. We revisit this challenge and uncover a prosperity-before-collapse phenomenon: stale data can be as informative as on-policy data if exploited properly. Building on this insight, we introduce M2PO (Second-Moment Trust Policy Optimization), which constrains the second moment of importance weights to suppress only extreme outliers while preserving informative updates. Notably, M2PO sharply reduces the fraction of clipped tokens under high staleness (from 1.22% to 0.06% over training), precisely masking high-variance tokens while maintaining stable optimization. Extensive evaluation across six models (from 1.7B to 32B) and eight benchmarks shows that M2PO delivers stable off-policy training even with data stale by at least 256 model updates and matches on-policy performance.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=IIgl5MWelz",
+  "arxiv": "https://arxiv.org/abs/2510.01161",
+  "pdf": "https://proceedings.iclr.cc/paper_files/paper/2026/file/8590b946e4f0c2b1262cb5b047924653-Paper-Conference.pdf",
+  "proceedings": "https://proceedings.iclr.cc/paper_files/paper/2026/hash/8590b946e4f0c2b1262cb5b047924653-Abstract-Conference.html",
+  "virtual": "https://iclr.cc/virtual/2026/poster/10010317",
+  "code": null
+ },
+ "license": "http://creativecommons.org/licenses/by-nc-sa/4.0/",
+ "img": "cc-by-nc-sa",
+ "image_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/images/iclr26-1598.png",
+ "thumb_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/thumbs/iclr26-1598.webp",
+ "figure_page": 0,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.7
+}

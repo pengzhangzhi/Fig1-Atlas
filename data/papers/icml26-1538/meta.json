@@ -1,0 +1,56 @@
+{
+ "id": "icml26-1538",
+ "title": "ThreadWeaver: Adaptive Threading for Efficient Parallel Reasoning in Language Models",
+ "authors": [
+  "Long (Tony) Lian",
+  "Sida Wang",
+  "Felix Juefei-Xu",
+  "Tsu-Jui Fu",
+  "Xiuyu Li",
+  "Adam Yala",
+  "Trevor Darrell",
+  "Alane Suhr",
+  "Yuandong Tian",
+  "Xi Victoria Lin"
+ ],
+ "venue": "ICML 2026",
+ "tier": "oral",
+ "track": "main",
+ "topic": "Deep Learning->Large Language Models",
+ "role": "prior-vs-ours",
+ "role2": "problem-setup",
+ "claim": "Sequential reasoning keeps latency tied to trajectory length; adaptively spawning and joining parallel threads shortens the critical path using extra compute.",
+ "layout": "2 stacked rows, left-to-right timelines, shaded parallel-inference boxes with fork/join nodes",
+ "tags": [
+  "parallel-reasoning",
+  "latency",
+  "fork-join",
+  "adaptive-threading",
+  "inference-efficiency"
+ ],
+ "style": [
+  "icon-heavy",
+  "colorful",
+  "text-heavy"
+ ],
+ "description": "A dashed box at the top poses a math problem: the remainder of 5^1234 divided by 9797 = 97·101. Below it are two horizontal timelines. The top row, labeled Sequential, has one GPU icon active and two greyed out. Its chain of steps runs along a single arrow: compute remainders, compute mod 97, compute mod 101, combine with CRT, then 'Wait, let me check…', ending in a loading spinner. The bottom row, labeled ThreadWeaver, shows all three GPUs active. It forks at an open diamond into two parallel dashed-box threads, mod 97 and mod 101, each with a GPU icon. These join at a filled diamond. It then forks again into three threads: 'Wait, let me check', 'Alternatively', and 'Let me verify'. These join and lead to 'The final answer is 2714' with a trophy. Pale blue-grey shaded panels mark the parallel inference regions.",
+ "caption": "For complex reasoning problems, a sequential reasoner generates tokens one at a time, so latency scales with the trajectory length and is difficult to reduce with additional compute. \\ParallelLM{} instead adaptively spawns ($\\diamondsuit$) and joins ($\\blacklozenge$) concurrent threads that work on different parts of the solution, using extra compute to shorten the critical reasoning path.",
+ "caption_source": "latex",
+ "abstract": "Scaling inference-time computation has enabled Large Language Models (LLMs) to achieve strong reasoning performance, but their inherently sequential decoding incurs substantial latency, motivating parallelization of the generation process. However, existing parallel reasoning approaches suffer from performance degradation compared to their sequential counterparts, and often rely on specialized inference engines. We introduce ThreadWeaver, a framework for adaptive parallel reasoning that matches the accuracy of comparably sized sequential reasoning models while significantly reducing inference latency via three key innovations: 1) a two-stage parallel trajectory generator that produces high-quality parallel chain-of-thought data for supervised fine-tuning; 2) a trie-based rollout design that enables parallel reasoning on any off-the-shelf autoregressive inference engine; and 3) a parallelization-aware reinforcement learning framework that trains the model to balance reasoning accuracy with effective parallelization. Across six challenging math reasoning benchmarks, ThreadWeaver trained on top of Qwen3-8B achieves performance on par with cutting-edge sequential reasoning models (79.9% on AIME24 and 71.9% on average) while delivering up to 1.53x speedup in token latency, establishing a new Pareto frontier between accuracy and efficiency.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=Efq2VvYk1o",
+  "arxiv": "https://arxiv.org/abs/2512.07843",
+  "pdf": "https://raw.githubusercontent.com/mlresearch/v306/main/assets/lian26b/lian26b.pdf",
+  "proceedings": "https://proceedings.mlr.press/v306/lian26b.html",
+  "virtual": "https://icml.cc/virtual/2026/poster/65330",
+  "code": "https://threadweaver-parallel.github.io/"
+ },
+ "license": "http://creativecommons.org/licenses/by/4.0/",
+ "img": "cc-by",
+ "image_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/images/icml26-1538.png",
+ "thumb_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/thumbs/icml26-1538.webp",
+ "figure_page": 1,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.6
+}

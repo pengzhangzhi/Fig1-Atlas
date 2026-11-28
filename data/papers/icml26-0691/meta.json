@@ -1,0 +1,53 @@
+{
+ "id": "icml26-0691",
+ "title": "CacheEdit: Efficient Multi-round Image Editing via Adaptive Token-wise Reuse.",
+ "authors": [
+  "Jinxin Yu",
+  "Xueqing Chen",
+  "Yudong Pan",
+  "Lian Liu",
+  "shengwen Liang",
+  "Huawei Li",
+  "Xiaowei Li",
+  "ying wang"
+ ],
+ "venue": "ICML 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": null,
+ "role": "analysis-finding",
+ "role2": null,
+ "claim": "Changes concentrate in a small token subset, and deep-layer activations reveal them at the first step, long before latents visibly change.",
+ "layout": "2 heatmap panels side by side, shared right colorbar, dashed layer marker",
+ "tags": [
+  "heatmap",
+  "token-sparsity",
+  "caching",
+  "diffusion-transformer",
+  "redundancy"
+ ],
+ "style": [
+  "plot",
+  "minimal"
+ ],
+ "description": "Two side-by-side heatmaps of cosine similarity (white = 1.0, dark blue = 0.4), with one colorbar at the far right. The left panel, titled 'Step-wise Image Latent', plots denoising step (y, 0–29) against token index (x, 0–4000). Only tokens 0–1600 darken, and only in the late steps (above about 15); the rest stays near white. The right panel, titled 'Layer-wise Activation (Step t=0)', plots transformer layer (y, 0–55) against token index (x, 0–8000). A vertical band of low similarity sits around tokens 4100–5000, strongest in the deeper layers. A thin band also appears in the first tokens at the top layers. A dashed horizontal blue line marks about layer 18. The figure shows sparse edited regions that are visible in activations at step 0 but only emerge in the latents late.",
+ "caption": "Similarity evolution of different image representations",
+ "caption_source": "pdf",
+ "abstract": "Instruction-based image editing (IIE) is a vital tool for iterative content creation, enabling multi-round interactions that refine visual details while preserving cross-round consistency. However, this workflow is constrained by the compute-bound nature of Diffusion Transformers (DiTs): because DiTs process tokens uniformly, they waste substantial computation on regions untouched by the instruction. We investigate the Round--Step--Layer hierarchy of DiT-based editing and identify a phenomenon we term Delayed Latent Emergence (DLE). Although pronounced latent changes emerge only in the late denoising stages, deep-layer activations within transformer blocks at the very first sampling step already diverge markedly in edited regions. Building on this insight, we propose CacheEdit, a training-free framework centered on an Adaptive Activation Cache (Acache) that exploits early-step sensitivity to detect invariant tokens and reuse their cached activations across subsequent sampling steps, thereby bypassing redundant computation. Experiments on FLUX.1 Kontext and Qwen-Image-Edit show that CacheEdit achieves up to $2.5\\times$ end-to-end acceleration. Moreover, by isolating and reusing static features, CacheEdit mitigates stochastic drift and improves instruction-following and structural consistency over full-recomputation baselines.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=6IlpepWXJr",
+  "arxiv": null,
+  "pdf": "https://raw.githubusercontent.com/mlresearch/v306/main/assets/yu26e/yu26e.pdf",
+  "proceedings": "https://proceedings.mlr.press/v306/yu26e.html",
+  "virtual": "https://icml.cc/virtual/2026/poster/66154",
+  "code": null
+ },
+ "license": null,
+ "img": "none",
+ "image_url": null,
+ "thumb_url": null,
+ "figure_page": 3,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.9
+}

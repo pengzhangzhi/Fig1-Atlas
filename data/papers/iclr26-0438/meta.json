@@ -1,0 +1,58 @@
+{
+ "id": "iclr26-0438",
+ "title": "Reconstructing KV Caches with Cross-Layer Fusion for Enhanced Transformers",
+ "authors": [
+  "Hongzhan Lin",
+  "Zhiqi Bai",
+  "Xinmiao Zhang",
+  "Siran Yang",
+  "Jiamang Wang",
+  "Yunlong Xu",
+  "JIAHENG LIU",
+  "Yongchi Zhao",
+  "Xiang Li",
+  "Yuchi Xu",
+  "wenbo su",
+  "Bo Zheng"
+ ],
+ "venue": "ICLR 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "Applications->Language, Speech and Dialog",
+ "role": "teaser-result",
+ "role2": null,
+ "claim": "Our method halves memory and latency versus baselines while also reaching lower training loss and converging faster.",
+ "layout": "2 panels: bar charts left, loss curves right; '2X' and '1.26x' callouts",
+ "tags": [
+  "efficiency",
+  "kv-cache",
+  "memory-reduction",
+  "pareto-win",
+  "pretraining"
+ ],
+ "style": [
+  "plot",
+  "colorful",
+  "minimal"
+ ],
+ "description": "The figure has two parts. On the left, on a beige rounded background, are two grouped bar charts. One shows cache memory in GB and the other shows prefilling latency in seconds. Bars cover Vanilla (grey), GQA (brown-olive), YOCO (dark brown), FusedKV-Lite (blue) and FusedKV (green). Vanilla is tallest. The other methods sit at about half that height, and a bold '2X' label marks the reduction. The shared legend is below the charts. On the right is a line plot of training loss against training tokens, from 120B to 400B. Six noisy curves are shown for Vanilla, CLA, YOCO, GQA, FusedKV-Lite and FusedKV. CLA is highest. The FusedKV and FusedKV-Lite curves sit lowest, and a red horizontal line is annotated '1.26x' to show faster convergence.",
+ "caption": "FusedKV and FusedKV-Lite reduce KV cache and prefilling latency by 2x (left) while also achieving superior pretraining loss on a 1.5B model compared to other methods (right).FusedKV converge around 1.26x faster than Vanilla.",
+ "caption_source": "latex",
+ "abstract": "Transformer decoders have achieved strong results across tasks, but the memory required for the KV cache becomes prohibitive at long sequence lengths. Although Cross-layer KV Cache sharing (e.g., YOCO, CLA) offers a path to mitigate KV Cache bottleneck, it typically underperforms within-layer methods like GQA. To understand the root cause, we investigate the information flow of keys and values of the top-layers. Our preliminary reveals a clear distribution: values are predominantly derived from the bottom layer, while keys draw more information from both bottom and middle layers. Building upon this, we propose FusedKV, whose top-layer KV caches are a learnable fusion of the most informative ones from the bottom and middle layers. This fusion operates directly on post-RoPE keys, preserving relative positional information without the computational cost of re-applying rotary embeddings. To further improve efficiency, we propose FusedKV-Lite, an cross-layer sharing approach, where top-layer KV caches are directly derived from the bottom-layer values and the middle-layer keys. Compared to FusedKV, FusedKV-Lite reduces I/O overhead at the cost of a slight increase in perplexity. In experiments on LLMs ranging from 332M to 4B parameters, our proposed method reduce 50\\% cache memory while achieving lower validation perplexity than the standard Transformer decoder, establishing it as a memory-efficient, high-performance architectural alternative.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=4pivvEJiCl",
+  "arxiv": "https://arxiv.org/abs/2512.03870",
+  "pdf": "https://proceedings.iclr.cc/paper_files/paper/2026/file/8c22e5e918198702765ecff4b20d0a90-Paper-Conference.pdf",
+  "proceedings": "https://proceedings.iclr.cc/paper_files/paper/2026/hash/8c22e5e918198702765ecff4b20d0a90-Abstract-Conference.html",
+  "virtual": "https://iclr.cc/virtual/2026/poster/10011526",
+  "code": null
+ },
+ "license": "http://creativecommons.org/licenses/by-nc-nd/4.0/",
+ "img": "none",
+ "image_url": null,
+ "thumb_url": null,
+ "figure_page": 0,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.93
+}

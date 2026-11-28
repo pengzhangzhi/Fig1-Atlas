@@ -1,0 +1,53 @@
+{
+ "id": "neurips26-3720",
+ "title": "Multi-Step Likelihood-Ratio Correction for Reinforcement Learning with Verifiable Rewards",
+ "authors": [
+  "Deokgyu Yoon",
+  "Hyungkyu Kang",
+  "Joongkyu Lee",
+  "Byeongchan Kim",
+  "Gyungin Shin",
+  "Sungrae Park",
+  "Min-hwan Oh"
+ ],
+ "venue": "NeurIPS 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "Reinforcement Learning->Deep RL",
+ "role": "prior-vs-ours",
+ "role2": "analysis-finding",
+ "claim": "Local surrogate objectives are biased and exact gradients are high-variance; a tunable multi-step trace interpolates between them to minimize total error.",
+ "layout": "2 panels: left stacked formula boxes, right curve plot, token timeline underneath",
+ "tags": [
+  "bias-variance",
+  "policy-gradient",
+  "interpolation",
+  "reinforcement-learning",
+  "objective-correction"
+ ],
+ "style": [
+  "math-heavy",
+  "plot",
+  "colorful"
+ ],
+ "description": "The left panel has two stacked rounded boxes. The top box, labeled PPO/GRPO, shows a surrogate loss that sums M_t, advantage and ratio rho_t, multiplied by a red 1. The bottom box, labeled NFPO in purple, shows the same loss with a red forward-trace term Gamma^(N)_{t+1} in place of the 1. The trace definition, a product of ratios over the next N-1 tokens, sits beneath. The right panel is titled 'Truncation Bias-Variance Trade-off'. It plots a green total-error U-curve, a blue dashed truncation-bias curve falling and a red dashed variance curve rising. The x-axis runs from PPO/GRPO on the left to Exact Policy Gradient on the right. A dashed vertical line marks NFPO at the green minimum. A row of token circles (t, t+1, ..., T) lies under the axis, with the first N shaded gray.",
+ "caption": "{ \\textcolor{nfpoPurple}{\\textbf{\\AlgName{}}} corrects the bias of local PPO/GRPO-style objectives by reweighting each token likelihood ratio $\\rho_t := \\frac{\\pi(y_t|s_t)}{\\mu(y_t|s_t)}$ with a forward trace $\\Gamma^{(N)}_{t+1}$. (Right) The trace horizon $N$ controls the bias--variance trade-off, interpolating between PPO/GRPO ($N=1$) and the exact policy gradient objective ($N=T$). }",
+ "caption_source": "latex",
+ "abstract": "Reinforcement learning with verifiable rewards (RLVR) plays a pivotal role in improving the reasoning ability of large language models. However, widely used PPO surrogate objectives are fundamentally local, as they rely on a local approximation of the exact policy gradient objective. While this approximation improves stability by reducing the variance induced by importance sampling, it also introduces structural bias into the surrogate objective, which must be controlled through trust region mechanisms. In this work, we introduce the $N$-step forward trace, which augments the PPO surrogate objective using the cumulative likelihood ratio of the next $N-1$ tokens. Building on this idea, we propose $N$-Step Forward-Trace Policy Optimization (NFPO), a practical RLVR algorithm that integrates the $N$-step forward trace into the masked policy gradient framework. NFPO provides a continuous bridge between the PPO surrogate objective and the exact policy gradient objective, offering a principled mechanism for controlling the bias-variance trade-off. Our theoretical analysis shows that, with an appropriate choice of $N$, the proposed objective yields a tighter policy-improvement bound than the standard PPO surrogate. Experiments on comprehensive reasoning benchmarks demonstrate that NFPO consistently improves performance, supporting our theoretical findings.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=PtwpyBrzB0",
+  "arxiv": "https://arxiv.org/abs/2605.20865",
+  "pdf": "https://arxiv.org/pdf/2605.20865",
+  "proceedings": null,
+  "virtual": "https://neurips.cc/virtual/2026/poster/152849",
+  "code": null
+ },
+ "license": "http://creativecommons.org/licenses/by-sa/4.0/",
+ "img": "cc-by-sa",
+ "image_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/images/neurips26-3720.png",
+ "thumb_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/thumbs/neurips26-3720.webp",
+ "figure_page": 0,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.5
+}

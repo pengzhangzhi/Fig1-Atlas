@@ -1,0 +1,53 @@
+{
+ "id": "neurips26-5321",
+ "title": "When Attention Closes: How LLMs Lose the Thread in Multi-Turn Interaction",
+ "authors": [
+  "Vardhan Dongre",
+  "Joseph Hsieh",
+  "Viet Lai",
+  "David Seunghyun Yoon",
+  "Trung Bui",
+  "Dilek Hakkani-Tur"
+ ],
+ "venue": "NeurIPS 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": null,
+ "role": "concept",
+ "role2": "analysis-finding",
+ "claim": "Goal information flows through two channels; direct attention to it decays and closes at a predictable threshold turn while residual information may persist.",
+ "layout": "2 panels; left architecture diagram, right GAR curve; definition boxes along bottom",
+ "tags": [
+  "attention-decay",
+  "residual-stream",
+  "mechanistic-interpretability",
+  "multi-turn",
+  "framework"
+ ],
+ "style": [
+  "math-heavy",
+  "colorful",
+  "plot",
+  "text-heavy"
+ ],
+ "description": "Two-panel figure. Panel A, \"Architecture view: two information channels\", shows four columns of stacked transformer layer boxes (Layer 1, 2, ... L) over input tokens: goal G, user/assistant turns at τ=1 and τ=3, and the response R_τ at turn N. Blue arcs from response positions back to the goal are labeled GAR(1), GAR(3) and GAR(N)≈0, and they fade in strength. Green upward arrows mark the residual channel C_res(τ). Two legend pills identify the channels, and two definition boxes at the bottom give formulas for the attention and residual channels. Panel B plots a decaying blue GAR(τ) curve against turn. A red dashed threshold θ_M meets a vertical line at τ_cross, splitting a blue 'attention open' zone from a red 'closed' zone. Below the plot, small token-strip diagrams show the sliding-window closure criterion.",
+ "caption": "The two-channel framework. (A) The attention channel $\\mathcal{C}_{\\mathrm{attn}}(\\tau)$ from response tokens $\\mathcal{R}_\\tau$ to goal tokens $\\mathcal{G}$ decays with $\\tau$; the residual channel $\\mathcal{C}_{\\mathrm{res}}(\\tau)$ at the response position carries goal information forward through layers. (B) $\\mathrm{GAR}(\\tau)$ crosses the model-specific threshold $\\theta_M$ at $\\tau_{\\mathrm{cross}}$; for $\\tau \\geq \\tau_{\\mathrm{cross}}$ direct attention to $\\mathcal{G}$ is removed, so goal-related information that survives must be carried indirectly (e.g., through residual representations or intervening context). The sliding-window mask gives the deterministic geometric closure criterion $R_{\\min}(\\tau) - G_{\\max} \\geq W$.",
+ "caption_source": "latex",
+ "abstract": "Large language models can follow complex instructions in a single turn, yet over long multi-turn interactions they often lose the thread of instructions, persona, and rules. This degradation has been measured behaviorally but not mechanistically explained. We propose a channel-transition account: goal-defining tokens become less accessible through attention, while goal-related information may persist in residual representations. We introduce the Goal Accessibility Ratio (GAR), measuring attention from generated tokens to task-defining goal tokens, and combine it with sliding-window ablations and residual-stream probes. When attention to instructions closes, what survives reveals architecture. Across architectures, the transition yields qualitatively distinct failure modes: some models preserve goal-conditioned behavior at vanishing attention, others fail despite decodable residual goal information, and the layer at which this encoding emerges varies from 2 to 27. A within-model causal ablation that force-closes the attention channel in Mistral collapses recall from near-perfect to 11% on a 20-fact retention task and raises persona-constraint violations above an adversarial-pressure baseline without user pressure, with both effects emerging at the predictable crossover turn. Linear probes recover per-episode recall outcomes from residual representations with AUC up to 0.99 across all four primary architectures, while input embeddings remain at chance. Across architectures and model scales, the gap between attention loss and residual decodability predicts whether goal-conditioned behavior survives channel closure. We contribute GAR as a diagnostic, the channel-transition framework as a controlled mechanistic account, and a parametric prediction of failure timing under windowed attention closure.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=apVR4ALp2m",
+  "arxiv": "https://arxiv.org/abs/2605.12922",
+  "pdf": "https://arxiv.org/pdf/2605.12922",
+  "proceedings": null,
+  "virtual": "https://neurips.cc/virtual/2026/poster/151419",
+  "code": null
+ },
+ "license": "http://creativecommons.org/licenses/by-sa/4.0/",
+ "img": "cc-by-sa",
+ "image_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/images/neurips26-5321.png",
+ "thumb_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/thumbs/neurips26-5321.webp",
+ "figure_page": 1,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.5
+}

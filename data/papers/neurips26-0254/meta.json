@@ -1,0 +1,52 @@
+{
+ "id": "neurips26-0254",
+ "title": "OmniGF: A Dual-Branch Vision-Language Framework for Unified Gaze Following",
+ "authors": [
+  "Qiaomu Miao",
+  "Haoyu Wu",
+  "Jingyi Xu",
+  "Minh Hoai",
+  "Dimitris Samaras"
+ ],
+ "venue": "NeurIPS 2026",
+ "tier": "spotlight",
+ "track": "main",
+ "topic": "Computer Vision->Vision Models & Multimodal",
+ "role": "pipeline",
+ "role2": "overview-framework",
+ "claim": "A single VLM pass with injected per-person tokens feeds parallel language and spatial branches to jointly handle multiple people.",
+ "layout": "3 columns left-to-right: input injection, backbone, dual-branch outputs; dashed dividers, legend below",
+ "tags": [
+  "multi-branch",
+  "vision-language-model",
+  "token-injection",
+  "heatmap-prediction",
+  "multi-task"
+ ],
+ "style": [
+  "colorful",
+  "icon-heavy",
+  "photo/real data",
+  "text-heavy"
+ ],
+ "description": "A wide three-column framework diagram with colored headers: gray 'Input & Token Injection', blue 'VLM Backbone', green 'Multi-branch Output'. On the left, a photo shows several people with colored head boxes (P1–P4). Below it sit a structured person prompt and a pink-outlined 'Gaze Token Injection' box. In that box, cropped heads pass through a Head Encoder, and the resulting green and orange tokens replace the placeholders. In the center, stacked colored token squares (blue image, gray prompt, yellow gaze_pad) enter a tall rounded 'Qwen3-VL (LoRA)' block, and updated tokens come out. On the right, the top panel shows the language branch emitting JSON per person. The bottom panel shows the gaze branch: image and person tokens go through multiplication nodes into a Heatmap Head, an In/out Head and a Pair-wise Social Gaze Head, with loss labels. A color legend runs along the bottom.",
+ "caption": "{ Overall framework}. Given an image with multiple head bounding boxes, we construct a structured person prompt that assigns each person a <|gaze\\_pad|> placeholder followed by their head bounding box coordinates. The image, system prompt, and person prompt are processed by a LoRA-tuned Qwen3-VL. During token encoding, each <|gaze\\_pad|> embedding is replaced with the corresponding head embedding extracted from the cropped head, thereby injecting person-specific visual cues into the VLM. The structured language branch generates JSON outputs for gaze status, target coordinates, and optional semantic categories. The gaze branch extracts image tokens and person tokens from the generated hidden states, where each person token is anchored to the first token of its corresponding generated output sequence. The image and person tokens are combined to predict per-person gaze heatmaps, while the person tokens are further used for in/out prediction and pair-wise social gaze reasoning. For clarity, only two example persons are shown.",
+ "caption_source": "latex",
+ "abstract": "Understanding human gaze behavior is essential for complex scene comprehension and human-computer interaction. Traditional gaze following models are typically restricted to pure spatial localization, lacking the high-level capacity to reason about semantic targets or complex social contexts. Furthermore, these models often process individuals sequentially, requiring redundant computations over the same scene image for multi-person inference. While recent Vision-Language Models (VLMs) offer the exceptional semantic reasoning needed to address gaze-related semantic tasks, their reliance on discrete text generation inherently limits precision in continuous spatial tasks like gaze localization. To bridge this gap, we propose OmniGF, a unified vision-language framework that adapts foundational VLMs for highly scalable multi-person gaze reasoning. The model adopts a dual-branch decoding strategy: a structured language branch generates discrete reasoning states, while a continuous spatial branch directly taps into the VLM's dense hidden states. Supervising these extracted representations with high-resolution gaze target heatmaps effectively overcomes the spatial bottleneck of text-only coordinate generation. Furthermore, to explicitly ground the model in multi-person scenes, we augment the input with head embeddings encoded from cropped head images, providing fine-grained appearance and orientation cues for all individuals simultaneously. By modeling all individuals and leveraging the strong semantic capability of VLMs, OmniGF seamlessly integrates precise spatial gaze target estimation, semantic gaze prediction, and complex social gaze reasoning. Extensive experiments demonstrate that our framework establishes new state-of-the-art performance across multiple standard benchmarks. Code is available at https://github.com/cvlab-stonybrook/omnigf.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=1pPCCHeICG",
+  "arxiv": "https://arxiv.org/abs/2605.26399",
+  "pdf": "https://arxiv.org/pdf/2605.26399",
+  "proceedings": null,
+  "virtual": "https://neurips.cc/virtual/2026/poster/155919",
+  "code": "https://github.com/cvlab-stonybrook/omnigf"
+ },
+ "license": "http://arxiv.org/licenses/nonexclusive-distrib/1.0/",
+ "img": "none",
+ "image_url": null,
+ "thumb_url": null,
+ "figure_page": 3,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.9
+}

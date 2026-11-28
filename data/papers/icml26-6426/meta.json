@@ -1,0 +1,47 @@
+{
+ "id": "icml26-6426",
+ "title": "Position: LLM Serving Needs Mathematical Optimization and Algorithmic Foundations, Not Just Heuristics",
+ "authors": [
+  "Zijie Zhou"
+ ],
+ "venue": "ICML 2026",
+ "tier": "poster",
+ "track": "Position_Paper_Track",
+ "topic": "Deep Learning->Large Language Models",
+ "role": "prior-vs-ours",
+ "role2": "problem-setup",
+ "claim": "Balanced work across parallel workers synchronizes cleanly, while skewed load creates stragglers that leave other workers idle and waste compute.",
+ "layout": "2 side-by-side panels (A/B), top-down, timeline bars below, legend strip",
+ "tags": [
+  "expert-parallelism",
+  "load-imbalance",
+  "straggler",
+  "synchronization",
+  "idle-time"
+ ],
+ "style": [
+  "colorful",
+  "icon-heavy",
+  "minimal"
+ ],
+ "description": "Two panels separated by a dashed vertical line. Panel (A), Balanced EP Routing, shows four blue GPU boxes, each holding two expert blocks (E1–E8) and four orange token dots. Below it, equal green compute bars for GPU 1–4 end at a dashed Sync line, followed by a green check and the text 'No idle time'. Panel (B), Imbalanced EP Routing, shows the same four GPUs. GPU 1 and 2 have red borders and many tokens, while GPU 3 and 4 have a single token each. The timeline shows a long red 'GPU 1 (straggler)' bar, a shorter GPU 2 bar with a gray idle segment, and short green GPU 3 and 4 bars followed by long gray dashed 'idle (waiting)' blocks up to the Sync line. A red X and the text 'Significant idle time' follow. A legend runs along the bottom. The eye goes first to the red overloaded GPUs and the gray idle blocks.",
+ "caption": "Under expert parallelism, imbalanced token routing causes straggler GPUs that delay synchronization. Lightly loaded GPUs must idle while waiting for heavily loaded GPUs to complete before all-to-all communication.",
+ "caption_source": "latex",
+ "abstract": "This position paper argues that LLM inference serving has outgrown generic heuristics and now demands mathematical optimization and algorithmic foundations. Despite rapid advances in serving systems such as vLLM and SGLang, their algorithmic cores remain largely unchanged from classical distributed computing: request routing uses join-shortest-queue or round-robin, scheduling defaults to FIFO, and KV cache eviction follows LRU. These general-purpose policies ignore the distinctive structure of LLM inference--dynamically growing KV cache memory, prefill-decode phase asymmetry, unknown output lengths, and continuous batching constraints. We contend that the field must develop mathematical models capturing these characteristics, enabling the design of algorithms with provable performance guarantees across diverse workloads, rather than heuristics that may succeed in some scenarios but fail unpredictably in others. Emerging work at the intersection of operations research and ML systems demonstrates that principled methods can match or exceed heuristic performance while providing theoretical guarantees. We call on the community to recognize algorithmic design for LLM serving as a research frontier.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=ycj3XWCh6E",
+  "arxiv": "https://arxiv.org/abs/2605.01280",
+  "pdf": "https://raw.githubusercontent.com/mlresearch/v306/main/assets/zhou26bz/zhou26bz.pdf",
+  "proceedings": "https://proceedings.mlr.press/v306/zhou26bz.html",
+  "virtual": "https://icml.cc/virtual/2026/poster/67042",
+  "code": null
+ },
+ "license": "http://creativecommons.org/licenses/by/4.0/",
+ "img": "cc-by",
+ "image_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/images/icml26-6426.png",
+ "thumb_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/thumbs/icml26-6426.webp",
+ "figure_page": 1,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.5
+}

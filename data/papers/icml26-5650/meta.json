@@ -1,0 +1,57 @@
+{
+ "id": "icml26-5650",
+ "title": "Non-Monotonic Autoregressive Sequence Model",
+ "authors": [
+  "Tianyi MA",
+  "Yiyue Qian",
+  "Yiyang Li",
+  "Zehong Wang",
+  "Yifan Ding",
+  "Zheyuan Zhang",
+  "Yan Liang",
+  "Chuxu Zhang",
+  "Yanfang Ye"
+ ],
+ "venue": "ICML 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "Deep Learning->Large Language Models",
+ "role": "pipeline",
+ "role2": null,
+ "claim": "A model can generate, retract and revise tokens within one forward pass, trained via augmentation, masked supervised fine-tuning and reinforcement learning.",
+ "layout": "2 halves, left inference trace, right three stacked training panels, numbered steps",
+ "tags": [
+  "non-monotonic",
+  "self-correction",
+  "autoregressive",
+  "error-revision",
+  "reinforcement-learning"
+ ],
+ "style": [
+  "colorful",
+  "icon-heavy",
+  "minimal"
+ ],
+ "description": "A dashed vertical line splits the figure. The left panel shows a gray Model block feeding token boxes, then a numbered flow (1 to 10) of word tokens: It, is, a, weak, reject. Error tokens are red and undo tokens are peach. The path backtracks through two <UNDO> tokens via curved arrows to 'a', then continues with 'strong' and 'accept'. The final sequence 'It is a strong accept' sits at the bottom, and a legend explains error, undo and masking colors. The right side has three rounded gray panels. (b.1) Sequence Augmentation shows reference, generated and augmented token bars joined by dashed arrows. (b.2) Masked SFT shows a token bar, a gray and black mask M, and an L_mSFT loss. (b.3) GRPO shows outputs o1, o2 passing through a reward block with incentive and penalty terms, then to rewards r1, r2. The eye goes first to the colorful token trace on the left.",
+ "caption": "The overall framework of N-MARS. Left: N-MARS samples sequence in a non-monotonic manner. In a single forward pass, when a token⟨UNDO⟩is sampled as the next token, N-MARS erases the last token, and traces back to the previous token in the sequence. Right: The designed training paradigm of N-MARS. We first sample an initial response, then augment the sequence based on the sampled response by adding error tokens, followed by the same number of ⟨UNDO⟩and the rest of the reference tokens. Afterward, we employ masked SFT that fine-tunes the model to identify and correct errors through token ⟨UNDO⟩and further employ GRPO to incentivize correct behaviors while penalizing stuttering or under correction.",
+ "caption_source": "pdf",
+ "abstract": "Autoregressive models generate sequences monotonically, where any sampled token, even if erroneous or sub-optimal, becomes a permanent condition for all subsequent steps. This structural limitation means that autoregressive models cannot revisit or revise earlier decisions, i.e., a capability essential for complex generation tasks where exploration and correction are necessary. To this end, we propose N-MARS, a Non-Monotonic AutoregRessive Sequence modeling framework that enables models to generate, evaluate, and revise tokens within a single forward pass, effectively allowing exploration before commitment. We operationalize this framework through a learned erase token that retracts the previous token, enabling on-the-fly revision within standard autoregressive decoding. To train the model, we introduce a sequence augmentation method that constructs error-correction trajectories from model-generated deviations paired with ground-truth references. We then propose masked supervised fine-tuning (mSFT) that exposes the model to errors as context for learning when to revise, without optimizing their likelihood. Finally, we refine the model with group relative policy optimization (GRPO) that incentivizes judicious usage, i.e., rewarding effective corrections while penalizing unsuccessful ones. We conduct comprehensive theoretical and empirical analysis to validate the effectiveness of N-MARS, demonstrating a robust foundation for non-monotonic sequence modeling.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=r5PfcYvYEE",
+  "arxiv": null,
+  "pdf": "https://raw.githubusercontent.com/mlresearch/v306/main/assets/ma26ad/ma26ad.pdf",
+  "proceedings": "https://proceedings.mlr.press/v306/ma26ad.html",
+  "virtual": "https://icml.cc/virtual/2026/poster/61349",
+  "code": "https://github.com/Tianyi-Billy-Ma/N-MARS"
+ },
+ "license": null,
+ "img": "none",
+ "image_url": null,
+ "thumb_url": null,
+ "figure_page": 2,
+ "qc_flags": [
+  "bad-crop"
+ ],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.93
+}

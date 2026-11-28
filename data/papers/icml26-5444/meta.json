@@ -1,0 +1,57 @@
+{
+ "id": "icml26-5444",
+ "title": "PatternKV: Flattening KV Representation Expands Quantization Headroom",
+ "authors": [
+  "Ji Zhang",
+  "Yiwei Li",
+  "Shaoxiong Feng",
+  "Peiwen Yuan",
+  "Xinglin Wang",
+  "Yueqi Zhang",
+  "Jiayi Shi",
+  "Chuyi Tan",
+  "Boyuan Pan",
+  "Yao Hu",
+  "Kan Li"
+ ],
+ "venue": "ICML 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "Deep Learning->Large Language Models",
+ "role": "prior-vs-ours",
+ "role2": "concept",
+ "claim": "Raw vectors are peaked and waste quantization levels; subtracting cluster-pattern centroids yields flat residuals that quantize with higher precision.",
+ "layout": "2 panels, left-to-right; (a) flat vs peaked rows, (b) clustering then residual",
+ "tags": [
+  "quantization",
+  "residual-coding",
+  "clustering",
+  "distribution-flatness",
+  "kv-cache"
+ ],
+ "style": [
+  "plot",
+  "colorful",
+  "icon-heavy"
+ ],
+ "description": "Two-part figure. Panel (a) is a 2x2 grid: the top row shows a flat vector (blue bar chart) with a red box marking a narrow quantization range. A gray arrow labeled X − zp leads to a histogram packed into a few quantization bins. The bottom row shows a peaked vector (orange) with spiky outliers and a tall red range box. Its arrow leads to a bimodal histogram with hatched wasted quantization steps. Panel (b) is a left-to-right flow of 3D surface plots colored blue to red. The original peaked distribution (512 tokens, red ✗ low precision) goes through a gray Clustering arrow to stacked cluster surfaces (Cluster 1: 103 tokens, …, Cluster N: 140 tokens). A Residual arrow then leads to a flatter residual surface (green ✓ high precision). The eye goes first to the red range boxes and the large 3D surfaces.",
+ "caption": "(a) Impact of vector-distribution flatness on KV quantization. Flatter value distributions (top) concentrate samples within a narrower quantization range after zero-point shifting \\((X - zp)\\), thereby improving the utilization of discrete levels and preserving higher precision at constrained bit widths. In contrast, peaked distributions with outliers (bottom) broaden the required range, leaving many levels underutilized and degrading precision. (b) The left figure illustrates the original distribution of the KV vectors, while the right figure depicts the distribution of the residuals obtained after aligning the original vectors with the corresponding pattern vectors. Each pattern vector is the centroid of its cluster.",
+ "caption_source": "latex",
+ "abstract": "KV cache in autoregressive LLMs eliminates redundant recomputation but has emerged as the dominant memory and bandwidth bottleneck during inference, notably with long contexts and test-time scaling. KV quantization is a key lever for reducing cache cost, but accuracy drops sharply as the native KV distribution lacks flatness and thus maintains a wide quantization range. Prior work focuses on isolating outliers, which caps their error but fails to flatten the overall distribution, leaving performance fragile under low-bit settings. In this work, we show that the K cache maintains a stable, context-evolving structure, while the V cache carries latent semantic regularities, with both contributing to the organization of vectors into shared patterns. Building on these insights, we propose PatternKV, a pattern-aligned residual quantization scheme. It mines representative pattern vectors online, aligns each KV vector to its nearest pattern, and quantizes only the residual. This reshaping of the KV distribution flattens the quantization target and narrows its range, thereby improving the fidelity of low-bit KV quantization. Across long-context and test-time scaling settings on multiple backbones, PatternKV delivers consistent 2-bit gains, with a 0.08% average 4-bit drop relative to FP16, improves test-time scaling accuracy by 10% on average, and raises throughput by 1.5x while supporting 1.25x larger batches.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=ozV2cpEgnZ",
+  "arxiv": "https://arxiv.org/abs/2510.05176",
+  "pdf": "https://raw.githubusercontent.com/mlresearch/v306/main/assets/zhang26ci/zhang26ci.pdf",
+  "proceedings": "https://proceedings.mlr.press/v306/zhang26ci.html",
+  "virtual": "https://icml.cc/virtual/2026/poster/61551",
+  "code": null
+ },
+ "license": "http://arxiv.org/licenses/nonexclusive-distrib/1.0/",
+ "img": "none",
+ "image_url": null,
+ "thumb_url": null,
+ "figure_page": 1,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.5
+}

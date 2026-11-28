@@ -1,0 +1,52 @@
+{
+ "id": "neurips26-1800",
+ "title": "Can Model Merging Improve Aggregation in DiLoCo?",
+ "authors": [
+  "Stefan Horoi",
+  "Benjamin Thérien",
+  "Guy Wolf",
+  "Eugene Belilovsky"
+ ],
+ "venue": "NeurIPS 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "Optimization->Large Scale, Parallel and Distributed",
+ "role": "teaser-result",
+ "role2": null,
+ "claim": "Our aggregation method degrades far more slowly than the baseline as the number of parallel workers grows.",
+ "layout": "single line plot, workers on x-axis, four series, legend inside top-left",
+ "tags": [
+  "scaling",
+  "distributed-training",
+  "aggregation",
+  "model-merging",
+  "low-communication"
+ ],
+ "style": [
+  "plot",
+  "minimal",
+  "colorful"
+ ],
+ "description": "A single line chart plots percent increase in validation loss over an AdamW data-parallel baseline (y-axis, about -1 to 16) against the number of workers R on a log-like axis (1, 2, 4, 8, 16, 32, 64, 128). A horizontal black line at 0 marks the AdamW DP reference. Three colored curves with distinct markers rise as workers increase. DiLoCo is a blue line with circles and ends highest, near 16.5. DiLoCo SGD + Iso-C is an orange line with triangles and ends slightly lower, near 14. IsoLoCo (ours) is a red line with diamonds and stays lowest, ending near 10. All three start near or below zero at one worker, and the gap between them widens with worker count. A boxed legend sits in the upper left. Light dashed gridlines are visible. The eye goes first to the red curve at the bottom of the bundle.",
+ "caption": "IsoLoCo scales better with workers than DiLoCo. Final validation loss is shown versus worker count for a 178M LLaMa-2 model in a FLOP-matched setting. \\vspace{-10pt}",
+ "caption_source": "latex",
+ "abstract": "Model merging techniques, which aggregate independently finetuned models into one to combine their capabilities, have become a topic of significant interest in recent years, with a broad array of methods having been proposed to tackle this problem. Simultaneously, an emerging trend in distributed learning has been the use of methods such as local SGD and DiLoCo, which greatly reduce communication costs by periodically aggregating the independently trained local models. However, these communication-efficient methods have been shown to degrade in performance relative to the FLOP-matched data-parallel gold standard as the number of independent local models grows and as the number of local training steps before global communication is increased. In this work, we draw an explicit analogy between the pseudo-gradient aggregation step in local SGD/DiLoCo and task arithmetic-based model merging, establishing a straightforward way to utilize merging methods in the context of distributed optimization. We then evaluate multiple state-of-the-art model merging methods in this setting and identify one method in particular, Iso-C, as a promising approach for improving DiLoCo. We find that DiLoCo SGD with Iso-C aggregation outperforms not only simple pseudo-gradient averaging but even the momentum-based DiLoCo, despite lacking a momentum mechanism itself. Building on this finding, we propose IsoLoCo, which adapts Iso-C for distributed training by equipping it with Nesterov momentum. Our empirical evaluations on language model pre-training across varying numbers of local workers show that IsoLoCo significantly outperforms DiLoCo, with the gap between them widening as the number of workers increases. This advantage remains present across model sizes and inner step counts, confirming that merging-inspired aggregation is an effective strategy for low-communication distributed training.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=Co0vrgB98e",
+  "arxiv": "https://arxiv.org/abs/2607.03011",
+  "pdf": "https://arxiv.org/pdf/2607.03011",
+  "proceedings": null,
+  "virtual": "https://neurips.cc/virtual/2026/poster/154543",
+  "code": null
+ },
+ "license": "http://creativecommons.org/licenses/by/4.0/",
+ "img": "cc-by",
+ "image_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/images/neurips26-1800.png",
+ "thumb_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/thumbs/neurips26-1800.webp",
+ "figure_page": 1,
+ "qc_flags": [
+  "bad-crop"
+ ],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.9
+}

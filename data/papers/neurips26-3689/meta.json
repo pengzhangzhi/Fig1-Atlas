@@ -1,0 +1,47 @@
+{
+ "id": "neurips26-3689",
+ "title": "Re-examining low-rank adaptation for private LLM fine-tuning",
+ "authors": [
+  "Ali Dadsetan",
+  "Frank Rudzicz"
+ ],
+ "venue": "NeurIPS 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "Social Aspects->Privacy-preserving Statistics and Machine Learning",
+ "role": "analysis-finding",
+ "role2": null,
+ "claim": "Injected noise slows optimization far more than the gradient clipping alone does, so noise is the main cause of slow convergence.",
+ "layout": "1 panel, line plot with shaded confidence bands and a legend",
+ "tags": [
+  "differential-privacy",
+  "convergence",
+  "noise-vs-clipping",
+  "validation-loss",
+  "empirical-observation"
+ ],
+ "style": [
+  "plot",
+  "minimal"
+ ],
+ "description": "A single line chart with a title reading 'RoBERTa-base on SST-2: Clip-only vs DP (95% confidence intervals, n=5 runs each)'. The x-axis is training step, from 50 to 400. The y-axis is validation loss, from about 0.25 to 0.7. An orange line with square markers shows DP-SGD. It stays flat near 0.7 until step 150, then drops steeply through step 200 and levels off near 0.32 by step 300. A wide orange confidence band opens up around step 200. A blue line with circle markers shows clipping only. It stays low, between about 0.26 and 0.31, with a narrow band. A legend in the upper right lists the means and the 95% confidence intervals. The eye goes first to the steep orange drop and the gap between the two curves.",
+ "caption": "Comparison of validation loss between DP-SGD and training with per-sample clipping only (no noise added), using RoBERTa-base on SST-2 with clipping threshold \\(C=10\\). Settings follow Section [ref], except that clipping-only training omits Gaussian noise. The slowdown in convergence is more pronounced for DP-SGD than for clipping alone. Lines show the mean of five runs; shaded regions show 95% confidence intervals computed from standard errors.",
+ "caption_source": "latex",
+ "abstract": "Privacy is a central concern when fine-tuning large language models (LLMs) on sensitive data, and differentially private stochastic gradient descent (DP-SGD) provides formal privacy guarantees. When performance at a fixed privacy level largely saturates on established benchmarks such as GLUE, we ask whether the same performance can be reached with less computation. Both theory and practice show that lower-rank models are better suited to DP training, a property especially relevant for LLMs, whose fine-tuning gradients exhibit a strong low-rank structure. Methods such as DP-LoRA exploit this by expressing each layer's weight update as a sum of only a few non-zero rank-one components. However, we argue that while having few non-zero components is important, the isotropic noise injected by DP-SGD inflates the singular values of the gradient matrix, disrupting their naturally fast decay. We investigate whether this noise-induced spectral distortion slows optimization. Experiments on language classification (GLUE with RoBERTa) and table-to-text generation (E2E and DART with Qwen and Llama models up to 4B parameters) show that partially restoring the original singular-value profile significantly accelerates DP-SGD convergence without compromising privacy guarantees. Our code is available at https://github.com/alidadsetan/re-exam-private-low-rank.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=Phmae0oHes",
+  "arxiv": "https://arxiv.org/abs/2510.01137",
+  "pdf": "https://arxiv.org/pdf/2510.01137",
+  "proceedings": null,
+  "virtual": "https://neurips.cc/virtual/2026/poster/152877",
+  "code": null
+ },
+ "license": "http://creativecommons.org/licenses/by/4.0/",
+ "img": "cc-by",
+ "image_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/images/neurips26-3689.png",
+ "thumb_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/thumbs/neurips26-3689.webp",
+ "figure_page": 5,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.85
+}

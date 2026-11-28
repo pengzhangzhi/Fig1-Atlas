@@ -1,0 +1,53 @@
+{
+ "id": "neurips26-7934",
+ "title": "CORVUS: Context Optimization and Reduction Via Underlying Synchronization for LLM Coding Agents",
+ "authors": [
+  "Mingwei Zheng",
+  "David OBrien",
+  "Siwei Cui",
+  "Pardis Pashakhanloo",
+  "RAJDEEP MUKHERJEE",
+  "Myeongsoo Kim",
+  "Sachit Kuhar"
+ ],
+ "venue": "NeurIPS 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "Applications->Everything Else",
+ "role": "prior-vs-ours",
+ "role2": "problem-setup",
+ "claim": "Append-only histories freeze stale snapshots that cause errors; ours keeps a synchronized registry that always exposes the latest state.",
+ "layout": "2 side-by-side panels, left-to-right timeline columns, aligned rows with check/cross marks",
+ "tags": [
+  "context-management",
+  "coding-agents",
+  "staleness",
+  "synchronization",
+  "prior-vs-ours"
+ ],
+ "style": [
+  "minimal",
+  "colorful",
+  "text-heavy"
+ ],
+ "description": "The figure has two side-by-side tables. The left, \"Append-Only Trajectories\", and the right, \"CORVUS\", each have three time-step columns. Shared row labels read Trajectory, Synced Context, Tool Call and Results. On the left, gray trajectory boxes accumulate [read(a.py): v1] and then an edit. The Synced Context row is a hatched orange \"N/A\" bar. Blue tool-call boxes show edit(a.py, v1→v2) and then edit(v1→v3). Results go from a green check, to a check labeled \"v1 is stale!\", to a red X reading \"v1 (outdated) does not exist\". On the right, the trajectory holds sync(a.py) entries. A peach Synced Context row shows a.py v1 and then v2. The later edit correctly uses v2→v3. All results are green checks, ending with \"synced context has latest version\". Red marks on the left and green on the right draw the eye first.",
+ "caption": "Sample figure caption. Explain what the figure shows and add a key take-away message to the caption.",
+ "caption_source": "latex",
+ "abstract": "LLM coding agents operate by constructing trajectories that accumulate reasoning, tool calls, and results to enable multi-step decision-making. However, the conventional append-only trajectory architecture found in practice tightly couples file-read actions with their observations, capturing snapshots that become permanently fixed in the chronological history. As files change through agent edits or concurrent human modifications, these snapshots become stale, causing reasoning errors and causing agents to redundantly re-read files, with each re-read appending yet another copy to the trajectory. To mitigate this, we propose CORVUS, a novel trajectory architecture that decouples file-read actions from their observations by maintaining a synchronized registry of relevant files and injecting only their current contents at each reasoning cycle. This structural change produces significantly lighter-weight trajectories that remain synchronized with the actual codebase state by construction, eliminating redundant file copies and stale snapshots that bloat conventional trajectories. We evaluated CORVUS on SWE- POLYBENCH_VERIFIED and SWE-BENCH PRO across four LLMs, achieving 9-50% reduction in average input tokens per task, 15-32% shorter final prompts, and up to 37% fewer reasoning cycles while maintaining comparable pass rates.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=sxZjrxwU2k",
+  "arxiv": "https://arxiv.org/abs/2607.22711",
+  "pdf": "https://arxiv.org/pdf/2607.22711",
+  "proceedings": null,
+  "virtual": "https://neurips.cc/virtual/2026/poster/149092",
+  "code": null
+ },
+ "license": "http://creativecommons.org/licenses/by/4.0/",
+ "img": "cc-by",
+ "image_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/images/neurips26-7934.png",
+ "thumb_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/thumbs/neurips26-7934.webp",
+ "figure_page": 1,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.9
+}

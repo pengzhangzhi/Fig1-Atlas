@@ -1,0 +1,54 @@
+{
+ "id": "icml26-3104",
+ "title": "LoRDO: Distributed Low-Rank Optimization with Infrequent Communication",
+ "authors": [
+  "Andrej Jovanović",
+  "Alex Iacob",
+  "Mher Safaryan",
+  "Ionut-Vlad Modoranu",
+  "Lorenzo Sani",
+  "Shen",
+  "Xinchi Qiu",
+  "Dan Alistarh",
+  "Nicholas Lane"
+ ],
+ "venue": "ICML 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "Optimization->Large Scale, Parallel and Distributed",
+ "role": "analysis-finding",
+ "role2": null,
+ "claim": "Projection bases computed from global pseudo-gradients stay frozen and trap training in a low-rank subspace, while local projections refresh and explore.",
+ "layout": "2 side-by-side plots, left-to-right, captions below, shared orange/navy color coding",
+ "tags": [
+  "low-rank-optimization",
+  "distributed-training",
+  "projection-staleness",
+  "subspace-exploration",
+  "failure-mode"
+ ],
+ "style": [
+  "plot",
+  "minimal"
+ ],
+ "description": "Two line plots sit side by side, each with a caption underneath. The left plot shows perplexity against training steps (about 2000 to 6000) for 16M models. It has navy (low-rank, r=8) and orange (high-rank, r=128) curves with shaded variance bands. Each color has DDP with error feedback (solid), Global (dotted) and Local (dashed) variants, plus a grey full-rank DDP baseline. A legend at the top lists final perplexities. The navy Global curve ends visibly worse, near 46.8, than the others. The right plot shows the mean squared singular value of the rotation matrix between consecutive projection bases. The Global line is flat at 1.0 in navy. The Local line in orange drops from about 0.35 to about 0.12. The eye goes first to the flat line and the elevated dotted curve.",
+ "caption": "Global projection matrix pathologies. \\methodglobal fails to learn when quasi-hyperbolic momentum terms have not been applied due to the projection bases failing to update throughout the duration of local training.",
+ "caption_source": "latex",
+ "abstract": "Distributed training of foundation models via $\\texttt{DDP}$ is limited by interconnect bandwidth. While infrequent communication strategies reduce synchronization frequency, they remain bottlenecked by the memory and communication requirements of optimizer states. Low-rank optimizers can alleviate these constraints; however, in the local-update regime, workers lack access to the full-batch gradients required to compute low-rank projections, which degrades performance. We propose $\\texttt{LoRDO}$, a principled framework unifying low-rank optimization with infrequent synchronization. We first demonstrate that, while global projections based on pseudo-gradients are theoretically superior, they permanently restrict the optimization trajectory to a low-rank subspace. To restore subspace exploration, we introduce a full-rank quasi-hyperbolic update. $\\texttt{LoRDO}$ achieves near-parity with low-rank $\\texttt{DDP}$ in language modeling and downstream tasks at model scales of $125$M--$720$M, while reducing communication by $\\approx 10 \\times$. Finally, we show that $\\texttt{LoRDO}$ improves performance even more in very low-memory settings with small rank/batch size.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=TTAxB2IL2y",
+  "arxiv": "https://arxiv.org/abs/2602.04396",
+  "pdf": "https://raw.githubusercontent.com/mlresearch/v306/main/assets/jovanovic26a/jovanovic26a.pdf",
+  "proceedings": "https://proceedings.mlr.press/v306/jovanovic26a.html",
+  "virtual": "https://icml.cc/virtual/2026/poster/63818",
+  "code": null
+ },
+ "license": "http://creativecommons.org/licenses/by/4.0/",
+ "img": "cc-by",
+ "image_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/images/icml26-3104.png",
+ "thumb_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/thumbs/icml26-3104.webp",
+ "figure_page": 5,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.8
+}

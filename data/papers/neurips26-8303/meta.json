@@ -1,0 +1,51 @@
+{
+ "id": "neurips26-8303",
+ "title": "Jaguar: Fast Private Neural Network Inference with Power-of-Two Homomorphic Arithmetic",
+ "authors": [
+  "Yewon Jeong",
+  "Nayoung Jung",
+  "Hyeri Roh",
+  "Woo-Seok Choi"
+ ],
+ "venue": "NeurIPS 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "Social Aspects->Privacy-preserving Statistics and Machine Learning",
+ "role": "problem-setup",
+ "role2": "prior-vs-ours",
+ "claim": "The dominant costs in the standard pipeline are linear-layer convolution and the ReLU-then-truncation stage, and reordering the stages cuts both.",
+ "layout": "3 panels left-to-right; stacked bars with red reduction arrows, flow diagrams",
+ "tags": [
+  "private-inference",
+  "homomorphic-encryption",
+  "bottleneck-analysis",
+  "efficiency",
+  "cost-breakdown"
+ ],
+ "style": [
+  "plot",
+  "icon-heavy",
+  "colorful",
+  "text-heavy"
+ ],
+ "description": "Three panels. (a) shows the hybrid HE/MPC framework. Client data and server model feed a yellow HE Linear block, then a blue MPC Non-Linear block, then a peach block of further layers, ending in the inference result. (b) is a latency breakdown. A stacked bar splits total latency into 80% linear and 20% non-linear. A second bar shows convolution as 99% of linear latency. A zoomed gray inset splits convolution into 68% (I)NTT and 11% PMult. A dashed red line and arrow mark a 79% reduction for SPA-Conv (ours), which has a small green bar. (c) compares two protocol flows, ReLU→Truncation and Truncation→ReLU (ours), as server/client lanes with Conv, Decrypt, ReLU and Truncation boxes. A bar chart beside them shows communication falling from 272 MiB to 149 MiB, a 49% reduction marked by a red arrow. Red arrows and percentages draw the eye first.",
+ "caption": "Motivation for Jaguar's design choices. (a) Hybrid HE/2PC private inference framework. (b) Latency breakdown of Cheetah's ResNet-50 convolutions under LAN. (c) Communication of the ReLU+truncation stage on ResNet-50.",
+ "caption_source": "latex",
+ "abstract": "Hybrid HE/2PC private neural network inference remains bottlenecked by prime-modulus homomorphic arithmetic in convolution and by a precision flow that runs ReLU at doubled bitwidth before invoking a separate truncation protocol. We present Jaguar, a system built on a single design choice--a power-of-two ciphertext ring--that addresses both. The choice enables SPA-Conv, a coefficient-domain convolution kernel that replaces NTT-centric polynomial multiplication with Scalar-Polynomial Accumulation, and an exact ciphertext-side truncation by local right shifts that lets ReLU run directly at the target fixed-point precision and eliminates the post-ReLU truncation protocol. Where NTT remains genuinely useful--at the client, for the single polynomial multiplication during decryption--we recover it through an auxiliary NTT prime, preserving the power-of-two protocol substrate while keeping decryption O(N log N). On ImageNet-scale ResNet-18, ResNet-50, and MobileNetV2 with AVX disabled, Jaguar achieves 2.07-3.72x lower end-to-end latency than Cheetah and 2.16-3.36x lower than Rhombus, with 1.16-1.76x lower communication than Cheetah.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=vEZC3kzDrD",
+  "arxiv": "https://arxiv.org/abs/2606.11827",
+  "pdf": "https://arxiv.org/pdf/2606.11827",
+  "proceedings": null,
+  "virtual": "https://neurips.cc/virtual/2026/poster/148765",
+  "code": "https://github.com/yellowon/Jaguar"
+ },
+ "license": "http://creativecommons.org/licenses/by/4.0/",
+ "img": "cc-by",
+ "image_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/images/neurips26-8303.png",
+ "thumb_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/thumbs/neurips26-8303.webp",
+ "figure_page": 1,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.5
+}

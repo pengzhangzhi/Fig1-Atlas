@@ -1,0 +1,53 @@
+{
+ "id": "icml26-2112",
+ "title": "HARD-KV: Head-Adaptive Regularization for Decoding-time KV Compression",
+ "authors": [
+  "Yuxuan Yang",
+  "Feiyang Ren",
+  "Bowen Zeng",
+  "Dalin Zhang",
+  "Jinpeng Chen",
+  "Gang Chen",
+  "Huan Li"
+ ],
+ "venue": "ICML 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "General Machine Learning->Hardware and Software",
+ "role": "pipeline",
+ "role2": "overview-framework",
+ "claim": "A tiered cache hierarchy plus a staged select-rewrite-compress pipeline reconciles adaptive, dynamic budgets with rigid static system constraints.",
+ "layout": "2 panels: left vertical tier stack, right left-to-right 4 steps with zoom-in insets",
+ "tags": [
+  "kv-cache",
+  "compression",
+  "top-p-selection",
+  "systems-efficiency",
+  "multi-stage"
+ ],
+ "style": [
+  "colorful",
+  "icon-heavy",
+  "text-heavy"
+ ],
+ "description": "A wide two-part figure. The left panel, titled \"Cascade Cache\", shows a sequence of cache blocks and three stacked tiers (Dense, Sparse, Condensed), each drawn as a grid of blue, pink and brown rows, one row per attention head. Hatched cells mark selected or dropped tokens, and arrows labeled \"flows in\" link the tiers vertically. The right panel is a left-to-right pipeline of four grids: Step 1 KV growth, Step 2 KV selection, Step 3 KV rewrite, and Step 4 KV evict/merge. Green chevrons connect the steps, and a loop arrow carries a new token back to the start. Two zoom-in insets sit below the grids. One is labeled \"Section 3.2\" and shows logits curves going through transform, calibrate and top-p/top-k budget. The other is labeled \"Section 3.3\" and shows a head-wise block table with a selection mask. Green headings and the colored grids draw the eye first.",
+ "caption": "Left: The Cascade Cache hierarchy manages the token lifecycle across three storage tiers: Dense (recent), Sparse (adaptive), and Condensed (archival). Right: The \\hardkv{} execution pipeline. (Step 1) The KV cache grow in context; (Step 2) When compression is triggered, different selection methods will be calibrated towards real attention distribution and conduct dynamic Top-$p$ sampling; (Step 3) Upon the sparse mask generated in the previous step, the KV indices will be condensed by rewriting; (Step 4) The KV cache can be further reduces to satisfy hard constraints by eviction or merging.",
+ "caption_source": "latex",
+ "abstract": "Long-context LLM inference faces a fundamental conflict: head-adaptive compression algorithms (e.g., Top-$p$ nucleus sampling) offer superior accuracy by dynamically fluctuating memory budgets, yet modern inference engines (e.g., vLLM) demand rigid, static memory patterns to leverage CUDA Graphs and PagedAttention. We resolve this ``Static-Dynamic'' mismatch with HARD-KV, a unified framework that that bridges dynamic selection with rigid system constraints. HARD-KV introduces a Cascade Cache hierarchy, managing the token lifecycle across dense, sparse, and condensed tiers. Crucially, we propose a Logits Calibration mechanism that normalizes diverse importance metrics into a unified probability space, enabling consistent Top-$p$ budgeting across heterogeneous heads. To bridge the efficiency gap, we offer a system-level solution, which rewrites fragmented, dynamic indices into contiguous physical layouts compatible with high-performance inference engine. Extensive experiments on math-reasoning benchmarks (AIME, U-Math) verify that HARD-KV achieves up to 2$\\times$ throughput improvement over static baselines while maintaining high-fidelity generation in 10k+ token scenarios. Code is available at https://github.com/SuDIS-ZJU/HARDInfer.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=K0yRIwmG1e",
+  "arxiv": "https://arxiv.org/abs/2606.28831",
+  "pdf": "https://raw.githubusercontent.com/mlresearch/v306/main/assets/yang26bj/yang26bj.pdf",
+  "proceedings": "https://proceedings.mlr.press/v306/yang26bj.html",
+  "virtual": "https://icml.cc/virtual/2026/poster/64774",
+  "code": null
+ },
+ "license": "http://creativecommons.org/licenses/by/4.0/",
+ "img": "cc-by",
+ "image_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/images/icml26-2112.png",
+ "thumb_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/thumbs/icml26-2112.webp",
+ "figure_page": 2,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.8
+}

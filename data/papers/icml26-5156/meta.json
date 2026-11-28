@@ -1,0 +1,52 @@
+{
+ "id": "icml26-5156",
+ "title": "MineDraft: A Framework for Batch Parallel Speculative Decoding",
+ "authors": [
+  "Zhenwei Tang",
+  "Arun Verma",
+  "Zijian Zhou",
+  "Zhaoxuan Wu",
+  "Alok Prakash",
+  "Daniela Rus",
+  "Bryan Kian Hsiang Low"
+ ],
+ "venue": "ICML 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "Deep Learning->Large Language Models",
+ "role": "prior-vs-ours",
+ "role2": "pipeline",
+ "claim": "Sequential draft-then-verify execution leaves resources waiting; overlapping the two stages across parallel processes hides latency and shortens total time.",
+ "layout": "2 stacked panels, left-to-right timeline, color-coded legend at left, time arrow below",
+ "tags": [
+  "speculative-decoding",
+  "parallelism",
+  "latency-hiding",
+  "inference-efficiency",
+  "scheduling"
+ ],
+ "style": [
+  "minimal",
+  "colorful"
+ ],
+ "description": "A timeline diagram with a legend on the left: red for Drafting, yellow-orange for Communication, blue for Verification. Two horizontal bands are stacked. The top band is pink and labeled 'Standard SD Pipeline'. It has a single Process 1 row where red drafting blocks and blue verification blocks alternate, separated by thin yellow communication slivers, and it trails off with dots. The bottom band is green and labeled 'MineDraft Pipeline'. It has two rows. Process 2 runs continuous blue verification blocks. Process 1 runs red drafting blocks, each followed by a green 'Idle' block, so drafting overlaps verification. A long black arrow labeled 'Time' runs along the bottom. The eye goes first to the bold band titles and the bright red and blue blocks.",
+ "caption": "MineDraft parallelizes drafting and verification: a draft model generates tokens while the target model simultaneously verifies the previously generated draft tokens, thereby hiding drafting latency and improving overall inference throughput.",
+ "caption_source": "latex",
+ "abstract": "Speculative decoding (SD) accelerates large language model inference by using a smaller draft model to propose draft tokens that are subsequently verified by a larger target model. However, the performance of standard SD is often limited by the strictly sequential execution of these drafting and verification stages. To address this, this paper proposes MineDraft, a batch parallel speculative decoding (PSD) framework designed to effectively hide drafting latency by overlapping it with verification. Our theoretical analysis shows that PSD is substantially more efficient than standard SD. MineDraft realizes the PSD through a novel batch-parallel design that maintains two batches of requests, overlapping drafting for one batch with verification for the other. Our experimental results show significant improvements of \\alg{} in both throughput (up to 75%) and end-to-end latency (up to 39%) over standard SD. Furthermore, we have implemented MineDraft as a plugin for vLLM, demonstrating its practicality for production-ready inference systems.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=mapFG1BrNv",
+  "arxiv": "https://arxiv.org/abs/2603.18016",
+  "pdf": "https://raw.githubusercontent.com/mlresearch/v306/main/assets/tang26w/tang26w.pdf",
+  "proceedings": "https://proceedings.mlr.press/v306/tang26w.html",
+  "virtual": "https://icml.cc/virtual/2026/poster/61828",
+  "code": "https://arunv3rma.github.io/blogs/minedraft/"
+ },
+ "license": "http://creativecommons.org/licenses/by/4.0/",
+ "img": "cc-by",
+ "image_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/images/icml26-5156.png",
+ "thumb_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/thumbs/icml26-5156.webp",
+ "figure_page": 1,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.6
+}

@@ -1,0 +1,51 @@
+{
+ "id": "neurips26-5474",
+ "title": "Temporal Gradient Inversion for Private Trajectory Reconstruction in Embodied Reinforcement Learning",
+ "authors": [
+  "Sudip Bhujel",
+  "Shanghao Shi",
+  "Ruiquan Huang",
+  "Ning Zhang",
+  "Yang Xiao"
+ ],
+ "venue": "NeurIPS 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "Social Aspects->Fairness, Equity, Justice and Safety",
+ "role": "prior-vs-ours",
+ "role2": "analysis-finding",
+ "claim": "Prior attacks invert each gradient independently; modeling the whole sequence with context yields progressively better reconstruction until returns diminish.",
+ "layout": "2 panels: stacked prior-vs-ours pipelines left, trend plot right; dashed divider",
+ "tags": [
+  "gradient-inversion",
+  "temporal-modeling",
+  "privacy-attack",
+  "sequence-context",
+  "autoregressive"
+ ],
+ "style": [
+  "colorful",
+  "plot",
+  "icon-heavy"
+ ],
+ "description": "The left panel is split by a dashed line into two rows. The top row, \"Prior work (Single-frame)\", shows gradient tokens g1…gT, each feeding an independent frame reconstruction in pink boxes. Red dashed ✗ marks between frames show there is no link across time. Each frame has an action label below it, such as MoveAhead. The bottom row, \"TRACE (ours, trajectory-level)\", has the same gradient tokens feeding a wide blue Causal Transformer bar. Below it, green-bordered reconstructed frames are joined by green \"context\" arrows, with blue action labels underneath. A ground-truth first frame sits at the far left, linked by dashed lines. The right panel is a qualitative plot of sequence length against pixel error (MSE, blue, falling) and PSNR (orange, rising). A boxed \"single-frame attack\" region marks t=1. A green arrow marks the \"temporal reconstruction gain\", ending at a dashed vertical line where the curves plateau.",
+ "caption": "Illustration of trajectory reconstruction from embodied RL gradients. (Left) Prior work inverts each gradient $g_t$ independently, ignoring temporal coherence; \\sysname processes the full trajectory $\\{g_1,\\ldots,g_T\\}$ with a causal transformer that sequentially decodes observations ($\\mathbf{\\hat{s}}_t$) and discrete actions ($\\mathbf{\\hat{a}}_t$), improving recovery accuracy. (Right) Qualitative illustration of pixel error (MSE) and reconstruction fidelity (PSNR) versus sequence length $t$: single-frame optimization attacks ($t{=}1$) incur high error, while \\sysname improves with longer context---realizing temporal reconstruction gain---until returns diminish as $t \\to T$ (see [ref]).",
+ "caption_source": "latex",
+ "abstract": "Distributed learning in embodied reinforcement-learning agents offers a degree of privacy by retaining raw sensor data on-device and transmitting only policy gradients to the server. Yet temporal structure can amplify this leakage beyond single-frame attacks. We introduce Temporal Reconstruction Attack on Consecutive Encodings (TRACE), an amortized temporal gradient-inversion attack that autoregressively reconstructs the sequence of private observation-action trajectories from per-step policy-learning gradients. The attack exploits two structural signals ignored by prior single-frame methods: (i) cross-time correlation between successive embodied gradients, which we formalize via a conditional mutual-information bound, and (ii) closed-form action recovery from policy-head gradient structure, which we prove exact when standard entropy regularization is sufficiently small. On held-out embodied scenes, TRACE reaches $18.8$ dB PSNR with near-perfect action recovery at $3$-$4.5$ ms per reconstructed frame, dominating the learning-based baseline across all reconstruction metrics and exceeding optimization attacks while running orders of magnitude faster. Further evaluation demonstrates TRACE's broader applicability across recurrent, residual, and compact transformer victim architectures, multi-modal inputs, and larger discrete action spaces. Defense experiments suggest that protecting temporal gradient streams may require sequence-aware privacy mechanisms.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=beAxdz8rqD",
+  "arxiv": "https://arxiv.org/abs/2609.30258",
+  "pdf": "https://arxiv.org/pdf/2609.30258",
+  "proceedings": null,
+  "virtual": "https://neurips.cc/virtual/2026/poster/151269",
+  "code": "https://trace-rl.github.io/"
+ },
+ "license": "http://creativecommons.org/licenses/by/4.0/",
+ "img": "cc-by",
+ "image_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/images/neurips26-5474.png",
+ "thumb_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/thumbs/neurips26-5474.webp",
+ "figure_page": 1,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.8
+}

@@ -1,0 +1,56 @@
+{
+ "id": "neurips26-5895",
+ "title": "Joint Treatment Effect Estimation from Incomplete Healthcare Data: Temporal Causal Normalizing Flows with LLM-driven Evolutionary MNAR Imputation",
+ "authors": [
+  "Olivia Jullian Parra",
+  "Sara Zoccheddu",
+  "David C Cerezo",
+  "Tom Forzy",
+  "Franziska S Ulrich",
+  "William Sutcliffe",
+  "Jakob M Burgstaller",
+  "Oliver Senn",
+  "Patrick Owen",
+  "Nicola Serra"
+ ],
+ "venue": "NeurIPS 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "Applications->Health",
+ "role": "pipeline",
+ "role2": null,
+ "claim": "A two-stage pipeline first completes missing data with an iteratively evolved imputer, then feeds it to a structured causal model for counterfactual estimation.",
+ "layout": "2 dashed stage boxes, left-to-right, feedback loop in stage 1, dashed skip arrow",
+ "tags": [
+  "two-stage",
+  "imputation",
+  "causal-inference",
+  "normalizing-flow",
+  "iterative-refinement"
+ ],
+ "style": [
+  "minimal",
+  "colorful",
+  "math-heavy"
+ ],
+ "description": "A wide, left-to-right flowchart split into two dashed-border regions. The purple Stage 1, 'LLM-driven Evolutionary Imputation', holds a vertical loop of three boxes: 'LLM proposes imputer', 'Self-supervised score' and 'Update g*'. A feedback arrow labeled 'iterate k=1..K' returns from the last box to the first. An 'Incomplete dataset' box on the left feeds the loop, and the loop outputs a 'Final imputer g*'. An arrow from there leads to 'Completed Patient Data', a lavender box that sits between the stages. The orange Stage 2, 'CausalFlow-T', has a green LSTM temporal encoder, a yellow expert DAG box, and a peach DAG-constrained Causal MAF. These lead to a pink 'Counterfactual' output through an arrow labeled AAP. A dashed skip arrow runs from the completed data to the Causal MAF. Pastel fills distinguish module types, and math notation labels the arrows.",
+ "caption": "Stage 1 (LLM-driven Evolutionary Imputation): an LLM iteratively proposes candidate imputers $g^{(k)}$, scores them via a self-supervised proxy $s(g^{(k)})$, and updates the running best $g^\\star_k$; after $K$ rounds, $g^\\star$ produces $\\hat{\\mathcal{D}}$. Stage 2 (CausalFlow-T): a temporal encoder conditions a DAG-constrained Causal MAF on patient history; counterfactual outcomes $\\hat{y}(a')$ are obtained via AAP.",
+ "caption_source": "latex",
+ "abstract": "Target trial emulation (TTE) enables causal questions to be studied with observational data when randomized controlled trials (RCTs) are infeasible. Yet treatment-effect methods often address causal estimation, missingness, and temporal structure separately, limiting their robustness in electronic health records (EHRs), where time-varying confounding and missing-not-at-random (MNAR) biomarkers can reach 50%--80%. We propose a two-stage pipeline for treatment effect estimation from incomplete longitudinal EHRs. First, CausalFlow-T, a directed acyclic graph (DAG)-constrained normalizing flow with long short-term memory (LSTM)-encoded patient history, performs exact invertible counterfactual inference, avoiding approximation errors from variational inference and separating confounding through explicit causal structure. Ablations on four synthetic and one semi-synthetic benchmark with known counterfactuals show that DAG constraints and exact inference address distinct failure modes: neither compensates for the other. Second, because CausalFlow-T requires completed inputs, we introduce an LLM-driven evolutionary imputer that proposes executable imputation operators rather than individual entries, and evaluate it with three large language model (LLM) backends, including two open-source models. Across 30%--80% MNAR missingness, this imputer achieves the best pooled rank over biomarker and causal metrics, leading in point-wise accuracy and temporal extrapolation while preserving average treatment effect (ATE) recovery as statistical baselines degrade. On Swiss primary-care EHRs from adults with type 2 diabetes initiating a GLP-1 receptor agonist or SGLT-2 inhibitor, the pipeline estimates a per-protocol weight-loss difference of -0.98 kg [95% CI -1.01, -0.96] favoring GLP-1 receptor agonists, consistent with randomized evidence and obtained from realistically incomplete real-world EHRs.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=eYP8uXiZtE",
+  "arxiv": "https://arxiv.org/abs/2605.05125",
+  "pdf": "https://arxiv.org/pdf/2605.05125",
+  "proceedings": null,
+  "virtual": "https://neurips.cc/virtual/2026/poster/150903",
+  "code": null
+ },
+ "license": "http://creativecommons.org/licenses/by/4.0/",
+ "img": "cc-by",
+ "image_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/images/neurips26-5895.png",
+ "thumb_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/thumbs/neurips26-5895.webp",
+ "figure_page": 5,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.95
+}

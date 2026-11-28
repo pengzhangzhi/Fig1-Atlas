@@ -1,0 +1,61 @@
+{
+ "id": "iclr26-1568",
+ "title": "Metis: Training LLMs with FP4 Quantization",
+ "authors": [
+  "Hengjie Cao",
+  "Mengyi Chen",
+  "Yifeng Yang",
+  "Fang Dong",
+  "Ruijun Huang",
+  "Jixian Zhou",
+  "Anrui Chen",
+  "Mingzhi Dong",
+  "Yujiang Wang",
+  "Jinlong Hou",
+  "Yuan Cheng",
+  "FAN WU",
+  "Fan Yang",
+  "Tun Lu",
+  "Ning Gu",
+  "Li Shang"
+ ],
+ "venue": "ICLR 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "Deep Learning->Algorithms",
+ "role": "analysis-finding",
+ "role2": "concept",
+ "claim": "A few dominant components create a very wide value range, so uniform quantization zeroes small values and hurts small components most.",
+ "layout": "5 panels in a row, A–E, left-to-right, with shared color-coded legends",
+ "tags": [
+  "anisotropy",
+  "spectral-analysis",
+  "quantization",
+  "low-precision-training",
+  "failure-mode"
+ ],
+ "style": [
+  "plot",
+  "colorful"
+ ],
+ "description": "A wide strip of five line and histogram plots, labeled A to E, all computed from one gradient matrix. Panel A is a log-scale singular value spectrum that drops steeply, with colored triangles marking components i=0, 4, 64 and 512. Panel B is a log-frequency histogram of |Value| in blue, overlaid with dashed outlines for the individual components. Larger components sit at higher values and smaller ones near zero. Panel C overlays original (blue) and quantized (orange) histograms. A tall orange bar in the 'zero region' on the far left shows many small values rounded to zero. Panels D and E show relative error rising with spectrum index and cosine similarity falling. Two legends on the left, with the same color scheme for the indices, tie the panels together.",
+ "caption": "Overview of anisotropy and its impact on quantization, illustrated using a gradient matrix from LLaMA-3 8B. (A) Singular value spectrum exhibits strong anisotropy, with a few singular values dominating the spectrum. (B) The wide matrix distribution arises from the superposition of singular components: large components (e.g., i=0) drive the high-value region, while small components concentrate near zero. (C) Quantization bias disproportionately rounds many small values to zero. (D–E) In spectral space, smaller singular components incur substantially larger relative quantization errors in singular values and more severe perturbations in singular directions. Details corresponding to (A) in Section [ref], (B) in Section [ref], and (C–E) in Section [ref].",
+ "caption_source": "latex",
+ "abstract": "This work identifies anisotropy in the singular value spectra of parameters, activations, and gradients as the fundamental barrier to low-bit training of large language models (LLMs). These spectra are dominated by a small fraction of large singular values, inducing wide numerical ranges that cause quantization bias and severe spectral distortion, ultimately degrading training performance. This work presents Metis, a spectral-domain quantization framework that partitions anisotropic spectra into narrower sub-distributions for independent quantization, thereby reducing errors and preserving spectral structure. To minimize overhead, Metis leverages two key properties of the dominant spectral subspace: preservation via sparsely random sampling and preservation via random projection, reducing decomposition cost to a negligible level. On LLaMA-3 8B trained with 100B tokens, Metis enables robust W4A4G4 training with FP4 quantization of weights, activations, and gradients, yielding only a 0.4% training loss gap and a 0.1% degradation in downstream accuracy relative to BF16. Beyond matching BF16 fidelity, Metis also surpasses our implementation of Nvidia's recently announced (yet to be publicly released) FP4 recipe, consistently achieving lower loss and higher downstream accuracy while incurring significantly lower computational overhead. The code implementation for Metis is available at: https://anonymous.4open.science/r/Metis-quantization-644B.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=I2ZrCi5O84",
+  "arxiv": "https://arxiv.org/abs/2509.00404",
+  "pdf": "https://proceedings.iclr.cc/paper_files/paper/2026/file/7740c0dc79dc282a29384ceb9d3b2408-Paper-Conference.pdf",
+  "proceedings": "https://proceedings.iclr.cc/paper_files/paper/2026/hash/7740c0dc79dc282a29384ceb9d3b2408-Abstract-Conference.html",
+  "virtual": "https://iclr.cc/virtual/2026/poster/10010347",
+  "code": null
+ },
+ "license": "http://creativecommons.org/licenses/by-sa/4.0/",
+ "img": "cc-by-sa",
+ "image_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/images/iclr26-1568.png",
+ "thumb_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/thumbs/iclr26-1568.webp",
+ "figure_page": 1,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.8
+}

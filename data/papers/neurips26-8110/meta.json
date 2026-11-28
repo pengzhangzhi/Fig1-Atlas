@@ -1,0 +1,54 @@
+{
+ "id": "neurips26-8110",
+ "title": "On-Policy Consistency Training Improves LLM Safety with Minimal Capability Degradation",
+ "authors": [
+  "Andy Q Han",
+  "Kristina Fujimoto",
+  "Avidan Shah",
+  "Kiet Nguyen",
+  "Kai Xu",
+  "Yueh-Han Chen",
+  "Ilia Sucholutsky",
+  "Rico Angell"
+ ],
+ "venue": "NeurIPS 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "Deep Learning->Algorithms",
+ "role": "pipeline",
+ "role2": null,
+ "claim": "Sampling from the student under a biased prompt and scoring that response against a frozen teacher on a clean prompt trains invariance to the bias.",
+ "layout": "2 stacked panels, left-to-right flow, loss formula at right with dashed gradient arrow",
+ "tags": [
+  "on-policy",
+  "consistency-training",
+  "self-distillation",
+  "teacher-student",
+  "invariance"
+ ],
+ "style": [
+  "text-heavy",
+  "colorful",
+  "math-heavy"
+ ],
+ "description": "Two stacked gray rounded panels show the training procedure. The top panel is the sampling step. A red-bordered student prompt box holds a multiple-choice question about warding off bad luck, with the underlined hint 'According to a leading expert, the answer is B.' An arrow leads to a gray Student π_θ box, then a 'Sample on-policy' arrow leads to a tan box with a chain-of-thought response ending in '#### B'. The bottom panel is the loss computation. A teal teacher prompt without the hint and the red student prompt are each concatenated (⊕) with the same sampled response. The teacher version feeds a blue Teacher π_T box and the student version feeds an orange Student π_θ box. Both arrows meet at the loss L(θ) = log π_θ(y|x̃) − log π_T(y|x). A dashed orange arrow returns to the student as the update. Color coding distinguishes the roles, and the eye goes first to the prompts and the loss.",
+ "caption": "On-Policy Consistency Training. We initialize our student policy equal to the teacher policy, i.e. $\\pi_{\\theta_0} := \\pi_T$. We freeze the teacher policy $\\pi_T$ throughout the training of the student policy $\\pi_\\theta$. Given a dataset of contrastive pairs $(x, \\tilde{x})$ where $x$ is a clean teacher prompt and $\\tilde{x}$ perturbed student prompt, we generate responses online from our current student policy $y \\sim \\pi_\\theta(\\cdot \\mid \\tilde{x})$ at every training step. We then train $\\pi_\\theta$ to minimize the log-likelihood ratio of the on-policy student response $y$ between the student and teacher policies conditioned on $\\tilde{x}$ and $x$, respectively. In this example, the perturbed student prompt $\\tilde{x}$ contains a user bias suggesting that the answer is (B) and the clean teacher prompt $x$ does not contain this user bias. This training procedure encourages the student policy $\\pi_\\theta$ to be invariant to the user bias present in the perturbed prompt $\\tilde{x}$.",
+ "caption_source": "latex",
+ "abstract": "Aligned models can misbehave in several ways: they are often sycophantic, fall victim to jailbreaks, or fail to include appropriate safety warnings. Consistency training is a promising new alignment paradigm to mitigate such failures by training invariants into the model using contrastive input pairs. Existing consistency training procedures generate the supervision signal once, offline, and use supervised fine-tuning (SFT) to update the model. Unfortunately, the resulting models tend to merely memorize the surface forms of the training distribution and thus generalize poorly and regress in their capabilities. We introduce On-Policy Consistency Training (OPCT), a new consistency training approach where the objective is computed over the model's own responses to prompts, supervised by itself conditioned on corresponding contrastive prompts. We evaluate OPCT on three safety axes: sycophancy, jailbreaking, and safety awareness. Across three model families, OPCT outperforms its SFT counterpart on all safety desiderata. It nearly halves the sycophancy rate relative to baseline (8.1% vs. 15.4%, compared to 11.2% for SFT). Under an adaptive per-target attacker, OPCT holds jailbreak defense success near 99% on held-out jailbreak behaviors, whereas SFT achieves 87% on average. On safety awareness, OPCT outperforms SFT in two out of three models, and matches it on the other. OPCT also largely avoids the capability regressions that SFT induces, such as a 28-point drop on MATH-500. Our results suggest that consistency training is best implemented as OPCT rather than as SFT, especially when generalization beyond the training distribution is desired.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=u3h9PXcNHZ",
+  "arxiv": "https://arxiv.org/abs/2605.21834",
+  "pdf": "https://arxiv.org/pdf/2605.21834",
+  "proceedings": null,
+  "virtual": "https://neurips.cc/virtual/2026/poster/148938",
+  "code": null
+ },
+ "license": "http://creativecommons.org/licenses/by/4.0/",
+ "img": "cc-by",
+ "image_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/images/neurips26-8110.png",
+ "thumb_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/thumbs/neurips26-8110.webp",
+ "figure_page": 1,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.9
+}

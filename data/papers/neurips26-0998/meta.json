@@ -1,0 +1,47 @@
+{
+ "id": "neurips26-0998",
+ "title": "Logit-Gap Steering: A Forward-Pass Diagnostic for Alignment Robustness",
+ "authors": [
+  "Tung-Ling Li",
+  "Hongliang Liu"
+ ],
+ "venue": "NeurIPS 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "Social Aspects->Trustworthy Machine Learning",
+ "role": "analysis-finding",
+ "role2": null,
+ "claim": "Alignment consistently pushes per-prompt safety margins well above their pre-trained baseline, though the size of the shift varies across model families.",
+ "layout": "3 panels in a row, scatter plots with a diagonal reference line and stats box",
+ "tags": [
+  "scatter-plot",
+  "alignment",
+  "safety-margin",
+  "empirical-trend",
+  "cross-model"
+ ],
+ "style": [
+  "plot",
+  "minimal"
+ ],
+ "description": "Three side-by-side scatter plots, one each for Qwen2.5-0.5B, Llama-3.2-1B and gemma-2b. Each plot has the base model's logit gap (pre-training) on the x-axis and the aligned model's logit gap (after RLHF) on the y-axis. Hundreds of translucent light-blue points represent individual prompts. A dashed gray diagonal marks y=x, meaning no change. In every panel nearly all points sit above the diagonal. The Llama and gemma points form tall vertical bands because the base gap is narrow and the aligned gap is large. Qwen's points form a broader cloud. A small box at the top left of each panel gives the percentage of points above the diagonal (99%, 100%, 98%) and the median gap shift, for example -3.8 to +1.5. The axes use different scales in each panel.",
+ "caption": "Per-prompt $\\Delta_0$ on AdvBench ($n{=}520$): base ($x$) vs.\\ aligned ($y$) across three families. Aligned widens the gap on $\\geq97.5%$ of prompts in every family, confirming Eq. [ref].",
+ "caption_source": "latex",
+ "abstract": "RLHF-style alignment trains language models to refuse unsafe requests, but how much operational margin does this refusal rest on? We introduce the refusal-affirmation logit gap: the difference between the top refusal-token logit and the top affirmative-token logit at the first decoding step. This single scalar quantifies the per-prompt safety margin that alignment provides. Empirically, alignment widens the gap on 97.5-99.8% of toxic prompts across three model families, and median gap closure co-varies with True-ASR ranking across suffix strategies (an internal consistency check, since our method optimises gap closure). To validate the metric's practical significance, we present logit-gap steering, a gradient-free, forward-pass-only method that discovers short in-distribution suffixes ($<$10 tokens per component) whose cumulative effect closes the gap. The method requires ${\\approx}26{,}000$ forward-pass equivalents per family (${\\approx}2$~min on one A100), ${\\approx}125\\times$ less than a single GCG search. Suffixes discovered on 0.5B--2B models transfer without modification to 72B within family. An 8-suffix ensemble reaches 38-96\\% True ASR across 13 models on AdvBench and HarmBench, with most suffixes having $10^{3}$-$10^{4}\\times$ lower perplexity than GCG-meaning published perplexity-filter defenses that collapse GCG (64.7%$\\to$1.0%) leave our suffixes nearly intact (76.9%$\\to$76.0%). These results demonstrate that current alignment margins, while consistently present, can be thin and efficiently measurable, and that defense strategies must account for in-distribution suffixes.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=73zQs0dgXW",
+  "arxiv": "https://arxiv.org/abs/2506.24056",
+  "pdf": "https://arxiv.org/pdf/2506.24056",
+  "proceedings": null,
+  "virtual": "https://neurips.cc/virtual/2026/poster/155257",
+  "code": "https://github.com/tony51307/logit-gap-steering"
+ },
+ "license": "http://creativecommons.org/licenses/by/4.0/",
+ "img": "cc-by",
+ "image_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/images/neurips26-0998.png",
+ "thumb_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/thumbs/neurips26-0998.webp",
+ "figure_page": 2,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.8
+}

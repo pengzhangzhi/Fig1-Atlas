@@ -1,0 +1,51 @@
+{
+ "id": "neurips26-2038",
+ "title": "UniVL: Unified Vision-Language Embedding for Spatially Grounded Contextual Image Generation",
+ "authors": [
+  "Jiayun (Peter) Wang",
+  "Yu Wang",
+  "Weijie Gan",
+  "Zhenting Wang",
+  "Wei Wei"
+ ],
+ "venue": "NeurIPS 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "Computer Vision->Image and Video Generation",
+ "role": "prior-vs-ours",
+ "role2": "pipeline",
+ "claim": "Prior methods need separate vision and language encoders for two inputs; ours folds both into one unified visual condition and a single encoder.",
+ "layout": "2 panels split by dashed line, left-to-right flow, dual-branch vs single-branch",
+ "tags": [
+  "unified-conditioning",
+  "inpainting",
+  "encoder-elimination",
+  "efficiency",
+  "multimodal"
+ ],
+ "style": [
+  "colorful",
+  "photo/real data",
+  "icon-heavy"
+ ],
+ "description": "The figure is split by a vertical dashed line into 'Existing' on the left and 'Ours' on the right. Each side reads left to right: Condition, encoder(s), diffusion+decoder, Generated image. On the left, a painted bird image with a black mask box feeds a green trapezoid 'vision encoder'. Below it, a text prompt ('A painting of a small, plump bird... flowers in mask region') feeds a pink 'language encoder'. Both branches converge on a grey 'diffusion+decoder' block, which outputs the bird with red flowers. On the right, the same bird image has the word 'flower' rendered in white inside the black mask. This single condition passes through one green-to-pink gradient 'UniVL encoder' and then the diffusion+decoder, producing a similar image with flowers. Red italic labels mark the conditions. The eye goes first to the two bird images and the contrast between the two-branch and one-branch flow.",
+ "caption": "Conditioning paradigm for contextual image generation: existing (left) vs.\\ our \\method{} (right). The user's intent is the same---inpaint a target region with a desired object. Existing methods require two inputs through two separate domains: a masked image (vision) plus a global text prompt (language), each processed by its own encoder before the diffusion and decoder. In \\method, the same intent is captured by a single unified visual condition: our pipeline automatically renders the text label as pixels inside the mask. The \\method{} encoder (an OCR-pretrained vision backbone adapted to our task) then reads spatial layout and textual semantics in one pass. The text encoder is eliminated, yet the generated image preserves the same semantic intent (\"flower\") at specified spatial locations.",
+ "caption_source": "latex",
+ "abstract": "We introduce spatially grounded contextual image generation, a controllable image generation task that reframes the conditioning paradigm. Instead of supplying a reference image and a global text prompt through two separate encoders, one for vision and one for language, UniVL is trained to bind semantics to spatial locations directly from a single unified visual input, where the textual instruction is rendered onto the spatial mask. This removes the need for a standalone text encoder at inference time. The resulting model supports contextual image generation by following user-specified instructions about what should appear where, while substantially reducing computation. To address this task, we propose a framework in which the UniVL encoder, adapted from an optical-character-recognition-pretrained backbone, reads the unified condition optically and produces a UniVL embedding, fVIL, that fuses visual and semantic intent with spatial locations in a single token sequence. A two-stage pipeline first aligns UniVL with the VAE embedding space and then conditions a pretrained diffusion backbone entirely on UniVL embeddings, eliminating the standalone text encoder, such as T5. Although this reframing uses a deliberately minimal text interface, it yields strong empirical gains. On UniVL-ImgGen, a benchmark of 477K mask-annotated images that we construct for training and evaluation, UniVL improves image quality over text-prompted baselines, reducing FID from 14 to 11 and increasing PSNR from 16 to 20. It also eliminates the text encoder entirely, reducing inference TFLOPs by up to 52% and runtime by up to 44%. Additional ablation studies validate the contributions of the proposed components, paving the way for efficient, spatially grounded image generation with a unified conditioning paradigm.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=EPyIDzDBau",
+  "arxiv": "https://arxiv.org/abs/2605.21611",
+  "pdf": "https://arxiv.org/pdf/2605.21611",
+  "proceedings": null,
+  "virtual": "https://neurips.cc/virtual/2026/poster/154331",
+  "code": null
+ },
+ "license": "http://creativecommons.org/licenses/by/4.0/",
+ "img": "cc-by",
+ "image_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/images/neurips26-2038.png",
+ "thumb_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/thumbs/neurips26-2038.webp",
+ "figure_page": 1,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.9
+}

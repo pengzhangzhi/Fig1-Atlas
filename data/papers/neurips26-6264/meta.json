@@ -1,0 +1,49 @@
+{
+ "id": "neurips26-6264",
+ "title": "Inside the Loop: A Mechanistic Study of Looped Transformers on Permutation Traversal",
+ "authors": [
+  "Magnus Sesodia",
+  "Philip Torr",
+  "Christian Schroeder de Witt"
+ ],
+ "venue": "NeurIPS 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "Deep Learning->Everything Else",
+ "role": "analysis-finding",
+ "role2": "prior-vs-ours",
+ "claim": "Weight-tied iteration advances through intermediate steps gradually, one per iteration, while an untied model of equal depth exposes them only at the end.",
+ "layout": "2 side-by-side heatmaps, shared colorbar right, hop-chain diagram at far left",
+ "tags": [
+  "looped-transformers",
+  "probing",
+  "interpretability",
+  "weight-tying",
+  "algorithmic-reasoning"
+ ],
+ "style": [
+  "plot",
+  "colorful",
+  "minimal"
+ ],
+ "description": "Two side-by-side heatmaps titled 'Looped' and 'Untied' share one colorbar for probe selectivity, running from white (0) to dark red (1.0). The y-axis is the reference hop, from 'start' at the bottom to 'answer' at the top. A small chain diagram of circled node numbers (3, 11, 6, 2, 9, 0, 14, 5, 12) with arrows sits at the left and ties the rows to the permutation-traversal task. The x-axis is completed layer evaluations, 0 to 32. In the Looped panel, dark red forms a clear diagonal staircase, with white dots and a black outline marking where each hop first becomes readable. The annotation reads 'one new hop readable per iteration'. In the Untied panel, almost everything is white until the last few layers. There the hops appear in a steep, compressed jump, annotated 'hops readable only in the last layers'. Each panel has an accuracy box, 100% for Looped and 99.6% for Untied. The staircase draws the eye first.",
+ "caption": "Looped model forms a staircase. Linear-probe selectivity for each hop of the 8-hop \\dePo\\ task (illustrated at left), in a $4\\times8$ looped model (left map) and an untied $32$-layer model (right map), both trained at $\\eta=3\\times10^{-4}$. White dots mark where a hop first reaches selectivity $0.5$.",
+ "caption_source": "latex",
+ "abstract": "Solving algorithmic tasks with many sequential steps typically requires scaling up transformer depth or chain-of-thought length, incurring unfavorable parameter and inference-compute costs, respectively. Looped transformers, which reuse one block of layers across many iterations, are poised to address this, since they scale effective depth without adding parameters or tokens. Yet, it remains unclear what each iteration is actually computing, or whether the loop merely simulates a deeper untied stack. Here, we study directed permutation traversal, in which a model follows H hops from a starting node and reports the node it reaches, so every intermediate hop has a known ground truth. We find that a minimum effective depth is necessary to solve the task, beyond which the degree of weight tying becomes the determining factor. For instance, a looped transformer with a four-layer block iterated eight times solves the task in every seed, while an identically trained untied transformer of the same effective depth never does, succeeding only with a lower learning rate or supervision of its intermediate layers. Probing and intervening on the residual stream, we find that the looped model advances through the intermediate nodes gradually, forming a staircase that adapts to its iteration budget, whereas the untied model, at that lower rate, exposes them only in its final layers. Taken together, our results recast looped transformers as iterative program learners, which allocate their iterations to successive steps of the algorithm and solve tasks that identically trained untied models of the same effective depth do not. Code is available at https://github.com/magnus-sesodia/insidetheloop.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=h8PkVhb8VI",
+  "arxiv": "https://arxiv.org/abs/2610.24135",
+  "pdf": "https://arxiv.org/pdf/2610.24135",
+  "proceedings": null,
+  "virtual": "https://neurips.cc/virtual/2026/poster/150577",
+  "code": "https://github.com/magnus-sesodia/insidetheloop"
+ },
+ "license": "http://creativecommons.org/licenses/by/4.0/",
+ "img": "cc-by",
+ "image_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/images/neurips26-6264.png",
+ "thumb_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/thumbs/neurips26-6264.webp",
+ "figure_page": 0,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.8
+}

@@ -1,0 +1,53 @@
+{
+ "id": "neurips26-1144",
+ "title": "MilliVid: Hierarchical Latents for Long-Range Consistency in Video Generation",
+ "authors": [
+  "Ishaan Chandratreya",
+  "David Charatan",
+  "Basile Van Hoorick",
+  "Sergey Zakharov",
+  "Vitor Guizilini",
+  "Phillip Isola",
+  "Vincent Sitzmann"
+ ],
+ "venue": "NeurIPS 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "Computer Vision->Image and Video Generation",
+ "role": "pipeline",
+ "role2": null,
+ "claim": "A multi-resolution tokenizer compresses an image into hierarchical tokens, then reconstructs the full pyramid from one randomly kept level.",
+ "layout": "1 row, left-to-right, labeled vertical boxes between stages, arrows connecting",
+ "tags": [
+  "autoencoder",
+  "hierarchical-tokens",
+  "multi-scale",
+  "masking",
+  "video-generation"
+ ],
+ "style": [
+  "minimal",
+  "photo/real data",
+  "colorful"
+ ],
+ "description": "A single horizontal pipeline reads left to right. A Minecraft screenshot (Input) goes through a vertical 'Rescale' box and becomes an Image Pyramid of three shrinking copies stacked vertically. A tall 'Patchify and Encode' box turns the pyramid into Hierarchical Tokens, shown as green rounded squares in grids that shrink from 8x8 to 4x4 to 2x2. A 'Randomly Mask' box follows. The next column, Single Level's Tokens, shows the same grids as empty white squares, except the 2x2 level, which stays green. A 'Decode' box then produces the Reconstructed Pyramid, three Minecraft images that match the input pyramid. Labels sit above each stage in a serif font. The eye goes first to the large input image, then follows the arrows through the green token grids.",
+ "caption": "Our hierarchical autoencoder consists of a multi-resolution encoder-decoder pair. The encoder receives a multi-resolution image pyramid as input. It patchifies the pyramid's images using a fixed kernel size, yielding fewer tokens for coarser levels, then feeds the tokens through a transformer. During training, we zero out all but one randomly chosen level. The decoder, also a transformer, must reconstruct the entire resolution cascade based on the remaining tokens. The highest-resolution reconstruction is supervised using MSE and LPIPS, while the others are supervised only using MSE. We show three levels and a small number of tokens here for clarity; in practice, we use more.",
+ "caption_source": "latex",
+ "abstract": "Video generative models have become increasingly powerful, but long-range consistency remains challenging to achieve because even a few dozen frames require impractically long transformer sequence lengths. We show that this issue can be mitigated by generating video using coarse-to-fine rollout within a multi-scale token space. Our approach is simple: first, we pre-train an autoencoder that compresses each frame into a hierarchy of tokens, with levels ranging from the typical latent resolution to only a handful of tokens per frame. The coarsest levels capture the most consequential information, such as scene layout and semantics, while finer levels add high-frequency appearance and texture. Then, we train a video diffusion model to generate these tokens using coarse-to-fine rollout. By carefully controlling the level of detail at which frames are generated and used as context during each rollout step, we are able to preserve long-range consistency in geometry and object permanence while spending less compute on the long-range consistency of less perceptually relevant details. We validate this approach using a custom dataset of long Minecraft videos, where it produces substantially more consistent rollouts compared to existing baselines.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=86Z2vQcbuD",
+  "arxiv": "https://arxiv.org/abs/2606.09056",
+  "pdf": "https://arxiv.org/pdf/2606.09056",
+  "proceedings": null,
+  "virtual": "https://neurips.cc/virtual/2026/poster/155135",
+  "code": "https://davidcharatan.com/millivid/"
+ },
+ "license": "http://creativecommons.org/licenses/by/4.0/",
+ "img": "cc-by",
+ "image_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/images/neurips26-1144.png",
+ "thumb_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/thumbs/neurips26-1144.webp",
+ "figure_page": 2,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.93
+}

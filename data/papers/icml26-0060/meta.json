@@ -1,0 +1,49 @@
+{
+ "id": "icml26-0060",
+ "title": "Amortized Maximum Inner Product Search with Learned Support Functions",
+ "authors": [
+  "Theo X. Olausson",
+  "Joao Monteiro",
+  "Michal Klein",
+  "Marco Cuturi"
+ ],
+ "venue": "ICML 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": null,
+ "role": "prior-vs-ours",
+ "role2": "concept",
+ "claim": "Centroid-based routing picks the wrong partition for outlier keys; learned support functions and predicted keys recover the true best match.",
+ "layout": "3 panels, left-to-right, vertical dividers, shared query marker x",
+ "tags": [
+  "maximum-inner-product-search",
+  "learned-routing",
+  "clustering",
+  "amortization",
+  "geometric-intuition"
+ ],
+ "style": [
+  "minimal",
+  "colorful"
+ ],
+ "description": "Three side-by-side 2-D toy panels separated by thin vertical lines, each with a red square query x at the top right. Left: three colored ellipses (yellow C1, blue C2, cyan C3) hold dots and black pentagon centroids. A dashed arrow from x points to the nearest centroid cluster C1. The true best key y*(x), a red-ringed outlier, sits at the top of the stretched cyan cluster C3, so routing is wrong. Middle: each cluster appears as nested translucent polygon contours labeled f1, f2, f3, which represent support functions. A dashed arrow from x points into f3, the correct cluster. Right: gray dots with no clusters. A red arrow from x ends at a checkered red square, the prediction ŷ(x), which lies next to the red circle of the true key. The eye goes first to the red x in each panel.",
+ "caption": "Two complementary uses of amortized MIPS. (left) the default coarse step in inverted-file indices scores the query $x$ against each cluster centroid $c_i$ to decide the highest-scoring cell. Here the nearest centroid would be routed to the top-left cluster, but the true top key is an outlier near the top of the vertically-stretched rightmost cluster, so centroid routing picks the wrong cell. (middle) \\SupportNet{} learns one support function $f_i$ per cluster. Each support function is nonlinear, and quantifies, for any point $x$, the value of the highest dot-product between $x$ and any of the points within the cluster, correctly selecting the cluster with the best attainable match even when its centroid is less aligned with $x$: $f_3(x)>f_1(x)$ despite $x^Tc_1>x^Tc_3$. (right) \\KeyNet{} is trained to predict a vector $\\hat{y}(x)$ that is as close as possible to the true top-1 key $y^\\star(x)$, and can be used as a drop-in replacement for $x$ to any off-the-shelf index approach.",
+ "caption_source": "latex",
+ "abstract": "Maximum inner product search (MIPS) is a crucial subroutine in machine learning, requiring the identification of a vector taken within a database (the keys) that best aligns with a given query. We propose amortized MIPS: a regression-based approach that trains neural networks to directly predict MIPS solutions, amortizing the cost of repeatedly solving MIPS for queries drawn from a known distribution over a fixed key database. Our key insight is that the MIPS value function is the \\emph{support} function of the set of keys, a well-studied convex function whose gradient yields the optimal key. This motivates two complementary amortized models: SupportNet, an input-convex neural network trained to regress the support function, and KeyNet, a vector-valued network that directly regresses the optimal key. SupportNet can serve as a cluster router, steering queries toward relevant database partitions, while KeyNet can be used as a drop-in replacement for the original query, fed directly to off-the-shelf indexing pipelines. Our experiments on the BEIR benchmark show that, for document embeddings, learned \\SupportNet{}s and \\KeyNet{}s significantly improve IVF match rates when accounting for compute effort, whether measured in FLOPs, number of probes, or wall-clock time. Our code is available at: https://github.com/apple/ml-amips.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=0TRMWCwKRo",
+  "arxiv": "https://arxiv.org/abs/2603.08001",
+  "pdf": "https://raw.githubusercontent.com/mlresearch/v306/main/assets/olausson26a/olausson26a.pdf",
+  "proceedings": "https://proceedings.mlr.press/v306/olausson26a.html",
+  "virtual": "https://icml.cc/virtual/2026/poster/66766",
+  "code": null
+ },
+ "license": "http://creativecommons.org/licenses/by-nc-nd/4.0/",
+ "img": "none",
+ "image_url": null,
+ "thumb_url": null,
+ "figure_page": 1,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.6
+}

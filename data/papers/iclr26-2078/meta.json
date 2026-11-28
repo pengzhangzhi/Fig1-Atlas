@@ -1,0 +1,49 @@
+{
+ "id": "iclr26-2078",
+ "title": "ES-dLLM: Efficient Inference for Diffusion Large Language Models by Early-Skipping",
+ "authors": [
+  "Zijian Zhu",
+  "Fei Ren",
+  "Zhanhong Tan",
+  "Kaisheng Ma"
+ ],
+ "venue": "ICLR 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "Deep Learning->Generative Models and Autoencoders",
+ "role": "analysis-finding",
+ "role2": null,
+ "claim": "Token-level output confidence changes very little between successive iterations, so most computation per step is redundant and can be skipped.",
+ "layout": "3 panels: heatmap and log histogram on top, wide bar chart below",
+ "tags": [
+  "diffusion-llm",
+  "inference-acceleration",
+  "redundancy",
+  "empirical-analysis",
+  "sparsity"
+ ],
+ "style": [
+  "plot",
+  "photo/real data"
+ ],
+ "description": "A three-panel empirical analysis figure about confidence variation in a diffusion language model. Panel (a), top left, is a purple-dominated heatmap of per-token confidence difference. Position runs along x (0–255) and iteration along y (1–251). A colorbar runs from 0 to 1. Only a faint diagonal band of lighter streaks appears, and almost everything is near zero. Panel (b), top right, is a log-scale histogram of confidence differences. Frequency is about 0.90 in the first bin and falls by orders of magnitude toward 1.0. Panel (c), across the bottom, is a bar chart of the proportion of tokens whose variation exceeds 0.05 at each iteration. It starts near 0.24 and decays noisily to zero by iteration 251. All plots use blue and viridis colors. Captions (a)–(c) sit below each panel.",
+ "caption": "Confidence variation statistics using LLaDA-8B-Instruct. (a) uses a sample from the BBH dataset, while (b) and (c) present results using 100 samples from multiple datasets.",
+ "caption_source": "latex",
+ "abstract": "Diffusion large language models (dLLMs) are emerging as a promising alternative to autoregressive models (ARMs) due to their ability to capture bidirectional context and the potential for parallel generation. Despite the advantages, dLLM inference remains computationally expensive as the full input context is processed at every iteration. In this work, we analyze the generation dynamics of dLLMs and find that intermediate representations, including key, value, and hidden states, change only subtly across successive iterations. Leveraging this insight, we propose \\textbf{ES-dLLM}, a training-free inference acceleration framework for dLLM that reduces computation by skipping tokens in early layers based on the estimated importance. Token importance is computed with intermediate tensor variation and confidence scores of previous iterations. Experiments on LLaDA-8B and Dream-7B demonstrate that ES-dLLM achieves throughput of up to 226.57 and 308.51 tokens per second (TPS), respectively, on an NVIDIA H200 GPU, delivering 5.6$\\times$ to 16.8$\\times$ speedup over the vanilla implementation and up to 1.85$\\times$ over the state-of-the-art caching method, while preserving generation quality.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=O2WvMkJbws",
+  "arxiv": "https://arxiv.org/abs/2603.10088",
+  "pdf": "https://proceedings.iclr.cc/paper_files/paper/2026/file/6fc63067ef32cfda806afbd8328ab27e-Paper-Conference.pdf",
+  "proceedings": "https://proceedings.iclr.cc/paper_files/paper/2026/hash/6fc63067ef32cfda806afbd8328ab27e-Abstract-Conference.html",
+  "virtual": "https://iclr.cc/virtual/2026/poster/10009817",
+  "code": "https://github.com/zhuzj19/ES-dLLM"
+ },
+ "license": "http://creativecommons.org/licenses/by/4.0/",
+ "img": "cc-by",
+ "image_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/images/iclr26-2078.png",
+ "thumb_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/thumbs/iclr26-2078.webp",
+ "figure_page": 3,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.9
+}

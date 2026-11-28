@@ -1,0 +1,50 @@
+{
+ "id": "icml26-2682",
+ "title": "Who can we trust? LLM-as-a-jury for Comparative Assessment",
+ "authors": [
+  "Mengjie Qian",
+  "Guangzhi Sun",
+  "Mark Gales",
+  "Kate Knill"
+ ],
+ "venue": "ICML 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "Deep Learning->Large Language Models",
+ "role": "pipeline",
+ "role2": "prior-vs-ours",
+ "claim": "Aggregating multiple judges' pairwise probabilities with reliability-aware parameters yields both a ranking and per-judge reliability, unlike standard equal-weight aggregation.",
+ "layout": "Top-down flow, then two side-by-side branches; math formulas inside boxes",
+ "tags": [
+  "llm-as-judge",
+  "pairwise-comparison",
+  "bradley-terry",
+  "judge-reliability",
+  "unsupervised-aggregation"
+ ],
+ "style": [
+  "minimal",
+  "math-heavy",
+  "text-heavy"
+ ],
+ "description": "A top-down flowchart. A grey box at the top holds the pairwise evaluation prompt (article, candidate i vs j, aspect). Arrows fan out to a blue rounded 'Jury' container holding boxes for LLM 1, LLM 2, ..., LLM K. Each LLM feeds an arrow into a green-outlined box listing its probabilities p^1(i>j), p^2(i>j), ..., p^k(i>j). From there, two arrows split into two large green rounded panels. The left panel shows Hard/Soft Bradley-Terry with p(i>j)=σ(s_i−s_j), learning {s_i}, and an orange output box listing only the global ranking. The right panel shows Bradley-Terry with Judge Discriminators with p^k(i>j)=σ((s_i−s_j)/σ_k), learning {s_i} and {σ_k} jointly without supervision. Its orange output box lists the global ranking and judge reliability scores. The eye starts at the top prompt, then moves down to the two contrasting bottom panels.",
+ "caption": "Hard/Soft Bradley-Terry and BT-$\\sigma$ in the LLM-as-a-jury setting. Hard BT uses binary comparisons ($p(i\\succ j) \\in \\{0,1\\}$), while soft BT uses probabilistic preferences. BT-$\\sigma$ extends soft BT with judge-specific discriminators $\\sigma_{k}$ to model judge reliability.",
+ "caption_source": "latex",
+ "abstract": "Large language models (LLMs) are increasingly applied as automatic evaluators for natural language generation assessment often using pairwise comparative judgements. Existing approaches typically rely on single judges or aggregate multiple judges assuming equal reliability. In practice, LLM judges vary substantially in performance across tasks and evaluation aspects, and their judgment probabilities may be biased and inconsistent. Furthermore, human-labelled supervision for judge calibration may be unavailable. We first empirically demonstrate that inconsistencies in LLM comparison probabilities exist and show that it limits the effectiveness of direct probability-based ranking. To address this, we study the LLM-asa-jury setting and propose BT-sigma, a judge-aware extension of the Bradley-Terry model that introduces a discriminator parameter for each judge to jointly infer item rankings and judge reliability from pairwise comparisons alone. Experiments on benchmark NLG evaluation datasets show that BT-sigma consistently outperforms averaging-based aggregation methods, and that the learned discriminators strongly correlate with independent measures of the cycle consistency of LLM judgments. Further analysis reveals that BT-sigma can be interpreted as an unsupervised calibration mechanism that improves aggregation by modelling judge reliability.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=PmAKKeZj7O",
+  "arxiv": "https://arxiv.org/abs/2602.16610",
+  "pdf": "https://raw.githubusercontent.com/mlresearch/v306/main/assets/qian26i/qian26i.pdf",
+  "proceedings": "https://proceedings.mlr.press/v306/qian26i.html",
+  "virtual": "https://icml.cc/virtual/2026/poster/64228",
+  "code": null
+ },
+ "license": "http://arxiv.org/licenses/nonexclusive-distrib/1.0/",
+ "img": "none",
+ "image_url": null,
+ "thumb_url": null,
+ "figure_page": 0,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.8
+}

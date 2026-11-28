@@ -1,0 +1,50 @@
+{
+ "id": "icml26-1732",
+ "title": "DFSAttn: Dynamic Fine-grained Sparse Attention for Efficient Video Generation",
+ "authors": [
+  "Jie Hu",
+  "Zixiang Gao",
+  "Yutong He",
+  "Kun Yuan"
+ ],
+ "venue": "ICML 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "Deep Learning->Attention Mechanisms",
+ "role": "pipeline",
+ "role2": "concept",
+ "claim": "Reordering tokens along a space-filling curve lets coarse block-sparse masks, cached across steps, yield fine-grained sparsity at low cost.",
+ "layout": "3 panels: large left pipeline, bottom timeline strip, right geometric inset",
+ "tags": [
+  "sparse-attention",
+  "token-reordering",
+  "training-free",
+  "mask-caching",
+  "efficiency"
+ ],
+ "style": [
+  "colorful",
+  "icon-heavy",
+  "minimal"
+ ],
+ "description": "A three-panel figure. Panel a), on a light blue background, shows the main pipeline. Two color-gradient token strips are linked by a '3D Hilbert Curve Token Reordering' label. Arrows lead down to a grid of a sub-block-wise attention map, with Query on the vertical axis and Key on the horizontal axis. Orange cells mark important blocks. An 'Aggregation' arrow leads to a small block-wise importance grid, and 'Top-K Block Selection' picks the orange blocks. A block sparse mask then becomes a strip of 'skip' and 'do' cells feeding Sparse Flash Attention. Panel b), on a cream background at the bottom, is a diffusion timestep timeline. It shows Step i, Step i+1 and Step i+Δ, with cache, reuse and update mask labels. Panel c), at the right, shows a gradient-colored 3D cube labeled Frame, Width and Height. Below it is a grid with a scattered orange pattern labeled fine-grained sparsity of original space. Orange highlights guide the eye through the figure.",
+ "caption": "Overview of DFSAttn: a) Video tokens are reordered using a 3D Hilbert curve, and sub-block attention scores are aggregated to estimate block-wise importance. The resulting masks are applied via sparse Flash Attention, while cross-attention remains dense to preserve text–video alignment. b) Sparse masks are cached and reused across diffusion timesteps. c) Structured block sparsity in the reordered sequence induces fine-grained sparsity of original spatiotemporal space.",
+ "caption_source": "latex",
+ "abstract": "Diffusion transformers have achieved remarkable success in high-quality video generation, yet their reliance on spatiotemporal 3D full attention incurs prohibitive computational cost due to the quadratic complexity of attention. Block sparse attention is a common approach to mitigate this by focusing computation on important regions. However, attention maps in DiTs exhibit inherently dynamic and fine-grained sparsity, which causes existing block sparse attention methods to degrade significantly in quality, especially at high sparsity ratios. In this paper, we revisit block sparse attention and derive a theoretical lower bound on attention recall to characterize the key factors governing its effectiveness. Guided by these insights, we propose DFSAttn, a training-free sparse attention framework that enables dynamic, fine-grained sparsification efficiently. DFSAttn incorporates three core designs: Hilbert curve-based token reordering to achieve fine-grained sparsity while preserving efficient GPU execution, hierarchical block scoring for accurate block importance estimation, and sparse mask caching with adaptive ratios to balance accuracy and efficiency. Experimental results demonstrate that DFSAttn consistently outperforms prior methods under high sparsity, achieving up to 2.1$\\times$ end-to-end speedup while maintaining high generation quality. Our code is open-sourced and available at https://github.com/jessica-hujie/DFSAttn.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=GO0G6bo9UO",
+  "arxiv": "https://arxiv.org/abs/2605.23445",
+  "pdf": "https://raw.githubusercontent.com/mlresearch/v306/main/assets/hu26p/hu26p.pdf",
+  "proceedings": "https://proceedings.mlr.press/v306/hu26p.html",
+  "virtual": "https://icml.cc/virtual/2026/poster/65142",
+  "code": null
+ },
+ "license": "http://creativecommons.org/licenses/by/4.0/",
+ "img": "cc-by",
+ "image_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/images/icml26-1732.png",
+ "thumb_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/thumbs/icml26-1732.webp",
+ "figure_page": 1,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.9
+}

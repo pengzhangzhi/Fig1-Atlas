@@ -1,0 +1,53 @@
+{
+ "id": "neurips26-0325",
+ "title": "CoreQ: Mismatch-Corrected Successive Rounding for LLM Quantization",
+ "authors": [
+  "Seohyeon Cha",
+  "Huancheng Chen",
+  "Dongjun Kim",
+  "Haoran Zhang",
+  "Kevin Chan",
+  "Gustavo De Veciana",
+  "Haris Vikalo"
+ ],
+ "venue": "NeurIPS 2026",
+ "tier": "spotlight",
+ "track": "main",
+ "topic": "Deep Learning->Algorithms",
+ "role": "pipeline",
+ "role2": "concept",
+ "claim": "Sequential quantization causes activation mismatch; an adaptive, closed-form correction coefficient plus greedy rounding fixes it without tuning.",
+ "layout": "3 colored dashed panels, left-to-right, math formulas plus geometric diagram and curve plot",
+ "tags": [
+  "quantization",
+  "post-training",
+  "mismatch-correction",
+  "closed-form",
+  "beam-search"
+ ],
+ "style": [
+  "math-heavy",
+  "colorful",
+  "plot"
+ ],
+ "description": "A three-panel figure with each panel in a differently colored dashed rounded box: blue, green, orange. Panel (a), Layer-wise Calibration, shows two vertical chains of layer blocks. The left chain is full-precision, W^{l-1}, W^l, W^{l+1}. The right chain is quantized, in red/orange, with a flame icon on Q^l. A dashed not-equal sign links the activations X_f and X_q, and the mismatch is defined as D = W(X_f − X_q). Panel (b), Mismatch Correction, has the objective and formula for X^(α) at the top. A gray box says α=1 overfits calibration and an arrow leads to a teal box with the closed-form α_corr. Below, a plot of calibration versus validation error against α sits next to a right-triangle vector diagram of the mismatch decomposition. Panel (c), Successive Rounding, shows a 3D box of beam states and a tree of colored blocks for column-wise beam search with K=2.",
+ "caption": "Overview of CoreQ. (a) Sequential layer-wise quantization creates the mismatch between the full-precision and partially quantized activations. (b) CoreQ computes $\\alpha_{\\mathrm{corr}}$ to scale the mismatch correction according to the component reproducible by changing the current layer's weights. (c) The resulting corrected target induces a triangular least-squares rounding problem, efficiently solved by CoreQ or $K$-CoreQ.",
+ "caption_source": "latex",
+ "abstract": "Post-training quantization (PTQ) enables efficient deployment of large language models by mapping pretrained weights to low-bit formats without retraining, typically using a small calibration set to minimize a layer-wise calibration objective. However, this sequential procedure induces a mismatch: errors from earlier quantized layers alter the inputs received by later layers, causing the activations to deviate from those of the full-precision model. Recent approaches introduce mismatch-aware calibration objectives to compensate for this effect, but leave open how much of the observed mismatch should shift each layer's calibration target. We show that fully applying the empirical mismatch correction can overfit finite calibration data, while using a fixed correction coefficient ignores variation in mismatch estimates across layers. To address these limitations, we propose CoreQ, a learning-free PTQ framework that uses a geometric decomposition of the mismatch to compute a closed-form, layer-adaptive correction coefficient. This coefficient controls how much of the observed mismatch enters each layer's calibration target, reducing overfitting to limited calibration data without coefficient tuning. CoreQ then applies efficient greedy successive rounding to the resulting triangular least-squares objective. Its bounded beam-search extension, K-CoreQ, trades modest additional compute for improved performance. Across multiple LLM families, scales, bit-widths, and quantization settings, CoreQ and K-CoreQ achieve lower perplexity and higher downstream accuracy than strong PTQ baselines. Code is available at GitHub.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=2OSsvaeOHi",
+  "arxiv": "https://arxiv.org/abs/2602.05902",
+  "pdf": "https://arxiv.org/pdf/2602.05902",
+  "proceedings": null,
+  "virtual": "https://neurips.cc/virtual/2026/poster/155856",
+  "code": "https://github.com/seohyeon-cha/CoreQ"
+ },
+ "license": "http://creativecommons.org/licenses/by-sa/4.0/",
+ "img": "cc-by-sa",
+ "image_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/images/neurips26-0325.png",
+ "thumb_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/thumbs/neurips26-0325.webp",
+ "figure_page": 2,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.7
+}

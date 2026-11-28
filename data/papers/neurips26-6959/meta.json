@@ -1,0 +1,48 @@
+{
+ "id": "neurips26-6959",
+ "title": "MemLeak: Diagnosing Information Leaks in Multimodal Agent Memory",
+ "authors": [
+  "Kuan Wang",
+  "Chao Zhang"
+ ],
+ "venue": "NeurIPS 2026",
+ "tier": "poster",
+ "track": "Evaluations_and_Datasets_Track",
+ "topic": null,
+ "role": "analysis-finding",
+ "role2": "problem-setup",
+ "claim": "Deleting a target fact leaves it recoverable through several retained channels, and one channel is invisible to audits that check only the other.",
+ "layout": "3 panels, left-to-right, probe arrows between panels, Venn diagram at the end",
+ "tags": [
+  "information-leakage",
+  "deletion",
+  "multimodal-memory",
+  "auditing",
+  "channel-overlap"
+ ],
+ "style": [
+  "colorful",
+  "photo/real data",
+  "text-heavy"
+ ],
+ "description": "Three rounded panels run left to right, linked by gray arrows. Panel A, \"Memory Before Deletion\", shows a red box with the target fact marked DELETED. Below it are a white box of retained text facts and a row of four retained photographs tied to other facts. Panel B, \"Two Leakage Channels\", has a blue text-channel box (retained texts → LLM → leaked fact, 18.3%, 55/300) and an orange image-channel box (retained images → VLM → leaked fact, 12.0%, 36/300). A gray line beneath lists the controls: blind 0.0%, negative control 0.3%, and semantic deletion 12%→2% in green. Panel C shows a blue and orange Venn diagram with a red overlap labelled \"Both\". A callout beneath it says 47% of image leaks are not text-recoverable. Blue is used for text, orange for images and red for the deleted fact. The eye goes first to the red DELETED box and then to the large percentages.",
+ "caption": "Multi-channel leakage after fact-level deletion. (A) A user deletes a fact; text and tagged images are removed, but correlated retained texts and other facts' images persist. (B) Both channels enable reconstruction: retained texts leak 18.3%, retained images leak 12.0% (blind baseline 0.0%, negative controls 0.3%; semantic deletion reduces images to 2.0%). (C) The channels partially overlap: 47% of image leaks are not text-recoverable, meaning images provide an additional leakage channel that text-only auditing cannot detect.",
+ "caption_source": "latex",
+ "abstract": "When a multimodal AI agent is asked to forget a fact, current memory systems usually delete the text entry and report success. We find that the fact can remain recoverable from retained user images, including images tagged to entirely different facts, because VLMs use implicit visual cues at inference time. We introduce the Information Provenance Graph (IPG), a taxonomy that classifies memory representations by deletion affordance. The IPG reveals that deletion fails through multiple channels. Our benchmark, MemLeak, measures this across a deletion cascade: direct probing of deletion-capable systems yields <1%, but retained correlated text enables 18.3% recovery, and retained images enable 12.0% recovery (0.0% blind baseline, 0.3% FPR) -- with 47% of image leaks not text-recoverable. Content-aware semantic deletion reduces the image residual to 2.0%. The residual appears across multiple VLMs, a production memory system, and real Unsplash-licensed photographs. Dual-annotator human validation (kappa = 0.88) confirms judge reliability.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=ltUE09h18x",
+  "arxiv": "https://arxiv.org/abs/2606.29788",
+  "pdf": "https://arxiv.org/pdf/2606.29788",
+  "proceedings": null,
+  "virtual": "https://neurips.cc/virtual/2026/poster/139088",
+  "code": null
+ },
+ "license": "http://creativecommons.org/licenses/by/4.0/",
+ "img": "cc-by",
+ "image_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/images/neurips26-6959.png",
+ "thumb_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/thumbs/neurips26-6959.webp",
+ "figure_page": 1,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.5
+}

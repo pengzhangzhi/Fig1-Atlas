@@ -1,0 +1,55 @@
+{
+ "id": "neurips26-5811",
+ "title": "Learning Where to Look: Observation Policy Optimization for Thinking with Images",
+ "authors": [
+  "Junfeng Wang",
+  "Jiawei Liu",
+  "Yongchao Xu",
+  "Tao Jiang",
+  "jiangbo Ai",
+  "Jin Zhang",
+  "Chong Wang",
+  "Qixing Zhang"
+ ],
+ "venue": "NeurIPS 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "Computer Vision->Vision Models & Multimodal",
+ "role": "analysis-finding",
+ "role2": "problem-setup",
+ "claim": "Most failures stem from wrong observation actions, and the tokens that decide where to look are far more uncertain than other tokens.",
+ "layout": "2 panels, left-to-right; stacked bar, example trace, entropy trace and violin plot",
+ "tags": [
+  "error-analysis",
+  "uncertainty",
+  "entropy",
+  "tool-use",
+  "motivation"
+ ],
+ "style": [
+  "plot",
+  "colorful",
+  "photo/real data",
+  "text-heavy"
+ ],
+ "description": "The figure has two panels. Panel (a), \"Failure analysis on V*\", opens with a horizontal stacked bar chart for Qwen3-VL-8B and DeepEyes-trained Qwen3-VL-8B. Peach \"observation error\" fills 74% and 79% of the bars, and grey \"reasoning error\" fills the rest. Below the chart is a question, \"What is the color of the cyclist's box?\". Under the question is a failure trajectory with colored tool-call boxes and a red X on the wrong answer. A street photo shows two wrong crops and a green ground-truth crop. Panel (b), \"Token Entropy Analysis\", has a top line/scatter trace of token entropy against token position. A red-shaded observation-event region holds high-entropy red dots, and a green answer region sits at the end. Below it, violin and box plots compare entropy for reasoning, bounding-box (red, highest) and answer tokens.",
+ "caption": "Motivation for observation-action optimization. (a) Error-type breakdown of incorrect V* trajectories for Qwen3-VL-8B and DeepEyes-trained Qwen3-VL-8B, together with an example observation-error trajectory. (b) Token-entropy analysis, where the top panel shows an event-aligned entropy trace over a generated response and the bottom panel compares entropy distributions of reasoning tokens, bounding-box tokens, and answer tokens.",
+ "caption_source": "latex",
+ "abstract": "Complex visual question answering often requires vision-language models to think with images, i.e., actively acquire local visual evidence by zooming into informative regions of high-resolution images. Our error analysis shows that many failures in this setting originate from incorrect observation actions, where the model fails to localize key regions or obtain crops that contain sufficient evidence for answering. We further observe that bounding-box tokens exhibit substantially higher generation entropy than ordinary language tokens, indicating high uncertainty when the model decides where to look. However, existing reinforcement learning methods based on final-answer rewards provide only trajectory-level feedback, making it difficult to assign precise credit to the observation actions. We propose Observation Policy Optimization (OPO), an RL algorithm for optimizing observation actions in tool-augmented thinking with images. OPO consists of two core modules. First, Uncertainty-Guided Observation Branching (UOB) treats each image zoom-in tool call as an observation event and selectively branches at high-uncertainty, low-redundancy events during rollout, enabling efficient exploration of alternative cropping decisions and their resulting visual evidence. Second, Evidence-Localized Advantage Attribution (ELAA) compares sibling branches using local evidence-sufficiency rewards and assigns credit only to the corresponding observation-action tokens. By decoupling observation-action optimization from trajectory-level outcome supervision, OPO improves visual evidence acquisition and further enhances visual reasoning performance. Experiments show that OPO consistently improves Qwen3-VL models across scales and achieves competitive performance against larger models and tool-augmented baselines. Code is publicly available.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=dutSx0FFvu",
+  "arxiv": "https://arxiv.org/abs/2611.04943",
+  "pdf": "https://arxiv.org/pdf/2611.04943",
+  "proceedings": null,
+  "virtual": "https://neurips.cc/virtual/2026/poster/150969",
+  "code": null
+ },
+ "license": "http://arxiv.org/licenses/nonexclusive-distrib/1.0/",
+ "img": "none",
+ "image_url": null,
+ "thumb_url": null,
+ "figure_page": 1,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.8
+}

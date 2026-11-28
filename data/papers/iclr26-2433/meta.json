@@ -1,0 +1,50 @@
+{
+ "id": "iclr26-2433",
+ "title": "Negative Pre-activations Differentiate Syntax",
+ "authors": [
+  "Linghao Kong",
+  "Angelina Ning",
+  "Micah Adler",
+  "Nir Shavit"
+ ],
+ "venue": "ICLR 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "Deep Learning->Generative Models and Autoencoders",
+ "role": "analysis-finding",
+ "role2": null,
+ "claim": "Smooth-activation models preserve multimodal structure in the negative pre-activation region, and a neuron maps similar inputs to distant outputs.",
+ "layout": "5 panels in one row, histograms then scatter, color-coded by model",
+ "tags": [
+  "activation-distribution",
+  "interpretability",
+  "neuron-level",
+  "smooth-activations",
+  "phenomenon"
+ ],
+ "style": [
+  "plot",
+  "colorful",
+  "minimal"
+ ],
+ "description": "A single row of five plots. Panels (a, b) are green histograms for an OPT ReLU model. (a) shows the pre-activation distribution: a sharp peak just below zero and a small positive bump. (b) shows the post-ReLU distribution, which is multimodal and positive. Panels (c, d) are blue histograms for a Pythia GELU model. (c) shows pre-activations with a dominant peak near zero and a multimodal negative tail. (d) shows the post-GELU values, which are skewed and cluster just below zero. A dashed vertical line marks zero in the histograms. Panel (e) is a blue scatter plot of normalized input distance against normalized output distance. Many points sit near zero output distance, and a distinct cluster lies at output distances of about 6 to 12 even for similar inputs. Color separates the two models, and the eye goes first to the histogram shapes.",
+ "caption": "Wasserstein neurons in ReLU vs non-ReLU LLMs. (a, b) In OPT-1.3B, a ReLU-based model, the dominant pre-activation mass resembles a somewhat Gaussian peak whose mode lies below zero, with an additional mildly multimodal positive tail. (c, d) In Pythia 1.4B, a GELU-based model, the dominant mass instead centers near zero, and the negative pre-activation region exhibits more pronounced multimodality, reflecting preservation of negative inputs. (e) The input output (IO) relationship of the Pythia Wasserstein neuron, showing that for pairs of inputs that are fairly similar, their outputs are still mapped far apart by the neuron. More details provided in Section [ref]. Neurons acquired from the up projection in the second MLP block of their respective models.",
+ "caption_source": "latex",
+ "abstract": "Modern large language models increasingly use smooth activation functions such as GELU or SiLU, allowing negative pre-activations to carry both signal and gradient. Nevertheless, many neuron-level interpretability analyses have historically focused on large positive activations, often implicitly treating the negative region as less informative, a carryover from the ReLU-era. We challenge this assumption and ask whether and how negative pre-activations are leveraged by models. We address this question by studying a sparse subpopulation of Wasserstein neurons whose output distributions deviate strongly from a Gaussian baseline and that functionally differentiate similar inputs. We show that this negative region plays an active role rather than reflecting a mere gradient optimization side effect. A minimal, sign-specific intervention that zeroes only the negative pre-activations of a small set of Wasserstein neurons substantially increases perplexity and sharply degrades grammatical performance on BLiMP and TSE, whereas both random and perplexity-matched ablations of many more non-Wasserstein neurons in their negative pre-activations leave grammatical performance largely intact. Conversely, on a suite of non-grammatical benchmarks, the perplexity-matched control ablation is more damaging than the Wasserstein neuron ablation, yielding a double dissociation between syntax and other capabilities. Part-of-speech analysis localizes the excess surprisal to syntactic scaffolding tokens, layer-specific interventions show that small local degradations accumulate across depth, and training-dynamics analysis reveals that the same sign-specific ablation becomes more harmful as Wasserstein neurons emerge and stabilize. Together, these results identify negative pre-activations in a sparse subpopulation of Wasserstein neurons as an actively used substrate for syntax in smooth-activation language models.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=RzcCrU0tXP",
+  "arxiv": "https://arxiv.org/abs/2509.24198",
+  "pdf": "https://proceedings.iclr.cc/paper_files/paper/2026/file/fab99089bdde0c9f91c0df81a9df03d6-Paper-Conference.pdf",
+  "proceedings": "https://proceedings.iclr.cc/paper_files/paper/2026/hash/fab99089bdde0c9f91c0df81a9df03d6-Abstract-Conference.html",
+  "virtual": "https://iclr.cc/virtual/2026/poster/10009448",
+  "code": "https://github.com/Shavit-Lab/Negative-Differentiation"
+ },
+ "license": "http://arxiv.org/licenses/nonexclusive-distrib/1.0/",
+ "img": "none",
+ "image_url": null,
+ "thumb_url": null,
+ "figure_page": 1,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.85
+}

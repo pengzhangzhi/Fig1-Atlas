@@ -1,0 +1,57 @@
+{
+ "id": "neurips26-7502",
+ "title": "Latent Refinement Decoding: Enhancing Diffusion Language Models by Refining Belief States",
+ "authors": [
+  "Qinglin Zhu",
+  "Yizhen Yao",
+  "Runcong Zhao",
+  "Yanzheng Xiang",
+  "Siya Qi",
+  "Amrutha Saseendran",
+  "Chen Jin",
+  "Philip A Teare",
+  "Bin Liang",
+  "Yulan He",
+  "Lin Gui"
+ ],
+ "venue": "NeurIPS 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": null,
+ "role": "prior-vs-ours",
+ "role2": "pipeline",
+ "claim": "Baseline decoding discards distributions and remasks uncertain tokens; ours keeps soft mixed beliefs, refines them, then commits progressively.",
+ "layout": "2 stacked panels, top-to-bottom, baseline vs ours, with a mixing formula inset",
+ "tags": [
+  "diffusion-language-models",
+  "iterative-refinement",
+  "parallel-decoding",
+  "soft-tokens",
+  "baseline-comparison"
+ ],
+ "style": [
+  "colorful",
+  "icon-heavy",
+  "math-heavy"
+ ],
+ "description": "The figure has two stacked panels separated by a dashed line. The top panel, on a light blue background, shows the baseline low-entropy denoising. Rows of token boxes (gray prompt tokens, crossed mask tokens, rainbow-gradient probability distributions) are annotated with numbered steps. Only the lowest-entropy token is kept and the others are remasked, repeating until no masks remain. The bottom panel, on a light green background, shows LRD in two rounded boxes. Phase 1, Latent Refinement, turns mask tokens into mixed tokens. A formula inset, α·top-p embedding + (1−α)·mask embedding, comes with a small bar chart of probabilities. Phase 2, the Predictive Feedback Loop, commits policy-selected tokens, keeps the others mixed, and ends with an early stop. Green circular arrows mark the loops. A legend runs across the top.",
+ "caption": "Comparison between the existing decoding strategy and the proposed method. Different colours represent distinct tokens, while gradient colours indicate predicted token representations. Top: In the existing strategy, all [MASK] tokens share the same embedding and are repeatedly remasked if not selected. Bottom: In LRD, Phase 1 refines each [MASK] embedding, and Phase 2 progressively commits confident tokens while keeping uncertain ones soft for context-aware decoding.",
+ "caption_source": "latex",
+ "abstract": "Autoregressive (AR) models remain the dominant paradigm for natural language generation, but their strictly sequential decoding process leads to high inference latency. Recent diffusion-inspired language models, such as LLaDA and Dream, alleviate this issue through parallel generation, yet they still face two key limitations: information loss, since predictive distributions over non-finalised tokens are discarded at each step, and unstable commitment dynamics, where local token decisions are not sufficiently coordinated at the global level. We propose Latent Refinement Decoding (LRD), a two-stage decoding framework consisting of Latent Refinement and a Predictive Feedback Loop. In the first stage, LRD keeps masked positions as distributional mixtures of predicted tokens and the mask embedding, enabling the model to form more globally consistent beliefs before committing tokens. In the second stage, LRD progressively finalises confident tokens while preserving uncertain ones for further iterative refinement, with KL-divergence dynamics serving as a stable criterion for convergence and early stopping. Experiments show that LRD improves performance on both coding tasks, including HumanEval by 6.3 and MBPP by 2.6, and reasoning tasks, including GSM8K by 2.9 and MATH500 by 3.8, while achieving up to 10.6x overall speedup. Moreover, LRD is compatible with single-token decoding, multi-token threshold commitment, and system-level accelerators; when combined with Fast-dLLM, it reaches up to 18.4x speedup over vanilla decoding while further improving accuracy.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=poXCPd4Q9D",
+  "arxiv": "https://arxiv.org/abs/2510.11052",
+  "pdf": "https://arxiv.org/pdf/2510.11052",
+  "proceedings": null,
+  "virtual": "https://neurips.cc/virtual/2026/poster/149482",
+  "code": null
+ },
+ "license": "http://creativecommons.org/licenses/by/4.0/",
+ "img": "cc-by",
+ "image_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/images/neurips26-7502.png",
+ "thumb_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/thumbs/neurips26-7502.webp",
+ "figure_page": 1,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.85
+}

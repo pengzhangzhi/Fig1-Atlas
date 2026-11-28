@@ -1,0 +1,50 @@
+{
+ "id": "iclr26-5012",
+ "title": "Beyond Grid-Locked Voxels: Neural Response Functions for Continuous Brain Encoding",
+ "authors": [
+  "Haomiao Chen",
+  "Keith Jamison",
+  "Mert Sabuncu",
+  "Amy Kuceyeski"
+ ],
+ "venue": "ICLR 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "Applications->Neuroscience, Cognitive Science",
+ "role": "pipeline",
+ "role2": "prior-vs-ours",
+ "claim": "Modeling responses as a continuous function of image features and spatial coordinates enables per-subject encoding and data-efficient transfer to new subjects.",
+ "layout": "2 stacked panels, left-to-right flow, color-coded blue (individual) vs orange (adaptation)",
+ "tags": [
+  "implicit-function",
+  "coordinate-based",
+  "transfer-learning",
+  "fine-tuning",
+  "ensembling"
+ ],
+ "style": [
+  "colorful",
+  "icon-heavy",
+  "photo/real data"
+ ],
+ "description": "Two stacked rounded panels. The top blue panel, 'Individual Subject NRF', shows a head icon with a voxel (x,y,z) coordinate passing through positional encoding. Below it, an image (soccer scene) goes through a frozen green image encoder into an embedding stack (196*768, 196*768, 1*512). Both inputs feed a 'Subject i NRF model', drawn as a trainable MLP in a blue box. It outputs a brain surface map with the predicted voxel response highlighted. A legend in the top right explains training and novel subject icons and frozen and trainable symbols. The bottom orange panel, 'Novel Subject Adaptation', takes new-subject data (coordinate and image) into several pretrained subject NRF models (blue). A 'Finetune' arrow leads to finetuned orange models. These feed a dashed yellow 'Voxelwise Ensemble model' that applies weights w_k,n plus a bias β_k and produces the predicted new-subject voxel response on a brain map. Color coding separates the two stages.",
+ "caption": "Overview of NRF. Top: Individual-subject NRF. Brain responses are modeled as a continuous function of both image features and anatomical coordinates in MNI space. NRF maps image features to voxel responses while capturing correlations between neighboring voxels through shared anatomical coordinates. Bottom: New-subject adaptation. For a novel subject, we start from a pretrained individual-subject NRF (trained on the other subjects) and then fine-tune this model using only a small amount of data from the new subject. The figure shows both the pretrained and the fine-tuned NRFs to make explicit how the base model is adapted during transfer. Predictions from multiple fine-tuned base models are then combined via voxel-wise ensembling to better capture subject-specific variability. NRF thus moves beyond grid-locked voxel models, providing a continuous, anatomically grounded representation that supports both data-efficient single-subject encoding and flexible cross-subject transfer.",
+ "caption_source": "latex",
+ "abstract": "Neural encoding models aim to predict fMRI-measured brain responses to natural images. fMRI data is acquired as a 3D volume of voxels, where each voxel has a defined spatial location in the brain. However, conventional encoding models often flatten this volume into a 1D vector and treat voxel responses as independent outputs. This removes spatial context, discards anatomical information, and ties each model to a subject-specific voxel grid. We introduce the Neural Response Function (NRF), a framework that models fMRI activity as a continuous function over anatomical space rather than a flat vector of voxels. NRF represents brain activity as a continuous implicit function: given an image and a spatial coordinate (x, y, z) in standardized MNI space, the model predicts the response at that location. This formulation decouples predictions from the training grid, supports querying at arbitrary spatial resolutions, and enables resolution-agnostic analyses. By grounding the model in anatomical space, NRF exploits two key properties of brain responses: (1) local smoothness -- neighboring voxels exhibit similar response patterns; modeling responses continuously captures these correlations and improves data efficiency, and (2) cross-subject alignment -- MNI coordinates unify data across individuals, allowing a model pretrained on one subject to be fine-tuned on new subjects. In experiments, NRF outperformed baseline models in both intrasubject encoding and cross-subject adaptation, achieving high performance while reducing the data size needed by orders of magnitude. To our knowledge, NRF is the first anatomically aware encoding model to move beyond flattened voxels, learning a continuous mapping from images to brain responses in 3D space.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=wBKXuuLZbc",
+  "arxiv": "https://arxiv.org/abs/2510.07342",
+  "pdf": "https://proceedings.iclr.cc/paper_files/paper/2026/file/e624a43624008a903f1e17c5cbf02ed8-Paper-Conference.pdf",
+  "proceedings": "https://proceedings.iclr.cc/paper_files/paper/2026/hash/e624a43624008a903f1e17c5cbf02ed8-Abstract-Conference.html",
+  "virtual": "https://iclr.cc/virtual/2026/poster/10006753",
+  "code": "https://github.com/haomiao8/NRF"
+ },
+ "license": "http://creativecommons.org/licenses/by/4.0/",
+ "img": "cc-by",
+ "image_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/images/iclr26-5012.png",
+ "thumb_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/thumbs/iclr26-5012.webp",
+ "figure_page": 1,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.85
+}

@@ -1,0 +1,51 @@
+{
+ "id": "neurips26-3132",
+ "title": "ShadowFPT: Backdooring Federated Prompt Tuning via Shadow Triggers",
+ "authors": [
+  "Kun Zhai",
+  "Teng Li",
+  "Yunhao Feng",
+  "Xingjun Ma"
+ ],
+ "venue": "NeurIPS 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "Social Aspects->Trustworthy Machine Learning",
+ "role": "pipeline",
+ "role2": "concept",
+ "claim": "A backdoor is learned in the frozen representation space via a trigger, so malicious updates look benign in parameter space.",
+ "layout": "3 panels, left-to-right; stage panels then a scatter-plot intuition panel",
+ "tags": [
+  "backdoor-attack",
+  "federated-learning",
+  "prompt-tuning",
+  "stealthiness",
+  "trigger-optimization"
+ ],
+ "style": [
+  "colorful",
+  "icon-heavy",
+  "photo/real data",
+  "text-heavy"
+ ],
+ "description": "Three side-by-side colored panels. (A), in yellow, shows Shadow Trigger learning. Clean and triggered photos, for example an otter and an elephant with a small red-dashed patch, and target-class airplane photos feed a shared Image Encoder. A text encoder produces a target-text anchor from 'A photo of [airplane]'. Two small scatter sketches show triggered features moving toward target features. An 'Optimize Shadow Trigger δ_shadow' box sits at the bottom. (B), in green, shows a server holding the global prompt and a malicious client. The client has two stages, trigger adaptation and trigger injection, each with text and image encoders and a loss box. Only the prompt is uploaded. (C), in blue, has two scatter plots. One is the frozen representation space, where triggered samples move into the target cluster. The other is the prompt space, where the malicious prompt sits inside the benign updates. A tagline reads 'Hidden in frozen representations, invisible in prompt space'.",
+ "caption": "Overview of ShadowFPT. (A) The adversary pretrains a Shadow Trigger $\\delta_{\\mathrm{shadow}}$ against the frozen CLIP backbone through target-text and layer-wise visual alignment. (B) During FPT, the malicious client adapts the trigger under the current global prompt $P^t$ and optimizes its local prompt on clean and triggered samples, while uploading only prompt parameters. (C) By shifting the attack effect to trigger-induced representation steering, ShadowFPT achieves targeted misclassification with benign-like prompt updates.",
+ "caption_source": "latex",
+ "abstract": "Federated Prompt Tuning (FPT) adapts large vision--language models by freezing the pretrained backbone and optimizing only lightweight prompt parameters across clients. Although this design improves communication and parameter efficiency, it creates an overlooked security risk. Since the backbone is shared and frozen, a malicious client can induce backdoor behavior through the representation space while keeping its uploaded prompt updates close to benign ones. We propose \\textbf{ShadowFPT}, a targeted backdoor attack that exploits this frozen-backbone attack surface. ShadowFPT first pretrains a learnable \\emph{Shadow Trigger} against the frozen CLIP visual encoder, using either auxiliary public data or the malicious client's local data, so that triggered inputs are steered toward the target class in representation space. During federated prompt tuning, the malicious client adapts the trigger under the current global prompt and then optimizes its local prompt on both clean and triggered samples. Only prompt parameters are uploaded to the server, while the trigger and frozen encoders remain local. By shifting most of the attack burden from prompt updates to trigger-induced representation steering, ShadowFPT achieves targeted misclassification while preserving prompt-space stealthiness. Across multiple datasets, aggregation rules, and non-IID federated partitions, ShadowFPT increases the attack success rate from 19.81\\% to 90.36\\% in our main setting, while maintaining clean accuracy. It remains effective across textual, visual, and joint vision--language prompt tuning. These results identify frozen backbones as stealthy and underexplored backdoor surfaces in federated prompt tuning, suggesting that defenses based only on prompt-update anomaly detection are insufficient.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=Lshe1pbyOy",
+  "arxiv": "https://arxiv.org/abs/2610.22871",
+  "pdf": "https://arxiv.org/pdf/2610.22871",
+  "proceedings": null,
+  "virtual": "https://neurips.cc/virtual/2026/poster/153368",
+  "code": null
+ },
+ "license": "http://creativecommons.org/licenses/by/4.0/",
+ "img": "cc-by",
+ "image_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/images/neurips26-3132.png",
+ "thumb_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/thumbs/neurips26-3132.webp",
+ "figure_page": 4,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.8
+}

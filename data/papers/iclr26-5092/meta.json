@@ -1,0 +1,52 @@
+{
+ "id": "iclr26-5092",
+ "title": "Structure-Aware Graph Hypernetworks for Neural Program Synthesis",
+ "authors": [
+  "Wenhao Li",
+  "Yudong Xu",
+  "Elias Khalil",
+  "Scott Sanner"
+ ],
+ "venue": "ICLR 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "General Machine Learning->Transfer, Multitask and Meta-learning",
+ "role": "pipeline",
+ "role2": null,
+ "claim": "A hypernetwork turns the target architecture into a graph, runs structure-aware message passing with tied encoders and decoders, and emits the target network's weights.",
+ "layout": "5 labeled panels, left-to-right then down, bracket linking graph to Transformer",
+ "tags": [
+  "hypernetwork",
+  "graph-neural-network",
+  "message-passing",
+  "weight-generation",
+  "permutation-symmetry"
+ ],
+ "style": [
+  "icon-heavy",
+  "math-heavy",
+  "colorful"
+ ],
+ "description": "A multi-panel pipeline diagram. The top row has three dashed boxes labeled i, ii and iii. Panel i, Initialize, takes input p, branches it into three colored embedding vectors, each with an encoder f(·|φ_enc) and a plus-sign for added positional/sine encoding. Panel ii, Message Passing + Decode, shows purple and orange nodes joined by bidirectional edges, with message function f(·|φ_msg) and decoders f(·|φ_dec) emitting biases b and weights w. Panel iii shows the resulting two-layer target network with the b and w values. Below, panel iv is a large dense neural graph of the Transformer, with many node shapes, a legend, and a highlighted subgraph. A large gray arrow leads to panel v, a Transformer block stack (Embedding, Multi-head Self-Attention, Add, Feed-Forward, Unembedding, Softmax) with inputs a,b and output ŷ. The eye goes first to the dense graph, then to the Transformer.",
+ "caption": "Synthesizing a NeuroP. We use ADDMOD–p to illustrate the pipeline. Given p ≥1, the goal is to generate the weights of a one-layer Transformer (the Target Network) that computes y = (a + b) mod p for any integers a, b. A Meta-GNN is trained on pairs {((p, a, b), y)}. (i) At each step the meta-learner receives only the user intent U = {p}. (v) The Transformer to be produced is first converted into a neural graph (iv) with nodes (biases) and edges (weights). As the meta-network, the only learnable parameters φ live in the encoders fenc, message function fmsg, and decoders fdec, all tied within permutation-equivalent groups. (ii) The Meta-GNN runs k rounds of message passing parameterized by fmsg with permutation-invariant aggregation, producing node/edge embeddings; (iii) group-tied decoders fdec map these embeddings to scalar parameters that instantiate target network weights wk",
+ "caption_source": "pdf",
+ "abstract": "We study the neural program synthesis of $\\textit{parameterized}$ function families through the lens of meta-learning with hypernetworks. Given a user intent $U$, a meta-learner $M_{\\phi}$ produces a full weight set $\\hat{\\theta}=M_{\\phi}(U)$ for a target neural network with fixed architecture $S$, and the instantiated network $m_{S,\\hat{\\theta}}(X)\\to Y$ realizes the behavior intended for $U$. Classical hypernetworks typically $\\textit{ignore the target network’s structure}$ and emit a flat list of weights; as a consequence, they fail to account for $\\textit{neuron-permutation symmetry}$—many distinct parameterizations of $S$ implement the same function—so equivalent solutions are treated as different targets, fragmenting supervision and hurting out-of-distribution generalization. To address this, we propose $\\textit{Meta-GNN}$, a hypernetwork that constructs a $\\textit{neural graph}$ from the target architecture $S$ and applies $\\textbf{structure-aware}$ message passing with parameter-tied encoders and decoders. This design reduces the search space during learning by collapsing equivalent classes of target networks, without loss of expressivity. Empirically, across modular arithmetic ($\\textit{AddMod}$-$p$), array operations ($\\textit{SumFirst}$-$n$), and inverse-rule tasks from 1D-ARC, $\\textit{Meta-GNN}$ substantially improves learning and $\\textbf{out-of-distribution generalization}$ compared to classic hypernetworks and direct $(U,X)\\to Y$ baselines. Mechanistic analyses reveal $\\textit{what is learned}$: on $\\textit{AddMod}$-$p$ the synthesized Transformers recover the canonical clock representation and admit a compact closed-form map $U\\mapsto\\theta$. These results demonstrate that structure-aware Meta-GNNs enable reliable generalization to $\\textit{unseen program parameterizations}$, providing a critical advance for the nascent field of neural program synthesis.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=x7zOzUwtR7",
+  "arxiv": null,
+  "pdf": "https://proceedings.iclr.cc/paper_files/paper/2026/file/d1e2f808a51842eedaf6ef0099d716c6-Paper-Conference.pdf",
+  "proceedings": "https://proceedings.iclr.cc/paper_files/paper/2026/hash/d1e2f808a51842eedaf6ef0099d716c6-Abstract-Conference.html",
+  "virtual": "https://iclr.cc/virtual/2026/poster/10006668",
+  "code": null
+ },
+ "license": null,
+ "img": "none",
+ "image_url": null,
+ "thumb_url": null,
+ "figure_page": 1,
+ "qc_flags": [
+  "bad-crop"
+ ],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.93
+}

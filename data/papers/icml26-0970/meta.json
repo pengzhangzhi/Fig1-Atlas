@@ -1,0 +1,51 @@
+{
+ "id": "icml26-0970",
+ "title": "Statistically Calibrated Scaling for Token Merging in Transformers",
+ "authors": [
+  "Qing Zhou",
+  "Hongyuan Zhang",
+  "Tao Yang",
+  "Junyu Gao",
+  "Qi Wang"
+ ],
+ "venue": "ICML 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": null,
+ "role": "teaser-result",
+ "role2": "analysis-finding",
+ "claim": "Baseline merging corrections collapse at aggressive compression because of energy and angular distortion; our calibrated scaling fixes both and recovers accuracy.",
+ "layout": "3 line-plot panels in a row, shared x-axis, callout annotations",
+ "tags": [
+  "token-merging",
+  "efficiency",
+  "calibration",
+  "ablation-curves",
+  "failure-mode"
+ ],
+ "style": [
+  "plot",
+  "colorful",
+  "minimal"
+ ],
+ "description": "Three side-by-side line plots share the x-axis, retention ratio r, running from 1.00 down to 0.75. Left, titled 'Performance Collapse': Top-1 accuracy falls as compression increases. The green solid √r-Scaling (ours) line stays highest. The red dashed Proportional Attn line and the gray dotted Vanilla ToMe line drop faster. A green '+29% Acc' callout with an arrow marks the gap at r=0.75. Middle, 'Mechanism 1: Radial Drift': normalized energy. The red PA line rises slowly. A pale red dash-dot curve shows the theoretical 1/r drift. The green line stays flat or dips slightly. A 'Preventing Drift' callout points to it. Right, 'Mechanism 2: Angular Shift (Cosine)': cosine similarity. Green rises sharply, red declines, and the area between them is shaded green, labeled 'Restored Fidelity'. Green marks ours throughout, and the eye goes first to the left panel's callout.",
+ "caption": "Left: Our √r-scaling mitigates the sharp accuracy degradation of baselines (Vanilla/PA), recovering +29% accuracy at aggressive compression. Middle: Compared with the radial drift observed in PA, our method constrains energy inflation. Right: Our approach improves angular fidelity (higher cosine similarity), preserving feature semantics under heterogeneous merging.",
+ "caption_source": "pdf",
+ "abstract": "Token merging accelerates Transformer inference by clustering similar tokens to reduce sequence length (retention ratio $r$), but distorts attention outputs, inducing covariate shift in residual streams and performance collapse under high compression. Existing heuristics, such as proportional attention, mitigate mild compression effectively but degrade sharply at aggressive ratios due to unaddressed energy drift and biased attention distributions. We reframe token merging as a statistical reconstruction problem in high dimensions and introduce an asymptotic radial-angular decomposition of the reconstruction error, an analytical framework decoupling magnitude and distributional distortions. Minimizing this decomposed risk under minimal assumptions of finite second moments and variance stationarity yields closed-form optimal corrections governed by a single scaling factor $\\sqrt{r}$: scaling merged values and shrinking merged logits toward the cluster-size prior. This calibrates both energy balance and distributional fidelity. Extensive experiments on vision Transformers demonstrate superior accuracy and robustness across compression levels.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=9A6aXciRTI",
+  "arxiv": null,
+  "pdf": "https://raw.githubusercontent.com/mlresearch/v306/main/assets/zhou26bj/zhou26bj.pdf",
+  "proceedings": "https://proceedings.mlr.press/v306/zhou26bj.html",
+  "virtual": "https://icml.cc/virtual/2026/poster/65881",
+  "code": "https://github.com/mrazhou/sqrt_r"
+ },
+ "license": null,
+ "img": "none",
+ "image_url": null,
+ "thumb_url": null,
+ "figure_page": 0,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.6
+}

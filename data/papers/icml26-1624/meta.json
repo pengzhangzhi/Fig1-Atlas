@@ -1,0 +1,53 @@
+{
+ "id": "icml26-1624",
+ "title": "Regret Pre-training: Bridging Prior and Posterior Views for Enhanced Knowledge Grounding",
+ "authors": [
+  "Mingkuan Zhao",
+  "Xiayu Sun",
+  "Wentao Hu",
+  "Suquan Chen",
+  "Jiaxuan Li",
+  "Xiaoyan Zhu",
+  "Xin Lai",
+  "Jiayin Wang"
+ ],
+ "venue": "ICML 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "Deep Learning->Large Language Models",
+ "role": "concept",
+ "role2": "prior-vs-ours",
+ "claim": "Standard causal training is blind to future tokens; our variants expose the target's future context, locally or globally, as privileged information.",
+ "layout": "3 stacked rows of token boxes, left-to-right, dashed column highlighting target position",
+ "tags": [
+  "privileged-information",
+  "distillation",
+  "language-modeling",
+  "future-context",
+  "pre-training"
+ ],
+ "style": [
+  "minimal",
+  "colorful"
+ ],
+ "description": "Three horizontal rows of token boxes, each labeled on the left: Standard Training (\"Blind to future\"), Local Regret (\"Sees immediate future token\"), and Global Regret (\"Sees global context\"). Each row runs x1, x2, ..., xt, then a target slot at position t+1, then later positions up to xT. A dashed gray vertical rectangle marks the \"Predicting Target x_{t+1}\" column. Teal boxes are visible context. Pale, faint boxes with \"?\" are hidden context. In Local Regret the target box is yellow (visible target) and later boxes stay hidden. In Global Regret the target box is red (masked) and the later tokens x_{t+2} to x_T are visible. A legend box at the bottom explains the four colors. The eye goes first to the colored target column.",
+ "caption": "Dual-View Regret Distillation. The model processes each input under two attention configurations: a causal Student View and a future-aware Teacher View. The Regret Loss minimizes the KL divergence between the student distribution $P_S$ and the teacher distribution, where the teacher is conditioned on either local context ($P_{TL}$) or global context ($P_{TG}$).",
+ "caption_source": "latex",
+ "abstract": "Causal language models factorize sequence probabilities using only preceding context, leaving future information unexploited during training despite its availability in the training data. This paper introduces Regret Pre-training, a self-supervised framework grounded in the Learning Using Privileged Information (LUPI) paradigm. The framework employs a dual-view architecture in which a single model generates both a causal Student distribution and a future-conditioned Teacher distribution. The training objective augments standard language modeling with a regret loss that minimizes the KL divergence from teacher to student, transferring future-aware signals to the causal representations. We investigate two teacher configurations on the OLMoE-1B-7B architecture:LocalRegret, which extends attention by one future token, andGlobalRegret, which conditions on bidirectional context with the target position masked. Experiments on nine downstream tasks following 4 billion tokens of training demonstrate that both configurations consistently outperform the baseline. On average,GlobalRegret andLocalRegret achieve 33.9% and 32.2% accuracy respectively, surpassing the baseline's 30.2%. Most notably,GlobalRegret improves BoolQ performance by 18.1 percentage points (61.0% vs 42.9%). The framework introduces no additional parameters and requires only one extra inference-mode forward pass per training step.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=FNZs7SLEEI",
+  "arxiv": "https://arxiv.org/abs/2606.03080",
+  "pdf": "https://raw.githubusercontent.com/mlresearch/v306/main/assets/zhao26ar/zhao26ar.pdf",
+  "proceedings": "https://proceedings.mlr.press/v306/zhao26ar.html",
+  "virtual": "https://icml.cc/virtual/2026/poster/65246",
+  "code": null
+ },
+ "license": "http://arxiv.org/licenses/nonexclusive-distrib/1.0/",
+ "img": "none",
+ "image_url": null,
+ "thumb_url": null,
+ "figure_page": 2,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.5
+}

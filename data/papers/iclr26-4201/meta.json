@@ -1,0 +1,51 @@
+{
+ "id": "iclr26-4201",
+ "title": "Fine-tuning Quantized Neural Networks with Zeroth-order Optimization",
+ "authors": [
+  "Sifeng SHANG",
+  "JIAYI ZHOU",
+  "Chenyu Lin",
+  "Minxian Li",
+  "Kaiyang Zhou"
+ ],
+ "venue": "ICLR 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "Deep Learning->Algorithms",
+ "role": "teaser-result",
+ "role2": null,
+ "claim": "Our method slashes memory versus standard training baselines, by a consistent large factor across several model sizes.",
+ "layout": "single grouped bar chart, 3 model groups, 4 bars each, dotted ratio callouts",
+ "tags": [
+  "memory-efficiency",
+  "zeroth-order",
+  "quantization",
+  "fine-tuning",
+  "benchmark-comparison"
+ ],
+ "style": [
+  "plot",
+  "colorful",
+  "minimal"
+ ],
+ "description": "A single grouped bar chart titled 'Memory Profiling on SST2'. The y-axis shows VRAM in GB, from 0 to over 110. The x-axis has three model groups: OPT-6.7B, Llama-2-7B and Llama-3.1-8B. Each group has four bars in a legend at the bottom: fine-tuning with AdamW at 16-bit (bright yellow), fine-tuning with SGD at 16-bit (pale peach), MeZO at 16-bit (tan), and QZO at 4-bit (orange, the proposed method). Numeric values sit above each bar. The AdamW bars are tallest, at 87.6, 92.2 and 113.7 GB. The QZO bars are tiny, at 4.8, 5 and 6.2 GB. Dotted lines run from the top of each AdamW bar to the QZO bar, with '18.3x', '18.4x' and '18.3x' labels showing the reduction factor. The eye goes first to the tall yellow bars, then to the short orange ones.",
+ "caption": "Memory profiling on SST-2 [ref] with (per-device) batch size set to 1. Fine-tuning w/ AdamW is done with fully-sharded data parallel.",
+ "caption_source": "latex",
+ "abstract": "As the size of large language models grows exponentially, GPU memory has become a bottleneck for adapting these models to downstream tasks. In this paper, we aim to push the limits of memory-efficient training by minimizing memory usage on model weights, gradients, and optimizer states, within a unified framework. Our idea is to eliminate both gradients and optimizer states using zeroth-order optimization, which approximates gradients by perturbing weights during forward passes to identify gradient directions. To minimize memory usage on weights, we employ model quantization, e.g., converting from bfloat16 to int4. However, directly applying zeroth-order optimization to quantized weights is infeasible due to the precision gap between discrete weights and continuous gradients, which would otherwise require de-quantization and re-quantization. To overcome this challenge, we propose Quantized Zeroth-order Optimization (QZO), a simple yet effective approach that perturbs the continuous quantization scale for gradient estimation and uses a directional derivative clipping method to stabilize training. QZO is orthogonal to both scalar-based and codebook-based post-training quantization methods. Compared to full-parameter fine-tuning in 16 bits, QZO can reduce the total memory cost by more than 18$\\times$ for 4-bit LLMs, and enables fine-tuning Llama-2-13B within a single 24GB GPU.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=mGeeRFToaW",
+  "arxiv": "https://arxiv.org/abs/2505.13430",
+  "pdf": "https://proceedings.iclr.cc/paper_files/paper/2026/file/d17ef435b405a25715898c26dab3ed67-Paper-Conference.pdf",
+  "proceedings": "https://proceedings.iclr.cc/paper_files/paper/2026/hash/d17ef435b405a25715898c26dab3ed67-Abstract-Conference.html",
+  "virtual": "https://iclr.cc/virtual/2026/poster/10007599",
+  "code": null
+ },
+ "license": "http://arxiv.org/licenses/nonexclusive-distrib/1.0/",
+ "img": "none",
+ "image_url": null,
+ "thumb_url": null,
+ "figure_page": 1,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.9
+}

@@ -1,0 +1,47 @@
+{
+ "id": "neurips26-7646",
+ "title": "GeoSPRINT: Geometric Redundancy-Aware Step Pruning for Inference in Diffusion Trajectories",
+ "authors": [
+  "Arpita Joshi"
+ ],
+ "venue": "NeurIPS 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "Computer Vision->Image and Video Generation",
+ "role": "teaser-result",
+ "role2": "analysis-finding",
+ "claim": "Allocating steps by trajectory geometry beats uniform and higher-order schedules at matched budgets, with a diagnostic score tracking budget.",
+ "layout": "3 panels in a row, line plots with shared NFE x-axis, ours in blue",
+ "tags": [
+  "efficiency",
+  "step-scheduling",
+  "training-free",
+  "diffusion-sampling",
+  "benchmark-comparison"
+ ],
+ "style": [
+  "plot",
+  "minimal",
+  "colorful"
+ ],
+ "description": "Three side-by-side line plots sharing NFE on the x-axis. Panel (a), titled CIFAR-10: FID vs NFE, shows GeoSPRINT as a solid blue line with circles sitting below a dashed gray DDIM line with squares across 49 to 89 NFE. A thin dotted green DDIM-200 reference line runs near the bottom. Panel (b), the trajectory projection score vs NFE, is a single blue line on a log y-axis that falls steeply and almost linearly from about 1e-5 to 7e-7. Panel (c), Solver composability, adds a green DPM-Solver++ line with triangles to the blue GeoSPRINT and gray DDIM curves over NFE 10 to 90. All three curves drop sharply, then the blue one ends lowest. Blue marks the proposed method throughout, so the eye goes first to the blue-versus-gray gap in panel (a).",
+ "caption": "CIFAR-10 results. (a) FID vs.\\ NFE. GeoSPRINT consistently outperforms DDIM. Dashed lines: DDIM-200 baseline (12.65) and DDIM-50 reference (16.80). Error bands: $\\pm$1 std over 3 seeds. (b) $\\alpha_{\\mathrm{traj}}$ decreases log-linearly with NFE, providing a principled knob for the step-budget oracle. (c) First-order DDIM+GeoSPRINT outperforms second-order DPM-Solver++ at NFE${\\geq}30$ on CIFAR-10; where to step matters more than how to step.",
+ "caption_source": "latex",
+ "abstract": "Diffusion models achieve high sample quality but remain expensive at inference time because sampling requires many sequential neural function evaluations (NFEs). Existing acceleration methods either use fixed step-skipping schedules, adapt step sizes based on local numerical error, or require additional training. We introduce GeoSPRINT (Geometric Step Pruning for Inference in Trajectories), a training-free framework for constructing non-uniform sampling schedules from the geometry of denoising trajectories. GeoSPRINT detects geometrically redundant steps using a hyperplanarity test in latent space, implemented efficiently via QR factorization, and converts the resulting redundancy profile into a sampling schedule that allocates more steps to high-curvature regions of the trajectory. In addition, we introduce the trajectory projection score $Î±_{\\mathrm{traj}}$, a residual-variance metric that quantifies trajectory straightness and serves as a model-free diagnostic for rectified flow quality. Across CIFAR-10 ($32{\\times}32$), LSUN Church ($256{\\times}256$), and Stable Diffusion v1.5 ($512{\\times}512$ latent), GeoSPRINT consistently improves over uniform DDIM (Denoising Diffusion Implicit Models) schedules at matched NFE budgets. On CIFAR-10, GeoSPRINT improves FID (FrÃ©chet Inception Distance) by 0.7-1.1 over DDIM across 49-89 NFEs and surpasses DPM-Solver++ at NFE${\\geq}30$ despite using a first-order DDIM solver. On LSUN Church, it reduces FID from 1.48 to 1.26 at 52 steps, and on Stable Diffusion v1.5 it achieves up to 1.93 FID improvement over DDIM. These results show that trajectory geometry provides a useful global signal for allocating inference steps and that schedule quality can substantially improve diffusion sampling efficiency without retraining.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=qj6phkQ9Bx",
+  "arxiv": "https://arxiv.org/abs/2609.02160",
+  "pdf": "https://arxiv.org/pdf/2609.02160",
+  "proceedings": null,
+  "virtual": "https://neurips.cc/virtual/2026/poster/149350",
+  "code": "https://github.com/aj95b/neurips2026_geosprint"
+ },
+ "license": "http://creativecommons.org/licenses/by/4.0/",
+ "img": "cc-by",
+ "image_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/images/neurips26-7646.png",
+ "thumb_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/thumbs/neurips26-7646.webp",
+ "figure_page": 6,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.8
+}

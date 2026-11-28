@@ -1,0 +1,52 @@
+{
+ "id": "icml26-0154",
+ "title": "When Model Merging Breaks Routing: Training-Free Calibration for MoE",
+ "authors": [
+  "Canbin Huang",
+  "Tianyuan Shi",
+  "Xiaojun Quan",
+  "Jingang Wang",
+  "Jianfei Zhang",
+  "Qifan Wang"
+ ],
+ "venue": "ICML 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "Deep Learning->Large Language Models",
+ "role": "analysis-finding",
+ "role2": "problem-setup",
+ "claim": "Swapping routers between source and merged models shows that degraded routing, not the weights, causes the merged model's performance loss.",
+ "layout": "2 panels side by side, grouped bars, hatched vs dotted fills",
+ "tags": [
+  "model-merging",
+  "mixture-of-experts",
+  "routing-breakdown",
+  "cross-evaluation",
+  "failure-mode"
+ ],
+ "style": [
+  "plot",
+  "colorful",
+  "minimal"
+ ],
+ "description": "Two side-by-side grouped bar charts, (a) math tasks and (b) code tasks, each with a y-axis labelled Score and x-axis groups Source Model and Merged Model. Each group has a solid bar for the model with its default router and a patterned bar for a swapped router. Blue hatched bars are the source model with the merged router. Orange dotted bars are the merged model with the source router. The legend at top right explains the hatch patterns. Numeric labels sit above every bar. In (a), the differences are small (43.37 vs 43.12, 43.44 vs 43.49). In (b), the source model drops from 36.73 to 36.19 with the merged router, and the merged model rises from 32.73 to 33.78 with the source router. The eye goes first to the tall blue bars and the contrast between the blue and orange groups.",
+ "caption": "Illustration of routing breakdown using existing merging methods for MoE models. Cross-evaluation results on (a) mathematical and (b) code tasks demonstrate the impact of router swapping. Solid bars denote models operating with their default routers. Replacing the original router with the merged router (blue hatched bars) degrades the source model's performance, whereas restoring the source router to the merged model (orange dotted bars) significantly recovers its capability.",
+ "caption_source": "latex",
+ "abstract": "Model merging has emerged as a cost-effective approach for consolidating the capabilities of multiple LLMs without retraining. However, existing merging techniques, largely based on linear parameter arithmetic or optimization, struggle when applied to Mixture-of-Experts (MoE) architectures. We identify a critical failure mode in MoE merging, termed routing breakdown, in which the merged router fails to dispatch tokens to suitable experts. Routing breakdown stems from the sensitivity of the non-linear softmax and discrete Top-k routing mechanisms to parameter perturbations from merging, a sensitivity further amplified by load-balancing constraints imposed during MoE pretraining. Because fine-tuned experts exhibit distinct specializations, even modest misrouting can cause severe performance degradation. To address this issue, we propose Hessian-Aware Router Calibration (HARC), a training-free framework that leverages second-order curvature information to realign the merged router. This approach admits a closed-form solution that can be efficiently solved using a matrix-free conjugate gradient method. Experiments on mathematical reasoning and code generation tasks show that HARC effectively mitigates routing breakdown across diverse MoE merging baselines and leads to substantial performance improvements. Our code is available at https://github.com/huangcb01/HARC.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=1ORZJtadQl",
+  "arxiv": "https://arxiv.org/abs/2606.03391",
+  "pdf": "https://raw.githubusercontent.com/mlresearch/v306/main/assets/huang26au/huang26au.pdf",
+  "proceedings": "https://proceedings.mlr.press/v306/huang26au.html",
+  "virtual": "https://icml.cc/virtual/2026/poster/66680",
+  "code": null
+ },
+ "license": "http://creativecommons.org/licenses/by/4.0/",
+ "img": "cc-by",
+ "image_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/images/icml26-0154.png",
+ "thumb_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/thumbs/icml26-0154.webp",
+ "figure_page": 0,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.7
+}

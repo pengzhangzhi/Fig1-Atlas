@@ -1,0 +1,51 @@
+{
+ "id": "neurips26-6613",
+ "title": "CodeQuant2: Enhanced Outlier Mitigation and Adaptive Clustering for Low-Precision LRMs",
+ "authors": [
+  "Xingyu Liu",
+  "Xiangyang Yin",
+  "Tianhua Xia",
+  "Haiyu Wang",
+  "Sai Qian Zhang"
+ ],
+ "venue": "NeurIPS 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "Optimization",
+ "role": "pipeline",
+ "role2": "overview-framework",
+ "claim": "A multi-stage pipeline combining calibration, outlier smoothing, adaptive clustering, and a lookup-table kernel makes low-precision quantization work for reasoning models.",
+ "layout": "Wide single row: model diagram at left, five colored stage boxes flowing right",
+ "tags": [
+  "quantization",
+  "multi-stage-pipeline",
+  "efficiency",
+  "lookup-table",
+  "clustering"
+ ],
+ "style": [
+  "colorful",
+  "icon-heavy",
+  "text-heavy"
+ ],
+ "description": "A wide, horizontal figure titled 'CodeQuant2 Framework'. At far left, a transformer block diagram shows a Feedforward layer and a Self-attention layer. Zoomed-in bubbles on them show weights (W_gate, W_up, W_down, W_Q, W_K, W_V), SiLU and Softmax, with pink rotation (R) and scaling (S) blocks fused in. Arrows lead right into four rounded, color-coded stage boxes. Stage 1 (green) is finetuned rotation and scaling, with a matrix heatmap X → R,S → X_RS. Stage 2 (blue) is adaptive cluster allocation, with a K-means flow using gradient, kernel, importance and latency. Stage 3 (orange) is differentiable assignment, with a small index matrix, a temperature-vs-steps schedule and a softmax. Stage 4 (red) is the lookup-table CUDA kernel, with a lookup table and shared memory. Below is a magenta Stage 0, reasoning-aware calibration, with a bar chart and a decoding-step line plot marking 'Hard to Quantize' and 'Easy to Quantize'.",
+ "caption": "Overview of the CodeQuant2 framework. Left: Rotation and scaling are fused into the model for outlier smoothing. Right: CodeQuant2 applies fine-tuned rotation and scaling, allocates clusters adaptively, tunes centroids and assignments, and uses a LUT-based kernel for inference.",
+ "caption_source": "latex",
+ "abstract": "Large reasoning models (LRMs) improve task performance by generating longer intermediate reasoning traces, but this substantially increases inference costs and makes low-precision quantization increasingly important. However, aggressively quantized models often perform poorly on reasoning tasks. We observe larger activation fluctuations during the first decoding steps of reasoning. Calibration that omits these early states may miss their activation fluctuations. To address these reasoning-specific quantization challenges, we propose \\textbf{CodeQuant2}, a clustering-based LUT quantization framework for low-precision large reasoning models. CodeQuant2 mitigates activation outliers with rotation and scaling, uses clustering to represent non-uniform weight distributions, and adapts codebook sizes to the quantization difficulty of each layer. Guided by our observation of reasoning-time activation behavior, CodeQuant2 further improves calibration sample selection to better match actual decoding statistics. Combined with our customized LUT CUDA kernel, CodeQuant2 delivers substantial accuracy improvements on reasoning benchmarks while achieving up to $2.85\\times$ speedup over BF16.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=jS7aRiV05d",
+  "arxiv": "https://arxiv.org/abs/2611.09868",
+  "pdf": "https://arxiv.org/pdf/2611.09868",
+  "proceedings": null,
+  "virtual": "https://neurips.cc/virtual/2026/poster/150265",
+  "code": "https://github.com/SAI-Lab-NYU/CodeQuant2"
+ },
+ "license": "http://creativecommons.org/licenses/by/4.0/",
+ "img": "cc-by",
+ "image_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/images/neurips26-6613.png",
+ "thumb_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/thumbs/neurips26-6613.webp",
+ "figure_page": 2,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.85
+}

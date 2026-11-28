@@ -1,0 +1,48 @@
+{
+ "id": "neurips26-5560",
+ "title": "Selective Rollout: Mid-Trajectory Termination for Multi-Sample Agent RL",
+ "authors": [
+  "Zhiyuan Zhai",
+  "Xin Wang"
+ ],
+ "venue": "NeurIPS 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "Reinforcement Learning->Deep RL",
+ "role": "prior-vs-ours",
+ "role2": "pipeline",
+ "claim": "Standard training pays full cost for groups that converge to identical outcomes; a mid-rollout gate stops converged groups early and keeps divergent ones.",
+ "layout": "2 panels, left-to-right with arrow; branching trajectory bundles, dashed gate line",
+ "tags": [
+  "early-termination",
+  "grpo",
+  "efficiency",
+  "agent-rl",
+  "compute-savings"
+ ],
+ "style": [
+  "minimal",
+  "colorful",
+  "icon-heavy"
+ ],
+ "description": "Two rounded panels joined by a grey arrow. The left panel, titled 'Standard GRPO', shows eight grey curves that fan in from a 'start' point and merge at a dashed vertical 'gate' line. They continue as a single red line across a pink shaded region to a 'same reward' box at 'end'. The caption below reads 'zero advantage, remaining compute paid'. A timeline axis marks start, gate and end. The right panel, titled 'Selective gate', has a teal-bordered frame with two cases. Under 'converged', teal curves meet at an orange dashed gate line with an X, and a green 'stop rollout' box says 'skip remaining steps, exclude from update'. Under 'divergent', purple curves cross the gate and pass into a lavender 'continue / keep signal' box. The eye goes first to the red wasted region on the left, then to the green stop box on the right.",
+ "caption": "Selective rollout. Standard GRPO pays the full cost of converged groups (left); our gate stops them mid-rollout (right).",
+ "caption_source": "latex",
+ "abstract": "Group-relative RL training (GRPO) samples a small group of parallel rollouts for every training prompt and uses their within-group reward spread to compute per-trajectory advantages. In agentic environments each rollout is a long multi-turn dialogue with one LLM call per step, so this multi-sample multiplier dominates the total training cost. When every rollout of a prompt ends with the same reward, the group has zero reward variance and contributes no gradient, so the extra rollouts add no information; such groups are common in practice (typically around 40% of all groups), so the wasted-compute fraction is substantial rather than marginal. Existing methods filter such groups at the prompt level, either after their rollouts are paid for or before any rollout begins, but both decide without using information that becomes available during the rollout itself. We instead ask whether the in-group divergence between the partial trajectories at an intermediate step can already predict that the group will be zero-variance: when the parallel rollouts have already converged on the same action prefix, the group is on track to produce a single reward, and we can stop early. We propose a one-parameter gate that stops a group when the mean pairwise prefix edit distance between its partial action sequences falls below a threshold. On a 60-iteration on-policy GRPO run on ALFWorld with Qwen2.5-7B, averaged over four random seeds, the gated arm finishes 10.7% faster in wall-clock (bootstrap 95% CI excludes 0) and shifts held-out success rate on 50 unseen tasks by +2.5 pp, with the held-out gain tracing to a measurable reduction in zero-advantage gradient-batch dilution. Code is available at https://github.com/zhiyuanZhai20/selective-rollout.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=cFDtppAAdg",
+  "arxiv": "https://arxiv.org/abs/2605.05802",
+  "pdf": "https://arxiv.org/pdf/2605.05802",
+  "proceedings": null,
+  "virtual": "https://neurips.cc/virtual/2026/poster/151195",
+  "code": null
+ },
+ "license": "http://arxiv.org/licenses/nonexclusive-distrib/1.0/",
+ "img": "none",
+ "image_url": null,
+ "thumb_url": null,
+ "figure_page": 0,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.8
+}

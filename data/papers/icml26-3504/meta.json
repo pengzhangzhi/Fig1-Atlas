@@ -1,0 +1,48 @@
+{
+ "id": "icml26-3504",
+ "title": "Do Transformers Need Three Projections? Systematic Study of QKV Variants",
+ "authors": [
+  "Ali Kayyam",
+  "Anusha Gopal",
+  "M Lewis"
+ ],
+ "venue": "ICML 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "Deep Learning->Attention Mechanisms",
+ "role": "pipeline",
+ "role2": "prior-vs-ours",
+ "claim": "Standard attention uses three separate projections; our variants share projections, simplifying the computation graph with minimal structural change.",
+ "layout": "4 panels, left-to-right, standard attention then three shared-projection variants",
+ "tags": [
+  "attention",
+  "weight-sharing",
+  "architecture-variants",
+  "kv-cache-reduction",
+  "efficiency"
+ ],
+ "style": [
+  "minimal",
+  "colorful"
+ ],
+ "description": "Four side-by-side block diagrams of attention mechanisms. The leftmost panel shows standard Multi-Head Attention: Q, K and V inputs each pass through stacked Linear layers into a purple Scaled Dot-Product Attention block, then Concat and a final Linear. The three panels to the right show the proposed variants, titled Q=K≠V, Q≠K=V and Q=K=V. Each has a bottom Scaled Dot Product block, a pink Mask (Opt.) block, a green SoftMax and a purple MatMul at the top. The shared inputs are labeled Q=K, K=V and Q=K=V, with a skip line carrying V or K=V up to MatMul. In the Q=K≠V and Q=K=V panels, a sine-wave circle and a plus node add optional positional encoding. A left-hand caption in each variant panel reads (X)+ with Positional Encoding (Opt.). Soft pastel colors mark the module types.",
+ "caption": "Our proposed Projection-Shared Attention Variants. Attention mechanism with 2D positional encoding is denoted as (X)$^+$.",
+ "caption_source": "latex",
+ "abstract": "Transformers have become the standard solution for various AI tasks, with the query, key, and value (QKV) attention formulation playing a central role. However, the individual contribution of these three projections and the impact of omitting some remain poorly understood. We systematically evaluate three projection sharing constraints: a) Q-K=V (shared key-value), b) Q=K-V (shared query-key), and c) Q=K=V (single projection). The last two variants produce symmetric attention maps; to address this, we also explore asymmetric attention via 2D positional encodings. Through experiments spanning synthetic tasks, vision (MNIST, CIFAR, TinyImageNet, anomaly), and language modeling (300M and 1.2B parameter models on 10B tokens), we discovered that our transformers perform on par or occasionally better than the QKV transformer. In language modeling, Q-K=V projection sharing achieves 50% KV cache reduction with only 3.1% perplexity degradation. Crucially, projection sharing is complementary to head sharing (GQA/MQA): combining Q-K=V with GQA-4 yields 87.5% cache reduction, while Q-K=V + MQA achieves 96.9%, enabling practical on-device inference. We show that Q-K=V preserves quality because keys and values can occupy similar representational spaces and attention operates in a low-rank regime, whereas Q=K-V breaks attention directionality. Our results systematically characterize projection sharing as an underexplored instance of weight tying in attention, with direct, quantifiable inference memory benefits, particularly valuable for edge deployment. The code is publicly available at https://github.com/Brainchip-Inc/Do-Transformers-Need-3-Projections",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=XGxBnVqK63",
+  "arxiv": "https://arxiv.org/abs/2606.04032",
+  "pdf": "https://raw.githubusercontent.com/mlresearch/v306/main/assets/kayyam26a/kayyam26a.pdf",
+  "proceedings": "https://proceedings.mlr.press/v306/kayyam26a.html",
+  "virtual": "https://icml.cc/virtual/2026/poster/63430",
+  "code": "https://github.com/Brainchip-Inc/Do-Transformers-Need-3-Projections"
+ },
+ "license": "http://creativecommons.org/licenses/by/4.0/",
+ "img": "cc-by",
+ "image_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/images/icml26-3504.png",
+ "thumb_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/thumbs/icml26-3504.webp",
+ "figure_page": 2,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.6
+}

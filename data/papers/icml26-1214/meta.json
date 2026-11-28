@@ -1,0 +1,47 @@
+{
+ "id": "icml26-1214",
+ "title": "SEMIR: Semantic Minor-Induced Representation Learning on Graphs for Visual Segmentation",
+ "authors": [
+  "Luke Miller",
+  "Yugyung Lee"
+ ],
+ "venue": "ICML 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "Applications->Computer Vision",
+ "role": "pipeline",
+ "role2": null,
+ "claim": "Dense voxel grids are compressed into a boundary-aligned graph minor, processed by a GNN, and exactly lifted back to full-resolution labels.",
+ "layout": "6 panels in 2x3 grid, left-to-right then down, lettered (a)-(f)",
+ "tags": [
+  "graph-minor",
+  "medical-segmentation",
+  "latent-graph",
+  "exact-decoding",
+  "gnn"
+ ],
+ "style": [
+  "photo/real data",
+  "minimal"
+ ],
+ "description": "A 2x3 grid of six lettered panels showing one KiTS23 abdominal CT case moving through the pipeline. Top row: (a) the input CT slice with a red box marking a zoom region; (b) the zoomed native voxel grid, with cyan grid lines over gray pixels; (c) the graph minor H = S(G, Θ_opt), where many small colored supernode cells tile the body. Bottom row: (d) the GNN output Ŷ_H, with white supernode outlines and the kidney (red) and tumor (blue) marked at the supernode level; (e) the final voxel-level prediction Ŷ overlaid on the CT; (f) the ground truth Y. Titles and math notation sit above each panel. There are no arrows, so the eye moves through the panels in reading order. The red and blue overlays in (d)–(f) draw the eye first, and (e) and (f) look nearly identical.",
+ "caption": "SEMIR pipeline visualization on a KiTS23 case. (a) Input contrast-enhanced CT. (b) Zoomed region showing the native voxel grid; each voxel corresponds to a node in $G$. (c) Boundary-aligned graph minor $H \\preceq G$ constructed via parameterized edge contraction, node deletion, and edge deletion with few-shot optimized $\\Theta_{\\mathrm{opt}}$; supernodes colored by ID. (d) Node-level predictions $\\hat{Y}_H$ from GNN inference on $H$. (e) Final voxel segmentation $\\hat{Y}$ obtained via bijective lifting. (f) Ground truth $Y$. Kidney shown in red, tumor in blue.",
+ "caption_source": "latex",
+ "abstract": "Segmenting small and sparse structures in large-scale images is fundamentally constrained by voxel-level, lattice-bound computation and extreme class imbalance -- dense, full-resolution inference scales poorly and forces most pipelines to rely on fixed regionization or downsampling, coupling computational cost to image resolution and attenuating boundary evidence precisely where minority structures are most informative. We introduce SEMIR (Semantic Minor-Induced Representation Learning), a representation framework that decouples inference from the native grid by learning a task-adapted, topology-preserving latent graph representation with exact decoding. SEMIR transforms the underlying grid graph into a compact, boundary-aligned graph minor through parameterized edge contraction, node deletion, and edge deletion, while preserving an exact lifting map from minor predictions to lattice labels. Minor construction is formalized as a few-shot structure learning problem that replaces hand-tuned preprocessing with a boundary-alignment objective: minor parameters are learned by maximizing agreement between predicted boundary elements and target-specific semantic edges under a boundary Dice criterion, and the induced minor is annotated with scale- and rotation-robust geometric and intensity descriptors and supports efficient region-level inference via message passing on a graph neural network (GNN) with relational edge features. We benchmark SEMIR on three tumor segmentation datasets -- BraTS 2021, KiTS23, and LiTS -- where targets exhibit high structural variability and distributional uncertainty. SEMIR yields consistent improvements in minority-structure Dice at practical runtime. More broadly, SEMIR establishes a framework for learning task-adapted, topology-preserving latent representations with exact decoding for high-resolution structured visual data.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=BZXZj2qQaK",
+  "arxiv": "https://arxiv.org/abs/2605.12389",
+  "pdf": "https://raw.githubusercontent.com/mlresearch/v306/main/assets/miller26a/miller26a.pdf",
+  "proceedings": "https://proceedings.mlr.press/v306/miller26a.html",
+  "virtual": "https://icml.cc/virtual/2026/poster/65644",
+  "code": null
+ },
+ "license": "http://creativecommons.org/licenses/by/4.0/",
+ "img": "cc-by",
+ "image_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/images/icml26-1214.png",
+ "thumb_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/thumbs/icml26-1214.webp",
+ "figure_page": 3,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.9
+}

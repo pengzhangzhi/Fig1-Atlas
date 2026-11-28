@@ -1,0 +1,54 @@
+{
+ "id": "icml26-1081",
+ "title": "Deep Pre-Alignment for VLMs",
+ "authors": [
+  "Tianyu Yu",
+  "Kechen Fang",
+  "Zihao Wan",
+  "Kaidong Zhang",
+  "Yicheng Zhang",
+  "Jun Song",
+  "Bo Zheng",
+  "Yuan Yao"
+ ],
+ "venue": "ICML 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "Deep Learning->Foundation Models",
+ "role": "prior-vs-ours",
+ "role2": "teaser-result",
+ "claim": "Standard pipelines feed encoder features weakly aligned to the LLM; swapping in a small VLM perceiver aligns them and wins.",
+ "layout": "3 panels, left-to-right: architecture contrast, scatter plot, paired bar charts",
+ "tags": [
+  "modality-alignment",
+  "architecture-replacement",
+  "vision-language",
+  "modular-upgrade",
+  "efficiency"
+ ],
+ "style": [
+  "colorful",
+  "plot",
+  "icon-heavy"
+ ],
+ "description": "Three panels. Panel (a) puts two stacked-box architectures side by side. On the right is the LLaVA architecture: image → ViT → Projection, with pale orange output tokens marked 'Weak Alignment' with a red X. A hollow arrow labeled 'Simple Replacement' points left to the proposed Deep Pre-Alignment stack: image → ViT → Projection → Small LLM → Projection, in a dotted box. Its darker orange output tokens are labeled 'Better Aligned' with a lightbulb, and they feed a large orange 'Target Large Language Model' bar. A vertical gradient arrow on the left reads 'More aligned with text space'. Panel (b) is a scatter plot of overall performance against modality gap. Blue stars and circles mark LLaVA-NeXT baselines, red marks DPA, and arrows point up and to the right. Panel (c) has two bar charts, Multimodal and Text, each with light blue, dark blue and red bars labeled with values and a legend above.",
+ "caption": "(a) Architectural overview of \\methodname. By simply replacing the ViT encoder with a perceiver VLM, \\methodname offloads the superficial modality alignment burden from the target large language model, and deeply align visual features inside the perceiver language blocks. The input visual features are thus better aligned with text space. (b) \\methodname significantly minimize the modality gap [ref] and also improves the overall performance over 11 popular benchmarks. (c) While pre-align the ViT encoder with the target LLM improves the performance, \\methodname achieves a significantly higher improvement, suggesting the effectiveness of the architectural design.",
+ "caption_source": "latex",
+ "abstract": "Most Vision Language Models (VLMs) directly map outputs from ViT encoders to the LLM via a lightweight projector. While effective, recent analysis suggests this architecture suffers from an alignment challenge: visual features remain distant from the text space in the initial layers of the LLM, forcing the model to waste critical depth~\\cite{zhang-etal-2024-investigating,artzy-schwartz-2024-attend} on superficial modality alignment rather than deep understanding and complex reasoning. In this work, we propose Deep Pre-Alignment (DPA), a novel architecture that replaces the standard ViT encoder with a small VLM as perceiver, ensuring visual features are deeply aligned with the text space of the target large language model. Comprehensive experiments demonstrate the effectiveness of DPA. On the 4B parameter scale, DPA outperforms baselines by 1.9 points across 8 multimodal benchmarks, with gains widening to 3.0 points at the 32B scale. Moreover, by offloading alignment to the perceiver, DPA achieves a 32.9\\% reduction in language capability forgetting over 3 text benchmarks. We further demonstrate that these gains are consistent across different LLM families including Qwen3 and LLaMA 3.2, highlighting the generality of our approach. Beyond performance, DPA also offers a seamless upgrade path for current VLM development, requiring only a modular replacement for the visual encoder with marginal computation overhead.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=AGBuhcQbsO",
+  "arxiv": "https://arxiv.org/abs/2605.15300",
+  "pdf": "https://raw.githubusercontent.com/mlresearch/v306/main/assets/yu26j/yu26j.pdf",
+  "proceedings": "https://proceedings.mlr.press/v306/yu26j.html",
+  "virtual": "https://icml.cc/virtual/2026/poster/65772",
+  "code": "https://github.com/THUMAI-Lab/Deep-Pre-Alignment"
+ },
+ "license": "http://arxiv.org/licenses/nonexclusive-distrib/1.0/",
+ "img": "none",
+ "image_url": null,
+ "thumb_url": null,
+ "figure_page": 1,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.55
+}

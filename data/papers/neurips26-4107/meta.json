@@ -1,0 +1,52 @@
+{
+ "id": "neurips26-4107",
+ "title": "Early Semantic Grounding in Image Editing Models for Zero-Shot Referring Image Segmentation",
+ "authors": [
+  "Jingxuan He",
+  "Xiyu Wang",
+  "Yunke Wang",
+  "Mengyu Zheng",
+  "Chang Xu"
+ ],
+ "venue": "NeurIPS 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "Computer Vision->Segmentation",
+ "role": "pipeline",
+ "role2": "analysis-finding",
+ "claim": "Strong foreground-background separability exists from the earliest denoising step, so a pretrained editor's internal features can be repurposed for segmentation.",
+ "layout": "2 regions: stacked boxplots left, three-stage pipeline right, top-to-bottom flow",
+ "tags": [
+  "training-free",
+  "zero-shot",
+  "diffusion-features",
+  "attention-priors",
+  "early-timestep"
+ ],
+ "style": [
+  "colorful",
+  "plot",
+  "photo/real data",
+  "icon-heavy"
+ ],
+ "description": "The figure has two halves split by a dash-dot diagonal line. On the left are two stacked boxplot charts, titled \"Feature Separability of FLUX.2-klein\" and \"Feature Separability of Step1X-Edit\". Both plot feature separability against denoising progress (1% to 100%), and the boxes stay roughly flat across timesteps. On the right, three light-blue bands form a top-to-bottom pipeline. The first band, instruction-based image editing, takes a prompt, Gaussian noise and an image, turns them into token rows, and feeds them to a DiT block with multi-modal self-attention (MMSA). The second band, attention-based region proposal, runs from MMSA attention to a coarse attention map, then affinity propagation, a refined map and a proposed binary region. The third band, feature-based semantic localization, uses masked pooling, foreground/background prototypes, cosine similarity and upsampling to produce a red segmentation overlay. Blue modules and pastel token boxes stand out against the real photographs.",
+ "caption": "Overview of our framework. We repurpose pretrained instruction-based image editing models for referring image segmentation. In the module of attention-based region proposal, we derive coarse spatial priors through cross-attention and affinity propagation. In the module of feature-based semantic localization, the semantic separability of MMSA output features is exploited under the guidance of the proposed region to produce the final segmentation mask. The quantitative results in boxplots on the left panel show that strong foreground-background discriminability is already present at the earliest evaluated timestep (denoted as 1%) and remains relatively stable throughout the denoising process.",
+ "caption_source": "latex",
+ "abstract": "Instruction-based image editing (IIE) models have recently demonstrated strong capability in modifying specific image regions according to natural language instructions, which implicitly requires identifying where an edit should be applied. This indicates that such models inherently perform language-conditioned visual semantic grounding. In this work, we investigate whether this implicit grounding can be leveraged for zero-shot referring image segmentation (RIS), a task that requires pixel-level localization of objects described by natural language expressions. Through systematic analysis, we reveal that strong foreground-background separability is already present in the internal representations of these models at the earliest denoising timestep, well before any visible image transformation occurs. Building on this insight, we propose a training-free framework that repurposes pretrained image editing models for RIS by exploiting their intermediate representations. Our approach decomposes localization into two complementary components: attention-based spatial priors that estimate where to focus, and feature-based semantic discrimination that determines what to segment. By leveraging feature-space separability, the framework produces accurate segmentation masks using only a single denoising step, without requiring full image synthesis. Extensive experiments on RefCOCO, RefCOCO+, and RefCOCOg demonstrate that our method achieves superior performance over existing zero-shot baselines. Project page: \\url{https://jessie459.github.io/EarlySemanticGrounding/}.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=ShIHKjhGRF",
+  "arxiv": "https://arxiv.org/abs/2605.13122",
+  "pdf": "https://arxiv.org/pdf/2605.13122",
+  "proceedings": null,
+  "virtual": "https://neurips.cc/virtual/2026/poster/152496",
+  "code": null
+ },
+ "license": "http://arxiv.org/licenses/nonexclusive-distrib/1.0/",
+ "img": "none",
+ "image_url": null,
+ "thumb_url": null,
+ "figure_page": 3,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.8
+}

@@ -1,0 +1,55 @@
+{
+ "id": "neurips26-2484",
+ "title": "SRA: Spatial Reasoning Adapter via Evolving Social Interaction Graphs for Trajectory Prediction",
+ "authors": [
+  "Jaewoo Jeong",
+  "Seonkyu Song",
+  "Hyeonwoo Park",
+  "Jegyeong Cho",
+  "Yujin Bae",
+  "Giwon Lee",
+  "Daehee Park",
+  "Kuk-Jin Yoon"
+ ],
+ "venue": "NeurIPS 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "Applications->Time Series",
+ "role": "pipeline",
+ "role2": "overview-framework",
+ "claim": "A plug-in module refines a host's evolving prediction at each step by selecting neighbors, encoding relations, and weighting messages by uncertainty.",
+ "layout": "Left legend and input, three colored modules flowing to right-side refinement, with feedback loop",
+ "tags": [
+  "modular-adapter",
+  "graph-message-passing",
+  "uncertainty-weighting",
+  "iterative-refinement",
+  "diffusion-plugin"
+ ],
+ "style": [
+  "icon-heavy",
+  "colorful",
+  "math-heavy",
+  "text-heavy"
+ ],
+ "description": "A dense system diagram inside a dashed pink rounded box titled 'Spatial Reasoning Adapter (SRA)'. At left, a legend explains solid arrows for past trajectories, dashed arrows for predicted futures, graph edges, colored nodes (red, green, blue), node features, uncertainty blobs and operators. Below it, a small scene with trajectories feeds a 'Denoiser' block that outputs predicted futures, uncertainty and node features. Inside the box are three colored panels. The green panel, 'Sparse neighborhood selection', shows MLPs, semantic and geometric scores, a bar chart and a neighbor triangle. The yellow panel, 'Agent-pair relational future encoding', shows relative positions and headings feeding an MLP to produce edge features. The blue panel, 'Uncertainty-weighted message passing', shows temporal edge pooling, attention with q/k/v, and per-edge uncertainty gating. A right panel adds the decoded residual through a gate to give the refined trajectory. A feedback arrow runs along the bottom.",
+ "caption": "Overview of SRA at one reverse step $\\tau$. From the host's current future estimate $\\hat Y^{\\tau}$, node features $h_i^{\\tau}$, and uncertainty $\\bar\\sigma$ (bottom left), SRA (green, Sec. [ref]) scores every pair with a semantic and a geometric term and keeps the top-$K_{\\mathrm{nbr}}$ neighbors $\\mathcal{N}(i)$; (yellow, Sec. [ref]) encodes the per-timestep relative positions and headings of each selected pair into edge features $\\hat e^{\\tau}_{ij,t}$; (blue, Sec. [ref]) pools them over time with uncertainty-biased weights, uses them in edge-conditioned attention, and gates each message by $\\bar\\sigma_i-\\bar\\sigma_j$; and (right) decodes the aggregated message into a residual $\\delta^{\\tau}$ that is added through the gate $g$ to obtain the refined trajectory.",
+ "caption_source": "latex",
+ "abstract": "Predicting where multiple agents will move next is fundamental to autonomous driving, robotics, and any system that must share space with people safely. Modern stochastic predictors read off inter-agent interactions once from the observed past and keep that view fixed throughout the generative rollout, so the reciprocal geometric constraints that emerge as the joint future sharpens are not re-examined. We address this gap with SRA (Spatial Reasoning Adapter), a modular graph denoiser that is integrated into existing diffusion and flow-matching predictors without redesigning their generative cores. At every reverse step, SRA reads the host's current future estimate, builds a sparse Euclidean interaction graph on the predicted trajectories, and returns a residual correction to the host's decoding path. Our adapter consists of three core components: a sparse neighborhood retrieved with a learned query-key score and a geometric bias, a future-conditioned relational feature recomputed on the evolving prediction, and uncertainty-weighted message passing where confident agents act as anchors for uncertain ones. We instantiate SRA on three structurally different hosts (LED, MID, and MoFlow) across four multi-agent benchmarks: SDD, NBA, Soccer, and Football. SRA improves ADE for every host on every dataset, with average gains of 5.8% in ADE and 7.0% in FDE. A cumulative ablation shows that the three components act as one mechanism: only together do they improve every host on every sports dataset, indicating that spatial reasoning over the model's own evolving future, weighted by how far that future can be trusted, is broadly useful across denoising architectures. Code is available at https://github.com/Jaewoo97/SRA.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=HQ4n16Lma3",
+  "arxiv": "https://arxiv.org/abs/2611.10506",
+  "pdf": "https://arxiv.org/pdf/2611.10506",
+  "proceedings": null,
+  "virtual": "https://neurips.cc/virtual/2026/poster/153943",
+  "code": null
+ },
+ "license": "http://creativecommons.org/licenses/by/4.0/",
+ "img": "cc-by",
+ "image_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/images/neurips26-2484.png",
+ "thumb_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/thumbs/neurips26-2484.webp",
+ "figure_page": 3,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.93
+}

@@ -1,0 +1,51 @@
+{
+ "id": "icml26-1321",
+ "title": "LC-QAT: Data-Efficient 2-Bit QAT for LLMs via Linear-Constrained Vector Quantization",
+ "authors": [
+  "Haoyu Wang",
+  "Xingyu Yu",
+  "Haiyan Zhao",
+  "Fengxiang Wang",
+  "Xu Han"
+ ],
+ "venue": "ICML 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": null,
+ "role": "prior-vs-ours",
+ "role2": "pipeline",
+ "claim": "Prior approaches rely on non-differentiable discrete lookup; ours replaces it with direct rounding and a linear projection, making training differentiable.",
+ "layout": "2 stacked panels, left-to-right flow, red ✗ versus green ✓ gradient arrows",
+ "tags": [
+  "vector-quantization",
+  "differentiable",
+  "quantization-aware-training",
+  "lookup-free",
+  "prior-vs-ours"
+ ],
+ "style": [
+  "colorful",
+  "icon-heavy",
+  "minimal"
+ ],
+ "description": "Two stacked horizontal panels contrast training pipelines. The top panel has a blue header, 'Training with unconstrained codebook'. A weight matrix goes through a magnifier icon labeled 'Time-consuming Nearest Neighbor Search' into an index grid. The index then feeds a codebook lookup, shown as the value 9 pointing into a codebook column, and the output is a dequantized weight matrix. A dashed backward arrow with a red prohibition sign is labeled 'Non-differentiable'. The bottom panel has a green header, 'Training with linear-constrained codebook'. The same weight matrix goes through a rounding icon, labeled 'Direct Rounding', into the index grid. The index becomes the quaternary vector [0,2,0,1], which is multiplied by a matrix A ('Linear Projection') to give the dequantized weight. A dashed backward arrow with a green checkmark is labeled 'Differentiable'. Teal gradient weight grids repeat in both panels. The eye goes first to the colored banners and the red versus green icons.",
+ "caption": "LC-QAT training pipeline with a linear-constrained parameterization. By replacing discrete codebook lookup with an SQ-style round/clip discretization followed by an affine projection, LC-QAT makes VQ-QAT lookup-free in the forward pass and compatible with standard end-to-end backpropagation.",
+ "caption_source": "latex",
+ "abstract": "Quantization-aware training (QAT) is essential for extremely low-bit large language models (LLMs). Current QAT methods are mainly based on scalar quantization (SQ), which enables efficient optimization but suffers from severe performance degradation at 2-bit precision. On the other hand, vector quantization (VQ) provides substantially higher representational capacity, but its discrete codebook lookup prevents end-to-end training. We propose LC-QAT, a 2-bit weight-only VQ-QAT framework that represents quantized weights via a learned affine mapping over discrete vectors, which yields a high-quality PTQ initialization and enables fully differentiable end-to-end optimization without explicit codebook lookup in the training forward pass. This strong post-training initialization makes LC-QAT highly data-efficient. Experiments across diverse LLMs demonstrate that LC-QAT consistently outperforms state-of-the-art QAT methods while using only 0.1%--10% of the training data. Our results establish LC-QAT as a practical and scalable solution for extreme low-bit model deployment. Codes are publicly available at https://github.com/AI9Stars/UniSVQ.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=CYNip2SNsg",
+  "arxiv": "https://arxiv.org/abs/2606.10531",
+  "pdf": "https://raw.githubusercontent.com/mlresearch/v306/main/assets/wang26kc/wang26kc.pdf",
+  "proceedings": "https://proceedings.mlr.press/v306/wang26kc.html",
+  "virtual": "https://icml.cc/virtual/2026/poster/65542",
+  "code": null
+ },
+ "license": "http://creativecommons.org/licenses/by/4.0/",
+ "img": "cc-by",
+ "image_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/images/icml26-1321.png",
+ "thumb_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/thumbs/icml26-1321.webp",
+ "figure_page": 1,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.82
+}

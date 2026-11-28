@@ -1,0 +1,52 @@
+{
+ "id": "icml26-6501",
+ "title": "A KL-regularization framework for learning to plan with adaptive priors",
+ "authors": [
+  "Álvaro Serra-Gómez",
+  "Daniel Jarne Ornia",
+  "Dhruva Tirumala",
+  "Thomas M Moerland"
+ ],
+ "venue": "ICML 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "Reinforcement Learning->Policy Search",
+ "role": "concept",
+ "role2": "prior-vs-ours",
+ "claim": "One regularization-strength knob spans existing methods as special cases, and ours covers the whole range with flexible prior choices.",
+ "layout": "Single panel; horizontal spectrum arrow on top, two prior-source boxes below, numbered callouts",
+ "tags": [
+  "unifying-framework",
+  "kl-regularization",
+  "special-cases",
+  "planning-prior",
+  "model-based-rl"
+ ],
+ "style": [
+  "math-heavy",
+  "colorful",
+  "minimal"
+ ],
+ "description": "A single-panel diagram built around a horizontal double-headed arrow. Above it, the title 'Sampling Policy Loss' and the objective J(π_θs) = E[Q] − λ KL[π_θs || π_p], written in olive green. The arrow's left end is labeled λ = 0 with TD-MPC2 (a citation, cropped at the left edge). The right end is labeled λ → ∞, π_p = π_p^MPPI, BMPC (Wang et al., 2025), in red. Beneath the arrow's midpoint, 'PO-MPC (Ours)' with a dark-green circled '1' and λ ∈ [0, ∞). Two light-green arrows run from a small circle labeled π_p, marked '2', to two boxes. The left box, 'Replay Buffer' in red, has a white background and the formula π_p^MPPI = π_P^t. The right box is shaded green and labeled 'Learned' with a circled '3'. It lists the reverse-KL and forward-KL argmin definitions of π_p. The eye goes first to the top equation and arrow, then down to the boxes.",
+ "caption": "Overview of the PO-MPC framework. 1) Sampling-policy learning is formulated as a KL-regularized reinforcement-learning problem, controlled by the hyperparameter $\\lambda$, where the learned sampling policy $\\pi_{\\theta_s}$ is regularized toward the action distribution computed by MPPI. 2) Since querying the MPPI policy is computationally expensive, we either reuse previously stored samples $\\pi_P^t$ or, as proposed in this work, learn an approximation of it (i.e., $\\pi_p^{rkl}$ or $\\pi_p^{fkl}$). 3) Using different losses to learn this policy prior, as a proxy for the planner’s policy, allows embedding distinct inductive properties into the resulting sampling policy $\\pi_{\\theta_s}$.",
+ "caption_source": "latex",
+ "abstract": "Effective exploration remains a central challenge in model-based reinforcement learning (MBRL), particularly in high-dimensional continuous control tasks where sample efficiency is crucial. A prominent line of recent work leverages learned policies as proposal distributions for Model-Predictive Path Integral (MPPI) planning. Initial approaches update the sampling policy independently of the planner distribution, typically maximizing a learned value function with deterministic policy gradient and entropy regularization. However, because the states encountered during training depend on the MPPI planner, aligning the sampling policy with the planner improves the accuracy of value estimation and long-term performance. To this end, recent methods update the sampling policy by minimizing KL divergence to the planner distribution or by introducing planner-guided regularization into the policy update. In this work, we unify these MPPI-based reinforcement learning methods under a single framework by introducing Policy Optimization-Model Predictive Control (PO-MPC), a family of KL-regularized MBRL methods that integrate the planner's action distribution as a prior in policy optimization. By aligning the learned policy with the planner's behavior, PO-MPC allows more flexibility in the policy updates to trade off Return maximization and KL divergence minimization. We clarify how prior approaches emerge as special cases of this family, and we explore previously unstudied variations. Our experiments show that these extended configurations yield significant performance improvements, advancing the state of the art in MPPI-based RL.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=zO8vzSGgTn",
+  "arxiv": "https://arxiv.org/abs/2510.04280",
+  "pdf": "https://raw.githubusercontent.com/mlresearch/v306/main/assets/serra-gomez26a/serra-gomez26a.pdf",
+  "proceedings": "https://proceedings.mlr.press/v306/serra-gomez26a.html",
+  "virtual": "https://icml.cc/virtual/2026/poster/60524",
+  "code": "https://github.com/alvaro-serra/pompc.git"
+ },
+ "license": "http://creativecommons.org/licenses/by/4.0/",
+ "img": "cc-by",
+ "image_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/images/icml26-6501.png",
+ "thumb_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/thumbs/icml26-6501.webp",
+ "figure_page": 1,
+ "qc_flags": [
+  "bad-crop"
+ ],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.55
+}

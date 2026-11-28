@@ -1,0 +1,48 @@
+{
+ "id": "iclr26-1778",
+ "title": "DiVeQ: Differentiable Vector Quantization Using the Reparameterization Trick",
+ "authors": [
+  "Mohammad Vali",
+  "Tom Bäckström",
+  "Arno Solin"
+ ],
+ "venue": "ICLR 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "General Machine Learning->Representation Learning",
+ "role": "prior-vs-ours",
+ "role2": "pipeline",
+ "claim": "A non-differentiable hard quantization step blocks gradients; replacing it with a reparameterized error-vector version lets gradients flow end to end.",
+ "layout": "3 panels, left-to-right, dashed zoom-in expanding module into formulas",
+ "tags": [
+  "vector-quantization",
+  "differentiable",
+  "reparameterization",
+  "gradient-flow",
+  "discrete-bottleneck"
+ ],
+ "style": [
+  "minimal",
+  "math-heavy"
+ ],
+ "description": "Left, a VQ autoencoder chain: input x goes to an encoder E, then z, then a VQ box, then ẑ, then decoder D, then output x_r. Beside the VQ box, the gradient ∂ẑ/∂z is struck through in red to show the blocked gradient. The middle panel repeats the same chain with a DiVeQ box in place of VQ. Its gradient ∂z_q/∂z is shown in blue and the rest of the gradient chain is intact. Dashed lines zoom from the DiVeQ box into a dashed rounded panel on the right. That panel shows a codebook row c_1…c_K with the selected codeword c_i* highlighted in light blue. An arrow from the codeword feeds a summation node on the z → z_q path. The panel also gives the formulas z_q = z + ||c_i* − z||·sg[v_d/||v_d||] and v_d = v + c_i* − z with v ~ N(0, σ²I). The eye goes first to the red and blue gradient contrast.",
+ "caption": "We replace the non-differentiable VQ operation ({\\color{red} $\\hat{\\vz} = \\vc_{i^*} = \\arg\\min_{\\vc_j} \\|\\vz-\\vc_j\\|_2$}) on the left with differentiable vector quantization (DiVeQ) on the right that lets the gradients flow.",
+ "caption_source": "latex",
+ "abstract": "Vector quantization is common in deep models, yet its hard assignments block gradients and hinder end-to-end training. We propose DiVeQ, which treats quantization as adding an error vector that mimics the quantization distortion, keeping the forward pass hard while letting gradients flow. We also present a space-filling variant (SF-DiVeQ) that assigns input to a curve constructed by the lines connecting codewords, resulting in less quantization error and full codebook usage. Both methods train end-to-end without requiring auxiliary losses or temperature schedules. In VQ-VAE image compression, VQGAN image generation, and DAC speech coding tasks across various data sets, our proposed methods improve reconstruction and sample quality over alternative quantization approaches.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=KRVnpTbx7R",
+  "arxiv": "https://arxiv.org/abs/2509.26469",
+  "pdf": "https://proceedings.iclr.cc/paper_files/paper/2026/file/1e6dcc16ffa7ced2228d1f2fdc8b5adf-Paper-Conference.pdf",
+  "proceedings": "https://proceedings.iclr.cc/paper_files/paper/2026/hash/1e6dcc16ffa7ced2228d1f2fdc8b5adf-Abstract-Conference.html",
+  "virtual": "https://iclr.cc/virtual/2026/poster/10010131",
+  "code": "https://github.com/AaltoML/DiVeQ"
+ },
+ "license": "http://creativecommons.org/licenses/by/4.0/",
+ "img": "cc-by",
+ "image_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/images/iclr26-1778.png",
+ "thumb_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/thumbs/iclr26-1778.webp",
+ "figure_page": 0,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.6
+}

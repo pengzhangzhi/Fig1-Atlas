@@ -1,0 +1,53 @@
+{
+ "id": "neurips26-1085",
+ "title": "AR1-ZO: Topology-Aware Rank-1 Zeroth-Order Queries for High-Rank LoRA Fine-Tuning",
+ "authors": [
+  "Ziye Chen",
+  "Hongbin Lin",
+  "Chenyu Zhang",
+  "Xiangda Yan",
+  "Yongjie Yang",
+  "Yao SHU"
+ ],
+ "venue": "NeurIPS 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "Optimization->Neural Network Optimization",
+ "role": "prior-vs-ours",
+ "role2": "pipeline",
+ "claim": "Naively scaled single-atom queries lose signal as capacity grows; rescaling to match the query topology keeps signal constant at any size.",
+ "layout": "3 panels, left-to-right; mechanism, then red pathology vs green fix with matched bar charts",
+ "tags": [
+  "zeroth-order",
+  "low-rank-adaptation",
+  "scaling-correction",
+  "signal-to-noise",
+  "failure-mode-fix"
+ ],
+ "style": [
+  "math-heavy",
+  "colorful",
+  "plot",
+  "icon-heavy"
+ ],
+ "description": "Three side-by-side boxed panels. Panel (a), in blue, shows the LoRA update factorized as a sum of rank-1 outer products. Four atom diagrams (column vector times row vector, equals matrix) are shown, with the active atom highlighted and the others labeled frozen. Below them are a numbered cycle of atoms 1 to r and a box on the zeroth-order probe, with its perturbation and finite-difference formulas. Panel (b), in red, shows the naive scaling gamma = alpha. Its causal chain runs from larger rank to weaker signal to FD-SNR proportional to 1/r^2 to directional collapse. A bar chart of FD-SNR against rank (1, 4, 16, 64) shows bars falling below a dashed noise floor, with a warning callout. Panel (c), in green, shows the topology-aware scaling gamma = alpha r. Its chain runs from larger rank to signal preserved to FD-SNR rank-invariant to stable optimization. Equal-height green bars all sit above the noise floor, with a checkmark callout. Red versus green contrast draws the eye first.",
+ "caption": "The Optimization Pathology of LoRA-ZO and the AR1-ZO Solution.",
+ "caption_source": "latex",
+ "abstract": "Zeroth-order (ZO) optimization enables large-language-model fine-tuning without storing backpropagation activations, while LoRA supplies compact trainable adapters. Combining them creates a rank paradox: increasing LoRA rank improves adapter capacity, but standard two-point ZO either perturbs a rank-dependent number of coordinates or, under atomwise updates, can make the finite-difference signal unobservable. This paper shows that the bottleneck is a measurement-topology problem rather than a need for an external subspace. LoRA already decomposes into matched rank-$1$ atoms, each a complete factor-coordinate block of dimension $d_\\text{out}+d_\\text{in}$. Querying one atom per step keeps the stored adapter rank $r$ while removing $r$ from the single-query perturbation dimension. The naive atomwise query is still miscalibrated: if it inherits canonical LoRA scaling $Î±/r$, the active finite-difference signal shrinks as $1/r$ and the active finite-difference signal-to-noise ratio (FD-SNR) as $1/r^2$, producing directional collapse under a fixed residual evaluation-noise floor. AR1-ZO pairs alternating rank-$1$ atom queries with topology-aware scaling $Î³=Î±r$, restoring rank-invariant active signal without auxiliary bases, activation hooks, curvature estimates, or extra forward queries. Theory proves atom minimality, rank-independent active query dimension, directional collapse and restoration, and the remaining rank dependence as an amortized coverage cost. Experiments on OPT and Qwen3 models validate the signal mechanism and show that AR1-ZO makes high-rank LoRA effective among matched-budget ZO methods under the standard two-forward-pass query budget.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=7eOsaBX3qO",
+  "arxiv": "https://arxiv.org/abs/2605.19767",
+  "pdf": "https://arxiv.org/pdf/2605.19767",
+  "proceedings": null,
+  "virtual": "https://neurips.cc/virtual/2026/poster/155186",
+  "code": null
+ },
+ "license": "http://creativecommons.org/licenses/by/4.0/",
+ "img": "cc-by",
+ "image_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/images/neurips26-1085.png",
+ "thumb_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/thumbs/neurips26-1085.webp",
+ "figure_page": 2,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.6
+}

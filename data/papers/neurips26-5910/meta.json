@@ -1,0 +1,55 @@
+{
+ "id": "neurips26-5910",
+ "title": "LoRASpace: A Pool-Wide Shared Substrate for Static and Dynamic Multi-LoRA Composition",
+ "authors": [
+  "Thamirawaran Sathiyalogeswaran",
+  "Navindu De Silva",
+  "Chamikara Siriwardane",
+  "W K Alwis",
+  "Jason Mars",
+  "Udaya S Thanthrige",
+  "Ranga Rodrigo"
+ ],
+ "venue": "NeurIPS 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "Computer Vision->Image and Video Generation",
+ "role": "prior-vs-ours",
+ "role2": "pipeline",
+ "claim": "Existing ways to combine many adapters either collapse them into one or run each separately; ours mixes them in a shared low-dimensional space in one pass.",
+ "layout": "3 panels, left-to-right, same color-coded modules in each, sigma summation nodes",
+ "tags": [
+  "multi-adapter-composition",
+  "shared-subspace",
+  "efficiency",
+  "baseline-comparison",
+  "low-rank-adaptation"
+ ],
+ "style": [
+  "colorful",
+  "icon-heavy",
+  "minimal"
+ ],
+ "description": "Three side-by-side panels compare strategies for combining three concept adapters, shown as bowtie-shaped low-rank modules in orange (Girl), green (Forest) and blue (Angry). Left panel, Merge: the three modules sit in a dashed box joined by plus signs, and they collapse into one pink merged bowtie labeled 'Merge by summing weights'. Middle panel, Composite: input fans out to three parallel bowties, and their outputs feed a sigma node labeled 'Compose: summing generated outputs'. Right panel, the proposed method: a pink trapezoid 'Input basis' fans out to three 'proj.' bowties, then to a sigma node and a pink 'Output basis' trapezoid. The same colors repeat in every panel, so the eye compares the structures directly. Panel titles are cut off at the bottom edge.",
+ "caption": "Three strategies for composing $N$ active LoRAs from a Combo (the active subset for one generation). Merge folds them into one delta with one forward pass. Composite runs $N$ forward passes. \\emph{\\LoRASpace{}} projects via $V^\\top$, mixes $\\sum_i w_i \\hat B_i \\hat A_i$, and back-projects via $U$ in one pass. Static-mode pre-folds the inner sum when $\\{w_i\\}$ are time-invariant; dynamic-mode evaluates it per UNet pass (precompute illustration in App. [ref]).",
+ "caption_source": "latex",
+ "abstract": "Low-rank adaptation (LoRA) attaches small low-rank matrices to a frozen backbone, and public repositories host many LoRAs per backbone, each for a different concept or task. Combining several LoRAs in one generation forces a trade-off. Merging their weights into one update needs a single forward pass, but LoRAs trained for different concepts interfere and quality drops. Running each LoRA in its own forward pass (composite) preserves quality, but inference time grows linearly with the number of active LoRAs. We study a property of LoRA pools overlooked by prior multi-LoRA work. In real LoRA pools, the stacked low-rank factors need far fewer directions than their summed ranks. Using singular value decomposition, we find the minimal subspace that keeps 99% of the factor energy. On three diffusion pools, only 46% to 57% of the summed LoRA ranks is needed, and the subspace grows sub-linearly with pool size. A 48-LoRA sub-pool of LoRA-Hub on FLAN-T5 tasks shows comparable overlap (62%), while the diversity-curated LoRA-Retriever benchmark sits near the no-overlap baseline (96%), so pool composition rather than modality predicts where compression is large. We build on this overlap with LoRASpace, a training-free method that computes the subspace once per pool and reuses it in two inference modes, a static mode at merge cost and a dynamic mode for input-dependent routing. On the diffusion pools, static LoRASpace matches composite quality at merge cost, and dynamic LoRASpace is more than 6x faster than composite with six active LoRAs on a 17-LoRA pool, mainly because it runs one backbone pass instead of six. In an ablation, static variants at the same rank match LoRASpace, so the quality gain does not depend on the pool-wide basis. On the near-orthogonal LoRA-Retriever benchmark, compression is small and gains come from coupling with external retrieval.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=edpJ8ipgAp",
+  "arxiv": "https://arxiv.org/abs/2610.27444",
+  "pdf": "https://arxiv.org/pdf/2610.27444",
+  "proceedings": null,
+  "virtual": "https://neurips.cc/virtual/2026/poster/150890",
+  "code": null
+ },
+ "license": "http://creativecommons.org/licenses/by/4.0/",
+ "img": "cc-by",
+ "image_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/images/neurips26-5910.png",
+ "thumb_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/thumbs/neurips26-5910.webp",
+ "figure_page": 4,
+ "qc_flags": [
+  "bad-crop"
+ ],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.8
+}

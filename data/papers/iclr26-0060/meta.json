@@ -1,0 +1,48 @@
+{
+ "id": "iclr26-0060",
+ "title": "PALC: Preference Alignment via Logit Calibration",
+ "authors": [
+  "Sanghyun Lee",
+  "Hoh In"
+ ],
+ "venue": "ICLR 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "Deep Learning->Everything Else",
+ "role": "pipeline",
+ "role2": "prior-vs-ours",
+ "claim": "A lightweight side module reads frozen hidden states and adds calibration vectors directly in vocabulary space, leaving the base model untouched.",
+ "layout": "3 blocks, left-to-right, hidden state feeds side module whose output merges at logits",
+ "tags": [
+  "test-time-alignment",
+  "logit-space",
+  "bottleneck-adapter",
+  "parameter-efficiency",
+  "read-only-intervention"
+ ],
+ "style": [
+  "colorful",
+  "math-heavy",
+  "minimal"
+ ],
+ "description": "A left-to-right architecture diagram with three rounded, color-coded regions. On the left, a blue box labeled Base LLM (π_base) contains a transformer block (Attention, Add & Norm, FFN, Add & Norm, with residual arrows), repeated N times, and takes Input Tokens from the bottom. A hidden state h_t exits the top and goes into a green Calibration Module (θ) in the middle. That module is a vertical stack: Hidden State Compression with W_down and ReLU, then z_t = ReLU(W_down h_t), then Vocabulary Projection with W_up, then the calibration vector m_t = W_up z_t. At the right, a red Calibrated Output box holds a Σ node that sums the base logits l_t with γ·m_t and feeds a Softmax that outputs Output Tokens. Math notation labels every arrow. The eye goes first to the three colored blocks.",
+ "caption": "Overview of the PALC framework. Unlike conventional representation steering methods that intervene in entangled hidden spaces, PALC treats the base model’s hidden states ht strictly as a read-only context. A lightweight Calibration Module (θ) extracts essential preference signals through a bottleneck architecture (Wdown, Wup) to generate calibration vectors mt in the disentangled logit space. This decoupling ensures precise preference alignment with minimal computational overhead and preserves the base model’s general capabilities.",
+ "caption_source": "pdf",
+ "abstract": "Aligning Large Language Models with human preferences typically requires computationally intensive training or complex reward architectures. We introduce PALC (Preference Alignment via Logit Calibration), a parameter-efficient framework that achieves test-time alignment through a novel intervention strategy: direct calibration in vocabulary space. Unlike existing methods that manipulate entangled hidden representations or rely on external reward models, PALC operates at the logit layer where each dimension corresponds to a distinct token, providing interpretable and efficient control. Our approach employs a bottleneck architecture that learns to compress the base model's hidden states and generate position-dependent calibration vectors, requiring only a fraction of the base model's parameters. Through this design, PALC sidesteps the superposition problem inherent in representation engineering while eliminating the computational overhead of guided decoding methods. A single scaling factor enables runtime adjustment of alignment strength without retraining, allowing practitioners to balance between preserving model capabilities and enforcing preferences. Experiments demonstrate that PALC outperforms most test-time alignment methods while maintaining near-baseline inference speed. Our ablations reveal that human preferences concentrate on surprisingly low-dimensional manifolds, validating our architectural choices. By establishing vocabulary-space intervention as an effective alignment paradigm, PALC makes preference alignment accessible for resource-constrained deployments where traditional methods are infeasible, opening new avenues for scalable and adaptive AI alignment.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=0cmuYj3WeG",
+  "arxiv": null,
+  "pdf": "https://proceedings.iclr.cc/paper_files/paper/2026/file/2f9674e152bad70b13983e2df78a57d1-Paper-Conference.pdf",
+  "proceedings": "https://proceedings.iclr.cc/paper_files/paper/2026/hash/2f9674e152bad70b13983e2df78a57d1-Abstract-Conference.html",
+  "virtual": "https://iclr.cc/virtual/2026/poster/10011917",
+  "code": "https://github.com/s4n9hyun/PALC#"
+ },
+ "license": null,
+ "img": "none",
+ "image_url": null,
+ "thumb_url": null,
+ "figure_page": 1,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.9
+}

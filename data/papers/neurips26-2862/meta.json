@@ -1,0 +1,50 @@
+{
+ "id": "neurips26-2862",
+ "title": "Controlling for Omitted Variable Bias in Deep Neural Networks",
+ "authors": [
+  "Manuel Pfeuffer",
+  "Roshan P Rane",
+  "Kerstin Ritter",
+  "Sonja Greven"
+ ],
+ "venue": "NeurIPS 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "Deep Learning->Theory",
+ "role": "analysis-finding",
+ "role2": "problem-setup",
+ "claim": "Estimators without control variables stay biased as confounding strength grows, while control-based estimators converge consistently regardless of confounding.",
+ "layout": "2 panels: causal graph left, 2x2 convergence plot grid right",
+ "tags": [
+  "omitted-variable-bias",
+  "control-variables",
+  "consistency",
+  "simulation",
+  "confounding"
+ ],
+ "style": [
+  "plot",
+  "colorful",
+  "minimal"
+ ],
+ "description": "The left panel (a) shows the simulated data-generating process as a causal graph. Nodes Z (confounder), X (image) and Y (outcome) are linked by labelled arrows: spurious correlation, mediation, a direct effect fz(Z)=βz·Z, and residual or mediated effects through fx(X)=h(v2,v3). X is drawn as a black image strip with three grey circular blobs v1, v2 and v3. The right panel (b) is a 2x2 grid of log-log line plots of MSPE against training size N_train, from 200 to 12800. Lines are coloured by βz from 0 to 4 with a viridis scale on the left and a magma scale on the right. Strips on the right of each plot label the rows and columns: DNN with Controls on top, baseline DNN on the bottom. With controls, curves overlap and fall steadily. Without controls, curves plateau at higher error as βz grows.",
+ "caption": "(a) Simulation setting and (b) convergence results under increasing strength $\\beta_Z$ of $f_Z$ with scalar valued outcomes $Y \\in \\mathbb{R}$, when including (top) or omitting (bottom) control variables in the estimation of $f_X$ (left) and $f_X^\\mathrm{re}$ (right). $\\mathrm{MSPE}$ is calculated on a holdout test dataset and over 50 model fits, each trained on independently drawn training and validation data sets of size $N_\\mathrm{train}$. See [ref] for details on the simulation study.",
+ "caption_source": "latex",
+ "abstract": "Control variables are widely used in statistical modelling to account for omitted variable bias of known confounders. However, they have largely been underexplored in deep learning. This is surprising, given that deep learning models encode image-inferable covariates, such as demographic variables, into their predictions when these covariates are correlated with the outcome---a form of omitted variable bias referred to as 'shortcut learning'. While many existing confound-control or fairness methods try to restrict the correlation of such covariates with model predictions, we show that this fails to correct for omitted variable bias. We therefore propose a control variable approach for deep learning models, based on generalised additive modelling of the effects of model inputs and covariates. As flexible additive models can suffer from concurvity, we introduce an estimation procedure that refits the final layer of a pre-trained network to include covariate effects, using cross-fitting with ridge penalisation. We show how these effects can be orthogonalised with respect to covariates to exclude their mediated effects and that model predictions can be marginalised over the covariate distribution to control for their effect. This yields unbiased, interpretable predictions and offers flexibility to model the desired effects depending on the scientific or fairness objective. We verify our approach using simulated images, and demonstrate consistent estimation of true effects. Existing methods either require more data or fail to recover the true effects. We apply our method to real neuroimaging data with experimentally induced confounding, where it recovers prediction performance to near the level of a model trained on unconfounded data. Code is available at https://github.com/mpff/cocodeel.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=K9sgYlq0Bi",
+  "arxiv": "https://arxiv.org/abs/2608.25930",
+  "pdf": "https://arxiv.org/pdf/2608.25930",
+  "proceedings": null,
+  "virtual": "https://neurips.cc/virtual/2026/poster/153604",
+  "code": "https://github.com/mpff/ovb-dnn"
+ },
+ "license": "http://creativecommons.org/licenses/by-sa/4.0/",
+ "img": "cc-by-sa",
+ "image_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/images/neurips26-2862.png",
+ "thumb_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/thumbs/neurips26-2862.webp",
+ "figure_page": 3,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.5
+}

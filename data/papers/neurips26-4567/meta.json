@@ -1,0 +1,54 @@
+{
+ "id": "neurips26-4567",
+ "title": "AlignDrive: Aligned Lateral-Longitudinal Planning for End-to-End Autonomous Driving",
+ "authors": [
+  "Yanhao Wu",
+  "Haoyang Zhang",
+  "Fei He",
+  "Rui Wu",
+  "Yanhu Shan",
+  "Congpei Qiu",
+  "Liang Gao",
+  "Wei Ke",
+  "Tong Zhang"
+ ],
+ "venue": "NeurIPS 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "Applications->Robotics",
+ "role": "prior-vs-ours",
+ "role2": "problem-setup",
+ "claim": "Parallel planning predicts lateral and longitudinal outputs independently and can conflict; a cascade conditioning speed on the path coordinates them and avoids collisions.",
+ "layout": "2 panels: (a) legend-style planning targets left, (b) stacked prior/ours pipelines with example insets right",
+ "tags": [
+  "cascaded-planning",
+  "autonomous-driving",
+  "parallel-vs-cascade",
+  "path-conditioning",
+  "coordination"
+ ],
+ "style": [
+  "colorful",
+  "icon-heavy"
+ ],
+ "description": "The figure has two parts. Panel (a), on the left, is a top-down road scene with a white ego car, traffic cones and a lane divider. It marks the drive path as black dots, the trajectory as blue dots, and the longitudinal displacement as red arrows. Annotations read 'fix spatial interval' and 'fix temporal interval', and a legend sits below. Panel (b), on the right, stacks two block diagrams. The top diagram, 'Parallel Planning (previous)', takes multi-view camera images through a feature map. It then splits into Perception, Drive path and Trajectory, which feed lateral control and longitudinal control separately. The bottom diagram, 'Cascaded Planning (ours)', has the same input. Drive path feeds Longitudinal displacement, which feeds Longitudinal control, with Perception also feeding in. Small road-scene insets at the far right show a collision for the parallel design and a safe yield for the cascaded one. Colors are yellow for perception, grey for lateral, blue for trajectory and orange for longitudinal.",
+ "caption": "(a) Drive path (black), trajectory (blue), and longitudinal displacement (red). Path waypoints are sampled spatially, trajectory waypoints temporally, and displacements represent traveled distance along the path at fixed time intervals. (b) Comparison of E2E paradigms. {Parallel planning predicts the drive path and longitudinal trajectory independently, which can lead to potential coordination inconsistencies. In the example on the right, the independently predicted longitudinal trajectory is collision-free, but applying its speed along a separately predicted lateral path could cause a collision. In contrast, our cascaded paradigm first predicts the drive path and then regresses path-conditioned longitudinal displacements. With the path prior, the model identifies the potential conflict and outputs shorter displacements, yielding to avoid collision. Perception inputs are omitted for clarity.} \\vspace{-0.7cm}",
+ "caption_source": "latex",
+ "abstract": "Practical autonomous driving requires models that generalize by reasoning through spatial-temporal possibilities to exclude unsafe outcomes. While state-of-the-art (SOTA) methods use parallel planning architectures, they fail to explicitly couple speed decisions with agent behavior along the driving path, leading to suboptimal coordination. To address this, we propose a cascaded framework that transforms longitudinal planning from an independent prediction task into a path-conditioned reasoning process. On the model side, we introduce an anchor-based regression design that conditions longitudinal prediction on the lateral drive path, and reformulate longitudinal planning as 1D displacement prediction along the path. This reduces geometric uncertainty and sharpens the model's focus on interaction-driven dynamics. On the data side, we introduce a planning-oriented data augmentation strategy that simulates rare safety-critical events by programmatically inserting agents and relabeling longitudinal targets to enforce collision avoidance. Evaluated on the challenging Bench2Drive benchmark, our method achieves SOTA performance with a driving score of 89.07 and a success rate of 73.18%, demonstrating significantly improved coordination and safety. Further evaluation on Fail2Drive confirms strong generalization to rare edge cases where parallel formulations typically fail. Project page:https://yanhaowu.github.io/AlignDrive/.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=VXtoyI6yEY",
+  "arxiv": "https://arxiv.org/abs/2601.01762",
+  "pdf": "https://arxiv.org/pdf/2601.01762",
+  "proceedings": null,
+  "virtual": "https://neurips.cc/virtual/2026/poster/152098",
+  "code": "https://yanhaowu.github.io/AlignDrive/"
+ },
+ "license": "http://arxiv.org/licenses/nonexclusive-distrib/1.0/",
+ "img": "none",
+ "image_url": null,
+ "thumb_url": null,
+ "figure_page": 1,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.85
+}

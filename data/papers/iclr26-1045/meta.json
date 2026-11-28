@@ -1,0 +1,57 @@
+{
+ "id": "iclr26-1045",
+ "title": "Vision-SR1: Self-Rewarding Vision-Language Model via Reasoning Decomposition and Multi-Reward Policy Optimization",
+ "authors": [
+  "Zongxia Li",
+  "Wenhao Yu",
+  "Chengsong Huang",
+  "Zhenwen Liang",
+  "Rui Liu",
+  "Fuxiao Liu",
+  "Jingxi Chen",
+  "Dian Yu",
+  "Jordan Boyd-Graber",
+  "Haitao Mi",
+  "Dong Yu"
+ ],
+ "venue": "ICLR 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "Computer Vision->Vision Models & Multimodal",
+ "role": "pipeline",
+ "role2": null,
+ "claim": "A model's own second-pass answer from its generated perception provides a self-contained reward, enabling joint optimization without external supervision.",
+ "layout": "3 horizontal stages stacked top-to-bottom, left-to-right flow, dashed lines for second rollout",
+ "tags": [
+  "self-rewarding",
+  "reinforcement-learning",
+  "multi-reward",
+  "reasoning-decomposition",
+  "vision-language"
+ ],
+ "style": [
+  "colorful",
+  "text-heavy",
+  "math-heavy"
+ ],
+ "description": "A hand-drawn, sketchy-style diagram split into three horizontal stages by dashed lines, labeled on the right: Stage 1 Visual Reasoning, Stage 2 Textual Reasoning, Stage 3 Joint Policy Optimization. Inputs 'Image' and 'Query' on the left feed a frozen Policy VLM (red box, snowflake icon). In Stage 1, a yellow first-rollout chain (Visual Reasoning → CoT → Answer) leads to reward boxes for format and answer correctness, then to r_format, r_ans, A_ans and log_ans. A dashed arrow re-feeds the visual reasoning into a second Policy VLM in Stage 2. There, blue boxes (CoT → Answer) lead to visual-perception and format rewards, r_visual and A_visual. Stage 3 shows the actor loss and KL loss formulas in orange and green boxes. A legend at top left distinguishes solid (first rollout) from dashed (second rollout) arrows.",
+ "caption": "Overall framework of Vision-SR1. During RL training the VLM has two rollouts. In the first pass, the model takes an image--query pair and generates a structured output (visual perception, CoT reasoning, and answer), with answer reward computed against the ground truth. In the second pass, the model is re-prompted to answer using only query and its generated visual perception. If the correct answer is derived, a self-visual reward is assigned. We compute the advantages and log probabilities for each rollout for \\text{\\LossOptimi{}}.",
+ "caption_source": "latex",
+ "abstract": "Vision-Language Models (VLMs) often suffer from visual hallucinations -- generating things that are not consistent with visual inputs -- and language shortcuts, where they skip the visual part and just rely on text priors. These issues arise because most post-training methods for VLMs rely on simple verifiable answer matching and supervise only final outputs, leaving intermediate visual reasoning without explicit guidance. As a result, VLMs receive sparse visual signals and often learn to prioritize language-based reasoning over visual perception. To mitigate this, some existing methods add visual supervision using human annotations or distilled labels from external large models. However, human annotations are labor-intensive and costly, and external signals can introduce high latency cost. In this paper, we introduce Vision-SR1, a three-stage self-rewarding reinforcement learning method that improves visual reasoning without relying on external visual supervision. Vision-SR1 decomposes VLM reasoning into two components: visual reasoning and language reasoning, where the model is first prompted to produce self-contained visual descriptions sufficient to answer the question without referring back to the input image, before jointly optimizing both visual and language reasoning through our multi-reward loss objective. To validate this self-containment, the same VLM model is re-prompted to perform language reasoning using only the generated visual reasoning as input to compute visual reward. The final reward is computed through a decoupled reward-advantage framework, where visual reward and language reasoning reward each have their advantages, log probabilities, and KL divergence calculated separately. This decoupling enables more fine-grained reward computation by preventing the entanglement of heterogeneous reward signals. Our experiments show that Vision-SR1 improves visual reasoning, mitigates visual hallucinations, and reduces reliance on language shortcuts across diverse vision-language tasks, while being more efficient than methods that rely on external visual reward models, which require additional GPUs to host. In contrast, Vision-SR1 introduces no extra GPU overhead beyond that of standard training.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=C1M4ETatgM",
+  "arxiv": "https://arxiv.org/abs/2508.19652",
+  "pdf": "https://proceedings.iclr.cc/paper_files/paper/2026/file/8442d394d8266db6fdf92583a4783e8c-Paper-Conference.pdf",
+  "proceedings": "https://proceedings.iclr.cc/paper_files/paper/2026/hash/8442d394d8266db6fdf92583a4783e8c-Abstract-Conference.html",
+  "virtual": "https://iclr.cc/virtual/2026/poster/10010894",
+  "code": "https://github.com/zli12321/Vision-SR1"
+ },
+ "license": "http://creativecommons.org/licenses/by/4.0/",
+ "img": "cc-by",
+ "image_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/images/iclr26-1045.png",
+ "thumb_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/thumbs/iclr26-1045.webp",
+ "figure_page": 2,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.93
+}

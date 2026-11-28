@@ -1,0 +1,50 @@
+{
+ "id": "neurips26-3754",
+ "title": "FOGO: Forgetting-aware Orthogonalization Optimizer",
+ "authors": [
+  "Toan Nguyen",
+  "Yang Liu",
+  "Trung Le",
+  "Celso de Melo",
+  "Flora Salim"
+ ],
+ "venue": "NeurIPS 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "General Machine Learning->Transfer, Multitask and Meta-learning",
+ "role": "analysis-finding",
+ "role2": null,
+ "claim": "Standard training exhibits persistent gradient conflict where dominant updates suppress rare directions, raising their loss at each step.",
+ "layout": "3 line-plot panels in a row sharing step x-axis; shaded areas",
+ "tags": [
+  "gradient-interference",
+  "forgetting",
+  "class-imbalance",
+  "optimizer",
+  "empirical-evidence"
+ ],
+ "style": [
+  "plot",
+  "minimal"
+ ],
+ "description": "Three side-by-side line plots, all with training step (0 to about 1000) on the x-axis. Panel (a), titled Gradient conflict, shows cosine similarity between dominant and rare gradients as a noisy blue line staying slightly below zero, with faint pink and blue raw traces and a dashed zero line. Panel (b), titled Directional bias, plots the cosine between the combined update and each group. The green dominant curve falls from about 0.9 to about 0.1. The red non-dominant curve rises from about 0.3 to about 1.0. The curves cross near step 150, and the area between them is shaded peach. Panel (c), titled Per-step loss change, shows the loss change after each update. The red non-dominant curve sits above the green dominant curve, mostly positive and peaking near 0.1 early on. A legend sits inside each of panels (b) and (c).",
+ "caption": "Short-term forgetting under class imbalance (CIFAR-10, ResNet-18, 5 rare classes at 10% data). (a) Dominant and rare gradients maintain negative cosine similarity throughout training. (b) The combined update initially aligns with the dominant group; after dominant loss saturates (${\\sim}$step 200), the bias reverses. (c) Per-step validation loss change on a held-out probe: the suppressed group's loss increases after each update, confirming Theorem 1.",
+ "caption_source": "latex",
+ "abstract": "We argue that forgetting is not confined to continual learning but is a general optimization phenomenon: during standard training, dominant mini-batch gradients suppress rare but useful update directions, causing short-term forgetting at every step. When such knowledge is never revisited, these losses compound into long-term forgetting-the classical failure mode of continual learning. We introduce FOGO, a scalable optimizer that continuously detects and resolves gradient interference across both regimes. FOGO spectrally orthogonalizes momentum updates to prevent dominant directions from monopolizing optimization, then stores representative past directions in a compact codebook memory built on random projection, where pairwise distances are provably preserved in low-dimensional space. At each step, conflicts between the current update and stored directions are resolved via lightweight orthogonal correction and lifted back through a proximal step, with minimal overhead and no data storage. Across class-imbalanced classification, continual visual learning under domain and class shifts, continual fine-tuning of LLaVA-7B, and GPT-2 pretraining, FOGO consistently improves convergence and knowledge retention, outperforming Adam and Muon.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=QBkoiaQrV0",
+  "arxiv": "https://arxiv.org/abs/2606.10406",
+  "pdf": "https://arxiv.org/pdf/2606.10406",
+  "proceedings": null,
+  "virtual": "https://neurips.cc/virtual/2026/poster/152816",
+  "code": null
+ },
+ "license": "http://creativecommons.org/licenses/by/4.0/",
+ "img": "cc-by",
+ "image_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/images/neurips26-3754.png",
+ "thumb_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/thumbs/neurips26-3754.webp",
+ "figure_page": 3,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.9
+}

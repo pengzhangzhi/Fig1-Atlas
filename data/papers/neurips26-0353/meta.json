@@ -1,0 +1,52 @@
+{
+ "id": "neurips26-0353",
+ "title": "VIGOR: Visual Gain Ordering for Hallucination Mitigation in Multimodal Discrete Diffusion Language Models",
+ "authors": [
+  "Junzhe Chen",
+  "Tian Qin",
+  "Eugenie Shi",
+  "Tianshu Zhang",
+  "Qiang Ju",
+  "Lijie Wen"
+ ],
+ "venue": "NeurIPS 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "Computer Vision->Vision Models & Multimodal",
+ "role": "prior-vs-ours",
+ "role2": "problem-setup",
+ "claim": "Prior decoding commits tokens by language-prior confidence and errs; ordering commitments by visual evidence fixes the premature-commitment failure.",
+ "layout": "3 panels, left-to-right, same question and image repeated per panel",
+ "tags": [
+  "hallucination",
+  "diffusion-language-model",
+  "decoding-order",
+  "training-free",
+  "visual-grounding"
+ ],
+ "style": [
+  "text-heavy",
+  "colorful",
+  "photo/real data"
+ ],
+ "description": "Three side-by-side shaded panels share the same structure: a question at the top (\"What does the man holding a golf club do for a living?\", with \"golf club\" in red), a photo of a golfer feeding a model box, and a gray box listing failure causes. The left panel shows an autoregressive LVLM decoding strictly left to right and outputting the wrong answer \"golfer\". The middle panel shows a diffusion LLM, where bar charts show positions committing by confidence. Position 2 commits first, and an arrow labeled \"biased via bidirectional attention\" links the early commitment to the wrong answer. The right panel shows VIGOR, with a visual-gain score formula and positions ranked so that visually grounded tokens commit earlier. It produces the correct answer \"Curry ... basketball player\". Red marks errors and green marks correct outcomes. Each panel ends with a summary box.",
+ "caption": "Comparison of hallucination mechanisms in autoregressive LVLMs, multimodal dLLMs, and \\modelname.",
+ "caption_source": "latex",
+ "abstract": "Multimodal discrete diffusion language models (dLLMs) generate responses through iterative mask prediction and offer a promising alternative to autoregressive large vision-language models. However, they still suffer from hallucination, producing outputs that are plausible under language priors but insufficiently grounded in the image. We argue that hallucination in multimodal dLLMs is not only a token prediction problem, but also a premature commitment problem: during iterative denoising, some masked positions are unmasked too early because their confidence is driven more by language priors than by visual evidence, and these early commitments can bias later generation. To address this issue, we propose Visual Gain Ordering (VIGOR), a training-free and plug-and-play inference strategy that reorders masked positions according to counterfactual visual evidence. At each denoising step, VIGOR compares the confidence of each candidate token under the original image-conditioned pass and an additional visual-ablation pass, and prioritizes positions whose predictions are more strongly supported by the image. Experiments on LLaDA-V and Lumina-DiMOO show that VIGOR consistently reduces hallucination and improves multimodal reasoning performance across benchmarks. Code is available at https://github.com/THU-BPM/Vigor.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=2ZlTG9IUvR",
+  "arxiv": "https://arxiv.org/abs/2611.05066",
+  "pdf": "https://arxiv.org/pdf/2611.05066",
+  "proceedings": null,
+  "virtual": "https://neurips.cc/virtual/2026/poster/155830",
+  "code": "https://github.com/THU-BPM/Vigor"
+ },
+ "license": "http://arxiv.org/licenses/nonexclusive-distrib/1.0/",
+ "img": "none",
+ "image_url": null,
+ "thumb_url": null,
+ "figure_page": 1,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.85
+}

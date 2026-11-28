@@ -1,0 +1,53 @@
+{
+ "id": "icml26-0239",
+ "title": "Fine-Tuning Masked Diffusion for Provable Self-Correction",
+ "authors": [
+  "Jaeyeon Kim",
+  "Seunggeun Kim",
+  "Taekyun Lee",
+  "David Pan",
+  "Hyeji Kim",
+  "Sham Kakade",
+  "Sitan Chen"
+ ],
+ "venue": "ICML 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "Deep Learning->Generative Models and Autoencoders",
+ "role": "pipeline",
+ "role2": "prior-vs-ours",
+ "claim": "Standard inference fixes tokens once unmasked; adding a learned per-token quality score lets the model detect and remask mistakes, trained via a simple pair-generation scheme.",
+ "layout": "3 panels, left-to-right; dashed divider, green arrow from vanilla to ours, training box at right",
+ "tags": [
+  "masked-diffusion",
+  "self-correction",
+  "remasking",
+  "plug-in-fine-tuning",
+  "discrete-generative"
+ ],
+ "style": [
+  "colorful",
+  "icon-heavy",
+  "minimal"
+ ],
+ "description": "Three panels. The left panel, 'MDM Vanilla Inference', shows rows of token boxes (mask, eat, water, etc.) going top to bottom through an MDM block. Small bar-chart icons mark the unmasking posterior, and blue arrows fill in tokens. A wrong token, 'eat', stays fixed to the end. The middle panel, 'MDM Inference with PRISM', has the same layout with a 'Fine-tuned MDM' block. Green quality scores (0.2, 0.8) appear under tokens, and a red arrow remasks the low-scoring 'eat' into a red 'mask'. The final sequence is corrected to 'have'. A green arrow links the two panels, and a legend sits at the bottom. The right panel, 'PRISM Fine-tuning', is a green box showing training. A masked sequence z is sampled to y through an MDM, and the loss compares y with the clean sequence x. Red highlights mark the error.",
+ "caption": "PRISM. (Left) MDM learns \\xblue{unmasking posterior} to unmask tokens, after which they remain fixed. (Middle) PRISM fine-tuning introduces \\xxgreen{per-token quality}, which is used to detect incorrect tokens and \\xred{remask} them. At inference, the fine-tuned MDM jointly computes \\xblue{unmasking posterior} and \\xxgreen{per-token quality}, respectively performing unmasking and remasking. (Right) PRISM training pair generation: sample a masked sequence $\\rvz$ from $\\rvx$; from $\\rvz$, unmask a chosen position using the pretrained MDM to obtain $\\rvy$.",
+ "caption_source": "latex",
+ "abstract": "A natural desideratum for generative models is self-correction--detecting and revising low-quality tokens at inference. While Masked Diffusion Models (MDMs) have emerged as a promising approach for generative modeling in discrete spaces, their capacity for self-correction remains poorly understood. Prior attempts to incorporate self-correction into MDMs either require overhauling MDM architectures/training or rely on imprecise proxies for token quality, limiting their applicability. Motivated by this, we introduce PRISM--Plug-in Remasking for Inference-time Self-correction of Masked Diffusions--a lightweight, model-agnostic approach that applies to any pretrained MDM. Theoretically, PRISM defines a self-correction loss that provably learns per-token quality scores, without RL or a verifier. These quality scores are computed in the same forward pass with MDM and used to detect low-quality tokens. Empirically, PRISM advances MDM inference across domains and scales: Sudoku; unconditional text (170M); and code with LLaDA (8B).",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=2LRaNghfoM",
+  "arxiv": "https://arxiv.org/abs/2510.01384",
+  "pdf": "https://raw.githubusercontent.com/mlresearch/v306/main/assets/kim26ac/kim26ac.pdf",
+  "proceedings": "https://proceedings.mlr.press/v306/kim26ac.html",
+  "virtual": "https://icml.cc/virtual/2026/poster/66597",
+  "code": "https://github.com/SeunggeunKimkr/PRISM"
+ },
+ "license": "http://creativecommons.org/licenses/by/4.0/",
+ "img": "cc-by",
+ "image_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/images/icml26-0239.png",
+ "thumb_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/thumbs/icml26-0239.webp",
+ "figure_page": 1,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.62
+}

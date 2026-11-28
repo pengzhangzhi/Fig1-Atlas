@@ -1,0 +1,53 @@
+{
+ "id": "iclr26-4518",
+ "title": "Cache What Lasts: Token Retention for Memory-Bounded KV Cache in LLMs",
+ "authors": [
+  "Ngoc Bui",
+  "Shubham Sharma",
+  "Simran Lamba",
+  "Saumitra Mishra",
+  "Rex Ying"
+ ],
+ "venue": "ICLR 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "Deep Learning->Attention Mechanisms",
+ "role": "concept",
+ "role2": null,
+ "claim": "Retaining only a bounded set of important past tokens, rather than the full history, yields a sparse attention pattern under a fixed memory budget.",
+ "layout": "single 6x6 lower-triangular grid, color-coded cells with binary values",
+ "tags": [
+  "kv-cache",
+  "eviction",
+  "attention-mask",
+  "memory-bounded",
+  "toy-example"
+ ],
+ "style": [
+  "minimal",
+  "colorful"
+ ],
+ "description": "A single 6x6 grid shows a causal attention matrix with eviction at memory budget M=3. Only the lower triangle is used, and the upper triangle is blank white. The diagonal cells are green, each containing 1, for the current token attending to itself. Blue cells with 1 mark past tokens still held in the cache and attended to. Gray cells with 0 mark tokens just evicted. White cells with 0 mark tokens evicted earlier. Rows are queries and columns are keys, so the eye follows the diagonal and then the changing pattern of blue and gray cells in the bottom rows. Each row has at most three attended entries. Thick black gridlines and large digits make the figure simple and abstract. A sliver of cropped text is visible at the far left edge.",
+ "caption": "Attention w/ eviction ($M=3$).",
+ "caption_source": "latex",
+ "abstract": "Memory and computation remain core bottlenecks in long-horizon LLM inference due to the quadratic cost of self-attention and the ever-growing key-value (KV) cache. Existing strategies for memory-bounded inference, such as quantization, offloading, or heuristic KV eviction, either incur high orchestration costs or rely on unreliable attention-based proxies of importance. We propose TRIM-KV, a novel approach that learns each token's intrinsic importance at creation time via a lightweight retention gate. Each gate predicts a scalar retention score that decays over time, reflecting the long-term utility of the token for a specific layer and head. Tokens with low scores are evicted when the memory budget is exceeded, ensuring that the cache always contains the most critical tokens. TRIM-KV is trained efficiently through distillation from a frozen LLM combined with a capacity loss, requiring only gate fine-tuning and adding negligible inference overhead. Across mathematical reasoning (GSM8K, MATH-500, AIME24), procedural generation (LongProc), conversational long-memory benchmarks (LongMemEval), and long-context understanding (LongBenchV2 and SCBench), TRIM-KV consistently outperforms strong eviction and learnable retrieval baselines, especially in low-memory regimes. Remarkably, it even surpasses full-cache models in some settings, showing that selective retention can serve as a form of regularization, suppressing noise from uninformative tokens. Qualitative analyses further reveal that learned retention scores align with human intuition, naturally recovering heuristics such as sink tokens, sliding windows, and gist compression without explicit design. Beyond efficiency, retention scores provide insights into layer- and head-specific roles, suggesting a new path toward LLM interpretability.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=qCaq3jGb0S",
+  "arxiv": "https://arxiv.org/abs/2512.03324",
+  "pdf": "https://proceedings.iclr.cc/paper_files/paper/2026/file/c3887741ee4e655494770be95303383f-Paper-Conference.pdf",
+  "proceedings": "https://proceedings.iclr.cc/paper_files/paper/2026/hash/c3887741ee4e655494770be95303383f-Abstract-Conference.html",
+  "virtual": "https://iclr.cc/virtual/2026/poster/10007269",
+  "code": null
+ },
+ "license": "http://creativecommons.org/licenses/by/4.0/",
+ "img": "cc-by",
+ "image_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/images/iclr26-4518.png",
+ "thumb_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/thumbs/iclr26-4518.webp",
+ "figure_page": 3,
+ "qc_flags": [
+  "tiny-crop",
+  "bad-crop"
+ ],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.55
+}

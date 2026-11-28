@@ -1,0 +1,51 @@
+{
+ "id": "neurips26-2407",
+ "title": "Corrective Diffusion Language Models",
+ "authors": [
+  "Shuibai Zhang",
+  "Fred Peng",
+  "Yiheng Zhang",
+  "Jin Pan",
+  "Grigorios Chrysos"
+ ],
+ "venue": "NeurIPS 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": null,
+ "role": "problem-setup",
+ "role2": "concept",
+ "claim": "Global confidence aggregates look identical for correct and erroneous outputs, so they cannot reveal a failure that token-level confidence would.",
+ "layout": "2 side-by-side panels, correct vs bug, with a double-headed arrow between them",
+ "tags": [
+  "confidence-calibration",
+  "error-detection",
+  "failure-case",
+  "diffusion-language-models",
+  "code-correction"
+ ],
+ "style": [
+  "minimal",
+  "colorful",
+  "plot"
+ ],
+ "description": "Two rounded panels sit side by side. The left panel, headed with a green check and \"CORRECT\", shows a code snippet, `for i in range(n): sum += arr[i]`. The right panel, headed with a red X and \"BUG\", shows the same snippet with `arr[j]`. The `j` is highlighted in red, and a red tag reads \"undefined: j\". Under each snippet are three bars: Average Conf., Min Conf., and a token-level bar, P(i) in green on the left and P(j) in red on the right. Gray bars show 99% and 88% on the left and 97% and 88% on the right. The colored bars show 99% and 98%. A blue double-headed arrow labeled \"Nearly Identical!\" links the two colored bars. The eye goes first to the green and red contrast, then to the blue arrow.",
+ "caption": "An illustrative example in which the model is equally confident in the correct variable ($i$) and the undefined bug ($j$). Global metrics (Average/Min) fail to detect this failure mode.",
+ "caption_source": "latex",
+ "abstract": "While Diffusion Language Models (DLMs) are theoretically well-suited for iterative refinement due to their non-causal structure, off-the-shelf masked diffusion language models (MDLMs) often fail to reliably revise incorrect tokens in practice. The key challenge is that the model cannot tell correct from erroneous visible tokens: standard MDLM training supervises only masked positions, undermining confidence-guided refinement. We study corrective behavior in DLMs, the ability to assign lower confidence to incorrect tokens and iteratively refine them while preserving correct content. Under matched compute and data, we show that conventional masked-diffusion fine-tuning induces much less of this capability than a correction-oriented post-training principle that explicitly supervises visible corrupted tokens, which enables discriminative confidence and targeted refinement. We further find that also supervising clean visible tokens, as in BERT- or GIDD-style training, stops remask-based refinement from improving with additional steps. To evaluate it, we introduce the Code Revision Benchmark, a controllable, executable benchmark for error localization and in-place correction. The effect transfers from a 0.5B model to LLaDA-8B and persists, with a smaller margin, when corruptions are drawn from the base model's own most plausible predictions. The same error-aware confidence also makes parallel decoding more effective. In HumanEval(+) code completion at 0.5B, mathematical reasoning at 16B, and high-entropy parallel decoding with remasking (ParallelBench), models trained with our objective outperform standard masked-diffusion fine-tuning under matched compute, and outperform the base model on HumanEval(+), MATH, and the high-entropy ParallelBench average; at 8B, neither objective improves from-scratch generation over the base model. Code and data: https://github.com/zhangshuibai/CDLM",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=Gteb9OmhzF",
+  "arxiv": "https://arxiv.org/abs/2512.15596",
+  "pdf": "https://arxiv.org/pdf/2512.15596",
+  "proceedings": null,
+  "virtual": "https://neurips.cc/virtual/2026/poster/154007",
+  "code": null
+ },
+ "license": "http://arxiv.org/licenses/nonexclusive-distrib/1.0/",
+ "img": "none",
+ "image_url": null,
+ "thumb_url": null,
+ "figure_page": 1,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.8
+}

@@ -1,0 +1,49 @@
+{
+ "id": "icml26-3773",
+ "title": "BLIPs: Bayesian Learned Interatomic Potentials",
+ "authors": [
+  "Dario Coscia",
+  "Pim de Haan",
+  "Max Welling"
+ ],
+ "venue": "ICML 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "Applications->Chemistry, Physics, and Earth Sciences",
+ "role": "pipeline",
+ "role2": null,
+ "claim": "A standard deterministic network becomes probabilistic by letting a small auxiliary network inject learned noise into its weights.",
+ "layout": "Top-down nested: overview row, zoomed layer panel, inference-network panel; arrows left-to-right",
+ "tags": [
+  "variational-inference",
+  "uncertainty-quantification",
+  "message-passing",
+  "architecture-agnostic",
+  "stochastic-weights"
+ ],
+ "style": [
+  "colorful",
+  "icon-heavy",
+  "math-heavy"
+ ],
+ "description": "A three-tier flow diagram. The top row runs from a 3D ball-and-stick molecule (Physical Structure) through Encode to a boxed Message Passing Neural Network (graph, MPNN Block, updated graph, xL layers), then through Decode to an Energy and Forces box with force arrows on atoms. A zoom-in line expands one layer into a blue panel. In it, node features and edges pass through a green Message Function network and a red Update Function network, with small colored feature-matrix icons between them. Below, a grey Inference Network panel takes the initial graph and outputs the scale list [α1, β1, ...]. Green and red dotted arrows carry these to the two networks. The perturbed-weight equations ω = θ + sqrt(α)|θ|⊙ε appear in matching green and red. A UQ line connects the molecule to the inference network.",
+ "caption": "Bayesian Learned Interatomic Potentials (BLIPs) for Prediction and Uncertainty Quantification. An atomic structure is encoded as a graph, with initial node features $\\h^0$ and edge features $a_{ij}$, and processed by a standard Message Passing Neural Network (MPNN). BLIP introduces stochasticity into the machine learned interatomic potential (MLIP) by injecting zero-mean Gaussian noise into the message and update functions. Specifically, the deterministic weights $\\bm{\\theta}^M_l$ and $\\bm{\\theta}^U_l$ are perturbed using perturbation scales $\\alpha_l$ and $\\beta_l$ (obtained through an inference network), respectively, yielding stochastic weights $\\w^M_l$ and $\\w^U_l$. The main weights $\\bm{\\theta}^M_l$ and $\\bm{\\theta}^U_l$, and the inference network weights are trained jointly using variational inference. This transforms MLIP into BLIP, a probabilistic model, enabling principled uncertainty quantification and improved predictive accuracy.",
+ "caption_source": "latex",
+ "abstract": "Machine Learning Interatomic Potentials (MLIPs) are becoming a central tool in simulation-based chemistry. However, like most deep learning models, MLIPs struggle to make accurate predictions on out-of-distribution data or when trained in a data-scarce regime, both common scenarios in simulation-based chemistry. Moreover, MLIPs do not provide uncertainty estimates by construction, which are fundamental to guide active learning pipelines and to ensure the accuracy of simulation results compared to quantum calculations. To address this shortcoming, we propose BLIPs: Bayesian Learned Interatomic Potentials. BLIP is a scalable, architecture-agnostic variational Bayesian framework for training or fine-tuning MLIPs, built on an adaptive version of Variational Dropout. BLIP delivers well-calibrated uncertainty estimates and minimal computational overhead for energy and forces prediction at inference time, while integrating seamlessly with (equivariant) message-passing architectures. Empirical results on simulation-based computational chemistry tasks demonstrate improved predictive accuracy with respect to standard MLIPs, and trustworthy uncertainty estimates, especially in data-scarse or heavy out-of-distribution regimes. Moreover, fine-tuning pretrained MLIPs with BLIP yields consistent performance gains and calibrated uncertainties.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=ZSZW2diTs5",
+  "arxiv": "https://arxiv.org/abs/2508.14022",
+  "pdf": "https://raw.githubusercontent.com/mlresearch/v306/main/assets/coscia26a/coscia26a.pdf",
+  "proceedings": "https://proceedings.mlr.press/v306/coscia26a.html",
+  "virtual": "https://icml.cc/virtual/2026/poster/63165",
+  "code": "https://github.com/dario-coscia/blip"
+ },
+ "license": "http://creativecommons.org/licenses/by/4.0/",
+ "img": "cc-by",
+ "image_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/images/icml26-3773.png",
+ "thumb_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/thumbs/icml26-3773.webp",
+ "figure_page": 1,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.93
+}

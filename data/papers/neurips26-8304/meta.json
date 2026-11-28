@@ -1,0 +1,55 @@
+{
+ "id": "neurips26-8304",
+ "title": "IFDECORATOR: Wrapping Instruction Following Reinforcement Learning with Verifiable Rewards",
+ "authors": [
+  "Xu Guo",
+  "Tianyi Liang",
+  "Jian Tong",
+  "Xiaogui Yang",
+  "Ling-I Wu",
+  "Chenhui Li",
+  "Zhihui Lu",
+  "Qipeng Guo",
+  "Kai Chen"
+ ],
+ "venue": "NeurIPS 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "Reinforcement Learning->Everything Else",
+ "role": "pipeline",
+ "role2": "overview-framework",
+ "claim": "A wrapper framework makes reinforcement learning robust by combining an iterative data-generation loop, an intent-checking bypass and an independent hack-detection monitor.",
+ "layout": "3 panels: top flywheel, bottom-left training loop, bottom-right case study; code-style headers",
+ "tags": [
+  "data-flywheel",
+  "reward-hacking",
+  "verifiable-rewards",
+  "instruction-following",
+  "modular-framework"
+ ],
+ "style": [
+  "icon-heavy",
+  "colorful",
+  "text-heavy"
+ ],
+ "description": "The figure has three parts in a cartoon style, with window-chrome title bars and code-style headers (def get_data, def RLVR). The top panel shows the data flywheel. An initial instruction flows through an Instruction Former robot, which produces an instruction-verification pair (I_n, V_n). An Instruction Solver robot then tries it, and a Difficulty Selection diamond branches. Too easy or too hard sends the pair back along a dashed Regenerate loop. Otherwise the pair goes to a Synthetic Dataset (I*, V*). The bottom-left panel shows the RLVR loop. I* goes to the Policy, then to Responses, then to V* (scripts and criteria), then to Rewards, with a dashed Policy Update loop. An Instruction Intent bypass arrow reaches the reward through an AND gate. A TripWire box is marked 'not used in reward' and outputs to a log. The bottom-right blue panel is a case study of a trap instruction. A policy answers honestly, an updated policy exploits a shortcut, and the exploit is flagged as reward hacking.",
+ "caption": "The \\IFDcontent{} framework. Upper: Overview of the cooperative-adversarial data flywheel. The Instruction-Former generates synthetic instruction-verification pairs $(I_n, V_n)$, while the Instruction-Solver attempts to follow these instructions. Based on the pass rate under $V_n$, the system provides feedback to adjust instruction difficulty. Lower Left: Overview of the RLVR4IF framework decorated with \\IntentCheck{}. The Policy LLM follows instructions $I_*$ and generates responses evaluated by verification $V_*$. \\IntentCheck{} serves as a bypass module to mitigate reward hacking by enforcing intent alignment. Lower Right: Trip wires detect reward hacking via trap instructions that trigger shortcut exploitation behaviors. These trip wires operate independently from training, monitoring hacking behaviors without interfering with rewards.",
+ "caption_source": "latex",
+ "abstract": "Reinforcement Learning with Verifiable Rewards (RLVR) improves instruction following capabilities of large language models (LLMs), but suffers from training inefficiency due to inadequate difficulty assessment. Moreover, RLVR is prone to over-optimization, where LLMs exploit verification shortcuts without aligning to the actual intent of user instructions. We introduce Instruction Following Decorator (IFDecorator}, a framework that wraps RLVR training into a robust and sample-efficient pipeline. It consists of three components: (1) a cooperative-adversarial data flywheel that co-evolves instructions and hybrid verifications, generating progressively more challenging instruction-verification pairs; (2) IntentCheck, a bypass module enforcing intent alignment; and (3) trip wires, a diagnostic mechanism that detects reward hacking via trap instructions, which trigger and capture shortcut exploitation behaviors. Our Qwen2.5-32B-Instruct-IFDecorator achieves 87.43% accuracy on IFEval, outperforming larger proprietary models such as GPT-4o. Additionally, we demonstrate substantial improvements on FollowBench while preserving general capabilities. Our trip wires show significant reductions in reward hacking rates. We will release models, code, and data for future research.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=vEcdUTiDxm",
+  "arxiv": "https://arxiv.org/abs/2508.04632",
+  "pdf": "https://arxiv.org/pdf/2508.04632",
+  "proceedings": null,
+  "virtual": "https://neurips.cc/virtual/2026/poster/148764",
+  "code": "https://github.com/guox18/IFDecorator"
+ },
+ "license": "http://creativecommons.org/licenses/by/4.0/",
+ "img": "cc-by",
+ "image_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/images/neurips26-8304.png",
+ "thumb_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/thumbs/neurips26-8304.webp",
+ "figure_page": 1,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.8
+}

@@ -1,0 +1,50 @@
+{
+ "id": "icml26-3398",
+ "title": "Semantic Cache Distillation: Efficient State Transfer via Reuse and Selective Patching",
+ "authors": [
+  "Qianli Ma",
+  "Zhiqing Tang",
+  "Hanshuai Cui",
+  "Zhi Yao",
+  "Weijia Jia"
+ ],
+ "venue": "ICML 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "Deep Learning->Large Language Models",
+ "role": "prior-vs-ours",
+ "role2": "pipeline",
+ "claim": "Naively transmitting and reusing raw state is slow and misaligned; ours sends compact codes and patches sparse layers for fast, faithful transfer.",
+ "layout": "2 stacked panels, left-to-right flow, quality-trajectory curve at right of each",
+ "tags": [
+  "disaggregated-serving",
+  "kv-cache",
+  "low-rank",
+  "communication-efficiency",
+  "selective-patching"
+ ],
+ "style": [
+  "colorful",
+  "icon-heavy"
+ ],
+ "description": "Two stacked panels with gray title bars. Panel (a), Challenges, shows a Producer (base model) as a stack of blue layer slabs. An arrow leads to a large dark-gray 3D box labeled Raw KV Cache (High-dimensional). The box feeds a narrow bandwidth-constrained interconnect pipe, marked by a red clock icon and the text High Latency. The pipe ends at the Consumer (fine-tuned model), a darker blue stack. At right, a small plot shows a dashed blue Ideal Trajectory and a red Direct Reuse Trajectory that falls below it, with a red X and the label Quality Degradation. Panel (b), SCD Framework (Ours), has the same Producer feeding a green SCD Encoder. The encoder emits small cyan Semantic Codes (low-rank) through the interconnect, which fans out to Layer 0 through Layer N. Green Reuse Layer boxes sit above and below a yellow Patch Layer box in the middle. These feed the Consumer. A plot at right shows the green SCD Trajectory matching the Ideal Trajectory, with green checkmarks. The eye goes first to the heavy gray box in (a), then to the colorful green and yellow modules in (b).",
+ "caption": "Overview of SCD. (a) Challenges in heterogeneous disaggregated serving: Transmitting raw KV caches creates a communication bottleneck, and directly reusing caches from a base model (Producer) to a fine-tuned model (Consumer) causes semantic drift that degrades quality. (b) SCD Framework: We replace raw KV transmission with compact semantic codes. The Consumer reconstructs states using Reuse (low-rank projection) for efficiency and applies Patch at sparse transition layers to rectify semantic misalignment, achieving low latency and high generation quality.",
+ "caption_source": "latex",
+ "abstract": "Disaggregated serving alleviates memory bottlenecks in Large Language Model (LLM) inference but creates a severe communication bottleneck: transmitting high-dimensional Key-Value (KV) caches often dominates time-to-first-token (TTFT). Moreover, reusing caches across heterogeneous models (e.g., base and fine-tuned variants) causes semantic misalignment that accumulates over layers, degrading generation quality. We propose Semantic Cache Distillation (SCD), a loss-constrained framework that replaces raw KV transmission with compact semantic codes. SCD addresses these challenges via two mechanisms: (1) Reuse, which reconstructs most layers from low-rank subspaces to minimize transfer cost, and (2) Patch, which predicts normalized inputs at sparse transition layers to truncate error propagation. Empirically, SCD delivers up to 2.65 $\\times$ TTFT speedup over the oracle consumer prefill and dominates quantization and selective recomputation baselines on the quality--latency Pareto frontier in bandwidth-constrained regimes, while keeping generation quality within 5\\% F1 of the oracle.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=WLjJqhELBZ",
+  "arxiv": "https://arxiv.org/abs/2606.07684",
+  "pdf": "https://raw.githubusercontent.com/mlresearch/v306/main/assets/ma26ag/ma26ag.pdf",
+  "proceedings": "https://proceedings.mlr.press/v306/ma26ag.html",
+  "virtual": "https://icml.cc/virtual/2026/poster/63533",
+  "code": null
+ },
+ "license": "http://creativecommons.org/licenses/by/4.0/",
+ "img": "cc-by",
+ "image_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/images/icml26-3398.png",
+ "thumb_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/thumbs/icml26-3398.webp",
+ "figure_page": 2,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.7
+}

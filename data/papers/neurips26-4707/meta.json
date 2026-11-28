@@ -1,0 +1,53 @@
+{
+ "id": "neurips26-4707",
+ "title": "PARE: Pruning and Adaptive Routing for Efficient Video Generation",
+ "authors": [
+  "Yutong Wang",
+  "Yunke Wang",
+  "Tianfan Xue",
+  "Yu Qiao",
+  "Yaohui WANG",
+  "Xinyuan Chen",
+  "Chang Xu"
+ ],
+ "venue": "NeurIPS 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "Computer Vision->Image and Video Generation",
+ "role": "pipeline",
+ "role2": "overview-framework",
+ "claim": "A two-part compression pipeline prunes width with type-aware importance and routes depth adaptively per input and timestep.",
+ "layout": "2 panels, left-to-right; (a) block internals with scoring, (b) router and mask flow",
+ "tags": [
+  "pruning",
+  "adaptive-routing",
+  "efficiency",
+  "diffusion-transformer",
+  "width-depth-compression"
+ ],
+ "style": [
+  "colorful",
+  "icon-heavy",
+  "minimal"
+ ],
+ "description": "Two rounded panels under gray title bars. Panel (a), 'Spatial-Temporal Aware Width Pruning', shows stacked pink DiT attention-head cards, with Q, K, V and O yellow nodes and a summation circle. Next to it are stacked blue FFN neuron cards with up-projection, sigma and down-projection trapezoids. Below are a calibration dataset cylinder and black/gray head-mask squares. A head-importance arrow s to s-tilde passes through Spatial, Mixed and Temporal labels, with a shield icon on Temporal. A neuron-ranking strip leads to a 'preserved neurons' database icon, with the neuron-norm formula underneath. Panel (b), 'Content-Adaptive Block Routing', shows noise and timestep/visual embeddings feeding a yellow Router trapezoid. The router outputs a binary routing mask, drawn as black and gray squares, that gates a row of 'Pruned DiT Block' boxes. Two example masks are labelled high-noise (structure recovery) and low-noise (detail refinement).",
+ "caption": "Overview of \\pare. (a) Spatial-temporal aware width pruning. Calibration-based head importance scores $s^{i,j}$ are adjusted to $\\tilde{s}^{i,j}$ according to head type, protecting temporal heads from magnitude bias. FFN neurons are ranked by the product of their up/down projection norms and greedily selected to preserve importance while avoiding functional redundancy. (b) Content-adaptive block routing. A lightweight router conditioned on the timestep embedding and visual input produces a binary mask selecting which pruned blocks to execute. A timestep-dependent budget assigns more blocks to high-noise steps for structure recovery and fewer to low-noise steps for detail refinement.",
+ "caption_source": "latex",
+ "abstract": "Video Diffusion Transformers (DiTs) generate high-quality videos but demand substantial compute due to wide blocks, deep architectures, and iterative sampling. Recent methods reduce cost by compressing width, depth, or sampling steps, but typically commit to a fixed architecture that cannot adapt to individual inputs or denoising stages. We propose PARE (Pruning and Adaptive Routing for Efficient video generation), which jointly compresses width and depth with structure-aware pruning and input-adaptive routing. For width, we observe that attention heads specialize into spatial and temporal roles, and design importance scoring that accounts for this distinction to prevent motion-critical temporal heads from being pruned prematurely. For depth, we train a lightweight router conditioned on denoising timestep and visual content to dynamically select which blocks to execute at each step, enabling per-input compute adaptation rather than static block removal. A progressive pipeline first recovers width-pruned quality via distillation, then jointly optimizes the student and router to decouple the two learning objectives. Experiments on Wan2.1-14B for both image-to-video and text-to-video generation show that PARE substantially reduces per-step computation while preserving quality across VBench dimensions, and composes with step distillation for further acceleration.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=WSWLqEZjZV",
+  "arxiv": "https://arxiv.org/abs/2605.27336",
+  "pdf": "https://arxiv.org/pdf/2605.27336",
+  "proceedings": null,
+  "virtual": "https://neurips.cc/virtual/2026/poster/151968",
+  "code": null
+ },
+ "license": "http://arxiv.org/licenses/nonexclusive-distrib/1.0/",
+ "img": "none",
+ "image_url": null,
+ "thumb_url": null,
+ "figure_page": 2,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.85
+}

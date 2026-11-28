@@ -1,0 +1,48 @@
+{
+ "id": "neurips26-0631",
+ "title": "A Principled Optimal Transport Framework for Frame Selection in Long Video Understanding",
+ "authors": [
+  "Ziwei Zhao",
+  "Yuhang Liu"
+ ],
+ "venue": "NeurIPS 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "Computer Vision->Vision Models & Multimodal",
+ "role": "prior-vs-ours",
+ "role2": "pipeline",
+ "claim": "Prior methods score frames one-dimensionally then apply hand-designed rules; ours casts selection as principled optimal transport followed by exact dynamic-programming extraction.",
+ "layout": "2 stacked horizontal rows, left-to-right flow, prior row above ours",
+ "tags": [
+  "optimal-transport",
+  "frame-selection",
+  "long-video",
+  "training-free",
+  "heuristic-vs-principled"
+ ],
+ "style": [
+  "colorful",
+  "icon-heavy",
+  "photo/real data"
+ ],
+ "description": "Two horizontal bands stacked vertically. The top gray band, labeled 'Previous Works', shows a video frame stack and the text query 'What happens in the video?' feeding image-text matching, which produces a 1D temporal score curve. A 'Human-Designed Sampling Rule' picks the 1st, 2nd and 3rd peaks, and the selected frames go to an LMM block in green. The bottom band, labeled 'Ours', is a pink and purple pipeline. Evidence-source squares connect to frame squares in a bipartite graph, then a cost-matrix grid, then an OTFS-Sinkhorn box with relaxed and exact update matrices. After that comes a frame-importance distribution along a time axis, and a DP processor picks coverage-aware frames. Selected frames feed up into the LMM via an orange arrow. Real photos of frames are used, and blue and orange arrows show the flow.",
+ "caption": "Comparison between prior training-free frame-selection procedures and our principled OT-based framework. Existing methods typically compute one-dimensional frame scores and then apply hand-designed sampling or extraction rules. In contrast, OTFS formulates frame selection as semi-unbalanced transport from evidence atoms to video frames, producing a soft frame-importance distribution that is converted into a coverage-aware subset by exact dynamic programming.",
+ "caption_source": "latex",
+ "abstract": "Long-video understanding with multimodal LLMs is fundamentally constrained by the mismatch between video length and the model's limited visual context budget, making frame selection essential for practical reasoning. Existing query-aware methods typically rely on heuristic pipelines: they assign one-dimensional query-conditioned scores to frames and then apply sampling, ranking, or extraction rules to form the final subset. While effective in practice, such methods are generally not derived from an explicit optimization objective and struggle to capture the heterogeneous evidence required for complex reasoning. In this paper, we revisit long-video frame selection from a principled optimization perspective. We formulate it as a structured evidence-allocation problem and propose OTFS, an optimal transport framework that maps multiple evidence sources onto video frames. To reflect the asymmetry of this problem---important evidence should be preserved, whereas redundant frames need not absorb mass---we instantiate this view with a semi-unbalanced entropic optimal transport objective and an efficient solver, OTFS-Sinkhorn. Combined with an exact dynamic program for coverage-aware subset extraction, OTFS yields a practical two-stage training-free pipeline. We further show that, in the single-source case, our formulation induces a Gibbs-type distribution over frames, making Q-Frame's temperature-scaled distribution a special case of our framework while also providing a broader perspective for understanding related prior methods. Experiments on three long-video understanding benchmarks show that OTFS consistently outperforms strong training-free baselines. Codes are available at https://github.com/barry664/OTFS.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=4XADBFGyMq",
+  "arxiv": "https://arxiv.org/abs/2610.27692",
+  "pdf": "https://arxiv.org/pdf/2610.27692",
+  "proceedings": null,
+  "virtual": "https://neurips.cc/virtual/2026/poster/155583",
+  "code": "https://github.com/barry664/OTFS"
+ },
+ "license": "http://creativecommons.org/licenses/by/4.0/",
+ "img": "cc-by",
+ "image_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/images/neurips26-0631.png",
+ "thumb_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/thumbs/neurips26-0631.webp",
+ "figure_page": 1,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.8
+}

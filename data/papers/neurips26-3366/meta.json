@@ -1,0 +1,50 @@
+{
+ "id": "neurips26-3366",
+ "title": "SD-LoRA: Training-Time Structural Distillation into LoRA for Few-Shot Vision-Language Adaptation",
+ "authors": [
+  "Mohammed Rahman Sherif Khan Mohammad",
+  "Ardhendu Behera",
+  "Sandip Pradhan",
+  "Swagat Kumar",
+  "Yonghuai Liu"
+ ],
+ "venue": "NeurIPS 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "Computer Vision->Vision Models & Multimodal",
+ "role": "before-after",
+ "role2": "analysis-finding",
+ "claim": "Frozen model attention scatters onto background; our distilled model concentrates attention on discriminative object regions.",
+ "layout": "2x2 grid of triplets, left-to-right: input, baseline heatmap, ours heatmap",
+ "tags": [
+  "attention-visualization",
+  "distillation",
+  "fine-grained",
+  "interpretability",
+  "few-shot"
+ ],
+ "style": [
+  "photo/real data",
+  "colorful"
+ ],
+ "description": "Four example rows grouped in a 2x2 arrangement, each a triplet of square images labeled 'Input Image', 'Frozen Clip Attention', and 'Distilled Clip Attention'. Examples are a red scarlet ibis, a painted blue-legged chair, a spotted cat on a cushion, and a white balloon flower. Heatmaps use a jet colormap (blue low, red high) overlaid on the photo. In the frozen column, attention is diffuse and often lands on background foliage or edges. In the distilled column, red hot spots sit on the object body, such as the bird's torso, the cat's body, and the flower petals and center. Headers are bold black text, with no arrows or other annotations. The eye goes first to the vivid heatmaps, especially the flower, where the contrast is strongest.",
+ "caption": "Structural distillation sharpens token-level evidence. We visualize patch-level attention maps for frozen CLIP and SD-LoRA using cosine similarity between the final [CLS] token and patch tokens. Frozen CLIP attends strongly to background foliage and misclassifies the image as clematis, while SD-LoRA shifts focus toward discriminative flower regions and correctly predicts balloon flower. The graph teacher is used only during training; the visualization is produced from the deployed LoRA backbone without test-time graph computation.",
+ "caption_source": "latex",
+ "abstract": "Few-shot adaptation of vision-language models must balance two competing goals: learning fine-grained visual distinctions from very limited supervision and preserving the efficiency that makes frozen CLIP-like models attractive for deployment. Existing lightweight adaptation methods, including prompt tuning, LoRA, and cache-based adapters, typically supervise global image embeddings and therefore underuse token-level structure. Conversely, structure-aware methods exploit local evidence but often introduce additional inference-time computation. We propose SD-LoRA, a structural distillation framework that uses token-level graph reasoning only during training and transfers its effects into a lightweight LoRA-adapted CLIP model. During training, a heterogeneous graph teacher models patch-patch, global-local, and visual-text relations over high-resolution ViT tokens. Rather than retaining this graph at test time, SD-LoRA transfers its structural bias into the shared CLIP-LoRA backbone through implicit distillation and Prototype Predictive Alignment, which aligns graph-conditioned representations with support-derived class prototypes. At inference, the graph teacher is discarded; prediction requires only a single CLIP-LoRA forward pass and a cache-based classifier. Across 11 few-shot benchmarks, SD-LoRA improves over a strong CLIP-LoRA baseline by 2.4/1.8/3.0/2.4/2.0 percentage points in the 1/2/4/8/16-shot settings, respectively, without additional graph computation at test time. Results on base-to-novel generalization, cross-dataset transfer, out-of-distribution robustness, and calibration further show that training-time structural supervision improves both accuracy and transfer reliability. Code is available at https://github.com/MR-Sherif/SD-LoRA.git.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=NT2wZRLD58",
+  "arxiv": "https://arxiv.org/abs/2611.07063",
+  "pdf": "https://arxiv.org/pdf/2611.07063",
+  "proceedings": null,
+  "virtual": "https://neurips.cc/virtual/2026/poster/153156",
+  "code": "https://github.com/MR-Sherif/SD-LoRA"
+ },
+ "license": "http://creativecommons.org/licenses/by/4.0/",
+ "img": "cc-by",
+ "image_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/images/neurips26-3366.png",
+ "thumb_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/thumbs/neurips26-3366.webp",
+ "figure_page": 1,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.8
+}

@@ -1,0 +1,50 @@
+{
+ "id": "icml26-1200",
+ "title": "Induction Heads Interpolate N-Grams",
+ "authors": [
+  "Francesco D&amp;#x27;Angelo",
+  "Oğuz Yüksel",
+  "Swathi Narashiman",
+  "Nicolas Flammarion"
+ ],
+ "venue": "ICML 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "Deep Learning->Attention Mechanisms",
+ "role": "prior-vs-ours",
+ "role2": "concept",
+ "claim": "Independent priors treat contexts as uncorrelated; a hierarchical prior couples related contexts through shared parents, enabling backing off to shorter suffixes.",
+ "layout": "2 panels side-by-side; flat fan-out versus 3-level tree; highlighted sibling family",
+ "tags": [
+  "hierarchical-prior",
+  "smoothing",
+  "markov-chain",
+  "in-context-learning",
+  "backoff"
+ ],
+ "style": [
+  "colorful",
+  "math-heavy",
+  "minimal"
+ ],
+ "description": "Two side-by-side panels separated by a thin vertical line. The left panel, titled 'Independent prior', shows a faded Dir(α) box at the top. Dashed grey lines fan out from it, through the label 'no intermediate (suffix) layer', to nine small cards along the bottom. Each card holds a three-bar chart (tokens 0, 1, 2 in blue, yellow and green) and a label π_(c1,c2). Three cards sharing the recent token c2=1 are highlighted in a lavender box labelled 'same recent token'. The right panel, 'Hierarchical prior', shows a tree with three levels: order 0 base π_(), order 1 parents π_(0), π_(1), π_(2), and order 2 children. Its level labels carry Dirichlet formulas. The π_(1) family is shaded lavender and labelled 'one family', and its edges are drawn in bold indigo. Captions below each panel say the highlighted contexts are uncorrelated on the left and correlated on the right.",
+ "caption": "The two task priors over the order-$k$ transition tensor (illustrated for $k{=}2$, $|V|{=}3$). At each step the next token $x_t$ is drawn from the law of its length-$k$ context; for $k{=}2$ this context is the ordered pair $u=(c_1,c_2)=(\\mathrm{older},\\mathrm{recent})=(x_{t-2},x_{t-1})$, which indexes a next-token law $\\bm{\\pi}_u(m)=\\mathbb{P}(x_{t}{=}m\\mid u)\\in\\Delta^{|V|-1}$. Both priors place a distribution over the collection $\\{\\bm{\\pi}_u\\}$ and differ only in how these laws are coupled across contexts. Left (independent): each $\\bm{\\pi}_u$ is an i.i.d.\\ $\\mathrm{Dirichlet}(\\bm{\\alpha})$ draw, so there is no intermediate layer and distinct contexts are uncorrelated---nothing can be borrowed across them. Right (hierarchical): each order-$2$ law $\\bm{\\pi}_{(c_1,c_2)}$ is centred on its suffix parent $\\bm{\\pi}_{(c_2)}$, itself centred on the base $\\bm{\\pi}_{()}$, so contexts sharing a suffix (siblings, highlighted) are correlated and a predictor can back off from a rare full context to its more frequent suffix. Bars show one sampled next-token distribution per node.",
+ "caption_source": "latex",
+ "abstract": "Induction heads are attention circuits believed to underlie in-context learning in transformers, yet a precise characterization of the estimators they implement remains elusive. We study transformers trained on order-$k$ Markov chains and identify two complementary smoothing mechanisms. First, at finite attention-weight scale, the circuit implements a soft context-matching estimator: it aggregates contributions from exact and partial context matches, weighted exponentially by their overlap, and induces a data-dependent interpolation across context orders analogous to Jelinek-Mercer smoothing. Second, a beginning-of-sequence (BOS) token induces additive pseudo-counts, recovering Dirichlet-style smoothing. We construct a disentangled transformer implementing both mechanisms and show that trained transformers recover the predicted attention patterns. Across settings where pseudo-count smoothing is optimal or lower-order contexts provide structured evidence, trained transformers match or outperform classical count-based baselines. Our results bridge mechanistic interpretability of induction heads with classical statistical smoothing, revealing that transformers learn to regularize in-context estimation rather than simply count.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=BSY7jhBxM1",
+  "arxiv": "https://arxiv.org/abs/2607.02800",
+  "pdf": "https://raw.githubusercontent.com/mlresearch/v306/main/assets/d-angelo26a/d-angelo26a.pdf",
+  "proceedings": "https://proceedings.mlr.press/v306/d-angelo26a.html",
+  "virtual": "https://icml.cc/virtual/2026/poster/65658",
+  "code": null
+ },
+ "license": "http://creativecommons.org/licenses/by/4.0/",
+ "img": "cc-by",
+ "image_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/images/icml26-1200.png",
+ "thumb_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/thumbs/icml26-1200.webp",
+ "figure_page": 2,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.6
+}

@@ -1,0 +1,55 @@
+{
+ "id": "icml26-4289",
+ "title": "SSR-Merge: Subspace Signal Routing for Training-Free LoRA Merging in Diffusion Models",
+ "authors": [
+  "Zhengxuan Wei",
+  "Yi Dong",
+  "Zonghui Li",
+  "Xianhui Lin",
+  "Xing Liu",
+  "Hong Gu",
+  "Shaofeng Zhang",
+  "Wenbin Li",
+  "Qi Fan"
+ ],
+ "venue": "ICML 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "Deep Learning->Generative Models and Autoencoders",
+ "role": "analysis-finding",
+ "role2": "prior-vs-ours",
+ "claim": "Baseline merging shows heavy cross-task interference, while our routing activates only each task's intended module, giving clean separation.",
+ "layout": "2 side-by-side heatmaps, left-to-right, shared task-by-module axes with numeric cell values",
+ "tags": [
+  "heatmap",
+  "interference",
+  "signal-routing",
+  "module-merging",
+  "diagnostic-visualization"
+ ],
+ "style": [
+  "plot",
+  "colorful",
+  "minimal"
+ ],
+ "description": "Two 10x10 heatmaps sit side by side. Rows are task instructions T1 to T10 and columns are LoRA modules L1 to L10. Each cell holds a numeric max-normalized activation value. The left panel, titled 'Baseline', is mostly warm orange, pink and yellow. Many off-diagonal cells are 0.7 to 1.0, so unrelated modules are strongly activated and crosstalk is high. The right panel, titled 'Ours', uses a dark purple palette. It has a bright yellow diagonal of 1.0 values and low off-diagonal values of about 0.1 to 0.4. A few cells are higher, such as 0.7 and 0.8 in the T2 row. The eye goes first to the bright diagonal on the right and then back to the washed-out left panel. Titles are in a serif font.",
+ "caption": "Visualization of Task-LoRA Activation Alignment. We display the max-normed activation intensity between task instructions ($T$) and LoRA modules ($L$). Left: The static baseline exhibits severe crosstalk, where instructions spuriously activate unrelated modules, indicating high interference. Right: Our SSR-Merge achieves precise signal routing, showing a clean diagonal structure where each task exclusively activates its target LoRA. Please refer to Appendix [ref] for the detailed setup.",
+ "caption_source": "latex",
+ "abstract": "Low-Rank Adaptation (LoRA) merging can efficiently combine diverse generative capabilities from multiple trained LoRAs for a diffusion model. However, existing LoRA merging techniques often suffer from severe parameter interference, causing destructive collisions in the shared parameter space. To address this, we propose Subspace Signal Routing (SSR), which resolves interference by routing internal signals instead of performing parameter-space merge. Specifically, SSR first constructs a unified subspace by concatenating candidate LoRAs along the rank dimension. Next, SSR employs an inverse correlation matrix to decorrelate mixed signals within this space. Finally, a directional guide matrix steers these purified signals into their respective task-specific subspaces. We provide a rigorous theoretical analysis proving that SSR aligns with the Ordinary Least Squares (OLS) solution, thereby ensuring mathematical optimality. We utilize the additivity of sufficient statistics to design a streaming algorithm. This enables on-the-fly updates that significantly reduce memory overhead and computation time. Extensive experiments validate that SSR significantly outperforms state-of-the-art methods while maintaining comparable efficiency. Code is available at https://github.com/nagara214/SSR-Merge.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=eYwCaFakq6",
+  "arxiv": "https://arxiv.org/abs/2606.10617",
+  "pdf": "https://raw.githubusercontent.com/mlresearch/v306/main/assets/wei26e/wei26e.pdf",
+  "proceedings": "https://proceedings.mlr.press/v306/wei26e.html",
+  "virtual": "https://icml.cc/virtual/2026/poster/62664",
+  "code": null
+ },
+ "license": "http://creativecommons.org/licenses/by/4.0/",
+ "img": "cc-by",
+ "image_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/images/icml26-4289.png",
+ "thumb_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/thumbs/icml26-4289.webp",
+ "figure_page": 0,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.5
+}

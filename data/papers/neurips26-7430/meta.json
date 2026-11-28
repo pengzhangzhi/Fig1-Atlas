@@ -1,0 +1,50 @@
+{
+ "id": "neurips26-7430",
+ "title": "Soft Token Alignment for Cross-Lingual Reasoning",
+ "authors": [
+  "Jiayi He",
+  "Jungsoo Park",
+  "Wei &amp;quot;Coco&amp;quot; Xu",
+  "Alan Ritter"
+ ],
+ "venue": "NeurIPS 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "Applications->Language, Speech and Dialog",
+ "role": "pipeline",
+ "role2": null,
+ "claim": "Aligning probability-weighted soft-token summaries of a parallel pivot-language branch and a target-language branch, via one auxiliary loss, gives language-agnostic representations.",
+ "layout": "Mirrored blue/green branches into a shared LLM box, top-down flow, loss at bottom",
+ "tags": [
+  "soft-tokens",
+  "cross-lingual-alignment",
+  "auxiliary-loss",
+  "stop-gradient",
+  "multilingual-llm"
+ ],
+ "style": [
+  "colorful",
+  "math-heavy",
+  "text-heavy"
+ ],
+ "description": "A top-down diagram of the training framework. At the top is a grey box labeled Shared Multilingual LLM, containing an input embedding layer, Transformer Layer 1, ellipsis, and Transformer Layer L. On its left is a blue English Reasoning input box, and on its right is a green Non-English Reasoning input box. Each has a 'Teacher forcing' label and arrows into the LLM. Below the LLM, two mirrored branches (blue left, green right) show next-token logits over the vocabulary. Dashed panels for t=1, 2, T show bar charts of probability distributions p_t. Arrows lead from these to colored embedding strips e_t^soft, then to a pooled soft-token vector for each language. At the bottom, an orange Alignment Loss box gives 1 − cos of the two summaries. A dashed 'Stop-grad' arrow comes from the English side. Cross-entropy loss boxes sit at the lower corners, and captions label each objective.",
+ "caption": "SOLAR framework. Parallel English and non-English inputs are processed by a shared LLM under teacher forcing, producing a per-position soft token $e^{\\,soft}_t$ that mixes vocabulary embeddings under the model's next-token distribution. Soft tokens are mean-pooled across response positions into a per-language summary vector ($\\bar{e}^{\\,soft}_{en}$, $\\bar{e}^{\\,soft}_{\\ell}$). The alignment objective $\\mathcal{L}_{align}$ is the cosine distance between the English and non-English summaries; stop-gradient on the English side restricts alignment gradients to the non-English branch. Both branches are supervised by cross-entropy ($\\mathcal{L}^{(en)}_{CE}$, $\\mathcal{L}^{(\\ell)}_{CE}$), and the non-English objective adds $\\mathcal{L}_{align}$ weighted by $\\lambda > 0$, which controls alignment strength.",
+ "caption_source": "latex",
+ "abstract": "Multilingual large language models often produce inconsistent reasoning and answers for semantically equivalent prompts in different languages. Prior work suggests that intermediate representations can be relatively language-agnostic, but generation becomes increasingly language-specific as models commit to discrete output tokens. This is problematic because language-specific lexical choices can cause semantically equivalent reasoning paths to diverge across languages. These divergences motivate searching for a cross-lingual alignment signal that is less tied to any single vocabulary item or script. We propose SOLAR, an auxiliary objective for supervised fine-tuning that aligns soft-token representations across languages, using English as a pivot. Soft tokens are probability-weighted mixtures over the vocabulary embeddings, yielding continuous representations that can aggregate information from semantically related tokens across languages. We then align each non-English soft-token summary to its English counterpart in the shared embedding space. Across four multilingual reasoning benchmarks, SOLAR improves accuracy by up to +17.7 points over the base model and +3.8 over standard supervised fine-tuning, with the largest gains on low-resource languages. SOLAR also strengthens final-layer cross-lingual similarity and substantially reduces language-cluster separability, suggesting that aligning soft-token representations helps preserve shared semantic structure during multilingual reasoning.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=pJ0iIOHK6H",
+  "arxiv": "https://arxiv.org/abs/2606.26466",
+  "pdf": "https://arxiv.org/pdf/2606.26466",
+  "proceedings": null,
+  "virtual": "https://neurips.cc/virtual/2026/poster/149550",
+  "code": null
+ },
+ "license": "http://arxiv.org/licenses/nonexclusive-distrib/1.0/",
+ "img": "none",
+ "image_url": null,
+ "thumb_url": null,
+ "figure_page": 1,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.93
+}

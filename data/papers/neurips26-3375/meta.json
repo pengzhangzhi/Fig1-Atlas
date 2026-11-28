@@ -1,0 +1,50 @@
+{
+ "id": "neurips26-3375",
+ "title": "A Transformer-Derived Iterative Preconditioner",
+ "authors": [
+  "Patrick Lutz",
+  "Themistoklis Haris",
+  "Aditya Gangrade",
+  "Venkatesh Saligrama"
+ ],
+ "venue": "NeurIPS 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "Deep Learning->Attention Mechanisms",
+ "role": "analysis-finding",
+ "role2": null,
+ "claim": "A trained transformer's internal weights show a simple recurring structure that progressively improves conditioning of its input across layers.",
+ "layout": "2 panels: left heatmap grid (2 rows by 5 layers), right line plot",
+ "tags": [
+  "interpretability",
+  "mechanistic-analysis",
+  "preconditioning",
+  "layerwise-trend",
+  "learned-algorithm"
+ ],
+ "style": [
+  "plot",
+  "colorful",
+  "math-heavy"
+ ],
+ "description": "The figure has two parts. On the left is a 2x5 grid of small square heatmaps showing learned weight products. The top row is W_QK and the bottom row is VP, and the columns are Layers 2, 8, 14, 20 and 26. Each heatmap uses a red-white-blue diverging colormap. Almost all of them show a strong, clean diagonal and faint off-diagonal noise, which points to a simple two-scalar structure. The diagonal's sign and magnitude change from layer to layer. Two colorbars sit to the right of the grid, one for each row. On the right is a line plot of log10 condition number of X^T X against layer, from 0 to 30. A dark median line with dots falls from about 3.4 to about 0.8. A gray band marks the middle 80% of the data. The band widens sharply near the last layers. The eye goes first to the saturated diagonals and then to the falling curve.",
+ "caption": "Extracting a conditioning primitive. Left: Representative learned weight products \\(W_{QK,\\ell}\\) and \\(W_{VP,\\ell}\\), showing the dominant two-scalar structure in Eq. [ref]. Right: Median condition number of the context Gram matrix across layers of the trained transformer, decreasing from roughly \\(3{,}000\\) to below \\(10\\) at the best layer.",
+ "caption_source": "latex",
+ "abstract": "Transformers trained on in-context prediction problems can learn known numerical algorithms, e.g., gradient descent. We go further, showing that their internal computations can reveal new algorithms with provable guarantees. A softmax-attention transformer trained to solve linear systems $Xw=y$ implicitly improves matrix conditioning. Tracing $XX^\\top$ reveals an iterative preconditioning primitive, which we develop into RAPID, a standalone algorithm requiring no learned components. RAPID is an anytime preconditioner for symmetric positive definite (SPD) matrices, using randomized mixing and sparse local corrections to improve conditioning. Proof-of-concept experiments on synthetic and real-world problems consistently improve conditioning and reduce conjugate gradient iterations needed to reach a target accuracy. For a Haar-mixing idealization, we prove convergence to any fixed target condition number regardless of spectral distribution, with only logarithmic dependence on initial conditioning. Together, these results show how a transformer can discover a broadly applicable numerical algorithm.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=NW9Z1nrWSP",
+  "arxiv": "https://arxiv.org/abs/2611.22941",
+  "pdf": "https://arxiv.org/pdf/2611.22941",
+  "proceedings": null,
+  "virtual": "https://neurips.cc/virtual/2026/poster/153148",
+  "code": null
+ },
+ "license": "http://creativecommons.org/licenses/by/4.0/",
+ "img": "cc-by",
+ "image_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/images/neurips26-3375.png",
+ "thumb_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/thumbs/neurips26-3375.webp",
+ "figure_page": 4,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.8
+}

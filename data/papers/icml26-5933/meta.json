@@ -1,0 +1,59 @@
+{
+ "id": "icml26-5933",
+ "title": "DecodeShare: Tracing the Shared Pathways of LLM Decode-Time Decisions",
+ "authors": [
+  "Zishan Shao",
+  "Lixun Zhang",
+  "Kangning Cui",
+  "Yixiao Wang",
+  "Ting Jiang",
+  "Hancheng Ye",
+  "Qinsi Wang",
+  "Zhixu Du",
+  "Yuzhe Fu",
+  "Fan Yang",
+  "Danyang Zhuo",
+  "Yiran Chen",
+  "Hai Li"
+ ],
+ "venue": "ICML 2026",
+ "tier": "spotlight",
+ "track": "main",
+ "topic": "Deep Learning->Large Language Models",
+ "role": "pipeline",
+ "role2": null,
+ "claim": "A staged protocol turns pooled task activations into a shared subspace estimate, validated against energy-matched controls to rule out a variance confound.",
+ "layout": "Single row, left-to-right: boxes with arrows, then subspace visual, then plots",
+ "tags": [
+  "pipeline",
+  "subspace-discovery",
+  "pca",
+  "causal-intervention",
+  "interpretability"
+ ],
+ "style": [
+  "colorful",
+  "icon-heavy",
+  "plot"
+ ],
+ "description": "A wide horizontal strip reading left to right. It starts with a document icon above a pale green box labeled 'LLM Tasks Prompts'. A curved arrow leads to a blue box labeled 'Activation Collection', topped by a black LLM network icon. A second arrow leads to a tall cyan 3D block labeled 'U'. Next to it is a grey striped matrix labeled 'V', a 'Cross-Task Space' label, and a scatter of red and yellow point clouds. Under a gray banner reading 'Decode Shared Subspace Estimate', a glassy 3D cube shows the shared subspace with a blue arrow for the hidden state h and bars for pooled PCA and Q. On the right, two stacked bar charts for Layers 24 and 30 plot explained variance by PC index. Shared components are cyan, non-shared are dark blue, and a cumulative EVR line is overlaid. A callout reads 'NOT Just Energy Confound'.",
+ "caption": "DecodeShare Pipeline. (1) We collect KV-cached decode-time hidden states from prompts across multiple tasks and pool them into a matrix. (2) A pooled PCA yields a set of orthonormal directions (columns of V matrix); we then select a subset that is consistently shared across tasks ($Q_\\ell^{(s)}$), rather than simply taking the top-variance components. (3) To test causality, we intervene only during decoding by removing the selected component from the hidden state and compare against dimension- and energy-matched controls to rule out a simple high-variance/energy confound.",
+ "caption_source": "latex",
+ "abstract": "Large language models (LLMs) handle many tasks with one set of parameters, but under KV-cached inference it is unclear what task-general structure, if any, is used at decode time rather than during prefill. We propose DecodeShare, a protocol that identifies a low-dimensional subspace consistently shared across tasks in decode-time hidden states, and then tests its causal role by removing that subspace only during decoding. In our experiments, disturbing the discovered shared subspace degrades decision performance far more than disturbing either a prefill-derived or random subspace under the same intervention budget. We further show this decode-shared subspace has practical consequences for activation steering: common steering directions can overlap the task-general decode channel. Projecting out this shared subspace directly separates the functional roles of the two components, while evaluating steering vectors at decode-time yields more reliable signal for downstream deployment than prefill-based proxies. Despite its compactness, the shared subspace can serve as a high-leverage causal channel at decode time. Code is available at: https://github.com/Zishan-Shao/decodeshare.git.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=txdOohIkYJ",
+  "arxiv": "https://arxiv.org/abs/2607.20469",
+  "pdf": "https://raw.githubusercontent.com/mlresearch/v306/main/assets/shao26j/shao26j.pdf",
+  "proceedings": "https://proceedings.mlr.press/v306/shao26j.html",
+  "virtual": "https://icml.cc/virtual/2026/poster/61072",
+  "code": "https://zishan-shao.github.io/decodeshare/"
+ },
+ "license": "http://creativecommons.org/licenses/by/4.0/",
+ "img": "cc-by",
+ "image_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/images/icml26-5933.png",
+ "thumb_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/thumbs/icml26-5933.webp",
+ "figure_page": 1,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.85
+}

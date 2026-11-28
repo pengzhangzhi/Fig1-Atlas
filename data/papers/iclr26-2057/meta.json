@@ -1,0 +1,52 @@
+{
+ "id": "iclr26-2057",
+ "title": "Seesaw: Accelerating Training by Balancing Batch Size and Learning Rate Scheduling",
+ "authors": [
+  "Alexandru Meterez",
+  "Depen Morwani",
+  "Jingfeng Wu",
+  "Costin-Andrei Oncescu",
+  "Cengiz Pehlevan",
+  "Sham Kakade"
+ ],
+ "venue": "ICLR 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": null,
+ "role": "teaser-result",
+ "role2": null,
+ "claim": "Our scheduling change matches the baseline's loss per compute budget while reaching the same loss in far fewer serial steps.",
+ "layout": "2x3 grid of line plots; columns by model size; zoom insets",
+ "tags": [
+  "batch-size-scheduling",
+  "training-efficiency",
+  "wall-clock-speedup",
+  "learning-rate-schedule",
+  "scaling"
+ ],
+ "style": [
+  "plot",
+  "colorful",
+  "photo/real data"
+ ],
+ "description": "A shared legend across the top maps batch sizes 128, 256, 512 and 1024 to blue, orange, green and red. Line style marks the scheduler: solid for cosine and dotted for Seesaw. The grid has three columns for the 150M, 300M and 600M models. The top row plots validation loss against tokens. Solid and dotted curves almost overlap, and zoomed insets show the final loss values nearly matching. The bottom row plots validation loss against optimizer steps. The dotted Seesaw curves end at about half the steps of the solid cosine curves, which shows the serial speedup. Gray gridlines and shared y-axes run across each row. The eye goes first to the overlapping curves in the top row, then to the dotted curves ending earlier in the bottom row.",
+ "caption": "Seesaw comparison with cosine decay in 150M (left), 300M (middle) and 600M (right) models trained at Chinchilla scale. Seesaw matches the loss dynamics of cosine annealing in FLOPs (top row), but achieves a significant speed up in terms of serial runtime (bottom row). Runs are swept over learning rates and plotted at the best learning rate for cosine annealing in terms of validation loss, at each batch size. The validation losses at the end of training are provided in Table [ref]. Note that both the token and step axes are linear. For more experimental details, see Section [ref].",
+ "caption_source": "latex",
+ "abstract": "Increasing the batch size during training --- a “batch ramp'' --- is a promising strategy to accelerate large language model pretraining. While for SGD, doubling the batch size can be equivalent to halving the learning rate, the optimal strategy for adaptive optimizers like Adam is less clear. As a result, any batch-ramp scheduling, if used at all, is typically tuned heuristically. This work develops a principled framework for batch-size scheduling and introduces Seesaw: whenever a standard scheduler would halve the learning rate, Seesaw instead multiplies it by $1/\\sqrt{2}$ and doubles the batch size, preserving loss dynamics while reducing serial steps. Theoretically, we provide, to our knowledge, the first finite-sample proof of equivalence between learning-rate decay and batch-size ramp-up for SGD on noisy linear regression, and we extend this equivalence to normalized SGD, a tractable proxy for Adam, under a variance-dominated regime observed in practice. Empirically, on 150M/300M/600M-parameter models trained at Chinchilla scale using a constant (critical) batch size, Seesaw matches cosine decay at equal FLOPs while reducing wall-clock time by $\\approx 36\\%$, approaching the theoretical limit implied by our analysis.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=Nj0XBF2o7z",
+  "arxiv": "https://arxiv.org/abs/2510.14717",
+  "pdf": "https://proceedings.iclr.cc/paper_files/paper/2026/file/187f9ba4cd5a59477305ac712282a1cd-Paper-Conference.pdf",
+  "proceedings": "https://proceedings.iclr.cc/paper_files/paper/2026/hash/187f9ba4cd5a59477305ac712282a1cd-Abstract-Conference.html",
+  "virtual": "https://iclr.cc/virtual/2026/poster/10009838",
+  "code": null
+ },
+ "license": "http://creativecommons.org/licenses/by/4.0/",
+ "img": "cc-by",
+ "image_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/images/iclr26-2057.png",
+ "thumb_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/thumbs/iclr26-2057.webp",
+ "figure_page": 2,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.62
+}

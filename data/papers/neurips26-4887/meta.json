@@ -1,0 +1,49 @@
+{
+ "id": "neurips26-4887",
+ "title": "Beyond the Grid: Continuous Dictionary Pursuit for Interpretable Signal Decomposition",
+ "authors": [
+  "Nick Janssen",
+  "Melanie Schaller",
+  "Bodo Rosenhahn"
+ ],
+ "venue": "NeurIPS 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "Applications->Time Series",
+ "role": "pipeline",
+ "role2": null,
+ "claim": "An iterative greedy loop of initializing, optimizing, refining and subtracting parametric atoms turns an observed signal into a sparse decomposition.",
+ "layout": "1 panel, left-to-right, inner 2x2 module box with feedback loop and decision diamond",
+ "tags": [
+  "greedy-pursuit",
+  "iterative-loop",
+  "sparse-decomposition",
+  "interpretability",
+  "parametric-dictionary"
+ ],
+ "style": [
+  "colorful",
+  "math-heavy",
+  "icon-heavy"
+ ],
+ "description": "A left-to-right flow diagram. A gray box on the left holds the observed signal y, labeled t in R^N, with a noisy waveform below. An arrow enters a large dashed-outline container titled 'Continuous Dictionary Pursuit', which shows the objective 1/2||y - Σψ_k||² + λK at top right. Inside is a dark slate box with four colored modules in a 2x2 grid: 1. Atom Initialization and Truncated Optimization (orange), 2. Full L-BFGS with the update p_k = -H_k∇L(θ_k) (red), 3. Global Refinement (blue), and 4. Update Residual r_k = r_{k-1} - ψ_k (blue). A cyan Parametric Dictionary box and a purple Spectral Annealing box (κ·e^{γ·epoch}) feed into it from below. A yellow decision diamond tests k>=K or ΔMSE<λ. 'No' loops back to the input, and 'Yes' leads to a green Sparse Decomp. box on the right with clean sinusoidal components. The eye lands first on the colorful central module block.",
+ "caption": "Continuous Dictionary Pursuit: The iterative greedy procedure initializes atoms from data-driven priors, identifies a candidate via truncated optimization, fully optimizes it with L-BFGS [ref], and adds it to the additive model until the atom budget is exhausted or the residual error stagnates.",
+ "caption_source": "latex",
+ "abstract": "Deep learning models achieve high accuracy in signal processing but remain difficult to interpret. Classical matching pursuit and sparse coding offer better transparency but suffer from spectral leakage and grid mismatch when signal frequencies do not align with discrete dictionary atoms. We introduce Continuous Dictionary Pursuit (CDP), a framework for interpretable signal decomposition that learns the parameters of closed-form functions directly from data. CDP optimizes over a continuous manifold of differentiable atoms and, unlike prior continuous pursuit methods that operate on a single analytic family, searches a heterogeneous library spanning periodic, trend, transient, and discontinuous structures. The algorithm employs a greedy iterative strategy using data-driven priors and gradient-based optimization to isolate individual signal components, with discontinuous waveforms made differentiable through spectral sharpness annealing. To ensure a sparse atom set for reconstruction, the framework utilizes a stopping criterion based on a predefined atom budget and residual error convergence. Evaluations on synthetic and real-world datasets show that CDP removes the grid discretization error for atom families contained in its library, recovers generative parameters to within $1\\%$ on stationary synthetic signals expressible in that library, and achieves the best sparsity-accuracy trade-off among classical, continuous-pursuit, and neural baselines in the sparse regime. Beyond decomposition, we demonstrate that the extracted atoms can serve as structured curriculum targets for training sequence models, improving forecasting accuracy over standard end-to-end training on most evaluated datasets. The method offers a glass-box alternative for signal decomposition by providing high reconstruction fidelity alongside direct physical interpretability.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=XrVRVRXvqa",
+  "arxiv": "https://arxiv.org/abs/2611.09163",
+  "pdf": "https://arxiv.org/pdf/2611.09163",
+  "proceedings": null,
+  "virtual": "https://neurips.cc/virtual/2026/poster/151808",
+  "code": "https://github.com/nick-janssen/ContinuousDictionaryPursuit"
+ },
+ "license": "http://creativecommons.org/licenses/by/4.0/",
+ "img": "cc-by",
+ "image_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/images/neurips26-4887.png",
+ "thumb_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/thumbs/neurips26-4887.webp",
+ "figure_page": 1,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.95
+}

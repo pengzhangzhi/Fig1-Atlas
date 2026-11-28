@@ -1,0 +1,50 @@
+{
+ "id": "icml26-0790",
+ "title": "Temper-Then-Tilt: Principled Unlearning for Generative Models through Tempering and Classifier Guidance",
+ "authors": [
+  "Jacob L. Block",
+  "Mehryar Mohri",
+  "Aryan Mokhtari",
+  "Sanjay Shakkottai"
+ ],
+ "venue": "ICML 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "Theory->Learning Theory",
+ "role": "pipeline",
+ "role2": null,
+ "claim": "A frozen base model is unlearned by training a light classifier head and combining its output with tempered logits at inference.",
+ "layout": "Single panel, left-to-right; color-coded training (blue) and inference (gold) paths",
+ "tags": [
+  "unlearning",
+  "classifier-guidance",
+  "frozen-backbone",
+  "tempering",
+  "inference-time"
+ ],
+ "style": [
+  "colorful",
+  "math-heavy",
+  "icon-heavy"
+ ],
+ "description": "A single left-to-right architecture diagram. On the left, input tokens feed a black Transformer block that outputs hidden states H1…HL. The hidden states feed a large rounded blue box labeled 'T3-Unlearning Classifier'. Inside it, Mean Pooling leads to two shaded trapezoids (A_phi, B_phi, a low-rank linear head) and then a Sigmoid, producing g_phi(x) in [0,1]^|V|. A blue arrow goes to a 'Classifier Loss' box at the top right, which takes the next token y and the selector label s. A gold inference path runs along the bottom and right: LM Head, then Tempering (1/T ln p), then a ln and a plus node that adds the classifier output, then Sample. Color separates training (blue) from inference (gold). Math labels sit under the arrows.",
+ "caption": "\\alg for LLMs. We freeze the base model and train a linear head (shaded) on pooled hidden states to predict the vector $\\g_{\\bphi}(\\x)$ of class posteriors for all possible next tokens. In training, we apply the loss to the entry $[\\g_{\\bphi}(\\x)]_y$ corresponding to the estimator of the class posterior $\\Prob{}{s=1 \\mid \\x,y}$, while the entire vector $\\g_{\\bphi}(\\x)$ tilts the base model's tempered logits for inference.",
+ "caption_source": "latex",
+ "abstract": "We study machine unlearning in large generative models by framing the task as density ratio estimation to a target distribution rather than supervised fine-tuning. While classifier guidance is a standard approach for approximating this ratio and can succeed in general, we show it can fail to faithfully unlearn with finite samples when the forget set represents a sharp, concentrated data distribution. To address this, we introduce Temper-Then-Tilt Unlearning (T3-Unlearning), which freezes the base model and applies a two-step inference procedure: (i) tempering the base distribution to flatten high-confidence spikes, and (ii) tilting the tempered distribution using a lightweight classifier trained to distinguish retain from forget samples. Our theoretical analysis provides finite-sample guarantees linking the surrogate classifier's risk to unlearning error, proving that tempering is necessary to successfully unlearn for concentrated distributions. Empirical evaluations on the TOFU benchmark show that T3-Unlearning improves forget quality and generative utility over existing baselines, while training only a fraction of the parameters with a minimal runtime.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=7Oc4ARFCTV",
+  "arxiv": "https://arxiv.org/abs/2602.10217",
+  "pdf": "https://raw.githubusercontent.com/mlresearch/v306/main/assets/block26a/block26a.pdf",
+  "proceedings": "https://proceedings.mlr.press/v306/block26a.html",
+  "virtual": "https://icml.cc/virtual/2026/poster/66060",
+  "code": "https://github.com/jacob-block/T3-Unlearning"
+ },
+ "license": "http://creativecommons.org/licenses/by/4.0/",
+ "img": "cc-by",
+ "image_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/images/icml26-0790.png",
+ "thumb_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/thumbs/icml26-0790.webp",
+ "figure_page": 5,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.95
+}

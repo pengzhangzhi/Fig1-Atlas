@@ -1,0 +1,53 @@
+{
+ "id": "neurips26-2861",
+ "title": "Transferability for General Reasoning: An Automated Curriculum for Multi-Domain RLVR",
+ "authors": [
+  "Yongjin Yang",
+  "Jiarui Liu",
+  "Yinghui He",
+  "Lechen Zhang",
+  "Bernhard Schölkopf",
+  "Zhijing Jin"
+ ],
+ "venue": "NeurIPS 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "Reinforcement Learning->Everything Else",
+ "role": "prior-vs-ours",
+ "role2": "analysis-finding",
+ "claim": "Domain transfer is uneven, so a curriculum that adds a transferability signal to learnability beats fixed or learnability-only sampling.",
+ "layout": "2 panels: left heatmap, right baseline vs prior vs ours stacked diagram",
+ "tags": [
+  "curriculum-learning",
+  "transferability",
+  "gradient-alignment",
+  "multi-domain-rl",
+  "bandit-sampling"
+ ],
+ "style": [
+  "colorful",
+  "icon-heavy",
+  "plot",
+  "math-heavy"
+ ],
+ "description": "Left panel (a) is a blue heatmap of cross-domain transfer. Rows are training source domains (Math, Codegen, Logic, Simulation, Table, STEM). Columns are evaluation target domains. Cells show accuracy gain over the base model, with darker blue meaning larger gain. Two bottom rows, Random and TAC, are bolded, and TAC is the darkest. A colorbar sits to the right. Panel (b) is three framed boxes. A gray Baseline box shows Random fixed-curriculum sampling: six domain icons each labeled 1/6, and a flat uniform bar chart. Two colored boxes follow. The orange Learnability box has check and cross marks for R=1 and R=0. The blue Transferability box has cosine-similarity vector sketches for high and low alignment. Below them, a sampling mechanism mixes the L and T signals with a β formula. This produces a non-uniform blue bar chart of sampling probabilities.",
+ "caption": "(a) Each cell shows the accuracy gain (pp) on a target domain after RL-training on a single source domain (1{,}000 queries, two epochs). Off-diagonal transfer varies sharply by source. The bottom rows show that \\alg improves over Random across all six domains. (b) \\alg combines a learnability signal with a gradient-cosine transferability signal that captures whether updates on a domain align with those of the other domains, mixed into per-arm scores via a single coefficient $\\beta$.",
+ "caption_source": "latex",
+ "abstract": "Reinforcement learning with verifiable rewards (RLVR) has been extended from single-domain training to multi-domain reasoning suites spanning mathematics, programming, and science. However, the training curriculum (how often each domain is sampled) is typically fixed or hand-tuned, even though reasoning skills transfer unevenly across domains. Existing learnability-based curricula adapt to where the policy is currently improving, but are blind to whether a gradient step on the selected domain benefits the remaining domains. In this paper, we propose Transfer-Aware Curriculum (TAC), a bandit-style online curriculum that prioritizes domains whose updates broadly benefit the rest of the training suite. TAC repurposes signals already produced by RL training: per-domain advantages capture local learnability, and projected gradients, taken from the GRPO step being computed, estimate cross-domain transferability via gradient-geometry alignment, at negligible cost (<1% wall-clock overhead). Across a six-domain reasoning suite, TAC achieves the best macro-averaged accuracy on both Qwen3-1.7B and Llama3.2-3B, outperforming proportional random sampling, a hand-designed schedule, and a learnability-only bandit, and improving over the last of these by up to 2.8 points (10% relative). Ablations show performance degrades sharply when the transferability term is removed, and TAC remains robust on imbalanced training mixtures where learnability-only curricula over-commit to dominant domains. Our findings establish cross-domain transferability as a key signal for curriculum design in multi-domain RLVR.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=K8uod6RgUG",
+  "arxiv": "https://arxiv.org/abs/2606.25178",
+  "pdf": "https://arxiv.org/pdf/2606.25178",
+  "proceedings": null,
+  "virtual": "https://neurips.cc/virtual/2026/poster/153605",
+  "code": null
+ },
+ "license": "http://creativecommons.org/licenses/by/4.0/",
+ "img": "cc-by",
+ "image_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/images/neurips26-2861.png",
+ "thumb_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/thumbs/neurips26-2861.webp",
+ "figure_page": 1,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.55
+}

@@ -1,0 +1,50 @@
+{
+ "id": "icml26-5247",
+ "title": "TabMGP: Martingale Posterior with TabPFN",
+ "authors": [
+  "Kenyon Ng",
+  "Edwin Fong",
+  "David Frazier",
+  "Jeremias Knoblauch",
+  "Susan Wei"
+ ],
+ "venue": "ICML 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "Probabilistic Methods->Bayesian Models and Methods",
+ "role": "pipeline",
+ "role2": null,
+ "claim": "Posterior samples come from independently rolling out a pretrained predictive model forward, then computing the target statistic on each completed dataset.",
+ "layout": "3 columns, left-to-right, L stacked rollout rows, dashed boxes for covariates",
+ "tags": [
+  "forward-sampling",
+  "martingale-posterior",
+  "foundation-model",
+  "uncertainty-quantification",
+  "tabular-data"
+ ],
+ "style": [
+  "minimal",
+  "math-heavy"
+ ],
+ "description": "A grid diagram with three labeled columns: Observed z_{1:n}, Forward Sampling via TabPFN (y_t ~ TabPFN(· | x_t, z_{1:t-1})), and Approximate Posterior Sample. Each of three rows (Rollout 1, Rollout 2, Rollout L, separated by vertical ellipses) starts with gray rounded boxes for the observed data z_1 ... z_n. Next come light-purple boxes for the generated responses y_{n+1}^{(l)} ... y_N^{(l)}. Dashed-outline boxes above them hold the separately sampled covariates x^{(l)}, with small arrows pointing down into the responses. A black arrow labeled 'solve' leads from the last response to θ(F_N^{(l)}) on the right. The layout is clean and white-background. Color is limited to gray for observed data and lavender for generated data, which separates real from simulated values.",
+ "caption": "TabMGP for obtaining posterior samples of $\\theta(F_\\infty) \\mid z_{1:n}$, where each $z = (x, y)$ represents a covariate-response pair. We perform forward sampling with TabPFN to generate $L$ independent continuations of the observed dataset $z_{1:n}$. Since TabPFN does not model covariates, the forward sampling of $x_i$ is performed via a separate process, while TabPFN provides the conditional response $y_i \\sim \\TabPFN(\\cdot \\mid x_i, z_{1:i-1})$. At the end of each rollout $l$, we form the empirical measure $F_N^{(l)} = \\frac{1}{N} \\left(\\sum_{i=1}^{n} \\delta_{z_i} + \\sum_{i=n+1}^{N} \\delta_{z_{i}^{(l)}}\\right)$ and collect $\\theta(F_N^{(l)})$ as one approximate posterior sample.",
+ "caption_source": "latex",
+ "abstract": "Bayesian inference provides principled uncertainty quantification but is often limited by the challenges of prior and likelihood elicitation. The martingale posterior (MGP) (Fong et al., 2023) offers an alternative by replacing these requirements with a predictive rule. In addition, the MGP focuses inference on parameters defined through a loss function. This framework is especially resonant in the era of foundation transformers; practitioners increasingly leverage models like TabPFN for their state-of-the-art capabilities, yet often require epistemic uncertainty for a scientific estimand $Î¸$ that need not parameterise the implicit latent model. The MGP provides a mechanism to recover these posterior distributions. We introduce TabMGP, an MGP built on TabPFN for tabular data. TabMGP produces credible sets with near-nominal coverage and often outperforms both handcrafted MGP constructions and standard Bayesian baselines.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=nJ3yX2ZnOJ",
+  "arxiv": "https://arxiv.org/abs/2510.25154",
+  "pdf": "https://raw.githubusercontent.com/mlresearch/v306/main/assets/ng26a/ng26a.pdf",
+  "proceedings": "https://proceedings.mlr.press/v306/ng26a.html",
+  "virtual": "https://icml.cc/virtual/2026/poster/61741",
+  "code": null
+ },
+ "license": "http://arxiv.org/licenses/nonexclusive-distrib/1.0/",
+ "img": "none",
+ "image_url": null,
+ "thumb_url": null,
+ "figure_page": 0,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.9
+}

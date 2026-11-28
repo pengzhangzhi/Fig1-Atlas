@@ -1,0 +1,49 @@
+{
+ "id": "neurips26-8669",
+ "title": "Why Deterministic PRM Guidance Underperforms in Discrete Diffusion Reasoning",
+ "authors": [
+  "Yan Zhan",
+  "Shaobo Liu",
+  "Zhijun Gao"
+ ],
+ "venue": "NeurIPS 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "Applications->Language, Speech and Dialog",
+ "role": "analysis-finding",
+ "role2": "prior-vs-ours",
+ "claim": "Guided search fails because of a weak early signal, collapsed candidate diversity, and a readout mismatch that persists even when fixed.",
+ "layout": "3 colored panels left-to-right (A/B/C), each with a bar chart or diagram",
+ "tags": [
+  "guided-search",
+  "reranking",
+  "failure-analysis",
+  "signal-decay",
+  "test-time-compute"
+ ],
+ "style": [
+  "colorful",
+  "plot",
+  "icon-heavy"
+ ],
+ "description": "Three side-by-side rounded panels, each with a different color header (blue, red, amber). The blue panel shows four text snippets of a math solution at mask ratios 1.0, 0.6, 0.2 and 0.0. A denoising arrow runs beneath them, and four ascending bars below the arrow are labeled 0.54 and 0.77. The red panel stacks two candidate-tree diagrams. The top one is deterministic PRM-guided search, where pick steps prune the pool to a few lines marked true or wrong. The bottom one is ORM-Rerank, with five independent parallel trajectories feeding an ORM Rerank box. A caption box states that both spend the same forward-pass budget. The amber panel compares mean-pooling and last-token readout architectures, with token boxes feeding a PRM head. Below them, two bars read 0.61 and 0.73. A final callout notes that the rerank gap to ORM remains.",
+ "caption": "Framework overview. (A) Signal decay. Bidirectional PRM ROC-AUC rises from $0.54$ in the most-masked bucket to $0.77$ in the least-masked bucket $[0.0, 0.1)$ and $0.78$ on fully decoded states, so guidance decisions made at high mask ratios rely on the weakest signal. (B) Diversity collapse. Deterministic top-$1$ PRM pruning collapses the candidate pool, while ORM Rerank spends the same forward-pass budget on independent trajectories. (C) Readout mismatch. For causal PRM variants, switching from mean pooling to last-token pooling raises ROC-AUC on final states from $0.61$ to $0.73$ but does not close the downstream gap to ORM Rerank.",
+ "caption_source": "latex",
+ "abstract": "Discrete diffusion language models (dLLMs) expose a denoised solution at every step, which makes process reward model (PRM) guidance look like a way to spend compute at test time. We show that once denoising, PRM scoring, and outcome reward model (ORM) scoring are charged in the same budget of forward passes, its deterministic form loses to a much simpler baseline. Our PRMs score intermediate denoising states and are trained on the correctness of the final answer. On Dream-v0-Instruct-7B with 8 candidates per GSM8K problem, keeping the candidate with the highest PRM score at every scoring step reaches 65.18%, while independent sampling plus an ORM reranker trained for the task reaches 75.13%. The gap grows to 12.69 percentage points (pp) with 32 candidates, and is 9.85 pp on MATH and 12.16 pp on MBPP. We trace it to two separable failures. First, guidance prunes on a weak signal: on GSM8K, PRM ROC-AUC falls from 0.77 to 0.54 as the mask ratio rises, a decay that persists when states are relabeled with fresh rollouts, and pruning lowers the best accuracy reachable from the candidate pool from 81.05% for independent samples to 67.30%. Second, on GSM8K and MATH, the PRM is a poor final judge: a sequential Monte Carlo sampler at the same budget restores that ceiling to 77.89%, yet selecting with the PRM gives 65.48%, on par with deterministic guidance, while a PRM retrained on final states matches the ORM on identical candidates. MBPP separates the two: there the PRM reaches 65.47% when reranking finished programs, on par with the ORM, but 50.88% when it guides denoising. The results point to two targets for dLLM guidance: keep correct partial solutions alive through early denoising, and leave the final choice to a verifier trained on final states. We release the corpus of denoising states with outcome labels and evaluation toolkit for reproducible comparisons at matched compute.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=xogwvIhOYH",
+  "arxiv": "https://arxiv.org/abs/2609.35472",
+  "pdf": "https://arxiv.org/pdf/2609.35472",
+  "proceedings": null,
+  "virtual": "https://neurips.cc/virtual/2026/poster/148438",
+  "code": null
+ },
+ "license": "http://creativecommons.org/licenses/by/4.0/",
+ "img": "cc-by",
+ "image_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/images/neurips26-8669.png",
+ "thumb_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/thumbs/neurips26-8669.webp",
+ "figure_page": 1,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.55
+}

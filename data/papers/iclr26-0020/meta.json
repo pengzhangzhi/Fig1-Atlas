@@ -1,0 +1,51 @@
+{
+ "id": "iclr26-0020",
+ "title": "AdaBlock-dLLM: Semantic-Aware Diffusion LLM Inference via Adaptive Block Size",
+ "authors": [
+  "Guanxi Lu",
+  "Hao Chen",
+  "Yuto Karashima",
+  "Zhican Wang",
+  "Daichi Fujiki",
+  "Hongxiang Fan"
+ ],
+ "venue": "ICLR 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "Deep Learning->Generative Models and Autoencoders",
+ "role": "prior-vs-ours",
+ "role2": "problem-setup",
+ "claim": "Fixed-size blocks delay confident tokens and commit uncertain ones too early; adapting block boundaries to semantic structure avoids both failures.",
+ "layout": "2 side-by-side panels, top-down denoising steps, shared prompt on top, confidence color legend",
+ "tags": [
+  "adaptive-scheduling",
+  "diffusion-language-model",
+  "semi-autoregressive",
+  "inference-efficiency",
+  "fixed-vs-adaptive"
+ ],
+ "style": [
+  "colorful",
+  "text-heavy"
+ ],
+ "description": "A prompt bubble at the top ('Alice has three apples, and Bob has four. How many oranges do they have in total?') branches by arrows into two dashed-title panels. The left panel, 'Conventional Approach (Fixed block size)', shows an initial all-[MASK] sequence, then rows of Denoise and Sample steps over fixed-width token blocks. Tokens are shaded green by confidence. Purple annotations mark Issue-1, late decoding overhead: high-confidence tokens outside the block are not decoded. They also mark Issue-2, premature decoding error: a low-confidence token, the red 'seven', is committed too early. The right panel, 'Our Approach (Adaptive block size)', uses the same row structure. Blue brackets labelled 'Adaptive block size' stretch to cover whole semantic chunks, so 'Alice has three apples and Bob has four.' and then 'They have zero oranges in total.' are decoded correctly. A green gradient legend for low-to-high confidence sits at the bottom right.",
+ "caption": "Illustrative examples of two fundamental issues (left) and how \\adablock{} addresses them (right). Appendix [ref] presents a case study from a real inference scenario. \\vspace{-6mm}",
+ "caption_source": "latex",
+ "abstract": "Diffusion-based large language models (dLLMs) are gaining attention for their inherent capacity for parallel decoding, offering a compelling alternative to autoregressive LLMs. Among various decoding strategies, block-wise semi-autoregressive (semi-AR) approaches are widely adopted due to their support for KV caching and their favorable accuracy-speed trade-off. However, this paper identifies two fundamental limitations in the conventional semi-AR decoding approach that applies a fixed block size: i) late decoding overhead, where the unmasking of high-confidence tokens outside the current block is unnecessarily delayed, and ii) premature decoding error, where low-confidence tokens inside the current block are committed too early, leading to incorrect tokens. This paper presents the first systematic investigation challenging the fixed block size setting in semi-AR decoding. Through a statistical analysis of confidence dynamics during the denoising process, we identify a volatility band (VB) region during dLLM decoding, which encodes local semantic structure and can be used to guide adaptive block sizing. Leveraging these insights, we introduce AdaBlock-dLLM, a training-free, plug-and-play scheduler that adaptively aligns block boundaries with semantic steps by adjusting block size during runtime. Extensive experiments across diverse benchmarks show that AdaBlock-dLLM achieves up to 5.3% accuracy improvement under the same throughput budget. Beyond inference-time optimization, we hope our semantics-aware adaptive scheduling approach and confidence-based analysis will inspire future training strategies for dLLMs. Our code is available at https://github.com/lgxi24/AdaBlock-dLLM.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=0Cv9PwL7cI",
+  "arxiv": "https://arxiv.org/abs/2509.26432",
+  "pdf": "https://proceedings.iclr.cc/paper_files/paper/2026/file/e2eeb89acc98e8e506d719e330cbc43a-Paper-Conference.pdf",
+  "proceedings": "https://proceedings.iclr.cc/paper_files/paper/2026/hash/e2eeb89acc98e8e506d719e330cbc43a-Abstract-Conference.html",
+  "virtual": "https://iclr.cc/virtual/2026/poster/10011958",
+  "code": "https://github.com/lgxi24/AdaBlock-dLLM"
+ },
+ "license": "http://creativecommons.org/licenses/by/4.0/",
+ "img": "cc-by",
+ "image_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/images/iclr26-0020.png",
+ "thumb_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/thumbs/iclr26-0020.webp",
+ "figure_page": 1,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.9
+}

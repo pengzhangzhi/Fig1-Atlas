@@ -1,0 +1,49 @@
+{
+ "id": "icml26-6126",
+ "title": "Vegas: Self-Speculative Decoding with Verification-Guided Sparse Attention",
+ "authors": [
+  "Yikang Yue",
+  "Yuqi Xue",
+  "Jian Huang"
+ ],
+ "venue": "ICML 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "Deep Learning->Attention Mechanisms",
+ "role": "prior-vs-ours",
+ "role2": "pipeline",
+ "claim": "Prior methods pick drafting entries with a standalone selector; ours reuses criticality computed during verification to guide the next draft.",
+ "layout": "2 panels, side-by-side, left-to-right flow, purple highlighted feedback arrows in right panel",
+ "tags": [
+  "speculative-decoding",
+  "sparse-attention",
+  "kv-cache",
+  "inference-efficiency",
+  "feedback-loop"
+ ],
+ "style": [
+  "colorful",
+  "icon-heavy",
+  "minimal"
+ ],
+ "description": "Two side-by-side panels show one decoding iteration each, with a shared legend at far left (selected, skipped, current, critical tokens as colored squares). Panel (a), the existing approach, shows input token → rounded Drafting box (a staircase grid of blue and white cells) → draft tokens → Verification box (a row of cells with green checks and a red cross) → output tokens. Panel (b) has the same drafting and verification boxes, but uses bold purple text and arrows. Critical KV entries found in verification feed back into the next iteration's drafting, with highlighted columns marking critical tokens. Verification shows all green checks. Captions below name each panel. The eye goes first to the purple feedback arrows in (b).",
+ "caption": "Comparison of (a) existing self-speculative decoding with sparse attention and (b) self-speculative decoding with verification-guided sparse attention (\\projname{}). Each subfigure shows one decoding iteration (drafting + verification). \\projname{} improves decoding throughput by identifying critical KV entries as a byproduct of verification and applying sparse attention over these entries when drafting subsequent tokens, enabling a high draft token acceptance rate. Note that details such as the bonus token are omitted for simplicity.",
+ "caption_source": "latex",
+ "abstract": "Long-context large language model (LLM) inference has become the norm for today's AI applications. However, it is severely bottlenecked by the increasing memory demands of its KV cache. Previous works have shown that self-speculative decoding with sparse attention, where tokens are drafted using a subset of the KV cache and verified in parallel against the full KV cache, speeds up inference in a lossless manner. However, they rely on a standalone KV selection algorithm to select the KV entries used for drafting and overlook the fact that the criticality of each KV entry is inherently computed during verification. In this paper, we propose Vegas, a self-speculative decoding method with verification-guided sparse attention. Vegas identifies critical KV cache entries as a byproduct of verification and computes attention only over these entries when drafting subsequent tokens. This not only improves the draft token acceptance rate but also incurs low KV selection overhead, thereby improving decoding throughput. Vegas achieves a 1.25$\\times$-2.81$\\times$ speedup in decoding throughput over default vLLM and a 1.15$\\times$-1.29$\\times$ speedup over state-of-the-art sparse attention-based self-speculative decoding methods. Our code is available at https://github.com/platformxlab/vegas.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=vht4Pn0swG",
+  "arxiv": "https://arxiv.org/abs/2602.07223",
+  "pdf": "https://raw.githubusercontent.com/mlresearch/v306/main/assets/yue26a/yue26a.pdf",
+  "proceedings": "https://proceedings.mlr.press/v306/yue26a.html",
+  "virtual": "https://icml.cc/virtual/2026/poster/60880",
+  "code": "https://github.com/platformxlab/vegas"
+ },
+ "license": "http://creativecommons.org/licenses/by/4.0/",
+ "img": "cc-by",
+ "image_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/images/icml26-6126.png",
+ "thumb_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/thumbs/icml26-6126.webp",
+ "figure_page": 1,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.9
+}

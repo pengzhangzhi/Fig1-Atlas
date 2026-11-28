@@ -1,0 +1,51 @@
+{
+ "id": "neurips26-6882",
+ "title": "OmniMem: Scalable and Adaptive Memory Retrieval for Long Video Generation",
+ "authors": [
+  "Lin Zhao",
+  "Yushu Wu",
+  "Yifan Gong",
+  "Yanzhi Wang",
+  "Pu Zhao"
+ ],
+ "venue": "NeurIPS 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "Computer Vision->Image and Video Generation",
+ "role": "pipeline",
+ "role2": "overview-framework",
+ "claim": "Combining local, compressed and sparsely selected long-range memory branches, with window exclusion and shared selection, gives scalable, efficient access to a growing history.",
+ "layout": "Left main pipeline flowing top-to-bottom, right column of zoomed detail panels in dashed callout",
+ "tags": [
+  "sparse-attention",
+  "kv-cache",
+  "memory-retrieval",
+  "long-context",
+  "efficiency"
+ ],
+ "style": [
+  "icon-heavy",
+  "colorful",
+  "text-heavy"
+ ],
+ "description": "A two-part architecture diagram. On the left, a rounded box shows the full-resolution KV cache as a row of 2x2 chunk icons shaded from dark orange (older) to pale (recent). Arrows lead down into three branches: Sliding Window, Compression (pooled KV blocks) and Selection (Top-K). Each branch feeds an attention block (Sliding-Window, Compression, Selection Attention). Current chunk queries join them, and gated multiplication circles (g^swa, g^cmp, g^slc) merge the outputs into a Gated Output. The Selection branch is outlined with a dashed blue box and linked by dashed lines to enlarged panels on the right. Those panels cover Adaptive Window Exclusion, Query-Shared KV Selection, Per-Head Scattered KV Access, and On-Demand KV Residency with GPU hot and CPU offload caches. Orange gradients carry the eye through the flow.",
+ "caption": "\\textbf{\\methodAbbr{} preserves object identity while maintaining rich motion in long video generation.} SWA shows object drift, and Sink-SWA produces repetitive motion.",
+ "caption_source": "latex",
+ "abstract": "Autoregressive (AR) video generation extends videos by producing latent chunks sequentially, but scaling to long videos requires repeated access to a growing historical KV cache. Existing methods reduce this cost by truncating the KV cache or compressing it into implicit memory, but both lose explicit access to query-relevant historical details. We propose OmniMem, an explicit full-range memory retrieval framework that performs sparse KV retrieval over the historical cache. To make this practical for chunk-based AR video generation, OmniMem addresses two issues: (i) local bias in sparse KV selection and (ii) Union Explosion in memory access. Adaptive Window Exclusion removes local-window blocks from the selection candidates when sufficient long-range history is available, preserving the sparse budget for informative long-range retrieval. Query-Shared KV Selection reduces cross-query diversity, while Per-Head Scattered KV Access avoids expanding head-specific selections into a large selected KV buffer. This allows each attention head to retrieve non-contiguous KV blocks according to its own selection pattern. Experiments on long-video generation show that OmniMem improves Dynamic Degree by 52.3% and preserves strong consistency over strong baselines, while maintaining comparable memory usage.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=lJpXhbi9az",
+  "arxiv": "https://arxiv.org/abs/2605.30519",
+  "pdf": "https://arxiv.org/pdf/2605.30519",
+  "proceedings": null,
+  "virtual": "https://neurips.cc/virtual/2026/poster/150029",
+  "code": "https://wuyushuwys.github.io/OmniMem/"
+ },
+ "license": "http://arxiv.org/licenses/nonexclusive-distrib/1.0/",
+ "img": "none",
+ "image_url": null,
+ "thumb_url": null,
+ "figure_page": 2,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.85
+}

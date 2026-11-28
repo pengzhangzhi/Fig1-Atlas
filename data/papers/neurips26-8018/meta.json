@@ -1,0 +1,51 @@
+{
+ "id": "neurips26-8018",
+ "title": "Addressing Exogenous Variability in Cooperative Multi-Agent Reinforcement Learning",
+ "authors": [
+  "Seongmin Kim",
+  "Woohyeon Byeon",
+  "Jiwon Jeon",
+  "Seungyul Han",
+  "Youngchul Sung"
+ ],
+ "venue": "NeurIPS 2026",
+ "tier": "spotlight",
+ "track": "main",
+ "topic": "Reinforcement Learning->Multi-agent",
+ "role": "problem-setup",
+ "role2": "analysis-finding",
+ "claim": "Exogenous regime shifts change how the environment responds, and policies that excel on training conditions collapse on unseen ones, even with context inference.",
+ "layout": "3 panels left-to-right: schematic diagram, then two line plots sharing legend style",
+ "tags": [
+  "exogenous-variability",
+  "multi-agent-rl",
+  "generalization",
+  "distribution-shift",
+  "motivation"
+ ],
+ "style": [
+  "plot",
+  "colorful",
+  "minimal"
+ ],
+ "description": "Three panels in one row. Panel (a) is a schematic. An orange box labeled 'exogenous regime y' has an arrow down to the opponent sprites at reset. Inside a rounded box labeled with state S_t = (S^d_t, S^r_t), blue ally cartoon sprites on the left and pink opponent sprites on the right are linked by a blue arrow for ally action a^i_t and a wavy red arrow for 'opponent responds'. Below, a dashed blue arrow runs from ally position S^d_{t+1} to enemy position/attack S^r_{t+2}. Panel (b) is a line plot of eval win rate against environment steps for MAPPO and QMIX. Seen opponents (blue) climb to about 1.0, while unseen (orange) stay near 0. Panel (c) is a similar plot that adds MAPPO+ctx. Seen runs reach about 0.55, and unseen runs reach only about 0.2–0.27. Shaded bands show variance. Each panel has a bold caption below it.",
+ "caption": "Motivation. (a) An episode-level exogenous regime (e.g., opponent strategy and initial distance) changes how a fixed but state-reactive opponent responds. Ally actions directly change ally state (e.g., positions), which then affects the opponent's later movement and attacks. (b) Policies trained against the default SMAX opponent achieve high performance but collapse under unseen opponent strategies. (c) Multi-regime training with VariBAD-style context inference [ref] (MAPPO+ctx) still suffers under exogenous variation.",
+ "caption_source": "latex",
+ "abstract": "Cooperative multi-agent reinforcement learning (MARL) often fails under exogenous variability such as shifts in opponents or environment regimes that cannot be controlled by the team but alter the transition dynamics. We formalize this challenge as Exogenous Dec-POMDP (ED-POMDP), in which an episode-level exogenous regime, selected independently of the team, indexes the dynamics, and the global state is partitioned into components that are directly responsive to the current team action and components that are not directly action-responsive at the current step. This formulation exposes mediated influence: while team actions do not directly update the latter at the current step, they can shape their later evolution through induced changes in the former. Based on this, we propose LEICA, a CTDE-compatible algorithm that learns history-conditioned context representations for both components and shapes policy updates using agent-wise, influence-weighted counterfactual intrinsic rewards. Across SMAX benchmarks with opponent strategy shifts, LEICA consistently improves both training performance and generalization to unseen opponents' strategies over existing baselines, supporting the usefulness of influence-weighted shaping under exogenous train-test regime shifts.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=tS7YfNAPfZ",
+  "arxiv": "https://arxiv.org/abs/2611.22067",
+  "pdf": "https://arxiv.org/pdf/2611.22067",
+  "proceedings": null,
+  "virtual": "https://neurips.cc/virtual/2026/poster/149019",
+  "code": null
+ },
+ "license": "http://creativecommons.org/licenses/by/4.0/",
+ "img": "cc-by",
+ "image_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/images/neurips26-8018.png",
+ "thumb_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/thumbs/neurips26-8018.webp",
+ "figure_page": 2,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.6
+}

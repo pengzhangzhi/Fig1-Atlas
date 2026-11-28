@@ -1,0 +1,56 @@
+{
+ "id": "neurips26-2163",
+ "title": "Your Teacher Can’t Help You Here: Combating Supervision Fidelity Decay in On-Policy Distillation",
+ "authors": [
+  "Yanjiang Liu",
+  "Jie Lou",
+  "Xinyan Guan",
+  "Yuqiu Ji",
+  "Hongyu Lin",
+  "Ben He",
+  "Xianpei Han",
+  "Le Sun",
+  "XingYu Li",
+  "Yaojie Lu"
+ ],
+ "venue": "NeurIPS 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "Deep Learning->Generative Models and Autoencoders",
+ "role": "analysis-finding",
+ "role2": null,
+ "claim": "Supervisor reliability degrades as the model's own generated prefix grows longer, and this degradation drives compounding drift.",
+ "layout": "3 plots: two stacked left, large right with zoom-in insets and connector lines",
+ "tags": [
+  "distillation",
+  "supervision-decay",
+  "long-context",
+  "teacher-confidence",
+  "empirical-trend"
+ ],
+ "style": [
+  "plot",
+  "colorful",
+  "photo/real data"
+ ],
+ "description": "A wide figure with two parts. On the left, two stacked scatter-and-dashed-line plots show AIME24 Mean@8 against training tokens from the student, for two teacher-to-student pairs. Colored markers show different max generation lengths, and a dashed horizontal line marks the student baseline. On the right, a large plot shows AIME24 accuracy falling as the student's prefix length grows from 0 to 28k. A purple curve (student model) falls much faster than a blue curve (OPD optimized). Two black-outlined inset panels connect by lines to points at about 2k and 14k. Each inset shows noisy blue and red probability traces with a dashed vertical handoff line where confidence jumps. The eye goes first to the two diverging curves.",
+ "caption": "Supervision Fidelity Decay. Main: Teacher completion accuracy decays with student prefix length. Insets: Teacher confidence (max/sampled prob) at the student-to-teacher handoff for $\\sim$2k (left) and $\\sim$14k (right) prefixes. Confidence jumps at the handoff (dashed line), confirming token choices affect next-step teacher confidence.",
+ "caption_source": "latex",
+ "abstract": "On-policy distillation transfers reasoning capabilities by training a student model on its own generated trajectories using token-level feedback from a teacher. However, we identify a critical bottleneck, \\textbf{Supervision Fidelity Decay (SFD)}: as student-generated prefixes lengthen, the teacher's next-token distribution becomes less confident and less discriminative. Consequently, the teacher-dependent corrective signal in reverse-KL distillation weakens, causing student drift to compound across long reasoning chains. To mitigate SFD, we introduce \\textbf{Lookahead Group Reward (\\ours{})}. Building on the insight that next-step teacher confidence reflects the discriminative strength of future reverse-KL supervision, \\ours{} evaluates the student's top-K candidate tokens by the teacher confidence they induce at the subsequent step and assigns a group-normalized reward. To maintain computational efficiency, we further design an entropy-triggered tree-attention mechanism. Across six math and code benchmarks, \\ours{} improves mean@8 by \\textbf{2.57} points over OPD for a 7B student, with gains increasing in longer-generation and reaching +\\textbf{4.92} points on AIME-26 at 39k tokens.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=FKhBVYNfpr",
+  "arxiv": "https://arxiv.org/abs/2605.30833",
+  "pdf": "https://arxiv.org/pdf/2605.30833",
+  "proceedings": null,
+  "virtual": "https://neurips.cc/virtual/2026/poster/154216",
+  "code": null
+ },
+ "license": "http://creativecommons.org/licenses/by/4.0/",
+ "img": "cc-by",
+ "image_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/images/neurips26-2163.png",
+ "thumb_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/thumbs/neurips26-2163.webp",
+ "figure_page": 1,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.85
+}

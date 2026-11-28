@@ -1,0 +1,51 @@
+{
+ "id": "icml26-4898",
+ "title": "KnapSpec: Self-Speculative Decoding via Adaptive Layer Selection as a Knapsack Problem",
+ "authors": [
+  "Seongjin Cha",
+  "Gyuwan Kim",
+  "Dongsu Han",
+  "Tao Yang",
+  "Insu Han"
+ ],
+ "venue": "ICML 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "Deep Learning->Large Language Models",
+ "role": "pipeline",
+ "role2": null,
+ "claim": "Casting layer-skipping draft selection as a knapsack problem lets a dynamic program pick the throughput-optimal drafter at each step.",
+ "layout": "3 panels, left-to-right, arrows linking stages, DP grid with dotted paths",
+ "tags": [
+  "speculative-decoding",
+  "knapsack",
+  "dynamic-programming",
+  "layer-skipping",
+  "inference-efficiency"
+ ],
+ "style": [
+  "colorful",
+  "icon-heavy",
+  "text-heavy"
+ ],
+ "description": "A three-stage left-to-right pipeline. Panel 1 shows draft and verify transformer stacks, with LM Head, MLP (blue) and Attn (green) blocks. Skipped layers are faded, and the selected layer set S={1,3,4,6} is written above. Token rows are color-coded as accepted, draft, corrected or rejected, and a Cached Hidden States box sits between the two stacks. Panel 2 shows a stack of candidate layer sets S_K to S_1 above a DP grid of alternating MLP and Attn rows against weight columns. Solid SELECT arrows and dotted SKIP arrows trace paths through the grid, and a label reads Parallel Dynamic Programming. Panel 3 shows a red-and-blue Token Per Time heatmap with the best cell highlighted. A curved arrow leads to an Optimized S* box, then to an Update Drafter Layer Selection box with S←S*. Bold titles and numbered captions sit under each panel.",
+ "caption": "Overview of KnapSpec. (1) Self-Speculative Decoding defines a draft model as a sub-network of the target model. (2) Layer selection can be converted to a Knapsack Problem, and we search candidate sets via Dynamic Programming (DP) with various latency budgets (weights). (3) Then, the optimal configuration that maximizes Tokens-per-Time (TPT) is selected and used for the next speculation.",
+ "caption_source": "latex",
+ "abstract": "Self-speculative decoding (SSD) accelerates LLM inference by skipping layers to create an efficient draft model, yet existing methods often rely on static heuristics that ignore the dynamic computational overhead of attention in long-context scenarios. We propose KnapSpec, a training-free framework that reformulates draft model selection as a knapsack problem to maximize tokens-per-time throughput. By decoupling Attention and MLP layers and modeling their hardware-specific latencies as functions of context length, KnapSpec adaptively identifies optimal draft configurations on the fly via a parallel dynamic programming algorithm. Furthermore, we provide the first rigorous theoretical analysis establishing cosine similarity between hidden states as a mathematically sound proxy for the token acceptance rate. This foundation allows our method to maintain high drafting faithfulness while navigating the shifting bottlenecks of real-world hardware. Our experiments on Qwen3 and Llama3 demonstrate that KnapSpec consistently outperforms state-of-the-art SSD baselines, achieving up to 1.47x wall-clock speedup across various benchmarks. Our plug-and-play approach ensures high-speed inference for long sequences without requiring additional training or compromising the target model's output distribution.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=k5nKHWp9VC",
+  "arxiv": "https://arxiv.org/abs/2602.20217",
+  "pdf": "https://raw.githubusercontent.com/mlresearch/v306/main/assets/cha26a/cha26a.pdf",
+  "proceedings": "https://proceedings.mlr.press/v306/cha26a.html",
+  "virtual": "https://icml.cc/virtual/2026/poster/62075",
+  "code": "https://github.com/kaist-flexml-lab/knapspec"
+ },
+ "license": "http://creativecommons.org/licenses/by/4.0/",
+ "img": "cc-by",
+ "image_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/images/icml26-4898.png",
+ "thumb_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/thumbs/icml26-4898.webp",
+ "figure_page": 3,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.9
+}

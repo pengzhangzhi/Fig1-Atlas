@@ -1,0 +1,48 @@
+{
+ "id": "neurips26-1582",
+ "title": "RANSAC Scoring Done Right",
+ "authors": [
+  "James Pritts",
+  "Felix Seegräber",
+  "Kevin Köser"
+ ],
+ "venue": "NeurIPS 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "Computer Vision->3D Rendering & Reconstruction",
+ "role": "analysis-finding",
+ "role2": "teaser-result",
+ "claim": "Threshold-based scores degrade sharply under hyperparameter miscalibration, while our scores stay flat across a two-decade range.",
+ "layout": "3 panels side by side, shared log x-axis, shared bottom legend",
+ "tags": [
+  "hyperparameter-sensitivity",
+  "robustness",
+  "ransac",
+  "likelihood-scoring",
+  "sensitivity-analysis"
+ ],
+ "style": [
+  "plot",
+  "colorful"
+ ],
+ "description": "Three line-plot panels sit side by side. Each is titled with a dataset, feature type and geometric problem: PhotoTourism/RootSIFT/E, ETH3D/SuperPoint+LightGlue/F, and HEB/SIFT/H. The y-axis is median rotation error in degrees. The x-axis is the hyperparameter κ/κ*, on a log scale from 1/10 to 10. Solid colored curves show baselines (RANSAC, MSAC, GaU, MAGSAC++) and the proposed variants (Jeffreys, IG-Robust, IG-MLE), with shaded bootstrap confidence bands. Baseline curves form U shapes that rise steeply at the edges. In the first two panels the proposed curves are almost flat. Dashed horizontal lines in matching colors mark per-pair oracle tuning, and a thick black line marks the oracle. Filled dots mark each curve's minimum. In the third panel IG-Robust (green) stays low over most of the range. A shared legend runs along the bottom.",
+ "caption": "Profile across three datasets, one per geometric problem: PT / $\\bE$ (left), \\ethd / $\\bF$ (middle), \\heb / $\\bH$ (right). Each panel plots, as solid lines, the median rotation error across all pairs in the dataset versus each method's hyperparameter on a log axis, swept exhaustively over a two-decade interval. Color-matched dashed horizontal lines mark each method's achievable performance when its hyperparameter is free to be tuned per pair to select the model closest to the ground truth; a large gap to the solid curve indicates hyperparameter-dependent model switching. Filled circles mark each method's minimum on the fine grid; the axis is normalized by the coarse-search optimum, so $x = 1$ need not be a minimum. Shaded bands are 95% bootstrap confidence intervals on the median. In the data-rich regime (PT, \\ethd) our variants are remarkably robust to hyperparameter miscalibration, with curves nearly flat across the full two-decade window where threshold-based baselines degrade markedly. On \\heb---the data-scarce regime---the \\igrobust prior regularizes the score and outperforms the baselines over most of the hyperparameter interval (cf. [ref]).",
+ "caption_source": "latex",
+ "abstract": "The most widely used RANSAC variants score a candidate model by summing per-point scores that fall to zero beyond a threshold. These scores derive from the negative log-likelihood of a Gaussian-uniform mixture. The threshold separates inliers, which follow the noise model, from outliers, and it is a function of the observation noise level, also known as the inlier scale. We remove this dependence on the threshold by reversing the usual order of RANSAC inference: rather than estimating the scale and then scoring against it, we marginalize the scale in closed form for a fixed inlier partition and then optimize over partitions. The resulting score is maximized by a single sort followed by a linear sweep. A single closed-form expression spans informative and non-informative priors, so the same score adapts to datasets with extensive or limited ground-truth annotation. The proposed score has a single hyperparameter, the half-width of the uniform outlier distribution. We show that this half-width is far less sensitive to miscalibration than the inlier threshold and is easier to cross-validate. The proposed score is the first likelihood-based RANSAC score in which the inlier scale is absent from the formula. Project page: https://ransacscoringdoneright.github.io",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=BK5yH67CQC",
+  "arxiv": "https://arxiv.org/abs/2606.27385",
+  "pdf": "https://arxiv.org/pdf/2606.27385",
+  "proceedings": null,
+  "virtual": "https://neurips.cc/virtual/2026/poster/154742",
+  "code": "https://ransacscoringdoneright.github.io"
+ },
+ "license": "http://creativecommons.org/licenses/by/4.0/",
+ "img": "cc-by",
+ "image_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/images/neurips26-1582.png",
+ "thumb_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/thumbs/neurips26-1582.webp",
+ "figure_page": 6,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.6
+}

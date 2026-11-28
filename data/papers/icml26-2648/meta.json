@@ -1,0 +1,53 @@
+{
+ "id": "icml26-2648",
+ "title": "Score-Repellent Monte Carlo: Toward Efficient Non-Markovian Sampler with Constant Memory in General State Spaces",
+ "authors": [
+  "Jie Hu",
+  "Lingyun Chen",
+  "Geeho Kim",
+  "Jinyoung Choi",
+  "Bohyung Han",
+  "Do-Young Eun"
+ ],
+ "venue": "ICML 2026",
+ "tier": "spotlight",
+ "track": "main",
+ "topic": "Probabilistic Methods->Monte Carlo and Sampling Methods",
+ "role": "analysis-finding",
+ "role2": "prior-vs-ours",
+ "claim": "A standard sampler stays trapped in one mode, while history-adapted score fields reshape the landscape so the chain escapes and explores.",
+ "layout": "2x4 grid, rows compare samplers, columns show increasing iterations, shared legend below",
+ "tags": [
+  "metastable-trap",
+  "mode-coverage",
+  "score-field",
+  "history-dependent-sampling",
+  "mcmc"
+ ],
+ "style": [
+  "plot",
+  "colorful"
+ ],
+ "description": "A 2x4 grid of heatmap panels shows a two-mode log-density landscape in viridis colors, with a bright yellow high-density region on the left. Columns are labeled n = 1000, 2000, 3000 and 100000. The top row is plain ULA, with gray arrows for the original score. Its white trajectory stays in a small blob in the left well at every step count. The bottom row is SR-ULA, with orange-red arrows for the adaptive score field. The left well is gradually deformed, the white trajectory breaks out across the middle, and by n = 100000 it fills a large region on the right. A cyan dot marks the current sample. A legend at the bottom explains original score, adaptive score and current sample. The eye goes first to the large white trajectory mass in the bottom-right panel, which contrasts with the small trapped blob above it.",
+ "caption": "Score-repellent adaptation reshapes the score field to escape a metastable trap. We consider a two-dimensional, two-mode target distribution $\\pi$ (a Gaussian mixture with an imbalanced structure: a dominant narrow mode forming a deep energy well on the left, and a broader mode on the right). Background color shows the (unnormalized) log-density landscape (darker indicates higher density / lower energy). Each column visualizes an increasing iteration index $n\\in\\{1k,2k,3k,100k\\}$. Top row: An ULA sampler driven by the original score field $\\nabla_x\\log\\pi(x)$ (gray arrows) remains trapped near the narrow high-density mode; its trajectory (white curve) stays localized even after $100k$ steps. Bottom row: SR-ULA uses the base ULA sampler but targets the history-adapted surrogate in Eq. [ref]. Gray arrows depict the original score field, while red arrows depict the adaptive score field $\\nabla_x\\log\\pi_{\\theta_n}(x)$; the cyan dot indicates the current position. As the chain lingers in the left well, the running score average $\\theta_n$ accumulates the frequently reinforced directions, and the resulting exponential tilt reduces the effective attraction of that region, visibly deforming the local vector field and pushing the trajectory outward. By $n \\!\\approx\\! 2k$, SR-ULA escapes the metastable basin and begins exploring the broader region, illustrating how constant-memory score history can dynamically lower practical `energy barriers' without explicit state counting. At long times $n=100k$, SR-ULA has already thoroughly explored the right mode and returned to the left mode, leading to a balanced average score with $\\theta_n \\approx 0$, while the adapted field drifts back toward the score field $s(x)$ (the red and gray arrows almost overlap).",
+ "caption_source": "latex",
+ "abstract": "History-dependent sampling can reduce long-run Monte Carlo variance by discouraging redundant revisits, but existing schemes typically encode history through empirical measure on finite state spaces, which is infeasible in high-dimensional discrete configuration spaces or ill-posed in continuous domains. We propose Score-Repellent Monte Carlo (SRMC) framework that summarizes trajectory history by a running average of score evaluations in $\\mathbb{R}^d$, where $d$ is the dimension of the score and state representation. This history is converted into a surrogate target through an exponential score tilt, indexed with $Î±$ that represents the strength of repellence in controlling the magnitude of the history-based repulsion. The surrogate family is normalization-free in the standard MCMC sense, yielding a generic wrapper: at each iteration, any base kernel targeting $Ï$ can instead be run on the current surrogate $Ï_{Î¸_n}$ while the history is updated online. We analyze the coupled evolution of the history recursion and Monte Carlo estimators using stochastic approximation with controlled Markovian noise, establishing almost sure convergence and a joint central limit theorem. We further identify regimes in which the asymptotic covariance decreases as $Î±$ increases, with scaling $O(1/Î±)$, extending the near-zero-variance effect of finite-state history-dependent samplers to general state spaces with constant memory. Experiments on continuous targets and discrete energy-based models demonstrate improved estimator variance and mode coverage, while retaining $O(d)$ memory usage and modest per-iteration overhead.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=PN8EiOzMuT",
+  "arxiv": "https://arxiv.org/abs/2604.22948",
+  "pdf": "https://raw.githubusercontent.com/mlresearch/v306/main/assets/hu26g/hu26g.pdf",
+  "proceedings": "https://proceedings.mlr.press/v306/hu26g.html",
+  "virtual": "https://icml.cc/virtual/2026/poster/64261",
+  "code": null
+ },
+ "license": "http://creativecommons.org/licenses/by/4.0/",
+ "img": "cc-by",
+ "image_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/images/icml26-2648.png",
+ "thumb_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/thumbs/icml26-2648.webp",
+ "figure_page": 3,
+ "qc_flags": [
+  "low-role-confidence"
+ ],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.4
+}

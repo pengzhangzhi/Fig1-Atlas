@@ -1,0 +1,59 @@
+{
+ "id": "neurips26-8812",
+ "title": "Attention Sinks and Outliers in Attention Residuals",
+ "authors": [
+  "Haozheng Luo",
+  "Haoran Dai",
+  "Ching-Yuen Huang",
+  "Shaoyang Zhang",
+  "Xi Chen",
+  "Eric Hanchen Jiang",
+  "Yijiang Li",
+  "Chenghao Qiu",
+  "Chenwei Xu",
+  "Zhenyu Pan",
+  "Haotian Zhang",
+  "Binghui Wang",
+  "Yan Chen"
+ ],
+ "venue": "NeurIPS 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "Deep Learning->Attention Mechanisms",
+ "role": "prior-vs-ours",
+ "role2": "pipeline",
+ "claim": "The standard approach lets normalization force mass onto outlier tokens and branches, causing sinks; ours adds explicit null routes that absorb it.",
+ "layout": "3 panels, left-to-right; baseline left, ours center, coupling detail right",
+ "tags": [
+  "null-routing",
+  "normalization",
+  "outlier-suppression",
+  "quantization",
+  "prior-vs-ours"
+ ],
+ "style": [
+  "colorful",
+  "math-heavy",
+  "plot"
+ ],
+ "description": "The figure is split by a vertical dashed line into the baseline on the left and the proposed method on the right. The left panel, titled 'Standard AttnResidual', shows two blue boxes, one for token-level softmax and one for depth-level softmax. Each contains a bar chart with a red outlier bar and the constraint that probabilities sum to 1. Arrows feed these into circled-plus residual adds, and a red starburst reads 'Attention Sinks, Activation Outliers, Depth Collapse!'. The center panel, 'OASIS (Ours)', is a green dashed box with token-level and depth-level Softmax1 bar charts. Each has a hatched orange null bar in place of the red outlier. Formulas sit above the charts, and the output is a weighted residual update. The right panel is a yellow box with three steps for token-to-depth null coupling: a head-level null statistic, mean centering, and score injection into the depth logits. A dashed yellow arrow links the token null state to this box.",
+ "caption": "Comparison of standard AttnResidual and OASIS. OASIS adds null-aware token- and depth-level routing with token-to-depth null coupling, enabling explicit no-op allocation and reducing no-op outlier pressure, sink accumulation, and depth-collapse pressure.",
+ "caption_source": "latex",
+ "abstract": "We propose OASIS, an outlier- and sink-aware method that stabilizes dual-normalized attention-residual architectures through explicit null routing and token-to-depth null coupling. AttnResidual introduces an additional depth-wise normalization channel that improves inter-layer routing flexibility but can also amplify attention sinks, activation outliers, and low-bit quantization error. OASIS builds on explicit Softmax1-based null routes at both the token and depth levels and uses token-level null evidence to downweight depth branches exhibiting stronger null behavior. Theoretically, we characterize a conditional mechanism for sink-like attention concentration under dual normalization, offering insight into the low-bit sensitivity observed in AttnResidual. Experimentally, we compare OASIS against five baselines on three language-model backbones and multiple language-modeling, reasoning, and long-context benchmarks and observe consistent improvements in both attention sink mitigation and post-quantization performance. Notably, relative to Vanilla AttnResidual, OASIS reduces maximum infinity norm by 81.75% and average kurtosis by 95.90%, lowers W8A8 perplexity by 82.00%, and improves W4A4 GSM8K Pass@1 by 42.11% on average across LLaMA-3.2-1B, Qwen3-0.6B, and Phi-4. Code is available at: https://github.com/robinzixuan/OASIS.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=yjVSLVS0Dh",
+  "arxiv": "https://arxiv.org/abs/2605.17887",
+  "pdf": "https://arxiv.org/pdf/2605.17887",
+  "proceedings": null,
+  "virtual": "https://neurips.cc/virtual/2026/poster/148314",
+  "code": "https://oasis-research.github.io/"
+ },
+ "license": "http://creativecommons.org/licenses/by/4.0/",
+ "img": "cc-by",
+ "image_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/images/neurips26-8812.png",
+ "thumb_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/thumbs/neurips26-8812.webp",
+ "figure_page": 1,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.8
+}

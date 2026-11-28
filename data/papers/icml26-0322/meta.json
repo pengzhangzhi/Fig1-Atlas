@@ -1,0 +1,48 @@
+{
+ "id": "icml26-0322",
+ "title": "Mitigating Staleness in Asynchronous Pipeline Parallelism via Basis Rotation",
+ "authors": [
+  "Hyunji Jung",
+  "Sungbin Shin",
+  "Namhoon Lee"
+ ],
+ "venue": "ICML 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "Optimization->Large Scale, Parallel and Distributed",
+ "role": "problem-setup",
+ "role2": "prior-vs-ours",
+ "claim": "Eliminating idle pipeline bubbles by updating asynchronously improves utilization but forces updates to use stale, delayed gradients.",
+ "layout": "3 stacked panels, left-to-right time axis, color-coded grid blocks with legend",
+ "tags": [
+  "asynchronous-training",
+  "pipeline-parallelism",
+  "gradient-staleness",
+  "scheduling-diagram",
+  "efficiency-tradeoff"
+ ],
+ "style": [
+  "colorful",
+  "minimal"
+ ],
+ "description": "Three stacked panels share a time axis that runs left to right. Panel (a), synchronous pipeline parallelism, is a 4-stage by time grid of numbered micro-batch blocks. Blue blocks are forward passes and green blocks are backward passes. Large gray blocks mark idle bubbles. A diagonal gray arrow traces micro-batch 4 down through the forward pass and back up through the backward pass, labeled f(w;B4) and ∇f(w;B4). Panel (b), asynchronous pipeline parallelism, has the same stage layout, but forward and backward blocks alternate with almost no gray gaps. Red dots on the green blocks mark model updates. Panel (c) isolates stage 1 and labels the weights w0 to w4. A dashed arrow shows the gradient ∇f(w0;B4) computed at w0 being applied to w4 through a red arrow, which illustrates staleness. A legend at the bottom explains forward, backward, idle time and update. The eye goes first to the colored grids.",
+ "caption": "(a--b) Schematic diagrams showing how micro-batches (blocks 1--7) are processed over time: a micro-batch travels from stage 1 to stage 4 in a forward pass (blue), and then goes back to stage 1 through a backward pass (green). Once the gradient becomes available after the backward pass, the model is updated (red dots indicate the time points). Asynchronous pipelining removes idle periods by processing subsequent micro-batches immediately after completing a backward pass without waiting for the completion of the pipeline cycle. (c) An illustration of model update with delayed gradient at stage 1: $w_3$ is updated to $w_4$ with $\\nabla f(w_0; B_4)$.",
+ "caption_source": "latex",
+ "abstract": "Asynchronous pipeline parallelism maximizes hardware utilization by eliminating the pipeline bubbles inherent in synchronous execution, offering a path toward efficient large-scale distributed training. However, this efficiency gain can be compromised by gradient staleness, where the immediate model updates with delayed gradients introduce noise into the optimization process. Crucially, we identify a critical, yet often overlooked, pathology: this delay scales linearly with pipeline depth, fundamentally undermining the very scalability that the method originally intends to provide. We trace this pathology to a specific property of the optimization landscape: the misalignment between the Hessian eigenbasis and the standard coordinate basis, which triggers oscillations in the update trajectories of coordinate-wise adaptive optimizers. We identify that these oscillations cause delayed updates to diverge from their true counterparts, invalidating their use for current iterations. This insight is formalized through theoretical analysis, including a convergence bound showing that basis misalignment amplifies the delay penalty, and substantiated with empirical evaluation. To address this, we propose basis rotation, a framework that rotates the optimizer's coordinate system to align with the Hessian eigenbasis, keeping delayed updates useful. We theoretically demonstrate that basis rotation minimizes basis misalignment, thereby counteracting the conditions that amplify delay penalties. Empirically, in training up to a 3B-parameter LLM, basis rotation reduces the required iterations by 81.7\\% compared to the best-performing asynchronous baseline.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=31iky6wFu5",
+  "arxiv": "https://arxiv.org/abs/2602.03515",
+  "pdf": "https://raw.githubusercontent.com/mlresearch/v306/main/assets/jung26h/jung26h.pdf",
+  "proceedings": "https://proceedings.mlr.press/v306/jung26h.html",
+  "virtual": "https://icml.cc/virtual/2026/poster/66517",
+  "code": null
+ },
+ "license": "http://creativecommons.org/licenses/by/4.0/",
+ "img": "cc-by",
+ "image_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/images/icml26-0322.png",
+ "thumb_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/thumbs/icml26-0322.webp",
+ "figure_page": 1,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.6
+}

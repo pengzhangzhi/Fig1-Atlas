@@ -1,0 +1,51 @@
+{
+ "id": "icml26-4212",
+ "title": "One-Step Gradient Delay is Not a Barrier for Large-Scale Asynchronous Pipeline Parallel LLM Pretraining",
+ "authors": [
+  "Philip Zmushko",
+  "Egor Petrov",
+  "Nursultan Abdullaev",
+  "Khrushchev Mikhail",
+  "Samuel Horváth"
+ ],
+ "venue": "ICML 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": null,
+ "role": "teaser-result",
+ "role2": "analysis-finding",
+ "claim": "Despite gradient staleness, the asynchronous method trains stably at scale, and a simple correction closes the gap to synchronous training.",
+ "layout": "1 loss-curve plot, two zoomed insets with connector lines, legend on top",
+ "tags": [
+  "asynchronous-training",
+  "training-curves",
+  "error-feedback",
+  "pipeline-parallelism",
+  "large-scale"
+ ],
+ "style": [
+  "plot",
+  "minimal",
+  "colorful"
+ ],
+ "description": "A single wide line plot of training loss against training step, with a legend on top for Sync (blue), Async without error feedback (orange) and Async with error feedback (green). All three curves drop steeply, then decline slowly and almost overlap over about 47k steps. Two zoomed insets with grey connector lines sit inside the plot. The left one covers steps 1000–3000, where the orange curve sits clearly above green, which sits above blue. The right one covers steps 44000–47500, where green closely tracks blue and orange stays slightly higher. The insets make small gaps visible that the full-scale curves hide. The eye goes first to the overlapping curves, then to the zoomed insets. The grid is light and the axes are clean.",
+ "caption": "Training loss on a 10B MoE model trained for 200B FineWeb-Edu tokens. Both asynchronous runs remain stable throughout training, with Async PP + Error Feedback closing the final gap to the synchronous baseline entirely.",
+ "caption_source": "latex",
+ "abstract": "Modern large-scale LLM pretraining benefits from utilizing Pipeline Parallelism; however, synchronous implementations leave GPUs idle during pipeline bubbles, wasting computational resources. Asynchronous Pipeline Parallelism eliminates these bubbles, maximizing throughput at the cost of gradient staleness. Among asynchronous schedules, PipeDream-2BW is particularly appealing: unlike the original PipeDream schedule, it ensures a constant one-step gradient delay regardless of pipeline depth. However, its adoption remains limited due to the common belief that optimizing under staleness is fundamentally unstable. In this work, we challenge this assumption, demonstrating that degradation under one-step delay depends strongly on optimizer choice rather than being an intrinsic limitation. We provide the first comprehensive empirical analysis showing that while AdamW, the predominant optimizer at the time when PipeDream-2BW was introduced, indeed suffers from severe degradation, recent methods like Muon exhibit strong robustness under a one-step delay. We introduce an optimizer-agnostic Error Feedback-inspired correction to further mitigate delay effects. We provide supporting theoretical analysis demonstrating convergence for Muon with and without this correction. Extensive evaluation on models up to 10B parameters confirms that our strategies bridge the performance gap with synchronous training, highlighting the practical potential of asynchronous pipeline parallelism at scale.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=dpWXlBRLKm",
+  "arxiv": "https://arxiv.org/abs/2606.30634",
+  "pdf": "https://raw.githubusercontent.com/mlresearch/v306/main/assets/zmushko26a/zmushko26a.pdf",
+  "proceedings": "https://proceedings.mlr.press/v306/zmushko26a.html",
+  "virtual": "https://icml.cc/virtual/2026/poster/62737",
+  "code": null
+ },
+ "license": "http://creativecommons.org/licenses/by/4.0/",
+ "img": "cc-by",
+ "image_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/images/icml26-4212.png",
+ "thumb_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/thumbs/icml26-4212.webp",
+ "figure_page": 1,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.8
+}

@@ -1,0 +1,55 @@
+{
+ "id": "icml26-3986",
+ "title": "Opportunistic Expert Activation: Batch-Aware Expert Routing for Faster Decode Without Retraining",
+ "authors": [
+  "Costin-Andrei Oncescu",
+  "Qingyang Wu",
+  "Wai Tong Chung",
+  "Tsai-chuan Wu",
+  "Bryan Gopal",
+  "Junxiong Wang",
+  "Tri Dao",
+  "Ben Athiwaratkun"
+ ],
+ "venue": "ICML 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": null,
+ "role": "analysis-finding",
+ "role2": null,
+ "claim": "Latency of a memory-bound layer scales roughly linearly with the number of activated units, so reducing that number cuts latency.",
+ "layout": "single scatter plot, x: activated experts, y: latency, near-linear trend",
+ "tags": [
+  "mixture-of-experts",
+  "decode-latency",
+  "memory-bound",
+  "linear-scaling",
+  "efficiency"
+ ],
+ "style": [
+  "plot",
+  "minimal"
+ ],
+ "description": "A single scatter plot on a white background with a black axis frame. The x-axis is 'Number of Activated Experts' and runs from about 8 to 90. The y-axis is 'Mean Latency (ms)', with ticks from 0.05 to 0.20. Dense blue dots rise almost linearly from about 0.05 ms at 8 experts to above 0.22 ms at about 64 experts. There is a small kink near 29 experts. The right half of the plot is empty. The top of the plot is cropped, so the data past about 64 experts is cut off. There is no legend, annotation or highlighted 'ours' point. The eye follows the diagonal line of dots from bottom-left to top-right.",
+ "caption": "Mean MoE latency as a function of the number of activated experts within a decode batch. The average is computed over all layers and decode steps across a GPQA evaluation of the vanilla Qwen3-30B-A3B model.",
+ "caption_source": "latex",
+ "abstract": "An increasing number of LLMs employ Mixture-of-Experts (MoE) architectures where the feed-forward layer is replaced by a pool of experts and each token only activates a small subset of them. During autoregressive generation, these models often enter a memory-bound regime even for moderate batch sizes because the average expert load grows more slowly than in an equivalent dense feedforward layer. Consequently, MoE latency is governed by the number of activated experts. We introduce a framework for dynamically re-routing token-to-expert mapping to lower this number (and thus, the decode latency) while preserving a comparable quality. Our best results use a batch-aware routing that works by having tokens piggyback experts that have already been loaded into memory due to being crucial to other tokens within the same batch. Empirically, we evaluate our method on the Qwen3-30B and Qwen3-235B models with a batch size of $16$. Without any statistically significant loss in accuracy, our approach achieves latency reductions of $39\\%$ and $15\\%$ in the MoE layer decode latency, respectively.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=bSLIDztFwx",
+  "arxiv": "https://arxiv.org/abs/2511.02237",
+  "pdf": "https://raw.githubusercontent.com/mlresearch/v306/main/assets/oncescu26a/oncescu26a.pdf",
+  "proceedings": "https://proceedings.mlr.press/v306/oncescu26a.html",
+  "virtual": "https://icml.cc/virtual/2026/poster/62958",
+  "code": null
+ },
+ "license": "http://arxiv.org/licenses/nonexclusive-distrib/1.0/",
+ "img": "none",
+ "image_url": null,
+ "thumb_url": null,
+ "figure_page": 1,
+ "qc_flags": [
+  "bad-crop"
+ ],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.85
+}

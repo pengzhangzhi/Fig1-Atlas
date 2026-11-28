@@ -1,0 +1,48 @@
+{
+ "id": "icml26-0956",
+ "title": "Calibrating Conservatism for Scalable Oversight",
+ "authors": [
+  "William Overman",
+  "Mohsen Bayati"
+ ],
+ "venue": "ICML 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "Social Aspects->Safety",
+ "role": "pipeline",
+ "role2": null,
+ "claim": "A candidate-scoring agent's actions are penalized by diverse overseers' deviation from a baseline, with feedback adapting conservatism online.",
+ "layout": "Single wide panel, left-to-right flow, with a feedback loop below the selection stage",
+ "tags": [
+  "pipeline",
+  "oversight",
+  "conformal-control",
+  "ensemble-scoring",
+  "feedback-loop"
+ ],
+ "style": [
+  "colorful",
+  "icon-heavy",
+  "math-heavy"
+ ],
+ "description": "A wide left-to-right diagram in three labeled stages: Primary Agent, Auxiliary Overseers, and CCO Selection. At left, a blue node-graph icon for the 'Strong Model' receives 'state s' and produces four candidate patches. They are rounded cards with line glyphs, colored red (a1, high vulnerable), orange (a2, med vulnerable), green (a3, clean) and gray (a_o, defer). Translucent blue fans link the cards to a vertical column of overseer circles q1..qn, each labeled with a dimension such as scope, safety, simplicity, convention or necessity. An 'Aggregate Evaluation' pill gives the penalty formula Δ(s,a). Arrows lead to a 'CCO Select' box with the argmax formula. Outputs on the right show safe states and risky states with loss values. A 'Conformal Controller' box at the bottom holds the λ update rule and feeds λ_t back up to the selection box through a loop arrow.",
+ "caption": "Overview of Calibrated Collective Oversight (CCO). Given a state $s$, a primary agent either generates candidate actions $\\{a_1, a_2, a_3, \\ldots\\}$ or receives a fixed set from the environment, assigning each a utility score $U(s, a)$ reflecting its own preferences; a conservative baseline $a_o$ (e.g., defer or no-op) is always included. These candidates, which may include actions with hidden vulnerabilities or misaligned objectives, are evaluated by a collection of auxiliary overseers $\\{q_1, \\ldots, q_n\\}$, each assessing a different dimension such as scope, safety, or convention adherence. The aggregate penalty $\\Delta(s, a) = \\sum_i |q_i(s, a) - q_i(s, a_o)|$ measures how much each action deviates from the baseline across all oversight signals. CCO selects actions by maximizing $U(s, a) - \\lambda_t \\Delta(s, a)$, where the conservatism parameter $\\lambda_t$ is updated online via a conformal controller: after observing whether the selected action incurred a loss $\\ell_t$, the controller adjusts $\\lambda_{t+1} = \\lambda_t + \\eta(\\ell_t - \\alpha)$. This feedback loop ensures that realized violation rates converge to the user-specified target $\\alpha$. In safe situations, CCO relaxes conservatism to permit high-utility actions; in risky situations, it increases conservatism to favor safer alternatives.",
+ "caption_source": "latex",
+ "abstract": "Agentic AI systems capable of autonomous planning and extended environmental interaction pose a fundamental control problem: how can humans maintain meaningful oversight of systems that may exceed their own capabilities? Existing approaches to scalable oversight rely on complex assumptions, remain largely heuristic, or lack practical methods for sequential settings with statistical guarantees. We introduce Calibrated Collective Oversight (CCO), which aggregates diverse auxiliary scoring functions into a penalty measuring deviation from a conservative baseline. Inspired by Attainable Utility Preservation, CCO enables collective conservatism: actions face a penalty proportional to overseer concern, so high-utility actions are still selected when overseers find them unobjectionable and overridden only when concern accumulates. CCO calibrates this conservatism online using Conformal Decision Theory, ensuring that undesirable outcomes remain below a user-specified target threshold with finite-time bounds and no distributional assumptions. On a modified version of SWE-bench, weaker overseers successfully constrain an adversarially misaligned stronger agent; on MACHIAVELLI, CCO substantially reduces ethical violations while preserving reward. In both settings, empirical violation rates closely match the specified targets, as predicted by the theory.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=94sQrbiUeI",
+  "arxiv": "https://arxiv.org/abs/2605.28807",
+  "pdf": "https://raw.githubusercontent.com/mlresearch/v306/main/assets/overman26a/overman26a.pdf",
+  "proceedings": "https://proceedings.mlr.press/v306/overman26a.html",
+  "virtual": "https://icml.cc/virtual/2026/poster/65895",
+  "code": null
+ },
+ "license": "http://creativecommons.org/licenses/by/4.0/",
+ "img": "cc-by",
+ "image_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/images/icml26-0956.png",
+ "thumb_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/thumbs/icml26-0956.webp",
+ "figure_page": 1,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.93
+}

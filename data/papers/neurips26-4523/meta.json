@@ -1,0 +1,53 @@
+{
+ "id": "neurips26-4523",
+ "title": "TokenRouter: Efficient Serving System for Token-Level LLM Routing",
+ "authors": [
+  "Tianyu Fu",
+  "Tengxuan Liu",
+  "Ruoxi Wang",
+  "Yixin Dong",
+  "Yi Ge",
+  "Yichen You",
+  "Yu Wang"
+ ],
+ "venue": "NeurIPS 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": null,
+ "role": "teaser-result",
+ "role2": "analysis-finding",
+ "claim": "Our system delivers much higher throughput than the official implementation, with gains broken down by component and holding across speed constraints.",
+ "layout": "2 panels, left-to-right, stacked-bar breakdown beside a throughput-speed curve",
+ "tags": [
+  "throughput",
+  "serving-efficiency",
+  "ablation-breakdown",
+  "pareto-tradeoff",
+  "llm-systems"
+ ],
+ "style": [
+  "plot",
+  "minimal",
+  "colorful"
+ ],
+ "description": "Two plot panels sit side by side. Panel (a) is a bar chart with two bars. A short gray bar for the official implementation is labeled 134.9. A tall purple bar for TokenRouter is labeled 372.5. The TokenRouter bar is stacked in graded purple shades, and each segment is labeled with its contribution: Base impl. 132.8, Extend CUDA Graph +98.0, Async. Execution +66.1, Delayed Batching +75.6. Curved arrows labeled 1.71x and 2.76x link the gray bar to the stack. Panel (b) is a line plot of throughput against speed. A purple square-marker curve for TokenRouter sits far above a dark gray circle-marker curve for the official implementation. A purple arrow annotated 'Throughput 18.58x, Speed 1.13x' points from the baseline to the TokenRouter curve. Purple highlights ours and gray marks the baseline.",
+ "caption": "\\name improves serving efficiency for token-level routing. (a) At concurrency 8, engineering optimizations yield a 1.71$\\times$ throughput gain, and \\name achieves 2.76$\\times$ overall, relative to the official R2R implementation. (b) Throughput--speed trade-off. \\name achieves 18.58$\\times$ higher throughput than R2R under a stricter SLO.",
+ "caption_source": "latex",
+ "abstract": "Large language model (LLM) routing distributes inference work across different models, advancing the cost-quality Pareto frontier of LLM serving. While coarse-grained routing at the session or query level has been widely adopted in production systems, recent algorithmic work shows that fine-grained token-level routing can yield substantial efficiency and quality gains. However, efficiently serving token-level routed inference poses significant challenges to existing systems. Built on single-LLM assumptions, current systems suffer from severe step desynchronization and frequent batch admission delays under token-level routing, and they also impose high implementation complexity on developers. To address these challenges, we design TokenRouter, an efficient and developer-friendly serving system for token-level routed LLM inference. TokenRouter follows the principle of request-centric programming, model-centric execution: developers describe routing logic from the perspective of a single request, while the runtime launches a subserver for each LLM and dispatches requests asynchronously. Each subserver employs a delayed-batching scheduler, whose optimal hyperparameters are derived from a mathematical throughput model of the system. Across diverse routing algorithms, workloads, and model pairs, TokenRouter achieves 2.01-64.15x higher decoding throughput than existing systems, substantially advancing the serving efficiency of token-level LLM routing. Our code is available at https://github.com/thu-nics/TokenRouter.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=VCbatQAXJV",
+  "arxiv": "https://arxiv.org/abs/2610.12242",
+  "pdf": "https://arxiv.org/pdf/2610.12242",
+  "proceedings": null,
+  "virtual": "https://neurips.cc/virtual/2026/poster/152140",
+  "code": null
+ },
+ "license": "http://creativecommons.org/licenses/by/4.0/",
+ "img": "cc-by",
+ "image_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/images/neurips26-4523.png",
+ "thumb_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/thumbs/neurips26-4523.webp",
+ "figure_page": 0,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.9
+}

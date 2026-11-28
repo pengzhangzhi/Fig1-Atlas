@@ -1,0 +1,51 @@
+{
+ "id": "neurips26-5450",
+ "title": "Beyond Row Alignment: Virtual-Camera-Aware Online Stereo Rectification",
+ "authors": [
+  "Yizhao Peng",
+  "Rui Gong",
+  "Zaiwang Gu",
+  "Xudong Jiang",
+  "Jun Cheng"
+ ],
+ "venue": "NeurIPS 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "Computer Vision->3D Rendering & Reconstruction",
+ "role": "pipeline",
+ "role2": null,
+ "claim": "A staged system turns a misaligned input pair into a consistent rectified output by chaining estimation modules with supervision signals.",
+ "layout": "Single wide panel, left-to-right, dashed module groups, loss signals on dashed arrows",
+ "tags": [
+  "pipeline",
+  "modular-system",
+  "geometry",
+  "online-calibration",
+  "loss-supervision"
+ ],
+ "style": [
+  "colorful",
+  "math-heavy",
+  "icon-heavy"
+ ],
+ "description": "A single wide block diagram that reads left to right. On the far left, a stereo image pair photo feeds a trapezoid 'Semidense matcher', which outputs correspondences. These go into a dashed 'Solver-aware Estimator' group. Its dark-blue column (Sampling, Scoring, Hypothesis) sits beside a green column (Risk feature layer, Regression layer, Refit Solver). The pre-deployment homographies H_pre then feed a dashed 'Virtual Stereo Deployment' group on the right. That group holds green boxes for Aggregation, Camera regression layer, Camera Gate and Camera Builder. It outputs H_post, K*, and a rectified image pair, which go to a 'Downstream Tasks' box. Dashed arrows carry loss terms (L_row, L_risk, L_H, L_camera) and ground-truth symbols. Blue and green fills separate the modules. Solid arrows show data flow.",
+ "caption": "VirtualRect Online Rectification. The proposed framework consists of a semi-dense matcher, a solver-aware estimator, and a virtual stereo deployment module. The matcher takes the left and right images $\\mat I_l,\\mat I_r$ as input and outputs correspondences. The solver-aware estimator samples and scores for rectification hypotheses, predicts correspondence reliability, and solves for pre-deployment rectifying homographies $\\mat H^{\\mathrm{pre}}_l,\\mat H^{\\mathrm{pre}}_r$. The virtual-camera-aware adaptor then predicts a shared rectified camera $\\mat K^*$ and deploys the final homographies $\\mat H^{*}_l,\\mat H^{*}_r$ with $\\mat K^*$ for stereo matching.",
+ "caption_source": "latex",
+ "abstract": "Stereo matchers estimate depth by comparing the left and right images from a stereo camera pair, but they assume that the two cameras are accurately calibrated and rectified. In real deployments, small physical shifts after calibration, caused by camera motion, mechanical drift, vibration, or installation changes, can break this assumption and degrade depth estimation. Online stereo rectification is therefore needed to correct the image pair during operation and recover a stereo geometry where standard stereo matching can work reliably. Recent online rectification methods mainly optimize row alignment, making the left and right views of the same scene point fall on the same image row. We show that this target, while necessary, is insufficient for deployable stereo depth estimation. A rectifier may make a small set of matched points look well row-aligned, but still distort the full images in ways that hurt stereo matching: useful image regions may be cut off, large blank areas may appear, objects may be stretched or squeezed, or image scale may change unevenly across the view. We propose VirtualRect, an online stereo rectification method designed for reliable real-world deployment. Rather than treating rectification as simply making the left and right image rows line up, this method estimates a rectified virtual stereo camera and combines image-wide supervision of image warp behavior. This makes the rectified images and the camera parameters come from the same geometry, so the images used for matching and the model used for depth computation remain consistent. Experiments on multiple datasets show that, compared with the prior state-of-the-art online rectifier, VirtualRect reduces vertical flow error by 17% on Carla-Flowguided and 7% on Semi-Truck Highway, and lowers depth MAE by 30-41% on Carla-Flowguided across three downstream stereo matchers.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=bWCyY4WYr9",
+  "arxiv": "https://arxiv.org/abs/2611.10518",
+  "pdf": "https://arxiv.org/pdf/2611.10518",
+  "proceedings": null,
+  "virtual": "https://neurips.cc/virtual/2026/poster/151291",
+  "code": null
+ },
+ "license": "http://arxiv.org/licenses/nonexclusive-distrib/1.0/",
+ "img": "none",
+ "image_url": null,
+ "thumb_url": null,
+ "figure_page": 2,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.95
+}

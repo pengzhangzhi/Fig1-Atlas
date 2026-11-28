@@ -1,0 +1,54 @@
+{
+ "id": "neurips26-2742",
+ "title": "RankE: End-to-End Post-Training for Discrete Text-to-Image Generation with Decoder Co-Evolution",
+ "authors": [
+  "Siyonng Jian",
+  "Siyuan Li",
+  "Luyuan Zhang",
+  "Zedong Wang",
+  "Xin Jin",
+  "Ying Li",
+  "Cheng Tan",
+  "Huan Wang"
+ ],
+ "venue": "NeurIPS 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": null,
+ "role": "analysis-finding",
+ "role2": "teaser-result",
+ "claim": "Optimizing only the policy against a frozen decoder shifts the latent distribution and trades fidelity for alignment; co-evolving both components avoids this.",
+ "layout": "2 panels, left bar chart and right trajectory scatter, dashed arrow showing improvement",
+ "tags": [
+  "distribution-shift",
+  "reinforcement-learning",
+  "co-evolution",
+  "fidelity-alignment-tradeoff",
+  "discrete-generation"
+ ],
+ "style": [
+  "plot",
+  "colorful",
+  "minimal"
+ ],
+ "description": "Two side-by-side plots. The left is a bar chart of KL divergence between each model's VQ token distribution and that of real images, with five bars: Real (gray, 0.0279), Pretrain (pink, 0.0913), SFT (purple, 0.0985), RL (red, 0.1194) and RankE (blue, 0.0958). A dashed horizontal line marks the Real level. A red double arrow marks the gap between RL and RankE, and a banner reads 'RankE Mitigates RL-Induced Shift'. The right is a CLIP-versus-FID trajectory plot with an inverted FID axis. The red RL (GRPO) path stays clustered at the lower left. The blue RankE path runs from 1K to 6K steps to the upper right. A purple star marks SFT, and a green dashed arrow links the RL endpoint to the RankE endpoint. The eye goes first to the tall red bar and to the blue path moving away from the red cluster.",
+ "caption": "Latent Covariate Shift intensifies under RL and is mitigated by RankE. Left: KL divergence between each model's VQ token distribution and that of $5{,}000$ real MS-COCO images; the dashed line marks Real, a natural-variation lower bound computed from two independently sampled real-image sets encoded by the same frozen tokenizer. The shift grows progressively across pre-training, SFT, and RL---standard RL widens the endpoint gap by $21%$ over SFT---while RankE returns it to the SFT level via decoder co-evolution; per-step dynamics are shown in Fig. [ref]. Right: CLIP--FID trajectory across training checkpoints. Standard RL improves CLIP at the cost of stagnating FID, exposing a systematic fidelity--alignment tension caused by the frozen decoder; RankE breaks this tension, simultaneously raising CLIP and lowering FID throughout training.",
+ "caption_source": "latex",
+ "abstract": "Discrete autoregressive (AR) text-to-image (T2I) models pair a VQ tokenizer with an AR policy, and current post-training pipelines optimize only the policy while keeping the VQ decoder frozen. Recent diffusion T2I work, exemplified by REPA-E, has shown that the VAE itself constitutes a key alignment bottleneck, yet no analogous investigation exists for discrete AR models. We show that policy-only optimization induces Latent Covariate Shift: as the policy evolves, the resulting token distribution diverges from the ground-truth distribution on which the decoder was trained, such that reward scores improve while decoded image quality degrades. To address this mismatch, we propose RankE, the first end-to-end post-training framework for discrete T2I generation. Rather than optimizing the policy against a fixed decoder, RankE co-evolves both components through alternating optimization: each module maximizes a ranking-based alignment objective while being regularized by a stability-preserving anchor suited to its parameter space. This co-evolution breaks the fidelity--alignment trade-off that plagues frozen-decoder approaches: on LlamaGen-XL (775M), standard RL improves CLIP but degrades FID, whereas RankE improves both simultaneously (FID 15.21, CLIP 33.76 on MS-COCO 30K). Consistent gains on Janus-Pro (1B) confirm that decoder co-evolution reliably converts reward optimization into pixel-space quality improvements.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=JKAhKqd78L",
+  "arxiv": "https://arxiv.org/abs/2605.21195",
+  "pdf": "https://arxiv.org/pdf/2605.21195",
+  "proceedings": null,
+  "virtual": "https://neurips.cc/virtual/2026/poster/153714",
+  "code": null
+ },
+ "license": "http://arxiv.org/licenses/nonexclusive-distrib/1.0/",
+ "img": "none",
+ "image_url": null,
+ "thumb_url": null,
+ "figure_page": 1,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.6
+}

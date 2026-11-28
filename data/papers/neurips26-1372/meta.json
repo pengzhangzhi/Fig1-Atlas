@@ -1,0 +1,48 @@
+{
+ "id": "neurips26-1372",
+ "title": "KVBuffer: IO-aware Serving for Linear Attention",
+ "authors": [
+  "Longwei Zou",
+  "Lin Zhong"
+ ],
+ "venue": "NeurIPS 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "Deep Learning->Attention Mechanisms",
+ "role": "pipeline",
+ "role2": "overview-framework",
+ "claim": "Buffering recent items in block-allocated memory defers expensive state updates, which are applied in batch only when the buffer fills.",
+ "layout": "Single panel, left-to-right then down to GPU box, with a write-back loop",
+ "tags": [
+  "memory-management",
+  "buffering",
+  "linear-attention",
+  "serving-systems",
+  "io-efficiency"
+ ],
+ "style": [
+  "colorful",
+  "minimal",
+  "icon-heavy"
+ ],
+ "description": "A system diagram of KV-buffer memory management for serving. On the left, a state pool lists per-request slots for Req1 and Req2, plus an empty slot. Each slot holds a tan State box and gray block-ID boxes (1, or 3 and 5). Arrows from the IDs point to a large panel on the right, Blocks of KV buffers, which shows five rows of six cells. Filled cyan KV cells mark Blocks 1, 3 and 5, and the others are empty. Blocks 3 and 5 are full, and an arrow labeled Buffer is Full runs from them down to a GPU box. The GPU box shows the equation New State = State + K:K x V. The State also feeds in from the pool. A return arrow labeled Write-Back Updated State goes back to the state slot. The cyan and tan colors carry the eye.",
+ "caption": "\\system Design. We partition the memory for KV buffers into blocks, each of which can store $6$ KVs. Each request has two blocks. During decoding, the serving system loads state along with buffered KVs to compute attention output. When the buffer is full, the state is updated with all buffered KVs on GPU and the updated state will be written back to the state slot.",
+ "caption_source": "latex",
+ "abstract": "Linear attention has recently gained significant attention for long-context inference due to its constant decoding cost with respect to context length. However, existing serving systems typically serve linear attention by recurrently computing and updating a large linear attention state in every decoding step. Since the state is much larger than the per-token key and value, recurrent decoding incurs substantial memory access and becomes inefficient for serving linear attention. In this paper, we propose KVBuffer, an IO-aware serving mechanism for linear attention. By buffering recent keys and values, KVBuffer enables serving systems to compute linear attention outputs in more flexible and memory-efficient ways. For decoding, KVBuffer enables chunkwise computation, which reduces average memory access and decoding latency by deferring state updates and applying them in batch. For speculative decoding, KVBuffer verifies draft tokens in parallel and avoids storing temporary states. For short contexts, KVBuffer computes attention outputs directly from buffered keys and values, without creating or updating the linear attention state. We implement KVBuffer in SGLang for Qwen3.5 and Nemotron-3 series models. Our evaluations show that KVBuffer can speedup batch decoding by up to 1.47x and increase the maximum number of serving requests by 5x for speculative decoding when verifying four draft tokens.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=9sEutXZ2qj",
+  "arxiv": "https://arxiv.org/abs/2605.19049",
+  "pdf": "https://arxiv.org/pdf/2605.19049",
+  "proceedings": null,
+  "virtual": "https://neurips.cc/virtual/2026/poster/154931",
+  "code": null
+ },
+ "license": "http://arxiv.org/licenses/nonexclusive-distrib/1.0/",
+ "img": "none",
+ "image_url": null,
+ "thumb_url": null,
+ "figure_page": 4,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.7
+}

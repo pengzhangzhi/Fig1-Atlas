@@ -1,0 +1,57 @@
+{
+ "id": "icml26-5289",
+ "title": "Efficient Hallucination Detection for LLMs Using Uncertainty-Aware Attention Heads",
+ "authors": [
+  "Artem Vazhentsev",
+  "Lyudmila Rvanova",
+  "Gleb Kuzmin",
+  "Ekaterina Fadeeva",
+  "Ivan Lazichny",
+  "Alexander Panchenko",
+  "Maxim Panov",
+  "Mrinmaya Sachan",
+  "Preslav Nakov",
+  "Tim Baldwin",
+  "Artem Shelmanov"
+ ],
+ "venue": "ICML 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "Deep Learning->Large Language Models",
+ "role": "analysis-finding",
+ "role2": "problem-setup",
+ "claim": "A specific internal component shows a consistent signal that drops sharply when the model errs, suggesting a usable error indicator.",
+ "layout": "single heatmap, tokens by heads, red box highlighting hallucinated rows",
+ "tags": [
+  "attention-heads",
+  "hallucination-detection",
+  "uncertainty-quantification",
+  "heatmap",
+  "unsupervised"
+ ],
+ "style": [
+  "plot",
+  "colorful",
+  "photo/real data"
+ ],
+ "description": "A single large heatmap with generated answer tokens on the y-axis (King, Henry, is, holding, a, fal, con, in, the, Portrait, of, Henry, VIII, period) and 32 attention heads on the x-axis. The title is the question about King Henry in the Portrait of Henry VIII. A coolwarm colorbar runs from about 0 to 0.7. Most cells are cool blue, but head 25 (and to a lesser extent heads 24 and 27) appears as a warm vertical stripe with high attention for most tokens. Tokens 'fal' and 'con' are colored red and enclosed in a thick red rectangle, where head 25 turns light blue, showing a sharp drop. The eye goes first to the warm stripe, then to the red box.",
+ "caption": "Attention weights in the 29th layer of Llama-3.1 8B from each generated token to its preceding token, given the prompt What is King Henry holding in the Portrait of Henry VIII?. The $y$ axis specifies the generated tokens, and the $x$ axis specifies the attention heads. Warmer colors indicate higher attention values. The output contains the factually incorrect token falcon (the correct answer is gloves and dagger). Notably, the 25th attention head stands out by consistently assigning relatively high attention to the preceding token. However, for the hallucinated token falcon, this attention drops sharply -- potentially serving as a signal for hallucination detection.",
+ "caption_source": "latex",
+ "abstract": "While large language models (LLMs) have become highly capable, they remain prone to factual inaccuracies, commonly referred to as \"hallucinations.\" Uncertainty quantification (UQ) offers a promising way to mitigate this issue, but most existing methods are computationally intensive and/or require supervision. In this work, we propose Recurrent Attention-based Uncertainty Quantification (RAUQ), an unsupervised and efficient framework for identifying hallucinations. The method leverages an observation about transformer attention behavior: when incorrect information is generated, certain \"uncertainty-aware\" attention heads tend to reduce their focus on preceding tokens. RAUQ automatically detects these attention heads and combines their activation patterns with token-level confidence measures in a recurrent scheme, producing a sequence-level uncertainty estimate in just a single forward pass. Through experiments on twelve datasets spanning question answering, summarization, and translation across nine different LLMs, we show that RAUQ consistently outperforms state-of-the-art UQ baselines. Importantly, it incurs minimal overhead, requiring less than 1\\% additional computation. Since it requires neither labeled data nor extensive parameter tuning, RAUQ serves as a lightweight, plug-and-play solution for real-time hallucination detection in white-box LLMs.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=nddfPlfS09",
+  "arxiv": "https://arxiv.org/abs/2505.20045",
+  "pdf": "https://raw.githubusercontent.com/mlresearch/v306/main/assets/vazhentsev26a/vazhentsev26a.pdf",
+  "proceedings": "https://proceedings.mlr.press/v306/vazhentsev26a.html",
+  "virtual": "https://icml.cc/virtual/2026/poster/61700",
+  "code": null
+ },
+ "license": "http://creativecommons.org/licenses/by/4.0/",
+ "img": "cc-by",
+ "image_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/images/icml26-5289.png",
+ "thumb_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/thumbs/icml26-5289.webp",
+ "figure_page": 1,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.85
+}

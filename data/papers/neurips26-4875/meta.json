@@ -1,0 +1,48 @@
+{
+ "id": "neurips26-4875",
+ "title": "A Differentiable Interior-Point Method in Single Precision",
+ "authors": [
+  "Jon Arrizabalaga",
+  "Kevin Tracy",
+  "Zac Manchester"
+ ],
+ "venue": "NeurIPS 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "Applications->Robotics",
+ "role": "teaser-result",
+ "role2": "analysis-finding",
+ "claim": "Our formulation keeps gradient error low and never fails as problem size or tolerance tightens, while the standard formulation degrades and fails.",
+ "layout": "2x2 grid of line plots, shared legend on top, columns sweep dimension and tolerance",
+ "tags": [
+  "numerical-stability",
+  "low-precision",
+  "implicit-differentiation",
+  "robustness",
+  "ablation"
+ ],
+ "style": [
+  "plot",
+  "minimal"
+ ],
+ "description": "A 2x2 grid of line plots with a shared legend on top: blue is the explicit baseline and orange is the implicit method. The left column sweeps the number of decision variables n at kappa=1e-4. The right column sweeps the relaxation parameter kappa from 1e-2 down to 1e-9 at n=20. The top row shows gradient error on a log scale, and the bottom row shows NaN failure percentage. Line style encodes the constraint ratio or count: solid, dashed or dotted. In the left column, blue error jumps and plateaus near 1e-1 while orange stays near 1e-3. In the right column, orange error falls steadily with kappa while blue stays flat near 1e-1. Blue NaN rate rises to about 50% on the left and to 100% on the right. Orange NaN rate stays at 0 throughout. The eye goes first to the gap between the blue and orange curves.",
+ "caption": "Implicit complementarity enables accurate and robust single-precision gradients. Left: As problem dimension and active-set size increase, the implicit method maintains low gradient error and remains fully robust, whereas the explicit formulation fails 50% of the time. Here, $m_r$ denotes the ratio of active inequality constraints $m$ to decision variables $n$. Right: As $\\kappa_{\\mathrm{relax}}$ decreases, the implicit method continues to track the relaxation-limited gradient accuracy, whereas the explicit f32 formulation plateaus in accuracy and exhibits an escalating failure rate. Reported metrics are medians over three random seeds.",
+ "caption_source": "latex",
+ "abstract": "Primal-dual interior-point methods solve constrained convex optimization problems to tight tolerances with speed and robustness. Their solutions are also efficiently differentiable with respect to the problem data through the implicit function theorem. However, the standard treatment of primal-dual complementarity makes the underlying linear systems increasingly ill-conditioned near the solution. While this ill-conditioning is often benign in double precision, it can be catastrophic in single precision, preventing interior-point methods from fully exploiting the accelerated hardware that underpins modern machine learning. This paper introduces a differentiable interior-point method designed for low-precision arithmetic. By using an alternative complementarity representation, we ensure that the underlying linear systems remain spectrally bounded -- even near the solution -- a property that is essential for computing accurate gradients and avoiding arithmetic exceptions. As a result, our method enables interior-point solvers to reliably solve and differentiate optimization problems in single precision that were previously confined to double precision. We demonstrate the approach through an ablation study against the standard interior-point formulation and applications in bilevel and end-to-end learning settings where differentiating through constrained optimization is essential. The source code is available at https://github.com/qpax-solver/qpax.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=Xjh9eUGXeN",
+  "arxiv": "https://arxiv.org/abs/2605.17913",
+  "pdf": "https://arxiv.org/pdf/2605.17913",
+  "proceedings": null,
+  "virtual": "https://neurips.cc/virtual/2026/poster/151819",
+  "code": "https://qpax-solver.github.io/qpax/"
+ },
+ "license": "http://arxiv.org/licenses/nonexclusive-distrib/1.0/",
+ "img": "none",
+ "image_url": null,
+ "thumb_url": null,
+ "figure_page": 6,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.6
+}

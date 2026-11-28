@@ -1,0 +1,48 @@
+{
+ "id": "neurips26-7580",
+ "title": "Enabling approximate joint sampling in diffusion LMs",
+ "authors": [
+  "Parikshit Bansal",
+  "Sujay Sanghavi"
+ ],
+ "venue": "NeurIPS 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "Deep Learning->Generative Models and Autoencoders",
+ "role": "teaser-result",
+ "role2": "analysis-finding",
+ "claim": "As parallel decoding increases, baselines degrade sharply in quality while ours stays near-optimal, showing it enables parallelism without losing fidelity.",
+ "layout": "2 side-by-side grouped bar charts, shared x-axis, ours in blue",
+ "tags": [
+  "parallel-decoding",
+  "diffusion-lm",
+  "quality-speed-tradeoff",
+  "baseline-comparison",
+  "sampling"
+ ],
+ "style": [
+  "plot",
+  "colorful",
+  "minimal"
+ ],
+ "description": "Two side-by-side grouped bar charts share the x-axis 'Tokens/Step' with values 1, 2, 4 and 8. The left panel plots Generative NLL, where lower is better, on a scale of about 3 to 7. The right panel plots MAUVE, where higher is better, on a scale of 0.2 to 1.0. Each group has three hatched bars: Parallel in red/salmon, EDLM in green, and ADJUST (ours) in light blue. The legend sits in the top-left of the left panel. In the left panel, NLL rises for every method as tokens per step increase, but the blue bars stay lowest at 2 or more tokens per step. In the right panel, MAUVE falls steeply for Parallel and EDLM at 4 and 8 tokens per step. The blue bars stay around 0.84 to 0.87. The eye goes first to the tall blue bars on the right.",
+ "caption": "In this figure, we use Dream-7B-Base to generate a token string of length 128 tokens starting from an all masked string (kindly refer to Sec [ref] for details). We report the generative negative log-likelihood (lower is better) and the MAUVE score (higher is better) for the generated strings. We vary the number of tokens sampled per diffusion denoising step from one to four. We observe an increase in gen. NLL and a decrease in the MAUVE score as more tokens are generated in parallel. Our method \\method\\ achieves the best NLL and MAUVE (as compared to baseline methods like naive parallel sampling, and energy-based models).",
+ "caption_source": "latex",
+ "abstract": "In autoregressive language models, each token is sampled by conditioning on all the past tokens; the overall string has thus been sampled from the correct underlying joint distribution represented by the model. In contrast, masked diffusion language models generate text by unmasking tokens out of order and potentially in parallel. Generating an overall string sampled from the correct underlying joint distribution would (again) require exactly one token unmasking in every full-model forward pass. The more tokens unmasked in parallel, the further away the string is from the true joint; this can be seen in the resulting drop in accuracy (but, increase in speed). In this paper we devise a way to {\\em approximately} sample multiple tokens from the joint distribution in a single full-model forward pass; we do so by developing a new lightweight single-layer ``sampler\" on top of an existing large diffusion LM. One forward pass of the full model can now be followed by multiple forward passes of only this sampler layer, to yield multiple unmasked tokens. Our sampler is trained to mimic exact joint sampling from the (frozen) full model. We show the effectiveness of our approximate joint sampling for both pretrained-only (Dream-7B-Base, Llada-7B-Base) and instruction-tuned (Dream-7B-Instruct, Dream-7B-Coder) models on language modeling and math \\& coding tasks. When four tokens are unmasked for each full-model denoising step, our sampling algorithm achieves a MAUVE score of 0.87 (vs marginal baseline of 0.31) with respect to the true joint distribution.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=qFl5qT3qAP",
+  "arxiv": "https://arxiv.org/abs/2509.22738",
+  "pdf": "https://arxiv.org/pdf/2509.22738",
+  "proceedings": null,
+  "virtual": "https://neurips.cc/virtual/2026/poster/149410",
+  "code": null
+ },
+ "license": "http://creativecommons.org/licenses/by/4.0/",
+ "img": "cc-by",
+ "image_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/images/neurips26-7580.png",
+ "thumb_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/thumbs/neurips26-7580.webp",
+ "figure_page": 1,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.8
+}

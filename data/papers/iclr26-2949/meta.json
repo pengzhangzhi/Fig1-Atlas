@@ -1,0 +1,54 @@
+{
+ "id": "iclr26-2949",
+ "title": "InT: Self-Proposed Interventions Enable Credit Assignment in LLM Reasoning",
+ "authors": [
+  "Matthew Yang",
+  "Hao Bai",
+  "Ian Wu",
+  "Gene Yang",
+  "Amrith Setlur",
+  "Aviral Kumar"
+ ],
+ "venue": "ICLR 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "Deep Learning->Generative Models and Autoencoders",
+ "role": "analysis-finding",
+ "role2": null,
+ "claim": "Reasoning failures concentrate early but follow a long-tailed distribution, so errors can occur at any point in a trace.",
+ "layout": "2 panels side by side, histograms sharing y-axis label, step vs token x-axes",
+ "tags": [
+  "credit-assignment",
+  "error-localization",
+  "reasoning",
+  "empirical-distribution",
+  "long-tail"
+ ],
+ "style": [
+  "plot",
+  "minimal",
+  "colorful"
+ ],
+ "description": "Two side-by-side histograms with a shared y-axis, '% of problems'. The left histogram, in yellow-green bars, plots the step number of the first mistake in a reasoning trace, from 0 to about 500. The right histogram, in light blue bars, plots the token number of the first mistake, from 0 to about 12,000. Both are sharply right-skewed. They peak near the start, at about 13% of problems, then decay gradually into a long tail. The figure has no annotations, legend or titles beyond the axis labels. Gridlines are faint and the axes are grey. The eye goes first to the tall leftmost bars. The shape suggests first errors usually appear early but can occur anywhere in long traces, which motivates localizing errors.",
+ "caption": "{\\emph{\\textbf{Intervention training (\\methodname{}) for improving credit assignment.}} \\methodname{} proposes single-step interventions to replace incorrect intermediate steps in reasoning traces (1). Conditioned on these localized corrections, the model can generate counterfactual continuations that succeed where the original failed (2). We then perform supervised fine-tuning on these interventions, enabling effective credit assignment by upweighting the likelihood of the interventions in place of the mistakes.}",
+ "caption_source": "latex",
+ "abstract": "Outcome-reward reinforcement learning (RL) has proven effective at improving the reasoning capabilities of large language models (LLMs). However, standard RL assigns credit only at the level of the final answer, penalizing entire reasoning traces when the outcome is incorrect and uniformly reinforcing all steps when it is correct. As a result, correct intermediate steps may be discouraged in failed traces, while spurious steps may be reinforced in successful ones. We refer to this failure mode as the problem of credit assignment. While a natural remedy is to train a process reward model, accurately optimizing such models to identify corrective reasoning steps remains challenging. We introduce Intervention Training (InT), a training paradigm in which the model performs fine-grained credit assignment on its own reasoning traces by proposing short, targeted corrections that steer trajectories toward higher reward. Using reference solutions commonly available in mathematical reasoning datasets and exploiting the fact that verifying a model-generated solution is easier than generating a correct one from scratch, the model identifies the first error in its reasoning and proposes a single-step intervention to redirect the trajectory toward the correct solution. We then apply supervised fine-tuning (SFT) to the on-policy rollout up to the point of error concatenated with the intervention, localizing error to the specific step that caused failure. We show that the resulting model serves as a far better initialization for RL training. After running InT and subsequent fine-tuning with RL, we improve accuracy by nearly 14% over a 4B-parameter base model on IMO-AnswerBench, outperforming larger open-source models such as gpt-oss-20b.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=YAhTj2VgBw",
+  "arxiv": "https://arxiv.org/abs/2601.14209",
+  "pdf": "https://proceedings.iclr.cc/paper_files/paper/2026/file/89062e4d480c0c3a88d36c20c5694459-Paper-Conference.pdf",
+  "proceedings": "https://proceedings.iclr.cc/paper_files/paper/2026/hash/89062e4d480c0c3a88d36c20c5694459-Abstract-Conference.html",
+  "virtual": "https://iclr.cc/virtual/2026/poster/10008910",
+  "code": "https://intervention-training.github.io/"
+ },
+ "license": "http://creativecommons.org/licenses/by/4.0/",
+ "img": "cc-by",
+ "image_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/images/iclr26-2949.png",
+ "thumb_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/thumbs/iclr26-2949.webp",
+ "figure_page": 3,
+ "qc_flags": [
+  "bad-crop"
+ ],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.6
+}

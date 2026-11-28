@@ -1,0 +1,56 @@
+{
+ "id": "icml26-0095",
+ "title": "Shift-Dependent Asymmetry: Orthogonal Inverse Low-Rank Adaptation for Federated Medical Segmentation",
+ "authors": [
+  "Xingyue Zhao",
+  "Wenke Huang",
+  "Linghao Zhuang",
+  "Haoran Wu",
+  "Anwen Jiang",
+  "Zhifeng Wang",
+  "Wenwen He",
+  "Ming Feng",
+  "Mang Ye",
+  "Bo XU"
+ ],
+ "venue": "ICML 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": null,
+ "role": "prior-vs-ours",
+ "role2": "problem-setup",
+ "claim": "Uniform aggregation and static partial-sharing ignore that different network modules face different heterogeneity sources, causing bias and misalignment.",
+ "layout": "3 panels: wide top, two bottom; VS boxing-glove icon between panels",
+ "tags": [
+  "federated-learning",
+  "lora",
+  "parameter-efficient",
+  "heterogeneity",
+  "motivation"
+ ],
+ "style": [
+  "colorful",
+  "icon-heavy",
+  "minimal"
+ ],
+ "description": "A hand-drawn, pastel-colored figure with three rounded panels. The top green panel (a) shows standard FedLoRA. A frozen pretrained weights block feeds into rows of per-client LoRA A and B trapezoids (Client 0 to m, each in a different color, with flame icons for finetuned). Arrows lead to averaged A and B blocks, flagged with an 'Aggregation Bias!' note and the inequality ΣB·ΣA ≠ Σ(B·A). The bottom-left blue panel (b) shows FFA-LoRA and FedSA-LoRA, which freeze or localize different LoRA matrices. A boxing-glove 'VS' icon sits between them. The bottom-right red panel (c) shows LoRA A/B beside SAM Encoder and Decoder, labeled covariate shift and concept shift. A legend explains the freeze, finetune and local-only icons.",
+ "caption": "Illustration of the motivation. (a) Standard FedLoRA employs naive aggregation of all parameters, suffering from high communication costs and severe client drift. (b) Existing Methods (e.g., uniform partial sharing) enforce a static splitting rule across the entire network, overlooking the distinct roles of different modules. (c) Medical Challenge: Encoder-Decoder Asymmetry. We identify a critical structural misalignment: the encoder is primarily dominated by covariate shift (appearance variations), while the decoder is dominated by concept shift (supervision targets).",
+ "caption_source": "latex",
+ "abstract": "Low-Rank Adaptation (LoRA) enables efficient federated fine-tuning of segmentation foundation models for medical imaging. However, most federated LoRA methods adopt a uniform aggregation rule, which breaks under the encoder-decoder asymmetry in medical segmentation: the encoder is dominated by appearance shifts, while the decoder is dominated by supervision variations. This mismatch entangles shared anatomy with site-specific biases and harms generalization. To address this, we propose Inverse Asymmetric Tuning (IAT). IAT aligns adaptation with heterogeneity sources by personalizing module-specific components in the encoder to absorb appearance shifts and in the decoder to accommodate site-dependent supervision, while retaining a shared pathway for transferable consensus. However, structural separation alone is insufficient under LoRA's bilinear parameterization, where multiplicative coupling can still cause site-specific updates to leak into the shared direction. We therefore introduce a Subspace Orthogonality Regularizer that penalizes shared-local collinearity in the effective update space, mitigating leakage without extra communication. Experiments show consistent improvements over strong federated LoRA and parameter-efficient FL baselines.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=0wxnefBSTB",
+  "arxiv": "https://arxiv.org/abs/2606.08687",
+  "pdf": "https://raw.githubusercontent.com/mlresearch/v306/main/assets/zhao26r/zhao26r.pdf",
+  "proceedings": "https://proceedings.mlr.press/v306/zhao26r.html",
+  "virtual": "https://icml.cc/virtual/2026/poster/66734",
+  "code": null
+ },
+ "license": "http://arxiv.org/licenses/nonexclusive-distrib/1.0/",
+ "img": "none",
+ "image_url": null,
+ "thumb_url": null,
+ "figure_page": 0,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.55
+}

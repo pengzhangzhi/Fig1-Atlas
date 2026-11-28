@@ -1,0 +1,52 @@
+{
+ "id": "neurips26-8526",
+ "title": "Weather-Robust Cross-View Geo-Localization via Prototype-Based Semantic Part Discovery",
+ "authors": [
+  "Chi-Nguyen Tran",
+  "Dao S Minh",
+  "Trung-Kiet Huynh",
+  "Phu-Hoa Pham",
+  "Phu-Quy Nguyen-Lam",
+  "Long Tran-Thanh"
+ ],
+ "venue": "NeurIPS 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "Computer Vision->Classification and Understanding",
+ "role": "pipeline",
+ "role2": "overview-framework",
+ "claim": "A shared backbone feeds three complementary readouts that fuse into one embedding for matching, with training-only objectives kept separate.",
+ "layout": "5 numbered panels, left-to-right top row, training objectives strip below",
+ "tags": [
+  "multi-branch-fusion",
+  "prototype-learning",
+  "cross-view-retrieval",
+  "lightweight-head",
+  "multi-objective-training"
+ ],
+ "style": [
+  "icon-heavy",
+  "colorful",
+  "photo/real data"
+ ],
+ "description": "A wide, numbered five-stage diagram with dashed rounded panels. The top row reads left to right. (1) Inputs: stacked drone and satellite aerial images. (2) Tokenization: a shared DINOv2 ViT-S/14 token column, with a CLS token and a patch grid. (3) The largest panel splits into three tinted bands: pink Global CLS, yellow Parts (prototype dots, pooling, altitude FiLM note) and green Layout (a two-layer graph attention network over part nodes). Arrows labeled w_c, w_p and w_g converge on a circular Feature Fusion gate, which outputs a colored 768-D embedding bar. (4) Cross-view Matching: a sphere with the query and satellite tiles, an angle θ, and the note 'rank gallery by cos θ'. A bottom strip, panel 5, shows four training objectives in small mini-diagrams: alignment, part quality, teacher distillation and altitude adaptation. Pastel colors group the branches, and the eye goes first to the central three-branch fusion.",
+ "caption": "\\textbf{\\ours{} overview.} (1--2) A shared DINOv2 ViT-S/14 tokenizes the drone query and the satellite tile into a CLS token and patch tokens. (3) The head reads the tokens in three ways: the global CLS token; a part branch in which patch tokens are assigned by cosine similarity to $K_{\\max}{=}12$ learnable prototypes and pooled into $f_part$; and a two-layer GAT over the active prototypes that encodes their spatial layout. Altitude conditions the part branch through FiLM during training only; at test time FiLM uses its mean parameters and needs no altitude input. A fusion gate with weights $w_c, w_p, w_g$ combines the three readouts into one $\\ell_2$-normalized 768-D embedding. (4) Retrieval is a single cosine ranking of the satellite gallery. (5) The four Kendall-weighted loss groups (alignment, part quality, teacher distillation, altitude) are used only during training.",
+ "caption_source": "latex",
+ "abstract": "The low-altitude economy is growing rapidly, increasing demand for reliable drone navigation. Common tasks such as delivery, inspection, and search-and-rescue rely on Global Navigation Satellite Systems (GNSS), which can be jammed, spoofed, or unavailable. Cross-view geo-localization (CVGL), which matches an oblique drone view to a geo-referenced satellite tile, offers an alternative for autonomous localization when GNSS fails. However, current CVGL methods have three limitations: (1) global descriptors compress patch grids into a single vector, without separating cross-view-shared layout from view-specific texture; (2) altitude-related scale variation remains in the learned embedding instead of being marginalized as a nuisance; and (3) multi-objective training uses hand-tuned loss weights despite incompatible gradient scales. We propose SKYPART, a lightweight, swappable head for patch-based vision transformers (ViTs) that explicitly groups patches into parts. It combines (i) learnable prototypes that compete for patch tokens through single-pass cosine assignment; (ii) altitude-conditioned linear modulation used only during training, yielding altitude-free retrieval embeddings at inference; (iii) graph-attention readout over active prototypes; and (iv) Kendall uncertainty-weighted multi-objective learning that learns loss-group weights end-to-end. With 26.95M parameters and 22.14 GFLOPs, SKYPART is the smallest top-performing method in our comparison and achieves state-of-the-art results on SUES-200, University-1652, and DenseUAV using single-pass retrieval without reranking or test-time augmentation (TTA). Its accuracy advantage over the strongest baseline further increases under ten WeatherPrompt corruption conditions. Code: https://github.com/chisngyen/SkyPart.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=wxPKGRCVh8",
+  "arxiv": "https://arxiv.org/abs/2605.11654",
+  "pdf": "https://arxiv.org/pdf/2605.11654",
+  "proceedings": null,
+  "virtual": "https://neurips.cc/virtual/2026/poster/148562",
+  "code": "https://chisngyen.github.io/SkyPart/"
+ },
+ "license": "http://creativecommons.org/licenses/by/4.0/",
+ "img": "cc-by",
+ "image_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/images/neurips26-8526.png",
+ "thumb_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/thumbs/neurips26-8526.webp",
+ "figure_page": 4,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.9
+}

@@ -1,0 +1,52 @@
+{
+ "id": "icml26-3868",
+ "title": "ReQAT: Achieving Full-Precision Reasoning Accuracy with 4-bit Floating-Point Quantization-Aware Training",
+ "authors": [
+  "Janghwan Lee",
+  "Sihwa Lee",
+  "Jinseok Kim",
+  "Yongjik Kim",
+  "Jieun Lim",
+  "Jinwook Oh",
+  "Jungwook Choi"
+ ],
+ "venue": "ICML 2026",
+ "tier": "oral",
+ "track": "main",
+ "topic": null,
+ "role": "teaser-result",
+ "role2": "analysis-finding",
+ "claim": "Naive 4-bit quantization of reasoning models loses substantial accuracy, while our training recovers and surpasses full-precision accuracy with large speedup.",
+ "layout": "4 panels in 2x2-style grid; bar and line plots, dashed arrow in last",
+ "tags": [
+  "quantization",
+  "low-precision",
+  "reasoning-models",
+  "efficiency",
+  "accuracy-throughput"
+ ],
+ "style": [
+  "plot",
+  "colorful"
+ ],
+ "description": "A composite of four result plots. Panel (a), top left, is a grouped bar chart of accuracy drop after post-training quantization for Llama-8B, Qwen-14B, Qwen-32B and Llama-70B. Bars are gray, red and navy for GSM8K, MATH-500 and AIME-120, and the AIME drop is the largest. Panel (b), bottom left, is a line plot of average AIME accuracy against fine-tuning tokens. It compares Full-FT, Full-FT+PTQ, QAT and QAD, with BF16 and PTQ baselines as dashed lines. Starred green ReQAT points sit highest. Panel (c), top right, is a horizontal bar chart on W4A4KV4 in which the green ReQAT ablation bars reach or pass the gray BF16 Full-FT bar. Panel (d), bottom right, is a scatter of throughput speedup against AIME accuracy. A dashed blue arrow points from the BF16 baseline to ReQAT, annotated 3.1× speedup, +9.1% accuracy and -65% storage.",
+ "caption": "(a) NVFP4 W4A4KV4 PTQ accuracy drop across DeepSeek-R1-Distilled models. Accuracy of (b) MXFP4 W4A16 and (c) NVFP4 W4A4KV4 on R1-Qwen-14B, comparing Full-FT and QAT. (d) Accuracy--throughput across deployment recipes.",
+ "caption_source": "latex",
+ "abstract": "Large Reasoning Models (LRMs) achieve strong problem-solving through long chain-of-thought, but their deployment is constrained by the high cost of full-precision inference and growing KV cache footprints. Microscaled FP4 formats enable efficient FP4 deployment; however, fully quantizing weights, activations, and KV caches (W4A4KV4) causes severe reasoning degradation that existing PTQ and QAT fail to recover. We identify that FP4 failures concentrate on low-entropy tokens--precise symbolic commitments such as digits and operators--where quantization noise inflates sampling errors that cascade through reasoning traces. Based on this insight, we propose ReQAT, a reasoning-centric FP4 training framework with three components: (i) Trace-Aligned QAT (TAQ), which revisits identical reasoning traces to focus updates on critical low-entropy decisions; (ii) Selective Entropy Minimization (SEM), which reinforces confidence at low-entropy positions; and (iii) Q-FIT, a quantization-friendly initialization that jointly calibrates RoPE-consistent KV cache transformations to stabilize QAT. Under the same training budget, ReQAT not only recovers but surpasses BF16 fine-tuning accuracy, while delivering up to 3.9x throughput speedup on NVIDIA DGX Spark and 3.1x on B200.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=aKY52fnzgc",
+  "arxiv": "https://arxiv.org/abs/2606.15682",
+  "pdf": "https://raw.githubusercontent.com/mlresearch/v306/main/assets/lee26an/lee26an.pdf",
+  "proceedings": "https://proceedings.mlr.press/v306/lee26an.html",
+  "virtual": "https://icml.cc/virtual/2026/oral/71113",
+  "code": null
+ },
+ "license": "http://arxiv.org/licenses/nonexclusive-distrib/1.0/",
+ "img": "none",
+ "image_url": null,
+ "thumb_url": null,
+ "figure_page": 0,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.7
+}

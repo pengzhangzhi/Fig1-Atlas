@@ -1,0 +1,49 @@
+{
+ "id": "icml26-3553",
+ "title": "Quaternion Self-Attention with Shared Scores",
+ "authors": [
+  "Shogo Yamauchi",
+  "Tohru Nitta",
+  "Hideaki Tamori"
+ ],
+ "venue": "ICML 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "Deep Learning->Attention Mechanisms",
+ "role": "prior-vs-ours",
+ "role2": "pipeline",
+ "claim": "Prior attention computes expensive component-wise scores with many independent softmaxes; ours computes one cheap shared score and softmax.",
+ "layout": "2 side-by-side panels, top-to-bottom flow, cost annotations and SHARED label",
+ "tags": [
+  "quaternion-attention",
+  "shared-score",
+  "efficiency",
+  "softmax-reduction",
+  "architecture-comparison"
+ ],
+ "style": [
+  "colorful",
+  "icon-heavy",
+  "minimal"
+ ],
+ "description": "Two parallel architecture diagrams are shown side by side. The left panel, labeled Tay et al. (2019), takes stacked Q, K, V quaternion tensors through a Hamilton Product block, annotated as high computational cost (x16 mult.). This produces a four-component quaternion score matrix, which feeds four separate Softmax boxes. The resulting A0 to A3 attention strips are each multiplied with V0 to V3, then summed into the output O. The right panel, labeled Ours (Proposed), follows the same layout. It uses a Quaternion Inner Product block with low cost (x4 mult.) and produces a single real-valued score matrix. One Softmax box fans out to four identical A strips, marked SHARED in blue, which are applied to V0 to V3 and summed into the output. Colored cube stacks and color-coded score grids carry the data. The eye goes first to the two titles and the Softmax counts.",
+ "caption": "Comparison of quaternion self-attention architectures. Left: [ref] computed the full Hamilton product using four independent softmax operations, which led to high computational cost and produced component-wise attention distributions. Right (Ours): Our method derives a single shared score via the quaternion inner product, reducing multiplications by 75% while preserving inter-component relationships.",
+ "caption_source": "latex",
+ "abstract": "Quaternion neural networks are parameter-efficient and model multidimensional dependencies by representing four related features as a single entity. However, existing quaternion self-attention computes component-wise scores and applies independent softmax operations to each component, which increases the computational cost and allows attention distributions to diverge across components. We propose a shared-score quaternion self-attention mechanism that computes a single real-valued score using the quaternion inner product and applies a shared attention distribution across all components. This reduces score-computation multiplications by 75% and the number of softmax operations from four to one. We prove that, when queries and keys are produced by quaternion linear projections that induce component pre-mixing, the component-wise and shared scores lie in the same interaction subspace, indicating that independent component-wise attention primarily re-parameterizes the same interactions rather than expanding the feature interaction space. In speech enhancement, our method reduces inference time by up to 44.3% on a GPU and 58.1% on a CPU while maintaining quality, with consistent trends across vision and natural language processing.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=XdyDNR5gtb",
+  "arxiv": "https://arxiv.org/abs/2605.24920",
+  "pdf": "https://raw.githubusercontent.com/mlresearch/v306/main/assets/yamauchi26a/yamauchi26a.pdf",
+  "proceedings": "https://proceedings.mlr.press/v306/yamauchi26a.html",
+  "virtual": "https://icml.cc/virtual/2026/poster/63383",
+  "code": null
+ },
+ "license": "http://arxiv.org/licenses/nonexclusive-distrib/1.0/",
+ "img": "none",
+ "image_url": null,
+ "thumb_url": null,
+ "figure_page": 0,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.85
+}

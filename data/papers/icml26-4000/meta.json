@@ -1,0 +1,51 @@
+{
+ "id": "icml26-4000",
+ "title": "Black-Box Combinatorial Optimization with Order-Invariant Reinforcement Learning",
+ "authors": [
+  "Olivier Goudet",
+  "Quentin Suire",
+  "Adrien Goëffon",
+  "Frédéric Saubion",
+  "sylvain lamprier"
+ ],
+ "venue": "ICML 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "Reinforcement Learning->Online",
+ "role": "pipeline",
+ "role2": null,
+ "claim": "A population is generated under random variable orders, then reused for training with freshly resampled orders each epoch to learn order-invariant policies.",
+ "layout": "2 panels split by vertical line, top-to-bottom within each, colored paths per individual",
+ "tags": [
+  "order-invariant",
+  "autoregressive",
+  "reinforcement-learning",
+  "combinatorial-optimization",
+  "black-box-optimization"
+ ],
+ "style": [
+  "math-heavy",
+  "colorful",
+  "minimal"
+ ],
+ "description": "The figure has two halves separated by a vertical line. The left half, titled '1) Generation phase', shows three identical small neural networks g_θ1, g_θ2 and g_θ3 side by side. Each network takes a masked input vector for x1, x2 and x3 and outputs one variable. Blue and red numbers mark two individuals, and a blue arrow path traces the generation order starting at 'Start'. Below a dotted line, an 'Evaluation' section lists the solutions x^1 and x^2, their fitness values and the advantages +1 and -1. The right half, '2) Training phase', shows Epoch 1 and Epoch 2. Each epoch gives new orders σ_T and repeats the three networks with their inputs, conditional probabilities π in blue and red, and 'Compute gradient / Update θ' lines. Blue and red color-code the two individuals throughout.",
+ "caption": "Left. Example of the generation, at time $t$, of a population $\\Gamma^t_{\\lambda}$ with $\\lambda=2$ individuals for a maximization problem with $n=3$. The generation order of the first individual is indicated by blue arrows. When constructing this individual using the MDP and a given order $\\sigma_G^1=(3,1,2)$, we start with $x^1_{\\sigma_G^1<1} = (0,0,0)$ given as input to the neural network $g_{\\theta_3}$, generating $x_3=1$. Then $x^1_{\\sigma_G^1<2} = (0,0,1)$ is provided to to $g_{\\theta_1}$, which generates $x_1=-1$. Finally, $x^1_{\\sigma_G^1<3} = (-1,0,1)$ is passed to $g_{\\theta_2}$, which generates $x_2$, yielding the complete solution $(-1,-1,1)$. Once all individuals in the population have been sampled, the evaluation phase starts, where advantages are computed such that $A_{\\Gamma_\\lambda^t}(x^i_{best}) = +1$ and $ A_{\\Gamma_\\lambda^t}(x^i_{worse}) = -1$ (Eq. [ref]). Right. Training phase over $E$ epochs with the $\\lambda=2$ solutions sampled at this generation. At each epoch, new generation orders $\\sigma_G$ are sampled for each individual. Conditional action probabilities are then computed according to the corresponding causal masks. This allows the computation of $\\hat{L}_{\\lambda}(\\theta)$ (Eq. [ref]) and the update of $\\theta=(\\theta_1, \\theta_2, \\theta_3)$ by gradient ascent.",
+ "caption_source": "latex",
+ "abstract": "We introduce an order-invariant reinforcement learning framework for black-box combinatorial optimization. Classical estimation-of-distribution algorithms (EDAs) often rely on learning explicit variable dependency graphs, which can be costly and fail to capture complex interactions efficiently. In contrast, we parameterize a multivariate autoregressive generative model trained without a fixed variable ordering. By sampling random generation orders during training, a form of information-preserving dropout, the model is encouraged to be invariant to variable order, promoting search-space diversity, and shaping the model to focus on the most relevant variable dependencies, improving sample efficiency. We adapt Group Relative Policy Optimization (GRPO) to this setting, providing stable policy-gradient updates from scale-invariant advantages. Across a wide range of benchmark algorithms and problem instances of varying sizes, our method frequently achieves the best performance and consistently avoids catastrophic failures.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=bcRBqG8FFN",
+  "arxiv": "https://arxiv.org/abs/2510.01824",
+  "pdf": "https://raw.githubusercontent.com/mlresearch/v306/main/assets/goudet26a/goudet26a.pdf",
+  "proceedings": "https://proceedings.mlr.press/v306/goudet26a.html",
+  "virtual": "https://icml.cc/virtual/2026/poster/62945",
+  "code": null
+ },
+ "license": "http://creativecommons.org/licenses/by/4.0/",
+ "img": "cc-by",
+ "image_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/images/icml26-4000.png",
+ "thumb_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/thumbs/icml26-4000.webp",
+ "figure_page": 4,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.9
+}

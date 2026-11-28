@@ -1,0 +1,60 @@
+{
+ "id": "neurips26-5796",
+ "title": "Behavior Pack Optimization for Video MLLM Post-Training",
+ "authors": [
+  "Zhaolu Kang",
+  "Shiyu Liu",
+  "Tailong Luo",
+  "Wei Zhang",
+  "Yingjie He",
+  "Guangyuan Dong",
+  "Lei Wei",
+  "Guansu Wang",
+  "Liang He",
+  "Siheng Wang",
+  "Jiaqi Su",
+  "Shuang Chen",
+  "Haoyu Ji",
+  "Qishi Zhan",
+  "Kaiyue Zhou"
+ ],
+ "venue": "NeurIPS 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "Reinforcement Learning->Everything Else",
+ "role": "prior-vs-ours",
+ "role2": "pipeline",
+ "claim": "Prior methods optimize each response separately against a group mean; ours scores a pack of counterfactual views jointly against an anchor.",
+ "layout": "2 panels, side-by-side, top-down trees, dashed red pack boundary in right panel",
+ "tags": [
+  "counterfactual-views",
+  "policy-optimization",
+  "reinforcement-learning",
+  "anchor-baseline",
+  "video-mllm"
+ ],
+ "style": [
+  "minimal",
+  "colorful"
+ ],
+ "description": "Two panels separated by a dashed vertical line. Panel (a), titled GRPO, shows a small tree. A single clip node v0 branches to K sampled responses y1, y2 … yK. A brace underneath them leads to the text 'sample mean r̄' and 'advantage: A_k = r_k − r̄'. Panel (b), titled BPO, is larger. A 'video' node branches to four view nodes: v0 (anchor, highlighted in orange), key-mask, reverse and shuffle (light purple). Each view maps to its own response y. A dashed orange arrow from y_v0 to y_km is labeled A_v = r_v − r_v0. A dashed red box labeled 'pack = optimization unit' encloses the views and responses. All responses feed into a green 'cross-view reward' box with R_acc + R_contract − Pen. The eye goes first to the colored boxes and the red dashed pack outline.",
+ "caption": "(a) GRPO samples $K$ rollouts from the original clip $v_0$, centers rewards by the sampled-response mean $\\bar r$, and optimizes each response separately. (b) BPO samples one rollout per view from a question-type-conditioned set, scores the pack jointly with cross-view behavior contracts, and centers advantages relative to the $v_0$ anchor rollout.",
+ "caption_source": "latex",
+ "abstract": "Video multimodal large language models (MLLMs) keep climbing video question answering benchmarks, yet shuffling the frames, masking the segment that supports the answer, or occluding the target object barely changes their predictions. The accuracy rests on appearance and language priors, not on the temporal evidence the question asks for. We trace this to the unit of post-training: rewards are computed on a single response to the original clip, so the model is never asked to behave consistently across views. We propose Behavior Pack Optimization (BPO), which replaces the single response with a behavior pack of outputs across counterfactual views chosen by question type, scored jointly. The pack reward asks for stability when the intervention is irrelevant, sensitivity when key evidence is removed, and abstention when no evidence remains. To keep this objective stable at small pack sizes, BPO uses an anchor-relative advantage: the response on the original view serves as a per-prompt reference instead of a group mean over mixed views. On TempCompass, MVBench, and NExT-QA, BPO improves the macro accuracy of Qwen2.5-VL-7B-Instruct by 4.7 pp, the temporal-hard subset by 7.8 pp, and abstention F1 by 20.0 pp over a budget-matched vanilla GRPO baseline from the same SFT checkpoint. The gains transfer to Video-MME, LongVideoBench, and to LLaVA-Video-7B; ablations confirm they follow the view sets, not the rollout count. We hope this pack-level perspective offers a useful starting point for the video MLLM and multimodal post-training community as the field moves toward evidence-grounded video reasoning.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=dnqyvgz1LI",
+  "arxiv": "https://arxiv.org/abs/2610.03141",
+  "pdf": "https://arxiv.org/pdf/2610.03141",
+  "proceedings": null,
+  "virtual": "https://neurips.cc/virtual/2026/poster/150981",
+  "code": null
+ },
+ "license": "http://arxiv.org/licenses/nonexclusive-distrib/1.0/",
+ "img": "none",
+ "image_url": null,
+ "thumb_url": null,
+ "figure_page": 1,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.85
+}

@@ -1,0 +1,49 @@
+{
+ "id": "icml26-6315",
+ "title": "Gradient Smoothing: Coupling Layer-wise Updates for Improved Optimization",
+ "authors": [
+  "Haoming Meng",
+  "Anton Sugolov",
+  "Vardan Papyan"
+ ],
+ "venue": "ICML 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "Optimization->Everything Else",
+ "role": "pipeline",
+ "role2": null,
+ "claim": "Per-layer optimizer updates are passed jointly through a depth-wise filter to produce smoothed updates for every layer.",
+ "layout": "3 stages left-to-right, braces grouping layers, central filter box with histogram",
+ "tags": [
+  "optimizer",
+  "depth-wise-smoothing",
+  "gradient-update",
+  "transformers",
+  "preconditioning"
+ ],
+ "style": [
+  "minimal",
+  "colorful",
+  "math-heavy"
+ ],
+ "description": "A left-to-right flow diagram. On the left, a vertical stack of blue rounded boxes f_1, f_2, f_3, ..., f_L is joined by upward arrows to show the layers of a network. Each box has a horizontal arrow to a red box labeled U(∇_{θ_l} L), the raw block-wise optimizer update, with vertical dots marking the omitted layers. A large curly brace gathers all the red boxes and feeds an arrow into a central green rounded box labeled 'Filter S'. A small dark bell-shaped histogram sits at the top of that box and suggests a smoothing kernel. Another arrow leads to a second brace and a matching stack of orange boxes, each labeled with a tilde-U of the smoothed update. The eye goes first to the central green filter.",
+ "caption": "{ Gradient Smoothing.} Representation of the gradient augmentation scheme applied across depth to the updates in a deep network after backpropagation. For a deep network with $L$ identical architectural blocks (but with different parameters), the gradient updates in each parameter block $\\theta^l$ are reweighted across depth to stabilize information propagation.",
+ "caption_source": "latex",
+ "abstract": "Deep neural networks with repeated architectural blocks, such as transformers, often exhibit structured relationships across layers that emerge during training. Motivated by this observation, we introduce \\emph{Depth-wise Gradient Augmentation}, a general optimization paradigm in which the update applied to each layer is obtained by transforming the collection of block-wise optimizer updates along the depth dimension. Within this framework, we study \\emph{Gradient Smoothing}, a family of depth-wise smoothing methods, and instantiate it with a simple local \\emph{Window Smoothing} operator. The resulting method operates directly on block-wise updates produced by arbitrary base optimizers (e.g., SGD, Adam, Muon), incurs minimal computational overhead, and is compatible with existing optimization pipelines. We evaluate Gradient Smoothing across a diverse set of architectures and training regimes, including language model pretraining, RL post-training of LLMs for reasoning, diffusion modeling, and image classification with Vision Transformers. Across these settings, Gradient Smoothing consistently improves optimization and generalization performance without modifying model architectures or training objectives. We further show that it promotes more structured representation evolution across depth, consistent with its interpretation as a structured depth-wise preconditioning method. Together, these results establish Depth-wise Gradient Augmentation as a promising framework for exploiting cross-depth structure in optimization and demonstrate Gradient Smoothing as a simple and broadly applicable instantiation.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=xOFHGE60fr",
+  "arxiv": "https://arxiv.org/abs/2606.30813",
+  "pdf": "https://raw.githubusercontent.com/mlresearch/v306/main/assets/meng26j/meng26j.pdf",
+  "proceedings": "https://proceedings.mlr.press/v306/meng26j.html",
+  "virtual": "https://icml.cc/virtual/2026/poster/60702",
+  "code": null
+ },
+ "license": "http://creativecommons.org/licenses/by/4.0/",
+ "img": "cc-by",
+ "image_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/images/icml26-6315.png",
+ "thumb_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/thumbs/icml26-6315.webp",
+ "figure_page": 1,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.9
+}

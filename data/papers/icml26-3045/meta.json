@@ -1,0 +1,55 @@
+{
+ "id": "icml26-3045",
+ "title": "ProphetKV: User-Query-Driven Selective Recomputation for Efficient KV Cache Reuse in Retrieval-Augmented Generation",
+ "authors": [
+  "Shihao Wang",
+  "Jiahao Chen",
+  "Yanqi Pan",
+  "Hao Huang",
+  "Yichen Hao",
+  "Xiangyu Zou",
+  "Wen Xia",
+  "Chongyang Qiu",
+  "Wentao Zhang",
+  "PengFei Wang"
+ ],
+ "venue": "ICML 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "Deep Learning->Large Language Models",
+ "role": "prior-vs-ours",
+ "role2": "pipeline",
+ "claim": "Existing reuse strategies trade quality against latency; query-driven selective recomputation achieves both good quality and low latency.",
+ "layout": "5 stacked rows (a–e), left-to-right flow, verdict icons at right, ours highlighted last",
+ "tags": [
+  "kv-cache-reuse",
+  "selective-recomputation",
+  "quality-latency-tradeoff",
+  "retrieval-augmented-generation",
+  "query-driven"
+ ],
+ "style": [
+  "colorful",
+  "icon-heavy"
+ ],
+ "description": "Five horizontal pipelines are stacked vertically and labeled (a) Full Recompute, (b) Prefix Cache Reuse, (c) Naive Reuse, (d) Partial Recomputation Reuse (Previous works), and (e) ProphetKV (Ours). On the left, a knowledge base database feeds retrieved documents, and a green User Query box appears at the bottom. Each row passes document or KV blocks, drawn as yellow and orange cubes, through stacked Transformer layers into a combined KV bar ending in a green query cube. Rows (d) and (e) have dashed gray boxes showing token selection: rule-based selection in (d) and query-driven selection in (e). Verdicts sit at the right, with red text for bad quality or latency, green text for good ones, check marks, red X marks and a green star for the proposed method. The eye goes first to the colorful KV bars and the verdict icons.",
+ "caption": "A high-level overview of different methods of KV Cache reuse in RAG scenarios.",
+ "caption_source": "latex",
+ "abstract": "The prefill stage of long-context Retrieval-Augmented Generation (RAG) is severely bottlenecked by computational overhead. To mitigate this, recent methods assemble pre-calculated KV caches of retrieved RAG documents (by a user query) and reprocess selected tokens to recover cross-attention between these pre-calculated KV caches. However, we identify a fundamental \"crowding-out effect\" in current token selection criteria: globally salient but user-query-irrelevant tokens saturate the limited recomputation budget, displacing the tokens truly essential for answering the user query and degrading inference accuracy. We propose ProphetKV, a user-query-driven KV Cache reuse method for RAG scenarios. ProphetKV dynamically prioritizes tokens based on their semantic relevance to the user query and employs a dual-stage recomputation pipeline to fuse layer-wise attention metrics into a high-utility set. By ensuring the recomputation budget is dedicated to bridging the informational gap between retrieved context and the user query, ProphetKV achieves high-fidelity attention recovery with minimal overhead. Our extensive evaluation results show that ProphetKV retains 96%-101% of full-prefill accuracy with only a 20% recomputation ratio, while achieving accuracy improvements of 8.8%-24.9% on RULER and 18.6%-50.9% on LongBench over the state-of-the-art approaches (e.g., CacheBlend, EPIC, and KVShare).",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=SwGwmKIgUb",
+  "arxiv": "https://arxiv.org/abs/2602.02579",
+  "pdf": "https://raw.githubusercontent.com/mlresearch/v306/main/assets/wang26y/wang26y.pdf",
+  "proceedings": "https://proceedings.mlr.press/v306/wang26y.html",
+  "virtual": "https://icml.cc/virtual/2026/poster/63876",
+  "code": null
+ },
+ "license": "http://creativecommons.org/licenses/by-nc-sa/4.0/",
+ "img": "cc-by-nc-sa",
+ "image_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/images/icml26-3045.png",
+ "thumb_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/thumbs/icml26-3045.webp",
+ "figure_page": 1,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.8
+}

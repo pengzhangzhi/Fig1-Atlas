@@ -1,0 +1,48 @@
+{
+ "id": "icml26-0912",
+ "title": "Retrieval-Aware Distillation for Transformer-SSM Hybrids",
+ "authors": [
+  "Aviv Bick",
+  "Eric Xing",
+  "Albert Gu"
+ ],
+ "venue": "ICML 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": null,
+ "role": "pipeline",
+ "role2": "prior-vs-ours",
+ "claim": "Score each component's importance, keep only the critical ones, and replace the rest with efficient alternatives to get a sparse hybrid.",
+ "layout": "2 panels, left-to-right, big arrow with threshold rule between them",
+ "tags": [
+  "hybrid-architecture",
+  "distillation",
+  "component-selection",
+  "importance-scoring",
+  "efficiency"
+ ],
+ "style": [
+  "minimal",
+  "colorful"
+ ],
+ "description": "Two rounded panels joined by a large gray arrow. The left panel, titled 'Original (scored heads)', shows a grid of blue 'Attn' boxes in Layer 1 and Layer 2, with ellipsis dots below to imply more layers. Each box has a small numeric score above it, such as 0.9, 0.8, 0.2 and 1.0. Boxes that score at or below the threshold have orange borders and orange scores. The text under the arrow reads 'Distill + Replace (score > 0.4)'. The right panel, titled 'Distilled (Attn → SSM)', shows the same grid, but most boxes are now green 'SSM' boxes. Only the high-scoring positions stay blue 'Attn', so attention is sparse and non-uniform. The eye goes first to the blue and green contrast and the arrow.",
+ "caption": "Retrieval-Aware Attention Placement During Distillation. We add a retrieval-guided step before standard distillation: (1) ablate each attention head in the pretrained Transformer and measure the accuracy drop on a synthetic KV-retrieval probe to obtain a retrieval-importance score; (2) retain only heads above a threshold and replace the rest with recurrent heads; (3) distill into a hybrid student. We use KV-retrieval only for head ranking; it identifies the same G&A heads that drive retrieval-intensive performance [ref]. Unlike heuristic hybrids, this yields non-uniform attention placement that preserves performance with far fewer heads and reduces attention’s KV-cache bandwidth cost [ref].",
+ "caption_source": "latex",
+ "abstract": "State-space models (SSMs) offer efficient sequence modeling but lag behind Transformers on benchmarks that require in-context retrieval. Prior work links this gap to a small set of attention heads, termed Gather-and-Aggregate (G&A), which SSMs struggle to reproduce. We propose *retrieval-aware distillation*, which converts a pretrained Transformer into a hybrid student by preserving only these retrieval-critical heads and distilling the rest into recurrent heads. We identify the essential heads via ablation on a synthetic retrieval task, producing a hybrid with sparse, non-uniform attention placement. We show that preserving **just 2% of attention heads recovers over 95% of teacher performance on retrieval-heavy tasks** (10 heads in a 1B model), requiring far fewer heads than hybrids that retain at least 25%. We further find that large recurrent states often compensate for missing retrieval: once retrieval is handled by these heads, the SSM backbone can be simplified with limited loss, even with an $8\\times$ reduction in state dimension. By reducing both the attention cache and the SSM state, the resulting hybrid is $5$--$6\\times$ more memory-efficient than comparable hybrids, closing the Transformer--SSM gap at a fraction of the memory cost.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=8gsYox51jQ",
+  "arxiv": "https://arxiv.org/abs/2602.11374",
+  "pdf": "https://raw.githubusercontent.com/mlresearch/v306/main/assets/bick26a/bick26a.pdf",
+  "proceedings": "https://proceedings.mlr.press/v306/bick26a.html",
+  "virtual": "https://icml.cc/virtual/2026/poster/65938",
+  "code": null
+ },
+ "license": "http://creativecommons.org/licenses/by/4.0/",
+ "img": "cc-by",
+ "image_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/images/icml26-0912.png",
+ "thumb_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/thumbs/icml26-0912.webp",
+ "figure_page": 1,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.6
+}

@@ -1,0 +1,50 @@
+{
+ "id": "icml26-0474",
+ "title": "VecMol: Vector-Field Representations for 3D Molecule Generation",
+ "authors": [
+  "Yuchen Hua",
+  "Xingang Peng",
+  "Jianzhu Ma",
+  "Muhan Zhang"
+ ],
+ "venue": "ICML 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "Applications->Health / Medicine",
+ "role": "pipeline",
+ "role2": null,
+ "claim": "Encoding data into a latent field, then diffusing and decoding it, turns generation into continuous-field reconstruction instead of discrete graph generation.",
+ "layout": "2 stacked rows split by dashed line, left-to-right, shared decoder blocks",
+ "tags": [
+  "latent-diffusion",
+  "neural-field",
+  "pipeline",
+  "encode-decode",
+  "3d-generation"
+ ],
+ "style": [
+  "colorful",
+  "icon-heavy",
+  "minimal"
+ ],
+ "description": "Two horizontal pipelines separated by a dashed gray line. Top row: a 3D ball-and-stick molecule goes through a blue trapezoid 'Neural Field Encoder E_phi' into a 3D grid of colored latent points (a z_i vector is shown above it). It then goes through a blue 'Neural Field Decoder D_psi' with query points Q, giving a cloud of small green arrows labeled field vectors. Bottom row: a gray noise grid z_T passes through an orange 'denoise' box labeled diffusion model, giving a colored sampled latent grid z_0. This goes into the same blue decoder, then a yellow 'reconstruction module' box (gradient ascent with an iteration loop, then merge). The output is the reconstructed molecule. Block arrows are blue, orange and gray. Math notation sits under the blocks. The eye goes first to the large blue decoder shapes and the molecules.",
+ "caption": "Overview of the proposed neural field framework for 3D molecular modeling. The figure illustrates two tightly coupled pipelines that share the same neural field decoder and reconstruction module. Top: Latent neural field encoding and reconstruction. A 3D molecule, represented by its atomic coordinates and types, is first encoded by a neural field encoder $E_\\phi$ into a grid-based latent field $z \\in \\mathbb{R}^{L^3 \\times d}$, where each spatial location stores a local latent code. Given a set of spatial query points $Q = \\{q_i\\}_{i=1}^m \\in \\mathbb{R}^{m\\times 3}$, a neural field decoder $D_\\psi$ maps the latent field to a continuous molecular vector field $V = D_\\psi(Q, z)$. Bottom: Latent field diffusion and molecular generation. A denoising diffusion probabilistic model is trained in the latent field space. Starting from Gaussian noise $z_T \\sim \\mathcal{N}(0, I)$, the diffusion model progressively denoises the latent variables to obtain a sampled latent field $z_0$. Th neural field decoder and the reconstruction module then converts the sampled vector field into a discrete molecular structure through iterative gradient-based ascent and merging operations (see Section [ref]).",
+ "caption_source": "latex",
+ "abstract": "Generative modeling of three-dimensional (3D) molecules is a fundamental yet challenging problem in drug discovery and materials science. Existing approaches typically represent molecules as 3D graphs and co-generate discrete atom types with continuous atomic coordinates, leading to intrinsic learning difficulties such as heterogeneous modality entanglement and geometry-chemistry coherence constraints. We propose VecMol, a paradigm-shifting framework that reimagines molecular representation by modeling 3D molecules as continuous vector fields over Euclidean space, where vectors point toward nearby atoms and implicitly encode molecular structure. The vector field is parameterized by a neural field and generated using a latent diffusion model, avoiding explicit graph generation and decoupling structure learning from discrete atom instantiation. Experiments on the QM9 and GEOM-Drugs benchmarks validate the feasibility of this novel approach, suggesting vector-field-based representations as a promising new direction for 3D molecular generation.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=4K87H0eSqu",
+  "arxiv": "https://arxiv.org/abs/2603.12734",
+  "pdf": "https://raw.githubusercontent.com/mlresearch/v306/main/assets/hua26a/hua26a.pdf",
+  "proceedings": "https://proceedings.mlr.press/v306/hua26a.html",
+  "virtual": "https://icml.cc/virtual/2026/poster/66367",
+  "code": null
+ },
+ "license": "http://arxiv.org/licenses/nonexclusive-distrib/1.0/",
+ "img": "none",
+ "image_url": null,
+ "thumb_url": null,
+ "figure_page": 1,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.93
+}

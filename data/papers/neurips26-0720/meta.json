@@ -1,0 +1,49 @@
+{
+ "id": "neurips26-0720",
+ "title": "Cyclic Discrete Diffusion: A Novel Multi-Class Segmentation Refinement Technique",
+ "authors": [
+  "LIBO CHEN",
+  "Souvik Ghosh",
+  "Vinay Namboodiri"
+ ],
+ "venue": "NeurIPS 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "Computer Vision->Segmentation",
+ "role": "pipeline",
+ "role2": "concept",
+ "claim": "Each element jumps to the next state in a cyclic chain with fixed probability, gradually driving a clean structured output to uniform noise.",
+ "layout": "2 stacked tiers, left-to-right; state-cycle graph above, timestep image and bar strip below",
+ "tags": [
+  "discrete-diffusion",
+  "markov-chain",
+  "forward-process",
+  "segmentation-refinement",
+  "cyclic-transition"
+ ],
+ "style": [
+  "colorful",
+  "math-heavy",
+  "photo/real data"
+ ],
+ "description": "The top tier shows a chain of six colored circular nodes (road, sidewalk, building, vegetation, car, other). Each node has a self-loop labeled 1-λ and an arrow labeled λ to the next node. A curved arrow labeled λ returns from the last node to the first, which closes the cycle. A boxed 'Transition kernel' on the right gives the piecewise formula for q(x_{t+1}|x_t) with K=6. A dashed line separates this from the lower tier. The lower tier has the input street photo, then segmentation masks at t=0, 4, 8, 12 and 16. The clean mask turns into speckled purple-and-blue noise. Under each mask, a bar chart of per-class probability for a tracked pixel flattens from one dominant bar to uniform bars. A color legend runs along the bottom. The eye goes first to the colorful noisy mask sequence.",
+ "caption": "Method illustration of the proposed cyclic discrete diffusion (CDD). Each pixel label evolves under the cyclic transition kernel $q(x_{t+1}\\!\\mid\\!x_t)$: it stays in the current class with probability $1-\\lambda$ or jumps to the next class (mod $K$) with probability $\\lambda$. Starting from a clean mask ($x_0$), the forward process progressively corrupts the segmentation over time ($t=0,4,8,12,16$), driving per-pixel class probabilities to an approximately uniform mixture (shown by the bars). Our model learns a reverse transition $p_\\theta(x_{t-1}\\!\\mid\\!x_t)$ to recover a refined mask.",
+ "caption_source": "latex",
+ "abstract": "We cast image segmentation refinement as a discrete diffusion process. To solve this task we introduce Cyclic Discrete Diffusion (CDD), a novel forward-reverse formulation with a cyclic label topology that maps a discrete label set to the uniform distribution and back. Instead of injecting Gaussian noise as is done for continuous diffusion, CDD evolves segmentation masks through label jumps: at each step, every pixel either remains in its current class or jumps to the next label with a fixed rate. This jump-or-stay mechanism defines a finite-state Markov process with bounded forward and reverse steps, featuring analytically consistent and tractable reverse dynamics. CDD operates natively in a multi-class label space, enabling joint refinement of all classes in a single pass without requiring class-wise decomposition, as commonly needed in prior binary refinement approaches. The proposed formulation admits a finite and controllable number of refinement steps, for which we analyze the convergence properties through spectral gap analysis. We evaluate CDD across diverse segmentation tasks, including multi-class semantic, instance-level, and binary segmentation refinement. Our method consistently improves both region accuracy and boundary quality across multiple backbones and datasets.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=55XffjPoPJ",
+  "arxiv": "https://arxiv.org/abs/2611.28107",
+  "pdf": "https://arxiv.org/pdf/2611.28107",
+  "proceedings": null,
+  "virtual": "https://neurips.cc/virtual/2026/poster/155503",
+  "code": null
+ },
+ "license": "http://arxiv.org/licenses/nonexclusive-distrib/1.0/",
+ "img": "none",
+ "image_url": null,
+ "thumb_url": null,
+ "figure_page": 1,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.6
+}

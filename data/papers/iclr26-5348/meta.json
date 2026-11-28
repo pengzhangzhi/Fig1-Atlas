@@ -1,0 +1,51 @@
+{
+ "id": "iclr26-5348",
+ "title": "Teaching VLMs to Admit Uncertainty in OCR from Lossy Visual Inputs",
+ "authors": [
+  "Shuhao Guan",
+  "Moule Lin",
+  "Cheng Xu",
+  "Jinman Zhao",
+  "Derek Greene"
+ ],
+ "venue": "ICLR 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "Computer Vision->Vision Models & Multimodal",
+ "role": "pipeline",
+ "role2": null,
+ "claim": "A two-stage training recipe, supervised cold start on pseudo-labeled tags followed by reward-driven RL, teaches a model to flag its own uncertainty.",
+ "layout": "2 panels, left-to-right, numbered steps with thick arrow linking stages",
+ "tags": [
+  "cold-start-sft",
+  "grpo",
+  "reinforcement-learning",
+  "uncertainty-estimation",
+  "pseudo-labeling"
+ ],
+ "style": [
+  "minimal",
+  "icon-heavy",
+  "text-heavy"
+ ],
+ "description": "Two rounded gray panels side by side. The left panel is the cold-start stage. A robot-icon 'base model' box takes a degraded 'CS image' (dashed rounded box with a smudged word) as input. It predicts a transcript, 'CS damage', with errors in red. An 'align' diamond compares that prediction with the ground truth 'CS image' and produces a tagged transcript with green <C></C> uncertainty tags around the error. Step ③ 'cold start SFT' is marked by a thick black arrow that leads to the right panel. In the right panel a 'UNC model' box receives a degraded 'GRPO image'. It samples three tagged completions, which map to scalar rewards 0.8, 0.944 and 1. These feed a diamond 'A' (group-relative advantage) that loops back to update the model. Circled numbers ①–④ give the order. Red marks errors and green marks tags. The thick arrow draws the eye first.",
+ "caption": "Uncertainty-aware OCR pipeline: Cold-start (left) and GRPO (right). ①Run the frozen base model on degraded CS images to obtain transcripts. ②Align each prediction with the ground truth (GT) and insert UNC tags (character-level shown). ③Cold-start SFT on (image, OCR-withtags) to obtain a tag-aware UNC model. ④GRPO on a disjoint RL set: sample multiple completions, compute the composite reward, convert to group-relative advantages A, and update the model.",
+ "caption_source": "pdf",
+ "abstract": "Vision-language models (VLMs) are increasingly replacing traditional OCR pipelines. However, they often hallucinate on lossy visual inputs, such as visually degraded document images, producing fluent yet incorrect text without signaling uncertainty. This occurs because current post-training emphasizes accuracy, which encourages models to guess even when uncertain. The problem persists in state-of-the-art systems and severely impacts OCR reliability. To improve the trustworthiness of OCR on degraded documents, we propose uncertainty-aware OCR. Rather than suppressing guesses, our model transcribes while explicitly bracketing spans it deems unreliable with uncertainty tags. To train our model, we use Group Relative Policy Optimization (GRPO). We define usage rules for uncertainty tags and an evaluation protocol, introducing a pseudo-labeled cold start and a multi-objective reward that balances transcription accuracy and uncertainty coverage while preventing reward hacking. We explore different combinations of cold-start and reward granularity. We also assess the effect of reward parameters in preventing reward hacking and improving the corresponding metrics. Furthermore, we introduce Blur-OCR, a challenging benchmark for uncertainty-aware OCR on degraded document images under lossy visual conditions. In extensive experiments, our model maintains transcription accuracy while achieving an uncertainty tag F1 score of 0.685.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=zyCjizqOxB",
+  "arxiv": null,
+  "pdf": "https://proceedings.iclr.cc/paper_files/paper/2026/file/67b0e7c7c2a5780aeefe3b79caac106e-Paper-Conference.pdf",
+  "proceedings": "https://proceedings.iclr.cc/paper_files/paper/2026/hash/67b0e7c7c2a5780aeefe3b79caac106e-Abstract-Conference.html",
+  "virtual": "https://iclr.cc/virtual/2026/poster/10006400",
+  "code": null
+ },
+ "license": null,
+ "img": "none",
+ "image_url": null,
+ "thumb_url": null,
+ "figure_page": 3,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.93
+}

@@ -1,0 +1,51 @@
+{
+ "id": "iclr26-2253",
+ "title": "Seek-CAD: A Self-refined Generative Modeling for 3D Parametric CAD Using Local Inference via DeepSeek",
+ "authors": [
+  "Xueyang Li",
+  "Jiahao Li",
+  "Yu Song",
+  "Yunzhong Lou",
+  "Xiangdong Zhou"
+ ],
+ "venue": "ICLR 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "Applications->Everything Else",
+ "role": "pipeline",
+ "role2": null,
+ "claim": "A two-stage generate-then-refine loop, with retrieval and multimodal feedback, turns a text query into a verified output.",
+ "layout": "2 large rounded panels, left-to-right, nested feedback loop with icons",
+ "tags": [
+  "self-refinement",
+  "retrieval-augmented",
+  "training-free",
+  "visual-feedback",
+  "code-generation"
+ ],
+ "style": [
+  "icon-heavy",
+  "colorful",
+  "text-heavy"
+ ],
+ "description": "A wide figure split into two large rounded containers. The left one, \"Initial CAD Code Generation\", starts with a user icon and a text query describing a ring-shaped part. The query goes to a local CAD corpus with 3D shape thumbnails. Top-3 retrieved candidates (colored squares) are concatenated with the query and a magenta \"Knowledge Constraint\" prompt box. This goes into a DeepSeek-R1 whale icon, which outputs a chain-of-thought box in orange and generated CAD code I0 in blue. The right container, \"CAD Code Refinement\", has a dashed box of step-wise rendered shapes (M_I, M_U). Gemini-2.0 judges these and outputs a smiley or a neutral face. A neutral face sends feedback back to DeepSeek-R1, which produces refined green code I_k and a final 3D ring render. Arrows are black and heavy, and the eye goes first to the colorful code boxes and the whale icons.",
+ "caption": "The overview of our Seek-CAD framework. The whole pipeline can be divided into two parts consisting of \"Initial CAD Code Generation\" and \"CAD Code Refinement\", which are both embedded with a knowledge constraint depicted in Sec. [ref] to guide DeepSeek-R1 to generate CAD code following the SSR paradigm (Sec. [ref]). For the first part, a given query $T$ is enhanced by conducting RAG on a local CAD corpus that consisting 10, 000 CAD models. Next, Top-3 retrieved candidates would be concatenated with $T$ to trigger DeepSeek-R1 to generate an initial CAD code $I_0$. For the second part, $I_0$ would go through the Step-wise Visual Feedback with CoT to have the iteration refinement. To achieve this, we first utilize a rendering script $R(*)$ to obtain step-wise images of $I_0$, which can represents the intermediate and ultimate shape of the object ($M_I$, $M_U$) simultaneously. $\\oplus$ denotes the concatenation of SSR triplets, where each triplet, represented by $S_i$ (Sec. [ref]), is rendered along with all its preceding triplets to preserve the correlations between object entities. (More details in Sec. [ref]). Next, the step-wise images are fed into Gemini-2.0 to assess their alignment with the CoT from DeepSeek-R1. This feedback determines whether the current code $I_k$ is reasonable. In practice, we set $k=1$ as the maximize iterations of code refinement.",
+ "caption_source": "latex",
+ "abstract": "The advent of Computer-Aided Design (CAD) generative modeling will significantly transform the design of industrial products. The recent research endeavor has extended into the realm of Large Language Models (LLMs). In contrast to fine-tuning methods, training-free approaches typically utilize the advanced closed-source LLMs, thereby offering enhanced flexibility and efficiency in the development of AI agents for generating CAD parametric models. However, the substantial cost and limitations of local deployment of the top-tier closed-source LLMs pose challenges in practical applications. The Seek-CAD is the pioneer exploration of locally deployed open-source inference LLM DeepSeek-R1 for CAD parametric model generation with a training-free methodology. This study is the first investigation to incorporate both visual and Chain-of-Thought (CoT) feedback within the self-refinement mechanism for generating CAD models. Specifically, the initial generated parametric CAD model is rendered into a sequence of step-wise perspective images, which are subsequently processed by a Vision Language Model (VLM) alongside the corresponding CoTs derived from DeepSeek-R1 to assess the CAD model generation. Then, the feedback is utilized by DeepSeek-R1 to refine the initial generated model for the next round of generation. Moreover, we present an innovative 3D CAD model dataset structured around the SSR (Sketch, Sketch-based feature, and Refinements) triple design paradigm. This dataset encompasses a wide range of CAD commands, thereby aligning effectively with industrial application requirements and proving suitable for the generation of LLMs. Extensive experiments validate the effectiveness of Seek-CAD under various metrics.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=PzIc2TxhwN",
+  "arxiv": "https://arxiv.org/abs/2505.17702",
+  "pdf": "https://proceedings.iclr.cc/paper_files/paper/2026/file/97e5dedbffc41f621d9cf8082f0ec00c-Paper-Conference.pdf",
+  "proceedings": "https://proceedings.iclr.cc/paper_files/paper/2026/hash/97e5dedbffc41f621d9cf8082f0ec00c-Abstract-Conference.html",
+  "virtual": "https://iclr.cc/virtual/2026/poster/10009633",
+  "code": "https://github.com/Sunny-Hack/Seek-CAD"
+ },
+ "license": "http://arxiv.org/licenses/nonexclusive-distrib/1.0/",
+ "img": "none",
+ "image_url": null,
+ "thumb_url": null,
+ "figure_page": 3,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.93
+}

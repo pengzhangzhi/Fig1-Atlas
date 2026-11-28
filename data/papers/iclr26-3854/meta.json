@@ -1,0 +1,51 @@
+{
+ "id": "iclr26-3854",
+ "title": "LLMs Process Lists With General Filter Heads",
+ "authors": [
+  "Arnab Sen Sharma",
+  "Giordano Rogers",
+  "Natalie Shapira",
+  "David Bau"
+ ],
+ "venue": "ICLR 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "Social Aspects->Accountability, Transparency and Interpretability",
+ "role": "pipeline",
+ "role2": "analysis-finding",
+ "claim": "A single attention head's query state encodes a portable predicate that, when patched into another context, redirects attention to the matching item.",
+ "layout": "7 panels; left-to-right activation-patching flow plus a heatmap on the right",
+ "tags": [
+  "activation-patching",
+  "attention-heads",
+  "causal-mediation",
+  "interpretability",
+  "predicate-representation"
+ ],
+ "style": [
+  "colorful",
+  "plot",
+  "text-heavy",
+  "icon-heavy"
+ ],
+ "description": "The figure has two parts. On the left and center is a causal-patching diagram. Panel (a) shows a source prompt, a list of items (Cherry, Knife, Pants, Ambulance) with the instruction \"Find the fruit.\" and an \"Answer:\" token. A red box beside it holds the attention head's q_src and K_src vectors. Panel (c) shows a destination prompt with a lettered list (Binder, Peach, Watch, Scooter, Phone) and \"Find the vehicle.\" A blue arrow carries q_src into the destination head, labelled (d). Panel (b) highlights \"Cherry\" in blue, and a robot icon says \"Cherry\". Panels (e) and (f) compare the head's attention before and after patching: it first attends to Scooter, then to Peach. Panel (g) on the right is a layer-by-head heatmap with a blue-to-red AIE colorbar. It shows sparse filter heads clustered in the middle layers.",
+ "caption": "A filter head $[35, 19]$ in Llama-70B encodes a compact representation of the predicate \"is this fruit?\". (a) Within a prompt $p_{\\mathrm{src}}$ to find a fruit in a list, we examine the attention head's behavior at the last token \":\" (b) The head focuses its attention on the one fruit in the list. (c) We examine the same attention head's behavior in a second prompt $p_{\\mathrm{dest}}$ searching a different list for a vehicle (d) and we also examine the behavior of the head when patching its query state to use the $q_{\\mathrm{src}}$ vector from the source context. (e) The head attends to the vehicle but then (f) redirects its attention to the fruit in the new list after the query vector is patched. (g) A sparse set of attention heads work together to conduct filtering over a wide range of predicates. These filter heads are concentrated in the middle layers (out of 80 layers in Llama-70B).",
+ "caption_source": "latex",
+ "abstract": "We investigate the mechanisms underlying a range of list-processing tasks in LLMs, and we find that LLMs have learned to encode a compact, causal representation of a general filtering operation that mirrors the generic \"filter\" function of functional programming. Using causal mediation analysis on a diverse set of list-processing tasks, we find that a small number of attention heads, which we dub filter heads, encode a compact representation of the filtering predicate in their query states at certain tokens. We demonstrate that this predicate representation is general and portable: it can be extracted and reapplied to execute the same filtering operation on different collections, presented in different formats, languages, or even in tasks. However, we also identify situations where transformer LMs can exploit a different strategy for filtering: eagerly evaluating if an item satisfies the predicate and storing this intermediate result as a flag directly in the item representations. Our results reveal that transformer LMs can develop human-interpretable implementations of abstract computational operations that generalize in ways that are surprisingly similar to strategies used in traditional functional programming patterns.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=iPFlJESrsh",
+  "arxiv": "https://arxiv.org/abs/2510.26784",
+  "pdf": "https://proceedings.iclr.cc/paper_files/paper/2026/file/6732332e3c4155da82cb9d4970e88133-Paper-Conference.pdf",
+  "proceedings": "https://proceedings.iclr.cc/paper_files/paper/2026/hash/6732332e3c4155da82cb9d4970e88133-Abstract-Conference.html",
+  "virtual": "https://iclr.cc/virtual/2026/poster/10007965",
+  "code": "https://filter.baulab.info/"
+ },
+ "license": "http://creativecommons.org/licenses/by/4.0/",
+ "img": "cc-by",
+ "image_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/images/iclr26-3854.png",
+ "thumb_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/thumbs/iclr26-3854.webp",
+ "figure_page": 0,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.55
+}

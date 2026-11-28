@@ -1,0 +1,53 @@
+{
+ "id": "icml26-1422",
+ "title": "Conditionally Site-Independent Neural Evolution of Antibody Sequences",
+ "authors": [
+  "Stephen Lu",
+  "Aakarsh Vermani",
+  "Kohei Sanno",
+  "Jiarui Lu",
+  "Frederick Matsen",
+  "Milind Jagota",
+  "Yun Song"
+ ],
+ "venue": "ICML 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "Applications->Health / Medicine",
+ "role": "pipeline",
+ "role2": null,
+ "claim": "Per-site rate matrices from a neural network, each evolved for time t, combine into a full-sequence transition probability.",
+ "layout": "Left-to-right flow of boxes with a bottom phylogeny tree and matrix zoom-ins",
+ "tags": [
+  "continuous-time-markov-chain",
+  "rate-matrix",
+  "conditional-independence",
+  "phylogenetics",
+  "sequence-modeling"
+ ],
+ "style": [
+  "colorful",
+  "icon-heavy",
+  "math-heavy"
+ ],
+ "description": "A horizontal pipeline runs left to right. An antibody sequence x (EVQLV...) enters a blue CoSiNE box that contains an orange PLM Backbone box. The box outputs a stack of green matrices labeled Q_θ(x) ∈ R^{L×20×20}. A blue box computing the matrix exponential e^{tQ_θ(x)_ℓ} turns these into a stack of yellow matrices. A product over sites ℓ then gives p(y|x,t). Bottom left shows a phylogenetic tree running from a naive node (red) down to affinity-matured leaves (blue). Lines link its nodes to the input x and the output y (EAQLV...). Two large yellow matrices at bottom right zoom into the stack. One highlights an amino-acid substitution cell (A/V), and the other highlights a site-to-site cell (L×L).",
+ "caption": "\\textbf{Overview of \\ourmodel{}}. Given an antibody sequence $x$, the neural network outputs site-specific rate matrices conditioned on the full sequence. Each matrix is evolved for duration $t$ to yield a per-site transition distribution $p(y_l\\mid x, t)$. Assuming conditional independence, we take the product of the per-site transition probabilities to yield the full sequence transition probability $p(y\\mid x, t)$.",
+ "caption_source": "latex",
+ "abstract": "Common deep learning approaches for antibody engineering focus on modeling the marginal distribution of sequences. By treating sequences as independent samples, however, these methods overlook affinity maturation as a rich and largely untapped source of information about the evolutionary process by which antibodies explore the underlying fitness landscape. In contrast, classical phylogenetic models explicitly represent evolutionary dynamics but lack the expressivity to capture complex epistatic interactions. We bridge this gap with CoSiNE, a continuous-time Markov chain parameterized by a deep neural network. Mathematically, we prove that CoSiNE provides a first-order approximation to the intractable sequential point mutation process, capturing epistatic effects with an error bound that is quadratic in branch length. Empirically, CoSiNE outperforms state-of-the-art language models in zero-shot variant effect prediction by explicitly disentangling selection from context-dependent somatic hypermutation. Finally, we introduce Guided Gillespie, a classifier-guided sampling scheme that steers CoSiNE at inference time, enabling efficient optimization of antibody binding affinity toward specific antigens.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=DcyK4f7ZyU",
+  "arxiv": "https://arxiv.org/abs/2602.18982",
+  "pdf": "https://raw.githubusercontent.com/mlresearch/v306/main/assets/lu26ah/lu26ah.pdf",
+  "proceedings": "https://proceedings.mlr.press/v306/lu26ah.html",
+  "virtual": "https://icml.cc/virtual/2026/poster/65443",
+  "code": "https://songlab-cal.github.io/cosine-blog/"
+ },
+ "license": "http://creativecommons.org/licenses/by/4.0/",
+ "img": "cc-by",
+ "image_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/images/icml26-1422.png",
+ "thumb_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/thumbs/icml26-1422.webp",
+ "figure_page": 1,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.9
+}

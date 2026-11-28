@@ -1,0 +1,51 @@
+{
+ "id": "iclr26-2029",
+ "title": "FZOO: Fast Zeroth-Order Optimizer for Fine‑Tuning Large Language Models towards Adam‑Scale Speed",
+ "authors": [
+  "Sizhe Dang",
+  "yangyangGuo",
+  "Yanjun Zhao",
+  "Xiaodong Zheng",
+  "Guang Dai",
+  "Ivor Tsang",
+  "Haishan Ye"
+ ],
+ "venue": "ICLR 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "Optimization->Zero-order and Black-box Optimization",
+ "role": "teaser-result",
+ "role2": "analysis-finding",
+ "claim": "Our optimizer reaches low loss in far fewer forward passes than the zeroth-order baseline, approaching first-order speed.",
+ "layout": "3 panels side-by-side, shared legend style, dashed lines marking step-count gap",
+ "tags": [
+  "zeroth-order",
+  "convergence-speed",
+  "memory-efficient",
+  "fine-tuning",
+  "efficiency"
+ ],
+ "style": [
+  "plot"
+ ],
+ "description": "Three side-by-side log-scale line plots of training loss against forward steps (x100). The panels cover RoBERTa-large on MNLI, RTE and SNLI. Each plot has three curves: MeZO in noisy blue, FZOO in orange with dot markers, and Adam in green. Adam, with its backward pass converted to forward passes, drops almost immediately. FZOO falls steeply within roughly 100–200 steps and reaches about 1e-6 to 1e-7. MeZO decays slowly and is still near 1e-3 after 2000 steps. A gray dashed horizontal line marks MeZO's final loss, and a dashed vertical line drops to the x-axis where FZOO reaches that loss. This makes the speedup gap visible. The legend sits at the top right of each panel, and the eye goes first to the steep orange curve and the dashed lines.",
+ "caption": "Performance of MeZO, Adam and FZOO on different tasks when fine-tuning RoBERTa-large model. For the sake of uniform comparison, we convert Adam's backward pass into 3 forward passes. FZOO can achieve 18$\\times$ speedup compared with MeZO, nearly 20$\\times$ that of Adam.",
+ "caption_source": "latex",
+ "abstract": "Fine-tuning large language models (LLMs) often faces GPU memory bottlenecks: the backward pass of first-order optimizers like Adam increases memory usage to more than 10 times the inference level (e.g., 633 GB for OPT-30B). Zeroth-order (ZO) optimizers avoid this cost by estimating gradients only from forward passes, yet existing methods like MeZO usually require many more steps to converge. Can this trade-off between speed and memory in ZO be fundamentally improved? Normalized-SGD demonstrates strong empirical performance with greater memory efficiency than Adam. In light of this, we introduce FZOO, a Fast Zeroth-Order Optimizer toward Adam-Scale Speed. FZOO reduces the total forward passes needed for convergence by employing batched one-sided estimates that adapt step sizes based on the standard deviation of batch losses. It also accelerates per-batch computation through the use of Rademacher random vector perturbations coupled with CUDA's parallel processing. Extensive experiments on diverse models, including RoBERTa-large, OPT (350M-66B), Phi-2, and Llama3, across 11 tasks validate FZOO's effectiveness. On average, FZOO outperforms MeZO by 3 percent in accuracy while requiring 3 times fewer forward passes. For RoBERTa-large, FZOO achieves average improvements of 5.6 percent in accuracy and an 18 times reduction in forward passes compared to MeZO, achieving convergence speeds comparable to Adam. We also provide theoretical analysis proving FZOO's formal equivalence to a normalized-SGD update rule and its convergence guarantees. FZOO integrates smoothly into PEFT techniques, enabling even larger memory savings. Overall, our results make single-GPU, high-speed, full-parameter fine-tuning practical and point toward future work on memory-efficient pre-training.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=NMlF3YjS8E",
+  "arxiv": "https://arxiv.org/abs/2506.09034",
+  "pdf": "https://proceedings.iclr.cc/paper_files/paper/2026/file/b8d4c82b365d9361863000f8d1e86f1b-Paper-Conference.pdf",
+  "proceedings": "https://proceedings.iclr.cc/paper_files/paper/2026/hash/b8d4c82b365d9361863000f8d1e86f1b-Abstract-Conference.html",
+  "virtual": "https://iclr.cc/virtual/2026/poster/10009867",
+  "code": "https://dkmiyan.github.io/FZOO_hp/"
+ },
+ "license": "http://arxiv.org/licenses/nonexclusive-distrib/1.0/",
+ "img": "none",
+ "image_url": null,
+ "thumb_url": null,
+ "figure_page": 1,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.8
+}

@@ -1,0 +1,54 @@
+{
+ "id": "neurips26-3869",
+ "title": "Value-Aware Stochastic KV Cache Eviction for Reasoning Models",
+ "authors": [
+  "Ting-Yun Chang",
+  "Harvey Yiyun Fu",
+  "Deqing Fu",
+  "Chenghao Yang",
+  "Jesse Thomason",
+  "Robin Jia"
+ ],
+ "venue": "NeurIPS 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "Deep Learning->Attention Mechanisms",
+ "role": "teaser-result",
+ "role2": "prior-vs-ours",
+ "claim": "Methods using only one signal fall short; combining both signals yields consistently higher accuracy across models and baselines.",
+ "layout": "2 panels, left checklist table beside right grouped bar chart",
+ "tags": [
+  "ablation-style",
+  "feature-comparison",
+  "efficiency",
+  "kv-cache-eviction",
+  "complementary-signals"
+ ],
+ "style": [
+  "plot",
+  "colorful",
+  "minimal"
+ ],
+ "description": "The visible bottom of the figure has two panels. On the left is a rounded gray box with a check/cross matrix. Rows are R-KV, CurDKV and VASE (ours). Columns are Diversity and Value score. R-KV has a green check for diversity and a red cross for value score. CurDKV has the reverse. VASE has two green checks. On the right is a grouped bar chart of average accuracy for Qwen3-4B (orange) and Qwen3-14B (blue). The bars are paired by baseline: R-KV with VASE-AttnV, and CurDKV with VASE-DKV. Baseline bars are faded and hatched, with values of 54.7/60.9 and 49.8/55.7. VASE bars are solid and taller, with values of 59.1/65.8 and 57.5/64.9. The eye goes first to the tall solid bars and the check-mark table. The top of the figure, a pipeline with a token axis, is cut off.",
+ "caption": "Top: \\ourmethod{} is a KV Cache eviction method that combines stochastic sampling with value-state magnitude scoring to retain diverse and important KV pairs under a fixed KV cache budget. Bottom: By integrating both stochasticity and value awareness, \\ourmethod{} outperforms baseline methods that use either signal alone, improving average pass@1 accuracy across various reasoning tasks.",
+ "caption_source": "latex",
+ "abstract": "Reasoning models improve accuracy through extended chains of thought, but their long outputs create a memory and compute bottleneck. KV cache eviction methods reduce this cost by evicting unimportant key-value pairs from the cache, yet they often yield worse accuracy than selection-based sparse attention alternatives, which keep the full KV cache. We identify key factors crucial to KV cache eviction accuracy. First, a small fraction of value states have abnormally large magnitudes, and evicting them causes catastrophic failure where models enter repetitive reasoning loops. Second, introducing stochasticity during eviction improves accuracy by increasing cache diversity. Based on these findings, we propose Value-aware Stochastic KV Cache Eviction (VaSE), a training-free recipe that protects large-magnitude value states and promotes diverse eviction decisions. Across six reasoning tasks, Qwen3 models using VaSE with 4x KV cache compression yield higher average accuracies than SOTA selection method at the same sparsity, while outperforming the strongest eviction method by more than 4%. Overall, VaSE bridges the gap between efficiency and accuracy, supporting FlashAttention2 and enabling a static memory footprint for reasoning models.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=R0GnMD9bkE",
+  "arxiv": "https://arxiv.org/abs/2606.03928",
+  "pdf": "https://arxiv.org/pdf/2606.03928",
+  "proceedings": null,
+  "virtual": "https://neurips.cc/virtual/2026/poster/152707",
+  "code": "https://github.com/terarachang/VaSE"
+ },
+ "license": "http://creativecommons.org/licenses/by/4.0/",
+ "img": "cc-by",
+ "image_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/images/neurips26-3869.png",
+ "thumb_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/thumbs/neurips26-3869.webp",
+ "figure_page": 1,
+ "qc_flags": [
+  "bad-crop"
+ ],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.72
+}

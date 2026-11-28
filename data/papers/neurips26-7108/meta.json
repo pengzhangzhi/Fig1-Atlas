@@ -1,0 +1,50 @@
+{
+ "id": "neurips26-7108",
+ "title": "Entropy Minimization without Model Collapse: Mitigating Prediction Bias in Medical Imaging",
+ "authors": [
+  "Tim Nielen",
+  "Sameer Ambekar",
+  "Daniel Lang",
+  "Julia Schnabel"
+ ],
+ "venue": "NeurIPS 2026",
+ "tier": "spotlight",
+ "track": "main",
+ "topic": "Theory->Domain Adaptation and Transfer Learning",
+ "role": "concept",
+ "role2": "before-after",
+ "claim": "Distribution shift merges class clusters across a fixed decision boundary, entropy minimization then collapses the model, and our bias-correcting objective keeps clusters separated.",
+ "layout": "3 panels left-to-right, feature-space plots, two stacked outcomes at right",
+ "tags": [
+  "test-time-adaptation",
+  "entropy-minimization",
+  "distribution-shift",
+  "model-collapse",
+  "prediction-bias"
+ ],
+ "style": [
+  "colorful",
+  "photo/real data",
+  "plot"
+ ],
+ "description": "A left-to-right figure on purple panels. The left panel, Training Domain (Hospital 2), shows two histology patches labeled Normal and Tumor, with lines linking them to a 2-D feature-space plot. In that plot, blue and red clusters are well separated by a dashed decision boundary, over blue and pink background regions. A red-to-blue 'Distribution Shift' arrow leads to the middle panel, Unseen Domain (Hospital 5, Before Adaptation). It shows three patches with true and predicted labels, one a Tumor misclassified as Normal, and its feature plot has clusters merged at the boundary, annotated 'Clusters Merge → Prediction Bias'. Two arrows on the right lead to After Adaptation. An orange 'Entropy Minimization' arrow points to a collapsed plot, and a purple 'DSBR (ours)' arrow points to a plot with separated clusters. A legend runs along the bottom.",
+ "caption": "Feature space clusters merge under distribution shift, inducing severe prediction bias, which is prone to failure for Entropy Minimization (EM). We show the 2-dimensional t-SNE embeddings from WILDSCamelyon [ref] dataset featurized by ResNet50-GN. The background colors indicate the area of the feature space the model classifies as each class which we obtain by fitting a $k$-nearest neighbors classifier on the 2D embeddings and corresponding model predictions. Entropy minimization [ref] is prone to model collapse. In contrast, DSBR (ours) mitigates model collapse and prevents cluster merging across multiple iterations.",
+ "caption_source": "latex",
+ "abstract": "Entropy minimization (EM) is the dominant objective for test-time adaptation, yet its failure mode, model collapse, remains poorly understood. In this work, we show that distribution shifts can cause feature clusters corresponding to distinct classes in the model's representation space to merge, while the decision boundary remains fixed. This induces a systematic skew in the predicted class distribution, referred to as prediction bias. Prediction bias refers to a shift in the predicted class distribution, with some classes overrepresented and others suppressed. We show that entropy minimization amplifies this prediction bias by tightening the existing clusters, reinforcing the incorrect groupings until all predictions collapse to a trivial solution. Next, to demonstrate the significance of prediction bias and mitigate it, we further propose Distribution Shift Bias Reduction (DSBR), a bias-correcting objective that specifically targets this failure mode by equalizing the contribution of each predicted class to the unsupervised entropy minimization loss. To study this failure mode, we design suitable adaptation settings using four medical-imaging datasets and additionally evaluate on ImageNet-C. We find that DSBR consistently stabilizes test-time adaptation, prevents model collapse, and matches or outperforms state-of-the-art methods. Moreover, DSBR operates solely at test-time.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=n0LfI4MJNe",
+  "arxiv": "https://arxiv.org/abs/2606.02339",
+  "pdf": "https://arxiv.org/pdf/2606.02339",
+  "proceedings": null,
+  "virtual": "https://neurips.cc/virtual/2026/poster/149828",
+  "code": "https://entropy-minimization-dsbr.github.io/"
+ },
+ "license": "http://creativecommons.org/licenses/by/4.0/",
+ "img": "cc-by",
+ "image_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/images/neurips26-7108.png",
+ "thumb_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/thumbs/neurips26-7108.webp",
+ "figure_page": 1,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.5
+}

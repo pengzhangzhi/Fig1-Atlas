@@ -1,0 +1,49 @@
+{
+ "id": "iclr26-4941",
+ "title": "Escaping Policy Contraction: Contraction-Aware PPO (CaPPO) for Stable Language Model Fine-Tuning",
+ "authors": [
+  "Dun Yuan",
+  "Di Wu",
+  "Xue Liu"
+ ],
+ "venue": "ICLR 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "Reinforcement Learning->Deep RL",
+ "role": "analysis-finding",
+ "role2": "teaser-result",
+ "claim": "Standard on-policy optimization steadily collapses entropy and shifts probability mass away from reference-like outputs, whereas our method keeps both stable.",
+ "layout": "2 panels, left-to-right, dual y-axis line plot beside overlaid histograms",
+ "tags": [
+  "entropy-collapse",
+  "policy-contraction",
+  "rlhf",
+  "diversity",
+  "training-dynamics"
+ ],
+ "style": [
+  "plot",
+  "minimal",
+  "colorful"
+ ],
+ "description": "Two side-by-side plots comparing PPO (blue) and CaPPO (orange). Panel (a) is a line chart of entropy against training steps, 0 to 2000, with a secondary right axis for forward KL to the reference. The solid blue PPO entropy line falls steadily from about 5.0 to 2.5. The solid orange CaPPO entropy line stays nearly flat at about 4.4 to 5.0. Dashed lines show the KL curves, which are noisy and fluctuate in a narrow range. Panel (b) shows overlaid histograms of length-normalized log-likelihood. The PPO distribution (blue) is centered at about -5.0, further left. The CaPPO distribution (orange) is shifted right, to about -4.4. A vertical orange line marks a threshold τ*. The eye goes first to the diverging entropy lines in (a), then to the shifted histograms in (b). Captions are below each panel.",
+ "caption": "Policy contraction and mitigation. PPO training reduces entropy and erodes support for reference completions, while CaPPO stabilizes entropy and preserves a larger fraction of the reference distribution.",
+ "caption_source": "pdf",
+ "abstract": "Reinforcement learning from human feedback (RLHF) with proximal policy optimization (PPO) is widely used but often yields less diverse outputs than supervised fine-tuning, suggesting an effect in which the policy’s support contracts during on-policy optimization. We formalize this “policy contraction” with the Support Retention Ratio (SRR)—the share of SFT completions that retain non-negligible probability under the RL policy—and additionally track token-entropy, Kullback–Leibler (KL) divergence to the reference, and repetition. We propose Contraction-Aware PPO (CaPPO), a minimum-norm multi-gradient update that co-optimizes reward, entropy, and KL, paired with a controller that steers exploration toward a target token entropy. On HH-RLHF, Summarize-from-Feedback, and UltraFeedback with Qwen2-7B, Qwen2.5-14B, Mistral-7B-Instruct, and Llama-3-8B-Instruct, CaPPO increases win rate by 2 to 4 points over PPO and improves diversity, gaining 0.2 to 0.3 higher SRR. The gains persist under decoding sweeps and are robust to reward scaling and critic variance. Treating reward, diversity, and stability as first-class objectives, CaPPO mitigates contraction without sacrificing alignment performance.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=vDlkJewkDu",
+  "arxiv": null,
+  "pdf": "https://proceedings.iclr.cc/paper_files/paper/2026/file/747f9420daa657dbe17ab1763ac27e3d-Paper-Conference.pdf",
+  "proceedings": "https://proceedings.iclr.cc/paper_files/paper/2026/hash/747f9420daa657dbe17ab1763ac27e3d-Abstract-Conference.html",
+  "virtual": "https://iclr.cc/virtual/2026/poster/10006831",
+  "code": null
+ },
+ "license": null,
+ "img": "none",
+ "image_url": null,
+ "thumb_url": null,
+ "figure_page": 6,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.6
+}

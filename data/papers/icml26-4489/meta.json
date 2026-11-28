@@ -1,0 +1,51 @@
+{
+ "id": "icml26-4489",
+ "title": "Test-time Generalization for Physics through Neural Operator Splitting",
+ "authors": [
+  "Louis Serrano",
+  "Jiequn Han",
+  "Edouard Oyallon",
+  "Shirley Ho",
+  "Rudy Morel"
+ ],
+ "venue": "ICML 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "Applications->Chemistry, Physics, and Earth Sciences",
+ "role": "pipeline",
+ "role2": "concept",
+ "claim": "Pretrained dictionary of specialized operators can be searched and composed sequentially at test time to approximate unseen dynamics without retraining.",
+ "layout": "2 regions: pretraining left, OOD test-time strategy right; left-to-right flow",
+ "tags": [
+  "test-time-compute",
+  "operator-splitting",
+  "compositional",
+  "zero-shot-generalization",
+  "hypernetwork"
+ ],
+ "style": [
+  "colorful",
+  "icon-heavy",
+  "photo/real data"
+ ],
+ "description": "The figure has two main regions. The left gray box, labeled Pretraining, shows two parallel streams. A green reaction-dynamics trajectory stack and a red diffusion+kill trajectory stack are each fed through NODE into an Operator Network. A central Hypernetwork encodes each dynamic and generates the weights theta_i (green) and theta_j (red). Outputs are the predicted next-state patterns. The right side has a dashed OOD Setting box with a yellow-blue reaction-diffusion trajectory labeled f_OOD. Below it, a blue-outlined Test-time Strategy box has two steps. First, Search in theta space, where green and red dotted curves of operators are marked, with f_OOD ≈ f_i1 + f_i2. Second, operator splitting, where arrows chain f_i1 at Δt/2, f_i2 at Δt and f_i1 at Δt/2, taking u^t to u^(t+1). Color coding links the green and red operators across both halves.",
+ "caption": "Test-time generalization through neural operator splitting. During pretraining (left), DISCO learns a dictionary of operators for different physics, such as reaction dynamics (green) and diffusion+kill dynamics (red), with a hypernetwork generating corresponding operator weights $\\theta_i, \\theta_j$. At test time (right), on OOD dynamics such as reaction-diffusion, our method searches over combinations of these operators to approximate the new dynamics (e.g., $f_{OOD} \\approx f_{i_1} + f_{i_2}$), and evolves $u^t \\rightarrow u^{t+1}$ using neural operator splitting via sequential operator applications.",
+ "caption_source": "latex",
+ "abstract": "Neural operators have shown promise in learning solution maps of partial differential equations (PDEs), but they often struggle to generalize when test inputs lie outside the training distribution, such as novel initial conditions, unseen PDE coefficients or unseen physics. Prior works address this limitation with large-scale multiple physics pretraining followed by fine-tuning, but this still require examples from the new dynamics, falling short of true zero-shot generalization. In this work, we propose a method to enhance generalization at test time, i.e., without modifying pretrained weights. Building on DISCO, which provides a dictionary of neural operators trained across different dynamics, we introduce a neural operator splitting strategy that, at test time, searches over compositions of training operators to approximate unseen dynamics.On challenging out-of-distribution tasks including parameter extrapolation and novel combinations of physics phenomena, our approach achieves state-of-the-art zero-shot generalization results, while being able to recover the underlying PDE parameters. These results underscore test-time computation as a key avenue for building flexible, compositional, and generalizable neural operators.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=gLLcjBJCXZ",
+  "arxiv": "https://arxiv.org/abs/2602.00884",
+  "pdf": "https://raw.githubusercontent.com/mlresearch/v306/main/assets/serrano26a/serrano26a.pdf",
+  "proceedings": "https://proceedings.mlr.press/v306/serrano26a.html",
+  "virtual": "https://icml.cc/virtual/2026/poster/62469",
+  "code": "https://louisserrano.github.io/neural-operator-splitting/"
+ },
+ "license": "http://creativecommons.org/licenses/by/4.0/",
+ "img": "cc-by",
+ "image_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/images/icml26-4489.png",
+ "thumb_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/thumbs/icml26-4489.webp",
+ "figure_page": 2,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.8
+}

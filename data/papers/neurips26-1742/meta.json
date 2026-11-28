@@ -1,0 +1,50 @@
+{
+ "id": "neurips26-1742",
+ "title": "MultiTurnRoute: A Platform for Building and Evaluating Multi-Turn LLM Routers",
+ "authors": [
+  "Jiaqi Xue",
+  "Mengxin Zheng",
+  "Heng Huang",
+  "Qian Lou"
+ ],
+ "venue": "NeurIPS 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": null,
+ "role": "overview-framework",
+ "role2": "pipeline",
+ "claim": "A unified platform exposes one shared interface so diverse routers plug into a session loop and are evaluated by a common arena.",
+ "layout": "3 stacked bands, top-down; top row left-to-right with feedback loop arrow",
+ "tags": [
+  "platform",
+  "routing",
+  "shared-interface",
+  "benchmark-evaluation",
+  "multi-turn"
+ ],
+ "style": [
+  "colorful",
+  "text-heavy",
+  "minimal"
+ ],
+ "description": "A single wide framed diagram with a dark header bar reading 'MultiTurnRoute: Multi-turn LLM router platform'. Below are three stacked beige bands. The top band, 'Session runtime', shows a left-to-right flow: Turn input (query, model pool, session state with Q and A tokens, cached prefixes) feeds a dark 'Shared router interface' box, then an LLM backend (vLLM or OpenRouter), then Turn output. A green feedback arrow loops from output back to the input, labeled 'Update history and cached prefixes for the next turn'. The middle band, 'Router implementations', has three cards: Chain-of-Route (our algorithm, with quality and cost arrows merging into 'Select one model'), five built-in baselines, and custom routers. A blue arrow points up to the interface. The bottom band, 'Arena', lists static replay (ranks routers by AUDC) and dynamic sessions (compares quality and cost). Brown, blue and green color-code the sections.",
+ "caption": "MultiTurnRoute is a multi-turn LLM router platform. A registered router reads the query and session state to select a model. The reply and token counts update the state for the next turn. The Arena ranks routers by area under the deferral curve (AUDC) in static replay and compares quality and cost in interactive sessions.",
+ "caption_source": "latex",
+ "abstract": "In a multi-turn conversation, the choice of language model at one turn can affect which model should answer the next. The selected model's reply shapes the context for the next query, and its cached prompt prefix can reduce the cost of using that model again. We introduce MultiTurnRoute, a platform for building and evaluating multi-turn LLM routers. A shared interface gives built-in and user-defined routers the current query, dialogue history, and an estimate of each model's reusable prefix length. Our routing algorithm, Chain-of-Route (CoR), uses a learned gate over recent and recurrent dialogue history to predict response quality and estimates cost from each model's reusable prefix. MultiTurnRoute Arena ranks routers on recorded conversations and compares session quality and cost in interactive runs where a simulated user responds to each reply. On a benchmark drawn from WildChat and LMSYS-Chat-1M with per-turn quality annotations for five LLMs, CoR reduces the normalized cost required to match the strongest model's quality by up to 20.3% relative to the strongest routing baseline, while matching or improving peak response quality.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=CPCK7uqzh3",
+  "arxiv": "https://arxiv.org/abs/2611.10848",
+  "pdf": "https://arxiv.org/pdf/2611.10848",
+  "proceedings": null,
+  "virtual": "https://neurips.cc/virtual/2026/poster/154597",
+  "code": null
+ },
+ "license": "http://creativecommons.org/licenses/by/4.0/",
+ "img": "cc-by",
+ "image_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/images/neurips26-1742.png",
+ "thumb_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/thumbs/neurips26-1742.webp",
+ "figure_page": 0,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.6
+}

@@ -1,0 +1,51 @@
+{
+ "id": "neurips26-6149",
+ "title": "Requential Coding: Pushing the Limits of Model Compression with Self-Generated Training Data",
+ "authors": [
+  "Shikai Qiu",
+  "Marc Finzi",
+  "Yujia Zheng",
+  "Kun Zhang",
+  "Andrew Wilson"
+ ],
+ "venue": "NeurIPS 2026",
+ "tier": "spotlight",
+ "track": "main",
+ "topic": null,
+ "role": "teaser-result",
+ "role2": "pipeline",
+ "claim": "A compact teacher-guided code records only where models disagree, so code length stays small and yields tighter generalization bounds at scale.",
+ "layout": "3 panels, left-to-right: method diagram, loss/code-length curves, scaling bound plot",
+ "tags": [
+  "compression",
+  "teacher-student",
+  "generalization-bound",
+  "scaling",
+  "code-length"
+ ],
+ "style": [
+  "plot",
+  "colorful",
+  "math-heavy"
+ ],
+ "description": "A wide three-panel strip using a consistent teal, orange and purple palette. The left panel, titled 'Requential Coding', is a small flow diagram. A dashed teacher box Q_t and a student box P_t feed a central rounded box of candidate samples Y_t^(0), Y_t^(1), ..., Y_t^(i*). The teacher accepts index i*, and an orange arrow encodes it into a message m_t of about KL(Q_t||P_t) bits. A dark arrow trains the updated student P_{t+1}. The middle panel, 'Information Accumulation', plots loss against tokens. The student and teacher loss curves have a shaded gap between them, and a rising orange code-length curve uses a right-hand axis. The right panel, 'Scalable Generalization Bound', plots loss against parameters on a log axis. It compares a 4-bit PTQ bound in purple, the requential bound in orange and test loss in teal dashes. The requential bound sits below the PTQ bound.",
+ "caption": "\\smallRequential coding achieves strong model compression. (Left) The student model $P_t$ being compressed samples candidates $Y_t^{(0)}, Y_t^{(1)}, \\ldots \\overset{\\mathrm{i.i.d.}}{\\sim} P_t$ for its own training data. A teacher model $Q_t$ accepts an index $i_t^\\star$ chosen so that $X_t = Y_t^{(i_t^\\star)}$ is marginally distributed as $Q_t$, and the student trains on $X_t$ to yield $P_{t+1}$. A message $m_t$ of about $\\mathrm{KL}(Q_t\\|P_t)$ bits encodes the accepted index using relative entropy coding (REC) and is appended to the student's code, and the process repeats. The student can be decoded from the messages alone, without the teacher. (Middle) As training progresses, shown here for language modeling on FineWeb, the student tracks the teacher's loss on real data with the loss gap approximately equal to their KL. The code length for the student, approximately the cumulative teacher-student KL, is roughly equal to the integral of their loss gap. (Right) Strong model compression sheds lights on many phenomena, such as generalization. Our code yields state-of-the-art generalization bounds for compute-optimal LLMs, tightening with scale and outperforming the lossless idealization of 4-bit post-training quantization that set the previous best bounds.",
+ "caption_source": "latex",
+ "abstract": "Compression is fundamental to intelligence. A model that can represent its training data as a short code has discovered regularities that enable generalization. Large neural networks may learn functions far simpler than their parameter counts suggest, but it is challenging to construct codes that realize this simplicity. Parameter-based methods such as quantization produce code lengths that scale with model size, insensitive to how much information the parameters store. Prequential coding bypasses this issue by compressing the training trajectory, but codes the exact data sequence regardless of how much the model learns, yielding large codes when the data has high entropy. We introduce requential coding, where a teacher model selects training samples drawn from the student's own distribution. The student's code records only these selections, which cost bits only where teacher and student disagree. The resulting code length is independent of parameter count and data entropy, and often orders of magnitude shorter than the prequential counterpart, with an advantage that grows with scale. This compression sheds light on phenomena inaccessible to prior compressors. Holding loss fixed, larger models and ensembles compress to much smaller sizes despite more parameters. Plugged into a PAC-Bayes bound, the requential code yields state-of-the-art generalization guarantees for billion-parameter LLMs, outperforming bounds built on aggressive post-training quantization even granted zero error. The bound tightens with scale in the compute-optimal regime, as models become increasingly compressible relative to dataset size. The same code predicts that models gradually overfit when trained for multiple epochs. It also isolates the learnable information in a dataset from its unpredictable, random content, revealing that lower-entropy text holds far more learnable structure than higher-entropy image data.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=gIGw6hwmJz",
+  "arxiv": "https://arxiv.org/abs/2607.11883",
+  "pdf": "https://arxiv.org/pdf/2607.11883",
+  "proceedings": null,
+  "virtual": "https://neurips.cc/virtual/2026/poster/150681",
+  "code": null
+ },
+ "license": "http://arxiv.org/licenses/nonexclusive-distrib/1.0/",
+ "img": "none",
+ "image_url": null,
+ "thumb_url": null,
+ "figure_page": 1,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.55
+}

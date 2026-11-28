@@ -1,0 +1,51 @@
+{
+ "id": "neurips26-6041",
+ "title": "PatchKV: Weight Space Compensation of KV Cache",
+ "authors": [
+  "Chanryeol Lee",
+  "Chanhyuk Lee",
+  "Yeonwoo Choi",
+  "Donggyun Kim",
+  "Seunghoon Hong"
+ ],
+ "venue": "NeurIPS 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "Deep Learning->Attention Mechanisms",
+ "role": "prior-vs-ours",
+ "role2": "pipeline",
+ "claim": "Standard compression keeps context only in a lossy cache; ours also encodes the lost information into a weight patch.",
+ "layout": "2 panels side-by-side, left-to-right flow, color-coded full vs compressed cache",
+ "tags": [
+  "kv-cache",
+  "compression",
+  "weight-patch",
+  "training-free",
+  "long-context"
+ ],
+ "style": [
+  "colorful",
+  "icon-heavy",
+  "minimal"
+ ],
+ "description": "Two panels under a shared header. Panel (a), 'KV Cache Compression' with a black rule, shows a left-to-right flow. A model box f_theta with query q prefills a green grid (Full KV, C). An arrow labeled 'compress' leads to a grid with grey cells for evicted entries (Compressed KV, C_b). A caption says to find C_b minimizing the difference between f_theta(q;C) and f_theta(q;C_b). Panel (b), 'PatchKV' with a blue rule, stacks two branches. Full KV and Compressed KV each pass through f_theta to give output histograms, blue for f_theta(q;C) and orange for f_theta(q;C_b). A bracket merges them into a dashed orange box, Delta theta_c, labeled 'Convert evicted information into weight patch'. A plus sign adds this patch to a transformer block with Attention and MLP.",
+ "caption": "Overview of \\ours{}. (a) Standard KV cache compression stores context information only in a compressed cache. (b) \\ours{} pairs the compressed cache with a context-specific patch to the MLP output projections, compensating for part of the full-cache behavior lost during compression.",
+ "caption_source": "latex",
+ "abstract": "Long-context inference with Large Language Models (LLMs) is bottlenecked by the linearly growing memory of the key-value (KV) cache. Existing compression methods reduce the cache through token eviction or approximation, but degrade sharply at aggressive compression budgets. We propose PatchKV, a training-free framework that compensates KV cache compression methods by carrying part of the context in the model's weights. PatchKV pairs an off-the-shelf compressed KV cache with a context-specific weight patch, which is computed once at context-loading time and served for downstream queries for the context. The weight patch is derived in closed form via ridge regression, by aligning the block-wise activations of context-derived reference query tokens under the full cache and the compressed cache. Once merged into the model, the patch leaves the forward graph and per-query inference cost unchanged in the single-context, multi-query setting. Across long-context QA (SCBench with up to 170K tokens, SQuAD, NIAH) and math (GSM8K) benchmarks on three model architectures, PatchKV consistently improves cache compression methods, suggesting an alternative direction to compensate them at aggressive budgets. Code is available at https://github.com/cusasak/PatchKV.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=fTgwQmKmJx",
+  "arxiv": "https://arxiv.org/abs/2609.39329",
+  "pdf": "https://arxiv.org/pdf/2609.39329",
+  "proceedings": null,
+  "virtual": "https://neurips.cc/virtual/2026/poster/150775",
+  "code": null
+ },
+ "license": "http://creativecommons.org/licenses/by/4.0/",
+ "img": "cc-by",
+ "image_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/images/neurips26-6041.png",
+ "thumb_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/thumbs/neurips26-6041.webp",
+ "figure_page": 2,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.8
+}

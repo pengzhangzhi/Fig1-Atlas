@@ -1,0 +1,51 @@
+{
+ "id": "neurips26-8854",
+ "title": "CRUMB: Efficient Prior Fitted Network Inference via Distributionally Matched Context Batching",
+ "authors": [
+  "Jamie Heredge",
+  "Mattia Jacopo Villani",
+  "Pranav Deshpande",
+  "Akshay Seshadri",
+  "Niraj Kumar"
+ ],
+ "venue": "NeurIPS 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "Data-centric AI->Data-centric AI methods and tools",
+ "role": "pipeline",
+ "role2": null,
+ "claim": "Cluster the queries, match a small context to each cluster by distribution, then run cheap exact inference per cluster instead of using all data.",
+ "layout": "1 panel, left-to-right, K parallel rows with dashed bypass arrow",
+ "tags": [
+  "context-selection",
+  "clustering",
+  "efficiency",
+  "in-context-learning",
+  "tabular-foundation-models"
+ ],
+ "style": [
+  "minimal",
+  "colorful",
+  "math-heavy"
+ ],
+ "description": "A single wide left-to-right flow diagram. On the left, a lavender Train box (D_train, N pts) and a pink Test box (D_test, T pts). The Test box feeds a Stage 1 box (k-means on D_test). A thick red arrow then fans out into K parallel rows. Each row has a pink cluster box C_k, a blue MMD Herding box, a lavender subset box S_k, a green PFN(S_k, C_k) box and an orange prediction box ŷ_Ck. Vertical dots separate rows 2 and K. A dashed blue line runs from the Train box over the top to the MMD Herding column, showing that the full training pool feeds the selection. Stage 2 and Stage 3 labels sit on top, with n ≪ N annotated. A small formula box at bottom left gives the argmin MMD² objective. The eye goes first to the left boxes, then follows the arrows across.",
+ "caption": "Overview of CRUMB. Stage 1: Test queries are partitioned into $K$ clusters via $k$-means. Stage 2: For each cluster $C_k$, a training subset $\\mathcal{S}_k$ of size $n \\ll N$ is selected by greedy MMD minimisation (kernel herding), drawing from the full training pool (dashed blue arrows). Stage 3: The PFN runs $K$ independent forward passes, each with a small, geometrically relevant context. The total attention cost reduces from $T \\!\\cdot\\! N$ to $T \\!\\cdot\\! n$, enabling inference on datasets with $N > 50{,}000$ training points.",
+ "caption_source": "latex",
+ "abstract": "Prior-fitted networks (PFNs) are a promising class of tabular foundation models that perform in-context learning, whereby the entire labelled training set is supplied as context, and predictions for test queries are produced in a single forward pass. However, the quadratically scaling self-attention mechanism in many PFN architectures makes inference prohibitive for very large training datasets. We propose CRUMB (Clustered Retrieval Using Minimised-MMD Batching), a three-stage inference wrapper that (i) clusters the test queries, (ii) selects a small, distributionally matched training subset for each cluster by greedily minimising the maximum mean discrepancy (MMD), and (iii) runs exact PFN inference on each reduced-context batch. CRUMB is architecture-agnostic and requires no retraining. On the 51-dataset TabArena benchmark, evaluated across three PFN architectures (TabPFNv2, TabICLv1, TabICLv2), we show that CRUMB outperforms similar state-of-the-art context selection strategies. We also show that CRUMB is resilient to covariate drift, as the MMD-minimisation step naturally helps align the training context distribution to match the current test batch distributions.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=z3XMLStVPC",
+  "arxiv": "https://arxiv.org/abs/2606.11473",
+  "pdf": "https://arxiv.org/pdf/2606.11473",
+  "proceedings": null,
+  "virtual": "https://neurips.cc/virtual/2026/poster/148277",
+  "code": null
+ },
+ "license": "http://creativecommons.org/licenses/by/4.0/",
+ "img": "cc-by",
+ "image_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/images/neurips26-8854.png",
+ "thumb_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/thumbs/neurips26-8854.webp",
+ "figure_page": 1,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.95
+}

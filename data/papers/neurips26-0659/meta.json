@@ -1,0 +1,54 @@
+{
+ "id": "neurips26-0659",
+ "title": "The Commit-Abstain Circuit: Why Language Models Hallucinate Instead of Abstaining",
+ "authors": [
+  "Vy Nguyen",
+  "Ziqi Xu",
+  "Jeffrey Chan",
+  "Estrid He",
+  "Feng Xia",
+  "Renqiang Luo",
+  "Erik Cambria",
+  "Xiuzhen Zhang"
+ ],
+ "venue": "NeurIPS 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "Social Aspects->Accountability, Transparency and Interpretability",
+ "role": "problem-setup",
+ "role2": "pipeline",
+ "claim": "A model's late abstention signals fail to overturn accumulated early commitment, producing a confident wrong answer, which a lightweight probe on internal activations can correct.",
+ "layout": "2 panels split by dashed line, left-to-right; heatmap, cumulative curve and Sankey flow",
+ "tags": [
+  "mechanistic-interpretability",
+  "hallucination",
+  "abstention",
+  "failure-case",
+  "probing"
+ ],
+ "style": [
+  "plot",
+  "colorful",
+  "text-heavy"
+ ],
+ "description": "The figure has two panels separated by a dashed vertical line. On the left, a question box reads 'How many years would life exist on earth?'. An arrow leads from it to a layer-by-head heatmap of residual contributions to the commit-abstain margin. Blue cells push toward commitment and red cells toward abstention. Red cells cluster in the late layers. Next to the heatmap, a bar chart with a black cumulative curve ends in a blue dot labeled 'Overcommitting, Δ(x)=+3.25'. A Sankey-style flow of blue and red ribbons feeds two log-scale token probability bar lists. Blue commitment tokens, led by 'Earth…' at 74.4%, sit above red abstention tokens such as 'Don't know' at 2.9%. A curved arrow points from 'Earth…' to a boxed model output, 'Earth's life will end in 4.5b years.' The right panel, 'CAC-Informed Abstention', shows a dark activation image for the Commit-Abstain Circuit feeding a small MLP policy network. The network outputs a red 'I don't know' box. The eye goes first to the blue and red heatmap and flow.",
+ "caption": "Unsupported commitment in Qwen 3.5 4B on an unanswerable KUQ question [ref]. Left: Per-component contributions to the commit-abstain margin $\\Delta(x)$ (Definition [ref]). Late-layer abstention signals fail to overturn earlier commitment ($\\Delta(x)=+3.25$), leading to commitment. Right: A lightweight CAC-Informed MLP correctly triggers abstention.",
+ "caption_source": "latex",
+ "abstract": "Language models (LMs) often hallucinate by committing to confident answers rather than abstaining, even when they do not have enough information to answer reliably. A large body of existing work mitigates hallucination through detection or abstention mechanisms, but leaves open how models internally arrive at the decision to commit or abstain in the first place. We study this decision through mechanistic analysis, framing hallucination as unsupported commitment: the model commits despite exhibiting signals of unanswerability. Using causal gating, we identify a Commit-Abstain Circuit (CAC), a sparse, causally localised subset of attention heads and MLP sublayers underlying this decision. Across ten LMs (3B-14B) from five families and three benchmarks, the CAC exhibits a recurring accumulate-yet-undercorrect pattern: commitment-promoting components build up commitment in earlier layers, while abstention-promoting components act later as corrective signals that are often insufficient to overturn the accumulated commitment. Building on this finding, a lightweight policy trained on CAC activations improves decision accuracy by 12.2 points over the model's intrinsic commit-abstain margin, reduces false abstentions by 2.5 times, transfers to unseen benchmarks, and extends to larger models (27B-35B). The CAC is both diagnostic, clarifying how models overcommit, and practical, enabling improved abstention decisions.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=4gAoZ2eJTM",
+  "arxiv": "https://arxiv.org/abs/2609.32964",
+  "pdf": "https://arxiv.org/pdf/2609.32964",
+  "proceedings": null,
+  "virtual": "https://neurips.cc/virtual/2026/poster/155556",
+  "code": "https://itsgavin.me/research/why-language-models-hallucinate"
+ },
+ "license": "http://creativecommons.org/licenses/by/4.0/",
+ "img": "cc-by",
+ "image_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/images/neurips26-0659.png",
+ "thumb_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/thumbs/neurips26-0659.webp",
+ "figure_page": 1,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.6
+}

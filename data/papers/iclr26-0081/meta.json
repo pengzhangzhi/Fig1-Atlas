@@ -1,0 +1,50 @@
+{
+ "id": "iclr26-0081",
+ "title": "MambaVoiceCloning: Efficient and Expressive Text-to-Speech via State-Space Modeling and Diffusion Control",
+ "authors": [
+  "Sahil Kumar",
+  "Namrataben Patel",
+  "Honggang Wang",
+  "Youshan Zhang"
+ ],
+ "venue": "ICLR 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "Deep Learning->Everything Else",
+ "role": "pipeline",
+ "role2": null,
+ "claim": "A multi-stage system turns text and reference audio into speech through all-SSM conditioning, with a training-only aligner supervising it.",
+ "layout": "Four colored stage blocks left-to-right, dashed loss feedback loops along the bottom",
+ "tags": [
+  "pipeline",
+  "state-space-models",
+  "text-to-speech",
+  "diffusion",
+  "training-only-supervision"
+ ],
+ "style": [
+  "colorful",
+  "icon-heavy",
+  "text-heavy"
+ ],
+ "description": "A wide block diagram split into four pastel rounded regions labeled Input Stage (cyan), Encoder Stage (mint), Speech Dynamics Stage (light green) and Decoder Stage (pink). Text tokens and a spectrogram waveform enter on the left. They pass through the Bi-Mamba Text Encoder, Text Aligner, Expressive Mamba Encoder, Pitch Extractor and Temporal Bi-Mamba Encoder. Solid black arrows then lead through Temporal, Expressive and Noise/Pitch predictors to a HiFi-GAN/iSTFTNet decoder. Along the bottom, the generated audio goes to a diffusion denoiser and then to the final waveform, and to discriminators. Dashed arrows carry alignment, temporal, adversarial and mel losses into a grey Training Loss parallelogram. The eye starts at the top-left red text input and follows the arrows rightward. Saturated box fills make the modules stand out.",
+ "caption": "Overview of MambaVoiceCloning (MVC). The framework uses Bi-Mamba Text Encoders for phoneme modeling, a Temporal Bi-Mamba for rhythmic alignment, and an Expressive Mamba for prosodic control. A lightweight aligner (dotted box) provides phoneme--frame supervision only during training, ensuring an SSM-only encoder at inference. Conditioning features drive a diffusion decoder and vocoder for waveform synthesis.",
+ "caption_source": "latex",
+ "abstract": "MambaVoiceCloning (MVC) asks whether the conditioning path of diffusion-based TTS can be made fully SSM-only at inference, removing all attention and explicit RNN-style recurrence layers across text, rhythm, and prosody, while preserving or improving quality under controlled conditions. MVC combines a gated bidirectional Mamba text encoder, a Temporal Bi-Mamba supervised by a lightweight alignment teacher discarded after training, and an Expressive Mamba with AdaLN modulation, yielding linear-time O(T) conditioning with bounded activation memory and practical finite look-ahead streaming. Unlike prior Mamba-TTS systems that remain hybrid at inference, MVC removes attention-based duration and style modules under a fixed StyleTTS2 mel-diffusion-vocoder backbone. Trained on LJSpeech/LibriTTS and evaluated on VCTK, CSS10 (ES/DE/FR), and long-form Gutenberg passages, MVC achieves modest but statistically reliable gains over StyleTTS2, VITS, and Mamba-attention hybrids in MOS/CMOS, F0 RMSE, MCD, and WER, while reducing encoder parameters to 21M and improving throughput by 1.6x. Diffusion remains the dominant latency source, but SSM-only conditioning improves memory footprint, stability, and deployability.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=0oXyMbPMtP",
+  "arxiv": "https://arxiv.org/abs/2604.00292",
+  "pdf": "https://proceedings.iclr.cc/paper_files/paper/2026/file/b577903d061fbe0ea39ffddbbf397bf3-Paper-Conference.pdf",
+  "proceedings": "https://proceedings.iclr.cc/paper_files/paper/2026/hash/b577903d061fbe0ea39ffddbbf397bf3-Abstract-Conference.html",
+  "virtual": "https://iclr.cc/virtual/2026/poster/10011894",
+  "code": null
+ },
+ "license": "http://creativecommons.org/licenses/by/4.0/",
+ "img": "cc-by",
+ "image_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/images/iclr26-0081.png",
+ "thumb_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/thumbs/iclr26-0081.webp",
+ "figure_page": 2,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.93
+}

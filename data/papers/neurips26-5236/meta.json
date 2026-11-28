@@ -1,0 +1,49 @@
+{
+ "id": "neurips26-5236",
+ "title": "Deep Learning-based Algebraic Reynolds Stress Closures for RANS Simulations of Turbulent Flows",
+ "authors": [
+  "Daniel Dehtyriov",
+  "Jonathan F. MacArt",
+  "Justin Sirignano"
+ ],
+ "venue": "NeurIPS 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "Applications->Physics",
+ "role": "pipeline",
+ "role2": null,
+ "claim": "Gradients through a stiff implicit-explicit solver are computed efficiently by a staged adjoint that reuses the forward solver and applies AD only where needed.",
+ "layout": "4 stacked colored boxes, top-to-bottom, equations inside each box, no arrows between boxes",
+ "tags": [
+  "adjoint-method",
+  "implicit-explicit",
+  "automatic-differentiation",
+  "gradient-computation",
+  "pipeline"
+ ],
+ "style": [
+  "math-heavy",
+  "text-heavy",
+  "colorful"
+ ],
+ "description": "Four full-width rounded rectangles are stacked vertically. Each is filled with a pale color and holds only typeset text and equations. The top box is lavender and covers the forward solve. It shows U passing through maps G_1 to G_M, with the per-step linear solve and cached H, g, delta. The second box is peach and covers the backward chain from U-hat_M to U-hat_0. It has two bullets, one for the GMRES matrix-vector product and one for the gradient pass. The third box is also peach and gives the three-step backward sub-step recipe: implicit transpose solve, matrix adjoint, and explicit AD pass. The bottom box is green and covers gradient extraction. It ends in a displayed formula for the gradient of J as a sum of sub-step contributions. The eye goes first to the bold box titles, then to the dense math. The figure has no icons or plots.",
+ "caption": "Hybrid discrete adjoint pipeline. Top row: the three outer steps (forward solve, iterative solve for $\\vlam$, gradient extraction). The matrix-vector product $(\\partial\\R/\\partial\\vU)^\\top\\vv$ is computed by passing through the $M$ forward sub-steps in reverse and applying the three-step recipe (bottom box) at each sub-step, which reuses the efficient forward solver for the implicit half (1, 2) and one AD pass for the explicit half (3). Gradient extraction is a second pass through the chain with $\\hat{\\vU}_M = \\vlam$. We use GMRES for the outer adjoint solve, but any matrix-free iterative method consuming this product works. The implementation differentiates the network once at the end of the gradient step rather than at every sub-step; the gradient is unchanged ([ref]).",
+ "caption_source": "latex",
+ "abstract": "Turbulence is ubiquitous in engineering and science, yet direct simulation is prohibitively expensive. The Reynolds-averaged Navier-Stokes (RANS) equations provide savings exceeding ten orders of magnitude but introduce unclosed terms. Offline-trained machine-learning (ML) closures suffer distribution shift in predictive simulations, while ML methods that bypass the governing equations struggle to generalise from scarce high-fidelity data. We develop a physics-derived deep learning closure for RANS, the Deep Algebraic Reynolds Stress Model (DARSM), which can be trained on one or two flow cases and accurately generalise across an order of magnitude in Reynolds number, to unseen geometries, and across flow regimes. A neural network maps flow invariants to empirical parameters in an implicit algebraic Reynolds stress equation, derived from the Reynolds stress transport equations under the weak-equilibrium assumption, imposing physics-based structure on the ML closure. End-to-end optimisation through the governing PDEs eliminates distribution shift, but both unrolled and implicit automatic differentiation fail on the stiff coupled solver. We derive adjoint equations that exploit the solver's implicit-explicit structure for efficient optimisation. On canonical square-duct and periodic-hill benchmarks, DARSM reduces average test velocity error over baseline RANS by 2-4x across Reynolds number, geometries, and flow regimes, with peak case-level reductions of 12x. The model trained on attached, anisotropy-dominated flows (square duct) accurately generalises without retraining to separated flows (periodic hills), a regime change in the underlying physics. DARSM also outperforms established ML methods: offline training, tensor-basis neural networks, field-inversion machine learning, DeepONets, physics-informed neural networks, and an adjoint-trained source-term closure.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=aDNQ6nqqKm",
+  "arxiv": "https://arxiv.org/abs/2605.26358",
+  "pdf": "https://arxiv.org/pdf/2605.26358",
+  "proceedings": null,
+  "virtual": "https://neurips.cc/virtual/2026/poster/151498",
+  "code": null
+ },
+ "license": "http://arxiv.org/licenses/nonexclusive-distrib/1.0/",
+ "img": "none",
+ "image_url": null,
+ "thumb_url": null,
+ "figure_page": 7,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.85
+}

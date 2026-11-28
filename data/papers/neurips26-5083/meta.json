@@ -1,0 +1,55 @@
+{
+ "id": "neurips26-5083",
+ "title": "SphereFlow: Missing Modality Imputation via Geometric Transport on Hypersphere",
+ "authors": [
+  "Huihan Wang",
+  "Juncheng Wang",
+  "Yuxiang Feng",
+  "Wenlong Hou",
+  "Guoqi Yu",
+  "Chao Xu",
+  "Yang Liu",
+  "Baigui Sun",
+  "Emma, Shujun Wang"
+ ],
+ "venue": "NeurIPS 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "Computer Vision->Image and Video Generation",
+ "role": "prior-vs-ours",
+ "role2": "problem-setup",
+ "claim": "Prior methods bridge modalities with a long jump across disjoint manifolds; ours places them on one shared space for short transport.",
+ "layout": "3 panels, left-to-right, task then conventional versus ours, with labeled latent points",
+ "tags": [
+  "shared-latent-space",
+  "hypersphere",
+  "cross-modal",
+  "missing-modality",
+  "geometric-transport"
+ ],
+ "style": [
+  "colorful",
+  "icon-heavy",
+  "minimal"
+ ],
+ "description": "Three panels, each captioned below. (a) Missing Modality Imputation: on a grey slab, two brain MRI thumbnails (Modality-1 in yellow, Modality-2 in purple) sit next to a dark '?' box labeled Missing. Below them, glowing latent dots z_s (yellow), z_τ (purple) and z_t (red) are joined by a red dashed arrow labeled Cross-Modal Generation, which points toward an Imputed Modality MRI with a red glow. (b) Modal-Specific Manifolds: two separate curved grey sheets, one holding yellow points (Modality-1) and one holding purple points (Modality-2). A long red arrow runs from z_s on the top sheet to z_t on the bottom sheet, labeled Cross-Modal Generation. (c) Modal-Shared Hypersphere: a shiny grey sphere titled DINO-Manifold, with yellow and purple clusters close together. A short red dashed arrow from z_s to z_t is labeled Short-Range Transport. Yellow, purple and red mark the modalities and the transport path.",
+ "caption": "Two views of cross-modal imputation. (a) Task: given a subset of observed modalities, synthesize the missing one. (b) Conventional view: modalities are encoded into disjoint latent manifolds (pixel space or per-modality VAE), so cross-modal generation is a long jump between them. (c) Our view: a frozen DINOv2 encoder maps every modality to a single shared hypersphere $\\mathcal{S}^{d-1}$, on which paired latents $(z_s, z_t)$ sit close together; imputation becomes short-range transport along the sphere.",
+ "caption_source": "latex",
+ "abstract": "Missing modality imputation aims to synthesize unobserved modalities from observed ones. Existing methods treat each modality as living on its own latent manifold, forcing the generator to learn a long, unstructured jump between them. We present SphereFlow, which takes a fundamentally different view: by projecting all modalities into a shared hyperspherical latent space via a frozen self-supervised encoder, cross-modal imputation reduces to short-range geometric transport between nearby points on the sphere. Realizing this idea with flow matching, however, exposes two geometric conflicts: the standard Gaussian noise source is catastrophically mismatched with the unit-norm data manifold, and the linear interpolation path departs the sphere surface into a region where the decoder has no training signal. We resolve both with simple, geometry-aware modifications: replacing the noise source with the observed-modality latent so that the velocity field learns only the cross-modal displacement, and training the decoder with a time-weighted loss that extends its domain to the near-surface region traversed by the flow. We prove that this data-as-source formulation reduces the worst-case off-manifold deviation from a quantity that grows with the latent dimension to a small, dimension-independent bound governed by inter-modality similarity. Experiments on BraTS multi-modal MRI imputation and CT-MRI translation demonstrate state-of-the-art generation fidelity across all settings, while downstream brain tumor segmentation with our imputed data closes roughly eighty percent of the gap to the full-modality oracle. Code is available at https://github.com/WTHH031230/SphereFlow.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=Z7Y3gTo3NR",
+  "arxiv": "https://arxiv.org/abs/2611.04414",
+  "pdf": "https://arxiv.org/pdf/2611.04414",
+  "proceedings": null,
+  "virtual": "https://neurips.cc/virtual/2026/poster/151633",
+  "code": "https://github.com/WTHH031230/SphereFlow"
+ },
+ "license": "http://creativecommons.org/licenses/by/4.0/",
+ "img": "cc-by",
+ "image_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/images/neurips26-5083.png",
+ "thumb_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/thumbs/neurips26-5083.webp",
+ "figure_page": 1,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.8
+}

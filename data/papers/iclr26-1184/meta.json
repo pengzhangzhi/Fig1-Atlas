@@ -1,0 +1,53 @@
+{
+ "id": "iclr26-1184",
+ "title": "PreciseCache: Precise Feature Caching for Efficient and High-fidelity Video Generation",
+ "authors": [
+  "Jiangshan Wang",
+  "Kang Zhao",
+  "Jiayi Guo",
+  "Jiayu Wang",
+  "Hang Guo",
+  "Chenyang Zhu",
+  "Xiu Li",
+  "Xiangyu Yue"
+ ],
+ "venue": "ICLR 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "Computer Vision->Image and Video Generation",
+ "role": "concept",
+ "role2": "prior-vs-ours",
+ "claim": "Naive caching reuses features that are not truly redundant and drifts off the trajectory; precise caching stays on the correct path.",
+ "layout": "1 panel, left-to-right, branching trajectories between noise and data regions",
+ "tags": [
+  "feature-caching",
+  "diffusion-trajectory",
+  "efficiency",
+  "redundancy-detection",
+  "video-generation"
+ ],
+ "style": [
+  "minimal",
+  "colorful"
+ ],
+ "description": "A single schematic of the denoising process, drawn as an arrow along the top from Noise Space (grey blurred arc, left) to Data Space (light-blue blurred arc, right). Grey dots mark latents. Short arrows between dots show model predictions (red, orange or green) or cached predictions (light grey). A wiggly orange path starts at the left and splits in two. The upper branch is pink and ends at a different point in data space, which suggests drift caused by wrongly cached steps. The lower branch is green and runs close to the orange full-computation path, ending near it. This suggests that precise caching keeps the result faithful. A legend at the bottom explains latent dots, model prediction arrows and cached prediction arrows. The eye goes first to the diverging colored trajectories. The caption describes qualitative video results, but this crop shows only a conceptual trajectory sketch.",
+ "caption": "Qualitative Results of PreciseCache on Wan2.1-14B [ref]. Compared with previous methods, our PreciseCache achieves higher acceleration (about 2.6$\\times$ speedup) of the base model without sacrificing the quality of generated videos.",
+ "caption_source": "latex",
+ "abstract": "High computational costs and slow inference hinder the practical application of video generation models. While prior works accelerate the generation process through feature caching, they often suffer from notable quality degradation. In this work, we reveal that this issue arises from their inability to distinguish truly redundant features, which leads to the unintended skipping of computations on important features. To address this, we propose \\textbf{PreciseCache}, a plug-and-play framework that precisely detects and skips truly redundant computations, thereby accelerating inference without sacrificing quality. Specifically, PreciseCache contains two components: LFCache for step-wise caching and BlockCache for block-wise caching. For LFCache, we compute the Low-Frequency Difference (LFD) between the prediction features of the current step and those from the previous cached step. Empirically, we observe that LFD serves as an effective measure of step-wise redundancy, accurately detecting highly redundant steps whose computation can be skipped through reusing cached features. To further accelerate generation within each non-skipped step, we propose BlockCache, which precisely detects and skips redundant computations at the block level within the network. Extensive experiments on various backbones demonstrate the effectiveness of our PreciseCache, such as achieving an average of $2.6\\times$ speedup on Wan2.1-14B without noticeable quality loss.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=DjfRkr82jn",
+  "arxiv": "https://arxiv.org/abs/2603.00976",
+  "pdf": "https://proceedings.iclr.cc/paper_files/paper/2026/file/d634159810456714748d2e38273560cb-Paper-Conference.pdf",
+  "proceedings": "https://proceedings.iclr.cc/paper_files/paper/2026/hash/d634159810456714748d2e38273560cb-Abstract-Conference.html",
+  "virtual": "https://iclr.cc/virtual/2026/poster/10010750",
+  "code": null
+ },
+ "license": "http://creativecommons.org/licenses/by/4.0/",
+ "img": "cc-by",
+ "image_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/images/iclr26-1184.png",
+ "thumb_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/thumbs/iclr26-1184.webp",
+ "figure_page": 1,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.8
+}

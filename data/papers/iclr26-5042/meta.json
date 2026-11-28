@@ -1,0 +1,54 @@
+{
+ "id": "iclr26-5042",
+ "title": "FreeKV: Boosting KV Cache Retrieval for Efficient LLM Inference",
+ "authors": [
+  "Guangda Liu",
+  "Chengwei Li",
+  "Zhenyu Ning",
+  "Jing Lin",
+  "Yiwu Yao",
+  "Danning Ke",
+  "Minyi Guo",
+  "Jieru Zhao"
+ ],
+ "venue": "ICLR 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "Deep Learning->Attention Mechanisms",
+ "role": "analysis-finding",
+ "role2": "problem-setup",
+ "claim": "Dropping methods lose accuracy on harder tasks, while retrieval methods keep accuracy but spend most latency on recall transfers.",
+ "layout": "2 panels, left-to-right: grouped bar chart, then stacked horizontal latency bars",
+ "tags": [
+  "kv-cache",
+  "efficiency",
+  "accuracy-latency-tradeoff",
+  "offloading",
+  "bottleneck-analysis"
+ ],
+ "style": [
+  "plot",
+  "minimal",
+  "colorful"
+ ],
+ "description": "The figure has two bar-chart panels side by side. The left panel is a grouped vertical bar chart of normalized accuracy (0-100) on three tasks: NIAH, Summarization and Reasoning. Each task has four bars: Full KV (light gray), Static Drop (mid gray), Dynamic Drop (black) and Retrieval (red). The drop methods fall sharply on Summarization and Reasoning, to roughly 50-80. Retrieval stays near 97-99, close to Full KV. The right panel is a horizontal stacked bar chart of time per output token in ms, for No Offload, InfiniGen, ShadowKV and ArkVale. Each bar is split into Selection (dark red), Recall (hatched tan) and Others (orange). The Recall segment dominates the offloading methods, and is longest for ArkVale at about 255 ms. The eye goes first to the red retrieval bars and then to the long hatched recall segments.",
+ "caption": "Left: Accuracy comparison of KV dropping and retrieval methods across different tasks. Right: Latency breakdown of KV retrieval methods with offloading.",
+ "caption_source": "latex",
+ "abstract": "Large language models (LLMs) are widely deployed with rapidly expanding context windows to support increasingly demanding applications. However, long contexts pose significant deployment challenges, primarily due to the KV cache whose size grows proportionally with context length. While KV cache compression methods have been proposed to address this issue, KV dropping methods incur considerable accuracy loss, and KV retrieval methods suffer from significant efficiency bottlenecks. We propose FreeKV, a training-free algorithm-system co-optimization framework to enhance KV retrieval efficiency while preserving accuracy. On the algorithm side, FreeKV introduces speculative retrieval to shift the KV selection and recall processes out of the critical path, combined with fine-grained correction to ensure accuracy. On the system side, FreeKV employs hybrid KV layouts across CPU and GPU memory to eliminate fragmented data transfers, and leverages double-buffered streamed recall to further improve efficiency, enabling effective overlap with computation, full latency hiding, and practical speedups from speculative recall. Experiments demonstrate that FreeKV achieves near-lossless accuracy across various scenarios and models, delivering up to a 13$\\times$ speedup compared to SOTA KV retrieval methods. Code is available at https://github.com/sjtu-zhao-lab/FreeKV.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=wXAn7orB1H",
+  "arxiv": "https://arxiv.org/abs/2505.13109",
+  "pdf": "https://proceedings.iclr.cc/paper_files/paper/2026/file/5137e40ee586c4f1fc3615cf8cee4f87-Paper-Conference.pdf",
+  "proceedings": "https://proceedings.iclr.cc/paper_files/paper/2026/hash/5137e40ee586c4f1fc3615cf8cee4f87-Abstract-Conference.html",
+  "virtual": "https://iclr.cc/virtual/2026/poster/10006722",
+  "code": "https://github.com/sjtu-zhao-lab/FreeKV"
+ },
+ "license": "http://creativecommons.org/licenses/by/4.0/",
+ "img": "cc-by",
+ "image_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/images/iclr26-5042.png",
+ "thumb_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/thumbs/iclr26-5042.webp",
+ "figure_page": 1,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.6
+}

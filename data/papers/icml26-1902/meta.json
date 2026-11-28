@@ -1,0 +1,54 @@
+{
+ "id": "icml26-1902",
+ "title": "GradPower: Powering Gradients for Faster Language Model Pre-Training",
+ "authors": [
+  "Jinbo Wang",
+  "Mingze Wang",
+  "Jiaqi Zhang",
+  "Wei Wang",
+  "Peng Pei",
+  "Xunliang Cai",
+  "Weinan E",
+  "Lei Wu"
+ ],
+ "venue": "ICML 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": null,
+ "role": "teaser-result",
+ "role2": "analysis-finding",
+ "claim": "Our simple gradient transformation shifts the scaling law downward, matching baseline loss with a fraction of the compute across settings.",
+ "layout": "3 panels side-by-side, scaling-law lines, red arrows annotating FLOP savings",
+ "tags": [
+  "scaling-laws",
+  "optimizer",
+  "compute-efficiency",
+  "pre-training",
+  "baseline-comparison"
+ ],
+ "style": [
+  "plot",
+  "colorful",
+  "minimal"
+ ],
+ "description": "Three side-by-side line plots on a beige background show scaling laws, with terminal validation loss on the y-axis and PFLOP/s-days on a log-scale x-axis. Panels are titled LLaMA on C4 with cosine schedule, LLaMA on C4 with warmup-stable-decay, and QwenMoE on C4. Each panel has an orange dashed line with star markers for AdamW and a magenta dashed line with stars for AdamWPower (1.2). The magenta line sits consistently below the orange one across three model sizes. A small red arrow between the lines is labeled with the compute ratio: 0.157x, 0.162x and 0.258x FLOPs. The arrows show how much less compute the proposed method needs to reach the same loss. The legend is in the top right of each panel. The eye goes first to the parallel diagonal lines and the red annotations.",
+ "caption": "Scaling-law comparison of AdamWPower and AdamW on the C4 dataset for dense LLaMA models and mixture-of-experts Qwen2MoE models.",
+ "caption_source": "latex",
+ "abstract": "We propose GradPower, a lightweight gradient-transformation technique for accelerating language model pre-training. Given a gradient vector $g=(g_i)_i$, GradPower first applies the elementwise sign-power transformation: $Ï_p(g)=({\\rm sign}(g_i)|g_i|^p)_{i}$ for a fixed $p>0$, and then feeds the transformed gradient into a base optimizer. Notably, GradPower requires only a single-line code change and no modifications to the base optimizer's internal logic, including the hyperparameters. When applied to Adam (termed AdamPower), GradPower consistently achieves lower terminal loss across diverse architectures (LLaMA, Qwen2MoE), parameter scales (66M to 2B), datasets (C4, OpenWebText), and learning-rate schedules (cosine, warmup-stable-decay). The most pronounced gains are observed when training modern mixture-of-experts models with warmup-stable-decay schedules. GradPower also integrates seamlessly with other state-of-the-art optimizers, such as Muon, yielding further improvements. Finally, we provide theoretical analyses that reveal the underlying mechanism of GradPower and highlight the influence of gradient noise.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=I9pDKCWYXk",
+  "arxiv": "https://arxiv.org/abs/2505.24275",
+  "pdf": "https://raw.githubusercontent.com/mlresearch/v306/main/assets/wang26is/wang26is.pdf",
+  "proceedings": "https://proceedings.mlr.press/v306/wang26is.html",
+  "virtual": "https://icml.cc/virtual/2026/poster/64980",
+  "code": null
+ },
+ "license": "http://arxiv.org/licenses/nonexclusive-distrib/1.0/",
+ "img": "none",
+ "image_url": null,
+ "thumb_url": null,
+ "figure_page": 1,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.8
+}

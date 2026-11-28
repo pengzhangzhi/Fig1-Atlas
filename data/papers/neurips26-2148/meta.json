@@ -1,0 +1,48 @@
+{
+ "id": "neurips26-2148",
+ "title": "Neuro-Inspired Inverse Learning for Planning and Control",
+ "authors": [
+  "Maryna Kapitonova",
+  "Tonio Ball"
+ ],
+ "venue": "NeurIPS 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "Applications->Robotics",
+ "role": "pipeline",
+ "role2": "concept",
+ "claim": "A hierarchy of learned inverse models turns goals into subgoals and then into whole action chunks, each produced in a single forward pass.",
+ "layout": "Top-down stacked boxes, timeline of chunks, zoomed trajectory inset below, notation legend on right",
+ "tags": [
+  "hierarchical-planning",
+  "inverse-learning",
+  "action-chunking",
+  "feedforward",
+  "control"
+ ],
+ "style": [
+  "math-heavy",
+  "colorful",
+  "plot"
+ ],
+ "description": "The figure reads top to bottom. A purple box labeled Level 2 Inverter: Planning shows h_psi(s0, G) -> c_1:K. A downward arrow carries the subgoals to an orange box labeled Level 1 Inverter: Control, which shows g_phi(s_{k-1}, c_k) -> a_1:T. Both boxes list the inverse problem and the deployment behavior in italic bullets. Short glossaries on the right define each symbol. Below the boxes, arrows labeled a^(1), a^(2) and a^(3) drop onto a timeline split into three chunks. Red target markers mark the subgoals, and the timeline ends at a goal G square. Dashed green lines zoom from chunk 1 into a curved trajectory. That trajectory is color-coded by speed, with dense green action arrows along it, and ends at subgoal c1 at time t_T.",
+ "caption": "The Inverter planning and control framework. (A) Schematic with two paired Inverters at different abstraction levels. The Level 1 Inverter (Control) $g_\\phi(s_{k-1}, c_k) \\!\\to\\! a^{(k)}_{1:T}$ is trained by \\acs{IL} through a \\acs{FoM} and produces each $T$-step action chunk in a single feedforward pass per chunk---no inner optimization loop, no autoregressive decoding, no iterative denoising. The Level 2 Inverter (Planning) $h_\\psi(s_0, G) \\!\\to\\! c_{1:K}$ emits a sequence of $K$ subgoals, one per chunk. The framework extends naturally to deeper hierarchies ($n\\!\\geq\\!3$, as discussed in the Outlook). The chunks tile the time axis and ultimately drive the agent to the goal $G$. (B) Illustrative single-shot example. From the start state ($\\bullet$), the Inverter emits a full action sequence in one feedforward pass; the green arrows are the planned per-step actions; the curve is the trajectory that emerges from executing those actions through the environment dynamics, with instantaneous speed color-coded. Mirroring the optimal-feedback-control account of neurobiological motor control [ref], our framework thus rejects the notion of a \"desired trajectory\": The properties of the observed motion emerge from the action sequence.",
+ "caption_source": "latex",
+ "abstract": "We present a neuro-inspired framework for embodied planning and control. Building on three principles that enable fast and highly effective goal-directed behavior in the mammalian brain - paired forward/inverse internal models, open-loop multi-step motor commands, and sequential, hierarchical organization of action - our Inverter framework uses learned components, trained end-to-end through Inverse Learning (IL) and supplemented where natural by analytic or algorithmic modules; we formalize IL and delineate it from supervised, reinforcement, and imitation learning. IL bridges Reinforcement Learning (RL)-style amortization, which runs in a single forward pass but emits only one action at a time, and Optimal Control (OC)-style sequence planning over whole trajectories, but with iterative test-time computation. Single Inverters or hierarchical n=2 Inverter stacks match or improve on offline-RL and diffusion-planner baselines on all 3 maze2d and 6 antmaze D4RL variants by an average of +24.2% (range -1.9% to +78.2%), at one-to-two orders of magnitude less inference compute time. Distinctively, optimizing through the Forward Model (FoM) over the entire T-step action sequence - rather than per step - lets Inverters produce smooth, goal-coherent, trajectory-wide structure and reach control policies closer to the analytic optimum than the policy underlying the training data itself. We also identify a failure mode of IL: FoM hacking under narrow training-data coverage, which we mitigate by using random training data with broader coverage. As an application example, a Pulse Inverter synthesizes arbitrary single-qubit quantum gates with fidelity matching the standard iterative numerical baseline (GRAPE), at more than 1000x lower per-gate compute time. In summary, we conclude that IL enables a versatile class of world-interfaces, especially for latency- and resource-critical embodied AI.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=FF1dzX9agi",
+  "arxiv": "https://arxiv.org/abs/2605.24152",
+  "pdf": "https://arxiv.org/pdf/2605.24152",
+  "proceedings": null,
+  "virtual": "https://neurips.cc/virtual/2026/poster/154231",
+  "code": null
+ },
+ "license": "http://creativecommons.org/licenses/by-sa/4.0/",
+ "img": "cc-by-sa",
+ "image_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/images/neurips26-2148.png",
+ "thumb_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/thumbs/neurips26-2148.webp",
+ "figure_page": 1,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.8
+}

@@ -1,0 +1,49 @@
+{
+ "id": "iclr26-4248",
+ "title": "Guided Speculative Inference for Efficient Test-Time Alignment of LLMs",
+ "authors": [
+  "Jonathan Geuter",
+  "Youssef Mroueh",
+  "David Alvarez-Melis"
+ ],
+ "venue": "ICLR 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "Deep Learning->Algorithms",
+ "role": "pipeline",
+ "role2": null,
+ "claim": "A cheap draft model proposes candidates that are scored and accepted if good enough; otherwise the expensive model resamples.",
+ "layout": "Single flowchart, left-to-right, accept/reject boxes at right, color legend bottom-left",
+ "tags": [
+  "speculative-decoding",
+  "best-of-n",
+  "reward-guided",
+  "accept-reject",
+  "efficiency"
+ ],
+ "style": [
+  "math-heavy",
+  "colorful",
+  "minimal"
+ ],
+ "description": "A left-to-right flowchart of one reasoning step of the method. Input x feeds a green draft-model sampling box, y_i^S ~ pi_S. From there, three branches compute the target log-probability (blue), the reward (orange), and the draft log-probability (green). These merge into a gray box that defines the tilted reward r~_i = (r + (1/beta) log pi_B/pi_S)(y_i^S). A red S-BoN box selects the index i*. Arrows then split into a pink 'Accept' panel at top right and a larger pink 'Reject' panel at bottom right. The Accept panel holds the test r~ >= u and outputs y^S_{i*}. The Reject panel stacks target-model sampling, reward scoring, a second S-BoN and the output y^B_{i*}. A yellow legend at bottom left maps colors to draft model, target model, reward model and S-BoN.",
+ "caption": "Guided Speculative Inference workflow for one reasoning step. A sample $y^S_{i^*}$ generated from the draft model $\\pi_S$ is selected with soft best-of-$n$ (S-BoN) with parameter $\\beta$ from the tilted rewards $\\tilde{r}_i$. If its reward lies above a threshold $u$ it is accepted. Otherwise, it is rejected, which triggers resampling from the target model $\\pi_B$ with soft best-of-$n$.",
+ "caption_source": "latex",
+ "abstract": "We propose Guided Speculative Inference (GSI), a novel algorithm for efficient reward-guided decoding in large language models. GSI combines soft best-of-$n$ test-time scaling with a reward model $r(x,y)$ and speculative samples from a small auxiliary model $Ï_S(y\\mid x)$. We provably approximate both the optimal tilted policy $Ï_{Î²,B}(y\\mid x) \\propto Ï_B(y\\mid x)\\exp(Î²\\,r(x,y))$ of soft best-of-$n$ under the base model $Ï_B$, as well as the expected reward under the optimal policy. In experiments on reasoning benchmarks (MATH500, OlympiadBench, Minerva Math, MMLU-STEM, GSM8K) and across different model families, our method achieves higher accuracy than standard soft best-of-$n$ with $Ï_S$ and reward-guided speculative decoding (Liao et al., 2025), and in certain settings even outperforms soft best-of-$n$ with $Ï_B$, while reducing end-to-end latency by up to $28\\%$. The code is available at https://github.com/j-geuter/GSI .",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=miNzDqDENd",
+  "arxiv": "https://arxiv.org/abs/2506.04118",
+  "pdf": "https://proceedings.iclr.cc/paper_files/paper/2026/file/79cab89b43ac21c6941ad9735df95d30-Paper-Conference.pdf",
+  "proceedings": "https://proceedings.iclr.cc/paper_files/paper/2026/hash/79cab89b43ac21c6941ad9735df95d30-Abstract-Conference.html",
+  "virtual": "https://iclr.cc/virtual/2026/poster/10007549",
+  "code": null
+ },
+ "license": "http://arxiv.org/licenses/nonexclusive-distrib/1.0/",
+ "img": "none",
+ "image_url": null,
+ "thumb_url": null,
+ "figure_page": 1,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.95
+}

@@ -1,0 +1,51 @@
+{
+ "id": "icml26-5234",
+ "title": "Probabilistic Retrofitting of Learned Simulators",
+ "authors": [
+  "Cristiana Diaconu",
+  "Miles Cranmer",
+  "Richard E Turner",
+  "Tanya Marwah",
+  "Payel Mukhopadhyay"
+ ],
+ "venue": "ICML 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "Probabilistic Methods->Everything Else",
+ "role": "prior-vs-ours",
+ "role2": "pipeline",
+ "claim": "Deterministic models give a single smoothed prediction; adding a noise-driven stochastic branch trained with a proper scoring rule yields sharp, diverse ensembles.",
+ "layout": "2 contrasting panels left-to-right with pretrained backbone on top, sample image columns at edges",
+ "tags": [
+  "retrofitting",
+  "probabilistic",
+  "ensemble",
+  "scoring-rule",
+  "architecture-agnostic"
+ ],
+ "style": [
+  "colorful",
+  "math-heavy",
+  "photo/real data"
+ ],
+ "description": "Top-left shows a dashed arc labelled 'Pre-trained deterministic model' with tilted cards for Poseidon, LoLA and a highlighted red Walrus box. An arrow runs from Walrus down to a grey 'Deterministic Approaches' box, containing x_history feeding a model M_θ that outputs x̂, trained with an MAE/MSE loss against y_target. Its inference result, a blurry smoothed flow field, appears at far left above a dashed line, with the y_target field above it. A second arrow runs right into a large purple 'Our Approach' panel. Inside, noise ε ~ N(0, I) passes through an MLP to give e_noise. This noise is split into e_1…e_N, which feed N copies of the modified backbone M̃_θ along with x_history. The copies output x̂_1…x̂_N, which go to a CRPS loss together with y_target. The right edge shows 'Inference' arrows leading to a column of sharp, diverse red-and-blue turbulence samples, with y_target at the top.",
+ "caption": "Comparison between deterministic and probabilistic retrofitting. Left (Deterministic): Existing models ($\\mathcal{M}_\\theta$) map input history $x_{history}$ to a single output using MAE/MSE loss, often yielding smoothed, average predictions. Right (Our Approach): We introduce a stochastic branch where noise $\\epsilon$ is projected via an MLP to modulate the backbone $\\tilde{\\mathcal{M}}_\\theta$. The model is retrofitted using the CRPS loss. At inference, sampling multiple $\\epsilon$ vectors generates an ensemble of sharp, diverse predictions for a single input history.",
+ "caption_source": "latex",
+ "abstract": "Dominant approaches for modelling Partial Differential Equations (PDEs) rely on deterministic predictions, yet many physical systems of interest are inherently chaotic and uncertain. While training probabilistic models from scratch is possible, it is computationally expensive and fails to leverage the significant resources already invested in high-performing deterministic backbones. In this work, we adopt a training-efficient strategy to transform pre-trained deterministic models into probabilistic ones via retrofitting with a proper scoring rule: the Continuous Ranked Probability Score (CRPS). Crucially, this approach is architecture-agnostic: it applies the same adaptation mechanism across distinct model backbones with minimal code modifications. The method proves highly effective across different scales of pre-training: for models trained on single dynamical systems, we achieve 20-54% reductions in rollout CRPS and up to 30% improvements in variance-normalised RMSE (VRMSE) relative to compute-matched deterministic fine-tuning. We further validate our approach on a PDE foundation model, trained on multiple systems and retrofitted on the dataset of interest, to show that our probabilistic adaptation yields an improvement of up to 40% in CRPS and up to 15% in VRMSE compared to deterministic fine-tuning. Validated across diverse architectures and dynamics, our results show that probabilistic PDE modelling need not require retraining from scratch, but can be unlocked from existing deterministic backbones with modest additional training cost.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=nE5g2b8WW5",
+  "arxiv": "https://arxiv.org/abs/2603.01949",
+  "pdf": "https://raw.githubusercontent.com/mlresearch/v306/main/assets/diaconu26a/diaconu26a.pdf",
+  "proceedings": "https://proceedings.mlr.press/v306/diaconu26a.html",
+  "virtual": "https://icml.cc/virtual/2026/poster/61754",
+  "code": "https://github.com/cddcam/lola_crps"
+ },
+ "license": "http://creativecommons.org/licenses/by/4.0/",
+ "img": "cc-by",
+ "image_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/images/icml26-5234.png",
+ "thumb_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/thumbs/icml26-5234.webp",
+ "figure_page": 2,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.6
+}

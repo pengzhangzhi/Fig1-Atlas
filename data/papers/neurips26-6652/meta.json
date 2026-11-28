@@ -1,0 +1,49 @@
+{
+ "id": "neurips26-6652",
+ "title": "DynamicRad: Content-Adaptive Sparse Attention for Long Video Diffusion",
+ "authors": [
+  "Yongji Long",
+  "Shijun Liang",
+  "Jintao Li",
+  "Yun Li"
+ ],
+ "venue": "NeurIPS 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "Computer Vision->Image and Video Generation",
+ "role": "pipeline",
+ "role2": null,
+ "claim": "An offline profiling stage precomputes optimal parameters so that online inference can adaptively pick among modes at low cost.",
+ "layout": "2 stacked panels, left-to-right flow, offline table feeding online pipeline",
+ "tags": [
+  "sparse-attention",
+  "offline-optimization",
+  "adaptive-routing",
+  "efficiency",
+  "video-diffusion"
+ ],
+ "style": [
+  "colorful",
+  "icon-heavy"
+ ],
+ "description": "The figure has two stacked rounded panels. The top panel, 'OFFLINE PHASE (Parameter Profiling)', shows several Gaussian-process-like curves on axes (the Bayesian Optimization Engine). An arrow leads to a grey 'Proxy Task Model' box, and a dotted arrow leads to a teal Parameter Lookup Table. The table has rows for Low, Mid and High Motion and columns γ, λ, θm, θc. The bottom panel, 'ONLINE INFERENCE (Training-Free)', flows left to right. Video Tokens and Text Embeddings feed a teal Semantic Router (Classifier), which branches into a blue Static-Ratio Mode grid and an orange Dynamic-Threshold Mode grid. Both merge into a diagonal-banded Block Mask (M) with red slash marks. That mask goes into a FlashAttention + LoRA (Projection) block with a small green LoRA box, then to Generated Video. Teal, blue and orange coding separates the components.",
+ "caption": "Overview of DynamicRad. Offline BO builds a lookup table of motion-regime-specific sparsity configurations. At inference time, a semantic router selects a regime from the prompt embedding, which determines either static-ratio or dynamic-threshold selection within a shared structured candidate set to produce the final block-sparse mask. An optional mask-aware LoRA compensates for sparsity-induced information loss.",
+ "caption_source": "latex",
+ "abstract": "Leveraging the natural spatiotemporal energy decay in video diffusion offers a path to efficiency, yet relying solely on rigid static masks risks losing critical long-range information in complex dynamics. To address this issue, we propose \\textbf{DynamicRad}, a unified sparse-attention paradigm that grounds adaptive selection within a radial locality prior. DynamicRad introduces a \\textbf{dual-mode} strategy: \\textit{static-ratio} for speed-optimized execution and \\textit{dynamic-threshold} for quality-first filtering. To ensure robustness without online search overhead, we integrate an offline Bayesian Optimization (BO) pipeline coupled with a \\textbf{semantic motion router}. This lightweight projection module maps prompt embeddings to optimal sparsity regimes with \\textbf{minimal runtime overhead}. Unlike online profiling methods, our offline BO optimizes attention reconstruction error (MSE) on a physics-based proxy task, ensuring rapid convergence. Experiments on HunyuanVideo and Wan2.1-14B demonstrate that DynamicRad pushes the efficiency--quality Pareto frontier, achieving \\textbf{1.7$\\times$--2.5$\\times$ inference speedups} with \\textbf{over 80\\% effective sparsity}. In some long-sequence settings, the dynamic mode even matches or exceeds the dense baseline, while mask-aware LoRA further improves long-horizon coherence. Code is available at https://github.com/Adamlong3/DynamicRad.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=joj70kq2fc",
+  "arxiv": "https://arxiv.org/abs/2604.20470",
+  "pdf": "https://arxiv.org/pdf/2604.20470",
+  "proceedings": null,
+  "virtual": "https://neurips.cc/virtual/2026/poster/150232",
+  "code": null
+ },
+ "license": "http://creativecommons.org/licenses/by/4.0/",
+ "img": "cc-by",
+ "image_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/images/neurips26-6652.png",
+ "thumb_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/thumbs/neurips26-6652.webp",
+ "figure_page": 2,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.93
+}

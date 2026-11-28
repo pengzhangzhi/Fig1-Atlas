@@ -1,0 +1,54 @@
+{
+ "id": "iclr26-3157",
+ "title": "Scaling Large Vision-Language Model RL Training via Efficient Load Balancing",
+ "authors": [
+  "Zerui Wang",
+  "Qinghao Hu",
+  "Chang Chen",
+  "Jiecheng Zhou",
+  "Haojie Duanmu",
+  "Xingcheng Zhang",
+  "Peng Sun",
+  "Dahua Lin"
+ ],
+ "venue": "ICLR 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "Reinforcement Learning->Everything Else",
+ "role": "prior-vs-ours",
+ "role2": "pipeline",
+ "claim": "Centralized, indivisible-unit processing causes latency and imbalance; decentralizing data handling and splitting work into fine-grained chunks removes both bottlenecks.",
+ "layout": "3 panels: left column top-vs-bottom, right column top-to-bottom, thumbs-down/up verdicts",
+ "tags": [
+  "load-balancing",
+  "distributed-systems",
+  "bottleneck-removal",
+  "decentralization",
+  "throughput"
+ ],
+ "style": [
+  "colorful",
+  "icon-heavy",
+  "minimal"
+ ],
+ "description": "A dashed-line grid splits the figure into three regions. Top-left shows the traditional RL data pipeline: a tall green 'Single Controller' arrow, grey double arrows to stacked yellow Rollout and Actor Worker blocks, and a grey arrow pulling in 'Vision Data (>2TB)' shapes. Red italic labels 'High Latency' and 'CPU OOM' appear with a thumbs-down. Bottom-left shows 'Ours: Decentralized Data Pipeline'. The controller exchanges only pink 'Metadata' arrows with the workers, which connect to pink ShadowLoader stacks, with a thumbs-up and 'Only lightweight metadata'. The right column, 'Ours: Balance Workload', runs top to bottom. Stacked sequence blocks are broken into small numbered chunks, and FlexUlysses redistributes them. The per-GPU bar chart changes from imbalanced (Latency 10s, thumbs-down) to balanced (Latency 5s, thumbs-up). Red marks problems and pink and green mark the proposed components.",
+ "caption": "FlexRL Overview. (Left) Traditional VLM RL pipelines centralize vision-data fetching and preprocessing with a single controller, leading to high latency and CPU out-of-memory (OOM). ShadowLoader decentralizes the pipeline by parallelizing heavy I/O and preprocessing across rollout/actor workers while the controller exchanges only lightweight metadata. (Right) Highly variable multimodal sequence lengths cause severe cross-GPU imbalance when sequences are scheduled as indivisible units. FlexUlysses shards sequences into fine-grained chunks to balance computation for both rollout inference and model updates, reducing step latency (10 s→5 s in the example).",
+ "caption_source": "pdf",
+ "abstract": "Reinforcement learning (RL) is increasingly used to align vision--language models (VLMs), yet scaling RL for VLMs is bottlenecked by multimodal data handling and extreme workload skew. In typical RL pipelines, visual data loading and preprocessing are centralized, creating severe I/O and CPU/memory stragglers, while batches that mix short image-text prompts with long video contexts lead to large cross-GPU imbalance during rollouts, inference, and training. We present FlexRL, an end-to-end system that removes these bottlenecks. FlexRL introduces: (1) ShadowLoader, a distributed, metadata-driven pipeline that keeps only lightweight visual metadata on the controller, pushes decoding and preprocessing to worker-side preprocessors, and asynchronously materializes tensors to overlap I/O with GPU computation; (2) FlexUlysses, a cost-aware sub-sequence sharding and execution engine that adaptively splits sequences to balance compute and memory. Our evaluation shows that across multiple VLM scales and multimodal datasets on 128-GPU clusters, FlexRL improves end-to-end throughput by up to 8.47$\\times$ over state-of-the-art RL systems.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=aa14rlfR6k",
+  "arxiv": null,
+  "pdf": "https://proceedings.iclr.cc/paper_files/paper/2026/file/8cb31912235561112339f04903657f72-Paper-Conference.pdf",
+  "proceedings": "https://proceedings.iclr.cc/paper_files/paper/2026/hash/8cb31912235561112339f04903657f72-Abstract-Conference.html",
+  "virtual": "https://iclr.cc/virtual/2026/poster/10008689",
+  "code": null
+ },
+ "license": null,
+ "img": "none",
+ "image_url": null,
+ "thumb_url": null,
+ "figure_page": 1,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.6
+}

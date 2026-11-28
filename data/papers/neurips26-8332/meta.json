@@ -1,0 +1,53 @@
+{
+ "id": "neurips26-8332",
+ "title": "How Much is Left? LLMs Linearly Encode Their Remaining Output Length",
+ "authors": [
+  "Mohamed Amine Merzouk",
+  "Dmitri Carpov",
+  "Mirko Bronzi",
+  "Damiano Fornasiere",
+  "Adam Oberman"
+ ],
+ "venue": "NeurIPS 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "Social Aspects->Accountability, Transparency and Interpretability",
+ "role": "analysis-finding",
+ "role2": "teaser-result",
+ "claim": "A per-position predictor can track remaining length with the lowest error, even when its predictions are non-monotonic, beating constant and prompt-only baselines.",
+ "layout": "Single line plot over answer tokens, with MAE legend table at right",
+ "tags": [
+  "linear-probe",
+  "length-prediction",
+  "toy-example",
+  "error-comparison",
+  "interpretability"
+ ],
+ "style": [
+  "plot",
+  "minimal",
+  "colorful"
+ ],
+ "description": "A single toy line chart. The top shows the question \"How old is the son?\" and four answer tokens in boxes: \"2\", \"5\", \"years\", \"old\". Below, the y-axis is remaining tokens from 0 to 10, with dashed vertical gridlines running down from each token. A dashed black line with hollow circle markers is the ground truth, falling from 4 to 1. A flat dark line at 8 is the baseline. A blue line is the prompt-only predictor, counting down from 9 to 6 with a constant offset. An orange line is the count probe, running 6, 3, 4, 1, so it is jagged but close to the ground truth. A legend table at right lists each predictor with its MAE: 0.0, 5.5, 5.0 and 1.0. The eye goes first to the colored lines, then to the table.",
+ "caption": "The three predictors on a four-token answer to \"How old is the son?\", followed by EOS (ground-truth remaining counts 4, 3, 2, 1; dashed line, hollow markers). The legend's \"Baseline\", \"Prompt-only\" and \"Count probe\" are the constant-median baseline, the Completion Length Probe with exact countdown, and the Remaining Count Probe. The constant-median baseline outputs the dataset median at every position. The Completion Length Probe reads the prompt's last hidden state once and counts down by one per token, capturing the shape with a fixed offset (9, 8, 7, 6). The Remaining Count Probe reads the hidden state at every position; its predictions (6, 3, 4, 1) are not monotonic, yet it has the lowest MAE (mean absolute error, in tokens; lower is better): 1.0 against 5.0 and 5.5. Toy example for exposition.",
+ "caption_source": "latex",
+ "abstract": "Large Language models generate tokens, without explicitly keeping track of the length of the generated text. This paper asks the question: can we estimate the number of tokens remaining in a generated response, using just a linear probe on the model's hidden states? Previous work on inference scheduling established that length is statistically predictable, using nonlinear methods. This paper contributes a linear representation method, using frozen hidden states of 7-8B instruction-tuned models, across seven datasets. We show that total completion length can be estimated, with performance stronger than statistical baselines, and stronger than the fair comparison to the prediction at the last token of the prompt. On the natural-language datasets, the probe's error lies between 0.57 and 0.88 of the statistical baseline's. Interestingly, when a retraction token occurs (\"Wait\"), the probe predicted length jumps upward by over 70 tokens, on average, compared to the baseline, where it drops by 0.7, on average. Moreover, the direction found can be used for length steering: adding to the probe direction increases completion length and vice-versa, on Llama-3.1-8B / GSM8K. These results indicate that LLMs have a linearly decodable internal representation of output length.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=vPQUUDiAuf",
+  "arxiv": "https://arxiv.org/abs/2607.05316",
+  "pdf": "https://arxiv.org/pdf/2607.05316",
+  "proceedings": null,
+  "virtual": "https://neurips.cc/virtual/2026/poster/148738",
+  "code": "https://github.com/mamerzouk/llm-output-length"
+ },
+ "license": "http://arxiv.org/licenses/nonexclusive-distrib/1.0/",
+ "img": "none",
+ "image_url": null,
+ "thumb_url": null,
+ "figure_page": 1,
+ "qc_flags": [
+  "low-role-confidence"
+ ],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.4
+}

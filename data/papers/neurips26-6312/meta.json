@@ -1,0 +1,57 @@
+{
+ "id": "neurips26-6312",
+ "title": "FlashEvolve: Accelerating Agent Self-Evolution with Asynchronous Stage Orchestration",
+ "authors": [
+  "Zhengding Hu",
+  "Mingge Lu",
+  "Zhen Wang",
+  "Jixuan Ruan",
+  "Chang Chen",
+  "Zaifeng Pan",
+  "Yue Guan",
+  "Ruiyi Wang",
+  "Zhongkai Yu",
+  "Chao Zhang",
+  "Yufei Ding"
+ ],
+ "venue": "NeurIPS 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "Optimization->Large Scale, Parallel and Distributed",
+ "role": "problem-setup",
+ "role2": "pipeline",
+ "claim": "Synchronized multi-stage iterative loops suffer from sequential stage dependencies and uneven per-sample workloads, which together limit efficiency.",
+ "layout": "3 regions left-to-right: artifact box, cyclic stage loop, task-sample imbalance panel",
+ "tags": [
+  "multi-stage-loop",
+  "synchronization",
+  "load-imbalance",
+  "efficiency-bottleneck",
+  "agent-evolution"
+ ],
+ "style": [
+  "icon-heavy",
+  "colorful",
+  "text-heavy"
+ ],
+ "description": "The figure shows an agent-evolution loop and marks two efficiency problems. On the left, a dashed box titled 'Evolving Artifacts' lists three artifact types with icons: Prompt/Context, Generated Programs, and Harness Code. In the middle, three stacked boxes (Rollout, Propose, Evaluate) are joined by downward gray arrows. Each box is paired with an icon: Q&A bubbles, a lightbulb and pen, and a checked document. A tree icon and 'Frontier Selection' arrow lead into Rollout. A 'Pool Update' arrow leads from Evaluate back to the artifacts. This middle section is labeled 'Challenge 1: Sequential Dependencies'. On the right, a rounded dashed panel titled 'Challenge 2: Sample Imbalance' in red shows rows Task 1 to Task N. Each row has a blue Sample bar of different length with a pink arrow, so the samples take different amounts of time. Training and Validate Set stacks feed the rows through 'Mini-Batch Sampling'. Pastel blue, yellow, green and peach fills mark the stages and tasks.",
+ "caption": "Illustration of the multi-stage execution in agent evolution. The synchronized stage orchestration in existing implementations [ref] exposes two efficiency challenges: sequential dependencies across stages and sample workload imbalance within each individual stage.",
+ "caption_source": "latex",
+ "abstract": "LLM-based evolution has emerged as a promising way to improve agents by refining non-parametric artifacts, but its wall-clock cost remains a major bottleneck. We identify that this cost comes from synchronized stage execution and imbalance inside each LLM-heavy stage. We present FlashEvolve, an efficient framework that replaces synchronized execution with asynchronous workers and queues, allowing different stages and steps to overlap. To handle data staleness introduced by asynchrony, FlashEvolve tracks artifact versions and applies different policies to update, discard, or patch stale artifacts. Unlike weight-space staleness in asynchronous RL, language-space staleness is inspectable and repairable: a stale artifact is not just delayed work, but readable evidence that the LLM can reflect on, revise, and turn into useful evolution signal. FlashEvolve further improves throughput and token efficiency with speculative stage completion and adaptive workflow control. On GEPA workloads, FlashEvolve improves proposal throughput by $3.5\\times$ on local vLLM and $4.9\\times$ on API serving over synchronous GEPA. The same design also applies to ACE and Meta-Harness.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=hQqV68QK4q",
+  "arxiv": "https://arxiv.org/abs/2605.08520",
+  "pdf": "https://arxiv.org/pdf/2605.08520",
+  "proceedings": null,
+  "virtual": "https://neurips.cc/virtual/2026/poster/150533",
+  "code": null
+ },
+ "license": "http://arxiv.org/licenses/nonexclusive-distrib/1.0/",
+ "img": "none",
+ "image_url": null,
+ "thumb_url": null,
+ "figure_page": 1,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.6
+}

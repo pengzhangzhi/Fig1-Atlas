@@ -1,0 +1,49 @@
+{
+ "id": "neurips26-3806",
+ "title": "EntropyCache: Decoded Token Entropy Guided KV Caching for Diffusion Language Models",
+ "authors": [
+  "Minsoo Cheong",
+  "Donghyun Son",
+  "Woosang Lim",
+  "Sungjoo Yoo"
+ ],
+ "venue": "NeurIPS 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "Applications->Language, Speech and Dialog",
+ "role": "analysis-finding",
+ "role2": null,
+ "claim": "A cheap per-step uncertainty signal tracks hidden-state drift, so it can serve as a proxy for when cached states go stale.",
+ "layout": "2 panels, left-to-right; dual-axis time series then log-log scatter with fit",
+ "tags": [
+  "entropy",
+  "kv-caching",
+  "diffusion-language-models",
+  "correlation",
+  "efficiency"
+ ],
+ "style": [
+  "plot",
+  "colorful"
+ ],
+ "description": "Two side-by-side plots. Panel (a) is a dual-axis line chart over about 250 denoising steps. A red line shows max decoded-token entropy in nats on the left axis. A green line shows average cosine distance on the right axis. Both are spiky, and the peaks mostly coincide. The legend sits at the top right. Panel (b) is a log-log scatter of max decoded-token entropy (x) against average cosine distance (y). Many translucent red dots sit around a bold red OLS fit line with a pale 95% confidence band. A boxed 'ρ = 0.644' sits in the top right. Red and green carry the two quantities, and the eye goes first to the spiky lines and then to the upward-sloping fit line.",
+ "caption": "(a) Decoded-token entropy and value-vector cosine distance over denoising steps for a single GSM8K sample with LLaDA-8B-Instruct. (b) Maximum decoded-token entropy versus average value-vector cosine distance on log--log axes.",
+ "caption_source": "latex",
+ "abstract": "Diffusion-based large language models (dLLMs) rely on bidirectional attention, which prevents lossless KV caching and requires a full forward pass at every denoising step. Existing approximate KV caching methods reduce this cost by selectively updating cached states, but their decision overhead scales with context length or model depth. We propose EntropyCache, a training-free KV caching method that uses the maximum entropy of newly decoded token distributions as a constant-cost signal for deciding when to recompute. Our design is grounded in two empirical observations: (1) decoded token entropy correlates with KV cache drift, providing a cheap proxy for cache staleness, and (2) feature volatility of decoded tokens persists for multiple steps after unmasking, motivating recomputation of the $k$ most recently decoded tokens. The skip-or-recompute decision requires only $O(V)$ computation per step, independent of context length and model scale. Experiments on LLaDA-8B-Instruct and Dream-7B-Instruct show that EntropyCache achieves $15.2\\times$-$26.4\\times$ speedup on standard benchmarks and $22.4\\times$-$24.1\\times$ on chain-of-thought benchmarks, with competitive accuracy and decision overhead accounting for only $0.5\\%$ of inference time. Code is available at https://github.com/mscheong01/EntropyCache.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=QX9lXOB8FY",
+  "arxiv": "https://arxiv.org/abs/2603.18489",
+  "pdf": "https://arxiv.org/pdf/2603.18489",
+  "proceedings": null,
+  "virtual": "https://neurips.cc/virtual/2026/poster/152767",
+  "code": null
+ },
+ "license": "http://creativecommons.org/licenses/by/4.0/",
+ "img": "cc-by",
+ "image_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/images/neurips26-3806.png",
+ "thumb_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/thumbs/neurips26-3806.webp",
+ "figure_page": 2,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.9
+}

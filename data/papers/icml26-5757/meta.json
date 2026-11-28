@@ -1,0 +1,50 @@
+{
+ "id": "icml26-5757",
+ "title": "VIA-SD: Verification via Intra-Model Routing for Speculative Decoding",
+ "authors": [
+  "Yuchen Xian",
+  "Yang He",
+  "Yunqiu Xu",
+  "Yi Yang"
+ ],
+ "venue": "ICML 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "Deep Learning->Large Language Models",
+ "role": "prior-vs-ours",
+ "role2": "pipeline",
+ "claim": "Prior speculative methods make binary accept/reject decisions with extra models or training; ours adds hierarchical multi-tier verification without either, and runs faster.",
+ "layout": "4 stacked panels (a–d) top-to-bottom, plus comparison table with speedup bars",
+ "tags": [
+  "speculative-decoding",
+  "hierarchical-verification",
+  "multi-tier",
+  "efficiency",
+  "llm-inference"
+ ],
+ "style": [
+  "colorful",
+  "icon-heavy",
+  "text-heavy"
+ ],
+ "description": "The figure stacks four labeled block-diagram panels under gray headers, then a summary table. Panel a shows a traditional two-tier setup: a green small Drafter feeds a pink large Verify Model through an Accept/Reject arrow, with a Regenerate label. Panel b shows self-drafting by pruning: a dashed sparse drafter, with a dashed pruning arrow looping back from the large model. Panel c shows a hierarchical setup with an independent blue Pre-Verifier and a Conf gate that routes to Accept or Reject. Panel d, labeled Ours, chains the drafter to Slim Verifier#1 through #n and then the large Verify Model, with Conf gates that send tokens to Verify (high confidence) or on to the next tier (low confidence). Below, a table compares Extra Model, Model Training, Verification type and Speedup bars. The VIA-SD row is highlighted in green and has the longest bar.",
+ "caption": "Comparison of speculative decoding (SD) paradigms. Our VIA-SD introduces a slim-verifier routed from the large model to enable hierarchical verification with low overhead.",
+ "caption_source": "latex",
+ "abstract": "Speculative decoding (SD) addresses the high inference costs of LLMs by having lightweight drafters generate candidates for large verifiers to validate in parallel. Existing draft-verify methods use binary decisions: accept or fully recompute. Yet we find that many rejected tokens can be verified correctly by a slim submodel derived from the full verifier via intra-model routing, instead of the full verifier. This motivates our slim-verifier to handle tokens requiring moderate verification resources, reducing expensive large-model calls. We propose Verification via Intra-Model Routing for Speculative Decoding (VIA-SD), a multi-tier framework using a routed slim-verifier. Draft tokens are processed hierarchically: direct acceptance for high-confidence cases, slim-verifier regeneration for medium-confidence cases, and full-model verification for uncertain cases. Across four representative tasks and multiple model families, VIA-SD reduces rejection rates by 0.10-0.22 and delivers 10-20% speedups over strong SD baselines, while achieving 2.5-3x acceleration over non-drafting decoding. Moreover, VIA-SD is compatible with existing SD frameworks without modifying their training procedures. Our results suggest multi-tier SD as a general paradigm for scalable and efficient LLM inference. Project page: https://zju-xyc.github.io/VIA-SD-Project-Page/",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=sGCDBHIr9u",
+  "arxiv": "https://arxiv.org/abs/2606.12243",
+  "pdf": "https://raw.githubusercontent.com/mlresearch/v306/main/assets/xian26a/xian26a.pdf",
+  "proceedings": "https://proceedings.mlr.press/v306/xian26a.html",
+  "virtual": "https://icml.cc/virtual/2026/poster/61244",
+  "code": "https://zju-xyc.github.io/VIA-SD-Project-Page/"
+ },
+ "license": "http://creativecommons.org/licenses/by/4.0/",
+ "img": "cc-by",
+ "image_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/images/icml26-5757.png",
+ "thumb_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/thumbs/icml26-5757.webp",
+ "figure_page": 0,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.8
+}

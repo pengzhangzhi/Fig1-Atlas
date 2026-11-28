@@ -1,0 +1,53 @@
+{
+ "id": "iclr26-2774",
+ "title": "BOLT: Decision‑Aligned Distillation and Budget-Aware Routing for Constrained Multimodal QA on Robots",
+ "authors": [
+  "Tengjun Ni",
+  "Xin Yuan",
+  "Shenghong Li",
+  "Kai Wu",
+  "Ren Liu",
+  "Wei Ni",
+  "Wenjie Zhang"
+ ],
+ "venue": "ICLR 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "Applications->Robotics",
+ "role": "pipeline",
+ "role2": null,
+ "claim": "A two-stage system first distills a teacher's decision distribution into a small model, then selectively spends extra compute at inference when confidence is low.",
+ "layout": "2 large dashed panels, left-to-right, vertical flows, bar charts beside distillation stages",
+ "tags": [
+  "distillation",
+  "adaptive-inference",
+  "routing",
+  "efficiency",
+  "calibration"
+ ],
+ "style": [
+  "colorful",
+  "icon-heavy",
+  "photo/real data"
+ ],
+ "description": "The figure has two large dashed green rounded panels. The left panel, Distill Phase (ODD), has a Data box with a robot photo stack, a question card and an options card. A vertical chain of boxes runs from Constrained Options (A–E) through Teacher VLM, Student VLM, Calibration and Saved Student. Small annotations sit beside the arrows, such as 'learns to follow teacher decisions' and 'probability scaling'. Three dashed mini bar charts on the right of this panel show the teacher's cached option distribution (blue), the student's option probabilities (green) and the calibrated student (orange). Snowflake and flame icons mark the frozen teacher and the trained student. The right panel, Inference Phase (bTTA), runs from Saved Student to Fast Pass to a Confidence Check diamond. The high branch goes to Direct Result. The low branch goes to a Router with Hi-Res, Retrieval and Question Decompose modules. These are combined into the Final Result. Thin blue arrows and green outlines dominate the figure.",
+ "caption": "Pipeline overview. Left: Distill phase (ODD). The teacher VLM provides option-level supervision via answer-segment likelihoods; the student learns to match the teacher’s decision distribution and is then calibrated. Right: Inference phase (bTTA). A fast constrained pass produces confidence features; a router selectively triggers HR re-evaluation, tmRAG, and QD and combines their outputs to form the final prediction under a compute budget.",
+ "caption_source": "pdf",
+ "abstract": "Robotic systems can require multimodal reasoning under stringent constraints of latency, memory, and energy. Standard instruction tuning and token-level distillation fail to deliver decision quality, reliability, and interpretability under these constraints. We introduce BOLT, a decision-aligned distillation and budget-aware routing framework that treats multi-choice prediction as a decision surface to be aligned during training and selectively refined at inference. During training, BOLT introduces Option-level Decision Distillation to align student models directly on the decision surface of multi-choice answers, thereby eliminating prompt artifacts, improving calibration, and optimizing the exact output space. At inference, BOLT activates Budget-aware Test-time Augmentation, a calibrated router that uses low-cost signals such as confidence, margin, entropy, retrieval affinity, and agreement across short question decompositions to trigger high-resolution reevaluation, type-matched retrieval exemplars, or question decomposition only when their expected benefit outweighs cost. On Robo2VLM-1, a 2B BOLT student distilled from LLaVA-1.5-13B improves accuracy from 28.66 in zero-shot to 42.89 with decision distillation and to 50.50 with budgeted routing, surpassing the 13B teacher at 36.74. It lowers expected calibration error, strengthens the risk-coverage frontier, and slashes GPU memory from 26,878 MB for the teacher to 3,035 MB for the distilled student, and 3,817 MB with all augmentations enabled. By constraining outputs to valid options while exposing retrieved evidence and decomposition traces, BOLT reduces hallucination and provides transparent decision-making, enabling large-model quality on edge robots.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=Vsy3nAnaX6",
+  "arxiv": null,
+  "pdf": "https://proceedings.iclr.cc/paper_files/paper/2026/file/054a9c9f6249eee0093a85ccee5b3313-Paper-Conference.pdf",
+  "proceedings": "https://proceedings.iclr.cc/paper_files/paper/2026/hash/054a9c9f6249eee0093a85ccee5b3313-Abstract-Conference.html",
+  "virtual": "https://iclr.cc/virtual/2026/poster/10009092",
+  "code": "https://github.com/A-leyenda/BOLT"
+ },
+ "license": null,
+ "img": "none",
+ "image_url": null,
+ "thumb_url": null,
+ "figure_page": 4,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.95
+}

@@ -1,0 +1,49 @@
+{
+ "id": "neurips26-3289",
+ "title": "LoRAtorio: An intrinsic approach to LoRA Skill Composition",
+ "authors": [
+  "Niki Foteinopoulou",
+  "Ignas Budvytis",
+  "Stephan Liwicki"
+ ],
+ "venue": "NeurIPS 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "Deep Learning->Generative Models and Autoencoders",
+ "role": "analysis-finding",
+ "role2": null,
+ "claim": "Specialised adapters produce predictions that diverge from the base model in-distribution but collapse toward it when prompts are out-of-distribution.",
+ "layout": "2 panels, left scatter and right 3x4 image grid, cosine scores below",
+ "tags": [
+  "lora-composition",
+  "diffusion",
+  "t-sne",
+  "out-of-distribution",
+  "empirical-observation"
+ ],
+ "style": [
+  "plot",
+  "photo/real data",
+  "colorful"
+ ],
+ "description": "Panel (a) is a t-SNE scatter of unconditioned noise predictions. A large cloud of pale orange dots for the base model sits in the centre. Sparse coloured dots for individual LoRAs lie scattered far from it, including characters, styles, objects and backgrounds. A legend of coloured dots sits underneath. Panel (b) is a 3x4 grid of anime-style generated images. Columns are the Naive base model and Char. 1, 2 and 3 LoRAs. Rows are prompts c = Char. 1, 2 and 3. Green borders mark the matching LoRA-and-prompt images on the diagonal. Cosine similarity values between each LoRA's noise prediction and the Naive one appear below the images. The eye goes first to the scatter cloud and the green-framed diagonal images.",
+ "caption": "Observations of noise prediction from the ComposLoRA testbed. (a) t-SNE visualisation of the unconditioned latent space, for the Base Model and LoRA-adapted models. (b) Generated images from each Character LoRA, conditioned with text prompts originally associated with other LoRAs. When a prompt falls outside a LoRA’s training distribution, the predicted latent $e_{\\theta_{i}}(z_0, 0, c)$ of the $i^{th}$ LoRA tends to align closely with that of the base (Na\\\"{\\i}ve) model, showing minimal deviation due to changes in $p_{\\theta_i}(x)$, also shown by the cosine similarity of the conditioned noise prediction of the Na\\\"{\\i}ve model with that of the $i^{th}$ LoRA.",
+ "caption_source": "latex",
+ "abstract": "Low-Rank Adaptation (LoRA) has become a widely adopted technique in text-to-image diffusion models, enabling the personalisation of visual concepts such as characters, styles, and objects. However, existing approaches struggle to effectively compose multiple LoRA adapters, particularly in open-ended settings where the number and nature of required skills are not known in advance. In this work, we present LoRAtorio, a novel train-free framework for multi-LoRA composition that leverages intrinsic model behaviour. Our method is motivated by two key observations: (1) LoRA adapters trained on narrow domains produce denoised outputs that diverge from the base model, and (2) when operating out-of-distribution, LoRA outputs show behaviour closer to the base model than when conditioned in distribution. The balance between these two observations allows for exceptional performance in the single LoRA scenario, which nevertheless deteriorates when multiple LoRAs are loaded. Our method operates in the latent space by dividing it into spatial patches and computing cosine similarity between each patch's predicted noise and that of the base model. These similarities are used to construct a spatially-aware weight matrix, which guides a weighted aggregation of LoRA outputs. To address domain drift, we further propose a modification to classifier-free guidance that incorporates the base model's unconditional score into the composition. We extend this formulation to a dynamic module selection setting, enabling inference-time selection of relevant LoRA adapters from a large pool. LoRAtorio achieves state-of-the-art performance, showing up to a 1.3% improvement in ClipScore and a 72.43% win rate in GPT-4V pairwise evaluations, and generalises effectively to multiple latent diffusion models. Project page: https://nickyfot.github.io/loratorio-skill-composer/",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=MrZTwGqEdZ",
+  "arxiv": "https://arxiv.org/abs/2508.11624",
+  "pdf": "https://arxiv.org/pdf/2508.11624",
+  "proceedings": null,
+  "virtual": "https://neurips.cc/virtual/2026/poster/153224",
+  "code": "https://nickyfot.github.io/loratorio-skill-composer/"
+ },
+ "license": "http://creativecommons.org/licenses/by/4.0/",
+ "img": "cc-by",
+ "image_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/images/neurips26-3289.png",
+ "thumb_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/thumbs/neurips26-3289.webp",
+ "figure_page": 1,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.85
+}

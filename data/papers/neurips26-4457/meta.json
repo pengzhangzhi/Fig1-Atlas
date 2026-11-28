@@ -1,0 +1,52 @@
+{
+ "id": "neurips26-4457",
+ "title": "Looped Diffusion Language Models",
+ "authors": [
+  "Sanghyun Lee",
+  "Chunsan Hong",
+  "Seungryong Kim",
+  "Jonghyun Lee",
+  "Jongho Park",
+  "Dongmin Park"
+ ],
+ "venue": "NeurIPS 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": null,
+ "role": "teaser-result",
+ "role2": "pipeline",
+ "claim": "Looping only a small block of middle layers cuts training compute for equal loss and lets extra inference-time loops raise accuracy.",
+ "layout": "3 panels, left-to-right: architecture diagram, line plot, bar chart; red arrow marks FLOPs savings",
+ "tags": [
+  "looping",
+  "masked-diffusion",
+  "compute-efficiency",
+  "inference-time-scaling",
+  "architecture"
+ ],
+ "style": [
+  "plot",
+  "colorful",
+  "minimal"
+ ],
+ "description": "Three-panel figure. The left panel is a vertical architecture diagram. Input tokens (x¹, masked M tokens, x^L) feed a Head block of transformer layers in blue. Next comes a green Mid block with a dashed loop-back arrow labeled ×S. A purple Tail block follows, and output tokens sit at the bottom. The caption 'Selective Looping' is below. The middle panel is a line plot of NLL against training FLOPs. A dashed black MDM curve sits above a pink LoopMDM curve. A thick red arrow labeled '3.34 x FLOPs' marks the compute saved at equal NLL. The right panel is a pink bar chart of math accuracy for loop counts 1, 2, 4, 6, 8 and 16. Accuracy rises from 0.28 to 0.46, and a dashed baseline line is drawn at about 0.36. Bar values are labeled on top. The eye goes first to the red arrow and the tall bars.",
+ "caption": "Overview of LoopMDM. (Left) LoopMDM selectively applies looping to a small early-middle layers of the denoising network. (Middle) Under matched training compute, LoopMDM (red) reaches the same test NLL as a non-looped MDM baseline with the same architecture (dashed black) using substantially fewer training FLOPs. (Right) Increasing the inference-time loop count consistently improves GSM8K accuracy; the dashed line denotes the same non-looped MDM baseline.",
+ "caption_source": "latex",
+ "abstract": "Masked diffusion models (MDMs) have emerged as a promising alternative to autoregressive models for language modeling, yet the effective design of transformer architectures for MDMs remains underexplored. In this paper, we show that selectively looping the early-middle transformer layers significantly improves both training efficiency and model performance in MDMs. We call this approach LoopMDM(Looped Masked Diffusion Model), which brings two key benefits: looping layers at training-time yields a depth-scaling effect without adding parameters, while varying the number of loops at inference-time enables flexible compute scaling. Despite the simplicity, the results are striking: across multiple pre-training corpora, LoopMDM matches the performance of same-size MDMs with up to 3.3 fewer training FLOPs, while its final performance outperforms them on various reasoning benchmarks, including up to 8.5 points on GSM8K. It even surpasses deeper non-looped MDMs trained with comparable per-step compute, indicating that selective looping is more effective than naive depth scaling. Furthermore, LoopMDM can scale inference-time compute by increasing the number of loops. Adaptively adjusting the number of loops throughout the sampling process further yields additional gains in compute efficiency while maintaining performance. Lastly, with attention analysis, we provide evidence that looping is effective in MDMs by promoting interactions among masked positions. Our code and weights will be publicly released.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=UqgMsw7AZH",
+  "arxiv": "https://arxiv.org/abs/2605.26106",
+  "pdf": "https://arxiv.org/pdf/2605.26106",
+  "proceedings": null,
+  "virtual": "https://neurips.cc/virtual/2026/poster/152196",
+  "code": null
+ },
+ "license": "http://creativecommons.org/licenses/by/4.0/",
+ "img": "cc-by",
+ "image_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/images/neurips26-4457.png",
+ "thumb_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/thumbs/neurips26-4457.webp",
+ "figure_page": 1,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.5
+}

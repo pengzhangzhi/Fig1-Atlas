@@ -1,0 +1,52 @@
+{
+ "id": "neurips26-8189",
+ "title": "Rethinking Ratio-Based Trust Regions for Policy Optimization in Multi-Agent Reinforcement Learning",
+ "authors": [
+  "Chulabhaya Wijesundara",
+  "Andrea Baisero",
+  "Zhongheng Li",
+  "Gregory D Castanon",
+  "Alan S Carlin",
+  "Christopher Amato"
+ ],
+ "venue": "NeurIPS 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "Reinforcement Learning->Multi-agent",
+ "role": "prior-vs-ours",
+ "role2": "concept",
+ "claim": "Prior trust-region penalties either zero out gradients or stay finite near collapse; ours uses a symmetric barrier that diverges.",
+ "layout": "3 panels, left-to-right, shared x-axis, annotated arrows on curves",
+ "tags": [
+  "trust-region",
+  "policy-optimization",
+  "loss-shaping",
+  "barrier-function",
+  "multi-agent-rl"
+ ],
+ "style": [
+  "plot",
+  "minimal",
+  "colorful"
+ ],
+ "description": "Three side-by-side line plots share the x-axis, probability ratio r_t(θ) from 0 to 2. The left panel, MAPPO (symmetric additive clipping), shows a red surrogate objective rising linearly, then flattening after a dashed vertical clip line at about 1.2. The flat region is shaded gray and labeled 'Gradient Truncation (Zero Slope)'. A dotted gray line shows the unclipped continuation. The middle panel, MASPO (soft quadratic penalty), shows a red parabola with minimum at r=1 and an arrow at r→0 marking a finite penalty and collapse risk. The right panel, MARS (Ours, in bold), shows a thick green asymmetric curve that diverges as r→0, labeled 'Infinite Barrier (Prevents Collapse)'. Two black dots at about 0.6 and 1.6 are joined by a dashed arrow labeled 'Symmetric (r↔1/r)'. Red marks the baselines and green marks the proposed method.",
+ "caption": "Comparison of ratio-based trust region mechanisms. MAPPO's additive clipping creates zero-gradient regions after ratio outliers cross the clipping bounds. MASPO restores gradient flow with a soft quadratic penalty, but its cost remains finite as $r\\to 0$. MARS replaces additive ratio control with a multiplicatively symmetric geometric barrier that preserves gradients on $r>0$ and diverges as $r\\to 0$, making probability extinction non-optimal for the per-sample ratio surrogate.",
+ "caption_source": "latex",
+ "abstract": "Centralized training with decentralized execution (CTDE) is a standard framework for cooperative multi-agent policy-gradient reinforcement learning, allowing agents to learn from joint information while acting from local observations. Ratio-based trust-region methods such as Multi-Agent Proximal Policy Optimization (MAPPO) and Multi-Agent Simple Policy Optimization (MASPO) update decentralized actors using per-agent probability ratios weighted by joint advantage estimates. Teammate non-stationarity increases the variance of these advantages, which in turn increases the variance in the local ratio updates. This exposes two method-specific failure modes: MAPPO's additive clipping removes gradients for outlier samples and weakens recovery from policy drift, while MASPO's soft quadratic penalty can allow probability collapse. We introduce Multi-Agent Ratio Symmetry (MARS), a novel policy optimization objective that replaces these additive ratio-based trust-region mechanisms with a multiplicatively symmetric geometric barrier. MARS preserves corrective gradients while assigning unbounded cost as probability ratios approach zero. Across 47 tasks spanning eight multi-agent environments, including novel JAX benchmarks PaxMen and AeroJAX, MARS matches or exceeds MAPPO and MASPO in aggregate environment-level performance. Ablations show that these gains arise from the geometry of the symmetric barrier rather than from flexible trust-region boundaries alone.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=uZ0Ls2oCg3",
+  "arxiv": "https://arxiv.org/abs/2605.09212",
+  "pdf": "https://arxiv.org/pdf/2605.09212",
+  "proceedings": null,
+  "virtual": "https://neurips.cc/virtual/2026/poster/148870",
+  "code": "https://chulabhaya.com/papers/mars/"
+ },
+ "license": "http://arxiv.org/licenses/nonexclusive-distrib/1.0/",
+ "img": "none",
+ "image_url": null,
+ "thumb_url": null,
+ "figure_page": 1,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.9
+}

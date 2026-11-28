@@ -1,0 +1,51 @@
+{
+ "id": "icml26-0070",
+ "title": "DyLLM: Efficient Diffusion LLM Inference via Saliency-based Token Selection and Partial Attention",
+ "authors": [
+  "Younjoo Lee",
+  "Seungkyun Dan",
+  "Junghoo Lee",
+  "Jaiyoung Park",
+  "Jung Ho Ahn"
+ ],
+ "venue": "ICML 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "Deep Learning->Large Language Models",
+ "role": "teaser-result",
+ "role2": "analysis-finding",
+ "claim": "Redundant full-sequence computation dominates per-step cost; computing only the salient subset cuts runtime by an order of magnitude.",
+ "layout": "Single horizontal stacked-bar chart, grouped rows by model, legend on top",
+ "tags": [
+  "efficiency",
+  "runtime-breakdown",
+  "caching",
+  "sparse-computation",
+  "inference-acceleration"
+ ],
+ "style": [
+  "plot",
+  "colorful",
+  "minimal"
+ ],
+ "description": "A single horizontal stacked-bar chart shows per-step runtime in milliseconds on the x-axis, from 0 to about 800. A legend across the top maps four colors to operations: QKV-proj in gray, Attention in light green, O-proj in light gray, and FFN in blue. Rows are grouped by rotated labels on the left. The vLLM group is Llama, with a long Prefill bar of about 820 ms and a tiny Decode bar. The LLaDA group has a Full bar of about 840 ms and a short Salient-only bar of about 130 ms. The Dream group has a Full bar of about 770 ms and a Salient-only bar of about 90 ms. The eye goes first to the long blue FFN-dominated bars, then to the much shorter salient-only bars below them.",
+ "caption": "Runtime breakdown of autoregressive decoding with vLLM [ref], original diffusion LLM implementation, and \\ours on random GSM8K 5-shot prompts ($batch size=16$). Original diffusion LLM repeats the full steps, whereas \\ours recomputes only salient tokens, reducing the dominant per-step overhead.",
+ "caption_source": "latex",
+ "abstract": "Masked diffusion language models enable parallel token decoding, providing a promising alternative to the sequential nature of autoregressive generation. However, their iterative denoising process remains computationally expensive because it repeatedly processes the entire sequence at every step. We observe that across these diffusion steps, most token representations remain stable; only a small subset, which we term salient tokens, contributes meaningfully to the next update. Leveraging this temporal sparsity, we present DyLLM, a training-free inference framework that accelerates decoding by selectively computing only these salient tokens. DyLLM identifies saliency by measuring the cosine similarity of attention contexts between adjacent denoising steps. It recomputes feed-forward and attention operations only for salient tokens while reusing cached activations for the remainder. Across diverse reasoning and code-generation benchmarks, DyLLM achieves up to 9.6x higher throughput while largely preserving the baseline accuracy of representative open-source diffusion LLMs, LLaDA, and Dream.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=0azUrmsSyA",
+  "arxiv": "https://arxiv.org/abs/2603.08026",
+  "pdf": "https://raw.githubusercontent.com/mlresearch/v306/main/assets/lee26i/lee26i.pdf",
+  "proceedings": "https://proceedings.mlr.press/v306/lee26i.html",
+  "virtual": "https://icml.cc/virtual/2026/poster/66757",
+  "code": null
+ },
+ "license": "http://arxiv.org/licenses/nonexclusive-distrib/1.0/",
+ "img": "none",
+ "image_url": null,
+ "thumb_url": null,
+ "figure_page": 0,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.8
+}

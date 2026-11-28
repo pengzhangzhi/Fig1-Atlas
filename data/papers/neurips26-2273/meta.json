@@ -1,0 +1,53 @@
+{
+ "id": "neurips26-2273",
+ "title": "TIER: Trajectory-Invariant Execution Rewards for Multi-Step Tool Composition",
+ "authors": [
+  "Anay Kulkarni",
+  "Allen Lu",
+  "Dheeraj Mekala",
+  "Jayanth Srinivasa",
+  "Gaowen Liu",
+  "Jingbo Shang"
+ ],
+ "venue": "NeurIPS 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "Reinforcement Learning->Everything Else",
+ "role": "pipeline",
+ "role2": "teaser-result",
+ "claim": "Deriving dense, multi-level rewards from schemas and execution lets agents learn stable multi-step composition, unlike sparse or trajectory-supervised rewards.",
+ "layout": "3 panels: left system flow top-to-bottom, right reward ladders above training curves",
+ "tags": [
+  "tool-use",
+  "reward-design",
+  "reinforcement-learning",
+  "dense-feedback",
+  "agents"
+ ],
+ "style": [
+  "colorful",
+  "icon-heavy",
+  "plot",
+  "text-heavy"
+ ],
+ "description": "The left half shows a vertical system diagram of a tool-using LLM agent. A blue user request box (restaurant and flight query) feeds a green LLM Agent block with reasoning steps, AST generation icons and output integration. Below it sit a red Parser, yellow tool-call cards with example return values, a gray Toolkit with icons, and a purple final response. The top right shows a purple model-response box with think and tool_call tags. Next to it are two staircase reward ladders. The fine-grained ladder runs format, AST parsing, environment feedback and task solved, with graded reward ranges and red crosses. The simple reward ladder has only two stages. The bottom right is a line plot of reward against training step for five reward designs. The blue TIER curve rises highest and most smoothly. The purple ToolRL curve is noisy, and the other curves plateau lower.",
+ "caption": "Left: Overview of TIER for tool-augmented LLM agents. The model generates structured tool calls as abstract syntax trees (ASTs), which are executed against external tools. Unlike trajectory-supervised approaches, rewards are computed directly from function schemas and execution outcomes. Right (Top): TIER provides fine-grained, multi-level supervision decomposing into format, schema, execution, and answer correctness. In contrast, simple outcome rewards offer only sparse binary feedback. Right (Bottom): Training curves under different reward designs. Only the full fine-grained TIER reward achieves stable convergence to high performance. Partial rewards plateau early, and trajectory-supervised rewards (ToolRL) exhibit high variance due to inconsistent supervision across alternative valid compositions. All training reward curves are exponentially weighted moving averages of per-step batch-mean reward logged over a 50-step rolling window (smoothing constant, $\\alpha=0.01$). The shaded region is a $\\pm1$ rolling standard deviation. For visualization, we linearly rescale the rewards to $[0,1]$",
+ "caption_source": "latex",
+ "abstract": "Tool use enables large language models to solve complex tasks through sequences of API calls, yet existing reinforcement learning approaches fail to scale to multi-step composition settings. Outcome-based rewards provide only sparse feedback, while trajectory-supervised rewards depend on annotated reference solutions, penalizing valid alternatives and limiting scalability. We propose TIER: Trajectory-Invariant Execution Rewards, a reward framework that derives supervision directly from function schemas and runtime execution, rather than from reference trajectories. The reward decomposes into format validity, schema adherence, execution success, and answer correctness, providing dense, interpretable sequence-level feedback derived from fine-grained verification of individual steps of tool use. This design allows any valid execution path to receive credit, naturally supporting multiple solution strategies and adapting to evolving tool interfaces. On DepthBench, a compositional benchmark stratified by depth (1 to 6 steps), TIER achieves >90% accuracy across steps, where trajectory-supervised rewards collapse beyond step-4. We further demonstrate consistent gains on benchmarks like BFCL v3 and NestFUL. Ablation studies confirm that all reward components are necessary, highlighting the importance of multi-level supervision for compositional reasoning.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=G82YnmxBx8",
+  "arxiv": "https://arxiv.org/abs/2605.16790",
+  "pdf": "https://arxiv.org/pdf/2605.16790",
+  "proceedings": null,
+  "virtual": "https://neurips.cc/virtual/2026/poster/154119",
+  "code": "https://github.com/anaykulkarni/TIER"
+ },
+ "license": "http://creativecommons.org/licenses/by/4.0/",
+ "img": "cc-by",
+ "image_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/images/neurips26-2273.png",
+ "thumb_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/thumbs/neurips26-2273.webp",
+ "figure_page": 1,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.6
+}

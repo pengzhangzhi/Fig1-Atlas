@@ -1,0 +1,56 @@
+{
+ "id": "icml26-4678",
+ "title": "AReaL-DTA: Dynamic Tree Attention for Efficient Reinforcement Learning of Large Language Models",
+ "authors": [
+  "Jiarui Zhang",
+  "Yuchen Yang",
+  "Ran Yan",
+  "Zhiyu Mei",
+  "Liyuan Zhang",
+  "Daifeng Li",
+  "Wei Fu",
+  "Jiaxuan Gao",
+  "Shusheng Xu",
+  "Yi Wu",
+  "Binhang Yuan"
+ ],
+ "venue": "ICML 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "General Machine Learning->Scalable Algorithms",
+ "role": "problem-setup",
+ "role2": "concept",
+ "claim": "Multi-turn rollouts share long common prefixes, so their sequences naturally form a tree with large redundancy that can be exploited.",
+ "layout": "2 grouped panels under a shared root, top-down tree, dashed continuation legend",
+ "tags": [
+  "prefix-sharing",
+  "prefix-tree",
+  "multi-turn-rollouts",
+  "redundancy",
+  "reinforcement-learning"
+ ],
+ "style": [
+  "minimal",
+  "colorful"
+ ],
+ "description": "A top-down tree diagram of rollout token sequences. A wide blue box labeled 'Global system prompt' sits at top center. Arrows run from it to 'prompt-1A' in a rounded gray container labeled 'Trajectories Group A' on the left, and to 'prompt-1B' in a mirrored container labeled 'Trajectories Group B' on the right. Each prompt branches into orange '<think>' boxes and purple 'response' boxes. A green 'prompt-2' box follows the response and branches again into think/response nodes for turn 2. Dashed gray arrows ending in ellipses mark further multi-turn continuation. Colors encode node type: blue for prompts, orange for thinking, purple for responses, green for later-turn prompts. A footer legend explains the dashed arrow: later turns keep prompts and responses in history but omit earlier thinking tokens. The eye goes first to the top root box, then follows the arrows down.",
+ "caption": "{Shared-prefix structure in $\\tau^2$-bench. Multi-turn trajectories share a global system prompt and retain previous prompts/responses in later turns, naturally inducing a prefix tree over rollout sequences. We define the compression rate as $C=\\eta_{\\mathrm{tokens}}/\\eta_{\\mathrm{tree\\ tokens}}$, i.e., total sequence tokens divided by unique prefix-tree tokens. In our evaluated rollouts, the full tree has $C=9.43\\times$, equivalent to an $89.4%$ prefix-sharing rate ($S=1-1/C$). Even after collapsing rollouts that are prefixes of other rollouts and counting only leaf sequences, the leaf-only compression rate remains $5.56\\times$ ($82.0%$ prefix sharing).}",
+ "caption_source": "latex",
+ "abstract": "Reinforcement learning (RL)-based post-training for large language models (LLMs) is computationally expensive, as it generates many rollout sequences that frequently share long token prefixes. Existing RL frameworks usually process these sequences independently during policy training, i.e., repeatedly recomputing identical prefixes in both the forward and backward passes of policy gradient computation, leading to substantial inefficiencies in computation resources and memory usage. Although prefix sharing naturally induces a tree structure over rollouts, packed tree-mask approaches scale poorly in RL settings. In this paper, we introduce AReaL-DTA, which efficiently exploits prefix sharing in RL training. AReaL-DTA employs a depth-first search (DFS)-based execution strategy that dynamically traverses the rollout prefix tree during both forward and backward computation, materializing only a single root-to-leaf path at a time. To further improve scalability, AReaL-DTA incorporates a load-balanced distributed batching mechanism that dynamically constructs and processes prefix trees across multiple GPUs. On $Ï^2$-bench, AReaL-DTA improves training throughput by up to $8.31\\times$ over dense training and up to $1.70\\times$ over sparse training. Our code is available at https://github.com/areal-project/AReaL/tree/feat/dta.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=hx2U1OllHD",
+  "arxiv": "https://arxiv.org/abs/2602.00482",
+  "pdf": "https://raw.githubusercontent.com/mlresearch/v306/main/assets/zhang26hr/zhang26hr.pdf",
+  "proceedings": "https://proceedings.mlr.press/v306/zhang26hr.html",
+  "virtual": "https://icml.cc/virtual/2026/poster/62287",
+  "code": "https://github.com/areal-project/AReaL/tree/feat/dta"
+ },
+ "license": "http://arxiv.org/licenses/nonexclusive-distrib/1.0/",
+ "img": "none",
+ "image_url": null,
+ "thumb_url": null,
+ "figure_page": 1,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.6
+}

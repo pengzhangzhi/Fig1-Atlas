@@ -1,0 +1,53 @@
+{
+ "id": "iclr26-0910",
+ "title": "Beyond Binary Rewards: Training LMs to Reason About Their Uncertainty",
+ "authors": [
+  "Mehul Damani",
+  "Isha Puri",
+  "Stewart Slocum",
+  "Idan Shenfeld",
+  "Leshem Choshen",
+  "Yoon Kim",
+  "Jacob Andreas"
+ ],
+ "venue": "ICLR 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "Deep Learning->Generative Models and Autoencoders",
+ "role": "teaser-result",
+ "role2": "problem-setup",
+ "claim": "Optimizing a calibration-aware reward improves both accuracy and calibration, while binary-reward training and post-hoc classifiers fall short or hurt calibration.",
+ "layout": "3 panels, left-to-right: text example, then two scatter plots with arrows",
+ "tags": [
+  "reinforcement-learning",
+  "calibration",
+  "reward-design",
+  "reasoning",
+  "generalization"
+ ],
+ "style": [
+  "plot",
+  "text-heavy",
+  "colorful"
+ ],
+ "description": "Three panels sit side by side. Panel (a), in a black-bordered box, shows an example model output in colored text. Blue text holds the think and answer tags. Red text holds the analysis tag, which expresses uncertainty about a Eurovision question, and a confidence tag with the value 0.3. Panels (b) and (c) are scatter plots with calibration score (1-ECE) on the x-axis and accuracy (%) on the y-axis. Each plots a Base point and arrows to the RLVR (blue), RLVR+Classifier (orange) and RLCR (pink) points. In (b), in-distribution, the RLCR arrow goes up and to the right and ends furthest right. In (c), out-of-distribution, RLCR gains both accuracy and calibration while RLVR stays flat or slips. Boxed formulas in (b) define the two rewards: correctness for RLVR and correctness minus (confidence − correctness)² for RLCR. Color links the formulas to the method labels.",
+ "caption": "(a): Sample chain-of-thought from a model trained with \\rlcf, using <think>, <answer>, <analysis>, and <confidence> tags. (b) On in-domain evaluation tasks, \\rlcf improves on standard reasoning training (\\rlvf) and even slightly outperforms a combination of \\rlvf and a dedicated classifier trained to predict \\rlvf correctness. (c) When evaluating generalization to novel tasks, \\rlcf improves both accuracy and calibration, while other methods leave accuracy unchanged and sometimes harm calibration. All results shown are for HotpotQA, see [ref] for more results. \\vspace{-1em}",
+ "caption_source": "latex",
+ "abstract": "When language models (LMs) are trained via reinforcement learning (RL) to generate natural language \"reasoning chains\", their performance improves on a variety of difficult question answering tasks. Today, almost all successful applications of RL for reasoning use binary reward functions that evaluate the correctness of LM outputs. Because such reward functions do not penalize guessing or low-confidence outputs, they often have the unintended side-effect of degrading calibration and increasing the rate at which LMs generate incorrect responses (or \"hallucinate\") in other problem domains. This paper describes RLCR (Reinforcement Learning with Calibration Rewards), an approach to training reasoning models that jointly improves accuracy and calibrated confidence estimation. During RLCR, LMs generate both predictions and numerical confidence estimates after reasoning. They are trained to optimize a reward function that augments a binary correctness score with a Brier score -- a scoring rule for confidence estimates that incentivizes calibrated prediction. We first prove that this reward function (or any reward function that uses a bounded, proper scoring rule) yields models whose predictions are both accurate and well-calibrated. We next show that across diverse datasets, RLCR substantially improves calibration with no loss in accuracy, on both in-domain and out-of-domain evaluations -- outperforming both ordinary RL training and classifiers trained to assign post-hoc confidence scores. While ordinary RL hurts calibration, RLCR improves it. Finally, we demonstrate that verbalized confidence can be leveraged at test time to improve accuracy and calibration via confidence-weighted scaling methods. Our results show that explicitly optimizing for calibration can produce more generally reliable reasoning models. Code, models, and further info is available at https://rl-calibration.github.io/.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=ASQ649zdHm",
+  "arxiv": "https://arxiv.org/abs/2507.16806",
+  "pdf": "https://proceedings.iclr.cc/paper_files/paper/2026/file/615675cc6e94ddb1a783904fb178b5f6-Paper-Conference.pdf",
+  "proceedings": "https://proceedings.iclr.cc/paper_files/paper/2026/hash/615675cc6e94ddb1a783904fb178b5f6-Abstract-Conference.html",
+  "virtual": "https://iclr.cc/virtual/2026/poster/10011036",
+  "code": "https://rl-calibration.github.io/"
+ },
+ "license": "http://creativecommons.org/licenses/by/4.0/",
+ "img": "cc-by",
+ "image_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/images/iclr26-0910.png",
+ "thumb_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/thumbs/iclr26-0910.webp",
+ "figure_page": 1,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.6
+}

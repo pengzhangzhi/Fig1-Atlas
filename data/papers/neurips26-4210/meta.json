@@ -1,0 +1,49 @@
+{
+ "id": "neurips26-4210",
+ "title": "DEX: Parallel Depth Exploration for Speculative Decoding",
+ "authors": [
+  "Weisi Yang",
+  "Zipeng Sun",
+  "Stephen Xia"
+ ],
+ "venue": "NeurIPS 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "Deep Learning->Algorithms",
+ "role": "prior-vs-ours",
+ "role2": "concept",
+ "claim": "Fixed-depth and single-exit-selection decoding either waste computation or fall back; exploring candidate depths in parallel and pruning avoids both.",
+ "layout": "3 panels, left-to-right, shared layer stacks, dotted dividers, progressive complexity",
+ "tags": [
+  "speculative-decoding",
+  "early-exit",
+  "parallel-exploration",
+  "latency",
+  "lossless-acceleration"
+ ],
+ "style": [
+  "colorful",
+  "icon-heavy",
+  "text-heavy"
+ ],
+ "description": "Three panels separated by dotted vertical lines, each showing a vertical stack of layers labeled Layer 0 to Layer 8. Green layers carry check marks and red layers carry X marks. The left panel, 'Autoregressive (AR) Decoding', has one long blue arrow running through the full stack and a 'Stable since here' marker. The middle panel, 'Depth Selection', has a single blue exit arrow, a purple 'Full-depth Fallback!' banner, a purple 'Too Early!' tag and an orange 'Too Late!' tag with a brace reading 'Wastes 4 layers'. The right panel, 'Depth Exploration (DEX)', has several teal horizontal arrows branching at different depths. Beside them are a 'Final-depth Reference' box, green 'Match' and orange 'Mismatch' labels, and annotations such as 'Prune redundant deeper branches'. A curved orange arrow links the branches back to the reference. The eye goes first to the right panel, which is the most elaborate.",
+ "caption": "Comparison of different depth exploitation. (Left) Autoregressive decoding always performs a full-depth forward pass. (Middle) Depth selection relies on a single exit-depth decision, risking either full-depth fallback when exiting too early or wasted computation when exiting too late. (Right) Parallel depth exploration over candidate depths resolves branches with the final-depth reference and preserves only reusable branches.",
+ "caption_source": "latex",
+ "abstract": "Autoregressive LLM decoding processes every generated token through the full layer stack, even though many tokens become available at intermediate depths. Existing lossless depth-adaptive methods exploit this redundancy by choosing a single non-final exit depth and verifying its drafts with the final-depth model. However, our measurements show that this selection-based strategy leaves substantial headroom: choosing an exit too late wastes computation, while choosing one too early triggers fallback and discards dependent drafts. We propose Depth Exploration Decoding (DEX), a lossless speculative decoding algorithm that replaces single-depth selection with parallel exploration over multiple candidate depths. At each commit position, DEX validates candidates against the final-depth reference, commits the final-depth token, and collapses the exploration lattice to retain only reusable branch states. This expand–commit–collapse procedure preserves equivalence to standard autoregressive decoding while reducing the latency of generating each token. Across early-exit-trained and standard LLMs, DEX outperforms representative depth-selection baselines and achieves up to 61% higher decoding speed than the strongest depth-selection baseline. Moreover, DEX improves as the explored depths become finer, showing that parallel depth exploration provides a scalable way to exploit the underused depth axis of LLM decoding.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=TKWIMojtwx",
+  "arxiv": "https://arxiv.org/abs/2606.29223",
+  "pdf": "https://arxiv.org/pdf/2606.29223",
+  "proceedings": null,
+  "virtual": "https://neurips.cc/virtual/2026/poster/152407",
+  "code": "https://github.com/imec-nu/DEX"
+ },
+ "license": "http://creativecommons.org/licenses/by/4.0/",
+ "img": "cc-by",
+ "image_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/images/neurips26-4210.png",
+ "thumb_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/thumbs/neurips26-4210.webp",
+ "figure_page": 1,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.85
+}

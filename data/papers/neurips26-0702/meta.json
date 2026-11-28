@@ -1,0 +1,55 @@
+{
+ "id": "neurips26-0702",
+ "title": "SD-Search: Hindsight Self-Distillation for Search-Augmented Reasoning",
+ "authors": [
+  "Zihan Liang",
+  "Yufei Ma",
+  "Zhipeng Qian",
+  "Ben Chen",
+  "Huangyu Dai",
+  "Lingtao Mao",
+  "Xuxin Zhang",
+  "Chenyi Lei",
+  "wenwu ou"
+ ],
+ "venue": "NeurIPS 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "Reinforcement Learning->Deep RL",
+ "role": "prior-vs-ours",
+ "role2": "pipeline",
+ "claim": "Outcome rewards give identical credit to all steps and process supervision needs external teachers; ours derives step-level signal from the policy itself.",
+ "layout": "3 panels, left-to-right, same example repeated with color-coded good/bad steps",
+ "tags": [
+  "self-distillation",
+  "credit-assignment",
+  "process-supervision",
+  "reinforcement-learning",
+  "no-external-teacher"
+ ],
+ "style": [
+  "colorful",
+  "icon-heavy",
+  "text-heavy"
+ ],
+ "description": "Three side-by-side panels share one running example, a user asking who founded the company that owns Instagram. Each panel shows a stack of speech-bubble search queries plus a final answer bubble, with small robot LLM icons at right. Green bubbles mark good queries and a red bubble marks the bad 'History of Meta' query. Panel (a), Outcome Reward, has a vertical 'Identical Advantage' bracket and a single 'Reward = 1' arrow covering every step. Panel (b) adds a GPT-4o logo that sends 'Good' and 'Bad' labels to individual queries. Panel (c), SD-Search (Ours), replaces the external model with a 'Teacher (Same Model)' that sends JSD arrows to 'Student' robots. A 'Hindsight' bracket under the rollout loops back to the teacher. A legend at the bottom explains the green and red colors.",
+ "caption": "Three paradigms for supervising search decisions. (a) Outcome Reward (e.g., AutoRefine): a single trajectory-level reward, failing to distinguish between good and bad individual queries. (b) Process Supervision (e.g., Thinker, StepSearch): step-level signals imported from external sources (a 72B teacher or GPT-4o-generated sub-question annotations). (c) SD-Search (Ours): on-policy hindsight self-distillation produces step-level supervision directly from the policy itself, without external resources.",
+ "caption_source": "latex",
+ "abstract": "Search-augmented reasoning agents interleave internal reasoning with calls to an external retriever, and their performance relies on the quality of each issued query. However, under outcome-reward reinforcement learning, every search decision in a rollout shares the same trajectory-level reward, leaving individual queries without step-specific credit. Recent process-supervision approaches address this gap by drawing step-level signals from outside the policy, relying either on a much larger teacher model, or on sub-question annotations produced by a stronger external system. In contrast, we propose SD-Search, which derives step-level supervision from the policy itself through on-policy hindsight self-distillation, requiring neither an external teacher nor additional annotations. In SD-Search, a single model plays two roles that differ only in conditioning: a student that sees only the context available at inference time, and a teacher that additionally conditions on a compact hindsight block summarizing the search queries and final outcomes of a group of rollouts sampled from the same question. Since the teacher knows how each rollout unfolded and which ones succeeded, its query distribution implicitly marks which decisions were worth making, and the student is trained to recover this behavior by minimizing the token-level Jensen--Shannon divergence to the teacher at search-query positions. This layers a dense, step-level signal on top of GRPO's coarse trajectory reward. Crucially, this signal is produced by the policy itself within the standard RL training loop, without external model inference, auxiliary annotation pipeline, or additional training stage.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=50CwcISp9W",
+  "arxiv": "https://arxiv.org/abs/2605.18299",
+  "pdf": "https://arxiv.org/pdf/2605.18299",
+  "proceedings": null,
+  "virtual": "https://neurips.cc/virtual/2026/poster/155518",
+  "code": null
+ },
+ "license": "http://creativecommons.org/licenses/by/4.0/",
+ "img": "cc-by",
+ "image_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/images/neurips26-0702.png",
+ "thumb_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/thumbs/neurips26-0702.webp",
+ "figure_page": 1,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.9
+}

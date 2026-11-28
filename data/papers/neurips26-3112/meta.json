@@ -1,0 +1,50 @@
+{
+ "id": "neurips26-3112",
+ "title": "The Mask Is Not the Object: Volumetric Supervision for 3D Gaussian Segmentation",
+ "authors": [
+  "Jeonghwan Cho",
+  "Minsu Kim",
+  "Junyoung Hong",
+  "Seon Joo Kim"
+ ],
+ "venue": "NeurIPS 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "Computer Vision->3D Rendering & Reconstruction",
+ "role": "problem-setup",
+ "role2": "prior-vs-ours",
+ "claim": "A rendered mask can look correct while the underlying 3D selection is incomplete, which only a volumetric removal test reveals.",
+ "layout": "Left scene photo; right two stacked pipeline panels, left-to-right, shaded second panel",
+ "tags": [
+  "3d-gaussian-splatting",
+  "segmentation",
+  "evaluation-gap",
+  "failure-mode",
+  "volumetric-evaluation"
+ ],
+ "style": [
+  "photo/real data",
+  "icon-heavy",
+  "colorful"
+ ],
+ "description": "The left side shows a row of multi-view photos of a stuffed-toy scene feeding into a 3D Gaussian scene. A dashed outline marks the queried 'Sheep' toy, and a search bar reads 'Sheep'. The right side has two stacked pipelines. (a) View-space evaluation: 3D Gaussian ellipsoids on axes, a prompt arrow, and a selection with some Gaussians greyed out. A camera then renders the sheep and a clean white-on-black mask. (b) Volumetric evaluation, on a cream-shaded background: the same Gaussians go through a prompt and a removal step. A camera renders depth, and the resulting heatmap is labeled 'incomplete' in red-orange, showing the sheep was only partly removed. The eye goes first to the large photo, then to the shaded panel (b) and its 'incomplete' label.",
+ "caption": "A plausible rendered mask does not imply complete 3D selection. For the query \"sheep,\" (a) the selected Gaussians render a plausible object mask, but (b) the depth change after removing the same Gaussian set indicates incomplete object removal in the reconstructed scene. This exposes a gap between rendered-mask quality and Gaussian-level selection completeness.",
+ "caption_source": "latex",
+ "abstract": "3D Gaussian Splatting enables object-level operations on Gaussian primitives, yet existing segmentation methods are largely trained and evaluated through rendered views. This mismatch can produce accurate rendered masks from incomplete 3D selections since alpha-blended feature supervision concentrates learning on dominant contributors while leaving occluded or low-contribution Gaussians weakly supervised. We propose VODA, a plug-and-play supervision objective that exploits local depth structure to group per-pixel contributors and directly supervises all Gaussians in selected depth clusters, bypassing contribution-weighted gradient delivery. To evaluate volumetric completeness, we introduce Removal-3D, a synthetic object-removal benchmark, and the Removal Depth Error (RDE), a metric comparing predicted and ground-truth depth changes. Across four rendering-based baselines, VODA consistently improves volumetric segmentation on Removal-3D while maintaining or improving performance on LERF and ScanNet. Further analysis shows that VODA recovers lower-contribution Gaussians, while simple gradient reweighting and spatial propagation fail to reproduce comparable gains.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=Lm87XRTCbZ",
+  "arxiv": "https://arxiv.org/abs/2611.21383",
+  "pdf": "https://arxiv.org/pdf/2611.21383",
+  "proceedings": null,
+  "virtual": "https://neurips.cc/virtual/2026/poster/153386",
+  "code": "https://jhxcho.github.io/voda/"
+ },
+ "license": "http://arxiv.org/licenses/nonexclusive-distrib/1.0/",
+ "img": "none",
+ "image_url": null,
+ "thumb_url": null,
+ "figure_page": 1,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.6
+}

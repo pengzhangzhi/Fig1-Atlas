@@ -1,0 +1,48 @@
+{
+ "id": "iclr26-4321",
+ "title": "Rethinking Radiology Report Generation: From Narrative Flow to Topic-Guided Findings",
+ "authors": [
+  "Sheng Cheng",
+  "Devika Subramanian"
+ ],
+ "venue": "ICLR 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "Computer Vision->Vision Models & Multimodal",
+ "role": "analysis-finding",
+ "role2": null,
+ "claim": "As more textual context is supplied, the benefit of the visual input steadily shrinks, showing models lean on language priors.",
+ "layout": "4 line-plot panels in a row, shared x-axis, downward-trending curves",
+ "tags": [
+  "modality-reliance",
+  "visual-grounding",
+  "ablation",
+  "language-priors",
+  "empirical-trend"
+ ],
+ "style": [
+  "plot",
+  "colorful",
+  "minimal"
+ ],
+ "description": "A single horizontal strip of four line charts, each titled with a metric family and the subtitle '(Difference: OriImg - BlackImg)': Language Metrics (BLEU-1, BLEU-4, ROUGE-L), RadGraph F1, CheXpert-14 F1 and CheXpert-5 F1. The x-axis is the same in every panel: NoPrior, lastk -3, lastk -2, lastk -1, which means progressively more text context. The y-axis is the score gap between real and blank image input. Each panel has colored lines with dot markers, with legends inside the plot area. Nearly all curves fall from left to right, and the steepest drop is at lastk -1. The CheXpert-5 panel has a small rise at lastk -3 first. Blue, orange, green and red mark the metric variants. The eye goes first to the high left-hand points and follows the downward slopes.",
+ "caption": "Empirical validation of the model’s over-reliance on textual priors over visual evidence. The plots show the score difference between generating report findings with the original image versus a blank image across four metric categories. The y-axis represents this performance gap (OriImg - BlackImg); a larger value means the visual information provides a greater benefit. The x-axis represents the amount of textual context provided to the model, where ”NoPrior” is full generation and ”lastk -K” is the task of generating only the final K sentences. Across all metrics, the performance gap consistently shrinks as more textual context is given (i.e., as K decreases from 3 to 1). This demonstrates that the model increasingly ignores the visual input as the textual prefix grows, relying instead on learned linguistic patterns to complete the report. This result provides strong evidence that training with narrative flow weakens visual grounding. Detailed results are shown in Appendix A.",
+ "caption_source": "pdf",
+ "abstract": "Vision-Language Models (VLMs) for radiology report generation are typically trained to mimic the narrative flow of human experts. However, we identify a potential limitation in this conventional paradigm. We hypothesize that optimizing for narrative coherence encourages models to rely on linguistic priors and inter-sentence correlations, which can weaken their grounding in direct visual evidence and lead to factual inaccuracies. To investigate this, we design a controlled experiment demonstrating that as textual context increases, a model's reliance on the input image systematically decays. We propose LLaVA-TA (Topic-guided and Anatomy-aware), a new fine-tuning framework that directly addresses this challenge by re-engineering the generation process. Instead of producing a linear narrative, LLaVA-TA decomposes the report into a set of independent, clinically-relevant topics. By training the model to generate a discrete finding for each topic conditioned on both the full image and its corresponding anatomical region, we reduce the model's reliance on narrative flow and enforce stricter visual grounding. Our experiments show that LLaVA-TA sets a new state of the art on the MIMIC-CXR dataset, significantly improving clinical accuracy on metrics like RadGraph F1 (from 29.4 to 44.0) and CheXpert F1-14 (from 39.5 to 71.5) over strong baselines. Our work demonstrates that dismantling a report's narrative structure to enforce independent, visually-grounded observations is a crucial and effective step toward building more accurate and reliable medical VLMs.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=nV3SAjFlyv",
+  "arxiv": null,
+  "pdf": "https://proceedings.iclr.cc/paper_files/paper/2026/file/0f904b512f0cb664c71630b2d276348b-Paper-Conference.pdf",
+  "proceedings": "https://proceedings.iclr.cc/paper_files/paper/2026/hash/0f904b512f0cb664c71630b2d276348b-Abstract-Conference.html",
+  "virtual": "https://iclr.cc/virtual/2026/poster/10007472",
+  "code": null
+ },
+ "license": null,
+ "img": "none",
+ "image_url": null,
+ "thumb_url": null,
+ "figure_page": 2,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.93
+}

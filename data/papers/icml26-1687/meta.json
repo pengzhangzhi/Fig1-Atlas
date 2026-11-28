@@ -1,0 +1,51 @@
+{
+ "id": "icml26-1687",
+ "title": "EAGer: Entropy-Aware GEneRation for Adaptive Inference-Time Scaling",
+ "authors": [
+  "Daniel Scalena",
+  "Leonidas Zotos",
+  "Elisabetta Fersini",
+  "Malvina Nissim",
+  "Ahmet Üstün"
+ ],
+ "venue": "ICML 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "Deep Learning->Large Language Models",
+ "role": "pipeline",
+ "role2": "teaser-result",
+ "claim": "Branching only at uncertain steps saves budget per instance, then reallocates it to hard cases, giving better accuracy with fewer tokens.",
+ "layout": "Top: numbered 4-step flow with budget bars; bottom: 2x2 line plots",
+ "tags": [
+  "adaptive-compute",
+  "test-time-scaling",
+  "entropy-branching",
+  "budget-reallocation",
+  "efficiency"
+ ],
+ "style": [
+  "colorful",
+  "plot",
+  "text-heavy"
+ ],
+ "description": "The figure has two parts. The top is a numbered walkthrough, steps 1 to 4, drawn as large gray numerals. A 'Reasoning Tasks' folder icon fans out to Prompt 1, Prompt 2 and a faded Prompt 3. Each prompt has horizontal lines of reasoning text. The lines branch at highlighted high-entropy words, and each ends in a green check or a red cross. Prompt 1 uses only a few branches and leaves gray 'saved sequences budget' bars. Prompt 2 uses many orange branches that all fail. Extra red-pink branches then appear, and one of them succeeds. On the right, two vertical 'sequence budget' tubes with an M=32 cap are linked by a 'Reuse saved budget' arrow. The bottom is a 2x2 grid of Pass@k versus tokens plots, for Qwen3 4B and GPT-oss 20B on AIME 2025 and GPQA Diamond. EAGer variants in warm pink and orange sit above a purple Full Parallel Sampling baseline. Annotations read 'Less token use' and 'Improved performance'.",
+ "caption": "Top: We introduce \\eager{}, a generation method for (1) reasoning benchmarks: (2) decode and branch at high-entropy tokens; (3) cap each prompt at $M$ candidates, yielding \\textshade{entropy-color}{45}{\\eagerinit{}}; and (4) carry forward unused budget and reallocate it either to prompts that hit the $M$ cap, yielding \\textshade{adapt-color}{45}{\\eageradapt{}}, or, when target labels are available, to prompts that have not yet produced a correct solution ($\\mathrm{Pass@}k = 0$), yielding our full \\textshade{more-color}{55}{\\eager{}}.\\protect\\\\ Bottom: Our approaches (\\eager{} \\textshade{entropy-color}{45}{-init}, \\textshade{adapt-color}{45}{-adapt}, and full \\textshade{more-color}{55}{\\eager{}}) consistently reduce token usage compared to the standard \\textshade{default-color}{25}{\\default{}} baseline when scaling the $M$ limit to $M \\in \\{4, 8, 16, 24, 32\\}$. In addition, \\textshade{more-color}{55}{\\eager{}} consistently achieves a clear performance advantage over all other decoding methods.",
+ "caption_source": "latex",
+ "abstract": "With the rise of reasoning language models and test-time scaling methods as a paradigm for improving model performance, substantial computation is often required to generate multiple candidate sequences from the same prompt. This enables exploration of different reasoning paths toward the correct solution, however, allocates the same compute budget for each prompt. Grounded on the assumption that different prompts carry different degrees of complexity, and thus different computation needs, we propose EAGer, a training-free generation method that leverages model uncertainty through token-wise entropy distribution to reduce redundant computation and concurrently improve overall performance. EAGer allows branching to multiple reasoning paths only in the presence of high-entropy tokens, and reallocates the saved compute budget to instances where exploration of alternative paths is most needed. We validate EAGer across multiple open-source models on complex reasoning benchmarks, with gains specifically demonstrated on AIME 2025. When target labels are accessible -- as in RLVR training pipelines -- EAGer achieves up to +37% in Pass@k and 59% fewer tokens; in test-time settings it still yields +12% in Pass@k and 64% fewer tokens compared to Full Parallel Sampling.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=G0Mw5MaPcR",
+  "arxiv": "https://arxiv.org/abs/2510.11170",
+  "pdf": "https://raw.githubusercontent.com/mlresearch/v306/main/assets/scalena26a/scalena26a.pdf",
+  "proceedings": "https://proceedings.mlr.press/v306/scalena26a.html",
+  "virtual": "https://icml.cc/virtual/2026/poster/65185",
+  "code": "https://github.com/DanielSc4/EAGer"
+ },
+ "license": "http://creativecommons.org/licenses/by/4.0/",
+ "img": "cc-by",
+ "image_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/images/icml26-1687.png",
+ "thumb_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/thumbs/icml26-1687.webp",
+ "figure_page": 0,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.6
+}

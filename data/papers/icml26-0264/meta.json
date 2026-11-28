@@ -1,0 +1,48 @@
+{
+ "id": "icml26-0264",
+ "title": "From Per-Image Low-Rank to Encoding Mismatch: Rethinking Feature Distillation in Vision Transformers",
+ "authors": [
+  "Huiyuan Tian",
+  "Bonan Xu",
+  "Shijian Li"
+ ],
+ "venue": "ICML 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "Deep Learning->Algorithms",
+ "role": "analysis-finding",
+ "role2": null,
+ "claim": "Each sample is highly compressible on its own, yet a shared dataset-level subspace needs far more dimensions, revealing a hidden mismatch.",
+ "layout": "2x2 grid of plots, reading left-to-right then top-to-bottom, with dashed threshold lines",
+ "tags": [
+  "low-rank",
+  "subspace-rotation",
+  "pca-spectrum",
+  "feature-distillation",
+  "empirical-paradox"
+ ],
+ "style": [
+  "plot",
+  "minimal"
+ ],
+ "description": "A 2x2 grid of matplotlib-style plots, each labeled (a) to (d) beneath it. Panel (a) shows the cumulative energy curve of a dataset-level PCA spectrum as a blue line. Dashed gray guide lines mark d=89, 189, 262 and 346. Panel (b) shows the energy captured by the shared PCA subspace as three curves for the median (blue), 10th percentile (orange) and 1st percentile (green) over images. The curves fan out below the median at low d. Panels (c) and (d) are overlaid histograms of the required d for 95% and 99% energy. Green per-image SVD histograms sit far left, and blue dataset PCA histograms sit far right. Dashed vertical lines mark 99th percentiles, and tinted text boxes give mean, std and 99th-percentile statistics. The eye goes first to the widely separated green and blue histograms in the bottom row.",
+ "caption": "Per-image low-rank but dataset-level non-low-rank in CaiT-S24 [ref]. (a) Dataset-level PCA spectrum: cumulative fraction of energy explained by the top-$d$ channel principal components learned from 1,000 images. (b) Per-image energy captured by a shared subspace: percentiles of $E_i(d)=\\|X_i V_d\\|_F^2/\\|X_i\\|_F^2$ when projecting each image's token-feature matrix $X_i$ onto the same PCA basis $V_d$. (c) Required $d$ for $95%$ energy: overlay histograms comparing per-image SVD (input-dependent) vs.\\ dataset PCA with a shared subspace; dashed lines mark the 99th-percentile required dimensions ($61$ vs.\\ $302$). (d) Required $d$ for $99%$ energy: same comparison ($121$ vs.\\ $359$), highlighting strong per-image compressibility but substantial subspace rotation across inputs.",
+ "caption_source": "latex",
+ "abstract": "Feature-map knowledge distillation (KD) transfers internal representations well between comparably sized Vision Transformers (ViTs), but it often fails in compression. We revisit this failure and uncover a paradox. Sample-wise SVD shows that each image is highly compressible, which seems to suggest that a narrow student with a linear projector should match the teacher \"in principle\". However, a dataset-level view contradicts this intuition: PCA shows that the teacher is a union of low-rank subspaces with significant subspace rotation across inputs. We further introduce token-level Spectral Energy Patterns (SEP) and find an architecture-invariant encoding law: tokens spread energy broadly across channel modes even when they live in low-rank subspace, creating a bandwidth mismatch. We refer to this combined phenomenon as an encoding mismatch. We propose two minimal remedies, Lift or WideLast: (i) Lift retains a lightweight lifting projector at inference to provide wider channel, or (ii) WideLast widens only the student's last block, enabling an input-dependent expansion. On ImageNet-1K, these fixes revive feature KD for ViT compression, improving DeiT-Tiny distilled from CaiT-S24 from 74.86% to 77.53%/78.23% top-1 accuracy, and they also strengthen students trained without distillation. Our analyses clarify when and why feature-map KD fails and then how to fix it. Code and raw data are provided in https://github.com/thy960112/From-Per-Image-Low-Rank-to-Encoding-Mismatch.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=2Ud1nkQrVZ",
+  "arxiv": "https://arxiv.org/abs/2511.15572",
+  "pdf": "https://raw.githubusercontent.com/mlresearch/v306/main/assets/tian26k/tian26k.pdf",
+  "proceedings": "https://proceedings.mlr.press/v306/tian26k.html",
+  "virtual": "https://icml.cc/virtual/2026/poster/66573",
+  "code": "https://github.com/thy960112/From-Per-Image-Low-Rank-to-Encoding-Mismatch"
+ },
+ "license": "http://arxiv.org/licenses/nonexclusive-distrib/1.0/",
+ "img": "none",
+ "image_url": null,
+ "thumb_url": null,
+ "figure_page": 0,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.85
+}

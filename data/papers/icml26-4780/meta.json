@@ -1,0 +1,55 @@
+{
+ "id": "icml26-4780",
+ "title": "Memory-Efficient LLM Training with Dynamic Sparsity: From Stability to Practical Scaling",
+ "authors": [
+  "Qiao Xiao",
+  "Boqian Wu",
+  "Patrik Okanovic",
+  "Tomasz Sternal",
+  "Maurice Keulen",
+  "Elena Mocanu",
+  "Mykola Pechenizkiy",
+  "Decebal Constantin Mocanu",
+  "Torsten Hoefler"
+ ],
+ "venue": "ICML 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": null,
+ "role": "teaser-result",
+ "role2": "analysis-finding",
+ "claim": "Naive sparse-training baselines show loss spikes and lag dense training; ours trains stably and nearly matches dense quality.",
+ "layout": "2 panels side by side: loss curves left, bar chart right",
+ "tags": [
+  "sparse-training",
+  "training-stability",
+  "loss-spikes",
+  "efficiency",
+  "llm-pretraining"
+ ],
+ "style": [
+  "plot",
+  "colorful",
+  "minimal"
+ ],
+ "description": "Two plots sit side by side. Panel (a) is a line chart of training loss against training step, from 0 to 1000, for four methods: DST (SET) in red, DST (RigL) in blue, SMET (Ours) in green and Dense in gray. All curves fall steeply at first. The red and blue DST curves then show sharp loss spikes about every 100 steps, which are the topology updates. The green SMET curve stays smooth and sits at or below the dense curve. Panel (b) is a bar chart of validation perplexity, where lower is better, with error bars and values printed above the bars. DST(RigL) scores 29.7, DST(SET) 27.8, SMET (Ours) 25.6 and Dense 24.2. The eye goes first to the spikes, then to the green bar close to the gray dense bar.",
+ "caption": "(a) Comparison of training curves between DST methods and dense training for LLaMA-240M on C4 dataset, with the topology update frequency set to every 100 steps for DST. (b) Validation perplexity ($\\downarrow$) comparison of dense training, SMET, and other DST methods at a density level of 0.25 on LLaMA-240M trained on the C4 dataset with 1.3B tokens.",
+ "caption_source": "latex",
+ "abstract": "Dynamic Sparse Training (DST) offers a promising paradigm for improving the training and inference efficiency of deep neural networks; however, we find that in large language model training, DST can suffer from optimization instability, manifested as loss spikes after topology updates. In this work, we show that the naive use of standard Adam-based optimizers leads to a cold-start issue for newly regrown parameters, resulting in excessively large updates and disrupted training dynamics. To address this issue, we propose Sparse Memory-Efficient Training (SMET), which stabilizes DST with optimizer warm-up and improves training progress through density-aware learning-rate scaling. SMET further reduces memory consumption by storing gradients and optimizer states only for active parameters. We provide a theoretical analysis of the update behaviors under SMET, showing improved optimization stability. Extensive experiments demonstrate that SMET enables stable, scalable, and memory-efficient sparse pre-training of LLMs, paving the way for sparse training as a practical alternative to dense training. Our code is publicly available at: https://github.com/QiaoXiao7282/SMET.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=ivVPgBZewP",
+  "arxiv": "https://arxiv.org/abs/2606.00888",
+  "pdf": "https://raw.githubusercontent.com/mlresearch/v306/main/assets/xiao26t/xiao26t.pdf",
+  "proceedings": "https://proceedings.mlr.press/v306/xiao26t.html",
+  "virtual": "https://icml.cc/virtual/2026/poster/62187",
+  "code": null
+ },
+ "license": "http://creativecommons.org/licenses/by/4.0/",
+ "img": "cc-by",
+ "image_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/images/icml26-4780.png",
+ "thumb_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/thumbs/icml26-4780.webp",
+ "figure_page": 0,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.6
+}

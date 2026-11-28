@@ -1,0 +1,55 @@
+{
+ "id": "iclr26-0552",
+ "title": "MT-DAO: Multi-Timescale Distributed Adaptive Optimizers with Local Updates",
+ "authors": [
+  "Alex Iacob",
+  "Andrej Jovanovic",
+  "Mher Safaryan",
+  "Meghdad Kurmanji",
+  "Lorenzo Sani",
+  "Samuel Horváth",
+  "William Shen",
+  "Xinchi Qiu",
+  "Nic Lane"
+ ],
+ "venue": "ICLR 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "Optimization->Large Scale, Parallel and Distributed",
+ "role": "teaser-result",
+ "role2": "prior-vs-ours",
+ "claim": "Under long-horizon momentum decay, the standard baseline stalls and oscillates, while ours converges rapidly and stably to the optimum.",
+ "layout": "2 panels, left-to-right: convergence curve, then twin trajectory contour plots",
+ "tags": [
+  "optimization",
+  "stability",
+  "toy-problem",
+  "convergence",
+  "distributed-training"
+ ],
+ "style": [
+  "plot",
+  "colorful",
+  "minimal"
+ ],
+ "description": "The figure has two panels that compare our method (orange) against a baseline (dark navy), both shown at β = 0.9999. Panel (a) is a log-scale line plot of distance to the optimum against communication rounds. The orange curve rises at first, then falls steeply to about 1e-4 by round 400 and stays there. The navy curve oscillates between about 1 and 10 for the whole run and never converges. Panel (b) has two side-by-side contour plots of the Rosenbrock function over x1 and x2, on a blue-to-red heatmap. Each marks a green start dot and a yellow star at the optimum. The orange path travels smoothly along the curved valley to the star. The navy path loops and scribbles chaotically around the optimum. A shared legend sits below the plots. Captions read '(a) Distance to optimum vs. steps' and '(b) Contour plot of trajectories.'",
+ "caption": "To highlight the stability benefit of MT-DAO, we illustrate its performance on a toy non- convex problem. Crucially, under a high momentum decay of β = 0.9999, prior stateful methods like Local Adam [10] become unstable and fail to converge, whereas MT-DAO maintains its rapid and stable convergence. We optimize the non-convex Rosenbrock function f(x1, x2) = (1 −x1)2 + 100(x2 −x2 1)2 with M = 256 workers and IID Gaussian noise (σ = 2).",
+ "caption_source": "pdf",
+ "abstract": "Training large models with distributed data parallelism (DDP) requires frequent communication of gradients across workers, which can saturate bandwidth. Infrequent communication strategies (e.g., Local SGD) reduce this overhead but, when applied to adaptive optimizers, often suffer a performance gap relative to fully synchronous DDP. We trace this gap to a time-scale mismatch: the optimizer's fast-moving momentum, tuned for frequent updates, decays too quickly to smooth gradients over long intervals, leading to noise-dominated optimization. To address this, we propose MT-DAO, a family of optimizers that employs multiple slow- and fast-moving first momenta or the gradient to track update dynamics across different time scales, for which we provide the first convergence guarantees. Empirically, for language-model pre-training, this eliminates the performance gap with DDP, outperforming infrequent-communication baselines in perplexity and reducing iso-token wall-clock time by 6-27% on Ethernet interconnects. At the 720M scale, MT-DAO reaches a target perplexity in 24% fewer steps and 35% less time than the single-momentum DDP baseline. MT-DAO enables effective cross-datacenter training and training over wide geographic areas.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=5yPP238v4c",
+  "arxiv": "https://arxiv.org/abs/2510.05361",
+  "pdf": "https://proceedings.iclr.cc/paper_files/paper/2026/file/de71acf1b3259a4ff7fe490cd17f2637-Paper-Conference.pdf",
+  "proceedings": "https://proceedings.iclr.cc/paper_files/paper/2026/hash/de71acf1b3259a4ff7fe490cd17f2637-Abstract-Conference.html",
+  "virtual": "https://iclr.cc/virtual/2026/poster/10011409",
+  "code": null
+ },
+ "license": "http://arxiv.org/licenses/nonexclusive-distrib/1.0/",
+ "img": "none",
+ "image_url": null,
+ "thumb_url": null,
+ "figure_page": 1,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.55
+}

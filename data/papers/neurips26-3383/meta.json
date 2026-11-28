@@ -1,0 +1,53 @@
+{
+ "id": "neurips26-3383",
+ "title": "Flash PD-SSM: Memory-Optimized Structured Sparse State-Space Models",
+ "authors": [
+  "Aleksandar Terzic",
+  "Francesco S. Carzaniga",
+  "Nicolas Menet",
+  "Yannick Biehl",
+  "Michael Hersche",
+  "Thomas Hofmann",
+  "Abbas Rahimi"
+ ],
+ "venue": "NeurIPS 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "Deep Learning->Algorithms",
+ "role": "prior-vs-ours",
+ "role2": "pipeline",
+ "claim": "The prior method builds a dense mixture matrix at every step; ours directly selects one sparse matrix, which is simpler and faster.",
+ "layout": "2 stacked panels (a) prior, (b) ours, left-to-right flow, matrix heatmap icons",
+ "tags": [
+  "structured-sparse",
+  "state-space-model",
+  "selection-vs-mixture",
+  "efficiency",
+  "architecture-comparison"
+ ],
+ "style": [
+  "icon-heavy",
+  "colorful",
+  "minimal"
+ ],
+ "description": "Two vertically stacked block diagrams compare the prior PD-SSM (a) with Flash PD-SSM (b). Both take an input u_t on the left. Each has a dashed upper box that generates a column one-hot matrix P(u_t) and a dashed lower box that generates a complex diagonal matrix D(u_t). The two outputs are multiplied to give A(u_t). In (a), a Linear and Softmax block produces weights such as 0.25, 0.15 and 0.60. These weight dictionary matrices M1 to MK, which are summed and then sparsified by column. In (b), a Linear S and Hardmax block produces a one-hot selector (0, 0, 0, 1). It picks a single pre-sparsified dictionary matrix directly. Blue heatmap grids show the P matrices and orange grids show the D matrices. Teal outlines mark the key blocks. Captions sit under each panel.",
+ "caption": "\\name\\ is expressive, fast, and memory-efficient. Synthetic state-tracking accuracy on a collection of FSA emulation tasks [ref]. The single-layer runtime (measured relative to PD-SSM [ref]) and memory consumption of \\name\\ and other popular SSMs are also reported. The maximum sequence length is 2048 and all models have hidden dimension 1024. The circle's size indicates peak memory consumption during training. \\name\\ is the only SSM in the upper right quadrant, i.e., both highly expressive and fast.",
+ "caption_source": "latex",
+ "abstract": "State-space models (SSMs) face a fundamental trade-off between efficiency and expressivity that is mainly dictated by the structure of the model's transition matrix. Unstructured transition matrices enable maximal expressivity, as measured by their ability to model finite-state automaton (FSA) transitions, but come at a prohibitively high compute and memory cost. In contrast, most structured transition matrix forms are highly efficient both in runtime and memory consumption, but suffer from limited expressivity. Building on recent work on structured sparse SSMs, we propose PD-SSM, a novel SSM that achieves comparable throughput to widely-used structured SSMs with significantly better expressivity guarantees. PD-SSM maintains a trainable set of structured sparse matrices, a single one of which is discretely selected at each time-step, enabling FSA expressiveness at the level of unstructured matrices while maintaining the efficiency required for training models at scale. First, we validate PD-SSM against a suite of alternative models on synthetic mechanistic and state-tracking tasks, finding that its theoretical expressivity is achieved in practice. Second, on multivariate time-series tasks involving sequences of length over 17,000, we find that PD-SSM defines a new state-of-the-art (SoTA) accuracy among competing SSM methods. Finally, we demonstrate that PD-SSM is an effective drop-in replacement for hybrid LLMs, yielding improvements both in natural language state-tracking and in common language modeling scenarios. Up to 3B parameters, its training speed matches that of widely used SSMs, with less memory than DeltaNet and Gated DeltaNet. Code is available at https://github.com/IBM/flash-pdssm.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=NZX4ku8S86",
+  "arxiv": "https://arxiv.org/abs/2605.19150",
+  "pdf": "https://arxiv.org/pdf/2605.19150",
+  "proceedings": null,
+  "virtual": "https://neurips.cc/virtual/2026/poster/153142",
+  "code": null
+ },
+ "license": "http://creativecommons.org/licenses/by/4.0/",
+ "img": "cc-by",
+ "image_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/images/neurips26-3383.png",
+ "thumb_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/thumbs/neurips26-3383.webp",
+ "figure_page": 4,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.8
+}

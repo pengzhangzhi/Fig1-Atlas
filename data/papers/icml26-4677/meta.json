@@ -1,0 +1,50 @@
+{
+ "id": "icml26-4677",
+ "title": "PRISM: Distribution-free Adaptive Computation of Matrix Functions for Accelerating Neural Network Training",
+ "authors": [
+  "Shenghao Yang",
+  "Zhichao Wang",
+  "Oleg Balabanov",
+  "N. Benjamin Erichson",
+  "Michael Mahoney"
+ ],
+ "venue": "ICML 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "Deep Learning->Algorithms",
+ "role": "teaser-result",
+ "role2": null,
+ "claim": "A tuned baseline's speedup collapses when its assumed spectral parameter shifts, while ours stays consistently fast across the whole range.",
+ "layout": "2 side-by-side line plots, shared x-axis sweep, legend in right panel",
+ "tags": [
+  "adaptive",
+  "robustness",
+  "matrix-functions",
+  "speedup",
+  "hyperparameter-free"
+ ],
+ "style": [
+  "plot",
+  "minimal"
+ ],
+ "description": "Two side-by-side line plots share the same axes: log-scale sigma_min on the x-axis from about 1e-12 to 1/2, and GPU Time Speedup on the y-axis. The left panel covers polar decomposition and the right covers matrix square root. Each panel has three series. A gray dashed horizontal line at 1.0 marks the Newton-Schulz baseline. A blue line with diamond markers shows PolarExpress. It rises to a peak near its tuned sigma_min, about 1.75 on the left and 1.75 on the right, then falls steeply below 1.0, to roughly 0.5 on the left and 0.4 on the right. A red line with circle markers shows PRISM. It is noisy but stays around 1.3 to 1.8 across the whole range and mostly stays above the baseline. The legend sits in the lower left of the right panel. The eye goes first to the blue peak and the sharp drop, then to the steady red line.",
+ "caption": "Speedup in GPU time over the classical Newton-Schulz for polar decomposition (left) and square root (right). We keep $\\sigma_{\\max}=1$ and vary $\\sigma_{\\min} \\in [10^{-12}, 1/2]$. The PolarExpress variant we use is optimized for $\\sigma_{\\min} = 10^{-3}$ for polar decomposition (and hence it is optimized for $\\sigma_{\\min} = 10^{-6}$ for square root). All algorithms are run until convergence. In both cases, we see a performance degradation as $\\sigma_{\\min}$ deviates from the one PolarExpress is optimized for. PRISM (this work) does not require or assume $\\sigma_{\\min}$ and has a stable speedup across the entire range.",
+ "caption_source": "latex",
+ "abstract": "Matrix functions such as square root, inverse roots, and orthogonalization play a central role in preconditioned gradient methods for neural network training. This has motivated the development of iterative algorithms that avoid explicit eigendecompositions and rely primarily on matrix multiplications, making them well suited for modern GPU accelerators. We present PRISM (Polynomial-fitting and Randomized Iterative Sketching for Matrix functions computation), a general framework for accelerating iterative algorithms for computing matrix functions. PRISM combines adaptive polynomial approximation with randomized sketching: at each iteration, it fits a polynomial surrogate to the current spectrum via a sketched least-squares problem, adapting to the instance at hand with minimal overhead. We apply PRISM to accelerate Newton-Schulz-like iterations for matrix square roots and orthogonalization, which are core primitives in machine learning. Unlike prior methods, PRISM requires no explicit spectral bounds or singular value estimates; and it adapts automatically to the evolving spectrum. Empirically, PRISM accelerates training when integrated into Shampoo and Muon optimizers.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=hwhvjhXC0m",
+  "arxiv": "https://arxiv.org/abs/2601.22137",
+  "pdf": "https://raw.githubusercontent.com/mlresearch/v306/main/assets/yang26ca/yang26ca.pdf",
+  "proceedings": "https://proceedings.mlr.press/v306/yang26ca.html",
+  "virtual": "https://icml.cc/virtual/2026/poster/62288",
+  "code": null
+ },
+ "license": "http://creativecommons.org/licenses/by/4.0/",
+ "img": "cc-by",
+ "image_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/images/icml26-4677.png",
+ "thumb_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/thumbs/icml26-4677.webp",
+ "figure_page": 2,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.62
+}

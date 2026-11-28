@@ -1,0 +1,46 @@
+{
+ "id": "icml26-4230",
+ "title": "Backward Oversmoothing: why is it hard to train deep Graph Neural Networks?",
+ "authors": [
+  "Nicolas Keriven"
+ ],
+ "venue": "ICML 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "Deep Learning->Graph Neural Networks",
+ "role": "analysis-finding",
+ "role2": null,
+ "claim": "Forward and backward signals both oversmooth in deep graph networks, leaving gradients near zero and loss stuck high, unlike a comparable non-graph model.",
+ "layout": "4 line-plot panels left-to-right; log-scale axes, red MLP vs blue GNN",
+ "tags": [
+  "oversmoothing",
+  "gradient-vanishing",
+  "optimization",
+  "deep-networks",
+  "spurious-stationary-points"
+ ],
+ "style": [
+  "plot",
+  "minimal"
+ ],
+ "description": "A single horizontal row of four line plots on log-scale y-axes. The first two panels show the forward quantity E(H) and the backward quantity E_pi(B) against layer index from 0 to 100. E(H) falls steadily from about 10^2 to 10^-3. E_pi(B) is noisy, with a shaded band, and rises toward the last layers. The third panel plots per-layer gradient norms against epochs. MLP layers (red) stay around 10^-2 to 10^-3. GNN layers (blue) collapse to 10^-12 to 10^-14. The fourth panel plots loss against epochs. The blue GNN loss plateaus at about 6 early on, while the red MLP loss keeps decreasing toward 4. A legend labels MLP in red and GNN in blue. The eye goes first to the stark red/blue gap in the gradient-norm panel.",
+ "caption": "GNN with $P=D^{-1}A$ or MLP with 100 layers, on the WikiCS dataset [ref]. Left: illustration of forward oversmoothing by measuring $\\Ee(H^{(k)})$ (left) and backward oversmoothing by measuring $\\Ee_\\pi(B^{(k)})$ (right). Center: norms of gradients $\\partial \\Ll / \\partial W^{(k)}$ for each layer wityh respect to epoch, for MLP (red) and GNN (blue). Right: corresponding losses. Other datasets are illustrated in App. [ref].",
+ "caption_source": "latex",
+ "abstract": "Oversmoothing has long been identified as a major limitation of Graph Neural Networks (GNNs): input node features are smoothed at each layer and converge to a non-informative representation, if the weights of the GNN are sufficiently bounded. This assumption is crucial: if, on the contrary, the weights are sufficiently large, then oversmoothing may not happen. Theoretically, GNN could thus learn to not oversmooth. However it does not really happen in practice, which prompts us to examine oversmoothing from an optimization point of view. In this paper, we analyze backward oversmoothing, that is, the notion that backpropagated errors used to compute gradients are also subject to oversmoothing from output to input. With non-linear activation functions, we outline the key role of the interaction between forward and backward smoothing. Moreover, we show that, due to backward oversmoothing, GNNs provably exhibit many spurious stationary points: as soon as the last layer is trained, the whole GNN is at a stationary point. As a result, we can exhibit regions where gradients are near-zero while the loss stays high. The proof relies on the fact that, unlike forward oversmoothing, backward errors are subjected to a linear oversmoothing even in the presence of non-linear activation function, such that the average of the output error plays a key role. Additionally, we show that this phenomenon is specific to deep GNNs, and exhibit counter-example Multi-Layer Perceptron. This paper is a step toward a more complete comprehension of the optimization landscape specific to GNNs.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=dx53sSG8py",
+  "arxiv": "https://arxiv.org/abs/2505.16736",
+  "pdf": "https://raw.githubusercontent.com/mlresearch/v306/main/assets/keriven26a/keriven26a.pdf",
+  "proceedings": "https://proceedings.mlr.press/v306/keriven26a.html",
+  "virtual": "https://icml.cc/virtual/2026/poster/62719",
+  "code": null
+ },
+ "license": "http://creativecommons.org/licenses/by/4.0/",
+ "img": "cc-by",
+ "image_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/images/icml26-4230.png",
+ "thumb_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/thumbs/icml26-4230.webp",
+ "figure_page": 1,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.9
+}

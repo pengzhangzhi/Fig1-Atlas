@@ -1,0 +1,48 @@
+{
+ "id": "icml26-1230",
+ "title": "PolicyGuard: Towards Test-time and Step-level Adversary Defense for Reinforcement Learning Agent",
+ "authors": [
+  "Junfeng Guo",
+  "Heng Huang"
+ ],
+ "venue": "ICML 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": null,
+ "role": "pipeline",
+ "role2": null,
+ "claim": "A two-phase procedure first fits a probabilistic model on trajectory embeddings, then uses its posterior variance on substituted trajectories to flag anomalous steps.",
+ "layout": "2 phases split by dashed line, left-to-right, image stacks with arrows",
+ "tags": [
+  "two-stage",
+  "gaussian-process",
+  "uncertainty",
+  "anomaly-detection",
+  "test-time-defense"
+ ],
+ "style": [
+  "icon-heavy",
+  "colorful",
+  "photo/real data"
+ ],
+ "description": "A wide, two-part pipeline separated by a vertical dashed line. The left part, titled 'Training GP Model', starts with a stack of rendered game frames, labeled as the state-action pairs X^(i). An arrow labeled RNN leads to a column of colored embedding blocks (h_t and e^(i)). A second arrow leads to a colorful 3D surface that stands for the additive GP model. The right part, titled 'Measuring Uncertainty through Adaptive GP Posterior Variance', shows two stacks of humanoid-robot frames: a red-bordered 'Backdoor' stack and a green-bordered 'Benign' stack. Both stacks feed into a 'substitution' step that builds pseudo trajectories, with braces marking time 0…t-1 and t+1…T. The pseudo trajectories pass through the GP surface again. Two posterior variance values appear at the end: 0.083 in red for backdoor and 0.022 in green for benign. The eye goes first to the colorful GP surfaces and the red and green frame stacks.",
+ "caption": "\\textbf{Overview of \\name{}.} Our approach consists of two phases. In the first phase (Training GP Model), we collect state-action pairs across multiple episodes and map them to embedding features $h_t$ using a recurrent neural network. A shallow MLP then projects the final state embedding $h^{(i)}_T$ to $e^{(i)}$ for each episode $X^{(i)}$. These embeddings serve as inputs to a Gaussian Process (GP) model, which is trained to predict the final reward by maximizing the evidence lower bound (ELBO). In the second phase (Measuring Uncertainty through Adaptive GP Posterior Variance), for a given suspicious time step t, we construct pseudo trajectories by substituting the state-action pair at collected trajectories with the corresponding historical suspicious state-action pair. These modified trajectories are then passed through the trained GP model to compute posterior variances. We extract and aggregate the variance at time step $t$ across episodes via Interquartile Mean; finally use this uncertainty measure to distinguish backdoor-infected trajectories from benign ones.",
+ "caption_source": "latex",
+ "abstract": "While real-world applications of reinforcement learning (RL) are becoming increasingly popular, the security of RL systems deserve more attention and exploration. In particular, recent work has revealed that RL agents are vulnerable to backdoor attacks, where a victim agent behaves normally under standard conditions but executes malicious actions when a specific trigger is activated. Existing backdoor defenses for RL either require access to the agent's internal parameters, operate only at the model or trajectory level, or are limited to specific attack types. To ensure the security of RL agents, we propose \\texttt{PolicyGuard}, a \\textit{test-time step-level} backdoor defense which leverages Gaussian Process (GP) posterior variance and adapts pseudo trajectories to enable uncertainty computation for individual time step. Besides, we also provide theoretical foundations to explain the efficacy of GP posterior variance. Extensive experiments across seven RL games demonstrate that PolicyGuard achieves state-of-the-art detection performance in most cases, with average AUROC of 0.856 for perturbation-based attacks and 0.859 for adversary-agent attacks.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=BhF4ZrIqu8",
+  "arxiv": "https://arxiv.org/abs/2606.12896",
+  "pdf": "https://raw.githubusercontent.com/mlresearch/v306/main/assets/guo26f/guo26f.pdf",
+  "proceedings": "https://proceedings.mlr.press/v306/guo26f.html",
+  "virtual": "https://icml.cc/virtual/2026/poster/65628",
+  "code": null
+ },
+ "license": "http://arxiv.org/licenses/nonexclusive-distrib/1.0/",
+ "img": "none",
+ "image_url": null,
+ "thumb_url": null,
+ "figure_page": 3,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.93
+}

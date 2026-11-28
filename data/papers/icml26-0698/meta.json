@@ -1,0 +1,49 @@
+{
+ "id": "icml26-0698",
+ "title": "PsumQuant: In-line Post-training Partial Sum Quantizer for Energy Efficient NPU Inference",
+ "authors": [
+  "Sangwoo Hwang",
+  "Yeeun Hong",
+  "Jaeha Kung"
+ ],
+ "venue": "ICML 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "Deep Learning->Everything Else",
+ "role": "prior-vs-ours",
+ "role2": "pipeline",
+ "claim": "Conventional accelerators accumulate wide high-precision partial sums; inserting a lightweight in-line quantizer narrows them and cuts buffer and accumulation cost.",
+ "layout": "Top tiled-GEMM strip above two side-by-side hardware diagrams, numbered steps 1-3",
+ "tags": [
+  "quantization",
+  "hardware-accelerator",
+  "partial-sums",
+  "energy-efficiency",
+  "post-training"
+ ],
+ "style": [
+  "icon-heavy",
+  "colorful",
+  "text-heavy"
+ ],
+ "description": "The top row shows tiled matrix multiplication: an input activation matrix (M×K) with a highlighted R×m tile, multiplied (@) by a weight matrix (K×N) with a C×R tile, giving stacked partial-sum slices (K/R deep) that must be accumulated. The bottom row has two boxed diagrams. On the left, 'Conventional NPU' shows a 4×4 grid of dark PE blocks with a unified buffer, an accumulator and orange numbered circles 1-3. Its psum bit-width is labeled B_w+B_a+log2 R. On the right, 'NPU with PsumQuant' has the same layout, plus a scale-driven 'Psum Quantizer' row at the array bottom. Its low-bit B_PQ and the narrower width are labeled in blue. Blue text marks the differences, and the eye goes first to the large matrix tiles and then to the two labeled systems.",
+ "caption": "Overview of psum accumulation in tiled GEMM and the",
+ "caption_source": "pdf",
+ "abstract": "The rapid growth of deep neural networks (DNNs) has intensified the demand for efficient hardware acceleration under quantization. While prior research has successfully reduced weight and activation precision, partial sums generated during accumulation often retain high precision, resulting in significant energy overhead. In this work, we analyze psum distributions in tiled architectures and reveal that within-tile outliers are input-dependent. We propose PsumQuant, a post-training, input-aware quantization that predicts psum scales on-the-fly. By leveraging the crest factor of input activations, our learnable scale predictor effectively bounds the psum bit-width while handling the extreme outliers in DNNs. Experimental results on a $128 \\times 128$ systolic array demonstrate that PsumQuant compresses psum precision down to 8-bit within only a 1\\% accuracy drop on ResNet-18 and a marginal 0.04 perplexity increase on Llama-3.1. Furthermore, bit-width reduction with PsumQuant results in a 45\\% reduction in total energy with minimal accuracy loss, demonstrating that PsumQuant provides a highly efficient solution for actual NPU architectures.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=6Qbb6IcCVy",
+  "arxiv": null,
+  "pdf": "https://raw.githubusercontent.com/mlresearch/v306/main/assets/hwang26a/hwang26a.pdf",
+  "proceedings": "https://proceedings.mlr.press/v306/hwang26a.html",
+  "virtual": "https://icml.cc/virtual/2026/poster/66147",
+  "code": null
+ },
+ "license": null,
+ "img": "none",
+ "image_url": null,
+ "thumb_url": null,
+ "figure_page": 0,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.6
+}

@@ -1,0 +1,52 @@
+{
+ "id": "icml26-5844",
+ "title": "Zero Sum SVD: Balancing Loss Sensitivity for Low Rank LLM Compression",
+ "authors": [
+  "Ali Abbasi",
+  "Chayne Thrash",
+  "Haoran Qin",
+  "Shansita Sharma",
+  "Sepehr Seifi",
+  "Soheil Kolouri"
+ ],
+ "venue": "ICML 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "Deep Learning->Large Language Models",
+ "role": "pipeline",
+ "role2": null,
+ "claim": "Each singular component is scored by its first-order effect on calibration loss, computed from a whitened gradient, to guide truncation.",
+ "layout": "Left-to-right matrix equations in 3 blocks, with brace and dashed box",
+ "tags": [
+  "low-rank-compression",
+  "svd",
+  "loss-sensitivity",
+  "importance-scoring",
+  "post-training"
+ ],
+ "style": [
+  "math-heavy",
+  "colorful",
+  "minimal"
+ ],
+ "description": "The figure is built from brown and orange grids that stand for matrices. The top left shows the SVD factorization A = WS = U × Σ × Vᵀ. Shading gets lighter for later singular components, and σ1 to σ3 sit on the diagonal of Σ. The bottom left is a chain: the weight matrix W goes through the loss L, then the gradient ∇_W L(W), then H = ∇_W L(W)S^-T. A large curly brace links these to the right side. There, a heading reads 'Directional derivative of the calibration loss w.r.t. the singular values of A'. Below it, ∂L/∂σᵢ is written as the product uᵢᵀ H vᵢ, drawn as a row vector, a matrix and a column vector. A dashed box at the bottom right shows ΔLᵢ as the loss with σᵢ removed minus the loss with it kept, approximated by −σᵢ uᵢᵀ H vᵢ. Block arrows give the reading order. The eye goes first to the colored matrix grids at the top left.",
+ "caption": "Zero-Sum SVD scores singular values of the whitened weight matrix using the calibration-loss directional derivative, then uses these scores to prioritize truncation across layers.",
+ "caption_source": "latex",
+ "abstract": "Advances in large language models have driven strong performance across many tasks, but their memory and compute costs still hinder deployment. SVD-based compression reduces storage and can speed up inference via low-rank factors, yet performance depends on how rank is allocated under a global compression ratio. Prior methods often use homogeneous ranks for similarly sized matrices, despite large differences in loss sensitivity, or rely on expensive iterative pre-truncation optimization to determine per matrix ranks. We propose Zero Sum SVD (ZS-SVD), a post-training method that performs global singular component selection using activation whitening and first-order calibration loss estimates in whitened coordinates. ZS-SVD prunes components across the whole model with a zero sum rule that keeps the cumulative predicted loss change near zero, automatically yielding heterogeneous ranks without solving a rank allocation optimization. Motivated by evidence that gradients near pretrained solutions exhibit low rank structure, we also introduce an optional lightweight correction that applies a single projected gradient update after truncation, followed by re-truncation. Extensive experiments across multiple LLM architectures show consistent gains across diverse benchmarks and compression ratios. Code is available at https://github.com/mint-vu/Zero-Sum-SVD",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=tAdsDOkRBw",
+  "arxiv": "https://arxiv.org/abs/2602.02848",
+  "pdf": "https://raw.githubusercontent.com/mlresearch/v306/main/assets/abbasi26a/abbasi26a.pdf",
+  "proceedings": "https://proceedings.mlr.press/v306/abbasi26a.html",
+  "virtual": "https://icml.cc/virtual/2026/poster/61159",
+  "code": "https://mint-vu.github.io/ZS-SVD/"
+ },
+ "license": "http://arxiv.org/licenses/nonexclusive-distrib/1.0/",
+ "img": "none",
+ "image_url": null,
+ "thumb_url": null,
+ "figure_page": 3,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.8
+}

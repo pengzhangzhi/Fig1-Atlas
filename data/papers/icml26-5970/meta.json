@@ -1,0 +1,51 @@
+{
+ "id": "icml26-5970",
+ "title": "VideoMAETok: Boosting Video Diffusion Models via Masked Autoencoders as Tokenizers",
+ "authors": [
+  "Zhan Tong",
+  "Tinne Tuytelaars"
+ ],
+ "venue": "ICML 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "Deep Learning->Generative Models and Autoencoders",
+ "role": "prior-vs-ours",
+ "role2": "analysis-finding",
+ "claim": "Reconstruction-trained latents score well on reconstruction but generate poorly; corruption-trained latents are better structured and generate far better.",
+ "layout": "2 panels side by side, left baseline vs right ours, smiley metric readouts",
+ "tags": [
+  "tokenizer",
+  "latent-space",
+  "t-sne",
+  "reconstruction-vs-generation",
+  "video-diffusion"
+ ],
+ "style": [
+  "minimal",
+  "icon-heavy",
+  "plot"
+ ],
+ "description": "The crop shows only the bottom strip of a two-panel figure. The upper t-SNE scatter plots are mostly cut off. A few purple dots show at top left, and a teal-green cluster shows at top right. These are the latent distributions of the baseline VAE tokenizer (left) and VideoMAETok (right). Below each panel is a metric readout with a large smiley icon. Left: a green smiley beside 'rFVD: 6.0', and a red frowning face beside 'gFVD: 418.8'. Right: a neutral black face beside 'rFVD: 19.8', and a green smiley beside 'gFVD: 106.2'. The faces make the contrast readable at a glance. The baseline reconstructs better but generates badly. The proposed tokenizer reconstructs worse but generates much better. The background is white and the text is large.",
+ "caption": "Latent Distribution Visualization of the Tokenizers. We visualize the latent distributions learned by different tokenizers using t-SNE. Compared to a reconstruction-oriented VAE baseline (the first row in Table 2a) trained on clean inputs (left), VideoMAETok (right) learns a more structured and well-spread latent space by training to reconstruct videos from corrupted latents. With the same ViT backbone and the same SiT-B generator, VideoMAETok substantially improves gFVD from 418.8 to 106.2, demonstrating that tokenizer training objectives can directly shape downstream video generation quality.",
+ "caption_source": "pdf",
+ "abstract": "Latent diffusion models have become the dominant paradigm for video generation, making the video tokenizer a critical role. While most existing tokenizers are trained primarily for reconstruction, diffusion models are optimized to denoise heavily corrupted latents, which creates a mismatch between tokenizer training objectives and downstream generative learning. As a result, reconstruction metrics (e.g., rFVD) can be a poor proxy for generation quality (gFVD), and overly prioritizing reconstruction may even hinder diffusion training. We propose VideoMAETok, a simple family of ViT-based video tokenizers trained explicitly as corruption-inversion models for latent video diffusion. VideoMAETok builds on masked autoencoders: we (i) apply high-ratio token masking and encode only visible spatiotemporal tokens for efficiency, and (ii) corrupt latent tokens with interpolative Gaussian noise to better match the denoising nature of diffusion generators. Training under such corruption encourages latents that remain informative and well-conditioned for downstream denoising. Extensive experiments show that VideoMAETok consistently improves generation quality when paired with off-the-shelf diffusion models (SiT and LightningDiT), achieving state-of-the-art gFVD on Kinetics-600 and UCF-101 while remaining compute-efficient. Code is available at https://github.com/yztongzhan/VideoMAETok.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=uLTgWANmgz",
+  "arxiv": null,
+  "pdf": "https://raw.githubusercontent.com/mlresearch/v306/main/assets/tong26i/tong26i.pdf",
+  "proceedings": "https://proceedings.mlr.press/v306/tong26i.html",
+  "virtual": "https://icml.cc/virtual/2026/poster/61035",
+  "code": "https://github.com/yztongzhan/VideoMAETok"
+ },
+ "license": null,
+ "img": "none",
+ "image_url": null,
+ "thumb_url": null,
+ "figure_page": 0,
+ "qc_flags": [
+  "tiny-crop",
+  "bad-crop"
+ ],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.5
+}

@@ -1,0 +1,52 @@
+{
+ "id": "neurips26-1805",
+ "title": "KV Packet: Recomputation-Free Context-Independent KV Caching for LLMs",
+ "authors": [
+  "Chuangtao Chen",
+  "Grace Li Zhang",
+  "Xunzhao Yin",
+  "Cheng Zhuo",
+  "Bing Li",
+  "Ulf Schlichtmann"
+ ],
+ "venue": "NeurIPS 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "Deep Learning->Attention Mechanisms",
+ "role": "prior-vs-ours",
+ "role2": "pipeline",
+ "claim": "Prior reuse pipelines must select and recompute tokens at inference time; ours wraps cached items with adapters, needing no recomputation.",
+ "layout": "2 side-by-side panels, each offline top and online bottom, color-coded blue vs green",
+ "tags": [
+  "kv-caching",
+  "recomputation-free",
+  "adapters",
+  "efficiency",
+  "prior-vs-ours"
+ ],
+ "style": [
+  "icon-heavy",
+  "colorful",
+  "text-heavy"
+ ],
+ "description": "Two parallel dashed-border panels, (a) recomputation-based baseline in blue and (b) KV Packet in green, share the same layout. The top row of each is offline cache generation: a document collection is embedded, prefilled by a robot-icon model and stored in a KV cache database cylinder. Panel (b) adds a red-highlighted 'KVPacket Wrapper' box that adds H and T soft-token adapters around each document's KV chunks. The bottom row is online inference: user prompt, KV chunk retrieval, RoPE positional alignment, then concatenated KV. Panel (a) continues through 'Important Token Selection' and a red 'Selective Recomputation' box with an hourglass, then LLM decoding. Panel (b) skips these steps, goes straight to decoding, and is labeled 'Recomputation-Free'. The eye goes to the red boxes and the shorter green path.",
+ "caption": "Comparison of KV cache reuse architectures. (a) Recomputation-based approaches require inference-time algorithms to select and recompute important tokens to repair contextual staleness; (b) the proposed KV Packet approach wraps documents with global adapters.",
+ "caption_source": "latex",
+ "abstract": "Large Language Models (LLMs) rely heavily on Key-Value (KV) caching to minimize inference latency. However, standard KV caches are context-dependent: reusing a cached document in a new context requires recomputing KV states to account for shifts in attention distribution. Existing solutions such as CacheBlend, EPIC, and SAM-KV mitigate this issue by selectively recomputing a subset of tokens; however, they still incur non-negligible computational overhead (FLOPs) and increased Time-to-First-Token (TTFT) latency. In this paper, we propose KV Packet, a recomputation-free cache reuse framework that treats cached documents as immutable \"packets\" wrapped in light-weight trainable soft-token adapters, which are trained via self-supervised distillation to bridge context discontinuities. Experiments on Llama-3.1 and Qwen-3 demonstrate that the proposed KV Packet method achieves near-zero FLOPs and lower TTFT than recomputation-based baselines, while retaining F1 scores comparable to those of the full recomputation baseline. Code and experimental results are available at https://github.com/ChuangtaoChen-TUM/KVPacket.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=Cr4h2QelRG",
+  "arxiv": "https://arxiv.org/abs/2604.13226",
+  "pdf": "https://arxiv.org/pdf/2604.13226",
+  "proceedings": null,
+  "virtual": "https://neurips.cc/virtual/2026/poster/154538",
+  "code": "https://github.com/ChuangtaoChen-TUM/KVPacket"
+ },
+ "license": "http://creativecommons.org/licenses/by/4.0/",
+ "img": "cc-by",
+ "image_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/images/neurips26-1805.png",
+ "thumb_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/thumbs/neurips26-1805.webp",
+ "figure_page": 1,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.9
+}

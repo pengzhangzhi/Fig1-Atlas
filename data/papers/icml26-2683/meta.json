@@ -1,0 +1,53 @@
+{
+ "id": "icml26-2683",
+ "title": "On the Interaction of Batch Noise, Adaptivity, and Compression, under $(L_0,L_1)$-Smoothness: An SDE Approach",
+ "authors": [
+  "Enea Monzio Compagnoni",
+  "Rustem Islamov",
+  "Frank Proske",
+  "Aurelien Lucchi",
+  "Antonio Orvieto",
+  "Eduard Gorbunov"
+ ],
+ "venue": "ICML 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "Optimization->Stochastic",
+ "role": "teaser-result",
+ "role2": "analysis-finding",
+ "claim": "Without prescribed normalization or step-size schedules, noisy compressed training diverges or stalls; with them, training converges across noise and compression levels.",
+ "layout": "2x2 grid of log-log line plots; top row problem, bottom row fix",
+ "tags": [
+  "compression",
+  "normalization",
+  "stability",
+  "heavy-tailed-noise",
+  "sanity-check"
+ ],
+ "style": [
+  "plot",
+  "colorful"
+ ],
+ "description": "A 2x2 grid of log-log line plots. Each plot shows the squared gradient norm E[||∇f(X_t)||²] against iterations, with colored line series for different settings. Top-left, DCSGD with no normalization: curves for ω=4, 8 and 16 blow up exponentially, and larger ω diverges sooner, reaching values near 10^29. Bottom-left, DCSGD with the paper's normalization against plain Normalized SGD: all ω values converge, and faded curves mark the baseline. Top-right, DSignSGD with a constant step size: curves for σ from 0.25 to 16 drop, then plateau or rise and stay noisy. Bottom-right, DSignSGD with a diminishing step size: curves for the same σ values decrease steadily. Blue, orange, green, red, pink and tan separate the series. The eye goes first to the diverging curves at top-left.",
+ "caption": "Sanity checks for our stability prescriptions on a noisy, compressed MLP training. Left (DCSGD + unbiased sparsification). We train an MLP with $N{=}8$ clients, inject additive Gaussian gradient noise with affine variance $Z_t\\sim\\mathcal{N}(0,\\sigma^2\\|g_t\\|_2^2 I)$, and then apply unbiased random sparsification at compression levels $\\omega$ (larger $\\omega$ means more aggressive sparsification). Without any scheduler/normalization, DCSGD becomes unstable and the divergence worsens as $\\omega$ increases (top-left). Using the adaptive normalization suggested by Thm. [ref] (Eq. [ref]) stabilizes training and yields convergence for all $\\omega$ (bottom-left); We also report a baseline that applies plain Normalized SGD under the same noise and compression, which exhibits a (here less stable) profile. Right (DSignSGD under heavy tails). We inject Student's $t$ gradient noise with $\\nu{=}1$ for different scale values $\\sigma$. With a constant stepsize, DSignSGD remains stable but does not converge (top-right), whereas the diminishing schedule prescribed by Thm. [ref] (here $\\eta_k = 1/\\sqrt{k+1}$) yields convergence across noise scales (bottom-right). See Appendix [ref] for full implementation details.",
+ "caption_source": "latex",
+ "abstract": "Distributed stochastic optimization intertwines (i) stochastic gradient noise, (ii) communication compression, and (iii) adaptive/normalized updates. While each factor has been studied in isolation, their joint effect under realistic assumptions remains poorly understood. In this work, we develop a unified theoretical framework for Distributed Compressed SGD (DCSGD) and its sign variant Distributed SignSGD (DSignSGD) under the recently introduced $(L_0, L_1)$-smoothness condition. From a conceptual perspective, we show that the first- and second-order modified equations from the literature do not accurately model the discrete-time step-size/stability restrictions, especially under $(L_0,L_1)$-smoothness. From a technical perspective, we propose new first-order SDEs by carefully incorporating curvature-dependent terms into their drift: This helps capture the fine-grained relationship between learning rate restrictions, gradient noise, compression, and the geometry of the loss landscape. Importantly, we do so under general gradient noise assumptions, including heavy-tailed and affine-variance regimes, which extend beyond the classical bounded-variance setting. Our results suggest that normalizing the updates of DCSGD emerges as a natural condition for stability, with the degree of normalization precisely determined by the gradient noise structure, the landscape's regularity, and the compression rate. In contrast, DSignSGD converges even under heavy-tailed noise with standard learning rate schedules. Together, these findings offer both new theoretical insights and perspectives, and practical guidance.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=Pmsc4yytlf",
+  "arxiv": "https://arxiv.org/abs/2506.00181",
+  "pdf": "https://raw.githubusercontent.com/mlresearch/v306/main/assets/monzio-compagnoni26a/monzio-compagnoni26a.pdf",
+  "proceedings": "https://proceedings.mlr.press/v306/monzio-compagnoni26a.html",
+  "virtual": "https://icml.cc/virtual/2026/poster/64227",
+  "code": null
+ },
+ "license": "http://creativecommons.org/licenses/by/4.0/",
+ "img": "cc-by",
+ "image_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/images/icml26-2683.png",
+ "thumb_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/thumbs/icml26-2683.webp",
+ "figure_page": 5,
+ "qc_flags": [
+  "bad-crop"
+ ],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.5
+}

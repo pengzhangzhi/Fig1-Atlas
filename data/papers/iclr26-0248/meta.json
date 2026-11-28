@@ -1,0 +1,52 @@
+{
+ "id": "iclr26-0248",
+ "title": "ATPO: ADAPTIVE TREE POLICY OPTIMIZATION FOR MULTI-TURN MEDICAL DIALOGUE",
+ "authors": [
+  "Ruike Cao",
+  "Shaojie Bai",
+  "Fugen Yao",
+  "Liang Dong",
+  "Jian Xu",
+  "Li Xiao"
+ ],
+ "venue": "ICLR 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "Reinforcement Learning->Deep RL",
+ "role": "pipeline",
+ "role2": "prior-vs-ours",
+ "claim": "Unlike chain or uniform-tree rollouts, ours uses a critic-based uncertainty threshold to expand uncertain states fully and prune the rest.",
+ "layout": "Grid of 6 panels: baseline rollout shapes left, expansion pipeline bottom-right, legend top-right",
+ "tags": [
+  "tree-search",
+  "uncertainty-aware",
+  "rollout-pruning",
+  "reinforcement-learning",
+  "credit-assignment"
+ ],
+ "style": [
+  "icon-heavy",
+  "colorful",
+  "math-heavy"
+ ],
+ "description": "A grid of boxed panels. The left column shows small rollout diagrams for PPO (a single chain), GRPO (three independent chains of different lengths) and ATPO (an asymmetric tree with some branches marked by red X pruning marks and dashed circles). Beside these, TreePO shows a balanced binary-style tree. The top-right panels hold a legend (purple root, blue transitioned state, gray terminal leaf, red X pruning, arrow for assistant action) and a State Transition strip (x0 → y0 → user response and r(x0,y0) → x1). The large bottom-right panel, 'Uncertainty-Aware Tree Expansion', flows left to right. Child nodes pass through a Critic ψ robot icon, with Q and advantage equations above. They then pass through a Thresholding module, with the formula for U above it. The flow ends in a yellow fork: above τ keeps all children, at or below τ prunes to one child. Purple, blue and gray nodes give the main color coding.",
+ "caption": "Overview of ATPO algorithm. ATPO generates training data via an adaptive tree search. At each expansion step, it generates candidate child nodes and computes a composite uncertainty score based on their Bellman error $U_1$ and Q-value variance $U_2$. Nodes with high uncertainty $U$ are fully expanded, while low-uncertainty nodes are pruned by randomly selecting a single child for the subsequent rollout. The collected trajectories are then used for policy and critic updates.",
+ "caption_source": "latex",
+ "abstract": "Effective information seeking in multi-turn medical dialogues is critical for accurate diagnosis, especially when dealing with incomplete information. Aligning Large Language Models (LLMs) for these interactive scenarios is challenging due to the uncertainty inherent in user-agent interactions, which we formulate as a Hierarchical Markov Decision Process (H-MDP). While conventional Reinforcement Learning (RL) methods like Group Relative Policy Optimization (GRPO) struggle with long-horizon credit assignment and Proximal Policy Optimization (PPO) suffers from unstable value estimation in this context, we propose a novel uncertainty-aware Adaptive Tree Policy Optimization (ATPO) algorithm. Our method adaptively allocates the rollout budget to states with high uncertainty, quantified by a composite metric of Bellman error and action-value variance. This strategy enables more accurate value estimation, while fostering more efficient and diverse exploration. To mitigate the high computational cost of tree-based RL, we introduce two key optimizations: an uncertainty-guided pruning mechanism to minimize the number of rollouts, and an asynchronous search architecture that leverages KV cache reuse to maximize inference throughput. Extensive experiments on three public medical dialogue benchmarks demonstrate that our algorithm significantly outperforms several strong baselines, culminating in Qwen3-8B model surpassing the much larger GPT-4o ($+0.92\\%$ accuracy).",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=2bv3B8B9bl",
+  "arxiv": "https://arxiv.org/abs/2603.02216",
+  "pdf": "https://proceedings.iclr.cc/paper_files/paper/2026/file/34b3a40ec9752c1ae48fe85fef8fe8dc-Paper-Conference.pdf",
+  "proceedings": "https://proceedings.iclr.cc/paper_files/paper/2026/hash/34b3a40ec9752c1ae48fe85fef8fe8dc-Abstract-Conference.html",
+  "virtual": "https://iclr.cc/virtual/2026/poster/10011721",
+  "code": null
+ },
+ "license": "http://arxiv.org/licenses/nonexclusive-distrib/1.0/",
+ "img": "none",
+ "image_url": null,
+ "thumb_url": null,
+ "figure_page": 1,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.6
+}

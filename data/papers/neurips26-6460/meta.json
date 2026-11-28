@@ -1,0 +1,48 @@
+{
+ "id": "neurips26-6460",
+ "title": "Layerwise Progressive Freezing: A Training Scaffold for Depth-Scalable Binary Networks",
+ "authors": [
+  "Evan Gibson Smith",
+  "Bashima Islam"
+ ],
+ "venue": "NeurIPS 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "Optimization->Neural Network Optimization",
+ "role": "prior-vs-ours",
+ "role2": "concept",
+ "claim": "Randomly freezing units across the whole network blocks gradients unpredictably; freezing layer by layer in order keeps gradient paths structured.",
+ "layout": "2x3 grid of small networks (rows: strategy, columns: training stage) plus right legend",
+ "tags": [
+  "progressive-freezing",
+  "masking-strategy",
+  "gradient-flow",
+  "binary-networks",
+  "ordering"
+ ],
+ "style": [
+  "colorful",
+  "minimal",
+  "icon-heavy"
+ ],
+ "description": "A 2x3 grid of small feedforward network diagrams. Rows are labeled Global (top) and Layer-wise (bottom). Columns are Early, Mid and Late Training. Each network has four layers of circular nodes with arrows between layers. Unfrozen nodes are light blue and frozen nodes are light red. Edges come in three styles: solid blue for active gradients, dashed red for frozen gradients, and dotted orange for blocked gradients. In the Global row, red nodes are scattered at random and their number grows over time. Orange blocked edges appear next to them. In the Layer-wise row, whole layers turn red in sequence from the input side, so the red region grows from left to right. A rounded legend box on the right explains the node and edge styles. The eye goes first to the contrast between scattered and contiguous red nodes.",
+ "caption": "Comparison of masking strategies in StoMPP. Top: Global stochastic masking randomly freezes activations (nodes) and weights (edges) throughout training. Bottom: Layer-wise stochastic masking freezes entire layers sequentially from input to output. Blue indicates active gradient paths, red indicates frozen elements (sign function), and orange indicates edges blocked by frozen targets.",
+ "caption_source": "latex",
+ "abstract": "Training binary neural networks (BNNs) from scratch is dominated by the straight-through estimator (STE), whose forward/backward mismatch produces severe accuracy degradation as networks deepen. We study an orthogonal axis: when and where binarization is enforced during training. We introduce StoMPP (Stochastic Masked Partial Progressive Binarization), which gradually replaces clipped weights and activations with their hard binary counterparts layer by layer from input to output, using stochastic partial masks with soft refresh. StoMPP delivers two complementary benefits. As a standalone training rule, it provides a fully STE-free procedure that improves over vanilla STE with gains that grow with depth (ResNet-50 BNN: +18.0/+13.5/+3.8 on CIFAR-10/100/ImageNet), and the pattern holds across ResNet-18/34/50, MobileNetV2, and BERT fine-tuning. Composed with surrogate gradients by applying STE only to frozen entries, it reaches +27.1/+19.8/+17.7 over vanilla STE on the same setting. Underlying both regimes is a single mechanistic finding: progression order is decisive. Forward layerwise progression prevents depth collapse, reverse progression collapses to near-chance, and binary-weight networks (without binary activations) are insensitive to order. We trace this asymmetry to activation-induced gradient blockades: a committed binary activation severs gradient flow upstream, and ordering controls when these blockades form. To isolate the progression's contribution from any benefit conferred by STE, we conduct all ablations in the STE-free regime; the resulting characterization (schedule, refresh, ordering, dynamics) thus reflects the progression itself rather than its interaction with surrogate gradients.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=iJdFhf3jyg",
+  "arxiv": "https://arxiv.org/abs/2606.27759",
+  "pdf": "https://arxiv.org/pdf/2606.27759",
+  "proceedings": null,
+  "virtual": "https://neurips.cc/virtual/2026/poster/150400",
+  "code": null
+ },
+ "license": "http://creativecommons.org/licenses/by/4.0/",
+ "img": "cc-by",
+ "image_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/images/neurips26-6460.png",
+ "thumb_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/thumbs/neurips26-6460.webp",
+ "figure_page": 3,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.55
+}

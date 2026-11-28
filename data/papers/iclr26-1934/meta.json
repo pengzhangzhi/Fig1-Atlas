@@ -1,0 +1,49 @@
+{
+ "id": "iclr26-1934",
+ "title": "MergeTune: Continued Fine-Tuning of Vision-Language Models",
+ "authors": [
+  "Wenqing Wang",
+  "Da Li",
+  "Xiatian Zhu",
+  "Josef Kittler"
+ ],
+ "venue": "ICLR 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "Computer Vision->Vision Models & Multimodal",
+ "role": "teaser-result",
+ "role2": "problem-setup",
+ "claim": "No existing adaptation method reliably preserves pretrained performance across all datasets, whereas adding our post-hoc merging step beats the baseline almost everywhere.",
+ "layout": "single radar chart with legend at right; one axis per dataset",
+ "tags": [
+  "radar-chart",
+  "forgetting",
+  "parameter-efficient-fine-tuning",
+  "generalisation",
+  "post-hoc-merging"
+ ],
+ "style": [
+  "plot",
+  "colorful"
+ ],
+ "description": "A single large radar (spider) chart with eleven axes, one per dataset: ImageNet, Caltech101, OxfordPets, StanfordCars, Flowers, Food101, FGVCAircraft, SUN397, DTD, EuroSAT and UCF101. Each axis label gives that dataset's accuracy range. A thick black line with a grey-shaded interior marks the zero-shot CLIP baseline. Ten prior prompt-tuning methods (CoOp, ProGrad, KgCoOp, DePT, VPT, PromptSRC, MaPLe, TCP, MMA) appear as thin, faint dashed polylines that repeatedly dip inside the CLIP polygon. Red X markers flag points where a method is worse than CLIP. Two thick lines, purple for KgCoOp+MERGETUNE and cyan for MMA+MERGETUNE, sit mostly outside the baseline. The legend at top right lists each method with its count of datasets (X/11) where it underperforms CLIP. The eye goes first to the bold purple and cyan outlines.",
+ "caption": "Cross-dataset generalisation shows no single PEFT method consistently outperforms CLIP across all 11 datasets, implying incomplete preservation of pretrained knowledge. Numbers in brackets (X/11) indicate X times a method underperforms CLIP.",
+ "caption_source": "latex",
+ "abstract": "Fine-tuning vision-language models (VLMs) such as CLIP often leads to catastrophic forgetting of pretrained knowledge. Prior work primarily aims to mitigate forgetting during adaptation; however, forgetting often remains inevitable during this process. We introduce a novel paradigm, continued fine-tuning (CFT), which seeks to recover pretrained knowledge after a zero-shot model has already been adapted. We propose a simple, model-agnostic CFT strategy (named MERGETUNE) guided by linear mode connectivity (LMC), which can be applied post hoc to existing fine-tuned models without requiring architectural changes. Given a fine-tuned model, we continue fine-tuning its trainable parameters (e.g., soft prompts or linear heads) to search for a continued model which has two low-loss paths to the zero-shot (e.g., CLIP) and the fine-tuned (e.g., CoOp) solutions. By exploiting the geometry of the loss landscape, the continued model implicitly merges the two solutions, restoring pretrained knowledge lost in the fine-tuned counterpart. A challenge is that the vanilla LMC constraint requires data replay from the pretraining task. We approximate this constraint for the zero-shot model via a second-order surrogate, eliminating the need for large-scale data replay. Experiments show that MERGETUNE improves the harmonic mean of CoOp by +5.6% on base-novel generalisation without adding parameters. On robust fine-tuning evaluations, the LMC-merged model from MERGETUNE surpasses ensemble baselines with lower inference cost, achieving further gains and state-of-the-art results when ensembled with the zero-shot model. Our code is available at https://github.com/Surrey-UP-Lab/MERGETUNE.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=MAApSY32Z6",
+  "arxiv": "https://arxiv.org/abs/2601.10497",
+  "pdf": "https://proceedings.iclr.cc/paper_files/paper/2026/file/4267d84ca2f6fbb4aa5172b76b433aca-Paper-Conference.pdf",
+  "proceedings": "https://proceedings.iclr.cc/paper_files/paper/2026/hash/4267d84ca2f6fbb4aa5172b76b433aca-Abstract-Conference.html",
+  "virtual": "https://iclr.cc/virtual/2026/poster/10009969",
+  "code": "https://github.com/Surrey-UP-Lab/MERGETUNE"
+ },
+ "license": "http://arxiv.org/licenses/nonexclusive-distrib/1.0/",
+ "img": "none",
+ "image_url": null,
+ "thumb_url": null,
+ "figure_page": 1,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.6
+}

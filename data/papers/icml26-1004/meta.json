@@ -1,0 +1,51 @@
+{
+ "id": "icml26-1004",
+ "title": "Demystifying When Pruning Works via Representation Hierarchies",
+ "authors": [
+  "Shwai He",
+  "Guoheng Sun",
+  "Haichao Zhang",
+  "Yun Fu",
+  "Ang Li"
+ ],
+ "venue": "ICML 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "Deep Learning->Algorithms",
+ "role": "analysis-finding",
+ "role2": null,
+ "claim": "Pruning degrades performance sharply on generative tasks but only gradually on non-generative tasks, revealing a task-dependent gap.",
+ "layout": "2x2 grid of line plots, two rows labeled (a) generative and (b) non-generative",
+ "tags": [
+  "pruning",
+  "layer-dropping",
+  "generative-vs-discriminative",
+  "empirical-trend",
+  "performance-degradation"
+ ],
+ "style": [
+  "plot",
+  "colorful",
+  "minimal"
+ ],
+ "description": "A 2x2 grid of line charts. Every panel plots performance (%) on the y-axis against the number of dropped layers (0 to 12) on the x-axis. Three methods appear in every panel: Attn Drop (solid blue, circles), MLP Drop (dashed orange, squares) and ShortGPT (dashed green, triangles). The top row, captioned '(a) Generative tasks', shows HumanEval and GSM8K. Both collapse steeply and reach near zero by about 5 to 8 dropped layers. The bottom row, captioned '(b) Non-generative tasks', shows HellaSwag and MMLU. These decline gradually and stay well above zero, and Attn Drop holds up best. The eye goes first to the steep drops in the top row. It then compares them with the gentler slopes below. Light grid lines and legends sit inside each panel.",
+ "caption": "Effect of inter-layer pruning on generative and non-generative tasks. Inter-layer pruning is implemented by removing entire transformer blocks (ShortGPT [ref]) or attention/MLP layers (Attn/MLP Drop [ref]).",
+ "caption_source": "latex",
+ "abstract": "Network pruning, which removes less important parameters or architectures, is often expected to improve efficiency while preserving performance. However, this expectation does not consistently hold across language tasks: pruned models can perform well on non-generative tasks but frequently fail in generative settings. To understand this discrepancy, we analyze network pruning from a representation-hierarchy perspective, decomposing the internal computation of language models into three sequential spaces: embedding (hidden representations), logit (pre-softmax outputs), and probability (post-softmax distributions). We find that representations in the embedding and logit spaces are largely robust to pruning-induced perturbations. However, the nonlinear transformation from logits to probabilities amplifies these deviations, which accumulate across time steps and lead to substantial degradation during generation. In contrast, the stability of the categorical-token probability subspace, together with the robustness of the embedding space, supports the effectiveness of pruning for non-generative tasks such as retrieval and multiple-choice selection. Our analysis disentangles the effects of pruning across tasks and provides practical guidance for its application. Code is available at https://github.com/CASE-Lab-UMD/Pruning-on-Representations",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=9W7E6zYnH3",
+  "arxiv": "https://arxiv.org/abs/2603.24652",
+  "pdf": "https://raw.githubusercontent.com/mlresearch/v306/main/assets/he26ag/he26ag.pdf",
+  "proceedings": "https://proceedings.mlr.press/v306/he26ag.html",
+  "virtual": "https://icml.cc/virtual/2026/poster/65847",
+  "code": "https://case-lab-umd.github.io/Pruning-on-Representations/"
+ },
+ "license": "http://creativecommons.org/licenses/by/4.0/",
+ "img": "cc-by",
+ "image_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/images/icml26-1004.png",
+ "thumb_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/thumbs/icml26-1004.webp",
+ "figure_page": 0,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.8
+}

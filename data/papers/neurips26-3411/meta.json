@@ -1,0 +1,49 @@
+{
+ "id": "neurips26-3411",
+ "title": "Deconstructing Multi-Task Active Learning: The Paradox of Gradient Conflict and Orthogonal Decomposition",
+ "authors": [
+  "Juho Jung",
+  "Seongjae Kang",
+  "Jinyoung Han"
+ ],
+ "venue": "NeurIPS 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "Data-centric AI->Data-centric AI methods and tools",
+ "role": "analysis-finding",
+ "role2": "prior-vs-ours",
+ "claim": "Samples that conventional selection avoids because of gradient conflict actually yield the largest gain, so penalizing conflict is counterproductive.",
+ "layout": "1 scatter panel, dashed vertical threshold splitting red and blue clusters, inset legend",
+ "tags": [
+  "scatter-plot",
+  "gradient-conflict",
+  "active-learning",
+  "counterintuitive-finding",
+  "multi-task"
+ ],
+ "style": [
+  "plot",
+  "colorful",
+  "minimal"
+ ],
+ "description": "A single scatter plot. The x-axis is gradient alignment (cosine similarity, about -0.9 to 0.9) and the y-axis is information gain (loss decrease, 0.1 to 1.0). Grey dots mark the pool samples. Blue dots are the samples a conventional method selects, which avoids conflict. They sit on the right at positive alignment and low-to-mid gain, and a column of them is clipped at x≈0.9. Larger red dots with black outlines are the samples the proposed method selects, which embraces conflict. They sit on the left at negative or near-zero alignment and high gain, and many are pinned at 1.0. A dashed vertical line at x=0.25 separates the two groups. The overall trend slopes downward. The legend sits at the lower left. Faint pink text, 'Hard / Conflicting (High Gain)', overlaps the legend. Blue text at the lower right reads 'Easy / Stable (Low Gain)'. The eye goes first to the red cluster at the top.",
+ "caption": "Visualizing the Conflict Paradox. Retrospective oracle analysis on 1,000 COCO benchmark samples using a multi-task model pretrained on a 1% seed set. Gradient alignment (cosine similarity, x-axis) is negatively correlated with actual loss reduction after training (y-axis) under AdamW with PCGrad off, ruling out the resolution mechanism as a confound: high-conflict samples yield larger information gain once basic features are learned.",
+ "caption_source": "latex",
+ "abstract": "Existing multi-task active learning (MTL-AL) methods predominantly rely on linear scalarization of heterogeneous objectives such as uncertainty, diversity, and gradient conflict. We argue that this entangled formulation is fundamentally limited, as linear combination fails to capture Pareto-optimal trade-offs under conflicting objectives. We propose a shift from combination to deconstruction and introduce a principled framework that rethinks MTL-AL along three orthogonal dimensions. First, we identify the Conflict Paradox: although the optimization literature treats gradient conflict as interference to be suppressed, penalizing conflict when ranking candidates is measurably worse than not scoring it at all. We therefore decouple the two concerns: the acquisition function does not score conflict, and the resulting interference is resolved by gradient surgery during training. Second, we introduce Orthogonal Decomposition, separating acquisition into Informativeness and Exploration. This two-stage process, informativeness filtering followed by coverage maximization, prevents \"diversity dilution\" by excluding uninformative outliers before enforcing diversity. Third, we propose Cross-Task Mutual Information (CTMI), a covariance-based statistic of cross-task dependency computed from MC-dropout task entropies. Extensive experiments on COCO, Cityscapes, and NYUv2, including comparisons against recent MTL-AL and data-selection baselines, demonstrate consistent improvements over state-of-the-art methods, highlighting that structural rethinking of acquisition yields larger gains than incremental heuristic design. Code is available at https://github.com/Juho-Jung/multitask_active_learning_official.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=NnPRFtAI1U",
+  "arxiv": "https://arxiv.org/abs/2610.23623",
+  "pdf": "https://arxiv.org/pdf/2610.23623",
+  "proceedings": null,
+  "virtual": "https://neurips.cc/virtual/2026/poster/153116",
+  "code": "https://juho-jung.github.io/multitask_active_learning_official/"
+ },
+ "license": "http://arxiv.org/licenses/nonexclusive-distrib/1.0/",
+ "img": "none",
+ "image_url": null,
+ "thumb_url": null,
+ "figure_page": 2,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.8
+}

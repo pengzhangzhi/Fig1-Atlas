@@ -1,0 +1,48 @@
+{
+ "id": "icml26-5058",
+ "title": "WildCat: Near-Linear Attention in Theory and Practice",
+ "authors": [
+  "Tobias Schröder",
+  "Lester Mackey"
+ ],
+ "venue": "ICML 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "Deep Learning->Attention Mechanisms",
+ "role": "pipeline",
+ "role2": "concept",
+ "claim": "Reordering the multiplication so a small weighted subset of keys reconstructs the full attention block cuts cost sharply.",
+ "layout": "2 panels, left-to-right, block-matrix diagram with approximation equation",
+ "tags": [
+  "low-rank-approximation",
+  "nystrom",
+  "attention",
+  "efficiency",
+  "coreset"
+ ],
+ "style": [
+  "math-heavy",
+  "colorful",
+  "minimal"
+ ],
+ "description": "The figure has two parts. On the left is a block-partitioned square matrix. The top-left block is orange and labeled e^{βτ²QQᵀ}. The top-right block is blue and labeled A = e^{βQKᵀ}. The bottom-left block is blue and labeled Aᵀ. The bottom-right block is green and labeled e^{β/τ² KKᵀ}. Thin horizontal stripes mark the selected coreset rows and columns. On the right is an equation that reads A·(V,1ₙ) ≈ a thin striped blue matrix × a small inverted green square matrix × a wide striped green matrix, then multiplied by (V,1ₙ). Braces label the green factors as W and the whole product as (V_S, w). Matrix formulas are written above the factors. Blue, green, orange and grey colors link each block to its factor. The eye goes first to the large blue block A.",
+ "caption": "Visualisation of the \\catt methodology. Our goal is the approximation of the off-diagonal block $\\A$ through a Nystr\\\"om approximation $\\hatA_\\tau \\defeq h(\\Q, \\coreset)h\\paren{\\frac{1}{\\tau}\\coreset, \\frac{1}{\\tau}\\coreset}^{-1}h\\paren{\\frac{1}{\\tau}\\coreset, \\frac{1}{\\tau}\\K}$. With the right order of operations, the computation cost for $\\A\\V$ decreases from $\\bigO (mnd)$ to $\\bigO (rnd + mrd + nr^2)$. For the exponential kernel, the off-diagonal block is invariant under $\\Q \\to \\tau\\Q$, $\\K \\to \\frac{1}{\\tau}\\K$. Since we only select coreset points from $\\K$, we can optimise for low-rank approximability.",
+ "caption_source": "latex",
+ "abstract": "We introduce WildCat, a high-accuracy, low-cost approach to compressing the attention mechanism in neural networks. While attention is a staple of modern network architectures, it is also notoriously expensive to deploy due to resource requirements that scale quadratically with the input sequence length $n$. WildCat avoids these quadratic costs by only attending over a small weighted coreset. Crucially, we select the coreset using a fast but spectrally-accurate subsampling algorithm -- randomly pivoted Cholesky -- and weight the elements optimally to minimise reconstruction error. Remarkably, given bounded inputs, WildCat approximates exact attention with super-polynomial $O(n^{-\\sqrt{\\log(\\log(n))}})$ error decay while running in near-linear $O(n^{1+o(1)})$ time. In contrast, prior practical approximations either lack error guarantees or require quadratic runtime to guarantee such high fidelity. We couple this advance with a GPU-optimized PyTorch implementation and a suite of benchmark experiments demonstrating the benefits of WildCat for image generation, image classification, and language model KV cache compression.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=lfqyLp4hZm",
+  "arxiv": "https://arxiv.org/abs/2602.10056",
+  "pdf": "https://raw.githubusercontent.com/mlresearch/v306/main/assets/schroder26a/schroder26a.pdf",
+  "proceedings": "https://proceedings.mlr.press/v306/schroder26a.html",
+  "virtual": "https://icml.cc/virtual/2026/poster/61920",
+  "code": "https://github.com/microsoft/wildcat"
+ },
+ "license": "http://creativecommons.org/licenses/by/4.0/",
+ "img": "cc-by",
+ "image_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/images/icml26-5058.png",
+ "thumb_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/thumbs/icml26-5058.webp",
+ "figure_page": 3,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.6
+}

@@ -1,0 +1,50 @@
+{
+ "id": "neurips26-8532",
+ "title": "To Think or Not to Think: Pre-Decisional Reasoning Budgets for Referring Audio-Visual Segmentation",
+ "authors": [
+  "Haojie Hu",
+  "Senda Chen",
+  "Ying Shen",
+  "Lin Zhang"
+ ],
+ "venue": "NeurIPS 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "Computer Vision->Vision Models & Multimodal",
+ "role": "prior-vs-ours",
+ "role2": "pipeline",
+ "claim": "Fixed always-reason and input-blind routing pipelines ignore multimodal state; ours reads the pre-generation internal representation to adaptively allocate reasoning.",
+ "layout": "3 panels: (a),(b) stacked left, (c) right; left-to-right flow, dashed dividers",
+ "tags": [
+  "adaptive-computation",
+  "routing",
+  "reasoning-budget",
+  "multimodal",
+  "probing"
+ ],
+ "style": [
+  "minimal",
+  "icon-heavy",
+  "colorful"
+ ],
+ "description": "Three pipeline diagrams separated by dashed lines. Panel (a), Always-Long, is top left: video, audio and text icons feed a green MLLM box with a snowflake (frozen), then a dashed CoT box and a purple trapezoid Head. Panel (b), Text Router, is bottom left: a text icon goes to frozen Text Features, an orange Router, a dashed Budget box with three colored dots, then a Head. Panel (c), Ours, takes the right half and is larger and more detailed. The three modalities feed a frozen MLLM Encoder. A small h_onset circle leads to a PDBS probe grid, then a Router, which branches into ZERO (blue), SHORT (orange) and LONG (green) boxes that merge into a Head. A legend at the bottom shows frozen versus trained and the video, audio and text icons. The eye goes first to the branching router in (c).",
+ "caption": "Overview of pre-decisional reasoning budgets for Ref-AVS. (a) The conventional always-long pipeline sends every video--audio--text query through a frozen MLLM and a full CoT before grounding, implicitly assuming that maximal reasoning is universally beneficial. (b) A text-router baseline predicts the reasoning budget from frozen textual features alone, but cannot access the integrated multimodal state where sample-specific reasoning need emerges. (c) Our framework reuses the frozen Ref-AVS MLLM encoder to capture the generation-onset representation \\honset before the first reasoning token. The resulting Pre-Decisional Budget Signal (\\pdbs) is read by a lightweight router, which decides whether each sample should use Zero, Short, or Long reasoning before segmentation. Snowflakes denote frozen modules.",
+ "caption_source": "latex",
+ "abstract": "Multimodal reasoning systems increasingly assume that longer chain-of-thought (CoT) uniformly improves downstream grounding. We show that this assumption fails in referring audio-visual segmentation (Ref-AVS): simple queries can be harmed by excessive reasoning, creating an \"overthinking trap\" associated with phrase and localization drift, while genuinely ambiguous queries still benefit from multi-step reasoning. To systematically study this, we construct counterfactual reasoning-budget labels under a five-fold out-of-fold evaluation protocol. Our results recast adaptive Ref-AVS reasoning as a pre-decisional representation problem: before the first generated token, the generation-onset state contains linearly decodable information predictive of whether additional reasoning will improve segmentation. A linear probe predicts binary reasoning need with 70.1% accuracy, substantially outperforming text-only features and uncertainty-based proxy signals. As a router, the onset-state controller improves over downstream confidence routing and closely matches Short-then-Decide while using far fewer tokens. Proxy comparisons show that the onset representation contains predictive information not fully recovered by the evaluated hand-crafted features. Reusing this onset state for lightweight, single forward-pass routing reduces autoregressive token consumption by 60% while retaining about 96% of always-long performance. It further provides a cost-quality trade-off on $R^2$-AVSBench without target-label tuning, rather than an accuracy improvement over always-long. Error analysis links harmful long reasoning to phrase and localization drift, illustrating the benefit of bypassing unnecessary reasoning on simple queries. Ultimately, our results support efficient adaptive reasoning in Ref-AVS through pre-decisional internal representations.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=x0E7dh4iw2",
+  "arxiv": "https://arxiv.org/abs/2610.21613",
+  "pdf": "https://arxiv.org/pdf/2610.21613",
+  "proceedings": null,
+  "virtual": "https://neurips.cc/virtual/2026/poster/148558",
+  "code": null
+ },
+ "license": "http://creativecommons.org/licenses/by/4.0/",
+ "img": "cc-by",
+ "image_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/images/neurips26-8532.png",
+ "thumb_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/thumbs/neurips26-8532.webp",
+ "figure_page": 1,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.8
+}

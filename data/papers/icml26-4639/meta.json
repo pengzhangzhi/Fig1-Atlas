@@ -1,0 +1,49 @@
+{
+ "id": "icml26-4639",
+ "title": "On the Relationship Between Activation Outliers and Feature Death in Sparse Autoencoders",
+ "authors": [
+  "Elana Simon",
+  "Etowah Adams",
+  "James Zou"
+ ],
+ "venue": "ICML 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "Deep Learning->Other Representation Learning",
+ "role": "concept",
+ "role2": "prior-vs-ours",
+ "claim": "A large offset in the input mean predetermines which features are dead or always-on at initialization, unlike centered inputs.",
+ "layout": "2 rows by 3 columns, centered vs offset, left-to-right, shared legend",
+ "tags": [
+  "sparse-autoencoders",
+  "feature-death",
+  "initialization",
+  "mean-centering",
+  "mechanism"
+ ],
+ "style": [
+  "colorful",
+  "minimal",
+  "icon-heavy"
+ ],
+ "description": "A two-row, three-column schematic with a legend on the right. The top row shows centered activations (GPT-2, γ<1). The bottom row shows offset activations (AF3, γ≈15). Column 1, Activation Geometry, plots a blue point cloud on 3D axes: it sits at the origin in the top row and is displaced along one axis in the bottom row. Column 2, SAE Weights and Features, draws encoder and decoder blocks with bias bars and a vertical column of dots for features. Light blue means a block receives gradient updates. Gray means it receives none. In the bottom row most of the encoder and decoder is gray, and nearly all the feature dots are magenta, meaning dead. Column 3, Feature Activation Frequencies, plots density curves from never on to always on. The top curve is a smooth hump. The bottom curve is bimodal, with a large magenta spike at never-on and a small green bump at always-on. The legend uses skull and minion icons for dead and always-on features.",
+ "caption": "Activation outliers predetermine feature fate at initialization. (Left) Centered activations (e.g.\\ GPT-2, $\\gamma < 1$) versus activations with dimension-level outliers (e.g.\\ AF3, $\\gamma \\approx 15$), where $\\gamma = \\|\\boldsymbol{\\mu}\\|/\\|\\boldsymbol{\\sigma}\\|$ measures how much the activation mean dominates per-token variation. (Middle) In the offset case, only features positively aligned with the activation mean fire and receive gradient; anti-aligned features are dead from initialization. (Right) Centered features have input-dependent activation frequencies; features from offset activations are primarily always-on or never-on.",
+ "caption_source": "latex",
+ "abstract": "Sparse autoencoders (SAEs) decompose neural network activations into interpretable features, but many learned features never activate, a problem called feature death that wastes dictionary capacity and can reintroduce superposition. Death rates vary dramatically between models: near-zero on GPT-2, over 70% on AlphaFold3 with identical configurations. We find that dimension-level activation outliers (dimensions whose mean magnitude is large relative to per-token variation) cause this by shifting pre-activations at initialization based on each feature's alignment with the activation mean. Features anti-aligned with the mean receive permanently negative pre-activations and never fire. We formalize outlier severity as $Î³= \\|Î¼\\|/\\|Ï\\|$; it predicts initial death rates (Spearman $Ï= 0.89$ for dead-by-TopK, $0.82$ for dead-by-ReLU) across 454 model-layer combinations spanning language, vision, protein, and genomic models. Dead features can revive during training, but recovery requires the SAE bias to learn the activation mean, a process that is prohibitively slow at high $Î³$. Mean-centering (subtracting the activation mean) sidesteps this and eliminates outlier-induced death across all tested models, confirming the mechanism and providing a principled basis for when and why this preprocessing step is necessary.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=hdak3I0DYY",
+  "arxiv": "https://arxiv.org/abs/2605.31518",
+  "pdf": "https://raw.githubusercontent.com/mlresearch/v306/main/assets/simon26a/simon26a.pdf",
+  "proceedings": "https://proceedings.mlr.press/v306/simon26a.html",
+  "virtual": "https://icml.cc/virtual/2026/poster/62326",
+  "code": null
+ },
+ "license": "http://creativecommons.org/licenses/by/4.0/",
+ "img": "cc-by",
+ "image_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/images/icml26-4639.png",
+ "thumb_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/thumbs/icml26-4639.webp",
+ "figure_page": 1,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.5
+}

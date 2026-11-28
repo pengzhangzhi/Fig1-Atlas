@@ -1,0 +1,48 @@
+{
+ "id": "iclr26-1606",
+ "title": "SUSD: Structured Unsupervised Skill Discovery through State Factorization",
+ "authors": [
+  "Seyed Mohammad Hadi Hosseini",
+  "Mahdieh Baghshah"
+ ],
+ "venue": "ICLR 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "Reinforcement Learning->Everything Else",
+ "role": "pipeline",
+ "role2": null,
+ "claim": "Assigning separate skill variables to each state factor, weighted by learned curiosity, yields reusable factored skills for hierarchical control.",
+ "layout": "3 panels: large left pipeline (a), top-right detail (b), bottom-right loop (c)",
+ "tags": [
+  "skill-discovery",
+  "state-factorization",
+  "hierarchical-rl",
+  "intrinsic-reward",
+  "compositional"
+ ],
+ "style": [
+  "minimal",
+  "math-heavy",
+  "colorful"
+ ],
+ "description": "The figure has three panels separated by a dashed vertical line. Panel (a), on the left, shows the skill learning stage. Two green trapezoid encoders, φ(.), take s_t and s_{t+1} and output rows of small gray embedding tokens labeled φ_1 to φ_N. Arrows carry these tokens into a large rounded box. The box holds the per-factor reward r^i = (φ(s^i_{t+1}) − φ(s^i_t))ᵀ z^i and the weighted sum R. Skill factors z^1..z^N enter from the left. A green density-model block q(s_{t+1}|s_t) at the bottom feeds curiosity weights into the box from below. The box's output goes to a light-blue skill policy π_θ(a|s,z). Panel (b) zooms in on the factorized embedding of s^1..s^N. Panel (c) shows a hierarchical loop: π_high, a frozen π_θ marked with a snowflake, and env, linked by arrows labeled with states, actions and task rewards. The eye goes first to the large central reward box.",
+ "caption": "Illustration of the SUSD Method. (a) In the skill learning stage, factorized embedding $\\phi$ of the current and next state is passed through the corresponding mapping function $\\phi(.)$ to obtain a skill latent embedding. Additional details about factorized embedding are shown in (b), where factor $s^i$, $i\\in \\{1,...,N\\}$, is mapped to its embedding through the function $\\phi_i$. These embeddings, together with the skill factor inputs, are used to compute the intrinsic reward $r^i$ of factor $i$. In the curiosity-based factor weighting module, a density model takes the full current state as input and estimates the probability of each next-state factor given the current state $-\\log{q(s^i_{t+1}|s_t})$. These probabilities are then used as weights to scale the factor-wise intrinsic rewards, which are summed to form the final intrinsic reward for training the skill policy. (c) In the task learning stage, the learned skill policy is frozen as a low-level policy, while a high-level policy $\\pi_{high}$ is trained to select a skill $z$ every $L$ steps by maximizing the task reward $r^{task}$.",
+ "caption_source": "latex",
+ "abstract": "Unsupervised Skill Discovery (USD) aims to autonomously learn a diverse set of skills without relying on extrinsic rewards. One of the most common USD approaches is to maximize the Mutual Information (MI) between skill latent variables and states. However, MI-based methods tend to favor simple, static skills due to their invariance properties, limiting the discovery of dynamic, task-relevant behaviors. Distance-Maximizing Skill Discovery (DSD) promotes more dynamic skills by leveraging state-space distances, yet still fall short in encouraging comprehensive skill sets that engage all controllable factors or entities in the environment. In this work, we introduce SUSD, a novel framework that harnesses the compositional structure of environments by factorizing the state space into independent components (e.g., objects or controllable entities). SUSD allocates distinct skill variables to different factors, enabling more fine-grained control on the skill discovery process. A dynamic model also tracks learning across factors, adaptively steering the agent's focus toward underexplored factors. This structured approach not only promotes the discovery of richer and more diverse skills, but also yields a factorized skill representation that enables fine-grained and disentangled control over individual entities which facilitates efficient training of compositional downstream tasks via Hierarchical Reinforcement Learning (HRL). Our experimental results across three environments, with factors ranging from 1 to 10, demonstrate that our method can discover diverse and complex skills without supervision, significantly outperforming existing unsupervised skill discovery methods in factorized and complex environments. Code is publicly available at: https://github.com/hadi-hosseini/SUSD.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=INr5TSooxR",
+  "arxiv": "https://arxiv.org/abs/2602.01619",
+  "pdf": "https://proceedings.iclr.cc/paper_files/paper/2026/file/a94bdb20bfb4bd6fb534cf8f9c6bd124-Paper-Conference.pdf",
+  "proceedings": "https://proceedings.iclr.cc/paper_files/paper/2026/hash/a94bdb20bfb4bd6fb534cf8f9c6bd124-Abstract-Conference.html",
+  "virtual": "https://iclr.cc/virtual/2026/poster/10010309",
+  "code": "https://github.com/hadi-hosseini/SUSD"
+ },
+ "license": "http://creativecommons.org/licenses/by-nc-sa/4.0/",
+ "img": "cc-by-nc-sa",
+ "image_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/images/iclr26-1606.png",
+ "thumb_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/thumbs/iclr26-1606.webp",
+ "figure_page": 1,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.93
+}

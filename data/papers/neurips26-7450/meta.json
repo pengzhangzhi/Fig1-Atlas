@@ -1,0 +1,52 @@
+{
+ "id": "neurips26-7450",
+ "title": "Continuous Expert Assembly: Instance-Conditioned Low-Rank Residuals for All-in-One Image Restoration",
+ "authors": [
+  "Haisen He",
+  "XIANGYU ZOU",
+  "SongLin Dong",
+  "Heng Li",
+  "Yihong Gong",
+  "Zhiheng Ma"
+ ],
+ "venue": "NeurIPS 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "Computer Vision->Image and Video Generation",
+ "role": "prior-vs-ours",
+ "role2": "pipeline",
+ "claim": "Prior methods route inputs through a fixed set of discrete experts; ours continuously assembles a per-token residual from generated low-rank components.",
+ "layout": "2 panels split by dashed line, left-to-right flow, math formula in right panel",
+ "tags": [
+  "prior-vs-ours",
+  "dynamic-parameterization",
+  "low-rank",
+  "discrete-routing",
+  "all-in-one-restoration"
+ ],
+ "style": [
+  "colorful",
+  "math-heavy",
+  "icon-heavy"
+ ],
+ "description": "A two-panel figure separated by a vertical dashed line. Panel (a), 'Global Discrete Routing', shows a degraded rainy image with a patch grid feeding a Router. The router sends features to stacked peach expert boxes (Deblurring, Denoising, Deraining, with ellipsis). A one-hot vector [0,0,...,1] sits beside the last expert. The outputs go to a Top-K Sum box and then a restored image. Panel (b), 'Token-wise Continuous Assembly', is more elaborate. Learnable queries and the features X enter a yellow Cross-Attention Hyper-Adapter. It outputs A(x), shown as a heatmap, and B(x). A multiplication node takes a token X_n and produces colored arrows to residual-direction boxes b1..bk. These feed a Dense Assembly box, which also receives X_nW and outputs a restored patch. The equation Y_n = X_nW + αΣ⟨X_n,a_k⟩b_k appears at top right.",
+ "caption": "Conceptual comparison of adaptation paradigms for All-in-One Image Restoration. (a) Representative global or discrete expert adaptation. A compact image-level signal or sparse router selects or modulates a fixed set of parameters, which can become coarse when degradations vary spatially or appear in composition. (b) Continuous Expert Assembly (CEA). A lightweight hyper-adapter probes spatial features and generates instance-conditioned low-rank routing bases \\(A(x)\\) and residual directions \\(B(x)\\). Each spatial token uses dense signed dot-product affinities to assemble its own residual update \\(\\Delta Y_n\\), enabling instance-conditioned low-rank residual assembly without discrete expert selection.",
+ "caption_source": "latex",
+ "abstract": "Real-world image degradation is often unknown, spatially non-uniform, and compositional, requiring all-in-one restoration models to adapt a single set of weights to diverse local corruption patterns without test-time degradation labels. Existing methods typically modulate a shared backbone with global prompts or degradation descriptors, or route features through predefined expert pools. However, compact global conditioning can bottleneck localized degradation evidence, while static expert routing may produce homogeneous updates or rely on unstable sparse assignments. We propose \\textbf{Continuous Expert Assembly} (CEA), a token-wise dynamic parameterization framework for all-in-one image restoration. CEA employs a lightweight \\textbf{Cross-Attention Hyper-Adapter} to probe intermediate spatial features and synthesize instance-conditioned low-rank routing bases and residual directions. Each spatial token then assembles its own residual update via dense signed dot-product affinities over the generated rank-wise components, avoiding external prompts, static expert banks, and discrete Top- selection. The resulting assembly rule also admits a linear-attention perspective, making its dense token-wise routing behavior transparent. Experiments on AIO-3, AIO-5, and CDD-11 show that CEA improves average restoration quality over strong prompt-, descriptor-, and expert-based baselines, with the clearest gains on spatially varying and compositional degradations, while maintaining favorable parameter, FLOP, and runtime efficiency.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=pQjphOzAGt",
+  "arxiv": "https://arxiv.org/abs/2605.06127",
+  "pdf": "https://arxiv.org/pdf/2605.06127",
+  "proceedings": null,
+  "virtual": "https://neurips.cc/virtual/2026/poster/149532",
+  "code": null
+ },
+ "license": "http://arxiv.org/licenses/nonexclusive-distrib/1.0/",
+ "img": "none",
+ "image_url": null,
+ "thumb_url": null,
+ "figure_page": 1,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.85
+}

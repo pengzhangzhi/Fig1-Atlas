@@ -1,0 +1,51 @@
+{
+ "id": "icml26-3215",
+ "title": "Constrained hybrid modelling to predict microbial dynamics and organic matter turnover in soil systems",
+ "authors": [
+  "Paul Collart",
+  "Juergen Gall",
+  "Andrea Schnepf",
+  "Holger Pagel",
+  "Lars Doorenbos"
+ ],
+ "venue": "ICML 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "Applications->Chemistry, Physics, and Earth Sciences",
+ "role": "pipeline",
+ "role2": null,
+ "claim": "A neural network maps unobservable inputs to parameters of a differentiable mechanistic model, trained end-to-end on measured outputs plus constraint losses.",
+ "layout": "1 panel, left-to-right chain, neural net into ODE model, loss at right",
+ "tags": [
+  "hybrid-modelling",
+  "differentiable-simulator",
+  "physics-constrained",
+  "end-to-end-training",
+  "parameter-estimation"
+ ],
+ "style": [
+  "math-heavy",
+  "icon-heavy",
+  "plot"
+ ],
+ "description": "A single wide left-to-right pipeline diagram. At far left is a circular genome icon, which feeds a column vector of genomic traits T1...Ti. These connect to a fully connected neural network (g_w) drawn with green input nodes, three blue hidden layers and red output nodes, labelled 'Parameter estimation module'. Its outputs form a parameter vector θ1...θj. The vector fans out into a rounded box labelled 'Differentiable soil carbon PBM', which holds ODE right-hand sides (δB_a/δt, δC_L^l/δt, δCO2/δt), a vertical 'Differentiable ODE solver' bar, and state-variable boxes B_a, C_L^l and CO2. Teal lines lead to a RELU constraint loss box and an MSE box, which combine into the total loss L_tot. A teal arrow from θ goes straight to the constraints box. A small CO2-versus-time curve plot at lower right supplies the observed data to the MSE box.",
+ "caption": "The \\framework hybrid modelling framework for soil carbon cycling predictions. The goal is to learn a mapping $g_w$ from genomic data, aggregated into a vector of genomic traits $[\\mathcal{T}_1,\\mathcal{T}_2,...,\\mathcal{T}_i]$, to biokinetic parameters $\\theta_{bio}$. The biokinetic parameters, however, cannot be measured. Instead, time series of $CO_2$ are the only available measurements. To link the unknown biokinetic parameters $\\theta_{bio}$ to measurable variables, we utilize a differentiable, process-based carbon soil model (PBM) that takes biokinetic parameters $\\theta_{bio}$ as input and predicts state variables, which are time series of carbon pools like active bacterial pool ($B_a$), low molecular weight carbon ($C^l_L$), or carbon dioxide ($CO_2$). Since the state variables as well as $\\theta_{bio}$ have physical constraints, such as ranges or logical relationships, we add constraint loss terms for each parameter and state variable and combine them with the mean squared error between the predicted state variables and measured data. The task is very challenging since we do not observe $\\theta_{bio}$ or more than one state variable, i.e., except for $CO_2$.",
+ "caption_source": "latex",
+ "abstract": "Soil microorganisms control organic matter cycling and largely determine how soil systems can cope with and mitigate climate change and environmental threats. Representing microbial dynamics in process-based soil models is therefore critical to predict carbon cycling in soils, albeit highly challenging to inform from data. One promising approach to improve their parametrisation is the integration of genomic data, yet modelling the complex and unknown relationship between genomes and the processes the microbes are driving is an unsolved problem. In this work, we present the first hybrid modeling framework for deriving biokinetic parameter values of a process-based soil organic matter turnover model from metagenome-inferred functional traits based on DNA sequencing data. Our model predicts biokinetic parameters of the process-based model from genomic trait data with a neural network and integrates constraints from ecological theory and literature to ensure realistic behavior, even of non-observed state variables. We evaluate our method on synthetic genomic trait datasets of varying complexity and on real data, showing that our approach improves performance over multiple baselines and learns the dynamics of unmeasurable components of the process-based model effectively, even for small training datasets.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=UR1yz4AMYj",
+  "arxiv": "https://arxiv.org/abs/2606.20329",
+  "pdf": "https://raw.githubusercontent.com/mlresearch/v306/main/assets/collart26a/collart26a.pdf",
+  "proceedings": "https://proceedings.mlr.press/v306/collart26a.html",
+  "virtual": "https://icml.cc/virtual/2026/poster/63708",
+  "code": "https://jugit.fz-juelich.de/p.collart/hysomi_publication/"
+ },
+ "license": "http://arxiv.org/licenses/nonexclusive-distrib/1.0/",
+ "img": "none",
+ "image_url": null,
+ "thumb_url": null,
+ "figure_page": 3,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.93
+}

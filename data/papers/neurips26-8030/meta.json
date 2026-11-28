@@ -1,0 +1,50 @@
+{
+ "id": "neurips26-8030",
+ "title": "The Kernel Reality Check: Benchmarking and Distilling Efficient Attention at Scale",
+ "authors": [
+  "Firat Oncel",
+  "Cem Subakan",
+  "Mirco Ravanelli",
+  "Çağatay Yıldız"
+ ],
+ "venue": "NeurIPS 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "Deep Learning->Attention Mechanisms",
+ "role": "analysis-finding",
+ "role2": "teaser-result",
+ "claim": "Optimized exact attention matches or beats approximate linear-complexity alternatives in time and memory across input sizes, undermining their assumed efficiency advantage.",
+ "layout": "4 panels in a row, shared x-axis and legend, log-scale y-axes",
+ "tags": [
+  "efficiency-benchmark",
+  "linear-attention",
+  "scaling-curves",
+  "wall-clock",
+  "memory-footprint"
+ ],
+ "style": [
+  "plot",
+  "colorful",
+  "minimal"
+ ],
+ "description": "A single horizontal strip of four line plots with a shared legend underneath. The panels are titled Inference Time, Training Time, Inference Memory and Training Memory. Each plots a log-scale y-axis (time in ms or memory in MB) against image resolution from 224px to 1536px. Six series are shown: Softmax in red, Flash in blue, and Hedgehog, DiJiang, Hedgehog-FLA and DiJiang-FLA in green, brown, light green and tan. The red Softmax curve shoots upward at high resolutions and goes off the top of the plot. The kernelized variants cluster together in a middle band. The blue Flash curve sits lowest or ties with them nearly everywhere, so the eye goes first to the divergence between the red curve and the rest. At low resolutions the kernelized methods are slightly slower than Softmax.",
+ "caption": "Memory and computational efficiency across sequence lengths (ViT-S, A100 GPU).",
+ "caption_source": "latex",
+ "abstract": "Kernelized attention methods, which aim to replace the $O(N^2)$ complexity of softmax attention with $O(N)$ alternatives, have been the focus of intense research in the last five years. Despite growing interest, systematic evaluations and fair comparisons across approaches and scales are still missing. We analyze kernelized attention in two halves and highlight prominent limitations on each. On efficiency, FlashAttention achieves lower memory consumption and faster wall-clock time than SOTA kernelized methods during training and in vision transformers across most sequence lengths (with inference-time memory in causal language models the only clear exception), contradicting the core assumption for pure kernelized attention used as a drop-in replacement for softmax. We also discover that reported efficiency gains often fail to reproduce against modern baselines. On quality, current kernelized methods leave gaps of 2-10 points relative to softmax under a unified distillation protocol, and model scala alone does not close these gaps. We show this gap is not intrinsic to kernelization: LARA++, a principled extension of LARA that approximates softmax via importance sampling with adaptive proposal distributions, recovers up to 99% of softmax accuracy. We establish that the gap is closable; however, the computational overhead remains substantial, leaving the efficiency wall intact. Code is available at https://github.com/firatoncel/KernelRealityCheckNeurIPS2026",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=tVaxhv0A2z",
+  "arxiv": "https://arxiv.org/abs/2611.22947",
+  "pdf": "https://arxiv.org/pdf/2611.22947",
+  "proceedings": null,
+  "virtual": "https://neurips.cc/virtual/2026/poster/149008",
+  "code": null
+ },
+ "license": "http://arxiv.org/licenses/nonexclusive-distrib/1.0/",
+ "img": "none",
+ "image_url": null,
+ "thumb_url": null,
+ "figure_page": 4,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.55
+}

@@ -1,0 +1,56 @@
+{
+ "id": "neurips26-1780",
+ "title": "Learning-to-Memorize: Dynamic Context Management for Long-Horizon Autoregressive Video Generation",
+ "authors": [
+  "Haowei Zhu",
+  "Qijie Wang",
+  "Jia Li",
+  "XING WANG",
+  "Tianyu Zhao",
+  "Jiexi Wang",
+  "Xurui Peng",
+  "Xinglong Wu",
+  "Jun-Hai Yong",
+  "Bin Wang"
+ ],
+ "venue": "NeurIPS 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "Computer Vision->Image and Video Generation",
+ "role": "pipeline",
+ "role2": null,
+ "claim": "A learned router scores context items, prunes low-value ones, and evolves long-term memory, trained via teacher-student distillation.",
+ "layout": "2 panels, training left and inference right, step-wise rows with legend",
+ "tags": [
+  "context-management",
+  "kv-cache",
+  "router",
+  "distillation",
+  "long-horizon"
+ ],
+ "style": [
+  "colorful",
+  "icon-heavy",
+  "minimal"
+ ],
+ "description": "Two-panel diagram split by a dashed vertical line. Panel (a), Training, shows a student and teacher branch. Each branch has a Causal DiT Layer with arrows up to output frame boxes, and an L_distill loss sits between them. A trainable router, marked with a flame icon, takes a row of frame boxes. It outputs soft scores, which Gumbel-softmax turns into hard 0/1 masks. The masks drive L_sparse and L_deg losses, and dropped frames are marked with red crosses. A purple box labeled degradation-for-robustness shows grey corrupted frames. Panel (b), Inference, has a legend (new, context, sink frame, drop) and four colored steps. Step 1 is importance prediction by the router, with scores. Step 2 is eviction. Step 3 is long-term memory initialization by selection, with blue sink frames. Step 4 is EMA-based memory update. Each step is a row of frame boxes, a module, then a result row.",
+ "caption": "Overview of L2M. (a) Training phase: Given the current chunk feature $\\bar{f}_b$ and historical latent frame features $\\{\\bar{f}_i\\}_{i<(b-1)B_f+1}$, the importance-aware frame router predicts importance scores for each historical latent frame. Binary frame selection masks $m_i\\in\\{0,1\\}$ are obtained via Gumbel-Softmax discretization. The pruned context is fed to the student network, which is supervised by the teacher operating on the full context. Degradation-aware training augments a subset of historical frames with degradations, encouraging the router to assign them lower retention probabilities. (b) Inference phase: The router predicts frame importance scores, and low-scoring latent frames are evicted to meet the cache budget. High-scoring frames are dynamically selected as long-term memory and periodically updated using maintained EMA scores, continuously promoting informative historical frames.",
+ "caption_source": "latex",
+ "abstract": "Autoregressive video generation has achieved impressive results on short clips, yet generating long videos remains challenging due to error accumulation over extended horizons, where each predicted frame depends on potentially imperfect previous frames. Existing approaches typically rely on static context management strategies, such as sliding-window caches that discard early frames or fixed sink frames that permanently preserve initial content. These designs either lose critical long-range context or anchor generation to outdated information, which can lead to degraded fidelity, motion stagnation, and reduced diversity. In this paper, we propose Learning to Memorize (L2M), a learned context memory management framework that dynamically retains, evicts, and evolves historical frames according to predicted importance. The framework consists of an importance prediction router that estimates the relevance of each historical frame, degradation-aware training that improves robustness to noisy or corrupted context, and a dynamic memory initialization and evolution mechanism that updates long-term memory using exponential moving average (EMA) importance scores. This allows high-quality frames to replace stale anchors and enables memory to adapt naturally to scene evolution. Trained with a teacher-student distillation objective and sparsity regularization, L2M makes efficient use of a fixed KV-cache budget while preserving the most informative contextual information. Extensive experiments demonstrate that L2M improves long-horizon video generation quality and temporal consistency over existing baselines, providing a learned strategy for context memory management in long autoregressive video generation.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=CfeDlcqmdj",
+  "arxiv": "https://arxiv.org/abs/2611.01858",
+  "pdf": "https://arxiv.org/pdf/2611.01858",
+  "proceedings": null,
+  "virtual": "https://neurips.cc/virtual/2026/poster/154562",
+  "code": null
+ },
+ "license": "http://creativecommons.org/licenses/by/4.0/",
+ "img": "cc-by",
+ "image_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/images/neurips26-1780.png",
+ "thumb_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/thumbs/neurips26-1780.webp",
+ "figure_page": 3,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.9
+}

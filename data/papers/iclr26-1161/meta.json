@@ -1,0 +1,55 @@
+{
+ "id": "iclr26-1161",
+ "title": "CARE: Covariance-Aware and Rank-Enhanced Decomposition for Enabling Multi-Head Latent Attention",
+ "authors": [
+  "Zhongzhu Zhou",
+  "Fengxiang Bie",
+  "Ziyan Chen",
+  "Zhenyu Zhang",
+  "Yibo Yang",
+  "Junxiong Wang",
+  "Ben Athiwaratkun",
+  "Xiaoxia (Shirley) Wu",
+  "Shuaiwen Song"
+ ],
+ "venue": "ICLR 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "Deep Learning->Attention Mechanisms",
+ "role": "prior-vs-ours",
+ "role2": "pipeline",
+ "claim": "Weight-only SVD targets the wrong objective; estimating activation covariance and scheduling ranks globally gives a better low-rank initialization.",
+ "layout": "2 panels, left naive and right ours, flowing left-to-right, shared Down/Up factor icons",
+ "tags": [
+  "low-rank-factorization",
+  "covariance-aware",
+  "rank-allocation",
+  "model-compression",
+  "kv-cache"
+ ],
+ "style": [
+  "colorful",
+  "icon-heavy",
+  "math-heavy"
+ ],
+ "description": "The figure has two parts on a pale blue-gray gradient background. Panel (a), on the left and labeled Naïve (Joint) SVD, shows W_K and W_V as blue squares inside a dashed box labeled \"Wrong\" SVD Target. A dashed arrow leads down to Up_KV and Down_KV trapezoids. Panel (b), CARE, takes up most of the width. An orange Samples cylinder feeds rows of orange activation blocks multiplied by W_K and W_V. These produce a Covariance \"Correct\" SVD Target, drawn as colored block matrices for Layer 0 through Layer N. Large orange arrows then lead to Rank Scheduling, where Down and Up trapezoids are assigned Rank 0 through Rank N. Formulas at the bottom cover partial RoPE and the K_nope reconstruction. Orange and blue contrast marks the data and the weights.",
+ "caption": "(a) Naive MLA transfer: jointly factorize $W_K^{(g)}$ and $W_V^{(g)}$ by SVD and truncate to a uniform per-layer rank, optimizing $\\|W-\\hat W\\|_F$ while ignoring layerwise heterogeneity. (b) CARE: estimate activation covariance $C$, factorize $\\sqrt{C}W$, unwhiten via $\\sqrt{C}^{-1}$ to initialize MLA factors, and use the singular spectrum of $\\sqrt{C}W$ for global dynamicrank scheduling under KV parity. This preserves activation geometry and yields a stronger one-shot initialization with less healing.",
+ "caption_source": "latex",
+ "abstract": "Converting pretrained attention modules such as grouped-query attention (GQA) into multi-head latent attention (MLA) can improve expressivity without increasing KV-cache cost, making it attractive for efficient inference. However, many practical conversion baselines rely on weight-only low-rank approximations (e.g., SVD-style initializations) and uniform rank allocation. They focus on minimizing the difference between weight matrices rather than on how those weights affect input activations, ignore the covariance structure of activations, and enforce uniform rank across layers, causing activation drift and degraded attention fidelity. To address these issues, we propose CARE, a Covariance-Aware, Rank-Enhanced MLA conversion pipeline under a fixed KV width. CARE introduces three key steps: (i) activation-preserving factorization, which aligns the approximation with the actual input activations rather than just the weights; (ii) adjusted-rank allocation, which spreads a fixed KV budget across layers by giving more capacity to layers that need it most; and (iii) KV-parity mapping, which reparameterizes the converted K and V to fit the MLA format while keeping the KV-cache size unchanged. Our method outperforms a uniform-rank SVD baseline on Qwen3-4B/30B-A3B-Instruct-2507 and Llama-3.1-8B/70B-Instruct, reducing one-shot perplexity by up to 215x and improving mean accuracy by up to 1.70x at matched KV budgets. With a brief post-SVD healing fine-tune, we fully recover the original model's accuracy.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=DVurf4kGag",
+  "arxiv": "https://arxiv.org/abs/2603.17946",
+  "pdf": "https://proceedings.iclr.cc/paper_files/paper/2026/file/476c9ac41c967332dd28fb844e166b34-Paper-Conference.pdf",
+  "proceedings": "https://proceedings.iclr.cc/paper_files/paper/2026/hash/476c9ac41c967332dd28fb844e166b34-Abstract-Conference.html",
+  "virtual": "https://iclr.cc/virtual/2026/poster/10010773",
+  "code": "https://zzz0906.github.io/CARE/"
+ },
+ "license": "http://creativecommons.org/licenses/by/4.0/",
+ "img": "cc-by",
+ "image_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/images/iclr26-1161.png",
+ "thumb_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/thumbs/iclr26-1161.webp",
+ "figure_page": 1,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.6
+}

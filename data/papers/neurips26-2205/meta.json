@@ -1,0 +1,50 @@
+{
+ "id": "neurips26-2205",
+ "title": "Preference-Guided Adaptation for Open-Vocabulary Semantic Segmentation via Prompt Disagreement",
+ "authors": [
+  "Hyun-Kurl Jang",
+  "Jihun Kim",
+  "Kuk-Jin Yoon"
+ ],
+ "venue": "NeurIPS 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "Computer Vision->Segmentation",
+ "role": "pipeline",
+ "role2": "teaser-result",
+ "claim": "Disagreement among prompt variants can be mined as cheap binary preference supervision, lifting performance above the entire baseline spread.",
+ "layout": "2 panels: left pipeline flow left-to-right with feedback loop; right dot plot",
+ "tags": [
+  "preference-optimization",
+  "prompt-disagreement",
+  "domain-adaptation",
+  "weak-supervision",
+  "open-vocabulary-segmentation"
+ ],
+ "style": [
+  "colorful",
+  "plot",
+  "icon-heavy",
+  "photo/real data"
+ ],
+ "description": "The left panel is a pipeline. A satellite training image and a list of target classes (land, water, cloud) feed an OVSS box holding three color-coded prompt templates (green, orange, purple). Each template produces a segmentation map, and the maps differ. A gray funnel labeled Query Mining narrows them to two candidate masks, A and B, with a red box marking the region where they disagree. A human icon with a speech bubble asks which is closer to the intended concept. That choice goes to a blue Region-Localized Preference Optimization box. The box outputs a refined segmentation with sparkles, and a blue arrow loops back to the OVSS model. The right panel is a dot plot of validation mIoU across five domains. Blue dots show the spread over 14 prompts. A red dashed line marks the CAT-Seg-L baseline. Red diamonds for the method sit well above every dot, especially for Medical and Engineering.",
+ "caption": "Left: For each target-domain image, our framework runs multiple prompt templates through a OVSS backbone, mines a localized preference query from regions where the templates disagree most, and uses a binary judgment (\"which prediction is closer to the intended concept on this region?\") to drive an update of OVSS model. Right: Validation mIoU across diverse specialized domains [ref] when only the prompt template is varied. Across all domains, performance varies widely across templates. Our method harnesses this variance as supervision and lifts performance above the entire per-domain spread, turning prompt disagreement into training signal.",
+ "caption_source": "latex",
+ "abstract": "Open-vocabulary semantic segmentation (OVSS) enables pixel-level prediction over arbitrary text-specified vocabularies and has shown strong generalization on common benchmarks. However, OVSS performance often degrades in specialized domains such as medical imaging, remote sensing, and industrial inspection, where dense pixel-level masks for adaptation are costly to obtain and require domain-specific expertise. We propose a preference-guided adaptation framework that replaces dense mask supervision with binary preferences. We observe that different prompt templates produce systematically different segmentations for the same image, a phenomenon we call prompt disagreement, and we repurpose it as a built-in source of preference supervision. Building on this, we mine localized preference queries from regions of high cross-template uncertainty, and adapt the OVSS model with Region-Localized Preference Optimization (RLPO) together with consistency regularization that stabilizes updates outside the queried region. Across extensive experiments on the MESS benchmark, the proposed method achieves consistent gains across diverse OVSS backbones without any pixel-level annotation, and remains effective under noisy preferences. Our code is available at https://github.com/blue-531/pref-ovss.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=FcPsdOYorV",
+  "arxiv": "https://arxiv.org/abs/2609.34528",
+  "pdf": "https://arxiv.org/pdf/2609.34528",
+  "proceedings": null,
+  "virtual": "https://neurips.cc/virtual/2026/poster/154181",
+  "code": "https://blue-531.github.io/pref-ovss/"
+ },
+ "license": "http://creativecommons.org/licenses/by/4.0/",
+ "img": "cc-by",
+ "image_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/images/neurips26-2205.png",
+ "thumb_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/thumbs/neurips26-2205.webp",
+ "figure_page": 1,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.62
+}

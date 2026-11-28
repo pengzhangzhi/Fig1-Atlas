@@ -1,0 +1,53 @@
+{
+ "id": "neurips26-7597",
+ "title": "Verification-Aware Training for Speculative Decoding",
+ "authors": [
+  "Geonmo Gu",
+  "Byeongho Heo",
+  "HeeJae Jun",
+  "Yoohoon Kang",
+  "Sangmin Lee",
+  "Sangdoo Yun",
+  "Dongyoon Han"
+ ],
+ "venue": "NeurIPS 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "Applications->Language, Speech and Dialog",
+ "role": "pipeline",
+ "role2": null,
+ "claim": "Simulating verification at each training step yields accept/reject labels that reweight the loss and supervise an auxiliary head.",
+ "layout": "Single panel, left-to-right model chain over a token-row table, flowing right",
+ "tags": [
+  "speculative-decoding",
+  "training-objective",
+  "loss-reweighting",
+  "auxiliary-head",
+  "plug-in"
+ ],
+ "style": [
+  "colorful",
+  "math-heavy",
+  "text-heavy"
+ ],
+ "description": "A single wide diagram. At the top, three boxes run left to right: a grey Target model, a blue Draft model with a flame icon (trainable), and a blue Verification head at the far right, marked by a blue \"Added by VAT (ours)\" bar. Arrows labeled hidden states link them. Below, five numbered token rows (k=1..5) compare the target output with the draft output, such as Gradient/Gradient and minimizes/reduces. Matches are green with an equals sign, and mismatches are red with a not-equal sign. The first rejection at k*=3 is flagged. To the right, columns run from CE loss to fixed weight, then acceptance label (green accept, red reject), then re-weighted weight, with the first three rows set to 1.00. The last column holds the verification head's acceptance probabilities. The final loss equation sits at the bottom right.",
+ "caption": "Overview of Verification-Aware Training. At each training step, VAT simulates target verification by comparing the target and draft predictions at every position $k$, yielding acceptance labels $v_k$. In this example, the first mismatch occurs at $k^* = 3$, so all subsequent positions are labeled reject. The labels drive two components: (i) verification-adaptive weighting, which replaces the fixed schedule $w_k$ with $\\hat{w}_k$ by keeping full weight up to $k^*$ and re-anchoring the base decay to start at $k^*$, and (ii) a lightweight verification head on top of the draft's hidden states, trained to predict per-position acceptance $\\hat{v}_k$. The final objective combines the reweighted cross-entropy losses with the verification head loss $\\mathcal{L}_{\\mathrm{VH}}$.",
+ "caption_source": "latex",
+ "abstract": "Speculative decoding accelerates large language model inference by using a draft model to generate candidate tokens, which are verified by the target model in a single forward pass. Verification proceeds sequentially and discards every position from the first rejection onward, yet existing draft training relies on token-level imitation of the target with a fixed per-position weighting that reflects neither property. We introduce Verification-Aware Training (VAT), a plug-in framework that simulates verification at every training step and turns the resulting accept and reject patterns into supervision. VAT consists of two components: (i) a verification head, a lightweight jointly trained binary classifier that supervises the draft model on whether each position survives sequential verification; (ii) verification-adaptive weighting, which replaces the fixed weighting schedule by keeping full weight up to each sample's first rejection point and re-anchoring the decay to start there. VAT modifies only the training objective, so it can be layered on top of existing methods without changing the draft architecture, the target model, or the inference procedure. Applied to EAGLE-3 and DFlash on Qwen3-4B, Qwen3-8B, and LLaMA-3.1-8B, VAT improves average acceptance length by up to 11.4% and wall-clock speedup by up to 8.7%, with consistent gains across math, code, and chat benchmarks. Code will be available at https://github.com/naver-ai/vat",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=qMv8q5WApK",
+  "arxiv": "https://arxiv.org/abs/2608.30135",
+  "pdf": "https://arxiv.org/pdf/2608.30135",
+  "proceedings": null,
+  "virtual": "https://neurips.cc/virtual/2026/poster/149396",
+  "code": "https://github.com/naver-ai/vat"
+ },
+ "license": "http://arxiv.org/licenses/nonexclusive-distrib/1.0/",
+ "img": "none",
+ "image_url": null,
+ "thumb_url": null,
+ "figure_page": 1,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.9
+}

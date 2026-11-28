@@ -1,0 +1,51 @@
+{
+ "id": "icml26-4672",
+ "title": "Rapid Poison: Practical Poisoning Attacks Against the Rapid Response Framework",
+ "authors": [
+  "David Huang",
+  "Jaewon Chang",
+  "Avidan Shah",
+  "Prateek Mittal",
+  "Chawin Sitawarin"
+ ],
+ "venue": "ICML 2026",
+ "tier": "spotlight",
+ "track": "main",
+ "topic": "Social Aspects->Safety",
+ "role": "pipeline",
+ "role2": "prior-vs-ours",
+ "claim": "A defense pipeline that trains on proliferated samples can be hijacked by injecting poisoned samples, causing false positives or backdoored false negatives.",
+ "layout": "3 columns by 3 rows (clean top, poisoned bottom), left-to-right, dashed divider",
+ "tags": [
+  "data-poisoning",
+  "backdoor",
+  "prompt-injection",
+  "jailbreak-defense",
+  "threat-model"
+ ],
+ "style": [
+  "icon-heavy",
+  "text-heavy",
+  "colorful"
+ ],
+ "description": "A wide figure split into a yellow 'Rapid Response Training' banner and an orange 'Rapid Response Deployment' banner. Rows are separated by a dashed line: the top row is the clean pipeline and the bottom row is the poisoning variants. Three numbered stages run left to right: (1) Monitoring, where a jailbreak prompt about building a bomb feeds a gray 'Proliferation Model' block; (2) Finetuning, where stacked cards of synthetic variations feed guard-model robot icons; and (3) User Input Classification, where user and attacker icons send prompts to guard robots that answer 'unsafe!' or 'safe!' in speech bubbles. In the poisoning rows, red monospace text marks attacker-controlled content, skull icons mark poisoned samples, and poisoned guard models appear for the false-positive and false-negative attacks. The eye goes first to the large title banners, then to the robots and speech bubbles.",
+ "caption": "Overview of Rapid Response (RR) and poisoning attack vectors. The clean pipeline (top row) collects in-the-wild jailbreaks as references, proliferates them into synthetic training samples, and fine-tunes a guard model that correctly classifies these new jailbreak strategies as unsafe. Our poisoning attacks can be used for two practical objectives (two bottom rows): (i) Utility degradation: we poison the model to misclassify a subpopulation of safe queries (here, queries with the word \\str{ChatGPT}) as unsafe. (ii) Safety degradation: we introduce a more sophisticated \\emph{\\fnrattack{}} that creates a backdoor which can evade detection when added to unsafe inputs. This will be explained in detail in [ref] and [ref].",
+ "caption_source": "latex",
+ "abstract": "The Rapid Response (RR) framework, deployed in production systems, including Anthropic's ASL-3 safeguards, continuously improves jailbreak-detection classifiers. When new jailbreaks emerge that bypass these classifiers, Rapid Response generates synthetic variants for training, helping the model generalize from the new attacks and quickly adapt. We reveal that prompt injection can infiltrate this pipeline to deliver poisoned samples into the classifier's training set, enabling two attack objectives: (I) targeted poisoning attacks that create false positives on harmless samples by categorizing them as a jailbreak, with a specific desired feature (e.g., certain formatting, subject, or keyword), (II) concept-based backdoor attacks that induce false negatives on jailbreak inputs, generalizing even to jailbreaks from attack strategies the defender explicitly trained against, when the backdoor trigger is present. Importantly, our threat model restricts adversaries to modifying only jailbreak samples (not benign data or labels), a constraint unexplored by prior work that makes the second objective particularly challenging. We address this with Omission Attack, which exploits a new phenomenon: when training on concept-absent unsafe samples, the classifier misassociates that concept's presence with the safe label. Both attacks cause substantial and in some cases near-complete label flipping at only a 1% poisoning rate, achieving up to 100% false positive rates and up to 96% false negative rates.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=hvI3Syn2U7",
+  "arxiv": "https://arxiv.org/abs/2606.16242",
+  "pdf": "https://raw.githubusercontent.com/mlresearch/v306/main/assets/huang26e/huang26e.pdf",
+  "proceedings": "https://proceedings.mlr.press/v306/huang26e.html",
+  "virtual": "https://icml.cc/virtual/2026/poster/62293",
+  "code": null
+ },
+ "license": "http://arxiv.org/licenses/nonexclusive-distrib/1.0/",
+ "img": "none",
+ "image_url": null,
+ "thumb_url": null,
+ "figure_page": 1,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.6
+}

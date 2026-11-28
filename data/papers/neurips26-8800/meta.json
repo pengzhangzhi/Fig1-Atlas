@@ -1,0 +1,49 @@
+{
+ "id": "neurips26-8800",
+ "title": "xVGAE: A Hierarchical Variational Graph Autoencoder for Exchangeable Graphs",
+ "authors": [
+  "Daniele Micheletti",
+  "Federica Zoe Ricci",
+  "Erik Sudderth"
+ ],
+ "venue": "NeurIPS 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "Deep Learning->Generative Models and Autoencoders",
+ "role": "pipeline",
+ "role2": null,
+ "claim": "A model is built from an encoder, a latent prior and a decoder, each with its own role in the data flow.",
+ "layout": "1 panel, left-to-right, three grouped modules with color-coded arrow legend",
+ "tags": [
+  "encoder-decoder",
+  "latent-variable",
+  "generative-model",
+  "architecture",
+  "one-shot-generation"
+ ],
+ "style": [
+  "minimal",
+  "math-heavy",
+  "colorful"
+ ],
+ "description": "A single left-to-right block diagram. On the far left, a gray rounded box labeled A feeds a dark slate Encoder block. The Encoder holds two light-blue boxes: Global, q_phi(z0 | A), and Local, q_phi(z_i | z0, A). Dashed blue arrows carry the inference path out to two orange circles in the middle. The circle z0 sits above a plate-style box containing z_i, marked with n. A red arrow labeled p_theta(z_i | z0) runs from z0 to z_i, and p_theta(z0) labels the z0 circle. Solid green arrows lead into a large green Decoder block. Inside it, the Refiner box (h_i, Node MLP + FiLM, dashed Optional Attention) feeds a Bilinear Head box, p_theta(A_ij | h_i, h_j, z0). The output arrow ends at a gray box labeled A-hat. A legend at the bottom maps blue dashed to Inference, red to prior, and green to decoder. The eye goes first to the dark Encoder block, then follows the arrows rightward.",
+ "caption": "Overview of the xVGAE architecture (inference and generation). The encoder (left) maps a graph $A$ to a global posterior $q_\\phi(z_0 \\mid A)$ and node-level posteriors $q_\\phi(z_i \\mid z_0, A)$ for the $n$ nodes. The prior (middle) samples the global latent $z_0 \\sim p_\\theta(z_0)$ and, conditionally, the independent node latents $z_i \\sim p_\\theta(z_i \\mid z_0)$. The decoder (right) refines the node latents into features $h_i$ via an MLP, $z_0$-conditioned FiLM [ref], and optional attention. Finally, a bilinear head predicts pairwise edge probabilities $p_\\theta(A_{ij} \\mid h_i, h_j, z_0)$ for all node pairs to generate $\\hat{A}$.",
+ "caption_source": "latex",
+ "abstract": "Graphs play a crucial role in many applications, ranging from drug discovery to social network modeling and astronomy. Generative models for graphs have substantially advanced in recent years, but we identify relatively simple scenarios where state-of-the-art models struggle to converge within a standard compute budget, or exhibit prohibitively slow generation times. We propose a generative architecture that achieves quality competitive with state-of-the-art models and is orders of magnitude faster at generation. Our approach is inspired by the Aldous-Hoover theorem, a classic representation theorem that characterizes any probability distribution of graphs that is invariant to permutations of node indices or exchangeable. This theorem establishes that three ingredients suffice: a graph-level latent variable, a set of exchangeable node-specific latent variables, and a so-called graphon function that maps graph- and node-level variables to the probability of an edge between any node pair. Given a training set of graphs, our exchangeable Variational Graph AutoEncoder (xVGAE) learns an approximation to their underlying graphons, as well as graph- and node-level latent variables. We show that our xVGAE encodes latent representations that correlate with graph- and node-level properties, and can (quickly, in one shot) generate new graphs that closely match key training set statistics.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=yfPdA2AWpR",
+  "arxiv": "https://arxiv.org/abs/2610.30815",
+  "pdf": "https://arxiv.org/pdf/2610.30815",
+  "proceedings": null,
+  "virtual": "https://neurips.cc/virtual/2026/poster/148325",
+  "code": null
+ },
+ "license": "http://creativecommons.org/licenses/by-nc-sa/4.0/",
+ "img": "cc-by-nc-sa",
+ "image_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/images/neurips26-8800.png",
+ "thumb_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/thumbs/neurips26-8800.webp",
+ "figure_page": 1,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.93
+}

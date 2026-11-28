@@ -1,0 +1,56 @@
+{
+ "id": "iclr26-0644",
+ "title": "Unified Brain Surface and Volume Registration",
+ "authors": [
+  "Mazdak Abulnaga",
+  "Andrew Hoopes",
+  "Malte Hoffmann",
+  "Robin Magnet",
+  "Maks Ovsjanikov",
+  "Lilla Zollei",
+  "John Guttag",
+  "Bruce Fischl",
+  "Adrian Dalca"
+ ],
+ "venue": "ICLR 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "Applications->Health",
+ "role": "pipeline",
+ "role2": null,
+ "claim": "Two coupled networks, one for volumes and one for surfaces, are trained jointly with a consistency loss tying their deformations together.",
+ "layout": "1 panel, left-to-right and right-to-left converging to center, dashed colored loss paths",
+ "tags": [
+  "joint-training",
+  "registration",
+  "consistency-loss",
+  "multi-domain",
+  "dual-network"
+ ],
+ "style": [
+  "colorful",
+  "icon-heavy",
+  "math-heavy",
+  "photo/real data"
+ ],
+ "description": "A single wide horizontal diagram with two mirrored branches converging on a central consistency loss. On the left, moving and fixed brain MRI slices feed into a blue Volumetric Unet, which outputs a deformation field φ. On the right, moving and fixed cortical meshes pass through spherical inflation and parameterization (π) into spheres, which feed a Spherical Unet that outputs ψ, then a transformation τ^-1. Both branches are sampled at the cortical mesh at the center, where a green dashed path leads to the L_cons loss. Red dashed loops return to L_vol and L_sphere. Gray arrows show data flow, green marks the consistency pathway, and red marks the per-branch losses. The eye goes first to the central green L_cons.",
+ "caption": "\\resub{Unified cortical and volumetric registration framework. We employ two CNNs, a volumetric one to perform 3D image alignment, and a 2D spherical one to align the cortical surfaces in the spherical domain. In training, the models require the MRI images $I$, the cortical surface meshes, and the inflated spheres. The resultant deformation fields of both models are used in a loss term ($\\mathcal L_{cons}$) that encourages cortical registration to be consistent in the spherical and volumetric pathways. The models are trained jointly to obtain accurate and consistent cortical and subcortical alignments. At inference time, the 3D model does not require meshes nor spheres to perform registration.}",
+ "caption_source": "latex",
+ "abstract": "Accurate registration of brain MRI scans is fundamental for cross-subject analysis in neuroscientific studies. This involves aligning both the cortical surface of the brain and the interior volume. Traditional methods treat volumetric and surface-based registration separately, which often leads to inconsistencies that limit downstream analyses. We propose a deep learning framework, NeurAlign, that registers $3$D brain MRI images by jointly aligning both cortical and subcortical regions through a unified volume-and-surface-based representation. Our approach leverages an intermediate spherical coordinate space to bridge anatomical surface topology with volumetric anatomy, enabling consistent and anatomically accurate alignment. By integrating spherical registration into the learning, our method ensures geometric coherence between volume and surface domains. In a series of experiments on both in-domain and out-of-domain datasets, our method consistently outperforms both classical and machine learning-based registration methods -- improving the Dice score by up to 7 points while maintaining regular deformation fields. Additionally, it is orders of magnitude faster than the standard method for this task, and is simpler to use because it requires no additional inputs beyond an MRI scan. With its superior accuracy, fast inference, and ease of use, NeurAlign sets a new standard for joint cortical and subcortical registration.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=7FvUJu63zq",
+  "arxiv": "https://arxiv.org/abs/2512.19928",
+  "pdf": "https://proceedings.iclr.cc/paper_files/paper/2026/file/d64740dd69bcc90ba225a182984b81ba-Paper-Conference.pdf",
+  "proceedings": "https://proceedings.iclr.cc/paper_files/paper/2026/hash/d64740dd69bcc90ba225a182984b81ba-Abstract-Conference.html",
+  "virtual": "https://iclr.cc/virtual/2026/poster/10011316",
+  "code": "https://people.csail.mit.edu/abulnaga/neuralign/"
+ },
+ "license": "http://creativecommons.org/licenses/by/4.0/",
+ "img": "cc-by",
+ "image_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/images/iclr26-0644.png",
+ "thumb_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/thumbs/iclr26-0644.webp",
+ "figure_page": 4,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.85
+}

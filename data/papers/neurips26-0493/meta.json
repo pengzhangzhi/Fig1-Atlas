@@ -1,0 +1,51 @@
+{
+ "id": "neurips26-0493",
+ "title": "GEAR: A GPU-Accelerated Global Solver for Bounded Continuous Nonlinear Programs via Linear Bound Propagation",
+ "authors": [
+  "Duo Zhou",
+  "Hesun Chen",
+  "Xiangru Zhong",
+  "Grani A. Hanasusanto",
+  "Huan Zhang"
+ ],
+ "venue": "NeurIPS 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "Optimization",
+ "role": "pipeline",
+ "role2": "overview-framework",
+ "claim": "One set of linear bounds from compiled functions serves multiple solver components, which together close the optimality gap iteratively.",
+ "layout": "2 regions, left-to-right flow into five stacked use boxes, feedback loop",
+ "tags": [
+  "bound-propagation",
+  "global-optimization",
+  "gpu-solver",
+  "branch-and-bound",
+  "relaxation"
+ ],
+ "style": [
+  "math-heavy",
+  "colorful",
+  "minimal"
+ ],
+ "description": "A left-to-right diagram. On the left, a small box with f_0..f_m splits into two branches: a 'Nonlinear' box (green-gray) showing a computation graph of ×, log and + nodes followed by linear relaxations, and a 'Linear' box (blue-gray) showing a_i^T x + c_i with no relaxation. Both feed a stacked, layered 'Linear bounds' block in the center, which states f_i(x) = a_i^T x + c_i for every function on every box B. From it, color-coded arrows fan out to five stacked boxes under the heading 'One set of bounds, five uses': Lower bound, Infeasibility, Clipping, Primal search and λ-SB branching. Each box has a formula on the right. A tan feedback arrow loops from Clipping and branching back to the Linear bounds block. An italic note says smaller boxes give tighter bounds and to repeat until the gap closes. The eye goes first to the central Linear bounds block.",
+ "caption": "\\textbf{Overview of \\GEAR{}.} Each of $f_0,\\dots,f_m$ is nonlinear or linear. Nonlinear functions are represented as computation graphs, and linear bound propagation applies linear relaxations to them; linear functions need no relaxation. Either way each function has one linear bound on each box $B$. These bounds give the lower bound $D$, the infeasibility test and clipping ([ref]), the start of the projected ALM search for the incumbent $P$ ([ref]), and the branching score ([ref]). Smaller boxes give tighter linear bounds, and an instance is solved once the relative gap of [ref] is at most $10^{-4}$.",
+ "caption_source": "latex",
+ "abstract": "We present a novel GPU-accelerated global solver for constrained nonlinear programming (NLP) inspired by the efficient linear bound propagation framework in neural network (NN) verification. Existing work on NN verification, a problem that can be cast as feasibility detection for a nonlinear objective, demonstrated orders-of-magnitude speedups with the linear bound propagation-based framework when compared to traditional solvers. Extending this paradigm to global nonlinear programming requires addressing many challenges: a global constrained NLP solver must effectively exploit all, possibly unstructured, nonlinear constraints to improve the objective, whereas NN verification typically handles simple input box constraints over a well-structured NN and does not directly optimize an objective function. We address these challenges by fully exploiting the linear bounds produced by bound propagation: these linear bounds can be viewed as relaxations of nonlinear constraints and used to provide lower bounds, check infeasibility, and guide the search for a primal solution. In addition, we propose tighter linear relaxations for bilinear, quotient, and other commonly used nonlinear functions in NLP problems, and a projected augmented Lagrangian method tightly coupled to our dual solving procedure to produce primal solutions. Our method solves 421 of 505 bounded and continuous NLP problems in the GAMS and MINLPLib benchmarks under a 180-second limit, more than each of the six global solvers we compare with, including Gurobi and BARON (commercial), and SCIP (open-source). Sixteen of these problems are certified by none of the six global solvers; all of them contain exponential, logarithmic, or trigonometric terms, which are often challenging for traditional approaches. Project webpage is at https://verified-intelligence.github.io/GEAR.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=3WdBmyLLLC",
+  "arxiv": "https://arxiv.org/abs/2611.10487",
+  "pdf": "https://arxiv.org/pdf/2611.10487",
+  "proceedings": null,
+  "virtual": "https://neurips.cc/virtual/2026/poster/155708",
+  "code": "https://verified-intelligence.github.io/GEAR/"
+ },
+ "license": "http://arxiv.org/licenses/nonexclusive-distrib/1.0/",
+ "img": "none",
+ "image_url": null,
+ "thumb_url": null,
+ "figure_page": 3,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.85
+}

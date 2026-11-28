@@ -1,0 +1,51 @@
+{
+ "id": "iclr26-1190",
+ "title": "EigenScore: OOD Detection using Posterior Covariance in Diffusion Models",
+ "authors": [
+  "Shirin Shoushtari",
+  "Yi Wang",
+  "Xiao Shi",
+  "Salman Asif",
+  "Ulugbek Kamilov"
+ ],
+ "venue": "ICLR 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "Deep Learning->Generative Models and Autoencoders",
+ "role": "analysis-finding",
+ "role2": "teaser-result",
+ "claim": "Common likelihood and score-based OOD statistics overlap or invert across shifts, while our spectral statistic consistently separates OOD from in-distribution data.",
+ "layout": "2x4 grid of overlaid histograms, one column per metric, rows are near/far OOD",
+ "tags": [
+  "ood-detection",
+  "diffusion-models",
+  "histograms",
+  "near-ood",
+  "failure-of-baselines"
+ ],
+ "style": [
+  "plot",
+  "colorful",
+  "minimal"
+ ],
+ "description": "A 2x4 grid of overlaid density histograms. Blue bars are the in-distribution set (CIFAR10) and red bars are the OOD set. The top row uses CIFAR100 as OOD and the bottom row uses SVHN. The columns are four detection statistics: NLL in bits/dim, the score norm, the score-derivative norm, and the eigenvalue sum, which is the proposed method and sits in the rightmost column. The first three columns show heavy overlap in the top row. In the bottom row the score and derivative norms invert, with red falling to the left of blue. The rightmost column shows red shifted clearly to the right of blue in both rows, so OOD scores are higher and the classes separate. Axis labels carry the math expressions, and the legend sits in the top-left panel of each row.",
+ "caption": "\\textit{ We compare negative log-likelihood (NLL), score norm $\\sqrt{\\sum_t \\|\\epsilon_\\theta(\\xbm_t, t)\\|_2^2}$, score derivative norm $\\sqrt{\\sum_t \\|\\partial_t \\epsilon_\\theta(\\xbm_t, t)\\|_2^2}$, and the eigenvalue sum (ours) $\\sum_{t,k}\\lambda_k^t(\\xbm_t)$ as OOD detection statistics. Top row: near OOD task for C10 (InD) vs. C100, NLL and score-based metrics fail to separate distributions, showing substantial overlap. Bottom row: for C10 (InD) vs. SVHN (OOD), the ordering of metrics inverts—score and derivative norms assign lower values to OOD than InD, making thresholds unreliable. In both settings, our eigenvalue-based metric achieves clear separation and consistently assigns higher scores to OOD samples. }",
+ "caption_source": "latex",
+ "abstract": "Out-of-distribution (OOD) detection is critical for the safe deployment of machine learning systems in safety-sensitive domains. Diffusion models have recently emerged as powerful generative models, capable of capturing complex data distributions through iterative denoising. Building on this progress, recent work has explored their potential for OOD detection. We propose EigenScore, a new OOD detection method that leverages the eigenvalue spectrum of the posterior covariance induced by a diffusion model. We argue that posterior covariance provides a consistent signal of distribution shift, leading to larger trace and leading eigenvalues on OOD inputs, yielding a clear spectral signature. We further provide analysis explicitly linking posterior covariance to distribution mismatch, establishing it as a reliable signal for OOD detection. To ensure tractability, we adopt a Jacobian-free subspace iteration method to estimate the leading eigenvalues using only forward evaluations of the denoiser. Empirically, EigenScore achieves SOTA performance, with up to 5% AUROC improvement over the best baseline. Notably, it remains robust in near-OOD settings such as CIFAR-10 vs CIFAR-100, where existing diffusion-based methods often fail.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=Dq64kthckN",
+  "arxiv": "https://arxiv.org/abs/2510.07206",
+  "pdf": "https://proceedings.iclr.cc/paper_files/paper/2026/file/778b22d74907b01741bf1b6e82420b88-Paper-Conference.pdf",
+  "proceedings": "https://proceedings.iclr.cc/paper_files/paper/2026/hash/778b22d74907b01741bf1b6e82420b88-Abstract-Conference.html",
+  "virtual": "https://iclr.cc/virtual/2026/poster/10010743",
+  "code": "https://wustl-cig.github.io/eigenscorewww/"
+ },
+ "license": "http://creativecommons.org/licenses/by/4.0/",
+ "img": "cc-by",
+ "image_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/images/iclr26-1190.png",
+ "thumb_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/thumbs/iclr26-1190.webp",
+ "figure_page": 2,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.6
+}

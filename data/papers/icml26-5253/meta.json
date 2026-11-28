@@ -1,0 +1,57 @@
+{
+ "id": "icml26-5253",
+ "title": "Stop the Flip-Flop: Context-Preserving Verification for Fast Revocable Diffusion Decoding",
+ "authors": [
+  "Yanzheng Xiang",
+  "Lan Wei",
+  "Yizhen Yao",
+  "Qinglin Zhu",
+  "Hanqi Yan",
+  "Chen Jin",
+  "Philip Teare",
+  "Dandan Zhang",
+  "Lin Gui",
+  "Amrutha Saseendran",
+  "Yulan He"
+ ],
+ "venue": "ICML 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "Deep Learning->Large Language Models",
+ "role": "teaser-result",
+ "role2": "analysis-finding",
+ "claim": "Existing revocable methods suffer heavy oscillatory revisions that waste effort; ours nearly eliminates them while keeping accuracy intact.",
+ "layout": "1 bar chart, two model groups, red dashed reduction arrows, accuracy stars overlaid",
+ "tags": [
+  "revocable-decoding",
+  "diffusion-language-models",
+  "efficiency",
+  "bar-chart",
+  "redundant-revision"
+ ],
+ "style": [
+  "plot",
+  "colorful",
+  "minimal"
+ ],
+ "description": "A grouped bar chart titled \"No. Average Flip-Flop Times on HumanEval Benchmark\". Two groups, Dream-Instruct-7B on the left and LLaDA-Instruct-8B on the right, each with three bars: Saber (teal-gray, tallest), WINO (pink, medium) and COVER (orange, tiny). Dashed black horizontal lines mark the Saber baseline value (184.66 and 97.18). Red dashed arrows run down to the WINO and COVER bars, labeled in bold red with the reductions (144.92, 184.60, 79.82, 96.94). Blue stars with a connecting line show Pass@1 accuracy percentages, which stay roughly flat (about 55% and 40%). A legend at the bottom maps the colors and the star. The eye goes first to the tall Saber bars, then down the red arrows to the nearly flat COVER bars.",
+ "caption": "Flip-flop behaviour on HumanEval for Dream-Ins-7B and LLaDA-Ins-8B under two revocable baselines (Saber, WINO) and ours (COVER). Unlike baselines that repeatedly ReMask, COVER uses context-preserving in-place verification to reduce oscillatory revisions while maintaining generation quality.",
+ "caption_source": "latex",
+ "abstract": "Parallel diffusion decoding can accelerate diffusion language model inference by unmasking multiple tokens per step, but aggressive parallelism often harms quality. Revocable decoding mitigates this by rechecking earlier tokens, yet we observe that existing verification schemes frequently trigger flip-flop oscillations, where tokens are remasked and later restored unchanged. This behaviour slows inference in two ways: remasking verified positions weakens the conditioning context for parallel drafting, and repeated remask cycles consume the revision budget with little net progress. We propose COVER (Cache Override Verification for Efficient Revision), which performs leave-one-out verification and stable drafting within a single forward pass. COVER constructs two attention views via KV cache override: selected seeds are masked for verification, while their cached key value states are injected for all other queries to preserve contextual information, with a closed form diagonal correction preventing self leakage at the seed positions. COVER further prioritises seeds using a stability aware score that balances uncertainty, downstream influence, and cache drift, and it adapts the number of verified seeds per step. Across benchmarks, COVER markedly reduces unnecessary revisions and yields faster decoding while preserving output quality.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=nLqXhC5P8t",
+  "arxiv": "https://arxiv.org/abs/2602.06161",
+  "pdf": "https://raw.githubusercontent.com/mlresearch/v306/main/assets/xiang26e/xiang26e.pdf",
+  "proceedings": "https://proceedings.mlr.press/v306/xiang26e.html",
+  "virtual": "https://icml.cc/virtual/2026/poster/61735",
+  "code": null
+ },
+ "license": "http://creativecommons.org/licenses/by/4.0/",
+ "img": "cc-by",
+ "image_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/images/icml26-5253.png",
+ "thumb_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/thumbs/icml26-5253.webp",
+ "figure_page": 0,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.8
+}

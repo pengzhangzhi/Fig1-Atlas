@@ -1,0 +1,52 @@
+{
+ "id": "icml26-5321",
+ "title": "Pushing the Limits of Block Rotations in Post-Training Quantization",
+ "authors": [
+  "Sai Sanjeet",
+  "Ian Colbert",
+  "Pablo Monteagudo-Lago",
+  "Giuseppe Franco",
+  "Yaman Umuroglu",
+  "Nicholas Fraser"
+ ],
+ "venue": "ICML 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "Deep Learning->Large Language Models",
+ "role": "analysis-finding",
+ "role2": "concept",
+ "claim": "Outlier suppression strengthens as the rotation's scope grows, so restricting rotations to blocks leaves residual outliers that full rotation removes.",
+ "layout": "4 panels in a row, left-to-right, shared legend on top",
+ "tags": [
+  "block-rotation",
+  "outlier-suppression",
+  "quantization",
+  "activation-distribution",
+  "empirical-observation"
+ ],
+ "style": [
+  "plot",
+  "photo/real data",
+  "minimal"
+ ],
+ "description": "A single row of four line plots shares one legend at the top (Min/Max in blue, 1/99 percentile in orange, 25/75 percentile in green). The x-axis is hidden dimension index, 0 to about 8000, and the y-axis is activation value. Panel (a), Original Activations (max range 3.734), shows large, jagged blue spikes reaching about ±3. Panel (b), Block-32 Rotation (max range 1.256), is much flatter. Panel (c), Block-128 Rotation (max range 0.754), is flatter still. Panel (d), Full-Vector Rotation (max range 0.415), is a thin, nearly uniform band. The eye goes first to the spiky panel (a), then follows the band as it shrinks to the right. The max-range numbers in the titles give the quantitative trend.",
+ "caption": "We visualize input activation distributions sampled from 2048 tokens of WikiText2 at the third down projection layer in Llama3 1B under four configurations: (a) original model, (b) block Hadamard rotation with \\( b = 32 \\), (c) block Hadamard rotation with \\( b = 128 \\), and (d) full-vector rotation. As \\( b \\to d \\), the activation range decreases, showing block rotations can reduce outlier suppression effectiveness. \\vspace{-1em}",
+ "caption_source": "latex",
+ "abstract": "Recent post-training quantization (PTQ) methods have adopted block rotations to diffuse outliers prior to rounding. While this reduces the overhead of online full-vector rotations, the effect of block structure on outlier suppression remains poorly understood. To fill this gap, we present the first systematic, non-asymptotic analysis of outlier suppression for block Hadamard rotations. Our analysis reveals that outlier suppression is fundamentally limited by the geometry of the input vector. In particular, in the deterministic worst case, post-rotation outliers are minimized when the pre-rotation $\\ell_1$ norm mass is evenly distributed across blocks. Guided by these insights, we introduce PeRQ (Permute, Rotate, then Quantize), a PTQ framework that redistributes activation mass via permutations prior to rotation. We propose a greedy mass diffusion algorithm to calibrate permutations by equalizing the expected blockwise $\\ell_1$ norms. To avoid adding inference overhead, we identify permutation-equivariant regions in transformer architectures to merge these permutations into model weights before deployment. Experiments show that PeRQ consistently improves accuracy across all block sizes, recovering up to 90% of the full-vector rotation perplexity when quantizing Llama3 1B to INT4 with block size 16, compared to 46% without permutations.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=nvehxSdMqg",
+  "arxiv": "https://arxiv.org/abs/2601.22347",
+  "pdf": "https://raw.githubusercontent.com/mlresearch/v306/main/assets/sanjeet26a/sanjeet26a.pdf",
+  "proceedings": "https://proceedings.mlr.press/v306/sanjeet26a.html",
+  "virtual": "https://icml.cc/virtual/2026/poster/61670",
+  "code": "https://github.com/Xilinx/brevitas/tree/dev/src/brevitas_examples/papers/perq"
+ },
+ "license": "http://arxiv.org/licenses/nonexclusive-distrib/1.0/",
+ "img": "none",
+ "image_url": null,
+ "thumb_url": null,
+ "figure_page": 1,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.8
+}

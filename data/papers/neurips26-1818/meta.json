@@ -1,0 +1,52 @@
+{
+ "id": "neurips26-1818",
+ "title": "Autoregressive Appearance Prediction for 3D Gaussian Avatars",
+ "authors": [
+  "Michael Steiner",
+  "Zhang Chen",
+  "Alexander Richard",
+  "Vasu Agrawal",
+  "Markus Steinberger",
+  "Michael Zollhöfer"
+ ],
+ "venue": "NeurIPS 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "Computer Vision->3D Rendering & Reconstruction",
+ "role": "pipeline",
+ "role2": "before-after",
+ "claim": "A latent-conditioned per-anchor avatar model, with an autoregressive predictor replacing the texture encoder at test time, gives realistic, stable renderings on novel poses.",
+ "layout": "Left pipeline diagram with train/test branches, right three-image comparison row, left-to-right",
+ "tags": [
+  "autoregressive",
+  "latent-conditioning",
+  "gaussian-avatar",
+  "pose-driven",
+  "stability"
+ ],
+ "style": [
+  "photo/real data",
+  "colorful",
+  "icon-heavy"
+ ],
+ "description": "The left two-thirds is a block diagram. Pose parameters θ pass through Local PCA into a Local Masking box. A face embedding φ enters the same box. Inside the grey 'per anchor i' region, the masked features φ̂_i and θ̂_i sit beside an appearance latent l_i (blue), and all three feed an MLP. The MLP outputs Gaussian correctives on a canonical avatar image. A blue band at the bottom splits into two modes. Test mode has an Appearance Predictor looping on its previous output l_{i-1}. Training mode has a per-frame UV texture feeding a Texture Encoder, which produces a feature grid that supplies l_i. An LBS arrow then leads to three tall photos of a woman in a purple shirt and jeans. They are captioned (a) Training Pose + Texture, (b) Novel Pose + Novel Texture, and (c) Novel Pose + App. Prediction. Blue marks the appearance modules and grey marks the masking block.",
+ "caption": "We represent the posed avatar with a hierarchical 3D Gaussian structure controlled by per-anchor spatial MLPs. Each anchor receives localized driving features via skinning-weight-based masking of pose parameters $\\vect{\\theta}$ (and face-region masking of $\\vect{\\phi}$), together with an appearance latent $\\vect{l}_i$. During training, $\\vect{l}_i$ is obtained by encoding a per-frame UV texture into a 2D feature map and sampling it at the anchor's UV coordinates; at test time, a transformer autoregressively predicts temporally smooth latents from a short pose history for stable driving. The encoder reconstructs training poses extremely well (a) and generalizes to novel poses and unseen textures (b), while our appearance predictor yields realistic appearances and smooth transitions on test sequences when textures are not available (c).",
+ "caption_source": "latex",
+ "abstract": "A photorealistic and immersive human avatar experience demands capturing fine, person-specific details such as cloth and hair dynamics, subtle facial expressions, and characteristic motion patterns. Achieving this requires large, high-quality datasets, which often introduce ambiguities and spurious correlations when very similar poses correspond to different appearances. Models that fit these details during training can overfit and produce unstable, abrupt appearance changes for novel poses. We propose a 3D Gaussian Splatting avatar model with a spatial MLP backbone that is conditioned on both pose and an appearance latent. The latent is learned during training by an encoder, yielding a compact representation that improves reconstruction quality and helps disambiguate pose-driven renderings. At driving time, our predictor autoregressively infers the latent, producing temporally smooth appearance evolution and improved stability. Overall, our method delivers a robust and practical path to high-fidelity, stable avatar driving.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=CwJk23BhSw",
+  "arxiv": "https://arxiv.org/abs/2604.00928",
+  "pdf": "https://arxiv.org/pdf/2604.00928",
+  "proceedings": null,
+  "virtual": "https://neurips.cc/virtual/2026/poster/154526",
+  "code": "https://steimich96.github.io/AAP-3DGA/"
+ },
+ "license": "http://arxiv.org/licenses/nonexclusive-distrib/1.0/",
+ "img": "none",
+ "image_url": null,
+ "thumb_url": null,
+ "figure_page": 1,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.85
+}

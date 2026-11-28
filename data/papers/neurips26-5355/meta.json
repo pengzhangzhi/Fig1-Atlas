@@ -1,0 +1,56 @@
+{
+ "id": "neurips26-5355",
+ "title": "ParaVT: Taming the Tool Prior Paradox for Parallel Tool Use in Agentic Video Reinforcement Learning",
+ "authors": [
+  "Zuhao Yang",
+  "Kaichen Zhang",
+  "Sudong Wang",
+  "Keming Wu",
+  "Zhongyu Yang",
+  "Bo Li",
+  "Xiaojuan Qi",
+  "Shijian Lu",
+  "Xingxuan Li",
+  "Lidong Bing"
+ ],
+ "venue": "NeurIPS 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "Computer Vision->Vision Models & Multimodal",
+ "role": "problem-setup",
+ "role2": "analysis-finding",
+ "claim": "Standard RL on inherited tool-use priors breaks output formatting under sampling and collapses tool use, even while accuracy stays flat.",
+ "layout": "2 panels split by dashed line; left stacked green/red examples, right dual-axis plot",
+ "tags": [
+  "failure-modes",
+  "reinforcement-learning",
+  "format-collapse",
+  "tool-use",
+  "diagnostic"
+ ],
+ "style": [
+  "plot",
+  "text-heavy",
+  "colorful"
+ ],
+ "description": "Two panels separated by a vertical dashed line. Panel (a), Format Fragility, stacks two rounded boxes. The top green box is greedy decoding (τ=0, format reward 1) and shows a well-formed think / tool_call / answer snippet with a check mark. The bottom red box is temperature sampling under GRPO (τ=0.7, format reward about 0.10) and shows a broken output that uses a tool_code tag, has no closing tag and no answer, marked with a red cross. Panel (b), Tool Necessity Gap, is a dual-axis line plot over RL steps 0–9. A thick blue line with circle markers, tool calls per sample, falls from 0.15 toward zero. Gray task accuracy lines, smoothed and raw, oscillate around 0.55–0.65. The green-versus-red contrast draws the eye first.",
+ "caption": "Two Failure Modes of the Tool Prior Paradox. (a) Format Fragility: rollouts are well- formed under greedy decoding (sampling temperature τ=0, format reward ≈1). Under temperature sampling within vanilla GRPO (τ=0.7), the policy reverts to the alternative <tool_code> tag in place of <tool_call>, often drops closing tags, and stops emitting <answer> altogether (mean format reward fτ≈0.1). (b) Tool Necessity Gap: tool-call count drops to near-zero within 7 steps while task accuracy oscillates between 0.45 and 0.74, as the policy converges on the shortcut of skipping tools.",
+ "caption_source": "pdf",
+ "abstract": "Training large multimodal models (LMMs) via reinforcement learning (RL) to natively invoke video-processing tools (e.g., cropping) has become a promising route to long-video understanding. However, most existing agentic Video-LMMs dispatch tool calls sequentially (i.e., one per turn). Sequential tool calling can propagate localization errors, accumulate irrelevant context, and require an additional main-model generation for each successive crop. We introduce ParaVT, a multi-agent RL framework for Parallel Video Tool calling, dispatching multiple time-window crops in a single turn, allowing evidence from multiple temporal windows to be examined concurrently. Yet applying standard Group Relative Policy Optimization (GRPO) to ParaVT reveals an obstacle we term the Tool Prior Paradox: inherited tool-use priors appear to support exploration while competing with the output format learned during supervised fine-tuning. Standard RL can also settle on tool skipping. A comparison with a model with weaker tool-use priors shows stable formatting but no tool calls during RL, consistent with a trade-off between format stability and tool exploration. We propose PARA-GRPO (Parseability-Anchored and Ratio-gAted GRPO), which augments standard RL with two complementary mechanisms: (i) a format reward that encourages tag closure and penalizes unclosed reasoning blocks, and (ii) a per-prompt randomization of the overview-frame budget to create a reward advantage for tool use when the overview provides insufficient evidence. Across six long-video understanding benchmarks, ParaVT improves over the Qwen3-VL baseline by +7.9% on average, with PARA-GRPO raising training-time format reward from 0.13 to a peak of 0.64. These findings highlight the need to account for inherited tool-use priors when designing RL methods for long-video understanding.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=b10WlhqFMr",
+  "arxiv": "https://arxiv.org/abs/2605.20342",
+  "pdf": "https://arxiv.org/pdf/2605.20342",
+  "proceedings": null,
+  "virtual": "https://neurips.cc/virtual/2026/poster/151385",
+  "code": "https://evolvinglmms-lab.github.io/ParaVT/"
+ },
+ "license": "http://creativecommons.org/licenses/by/4.0/",
+ "img": "cc-by",
+ "image_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/images/neurips26-5355.png",
+ "thumb_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/thumbs/neurips26-5355.webp",
+ "figure_page": 1,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.72
+}

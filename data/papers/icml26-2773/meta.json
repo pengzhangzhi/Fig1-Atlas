@@ -1,0 +1,51 @@
+{
+ "id": "icml26-2773",
+ "title": "Enhancing Numerical Prediction in LLMs via Smooth MMD Alignment",
+ "authors": [
+  "Zhuo Zuo",
+  "Li Yue",
+  "Wenhao Zheng",
+  "Chenpeng Wang",
+  "Xianggen Liu"
+ ],
+ "venue": "ICML 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "Deep Learning->Large Language Models",
+ "role": "pipeline",
+ "role2": null,
+ "claim": "A numeric loss is built by turning logits into a distribution, constructing a value-distance kernel, and combining alignment with smoothness regularization.",
+ "layout": "3 panels (a,b left stacked; c right), left-to-right, composite loss equation centered",
+ "tags": [
+  "loss-function",
+  "kernel-methods",
+  "numeric-tokens",
+  "regularization",
+  "distribution-alignment"
+ ],
+ "style": [
+  "math-heavy",
+  "colorful",
+  "icon-heavy"
+ ],
+ "description": "Three rounded panels on a pale background. Panel (a), top left, shows an LLM icon fed by a context prompt. Its logits are a horizontal bar chart over tokens such as we, are, 0–9, is and end. A numeric-digit subset is highlighted gray. A Softmax arrow leads to a blue bell-shaped histogram over digits 0–9, with an orange one-hot target bar at 6. Panel (b), bottom left, shows the kernel formula K_ij = exp(-d²/2σ²). A number line illustrates d = |0−3| = 3, and a blue-to-cream diagonal heatmap kernel matrix has a colorbar from low to high similarity. Panel (c), right, has two boxes. The upper box, MMD Alignment, shows distributions mapped through a kernel into a feature space with μp and μq vectors. The lower box, Smooth Regularization, shows a chain of colored nodes for digits 2–9 linked by springs, with penalty legends. A central green box holds L_SMMD = L_MMD + α L_smooth. A large arrow links the left panels to panel (c).",
+ "caption": "Overview of SMMD. (a) From logits, we restrict to the numeric sub-vocabulary $V_{\\mathrm{num}}$ and apply softmax to obtain the numeric distribution $p$, which is compared to the one-hot target $q$. (b) A value distance induced kernel $K$ is precomputed by applying a RBF kernel to pairwise gaps $|v_i-v_j|$, so numerically closer tokens have higher similarity. (c) Training combines kernel MMD alignment with a smoothness regularizer on the residual $r=p-q$ to encourage locally coherent errors along the numeric axis. The final objective is $\\mathcal{L}_{\\mathrm{SMMD}}=\\mathcal{L}_{\\mathrm{MMD}}+\\alpha\\,\\mathcal{L}_{\\mathrm{Smooth}}$, where $\\alpha$ is set automatically via degree-based normalization.",
+ "caption_source": "latex",
+ "abstract": "Despite their strong general capabilities, large language models (LLMs) often remain unreliable when outputs must be numerically precise. A key reason is the training objective: standard cross-entropy treats numeric tokens as unstructured categories and ignores the metric structure of their values. We address this mismatch with Smooth Maximum Mean Discrepancy (SMMD), which builds on the classic MMD by incorporating value-distance kernels over numeric tokens and graph-based smoothness. With this kernel defined over a numeric sub-vocabulary, SMMD aligns the predicted numeric distribution to the target via kernel matching and smooths the prediction-target residual over the induced kernel graph to encourage local consistency. We evaluate SMMD on four numeric-target tasks: mathematical reasoning, arithmetic calculation, clock-time recognition, and chart question answering, across multiple open-weight LLM and VLM backbones. SMMD consistently improves accuracy over both cross-entropy and recent numeric-target losses; analyses show complementary effects between MMD and smoothness and underscore the importance of distance-based kernel design. Code is available at https://github.com/Zuozhuo/smmd-loss.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=QWkdixm455",
+  "arxiv": "https://arxiv.org/abs/2606.27731",
+  "pdf": "https://raw.githubusercontent.com/mlresearch/v306/main/assets/zuo26c/zuo26c.pdf",
+  "proceedings": "https://proceedings.mlr.press/v306/zuo26c.html",
+  "virtual": "https://icml.cc/virtual/2026/poster/64143",
+  "code": "https://github.com/Zuozhuo/smmd-loss"
+ },
+ "license": "http://arxiv.org/licenses/nonexclusive-distrib/1.0/",
+ "img": "none",
+ "image_url": null,
+ "thumb_url": null,
+ "figure_page": 1,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.9
+}

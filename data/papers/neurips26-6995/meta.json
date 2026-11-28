@@ -1,0 +1,56 @@
+{
+ "id": "neurips26-6995",
+ "title": "ChainFlow-VLA: Causal Flow Planning with Vision-Language Models",
+ "authors": [
+  "Xiyang Wang",
+  "Xinlin Wang",
+  "Tingguang Zhou",
+  "Gong Chen",
+  "Xingtai Gui",
+  "Zhi Xu",
+  "Hangning Zhou",
+  "Xiaolei Wu",
+  "Feiyang Tan",
+  "Mu Yang"
+ ],
+ "venue": "NeurIPS 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "Applications->Robotics",
+ "role": "prior-vs-ours",
+ "role2": "pipeline",
+ "claim": "Prior designs pass information through a bottleneck or loose fusion; ours tightly couples causal generation, refinement, and semantic conditioning.",
+ "layout": "3 stacked panels (a)(b)(c), left-to-right flow, dashed separators, ours at bottom",
+ "tags": [
+  "prior-comparison",
+  "vlm-integration",
+  "autoregressive-diffusion",
+  "autonomous-driving",
+  "tight-coupling"
+ ],
+ "style": [
+  "minimal",
+  "colorful",
+  "icon-heavy"
+ ],
+ "description": "Three horizontally-oriented block diagrams stacked vertically and separated by dashed lines, labeled (a), (b), (c). Each starts with a stack of front-camera driving images on the left and ends with a gray 'Trajectories' box on the right. Panel (a) shows a simple chain: images → VLM (gray, brain icon) → orange Action Expert → Trajectories. Panel (b) splits the input into a VLM and a green Backbone, which merge in a tall blue Fusion block feeding the Action Expert. Panel (c), the largest, places the Backbone and VLM in a light-green container above a larger orange Action Expert container. Inside it, a yellow AR Generator connects through a small trajectory icon to a pink Diffusion Refiner. Arrows drop from the Backbone and VLM into these two modules. Pastel color coding distinguishes the components, and the eye lands on the more complex panel (c).",
+ "caption": "Comparison of different paradigms for integrating VLM into end-to-end autonomous driving. (a) VLM-guided pipeline that predicts high-level guidance to steer an end-to-end model, which introduces an information bottleneck and limits fine-grained trajectory refinement. (b) Feature-level fusion that combines VLM and perception backbones via a fusion module followed by an action expert, but lacks a principled mechanism to enforce consistency between local dynamics and global trajectory structure. (c) Ours (ChainFlow-VLA) formulates trajectory prediction as a unified causal–flow process, where an AR generator produces temporally consistent proposals that are refined by a diffusion model in the residual space. Fine-tuned VLM representations are injected as semantic flow conditioning to guide global trajectory refinement, enabling tight coupling between causal reasoning, global optimization, and high-level semantics.",
+ "caption_source": "latex",
+ "abstract": "Current end-to-end autonomous driving systems are fundamentally limited by a mismatch between temporal causal reasoning and global trajectory consistency. Autoregressive (AR) models capture interaction-aware temporal dependencies via causal factorization, but their step-wise decoding leads to error accumulation and suboptimal global structure. In contrast, diffusion models optimize trajectories globally but lack explicit causal constraints, making them unreliable in interactive and safety-critical scenarios. This dichotomy reveals a deeper issue: existing methods treat causal modeling and global optimization as separate paradigms, without a principled way to unify them within a single trajectory distribution. To address this, we propose ChainFlow-VLA, which unifies causal generation and global refinement within a unified probabilistic framework. We formulate planning as a mixture over AR-induced modes and learn Vision-Language Model (VLM)-conditioned residual distributions over these modes. An autoregressive generator (Chain) produces a discrete set of causal trajectory modes, followed by a diffusion-based refiner (Flow) that leverages VLM hidden states as semantic priors to perform mode-conditioned correction in residual space while preserving causal structure. This straightforward conditioning seamlessly injects high-level scene understanding into fine-grained trajectory adjustments. Experiments demonstrate that ChainFlow-VLA achieves robust planning in ambiguous and long-tail scenarios, achieving a state-of-the-art score of 94.85 on the NAVSIM v1 leaderboard, matching human-level performance (94.8). Code will be available at https://github.com/AFARI-Research/ChainFlow-VLA.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=m7AO7a7zPZ",
+  "arxiv": "https://arxiv.org/abs/2605.23270",
+  "pdf": "https://arxiv.org/pdf/2605.23270",
+  "proceedings": null,
+  "virtual": "https://neurips.cc/virtual/2026/poster/149929",
+  "code": null
+ },
+ "license": "http://arxiv.org/licenses/nonexclusive-distrib/1.0/",
+ "img": "none",
+ "image_url": null,
+ "thumb_url": null,
+ "figure_page": 1,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.9
+}

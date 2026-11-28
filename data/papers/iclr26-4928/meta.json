@@ -1,0 +1,51 @@
+{
+ "id": "iclr26-4928",
+ "title": "ORCaS: Unsupervised Depth Completion via Occluded Region Completion as Supervision",
+ "authors": [
+  "Hyoungseob Park",
+  "Runjian Chen",
+  "Patrick Rim",
+  "Dong Lao",
+  "Alex Wong"
+ ],
+ "venue": "ICLR 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": null,
+ "role": "pipeline",
+ "role2": null,
+ "claim": "A single shared network runs alone at inference, while training adds a warped adjacent-view branch whose completed features supervise it without labels.",
+ "layout": "3 regions: nested training/inference flow left-to-right, module detail insets at right",
+ "tags": [
+  "unsupervised",
+  "depth-completion",
+  "feature-warping",
+  "self-supervision",
+  "train-vs-inference"
+ ],
+ "style": [
+  "colorful",
+  "icon-heavy",
+  "minimal"
+ ],
+ "description": "A block diagram of the ORCaS architecture. A large red training box contains a green inference box at the top. The inference path runs left to right: an input image with sparse depth goes through an Encoder, a blue 3D Broadcast block, an orange ConteXt Block and a Depth Decoder, ending in a colorful depth prediction. Below this, a second branch takes the adjacent view through its own Encoder, 3D Broadcast and ConteXt Block. A 3D Warping box uses the relative pose g to warp the input-view features. Occlusion Completion feeds stacks of feature volumes outlined in dashed red. Red arrows link the two stacks as the Consistency Loss (ORCaS). The prediction also feeds Unsupervised Losses. A gray panel at right shows the internals of the 3D Broadcast and ConteXt Block modules. Blue and orange color-code the modules, and the eye goes first to the green inference box.",
+ "caption": "Overview of Occluded Region Completion as Supervision (ORCaS). Inference of ORCaS for the input view only requires a single input view (t), and an identity camera pose matrix. Training ORCaS involves two different views (input view t, and target view τ) and their relative camera pose gτ←t. The input view 3D features are warped to align with the adjacent view. Empty regions due to occlusion are predicted by the ConteXt layer, and the inductive bias is learned by minimizing ORCaS loss, which leverages the extracted 3D feature from the adjacent view inputs as supervision.",
+ "caption_source": "pdf",
+ "abstract": "We propose a method for inferring an egocentric dense depth map from an RGB image and a sparse point cloud. The crux of our method lies in modeling the 3D scene implicitly within the latent space and learning an inductive bias in an unsupervised manner through principles of Structure-from-Motion. To force the learning of this inductive bias, we propose to optimize for an ill-posed objective during training: predicting latent features that are not observed in the input view, but exist in the 3D scene. This is facilitated by means of rigid warping of latent features from the input view to a nearby or adjacent (co-visible) view of the same 3D scene. \"Empty\" regions in the latent space that correspond to regions occluded from the input view are completed by a Contextual eXtrapolation (ConteXt) mechanism based on features visible in input view. The learned inductive bias of ConteXt can be transferred to modulate the features of the input view to improve fidelity. We term our method \"Occluded Region Completion as Supervision\" or ORCaS. We evaluate ORCaS on VOID1500 and NYUv2 benchmark datasets, where we improve over the best existing method by 8.91% across all metrics. ORCaS also improves generalization from VOID1500 to ScanNet and NYUv2 by 15.7% and robustness to low density inputs by 31.2%.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=v2skNLbrfF",
+  "arxiv": null,
+  "pdf": "https://proceedings.iclr.cc/paper_files/paper/2026/file/83f62515b43b26b700ad97792af46d70-Paper-Conference.pdf",
+  "proceedings": "https://proceedings.iclr.cc/paper_files/paper/2026/hash/83f62515b43b26b700ad97792af46d70-Abstract-Conference.html",
+  "virtual": "https://iclr.cc/virtual/2026/poster/10006844",
+  "code": null
+ },
+ "license": null,
+ "img": "none",
+ "image_url": null,
+ "thumb_url": null,
+ "figure_page": 4,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.93
+}

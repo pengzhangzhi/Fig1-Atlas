@@ -1,0 +1,54 @@
+{
+ "id": "neurips26-2008",
+ "title": "ValuSpec: Plug-and-Play Candidate Valuation before Target Verification for Tree-Based Speculative Decoding",
+ "authors": [
+  "Liang He",
+  "SiYuan Ma",
+  "Qishi Zhan",
+  "Yongqi Fan",
+  "Mingyu Cao",
+  "Qizhen Lan",
+  "Zhaolu Kang",
+  "Xilu Wang"
+ ],
+ "venue": "NeurIPS 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "Deep Learning->Algorithms",
+ "role": "problem-setup",
+ "role2": "analysis-finding",
+ "claim": "Low-quality candidates are rejected yet still consume verification compute, and acceptance falls as candidate length grows.",
+ "layout": "2 panels: top flow diagram left-to-right, bottom three bar charts",
+ "tags": [
+  "speculative-decoding",
+  "verification-waste",
+  "bottleneck",
+  "candidate-filtering",
+  "efficiency"
+ ],
+ "style": [
+  "icon-heavy",
+  "plot",
+  "colorful"
+ ],
+ "description": "The figure has two stacked panels. Panel A is a left-to-right flow diagram of speculative decoding. Context x goes to a Draft Model, which generates candidate drafts shown as document icons with probabilities (0.03, 0.04, ... 0.01). These go to a diamond-shaped verifier that also receives the greedy trajectory from a blue Target Model. Accepted candidates follow a dark branch to Update Output. Rejected candidates follow a salmon branch into a verification budget pool, a trash can and a REJECTED stamp, then to Output Y with a wait-overhead hourglass. A blue arrow points to the text 'Low-quality candidate tokens waste target-side verification budget.' Panel B has three blue bar charts across autoregressive (AR) and n=5 to n=1. They show throughput, speedup ratio and acceptance hit rate. A grey arrow marks the trend in the acceptance chart.",
+ "caption": "Candidate quality and verification efficiency. (A) Low-quality candidate tokens waste target-side verification budget in SD. Candidate tokens that deviate from the target model's greedy trajectory are rejected, yet still consume verification computation without contributing to decoding progress. (B) Acceptance rate versus candidate draft length on Dolly (A100) using Llama-2-7b-chat-hf. Acceptance decreases monotonically as the candidate draft length grows, indicating increasing redundancy and a higher proportion of low-quality candidates.",
+ "caption_source": "latex",
+ "abstract": "Tree-based speculative decoding accelerates large language model inference by verifying multiple candidate branches in parallel. However, in practical serving scenarios, similar requests repeatedly induce overlapping candidate branches. While retrieval-based methods mitigate this by reusing historical drafts, the resulting candidate trees often contain many low-quality branches as the candidate tree grows, which reduces verification efficiency and wastes target-side computation. To address this, we propose ValuSpec, a plug-and-play candidate valuation mechanism that filters low-quality branches from a supplied candidate tree before expensive target-side verification. ValuSpec introduces transfer-based supervision to align filtering with the target model's behavior. A filtering threshold is estimated from the target model's greedy trajectories on a calibration split, without any parameter training. The target model then verifies the filtered tree under the output-identical greedy rule, so accepted tokens are guaranteed to match standard autoregressive decoding exactly. Experimental results on HumanEval, GSM8K, Dolly, and SpecBench show that, in our main evaluation, ValuSpec achieves up to 2.38x end-to-end speedup in retrieval-based tree settings. Furthermore, integrating ValuSpec into the EAGLE-3 dynamic tree framework yields up to 2.78x end-to-end speedup without modifying its tree construction strategy, demonstrating that ValuSpec serves as a generally applicable and plug-and-play candidate valuation module.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=EBfu12MEOf",
+  "arxiv": "https://arxiv.org/abs/2610.31338",
+  "pdf": "https://arxiv.org/pdf/2610.31338",
+  "proceedings": null,
+  "virtual": "https://neurips.cc/virtual/2026/poster/154357",
+  "code": null
+ },
+ "license": "http://creativecommons.org/licenses/by/4.0/",
+ "img": "cc-by",
+ "image_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/images/neurips26-2008.png",
+ "thumb_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/thumbs/neurips26-2008.webp",
+ "figure_page": 1,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.8
+}

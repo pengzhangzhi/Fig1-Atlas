@@ -1,0 +1,56 @@
+{
+ "id": "iclr26-2749",
+ "title": "PM-KVQ: Progressive Mixed-precision KV Cache Quantization for Long-CoT LLMs",
+ "authors": [
+  "Tengxuan Liu",
+  "Shiyao Li",
+  "Jiayi Yang",
+  "Tianchen Zhao",
+  "Feng Zhou",
+  "Xiaohui Song",
+  "Guohao Dai",
+  "Shengen Yan",
+  "Huazhong Yang",
+  "Yu Wang"
+ ],
+ "venue": "ICLR 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": null,
+ "role": "pipeline",
+ "role2": "prior-vs-ours",
+ "claim": "Naively quantizing at fixed low precision wastes budget and miscalibrates; progressive, sensitivity-aware allocation with interpolated calibration fully uses memory cheaply.",
+ "layout": "3 panels (a,b,c), left-to-right contrast pairs, smiley faces mark good/bad",
+ "tags": [
+  "quantization",
+  "kv-cache",
+  "mixed-precision",
+  "memory-efficiency",
+  "calibration"
+ ],
+ "style": [
+  "colorful",
+  "icon-heavy",
+  "plot"
+ ],
+ "description": "A three-part method overview. Panel (a) shows decoding steps (4K to 32K) on a vertical axis against a red dashed memory budget line. On the left, fixed 2-bit bars leave 'Waste' gaps. On the right, bars progressively shrink from 16-bit to 8-bit, 4-bit and 2-bit and end at the budget, with 'Bit-width Shrinking' labels between rows. Panel (b) shows rows of transformer blocks inside a memory budget. Uniform 2-bit blocks leave waste, uniform 4-bit blocks cause OOM, and mixed allocation fits the budget exactly. Panel (c) shows three magnitude-versus-token-ID curves. Short-context calibration gives an incomplete distribution (sad face). Long-context calibration is complete but costly (sad face). Short-context with positional interpolation gives a complete distribution at low overhead (green smiley). Red marks the problems and green marks the solution.",
+ "caption": "Method Overview. (a) Progressive quantization: we progressively shrink the bit-width of KV Cache to fully utilize the memory budget. (b) Block-wise memory allocation: we allocate a higher bit-width to those transformer blocks with higher sensitivity. (c) Calibration with Positional Interpolation to approximate the distribution of long-context data with short-context data.",
+ "caption_source": "latex",
+ "abstract": "Recently, significant progress has been made in developing reasoning-capable Large Language Models (LLMs) through long Chain-of-Thought (CoT) techniques. However, this long-CoT reasoning process imposes substantial memory overhead due to the large Key-Value (KV) Cache memory overhead. Post-training KV Cache quantization has emerged as a promising compression technique and has been extensively studied in short-context scenarios. However, directly applying existing methods to long-CoT LLMs causes significant performance degradation due to the following two reasons: (1) Large cumulative error: Existing methods fail to adequately leverage available memory, and they directly quantize the KV Cache during each decoding step, leading to large cumulative quantization error. (2) Short-context calibration: Due to Rotary Positional Embedding (RoPE), the use of short-context data during calibration fails to account for the distribution of less frequent channels in the Key Cache, resulting in performance loss. We propose Progressive Mixed-Precision KV Cache Quantization (PM-KVQ) for long-CoT LLMs to address the above issues in two folds: (1) To reduce cumulative error, we design a progressive quantization strategy to gradually lower the bit-width of KV Cache in each block. Then, we propose block-wise memory allocation to assign a higher bit-width to more sensitive transformer blocks. (2) To increase the calibration length without additional overhead, we propose a new calibration strategy with positional interpolation that leverages short calibration data with positional interpolation to approximate the data distribution of long-context data. Extensive experiments on 7B-70B long-CoT LLMs show that PM-KVQ improves reasoning benchmark performance by up to 8% over SOTA baselines under the same memory budget and achieves 2.73-5.18x throughput over the original 16-bit LLMs.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=Vem6FQvRvq",
+  "arxiv": "https://arxiv.org/abs/2505.18610",
+  "pdf": "https://proceedings.iclr.cc/paper_files/paper/2026/file/afb8caec018d3c8f6ef8b81fa52386fe-Paper-Conference.pdf",
+  "proceedings": "https://proceedings.iclr.cc/paper_files/paper/2026/hash/afb8caec018d3c8f6ef8b81fa52386fe-Abstract-Conference.html",
+  "virtual": "https://iclr.cc/virtual/2026/poster/10009118",
+  "code": null
+ },
+ "license": "http://arxiv.org/licenses/nonexclusive-distrib/1.0/",
+ "img": "none",
+ "image_url": null,
+ "thumb_url": null,
+ "figure_page": 3,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.6
+}

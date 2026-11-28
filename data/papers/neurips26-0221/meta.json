@@ -1,0 +1,52 @@
+{
+ "id": "neurips26-0221",
+ "title": "FiLM-CAM: Keyed Feature Modulation for Conditional-Access Watermarking",
+ "authors": [
+  "Yash Kulthe",
+  "Shruti Agarwal",
+  "Vishal Asnani",
+  "Andrew Gilbert",
+  "John Collomosse"
+ ],
+ "venue": "NeurIPS 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "Social Aspects->Trustworthy Machine Learning",
+ "role": "pipeline",
+ "role2": "overview-framework",
+ "claim": "A keyed modulation module conditions embedding, decoding and removal, so only holders of the correct key can use or strip the signal.",
+ "layout": "3 dashed panels: two-stage flows left-to-right, CAM detail inset at top right",
+ "tags": [
+  "conditional-access",
+  "feature-modulation",
+  "watermarking",
+  "key-conditioning",
+  "two-stage-training"
+ ],
+ "style": [
+  "colorful",
+  "icon-heavy",
+  "math-heavy",
+  "photo/real data"
+ ],
+ "description": "The figure has three dashed-border regions. The top-left panel, Stage 1, runs left to right. A cover image, a watermark bit string and a key feed a blue Embedder. It outputs a residual image, which is added to the cover to give the watermarked image. That image passes through a yellow Noise Layer and then splits into two green Extractors. The top Extractor gets the correct key and outputs the decoded watermark, marked with a green check. The bottom Extractor gets a wrong key and outputs an all-zero string, marked with a red cross. The top-right panel details the Conditional Access Module: a key embedding feeds a FiLM generator, then FiLM modulation applied to a feature map, stacked vertically. The bottom panel, Stage 2, shows removal training with a frozen embedder, a trainable embedder, an L1 loss between two residuals, and a purple dashed inference-time inset for watermark removal. Penguin photos recur throughout. Color-coded pastel boxes carry the eye first to the blue Embedder.",
+ "caption": "Architecture of FiLM-CAM. Stage 1: The Embedder generates watermark residuals, which are added to the cover image, to get a watermarked image. The Extractor recovers the watermark from the image if it receives the correct key and an all-zero bit message in case of an incorrect key. Stage 2: The Embedder network is trained to output residuals when given a watermarked image, such that it can be used to remove the watermark. Conditional Access Module (CAM): A binary key $k$ is mapped to an embedding $e_k=\\phi(k)$ and transformed via $\\psi$ to produce feature-wise parameters $(\\gamma_k,\\beta_k)$. These condition the intermediate feature maps via FiLM modulation $F_{cond}=\\gamma_k \\odot F + \\beta_k$, enabling key-dependent watermark embedding, decoding, and removal.",
+ "caption_source": "latex",
+ "abstract": "We propose FiLM-CAM; a conditional-access image watermarking approach that enforces authorized encoding, decoding, and removal through keyed feature modulation. A secret key conditions a Feature-wise Linear Modulation (FiLM) mechanism that transforms the internal representation of the watermark signal before embedding, thereby coupling the payload to the key at the feature, rather than pixel level. The same key must be presented to condition the decoder to correctly recover the payload embedded in an image. To enforce conditional access, we train the system to maximize the performance gap between authorized and unauthorized use, ensuring reliable extraction under the correct key while inducing failure under incorrect keys. In addition, we design our encoder to estimate the watermark residual invariant to the presence of pre-existing watermarks. This design enables conditional watermark removal via simple re-encoding and subtraction of the residual using iterative refinement, contingent on knowledge of the secret key. We evaluate FiLM-CAM across multiple watermarking encoder-decoder backbones, demonstrating that keyed feature modulation serves as an effective, architecture-agnostic conditional access module (CAM) for image watermarking.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=1b70GKuMjn",
+  "arxiv": "https://arxiv.org/abs/2610.30347",
+  "pdf": "https://arxiv.org/pdf/2610.30347",
+  "proceedings": null,
+  "virtual": "https://neurips.cc/virtual/2026/poster/155950",
+  "code": "https://yash-research.github.io/filmcam/"
+ },
+ "license": "http://creativecommons.org/licenses/by/4.0/",
+ "img": "cc-by",
+ "image_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/images/neurips26-0221.png",
+ "thumb_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/thumbs/neurips26-0221.webp",
+ "figure_page": 2,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.9
+}

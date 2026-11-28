@@ -1,0 +1,49 @@
+{
+ "id": "neurips26-6249",
+ "title": "MICE: Multi-animal Interaction Context Encoder — A Hierarchical Foundation Model for Mouse Behavior",
+ "authors": [
+  "Yen-Shuo Su",
+  "Weihan Li",
+  "Anqi Wu"
+ ],
+ "venue": "NeurIPS 2026",
+ "tier": "spotlight",
+ "track": "main",
+ "topic": "Applications->Neuroscience, Cognitive Science",
+ "role": "pipeline",
+ "role2": "overview-framework",
+ "claim": "A two-stage hierarchical architecture first encodes each entity individually, then fuses entities through a latent bottleneck that scales to any group size.",
+ "layout": "2 panels, left-to-right, stacked stages with dashed pink loss box",
+ "tags": [
+  "hierarchical-encoder",
+  "perceiver",
+  "self-supervised",
+  "multi-agent",
+  "foundation-model"
+ ],
+ "style": [
+  "colorful",
+  "text-heavy",
+  "icon-heavy"
+ ],
+ "description": "Two large rounded panels show the two-stage architecture. The left panel, Stage 1 Individual Encoder, takes keypoint trajectories of one mouse over T frames (small mouse sketches at t=1, 2, ..., T). A gray patching block feeds three transformer stages in light, medium and dark blue for local, medium and global attention. Their outputs h(1), h(2) and h(3) go into a tall concatenation bar. Below it, yellow linear layers lead to green HoA (KL) and reconstruction (MSE) loss boxes, each with a white target box. The right panel, Stage 2 Perceiver Social Encoder, takes N animals, each passing through a frozen individual encoder, then a yellow linear projection. A row of orange latent codebook squares feeds a green encode/process/decode block. The output is social embeddings, which go to a dashed purple region for pairwise features, heads and losses.",
+ "caption": "The MICE architecture. Stage 1 (left, individual encoder): a per-animal pose sequence is tokenized by a patching layer, then processed through three ALBERT-style transformer stages of increasing attention scope (local, medium, global) with weights shared within each stage. Per-stage outputs are concatenated and supervised by three losses: a long-scale Histogram-of-Activities (HoA) loss on Stage 3's output, a short/mid-scale HoA loss on the concatenated output, and a span-masked keypoint reconstruction loss. Stage 2 (right, social encoder): the frozen individual encoder is applied per mouse; per-animal embeddings are fused with raw keypoints and passed to a Perceiver with a learned latent codebook. The latents cross-attend over animals (encode), refine across time (process), and are read back to each animal (decode), producing per-animal social embeddings. Animal pairs are formed by an order-invariant projection and supervised by pairwise HoA and pairwise distance losses.",
+ "caption_source": "latex",
+ "abstract": "Quantifying mouse behavior from pose is a foundational tool in neuroscience, ethology, drug discovery, and animal welfare. Self-supervised foundation models are a natural fit, but a foundation model for mouse behavior must handle social behavior - many behaviors that matter (aggression, courtship, mounting, allogrooming) are inherently multi-animal. Existing self-supervised pose models fall short: they encode each animal independently and discard interaction signal, hard-code the animal count, and pretrain one dataset at a time. We introduce MICE (Multi-animal Interaction Context Encoder), a hierarchical foundation model for mouse behavior that pretrains jointly on six mouse-pose corpora spanning one to four mice and 7 to 27 keypoints. MICE combines a hierarchical individual encoder capturing per-mouse kinematics at multiple temporal scales with a Perceiver-style social encoder whose learned latent codebook decouples parameter count from animal count, so a single checkpoint serves any group size without retraining. Across four evaluation protocols spanning six datasets, MICE matches or exceeds prior keypoint-based baselines, and layer-wise probing shows the social stage incrementally improves discriminability beyond the individual encoder. Code, weights, and data are available at https://github.com/eric0708/MICE.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=h2uqXBSIOu",
+  "arxiv": "https://arxiv.org/abs/2611.11644",
+  "pdf": "https://arxiv.org/pdf/2611.11644",
+  "proceedings": null,
+  "virtual": "https://neurips.cc/virtual/2026/poster/150591",
+  "code": null
+ },
+ "license": "http://creativecommons.org/licenses/by/4.0/",
+ "img": "cc-by",
+ "image_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/images/neurips26-6249.png",
+ "thumb_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/thumbs/neurips26-6249.webp",
+ "figure_page": 1,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.93
+}

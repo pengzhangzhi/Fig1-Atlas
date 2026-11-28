@@ -1,0 +1,50 @@
+{
+ "id": "neurips26-1530",
+ "title": "Reward Bias Substitution: Single-Axis Bias Mitigations Redirect Optimization Pressure",
+ "authors": [
+  "Max Lamparth",
+  "Daniel Fein",
+  "Andreas Haupt",
+  "Marcel Hussing",
+  "Mykel J Kochenderfer"
+ ],
+ "venue": "NeurIPS 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "Reinforcement Learning->Deep RL",
+ "role": "analysis-finding",
+ "role2": "teaser-result",
+ "claim": "Mitigating one bias shortens outputs as intended but silently shifts optimization pressure onto a correlated proxy, degrading real quality.",
+ "layout": "3 panels, left-to-right, dual y-axes with dashed base-policy baselines",
+ "tags": [
+  "reward-hacking",
+  "bias-mitigation",
+  "rlhf",
+  "confidence-calibration",
+  "length-penalty"
+ ],
+ "style": [
+  "plot",
+  "colorful"
+ ],
+ "description": "Three side-by-side line plots share an x-axis, the length-penalty strength lambda at 0, 4 and 8. Panel (a), Response Length, shows mean tokens falling from about 204 to 170 as lambda grows, with error bars and a dashed blue base-policy line. Panel (b), Confidence, uses dual axes. Green verbalized confidence rises with lambda, while purple confidence-correctness AUROC falls. Dashed lines mark the base policy. Panel (c), Factual Accuracy, uses dual axes. Red TriviaQA accuracy drops sharply, especially at lambda 8, while brown MMLU accuracy stays roughly flat. Axis labels and tick colors match their series. Vertical bars are 95% confidence intervals. The eye goes first to the downward blue line, then to the diverging confidence and accuracy trends.",
+ "caption": "Language model example of reward bias substitution. A length penalty shortens responses, but optimization pressure is redirected onto verbalized confidence, while free-form accuracy (TriviaQA) drops and MMLU is unchanged. RLHF of Llama-3.2-3B-Instruct with Skywork-Reward-V2-Llama-3.1-8B using GRPO ($\\beta = 2\\mathrm{e}{-2}$, LR $= 3\\mathrm{e}{-5}$, 600 steps) on UltraFeedback with four random seeds for each $\\lambda \\in \\{0, 4, 8\\}$, 95% bootstrapped confidence intervals. To mitigate length, we modify the reward $\\tilde R$ in the RLHF objective as $ \\tilde R(x, y) = R_RM(x, y) - \\lambda\\, n_tok / 100$. Confidence and accuracy stay at base level at $\\lambda = 0$, so the penalty, not RLHF, causes the shift. See [ref].",
+ "caption_source": "latex",
+ "abstract": "Single-axis mitigations of reward-model biases, such as reducing proxy reliance on length, sycophancy, or style, can redirect optimization pressure onto correlated proxies rather than eliminate it, a new type of reward hacking we call reward bias substitution. The failure is enabled by a measurement-versus-optimization gap between mitigation evaluation on the audit distribution and policy training on the policy-induced distribution. Prior reward-hacking analyses assume a fixed reward proxy, whereas we study the mitigation operator that removes one bias from it, the basic step of iterative reward refinement. We formalize mitigation outcomes into a regime taxonomy and prove that successful mitigation, bias substitution, and overcorrection can produce identical observables under every audit-distribution score, including ranking accuracy and win-rate, even when granted oracle access to the true reward. Across 30 published preference-learning mitigation works, no method we survey reports the evidence needed to certify successful mitigation. Augmenting evaluation with policy-induced distributions while tracking multiple biases provably resolves this distributional gap, and we translate this into actionable prescriptions for mitigation methods and benchmarks. We demonstrate bias substitution in RLHF, where a length penalty in GRPO shortens responses as intended yet makes the policy overconfident and less accurate on open-ended questions, show that the same distributional gap hides failures of published mitigations, and find the necessary preconditions for reward bias substitution documented in published results and in our study of length-sycophancy coupling in LLM responses.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=Auv9cgHOSa",
+  "arxiv": "https://arxiv.org/abs/2605.27996",
+  "pdf": "https://arxiv.org/pdf/2605.27996",
+  "proceedings": null,
+  "virtual": "https://neurips.cc/virtual/2026/poster/154792",
+  "code": null
+ },
+ "license": "http://creativecommons.org/licenses/by/4.0/",
+ "img": "cc-by",
+ "image_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/images/neurips26-1530.png",
+ "thumb_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/thumbs/neurips26-1530.webp",
+ "figure_page": 1,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.62
+}

@@ -1,0 +1,51 @@
+{
+ "id": "iclr26-2178",
+ "title": "MicroMix: Efficient Mixed-Precision Quantization with Microscaling Formats for Large Language Models",
+ "authors": [
+  "Wenyuan Liu",
+  "Haoqian Meng",
+  "Yilun Luo",
+  "Peng Zhang",
+  "Xindian Ma"
+ ],
+ "venue": "ICLR 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "Deep Learning->Everything Else",
+ "role": "overview-framework",
+ "role2": "teaser-result",
+ "claim": "A mixed-precision system reorders channels by quantization error and assigns bit-widths, yielding consistently lower error than uniform low-precision baselines.",
+ "layout": "3 panels: large pipeline on left, two stacked plots on right",
+ "tags": [
+  "mixed-precision",
+  "quantization",
+  "kernel-co-design",
+  "efficiency",
+  "error-thresholds"
+ ],
+ "style": [
+  "colorful",
+  "icon-heavy",
+  "plot"
+ ],
+ "description": "The figure has three panels. Panel (a), on the left, is a pipeline diagram. An activation grid and a weight grid are each block-scale quantized and reordered into color-coded groups: green for MXFP4, yellow for MXFP6, red for MXFP8. Arrows lead the groups into three matching GEMM boxes (FP4, FP6, FP8), which accumulate into a 2x2 output grid. A legend of dashed-border swatches sits at the top left. Panel (b), top right, is a bar chart of per-channel quantization error. The bars are colored by assigned format, and two dashed horizontal lines mark the thresholds T(4) and T(6). Panel (c), bottom right, is a line plot of MSE across 32 layers. It compares MicroMix, INT8 and MXFP4, and MXFP4 spikes in the last layers. Dash-dot lines separate the panels, and the eye goes first to the colorful pipeline.",
+ "caption": "(a) MicroMix reorders channels and allocates different bit-widths accordingly. (b) The quantization thresholds $T(4)$ and $T(6)$ partition elements into three groups based on their quantization error magnitude. (c) MicroMix consistently achieves lower quantization error across all layers.",
+ "caption_source": "latex",
+ "abstract": "Quantization significantly accelerates inference in large language models (LLMs) by replacing original high-precision matrices with low-precision counterparts. Recent advances in weight-activation quantization have primarily focused on mapping both weights and activations to the INT4 format. Although the new FP4 Tensor Cores in NVIDIA's Blackwell architecture offer up to 4x speedup over FP16, existing INT4-based kernels fail to fully exploit this capability due to mismatched data formats. To bridge this gap, we propose MicroMix, a co-designed mixed-precision quantization algorithm and GEMM kernel based on Microscaling (MX) data formats. Tailored for the Blackwell architecture, the MicroMix kernel supports arbitrary combinations of MXFP4, MXFP6, and MXFP8 channels, and produces BFloat16 outputs. To achieve a favorable trade-off between accuracy and efficiency for each linear layer, we introduce quantization thresholds that identify activation elements where lower-precision formats (MXFP4 or MXFP6) incur excessive quantization error. Our algorithm selectively allocates higher-precision channels to preserve accuracy while maintaining compute efficiency. On the Llama and Qwen model families, MicroMix achieves near-FP16 performance across diverse downstream tasks with an average precision of 5 bits. In particular, Qwen2.5-32B-Base, Coder and Math exhibit lossless accuracy on zero-shot, code generation, and mathematical reasoning benchmarks. In addition, on RTX 5070Ti laptop and RTX 5090 GPUs, our kernel achieves 2.29-3.38x acceleration compared to TensorRT-FP16. Our code is available at https://github.com/lwy2020/MicroMix.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=P5OKoZdwlB",
+  "arxiv": "https://arxiv.org/abs/2508.02343",
+  "pdf": "https://proceedings.iclr.cc/paper_files/paper/2026/file/b73442f01ee75616fad938e1eb1f2427-Paper-Conference.pdf",
+  "proceedings": "https://proceedings.iclr.cc/paper_files/paper/2026/hash/b73442f01ee75616fad938e1eb1f2427-Abstract-Conference.html",
+  "virtual": "https://iclr.cc/virtual/2026/poster/10009711",
+  "code": null
+ },
+ "license": "http://creativecommons.org/licenses/by/4.0/",
+ "img": "cc-by",
+ "image_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/images/iclr26-2178.png",
+ "thumb_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/thumbs/iclr26-2178.webp",
+ "figure_page": 1,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.5
+}

@@ -1,0 +1,53 @@
+{
+ "id": "icml26-5607",
+ "title": "Derivative Informed Learning of Exchange-Correlation Functionals",
+ "authors": [
+  "Eike S. Eberhard",
+  "Luca Anthony Thiede",
+  "Abdulrahman Aldossary",
+  "Andreas Burger",
+  "Nicholas Gao",
+  "Vignesh Bhethanabotla",
+  "Alan Aspuru-Guzik",
+  "Stephan Günnemann"
+ ],
+ "venue": "ICML 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "Applications->Chemistry, Physics, and Earth Sciences",
+ "role": "analysis-finding",
+ "role2": "teaser-result",
+ "claim": "Energy-only supervision leaves systematic deviations from the target even where data is plentiful; adding derivative terms removes them and extrapolates better.",
+ "layout": "3x3 grid of line plots plus bottom histogram row, shared axes, legend on top",
+ "tags": [
+  "derivative-supervision",
+  "distillation",
+  "toy-diagnostic",
+  "extrapolation",
+  "learned-functionals"
+ ],
+ "style": [
+  "plot",
+  "colorful"
+ ],
+ "description": "A 3-column by 3-row grid of line plots, with a fourth row of histograms underneath. A legend across the top lists five colors: green for E, orange hatched for E_ρ, blue for +∇ (ours), red for +H (ours), and black for the SCAN target. Rows are three architectures (NNmGGA, XCdiff, Skala mGGA). Columns are three density regimes set by (ρ, τ). Each panel plots the ratio of learned to target energy density against the dimensionless gradient s. A black horizontal line at 1.0 marks a perfect fit. Dashed mean curves sit inside shaded min-max bands. The green and orange curves drift well above 1 at large s. The blue and red curves hug 1.0 over a wider range, though they spread out at large s. The bottom histograms use blue bars on a log scale to show the importance weight of s on a quadrature grid.",
+ "caption": "Diagnostic toy example: energy-density of mGGA functionals distilled from SCAN. Each panel plots the ratio of learned to target energy density (y-axis) against the dimensionless density gradient $s$ (x-axis), a standard semi-local input feature (Appendix [ref]). Rows are the three architectures, columns three density regimes set by $(n, \\tau)$, and a perfect functional traces the line at one. The bottom row shows the importance-weighted ($\\omega_quadrature \\times \\rho \\times |\\varepsilon_target|$) distribution of $s$ on an ethanol quadrature grid, marking where errors carry energetic weight. Energy supervision deviates from the target even in the data-rich region. The gradient and Hessian terms ($+\\nabla$, $+H$) remove these deviations and extrapolate into low weight grid feature regimes. Supervising only energy-type quantities, this setting isolates how the derivative terms reshape the energy density without any density loss.",
+ "caption_source": "latex",
+ "abstract": "Machine-learned (ML) exchange-correlation (XC) functionals aim to replace human-designed density functional approximations by learning directly from reference data, but they still do not consistently outperform traditional $\\mathcal{O}(N^4)$-scaling hybrid functionals. We study a hybrid-distillation setting in which $\\mathcal{O}(N^3)$-scaling ML-XC functionals are trained to reproduce B3LYP/def2-SVP targets. We introduce Derivative Informed XC-Loss (DI-Loss), a loss that incorporates additional information from the reference hybrid functional by supervising first and second derivatives of the energy on the Grassmannian of admissible density matrices. Rather than only matching the self-consistent fixed point, DI-Loss aligns the local first- and second-order response of the learned functional with that of the target functional. Across four evaluated architectures, DI-Loss consistently improves the main energy metrics. Averaged uniformly across architectures, the total-energy MAE decreases by 66% relative to energy and density supervision alone. The density-sensitive mean-field energy metric $E_Ï$ improves from $1.2$ to $0.8$ mEh on average, while dipole and $\\mathcal{L}_2$ density errors do not improve uniformly. We further show that densities from the distilled functionals reduce hybrid-functional SCF iterations by up to 50%. In downstream TDDFT calculations, Hessian supervision improves excited-state predictions, with XCdiff reducing the mean excitation-energy MAE by 19 - 35%.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=qijM0kpqPC",
+  "arxiv": "https://arxiv.org/abs/2606.04279",
+  "pdf": "https://raw.githubusercontent.com/mlresearch/v306/main/assets/eberhard26a/eberhard26a.pdf",
+  "proceedings": "https://proceedings.mlr.press/v306/eberhard26a.html",
+  "virtual": "https://icml.cc/virtual/2026/poster/61391",
+  "code": null
+ },
+ "license": "http://creativecommons.org/licenses/by/4.0/",
+ "img": "cc-by",
+ "image_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/images/icml26-5607.png",
+ "thumb_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/thumbs/icml26-5607.webp",
+ "figure_page": 5,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.55
+}

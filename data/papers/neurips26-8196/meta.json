@@ -1,0 +1,49 @@
+{
+ "id": "neurips26-8196",
+ "title": "LAQuant: A Simple Online Transform-free Large Reasoning Model Quantization by Layer-wise Lookahead Loss",
+ "authors": [
+  "Euntae Choi",
+  "Sumin Song",
+  "Sungjoo Yoo"
+ ],
+ "venue": "NeurIPS 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "Optimization",
+ "role": "pipeline",
+ "role2": "concept",
+ "claim": "Calibrating on reasoning-domain data aligns the Hessian subspace with deployment activations, while a one-layer lookahead loss weights downstream-sensitive residuals.",
+ "layout": "2 halves: left stacked contrast panels, right block diagram with feedback arrow",
+ "tags": [
+  "quantization",
+  "calibration",
+  "lookahead-loss",
+  "teacher-student",
+  "subspace-alignment"
+ ],
+ "style": [
+  "icon-heavy",
+  "colorful",
+  "math-heavy"
+ ],
+ "description": "The figure has two halves. On the left, two stacked rows compare Generic Calibration (book icon) with Reasoning Calibration (flask icon). Each row has a boxed formula for the activation Hessian, H_act = E[φφ^T]. An arrow leads to a dashed ellipse containing top-k eigenspace vectors, set beside an ellipse showing the reasoning-time activation direction in orange. The generic row has black vectors that point in different directions from the orange one, and is labeled 'Weaker subspace alignment'. The reasoning row has blue vectors that match the orange one, and is labeled 'Better subspace alignment'. On the right, a pipeline shows a yellow trainable Student block Q_l feeding a frozen blue Teacher F_{l+1}. A parallel frozen teacher path runs F_l then F_{l+1}. Both paths feed a dark grey SmoothL1 loss box, with a feedback arrow back to the student. A legend explains the flame and snowflake icons and the h-hat and h-star notation.",
+ "caption": "Overview of LAQuant. We combine a one-layer lookahead loss (Section [ref]) with reasoning-domain calibration data (Section [ref]) in a layer-wise QAT pipeline that produces standard weight-only quantized models with no online transformations.",
+ "caption_source": "latex",
+ "abstract": "Large reasoning models (LRMs) reach competition-level math and coding accuracy via long autoregressive decoding, making per-token decoding cost a primary deployment concern. Weight quantization is the standard tool for acceleration, but representative recipes -- including state-of-the-art end-to-end (E2E) QAT -- lose accuracy on long-decoding reasoning benchmarks despite preserving perplexity and short-decode accuracy. Through a systematic gradient-direction analysis, we identify two factors driving this gap: (i) KV-cache fidelity preservation under the QAT loss, which E2E supervision attenuates via the softmax Fisher metric; and (ii) Hessian-subspace alignment between calibration data and the deployment distribution. We propose LookAhead Quantization (LAQuant), a layer-wise weight-only QAT method that addresses both factors without online-transform overhead by combining reasoning-domain calibration with a one-layer lookahead loss whose implicit cross-layer co-adaptation preserves the next-layer residual stream. For Qwen3-4B under W3G128 quantization, LAQuant improves AIME25 Pass@1 over ParoQuant by 15.11pp (1.93pp over ParoQuant++ at matched calibration) while achieving a 3.42x decoding speedup over FP16 on RTX A6000, compared with ParoQuant's 3.01x.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=ucUpvTmeQM",
+  "arxiv": "https://arxiv.org/abs/2605.08755",
+  "pdf": "https://arxiv.org/pdf/2605.08755",
+  "proceedings": null,
+  "virtual": "https://neurips.cc/virtual/2026/poster/148865",
+  "code": "https://github.com/songsm921/LAQuant"
+ },
+ "license": "http://creativecommons.org/licenses/by-nc-nd/4.0/",
+ "img": "none",
+ "image_url": null,
+ "thumb_url": null,
+ "figure_page": 1,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.6
+}

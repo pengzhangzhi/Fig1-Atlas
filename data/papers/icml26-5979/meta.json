@@ -1,0 +1,48 @@
+{
+ "id": "icml26-5979",
+ "title": "Score Based Error Correcting Code Decoder",
+ "authors": [
+  "Alon Helvits",
+  "Eliya Nachmani"
+ ],
+ "venue": "ICML 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "Deep Learning->Everything Else",
+ "role": "pipeline",
+ "role2": "concept",
+ "claim": "Decoding can be viewed as reversing a forward noising process, with a guided denoiser iteratively steering noisy observations back toward valid codewords.",
+ "layout": "2 heatmap panels left-to-right, with a loop module diagram below",
+ "tags": [
+  "denoising",
+  "probability-flow-ode",
+  "error-correction",
+  "diffusion",
+  "iterative-refinement"
+ ],
+ "style": [
+  "plot",
+  "colorful",
+  "math-heavy"
+ ],
+ "description": "The top half has two large square heatmap panels on a dark purple background with a yellow-green density. The left panel is labeled 'Forward diffusion'. Its white and cyan noisy trajectories start at +1 and −1 and spread out toward a dashed yellow hard-decision line at 0. An arrow labeled y leads to the right panel, 'Reverse PF-ODE decoding'. There, the smooth trajectories converge back to ±1 and the density concentrates at those two values. A long arrow above each panel shows the direction of the process. Below, a rounded yellow box holds a feedback loop. The noisy vector x^(i)=y and the syndrome s(x^(i)) feed the purple SB-ECC denoiser block, which outputs ε̂θ. A blue update block computes x^(i+1)=x^(i)−Δσ ε̂θ, and x^(i+1) loops back to the reverse panel. The eye goes first to the colorful heatmaps.",
+ "caption": "Per-bit view of decoding as deterministic denoising. Left: forward corruption (channel as a forward diffusion): each curve is one coordinate $k$, where a clean BPSK symbol $x_{s,k}\\in\\{\\pm1\\}$ is perturbed into $y_k=x_{s,k}+z_k$ as the noise level increases. Right: reverse probability-flow ODE (PF-ODE) decoding: starting from $x_k^{(0)}=y_k$, the learned denoiser (with parity/\\,syndrome guidance) drives each coordinate toward a valid codeword, concentrating mass back near $\\pm1$. Background heatmaps depict empirical marginal density over coordinates, and the dashed line marks the hard-decision boundary at $0$.",
+ "caption_source": "latex",
+ "abstract": "Error-correcting codes enable reliable communication, yet practical soft decoding remains challenging across code families and block lengths. We propose SB-ECC, a score-based decoder that casts decoding as continuous-time denoising. A neural denoiser defines a probability-flow ordinary differential equation (ODE) that iteratively updates the noisy channel observation toward a valid codeword, guided by parity constraints. The model is trained across noise levels without time/SNR conditioning, enabling inference without SNR estimation and supporting a direct latency accuracy trade off controlled by the ODE solver budget. We use the raw signed channel observation as input for learning a continuous denoising field. Across 42 code/SNR settings, SB-ECC achieves the best BER in 39/42 entries, with an average SNR gain of 0.17dB and a maximum gain of 0.46dB over the strongest competing baseline, we showed that swapping the solver from Euler to DPM preserves -ln(BER) while reducing end-to-end decoding time by 8.86% on average (up to 12.82%).",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=uQiLoAF0bM",
+  "arxiv": "https://arxiv.org/abs/2605.28358",
+  "pdf": "https://raw.githubusercontent.com/mlresearch/v306/main/assets/helvits26a/helvits26a.pdf",
+  "proceedings": "https://proceedings.mlr.press/v306/helvits26a.html",
+  "virtual": "https://icml.cc/virtual/2026/poster/61026",
+  "code": null
+ },
+ "license": "http://creativecommons.org/licenses/by/4.0/",
+ "img": "cc-by",
+ "image_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/images/icml26-5979.png",
+ "thumb_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/thumbs/icml26-5979.webp",
+ "figure_page": 4,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.6
+}

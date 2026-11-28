@@ -1,0 +1,55 @@
+{
+ "id": "neurips26-3280",
+ "title": "SimCT: Recovering Lost Supervision for Cross-Tokenizer On-Policy Distillation",
+ "authors": [
+  "Jie Sun",
+  "Mao Zheng",
+  "Mingyang Song",
+  "Qiyong Zhong",
+  "Yilin Cheng",
+  "Bichuan Feng",
+  "Pengfei Liu",
+  "Junfeng Fang",
+  "Xiang Wang"
+ ],
+ "venue": "NeurIPS 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "Applications->Language, Speech and Dialog",
+ "role": "problem-setup",
+ "role2": "teaser-result",
+ "claim": "Heterogeneous tokenizers share limited vocabulary and misalign token boundaries, breaking standard distillation; our aligned supervision space recovers the lost signal and wins.",
+ "layout": "3 panels, left-to-right: heatmap, tokenization mismatch diagram, radar chart",
+ "tags": [
+  "distillation",
+  "tokenizer-mismatch",
+  "vocabulary-overlap",
+  "motivation",
+  "cross-model"
+ ],
+ "style": [
+  "colorful",
+  "plot",
+  "text-heavy"
+ ],
+ "description": "Three panels, left to right. (A) is a 6x6 heatmap of pairwise vocabulary overlap among six LLM tokenizers (Phi-4-mini, Gemma-2-2B, Qwen2.5-7B, Llama-3.2-1B, GLM-4.5-Air, DeepSeek-V4). Percentages sit in each cell, the diagonal is 100% in orange, and weaker overlaps of about 55–65% are blue. A colorbar runs alongside. (B) is a light-blue rounded box showing a failure case. A sentence is split into teacher tokens ('I','am','hap','py') and student tokens ('I','am','ha','pp','y'). Blue check marks and cross marks show which tokens match. Below that, two probability bell curves over different vocabularies, with the label 'Standard OPD is ill-defined'. Red and blue math notation marks the sequence and vocabulary mismatches. (C) is a radar chart over five benchmarks. A large red SimCT polygon encloses smaller baseline polygons, and a legend sits below. The eye goes first to the heatmap, then to the large red radar polygon.",
+ "caption": "Motivation and performance of SimCT. (A) LLM tokenizers often share only partial vocabularies across model families, making shared-token distillation restrictive. (B) The same text can induce different token boundaries and prediction spaces, so standard token-level OPD is ill-defined. (C) SimCT constructs a common aligned supervision space and achieves the best average Pass@1 over SFT and prior cross-tokenizer baselines. Each axis is independently normalized for visualization; absolute results with standard deviations are reported in Table [ref].",
+ "caption_source": "latex",
+ "abstract": "On-policy distillation (OPD) is a standard tool for transferring teacher behavior to a smaller student, but it implicitly assumes that teacher and student predictions are comparable token by token, an assumption that fails whenever the two models tokenize the same text differently. Under heterogeneous tokenizers, exact shared-token matching silently discards a large fraction of the teacher signal at precisely the positions where vocabularies disagree. We propose \\textbf{\\underline{Sim}ple \\underline{C}ross-\\underline{T}okenizer OPD (SimCT)}, which restores this signal by enlarging the supervision space: alongside shared tokens, SimCT compares teacher and student over short multi-token continuations that both tokenizers can realize, leaving the OPD loss form itself unchanged. We show that these units are the finest jointly tokenizable supervision interface, and that coarser alternatives remove teacher-student distinctions that are useful for on-policy learning. Across three heterogeneous teacher-student pairs on mathematical reasoning and code-generation benchmarks, SimCT shows consistent gains over shared-vocabulary OPD and representative cross-tokenizer baselines, with ablations confirming that the improvements come from recovering supervision discarded by exact shared-token matching. Code is available at \\href{https://github.com/sunjie279/SimCT-}{https://github.com/sunjie279/SimCT-}.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=MnkwYa1NsV",
+  "arxiv": "https://arxiv.org/abs/2605.07711",
+  "pdf": "https://arxiv.org/pdf/2605.07711",
+  "proceedings": null,
+  "virtual": "https://neurips.cc/virtual/2026/poster/153233",
+  "code": "https://github.com/sunjie279/SimCT-"
+ },
+ "license": "http://creativecommons.org/licenses/by/4.0/",
+ "img": "cc-by",
+ "image_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/images/neurips26-3280.png",
+ "thumb_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/thumbs/neurips26-3280.webp",
+ "figure_page": 1,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.6
+}

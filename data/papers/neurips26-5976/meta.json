@@ -1,0 +1,50 @@
+{
+ "id": "neurips26-5976",
+ "title": "How Finite-Rank Bottlenecks Shape the Low-Rank Adaptation Landscape",
+ "authors": [
+  "Long Nguyen-Chi",
+  "Quynh Nguyen",
+  "Thanh Nguyen Cung",
+  "Binh T. Nguyen"
+ ],
+ "venue": "NeurIPS 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "Deep Learning->Theory",
+ "role": "analysis-finding",
+ "role2": "teaser-result",
+ "claim": "Adaptation quality shows a sharp threshold in rank: below it, training converges worse, while at or above it, runs match full fine-tuning.",
+ "layout": "3 rows by 2 columns of line plots; Case A/B per dataset",
+ "tags": [
+  "lora",
+  "rank-threshold",
+  "training-dynamics",
+  "scaling-trend",
+  "parameter-efficient-fine-tuning"
+ ],
+ "style": [
+  "plot",
+  "colorful",
+  "photo/real data"
+ ],
+ "description": "A 3x2 grid of training-loss line plots, with one row per GLUE task: (a) MNLI, (b) SST-2 and (c) RTE. The left column is titled 'Case A: high-rank bound' and the right column 'Case B: low-rank bound'. Each panel plots loss against epoch (0–50 on the left, 0–120 on the right). A black dashed curve is full fine-tuning. Pale blue and pale orange dashed curves are LoRA ranks below the threshold, and they converge more slowly and end at higher loss. A green dash-dot curve marks the threshold rank (r=128 on the left, r=28 on the right). Solid red and purple curves are ranks above the threshold. Those curves overlap the green one and end at about the same loss as full fine-tuning. Each panel has a two-column legend in its top right. Row labels sit below the rows. The eye goes to the tight bundle of overlapping curves against the separated low-rank curves.",
+ "caption": "Training loss trajectories on GLUE classification tasks (MNLI, SST-2, and RTE) using Qwen2.5-1.5B across various LoRA ranks. The results demonstrate a clear threshold effect: ranks below the estimated threshold exhibit distinct, suboptimal convergence trajectories, whereas ranks at or above the threshold tightly cluster and converge to nearly indistinguishable final losses, closely matching the convergence point of full fine-tuning.",
+ "caption_source": "latex",
+ "abstract": "Low-rank adaptation (LoRA) has become the standard method for parameter-efficient fine-tuning of large pretrained models, yet theoretical explanations for why low-rank updates suffice remain incomplete. Most existing analyses rely on the Neural Tangent Kernel (NTK) regime, which linearizes the network around the pretrained weights. In this work, we take a different approach that requires no linearization: our key observation is that, once the backbone is frozen, the loss sees each adapted weight matrix only through a finite-rank linear map induced by the frozen activations. Trace-norm regularization then forces the optimizer to pick a low-rank matrix among all matrices that produce the same observed output. This yields global minimizers whose ranks are controlled by the rank of this map, which we call the \\emph{bottleneck rank}, rather than the sample size. For multi-head attention, we obtain tighter rank upper bounds by exploiting two additional invariances: row-wise softmax is insensitive to additive row constants in the score matrix, and value updates are observable only after attention weighting and frozen output projection. For the factorized LoRA objective with weight decay, we prove a complementary result on the nonconvex side: after an arbitrarily small generic positive semidefinite perturbation, every first-order stationary point is rank-deficient once the LoRA rank exceeds a threshold determined by the bottleneck rank. Finally, we show that global minimizers of the perturbed objective are near-optimal for the original trace-norm problem, and we provide uniform generalization bounds governed by the spectral structure of the frozen features.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=eyfZvKjtnQ",
+  "arxiv": "https://arxiv.org/abs/2610.23343",
+  "pdf": "https://arxiv.org/pdf/2610.23343",
+  "proceedings": null,
+  "virtual": "https://neurips.cc/virtual/2026/poster/150830",
+  "code": null
+ },
+ "license": "http://creativecommons.org/licenses/by/4.0/",
+ "img": "cc-by",
+ "image_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/images/neurips26-5976.png",
+ "thumb_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/thumbs/neurips26-5976.webp",
+ "figure_page": 8,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.8
+}

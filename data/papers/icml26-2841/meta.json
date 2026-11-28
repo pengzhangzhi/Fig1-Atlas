@@ -1,0 +1,49 @@
+{
+ "id": "icml26-2841",
+ "title": "Mesh Based Simulations with Spatial and Temporal awareness",
+ "authors": [
+  "Paul Garnier",
+  "Vincent Lannelongue",
+  "Elie Hachem"
+ ],
+ "venue": "ICML 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "Applications->Chemistry, Physics, and Earth Sciences",
+ "role": "pipeline",
+ "role2": null,
+ "claim": "Supervising each node's full local neighborhood through a shared-weight auxiliary branch enriches the main model's latent node representations.",
+ "layout": "2 parallel vertical columns, bottom-to-top flow, dashed boxes, 'Shared' links between columns",
+ "tags": [
+  "multi-node-prediction",
+  "auxiliary-loss",
+  "shared-weights",
+  "graph-neural-network",
+  "cross-attention"
+ ],
+ "style": [
+  "colorful",
+  "icon-heavy",
+  "minimal"
+ ],
+ "description": "A two-column block diagram read bottom to top. The left column is the main model. A dashed 'Graph' box with grey spheres joined by edges feeds a blue Node Encoder, then a stack of pink 'L Processing Blocs', then a green Node Decoder, then an orange MSE Loss against 'Target Field'. The right column is the MNP model. A dashed 'C Sampled Rings' box holds a small star-shaped cluster of spheres. It feeds a second Node Encoder, which feeds neighbor nodes in a dashed region. A curved maroon arrow carries the main model's latent into the central node, which is highlighted in maroon. The ring then passes through '1 Transformer Blocs' to a second Node Decoder and an MSE Loss against 'Neighbours Target Field'. Horizontal lines labeled 'Shared' link the two encoders and the two decoders. Pastel boxes use color-coded arrows.",
+ "caption": "\\smallMulti Node Prediction We process each node with a given model. Before decoding each node, we construct rings that consist of a latent node and freshly encoded neighbors. We then train a small cross-attention layer to predict the fields of each neighbor, while most relevant information lives in the latent central node.",
+ "caption_source": "latex",
+ "abstract": "Machine Learning surrogates for Computational Fluid Dynamics (CFD), particularly Graph Neural Networks (GNNs) and Transformers, have become a new important approach for accelerating physics simulations. However, we identify a critical bottleneck in the field: while architectures have advanced significantly, the common underlying training paradigms remain bound to naive assumptions, such as node-wise supervision and explicit Euler time-stepping. These legacy choices ignore the stiff dynamics and local flux continuity inherent to numerous partial differential equations resolution methods, such as Finite Element, Difference, or Volume (FEM). In this work, we propose a unified framework to bridge the gap between geometric deep learning and rigorous numerical analysis. We introduce three key innovations: (1) Multi Node Prediction, a stencil-level objective that predicts field values for a node's full local topology, enforcing spatial derivative consistency; (2) Temporal Correction, replacing unstable explicit schemes with a predictor-corrector via temporal Cross-Attention; and (3) Geometric Inductive Biases, leveraging 3D Rotary Positional Embeddings (RoPE) to robustly capture rotational symmetries in unstructured meshes. We evaluate this framework across three architectures (MeshGraphNet, Transolver, and a Transformer) on diverse physics datasets. Our approach yields consistent improvements in accuracy and stability, particularly in long-horizon rollouts, while producing latent representations that generalize to unseen subtasks such as Wall Shear Stress or Pressure prediction. Code is available at https://github.com/DonsetPG/graph-physics.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=R8wiI3AnfI",
+  "arxiv": "https://arxiv.org/abs/2605.01542",
+  "pdf": "https://raw.githubusercontent.com/mlresearch/v306/main/assets/garnier26a/garnier26a.pdf",
+  "proceedings": "https://proceedings.mlr.press/v306/garnier26a.html",
+  "virtual": "https://icml.cc/virtual/2026/poster/64075",
+  "code": "https://github.com/DonsetPG/graph-physics"
+ },
+ "license": "http://creativecommons.org/licenses/by/4.0/",
+ "img": "cc-by",
+ "image_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/images/icml26-2841.png",
+ "thumb_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/thumbs/icml26-2841.webp",
+ "figure_page": 3,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.9
+}

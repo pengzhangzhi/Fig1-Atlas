@@ -1,0 +1,51 @@
+{
+ "id": "icml26-5409",
+ "title": "One Bug, Hundreds Behind: LLMs for Large-Scale Bug Discovery",
+ "authors": [
+  "Qiushi Wu",
+  "Yue Xiao",
+  "Dhilung Kirat",
+  "Kevin Eykholt",
+  "Jiyong Jang",
+  "Douglas Schales"
+ ],
+ "venue": "ICML 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "Social Aspects->Security",
+ "role": "problem-setup",
+ "role2": null,
+ "claim": "A single patched bug, such as a missing failure check, signals the same unfixed pattern likely recurs elsewhere in the codebase.",
+ "layout": "1 panel, top-to-bottom, green added lines in a git diff",
+ "tags": [
+  "recurring-bugs",
+  "code-patch",
+  "static-analysis",
+  "security",
+  "motivating-example"
+ ],
+ "style": [
+  "text-heavy",
+  "screenshot"
+ ],
+ "description": "The figure is a screenshot of a Linux kernel git commit shown on a light gray background. At the top is the commit header in yellow: hash, author, date. Below it is the commit message, which says create_singlethread_workqueue can fail under memory pressure and needs handling. The lower half is a unified diff of nes_cm.c in monospace-style text. Unchanged code lines are black. Added lines are green with a plus sign. They add null checks after two create_singlethread_workqueue calls. The checks jump to cleanup labels that call destroy_workqueue and kfree and return NULL. There are no arrows, boxes or annotations. The eye goes first to the green added lines. The figure shows one concrete bug fix that stands for a pattern that may recur.",
+ "caption": "The \\cc{create_singlethread_workqueue} macro can return \\cc{NULL} on failure. This patch adds a simple check to \\cc{nes_cm.c}. It is invoked more than 197 times in other parts of the Linux kernel, but not every invocation checks the returned pointer value. This creates an RPB.",
+ "caption_source": "latex",
+ "abstract": "Fixing bugs in large programs is a challenging task that demands substantial time and effort. Once a bug is found, it is reported to the project maintainers, who work with the reporter to fix it and eventually close the issue. However, across the program, there are often similar code segments, which may also contain the bug, but were missed during discovery. Finding and fixing each recurring bug instance individually is labor intensive. Even more concerning, bug reports can inadvertently widen the attack surface as they provide attackers with an exploitable pattern that may be unresolved in other parts of the program. In this paper, we explore these Recurring Pattern Bugs (RPBs) that appear repeatedly across various code segments of a program or even in different programs, stemming from a same root cause, but are unresolved. Our investigation reveals that RPBs are widespread and can significantly compromise the security of software programs. This paper introduces BugStone, a program analysis system empowered by LLVM and a Large Language Model (LLM). The key observation is that many RPBs have one patched instance, which can be leveraged to identify a consistent error pattern, such as a specific API misuse. By examining the entire program for this pattern, it is possible to identify similar sections of code that may be vulnerable. Starting with 135 unique RPBs, BugStone identified more than 22K new potential issues in the Linux kernel. Manual analysis of 400 of these findings confirmed that 246 were valid. We also created a dataset from over 1.9K security bugs reported by 23 recent top-tier conference works. We manually annotate the dataset, identify 80 recurring patterns and 850 corresponding fixes. Even with a cost-efficient model choice, BugStone achieved 92.2% precision and 79.1% pairwise accuracy on the dataset.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=oiiXZJaODI",
+  "arxiv": "https://arxiv.org/abs/2510.14036",
+  "pdf": "https://raw.githubusercontent.com/mlresearch/v306/main/assets/wu26bk/wu26bk.pdf",
+  "proceedings": "https://proceedings.mlr.press/v306/wu26bk.html",
+  "virtual": "https://icml.cc/virtual/2026/poster/61586",
+  "code": null
+ },
+ "license": "http://creativecommons.org/licenses/by/4.0/",
+ "img": "cc-by",
+ "image_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/images/icml26-5409.png",
+ "thumb_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/thumbs/icml26-5409.webp",
+ "figure_page": 3,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.8
+}

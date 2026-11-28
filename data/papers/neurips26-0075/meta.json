@@ -1,0 +1,48 @@
+{
+ "id": "neurips26-0075",
+ "title": "Massive Activations Confound Sparse Autoencoders",
+ "authors": [
+  "Nathan Delisle",
+  "Chenhao Tan"
+ ],
+ "venue": "NeurIPS 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "Social Aspects->Accountability, Transparency and Interpretability",
+ "role": "analysis-finding",
+ "role2": "teaser-result",
+ "claim": "Standard evaluation metrics are misleading because one dominant component inflates fidelity scores and makes top-ranked units unstable across runs.",
+ "layout": "2 panels side by side: scatter plot left, paired horizontal bars right with multiplier labels",
+ "tags": [
+  "sparse-autoencoders",
+  "evaluation-pitfall",
+  "reproducibility",
+  "variance-explained",
+  "interpretability"
+ ],
+ "style": [
+  "plot",
+  "colorful",
+  "minimal"
+ ],
+ "description": "Two side-by-side data plots with pale blue-gray backgrounds. The left panel is a scatter plot titled 'Top-ranked features are seed artifacts'. The x-axis is ablation importance (log scale) and the y-axis is cross-seed similarity. Many faint blue dots (other features) spread across the upper-middle of the plot. A dashed gray line marks the sharing threshold at about 0.7. Red dots (top 50 by importance) sit at the far right. Most are low on the y-axis, and a red ellipse labeled '63 PC1-tiling features' circles them. The right panel is titled 'Fidelity scores hide content error'. It shows paired horizontal bars for nine models, from Qwen-2.5-7B to Gemma-2-9B. Blue bars show all variance explained and are near 100%. Red bars show variance explained excluding PC1 and are much shorter. Multipliers on the right run from 890× down to 3.3× and are labeled 'error understated by'. The eye goes first to the red cluster and the 890× label.",
+ "caption": "Massive activations confound both standard SAE evaluations. Left: The 50 most important features (red) are seed artifacts: 47 of 50 fail to recur across training runs (GPT-2; dashed line indicates sharing threshold). Right: Variance explained, reported vs.\\ excluding PC1. Models are ordered by PC1 dominance. The reported score understates content error by up to $890\\times$.",
+ "caption_source": "latex",
+ "abstract": "Sparse autoencoders (SAEs) are commonly evaluated by variance explained and ablation damage. We show how massive activations undermine both evaluations, and propose a correction. Massive activations cause up to 99.9% of activation variance to lie along the first principal component (PC1). Because the PC1 component has no unique sparse decomposition, each SAE run rebuilds it from a different set of features. These features dominate importance rankings: an average of 47 of the 50 most important features are unmatched in a separate run, compared with about 27 of a random 50. A dictionary can also report 99.96% of variance explained while leaving 33% of the variance outside PC1 unexplained. We bypass PC1 by training the SAE on activations with PC1 removed, then adding PC1 to the reconstruction. In affected models, the top-50 feature sharing rate rises from 4-39.5% to 73-99.5%. At the same TopK sparsity, the resulting SAE degrades the model up to 44% less and reduces content reconstruction error by up to 33.9%.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=0YAxdKV85F",
+  "arxiv": "https://arxiv.org/abs/2611.13548",
+  "pdf": "https://arxiv.org/pdf/2611.13548",
+  "proceedings": null,
+  "virtual": "https://neurips.cc/virtual/2026/poster/156083",
+  "code": null
+ },
+ "license": "http://arxiv.org/licenses/nonexclusive-distrib/1.0/",
+ "img": "none",
+ "image_url": null,
+ "thumb_url": null,
+ "figure_page": 1,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.85
+}

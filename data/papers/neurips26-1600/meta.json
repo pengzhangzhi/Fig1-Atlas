@@ -1,0 +1,51 @@
+{
+ "id": "neurips26-1600",
+ "title": "Fast-dLLM++: Fréchet Profile Decoding for Faster Diffusion LLM Inference",
+ "authors": [
+  "Siva Rajesh Kasa",
+  "Yasong Dai",
+  "Sumit Negi",
+  "Hongdong Li"
+ ],
+ "venue": "NeurIPS 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "Applications->Language, Speech and Dialog",
+ "role": "overview-framework",
+ "role2": "prior-vs-ours",
+ "claim": "Existing selection rules collapse a heterogeneous profile to its weakest element; using the full sorted profile commits more safely.",
+ "layout": "5 lettered panels in two rows, left-to-right, worked numeric example at right",
+ "tags": [
+  "parallel-decoding",
+  "diffusion-language-model",
+  "heterogeneity",
+  "inference-efficiency",
+  "training-free"
+ ],
+ "style": [
+  "text-heavy",
+  "colorful",
+  "math-heavy",
+  "plot"
+ ],
+ "description": "A dense two-row composite figure with five lettered panels. The top row (A) shows the setup and existing methods in three boxes: masked diffusion decoding with a prompt and per-token confidences, threshold decoding with check and cross marks, and factor decoding with a sorted confidence profile, a small calculation table, and a red box that flags the issue. The bottom row has four panels. B contrasts the actual heterogeneous prefix (0.99, 0.95, 0.82) with the homogeneous surrogate (0.82 repeated three times). C is a vertical flowchart of the Fréchet rule with its formulas. D is a bar chart of confidence by sorted rank, with a shaded green heterogeneity bonus above a red dashed bottleneck line. E is a worked numeric table with accept/reject decisions. Green marks accepted tokens or ours, red marks the bottleneck or problem, and blue marks inputs and notes.",
+ "caption": "\\textbf{Fr\\'{e}chet Profile Decoding exploits heterogeneous confidence profiles to commit more tokens per denoising step.} At each masked diffusion step, the model predicts candidate tokens with confidences \\(c_i\\); green marks committed tokens, gray marks deferred tokens, and red marks the factor bottleneck \\(c_{(n)}\\). The green shaded region denotes the heterogeneity bonus \\(B_n=\\sum_{j<n}(c_{(j)}-c_{(n)})\\), which is the extra profile information discarded by the homogeneous weakest-token factor rule.",
+ "caption_source": "latex",
+ "abstract": "Diffusion large language models promise parallel token generation, yet inference remains bottlenecked by deciding which masked tokens can be safely committed together. Fast-dLLM addressed this with KV caching and confidence-guided parallel decoding, but its decoding theory uses a homogeneous high-confidence assumption that effectively reduces each candidate set to its weakest selected token. We argue that this leaves speed on the table because real decoding steps exhibit heterogeneous confidence profiles. We propose Fast-dLLM++, a training-free extension that introduces FrÃ©chet profile decoding: selecting parallel commit sets from the full sorted confidence profile rather than a single worst-case confidence. The resulting rule is a heterogeneous-confidence generalization of Fast-dLLM's factor selector and it recovers the previous rule exactly in the equal-confidence case and adds a provable heterogeneity bonus when the selected tokens have uneven confidences. Fast-dLLM++ leaves the model, diffusion process, and cache implementation entirely unchanged, making it a drop-in replacement for existing Fast-dLLM decoding. Experiments on GSM8K, MATH, HumanEval, and MBPP with the LLaDA-8B model show that the theoretical improvement translates directly into empirical gains: profile-aware selection improves the accuracy-throughput frontier by exploiting safe parallelism that weakest-token rules miss, achieving up to 37% higher throughput at comparable accuracy. Our code release is at https://github.com/Ringo-Star/FastdLLM_plusplus.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=BTfatNCwhE",
+  "arxiv": "https://arxiv.org/abs/2606.02955",
+  "pdf": "https://arxiv.org/pdf/2606.02955",
+  "proceedings": null,
+  "virtual": "https://neurips.cc/virtual/2026/poster/154725",
+  "code": "https://ringo-star.github.io/projectpage_frechet/"
+ },
+ "license": "http://creativecommons.org/licenses/by-sa/4.0/",
+ "img": "cc-by-sa",
+ "image_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/images/neurips26-1600.png",
+ "thumb_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/thumbs/neurips26-1600.webp",
+ "figure_page": 1,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.5
+}

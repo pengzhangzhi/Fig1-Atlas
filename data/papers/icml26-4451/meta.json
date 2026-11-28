@@ -1,0 +1,50 @@
+{
+ "id": "icml26-4451",
+ "title": "HiCI: Hierarchical Construction–Integration for Long-Context Attention",
+ "authors": [
+  "Xiangyu Zeng",
+  "Qi Xu",
+  "Yunke Wang",
+  "Chang Xu"
+ ],
+ "venue": "ICML 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "Deep Learning->Large Language Models",
+ "role": "pipeline",
+ "role2": null,
+ "claim": "A hierarchical module builds local segment summaries, integrates them into a global context, then broadcasts both to condition segment-level attention.",
+ "layout": "Left Transformer block zoomed into right 3-stage stacked panels, top-to-bottom, dashed zoom lines",
+ "tags": [
+  "hierarchical-attention",
+  "long-context",
+  "local-to-global",
+  "modular-adapter",
+  "parameter-efficient"
+ ],
+ "style": [
+  "colorful",
+  "icon-heavy",
+  "math-heavy"
+ ],
+ "description": "The figure has two parts. On the left is a narrow vertical Transformer block with Embedding, Norm, HiCI Attention, Norm, Feed Forward and residual plus-circles. Fire and snowflake icons mark trainable and frozen parts. Dashed lines zoom from the HiCI Attention box into a large rounded dashed panel on the right. The panel holds three stacked, color-coded stages. At the top, the input sequence is split into segments X1 to Xn. Stage 1, in blue, is Local Construction: shared slots and a bottleneck cross-attention produce local representations L1 to Ln. Stage 2, in cream, is Global Integration: multi-statistical aggregation (μ, μ+, μ−, σ, μ̂) feeds a compression bottleneck, cross-attention and a gate to produce G. Stage 3, in green, is Broadcast and Segment Attention: G and Li are prepended to each segment Xi, which goes into multi-head attention with LoRA. A grid shows the attention mask. Curved arrows connect the stages.",
+ "caption": "Overview of HiCI. Left: HiCI integrated into a Transformer block; trainable components are highlighted. Right: HiCI constructs hierarchical context through three stages. (1) Local Construction: the input sequence is partitioned into $N$ segments, and cross-attention with $M$ learnable query slots extracts a local representation $L_i$ from each segment. (2) Global Integration: local representations $\\{L_i\\}_{i=1}^N$ are aggregated into a shared global context $G$ via multi-view statistical pooling and attention-based weighting. (3) Top-down Broadcast: $G$ and $L_i$ are prepended to each segment's key--value sequence, conditioning attention on hierarchical context while preserving parallelism across segments. At inference, HiCI is optionally applied during prefill, while autoregressive decoding uses standard attention.",
+ "caption_source": "latex",
+ "abstract": "Long-context language modeling is commonly framed as a scalability challenge of token-level attention, yet local-to-global information structuring remains largely implicit in existing approaches. Drawing on cognitive theories of discourse comprehension, we propose HiCI (Hierarchical Construction--Integration), a hierarchical attention module that constructs segment-level representations, integrates them into a shared global context, and broadcasts both to condition segment-level attention. We validate HiCI through parameter-efficient adaptation of LLaMA-2 with only <5.5% additional parameters, extending context from 4K to 100K tokens (7B) and 64K tokens (13B). Across language modeling, retrieval, and instruction-following benchmarks, HiCI yields consistent improvements over strong baselines, including matching proprietary models on topic retrieval and surpassing GPT-3.5-Turbo-16K on code comprehension. These results demonstrate the effectiveness of explicit hierarchical structuring as an inductive bias for long-context modeling.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=fz1c8IihEC",
+  "arxiv": "https://arxiv.org/abs/2603.20843",
+  "pdf": "https://raw.githubusercontent.com/mlresearch/v306/main/assets/zeng26u/zeng26u.pdf",
+  "proceedings": "https://proceedings.mlr.press/v306/zeng26u.html",
+  "virtual": "https://icml.cc/virtual/2026/poster/62506",
+  "code": "https://github.com/zengxyyu/HiCI.git"
+ },
+ "license": "http://creativecommons.org/licenses/by/4.0/",
+ "img": "cc-by",
+ "image_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/images/icml26-4451.png",
+ "thumb_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/thumbs/icml26-4451.webp",
+ "figure_page": 4,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.95
+}

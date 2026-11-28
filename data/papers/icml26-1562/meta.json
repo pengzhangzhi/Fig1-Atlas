@@ -1,0 +1,49 @@
+{
+ "id": "icml26-1562",
+ "title": "Parameters as Experts: Adapting Vision Models with Dynamic Parameter Routing",
+ "authors": [
+  "Meng Lou",
+  "Stanley Yu",
+  "Yizhou Yu"
+ ],
+ "venue": "ICML 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "General Machine Learning->Transfer, Multitask and Meta-learning",
+ "role": "prior-vs-ours",
+ "role2": "analysis-finding",
+ "claim": "Prior adapters use static, input-agnostic weights per layer; ours routes dynamic weights from a shared expert pool, giving better representations.",
+ "layout": "3 panels, left-to-right; architecture diagrams then ERF/CKA heatmap grid",
+ "tags": [
+  "parameter-efficient-fine-tuning",
+  "mixture-of-experts",
+  "dynamic-routing",
+  "adapter",
+  "dense-prediction"
+ ],
+ "style": [
+  "colorful",
+  "icon-heavy",
+  "photo/real data"
+ ],
+ "description": "The figure has three dashed-border panels. Panel (a), in blue, shows a classical adapter stack. A frozen Attention block feeds an Adapter, then a frozen FFN, then another Adapter, with arrows running bottom to top. Each adapter takes a small static weight stack, drawn as three stacked colored pills with a flame icon for trainable. Panel (b), in green, shows ParaX. Routers placed after the Attention and FFN blocks produce dynamic coefficients, drawn as gradient bars. A multiplication node combines these coefficients with a shared expert center, which is a grid of colored pills, to produce dynamic weights for each adapter. A legend marks snowflake as frozen and flame as trainable. Panel (c), in red, shows a 2x4 grid of ERF heatmaps on the top row and CKA matrices on the bottom row. Its columns are Full-tuning, AdaptFormer, Mona and ParaX (Ours), with the last label in red.",
+ "caption": "(a) Classical adapter-based PEFT methods (e.g., Mona [ref]). (b) Our proposed ParaX. Normalization layers and residual connections are omitted for simplicity. (c) The first and second rows show ERF and CKA visualizations for various fine-tuned models, respectively. Specifically, Swin-L model pre-trained on ImageNet-21K is used as the backbone network, which is fine-tuned on the COCO2017 using various fine-tuning methods and the Mask R-CNN framework. Quantitative results are listed in Table [ref].",
+ "caption_source": "latex",
+ "abstract": "Adapting pre-trained vision models using parameter-efficient fine-tuning (PEFT) remains challenging, as it aims to achieve performance comparable to full fine-tuning using a minimal number of trainable parameters. When applied to complex dense prediction tasks, existing methods exhibit limitations, including input-agnostic modeling and redundant cross-layer representations. To this end, we propose ParaX, a new adapter-style method featuring a simple mixture-of-experts (MoE) architecture. Specifically, we introduce shared expert centers, where each expert is a trainable parameter matrix. During a feedforward pass, each ParaX module in the network dynamically generates weight matrices tailored for the current module via a simple dynamic parameter routing mechanism, which selectively aggregates parameter matrices in the corresponding expert center. Dynamic weight matrices in ParaX modules facilitate low-rank adaptation in an input-dependent manner, thus generating more customized and powerful feature representations. Moreover, since ParaX modules across multiple network layers share the same expert center, they improve feature diversity by promoting implicit cross-layer feature interaction. Extensive experimental results demonstrate the superiority of ParaX across diverse visual recognition tasks. Code is publicly released at: https://github.com/LMMMEng/ParaX.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=EukKoqZhvW",
+  "arxiv": "https://arxiv.org/abs/2602.06862",
+  "pdf": "https://raw.githubusercontent.com/mlresearch/v306/main/assets/lou26i/lou26i.pdf",
+  "proceedings": "https://proceedings.mlr.press/v306/lou26i.html",
+  "virtual": "https://icml.cc/virtual/2026/poster/65306",
+  "code": "https://github.com/LMMMEng/ParaX"
+ },
+ "license": "http://creativecommons.org/licenses/by/4.0/",
+ "img": "cc-by",
+ "image_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/images/icml26-1562.png",
+ "thumb_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/thumbs/icml26-1562.webp",
+ "figure_page": 1,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.8
+}

@@ -1,0 +1,57 @@
+{
+ "id": "icml26-0631",
+ "title": "Controlled LLM Training on Spectral Sphere",
+ "authors": [
+  "Tian Xie",
+  "Haoming Luo",
+  "Haoyu Tang",
+  "Hu Yiwen",
+  "Jason Liu",
+  "Qingnan Ren",
+  "Yang Wang",
+  "Xin Zhao",
+  "Rui Yan",
+  "Bing Su",
+  "Chong Luo",
+  "Baining Guo"
+ ],
+ "venue": "ICML 2026",
+ "tier": "oral",
+ "track": "main",
+ "topic": "Optimization->Large Scale, Parallel and Distributed",
+ "role": "analysis-finding",
+ "role2": "teaser-result",
+ "claim": "Optimizers that constrain weights and updates keep activation magnitudes stable and bounded, while the standard baseline lets activations and outliers grow far larger.",
+ "layout": "2 side-by-side line plots, shared x-axis, log-scale y, three colored curves each",
+ "tags": [
+  "training-stability",
+  "activation-control",
+  "optimizer",
+  "outliers",
+  "log-scale-curves"
+ ],
+ "style": [
+  "plot",
+  "colorful"
+ ],
+ "description": "Two side-by-side line charts share the x-axis, training steps (0 to about 24,000), and both use a log-scaled y-axis. Panel (a) plots the attention hidden-state AbsMax, a measure of outliers. Panel (b) plots the FFN hidden-state RMS. Each panel has three curves: AdamW in red, Muon in blue and Spectral Sphere in green, with a legend at the top right. The red AdamW curve shoots up early and stays one to two orders of magnitude above the others. In (a) it peaks near 3000 and decays slowly. In (b) it peaks near 40 and decays to about 7. The blue Muon curve drifts: it rises slowly in (a) and declines steadily in (b). The green Spectral Sphere curve stays nearly flat at about 5 in (a) and about 0.1 in (b). Captions under each panel name the metric. The eye goes first to the red curve far above the other two.",
+ "caption": "Training dynamics of Dense-1.7B activations (log-scaled cross-layer averages). Our Spectral Sphere maintains constant activation magnitudes throughout training because its $\\boldsymbol{\\mu}$P-metrized constraints on the spectral manifold ensure that the activation RMS remains at $\\Theta(1)$ scale. Muon activations show a mild drift due to learning rate decay and weight decay. By contrast, AdamW proves the most unstable, generating significantly larger activations, with attention AbsMax and FFN RMS reaching $\\sim\\!100\\times$ magnitude compared to those spectral optimizers.",
+ "caption_source": "latex",
+ "abstract": "Scaling large models requires optimization strategies that ensure rapid convergence grounded in stability. Maximal Update Parametrization ($\\boldsymbolÎ¼$P) provides a theoretical safeguard for width-invariant $Î(1)$ activation control, whereas emerging optimizers like Muon are only ``half-aligned'' with these constraints: they control updates but allow weights to drift. To address this limitation, we introduce the \\textbf{Spectral Sphere Optimizer (SSO)}, which enforces strict module-wise spectral constraints on both weights and their updates. By deriving the steepest descent direction on the spectral sphere, SSO realizes a fully $\\boldsymbolÎ¼$P-aligned optimization process. To enable large-scale training, we implement SSO as an efficient parallel algorithm within Megatron. Through extensive pretraining on diverse architectures, including Dense 1.7B, MoE 8B-A1B, and 200-layer DeepNet models, SSO consistently outperforms AdamW and Muon. Furthermore, we observe significant practical stability benefits, including improved MoE router load balancing, suppressed outliers, and strictly bounded activations.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=5kTn1c3vtt",
+  "arxiv": "https://arxiv.org/abs/2601.08393",
+  "pdf": "https://raw.githubusercontent.com/mlresearch/v306/main/assets/xie26r/xie26r.pdf",
+  "proceedings": "https://proceedings.mlr.press/v306/xie26r.html",
+  "virtual": "https://icml.cc/virtual/2026/poster/66212",
+  "code": "https://github.com/Unakar/Spectral-Sphere-Optimizer"
+ },
+ "license": "http://arxiv.org/licenses/nonexclusive-distrib/1.0/",
+ "img": "none",
+ "image_url": null,
+ "thumb_url": null,
+ "figure_page": 0,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.55
+}

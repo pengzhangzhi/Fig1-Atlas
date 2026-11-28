@@ -1,0 +1,55 @@
+{
+ "id": "neurips26-6220",
+ "title": "BReD: Block Replay Dithering for Stable Low-Bit EMA Optimizer States",
+ "authors": [
+  "Heshen Zhan",
+  "Youhan Huang",
+  "Yunke Peng",
+  "Yao Wang",
+  "Linghui Kong",
+  "Ziwei Zhu",
+  "Qingyu Han",
+  "Yaoyuan Wang",
+  "Congliang Chen",
+  "Ruoyu Sun"
+ ],
+ "venue": "NeurIPS 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "Optimization->Large Scale, Parallel and Distributed",
+ "role": "analysis-finding",
+ "role2": null,
+ "claim": "Naive rounding lets quantization error accumulate and be amplified through the EMA, while stochastic or dithered rounding keeps it bounded.",
+ "layout": "2 side-by-side line plots, left-to-right, shared Training Step axis, color-coded methods",
+ "tags": [
+  "quantization",
+  "error-accumulation",
+  "ema-dynamics",
+  "diagnostic",
+  "low-precision-training"
+ ],
+ "style": [
+  "plot",
+  "minimal"
+ ],
+ "description": "Two side-by-side line plots share a Training Step x-axis running from 0 to 10,000. Panel (a) plots Error Mean (scale 1e-8). A green line for NR (nearest rounding) climbs sharply and plateaus near 7e-8. Red SR (stochastic rounding) and blue SD (subtractive dithering) lines stay flat near zero. A two-row legend pairs each measured e_mean with the dashed theoretical prediction ε_mean/(1−β2), and the dashed curves overlap the solid ones. Panel (b) plots Log(Norm), the log10 relative error ‖e_t‖/‖s_t‖. Green NR rises to about 2.5, while red SR and blue SD stay near −0.5, with SD slightly lower. Subcaptions sit under each panel. The eye goes first to the green curve separating from the other two.",
+ "caption": "In-training diagnostics for the quantized-EMA error model. During LLaMA-120M AdamW pretraining, we track the accumulated state error $e_t$ and injected write-back error $\\epsilon_t$ for the second-moment state. (a) The measured mean error follows $\\mathbb{E}[\\epsilon_t]/(1-\\beta_2)$ after the transient, consistent with EMA amplification of rounding bias. (b) NR accumulates large relative error, whereas SR and SD maintain bounded relative errors in this diagnostic, with SD slightly smaller.",
+ "caption_source": "latex",
+ "abstract": "Low-bit storage of optimizer states can substantially reduce the memory footprint of large-scale training. In practice, however, these states are not quantized once: at every training step, they are dequantized, updated, requantized, and written back. This iterative quantization pipeline can destabilize training. We identify a failure mode behind this instability: for states updated via exponential moving averages (EMAs), quantization errors are recursively fed into subsequent updates. As a result, biased errors accumulate over time while high-variance errors are amplified, particularly when the EMA decay factor is close to 1. To address this error accumulation, we propose BReD (Block Replay Dithering), a method that reduces rounding bias and controls rounding variance during quantization. BReD adapts classical subtractive dithering to optimizer-state quantization by combining deterministic seed replay with block-wise shared dither values, avoiding auxiliary random-tensor storage and per-element dither values generation. Across the default pretraining settings (five optimizers at 120M; AdamW and Muon at 1.1B and 3.4B model) and supervised fine-tuning (AdamW and Muon at 7B model), 4-bit BReD closely matches training with full-precision optimizer states, with PPL shifts $\\leq0.5$ in pretraining and $\\leq0.2$ in fine-tuning and average downstream performance changes within 0.7 points. Moreover, 3-bit BReD preserves stable convergence in the evaluated settings, offering a more aggressive alternative. Our implementation of BReD is available at: https://github.com/ZhanHeshen/BReD",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=gnKli42BZO",
+  "arxiv": "https://arxiv.org/abs/2611.33951",
+  "pdf": "https://arxiv.org/pdf/2611.33951",
+  "proceedings": null,
+  "virtual": "https://neurips.cc/virtual/2026/poster/150618",
+  "code": "https://github.com/ZhanHeshen/BReD"
+ },
+ "license": "http://creativecommons.org/licenses/by/4.0/",
+ "img": "cc-by",
+ "image_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/images/neurips26-6220.png",
+ "thumb_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/thumbs/neurips26-6220.webp",
+ "figure_page": 3,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.6
+}

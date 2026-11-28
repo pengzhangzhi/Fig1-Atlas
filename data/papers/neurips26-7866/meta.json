@@ -1,0 +1,49 @@
+{
+ "id": "neurips26-7866",
+ "title": "LARGO: Low-Rank Hypernetwork for Handling Missing Modalities",
+ "authors": [
+  "Niels Vyncke",
+  "Pooya Ashtari",
+  "Aleksandra Pizurica"
+ ],
+ "venue": "NeurIPS 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "Computer Vision->Vision Models & Multimodal",
+ "role": "pipeline",
+ "role2": "overview-framework",
+ "claim": "Many dedicated per-case models can be compressed into one network by factorizing stacked weights, reconstructing only the needed model's weights at inference.",
+ "layout": "2 rows: network-level flow left-to-right, then 3 numbered steps; tensor-network diagrams",
+ "tags": [
+  "hypernetwork",
+  "tensor-decomposition",
+  "weight-space",
+  "model-compression",
+  "missing-modalities"
+ ],
+ "style": [
+  "colorful",
+  "math-heavy",
+  "icon-heavy"
+ ],
+ "description": "The figure has two parts. The top part, (a), is a network-level diagram. On the left are several dedicated models, one per subset of available input modalities. Each model is a column of stem, convolution and head blocks. Grey placeholder images show missing inputs, and brain MRI slices show available ones. Green dashed bands highlight the convolution layers. Green arrows lead from these layers to a dashed box showing a tensor-network picture of the stacked weight W being split by CPD into factors A, B, C and D. Purple arrows then lead to a single purple hypernetwork column with LRConv layers. Its inputs are marked with question marks, and it outputs a segmentation. The bottom part, (b), has three numbered panels: stack the kernels, factorize with CP, and reconstruct only the kernel for subset m. Colored circles represent the tensor factors, and equations appear under each panel.",
+ "caption": "Illustration of LARGO. \\rev{(a)} The dedicated models $\\tns{F}_{\\vct{\\theta}^{(m)}}$ for each missing-modality case $m=1,...,M$ are compressed into a single hypernetwork $\\tns{H}_{\\vct{\\varphi}}$, by representing the kernel weights $\\tns{W}$ of their convolutional layers using CPD decomposition, which we refer to as low-rank convolutional layers (LRConv). The stem and head layers remain uncompressed. \\rev{(b) For each such layer, (1) the kernels of the $M=2^N-1$ dedicated models are stacked along a new model mode into $\\tns{W}$; (2) $\\tns{W}$ is factorized with the CP decomposition into a model factor $\\mtx{A}$ and kernel factors $\\mtx{B},\\mtx{C},\\mtx{D}$, trained jointly from scratch; (3) at inference, the available subset $m$ selects row $\\mtx{A}_{m,:}$, and only the kernel $\\tns{W}^{(m)}$ of that subset is reconstructed.}",
+ "caption_source": "latex",
+ "abstract": "Addressing missing modalities is an important challenge in multimodal image analysis and often relies on complex architectures that do not transfer easily to different datasets without architectural modifications or hyperparameter tuning. While most existing methods tackle this problem in feature space by engineering representations that are robust to missing inputs, we instead operate in weight space. We propose LARGO, a hypernetwork that compresses the $2^N-1$ dedicated missing-modality models into a single network by modelling the convolutional weights using the Canonical Polyadic (CP) tensor decomposition. Extensive experimental validation on BraTS 2018 (4 modalities, 15 scenarios) and ISLES 2022 (3 modalities, 7 scenarios) shows that our method ranks first in 47 out of 52 configurations, achieving average Dice improvements of +0.68$\\%$ and +2.53$\\%$ over state-of-the-art baselines (mmFormer, M$^{3}$AE, ShaSpec, SimMLM). A proof-of-concept experiment on avMNIST suggests that LARGO may extend beyond medical imaging to heterogeneous non-medical modalities. Code is available at https://github.com/nielsvyncke/LARGO.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=sRYobtj67O",
+  "arxiv": "https://arxiv.org/abs/2605.06086",
+  "pdf": "https://arxiv.org/pdf/2605.06086",
+  "proceedings": null,
+  "virtual": "https://neurips.cc/virtual/2026/poster/149154",
+  "code": null
+ },
+ "license": "http://creativecommons.org/licenses/by/4.0/",
+ "img": "cc-by",
+ "image_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/images/neurips26-7866.png",
+ "thumb_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/thumbs/neurips26-7866.webp",
+ "figure_page": 1,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.85
+}

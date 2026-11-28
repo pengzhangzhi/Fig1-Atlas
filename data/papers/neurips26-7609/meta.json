@@ -1,0 +1,52 @@
+{
+ "id": "neurips26-7609",
+ "title": "Reinforcement Learning for Code Optimization",
+ "authors": [
+  "Pierre Chambon",
+  "Kunhao Zheng",
+  "Juliette Decugis",
+  "Benoît Sagot",
+  "Gabriel Synnaeve"
+ ],
+ "venue": "NeurIPS 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "Reinforcement Learning->Deep RL",
+ "role": "pipeline",
+ "role2": "teaser-result",
+ "claim": "Making a noisy, sparse signal learnable takes a full stack of coordinated stages, which together beat standard training on the headline metric.",
+ "layout": "Dense multi-band flow, left-to-right then right-to-left; side result panel with two plots",
+ "tags": [
+  "reinforcement-learning",
+  "reward-design",
+  "asynchronous-training",
+  "code-optimization",
+  "system-diagram"
+ ],
+ "style": [
+  "icon-heavy",
+  "text-heavy",
+  "colorful",
+  "plot"
+ ],
+ "description": "A dense system diagram on a beige and teal palette with numbered black circles (1–6) marking stages. The top band runs left to right. Problems from the DMC-Optim dataset feed LLM inference workers. Their output goes into an optimization-RL environment with three sub-stages (pre, intra and post), and then into a reward module that takes the signals c, g and q and combines them. The environment also talks to a remote isolated CPU box and a duration-calibration box. At top left, an offline simulator with a small pass-rate curve feeds configs back into the environment through a dotted line. A transfer queue then passes the reward to a bottom trainer band that runs right to left: grouped advantage, freshness filter, token packing, clipped GRPO loss and optimizer step. Dashed arrows broadcast weights back to the workers. A right-hand Result panel shows two line plots, for Qwen 2.5 7B and CWM 32B, where the teal 'ours' curve rises far above the grey standard-RLVR line. A legend at the bottom explains the line styles.",
+ "caption": "Making execution time learnable for RL. A DMC-Optim problem is sampled and the LLM generates candidate solutions. All RL environments we introduce share the same evaluation pipeline, but differ in where they inject optimization pressure. First, each candidate solution can be evaluated on standard correctness tests, but also generated large-input optimization tests (1); pre-execution environments may filter optimization tests in or out using test-level criteria. Execution of a solution on these tests is then run on a calibrated remote execution service (2); intra-execution environments apply additional per-test time limits. Finally, post-execution environments can leverage the returned recorded per-test durations for instance to compare them against calibrated human reference distributions. The environment (3) returns whether all correctness tests pass ($c$), whether the optimization tests pass ($g$), and a potential aggregated scalar quality score $q$ (which can in practice also be gated and incorporated into $g$). The three signals, correctness gate $c$, optimization gate $g$, and quality score $q$, feed into one of several reward compositions (4). An offline RL simulator (6, top left) evaluates candidate environments by replaying reference human solutions. The most promising environment-reward pairs are used in properly tuned online asynchronous GRPO training (5, bottom), and the best optimization-RL setting reaches strict DMC-Optim pass@$1$ at \\(p_{30}\\) of 19.1% on Qwen 2.5 7B and 30.9% on CWM 32B after 10k steps, vs 7.7% and 13.7% for standard RLVR.",
+ "caption_source": "latex",
+ "abstract": "RL for code correctness is now established: have the model generate a program, run it against hidden test cases, and reward solutions that pass. Extending this to code optimization seems straightforward: just add execution time to the reward. But in practice, once timing drives the reward, small problems in measurement noise, reward sparsity, or GRPO instability overwhelm the signal and make RL fail: generated solutions are barely faster, and more of them can fail. We make execution time learnable through three stages: (1) how code is tested, by building DMC-Optim with large optimization tests and a calibrated sandbox; (2) how speed is turned into reward, by composing correctness and speed in the RL environment and using an offline simulator to predict the most promising configurations; and (3) how the model learns from that reward, by adapting GRPO and evaluation to the sparser, noisier timed-execution setting. On DMC-Optim, the strongest optimization-aware configurations improve strict top-50% pass@1 from 18.0% to 31.3% on Qwen 2.5 7B and from 30.7% to 50.4% on CWM 32B. These gains further increase at stricter percentiles such as top-30%, with 125% relative improvement for CWM 32B, while preserving pure-correctness scores. When the timing sandbox is degraded, robust optimization RL reaches 100% to 200% improvement over standard RLVR, depending on the evaluation criterion. On LCB, CWM 32B wins up to 83% of median-sample speed comparisons against standard RLVR. Relative to the fastest correct human submissions per problem, it reaches about half the human rate of complexity-class improvements (13% vs. 22%).",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=qRPKxKFqhP",
+  "arxiv": "https://arxiv.org/abs/2607.25970",
+  "pdf": "https://arxiv.org/pdf/2607.25970",
+  "proceedings": null,
+  "virtual": "https://neurips.cc/virtual/2026/poster/149385",
+  "code": null
+ },
+ "license": "http://creativecommons.org/licenses/by/4.0/",
+ "img": "cc-by",
+ "image_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/images/neurips26-7609.png",
+ "thumb_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/thumbs/neurips26-7609.webp",
+ "figure_page": 1,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.85
+}

@@ -1,0 +1,48 @@
+{
+ "id": "neurips26-5458",
+ "title": "Activation-Keyed Momentum: An Anisotropic Momentum Update via the Delta Rule",
+ "authors": [
+  "Euijin Hong",
+  "Guannan Qu"
+ ],
+ "venue": "NeurIPS 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "Optimization->Neural Network Optimization",
+ "role": "teaser-result",
+ "role2": null,
+ "claim": "Our modified optimizer reaches the baseline's validation loss in substantially fewer steps, consistently across model scales.",
+ "layout": "3 panels side-by-side, one per model scale; dotted line marks step saving",
+ "tags": [
+  "optimizer",
+  "momentum",
+  "training-efficiency",
+  "scaling",
+  "loss-curves"
+ ],
+ "style": [
+  "plot",
+  "minimal",
+  "colorful"
+ ],
+ "description": "Three side-by-side line plots of validation loss against training step, one for each model size: (a) 67M with 3 seeds on 10BT, (b) 370M with 3 seeds on 10BT, (c) 1B with 1 seed on 20BT. Each panel compares two curves, an orange baseline (AdamW) and a blue method (AK-AdamW), with legends at top right. The blue curve sits below the orange one throughout. A horizontal dotted black line with two dots joins the two curves at the same loss level, showing how many fewer steps the blue method needs. A text label above each panel gives the maximum step saving (4,659, 2,059 and 2,836). The 67M panel has faint shaded seed bands, and the gap is largest there. Light grid, serif fonts, and subpanel captions below.",
+ "caption": "Validation loss against optimizer step on FineWeb-Edu. Curves at 67M and 370M are seed means with per-seed bands, and the 1B curve, on a Chinchilla-optimal budget (Appendix [ref]), is a single seed. The annotation marks the largest step saving over matched validation-loss levels, measured on the seed-mean curve, and curves are cropped at the left to omit the early high-loss region.",
+ "caption_source": "latex",
+ "abstract": "Most modern optimizers form their momentum as an exponential moving average (EMA) of past gradients, forgetting every direction at one fixed rate. However, the inputs a deep network sees during training can be highly anisotropic, with a few directions queried frequently while most are seen rarely. Preconditioning methods address this anisotropy by wrapping extra processing around this buffer and leave the momentum update itself unchanged. We propose Activation-Keyed Momentum (AK-Momentum), which builds direction-awareness into the momentum update rule. The gradient of a linear layer splits into an input activation that acts as a $\\textit{key}$ and an output-side error that acts as a $\\textit{value}$. Keying on that activation, AK-Momentum updates the momentum buffer by the canonical delta rule, so each direction is forgotten at a rate set by how often it appears. We prove that it is a valid momentum, that it applies the input-side curvature correction without matrix inversion, and that it clears stale directions faster than EMA under both a fixed and a drifting optimum. It is a drop-in replacement for the momentum buffer of any optimizer, its coefficient transfers across widths under $Î¼$P, and its extra compute stays between $22.2\\%$ and $25.0\\%$ of a gated-MLP block's linear cost with no persistent memory. In FineWeb-Edu pretraining, AdamW with AK-Momentum (AK-AdamW) reaches AdamW's validation loss in up to $46.64 \\pm 4.52\\%$ fewer steps at 67M and $22.14 \\pm 0.81\\%$ at 370M over three seeds, and the gain persists at 1B on a Chinchilla-optimal budget. A Muon baseline tuned under the same protocol sits above AK-AdamW at both language-model scales, and the gain holds for SGD, ResNet-18, and ViT-Tiny on CIFAR-10. Training-time diagnostics confirm the predicted mechanism, better gradient tracking and healthier input directions. Code is available at https://github.com/euijinh/AK-Momentum.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=bXrZIgeNoe",
+  "arxiv": "https://arxiv.org/abs/2608.19491",
+  "pdf": "https://arxiv.org/pdf/2608.19491",
+  "proceedings": null,
+  "virtual": "https://neurips.cc/virtual/2026/poster/151284",
+  "code": "https://euijinh.github.io/posts/2026/ak-momentum/"
+ },
+ "license": "http://arxiv.org/licenses/nonexclusive-distrib/1.0/",
+ "img": "none",
+ "image_url": null,
+ "thumb_url": null,
+ "figure_page": 7,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.8
+}

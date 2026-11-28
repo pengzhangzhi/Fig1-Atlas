@@ -1,0 +1,55 @@
+{
+ "id": "icml26-3282",
+ "title": "Beyond Prediction: Tail-Aware Scheduling for LLM Inference",
+ "authors": [
+  "Yueying Li",
+  "Yuanfan Chen",
+  "Jiayang Chen",
+  "Esha Choukse",
+  "Haoran Qiu",
+  "Edward Suh",
+  "Rodrigo Fonseca",
+  "Ziv Scully",
+  "Udit Gupta"
+ ],
+ "venue": "ICML 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "Deep Learning->Large Language Models",
+ "role": "analysis-finding",
+ "role2": "problem-setup",
+ "claim": "Request lengths in real workloads are heavy-tailed and bimodal, with decode far longer and more variable than prefill, so size-based scheduling is hard.",
+ "layout": "2x2 grid, CDF left and histogram right, per-workload rows",
+ "tags": [
+  "length-variability",
+  "heavy-tail",
+  "workload-characterization",
+  "cdf",
+  "llm-serving"
+ ],
+ "style": [
+  "plot",
+  "colorful",
+  "photo/real data"
+ ],
+ "description": "A 2x2 grid of plots with two workload rows. Row (a) is the s1k reasoning workload. Row (b) is a mixture of reasoning and non-reasoning requests, 10k samples from Azure traces. The left column of each row is a CDF of tokens per request, and the right column is a histogram of the token distribution. Prefill tokens are drawn as a solid blue line and decode tokens as a dashed orange line. Vertical dotted lines mark percentile values, each labeled with a rotated number such as 8796, 17445, 6360 or 16376. In row (a) the x-axes are linear in the CDF and log in the histogram. In row (b) both are log scale. The blue prefill curves cluster at small values (about 10 to 400 tokens). The orange decode curves spread over thousands to tens of thousands of tokens, and in row (b) they split into two modes. Subcaptions (a) and (b) sit below each row. The eye goes first to the contrast between the blue and orange curves.",
+ "caption": "Distribution of different requests, the four vertical lines",
+ "caption_source": "pdf",
+ "abstract": "LLM serving exhibits extreme length variability, making size-based scheduling difficult in practice. Recent LLM schedulers approximate SJF/SRPT using predicted decode lengths or ranks and primarily report mean-centric metrics such as TTFT and TBT. We show that these prediction-driven policies can be fragile under distribution shifts, bursty arrivals, and GPU memory pressure, while offering limited control over the tail latency (P90-P99) that dominates user experience, even with perfect decode-length knowledge. We introduce a distribution-aware, prediction-free scheduling framework that replaces explicit length prediction with soft priority boosting driven by lightweight statistical signals. Our design co-optimizes scheduling and cache-aware preemption to account for memory-coupled decode dynamics across workload mixes. Evaluated on production and open-source traces, our method reduces P99 TTLT by up to 35-50% relative to SRPT with perfect length knowledge and reduces TTFT by 34-47% across workloads, including reasoning-heavy and chat-heavy tasks. These results demonstrate a robust alternative for optimizing tail latency in online LLM serving.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=V40F5O5N85",
+  "arxiv": "https://arxiv.org/abs/2606.18431",
+  "pdf": "https://raw.githubusercontent.com/mlresearch/v306/main/assets/li26n/li26n.pdf",
+  "proceedings": "https://proceedings.mlr.press/v306/li26n.html",
+  "virtual": "https://icml.cc/virtual/2026/poster/63644",
+  "code": "https://yl3469.github.io/uniboost-icml26"
+ },
+ "license": "http://creativecommons.org/licenses/by/4.0/",
+ "img": "cc-by",
+ "image_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/images/icml26-3282.png",
+ "thumb_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/thumbs/icml26-3282.webp",
+ "figure_page": 1,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.8
+}

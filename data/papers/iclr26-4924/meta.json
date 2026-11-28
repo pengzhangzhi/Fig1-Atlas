@@ -1,0 +1,53 @@
+{
+ "id": "iclr26-4924",
+ "title": "MotionStream: Real-Time Video Generation with Interactive Motion Controls",
+ "authors": [
+  "Joonghyuk Shin",
+  "Zhengqi Li",
+  "Richard Zhang",
+  "Jun-Yan Zhu",
+  "Jaesik Park",
+  "Eli Shechtman",
+  "Xun Huang"
+ ],
+ "venue": "ICLR 2026",
+ "tier": "oral",
+ "track": "main",
+ "topic": "Computer Vision->Image and Video Generation",
+ "role": "prior-vs-ours",
+ "role2": "teaser-result",
+ "claim": "Prior methods generate fixed-length video offline and slowly; ours streams infinite-length video in real time and enables interactive applications.",
+ "layout": "Left contrast panel (top prior, bottom ours) plus right three application panels; dashed dividers",
+ "tags": [
+  "streaming",
+  "real-time",
+  "autoregressive",
+  "distillation",
+  "video-generation"
+ ],
+ "style": [
+  "colorful",
+  "photo/real data",
+  "icon-heavy"
+ ],
+ "description": "The left half contrasts two pipelines separated by a horizontal dashed line. At top, fixed-length input tracks and an input frame with a text prompt feed an orange G_teacher block (bidirectional diffusion), producing a short fixed-length ballerina video, labeled 0.79 FPS and 103s latency. At bottom, streaming input tracks feed a blue G_student block (autoregressive), producing a shrinking sequence of frames that trails off to an infinity symbol, labeled in red as 29.5 FPS and 0.39s latency. A vertical dashed line separates the right half, which shows three application examples: (a) online motion transfer from a face-track video to a sketch portrait, (b) real-time drag-based control on a child's face with a mouse icon, and (c) real-time camera control on a beach scene with a camera icon. Red text highlights the ours-side labels.",
+ "caption": "Prior motion-controlled video diffusion models typically operate offline to generate fixed-length sequences in parallel (top left). In contrast, our \\methodname enables streaming long-video generation from a single image with track control at interactive speed (bottom left). \\methodname can be applied to a variety of online downstream applications, such as real-time motion transfer, user drag operations, and 3D camera control (right).",
+ "caption_source": "latex",
+ "abstract": "Current motion-conditioned video generation methods suffer from prohibitive latency (minutes per video) and non-causal processing that prevents real-time interaction. We present MotionStream, enabling sub-second latency with up to 29 FPS streaming generation on a single GPU. Our approach begins by augmenting a text-to-video model with motion control, which generates high-quality videos that adhere to the global text prompt and local motion guidance, but does not perform inference on the fly. As such, we distill this bidirectional teacher into a causal student through Self Forcing with Distribution Matching Distillation, enabling real-time streaming inference. Several key challenges arise when generating videos of long, potentially infinite time-horizons -- (1) bridging the domain gap from training on finite length and extrapolating to infinite horizons, (2) sustaining high quality by preventing error accumulation, and (3) maintaining fast inference, without incurring growth in computational cost due to increasing context windows. A key to our approach is introducing carefully designed sliding-window causal attention, combined with attention sinks. By incorporating self-rollout with attention sinks and KV cache rolling during training, we properly simulate inference-time extrapolations with a fixed context window, enabling constant-speed generation of arbitrarily long videos. Our models achieve state-of-the-art results in motion following and video quality while being two orders of magnitude faster, uniquely enabling infinite-length streaming. With MotionStream, users can paint trajectories, control cameras, or transfer motion, and see results unfold in real-time, delivering a truly interactive experience.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=v1DKz5Vxr7",
+  "arxiv": "https://arxiv.org/abs/2511.01266",
+  "pdf": "https://proceedings.iclr.cc/paper_files/paper/2026/file/0cece806cd3d1dfad4a893f016ad3d7d-Paper-Conference.pdf",
+  "proceedings": "https://proceedings.iclr.cc/paper_files/paper/2026/hash/0cece806cd3d1dfad4a893f016ad3d7d-Abstract-Conference.html",
+  "virtual": "https://iclr.cc/virtual/2026/poster/10006849",
+  "code": "https://joonghyuk.com/motionstream-web/"
+ },
+ "license": "http://creativecommons.org/licenses/by-nc-sa/4.0/",
+ "img": "cc-by-nc-sa",
+ "image_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/images/iclr26-4924.png",
+ "thumb_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/thumbs/iclr26-4924.webp",
+ "figure_page": 0,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.6
+}

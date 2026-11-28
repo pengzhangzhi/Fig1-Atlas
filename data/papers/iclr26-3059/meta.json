@@ -1,0 +1,53 @@
+{
+ "id": "iclr26-3059",
+ "title": "Large Language Model Compression with Global Rank and Sparsity Optimization",
+ "authors": [
+  "Changhai Zhou",
+  "Qian Qiao",
+  "Yuhua Zhou",
+  "Yuxin Wu",
+  "Shichao Weng",
+  "WEIZHONG ZHANG",
+  "Cheng Jin"
+ ],
+ "venue": "ICLR 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "Optimization->Learning for Optimization",
+ "role": "pipeline",
+ "role2": null,
+ "claim": "A two-stage decomposition into low-rank and sparse parts, each pruned by learned probabilistic sampling trained end-to-end through policy gradient.",
+ "layout": "1 panel, left-to-right flow, dashed policy-gradient feedback loops around the border",
+ "tags": [
+  "model-compression",
+  "low-rank-sparse",
+  "policy-gradient",
+  "bernoulli-sampling",
+  "pipeline"
+ ],
+ "style": [
+  "colorful",
+  "icon-heavy",
+  "math-heavy"
+ ],
+ "description": "A single wide diagram that reads left to right. A weight matrix W, drawn as a blue heatmap grid, is approximated (≈) by a sparse matrix S and a low-rank matrix L using robust PCA. The upper lavender band, Sparse Matrix Pruning, shows S multiplied element-wise by a binary mask m_s. A yellow box of probability scores feeds Bernoulli sampling to produce the mask. The lower green band, Low-rank Matrix Pruning, runs L through SVD into U, diag(σ⊙m_σ) and V^T, with its own probability-score and sampling box. On the right, an orange block adds the pruned S' to the factorized L' (U', V'). Input tokens X1–X3 feed the block, giving an output O. O goes to a LOSS box, compared with target X4. Yellow dashed policy-gradient arrows loop from the loss back to both probability-score boxes. A legend at lower left explains the symbols.",
+ "caption": "Overview of our proposed compression method. The weight matrix $W$ is decomposed into a low-rank component $L$ and a sparse component $S$ using RPCA. Both components are pruned through Bernoulli sampling guided by learned probability scores, optimized via policy gradient. The low-rank component is further factorized into $U'$ and $V'$ to reduce the number of model parameters.",
+ "caption_source": "latex",
+ "abstract": "Low-rank and sparse composite approximation is a natural idea to compress Large Language Models (LLMs). However, such an idea faces two primary challenges that adversely affect the performance of existing methods. The first challenge relates to the interaction and cooperation between low-rank and sparse matrices, while the second involves determining weight allocation across different layers, as redundancy varies considerably among them. To address these challenges, we propose a novel two-stage LLM compression method with the capability of global resource allocation for rank and sparsity. It is noteworthy that the overall optimization space is vast, making comprehensive optimization computationally prohibitive. Therefore, to reduce the optimization space, our first stage utilizes robust principal component analysis to decompose the weight matrices of LLMs into low-rank and sparse components, which span the low dimensional and sparse spaces containing the resultant low-rank and sparse matrices, respectively. In the second stage, we propose a probabilistic global allocation strategy to jointly identify the low-rank and sparse structures within the above two spaces. The appealing feature of our approach is its ability to automatically detect the redundancy across different layers and to manage the interaction between the sparse and low-rank components. Extensive experimental results indicate that our method significantly surpasses state-of-the-art techniques for sparsification and composite approximation.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=ZaPmQ0NHs4",
+  "arxiv": "https://arxiv.org/abs/2505.03801",
+  "pdf": "https://proceedings.iclr.cc/paper_files/paper/2026/file/bb1e9f32181a8d6a834670d5b3e1c48d-Paper-Conference.pdf",
+  "proceedings": "https://proceedings.iclr.cc/paper_files/paper/2026/hash/bb1e9f32181a8d6a834670d5b3e1c48d-Abstract-Conference.html",
+  "virtual": "https://iclr.cc/virtual/2026/poster/10008795",
+  "code": null
+ },
+ "license": "http://arxiv.org/licenses/nonexclusive-distrib/1.0/",
+ "img": "none",
+ "image_url": null,
+ "thumb_url": null,
+ "figure_page": 2,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.95
+}

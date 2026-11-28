@@ -1,0 +1,57 @@
+{
+ "id": "icml26-5787",
+ "title": "Identifying and Mitigating Errors in Gradient Aggregation of Distributed Data Parallel Training",
+ "authors": [
+  "Zhenheng Tang",
+  "Junlin Huang",
+  "Zichen TANG",
+  "Xueze Kang",
+  "Yuxin Wang",
+  "Peijie Dong",
+  "Shaohuai Shi",
+  "Xiaowen Chu",
+  "Bo Li"
+ ],
+ "venue": "ICML 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": null,
+ "role": "problem-setup",
+ "role2": "concept",
+ "claim": "Hardware bit corruption during inter-device communication silently injects noise into aggregated values, regardless of the collective communication topology.",
+ "layout": "3 panels: large left multi-machine graph, right ring and tree topologies, red noise arrows",
+ "tags": [
+  "silent-data-corruption",
+  "gradient-aggregation",
+  "fault-tolerance",
+  "distributed-training",
+  "failure-mode"
+ ],
+ "style": [
+  "icon-heavy",
+  "minimal",
+  "colorful"
+ ],
+ "description": "The figure shows how a corrupted transfer enters distributed training. On the left, two dashed gray boxes labeled Machine 1 and Machine 2 each hold four chip icons joined by black double-headed arrows. Red arrows mark corrupted links. One red arrow is labeled 'Send 1.0' and arrives as 'Receive -0.98', and another is labeled 'Send 2.0' and arrives as 'Receive 1.5'. Callouts labeled 'Bit Corruption' and 'Noise' point at these links. On the right, two small topologies show the same error in other collectives. Ring-Allreduce has four chips in a cycle with one red noisy link. Tree-Allreduce has a binary tree of chips with several red noisy edges. The red-on-black color contrast draws the eye to the corrupted links first. The lower-right Tree-Allreduce label is slightly clipped at the bottom.",
+ "caption": "SDC errors lead to GA errors during distributed train-",
+ "caption_source": "pdf",
+ "abstract": "Hardware-related silent data corruptions during gradient aggregation pose significant challenges to fault-tolerant distributed training, often leading to slow or failed convergence. To address this, we first mathematically formulate these errors as gradient inconsistency and theoretically analyze how they result in accumulated model divergence. Guided by this analysis, we introduce PAFT, a fault-tolerant distributed training system designed with dynamic and asynchronous parameter synchronization. PAFT comprises two core components: PAFT-Sync, which mitigates divergence via periodic synchronization, and PAFT-Dyn, which minimizes overhead through dynamic training overlap and frequency scheduling. Furthermore, the system’s synchronization mechanism is optimized to support standard optimizers, including SGD, SGD momentum, and Adam. We implement PAFT on PyTorch Distributed, and experimental results training ResNet, GPT-2, and LLaMA-2 on 4$\\sim$32 GPUs demonstrate that it efficiently defends against aggregation errors while maintaining training performance.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=sbjXtQrAt1",
+  "arxiv": null,
+  "pdf": "https://raw.githubusercontent.com/mlresearch/v306/main/assets/tang26g/tang26g.pdf",
+  "proceedings": "https://proceedings.mlr.press/v306/tang26g.html",
+  "virtual": "https://icml.cc/virtual/2026/poster/61215",
+  "code": null
+ },
+ "license": null,
+ "img": "none",
+ "image_url": null,
+ "thumb_url": null,
+ "figure_page": 1,
+ "qc_flags": [
+  "bad-crop"
+ ],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.82
+}

@@ -1,0 +1,53 @@
+{
+ "id": "neurips26-5429",
+ "title": "PermuQuant: Lowering Per-Group Quantization Error by Reordering Channels for Diffusion Models",
+ "authors": [
+  "Yongsen Cheng",
+  "Kai Liu",
+  "Kaiwen Tao",
+  "Junxian Li",
+  "Zhixin Wang",
+  "Zhikai Chen",
+  "Renjing Pei",
+  "Yulun Zhang"
+ ],
+ "venue": "NeurIPS 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "Computer Vision->Image and Video Generation",
+ "role": "concept",
+ "role2": "prior-vs-ours",
+ "claim": "Grouping values with very different magnitudes lets one outlier inflate the shared scale and error; grouping similar values shrinks it.",
+ "layout": "2 stacked rows, top-to-bottom, numeric blocks above quantization-grid number lines",
+ "tags": [
+  "quantization",
+  "channel-reordering",
+  "outlier",
+  "per-group-scaling",
+  "efficiency"
+ ],
+ "style": [
+  "minimal",
+  "colorful"
+ ],
+ "description": "Two stacked panels, each showing a token's eight numeric values in two dotted-outline boxes labeled Group 1 and Group 2. Cell shading goes from light to dark blue as magnitude grows. The top panel, 'Token x', has the original order, with the outlier 9.8 in Group 1 next to 0.3, 0.7 and 2.3. Under it a number line, 'Quantization grid of Group 1', is stretched out to 9.8. Cyan dots mark the small values, which land far from the grid ticks. An orange arrow labeled 'Outlier' points at 9.8, and a blue brace labeled 'Large Error' in red sits at the left end. The bottom panel, 'Reordered', swaps channels so Group 1 holds only small values (0.3, 0.7, 1.5, 0.4). Its grid ends at 1.5 with a fine step of 0.21, and the brace is labeled 'Small Error'. The eye goes first to the top row's colored blocks and the orange outlier.",
+ "caption": "Example of per-group quantization. Quantization error is greatly affected by channel orders.",
+ "caption_source": "latex",
+ "abstract": "Large-scale visual generative models have achieved remarkable performance. However, their high computational and memory costs make deployment challenging in resource-constrained scenarios, such as interactive applications and personal single-GPU usage. Post-training quantization (PTQ) offers a practical solution by compressing pretrained models without expensive retraining. However, existing PTQ methods still suffer from severe quality degradation under extremely low-bit settings. In this paper, we identify channel ordering as an important but underexplored factor in per-group quantization. In this setting, each contiguous group shares one quantization scale. When channels with very different statistics are placed in the same group, the scale can be dominated by outliers and cause large quantization errors. Based on this observation, we propose PermuQuant, a simple and effective PTQ framework for low-bit diffusion models. PermuQuant sorts channels by a joint second-moment criterion before per-group quantization, placing channels with similar activation and weight statistics into the same group. It further uses a calibration-based acceptance rule to apply reordering only when the selected permutation reduces quantization error on calibration data. The selected permutations are absorbed into adjacent modules or applied to weights offline, avoiding explicit runtime permutation operations. Extensive experiments on multiple large diffusion models show that PermuQuant consistently reduces quantization error and outperforms existing PTQ baselines. On FLUX.1-dev with an RTX 5090, PermuQuant achieves up to a 1.7$\\times$ single step speedup and reduces the DiT memory footprint by 3.5$\\times$ under W4A4 NVFP4 quantization. Code will be available at https://github.com/yscheng04/PermuQuant.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=bQr7RtVC2C",
+  "arxiv": "https://arxiv.org/abs/2605.09503",
+  "pdf": "https://arxiv.org/pdf/2605.09503",
+  "proceedings": null,
+  "virtual": "https://neurips.cc/virtual/2026/poster/151313",
+  "code": "https://github.com/yscheng04/PermuQuant"
+ },
+ "license": "http://creativecommons.org/licenses/by/4.0/",
+ "img": "cc-by",
+ "image_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/images/neurips26-5429.png",
+ "thumb_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/thumbs/neurips26-5429.webp",
+ "figure_page": 1,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.7
+}

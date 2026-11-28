@@ -1,0 +1,51 @@
+{
+ "id": "neurips26-1316",
+ "title": "FTerViT: Fully Ternary Vision Transformer",
+ "authors": [
+  "Szymon Ruciński",
+  "Pietro Bonazzi",
+  "Engin Turetken",
+  "Simon Narduzzi",
+  "Michele Magno",
+  "Nadim Maamari"
+ ],
+ "venue": "NeurIPS 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "Computer Vision->Classification and Understanding",
+ "role": "teaser-result",
+ "role2": "analysis-finding",
+ "claim": "Fully quantizing every component, not just the encoder, yields much smaller models at higher accuracy than prior low-bit methods.",
+ "layout": "2 panels: scatter plot left, stacked bars right; red callout box highlights ours",
+ "tags": [
+  "quantization",
+  "model-compression",
+  "efficiency",
+  "pareto-tradeoff",
+  "memory-footprint"
+ ],
+ "style": [
+  "plot",
+  "colorful"
+ ],
+ "description": "Two side-by-side plots. Panel (a) is a log-x scatter of ImageNet-1K top-1 accuracy against on-device model size in MB. Baselines appear as grey-blue circles, a green diamond, a tan triangle, purple inverted triangles and a grey plus, each labeled by method and bit-width. Red stars for the proposed model sit at the top left, with a red curved arrow pointing to them from a red-bordered callout box listing three accuracy and size results. A dotted red annotation reads '+3.27 pp vs TerViT', and a grey double arrow reads '4x smaller, +3 pp'. Panel (b) is a stacked bar chart of storage share by component for FP32, INT8, INT4, partial ternary and fully ternary. Green linear weights dominate. Total MB and compression factor sit above each bar, with red '% FP32' labels. The final bar has a red outline. The eye goes first to the red stars and callout.",
+ "caption": "(a) DeiT-III-Small size vs.\\ accuracy; FTerViT (W2A8): 82.43% at 6.09\\,MB ($384^2$) / 79.64% at 5.81\\,MB ($224^2$). FTerViT based on DeiT-S$^{224}$ reaches 77.47% under ternary quantization. (b) DeiT-Tiny storage; partial-W2 leaves 38% of bytes at FP32, fully ternary drops the share to 10%. DeiT-III-Small follows the same trend (24% partial, 4% fully ternary; 88.3\\,MB $\\to$ 5.81\\,MB).",
+ "caption_source": "latex",
+ "abstract": "Ternary Vision Transformers offer substantial model compression, however state-of-the-art methods only ternarize the encoder layers, leaving patch embeddings, LayerNorm parameters, and classifier heads in full precision. In compact models targeting resource-constrained processors, such as microcontrollers, these remaining full-precision components determine the total memory footprint, severely limiting deployment efficiency and on-device feasibility. In this work, we introduce a fully ternarized Vision Transformer in which all weight matrices and normalization parameters are ternarized, while activations remain 8-bit (FTerViT). To this end, we introduce two novel operators: TernaryBitConv2d with per-channel scaling for patch embedding and TernaryLayerNorm. FTerViT is trained using knowledge distillation, followed by a lightweight quantization-aware recovery phase. On a matched DeiT-S backbone, FTerViT reaches 77.47% ImageNet-1K top-1 at 5.81 MB, +3.27 pp over TerViT. With the stronger DeiT-III-S backbone at 384x384 resolution, our ternary W2A8 model achieves 82.43% at 6.09 MB (~15x compression, -2.42 pp vs. FP32). This backbone- and resolution-advantaged result exceeds prior ternary ViTs by up to 8 pp. Finally, we demonstrate the first implementation of ternary vision transformers on a dual-core Xtensa LX7 microcontroller inside the ESP32-S3 system-on-chip. By deploying FTerViT-Small (based on DeiT-III-Small at 224x224 resolution, 5.81 MB), we achieve 79.64% ImageNet-1K top-1 accuracy.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=9SnaFlb35c",
+  "arxiv": "https://arxiv.org/abs/2605.21171",
+  "pdf": "https://arxiv.org/pdf/2605.21171",
+  "proceedings": null,
+  "virtual": "https://neurips.cc/virtual/2026/poster/154979",
+  "code": "https://rucinski.ai/blog/ftervit-ternary-vision-transformer"
+ },
+ "license": "http://creativecommons.org/licenses/by/4.0/",
+ "img": "cc-by",
+ "image_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/images/neurips26-1316.png",
+ "thumb_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/thumbs/neurips26-1316.webp",
+ "figure_page": 1,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.8
+}

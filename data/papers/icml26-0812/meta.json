@@ -1,0 +1,51 @@
+{
+ "id": "icml26-0812",
+ "title": "Turning Bias into Bugs: Bandit-Guided Style Manipulation Attacks on LLM Judges",
+ "authors": [
+  "XIANGLIN YANG",
+  "Bryan Hooi",
+  "Gelei Deng",
+  "Tianwei Zhang",
+  "Jin Song Dong"
+ ],
+ "venue": "ICML 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "Social Aspects->Security",
+ "role": "pipeline",
+ "role2": null,
+ "claim": "An iterative bandit loop picks stylistic edits, queries a black-box judge, and uses the score gain as reward to adapt.",
+ "layout": "1 panel, circular left-to-right loop, numbered red circles mark steps",
+ "tags": [
+  "contextual-bandit",
+  "black-box-attack",
+  "iterative-loop",
+  "reward-feedback",
+  "llm-as-judge"
+ ],
+ "style": [
+  "icon-heavy",
+  "colorful",
+  "text-heavy"
+ ],
+ "description": "A single wide panel shows a closed loop with seven red numbered circles. On the left, a rounded 'Pool' box lists a question and three yellow candidate answers with scores, one ticked green. An arrow leads to a row of cells labeled 'Context at time t' (q, a_t), then to a robot icon labeled LinUCB Agent. The agent feeds a column of slot-machine icons paired with bias labels (Verbosity, Markdown, Sentiment, Distraction, Emoji, ...) under the heading 'Stylistic Biases'. Sentiment is highlighted blue with a green check. A thick arrow goes to a gray box with the rewritten answer a_{t+1}, then across a dashed line to an LLM Judge avatar and scales icon. A Judgement box returns the score and explanation. A long arrow carries the reward formula S_{t+1} − S_t back to the agent and the pool.",
+ "caption": "\\textbf{Overview of \\tool{}.} The attack operates in an iterative loop. \\ding{182} At each round $t+1$, a candidate answer $a_{t}$ is selected from the pool to form the context. \\ding{183} The LinUCB agent uses this context to select the most promising stylistic bias $b_t$ from a predefined set of strategies. \\ding{184} An LLM agent applies this bias to generate a new candidate answer $a_{t+1}$. \\ding{185}-\\ding{186} The new candidate is submitted to the external judge (e.g., an LLM Evaluator), which returns a score $S_{t+1}$. \\ding{187} The reward, calculated as the marginal score improvement $r_{t+1} = S_{t+1} - S_{t}$, is used to update the LinUCB model. \\ding{188} The new candidate answer and its score are added back to the pool, which is truncated to maintain its size. This cycle refines the answers and adapts to the judge's biases.",
+ "caption_source": "latex",
+ "abstract": "The known stylistic biases in LLM judges, such as a preference for verbosity or specific sentence structures, present an underexplored security vulnerability. In this work, we introduce BITE (BIas exploraTion and Exploitation), a black-box adversarial framework that learns semantics-preserving edits to mislead an LLM judge and artificially inflate the scores it assigns. We cast the selection of stylistic edits as a contextual bandit problem and use a LinUCB policy to adaptively choose edits that maximize the judge's score without access to model parameters or gradients. Empirically, we test BITE across a diverse range of LLM judges and tasks, including both pointwise and pairwise comparisons on chatbot leaderboards and AI-reviewer benchmarks. BITE achieves an attack success rate exceeding 65% and raises scores by 1-2 points on a 9-point scale, all while preserving semantic equivalence. We further assess the attack's stealthiness, showing that BITE evades standard style-control methods and several detection baselines. Our findings expose a fundamental weakness in the LLM-as-a-judge paradigm and motivate robust, attack-aware evaluation. Our code is available at https://github.com/xianglinyang/llm-as-a-judge-attack.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=7g23tYAIDC",
+  "arxiv": "https://arxiv.org/abs/2605.26156",
+  "pdf": "https://raw.githubusercontent.com/mlresearch/v306/main/assets/yang26w/yang26w.pdf",
+  "proceedings": "https://proceedings.mlr.press/v306/yang26w.html",
+  "virtual": "https://icml.cc/virtual/2026/poster/66038",
+  "code": null
+ },
+ "license": "http://arxiv.org/licenses/nonexclusive-distrib/1.0/",
+ "img": "none",
+ "image_url": null,
+ "thumb_url": null,
+ "figure_page": 3,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.97
+}

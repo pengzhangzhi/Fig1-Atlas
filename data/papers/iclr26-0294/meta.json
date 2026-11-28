@@ -1,0 +1,54 @@
+{
+ "id": "iclr26-0294",
+ "title": "Graph-of-Agents: A Graph-based Framework for Multi-Agent LLM Collaboration",
+ "authors": [
+  "Sukwon Yun",
+  "Jie Peng",
+  "Pingzhi Li",
+  "Wendong Fan",
+  "Jie Chen",
+  "James Y Zou",
+  "Guohao Li",
+  "Tianlong Chen"
+ ],
+ "venue": "ICLR 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": null,
+ "role": "prior-vs-ours",
+ "role2": "pipeline",
+ "claim": "Prior multi-agent systems query every agent in dense layers; ours selects a relevant subset and links them through directed message passing.",
+ "layout": "4 panels, left-to-right, dashed dividers, MoA layered stack versus compact GoA triangle",
+ "tags": [
+  "multi-agent",
+  "graph-structure",
+  "message-passing",
+  "agent-selection",
+  "scalability"
+ ],
+ "style": [
+  "icon-heavy",
+  "colorful",
+  "text-heavy"
+ ],
+ "description": "Four panels run left to right. (a) is a rounded gray box holding a multi-domain query. It mixes a biomedical glucose ODE, math and a request for code, with colored text matching each domain. A big black arrow leads to (b), a scattered pool of colored icons for agents: book, microscope, calculator, code window, globe, scales, stethoscope and others. Below the pool is a color-coded domain legend. (c) shows Mixture-of-Agents as two tall stacked layers. Every agent icon has a colored output box and arrows that fan out to all of them. Dots show it continuing for more layers. (d) is the Graph-of-Agents panel, marked with a star. A legend lists node, edge and graph. A small triangle graph links three agents, a stethoscope, a calculator and a coder, with bold black arrows for forward message passing and faint gray arrows for reverse. The eye goes first to the dense MoA stack and then to the sparse triangle.",
+ "caption": "Current multi-agent LLM pipeline and our proposed approach.(a) Given a query that spans diverse domains (e.g., biomedical + math + code), (b) selecting and organizing agents from a large pool of LLMs to form an effective multi-agent system remains a significant challenge. (c) The current Mixture-of -Agents (MoA) approach integrates all available agents, aggregates their responses, and forwards the combined output to the next layer. However, it lacks generalizability to larger agent pools (e.g., 10 or 100) and suffers from heavy intra-layer communication overhead. (d) In contrast, our proposed Graph-of Agents (\\proposed) addresses this challenge through a graph-based structure. In \\proposed, only a subset of relevant agents is selected to form the graph’s nodes, with intra-layer communication facilitated via directed message passing—flowing from more relevant agents to less relevant ones. By leveraging this graph structure, \\proposed achieves greater scalability and enables more efficient communication between agents, resulting in a more powerful and adaptive framework.",
+ "caption_source": "latex",
+ "abstract": "With an ever-growing zoo of LLMs and benchmarks, the need to orchestrate multiple models for improved task performance has never been more pressing. While frameworks like Mixture-of-Agents (MoA) attempt to coordinate LLMs, they often fall short in terms of (1) selecting relevant agents, (2) facilitating effective intra-agent communication, and (3) integrating responses efficiently. In this work, we propose Graph-of-Agents (GoA), a new graph-based framework for modeling multi-agent LLM communication. Our approach begins with node sampling, selecting only the most relevant agents by leveraging model cards that summarize each model's domain, task specialization, and other characteristics. Next, we construct edges between the selected agents by evaluating their responses against one another to determine relevance ordering. Directed message passing is then performed from highly relevant agents to less relevant ones to enhance their responses, followed by reverse message passing to refine the original responses of the more relevant agents. Finally, the updated responses are aggregated via graph-based pooling (e.g., max or mean pooling) to produce a single, unified answer. We evaluate GoA on diverse multi-domain benchmarks (MMLU, MMLU-Pro, GPQA) and domain-specific benchmarks (MATH, HumanEval, MedMCQA), with an agent pool of 6 LLMs spanning multiple domains. Surprisingly, GoA achieves superior performance using only 3 selected agents, outperforming recent multi-agent LLM baselines that utilize all 6 agents simultaneously. By adopting a graph structure, GoA offers both scalability and effectiveness through structured message passing-positioning it as a strong candidate for navigating the challenges of the ever-growing LLM zoo. Code is available at: https://github.com/UNITES-Lab/GoA.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=34cANdsHKV",
+  "arxiv": "https://arxiv.org/abs/2604.17148",
+  "pdf": "https://proceedings.iclr.cc/paper_files/paper/2026/file/21a87fb07e9ab0ecc4d9d1b940676229-Paper-Conference.pdf",
+  "proceedings": "https://proceedings.iclr.cc/paper_files/paper/2026/hash/21a87fb07e9ab0ecc4d9d1b940676229-Abstract-Conference.html",
+  "virtual": "https://iclr.cc/virtual/2026/poster/10011674",
+  "code": null
+ },
+ "license": "http://arxiv.org/licenses/nonexclusive-distrib/1.0/",
+ "img": "none",
+ "image_url": null,
+ "thumb_url": null,
+ "figure_page": 1,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.6
+}

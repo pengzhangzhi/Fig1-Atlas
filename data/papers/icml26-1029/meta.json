@@ -1,0 +1,51 @@
+{
+ "id": "icml26-1029",
+ "title": "OSAQ: Outlier Self-Absorption for Accurate Low-bit LLM Quantization",
+ "authors": [
+  "Zhikai Li",
+  "Zhen Dong",
+  "Xuewen Liu",
+  "Jing Zhang",
+  "Qingyi Gu"
+ ],
+ "venue": "ICML 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "General Machine Learning->Scalable Algorithms",
+ "role": "analysis-finding",
+ "role2": "concept",
+ "claim": "The curvature structure of the loss is low-rank and its null directions stay stable across inputs, unlike the input-space null directions.",
+ "layout": "3 panels, left-to-right; line plot then two scatter plots, dashed divider",
+ "tags": [
+  "low-rank",
+  "hessian",
+  "null-space",
+  "quantization",
+  "consistency"
+ ],
+ "style": [
+  "plot",
+  "colorful",
+  "minimal"
+ ],
+ "description": "Three plot panels are separated by a dashed vertical divider. The left panel is a cumulative energy ratio curve over sorted eigenvalues. It rises sharply to nearly 1.0, then flattens. A dashed yellow line at 3000 splits the axis. A blue label reads '99.99% Large Curvature' on the left of the line. An orange label reads '0.01% Zero Curvature' on the right. The middle and right panels are 2D scatter projections of null-space vectors for three inputs, shown in red, purple and green. Gray dashed lines radiate from the origin. In the middle panel, 'Input' null space points scatter in different directions per input, and the caption is labeled in red '(Inconsistent)'. In the right panel, 'Hessian' null space points of all three inputs fall along shared rays, and the caption is labeled in green '(Consistent)'. The eye goes first to the colored percentage boxes, then to the contrast between the two scatter panels.",
+ "caption": "Visualization of the low-rank consistency of Hessian, using data from layer0.attn.k\\_proj module in LLaMA2-7B model. The left panel shows that a number of tail eigenvalues together contribute only about 0.01% of the total energy, indicating a pronounced low-rank property. The right panel compares the null space of the input and Hessian, where the high-dimensional vectors are projected into a 2D space for visualization. It can be observed that although the directions within the input null space vary significantly across different samples, the directions within the Hessian null space remain highly consistent.",
+ "caption_source": "latex",
+ "abstract": "Large Language Models (LLMs) have demonstrated remarkable capabilities. However, their massive parameter scale leads to significant resource consumption and latency during inference. Post-training weight-only quantization offers a promising solution by reducing model size and accelerating token generation through alleviating the memory-bound issue. Nevertheless, the presence of inherent systematic outliers in weights continues to be a major obstacle. While existing methods, such as scaling and rotation, attempt to address this issue, the performance remains unsatisfactory. In this paper, we propose Outlier Self-Absorption Quantization (OSAQ), which performs additive weight suppression guided by the second-order low-rank property for low-bit weight-only quantization of LLMs. Specifically, we observe that the Hessian exhibits low-rank consistency across different inputs, with certain directions consistently showing vanishing curvature. Leveraging this property, we identify a stable null space of the Hessian and then construct an additive weight transformation by linearly combining the vectors within this null space, thereby suppressing weight outliers without affecting the task loss. This additive transformation can be absorbed into the weights offline, requiring no inter-layer transformations and introducing no inference overhead. Moreover, the construction is efficiently achieved by a closed-form solution, without resource-intensive training or iterative procedures. Extensive experiments demonstrate that OSAQ effectively suppresses outliers and enhances low-bit quantization performance. For instance, in 2-bit quantization, OSAQ, when integrated with GPTQ, achieves over 40% lower perplexity compared to vanilla GPTQ.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=9mo5O8m7vv",
+  "arxiv": "https://arxiv.org/abs/2605.04738",
+  "pdf": "https://raw.githubusercontent.com/mlresearch/v306/main/assets/li26aj/li26aj.pdf",
+  "proceedings": "https://proceedings.mlr.press/v306/li26aj.html",
+  "virtual": "https://icml.cc/virtual/2026/poster/65822",
+  "code": null
+ },
+ "license": "http://creativecommons.org/licenses/by/4.0/",
+ "img": "cc-by",
+ "image_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/images/icml26-1029.png",
+ "thumb_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/thumbs/icml26-1029.webp",
+ "figure_page": 1,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.8
+}

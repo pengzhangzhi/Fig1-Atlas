@@ -1,0 +1,53 @@
+{
+ "id": "neurips26-1810",
+ "title": "Beyond Real or Fake: A Dual-Channel Authenticity and Reasoning Protocol for Photographic Assessment",
+ "authors": [
+  "Xiaoxiao Li",
+  "Ruinan Jin",
+  "Lili Meng",
+  "Miaosen Wang",
+  "Athula Balachandran",
+  "PEI CAO"
+ ],
+ "venue": "NeurIPS 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "Computer Vision->Classification and Understanding",
+ "role": "pipeline",
+ "role2": "concept",
+ "claim": "Authenticity cues split into two channels whose corruption pattern identifies the manipulation type, and a dual-channel pipeline exploits this to classify and explain.",
+ "layout": "3 panels: taxonomy pipes on top, classifier and evidence loop below, left-to-right",
+ "tags": [
+  "two-channel",
+  "taxonomy",
+  "image-forensics",
+  "vision-language-model",
+  "explainability"
+ ],
+ "style": [
+  "icon-heavy",
+  "colorful",
+  "text-heavy",
+  "photo/real data"
+ ],
+ "description": "The top panel (a) shows two horizontal pipes, a blue camera channel and an orange semantic channel. Their outputs feed four dashed boxes: footprint-preserved transformations, GenAI retouching, GenAI tampering and fully synthetic. Each box shows small pipe icons marked preserved (green check), corrupted or locally corrupted (red X or warning), so each manipulation has its own signature. A dash-dot line separates this from the bottom half. Bottom-left panel (b) is the classifier. A reference photo goes to a semantic encoder (frozen) and a camera encoder, both into a green Fusion block, then an Authenticity? diamond. Bottom-right panel (c) takes a verified reference and a query photo through encoders, giving S_sem and S_cam gauges and saliency heatmaps. These form a privileged two-channel context for a frozen VLM. A Consistent? diamond loops back through Rethink & Revise, then outputs an explanation and a localized red box. Peach and green backgrounds separate (b) and (c).",
+ "caption": "\\textbf{\\method{} overview.} (a) Two-channel taxonomy. Authenticity cues are decoupled into a camera channel $C_{\\mathrm{cam}}$ (sensor traces) and a semantic channel $C_{\\mathrm{sem}}$ (scene coherence); each manipulation type leaves a distinct signature: footprint-preserved transformations preserve both channels, GenAI retouching corrupts only $C_{\\mathrm{cam}}$, GenAI tampering corrupts $C_{\\mathrm{cam}}$ globally and $C_{\\mathrm{sem}}$ locally, and fully synthetic images corrupt both. (b) Authenticity classification (Q1). A camera encoder (Sec. [ref]) and a frozen semantic encoder feed a cross-attention fusion module with learnable reliability weights (Sec. [ref]) that produces a four-class verdict (Sec. [ref]). (c) Reference-based evidence generation (Q2). Given a query $\\xq$ and a camera-verified reference $\\xref$, the two encoders yield channel alignment scores $\\scam, \\ssem$ (Eq. [ref]) and a patch-level saliency map (Eq. [ref]); these serve as privileged two-channel context to a frozen VLM in an Observe-Generate-Refine loop (Sec. [ref]) that returns an explanation and localization, revising whenever the VLM's initial assessment is inconsistent with the channel evidence (Sec. [ref]).",
+ "caption_source": "latex",
+ "abstract": "Forensic verification has converged on a binary \"real vs. fake\" label that confates fully synthetic, tampered, and AI-retouched images despite their very different consequences. We argue that GenAI manipulations decompose along two complementary channels: a camera channel of sensor fingerprints (destroyed by neural processing), and a semantic channel of scene-level coherence (disrupted by content edits). Each manipulation type leaves a distinctive two-channel signature. We instantiate this taxonomy in 2CAP (2-Channel Authenticity Protocol), pairing a contrastively-trained camera encoder with a frozen semantic encoder to serve two applications on a shared backbone: (i) four-class authenticity classification via cross-attention fusion with learnable reliability weights; and (ii) evidence generation, where an authentic image serves as a reference for a query and the two encoders produce per-channel alignment scores together with a patch-level saliency map. These signals are supplied as privileged context to a frozen Vision-Language Model (VLM) through an Observe-Generate-Refine loop, yielding explanations with localization without forensic fine-tuning. On a multi-source benchmark, 2CAP attains the best classification performance, including strong retouching detection where existing methods fail, and improves explanation quality.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=CsqD0OgleJ",
+  "arxiv": "https://arxiv.org/abs/2611.10908",
+  "pdf": "https://arxiv.org/pdf/2611.10908",
+  "proceedings": null,
+  "virtual": "https://neurips.cc/virtual/2026/poster/154533",
+  "code": null
+ },
+ "license": "http://creativecommons.org/licenses/by/4.0/",
+ "img": "cc-by",
+ "image_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/images/neurips26-1810.png",
+ "thumb_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/thumbs/neurips26-1810.webp",
+ "figure_page": 1,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.6
+}

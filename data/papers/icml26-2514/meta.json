@@ -1,0 +1,49 @@
+{
+ "id": "icml26-2514",
+ "title": "Q-Delta: Beyond Key–Value Associative State Evolution",
+ "authors": [
+  "Sumin Park",
+  "Seojin Kim",
+  "Noseong Park"
+ ],
+ "venue": "ICML 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "Deep Learning->Attention Mechanisms",
+ "role": "pipeline",
+ "role2": "overview-framework",
+ "claim": "A model's recurrent state can evolve by correcting mixed key- and query-based prediction errors, and this slots into a standard block.",
+ "layout": "3 panels, zoom-in from block to module to update rule; dashed arrow",
+ "tags": [
+  "linear-attention",
+  "delta-rule",
+  "recurrent-state",
+  "architecture",
+  "query-aware"
+ ],
+ "style": [
+  "colorful",
+  "icon-heavy",
+  "math-heavy"
+ ],
+ "description": "The figure has three panels that progressively zoom in. Panel (a), top left, shows a Transformer-style block repeated L times. A Q-Delta box and an MLP box are stacked and joined by a residual connection with a plus sign. A dashed arrow leads from this block to panel (b), the large block design on the right. In (b), the input goes through parallel branches of Linear, Conv and L2 layers. These branches produce q, k, v, α, β, γ and a gate. They feed a central Q-Delta Rule box, whose output goes through L2, multiplication with the gate and a final Linear layer. Panel (c), bottom left, is a triangular cycle. The state S gives the predictions v̂ = Sk and ô = Sq. These produce a mixed error, v − (v̂ + ô), which drives a corrective state update back to S. Pastel fills (teal, purple, orange, blue, yellow) mark module types.",
+ "caption": "Architecture overview and block design of Q-Delta. (a) Q-Delta module within a Transformer block. (b) Block-level implementation illustrating how queries, keys, and values are projected and combined with gating signals. (c) The Q-Delta update rule, where the recurrent state produces a key-retrieved value $\\hat{v}=Sk$ and a query-conditioned prediction $\\hat{o}=Sq$, which are then combined into a mixed error for corrective state evolution.",
+ "caption_source": "latex",
+ "abstract": "Linear attention reformulates sequence modeling as recurrent state evolution, enabling efficient linear-time inference. Under the key-value associative paradigm, existing approaches restrict the role of the query to the readout operation, decoupling it from state evolution. We show that query-conditioned state readout induces a structured value prediction over accumulated memory that complements key-based retrieval. Based on this insight, we propose Q-Delta, a query-aware delta rule that integrates mixed key-query prediction errors into state evolution, enabling jointly corrective dynamics while preserving delta-rule efficiency. We establish stability guarantees for the resulting dynamics and derive a hardware-efficient chunkwise-parallel formulation with a custom Triton implementation. Empirical results demonstrate stable optimization, competitive throughput, and consistent improvements over strong baselines on language modeling and long-context retrieval tasks.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=O6tuJZIv0u",
+  "arxiv": "https://arxiv.org/abs/2606.08804",
+  "pdf": "https://raw.githubusercontent.com/mlresearch/v306/main/assets/park26f/park26f.pdf",
+  "proceedings": "https://proceedings.mlr.press/v306/park26f.html",
+  "virtual": "https://icml.cc/virtual/2026/poster/64387",
+  "code": null
+ },
+ "license": "http://arxiv.org/licenses/nonexclusive-distrib/1.0/",
+ "img": "none",
+ "image_url": null,
+ "thumb_url": null,
+ "figure_page": 1,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.85
+}

@@ -1,0 +1,52 @@
+{
+ "id": "neurips26-2754",
+ "title": "MaPP: A Unified Marginalized Posterior-Predictive Framework for Data-Efficient RLVR",
+ "authors": [
+  "YangYang Ren",
+  "Haodong Zhu",
+  "Sheng Xu",
+  "Yanjing Li",
+  "Nikolai Y Zolotykh",
+  "Wentao Zhang",
+  "Baochang Zhang"
+ ],
+ "venue": "NeurIPS 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": null,
+ "role": "analysis-finding",
+ "role2": "teaser-result",
+ "claim": "Our method reaches higher accuracy with far fewer samples, and a hidden noise source in the standard estimator persists across all difficulty levels.",
+ "layout": "2 side-by-side line plots, left-to-right, double-arrow annotations marking noise gaps",
+ "tags": [
+  "data-efficiency",
+  "sample-efficiency",
+  "variance",
+  "noise-analysis",
+  "reinforcement-learning"
+ ],
+ "style": [
+  "plot",
+  "minimal"
+ ],
+ "description": "Two line plots sit side by side. Panel (a), titled Test Accuracy vs. Rollout Cost, plots accuracy (%) against rollouts in millions for five methods. GRPO is gray, DPS is brown, MoPPS is blue, DS is orange, and Ours is a thick purple line. The purple curve rises fastest and ends highest. A horizontal arrow labeled '80.52% fewer rollouts than DS' links the orange curve's endpoint to where purple reaches similar accuracy. Panel (b), titled Composition Noise in GRPO Advantages, plots GRPO advantage against prompt pass rate. A red line for correct responses and a blue line for incorrect responses each have a shaded ±1 std band. Vertical dashed double-headed arrows mark the band widths, labeled Δ=2.22 and Δ=1.62. The eye goes first to the purple curve, then to the wide shaded bands.",
+ "caption": "On the CountDown dataset using the Qwen3-4B model, {(a)} MaPP achieves higher accuracy than all selection methods with the same rollout cost, while requiring 80% fewer rollouts than DS to reach comparable performance. {(b)} Group-composition uncertainty induces composition noise in GRPO (group size $G{=}8$; mid-training checkpoint of MoPPS; 100 prompts $\\times$ 50 groups): under the same policy checkpoint, identical correct (red) or incorrect (blue) response receives widely varying advantages depending on group composition ($\\pm 1$ std shaded). The noise persists across all non-degenerate difficulty levels, {\\em e.g.}, \\ $\\Delta=2.22$ at $\\gamma\\approx0.15$ and $\\Delta=1.62$ at $\\gamma\\approx0.8$.",
+ "caption_source": "latex",
+ "abstract": "Reinforcement learning with verifiable rewards (RLVR) improves the reasoning capabilities of large language models but incurs substantial costs from rollouts and policy updates. Online prompt selection improves efficiency by using per-prompt Bayesian posteriors to predict difficulty and prioritize informative prompts. However, existing methods overlook how reliably learning signals are extracted from sampled responses. In GRPO, a response's advantage depends on both its own outcome and the randomly sampled outcomes of its peers through group normalization. Our theoretical and experimental analyses show that uncertainty in group composition introduces composition noise, a non-vanishing variance component that imposes an irreducible lower bound on gradient estimation error and impairs downstream prompt selection. We propose MaPP (Marginalized Posterior-Predictive), a unified framework for data-efficient RLVR that denoises response-level advantage estimation and improves prompt selection using a shared Beta posterior. For each response, MaPP replaces the standard group-relative advantage with a composition-invariant intrinsic advantage through closed-form Beta-Binomial marginalization. The resulting posterior-predictive estimator has an error that provably diminishes as the posterior concentrates. Using the same posterior, MaPP derives an uncertainty-aware prompt selection score to improve data efficiency without additional rollout cost. Experiments on mathematics, planning, and visual geometry across five model backbones show that MaPP consistently outperforms GRPO and strong selection baselines, achieving up to +2.45 average accuracy improvement over the strongest baseline under the same rollout budget and setting a new state of the art.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=JPWppGw2ut",
+  "arxiv": "https://arxiv.org/abs/2609.34990",
+  "pdf": "https://arxiv.org/pdf/2609.34990",
+  "proceedings": null,
+  "virtual": "https://neurips.cc/virtual/2026/poster/153702",
+  "code": null
+ },
+ "license": "http://creativecommons.org/licenses/by/4.0/",
+ "img": "cc-by",
+ "image_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/images/neurips26-2754.png",
+ "thumb_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/thumbs/neurips26-2754.webp",
+ "figure_page": 1,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.55
+}

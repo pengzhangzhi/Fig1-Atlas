@@ -1,0 +1,58 @@
+{
+ "id": "icml26-0137",
+ "title": "INT vs. FP: A Comprehensive Study of Fine-Grained Low-bit Quantization Formats",
+ "authors": [
+  "Mengzhao Chen",
+  "Meng Wu",
+  "Hui Jin",
+  "Zhihang Yuan",
+  "Jing Liu",
+  "Chaoyi Zhang",
+  "Yunshui Li",
+  "Jie Huang",
+  "Jin Ma",
+  "Zeyue Xue",
+  "Zhiheng Liu",
+  "Xingyan Bin",
+  "Ping Luo"
+ ],
+ "venue": "ICML 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "Deep Learning->Large Language Models",
+ "role": "pipeline",
+ "role2": null,
+ "claim": "Every matrix multiply in a layer's forward and backward passes takes quantized operands, so low-bit compute covers all six inputs.",
+ "layout": "3 stacked rows, left-to-right flow, numbered circles label the six GEMM inputs",
+ "tags": [
+  "low-bit-quantization",
+  "compute-flow",
+  "forward-backward",
+  "gemm",
+  "training-efficiency"
+ ],
+ "style": [
+  "minimal",
+  "colorful"
+ ],
+ "description": "A clean block diagram of the compute flow for a linear layer, split into a Forward section and a Backward section. Each section has rows of gray rounded input boxes (X, W, dY, W^T, X^T, dY) labeled with circled numbers 1–6. Each input has an arrow into a pale yellow 'Quantize' box. Pairs of Quantize outputs merge through elbow connectors into a salmon 'GEMM' box. An arrow then leads to a gray output box: Y in the forward pass, dX and dW in the backward pass. The three GEMM blocks are stacked vertically and laid out identically. The eye goes first to the bold 'Forward' and 'Backward' headers, then to the colored Quantize and GEMM blocks.",
+ "caption": "Compute flow of low-bit forward and back- ward propagation of linear layer.",
+ "caption_source": "pdf",
+ "abstract": "Modern AI hardware, such as Nvidia's Blackwell architecture, is increasingly embracing low-precision floating-point (FP) formats to handle the pervasive activation outliers in Large Language Models (LLMs). Despite this industry trend, a unified comparison of FP and integer (INT) quantization across varying granularities has been missing, leaving algorithm and hardware co-design without clear guidance. This paper fills that gap by systematically investigating the trade-offs between FP and INT formats. We reveal a critical performance crossover: while FP excels in coarse-grained quantization, the comparison at fine-grained (block-wise) levels is more nuanced. Our comprehensive comparison demonstrates that for popular 8-bit fine-grained formats (e.g., MX with block size 32), MXINT8 is superior to its FP counterpart in both algorithmic accuracy and hardware efficiency. However, for 4-bit formats, FP (e.g., MXFP4, NVFP4) often holds an accuracy advantage , though we show that NVINT4 can surpass NVFP4 when outlier-mitigation techniques like Hadamard rotation are applied. We also introduce a symmetric clipping method that resolves gradient bias in fine-grained low-bit INT training, enabling nearly lossless performance for MXINT8 training. These findings challenge the current hardware trajectory, demonstrating that a one-size-fits-all FP approach is suboptimal and advocating that fine-grained INT formats, particularly MXINT8, offer a better balance of accuracy, power, and efficiency for future AI accelerators.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=1GIYHWO9S5",
+  "arxiv": "https://arxiv.org/abs/2510.25602",
+  "pdf": "https://raw.githubusercontent.com/mlresearch/v306/main/assets/chen26fa/chen26fa.pdf",
+  "proceedings": "https://proceedings.mlr.press/v306/chen26fa.html",
+  "virtual": "https://icml.cc/virtual/2026/poster/66697",
+  "code": null
+ },
+ "license": "http://creativecommons.org/licenses/by/4.0/",
+ "img": "cc-by",
+ "image_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/images/icml26-0137.png",
+ "thumb_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/thumbs/icml26-0137.webp",
+ "figure_page": 3,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.8
+}

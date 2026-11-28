@@ -1,0 +1,57 @@
+{
+ "id": "iclr26-1064",
+ "title": "ODESteer: A Unified ODE-Based Steering Framework for LLM Alignment",
+ "authors": [
+  "Hongjue Zhao",
+  "Haosen Sun",
+  "Jiangtao Kong",
+  "Xiaochang Li",
+  "Qineng Wang",
+  "Liwei Jiang",
+  "Qi Zhu",
+  "Tarek Abdelzaher",
+  "Yejin Choi",
+  "Manling Li",
+  "Huajie Shao"
+ ],
+ "venue": "ICLR 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "Applications->Language, Speech and Dialog",
+ "role": "prior-vs-ours",
+ "role2": "concept",
+ "claim": "Prior steering applies one linear step; ours integrates a barrier-guided ODE through multiple adaptive steps, yielding better aligned outputs.",
+ "layout": "3 columns: prior and ours paired (objective over scatter), plus barrier and example panels",
+ "tags": [
+  "activation-steering",
+  "multi-step",
+  "ode",
+  "prior-vs-ours",
+  "llm-alignment"
+ ],
+ "style": [
+  "colorful",
+  "math-heavy",
+  "plot"
+ ],
+ "description": "The figure has three colored columns. The left, pink column is titled 'Existing Methods'. Panel (a) shows the one-step equation a + T·v(a) = ã with small neural-net icons and a skip arrow. Panel (b) is a 2-D scatter with contour plots of negative (purple) and positive (green) activations. Parallel dashed arrows labeled 'Linear' cross between the clusters. The middle, blue column is 'ODESteer (Ours)'. Panel (c) shows ODESolve(v, a, 0, T) = ã with a curved-trajectory icon. Panel (d) repeats the scatter, but the arrows converge into the positive cluster, labeled 'Guided by Barrier function'. The right, cream column has two panels. Panel (e) is a purple activation-space blob with a green positive region, a trajectory from a(0) to a(T), and the forward-invariance condition. Panel (f) is a chat comparison of Llama3.1-8B, activation addition and ODESteer answers, where ODESteer answers correctly. The eye goes first to the red-versus-blue column headers and the two scatter plots.",
+ "caption": "Overview of existing activation steering methods vs.\\ our proposed approach. (a–b) Regular activation addition applies a one-step linear steering $T\\cdot \\vB(\\aB)$ to hidden activations, where the vector field $\\vB(\\aB)$ controls the steering direction, and $T$ controls the steering strength, as detailed in Sec [ref]. (c–d) Our method (\\ours{}) formulates steering as numerically solving an ODE, yielding multi-step adaptive updates from $\\aB(0)$ to $\\aB(T)$ guided by barrier functions from control theory. (e) The barrier function $h(\\aB)$ defines desirable and undesirable regions in the activation space, guiding the activations toward desirable regions while ensuring it remains there. (f) Example generations before and after steering show that \\ours{} produces more accurate and aligned responses.",
+ "caption_source": "latex",
+ "abstract": "Activation steering, or representation engineering, offers a lightweight approach to align large language models (LLMs) by manipulating their internal activations at inference time. However, current methods suffer from two key limitations: (i) the lack of a unified theoretical framework for guiding the design of steering directions, and (ii) an over-reliance on one-step steering that fail to capture complex patterns of activation distributions. In this work, we propose a unified ordinary differential equations (ODEs)-based theoretical framework for activation steering in LLM alignment. We show that conventional activation addition can be interpreted as a first-order approximation to the solution of an ODE. Based on this ODE perspective, identifying a steering direction becomes equivalent to designing a barrier function from control theory. Derived from this framework, we introduce ODESteer, a kind of ODE-based steering guided by barrier functions, which shows empirical advancement in LLM alignment. ODESteer identifies steering directions by defining the barrier function as the log-density ratio between positive and negative activations, and employs it to construct an ODE for multi-step and adaptive steering. Compared to state-of-the-art activation steering methods, ODESteer achieves consistent empirical improvements on diverse LLM alignment benchmarks, a notable $5.7\\%$ improvement over TruthfulQA, $2.5\\%$ over UltraFeedback, and $2.4\\%$ over RealToxicityPrompts. Our work establishes a principled new view of activation steering in LLM alignment by unifying its theoretical foundations via ODEs, and validating it empirically through the proposed ODESteer method.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=CFewUmgIIL",
+  "arxiv": "https://arxiv.org/abs/2602.17560",
+  "pdf": "https://proceedings.iclr.cc/paper_files/paper/2026/file/72136a6372df75ddc3b1cd7f27c63712-Paper-Conference.pdf",
+  "proceedings": "https://proceedings.iclr.cc/paper_files/paper/2026/hash/72136a6372df75ddc3b1cd7f27c63712-Abstract-Conference.html",
+  "virtual": "https://iclr.cc/virtual/2026/poster/10010874",
+  "code": "https://odesteer.github.io/"
+ },
+ "license": "http://creativecommons.org/licenses/by-nc-sa/4.0/",
+ "img": "cc-by-nc-sa",
+ "image_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/images/iclr26-1064.png",
+ "thumb_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/thumbs/iclr26-1064.webp",
+ "figure_page": 1,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.85
+}

@@ -1,0 +1,48 @@
+{
+ "id": "icml26-3218",
+ "title": "Toward Understanding Adversarial Distillation: Why Robust Teachers Fail",
+ "authors": [
+  "Hongsin Lee",
+  "Hye Won Chung"
+ ],
+ "venue": "ICML 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "Deep Learning->Robustness",
+ "role": "analysis-finding",
+ "role2": "prior-vs-ours",
+ "claim": "Student robust overfitting depends on the teacher: some teachers suppress it while others amplify it, and teacher robustness alone doesn't predict the outcome.",
+ "layout": "3 panels side-by-side, left-to-right, shared axes, colored train/test curves with captions",
+ "tags": [
+  "robust-overfitting",
+  "adversarial-distillation",
+  "teacher-dependence",
+  "training-dynamics",
+  "empirical-phenomenon"
+ ],
+ "style": [
+  "plot",
+  "colorful",
+  "minimal"
+ ],
+ "description": "Three side-by-side line plots share the same axes: epoch (0–200) on x and robust accuracy (%) on y. Each plot shows dashed train curves and solid test curves. Panel (a), in blue, shows standard PGD-AT. Train accuracy climbs to about 95%, with a jump at epoch 100 when the learning rate drops. Test accuracy peaks near 50% at epoch 100 and then declines to about 42%, which is robust overfitting. Panel (b) adds self-distillation. The red 'Last' teacher repeats the overfitting pattern, with test accuracy falling to about 43%. The green 'Best' teacher keeps test accuracy flat at about 51% and train accuracy at about 73%. Panel (c) shows adversarial distillation from the Gowal teacher in red and the Chen teacher in green. Gowal overfits, while Chen holds test accuracy near 55%. Bold captions under each panel summarize the finding. The eye goes first to the diverging red and green curves in panels (b) and (c).",
+ "caption": "Teacher-dependent dynamics of robust overfitting. (a) Standard adversarial training suffers from robust overfitting. (b) In self-distillation, the outcome is strictly determined by the teacher's overfitting status. (c) Similarly, distillation from external teachers (specifically Gowal and Chen, detailed in [ref]) yields inconsistent results, indicating that teacher robustness alone is not a sufficient predictor of student success.",
+ "caption_source": "latex",
+ "abstract": "Adversarial Distillation aims to enhance student robustness by guiding the student with a robust teacher's soft labels within the min-max adversarial training framework, yet its success is notoriously inconsistent: a more robust teacher often fails to improve, or even harms, the student's robust generalization. In this paper, we identify a key mechanism of this teacher dependency: the misalignment between the teacher's supervisory confidence and the student's representational limitations on a consistent subset of training data -- the Robustly Unlearnable Set. We present a theoretical framework analyzing the feature learning dynamics of a two-layer neural network, demonstrating that this mismatch creates a dichotomy in distillation outcomes. We prove that when a teacher provides confident supervision on unlearnable samples, it compels the student to memorize spurious noise patterns that eventually overpower the learned robust signal, thereby driving robust overfitting. Conversely, a teacher that exhibits high uncertainty on these samples effectively suppresses noise memorization, allowing the student to rely solely on the learnable signal for robust generalization. We empirically validate our theory across both synthetic simulations and real-image classification datasets, confirming that robust overfitting is driven by the teacher's interaction with unlearnable samples. Finally, we demonstrate that a teacher's predictive entropy on unlearnable samples serves as a strong indicator of student robustness, validating our theoretical framework and offering a principled guideline for robust teacher selection.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=USejwpvj0a",
+  "arxiv": "https://arxiv.org/abs/2605.21999",
+  "pdf": "https://raw.githubusercontent.com/mlresearch/v306/main/assets/lee26g/lee26g.pdf",
+  "proceedings": "https://proceedings.mlr.press/v306/lee26g.html",
+  "virtual": "https://icml.cc/virtual/2026/poster/63705",
+  "code": "https://github.com/HongsinLee/why-robust-teachers-fail"
+ },
+ "license": "http://arxiv.org/licenses/nonexclusive-distrib/1.0/",
+ "img": "none",
+ "image_url": null,
+ "thumb_url": null,
+ "figure_page": 2,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.8
+}

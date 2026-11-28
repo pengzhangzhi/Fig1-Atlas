@@ -1,0 +1,52 @@
+{
+ "id": "iclr26-0279",
+ "title": "When Reasoning Meets Compression: Understanding the Effects of LLMs Compression on Large Reasoning Models",
+ "authors": [
+  "Nan Zhang",
+  "Eugene Kwek",
+  "Yusen Zhang",
+  "Hieu Nguyen",
+  "Prasenjit Mitra",
+  "Rui Zhang"
+ ],
+ "venue": "ICLR 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "Social Aspects->Accountability, Transparency and Interpretability",
+ "role": "pipeline",
+ "role2": "overview-framework",
+ "claim": "A study combines benchmarking of compressed models with weight-importance attribution and verification to locate which weights matter for reasoning.",
+ "layout": "Multi-panel mosaic; left benchmark rows, right attribution flow, tasks and verification boxes below",
+ "tags": [
+  "compression",
+  "benchmarking",
+  "interpretability",
+  "attribution",
+  "weight-importance"
+ ],
+ "style": [
+  "colorful",
+  "icon-heavy",
+  "text-heavy"
+ ],
+ "description": "A wide figure split into colored regions. The large green panel on the left, titled 'Compression Effect on Reasoning Performance', has four rows. Each row pairs a compression method (dynamic quantization, distillation with SFT, SparseGPT/AlphaPruning, AWQ/GPTQ/GPTAQ/ANY4/3) with a plus sign and a neural-network icon (R1 or Distilled R1). An arrow leads to the compressed result: bit-width brackets (2.51, 1.73, 1.58-bit), a smaller distilled network, a faded sparse network, or 4-bit/3-bit options. The yellow panel at upper right, 'Compression Effect on Weights', shows a network branching into 'All reasoning chains' and 'Reasoning chains of a specific behavior'. These feed a steering vector. Below, steering vector · gradients of model's activations = weight importance (dashed box). A blue 'Tasks' box lists AIME 2024, FOLIO, Temporal and MuSiQue. A pink 'Verification of Findings' box shows selective quantization (funnel icon) and selective protection (shield icon).",
+ "caption": "An overview of our pipeline. On the left, we benchmark compressed R1 variants on various reasoning tasks. On the right, by computing weight importance towards a specific reasoning behavior (a dot product of the steering vector and gradients with respect to an LRM's activations), we study the compression effects on individual weight matrices. We empirically verify our findings on weight importance by selectively quantizing or protecting a module to test its importance.",
+ "caption_source": "latex",
+ "abstract": "Compression methods, including quantization, distillation, and pruning, improve the computational efficiency of large reasoning models (LRMs). However, existing studies either fail to sufficiently compare all three compression methods on LRMs or lack in-depth interpretation analysis. In this paper, we investigate how the reasoning capabilities of LRMs are compromised during compression, through performance benchmarking and mechanistic interpretation. To uncover the effects of compression on reasoning performance, we benchmark quantized, distilled, and pruned DeepSeek-R1 models on four reasoning datasets (AIME 2024, FOLIO, Temporal Sequences, and MuSiQue). To precisely locate compression effects on model weights, we adapt difference of means and attribution patching techniques, focusing on the activation of every linear component in compressed LRMs, to interpret fine-grained causal relationships between weights and various reasoning capabilities. This fine-grained interpretation addresses a fundamental question of compression: which weights are the most important for reasoning? Overall, we find dynamically quantized 2.51-bit R1 reaches close-to-R1 performance. With empirical verification, we present three main findings that generalize across both R1 and non-R1 LRMs: (1) Weight count has a greater impact on LRMs' knowledge memorization than reasoning, highlighting the risks of pruning and distillation; (2) The MLP up projection in the final layer of distilled LRMs is one of the most important components, offering a new perspective on locating critical weights - a fundamental problem in model compression; and (3) Current quantization methods overly compress the final-layer modules and MLP gate projections, so protecting just 2% of all weights that are excessively compressed can raise average accuracy by 6.57%, greatly surpassing the state-of-the-art.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=2za3iNkwXn",
+  "arxiv": "https://arxiv.org/abs/2504.02010",
+  "pdf": "https://proceedings.iclr.cc/paper_files/paper/2026/file/665654759cdf2114c0cbe2b8e501e00e-Paper-Conference.pdf",
+  "proceedings": "https://proceedings.iclr.cc/paper_files/paper/2026/hash/665654759cdf2114c0cbe2b8e501e00e-Abstract-Conference.html",
+  "virtual": "https://iclr.cc/virtual/2026/poster/10011689",
+  "code": "https://github.com/psunlpgroup/Compression-Effects"
+ },
+ "license": "http://creativecommons.org/licenses/by/4.0/",
+ "img": "cc-by",
+ "image_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/images/iclr26-0279.png",
+ "thumb_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/thumbs/iclr26-0279.webp",
+ "figure_page": 1,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.6
+}

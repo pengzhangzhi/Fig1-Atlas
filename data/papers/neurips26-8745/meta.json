@@ -1,0 +1,49 @@
+{
+ "id": "neurips26-8745",
+ "title": "Routers Learn the Geometry of Their Experts: Geometric Coupling in Sparse Mixture-of-Experts",
+ "authors": [
+  "Sagi Ahrac",
+  "Noya Hochwald",
+  "Mor Geva"
+ ],
+ "venue": "NeurIPS 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "Social Aspects->Accountability, Transparency and Interpretability",
+ "role": "pipeline",
+ "role2": "concept",
+ "claim": "Routing scores and the selected component's weights receive gradients along the same input direction, so they accumulate a shared token history.",
+ "layout": "Top-down flow with a zoom-in inset, a red backprop loop, and a callout box",
+ "tags": [
+  "mixture-of-experts",
+  "routing",
+  "gradient-coupling",
+  "mechanistic-analysis",
+  "sparse-models"
+ ],
+ "style": [
+  "colorful",
+  "icon-heavy",
+  "math-heavy"
+ ],
+ "description": "A schematic of a sparse mixture-of-experts layer. An input token x on the left feeds a blue Router box of vectors r1..rN. Each vector is activated into scores p1..pN, and the selected entry (ri, pi) is highlighted dark blue. A green top-K selection step picks expert Ei in a green Experts row (E1..EN). A zoom-in inset at lower left shows Ei's W-up, W-gate and W-down matrices, captioned 'Router score predicts expert activations'. The forward path goes through pi·Ei·x to the layer output y and then to the Loss. Red backpropagation arrows run from the Loss back to both the router and the expert, labeled ∇L ∝ x. A red callout at top right, titled 'Geometric Coupling', states the claim in words. Blue marks the router, green the experts, yellow the output and red the gradients.",
+ "caption": "Router--expert geometric coupling in SMoEs. The router scores a hidden state $x$ and selects a sparse set of top-$K$ experts. For each selected expert, the matched router direction and expert input-side weights receive backpropagation updates proportional to the same hidden-state direction $x$. Repeated updates make matched router--expert pairs accumulate a common routed-token history, which is read out at inference as higher router scores predicting stronger gate-neuron preactivations.",
+ "caption_source": "latex",
+ "abstract": "Sparse Mixture-of-Experts (SMoE) models enable scaling language models efficiently, but training them remains challenging, as routing can collapse onto few experts and auxiliary load-balancing losses can reduce specialization. Motivated by these hurdles, we study how routing decisions in SMoEs are formed mechanistically. First, we reveal a geometric coupling between routers and their corresponding experts. For a given token, the router weights for the selected expert and the expert weights processing it receive gradients along the same input direction, differing only in scalar coefficients. Thus, matched router--expert directions accumulate the same routed token history. This theoretical coupling also appears empirically in routing dynamics. In a $1$B SMoE trained from scratch, higher router scores predict stronger expert neuron preactivations, showing that routing decisions are mirrored inside the selected expert. Next, we analyze the effects of auxiliary load balancing on the router--expert geometric coupling, showing that such losses break this structure by spreading input-directed gradients across router weights, making distinct router directions nearly three times more similar to each other. Last, we demonstrate the centrality of geometric coupling for effective routing with a parameter-free online K-Means router, in which each expert maintains a running average of the hidden states routed to it and tokens are assigned based on cosine similarity. Compared with auxiliary-loss and loss-free balancing, this router achieves the lowest load imbalance with only a modest perplexity increase, indicating that geometric coupling captures a substantial part of what the router learns. Overall, our results explain how routers form assignment geometry that supports an effective division of labor.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=yMEUNfh0H7",
+  "arxiv": "https://arxiv.org/abs/2605.12476",
+  "pdf": "https://arxiv.org/pdf/2605.12476",
+  "proceedings": null,
+  "virtual": "https://neurips.cc/virtual/2026/poster/148374",
+  "code": null
+ },
+ "license": "http://creativecommons.org/licenses/by/4.0/",
+ "img": "cc-by",
+ "image_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/images/neurips26-8745.png",
+ "thumb_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/thumbs/neurips26-8745.webp",
+ "figure_page": 1,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.62
+}

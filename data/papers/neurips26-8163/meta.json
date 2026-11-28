@@ -1,0 +1,50 @@
+{
+ "id": "neurips26-8163",
+ "title": "Stochastic Projections and Rank-Aware Learning Rates for Federated LoRA",
+ "authors": [
+  "Saber Malekmohammadi",
+  "Kevin Kuo",
+  "Virginia Smith",
+  "Golnoosh Farnadi"
+ ],
+ "venue": "NeurIPS 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "Deep Learning->Generative Models and Autoencoders",
+ "role": "concept",
+ "role2": "prior-vs-ours",
+ "claim": "A constrained low-rank update with a frozen projection is equivalent to full-weight training with structured, randomly projected gradient noise.",
+ "layout": "2 panels, left-to-right, double-headed equivalence arrow between them, math beside loops",
+ "tags": [
+  "low-rank-adaptation",
+  "equivalence",
+  "stochastic-approximation",
+  "frozen-projection",
+  "federated-learning"
+ ],
+ "style": [
+  "colorful",
+  "math-heavy",
+  "icon-heavy"
+ ],
+ "description": "Two panels are joined by a large blue double-headed arrow that signals equivalence. The left panel shows standard LoRA. A blue block of frozen pretrained weights W0 sits next to a red trapezoid for the trainable B0 = 0 and a blue trapezoid for the frozen A0, which is drawn from a Gaussian. Snowflake icons mark the frozen parts and a flame icon marks the trained part. A bracket labeled r marks the rank. Hollow arrows carry the input x in R^m up through both branches into a plus node that produces the output y in R^n. A red circular arrow notes T steps of SGD on the B gradient. The right panel shows a single red pretrained-weights block W0 with a flame icon. It has one input arrow and one output arrow, and a loop labeled T steps of SGD with the projected gradient ∇L A0ᵀA0. Blue marks frozen parts and red marks trained parts, and the eye goes first to the colored blocks.",
+ "caption": "\\algname{LoRA} with frozen component $A_\\ell$. Left: Standard \\algname{LoRA} with a frozen $A_\\ell$ and fine-tuned $B_\\ell$. Right: Equivalent full-weight fine-tuning of $W_\\ell^0$ using structured noisy gradients $\\nabla_{W_\\ell^t} \\mathcal{L}^t A_\\ell^{0\\top} A_\\ell^0$. Scaling factor $s$ is not shown in the figure for simplicity.",
+ "caption_source": "latex",
+ "abstract": "Fine-tuning large-scale foundation models across resource-constrained, distributed clients presents significant computational and communication challenges. While merging Low-Rank Adaptation (LoRA) with Federated Learning (FL) enables rank-based flexibility, the interdependence of the adaptation matrices ($\\mathbf{A}$ and $\\mathbf{B}$) often complicates optimization. In this work, we theoretically demonstrate that LoRA fine-tuning with Gaussian initialization and a frozen $\\mathbf{A}$ matrix acts as a stochastic approximation of full fine-tuning, where batch gradients are subject to a random, rank-dependent perturbation. Motivated by this insight, we propose freezing and periodically resampling $\\mathbf{A}$ matrices at the client level. This strategy decouples the $\\mathbf{A}$ and $\\mathbf{B}$ gradients, diminishes LoRA low-rank constraints and reduces both computational and uplink communication overheads by 50\\%, allowing for the reallocation of resources toward higher adaptation ranks. Furthermore, we show that in this frozen-$\\mathbf{A}$ regime, the adaptation rank $r$ directly governs the signal-to-noise ratio (SNR) of the perturbed gradients. Specifically, we find that the SNR increases linearly with $r$, implying that clients' learning rates must be dynamically scaled with their adaptation ranks for higher utility. Building on these foundations, we introduce SPRA-LoRA (Stochastic Projection Rank-Aware LoRA), a federated rank-aware fine-tuning strategy that utilizes frozen, resampled $\\mathbf{A}$ matrices and rank-dependent learning rates for clients. We also prove its convergence with heterogeneous client resources. Our experiments across benchmark datasets demonstrate that SPRA-LoRA consistently outperforms state-of-the-art baselines with half the overhead on clients.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=uPdmJxDBM2",
+  "arxiv": "https://arxiv.org/abs/2611.13331",
+  "pdf": "https://arxiv.org/pdf/2611.13331",
+  "proceedings": null,
+  "virtual": "https://neurips.cc/virtual/2026/poster/148894",
+  "code": "https://github.com/Saber-mm/SPRA-LoRA/tree/main"
+ },
+ "license": "http://arxiv.org/licenses/nonexclusive-distrib/1.0/",
+ "img": "none",
+ "image_url": null,
+ "thumb_url": null,
+ "figure_page": 4,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.5
+}

@@ -1,0 +1,51 @@
+{
+ "id": "neurips26-4838",
+ "title": "Trust Guided Decision Transformer",
+ "authors": [
+  "Chainesh Gautam",
+  "Raghuram Bharadwaj Diddigi",
+  "Chandramouli Kamanchi",
+  "Pankaj Dayama",
+  "Sumanta Mukherjee",
+  "Kameshwaran Sampath"
+ ],
+ "venue": "NeurIPS 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "Reinforcement Learning->Batch Offline",
+ "role": "analysis-finding",
+ "role2": "before-after",
+ "claim": "Baseline rollouts accumulate persistent prediction error as context drifts; our reliability-guided context adaptation keeps error low where alternatives do not.",
+ "layout": "2 panels side-by-side, each with line plot above and time-series strip below",
+ "tags": [
+  "context-selection",
+  "prediction-error",
+  "distribution-shift",
+  "reliability-signal",
+  "sequence-modeling"
+ ],
+ "style": [
+  "plot",
+  "minimal"
+ ],
+ "description": "Two side-by-side panels, each made of a top line plot and a thin bottom strip, sharing a timestep x-axis from 0 to 600. Panel (a) shows vanilla Decision Transformer as an orange line. Its rolling next-state prediction error S_t sits near zero early, then climbs and spikes past a dashed threshold tau_alpha around timestep 440. Beneath it, a violation-probability step plot jumps between 0 and 1, then stays at 1 after about step 320. Panel (b) overlays three methods on the same kind of error plot: No selection (orange), Critic-only (blue) and TGDT (green). Orange and blue oscillate at high error, 0.2 to 0.3, while green stays near the dashed threshold. The strip below shows the selected context length L_t for Critic-only (blue) and TGDT (green). Captions sit under each panel. Shaded bands show variability.",
+ "caption": "Rollout context mismatch and TGDT's execution-time response. Left, vanilla DT shows persistent prediction error measured by a frozen diagnostic transition probe. Right, TGDT uses the reliability signal to adapt context length and reduce persistent high-error stretches.",
+ "caption_source": "latex",
+ "abstract": "Decision Transformer performance degrades on long rollouts because the conditioning context drifts out of the training distribution. We show that this drift is visible through the model's own next state prediction error, which rises during rollout and stays elevated, giving a direct signal of when context has become unreliable. We introduce Trust Guided Decision Transformer (TGDT), which selects context before applying value guidance. At each step, TGDT evaluates several recent context suffixes using rolling next state prediction error, calibrated against held out offline data via split conformal prediction. It keeps only suffixes whose error stays within the calibrated threshold, then uses a frozen critic to choose the highest value action among the trusted suffixes. This reverses the order used by value only elastic selection, where the critic may choose an action generated from a context the model itself has flagged as unreliable. Experiments on D4RL navigation and locomotion tasks show that state prediction, critic guidance, and hard context reset each solve only part of the problem. TGDT reduces persistent high error runs and improves return over vanilla Decision Transformer, reset based context control, and value only context selection.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=XQWFbB5mIO",
+  "arxiv": "https://arxiv.org/abs/2609.31586",
+  "pdf": "https://arxiv.org/pdf/2609.31586",
+  "proceedings": null,
+  "virtual": "https://neurips.cc/virtual/2026/poster/151852",
+  "code": "https://github.com/Chainesh/Trust-Guided-Decision-Transformer"
+ },
+ "license": "http://creativecommons.org/licenses/by/4.0/",
+ "img": "cc-by",
+ "image_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/images/neurips26-4838.png",
+ "thumb_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/thumbs/neurips26-4838.webp",
+ "figure_page": 8,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.55
+}

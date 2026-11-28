@@ -1,0 +1,51 @@
+{
+ "id": "neurips26-3683",
+ "title": "Visual Enhanced Depth Scaling for Multimodal Latent Reasoning",
+ "authors": [
+  "Yudong Han",
+  "Yong Wang",
+  "Zaiquan Yang",
+  "Zhen Qu",
+  "Liyuan Pan",
+  "Xiangxiang Chu"
+ ],
+ "venue": "NeurIPS 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "Computer Vision->Vision Models & Multimodal",
+ "role": "analysis-finding",
+ "role2": null,
+ "claim": "Training gradients are imbalanced across token types, and hard samples keep large, oscillating gradients while easy ones converge quickly.",
+ "layout": "3 line-plot panels, left-to-right, with a dashed zoom inset in panel (a)",
+ "tags": [
+  "gradient-analysis",
+  "modality-imbalance",
+  "training-dynamics",
+  "easy-vs-hard",
+  "latent-reasoning"
+ ],
+ "style": [
+  "plot",
+  "colorful"
+ ],
+ "description": "A row of three line plots with captions (a), (b) and (c) beneath. Panel (a) plots token-wise gradient Frobenius norm against token index for Layers 2, 5, 10, 15 and 25, drawn in red, green, light blue, dark blue and purple. The curves stay near zero for the first ~115 tokens, which are the visual tokens. A dashed black box and dashed lines link that region to a zoomed inset at the top. After that the curves spike strongly, with a large rise at the end of the sequence. Panels (b) and (c) plot the nuclear norm of the LoRA matrices against epoch 0–7 for the Q, K, V and O projections, using orange, red, green and gray-purple squares. In (b), for easy samples, the norms fall steadily. In (c), for hard samples, the norms dip and then rise again, with V the highest.",
+ "caption": "Panel (a) depicts the token-wise Frobenius norm of gradients across different layers throughout the entire training process, revealing a clear gradient imbalance between visual tokens and text tokens/latent token. Panels (b) and (c) further reveal distinct evolution patterns of the Nuclear norm in the QKVO projection matrix across layers and training epochs: gradients for easy samples decay rapidly and converge smoothly, whereas hard samples maintain elevated gradient norms with persistent oscillations. Here, $W_{A}$ and $W_{B}$ denote the low-rank matrix in LoRA [ref].",
+ "caption_source": "latex",
+ "abstract": "Multimodal latent reasoning has emerged as a promising paradigm that replaces explicit Chain-of-Thought (CoT) decoding with implicit feature propagation, simultaneously enhancing representation informativeness and reducing inference latency. By analyzing token-level gradient dynamics during latent training, we reveal two critical observations: (1) visual tokens exhibit significantly smaller gradient norms than their textual counterparts due to inherent language bias, resulting in systematic visual under-optimization; and (2) semantically simple tokens converge rapidly, whereas complex tokens exhibit persistent gradient instability constrained by fixed architectural depths. To address these limitations, we propose a visual replay module and routing depth scaling to collaboratively enhance visual perception and refine complicated latents for deeper contextual reasoning. The former module leverages causal self-attention to estimate token saliency, reinforcing fine-grained grounding through spatially-coherent constraints. Complementarily, the latter mechanism adaptively allocates additional reasoning steps to complex tokens, enabling deeper contextual refinement. Guided by a curriculum strategy that progressively internalizes explicit CoT into compact latent representations, our framework achieves state-of-the-art performance across diverse benchmarks while delivering substantial inference speedups over explicit CoT baselines.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=PgPuQzvKVS",
+  "arxiv": "https://arxiv.org/abs/2604.10500",
+  "pdf": "https://arxiv.org/pdf/2604.10500",
+  "proceedings": null,
+  "virtual": "https://neurips.cc/virtual/2026/poster/152883",
+  "code": null
+ },
+ "license": "http://arxiv.org/licenses/nonexclusive-distrib/1.0/",
+ "img": "none",
+ "image_url": null,
+ "thumb_url": null,
+ "figure_page": 1,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.93
+}

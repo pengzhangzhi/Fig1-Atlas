@@ -1,0 +1,51 @@
+{
+ "id": "neurips26-7897",
+ "title": "Different Models, Shared Failures: Auditing Frozen-Encoder Pools for Medical Segmentation",
+ "authors": [
+  "Eunseob Choi",
+  "Kyeonghun Kim",
+  "Hyuk-Jae Lee",
+  "Nam-Joon Kim"
+ ],
+ "venue": "NeurIPS 2026",
+ "tier": "poster",
+ "track": "Evaluations_and_Datasets_Track",
+ "topic": "Applications->Health",
+ "role": "analysis-finding",
+ "role2": "pipeline",
+ "claim": "Ensembles of nominally distinct models fail on the same cases, so correlated failures shrink effective pool size below nominal size.",
+ "layout": "3 panels, left-to-right; failure-grid and bar chart culminate in result",
+ "tags": [
+  "correlated-failures",
+  "ensemble-diversity",
+  "effective-size",
+  "auditing",
+  "medical-segmentation"
+ ],
+ "style": [
+  "plot",
+  "photo/real data",
+  "colorful",
+  "text-heavy"
+ ],
+ "description": "Three-panel figure, read left to right. Panel (a) shows a column of frozen encoders A, B, C, D … K, each with an arrow to four trained heads numbered 1–4. The caption below reads '11 encoders × 4 heads'. Panel (b) shows thumbnails of five medical-image tasks: polyp, cardiac MRI, brain MRI and two fundus images. One case flows to four prediction crops with Dice scores 0.74, 0.81, 0.72 and 0.55. Orange marks false positives and blue marks false negatives. Below that, a dot plot of Dice against a threshold τ(P33) marks failures, and a row of black and white cells shows fail versus pass. Panel (c) shows candidate pools of four encoders and a binary failure grid for A1, C1, I1 and J1. Columns where all members fail are highlighted as 'shared failures'. A horizontal bar chart of mean effective size for the five tasks, from 1.56 to 2.92, sits against a dashed 'nominal 4' line.",
+ "caption": "Shared failures reduce effective pool size. Letters A--K index the 11 frozen encoder checkpoints in the bundle order of Figure [ref] (A: DINOv2-B, \\dots, K: ResNet-18); numbers index head-training seeds 42--45. Panel (b) compares predictions on the same cases (labels give member Dice) and defines failures by thresholding full-mask Dice. Panel (c) enumerates pools of four distinct retained encoders across all seed combinations, with one head per encoder; two example pools are shown. For each pool, positive mean pairwise failure correlation gives an effective size below four. Bars show task-specific mean effective sizes over supported pools at each task's pooled $P_{33}$, on a common 0--4 scale (support counts: Figure [ref]). Crops show false positives (orange) and false negatives (blue).",
+ "caption_source": "latex",
+ "abstract": "Average segmentation accuracy and model count do not reveal whether models fail on the same cases. We present CoFailMed, an audit of correlated failures in pretrained-encoder pools for medical segmentation. Across five 2D tasks, we evaluate 11 public pretrained encoders (a controlled sample, not a census) using frozen features and separately trained $1\\times 1$ readouts with four seeds per encoder. Shared-checkpoint pairs have the highest mean per-case Dice correlation. An expanded 17-encoder analysis shows that distinct checkpoints within the same encoder family remain more correlated than cross-family pairs. At the pooled 33rd-percentile Dice threshold, four-member pools drawn from distinct encoders have mean effective sizes of 1.56-2.92, estimated from failure correlations in pools with enough failures and passes per member. In the primary pool, richer readouts and fine-tuning narrow the Dice-correlation gap between pairs sharing a checkpoint (or the DINOv2-B/S release) and all other pairs. Yet dependence between different encoders can increase, and fine-tuning does not consistently increase effective pool size at 33rd-percentile thresholds recomputed for each training recipe. A smaller between-group gap can coexist with greater dependence. Pool evaluation should therefore report absolute dependence and threshold-specific effective size alongside accuracy and nominal pool size. The CoFailMed release provides aligned per-case traces, analysis scripts and study code to reproduce the central audit results.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=sgt45cOBtI",
+  "arxiv": "https://arxiv.org/abs/2610.41790",
+  "pdf": "https://arxiv.org/pdf/2610.41790",
+  "proceedings": null,
+  "virtual": "https://neurips.cc/virtual/2026/poster/138982",
+  "code": null
+ },
+ "license": "http://creativecommons.org/licenses/by/4.0/",
+ "img": "cc-by",
+ "image_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/images/neurips26-7897.png",
+ "thumb_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/thumbs/neurips26-7897.webp",
+ "figure_page": 2,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.5
+}

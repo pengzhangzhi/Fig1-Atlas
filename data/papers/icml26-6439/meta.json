@@ -1,0 +1,52 @@
+{
+ "id": "icml26-6439",
+ "title": "ReMoE: Boosting Expert Reuse through Router Fine-Tuning in Memory-Constrained MoE LLM Inference",
+ "authors": [
+  "Xiongwei Zhu",
+  "Xiaojian Liao",
+  "Tianyang Jiang",
+  "Yusen Zhang",
+  "Liang Wang",
+  "Limin Xiao"
+ ],
+ "venue": "ICML 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "Deep Learning->Large Language Models",
+ "role": "prior-vs-ours",
+ "role2": "problem-setup",
+ "claim": "Standard routing picks disjoint experts each step and thrashes the cache; ours reuses experts across steps, cutting misses.",
+ "layout": "2 stacked dashed panels, left-to-right over decode steps, color-coded expert blocks",
+ "tags": [
+  "expert-reuse",
+  "cache-locality",
+  "mixture-of-experts",
+  "inference-efficiency",
+  "temporal-locality"
+ ],
+ "style": [
+  "colorful",
+  "minimal",
+  "icon-heavy"
+ ],
+ "description": "Two vertically stacked dashed-border panels share a decode-step time axis (t=n, t=n+1, t=n+2) at the bottom. The top panel, 'Baseline: Cache Thrashing', shows three columns of stacked color-coded expert blocks (E1/E2/E6, then E3/E4/E7, then E1/E5/E8) joined by arrows labeled 'Miss 3', 'Miss 3'. Below them, rounded boxes show the cache state, such as [E1,E2,E6] → [E3,E4,E7] → [E1,E5,E8]. The bottom panel, 'ReMoE: Tokens Reuse Experts', uses the same layout. Its experts overlap across steps (E1/E2/E6, then E1/E6/E3, then E1/E6/E3), and the arrows read 'Miss 1' and 'No Miss'. The cache state stays almost unchanged. Matching colors for repeated experts make reuse visible at a glance.",
+ "caption": "Comparison of expert I/O dynamics. Baseline: Standard routers select disjoint experts across steps, causing frequent cache replacements and I/O thrashing. ReMoE: Our method encourages temporal locality by increasing expert reuse across adjacent steps, thereby reducing cache turnover and I/O overhead.",
+ "caption_source": "latex",
+ "abstract": "Fine-grained Mixture-of-Experts (MoE) models sparsely activate only a subset of experts per token, reducing activated computation while maintaining high model capacity. However, in memory-constrained inference scenarios, only a small set of experts can be cached. Experts not in the cache must be fetched from slow external storage (e.g., UFS), leading to frequent evictions and substantial I/O overhead. We propose ReMoE, a router fine-tuning framework designed to boost token-wise expert reuse. ReMoE biases the router toward recently selected experts, producing temporally stable routing that better matches cache locality constraints. By increasing short-horizon expert reuse, ReMoE reduces expert fetches from storage without adding inference-time computation. Experiments on DeepSeek and Qwen models show that ReMoE improves expert reuse by 26% while maintaining downstream task performance. Real-system evaluations further confirm these benefits, improving output throughput by 8.4% under vLLM GPU-CPU expert offloading and reducing TPOT by 43.6-49.8% under llama.cpp on Jetson Orin NX, corresponding to a 1.77-1.99$\\times$ decode speedup across diverse workloads. Checkpoints and usage instructions are available at https://github.com/BUAA-OSCAR/ReMoE.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=ylAhgNb2ak",
+  "arxiv": "https://arxiv.org/abs/2605.27081",
+  "pdf": "https://raw.githubusercontent.com/mlresearch/v306/main/assets/zhu26ab/zhu26ab.pdf",
+  "proceedings": "https://proceedings.mlr.press/v306/zhu26ab.html",
+  "virtual": "https://icml.cc/virtual/2026/poster/60585",
+  "code": "https://github.com/BUAA-OSCAR/ReMoE"
+ },
+ "license": "http://creativecommons.org/licenses/by-sa/4.0/",
+ "img": "cc-by-sa",
+ "image_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/images/icml26-6439.png",
+ "thumb_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/thumbs/icml26-6439.webp",
+ "figure_page": 1,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.85
+}

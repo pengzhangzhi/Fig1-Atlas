@@ -1,0 +1,47 @@
+{
+ "id": "neurips26-5742",
+ "title": "How Should Parallel Langevin Chains Share Noise?",
+ "authors": [
+  "Ryan Farell"
+ ],
+ "venue": "NeurIPS 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "Probabilistic Methods->Monte Carlo and Sampling Methods",
+ "role": "analysis-finding",
+ "role2": "teaser-result",
+ "claim": "Sharing noise so it sums to zero across parallel chains removes ensemble-average fluctuation that independent noise leaves.",
+ "layout": "single line plot, three overlaid curves, colored inline annotations with a leader line",
+ "tags": [
+  "zero-sum-noise",
+  "variance-reduction",
+  "antithetic-sampling",
+  "langevin-sampling",
+  "coupling"
+ ],
+ "style": [
+  "plot",
+  "minimal",
+  "colorful"
+ ],
+ "description": "A single time-series plot. The x-axis is ULA step t, from 0 to 120. The y-axis is the ensemble mean a^T X̄_t. A jagged blue line, labeled iid noise with K=8, fluctuates around zero. It peaks near 1.2 early and swings between about -0.6 and 0.9 later. A thick green line, labeled zero-sum noise with K=8, lies exactly on top of a black dashed line for noiseless gradient descent. It rises briefly to about 0.95, then decays smoothly to zero and stays flat. The legend sits at the top right. Two colored text annotations sit inside the plot. A blue one says the iid average still jitters. A green one has a leader line pointing at the flat curve and says the average is exactly the noiseless path. The eye goes first to the blue jitter against the flat green and black line.",
+ "caption": "The average of eight ULA chains on a quadratic target from a common start. With independent noise the average fluctuates. With zero-sum noise it follows gradient descent to machine precision. A single chain has the same law in both runs.",
+ "caption_source": "latex",
+ "abstract": "Parallel Langevin sampling usually draws an array of independent Gaussian vectors, one row per chain. The average row drives the ensemble mean, with variance $1/K$ per coordinate for $K$ chains. Yet the unadjusted Langevin algorithm (ULA) specifies only each row's distribution. Subtracting the column means and rescaling, as in classical antithetic sampling, makes that variance zero. Each chain keeps its ordinary ULA path law for any finite run. For quadratic targets we derive the joint covariance of linear estimates computed from the ensemble mean, including coefficient estimates, time averages and predictions. The identity separates contributions from initial states and Gaussian draws. The coupling changes the second through one scalar, which is zero whenever the draws sum to zero across chains. For nonquadratic targets we bound the remaining variance. Centering has a price: for a quadratic form in the mean-subtracted Gaussian state, the ensemble average has variance $1/(K-1)$ relative to one chain, compared with $1/K$ under independent draws. On three tempered logistic posteriors, eight centered chains reduced the variance of the posterior-mean estimate, summed over coordinates, by two to three orders of magnitude compared with eight independent chains. They also beat 128 independent chains on variance and on variance times sampling time. Under Metropolis correction the reduction shrank to about three- to eightfold: rejected draws no longer balance accepted ones. The measured variance ratios were consistent with a leading-order prediction from rejection frequency and noise energy.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=dTLaD3Us8h",
+  "arxiv": "https://arxiv.org/abs/2611.19784",
+  "pdf": "https://arxiv.org/pdf/2611.19784",
+  "proceedings": null,
+  "virtual": "https://neurips.cc/virtual/2026/poster/151033",
+  "code": "https://github.com/rfarell/parallel-langevin-chains"
+ },
+ "license": "http://arxiv.org/licenses/nonexclusive-distrib/1.0/",
+ "img": "none",
+ "image_url": null,
+ "thumb_url": null,
+ "figure_page": 1,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.5
+}

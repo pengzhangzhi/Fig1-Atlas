@@ -1,0 +1,57 @@
+{
+ "id": "icml26-3720",
+ "title": "Dustin: Draft-Augmented Sparse Verification for Efficient Long-Context Generation with Speculative Decoding",
+ "authors": [
+  "Wen-Hung Lee",
+  "Jian-Jia Chen",
+  "Xiaolin Lin",
+  "Pei-Shuo Wang",
+  "Chi-Chih Chang",
+  "Chun-Che Yang",
+  "Wei-Chen Wang",
+  "Hanrui Wang",
+  "Ning-Chi Huang",
+  "Li Zhang",
+  "Kai-Chiang Wu"
+ ],
+ "venue": "ICML 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "Deep Learning->Large Language Models",
+ "role": "teaser-result",
+ "role2": "analysis-finding",
+ "claim": "Verification-time KV loading dominates step latency in standard approaches; ours cuts it sharply, giving large speedups across model scales.",
+ "layout": "1 panel, grouped stacked bars in 3 clusters, speedup multipliers annotated above bars",
+ "tags": [
+  "speculative-decoding",
+  "latency-breakdown",
+  "long-context",
+  "efficiency",
+  "sparse-attention"
+ ],
+ "style": [
+  "plot",
+  "colorful",
+  "minimal"
+ ],
+ "description": "A single stacked bar chart of latency in milliseconds (y-axis 0 to about 1750). The x-axis has three target(draft) model pairs: Qwen2.5-72B(0.5B), Qwen2.5-32B(0.5B) and Qwen2.5-7B(0.5B). Each pair has three bars labeled SD, MDec and Dustin. Each bar is stacked from blue Target Time at the bottom, then green Draft Time, then a thin red Overhead slice, as the legend in the top right shows. SD and MDec bars are tall and mostly blue. The Dustin bars are much shorter, with a small blue base. Bold labels above the bars give speedup multipliers over SD: 1.1x for MDec and 5.0x, 3.9x or 2.1x for Dustin. The eye goes first to the tall blue bars, then to the short Dustin bars.",
+ "caption": "Latency breakdown of a single speculative decoding step. Experiments are measured with a 32k input length and batch size 16. We compare classic Speculative Decoding (SD), MagicDec (MDec) [ref], and our proposed Dustin. The x-axis notation Target(Draft) simply indicates the specific target and draft model pair used.",
+ "caption_source": "latex",
+ "abstract": "While speculative decoding improves inference throughput for multi-batch long-context Large Language Models (LLMs), its efficiency is often limited by a verification bottleneck where Key-Value (KV) cache loading dominates latency. Existing compression methods fail in this regime: static eviction incurs accuracy loss due to saliency shift, while dynamic selection introduces prohibitive computational overhead during the verification path. We propose Dustin, a sparse verification framework designed for long-context speculative decoding. Dustin integrates lookahead signals from the draft model with historical attention from the target model to identify critical tokens with high fidelity across multi-step verification windows. To reduce recomputation latency, this approach further employs a sparse estimation scheme that restricts importance scoring to a minimal subset of attention heads. Evaluations on PG-19 and LongBench with Qwen2.5-72B demonstrate that Dustin achieves a 27.85x speedup in self-attention and a 9.17x end-to-end decoding speedup at a 32k sequence length, all with negligible accuracy degradation.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=Z1Ju4QIZmg",
+  "arxiv": "https://arxiv.org/abs/2606.24957",
+  "pdf": "https://raw.githubusercontent.com/mlresearch/v306/main/assets/lee26d/lee26d.pdf",
+  "proceedings": "https://proceedings.mlr.press/v306/lee26d.html",
+  "virtual": "https://icml.cc/virtual/2026/poster/63218",
+  "code": null
+ },
+ "license": "http://creativecommons.org/licenses/by/4.0/",
+ "img": "cc-by",
+ "image_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/images/icml26-3720.png",
+ "thumb_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/thumbs/icml26-3720.webp",
+ "figure_page": 0,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.8
+}

@@ -1,0 +1,53 @@
+{
+ "id": "neurips26-8946",
+ "title": "B[FM]$^2$: Brain Foundation Model via Flow Matching with SplitUNet",
+ "authors": [
+  "Jaedong Hwang",
+  "Kathleen Zhang",
+  "David Dai",
+  "Konstantinos Kontras",
+  "Maarten De Vos",
+  "Ila Fiete",
+  "Paul Liang"
+ ],
+ "venue": "NeurIPS 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "Applications->Neuroscience, Cognitive Science",
+ "role": "pipeline",
+ "role2": "overview-framework",
+ "claim": "A single continuous-time generative model pretrains directly on raw signals and transfers to downstream tasks through a factorized velocity network.",
+ "layout": "Top trajectory strip over three panels; left-to-right flow with nested U-Net diagram",
+ "tags": [
+  "flow-matching",
+  "pretraining",
+  "u-net",
+  "raw-signal",
+  "foundation-model"
+ ],
+ "style": [
+  "colorful",
+  "icon-heavy",
+  "photo/real data"
+ ],
+ "description": "The figure has a wide strip across the top labeled Flow-Matching, with a long arrow pointing right. It shows four stages of multichannel EEG traces (Fp1 in purple, O2 in green, Cz in red) going from noisy on the left to clean on the right. Below it, the left column holds two small boxes: 'Pretrain: EEG + Noise' (pink) and 'Finetune: Downstream EEG' (yellow). Each box has axes and black waveforms. In the center, a large blue 'SplitUNet' panel shows an encoder-decoder with paired blue blocks, down-sample and up-sample labels, gray skip connections, and a self-attention bottleneck. A zoomed inset shows Conv(1+1)D, AdaLN and Conv(1+1)D with a residual add. On the right, 'Pretrain: EEG Reconstruction' contains a Velocity Field block, reconstructed versus real EEG, and a clinician-evaluation cartoon. Below it, 'Finetune: Downstream Tasks' lists Seizure Detection and Sleep Analysis. Dashed lines link the top strip to the reconstruction panel.",
+ "caption": "Continuous-time generative pretraining for EEG. (Top) The flow matching process maps Gaussian noise ($t=0.0$) to continuous, multi-channel EEG signals ($t=1.0$) along a continuous trajectory. (Left/Center) SplitUNet, the velocity network, reads the interpolant $\\vect{x}_t$ together with $t$ and predicts the velocity $v_\\theta(\\vect{x}_t, t)$ that points toward the data endpoint. Every spatiotemporal convolution inside it is factorized into a 1D convolution along time followed by a 1D convolution along electrodes, and down/upsampling acts on the time axis only, so the $E$ electrodes survive at full resolution from input to output. (Right) Integrating the velocity field from noise generates new EEG, which two board-certified neurologists could not reliably separate from real recordings.",
+ "caption_source": "latex",
+ "abstract": "EEG foundation models can learn generalizable representations from large-scale EEG corpora to enable single-backbone transfer across diverse clinical and brain-computer interface tasks. Existing models typically discretize the continuous multi-channel EEG waveform into patches or codebook tokens and train a transformer with masked self-supervision. Recognizing that this discretization fragments continuous brain rhythms and obscures fine-grained temporal dynamics, we present B[FM]$^2$(Brain Foundation Model via Flow Matching), whose inductive bias aligns with the data by pretraining directly on the raw signal using continuous-time flow matching without patches, tokenization, or masking. However, multi-channel EEG signals pose an architectural challenge for flow matching: time is densely sampled and highly autocorrelated (thousands of timepoints), while the electrode axis is short (tens of channels) at distinct scalp positions. To address this time-electrode asymmetry, we introduce SplitUNet, a velocity network that factorizes each block into separate 1D temporal and 1D electrode convolutions and downsamples only along time, preserving electrode topology throughout the hierarchy. B[FM]$^2$ sets a new state of the art on $7$ of $9$ standard downstream EEG classification tasks, using a pretraining budget of only $36{,}895$ segments ($\\approx$ 307h), 1-2 orders of magnitude ($\\approx$ 30x) less than required by existing EEG foundation models. Further, it generates synthetic EEGs that two board-certified neurologists cannot distinguish from brain data (Cohen's $Îº= -0.096$). https://jd730.github.io/projects/BFM2",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=zdfQqwhwe7",
+  "arxiv": "https://arxiv.org/abs/2606.20812",
+  "pdf": "https://arxiv.org/pdf/2606.20812",
+  "proceedings": null,
+  "virtual": "https://neurips.cc/virtual/2026/poster/148190",
+  "code": "https://jd730.github.io/projects/BFM2"
+ },
+ "license": "http://arxiv.org/licenses/nonexclusive-distrib/1.0/",
+ "img": "none",
+ "image_url": null,
+ "thumb_url": null,
+ "figure_page": 1,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.8
+}

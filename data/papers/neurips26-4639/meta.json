@@ -1,0 +1,50 @@
+{
+ "id": "neurips26-4639",
+ "title": "Forecasting Downstream Performance of LLMs With Proxy Metrics",
+ "authors": [
+  "Arkil Patel",
+  "Siva Reddy",
+  "Marius Mosbach",
+  "Dzmitry Bahdanau"
+ ],
+ "venue": "NeurIPS 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "Deep Learning->Everything Else",
+ "role": "teaser-result",
+ "role2": null,
+ "claim": "Cheap proxy metrics built from expert traces rank models and data choices accurately, matching costly direct evaluation at far less compute.",
+ "layout": "2 panels: left 3x2 scatter grid, right Pareto step plot with arrow",
+ "tags": [
+  "proxy-metrics",
+  "performance-forecasting",
+  "model-selection",
+  "data-selection",
+  "compute-efficiency"
+ ],
+ "style": [
+  "plot",
+  "colorful",
+  "minimal"
+ ],
+ "description": "The figure has two panels. The left panel, titled 'Ranking LLMs With Proxy Metrics' with 'Mean CV Spearman ρ = 0.81', is a 3x2 grid of small scatter plots for GPQA, MMLU-Pro, USACO, SuperGPQA, AIME and HMMT. Each plot shows proxy metric on the x-axis and benchmark score on the y-axis. Colored dots follow a dashed fit line that rises monotonically, and each benchmark has its own color. The right panel, titled 'Ranking Pretraining Datasets With Small Proxy Models', is a step-curve plot of decision accuracy against proportion of target compute on a log axis. A red curve (proxy: freq-weighted top-5 accuracy) and a teal curve (rBridge) sit far to the left of a purple curve (downstream task performance). A horizontal arrow labeled '10,000× less compute' points left. The red curve reaches the highest accuracy, so the eye goes to it first.",
+ "caption": "Left. Ranking models on held-out challenging reasoning tasks (as measured by mean CV Spearman $\\rho$) using our linear RankSVM proxy. Our proxy uses features of the next-token prediction distributions of candidate models over expert reasoning traces. Right: Ranking 25 pretraining corpora for a target 1B LLM on the DataDecide testbed [ref]. Each method trains small proxy models (4M--90M) on each corpus and attempts to recover the ground-truth corpus ranking defined by the target 1B model's downstream accuracy. Decision accuracy is the fraction of corpus pairs ranked correctly. Our best proxy metric pushes the Pareto frontier, requiring roughly $10{,}000\\times$ less compute to match the downstream evaluation baseline.",
+ "caption_source": "latex",
+ "abstract": "Progress in language model development is often driven by comparative decisions: which architecture to adopt, which pretraining corpus to use, or which training recipe to apply. Making these decisions well requires reliable performance forecasts, yet the two commonly used signals are fundamentally limited. Cross-entropy loss is poorly aligned with downstream capabilities, and direct downstream evaluation is expensive, sparse, and often uninformative at early training stages. Instead, we propose to construct proxy metrics by aggregating token-level statistics, such as entropy, top-k accuracy, and expert token rank, from a candidate model's next token distribution over expert-written solutions. Across three settings, our proxies consistently outperform loss- and compute-based baselines: 1) For cross-family model selection, they rank a heterogeneous population of reasoning models with mean Spearman Rho = 0.81 (vs. Rho = 0.36 for cross-entropy loss); 2) For pretraining data selection, they reliably rank 25 candidate corpora for a target model at roughly $10{,}000\\times$ less compute than direct evaluation, pushing the Pareto frontier beyond existing methods; and 3) for training-time forecasting, they extrapolate downstream accuracy across an $18\\times$ compute horizon with roughly half the error of existing alternatives. Together, these results suggest that expert trajectories are a broadly useful source of signal for assessing model capabilities, enabling reliable performance forecasting throughout the model development life cycle.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=W2xeiyOmWL",
+  "arxiv": "https://arxiv.org/abs/2605.18607",
+  "pdf": "https://arxiv.org/pdf/2605.18607",
+  "proceedings": null,
+  "virtual": "https://neurips.cc/virtual/2026/poster/152033",
+  "code": null
+ },
+ "license": "http://arxiv.org/licenses/nonexclusive-distrib/1.0/",
+ "img": "none",
+ "image_url": null,
+ "thumb_url": null,
+ "figure_page": 1,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.82
+}

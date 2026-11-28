@@ -1,0 +1,48 @@
+{
+ "id": "neurips26-6188",
+ "title": "Amortized Vine Copulas for High-Dimensional Density and Information Estimation",
+ "authors": [
+  "Houman Safaai"
+ ],
+ "venue": "NeurIPS 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "Probabilistic Methods->Everything Else",
+ "role": "pipeline",
+ "role2": "prior-vs-ours",
+ "claim": "One pretrained network, reused across every pairwise edge, replaces repeated per-edge fitting while preserving the full structured model and its outputs.",
+ "layout": "4 panels in 2x2 grid, left-to-right flows, final density comparison row",
+ "tags": [
+  "amortized-inference",
+  "vine-copula",
+  "pretraining",
+  "density-estimation",
+  "reusable-module"
+ ],
+ "style": [
+  "colorful",
+  "icon-heavy",
+  "plot",
+  "math-heavy"
+ ],
+ "description": "A 2x2 grid of rounded gray panels. Panel (a), 'Pretrain once', shows a left-to-right flow: a noisy blue histogram stack feeds an orange U-Net icon, then an IPFP box, then a predicted density heatmap. A double arrow links the heatmap to the true density, and a loss arrow loops back to the U-Net. Panel (b), 'Fit a D-vine, tree by tree', repeats the flow with a gray frozen U-Net (lock icon). It starts from scatter points and histograms, and ends in a cached h-function box whose arrow loops back to the next tree. Panel (c) shows D-vine tree diagrams T1 to T3 with f_theta tags on the edges. They branch to three boxes: likelihood, sampling and information. Panel (d) compares an X-shaped copula as a sample, the true density, pyvine-TLL (blurry, ISE 1.4) and VDC (sharp, ISE 0.012), with a blue colorbar. The eye goes first to the blue heatmaps and the orange U-Net.",
+ "caption": "VDC overview. (a) A U-Net $f_\\theta$ is trained once on simulated copulas (Appendix [ref]): it takes a histogram corrupted at a random noise level $t$, conditioned on $t$, and its IPFP-projected output is trained against the true density (shown: one input with mixing weight $0.3$ and the network's output for it). (b) A D-vine is fitted tree by tree with the frozen $f_\\theta$: edges are evaluated in batches, one network pass per batch, and cached h-functions give the pseudo-observations of the next tree. (c) One estimator serves every edge; the fitted vine provides likelihood, sampling and information. (d) On a fresh sample from the X-shaped zoo pattern, \\ours{} preserves the crossing structure smoothed by pyvine-TLL (ISE: integrated squared error; aggregate errors in Appendix Table [ref]). Predicted densities in (a) and (b) are outputs of the deployed checkpoint on illustrative samples; (d) is a measured comparison.",
+ "caption_source": "latex",
+ "abstract": "Modeling high-dimensional dependencies while keeping likelihoods tractable re- mains challenging. Classical vine copulas provide an explicit dependence structure but require repeated, costly bivariate fitting. We propose Vine Denoising Copula (VDC)1, an amortized estimator for simplified vines on continuous data. VDC trains a single bivariate denoising network on simulated copulas and reuses it across all vine edges. For each edge, the network maps an empirical histogram to a density grid, and iterative proportional fitting approximately enforces uniform grid marginals. The predicted densities and cached conditional transforms support stan- dard vine recursion, likelihood evaluation, sampling, and information estimation. This retains the classical vine factorization while replacing repeated per-edge fitting with reusable neural inference. Across synthetic and real-data benchmarks, VDC combines accurate bivariate density estimation, competitive information estimates, and faster high-dimensional vine fitting after pretraining. Performance varies across datasets; finite grid resolution and conditional prediction remain limitations. The explicit fitted structure supports edge- and tree-level information decomposition, making repeated dependence analysis more practical.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=gVrwhk9HGC",
+  "arxiv": "https://arxiv.org/abs/2604.20568",
+  "pdf": "https://arxiv.org/pdf/2604.20568",
+  "proceedings": null,
+  "virtual": "https://neurips.cc/virtual/2026/poster/150646",
+  "code": null
+ },
+ "license": "http://creativecommons.org/licenses/by/4.0/",
+ "img": "cc-by",
+ "image_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/images/neurips26-6188.png",
+ "thumb_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/thumbs/neurips26-6188.webp",
+ "figure_page": 1,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.8
+}

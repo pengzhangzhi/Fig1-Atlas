@@ -1,0 +1,49 @@
+{
+ "id": "icml26-1380",
+ "title": "Detecting the Semantic Fixed Point: A Geometric Framework for Efficient Inference",
+ "authors": [
+  "Jiawei Gu",
+  "Ziyue Qiao",
+  "Xiao Luo"
+ ],
+ "venue": "ICML 2026",
+ "tier": "oral",
+ "track": "main",
+ "topic": "Deep Learning->Other Representation Learning",
+ "role": "analysis-finding",
+ "role2": null,
+ "claim": "Layer-wise hidden state updates show a sharp two-phase structure, with large volatile steps giving way to small aligned ones.",
+ "layout": "6 panels, 2x3 grid, heatmaps, violins, scatter; sorted-sample heatmaps with saturation curve",
+ "tags": [
+  "two-phase-dynamics",
+  "early-exit",
+  "hidden-state-geometry",
+  "empirical-trend",
+  "convergence"
+ ],
+ "style": [
+  "plot",
+  "colorful",
+  "photo/real data"
+ ],
+ "description": "A six-panel grid of empirical plots (a–f) on hidden state trajectories in LLaMA-2-7B. Panels a and b are heatmaps of samples (sorted by saturation layer) against layer. Panel a, in blue, shows normalized step size, which is large early and fades to white. Panel b, in green, shows directional stability, which is low early and saturates later. A brown curve marks the saturation layer l_sat and cuts diagonally through both. Panel c has violin plots of l_sat for four datasets in blue, green and orange, with a dashed band labeled 90%. Panel d is a hexbin density plot of threshold-based against curvature-based l_sat along the diagonal (r=0.98), with marginal densities. Panel e is a scatter plot of perplexity against l_sat with a regression line (r=0.67). Panel f overlays median and percentile curves of step size and stability, with 'Construction' and 'Propagation' phases labeled. The eye goes first to the two diagonal heatmaps.",
+ "caption": "Two-phase structure of hidden state trajectories in LLaMA-2-7B. (a) Normalized step size ˜s(l) for 120 samples sorted by the curvature-based saturation layer lsat. (b) Directional stability c(l) for the same samples. (c) Distribution of curvature-based lsat across datasets. (d) Agreement between the threshold-based proxy and curvature-based detector (r = 0.98). (e) Correlation between input difficulty and lsat (r = 0.67). (f) Aggregate median and percentile statistics.",
+ "caption_source": "pdf",
+ "abstract": "Each layer of a Transformer refines the hidden state toward a prediction, an iterative process resembling fixed-point iteration. Yet when should this iteration terminate? Existing early exit methods rely on output confidence as a proxy for internal convergence. We take a more direct approach by examining the geometry of the hidden state trajectory. We find that layer-wise updates exhibit a two-phase structure: large, volatile updates in early layers, followed by small, aligned updates as the model propagates an already-formed representation. The transition is remarkably sharp. This yields a simple criterion: exit when step size vanishes and direction stabilizes. We track the normalized update norm and cosine similarity between consecutive updates, exiting when both indicate convergence. The overhead is $O(d)$ per layer, independent of vocabulary size, requiring no learned components or architectural modifications. On LLaMA-2-7B and LLaMA-2-13B across question answering and commonsense reasoning tasks, this geometric criterion reduces FLOPs by 30--35\\% while retaining over 98\\% of full-depth accuracy.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=DACN5xM4h7",
+  "arxiv": null,
+  "pdf": "https://raw.githubusercontent.com/mlresearch/v306/main/assets/gu26k/gu26k.pdf",
+  "proceedings": "https://proceedings.mlr.press/v306/gu26k.html",
+  "virtual": "https://icml.cc/virtual/2026/poster/65483",
+  "code": null
+ },
+ "license": null,
+ "img": "none",
+ "image_url": null,
+ "thumb_url": null,
+ "figure_page": 2,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.9
+}

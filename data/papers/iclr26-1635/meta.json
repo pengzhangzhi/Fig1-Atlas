@@ -1,0 +1,50 @@
+{
+ "id": "iclr26-1635",
+ "title": "Towards Understanding Subliminal Learning: When and How Hidden Biases Transfer",
+ "authors": [
+  "Simon Schrodi",
+  "Elias Kempf",
+  "Fazl Barez",
+  "Thomas Brox"
+ ],
+ "venue": "ICLR 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "Social Aspects->Fairness, Equity, Justice and Safety",
+ "role": "problem-setup",
+ "role2": "analysis-finding",
+ "claim": "A hidden trait transfers through innocuous-looking data, and a sparse set of tokens where teachers disagree carries it.",
+ "layout": "3 panels left-to-right, dotted dividers, token rows between two teacher boxes",
+ "tags": [
+  "distillation",
+  "hidden-bias",
+  "token-masking",
+  "phenomenon",
+  "ablation"
+ ],
+ "style": [
+  "icon-heavy",
+  "colorful",
+  "text-heavy"
+ ],
+ "description": "Three panels, A to C, separated by dotted lines. Panel A shows subliminal learning. A robot with a cat icon is the biased teacher. It generates numbers in a user/assistant chat box, and a dashed 'Finetune' arrow leads to a student robot that also carries the cat. Panel B identifies divergence tokens. A prompt and completion token row feeds a cat-biased teacher box. A second row feeds an owl-biased counterfactual teacher box. Between them is a row of predicted tokens in green, with the few disagreements in red, such as 195 versus 234 and 67 versus 101. Panel C shows two finetuning setups. Training on only the divergence tokens transfers the cat. Training with those tokens masked gives a student with a crossed-out cat. Bold and faded token colors show which tokens are used in training.",
+ "caption": "Hidden biases in subliminal learning are carried by divergence tokens. A: A student can inherit biases---such as a preference for cats---from its teacher through innocuous-looking data, \\eg, lists of numbers [ref]. B: Given the same prompt, a cat-biased (factual) and an owl-biased (counterfactual) teacher produce identical completions (under greedy decoding), except at a sparse set of tokens where they disagree---we call these divergence tokens (red). C: Masking all but these few divergence tokens from the finetuning loss suffices for bias transfer (top); leaving all other tokens but masking the divergence tokens instead yields little to no transfer (bottom).",
+ "caption_source": "latex",
+ "abstract": "Language models can transfer hidden biases during distillation. For example, a teacher that \"likes owls\" can make its student \"like owls\" too, even when the training data consists only of lists of numbers. This surprising phenomenon is called subliminal learning. Subliminal learning can be expected under soft distillation, where the student is trained on the teacher's full next-token distribution. But the fact that this also occurs under hard distillation-where the student only sees sampled tokens-raises a deeper question: when and how does subliminal learning actually occur? We answer this question through controlled experiments and mechanistic analysis. Our results show that subliminal learning does not need (global) token entanglement or logit leakage. Instead, it comes down to a small set of divergence tokens-rare cases where teachers with different biases would predict different tokens. Masking out these tokens mostly removes the hidden bias transfer. Mechanistically, divergence tokens reveal that early layers are critical. Surprisingly, finetuning even a single such early layer is sufficient for subliminal learning. Finally, we find that subliminal learning is fragile. Even small changes, like prompt paraphrasings, are usually sufficient to suppress it.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=IelhmYSjPt",
+  "arxiv": "https://arxiv.org/abs/2509.23886",
+  "pdf": "https://proceedings.iclr.cc/paper_files/paper/2026/file/b51b50262b492dd89bb9cd3105a46702-Paper-Conference.pdf",
+  "proceedings": "https://proceedings.iclr.cc/paper_files/paper/2026/hash/b51b50262b492dd89bb9cd3105a46702-Abstract-Conference.html",
+  "virtual": "https://iclr.cc/virtual/2026/poster/10010279",
+  "code": "https://github.com/lmb-freiburg/divergence-tokens"
+ },
+ "license": "http://arxiv.org/licenses/nonexclusive-distrib/1.0/",
+ "img": "none",
+ "image_url": null,
+ "thumb_url": null,
+ "figure_page": 1,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.5
+}

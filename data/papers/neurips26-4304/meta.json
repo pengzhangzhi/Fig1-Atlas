@@ -1,0 +1,48 @@
+{
+ "id": "neurips26-4304",
+ "title": "Truncate Bad, Upweight Good: BoN-Style Distillation via Rank-Based Classification",
+ "authors": [
+  "Yarin Bar",
+  "Yaniv Romano"
+ ],
+ "venue": "NeurIPS 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": null,
+ "role": "pipeline",
+ "role2": null,
+ "claim": "Sample candidates, rank them by reward, then discard the low tail and upweight the retained upper tail to train the policy.",
+ "layout": "3 panels, left-to-right, big arrows between, plot and loss in final panel",
+ "tags": [
+  "rank-based-distillation",
+  "best-of-n",
+  "truncation",
+  "preference-alignment",
+  "offline-training"
+ ],
+ "style": [
+  "colorful",
+  "math-heavy",
+  "minimal"
+ ],
+ "description": "Three rounded boxes run left to right, joined by large grey-blue arrows. Panel 1, \"Reference Pool\", shows a train prompt icon, a down arrow, and the text \"sample K completions y1..yK ~ π_ref(·|x)\", with a row of grey document icons below. Panel 2, \"Rank Completions by Reward Model\", shows a vertical high-to-low arrow that fades from green to red. Beside it are colored completion icons labeled with win-rates 1.0, 0.8, 0.6 and 0.2, with dots between them. Panel 3, \"TUP Target & BCE Loss Training\", gives the formula w_{λ,r} = max(w_r − λ, 0). Below it a plot has a pink \"discard\" region left of a dashed red line at λ, and a green \"upweight using β\" region to its right, with a blue curve rising steeply. A grey box at the bottom holds the BCE loss formula. The eye goes first to the bold panel titles, then to the plot.",
+ "caption": "Illustration of TUP.",
+ "caption_source": "latex",
+ "abstract": "Inference-time selection methods, such as Best-of-N, improve generation by sampling a pool of candidates and selecting the top-ranked completion according to a reward model. Distillation seeks to amortize this procedure into a single policy by replacing raw rewards with in-pool ranks and learning a policy that upweights higher-ranked completions. However, existing rank-based policies typically use smooth full-support reweighting, so low-ranked completions receive less mass but remain in the target support. Although a sharper reweighting reduces lower-tail mass, it also increases reliance on brittle ranking at the top made by a single reward model. We propose TUP: a Truncate-bad, Upweight-good Policy that removes low-ranked completions from the support and reweights only the retained upper tail with a tunable sharpness. TUP admits a closed-form, prompt-independent normalization and can be trained fully offline via binary cross-entropy, using shifted-truncated win-rates as soft labels and distilled-to-reference log-likelihood ratios as logits. Theoretically, under certain assumptions, we show that for any unknown oracle reward, the best monotone rank-reweighting can be matched by a lower-tail truncation rule, providing formal support for removing the lower tail rather than merely downweighting it. Empirically, we show that TUP is competitive with strong offline alignment baselines.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=TunY4IfXnt",
+  "arxiv": "https://arxiv.org/abs/2608.19748",
+  "pdf": "https://arxiv.org/pdf/2608.19748",
+  "proceedings": null,
+  "virtual": "https://neurips.cc/virtual/2026/poster/152325",
+  "code": null
+ },
+ "license": "http://creativecommons.org/licenses/by-nc-sa/4.0/",
+ "img": "cc-by-nc-sa",
+ "image_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/images/neurips26-4304.png",
+ "thumb_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/thumbs/neurips26-4304.webp",
+ "figure_page": 1,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.93
+}

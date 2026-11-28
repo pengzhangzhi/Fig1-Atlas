@@ -1,0 +1,53 @@
+{
+ "id": "icml26-2278",
+ "title": "STARE: Step-wise Temporal Alignment and Red-teaming Engine for Multi-modal Toxicity Attack",
+ "authors": [
+  "Xutao Mao",
+  "Liangjie Zhao",
+  "Tao Liu",
+  "Xiang Zheng",
+  "Hongying Zan",
+  "Cong Wang"
+ ],
+ "venue": "ICML 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "Social Aspects->Safety",
+ "role": "analysis-finding",
+ "role2": "problem-setup",
+ "claim": "Harmful semantics emerge at specific stages of a multi-step generation process, and adding the generated modality raises attack success across harm categories.",
+ "layout": "3 stacked sections: two timeline rows of images, then example boxes beside a bar chart",
+ "tags": [
+  "diffusion-trajectory",
+  "red-teaming",
+  "temporal-analysis",
+  "step-wise-attribution",
+  "multimodal-safety"
+ ],
+ "style": [
+  "photo/real data",
+  "plot",
+  "colorful",
+  "text-heavy"
+ ],
+ "description": "The top two rows show a denoising trajectory from Step 5 to Step 40 as eight image tiles, each row under a black arrow. Pure noise gradually becomes a blurred, then clear, graphic image. Some step labels are red and have small icons: Step 10 'violence' (knife), Step 20 'blood' (drop) and Step 25 'death' (skull). Black boxes censor the sensitive regions. The bottom left has a stacked text panel with a prompt and two responses: 'Text-only' with a green smiley face, and 'Text + Image' with a red frowny face and a censored image. The bottom right has a grouped bar chart of attack success rate (%) across six toxicity dimensions, comparing Text-Only (green) and Text + Image (purple). It has error bars and a zoomed inset for the low-value categories. The eye goes first to the noisy image grid.",
+ "caption": "Motivation for temporal alignment analysis. Existing red-teaming methods can craft toxic continuations but cannot explain how the toxicity semantics form during T2I generation. STARE addresses this gap by performing step-wise temporal alignment, attributing the final toxicity back to specific steps. The early panel (left) shows the conceptual seeding phase, where identity- and threat-related cues are inpainted; the middle panel shows mid-trajectory layout; the late panel (right) shows the detail-amplification phase, where insult- and obscene-related visual details are sharpened. The right-most score traces the toxicity score per dimension as the trajectory advances.",
+ "caption_source": "latex",
+ "abstract": "Red-teaming Vision-Language Models is essential for identifying vulnerabilities where adversarial image-text inputs trigger toxic outputs. Existing approaches treat image generation as a black box, returning only terminal toxicity scores and leaving open the question of when and how toxic semantics emerge during multi-step synthesis. We introduce STARE, a hierarchical reinforcement learning framework that treats the denoising trajectory itself as the attack surface, under a direct white-box T2I and query-only black-box VLM setting. By coupling a high-level prompt editor with low-level T2I fine-tuning via Group Relative Policy Optimization (GRPO), STARE attains a 68% improvement in Attack Success Rate over state-of-the-art black-box and white-box baselines. More importantly, this trajectory-level view surfaces the Optimization-Induced Phase Alignment phenomenon: vanilla models exhibit diffuse toxicity, whereas adversarial optimization concentrates conceptual harms into early semantic phases and detail-oriented harms into late refinement. Targeted perturbations of either window selectively suppress different toxicity categories, indicating that this temporal structure is a genuine causal handle rather than a side effect of the hierarchical design. The phenomenon turns toxicity formation from a chaotic process into a small set of predictable vulnerability windows, providing both a potent attack engine and a basis for phase-aware safety mechanisms. Content warning: This paper contains examples of toxic content that may be offensive or disturbing.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=Leijxx6Czi",
+  "arxiv": "https://arxiv.org/abs/2605.00699",
+  "pdf": "https://raw.githubusercontent.com/mlresearch/v306/main/assets/mao26j/mao26j.pdf",
+  "proceedings": "https://proceedings.mlr.press/v306/mao26j.html",
+  "virtual": "https://icml.cc/virtual/2026/poster/64616",
+  "code": null
+ },
+ "license": "http://arxiv.org/licenses/nonexclusive-distrib/1.0/",
+ "img": "none",
+ "image_url": null,
+ "thumb_url": null,
+ "figure_page": 1,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.6
+}

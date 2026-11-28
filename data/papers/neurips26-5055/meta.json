@@ -1,0 +1,52 @@
+{
+ "id": "neurips26-5055",
+ "title": "PORT: Preference Optimization via Robust Token-Level Reweighting",
+ "authors": [
+  "Ding Zhu",
+  "Xiukun Wei",
+  "Tian Xie",
+  "Zhihui Zhu",
+  "Xueru Zhang",
+  "Mohammad Mahdi Khalili"
+ ],
+ "venue": "NeurIPS 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "Social Aspects->Trustworthy Machine Learning",
+ "role": "pipeline",
+ "role2": null,
+ "claim": "Reweight each token by its percentile-rank gap between chosen and rejected responses, so corrupted tokens are suppressed in a single forward pass.",
+ "layout": "5 numbered colored panels, left-to-right, with a bottom feedback arrow",
+ "tags": [
+  "token-level-reweighting",
+  "preference-optimization",
+  "noisy-labels",
+  "robustness",
+  "empirical-cdf"
+ ],
+ "style": [
+  "colorful",
+  "math-heavy",
+  "icon-heavy"
+ ],
+ "description": "A left-to-right pipeline with five numbered, color-coded boxes. The green box on the left lists batches of preference pairs. Each pair shows token chips for the chosen response (green) and the rejected response (red). The blue second box shows the forward pass. The policy model and the reference policy produce per-token logits, which are sorted and pooled into a global empirical CDF curve. The orange third box plots the CDF with the chosen-token and rejected-token percentile ranks marked, and gives the gap Δ = F_l − F_w. The yellow fourth box maps Δ to a weight w = γ·exp(ρΔ) using a green-to-red gradient bar. The purple fifth box gives the weighted token-level DPO loss as a sum over tokens. A gray DPO token signal bar runs along the bottom into the final box. An index notation legend sits in the top right. The eye goes first to the green token grids, then follows the arrows through the boxes.",
+ "caption": "Overview of the PORT training pipeline: 1) Given a batch $\\mathcal{B}=\\{(\\tilde{x}, \\tilde y^{[b]}_w, \\tilde y^{[b]}_l)\\}_{b=1}^{|\\mathcal{B}|}$ of preference pairs, where $\\tilde y^{[b]}_w$ and $\\tilde y^{[b]}_l$ denote chosen and rejected responses. 2) Forward pass: the policy $\\pi_\\theta$ and reference policy $\\pi_{\\mathrm{ref}}$ are evaluated to obtain per-token log-ratios $\\delta_t^{[b]}(\\theta)$ and token-level logits $\\tilde s_{w,t}^{[b]}, \\tilde s_{l,t}^{[b]}$. 3) $\\Delta$CDF estimation: token log-probabilities are pooled across the batch to form a global empirical CDF $F(\\cdot)$, which gives percentile ranks $F_{w,t}^{[b]}$ and $F_{l,t}^{[b]}$ for the chosen and rejected tokens. A large gap indicates that the rejected token is assigned anomalously high probability relative to the chosen token, signaling potential token-level label noise. 4) Weight conversion: gap $\\Delta_t^{[b]} = F_{l,t}^{[b]} - F_{w,t}^{[b]}$ is mapped to a weight $w_t^{[b]} = \\gamma \\exp(\\rho \\Delta_t^{[b]})$. 5) Weighted token-level update: these weights are incorporated into the preference objective $\\widetilde{\\mathcal{L}}_w$, yielding a robust gradient update that suppresses corrupted tokens. The procedure uses only a single forward pass and introduces no extra backward-pass overhead.",
+ "caption_source": "latex",
+ "abstract": "Preference optimization has become a central approach for aligning large language models with human values, but its effectiveness depends heavily on the quality of preference annotations. In practice, preference data is often noisy due to annotation errors and ambiguity. Existing robust preference optimization methods primarily operate at the sequence level, implicitly treating entire responses as uniformly correct or incorrect. However, rejected responses may still contain informative reasoning steps, while preferred responses can include subtle errors. In this work, we propose \\textbf{P}reference \\textbf{O}ptimization via \\textbf{R}obust \\textbf{T}oken-level reweighting \\textbf{(PORT)}, a fine-grained framework for robust alignment under noisy preferences. PORT performs token-level reweighting using the empirical cumulative distribution function (CDF) of token log-probabilities, yielding an efficient forward-pass-only proxy to gradient-norm penalization that selectively suppresses corrupted tokens without additional backward-pass computation. We provide theoretical analysis showing that PORT reduces the gradient bias from noisy preference labels by minimizing an upper bound on the bias term. Extensive experiments across diverse noise settings demonstrate that PORT consistently improves robustness and outperforms existing sequence-level baselines. The code is available at https://github.com/osu-srml/PORT",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=Z0gcomg5dI",
+  "arxiv": "https://arxiv.org/abs/2611.12763",
+  "pdf": "https://arxiv.org/pdf/2611.12763",
+  "proceedings": null,
+  "virtual": "https://neurips.cc/virtual/2026/poster/151657",
+  "code": null
+ },
+ "license": "http://creativecommons.org/licenses/by/4.0/",
+ "img": "cc-by",
+ "image_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/images/neurips26-5055.png",
+ "thumb_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/thumbs/neurips26-5055.webp",
+ "figure_page": 1,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.97
+}

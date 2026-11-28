@@ -1,0 +1,53 @@
+{
+ "id": "neurips26-1625",
+ "title": "Flux Attention: Context-Aware Hybrid Attention for Efficient LLMs Inference",
+ "authors": [
+  "Quantong Qiu",
+  "Zhiyi Hong",
+  "Yi Yang",
+  "Haitian Wang",
+  "Kebin Liu",
+  "Qingqing Dang",
+  "Juntao Li",
+  "Min zhang"
+ ],
+ "venue": "NeurIPS 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "Deep Learning->Attention Mechanisms",
+ "role": "analysis-finding",
+ "role2": "teaser-result",
+ "claim": "Sparsity harms some tasks past a threshold, and coarse layer-level sparsity gives real decoding speedup where fine-grained head-level sparsity does not.",
+ "layout": "2 panels side-by-side; left line plot with shaded collapse region, right dual-axis bars+lines",
+ "tags": [
+  "sparse-attention",
+  "long-context",
+  "efficiency",
+  "performance-collapse",
+  "layer-vs-head-sparsity"
+ ],
+ "style": [
+  "plot",
+  "colorful"
+ ],
+ "description": "Two plots sit side by side. Panel (a) is a line chart of performance (40% to 110%) against sparsity (0.0 to 0.9) for four task types, with a dashed gray baseline at 100%. A red dash-dotted vertical line at 0.5 starts a pink shaded region labeled \"Perf. Collapse\". Single-document QA drops to about 74% and multi-hop QA falls steeply to about 41%. Summarization and code stay near baseline. Panel (b) plots decoding latency on a log scale against context length from 8K to 256K. Lines show dense latency (gray), head-level latency (red) and layer-level latency (blue). Pink bars show head-level speedup, which stays near 1x. Blue bars show layer-level speedup, which rises to about 2x on the right axis. The red collapse annotation and the gap between blue and red are the first things the eye lands on.",
+ "caption": "Impact of sparsity on performance and decoding efficiency. (a) Certain tasks suffer performance collapse beyond a specific threshold; this sweep uses Streaming Sparse Attention (SSA) with the configuration of Appendix [ref]. (b) Layer-level sparsity achieves substantial decoding speedup, while head-level sparsity yields marginal speedup.",
+ "caption_source": "latex",
+ "abstract": "The quadratic computational complexity of standard attention mechanisms presents a severe scalability bottleneck for LLMs in long-context scenarios. While hybrid attention mechanisms combining Full Attention (FA) and Sparse Attention (SA) offer a potential solution, existing methods typically rely on static allocation ratios that fail to accommodate the variable retrieval demands of different tasks. Furthermore, head-level dynamic sparsity often introduces severe computational load imbalance and synchronization long-tails, which hinder hardware acceleration during autoregressive decoding. To bridge this gap, we introduce Flux Attention, a context-aware framework that dynamically optimizes attention computation at the layer level. By integrating a lightweight Layer Router into frozen pretrained LLMs, the proposed method adaptively routes each layer to FA or SA based on the input context. This layer-wise routing preserves high-fidelity information retrieval while ensuring contiguous memory access, translating theoretical computational reductions into practical wall-clock speedups. As a parameter-efficient approach, our framework requires only 12 hours of training on 8$\\times$A800 GPUs. Extensive experiments across multiple long-context and mathematical reasoning benchmarks demonstrate that Flux Attention achieves a superior trade-off between performance and inference speed compared with baseline models, with speed improvements of up to $2.8\\times$ and $2.0\\times$ in the prefill and decode stages.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=BfLKfkqbAC",
+  "arxiv": "https://arxiv.org/abs/2604.07394",
+  "pdf": "https://arxiv.org/pdf/2604.07394",
+  "proceedings": null,
+  "virtual": "https://neurips.cc/virtual/2026/poster/154703",
+  "code": "https://qqtang-code.github.io/FluxAttention-Project-Page/"
+ },
+ "license": "http://creativecommons.org/licenses/by/4.0/",
+ "img": "cc-by",
+ "image_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/images/neurips26-1625.png",
+ "thumb_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/thumbs/neurips26-1625.webp",
+ "figure_page": 1,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.8
+}

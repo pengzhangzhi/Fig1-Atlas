@@ -1,0 +1,59 @@
+{
+ "id": "iclr26-3488",
+ "title": "SLA: Beyond Sparsity in Diffusion Transformers via Fine-Tunable Sparse–Linear Attention",
+ "authors": [
+  "Jintao Zhang",
+  "Haoxu Wang",
+  "Kai Jiang",
+  "Shuo Yang",
+  "Kaiwen Zheng",
+  "Haocheng Xi",
+  "Ziteng Wang",
+  "Hongzhou Zhu",
+  "Min Zhao",
+  "Ion Stoica",
+  "Joseph E Gonzalez",
+  "Jianfei Chen",
+  "Jun Zhu"
+ ],
+ "venue": "ICLR 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": null,
+ "role": "analysis-finding",
+ "role2": "problem-setup",
+ "claim": "Most weights are tiny but dropping them cannot go far: pushing sparsity higher sharply raises output error, so sparsity alone is insufficient.",
+ "layout": "2 panels: left bar chart, right 2x3 heatmap grid; arrow O=PV",
+ "tags": [
+  "sparse-attention",
+  "attention-distribution",
+  "efficiency",
+  "error-vs-sparsity",
+  "diffusion-transformer"
+ ],
+ "style": [
+  "plot",
+  "colorful",
+  "photo/real data"
+ ],
+ "description": "Left panel is a bar chart of attention-weight frequency, binned into three ranges. The green 'Negligible' bar is 45.4%, the yellow 'Marginal' bar is 46.5%, and the short red 'Critical' bar is 8.1%. A box notes that the average value is 1/N. The right panel is a bordered 2x3 grid of heatmaps. The top row shows attention-weight maps at sparsity 0%, 45% and 92%. Red and blue maps show block-diagonal structure, and masked entries turn white as sparsity rises. Arrows labeled O = PV lead to a bottom row of attention-output maps. Error labels read 0%, under 3% in green, and over 33% in red. The eye goes first to the colored bars, then to the red error text at the right.",
+ "caption": "The left figure shows a typical distribution of attention weights sampled from the Wan2.1 model. The right figure shows the accuracy of sparse attention with different sparsity.",
+ "caption_source": "latex",
+ "abstract": "In Diffusion Transformer (DiT) models, particularly for video generation, attention latency is a major bottleneck due to the long sequence length and the quadratic complexity. We find that attention weights can be separated into two parts: a small fraction of large weights with high rank and the remaining weights with very low rank. This naturally suggests applying sparse acceleration to the first part and low-rank acceleration to the second. Based on this finding, we propose SLA (Sparse-Linear Attention), a trainable attention method that fuses sparse and linear attention to accelerate diffusion models. SLA classifies attention weights into critical, marginal, and negligible categories, applying O(N^2) attention to critical weights, O(N) attention to marginal weights, and skipping negligible ones. SLA combines these computations into a single GPU kernel and supports both forward and backward passes. With only a few fine-tuning steps using SLA, DiT models achieve a 20x reduction in attention computation, resulting in significant acceleration without loss of generation quality. Experiments show that SLA reduces attention computation by 95% without degrading end-to-end generation quality, outperforming baseline methods. In addition, we implement an efficient GPU kernel for SLA, which yields a 13.7x speedup in attention computation and a 2.2x end-to-end speedup in video generation on Wan2.1-1.3B. The code is available at https://github.com/thu-ml/SLA.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=eD8IPvNoZB",
+  "arxiv": "https://arxiv.org/abs/2509.24006",
+  "pdf": "https://proceedings.iclr.cc/paper_files/paper/2026/file/df77cca99e2785eafb5b2416d688ae24-Paper-Conference.pdf",
+  "proceedings": "https://proceedings.iclr.cc/paper_files/paper/2026/hash/df77cca99e2785eafb5b2416d688ae24-Abstract-Conference.html",
+  "virtual": "https://iclr.cc/virtual/2026/poster/10008340",
+  "code": null
+ },
+ "license": "http://creativecommons.org/licenses/by/4.0/",
+ "img": "cc-by",
+ "image_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/images/iclr26-3488.png",
+ "thumb_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/thumbs/iclr26-3488.webp",
+ "figure_page": 2,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.8
+}

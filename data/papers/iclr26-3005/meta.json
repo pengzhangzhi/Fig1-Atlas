@@ -1,0 +1,50 @@
+{
+ "id": "iclr26-3005",
+ "title": "CIAR: Interval-based Collaborative Decoding for Image Generation Acceleration",
+ "authors": [
+  "Keming Ye",
+  "Zhou Zhao",
+  "Fan Wu",
+  "Shengyu Zhang"
+ ],
+ "venue": "ICLR 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "Computer Vision->Image and Video Generation",
+ "role": "prior-vs-ours",
+ "role2": "analysis-finding",
+ "claim": "Existing speculative decoding verifies every token, which is wasteful. Skipping verification hurts quality, so we verify selectively and cut latency.",
+ "layout": "2 panels: plots on left, three architecture diagrams on right with latency labels",
+ "tags": [
+  "speculative-decoding",
+  "collaborative-inference",
+  "efficiency",
+  "autoregressive",
+  "selective-verification"
+ ],
+ "style": [
+  "plot",
+  "colorful",
+  "icon-heavy"
+ ],
+ "description": "The figure has two parts separated by a dashed vertical line. Panel (a), on the left, shows a pie chart titled 'Acceptance Rate of Tokens'. It splits tokens into 70% max-prob tokens (blue) and 30% other tokens (pink, pulled out of the pie). Below the pie is a bar chart comparing Base, Lantern, and Lantern without cloud verification on CLIP score (blue) and FID score (pink). Quality degrades when verification is removed. Panel (b), on the right, shows three block diagrams side by side: baseline, Lantern, and CIAR. Each stacks green Transformer Layers (×N) under a pink LM Head. Each has an image-token input at the bottom and a small output image at the top. Clock icons above them give latency: 11.8s, 7.12s (↓39%), and 4.67s (↓60%). Lantern adds a 'verify' branch. CIAR adds a blue Inter-Head Output module and a dashed cloud-device loop.",
+ "caption": "(a) Acceptance analysis of Lantern. The pie chart shows the ratio of max-prob vs. other tokens, and the bar chart compares Lantern without verification to the baseline. (b) Comparison of decoding frameworks. From left to right: baseline, Lantern, and our CIAR with Inter-Head and cloud-device collaboration, which reduces latency while preserving output quality.",
+ "caption_source": "latex",
+ "abstract": "Auto-regressive (AR) models have recently made notable progress in image generation, achieving performance comparable to diffusion-based approaches. However, their computational intensity and sequential nature impede on-device deployment, causing disruptive latency. We address this via a cloud-device collaboration framework \\textbf{CIAR}, which utilizes on-device self-verification to handle two key properties of visual synthesis: \\textit{the vast token vocabulary} required for high-fidelity images and \\textit{inherent spatial redundancy} which leads to extreme predictability in homogeneous regions, while object boundaries exhibit high uncertainty. Uniform verification wastes resources on such redundant tokens. Our solution centers on an on-device token uncertainty quantifier, which adopts continuous probability intervals to accelerate processing and make it feasible for large visual vocabularies instead of conventional discrete solution sets. Additionally, we incorporate a Interval-enhanced decoding module to further speed up decoding while maintaining visual fidelity and semantic consistency via a distribution alignment training strategy. Extensive experiments demonstrate that CIAR achieves a 2.18x speed-up and reduces cloud requests by 70\\%, while preserving image quality compared to existing methods.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=YzZ4pSAwZy",
+  "arxiv": "https://arxiv.org/abs/2603.25463",
+  "pdf": "https://proceedings.iclr.cc/paper_files/paper/2026/file/e7e506bc5a94768243083216fe51d98b-Paper-Conference.pdf",
+  "proceedings": "https://proceedings.iclr.cc/paper_files/paper/2026/hash/e7e506bc5a94768243083216fe51d98b-Abstract-Conference.html",
+  "virtual": "https://iclr.cc/virtual/2026/poster/10008851",
+  "code": null
+ },
+ "license": "http://creativecommons.org/licenses/by/4.0/",
+ "img": "cc-by",
+ "image_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/images/iclr26-3005.png",
+ "thumb_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/thumbs/iclr26-3005.webp",
+ "figure_page": 1,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.8
+}

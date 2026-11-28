@@ -1,0 +1,55 @@
+{
+ "id": "iclr26-2069",
+ "title": "Scalable In-Context Q-Learning",
+ "authors": [
+  "Jinmei Liu",
+  "Fuhong Liu",
+  "Zhenhong Sun",
+  "Jianye Hao",
+  "Huaxiong Li",
+  "Bo Wang",
+  "Daoyi Dong",
+  "Chunlin Chen",
+  "Zhi Wang"
+ ],
+ "venue": "ICLR 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "Reinforcement Learning->Batch/Offline",
+ "role": "pipeline",
+ "role2": null,
+ "claim": "A three-stage procedure (pretrain a world model, pretrain a multi-head in-context policy, test online) yields compact prompts and value-guided policies.",
+ "layout": "3 panels, left-to-right, (a) world model, (b) multi-head transformer, (c) online loop",
+ "tags": [
+  "in-context-learning",
+  "reinforcement-learning",
+  "multi-head-transformer",
+  "world-model",
+  "offline-pretraining"
+ ],
+ "style": [
+  "colorful",
+  "icon-heavy",
+  "minimal"
+ ],
+ "description": "Three rounded gray-bordered panels run left to right, labeled (a) World Model Pretraining, (b) In-Context Policy Pretraining and (c) Online Testing. Panel (a) shows a row of state, action and reward circles. They pass through a trapezoid Context Encoder φ to a blue representation z_t, then a gray Dynamic Decoder φ that outputs predicted reward and next state. Panel (b), the widest, shows a blue token row z1…zh labeled β feeding arrows into a peach Causal Transformer block. Query circles s_t and a_t enter from the left. Three trapezoid heads (π, Q, V) sit below the transformer, each with a mint output box showing its formula. Panel (c) shows an online loop. The history goes through the encoder to a prompt, then the transformer and π head, then an Earth icon for the environment. The environment's feedback arrow returns to the history. Pastel peach, blue, green and yellow fills carry the eye through the stages.",
+ "caption": "The overview of S-ICQL. (a) We pretrain a generalized world model to accurately capture task-relevant information from the multi-task offline dataset as in Eq. ([ref]), and use the context encoder to transform a small number of raw transitions into a precise and lightweight prompt $\\beta$ as in Eq. ([ref]). (b) We design a prompt-based multi-head transformer model that simultaneously predicts the optimal policy $\\pi_\\theta(a|s;\\beta)$, the state value function $V_\\theta(s;\\beta)$, and Q-function $Q_\\theta(s,a;\\beta)$ using separate heads, given the task prompt $\\beta$ and corresponding query inputs ($s$ or $s,a$). We learn $V_\\theta$ by expectile regression as in Eq. ([ref]), and use it to compute Bellman backups for training $Q_\\theta$ as in Eq. ([ref]). The in-context value functions are distilled into policy extraction using advantage-weighted regression as in Eq. ([ref]). (c) Online testing by interacting with the environment. The prompt is initially empty and gradually constructed from history interactions using the pretrained context encoder.",
+ "caption_source": "latex",
+ "abstract": "Recent advancements in language models have demonstrated remarkable in-context learning abilities, prompting the exploration of in-context reinforcement learning (ICRL) to extend the promise to decision domains. Due to involving more complex dynamics and temporal correlations, existing ICRL approaches may face challenges in learning from suboptimal trajectories and achieving precise in-context inference. In the paper, we propose \\textbf{S}calable \\textbf{I}n-\\textbf{C}ontext \\textbf{Q}-\\textbf{L}earning (\\textbf{S-ICQL}), an innovative framework that harnesses dynamic programming and world modeling to steer ICRL toward efficient reward maximization and task generalization, while retaining the scalability and stability of supervised pretraining. We design a prompt-based multi-head transformer architecture that simultaneously predicts optimal policies and in-context value functions using separate heads. We pretrain a generalized world model to capture task-relevant information, enabling the construction of a compact prompt that facilitates fast and precise in-context inference. During training, we perform iterative policy improvement by fitting a state value function to an upper-expectile of the Q-function, and distill the in-context value functions into policy extraction using advantage-weighted regression. Extensive experiments across a range of discrete and continuous environments show consistent performance gains over various types of baselines, especially when learning from suboptimal data. Our code is available at \\textcolor{magenta}{\\href{https://github.com/NJU-RL/SICQL}{https://github.com/NJU-RL/SICQL}}.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=NuGAhTDYTd",
+  "arxiv": "https://arxiv.org/abs/2506.01299",
+  "pdf": "https://proceedings.iclr.cc/paper_files/paper/2026/file/9e76870b97621b3153b84782062143ef-Paper-Conference.pdf",
+  "proceedings": "https://proceedings.iclr.cc/paper_files/paper/2026/hash/9e76870b97621b3153b84782062143ef-Abstract-Conference.html",
+  "virtual": "https://iclr.cc/virtual/2026/poster/10009826",
+  "code": null
+ },
+ "license": "http://arxiv.org/licenses/nonexclusive-distrib/1.0/",
+ "img": "none",
+ "image_url": null,
+ "thumb_url": null,
+ "figure_page": 3,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.93
+}

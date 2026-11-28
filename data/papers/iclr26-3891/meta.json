@@ -1,0 +1,52 @@
+{
+ "id": "iclr26-3891",
+ "title": "An Information Theoretic Perspective on Agentic System Design",
+ "authors": [
+  "Shizhe He",
+  "Avanika Narayan",
+  "Ishan Khare",
+  "Scott Linderman",
+  "Christopher Re",
+  "Dan Biderman"
+ ],
+ "venue": "ICLR 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "Deep Learning->Everything Else",
+ "role": "problem-setup",
+ "role2": "teaser-result",
+ "claim": "A small model compresses long context for a larger one, and on-device hardware makes local compressors feasible, so what makes a good compression?",
+ "layout": "2 panels, left workflow diagram with right trend plot, red question-mark device",
+ "tags": [
+  "compressor-predictor",
+  "multi-lm-systems",
+  "on-device",
+  "information-theory",
+  "motivation"
+ ],
+ "style": [
+  "colorful",
+  "plot",
+  "icon-heavy"
+ ],
+ "description": "The figure has two panels. Left, \"Compression-Prediction Workflow\", is a left-to-right flow. A box of data-source icons (web globe, chat bubble, code, books) feeds a purple trapezoid labeled p(z|x), the Compressor LM. That outputs a red box with a large question mark labeled \"Compression\", which feeds a green box p(y|z), the Predictor LM, and then an \"Answer\" box. X, Z and Y sit below the stages. A tag reads \"Deep Research, Claude Code, and more…\". A red callout at the bottom asks \"What makes a compression 'good'?\". Right, \"Compressors can increasingly run on-device\", is a line and scatter plot of model parameter count (log scale) against year, 2020–2025. Green (MacBook) and orange (Pixel phone) lines show the largest runnable model size, and points are labeled with models and LM Arena ranks. A legend sits at the bottom.",
+ "caption": "Why compressors matter. Many agentic LM systems rely on compressors, and personal devices are growing powerful enough to host them. (Left) A compressor condenses a long input \\(X\\) into a shorter summary \\(Z\\), which a predictor ingests to extract the final answer \\(Y\\). (Right) Consumer hardware can now run increasingly large open-weight LMs, shown for Google Pixel phones and Apple MacBook laptops under FP16 precision with memory estimates from Modal [ref]. LM-Arena ranks indicate relative performance.",
+ "caption_source": "latex",
+ "abstract": "Agentic language model (LM) systems power modern applications like \"Deep Research\" and \"Claude Code,\" and leverage multi-LM architectures to overcome context limitations. Beneath their apparent diversity lies a recurring pattern: smaller \"compressor\" LMs (that can even run locally) distill raw context into compact text that is then consumed by larger \"predictor\" LMs. Despite their popularity, the design of compressor-predictor systems remains largely ad hoc, with little guidance on how compressor and predictor choices shape downstream performance. In practice, attributing gains to compression versus prediction requires costly, task-specific pairwise sweeps. We argue that these agentic system design questions are, at root, information-theoretic. Viewing the compressor LM as a noisy channel, we introduce a simple estimator of mutual information between the context and its compression to quantify compression quality in a task-independent way. We show that mutual information strongly predicts downstream performance, independent of any specific task. Through an information-theoretic framework, we perform a comprehensive empirical analysis across five datasets and three model families. Results reveal that larger compressors not only are more accurate, but also more token-efficient, conveying more bits of information per token. A 7B Qwen-2.5 compressor, for instance, is $1.6\\times$ more accurate, $4.6\\times$ more concise, and conveys $5.5\\times$ more bits of mutual information per token than its 1.5B sibling. Across datasets, scaling compressors is substantially more effective than scaling predictors, enabling larger on-device compressors to pair with smaller cloud predictors. Applied to a Deep Research system, these principles enable local compressors as small as 3B parameters to recover $99\\%$ of frontier-LM accuracy at $26\\%$ of API costs.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=isFHz8qf20",
+  "arxiv": "https://arxiv.org/abs/2512.21720",
+  "pdf": "https://proceedings.iclr.cc/paper_files/paper/2026/file/539843788c365d04de35b62bac925259-Paper-Conference.pdf",
+  "proceedings": "https://proceedings.iclr.cc/paper_files/paper/2026/hash/539843788c365d04de35b62bac925259-Abstract-Conference.html",
+  "virtual": "https://iclr.cc/virtual/2026/poster/10007928",
+  "code": "https://hazyresearch.stanford.edu/blog/2025-12-29-agentic-it"
+ },
+ "license": "http://creativecommons.org/licenses/by/4.0/",
+ "img": "cc-by",
+ "image_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/images/iclr26-3891.png",
+ "thumb_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/thumbs/iclr26-3891.webp",
+ "figure_page": 0,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.5
+}

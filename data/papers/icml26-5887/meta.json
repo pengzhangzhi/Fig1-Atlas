@@ -1,0 +1,51 @@
+{
+ "id": "icml26-5887",
+ "title": "Interpretability Transfer from Language to Vision via Sparse Autoencoders",
+ "authors": [
+  "Alexey Kravets",
+  "Da Li",
+  "Chuan Li",
+  "Da Chen",
+  "Vinay Namboodiri"
+ ],
+ "venue": "ICML 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "Deep Learning->Other Representation Learning",
+ "role": "pipeline",
+ "role2": "overview-framework",
+ "claim": "One alignment-trained projector lets a frozen text SAE both interpret visual tokens and steer model outputs locally.",
+ "layout": "3 stacked panels: training top, interpretability and steering below, left-to-right flow",
+ "tags": [
+  "sparse-autoencoder",
+  "cross-modal-transfer",
+  "interpretability",
+  "steering",
+  "alignment"
+ ],
+ "style": [
+  "icon-heavy",
+  "colorful",
+  "text-heavy"
+ ],
+ "description": "A block diagram with three horizontal bands. The top band shows training. A grayscale photo of a running dog goes into a frozen blue Vision Encoder, then an orange trainable Projector with a flame icon. The projector feeds a frozen LLM box, which also takes the prompt 'Describe the image' and outputs 'A running dog' into a CE Loss box. Tapped LLM-layer activations pass through a grey Text SAE Encoder, a latent bar and a Text SAE Decoder. The result goes to a red SAE Reconstruction Loss box. A feedback line from the losses returns to the projector. The middle pink band, Visual Interpretability, shows a highlighted patch going through the SAE encoder, then 'Latent i', then a Neuronpedia search that returns 'Dogs SAE concept'. The bottom grey band, Local Visual Steering, adds a 'Cats SAE concept' to the dog tokens, runs the LLM and outputs 'A running cat'. A legend at bottom left explains the colors. Snowflake icons mark frozen modules.",
+ "caption": "VISTA Framework. Training: A trainable projector maps tokens from a frozen vision encoder to a frozen LLM, optimized via Cross-Entropy and an auxiliary SAE Reconstruction Loss to force alignment of the visual embeddings with the manifold defined by pre-trained Text SAEs. Visual Interpretability: Once aligned, highly activating visual tokens can be interpreted via the Text SAE. Activating latents are searched in Neuronpedia for their linguistic labels that correspond to the visual concept in the patch, such as \"Dog\" concept in the patch showing the dog. Steering: By manipulating specific SAE concepts in localized visual tokens, model's output can be precisely steered (changing \"A running dog\" to \"A running cat\") preserving global context.",
+ "caption_source": "latex",
+ "abstract": "Recent advances in language model interpretability using sparse autoencoders (SAEs) have yet to effectively translate to the visual domain, mainly due to the difficulty and ambiguity of labeling visual concepts. In this paper, we introduce Visual Interpretability via SAE Transfer Alignment (VISTA), a framework that transfers interpretability from language to vision in a LLaVA-style vision-language model by constraining a visual projector to map visual tokens into an LLM's pre-existing, labeled textual SAE space. This approach enables visual interpretability without training dedicated vision SAEs. By regularizing the projector using the LLM's SAE reconstruction loss, VISTA achieves a threefold increase in the matching rate, which measures how accurately the most activating textual concepts in the SAE space correspond to semantic elements in the image. Using this framework, we further analyze spatial localization properties of different vision encoders and show that DINOv2 features have stronger localization abilities than other encoders. Leveraging this precision, we validate VISTA's cross-modal alignment through fine-grained, localized concept interventions, where specific objects are removed or replaced in the model's perception while preserving the surrounding scene. This results in improvements of 35% in object removal and 47% in object replacement tasks over vision-only baselines, providing causal evidence that visual tokens inhabit the text SAE manifold. These contributions are validated across multiple LLM architectures.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=tVwJRXfSYY",
+  "arxiv": "https://arxiv.org/abs/2605.24946",
+  "pdf": "https://raw.githubusercontent.com/mlresearch/v306/main/assets/kravets26a/kravets26a.pdf",
+  "proceedings": "https://proceedings.mlr.press/v306/kravets26a.html",
+  "virtual": "https://icml.cc/virtual/2026/poster/61117",
+  "code": null
+ },
+ "license": "http://creativecommons.org/licenses/by/4.0/",
+ "img": "cc-by",
+ "image_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/images/icml26-5887.png",
+ "thumb_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/thumbs/icml26-5887.webp",
+ "figure_page": 1,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.85
+}

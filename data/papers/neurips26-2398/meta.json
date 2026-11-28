@@ -1,0 +1,48 @@
+{
+ "id": "neurips26-2398",
+ "title": "KV-COBRA: KV Cache Compression via Co-Optimized Bit-Rank Allocation",
+ "authors": [
+  "Sihyeon Ha",
+  "Jaeho Lee",
+  "Yo-Seb Jeon"
+ ],
+ "venue": "NeurIPS 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "Deep Learning->Attention Mechanisms",
+ "role": "analysis-finding",
+ "role2": "concept",
+ "claim": "Compression budget needs are heterogeneous across components, so uniform allocation is suboptimal and per-component optimization with variance-equalizing rotation is justified.",
+ "layout": "3 panels, left-to-right, each a plot with caption label beneath",
+ "tags": [
+  "kv-cache",
+  "quantization",
+  "low-rank",
+  "resource-allocation",
+  "heterogeneity"
+ ],
+ "style": [
+  "plot",
+  "minimal"
+ ],
+ "description": "Three side-by-side plots motivating per-head bit-rank allocation. Panel (a) is a log-scale eigenvalue spectrum against SVD direction. One dark curve for the highlighted head sits over seven grey curves. A pink shaded 'keep' region lies left of a dashed red vertical line, and a grey 'truncate' region lies to its right. A red annotation marks r*=56, b*=5. Panel (b) is a dense red bar chart of per-head distortion across about 256 heads. It has a dotted median line and a 'max/min ≈123×' label, and one tall spike stands out near the right end. Panel (c) is a bar chart of per-channel variance. A tall beige bar at channel 0 (SVD basis) decays quickly, while red bars after Hadamard rotation stay flat near the mean. The palette is red, beige and grey.",
+ "caption": "(a) Spectrum sets $(r^\\star, b^\\star)$: one head (dark) against the layer's 7 others (grey). (b) Heads differ dramatically: per-head $D$ at uniform 2 bpd spans $100\\times$ across 256 KV heads. (c) Hadamard flattens variance: per-channel, retained subspace, before (beige) and after (red).",
+ "caption_source": "latex",
+ "abstract": "What limits KV-cache compression at extreme bit-rates? We argue that it is not the choice of compression scheme, but how its budget is allocated across attention heads. Existing methods apply rank and bit-width uniformly, ignoring that each head has a different optimal mix of rank truncation and quantization. We show that co-optimizing rank and bit-width per head, using only standard low-rank projection and scalar quantization, dominates uniform allocation, with the largest gains at low bit-rates. Our method, KV-COBRA (Co-Optimized Bit-Rank Allocation), formalizes this as a resource-allocation problem: it balances rank-truncation loss against quantization loss within each head, then redistributes budget across heads to minimize total distortion. A fused Hadamard rotation equalizes per-channel variance, and reordering the SVD basis by attention-KL importance makes the solver query-aware. The same allocator extends to joint $K{+}V$ compression. On perplexity, zero-shot, and long-context benchmarks from $0.5$ to $4$ bits per dimension (bpd), KV-COBRA shows the smallest accuracy degradation among evaluated methods at low bpd, with no per-token overhead.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=Gr6czrHyEk",
+  "arxiv": "https://arxiv.org/abs/2609.24298",
+  "pdf": "https://arxiv.org/pdf/2609.24298",
+  "proceedings": null,
+  "virtual": "https://neurips.cc/virtual/2026/poster/154016",
+  "code": "https://seonha01.github.io/KV-COBRA/"
+ },
+ "license": "http://arxiv.org/licenses/nonexclusive-distrib/1.0/",
+ "img": "none",
+ "image_url": null,
+ "thumb_url": null,
+ "figure_page": 1,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.6
+}

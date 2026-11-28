@@ -1,0 +1,54 @@
+{
+ "id": "icml26-6273",
+ "title": "CGSVD: Cascaded Granular Singular Value Decomposition for Large Language Model Compression",
+ "authors": [
+  "Yuli Chen",
+  "Shuhao Zhang",
+  "Jiale Han",
+  "Fanshen Meng",
+  "Haishen Jiang",
+  "Bo Cheng",
+  "Qiang Tong",
+  "Xiulei Liu"
+ ],
+ "venue": "ICML 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "Deep Learning->Large Language Models",
+ "role": "pipeline",
+ "role2": null,
+ "claim": "A compression method is a staged procedure: whiten and decompose, allocate budget non-uniformly, then reconstruct efficient factored modules.",
+ "layout": "3 panels, left-to-right, teal block arrows linking stages, mini-plots in middle",
+ "tags": [
+  "low-rank-decomposition",
+  "model-compression",
+  "multi-stage",
+  "non-uniform-allocation",
+  "svd"
+ ],
+ "style": [
+  "colorful",
+  "icon-heavy",
+  "math-heavy"
+ ],
+ "description": "A three-panel horizontal pipeline joined by teal arrows. Panel (a), Whitened Feature Decomposition, shows input cube X feeding a covariance matrix grid C_X, then Cholesky to a triangular whitening matrix L. Weight W is multiplied by L to give a glowing whitened weight Ŵ, which SVD splits into U, Σ and Vᵀ blocks. Panel (b), Non-uniform Rank Allocation, stacks three green-headed sections. The first is an importance-score area curve over layer index. The second is two bar charts contrasting high and low spectral entropy. The third is a residual bin filling a capacity bar and yielding physical rank r. Panel (c), Model Reconstruction, multiplies truncated U_r, Σ_r and V_final^T. It applies inverse whitening with L⁻¹ to get W_final, then factors it into A × B. Blue marks decomposition, green marks allocation and reconstruction.",
+ "caption": "The schematic overview of the proposed CGSVD framework. The compression pipeline proceeds in three distinct stages: (a) Whitened Feature Decomposition: Activation statistics from input X are leveraged to compute the covariance matrix CX and the whitening operator L. The weight matrix W is then projected into an activation-aware manifold ( ˆ W) prior to SVD to align singular values with feature importance. (b) Non-uniform Rank Allocation: A layer-wise decision mechanism optimizes the physical rank r. It sequentially quantifies inter-layer sensitivity via importance scores (top), assesses intra-layer compressibility using spectral entropy (middle), and ensures precise budget alignment through iterative residual filling (bottom). (c) Model Reconstruction: The truncated singular components are restored via inverse whitening matrix (L−1) and reorganized into two cascaded low-rank linear modules, A and B, for efficient inference.",
+ "caption_source": "pdf",
+ "abstract": "The exponential growth in the parameter scale of Large Language Models (LLMs) has precipitated an urgent demand for efficient compression techniques to facilitate practical deployment. To address this challenge, low-rank decomposition based on Singular Value Decomposition (SVD) offers a principled, hardware-friendly pathway for compressing LLMs without retraining. However, existing training-free approaches predominantly rely on uniform rank allocation, implicitly assuming homogeneous redundancy across the model depth and thereby neglecting the inherent non-uniformity of representational evolution. To bridge this gap, we introduce CGSVD, a Cascaded Granular Singular Value Decomposition framework that leverages a dual-level non-uniform allocation strategy to maximize semantic preservation. Specifically, we quantify inter-layer significance via angular distance and assess intra-layer compressibility through spectral entropy, enabling precise identification of critical architectural components. Furthermore, we propose an Iterative Residual Filling (IRF) mechanism to bridge the parameter gap caused by integer-rank truncation and ensure strict adherence to global compression targets. Extensive experiments on representative LLM families ranging from 3B to 13B parameters verify the superiority of our approach. Notably, under a 30\\% compression ratio on the LLaMA3.1-8B model, CGSVD achieves a remarkable average zero-shot accuracy boost of 6.08% and reduces perplexity by 15.46 compared to the baseline. We release the code to facilitate future research.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=x23DAFnbhi",
+  "arxiv": null,
+  "pdf": "https://raw.githubusercontent.com/mlresearch/v306/main/assets/chen26ge/chen26ge.pdf",
+  "proceedings": "https://proceedings.mlr.press/v306/chen26ge.html",
+  "virtual": "https://icml.cc/virtual/2026/poster/60742",
+  "code": null
+ },
+ "license": null,
+ "img": "none",
+ "image_url": null,
+ "thumb_url": null,
+ "figure_page": 3,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.93
+}

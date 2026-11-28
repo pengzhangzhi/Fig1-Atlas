@@ -1,0 +1,50 @@
+{
+ "id": "iclr26-0496",
+ "title": "Jackpot: Align Actor-Policy Distribution for scalable and stable RL for LLM",
+ "authors": [
+  "Zhuoming Chen",
+  "Hongyi Liu",
+  "Yang Zhou",
+  "Haizhong Zheng",
+  "Beidi Chen"
+ ],
+ "venue": "ICLR 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "Reinforcement Learning->Deep RL",
+ "role": "teaser-result",
+ "role2": "analysis-finding",
+ "claim": "Without distribution alignment, training collapses and prior corrections drift; ours stays stable and matches the on-policy baseline.",
+ "layout": "2 side-by-side line plots, shared legend colors, performance left and KL divergence right",
+ "tags": [
+  "off-policy-rl",
+  "importance-sampling",
+  "training-stability",
+  "distribution-mismatch",
+  "llm-reasoning"
+ ],
+ "style": [
+  "plot",
+  "colorful"
+ ],
+ "description": "Two line plots on lavender grid backgrounds. The left plot, titled 'AIME 2025 avg@16', shows accuracy percentage against total training examples for four methods. The pink No Alignment curve collapses to zero after about 1,500 examples. The purple On-Policy baseline climbs to about 17.5. The green TIS curve tracks the baseline, then drops sharply to about 2 after roughly 8,000 examples. The yellow Jackpot (Ours) curve follows the on-policy line and stays near 15 to 17 through 10,000 examples. The right plot, titled 'Actor-Policy KL Divergence', shows KL against step. Pink spikes past 2.0, green rises to about 1.0 late in training, and yellow stays flat near 0.1. Legends sit in the top-left corner of each plot. The eye goes first to the diverging pink and green lines.",
+ "caption": "RL training requires actor-policy maintaining strong probability distribution alignment. When actor and policy aren’t aligned, they will result in training collapse. Here we show training setting use a Qwen3-1.7B-Base model training rollout to train a Qwen3-8B-Base model policy. Without any alignment procedures, training collapses (pink). Prior method TIS (green) also show significant gap towards Qwen3-8B-Base on-policy baseline (purple), while collapsing, using TIS sees KL divergence also violently increasing. Our proposed method, Jackpot (yellow) maintains small KL divergence between actor and policy model probability distribution, while showing stable and competitive training convergence to on-policy setting.",
+ "caption_source": "pdf",
+ "abstract": "Reinforcement learning (RL) has become an increasingly important paradigm for improving large language models (LLMs) on alignment, reasoning, and coding tasks, yet it remains extremely costly. The majority of training time is spent on rollouts. Allowing actor and policy distributions to differ could unlock substantial scalability and efficiency benefits, such as supporting large-batch or asynchronous training, and even enabling a lightweight rollout model. However, existing importance sampling–based corrections for distribution mismatch suffer from an inherent trade-off between stability and training performance. To tackle this problem, we propose Jackpot, which leverages Optimal Budget Rejection Sampling to directly reduce the gap between actor and policy distributions. For efficiency and stability in practical training, We introduce an efficient probability estimation strategy based on Top-$K$ logits with batch bias correction, and designs a stabilized Jackpot-PPO loss that jointly accounts for both the importance sampling ratio and the trust-region constraint in PPO. Empirically, our method achieves stable improvements in large-batch and asynchronous training, and in extreme off-policy training it substantially delays the onset of collapse and delivers competitive performance. Specifically, we achieve 20\\% improvement on AMC benchmarks and ~8\\% AIME benchmarks over the off-policy baseline under 128$\\times$ actor-policy update ratio for Qwen3-4B-Base and 64$\\times$ for Qwen3-8B-Base, while achieving greater stability and better performance than prior off-policy RL methods under extreme settings.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=5RATVAQGPx",
+  "arxiv": null,
+  "pdf": "https://proceedings.iclr.cc/paper_files/paper/2026/file/7038ef06db52353d2e4afefbd1a55e5b-Paper-Conference.pdf",
+  "proceedings": "https://proceedings.iclr.cc/paper_files/paper/2026/hash/7038ef06db52353d2e4afefbd1a55e5b-Abstract-Conference.html",
+  "virtual": "https://iclr.cc/virtual/2026/poster/10011466",
+  "code": "https://infini-ai-lab.github.io/jpt_website/"
+ },
+ "license": null,
+ "img": "none",
+ "image_url": null,
+ "thumb_url": null,
+ "figure_page": 1,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.8
+}

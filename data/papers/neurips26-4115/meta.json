@@ -1,0 +1,52 @@
+{
+ "id": "neurips26-4115",
+ "title": "The Sparsity Whisperer",
+ "authors": [
+  "Linghao Kong",
+  "Inimai Subramanian",
+  "Micah Adler",
+  "Dan Alistarh",
+  "Dan Gutfreund",
+  "Nir Shavit"
+ ],
+ "venue": "NeurIPS 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "Deep Learning->Algorithms",
+ "role": "teaser-result",
+ "role2": "analysis-finding",
+ "claim": "Our difference-preserving pruning variants beat activation-aware and reconstruction baselines, with gains that widen as sparsity becomes more aggressive.",
+ "layout": "3 panels, left-to-right, shared legend, perplexity-gap numbers annotated beneath curves",
+ "tags": [
+  "pruning",
+  "llm-compression",
+  "sparsity-scaling",
+  "perplexity",
+  "baseline-comparison"
+ ],
+ "style": [
+  "plot",
+  "colorful",
+  "minimal"
+ ],
+ "description": "Three side-by-side line plots, one each for Llama 2 7B, 13B and 70B, under the shared title 'Performance of different pruning methods on the Llama 2 family'. The x-axis is weight sparsity from 50% to 75%, and the y-axis is perplexity. It is logarithmic for 7B and 13B and linear for 70B. Colored lines with dots show Magnitude (black), Wanda (orange), Wisp (blue), Wisp+ (purple), SparseGPT (green) and Whisper (red), plus a dashed black Dense baseline at the bottom. A legend sits inside the middle panel. Magnitude shoots upward early. The other curves bend upward at high sparsity, and Whisper's red curve stays lowest. Black numbers below the red points, such as 0.04 up to 3.64, give Whisper's perplexity improvement over SparseGPT. The numbers grow toward the right of each panel.",
+ "caption": "Unstructured sparsity scaling on Llama 2. Perplexity is shown for Llama 2 7B, 13B, and 70B as unstructured sparsity increases from 50% to 75% (lower is better). \\mymethodFOL{} and \\mymethodFON{} consistently improve over Wanda in the no-update setting, while \\mymethodSO{} improves over SparseGPT at every sparsity and model size. The gains grow as pruning becomes more aggressive, suggesting that preserving pairwise output differences becomes increasingly important at high sparsity. Numbers written next to values indicate absolute perplexity improvement of \\mymethodSO{} over SparseGPT.",
+ "caption_source": "latex",
+ "abstract": "Pruning reduces the inference cost of large language models, but existing criteria primarily preserve large activations or reconstruct layer outputs. We argue that this overlooks a key computation performed by particularly sparsity-sensitive neurons in the MLP up and gate projections: separating similar inputs into dissimilar outputs. This suggests that effective pruning should preserve not only activations, but also the differences between outputs more broadly. We introduce a family of difference-informed pruning methods built upon this principle. Wisp+ is a neuronwise, update-free method that prioritizes the input pairs each neuron separates most strongly relative to their distance. Wisp provides a more efficient layerwise alternative that scores weights using shared input-difference norms. Finally, Whisper extends global difference preservation to second-order reconstruction using a lightly regularized difference Hessian. Across Llama 2 and 3.1 models from 7B to 405B parameters, our second-order variant consistently improves over strong reconstruction-based baselines, while our update-free variants improve over activation-aware baselines, especially in constrained settings. The improvements over Wanda and SparseGPT extend to structured sparsity, downstream evaluations, and other model families. Augmenting stronger techniques such as RIA and ALPS with our difference-informed criteria yields further improvements, shifting the overall accuracy-runtime frontier outward at negligible additional cost. These results suggest that preserving output differences is a broadly useful and composable signal for post-training LLM sparsification.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=SkASoryYLq",
+  "arxiv": "https://arxiv.org/abs/2608.06630",
+  "pdf": "https://arxiv.org/pdf/2608.06630",
+  "proceedings": null,
+  "virtual": "https://neurips.cc/virtual/2026/poster/152487",
+  "code": "https://github.com/Shavit-Lab/Whisper"
+ },
+ "license": "http://arxiv.org/licenses/nonexclusive-distrib/1.0/",
+ "img": "none",
+ "image_url": null,
+ "thumb_url": null,
+ "figure_page": 1,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.8
+}

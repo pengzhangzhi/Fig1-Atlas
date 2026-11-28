@@ -1,0 +1,50 @@
+{
+ "id": "iclr26-4149",
+ "title": "Emergence of Spatial Representation in an Actor-Critic Agent with Hippocampus-Inspired Sequence Generator",
+ "authors": [
+  "Xiao-Xiong Lin",
+  "Yuk-Hoi Yiu",
+  "Christian Leibold"
+ ],
+ "venue": "ICLR 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "Applications->Neuroscience, Cognitive Science",
+ "role": "pipeline",
+ "role2": "concept",
+ "claim": "Recurrent sequence generation can propagate sparse transient input over long horizons without sequential drive, and we build an agent on it.",
+ "layout": "5 panels A–E, left-to-right; biological concept cartoons then architecture block diagram",
+ "tags": [
+  "sequence-generator",
+  "sparse-input",
+  "neuroscience-inspired",
+  "reinforcement-learning",
+  "recurrent-memory"
+ ],
+ "style": [
+  "icon-heavy",
+  "colorful",
+  "photo/real data",
+  "text-heavy"
+ ],
+ "description": "A wide, five-panel strip. Panels A–C are neuroscience cartoons. A shows a theta oscillation above a raster-like staircase of CA3 neuron firing across four theta cycles. B and C show columns of place-field curves next to circles of neurons with a mouse at the bottom. In B, solid and dashed arrows show sequential external drive plus recurrent influence. In C, one input feeds dashed recurrent arrows that carry activity upward. Panel D has a top-down maze view with a red reward star and a first-person 96×72×3 view of the maze. Panel E is a block diagram: Vis. Encoder (Conv, MaxPool, ResBlocks, FC 256), DG (FC 16, z-score BN, Threshold), CA3 (sequences of colored dots, with R and L marked), and Decoder (FC 128, ReLU, Value/Action). Black outlines mark fixed modules and blue outlines mark trained ones. Small insets show landmark tuning and broad place tuning. Layers are filled in blue, green and teal.",
+ "caption": "Model summary. A: Illustration of theta sequences observed in rodent hippocampus. In each theta cycle, $R=3$ neurons are activated and the activation propagates over $L=4$ theta cycles in a sequence of $\\ell=L+R-1=6$ neurons. B: The theta sequences are thought to be driven by sequential inputs despite the recurrent connections in hippocampus. C: The recurrent connections could support generating long horizon sequential activity without sequential external inputs. D: A virtual environment (\\(19\\times19\\) tiles) was constructed using DeepMind Lab with walls randomly placed on 15 % of the tiles. Wall layouts are kept fixed across episodes, with an invisible reward near the bottom right. E: The agent receives a first person perspective visual input that is processed via an encoder (shallow ResNet with 3 convolutional blocks; matching the SOTA in DeepMind Lab environment [ref], pretrained and fixed in our experiments). These outputs are linearly mapped to $F=16$ features (FC: fully connected layer), and then sparsified using batch normalization and high thresholding (\\(\\tau=2.43\\)), such that the percentage of activation (\\(\\sim2.5%\\)) matches the sparse activity of DG granular cells that project to CA3. CA3 is modeled via sequences of neuron activations, each sequence evoked by a distinct DG input feature. The activity of all CA3 neurons are then flattened and linearly mapped to the decoder multilayer perceptron. CA3 is hard coded to isolate the effect of long range integration. The DG and decoder modules are trained.",
+ "caption_source": "latex",
+ "abstract": "Sequential firing of hippocampal place cells is often attributed to sequential sensory drive along a trajectory, and has also been attributed to planning and other cognitive functions. Here, we propose a mechanistic and parsimonious interpretation to complement these ideas: hippocampal sequences arise from intrinsic recurrent circuitry that propagates transient input over long horizons, acting as a temporal memory buffer that is especially useful when reliable sensory evidence is sparse. We implement this idea with a minimal sequence generator inspired by neurobiology and pair it with an actor-critic learner for egocentric visual navigation. Our agent reliably solves a continuous maze without explicit geometric cues, with performance depending on the length of the recurrent sequence. Crucially, the model outperforms LSTM cores under sparse input conditions (16 channels, $\\sim2.5\\%$ activity), but not under dense input, revealing a strong interaction between representational sparsity and memory architecture. Through learning, units develop localized place fields, distance-dependent spatial kernels, and task-dependent remapping, while inputs to the sequence generator orthogonalize and spatial information increases across layers. These phenomena align with neurobiological data and are causal to performance. Together, our results show that sparse input synergizes with sequence-generating dynamics, providing both a mechanistic account of place cell sequences in the mammalian hippocampus and a simple inductive bias for reinforcement learning based on sparse egocentric inputs in navigation tasks.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=li1vfqDzRD",
+  "arxiv": "https://arxiv.org/abs/2510.09951",
+  "pdf": "https://proceedings.iclr.cc/paper_files/paper/2026/file/88291ec1991a6e460398ce23852901a2-Paper-Conference.pdf",
+  "proceedings": "https://proceedings.iclr.cc/paper_files/paper/2026/hash/88291ec1991a6e460398ce23852901a2-Abstract-Conference.html",
+  "virtual": "https://iclr.cc/virtual/2026/poster/10007655",
+  "code": null
+ },
+ "license": "http://creativecommons.org/licenses/by/4.0/",
+ "img": "cc-by",
+ "image_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/images/iclr26-4149.png",
+ "thumb_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/thumbs/iclr26-4149.webp",
+ "figure_page": 1,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.6
+}

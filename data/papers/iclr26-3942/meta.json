@@ -1,0 +1,53 @@
+{
+ "id": "iclr26-3942",
+ "title": "SK2Decompile: LLM-based Two-Phase Binary Decompilation from Skeleton to Skin",
+ "authors": [
+  "hanzhuo Tan",
+  "Weihao Li",
+  "Xiaolong Tian",
+  "Siyi Wang",
+  "Jiaming Liu",
+  "Jing Li",
+  "Yuqun Zhang"
+ ],
+ "venue": "ICLR 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "Applications->Everything Else",
+ "role": "problem-setup",
+ "role2": "prior-vs-ours",
+ "claim": "Existing decompilers produce output whose control flow and data access diverge from the original source, motivating structure-aware recovery.",
+ "layout": "3 panels, left-to-right, colored boxes highlighting corresponding code across panels",
+ "tags": [
+  "decompilation",
+  "failure-case",
+  "code-comparison",
+  "structure-recovery",
+  "readability"
+ ],
+ "style": [
+  "text-heavy",
+  "minimal",
+  "colorful"
+ ],
+ "description": "Three code listings sit side by side, headed (a) Pseudocode, (b) LLM4Decompile and (c) Source code. A short arrow labeled 'Decompile' sits between (a) and (b). Panel (a) shows raw decompiler pseudocode with a LABEL_2 label, goto and while(1), plus pointer arithmetic such as *(uint8_t *)(v5 + 1). Panel (b) shows the LLM-refined version with generic names (VAR_1, VAR_2, FUN_0001cdc0) and a while (VAR_1 < VAR_2) loop. Panel (c) shows the clean original source with meaningful names such as tableRemoveWhite and tableIterNext. Red rectangles mark the while-loop in each panel, and blue rectangles mark the data-access expressions. Comparing the matching boxes across panels shows how the loop form and field access differ from the source. The eye goes first to the colored boxes.",
+ "caption": "An example with its (a) pseudocode, (b) refinement by LLM4Decompile, and (c) source code. \\fcolorbox{red}{white}{red} marks the while loop in different forms, \\fcolorbox{blue}{white}{blue} represents the data access.",
+ "caption_source": "latex",
+ "abstract": "Large Language Models (LLMs) have emerged as a promising approach for binary decompilation. However, the existing LLM-based decompilers still are somewhat limited in effectively presenting a program's source-level structure with its original identifiers. To mitigate this, we introduce SK2Decompile, a novel two-phase approach to decompile from the skeleton (semantic structure) to the skin (identifier) of programs. Specifically, we first apply a Structure Recovery model to translate a program's binary code to an Intermediate Representation (IR) as deriving the program's \"skeleton\", i.e., preserving control flow and data structures while obfuscating all identifiers with generic placeholders. We also apply reinforcement learning to reward the model for producing program structures that adhere to the syntactic and semantic rules expected by compilers. Second, we apply an Identifier Naming model to produce meaningful identifiers which reflect actual program semantics as deriving the program's \"skin\". We train the Identifier Naming model with a separate reinforcement learning objective that rewards the semantic similarity between its predictions and the reference code. Such a two-phase decompilation process facilitates advancing the correctness and readability of decompilation independently. Our evaluations indicate that SK2Decompile, significantly outperforms the SOTA baselines, achieving 21.6% average re-executability rate gain over GPT-5-mini on the HumanEval dataset and 29.4% average R2I improvement over Idioms on the GitHub2025 benchmark.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=jSQPqdoidy",
+  "arxiv": "https://arxiv.org/abs/2509.22114",
+  "pdf": "https://proceedings.iclr.cc/paper_files/paper/2026/file/9132583dd869acb0cafeb0ed25eb031a-Paper-Conference.pdf",
+  "proceedings": "https://proceedings.iclr.cc/paper_files/paper/2026/hash/9132583dd869acb0cafeb0ed25eb031a-Abstract-Conference.html",
+  "virtual": "https://iclr.cc/virtual/2026/poster/10007876",
+  "code": "https://github.com/albertan017/LLM4Decompile"
+ },
+ "license": "http://creativecommons.org/licenses/by/4.0/",
+ "img": "cc-by",
+ "image_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/images/iclr26-3942.png",
+ "thumb_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/thumbs/iclr26-3942.webp",
+ "figure_page": 2,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.8
+}

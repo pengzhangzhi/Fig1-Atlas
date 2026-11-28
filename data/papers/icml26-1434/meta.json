@@ -1,0 +1,51 @@
+{
+ "id": "icml26-1434",
+ "title": "Tracing the Dynamics of Refusal: Exploiting Latent Refusal Trajectories for Robust Jailbreak Detection",
+ "authors": [
+  "Xulin Hu",
+  "CHE WANG",
+  "Wei Yang Bryan Lim",
+  "Jianbo Gao",
+  "Zhong Chen"
+ ],
+ "venue": "ICML 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "Social Aspects->Accountability, Transparency, and Interpretability",
+ "role": "analysis-finding",
+ "role2": "pipeline",
+ "claim": "Causal patching shows the decisive signal for the output behavior lives in a sparse set of upstream layer-token positions.",
+ "layout": "2 stacked panels: token-by-layer diagram above, heatmap below; patch arrow",
+ "tags": [
+  "causal-tracing",
+  "activation-patching",
+  "interpretability",
+  "sparse-localization",
+  "jailbreak-detection"
+ ],
+ "style": [
+  "colorful",
+  "plot",
+  "icon-heavy"
+ ],
+ "description": "The figure has two stacked panels. Panel (a) shows two transformer streams side by side, with the malicious prompt on the left and the benign prompt on the right. Each row is a token (\"How to make a / bomb or cake / ? / … / [LAST TOKEN]\"). Each row has a chain of layer blocks drawn with green hidden-state bars, purple attention boxes and blue MLP icons. A legend sits at the top right. A curved yellow arrow copies one red hidden state from the \"bomb\" stream into the \"cake\" stream. This makes the right stream's later states pink and produces an orange speech bubble reading \"I'm sorry, I cannot…\". Panel (b) is a red heatmap of intervened token position against intervened layer index. White stars mark cells sufficient for refusal. A dark red band runs along the bomb/cake row from layer 0 to about 22, with smaller patches on the \"?\" row and on a few control tokens. A colorbar shows refusal loss.",
+ "caption": "Unveiling the Refusal Trajectory via Causal Tracing. (a) Causal Tracing for Refusal Induction. We investigate the causal component of latent representations by patching activations from a malicious run (left, e.g., \"bomb\") into a benign run (right, e.g., \"cake\"). The arrow indicates copying a specific hidden state $h_i^l$ to the target stream. Successful patching triggers a refusal response (\"I'm sorry...\") despite the benign context. (b) Mechanistic Signature of Refusal. We visualize the causal efficacy using a 3-layer sliding window. The heatmap reports the Cross Entropy Loss of the refusal string \"I'm sorry\" (lower is stronger). Stars ($\\star$) mark positions sufficient to generate a full refusal. Note that unstarred regions with low loss indicate partial recovery (e.g., recovering \"I'm\" but completing with \"happy\"), distinguishing true refusal from simple prefix recall.",
+ "caption_source": "latex",
+ "abstract": "Representation Engineering analyses often characterize refusal using static directions extracted from terminal or pooled representations. We ask whether this view misses how refusal is constructed across layer-token positions. Using causal tracing, we identify a \\textit{Refusal Trajectory}: a sparse upstream activation pattern that often persists even when attacks such as GCG suppress terminal refusal signals. Based on this observation, we propose SALO (Sparse Activation Localization Operator), a lightweight white-box detector that operates on raw hidden-state volumes from a selected layer window. Across Qwen, Llama, and Mistral models, SALO improves jailbreak detection on several attack families under a fixed XSTest-calibrated operating point. We further analyze static RepE-style baselines, ROI sensitivity, adaptive GCG attacks, and encoded-input boundary cases, clarifying both the promise and limitations of refusal-trajectory monitoring.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=DjX8eh4PIm",
+  "arxiv": "https://arxiv.org/abs/2605.02958",
+  "pdf": "https://raw.githubusercontent.com/mlresearch/v306/main/assets/hu26ax/hu26ax.pdf",
+  "proceedings": "https://proceedings.mlr.press/v306/hu26ax.html",
+  "virtual": "https://icml.cc/virtual/2026/poster/65432",
+  "code": null
+ },
+ "license": "http://creativecommons.org/licenses/by/4.0/",
+ "img": "cc-by",
+ "image_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/images/icml26-1434.png",
+ "thumb_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/thumbs/icml26-1434.webp",
+ "figure_page": 1,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.5
+}

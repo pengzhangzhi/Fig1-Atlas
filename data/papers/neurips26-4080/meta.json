@@ -1,0 +1,48 @@
+{
+ "id": "neurips26-4080",
+ "title": "FuseAdapt: Parameter-Efficient Multimodal Fusion for Semantic Segmentation with Missing Modalities",
+ "authors": [
+  "Xin Zhang",
+  "Robby Tan"
+ ],
+ "venue": "NeurIPS 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "Computer Vision->Vision Models & Multimodal",
+ "role": "prior-vs-ours",
+ "role2": "teaser-result",
+ "claim": "Prior designs duplicate computation or over-rely on one modality; ours fuses inside a frozen backbone's adaptation paths and wins across modality combinations.",
+ "layout": "3 diagram panels left-to-right, plus right bar chart; dashed divider",
+ "tags": [
+  "multimodal-fusion",
+  "parameter-efficient",
+  "frozen-foundation-model",
+  "missing-modalities",
+  "architecture-comparison"
+ ],
+ "style": [
+  "colorful",
+  "plot",
+  "icon-heavy"
+ ],
+ "description": "The left three-quarters shows three small architecture diagrams labeled (a) Separate & Mid-level Fusion, (b) Shared & Late Fusion, and (c) Fusion while Adaptation. In (a), a green encoder and a blue encoder sit side by side. Small pink fusion blocks with bidirectional arrows connect them, and a larger pink Fusion box on top merges their outputs. In (b), one pink encoder feeds a pink Fusion box, and the input tokens are mixed green and blue squares. In (c), a gray frozen VFM block with a snowflake icon is paired with pink and blue low-rank adapter modules (A/B matrices) linked by a dashed Fusion arrow. A dashed vertical line separates these from a grouped bar chart on the right. The chart, titled Performance Comparison of MCSS on MCubeS, compares CMNeXt (blue), MAGIC (green) and Ours (orange) on mIoU for R-A, R-A-D and R-A-D-N, with Ours tallest in every group.",
+ "caption": "Comparison of multi-modal fusion strategies. (a) Separate encoders with mid-level fusion can replicate backbone computation across modalities. (b) Shared-encoder or late-fusion designs reduce this cost, but can make fusion depend strongly on the dominant or cleanest modality. (c) FuseAdapt keeps the VFM frozen and performs cross-modal exchange through trainable adaptation paths. Right: MCSS on MCubeS, where FuseAdapt improves mIoU across modality combinations.",
+ "caption_source": "latex",
+ "abstract": "Multi-modal semantic segmentation benefits from complementary sensors, but this benefit is fragile when some modalities are degraded or missing at test time. Many existing methods rely on dedicated fusion modules or multi-branch cross-modal encoders, and the fusion often becomes unreliable when modalities are absent, leading to substantial performance drops. We propose FuseAdapt, a parameter-efficient framework that performs fusion within the adaptation space of a frozen vision foundation model (VFM), exploring whether VFM priors can serve as an effective shared backbone for multi-modal segmentation. Instead of attaching a standalone fusion network, FuseAdapt assigns each modality a lightweight adaptation branch and performs adaptation-space fusion by keeping Q/V low-rank adaptation private to each modality and routing only FFN low-rank residual activations across modalities inside the frozen backbone. The pretrained VFM remains fixed while modality-specific corrections and explicit cross-modal interaction are learned through the adaptation paths. To handle missing modalities, we further introduce Predictive Modality Modeling (PMM), a direct representation-level objective for cross-modal redundancy. During training, PMM masks a target modality and predicts its embedding from the visible ones, supervised by a teacher target computed under full-modality input. PMM is used only during training and adds no inference-time overhead. Across three multi-modal segmentation benchmarks (MCubeS, DELIVER, MUSES), FuseAdapt consistently improves both modality-complete and modality-incomplete segmentation with a small trainable budget, yielding up to +3.01 mIoU under full modalities and +11.25 mIoU under missing modalities over prior state-of-the-art. Project page: https://devinxzhang.github.io/FuseAdapt-Page/",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=SWGx6oxOoy",
+  "arxiv": "https://arxiv.org/abs/2610.21779",
+  "pdf": "https://arxiv.org/pdf/2610.21779",
+  "proceedings": null,
+  "virtual": "https://neurips.cc/virtual/2026/poster/152520",
+  "code": "https://devinxzhang.github.io/FuseAdapt-Page/"
+ },
+ "license": "http://creativecommons.org/licenses/by/4.0/",
+ "img": "cc-by",
+ "image_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/images/neurips26-4080.png",
+ "thumb_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/thumbs/neurips26-4080.webp",
+ "figure_page": 1,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.9
+}

@@ -1,0 +1,48 @@
+{
+ "id": "icml26-3598",
+ "title": "Reflex: Real-Time Vision-Language-Action Control through Streaming Inference",
+ "authors": [
+  "Yuanchun Guo",
+  "Bingyan Liu"
+ ],
+ "venue": "ICML 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "Applications->Robotics",
+ "role": "prior-vs-ours",
+ "role2": "problem-setup",
+ "claim": "Blocking sequential inference causes missed moving targets; decomposing computation into parallel streams enables timely, successful reaction.",
+ "layout": "2x2 grid, top baseline vs bottom ours, robot scene left, diagram right",
+ "tags": [
+  "streaming-inference",
+  "latency",
+  "parallel-execution",
+  "robotics",
+  "blocking-vs-overlap"
+ ],
+ "style": [
+  "icon-heavy",
+  "colorful",
+  "minimal"
+ ],
+ "description": "A 2x2 grid contrasting a baseline (top row) with the proposed method (bottom row). The top-left panel, titled 'Standard Blocking System', shows a robot arm reaching for a mug that moves along a faded trajectory. The gripper ends up behind the mug, and a large red X with 'MISS' marks the failure. The top-right panel is a gray-and-white block diagram: Vision Encoder, then Denoising Block (shaded), then Action, with a 'Blocking' arrow pointing at the denoising block. The bottom-left panel, 'Reflex Streaming System', shows the arm catching the mug, with a green check and 'SUCCESS'. The bottom-right panel, 'Parallel Execution', shows three colored streams merging into one dark green 'Action Stream' arrow: green Static Features, blue Sliding Context, orange Dynamic Denoising. Red and green mark failure and success, and the eye goes first to the MISS and SUCCESS labels.",
+ "caption": "Standard Blocking vs. Reflex Streaming. Top: Standard flow matching inference blocks execution, leading to missed grasps on moving targets due to reaction latency. Bottom: Reflex partitions the VLA backbone into independent streams, enabling overlapping execution.",
+ "caption_source": "latex",
+ "abstract": "Flow matching Vision-Language-Action (VLA) models promise precise continuous control, but their iterative denoising nature introduces fundamental incompatibilities with real-time robotics: global timestep injection invalidates KV-caching, forcing a choice between slow $O(N^2)$ re-computation or mathematically incorrect cache reuse. We present **Reflex**, a framework that enables *real-time streaming inference* for flow matching policies by exploiting the *Timestep-Invariance Property*---that perception encoders are functionally independent of the denoising loop. Reflex partitions the attention context into static, sliding, and dynamic regions, enabling $O(1)$ incremental cache updates while preserving full-batch-equivalent attention outputs for fixed inputs. To ensure stability under continuous high-frequency inference, we introduce *AdaRMSNorm*, an adaptive normalization layer that prevents BFloat16 numerical collapse by gating on flow phase. We further maximize throughput through an *async pipeline* that decouples visual encoding from action generation, combined with *operator fusion* that reduces kernel overhead. On LIBERO and Kinetix benchmarks, Reflex achieves a 2.58$\\times$ inference speedup and 50Hz stable streaming, reducing reaction latency by up to 54\\% and enabling efficient deployment without performance degradation.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=XzsZK1hvpv",
+  "arxiv": "https://arxiv.org/abs/2607.14695",
+  "pdf": "https://raw.githubusercontent.com/mlresearch/v306/main/assets/guo26l/guo26l.pdf",
+  "proceedings": "https://proceedings.mlr.press/v306/guo26l.html",
+  "virtual": "https://icml.cc/virtual/2026/poster/63338",
+  "code": null
+ },
+ "license": "http://creativecommons.org/licenses/by-nc-sa/4.0/",
+ "img": "cc-by-nc-sa",
+ "image_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/images/icml26-3598.png",
+ "thumb_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/thumbs/icml26-3598.webp",
+ "figure_page": 0,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.8
+}

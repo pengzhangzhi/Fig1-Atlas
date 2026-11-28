@@ -1,0 +1,51 @@
+{
+ "id": "icml26-4754",
+ "title": "Geometry-Guided Generative Representation for Functional Brain Graphs",
+ "authors": [
+  "Subati Abulikemu",
+  "Tiago Azevedo",
+  "Michail Mamalakis",
+  "John Suckling"
+ ],
+ "venue": "ICML 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "Applications->Neuroscience, Cognitive Science",
+ "role": "pipeline",
+ "role2": "overview-framework",
+ "claim": "A unified multi-stage system learns compact graph-level latents from structured inputs, extends to temporal data, and generates new samples via latent diffusion.",
+ "layout": "4 panels A–D, left-to-right, numbered stages with inset attention detail",
+ "tags": [
+  "autoencoder",
+  "graph-transformer",
+  "latent-diffusion",
+  "unsupervised-representation",
+  "multimodal-fusion"
+ ],
+ "style": [
+  "colorful",
+  "icon-heavy",
+  "math-heavy",
+  "photo/real data"
+ ],
+ "description": "A wide four-panel figure (A–D) read left to right. Panel A shows the preprocessing: colored regional fMRI time series become a dense functional connectivity heatmap, then functional gradient columns ψ1…ψF. Below, a scatter of colored points on association–sensory and visual–sensorimotor axes sits beside four cortical surface renderings in blue-red and red-green colormaps. Panel B is the graph autoencoder in three numbered stages. A self-attention encoder shows arcs between colored nodes and a zoomed edge-conditioned attention inset. Global pooling uses bars for attention weights to produce z_g. A cross-attention decoder draws on node memory M and a pairwise-edge decoder to reconstruct the connectivity matrix Ĉ. Panel C, top right, is a GRU encoder-decoder in teal with a fused spatial-temporal latent. Panel D, bottom right, shows forward noising and reverse denoising chains, ending in a frozen decoder that outputs synthetic connectomes. Purple and teal boxes carry the math notation.",
+ "caption": "Overview of the geometry-guided generative framework for functional brain graphs. (A) Regional fMRI time series $Y$ are converted into dense FC matrix $C$, from which diffusion-map embeddings are aligned to produce functional gradients $X = [\\psi_1, \\ldots, \\psi_F]$ summarizing macroscale brain organization. The first two gradients $\\psi_{AS}$ (association--sensory) and $\\psi_{VS}$ (visual--sensorimotor) are shown on the cortical surface with their canonical network composition. (B) The graph autoencoder maps $(C, X)$ to a graph-level latent $z_g$ and reconstructs $\\hat{C}$ in three stages: (1) an edge-conditioned self-attention encoder that updates node states $h_i'$ using FC weights to modulate attention; (2) global attention pooling that aggregates node states into $z_g$; (3) a cross-attention decoder that retrieves from a learned node memory $M$ conditioned on $z_g$ and reconstructs connectivity through a pairwise-edge decoder. (C) For temporal data, a GRU encoder summarizes neural dynamics and is fused with the spatial summary from the graph encoder to form a joint spatial-temporal latent $z_g^{\\mathrm{st}}$, which conditions a GRU decoder in reconstructing $\\hat{Y}$. (D) A denoising diffusion model is trained on $z_g$; reverse denoising from Gaussian noise gives $\\hat{z}_0$, which is decoded by the frozen graph decoder to produce synthetic connectomes $\\hat{C}_{\\mathrm{gen}}$.",
+ "caption_source": "latex",
+ "abstract": "In network neuroscience, functional brain systems are often characterized using separate yet related graph-theoretic or spectral descriptors, overlooking how these properties covary and partially overlap across individuals and conditions. We anticipate that dense, weighted functional connectivity graphs lie on a low-dimensional latent geometry along which both topological and spectral structures vary smoothly at the population level. Although graph-based deep learning offers a powerful framework for modeling these brain connectomes, supervised approaches are constrained by the limited availability of labeled data. Existing unsupervised graph representation methods also typically focus on node-level embeddings, which are limited in capturing compact graph-level representations that preserve information from dense functional connectomes. To address these gaps, we learn compact brain graph representations using a graph transformer autoencoder, where domain-specific, aligned functional gradient geometry provides an inductive bias to guide learning. Despite being trained in a fully unsupervised manner, our approach meaningfully separates cognitive states and enables decoding of visual stimuli, with performance further improved by incorporating neural dynamics. In parallel, to enable generation of synthetic brain graphs, we fit a diffusion model to the learned latent representation and decode samples back to dense connectomes.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=ieUVj77Hsz",
+  "arxiv": "https://arxiv.org/abs/2511.04539",
+  "pdf": "https://raw.githubusercontent.com/mlresearch/v306/main/assets/abulikemu26a/abulikemu26a.pdf",
+  "proceedings": "https://proceedings.mlr.press/v306/abulikemu26a.html",
+  "virtual": "https://icml.cc/virtual/2026/poster/62212",
+  "code": null
+ },
+ "license": "http://creativecommons.org/licenses/by/4.0/",
+ "img": "cc-by",
+ "image_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/images/icml26-4754.png",
+ "thumb_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/thumbs/icml26-4754.webp",
+ "figure_page": 2,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.85
+}

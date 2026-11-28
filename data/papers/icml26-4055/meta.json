@@ -1,0 +1,49 @@
+{
+ "id": "icml26-4055",
+ "title": "Consistent Zero-Shot Imitation with Contrastive Goal Inference",
+ "authors": [
+  "Kathryn Wantlin",
+  "Chongyi Zheng",
+  "Benjamin Eysenbach"
+ ],
+ "venue": "ICML 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "Reinforcement Learning->Inverse",
+ "role": "pipeline",
+ "role2": null,
+ "claim": "A jointly trained system explores via goal proposals, infers goals from trajectories, and learns a goal-conditioned policy, enabling zero-shot imitation.",
+ "layout": "Single panel, left-to-right with feedback loops; product formula beneath trajectory block",
+ "tags": [
+  "goal-inference",
+  "contrastive-rl",
+  "imitation-learning",
+  "self-supervised",
+  "exploration"
+ ],
+ "style": [
+  "math-heavy",
+  "colorful",
+  "minimal"
+ ],
+ "description": "A single diagram shows the training loop. On the left, a peach rounded box labeled Replay Buffer connects through a branching line, labeled GoalKDE sampling, to goals g1, g2, ..., gn. Each goal feeds a large light-blue rounded block of trajectories written as state sequences s_0^1 ... s_T^1, s_0^2 ... s_T^2, down to tau_n. Some states are highlighted: green boxes for positive states, a red box for a negative state. Blue curved arrows send the trajectories back to the replay buffer. They also send them to the CRL critic function f(s,a,s_f) at right. The critic leads down to the MaxEnt CIRL policy pi(a|s,g), which loops back to the trajectory block. Below, a product formula gives the mean-field goal posterior q(g|tau), fed by g_n and tau_n. The eye goes first to the blue trajectory block.",
+ "caption": "CIRL algorithm components: (1) An automatic goal-proposal mechanism, GoalKDE, that drives exploration by sampling under-visited states from the replay buffer. (2) A variational model that performs amortized goal inference from a trajectory using a mean field form. (3) A maximum-entropy goal-conditioned policy trained with contrastive RL. At test time, the agent will see a trajectory $\\tau$, infer $\\hat{g} \\sim q_\\xi(g|\\tau)$ and execute the imitation policy $\\tilde{\\pi}_\\alpha(\\cdot|s,\\hat{g})$.",
+ "caption_source": "latex",
+ "abstract": "Zero-shot imitation learning requires an agent to reproduce expert behavior from a single demonstration without additional environment interaction or gradient updates at test time. We introduce Contrastive Inverse Reinforcement Learning (CIRL), a self-supervised framework for pre-training zero-shot imitation agents. Our methods rests on a key observation that many useful tasks can be summarized by a single goal state. We can thus convert the multi-task inverse RL problem into a more tractable goal-inference problem, and utilize state-of-the-art goal-conditioned RL methods to recover a policy that reaches the goal. During pre-training, CIRL jointly employs three components to learn without any rewards or demonstrations: (1) a variant of contrastive RL designed to learn maximum-entropy goal-conditioned policies, (2) an automatic goal proposal mechanism (GoalKDE) that drives exploration, and (3) a mean-field variational model that performs amortized goal inference from trajectories. We prove that this procedure consistently recovers the demonstrator's intent by accounting for the relative difficulty of reaching different states and show how structurally similar prior work may otherwise fail to infer the correct reward. Experiments on goal-conditioned and standard reward-maximizing control tasks show that CIRL outperforms prior zero-shot imitation methods, supporting the expressiveness of goals as a compact summary of behavior.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=cBfpI4aLCZ",
+  "arxiv": "https://arxiv.org/abs/2510.17059",
+  "pdf": "https://raw.githubusercontent.com/mlresearch/v306/main/assets/wantlin26a/wantlin26a.pdf",
+  "proceedings": "https://proceedings.mlr.press/v306/wantlin26a.html",
+  "virtual": "https://icml.cc/virtual/2026/poster/62891",
+  "code": "https://github.com/kwantlin/contrastive-irl"
+ },
+ "license": "http://creativecommons.org/licenses/by/4.0/",
+ "img": "cc-by",
+ "image_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/images/icml26-4055.png",
+ "thumb_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/thumbs/icml26-4055.webp",
+ "figure_page": 1,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.92
+}

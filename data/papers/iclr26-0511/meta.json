@@ -1,0 +1,50 @@
+{
+ "id": "iclr26-0511",
+ "title": "Are EEG Foundation Models Worth It? Comparative Evaluation with Traditional Decoders in Diverse BCI Tasks",
+ "authors": [
+  "Liuyin Yang",
+  "Qiang Sun",
+  "Ang Li",
+  "Marc Van Hulle"
+ ],
+ "venue": "ICLR 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "Applications->Neuroscience, Cognitive Science",
+ "role": "pipeline",
+ "role2": "overview-framework",
+ "claim": "A unified set of evaluation protocols plus a simple masked-autoencoding pipeline define how models are fairly compared and built.",
+ "layout": "2 stacked panels; (a) three boxed protocol schematics, (b) left-to-right pipeline with pretrain branch",
+ "tags": [
+  "evaluation-protocols",
+  "masked-autoencoding",
+  "benchmark",
+  "transformer",
+  "pre-training"
+ ],
+ "style": [
+  "icon-heavy",
+  "colorful",
+  "text-heavy"
+ ],
+ "description": "Two stacked panels. Panel (a), on top, shows three dashed boxes: Population Decoding, Per-Subject Decoding and Leave-One-Subject-Out Decoding. Each has columns of colored person icons for training subjects and hatched person icons for testing subjects. Blue and green brain-chip model icons sit between them, with solid and dashed arrows. Red numbered squares 1–6 mark the evaluation protocols (Population, Self, Transfer, Zero-Shot, Fine-Tune, Drop). A legend runs along the bottom. Panel (b) shows the ST-EEGFormer. Multichannel EEG signals pass through segmentation into a grid of patches, then a linear layer, temporal and spatial positional encodings, and tokens. A switch routes the tokens either to the downstream path (green transformer encoder, averaging, linear head, classification and regression task lists) or to the pre-training path (masking, encoder, concatenation with mask tokens, transformer decoder, linear layer, reconstructed EEG). Green dashed arrows mark pre-training.",
+ "caption": "(a) Graphical representation of the six evaluation protocols. In population decoding, data from all subjects are pooled to train a single model, which is then tested on each subject individually, yielding the (1) Population performance. In per-subject decoding, a separate model is trained for each subject and tested both on itself—giving (2) Per-Subject (Self) performance—and on other subjects for (3) Per-Subject (Transfer) performance. In leave-one-subject-out (LOO) decoding, a population model is trained on all subjects except the LOO subject. This model is evaluated on all subjects, with its performance on the LOO subject representing (4) LOO Zero-Shot performance. After fine-tuning the model on the LOO subject, it is again tested on all subjects. Performance on the LOO subject after fine-tuning gives (5) LOO Fine-Tune performance, while changes in population subjects’ performance before and after fine-tuning quantify the generalization capability, denoted as (6) LOO Drop. (b) Graphical representation of the proposed ST-EEGFormer. During pre-training, the input EEG data are divided into segments along spatial and temporal dimensions. Each segment is tokenized through a linear projection layer, with each token receiving its corresponding temporal positional encoding (TPE) and spatial positional encoding (SPE). After randomly masking 75% of all tokens, the encoder processes the remaining unmasked tokens. The mask tokens, with their added temporal and spatial positional embeddings, are then concatenated with the encoder output to form a full set of tokens. This full set of tokens is input to a small decoder comprising a transformer followed by a linear projection layer, which reconstructs the original EEG signal. Once the model is pre-trained, only the encoder is utilized as the ST-EEGFormer model for fine-tuning on a downstream dataset.",
+ "caption_source": "pdf",
+ "abstract": "Foundation models have recently emerged as a promising approach for learning generalizable EEG representations for brain–computer interfaces (BCIs). Yet, their true advantages over traditional methods—particularly classical non-neural approaches—remain unclear. In this work, we present a comprehensive benchmark of state-of-the-art EEG foundation models, evaluated across diverse datasets, decoding tasks, and six evaluation protocols, with rigorous statistical testing. We introduce spatiotemporal EEGFormer (ST-EEGFormer), a simple yet effective Vision Transformer (ViT)-based baseline, pre-trained solely with masked autoencoding (MAE) on over 8M EEG segments. Our results show that while fine-tuned foundation models perform well in data-rich, population-level settings, they often fail to significantly outperform compact neural networks or even classical non-neural decoders in data-scarce scenarios. Furthermore, linear probing remains consistently weak, and performance varies greatly across downstream tasks, with no clear scaling law observed among neural network decoders. These findings expose a substantial gap between pre-training and downstream fine-tuning, often diminishing the benefits of complex pre-training tasks. We further identify hidden architectural factors that affect performance and emphasize the need for transparent, statistically rigorous evaluation. Overall, this study calls for community-wide efforts to construct large-scale EEG datasets and for fair, reproducible benchmarks to advance EEG foundation models.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=5Xwm8e6vbh",
+  "arxiv": null,
+  "pdf": "https://proceedings.iclr.cc/paper_files/paper/2026/file/f0f39b7686634fc81ca0112566b2c05f-Paper-Conference.pdf",
+  "proceedings": "https://proceedings.iclr.cc/paper_files/paper/2026/hash/f0f39b7686634fc81ca0112566b2c05f-Abstract-Conference.html",
+  "virtual": "https://iclr.cc/virtual/2026/poster/10011450",
+  "code": "https://github.com/LiuyinYang1101/STEEGFormer"
+ },
+ "license": null,
+ "img": "none",
+ "image_url": null,
+ "thumb_url": null,
+ "figure_page": 2,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.6
+}

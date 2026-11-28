@@ -1,0 +1,51 @@
+{
+ "id": "neurips26-4998",
+ "title": "HaM-World: Soft-Hamiltonian World Models with Selective Memory for Planning",
+ "authors": [
+  "Haoyun Tang",
+  "Haodong Cui",
+  "Keyao Xu",
+  "Zhan-Dong Mei",
+  "Kun Wang"
+ ],
+ "venue": "NeurIPS 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "Reinforcement Learning->Deep RL",
+ "role": "pipeline",
+ "role2": "overview-framework",
+ "claim": "A structured latent state split into Hamiltonian and context parts, with memory, drives one shared dynamics model for planning.",
+ "layout": "3 panels: large rollout left, two stacked panels right; left-to-right flow",
+ "tags": [
+  "world-model",
+  "hamiltonian-dynamics",
+  "latent-rollout",
+  "planning",
+  "structured-latent"
+ ],
+ "style": [
+  "colorful",
+  "icon-heavy",
+  "math-heavy"
+ ],
+ "description": "The left panel, titled World Model Rollout, shows three time steps. Each step stacks an observation image x_t, an Encoder, and a latent box Z_t holding q_t, p_t and c_t in blue and green. Memory boxes M_t sit above the latent boxes. Horizontal arrows link the memories and the latents across time. Orange CEM Planner boxes take the latent and send actions a_t, shown with joystick icons, down to the next frame. The top right panel has the HaM-World logo, small physics icons, next-prediction and imagination images, and two energy-landscape surfaces H(q,p) joined by a dashed arrow labeled with the gradient of the loss. The bottom right panel, Latent Dynamics, shows how Hamiltonian equations, residual networks and an alpha blend combine to update p, q and c. Pastel fills, yellow modules and blue and green latent blocks carry the colour coding.",
+ "caption": "Architecture of \\method{}. Observations are encoded into Hamiltonian state $(\\qv_t,\\pv_t)$, context $\\cv_t$, and Mamba memory $\\hv_t$; a shared latent transition supports reward/value prediction and CEM planning inside one unified planner-facing interface.",
+ "caption_source": "latex",
+ "abstract": "World models enable model-based planning through learned latent dynamics, but imagined rollouts become unstable as the planning horizon grows or the dynamics distribution shifts: an unconstrained predictor feeds each predicted state back as input, so the latent distribution contracts until distinct states merge. We argue that this drift and contraction reflect two missing structures in planner-facing latents: a history-conditioned predictive state summarizing past observations and actions, and geometric organization that separates configuration, momentum, and task semantics. We propose HaM-World, a structured world model that decomposes the latent state into a canonical-like (q,p) subspace and a context subspace c, while using Mamba selective state-space memory as the history-conditioned input to the same latent dynamics. The (q,p) subspace evolves through an energy-derived Hamiltonian vector field plus learnable residual/control dynamics, while c captures semantic, dissipative, and non-conservative factors. The planner uses this single latent state for prediction, reward/value estimation, imagined rollouts, and CEM search. On six DeepMind Control Suite tasks, HaM-World ranks first on four and second on the other two, with the highest six-task Avg. AUC (91.9, +10.3% over TD-MPC2). Within the horizons the planner unrolls, it reduces imagined-rollout error to 45% of TD-MPC2's and wins 11/12 k in {3,5,7} MSE cells. Under 12 OOD perturbations spanning dynamics shifts, action delay, and observation masking it attains the highest return in every condition (+10.2% on Finger Spin, +13.6% on Reacher Easy). Ablations show that both selective memory and the Soft-Hamiltonian prior contribute to the gains. Mechanism diagnostics support the intended design, showing bounded action-free energy drift, structured energy variation under policy rollouts, and coherent control-induced energy transfer.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=Yc0mqMHlkt",
+  "arxiv": "https://arxiv.org/abs/2605.05951",
+  "pdf": "https://arxiv.org/pdf/2605.05951",
+  "proceedings": null,
+  "virtual": "https://neurips.cc/virtual/2026/poster/151714",
+  "code": "https://github.com/HaoyunT/HaM_World"
+ },
+ "license": "http://creativecommons.org/licenses/by/4.0/",
+ "img": "cc-by",
+ "image_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/images/neurips26-4998.png",
+ "thumb_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/thumbs/neurips26-4998.webp",
+ "figure_page": 3,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.8
+}

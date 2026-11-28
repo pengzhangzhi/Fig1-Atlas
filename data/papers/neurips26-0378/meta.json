@@ -1,0 +1,53 @@
+{
+ "id": "neurips26-0378",
+ "title": "Not Every Rubric Teaches Equally: Policy-Aware Rubric Rewards for RLVR",
+ "authors": [
+  "Utkarsh Tyagi",
+  "Xingang Guo",
+  "MohammadHossein Rezaei",
+  "Daniel George",
+  "Anas Mahmoud",
+  "Jackson Lee",
+  "Bing Liu",
+  "Yunzhong He"
+ ],
+ "venue": "NeurIPS 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": null,
+ "role": "analysis-finding",
+ "role2": "teaser-result",
+ "claim": "Many high-importance criteria give no learning signal under static weighting, and reweighting by current rollout contrast restores informative reward spread.",
+ "layout": "3 panels left-to-right, stacked bars then box plots, shared MM/HB color coding",
+ "tags": [
+  "rubric-rewards",
+  "reward-reweighting",
+  "diagnostic",
+  "grpo",
+  "signal-sparsity"
+ ],
+ "style": [
+  "plot",
+  "colorful"
+ ],
+ "description": "Three side-by-side plot panels. (a) Stacked bar chart of criteria split into dead (teal), mixed (orange-red) and saturated (tan) shares. Bars are grouped by Low/Mid/High static weight tier, for two datasets, MM and HB, with percentages printed inside each segment. The mixed share is about 50–59% and dead plus saturated mass stays large even for high weights. (b) Paired stacked bars, Static vs Ours, for MM and HB. Faded ribbons connect the segments, and an arrow shows pressure shifting toward the mixed band. Callout boxes read zero-signal −8 pp and −12 pp. (c) Horizontal box plots of prompt reward spread for four model/dataset pairs. Gray boxes are static and colored boxes (purple for MM, blue for HB) are ours. Circle and triangle markers show the means. Percent gains of +25% to +37% are labeled beside the boxes. The eye goes first to the large colored stacked bars in (a).",
+ "caption": "Rubric-pressure diagnostic. We track each criterion's training pressure\\protect\\footnotemark{} across criterion signal states. A criterion is dead when no rollout passes it ($p_j{=}0$), saturated when every rollout passes it ($p_j{=}1$), and mixed when verdicts differ across the rollout group; dead and saturated criteria have $v_j{=}0$ and give no group-relative advantage signal. (a) Criteria grouped by setting and absolute static weight/point tier (Low: $|w_j|\\!\\in\\!\\{1,2,3\\}$; Mid: $|w_j|\\!=\\!4$; High: $|w_j|\\!\\ge\\!5$); high-weight criteria still carry substantial dead and saturated mass, so human importance is not the same as current learnability. (b) Within-category pressure before and after policy-aware reweighting, averaged over the two base policies per setting; pressure on zero-signal criteria drops by $8$--$12$ pp. (c) Prompt-level reward spread (rollout $\\mathrm{std}(R)$ before GRPO standardization), static (gray) vs policy-aware (colored). Mean spread widens by $25$--$37%$, so fewer groups collapse to the tied $\\mathrm{std}(R){=}0$ regime where every advantage is zero. MM/HB denote our multimodal dataset and HealthBench.",
+ "caption_source": "latex",
+ "abstract": "Reinforcement learning with verifiable rewards has made post-training highly effective when correctness can be checked automatically. However, many important model behaviors require satisfying several qualitative criteria at once. Rubric-based rewards address this setting by grading prompt-specific criteria and aggregating them into a scalar reward. Yet standard static aggregations conflate a criterion's human-assigned importance with its current usefulness as an optimization signal. We show that this assumption breaks down in rubric RL: many important criteria are already saturated or currently unreachable, while criteria that distinguish rollouts are not necessarily those with the largest human weights. We introduce POW3R, a policy-aware rubric reward framework that preserves human weights and category balance as the rubric objective while adapting criterion-level reward weights during training. POW3R uses rollout-level contrast to emphasize criteria that currently separate the policy's outputs, making the GRPO reward more informative without changing the underlying evaluation target. Across three base policies on two datasets spanning multimodal and text-only settings, POW3R wins $24$ of $30$ base-policy/metric comparisons, improving both mean rubric reward and strict completion (the fraction of prompts whose response satisfies every required rubric criterion) over vanilla GRPO with rubric rewards, and reaches the same plateau in $2.5$--$4\\times$ fewer training steps. Rubric rewards should therefore distinguish what should matter in the final answer from what can teach the current policy.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=2itEcLBhzr",
+  "arxiv": "https://arxiv.org/abs/2605.20164",
+  "pdf": "https://arxiv.org/pdf/2605.20164",
+  "proceedings": null,
+  "virtual": "https://neurips.cc/virtual/2026/poster/155810",
+  "code": null
+ },
+ "license": "http://creativecommons.org/licenses/by-nc-nd/4.0/",
+ "img": "none",
+ "image_url": null,
+ "thumb_url": null,
+ "figure_page": 1,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.7
+}

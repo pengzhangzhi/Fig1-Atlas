@@ -1,0 +1,49 @@
+{
+ "id": "icml26-6102",
+ "title": "Incremental Learning of Sparse Attention Patterns in Transformers",
+ "authors": [
+  "Oğuz Yüksel"
+ ],
+ "venue": "ICML 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "Deep Learning->Attention Mechanisms",
+ "role": "concept",
+ "role2": "analysis-finding",
+ "claim": "Complex tasks are learned incrementally, one sparse pattern at a time, with components first competing and then specializing cooperatively.",
+ "layout": "4 panels in 2x2 grid; task diagram, head masks, training curves, dynamics",
+ "tags": [
+  "incremental-learning",
+  "sparse-attention",
+  "training-dynamics",
+  "head-specialization",
+  "stagewise-learning"
+ ],
+ "style": [
+  "colorful",
+  "plot",
+  "math-heavy"
+ ],
+ "description": "A 2x2 composite figure. Top left, 'Task': circles x1..x7 are colored in pairs (green, orange, blue, gray). Each pair is summed and passed through a feature matrix A3*, A2*, A1*, with box size showing importance. The three outputs feed a sum and sigma that produce x7. Top right, 'Representation': three stacked diagonal-stripe attention masks for Head 1 (blue), Head 2 (orange) and Head 3 (green). Bottom left: a 'Loss' curve with stepwise plateaus and a 'KL Divergence' plot with blue, orange and green curves, dotted vertical lines marking stage transitions, a legend, and a 't increases' arrow. Bottom right, 'Dynamics': the same three head masks, with colors blending across heads over time, and a 'Heads' legend. The eye goes first to the colorful circles and the stepped loss curve.",
+ "caption": "(Top left) The task is based on a high-order Markov chain, where the next token depends on multiple past tokens with different importance weights. The context is divided into groups of positions, each aggregated and mapped to prediction logits by an associated feature matrix \\(A_k^\\star \\in \\sR^{d \\times d}\\), with larger \\(\\|A_k^\\star\\|\\) indicating greater influence on the output. (Top right) An idealized representation of the task in a multi-head single-layer attention model. Each head represents an individual sparse attention pattern required to solve the task. (Bottom left) Transformers learn the task incrementally, with each stage corresponding to the acquisition of a sparse attention pattern, as indicated by the KL divergence between the transformer and predictors \\(A_{1:i}^\\star\\) that depend only on a prefix of the importance-ordered groups, as defined in [ref]. (Bottom right) The learning dynamics transition from competitive, where all heads focus on the statistically most important pattern, to cooperative, where different heads specialize in different patterns.",
+ "caption_source": "latex",
+ "abstract": "Transformers integrate information from multiple past positions through sparse attention patterns that copy from specific locations. We study how these patterns form during training in a high-order Markov-chain setting, where the next token depends on several groups of past positions with differing statistical importance. Learning proceeds in discrete stages, each marked by the emergence of a sparse attention pattern for the next most important group. The dynamics are initially competitive, with all attention heads focusing on the dominant pattern, but later become cooperative, with different heads specializing in distinct patterns. For a tractable surrogate, the dynamics reduce to those of a tensor factorization problem, enabling us to prove stagewise convergence. Empirically, the number of stages completed depends on training set size, suggesting a form of implicit complexity control through early stopping. Overall, we give a theoretical account of how structured attention patterns and head specialization emerge without an explicit curriculum.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=vSRh1qU5sH",
+  "arxiv": "https://arxiv.org/abs/2602.19143",
+  "pdf": "https://raw.githubusercontent.com/mlresearch/v306/main/assets/yuksel26a/yuksel26a.pdf",
+  "proceedings": "https://proceedings.mlr.press/v306/yuksel26a.html",
+  "virtual": "https://icml.cc/virtual/2026/poster/60904",
+  "code": null
+ },
+ "license": "http://arxiv.org/licenses/nonexclusive-distrib/1.0/",
+ "img": "none",
+ "image_url": null,
+ "thumb_url": null,
+ "figure_page": 1,
+ "qc_flags": [
+  "low-role-confidence"
+ ],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.45
+}

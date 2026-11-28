@@ -1,0 +1,51 @@
+{
+ "id": "icml26-1554",
+ "title": "Tucker Attention: A generalization of approximate attention mechanisms",
+ "authors": [
+  "Timon Klein",
+  "Jonas Kusch",
+  "Sebastian Sager",
+  "Stefan Schnake",
+  "Steffen Schotthöfer"
+ ],
+ "venue": "ICML 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "Deep Learning->Attention Mechanisms",
+ "role": "prior-vs-ours",
+ "role2": "concept",
+ "claim": "Existing attention variants each factorize the attention weight tensor differently; ours expresses all of them within one low-rank tensor decomposition.",
+ "layout": "4 stacked rows, factors left, equals sign, shared result tensor right",
+ "tags": [
+  "tensor-factorization",
+  "low-rank",
+  "attention",
+  "unification",
+  "parameter-efficiency"
+ ],
+ "style": [
+  "colorful",
+  "math-heavy",
+  "3d-render"
+ ],
+ "description": "Four vertically stacked rows, labeled (a) MHA, (b) GQA, (c) MLA and (d) Tucker Attention. Each row shows factor blocks on the left, an equals sign, and the same output tensor W_i^Q W_i^K,T on the right. The output is a yellow slab stacked behind pink, blue and green slices, with the dimensions d_model, d_model and n_H marked. In (a), query and key matrices are yellow slabs with d_H and d_model labels. In (b), the key tensor is thinner, with n_KV slices. In (c), the factors are purple and red down-projection matrices with two small up-projection cubes between them. In (d), a gray core tensor is attached to an orange U1, a red U2 and a blue U3, with ranks r1, r2 and r3. Colored edges mark which dimensions are contracted. The eye goes first to the colorful stacked tensors, then down to the Tucker row.",
+ "caption": "Illustration of the pre-softmax attention tensor ${\\mathcal{W}}$ under existing factorizations; colored edges denote contraction dimensions. MHA: ${\\mathcal{W}}$ is formed by contracting $\\dmod \\times \\dH$ query and key matrices along $\\dH$ (orange) for each of the $\\nH$ heads, yielding tensor rank $(\\nH, \\dmod, \\dmod)$. GQA: Queries follow the same parametrization as MHA, but only $\\nG$ key matrices are used. During contraction along $\\dH$ (orange), each key matrix is broadcasted to all queries in its head group, yielding rank $(\\nH, \\dmod, \\nG\\dH)$. MLA: Key and query matrices are replaced by down- and up-projections, with up-projections reshaped to $\\nH \\times \\latentDim \\times \\dH$. Contractions occur along $\\latentDim^Q, \\latentDim^K$ (red/blue), and along $\\dH$ per head, giving rank $(\\nH, \\dcQ, \\dcK)$. At inference, contractions along $\\dcQ$ and $\\dH$ are precomputed. The post-softmax tensor $\\widetilde{\\mathcal{W}}$ is parametrized analogously for MHA and GQA; for MLA, only the value matrix has low-rank factorization while the output matrix remains full-rank.",
+ "caption_source": "latex",
+ "abstract": "The pursuit of reducing the memory footprint of the self-attention mechanism in multi-headed self attention (MHA) spawned a rich portfolio of methods, e.g., group-query attention (GQA) and multi-head latent attention (MLA). The methods leverage specialized low-rank factorizations across embedding dimensions or attention heads. From the point of view of classical low-rank approximation, these methods are unconventional and raise questions of which objects they really approximate and how to interpret the low-rank behavior of the resulting representations. To answer these questions, this work proposes a generalized view on the weight objects in the self-attention layer and a factorization strategy, which allows us to construct a parameter efficient scheme, called Tucker Attention. Tucker Attention requires an order of magnitude fewer parameters for comparable validation metrics, compared to GQA and MLA, as evaluated in LLM and ViT test cases. Additionally, Tucker Attention~encompasses GQA, MLA, MHA as special cases and is fully compatible with flash-attention and rotary position embeddings (RoPE). This generalization strategy yields insights of the actual ranks achieved by MHA, GQA, and MLA, and further enables simplifications for MLA.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=ErcPPRZaiq",
+  "arxiv": "https://arxiv.org/abs/2603.30033",
+  "pdf": "https://raw.githubusercontent.com/mlresearch/v306/main/assets/klein26a/klein26a.pdf",
+  "proceedings": "https://proceedings.mlr.press/v306/klein26a.html",
+  "virtual": "https://icml.cc/virtual/2026/poster/65314",
+  "code": "https://github.com/ScSteffen/Tucker-Attention"
+ },
+ "license": "http://creativecommons.org/licenses/by/4.0/",
+ "img": "cc-by",
+ "image_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/images/icml26-1554.png",
+ "thumb_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/thumbs/icml26-1554.webp",
+ "figure_page": 2,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.6
+}

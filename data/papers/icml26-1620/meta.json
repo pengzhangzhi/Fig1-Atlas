@@ -1,0 +1,50 @@
+{
+ "id": "icml26-1620",
+ "title": "Manifold-Aligned Guided Integrated Gradients for Reliable Feature Attribution",
+ "authors": [
+  "Soyeon Kim",
+  "Seongwoo Lim",
+  "Kyowoon Lee",
+  "Jaesik Choi"
+ ],
+ "venue": "ICML 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "Social Aspects->Accountability, Transparency, and Interpretability",
+ "role": "prior-vs-ours",
+ "role2": "concept",
+ "claim": "Constraining attribution paths to the data manifold keeps gradients near the input and avoids the noisy off-manifold gradients of unconstrained paths.",
+ "layout": "3 panels; 3D surface left, manifold views right, side-by-side green vs red contrast",
+ "tags": [
+  "attribution",
+  "latent-space",
+  "manifold",
+  "noise-robustness",
+  "path-integration"
+ ],
+ "style": [
+  "colorful",
+  "math-heavy",
+  "icon-heavy"
+ ],
+ "description": "The left panel shows a 3D mesh of the classifier logit surface with several blue peaks. A pink dotted IG path and a red GIG path cross the high-frequency peaks. A green MA-GIG path goes through the smoother valleys. The path runs from a black baseline image to a dog photo. Small callouts show the index set S^(k) as a bar chart. Arrows and curves link this surface to two right-hand panels. The first right panel is titled Manifold-Aligned Update, in green. It has an input-space heatmap with a yellow on-manifold band and a latent-space panel with concentric density rings. Decoded dog images sit along the green path. The second right panel is titled Off-Manifold Update, in red. Its path cuts across the dark off-manifold region, and a noisy, artifact-filled image sits beside it. At the bottom right, strips of gradient and attribution maps compare green MA-GIG output with red IG and GIG output. Green and red coding runs through the whole figure.",
+ "caption": "Overview of Manifold-Aligned Guided Integrated Gradients (MA-GIG). a) Noise-Robust Gradient Guidance: The visualization compares integration paths from the baseline \\protect{\\raisebox{-.05cm}{\\includegraphics[height=.35cm]{figures/mark_start_crop.png}}} to the input \\protect{\\raisebox{-.05cm}{\\includegraphics[height=.35cm]{figures/mark_goal_crop.png}}} on the classifier's logit surface $f(x)$. The MA-GIG path (green solid line) traverses noise-robust regions, avoiding the high-frequency regions traversed by the linear IG path (pink dotted line). This is achieved by a gradient magnitude filter based on $S^{(k)}$ that selects the lower $q$% of gradients to suppress noise. b) Manifold-Aligned Update: The mechanism links the latent space $\\mathcal{Z}$ and the learned data manifold. By updating $z^{(k)}$ selectively based on $S^{(k)}$, the trajectory is biased toward high-density regions (yellow). This encourages significant gradients to arise near the input $x$ where semantic features are progressively formed, allowing the aggregation of meaningful attributions. c) Off-Manifold Update: In contrast, unconstrained updates traverse low-density regions (blue), triggering erratic gradients even far from the input, resulting in the aggregation of noisy and dense attributions.",
+ "caption_source": "latex",
+ "abstract": "Feature attribution is central to diagnosing and trusting deep neural networks, and Integrated Gradients (IG) is widely used due to its axiomatic properties. However, IG can yield unreliable explanations when the integration path between a baseline and the input passes through regions with noisy gradients. While Guided Integrated Gradients reduces this sensitivity by adaptively updating low-gradient-magnitude features, input-space guidance still produces intermediate inputs that deviate from the data manifold. To address this limitation, we propose \\emph{Manifold-Aligned Guided Integrated Gradients} (MA-GIG), which constructs attribution paths in the latent space of a pre-trained variational autoencoder. By decoding intermediate latent states, MA-GIG biases the path toward the learned generative manifold and reduces exposure to implausible input-space regions. Through qualitative and quantitative evaluations, we demonstrate that MA-GIG produces faithful explanations by aggregating gradients on path features proximal to the input. Consequently, our method reduces off-manifold noise and outperforms prior path-based attribution methods across multiple datasets and classifiers. Our code is available at https://github.com/leekwoon/ma-gig/.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=FMRndM4OAk",
+  "arxiv": "https://arxiv.org/abs/2605.02167",
+  "pdf": "https://raw.githubusercontent.com/mlresearch/v306/main/assets/kim26aw/kim26aw.pdf",
+  "proceedings": "https://proceedings.mlr.press/v306/kim26aw.html",
+  "virtual": "https://icml.cc/virtual/2026/poster/65250",
+  "code": "https://github.com/leekwoon/ma-gig"
+ },
+ "license": "http://creativecommons.org/licenses/by-nc-nd/4.0/",
+ "img": "none",
+ "image_url": null,
+ "thumb_url": null,
+ "figure_page": 1,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.5
+}

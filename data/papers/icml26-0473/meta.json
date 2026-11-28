@@ -1,0 +1,51 @@
+{
+ "id": "icml26-0473",
+ "title": "Natural Hypergradient Descent: Algorithm Design, Convergence Analysis, and Parallel Implementation",
+ "authors": [
+  "Deyi Kong",
+  "Zaiwei Chen",
+  "Shuzhong Zhang",
+  "Shancong Mou"
+ ],
+ "venue": "ICML 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "Theory->Optimization",
+ "role": "pipeline",
+ "role2": null,
+ "claim": "Running approximation updates on a second device in parallel with inner optimization removes the sequential bottleneck in hypergradient estimation.",
+ "layout": "2 device panels side by side, left-to-right, dashed arrows carrying gradients, red feedback loop",
+ "tags": [
+  "bilevel-optimization",
+  "parallel-computing",
+  "hypergradient",
+  "optimize-and-approximate",
+  "efficiency"
+ ],
+ "style": [
+  "math-heavy",
+  "colorful"
+ ],
+ "description": "A two-panel system diagram. The left gray panel, labelled Device 1 (inner-level SGD), stacks three pale yellow boxes. They hold the initialization, the SGD update for theta, and the final theta^T step, joined by solid and dashed vertical arrows labelled t = 0,...,T-1. The right blue-purple panel, labelled Device 2 (Hypergradient Approximation), has a green box with the rank-one update of the EFIM inverse A and the cross-derivative update L. Below it, an orange box computes the hypergradient estimate and the outer update v_{k+1}. Dashed horizontal arrows carry the gradient quantities from Device 1 to Device 2. A bold red arrow loops from Device 2 back to Device 1, labelled update v_{k+1}. The red text highlights the outer variable v. The eye goes first to the red feedback arrow and the colored boxes.",
+ "caption": "Overview of NHGD. The inner problem is solved using SGD on Device 1, while gradient information is sent to Device 2 for iterative rank-one updates of the EFIM inverse $A_t$ and the cross-derivatives $L_t$. After the inner loop, Device 1 sends gradient information to Device 2, which approximates the hypergradient and updates the outer variable. The updated $v_{k+1}$ is then returned to Device 1 to resume the inner optimization. This design enables synchronous hypergradient estimation alongside inner-loop optimization.",
+ "caption_source": "latex",
+ "abstract": "In this work, we propose Natural Hypergradient Descent (NHGD), a new method for solving bilevel optimization problems. To address the computational bottleneck in hypergradient estimation--namely, the need to compute or approximate Hessian inverse--we exploit the statistical structure of the inner optimization problem and use the empirical Fisher information matrix as an asymptotically consistent surrogate for the Hessian. This design enables a parallel optimize-and-approximate framework in which the Hessian-inverse approximation is updated synchronously with the stochastic inner optimization, reusing gradient information at negligible additional cost. Our main theoretical contribution establishes high-probability error bounds and sample complexity guarantees for NHGD that match those of state-of-the-art optimize-then-approximate methods, while significantly reducing computational time overhead. Empirical evaluations on representative bilevel learning tasks further demonstrate the practical advantages of NHGD, highlighting its scalability and effectiveness in large-scale machine learning settings.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=4K54YHTG2i",
+  "arxiv": "https://arxiv.org/abs/2602.10905",
+  "pdf": "https://raw.githubusercontent.com/mlresearch/v306/main/assets/kong26a/kong26a.pdf",
+  "proceedings": "https://proceedings.mlr.press/v306/kong26a.html",
+  "virtual": "https://icml.cc/virtual/2026/poster/66368",
+  "code": null
+ },
+ "license": "http://creativecommons.org/licenses/by/4.0/",
+ "img": "cc-by",
+ "image_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/images/icml26-0473.png",
+ "thumb_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/thumbs/icml26-0473.webp",
+ "figure_page": 1,
+ "qc_flags": [
+  "bad-crop"
+ ],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.93
+}

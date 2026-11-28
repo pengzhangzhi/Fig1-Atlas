@@ -1,0 +1,53 @@
+{
+ "id": "neurips26-7907",
+ "title": "APPSolver: Adaptive Patch Partitioning for Point-Wise Ship Flow Prediction on Unstructured Meshes",
+ "authors": [
+  "Wenhua Huo",
+  "Fenglei Han",
+  "Wangyuan Zhao",
+  "Xiao Peng",
+  "Chunhui Wang",
+  "Jialin Wu",
+  "JiaYi Han"
+ ],
+ "venue": "NeurIPS 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": null,
+ "role": "pipeline",
+ "role2": "overview-framework",
+ "claim": "Compressing an irregular, density-varying point set into adaptive patch tokens lets a Transformer predict the next state efficiently, with no re-gridding.",
+ "layout": "3 rows of panels, left-to-right top flow, zoomed detail and module breakdowns below",
+ "tags": [
+  "adaptive-tokenization",
+  "quadtree-patching",
+  "unstructured-mesh",
+  "surrogate-model",
+  "efficiency"
+ ],
+ "style": [
+  "colorful",
+  "icon-heavy",
+  "photo/real data"
+ ],
+ "description": "A wide, dense diagram in three tiers. The top row is the main pipeline in three tinted boxes. The cyan box holds the input flow field (X_t, U_t). The blue box shows Adaptive Patch Partitioning in three steps: coarse partition, near-field refinement, and padding and downsampling. The purple box holds a vertical Transformer block and the predicted next-step field. Arrows run left to right, and small orange, green and blue squares mark patch tokens. A red square marks the condition token. The middle row has zoomed detail views of the ship hull mesh and a legend. The bottom row has three module breakdowns: a quadtree decision tree with distance and threshold conditions, a padding and downsampling schematic, and a condition-token encoder. The encoder takes ship and case parameters through a frozen LLM and a projection layer. Pastel backgrounds and dashed separators organize the panels.",
+ "caption": "Overview of APPSolver. First, the non-uniform point set near the free surface and the current flow field state are input, followed by coarse partitioning, near-field refinement, padding, and downsampling through APP, converting the original point set into compact patch tokens. Meanwhile, ship geometric parameters and condition parameters are encoded into condition token through a frozen LLM encoder and projection layers, and jointly input with patch tokens into a Transformer backbone, which ultimately outputs the next step point-wise flow field prediction.",
+ "caption_source": "latex",
+ "abstract": "Predicting high-fidelity flow fields around ship hulls is central to hydrodynamic performance analysis, yet traditional CFD solvers remain computationally prohibitive for rapid design exploration across multiple vessel types and operating conditions. Existing deep-learning surrogates often interpolate unstructured CFD meshes onto regular grids, which can blur near-field resolution, while direct point-level global attention on large unstructured meshes can be computationally expensive. In this paper, we introduce APPSolver, a neural surrogate that learns next-step point-wise flow-field prediction directly on the unstructured free-surface ship CFD mesh without re-gridding. APPSolver is built around Adaptive Patch Partitioning (APP), a quadtree-based strategy that groups unstructured points into local spatial patches according to the non-uniform density inherent in ship CFD meshes: fine near the hull and wake, coarse in the far field. The resulting patch tokens are processed by a Transformer backbone together with optional condition token that encode ship geometry and condition parameters via a frozen large language model, forming a unified token-space model for one-step temporal advancement of velocity and pressure fields. On the ShipBench dataset, APP-Transformer exhibits an accuracy--efficiency trade-off, incurring higher prediction errors than the strongest learned baselines while requiring substantially lower forward computation. Ablation studies quantify the compression-fidelity trade-off of APP and demonstrate that condition token provide preliminary gains in some leave-one-hull-out settings. Code is available at https://github.com/wenhuahuo/APPSolver.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=slRT3ex527",
+  "arxiv": "https://arxiv.org/abs/2608.29355",
+  "pdf": "https://arxiv.org/pdf/2608.29355",
+  "proceedings": null,
+  "virtual": "https://neurips.cc/virtual/2026/poster/149116",
+  "code": null
+ },
+ "license": "http://creativecommons.org/licenses/by/4.0/",
+ "img": "cc-by",
+ "image_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/images/neurips26-7907.png",
+ "thumb_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/thumbs/neurips26-7907.webp",
+ "figure_page": 2,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.85
+}

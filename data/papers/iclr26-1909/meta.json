@@ -1,0 +1,50 @@
+{
+ "id": "iclr26-1909",
+ "title": "Capacity-Aware Inference: Mitigating the Straggler Effect in Mixture of Experts",
+ "authors": [
+  "Shwai He",
+  "Weilin Cai",
+  "Jiayi Huang",
+  "Ang Li"
+ ],
+ "venue": "ICLR 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "Deep Learning->Algorithms",
+ "role": "analysis-finding",
+ "role2": "problem-setup",
+ "claim": "Under sparse routing, load is highly skewed: a few overloaded units far exceed the mean and dictate overall latency.",
+ "layout": "1 panel, bar chart over expert IDs, high-load bars highlighted in red",
+ "tags": [
+  "load-imbalance",
+  "expert-parallelism",
+  "mixture-of-experts",
+  "inference-efficiency",
+  "bottleneck"
+ ],
+ "style": [
+  "plot",
+  "minimal",
+  "colorful"
+ ],
+ "description": "A single bar chart with Expert ID (1–64) on the x-axis and Normalized Load (0–7) on the y-axis. Most bars are pale blue (low-load) and sit around 0.5–1.9, i.e. near or below the mean load of 1. A handful of bars are salmon-red (high-load) and tower above the rest. The tallest is expert 7 at about 7.2, followed by expert 18 at about 4.3, then experts 28 and 31 at about 3.4. Others in the 2–3 range include experts 24, 25, 42, 62 and 64. A legend in the upper right maps red to High-load and blue to Low-load. Dashed horizontal gridlines mark each integer. The eye goes first to the tall red spikes, which show the imbalance that creates stragglers.",
+ "caption": "Illustration of the Straggler Effect in MoE Inference. {The normalized load is computed as each expert's load divided by the mean load across all experts. Example shown with OLMoE [ref] on OpenBookQA [ref]. }",
+ "caption_source": "latex",
+ "abstract": "The Mixture of Experts (MoE) is an effective architecture for scaling large language models by leveraging sparse expert activation to balance performance and efficiency. However, under expert parallelism, MoE suffers from inference inefficiencies due to imbalanced token-to-expert assignment, where underloaded experts complete computations early but must wait for overloaded experts, leading to global delays. We define this phenomenon as the \\textbf{\\textit{Straggler Effect}}, as the most burdened experts dictate the overall inference latency. To address this, we first propose \\textit{\\textbf{Capacity-Aware Token Drop}}, which enforces expert capacity limits by discarding excess tokens from overloaded experts, effectively reducing load imbalance with minimal performance impact (e.g., $30\\%$ speedup with only $0.9\\%$ degradation on OLMoE). Next, given the presence of low-load experts remaining well below the capacity threshold, we introduce \\textit{\\textbf{Capacity-Aware Expanded Drop}}, which allows tokens to include additional local experts in their candidate set before enforcing strict local capacity constraints, thereby improving load balance and enhancing the utilization of underused experts. Extensive experiments on both language and multimodal MoE models demonstrate the effectiveness of our approach, yielding substantial gains in expert utilization, model performance, and inference efficiency, e.g., applying Expanded Drop to Mixtral-8$\\times$7B-Instruct yields a {0.2\\%} average performance improvement and a {1.85$\\times$} inference speedup. The code is released at: https://github.com/CASE-Lab-UMD/Capacity-Aware-MoE.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=LuYFpySWA2",
+  "arxiv": "https://arxiv.org/abs/2503.05066",
+  "pdf": "https://proceedings.iclr.cc/paper_files/paper/2026/file/94e845868a9ace4bc239d0c529d32f4c-Paper-Conference.pdf",
+  "proceedings": "https://proceedings.iclr.cc/paper_files/paper/2026/hash/94e845868a9ace4bc239d0c529d32f4c-Abstract-Conference.html",
+  "virtual": "https://iclr.cc/virtual/2026/poster/10009996",
+  "code": "https://github.com/CASE-Lab-UMD/Capacity-Aware-MoE"
+ },
+ "license": "http://creativecommons.org/licenses/by/4.0/",
+ "img": "cc-by",
+ "image_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/images/iclr26-1909.png",
+ "thumb_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/thumbs/iclr26-1909.webp",
+ "figure_page": 0,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.8
+}

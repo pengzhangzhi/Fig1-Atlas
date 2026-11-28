@@ -1,0 +1,53 @@
+{
+ "id": "iclr26-3095",
+ "title": "DirMoE: Dirichlet-Routed Mixture of Experts",
+ "authors": [
+  "Amirhossein Vahidi",
+  "Hesam Asadollahzadeh",
+  "Navid Akhavan Attar",
+  "Marie Moullet",
+  "Kevin Ly",
+  "Xingyi Yang",
+  "Mohammad Lotfollahi"
+ ],
+ "venue": "ICLR 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "Applications->Language, Speech and Dialog",
+ "role": "pipeline",
+ "role2": null,
+ "claim": "A router that separates which experts to select from how to weight them yields end-to-end differentiable sparse routing.",
+ "layout": "2 stacked panels: top MoE dataflow, bottom router zoom-in via dotted lines",
+ "tags": [
+  "mixture-of-experts",
+  "routing",
+  "variational-autoencoder",
+  "differentiable",
+  "disentanglement"
+ ],
+ "style": [
+  "colorful",
+  "icon-heavy",
+  "math-heavy"
+ ],
+ "description": "The figure has two stacked parts. The top part shows the MoE layer. Token embeddings x1 (red) through xT (blue) feed a purple Router box. Colored arrows run from the router to stacked, translucent Expert i and Expert k cards. Small bar charts z(x1) and z(xT) show which experts are selected. Output lines pass through multiply and add nodes, weighted by r(x), to produce Output 1 through Output T. Dotted purple lines lead from the router to a large purple panel below that expands its internals. In that panel, x goes into an Encoder. Two heads, alpha_hi and alpha_lo, feed a prior and posterior Dirichlet. A gating logit l(x) goes through Gumbel-Sigmoid to give z(x). A sparsity knob and lambda hyperparameters appear. The expert contribution theta is drawn from a Dirichlet and multiplied with z to give the expert weight r(x), which goes to a Decoder that outputs x-hat.",
+ "caption": "Illustration of \\name . Given a batch $\\mathcal{X}$ of input embeddings, two different heads $\\alpha_{\\mathrm{hi}}(x),\\alpha_{\\mathrm{lo}}(x)$ learns the active and inactive per-token expert concentration, and $\\ell(x)$ learns the gating logits. The routing probabilities are the normalized product of $z$ expert selection and Dirichlet probabilities $\\theta$ (expert contribution).",
+ "caption_source": "latex",
+ "abstract": "Mixture-of-Experts (MoE) models have demonstrated exceptional performance in large-scale language models. Existing routers typically rely on non-differentiable Top-$k$+Softmax, limiting their performance and scalability. We argue that two distinct decisions, which experts to activate and how to distribute expert contributions among them, are conflated in standard Top-$k$+Softmax. We introduce Dirichlet-Routed MoE (DirMoE), a novel end-to-end differentiable routing mechanism built on a Dirichlet variational autoencoder framework. This design fundamentally disentangles the core routing problems: expert selection, modeled by a Bernoulli component, and expert contribution among chosen experts, handled by a Dirichlet component. The entire forward pass remains fully differentiable through the use of Gumbel-Sigmoid relaxation for the expert selection and implicit reparameterization for the Dirichlet distribution. Our training objective, a variational ELBO, includes a direct sparsity penalty that precisely controls the number of active experts in expectation, alongside a schedule for key hyperparameters that guides the model from an exploratory to a definitive routing state. Moreover, our DirMoE router matches or exceeds other methods while improving expert specialization.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=a15cDnzr6r",
+  "arxiv": "https://arxiv.org/abs/2602.09001",
+  "pdf": "https://proceedings.iclr.cc/paper_files/paper/2026/file/fc0e3f908a2116ba529ad0a1530a3675-Paper-Conference.pdf",
+  "proceedings": "https://proceedings.iclr.cc/paper_files/paper/2026/hash/fc0e3f908a2116ba529ad0a1530a3675-Abstract-Conference.html",
+  "virtual": "https://iclr.cc/virtual/2026/poster/10008755",
+  "code": null
+ },
+ "license": "http://creativecommons.org/licenses/by/4.0/",
+ "img": "cc-by",
+ "image_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/images/iclr26-3095.png",
+ "thumb_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/thumbs/iclr26-3095.webp",
+ "figure_page": 1,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.9
+}

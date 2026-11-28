@@ -1,0 +1,49 @@
+{
+ "id": "iclr26-2105",
+ "title": "Markovian Transformers for Informative Language Modeling",
+ "authors": [
+  "Scott Viteri",
+  "Max Lamparth",
+  "Peter Chatain",
+  "Clark Barrett"
+ ],
+ "venue": "ICLR 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "Theory->Interpretability and Visualization",
+ "role": "concept",
+ "role2": "pipeline",
+ "claim": "All information from input to output must pass through a bounded intermediate text state, forming an autoencoder-like bottleneck with Markovian structure.",
+ "layout": "2 panels, left single-step flow top-to-bottom, right unrolled graphical model with dashed arrows",
+ "tags": [
+  "markovian",
+  "bottleneck",
+  "chain-of-thought",
+  "causal-graph",
+  "autoencoder"
+ ],
+ "style": [
+  "minimal",
+  "math-heavy"
+ ],
+ "description": "Two black-and-white panels. The left panel shows a vertical flow of boxes. Two top boxes, 'o1=Question' and 's1=\"Step-by-step...\"', send arrows labelled u_θ(s'|o,s) into a middle box 's2=CoT'. A second arrow labelled π_θ(o|s) leads down to a bottom box 'o2=Answer'. This makes the CoT a bottleneck between question and answer. The right panel is an unrolled causal graph. A bottom row of circles s1, s2, s3 is linked by solid horizontal arrows labelled u_θ. A top row of circles o1, o2, o3 receives dashed vertical arrows labelled π_θ from the states below. Solid diagonal arrows run from each o_t to the next state s_{t+1}. There are no colors. The eye goes first to the left boxes, then to the right graph.",
+ "caption": "Markovian training as an autoencoder-style reasoning bottleneck. Left: Single time-step process from Question to CoT to Answer, creating a bandwidth bottleneck where the CoT must capture all information needed for answer prediction. Right: Causal structure showing the generation of states from observations and previous states using the state update function $u_\\theta(s'|o,s)$, and the prediction of observations from states using the policy $\\pi_\\theta(o|s)$. The discrete text bottleneck prevents direct backpropagation, necessitating RL-based gradient estimation.",
+ "caption_source": "latex",
+ "abstract": "Chain-of-Thought (CoT) reasoning often fails to faithfully reflect a language model's underlying decision process. We address this by introducing a Markovian language model framework with an autoencoder-style reasoning bottleneck: all information flowing from question to answer must pass through a bounded-length CoT, creating a bandwidth bottleneck analogous to the latent layer of an autoencoder. In practice, the KL penalty toward the pretrained distribution and the inductive biases of gradient descent discourage steganographic encoding, so the model learns to express its reasoning in natural-language steps from which the answer can be derived. We train this system with a GRPO-style policy gradient algorithm using parallel sampling, a frozen baseline CoT, within-batch standardized advantages, and actor-reward (chain-rule) gradients. On QA tasks, Markovian training recovers most of the gains of a Non-Markovian GRPO variant while forcing the model to answer from the CoT alone (e.g., GSM8K: 19.6% -> 57.1%; ARC-Challenge: 36.1% -> 79.9%; on average within ~3-4 pp of a Non-Markovian variant). Perturbation analyses across types and severities show that Markovian models incur systematically larger log-probability drops under CoT corruption than matched Non-Markovian baselines, indicating stronger causal reliance on the CoT. Cross-model evaluation confirms that learned CoTs generalize across architectures, suggesting they encode transferable reasoning steps rather than model-specific artifacts.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=OMjcX1Z6Uu",
+  "arxiv": "https://arxiv.org/abs/2404.18988",
+  "pdf": "https://proceedings.iclr.cc/paper_files/paper/2026/file/1aa7204c266db52337fbeaea420cf4f0-Paper-Conference.pdf",
+  "proceedings": "https://proceedings.iclr.cc/paper_files/paper/2026/hash/1aa7204c266db52337fbeaea420cf4f0-Abstract-Conference.html",
+  "virtual": "https://iclr.cc/virtual/2026/poster/10009789",
+  "code": "github.com/scottviteri/MarkovianTraining"
+ },
+ "license": "http://creativecommons.org/licenses/by/4.0/",
+ "img": "cc-by",
+ "image_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/images/iclr26-2105.png",
+ "thumb_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/thumbs/iclr26-2105.webp",
+ "figure_page": 2,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.5
+}

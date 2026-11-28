@@ -1,0 +1,55 @@
+{
+ "id": "neurips26-0157",
+ "title": "SimReg: Achieving Higher Performance in the Pretraining via Embedding Similarity Regularization",
+ "authors": [
+  "Yan Sun",
+  "Guoxia Wang",
+  "Jinle Zeng",
+  "Jiabin Yang",
+  "Shuai Li",
+  "Li Shen",
+  "Dacheng Tao",
+  "Dianhai Yu",
+  "Haifeng Wang"
+ ],
+ "venue": "NeurIPS 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "General Machine Learning->Representation Learning",
+ "role": "analysis-finding",
+ "role2": "pipeline",
+ "claim": "Standard training leaves token representations too similar to one another; adding our auxiliary loss makes them more separable, strengthening classification.",
+ "layout": "3 panels: left workflow, two heatmaps right; red-highlighted repeated token as anchor",
+ "tags": [
+  "regularization",
+  "embedding-similarity",
+  "pretraining",
+  "representation-separability",
+  "heatmap-comparison"
+ ],
+ "style": [
+  "colorful",
+  "plot",
+  "photo/real data"
+ ],
+ "description": "The left panel is a vertical flow diagram. A row of colored tokens T1–T6 feeds into blue boxes labeled Embedding, Decoder Layers and Final LayerNorm. These produce output embeddings E2–E7. The embeddings split into two branches. One goes through an LM Head to a green CrossEntropy box. The other goes straight to a green SimReg box. A large arrow connects this workflow to the right side. The right side holds two side-by-side cosine-similarity heatmaps over the tokens of a sentence, shown beneath them. The left heatmap, titled 'CrossEntropy only', is dominated by red, which means high similarity. The right heatmap, titled 'CrossEntropy + SimReg', is mostly blue, which means lower similarity. A shared colorbar runs from 0 to 1. Black boxes mark the same-word pair 'they', which is highlighted in red. The sentence appears at the bottom.",
+ "caption": "(left) Workflow of the SimReg loss. (Right) We compare the cosine similarity of token embeddings in a sample on the LLaMA-7B model trained via \"CrossEntropy only\" and \"CrossEntropy+SimReg\". Using \"CrossEntropy only\" fails to enforce sufficient separability among token features, whose cosine values of all token pairs exceed $0.5$. With the introduction of SimReg, feature separability is generally enhanced (averaged cosine value is reduced by at least $0.1$), thereby providing stronger support for classification training. More results are stated in Appendix [ref].",
+ "caption_source": "latex",
+ "abstract": "Pretraining large language models (LLMs) with next-token prediction has led to remarkable advances, yet the context-dependent nature of token embeddings in such models results in high intra-class variance and inter-class similarity, thus hindering the efficiency of representation learning. While similarity-based regularization has demonstrated benefit in supervised fine-tuning and classification tasks, its application and efficacy in large-scale LLM pretraining remains underexplored. In this work, we propose the SimReg, an embedding similarity regularization loss that explicitly encourages token representations with the same ground-truth label within each sequence to be more similar, while enforcing separation from different-label tokens via a contrastive loss. Our analysis reveals that this mechanism introduces gains by enlarging multi-classification margins, thereby enabling more efficient classification. Extensive experiments across dense and Mixture-of-Experts (MoE) architectures demonstrate that SimReg consistently accelerates training convergence by over 30% and improves average zero-shot downstream performance by over 1% across standard benchmarks. Further ablation studies and analyses offer practical insights into hyperparameter tuning and loss effectiveness.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=1BwcSDQLHJ",
+  "arxiv": "https://arxiv.org/abs/2605.08809",
+  "pdf": "https://arxiv.org/pdf/2605.08809",
+  "proceedings": null,
+  "virtual": "https://neurips.cc/virtual/2026/poster/156008",
+  "code": null
+ },
+ "license": "http://creativecommons.org/licenses/by/4.0/",
+ "img": "cc-by",
+ "image_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/images/neurips26-0157.png",
+ "thumb_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/thumbs/neurips26-0157.webp",
+ "figure_page": 1,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.55
+}

@@ -1,0 +1,59 @@
+{
+ "id": "icml26-3878",
+ "title": "DistFlow: A Fully Distributed RL Framework for Scalable and Efficient LLM Post-Training",
+ "authors": [
+  "zhixin wang",
+  "Jiaming Xu",
+  "Tianyi Zhou",
+  "Mingjun Zhang",
+  "Liming Liu",
+  "JiaruiHu",
+  "Dian Yang",
+  "TongYu Wang",
+  "Ping Zhang",
+  "Jinlong Hou",
+  "Siyuan Feng",
+  "Yuan Qi",
+  "Yuan Cheng"
+ ],
+ "venue": "ICML 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "Optimization->Large Scale, Parallel and Distributed",
+ "role": "prior-vs-ours",
+ "role2": null,
+ "claim": "Centralized sequential dispatch leaves workers idle waiting in turn; distributed parallel dispatch feeds all workers concurrently and removes the idle time.",
+ "layout": "2 stacked panels, timeline bars left-to-right, shared legend at bottom",
+ "tags": [
+  "distributed-training",
+  "data-dispatch",
+  "parallelism",
+  "idle-time",
+  "systems-efficiency"
+ ],
+ "style": [
+  "colorful",
+  "minimal",
+  "icon-heavy"
+ ],
+ "description": "Two stacked panels compare how data is dispatched to four workers. Each worker is a horizontal timeline bar split into green wait time, yellow compute time and light-blue gradient-reduce time. In (a), a single orange Centralized Controller box holds data chips and sends them to the workers one at a time. The green wait segments grow longer down the rows, which makes the delay build up. The bars also end at different points. In (b), a blue Data Coordinator column with four slots sends data to all four workers at once through parallel arrows. Every bar has only a short green wait, so all workers finish earlier and together. A Time arrow runs along the bottom, and a boxed legend explains the colors and symbols. The eye goes first to the green blocks in (a).",
+ "caption": "Comparison of data dispatch paradigms. (a) Centralized Sequential Dispatch creates accumulated idle time (green). (b) Distributed Parallel Dispatch enables concurrent transfer, eliminating serialization bottlenecks.",
+ "caption_source": "latex",
+ "abstract": "Effectively scaling Reinforcement Learning (RL) is crucial for enhancing the reasoning and alignment of Large Language Models. The massive data and complex execution flows inherent in these tasks require a distributed architecture capable of efficient scaling. However, to simplify programming and dependency management, mainstream frameworks often rely on a centralized architecture where a single node dispatches both control and data. This inherent coupling creates significant communication bottlenecks, severely limiting system scalability and efficiency. We present DISTFLOW, a novel, fully distributed RL framework that adopts a multi-controller paradigm. By decoupling data transmission from control dispatch, DISTFLOW establishes a parallelism-aware, decentralized Data Coordinator that leverages local caching, load balancing, and asynchronous double buffer to minimize communication overhead and mitigate straggler effects. For control logic, it introduces a task scheduler built upon Directed Acyclic Graph (DAG) that facilitates fine-grained, independent execution. Experimental results demonstrate that DISTFLOW achieves near-linear scalability up to 512 GPUs and delivers up to a 2.63x throughput improvement over state-of-the-art (SOTA) frameworks. The source code is available at: https://github.com/sii-research/siiRL.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=aPPEyZpKkp",
+  "arxiv": "https://arxiv.org/abs/2507.13833",
+  "pdf": "https://raw.githubusercontent.com/mlresearch/v306/main/assets/wang26jl/wang26jl.pdf",
+  "proceedings": "https://proceedings.mlr.press/v306/wang26jl.html",
+  "virtual": "https://icml.cc/virtual/2026/poster/63064",
+  "code": "https://github.com/sii-research/siiRL"
+ },
+ "license": "http://arxiv.org/licenses/nonexclusive-distrib/1.0/",
+ "img": "none",
+ "image_url": null,
+ "thumb_url": null,
+ "figure_page": 0,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.9
+}

@@ -1,0 +1,50 @@
+{
+ "id": "neurips26-1585",
+ "title": "CommunityKV: Efficient Long-Context Decoding via Graph Partitioning",
+ "authors": [
+  "Joe McKenna",
+  "Anastasios Alexandridis",
+  "Nathan Susanj",
+  "Jing Liu"
+ ],
+ "venue": "NeurIPS 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "Deep Learning->Attention Mechanisms",
+ "role": "pipeline",
+ "role2": null,
+ "claim": "A three-stage procedure builds a graph from attention, partitions it into communities, then incrementally updates it as new items arrive.",
+ "layout": "3 panels, left-to-right then down, colored arrows linking decode to graph",
+ "tags": [
+  "graph-partitioning",
+  "sparse-attention",
+  "incremental-update",
+  "efficiency",
+  "long-context"
+ ],
+ "style": [
+  "colorful",
+  "icon-heavy",
+  "minimal"
+ ],
+ "description": "Three rounded, titled panels show the method in order. Top-left, 'Graph Construction (Prefill)': a lower-triangular attention grid, with queries 4-15 on the rows and keys 0-15 on the columns. Gray cells mark each query's top-k keys, and a hatched column marks sink tokens. A large hollow arrow leads to the top-right panel, 'Initial Partitioning (Prefill)'. That panel shows a node graph in three shaded circles (teal, yellow, green), each with a star centroid. The bottom panel, 'Incremental Update (Decode)', shows a new query 16, a key strip colored by retrieved community, and an 'Approximate Top-K' bracket. Yellow and green arrows run from the centroids down to the retrieved keys, and dashed gray edges connect node 16 into the graph. A legend sits at bottom right. The eye goes first to the colorful graph and the attention grid.",
+ "caption": "Overview of the \\method framework. (1) Graph Construction. During prefill, we induce a sparse graph from the attention matrix by connecting each query to its top-$\\kappa$ keys (gray cells, $\\kappa=3$ shown). Sink tokens (hatched) are excluded from the top-$\\kappa$ pool. (2) Initial Partitioning. We partition the graph into semantic communities (colored regions) using the Leiden algorithm and compute a centroid (star) per community. (3) Incremental Update. At each decoding step (token 16 shown), we score the query against community centroids to retrieve a candidate subset, run exact attention on this subset together with sink tokens, and use the resulting top-$\\kappa$ keys to update the new token's edges and assign it to a community in constant time. For clarity, only direct attention $w^{(1)}$ relations are depicted; this corresponds to $\\lambda=1$ in the combined graph.",
+ "caption_source": "latex",
+ "abstract": "Scaling Transformers to long contexts is constrained by the quadratic cost of self-attention and the linear growth of key-value cache memory transfer. Sparse attention mitigates this by retrieving only relevant tokens, but current approaches either require large-scale training or, within the training-free regime, rely on semantically coarse heuristics or expensive clustering that is difficult to update efficiently during decoding. We introduce CommunityKV, a framework that formulates sparse attention as a community detection problem. CommunityKV constructs a token graph from the $QK^T$ scores already computed during standard prefill, and partitions the graph into communities to enable retrieval of semantically coherent token groups. A local update rule assigns newly generated tokens to communities in constant time, enabling sparse retrieval throughout streaming decoding without global re-partitioning. We evaluate CommunityKV on Qwen3 and Llama-3.1 models across three long-context benchmarks. With one graph per query head, CommunityKV delivers up to $1.25\\times$ the end-to-end generation throughput of dense attention, while query-group graph aggregation yields up to $1.71\\times$ with comparable accuracy.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=BNHDGnaga1",
+  "arxiv": "https://arxiv.org/abs/2610.00418",
+  "pdf": "https://arxiv.org/pdf/2610.00418",
+  "proceedings": null,
+  "virtual": "https://neurips.cc/virtual/2026/poster/154739",
+  "code": "https://github.com/amazon-science/community-kv"
+ },
+ "license": "http://creativecommons.org/licenses/by-nc-nd/4.0/",
+ "img": "none",
+ "image_url": null,
+ "thumb_url": null,
+ "figure_page": 2,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.93
+}

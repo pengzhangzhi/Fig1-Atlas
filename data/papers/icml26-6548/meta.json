@@ -1,0 +1,50 @@
+{
+ "id": "icml26-6548",
+ "title": "Grouter: Decoupling Routing from Representation for Accelerated MoE Training",
+ "authors": [
+  "Yuqi Xu",
+  "Rizhen Hu",
+  "zihan liu",
+  "Mou Sun",
+  "Kun Yuan"
+ ],
+ "venue": "ICML 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "Deep Learning->Large Language Models",
+ "role": "analysis-finding",
+ "role2": "teaser-result",
+ "claim": "Routing stabilizes and experts specialize as training proceeds, so late routing errors destabilize training; a fixed, pre-distilled router keeps gradients steady.",
+ "layout": "3 panels left-to-right: heatmap, dual-axis loss/gradient plot, line plot with spikes",
+ "tags": [
+  "mixture-of-experts",
+  "routing-stability",
+  "training-instability",
+  "empirical-observation",
+  "perturbation-analysis"
+ ],
+ "style": [
+  "plot",
+  "colorful"
+ ],
+ "description": "Three side-by-side empirical plots. Left: a red-to-green heatmap with layers 0-7 on the y-axis and adjacent checkpoint intervals (1B-2B through 10B-11B tokens) on the x-axis. Each cell shows the fraction of tokens whose activated expert set is unchanged. Cells go from red (low) at deep layers and early intervals to yellow-green (high) at shallow layers and later intervals. A colorbar runs 0 to 1. Middle: a dual-axis plot of LM loss (blue, falling smoothly over 10k steps) and gradient norm (green, noisy and rising). Thick colored vertical bars at steps 1k, 3k, 5k, 7k and 9k mark routing perturbations. Each bar is followed by a short loss-spike curve whose size grows with later perturbation. Right: coefficient of variation of the gradient norm over training tokens (3B-30B). The thick blue Grouter line stays low and smooth, while the green, red and brown baselines (Aux Loss, Aux Loss Free, Balanced Hash) show tall spikes.",
+ "caption": "(a) The percentage of tokens that maintain an exactly identical set of $k$ activated experts for the same input across adjacent checkpoints. We present the more detailed descriptions and figures in [ref]. (b) Sensitivity analysis of expert specialization via random routing perturbations. Perturbations were applied at specific intervals with a fixed learning rate of $10^{-5}$. The resulting loss trajectories (lines) and average gradient norms (bars) reveal a clear trend: while early-stage training (1k steps) is resilient to routing noise due to a lack of specialization, later stages exhibit severe instability and loss spikes under perturbation. This demonstrates that experts gradually develop deep specialization as the router stabilizes, making the model increasingly sensitive to routing errors. (c) The coefficient of variation of the gradient norm within a sliding window of length 100. The results demonstrate that the Grouter method achieves a significant improvement in stability, whereas both the state-of-the-art load balancing approach and pure static routing assignment lead to substantial gradient fluctuations.",
+ "caption_source": "latex",
+ "abstract": "Traditional Mixture-of-Experts (MoE) training typically proceeds without any structural priors, effectively requiring the model to simultaneously train expert weights while searching for an optimal routing policy within a vast combinatorial space. This entanglement often leads to sluggish convergence and training instabilities. This paper introduces Grouter, a preemptive routing method that by distilling high-quality structures from fully-trained MoE models and serving as a fixed router for target models. By decoupling structural optimization from weight updates, Grouter significantly accelerates both the speed and quality of model convergence. To ensure the framework's versatility, we also introduce expert folding to adapt Grouter across varying model configurations and expert tuning to rebalance workloads across different data distributions. Furthermore, by leveraging the structural priors provided by preemptive routing, we can implement targeted optimizations to further enhance training throughput. Experiments demonstrate that Grouter achieves superior performance and efficiency which boosts pre-training data utilization by 4.28x and achieves up to 33.5% throughput acceleration, establishing preemptive routing as a fundamental paradigm for scalable MoE training. We publicly release our code and pretrained Grouter checkpoints at https://github.com/JimmyAwoe/Grouter.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=ztVp5EqREE",
+  "arxiv": "https://arxiv.org/abs/2603.06626",
+  "pdf": "https://raw.githubusercontent.com/mlresearch/v306/main/assets/xu26t/xu26t.pdf",
+  "proceedings": "https://proceedings.mlr.press/v306/xu26t.html",
+  "virtual": "https://icml.cc/virtual/2026/poster/60478",
+  "code": "https://github.com/JimmyAwoe/Grouter"
+ },
+ "license": "http://arxiv.org/licenses/nonexclusive-distrib/1.0/",
+ "img": "none",
+ "image_url": null,
+ "thumb_url": null,
+ "figure_page": 1,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.8
+}

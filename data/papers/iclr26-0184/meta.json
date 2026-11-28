@@ -1,0 +1,57 @@
+{
+ "id": "iclr26-0184",
+ "title": "Routing Matters in MoE: Scaling Diffusion Transformers with Explicit Routing Guidance",
+ "authors": [
+  "Yujie Wei",
+  "Shiwei Zhang",
+  "Hangjie Yuan",
+  "Yujin Han",
+  "Zhekai Chen",
+  "Jiayu Wang",
+  "Difan Zou",
+  "Xihui Liu",
+  "yingya zhang",
+  "Yu Liu",
+  "Hongming Shan"
+ ],
+ "venue": "ICLR 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "Deep Learning->Generative Models and Autoencoders",
+ "role": "analysis-finding",
+ "role2": "problem-setup",
+ "claim": "Visual tokens lack the semantic clustering of language tokens, and guided routing yields more diverse experts than standard routing.",
+ "layout": "2 panels, left-to-right, t-SNE scatter pair beside grouped bar chart",
+ "tags": [
+  "mixture-of-experts",
+  "expert-diversity",
+  "token-clustering",
+  "modality-gap",
+  "diffusion-transformer"
+ ],
+ "style": [
+  "plot",
+  "colorful",
+  "math-heavy"
+ ],
+ "description": "Two panels. Panel (a), on the left, shows two boxed t-SNE scatter plots side by side. The first is for LLM tokens (Llama-3 8B) and the second is for visual DiT tokens (DiT-XL/2). Each point is a token and colors mark k-means clusters. A fraction at the top of each box gives the ratio of average inter-class to intra-class distance. It is 19.283 for the LLM and 0.748 for the DiT. The LLM plot has compact, well-separated clusters. The DiT plot is a diffuse, overlapping blob of colors. A dashed vertical line separates this from panel (b). Panel (b) is a grouped bar chart of expert subspace similarity across MoE layers 1 to 23. Blue bars are DiT-MoE (Token-Choice) and salmon bars are Ours. Ours is mostly lower, meaning higher diversity. Captions sit below each panel.",
+ "caption": "(a) We randomly sample 1k intermediate-layer tokens from 110 ImageNet classes for 10-cluster k-means clustering (differentiated by color). With class names/labels as inputs, LLM tokens form compact, well-separated clusters with high semantic density, whereas visual tokens are diffuse. This disparity is quantified by the ratio of inter- to intra-class distance ($19.283\\gg0.748$). (b) We measure inter-expert diversity using singular value decomposition on each MoE layer's expert weight matrices and computing the mean similarity of the subspaces spanned by their top-k left singular vectors [ref]. Incorporating routing guidance (Ours) enhances expert diversity.",
+ "caption_source": "latex",
+ "abstract": "Mixture-of-Experts (MoE) has emerged as a powerful paradigm for scaling model capacity while preserving computational efficiency. Despite its notable success in large language models (LLMs), existing attempts to apply MoE to Diffusion Transformers (DiTs) have yielded limited gains. We attribute this gap to fundamental differences between language and visual tokens. Language tokens are semantically dense with pronounced inter-token variation, while visual tokens exhibit spatial redundancy and functional heterogeneity, hindering expert specialization in vision MoE. To this end, we present ProMoE, an MoE framework featuring a two-step router with explicit routing guidance that promotes expert specialization. Specifically, this guidance encourages the router to partition image tokens into conditional and unconditional sets via conditional routing according to their functional roles, and refine the assignments of conditional image tokens through prototypical routing with learnable prototypes based on semantic content. Moreover, the similarity-based expert allocation in latent space enabled by prototypical routing offers a natural mechanism for incorporating explicit semantic guidance, and we validate that such guidance is crucial for vision MoE. Building on this, we propose a routing contrastive loss that explicitly enhances the prototypical routing process, promoting intra-expert coherence and inter-expert diversity. Extensive experiments on ImageNet benchmark demonstrate that ProMoE surpasses state-of-the-art methods under both Rectified Flow and DDPM training objectives. Code is available at https://github.com/ali-vilab/ProMoE.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=1w1jCfYM8P",
+  "arxiv": "https://arxiv.org/abs/2510.24711",
+  "pdf": "https://proceedings.iclr.cc/paper_files/paper/2026/file/2847043899e1171183ceadf86bdbb280-Paper-Conference.pdf",
+  "proceedings": "https://proceedings.iclr.cc/paper_files/paper/2026/hash/2847043899e1171183ceadf86bdbb280-Abstract-Conference.html",
+  "virtual": "https://iclr.cc/virtual/2026/poster/10011788",
+  "code": "https://github.com/ali-vilab/ProMoE"
+ },
+ "license": "http://arxiv.org/licenses/nonexclusive-distrib/1.0/",
+ "img": "none",
+ "image_url": null,
+ "thumb_url": null,
+ "figure_page": 1,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.8
+}

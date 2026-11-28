@@ -1,0 +1,50 @@
+{
+ "id": "icml26-3086",
+ "title": "KromHC: Manifold-Constrained Hyper-Connections with Kronecker-Product Residual Matrices",
+ "authors": [
+  "Wuyang Zhou",
+  "Yuxuan Gu",
+  "Giorgos Iacovides",
+  "Danilo Mandic"
+ ],
+ "venue": "ICML 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "Deep Learning->Other Representation Learning",
+ "role": "prior-vs-ours",
+ "role2": "pipeline",
+ "claim": "Prior methods approximate or enumerate the residual matrix at high cost; ours composes small exact doubly stochastic factors efficiently.",
+ "layout": "3 stacked panels (a)-(c) left, architecture insets right; red/green storage-cost captions",
+ "tags": [
+  "residual-connections",
+  "kronecker-product",
+  "parameter-efficiency",
+  "doubly-stochastic",
+  "architecture-variants"
+ ],
+ "style": [
+  "math-heavy",
+  "colorful",
+  "minimal"
+ ],
+ "description": "The large left panel is titled Manifold-Constrained Hyper-Connections. It stacks three variants separated by dashed lines. (a) mHC shows heatmap-style matrices passing through repeated Sinkhorn-Knopp iterations, from M(0) to M(1) to M(20). The final matrix has an orange box and a warning icon to flag that it is only approximate. (b) mHC-lite shows a sum of 8x8 permutation matrices drawn as dark blue diagonals. Below it, a bracket carries red text: 'Store 8! = 40,320 permutation matrices'. (c) KromHC (Ours) shows three 2x2 blocks joined by Kronecker-product symbols. Each block is decomposed into two 2x2 permutation matrices, P1 and P2. A bracket carries green text: 'Store 2! = 2'. On the right, two small block diagrams show a standard residual connection (gray) and hyper-connections (green). Black lines link these diagrams to the left panel. Blue shades mark matrix values.",
+ "caption": "Illustration of variants of manifold-constrained hyper-connections with a residual stream width $n=8$. (a) mHC: utilizes iterative Sinkhorn-Knopp (SK) algorithm to approximate a doubly stochastic residual matrix; (b) mHC-lite: builds the residual matrix as convex combinations of $n!$ permutation matrices, but becomes infeasible for a large $n$; (c) KromHC (Ours): constructs the residual matrix as the Kronecker products of smaller (e.g., $2 \\times 2$) doubly stochastic matrices, thus guaranteeing double stochasticity while remaining parameter efficient.",
+ "caption_source": "latex",
+ "abstract": "The success of Hyper-Connections (HC) in neural networks (NN) has also highlighted issues related to training instability and restricted scalability. The Manifold-Constrained Hyper-Connections (mHC) mitigate these challenges by projecting the residual connection space onto a Birkhoff polytope, however, it faces two issues: 1) its iterative Sinkhorn-Knopp (SK) algorithm does not always yield exactly doubly stochastic residual matrices; 2) mHC incurs a prohibitive $O(n^3C)$ parameter complexity with $n$ as the width of the residual stream and $C$ as the feature dimension. The recently proposed mHC-lite reparametrizes the residual matrix via the Birkhoff-von-Neumann theorem to guarantee double stochasticity, but also faces a factorial explosion in its parameter complexity, $O \\left( nC \\cdot n! \\right)$. To address both challenges, we propose KromHC, which uses the Kronecker products of smaller doubly stochastic matrices to parametrize the residual matrix in mHC. By enforcing manifold constraints across the factor residual matrices along each mode of the tensorized residual stream, KromHC guarantees exact double stochasticity of the residual matrices while reducing parameter complexity to only $O(n^2C)$. Experiments show that KromHC matches or even outperforms other state-of-the-art (SOTA) mHC variants, while requiring significantly fewer trainable parameters. The code is at https://github.com/wz1119/KromHC.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=TI7Q2o6EIa",
+  "arxiv": "https://arxiv.org/abs/2601.21579",
+  "pdf": "https://raw.githubusercontent.com/mlresearch/v306/main/assets/zhou26k/zhou26k.pdf",
+  "proceedings": "https://proceedings.mlr.press/v306/zhou26k.html",
+  "virtual": "https://icml.cc/virtual/2026/poster/63836",
+  "code": null
+ },
+ "license": "http://arxiv.org/licenses/nonexclusive-distrib/1.0/",
+ "img": "none",
+ "image_url": null,
+ "thumb_url": null,
+ "figure_page": 1,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.8
+}

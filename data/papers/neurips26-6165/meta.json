@@ -1,0 +1,48 @@
+{
+ "id": "neurips26-6165",
+ "title": "HEED: Density-Weighted Residual Alignment for Hybrid Vision-Language Model Distillation",
+ "authors": [
+  "Yihao Liang",
+  "Niraj Jha"
+ ],
+ "venue": "NeurIPS 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "Computer Vision->Vision Models & Multimodal",
+ "role": "analysis-finding",
+ "role2": "teaser-result",
+ "claim": "Aggregate scores hide selective failures: distillation preserves reasoning but collapses fine-grained perception, and a targeted fix recovers much of it.",
+ "layout": "2 stacked panels, shared x-axis, dumbbell rows with teacher reference line",
+ "tags": [
+  "distillation",
+  "hybrid-architecture",
+  "selective-failure",
+  "ablation",
+  "fine-grained-perception"
+ ],
+ "style": [
+  "plot",
+  "minimal",
+  "colorful"
+ ],
+ "description": "A two-panel dot-and-line plot sharing a horizontal axis that measures each condition's score gap to the teacher in points. The dashed vertical line at the right marks the teacher at zero. Panel A, labeled Reasoning and predicted preserved, has four benchmark rows (MMMU-Pro, MMStar, MMBench, MathVista). Its dots cluster tightly near the teacher line. Panel B, labeled Fine-grained perception and predicted vulnerable, has six rows (OCRBench v2, DocVQA, ChartQA, TextVQA, InfoVQA, AI2D). Its dots spread far to the left. Four conditions are shown as hollow gray, small gray, light blue and bold blue dots, with HEED as the bold blue one. Thick blue segments run from C3 to C4 to show the recovery. The OCRBench v2 row is highlighted and annotated +4.7. Numeric gap columns for C1 and C4 sit on the right, with the -13.3 in red drawing the eye.",
+ "caption": "Aggregate scores hide a fine-grained perception collapse that HEED partially recovers from. (A) Reasoning benchmarks (predicted preserved): C1-C4 stay within $\\sim$2 pt of the teacher. (B) Fine-grained perception (predicted vulnerable): standard KD (C1) loses 13.3 pt on OCRBench v2; density weighting (C4 vs.\\ C3) recovers +4.7 pt under matched setup. C1--C4 share architecture and data; only the Stage 1/2 alignment loss differs. Dots show each condition's score gap to the teacher.",
+ "caption_source": "latex",
+ "abstract": "Distilling vision-language models into faster hybrid architectures, such as 3:1 Mamba-2/attention mixes, is now standard practice for making inference efficient. Aggregate benchmarks suggest that this works but they hide selective failures. When we distill Qwen3-VL-8B-Instruct into a 3:1 Mamba-2/attention hybrid, student model stays within 2 points of the teacher across visual reasoning benchmarks like MMStar, MMBench, and MMMU-Pro, while dropping 13 points on optical-character-recognition and document tasks. The student can still understand the scene but loses the fine-grained text needed to answer. We localize much of the failure to a specific kind of position. In a high-resolution image, most patches are sky, wall, or smooth texture, while a small fraction carries text, edges, object boundaries, or other local details. In a token-level diagnostic, the top 10% highest-density patches have 3.6x larger residual drift than the bottom 10% lowest-density patches and 3.5x larger teacher-masking answer contribution. Uniform weighting devotes many loss terms to low-information background patches, whereas sparse answer bearing patches receive no special protection. The required intervention is minimal: we replace uniform residual alignment with density-weighted residual alignment, using patch self-dissimilarity as a training-free proxy for position importance. We call this HEED. Compared with normal end-to-end distillation, HEED increases performance by 8.7 points on OCRBench v2 and 5.13 points on a 10-benchmark average. The gain is realized on different teacher models. After standard post-training, the student reaches teacher-level performance on the 10-benchmark average. HEED adds no parameters and no inference-time cost. Hence, the student maintains the hybrid architecture's 4.12x throughput and 68% memory saving at 128k context. Code is available at https://github.com/jha-lab/HEED.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=gNV0DzH5iz",
+  "arxiv": "https://arxiv.org/abs/2605.17093",
+  "pdf": "https://arxiv.org/pdf/2605.17093",
+  "proceedings": null,
+  "virtual": "https://neurips.cc/virtual/2026/poster/150667",
+  "code": "https://github.com/jha-lab/HEED"
+ },
+ "license": "http://creativecommons.org/licenses/by/4.0/",
+ "img": "cc-by",
+ "image_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/images/neurips26-6165.png",
+ "thumb_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/thumbs/neurips26-6165.webp",
+ "figure_page": 1,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.62
+}

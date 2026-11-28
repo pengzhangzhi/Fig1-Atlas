@@ -1,0 +1,50 @@
+{
+ "id": "icml26-3053",
+ "title": "Efficient Transformer Attention for SNNs via Hadamard Simplification",
+ "authors": [
+  "Tingting Jiang",
+  "Jiangrong Shen",
+  "Long Chen",
+  "Yaxin Li",
+  "Qi Xu"
+ ],
+ "venue": "ICML 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": null,
+ "role": "prior-vs-ours",
+ "role2": "pipeline",
+ "claim": "A dense matrix-multiplication attention block can be replaced by cheaper Hadamard-product gating variants that keep the same overall network.",
+ "layout": "Top architecture strip, three attention panels below, red-versus-blue dashed boxes, legend bottom",
+ "tags": [
+  "attention-simplification",
+  "hadamard-product",
+  "spiking-neural-networks",
+  "efficiency",
+  "architecture-comparison"
+ ],
+ "style": [
+  "icon-heavy",
+  "colorful"
+ ],
+ "description": "The top row shows the whole network as a left-to-right chain of dashed blocks. It runs from a Conv2D+BN stem through a Stage1 residual block, which holds a highlighted Self Attention Block and an MLP, then downsample layers, further residual stages and a Classification Head. A curved bracket links the Self Attention Block to three zoomed-in attention diagrams below. The left panel, in a red dashed box, is the baseline multi-head attention (MM-Attn). It has Q/K/V paths, matrix-multiplication symbols, Scale and Reshape steps, and a long vertical flow. A blue arrow leads to the right panel, in a blue dashed box. That panel holds two much shorter flows: SSA (FH-Attn) with a Hadamard product, and USSA (CH-Attn) with channel-wise or spatial-wise gating. Pink spiking-neuron icons appear throughout, and a legend of operation symbols sits at the bottom.",
+ "caption": "Overall framework and attention module comparison. (a) Overall architecture of the SpikingResformer-based network, where attention modules are embedded into residual blocks. (b) Multi-Head Dual Spiking Self-Attention (MDSSA), which relies on dense matrix multiplication, reshaping, transposition, and scaling operations. (c) Simplified Spiking Attention (SSA), which replaces matrix multiplication with full Hadamard-product-based spike interactions. (d) Ultra-Simplified Spiking Attention (USSA), which further compresses attention into channel-wise or spatial-wise gating to minimize communication overhead. Spiking neuron layers, matrix multiplication, element-wise addition, and Hadamard product are illustrated with corresponding symbols.",
+ "caption_source": "pdf",
+ "abstract": "Spiking Neural Networks (SNNs) enable low-power, event-driven computation, but Transformer-based SNNs remain difficult to deploy on neuromorphic hardware due to dense operations and communication overhead. We propose two simplified attention mechanisms, \\textbf{Simplified Spiking Attention (SSA)} and \\textbf{Ultra-Simplified Spiking Attention (USSA)}, which replace matrix multiplication with Hadamard products and eliminate hardware-unfriendly components such as multi-head attention and scaling. We show that consecutive masking is redundant and analyze a spiking-order effect in which early spiking contributes more temporal information to attention modulation. On CIFAR-10, CIFAR-100, and DVS-Gesture, SSA achieves accuracies of 96.38\\%, 79.45\\%, and 97.56\\%, respectively, while reducing computational complexity from $\\mathcal{O}(N^2D)$ to $\\mathcal{O}(ND)$ and communication complexity from $\\mathcal{O}(N^2)$ to $\\mathcal{O}(ND)$. USSA further reduces communication complexity to $\\mathcal{O}(N)$ with only marginal accuracy degradation. On ImageNet-1K, SSA and USSA achieve 76.91\\% and 77.27\\% accuracy, respectively, demonstrating scalability to large-scale classification.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=T2obc33ton",
+  "arxiv": null,
+  "pdf": "https://raw.githubusercontent.com/mlresearch/v306/main/assets/jiang26an/jiang26an.pdf",
+  "proceedings": "https://proceedings.mlr.press/v306/jiang26an.html",
+  "virtual": "https://icml.cc/virtual/2026/poster/63868",
+  "code": null
+ },
+ "license": null,
+ "img": "none",
+ "image_url": null,
+ "thumb_url": null,
+ "figure_page": 2,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.6
+}

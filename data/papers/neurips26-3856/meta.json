@@ -1,0 +1,50 @@
+{
+ "id": "neurips26-3856",
+ "title": "VASR: Variance-Aware Systematic Resampling for Diffusion Models",
+ "authors": [
+  "Shivanshu Shekhar",
+  "Sagnik Mukherjee",
+  "Jia Y Zhang",
+  "Tong Zhang"
+ ],
+ "venue": "NeurIPS 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "Deep Learning->Generative Models and Autoencoders",
+ "role": "teaser-result",
+ "role2": "analysis-finding",
+ "claim": "Our method scales better with compute than prior samplers, which plateau or turn unstable as budget grows.",
+ "layout": "3 panels side-by-side, log-log FID vs NFE curves with error bars",
+ "tags": [
+  "scaling",
+  "compute-efficiency",
+  "sequential-monte-carlo",
+  "diffusion",
+  "variance-reduction"
+ ],
+ "style": [
+  "plot",
+  "minimal",
+  "colorful"
+ ],
+ "description": "Three side-by-side line plots on log-log axes show FID (lower is better) against NFEs from 10^4 to 10^6. The panels are CIFAR10, MNIST (Even Odd) and MNIST. Each panel has four methods with error bars: DTS (pink), DAS (lavender), SMC (blue) and VASR (gray). A legend sits in the top right of each panel. VASR, the proposed method, decreases steadily and sits at or near the bottom in every panel. SMC and DAS plateau or fluctuate and have large error bars, especially on MNIST. DTS improves but ends above VASR at high budgets. The eye goes to the gray VASR curve, which is lowest and tightest. The figure has no schematic elements. Its only text is titles and axis labels.",
+ "caption": "Scaling behavior with increasing compute (NFEs). FID vs NFEs on CIFAR-10 and MNIST. VASR outperforms FKD and DTS across all compute budgets, demonstrating favorable scaling with full parallelism.",
+ "caption_source": "latex",
+ "abstract": "Sequential Monte Carlo (SMC) samplers for reward-guided diffusion models often suffer from rapid lineage collapse: a few high-reward particles dominate the population within a handful of resampling steps, destroying diversity and degrading sample quality. We propose a variance-decomposition framework for reward-guided diffusion SMC that separates continuation variance $V_t^{\\mathrm{cont}}$ from residual variance $V_t^{\\mathrm{res}}$, revealing that high offspring-count variance under the commonly used multinomial resampling drives this collapse. This motivates \\textsc{VASR} (Variance-Aware Systematic Resampling), which addresses both variance terms via variance-optimal mass allocation $m_t \\propto w_t e^{r_t}$ (minimizing $V_t^{\\mathrm{cont}}$) and systematic resampling (controlling $V_t^{\\mathrm{res}}$). For latent diffusion models where intermediate rewards are noisy due to stochastic continuations, we propose \\textsc{VASR-Max}, a deliberately biased high-selection variant for variance-sensitive reward optimization. Both methods are training-free, fully parallelizable, and add only linear overhead. On MNIST and CIFAR-10, \\textsc{VASR} achieves as high as $26\\%$ better FID than prior SMC methods while remaining $\\sim\\!66\\times$ faster than MCTS-based value methods at matched compute. On text-to-image generation, \\textsc{VASR-Max} consistently outperforms the strongest SMC baseline across compute budgets and matches MCTS-based methods within $2.5$--$3\\%$ reward at high budgets while being approximately $4\\times$ faster.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=QqtrK76QV1",
+  "arxiv": "https://arxiv.org/abs/2604.06779",
+  "pdf": "https://arxiv.org/pdf/2604.06779",
+  "proceedings": null,
+  "virtual": "https://neurips.cc/virtual/2026/poster/152719",
+  "code": null
+ },
+ "license": "http://creativecommons.org/publicdomain/zero/1.0/",
+ "img": "cc0",
+ "image_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/images/neurips26-3856.png",
+ "thumb_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/thumbs/neurips26-3856.webp",
+ "figure_page": 5,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.8
+}

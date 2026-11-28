@@ -1,0 +1,54 @@
+{
+ "id": "icml26-0432",
+ "title": "FOCUS: DLLMs Know How to Tame Their Compute Bound",
+ "authors": [
+  "Kaihua Liang",
+  "Xin Tan",
+  "An Zhong",
+  "Hong Xu",
+  "Marco Canini"
+ ],
+ "venue": "ICML 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "General Machine Learning->Hardware and Software",
+ "role": "prior-vs-ours",
+ "role2": "problem-setup",
+ "claim": "Sequential decoding yields one new token per step, while parallel block decoding computes many tokens but commits only a few.",
+ "layout": "2 panels, left vs right, top-to-bottom arrows, shared color legend",
+ "tags": [
+  "diffusion-llm",
+  "autoregressive",
+  "inference-efficiency",
+  "batch-decoding",
+  "compute-waste"
+ ],
+ "style": [
+  "minimal",
+  "colorful",
+  "icon-heavy"
+ ],
+ "description": "Two side-by-side panels compare inference paradigms. The left panel is labeled ARLLMs. A wide stack of blue context blocks sits beside a small stack of blue tokens marked with a 'Batch Dim' bracket. A green arrow points down to a small stack of green new-token blocks, so one new token is produced per batch element. The right panel is labeled DLLMs. It has the same blue context stack, plus a stack of gray mask-token blocks marked with a 'Batch Dim' bracket. A green arrow points down to a stack in which only a few blocks have turned green and the rest stay gray. A legend at the bottom left defines blue as context, gray as mask token and green as new token. The eye goes first to the colored block stacks and the green-versus-gray contrast in the outputs.",
+ "caption": "Comparison of inference paradigms. (Left) ARLLMs generate tokens one token at a time. (Right) DLLMs process an entire block in parallel, yet decode only a subset at every step.",
+ "caption_source": "latex",
+ "abstract": "Diffusion Large Language Models (DLLMs) offer a compelling alternative to Auto-Regressive models, but their deployment is constrained by high decoding cost. In this work, we identify a key inefficiency in DLLM decoding: while computation is parallelized over token blocks, only a small subset of tokens is decodable at each diffusion step, causing most compute to be wasted on non-decodable tokens. We further observe a strong correlation between attention-derived token importance and token-wise decoding probability. Based on this insight, we propose FOCUS, an inference system designed for DLLMs. By dynamically focusing computation on decodable tokens and evicting non-decodable ones on-the-fly, FOCUS increases the effective batch size, alleviating compute limitations and enabling scalable throughput. Empirical evaluations demonstrate that FOCUS achieves up to 3.52$\\times$ throughput improvement over the production-grade engine LMDeploy in large-batch settings, while preserving or improving generation quality across multiple benchmarks.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=40fUEdwvH3",
+  "arxiv": "https://arxiv.org/abs/2601.23278",
+  "pdf": "https://raw.githubusercontent.com/mlresearch/v306/main/assets/liang26v/liang26v.pdf",
+  "proceedings": "https://proceedings.mlr.press/v306/liang26v.html",
+  "virtual": "https://icml.cc/virtual/2026/poster/66409",
+  "code": "https://focus-inference.github.io/"
+ },
+ "license": "http://arxiv.org/licenses/nonexclusive-distrib/1.0/",
+ "img": "none",
+ "image_url": null,
+ "thumb_url": null,
+ "figure_page": 1,
+ "qc_flags": [
+  "tiny-crop",
+  "low-role-confidence"
+ ],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.4
+}

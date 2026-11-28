@@ -1,0 +1,51 @@
+{
+ "id": "neurips26-6661",
+ "title": "Matching-Based Few-Shot Semantic Segmentation Models Are Interpretable by Design",
+ "authors": [
+  "Pasquale De Marinis",
+  "Uzay Kaymak",
+  "Rogier Brussee",
+  "Gennaro Vessio",
+  "Giovanna Castellano"
+ ],
+ "venue": "NeurIPS 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "Computer Vision->Segmentation",
+ "role": "pipeline",
+ "role2": null,
+ "claim": "An explanation module taps the internal matching scores of an existing model to produce attribution maps, which are then scored by dedicated metrics.",
+ "layout": "Single wide panel, left-to-right; explainer block nested above the model, metrics column on right",
+ "tags": [
+  "attribution",
+  "interpretability",
+  "few-shot-segmentation",
+  "matching-based",
+  "plug-in-explainer"
+ ],
+ "style": [
+  "icon-heavy",
+  "colorful",
+  "photo/real data"
+ ],
+ "description": "A wide left-to-right diagram. On the left are stacked inputs: support masks (red silhouettes on black), support images (cats) and a query image. An arrow leads into a peach 'Matching-based Model' box. It holds a green trapezoid image encoder, a purple 'Match' group (Map_in, MM_θ, Map_out) and a green 'Seg' block. Above it sits a peach 'Affinity Explainer' box with blue steps: Softmax, Avg. on R, Contributions (stacked layers), Aggregate and Mask. Gray arrows tap the matching scores and the segmentation output into the explainer, and the support masks feed the Mask step. On the right, heatmap attribution maps (blue to red) feed a red column of metrics: IAUC, DAUC, IAUC@p and mIoULoss@p. A note says R can be defined by the segmented area.",
+ "caption": "The proposed framework (two examples, one class). AffEx applies to any FSS model adhering to the illustrated structure: it reads the matching scores produced by the matching mechanism $MM_\\theta$, before $Map^{out}_\\theta$, normalizes the scores of each query position with a softmax over the support, averages the result over a region $\\mathcal{R}$ (the predicted mask, the ground truth mask, or a user-specified region), and aggregates the per-level maps; the support masks assign the attribution sign. The resulting maps highlight the support regions most influential in segmenting the query.",
+ "caption_source": "latex",
+ "abstract": "Few-Shot Semantic Segmentation (FSS) models achieve strong performance in segmenting novel classes with minimal labeled examples, yet their decision-making processes remain largely opaque. Explainable AI has matured on standard computer vision tasks, but not on FSS, where an explanation would tell a practitioner which support pixels the prediction rested on and which examples to provide next. We argue that matching-based FSS models are interpretable by design: their query-support similarity scores, once normalized and processed, attribute the prediction to individual support pixels. Our approach, Affinity Explainer (AffEx), makes this intrinsic interpretability explicit by extracting attribution maps directly from matching scores at multiple feature levels, without requiring gradients or external perturbations. We extend the standard causal metrics for evaluating explanations to the FSS domain and propose additional metrics to better capture the practical utility of explanations in few-shot scenarios. Experiments on two FSS benchmarks, covering seven architectures that range from classical matching-based models to recent pipelines built on vision foundation models (DINOv2/v3, SAM, SAM2) and a prototype-based head, show that AffEx outperforms adapted standard attribution methods at nearly every evaluation point, and that the gain comes from the matching mechanism itself. On pipelines whose segmentation stage transforms the matching output, the same evaluation doubles as a diagnostic of where the decision is made, and on the prototype-based head AffEx subsumes the prototype-style read-out as a special case. Qualitatively, the attribution maps expose how each architecture resolves the support set, and we show how they guide model diagnosis. Code is available at https://github.com/pasqualedem/AffinityExplainer.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=jqykrG5xAb",
+  "arxiv": "https://arxiv.org/abs/2511.18163",
+  "pdf": "https://arxiv.org/pdf/2511.18163",
+  "proceedings": null,
+  "virtual": "https://neurips.cc/virtual/2026/poster/150223",
+  "code": "https://pasqualedem.github.io/AffinityExplainer/"
+ },
+ "license": "http://creativecommons.org/licenses/by/4.0/",
+ "img": "cc-by",
+ "image_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/images/neurips26-6661.png",
+ "thumb_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/thumbs/neurips26-6661.webp",
+ "figure_page": 1,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.9
+}

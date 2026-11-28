@@ -1,0 +1,56 @@
+{
+ "id": "neurips26-1526",
+ "title": "CoDMD: Copula-aware Distribution Matching Distillation for Fast Video Generation",
+ "authors": [
+  "Wenhu Zhang",
+  "Kun Cheng",
+  "Changyuan Wang",
+  "Shiyao Li",
+  "Yuechen Zhang",
+  "Wenbo Li",
+  "Jiajun Zha",
+  "Jingyi Zhang",
+  "Kang Zhao",
+  "Jiaya Jia"
+ ],
+ "venue": "NeurIPS 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "Computer Vision->Image and Video Generation",
+ "role": "pipeline",
+ "role2": "concept",
+ "claim": "Regularizing relational structure across samples and frames, beyond per-sample matching, keeps distilled students aligned with the target distribution's geometry.",
+ "layout": "2 regions: pipeline diagram left, 2x2 distribution sketches right; dashed matching lines",
+ "tags": [
+  "distillation",
+  "diffusion",
+  "relational-regularization",
+  "distribution-matching",
+  "video-generation"
+ ],
+ "style": [
+  "colorful",
+  "icon-heavy",
+  "minimal"
+ ],
+ "description": "The left side is a pipeline diagram. Noise goes into a gray Student block with a flame icon. The Student outputs a video, which is diffused and fed into the orange Fake Model (flame icon) and the green Teacher (snowflake icon). These produce s_fake and s_real stacks, which feed the DMD loss and the distribution matching distillation label. Below, batches of s_real and s_fake feed Sample Relation and Frame Relation modules. These produce small green and orange relation-matrix heatmaps, the relational losses L_rel^batch and L_rel^frame, and a blue 'Backward Propagation to Student' arrow. The right side has two 2x2 panels of green p_real and orange p_fake density blobs. In the DMD panel, dashed lines connect points in a crossed, unstructured way. In the CoDMD panel, the point structures are preserved and matched. A large orange arrow points down.",
+ "caption": "Sampled 4-step videos. DMD suffers from (1)failed camera motion; (2)super slow action; (3,4)broken layouts; (5,6,7)oversaturation and (4,7)instruction misalignment. On the VBench radar, \\red{\\methodname{} (84.46)} outperforms previous methods, i.e., \\blue{DMD (83.38)} and \\green{rCM (82.81)}, on most of the dimensions, with the largest gains on dynamic degree, color and multiple objects. Best zoomed in.",
+ "caption_source": "latex",
+ "abstract": "Few-step distillation for video diffusion models has attracted significant attention, driven by the urgent demand for efficient deployment in real-world scenarios. However, Distribution Matching Distillation (DMD), a leading paradigm, tends to degrade under limited NFE budgets, manifesting in video generation as layout instability, oversaturation, and broken motion dynamics. We trace this failure to a structural limitation: standard DMD is an intra-sample distribution-matching objective with coordinate-wise gradients, and thus imposes no explicit constraint on the relational geometry across batch elements or temporal frames, leaving the underlying copula largely unregulated. Combined with the mode-seeking tendency of its reverse-KL objective, this absence of relational guidance makes DMD prone to collapsing into local optima in the few-step regime. Motivated by this insight, we propose Copula-aware DMD (CoDMD), a lightweight relational regularizer that reuses score estimates already produced by the frozen teacher and the online fake model to construct pairwise relation matrices across samples and frames. These are matched through a supplementary distributional objective that requires no additional networks, datasets, or sampling trajectories. On the Wan-2.1-T2V model series at 1.3B & 14B scales, CoDMD distills 50-step teachers into 4-step students, achieving an approximate 25$\\times$ speed-up while attaining VBench scores of 84.46 & 84.87, outperforming prior trajectory-based (rCM 82.81 & 84.05) and distribution-based (DMD 83.38 & 83.81) methods.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=AtixmYM4CB",
+  "arxiv": "https://arxiv.org/abs/2606.21982",
+  "pdf": "https://arxiv.org/pdf/2606.21982",
+  "proceedings": null,
+  "virtual": "https://neurips.cc/virtual/2026/poster/154796",
+  "code": "https://andrew-zhang98.github.io/CoDMD_page/#"
+ },
+ "license": "http://arxiv.org/licenses/nonexclusive-distrib/1.0/",
+ "img": "none",
+ "image_url": null,
+ "thumb_url": null,
+ "figure_page": 3,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.6
+}

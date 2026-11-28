@@ -1,0 +1,49 @@
+{
+ "id": "neurips26-5837",
+ "title": "Unified Loss-Aware Density Control for 3D Gaussian Splatting",
+ "authors": [
+  "Tae-Young Kim",
+  "Jiwoo Chung",
+  "Jae-Pil Heo"
+ ],
+ "venue": "NeurIPS 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "Computer Vision->3D Rendering & Reconstruction",
+ "role": "prior-vs-ours",
+ "role2": "before-after",
+ "claim": "Heuristic or position-only density-control rules misplace, miss or destabilize primitives; deciding each operation by predicted loss reduction fixes all three.",
+ "layout": "4 panels, 3 stacked rows plus a table; baseline vs ours with zoom-ins",
+ "tags": [
+  "loss-aware",
+  "adaptive-density-control",
+  "gaussian-splatting",
+  "baseline-comparison",
+  "heuristic-vs-principled"
+ ],
+ "style": [
+  "photo/real data",
+  "colorful",
+  "text-heavy"
+ ],
+ "description": "The figure has four parts. Panels (a), (b) and (c) are stacked rows, each separated by a dashed line. Each row compares a baseline with the proposed method on rendered scenes, with colored zoom-in boxes. (a) Splitting: ground truth, before-split, SteepGS and ours, shown as ellipsoid renderings of a bicycle handle. Zoom-ins are labeled in red \"Misplaced Offsprings\" and blue \"Well-placed Offsprings\". (b) Cloning: rendered image and loss maps for 3DGS and ours, with red marking loss increase and green marking loss decrease. Zoom-ins are labeled \"Loss ↑/↓\" and \"Missed ✗/Selected ✓\". (c) Opacity decay: before-update image, a dark image after 3DGS opacity reset, and ours with selective decay. (d) A table comparing 3DGS, SteepGS and ours across splitting, cloning and opacity update, with the ours row highlighted in light blue. Red marks failures and blue marks the proposed method throughout.",
+ "caption": "Intuition of our loss-aware adaptive density control (ADC). We visualize the effect of each density-control operation from the same intermediate state at the 3{,}000\\(^{th}\\) training iteration. (a) Splitting: we compare the position-only split of [ref] with our position-scale split, visualizing splitting Gaussians as ellipsoids. While the position-only split produces misplaced offspring around the thin bicycle handle, our position-scale split places offspring more appropriately and forms the handle structure more faithfully. (b) Cloning: we compare standard 3DGS and ours by individually cloning candidate Gaussians and measuring the resulting loss change; green/red indicate candidates whose duplication decreases/increases the loss. Our cloning selects mostly loss-reducing candidates and recovers missed structures, whereas heuristic cloning introduces loss-increasing candidates. (c) Opacity decay: we compare the opacity reset of standard 3DGS with our selective opacity decay. Opacity reset makes all Gaussian primitives nearly transparent, leading to unstable training. In contrast, our method weakens only Gaussians predicted to hinder optimization. (d) Component comparison: standard 3DGS relies on heuristics. SteepGS improves splitting with a position-only loss-aware rule but keeps cloning and opacity update heuristic. Our method applies loss-aware decisions to position-scale splitting, cloning, and opacity decay. \\vspace{-15pt}",
+ "caption_source": "latex",
+ "abstract": "The efficiency and fidelity of 3D Gaussian Splatting critically depend on adaptive density control, which grows and suppresses Gaussian primitives throughout optimization. However, the standard pipeline still relies on heuristic view-space gradients, scale thresholds, and global opacity resets, rather than explicitly assessing the loss-reducing effect of each split, clone, or opacity update. This mismatch can allocate primitives to already-sufficient regions, miss under-reconstructed structures, and destabilize training through blanket opacity changes. In this work, we recast adaptive density control as a collection of local loss-reduction decisions. We derive efficient Taylor-based per-Gaussian surrogates that predict the objective change caused by three primitive-level operations: splitting, cloning, and opacity decay. This yields a unified loss-aware framework with three components. First, we extend second-order splitting to a normalized joint position-scale space, enabling children to adapt not only their locations but also their anisotropic extents. Second, we formulate duplicate cloning as a surrogate minimization problem, selecting only Gaussians whose duplicated contribution is predicted to improve reconstruction and assigning each child a principled opacity. Third, we replace global opacity reset with selective soft opacity decay that weakens harmful primitives while preserving useful ones. Across standard 3DGS benchmarks, our method produces more targeted primitive allocation and achieves improved rendering quality with comparable or smaller Gaussian budgets compared to baselines.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=e6aTB4t6ha",
+  "arxiv": "https://arxiv.org/abs/2611.02044",
+  "pdf": "https://arxiv.org/pdf/2611.02044",
+  "proceedings": null,
+  "virtual": "https://neurips.cc/virtual/2026/poster/150948",
+  "code": null
+ },
+ "license": "http://arxiv.org/licenses/nonexclusive-distrib/1.0/",
+ "img": "none",
+ "image_url": null,
+ "thumb_url": null,
+ "figure_page": 1,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.7
+}

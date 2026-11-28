@@ -1,0 +1,49 @@
+{
+ "id": "neurips26-0251",
+ "title": "Dynamic Delayed Tree Expansion For Improved Multi-Path Speculative Decoding",
+ "authors": [
+  "Rahul K Thomas",
+  "Teo Kitanovski",
+  "Micah Goldblum",
+  "Arka Pal"
+ ],
+ "venue": "NeurIPS 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "General Machine Learning->Everything Else",
+ "role": "analysis-finding",
+ "role2": null,
+ "claim": "Draft–target divergence rises with depth while multi-token acceptance of all OT-based verifiers falls, revealing a mismatch with where gains matter.",
+ "layout": "2 side-by-side line plots sharing x-axis (depth), left-to-right reading",
+ "tags": [
+  "speculative-decoding",
+  "empirical-trend",
+  "draft-tree-depth",
+  "distribution-divergence",
+  "acceptance-rate"
+ ],
+ "style": [
+  "plot",
+  "minimal"
+ ],
+ "description": "Two matplotlib line charts sit side by side, both with draft-tree depth (0 to 16) on the x-axis. The left panel, titled 'Target-Draft Divergence vs. Depth', shows a single blue line for mean L1 distance. It climbs sharply from about 0.26 at depth 0 to a peak of about 0.35 around depth 2 to 4, then drifts down to about 0.31 by depth 16. The right panel, titled 'Average Acceptance vs. Depth', plots mean OTLP acceptance for five methods: nss, naive, specinfer, spectr and khisti. Four of them are nearly overlapping at about 0.95 at depth 0. They drop quickly to about 0.845 by depth 4 and then stay flat. The nss line is lower, falling from 0.91 to about 0.775. A legend sits in the top right of each panel. There are no highlights or annotations.",
+ "caption": "We generate 200,000+ draft (Llama-3 8B-Instruct) trees from roots of target model (Llama-3 70B-Instruct) trajectories and compute both L1 target-draft distance and average OTLP acceptances across varying draft tree depths. The divergence between target and draft distributions spikes deeper in the tree, and acceptances across all OTLP methods consistently decrease with depth.",
+ "caption_source": "latex",
+ "abstract": "Multi-path speculative decoding accelerates lossless sampling from a target model by using a cheaper draft model to generate a draft tree of tokens, and then applies a verification algorithm that accepts a subset of these. While prior work has proposed various verification algorithms for i.i.d rollouts, their relative performance under matched settings remains unclear. In this work, we firstly present a systematic evaluation of verification strategies across model families, tasks, and sampling regimes, and find that Traversal Verification dominates consistently, with OT-based methods lagging far behind. Our analysis uncovers that this occurs because OT-based methods achieve high multi-token acceptance near the root of the draft tree, while multi-token gains are most impactful deeper in the draft tree, where draft and target distributions diverge. Based on this insight, we propose delayed tree expansion, which drafts a partial single path, delaying the i.i.d. branching point. We show that delayed tree expansion preserves the target distribution and improves on root-node i.i.d rollouts. Further, we develop a dynamic neural selector that estimates the expected block efficiency of optimal-transport-based verification methods from draft and target features, enabling context-dependent expansion decisions. Our neural selector allows OT-based methods like SpecInfer to outperform Traversal Verification for the first time, achieving 5% higher average throughput across a wide range of models, datasets, and sampling settings.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=1oCU9PKaoy",
+  "arxiv": "https://arxiv.org/abs/2602.16994",
+  "pdf": "https://arxiv.org/pdf/2602.16994",
+  "proceedings": null,
+  "virtual": "https://neurips.cc/virtual/2026/poster/155922",
+  "code": null
+ },
+ "license": "http://creativecommons.org/licenses/by/4.0/",
+ "img": "cc-by",
+ "image_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/images/neurips26-0251.png",
+ "thumb_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/thumbs/neurips26-0251.webp",
+ "figure_page": 6,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.85
+}

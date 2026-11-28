@@ -1,0 +1,48 @@
+{
+ "id": "neurips26-4626",
+ "title": "Beyond Adjacent Layers: Graph-Guided Layer Fusion for Compressing Large Language Models",
+ "authors": [
+  "Usama Muhammad",
+  "Summer Y Jung"
+ ],
+ "venue": "NeurIPS 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "Deep Learning->Algorithms",
+ "role": "pipeline",
+ "role2": "prior-vs-ours",
+ "claim": "Prior methods score or group layers individually or only adjacently; ours builds a full similarity graph and merges communities across non-adjacent layers.",
+ "layout": "2 stacked parts: comparison table on top, left-to-right pipeline below",
+ "tags": [
+  "layer-pruning",
+  "model-compression",
+  "graph-clustering",
+  "spectral-community",
+  "prior-comparison"
+ ],
+ "style": [
+  "colorful",
+  "text-heavy",
+  "icon-heavy"
+ ],
+ "description": "The figure has two stacked parts. The top is a plain black-and-white comparison table. Its columns are Method, Similarity signal, Grouping, and Non-adjacent?. Nine prior methods are listed, including ShortGPT, SWM, DeltaLLM, SGLP, and MKA. Almost all of them have 'No' in the last column, and a rule separates them from the final row, 'FCM (ours)', which has 'Yes'. The bottom is a left-to-right pipeline. A column of 12 gray layer nodes (0-11) leads into a blue 'Similarity Profiling' box with a heatmap of block-diagonal structure. Next is a green 'Community Detection' box with colored nodes grouped by braces, including non-adjacent ones. Then comes an orange 'BI Selection' box with BI bars. Last is a column of four colored nodes labeled 'Compressed LLM' after LoRA recovery. Arrows carry labels, and formulas sit under each stage.",
+ "caption": "Overview of the FCM pipeline. Given a pretrained LLM with $L$ layers, FCM (1) profiles pairwise activation similarity to construct a full $L \\times L$ matrix $\\mat{S}$, revealing block-diagonal structure with non-adjacent high-similarity regions; (2) applies spectral clustering to partition layers into communities that may span non-adjacent positions; and (3) selects the highest Block Influence layer per community, discarding the rest. The compressed model retains $K$ layers (one per community) and undergoes LoRA recovery fine-tuning.",
+ "caption_source": "latex",
+ "abstract": "Existing depth-compression methods for large language models (LLMs) score layers individually or group only adjacent or contiguous layers, implicitly assuming that functional redundancy is local. We test this assumption by computing full pairwise Centered Kernel Alignment (CKA) similarity matrices for thirteen LLMs from six architecture families (1.6B-14B parameters). Non-adjacent layers have 3.6-15.9x more high-similarity pairs than adjacent ones, a structure that prior similarity-based layer merging has not systematically exploited. We propose Fusion via Community Mining (FCM), which builds the full L x L similarity graph, uses spectral community detection to find clusters of functionally equivalent layers, keeps the highest-Block-Influence layer in each cluster, and applies LoRA recovery; a pre-specified rule computed only on calibration data chooses between cosine and CKA similarity. At 2x compression, FCM lowers mean perplexity below ShortGPT on twelve of thirteen models, significantly on ten (Welch's t-test with Holm-Bonferroni correction; up to 50% on Qwen3-4B), with Mistral-7B the only loss (+13.4%). Against FlattenGPT, SWM, and DeltaLLM under matched calibration and recovery, FCM gives the best perplexity on ten of thirteen models (mean rank 1.15), and it also outperforms MKA on three anchor models. FCM matches or exceeds ShortGPT on 15 of 20 zero-shot reasoning cells and also improves MMLU, LAMBADA, HumanEval pass@1, and free-form generation quality. The 2x-compressed Qwen2.5-7B has 46% fewer parameters, 42% lower peak VRAM, and 84% higher decode throughput on a single A100. Spectral grouping outperforms Fisher contiguous segmentation by 41% and uniform partitioning by 51%, and FCM's advantage grows beyond a 2x crossover up to 3x and persists at the 14B scale. Code: https://github.com/Usama1002/fcm-layer-fusion",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=VvbFs1vt1f",
+  "arxiv": "https://arxiv.org/abs/2610.15159",
+  "pdf": "https://arxiv.org/pdf/2610.15159",
+  "proceedings": null,
+  "virtual": "https://neurips.cc/virtual/2026/poster/152044",
+  "code": "https://usama1002.github.io/publication/2026-01-01-graph-guided-layer-fusion-neurips"
+ },
+ "license": "http://creativecommons.org/licenses/by/4.0/",
+ "img": "cc-by",
+ "image_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/images/neurips26-4626.png",
+ "thumb_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/thumbs/neurips26-4626.webp",
+ "figure_page": 2,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.6
+}

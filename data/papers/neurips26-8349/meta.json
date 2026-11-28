@@ -1,0 +1,51 @@
+{
+ "id": "neurips26-8349",
+ "title": "On the Nature of Attention Sink that Shapes Decoding Strategy in Omni-LLMs",
+ "authors": [
+  "Suho Yoo",
+  "Youngjoon Jang",
+  "Joon Son Chung"
+ ],
+ "venue": "NeurIPS 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "Computer Vision->Vision Models & Multimodal",
+ "role": "analysis-finding",
+ "role2": null,
+ "claim": "A diagnostic measurement across network depth reveals a surprising trend, with a modified variant tracking the baseline almost exactly.",
+ "layout": "1 panel, line plot, layers on x-axis, dashed average lines",
+ "tags": [
+  "layerwise-analysis",
+  "attention-sink",
+  "diagnostic",
+  "baseline-comparison",
+  "transformer"
+ ],
+ "style": [
+  "plot",
+  "minimal"
+ ],
+ "description": "A single line chart with layer index (0 to 35) on the x-axis and Attention Score (0 to about 0.9) on the y-axis. Two nearly overlapping series are drawn: a blue line with circle markers labelled 'Baseline (avg 0.5054)' and an orange line with square markers labelled 'Rotation (avg 0.4878)'. Both sit at 0 for layers 0 to 2, then jump to about 0.88 at layer 3. They decline with fluctuations to roughly 0.3 by layer 19, rise to a secondary peak near 0.69 around layer 25, and end near 0.3. The orange curve sits slightly below the blue one in most layers. Faint dashed horizontal lines in matching colors mark each average. The legend is in the top right, and the eye goes first to the sharp jump at layer 3. This image does not show the caption's panels about Φ_VLM versus Φ_LLM sink identification or the helicopter query.",
+ "caption": "\\textbf{$\\Phi_{VLM}$ incorrectly identifies semantic tokens as sinks.} (a) $\\Phi_{VLM}$ rapidly over-identifies sink tokens in deeper layers, unlike the sparse behaviour of $\\Phi_{LLM}$. (b) For the query \"Is the helicopter visible?\", highly attended object tokens are still identified as sinks under $\\Phi_{VLM}$.",
+ "caption_source": "latex",
+ "abstract": "The goal of this paper is to strengthen the reasoning of Omnimodal Large Language Models (Omni-LLMs) at inference time, without additional training. These models jointly process video, audio, and text, and given the large number of tokens they consume, how attention is routed across them is central to their behaviour. We focus specifically on attention sinks, tokens that absorb a disproportionate share of attention mass regardless of their semantic content, to understand how this routing unfolds. To this end, we conduct a systematic analysis of sink behaviour in Omni-LLMs. Our analysis yields two key findings: (i) high sink attention does not solely indicate head redundancy, suggesting that sink value representations play additional functional roles; (ii) the sink value vector acts as a shared bias added to every token's output, serving as a global signal that organises the representation as a whole. Building on this, we propose OutRo, which correspondingly aligns non-sink token representations with the sink in feature space, and relaxes the causal mask for sink tokens at an early layer to sharpen this bias before the rest of decoding proceeds. This design enhances the reasoning process without requiring additional forward passes or access to attention maps. Based on extensive experiments, OutRo consistently improves performance on seven video QA benchmarks and demonstrates strong generalisation, while incurring only a 1.1x decoding overhead.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=vX3qb5LCF9",
+  "arxiv": "https://arxiv.org/abs/2603.14337",
+  "pdf": "https://arxiv.org/pdf/2603.14337",
+  "proceedings": null,
+  "virtual": "https://neurips.cc/virtual/2026/poster/148724",
+  "code": "https://github.com/kaistmm/Outro"
+ },
+ "license": "http://arxiv.org/licenses/nonexclusive-distrib/1.0/",
+ "img": "none",
+ "image_url": null,
+ "thumb_url": null,
+ "figure_page": 5,
+ "qc_flags": [
+  "low-role-confidence",
+  "bad-crop"
+ ],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.4
+}

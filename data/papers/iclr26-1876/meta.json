@@ -1,0 +1,54 @@
+{
+ "id": "iclr26-1876",
+ "title": "Rethinking Residual Errors in Compensation-based LLM Quantization",
+ "authors": [
+  "Shuaiting Li",
+  "Juncan Deng",
+  "Kedong Xu",
+  "Rongtao Deng",
+  "Hong Gu",
+  "Minghan Jiang",
+  "Haibin Shen",
+  "Kejie Huang"
+ ],
+ "venue": "ICLR 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "Deep Learning->Algorithms",
+ "role": "prior-vs-ours",
+ "role2": "pipeline",
+ "claim": "Prior calibration objectives target the compensated or quantized-flow output; ours strictly aligns with the full-precision output.",
+ "layout": "Top setup diagram, three bottom panels side-by-side, dotted dividers, arrows from objective box",
+ "tags": [
+  "quantization",
+  "error-compensation",
+  "calibration-objective",
+  "llm-compression",
+  "baseline-comparison"
+ ],
+ "style": [
+  "colorful",
+  "math-heavy",
+  "icon-heavy"
+ ],
+ "description": "The top shows two rows of layer blocks. A green FP flow carries X̃ and a blue Quant flow carries X, across Layer i-2, i-1 and i. Layer i is split into a thin blue quantized column and an orange compensated block. A dashed zoom-in box shows the loop: quantize one column, compensate the remaining weights, repeat N times. A legend on the right defines quantized (blue), compensated (orange) and FP (green) weights. A rounded box labelled 'optimization objective' sends three arrows to the bottom panels, separated by dotted lines: (A) GPTQ, (B) GPTAQ, and (C) GPTAQ + Ours. Each panel shows weight blocks with inputs X or X̃ feeding a norm-difference loss formula. In panel C the green w^fp block and loss term are new, and a red callout reads 'Our method aligns strictly to FP flow'.",
+ "caption": "Overview of compensation-based LLM quantization methods. (A) GPTQ: Minimizes the layer-wise reconstruction error based on the current quantized input flow, neglecting error accumulation from previous layers. (B) GPTAQ: Introduces asymmetric calibration to address inter-layer error accumulation, but uses the compensated weights as the calibration target during the update process. (C) GPTAQ+Ours: Strictly aligns with the original full-precision output by incorporating a novel \"Compensation-Aware Error,\" which corrects the discrepancy between compensated and original weights.",
+ "caption_source": "latex",
+ "abstract": "Methods based on weight compensation, which iteratively apply quantization and weight compensation to minimize the output error, have recently demonstrated remarkable success in quantizing Large Language Models (LLMs). The representative work, GPTQ, introduces several key techniques that make such iterative methods practical for LLMs with billions of parameters. GPTAQ extends this approach by introducing an asymmetric calibration process that aligns the output of each quantized layer with its full-precision counterpart, incorporating a residual error into the weight compensation framework. In this work, we revisit the formulation of the residual error. We identify a sub-optimal calibration objective in existing methods: during the intra-layer calibration process, they align the quantized output with the output from compensated weights, rather than the true output from the original full-precision model. Therefore, we redefine the objective to precisely align the quantized model's output with the original output of the full-precision model at each step. We then reveal that the residual error originates not only from the output difference of the preceding layer but also from the discrepancy between the compensated and original weights within each layer, which we name the 'compensation-aware error'. By inheriting the neuron decomposition technique from GPTAQ, we can efficiently incorporate this compensation-aware error into the weight update process. Extensive experiments on various LLMs and quantization settings demonstrate that our proposed enhancements integrate seamlessly with both GPTQ and GPTAQ, significantly improving their quantization performance. Our code is publicly available at https://github.com/list0830/ResComp.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=LWYZ1nNkJl",
+  "arxiv": "https://arxiv.org/abs/2604.07955",
+  "pdf": "https://proceedings.iclr.cc/paper_files/paper/2026/file/087b346ca4d6dd6fcd0663ff6c9a6b69-Paper-Conference.pdf",
+  "proceedings": "https://proceedings.iclr.cc/paper_files/paper/2026/hash/087b346ca4d6dd6fcd0663ff6c9a6b69-Abstract-Conference.html",
+  "virtual": "https://iclr.cc/virtual/2026/poster/10010030",
+  "code": "https://github.com/list0830/ResComp"
+ },
+ "license": "http://arxiv.org/licenses/nonexclusive-distrib/1.0/",
+ "img": "none",
+ "image_url": null,
+ "thumb_url": null,
+ "figure_page": 3,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.6
+}

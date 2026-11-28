@@ -1,0 +1,54 @@
+{
+ "id": "icml26-3505",
+ "title": "Variational Flow Maps: Make Some Noise for One-Step Conditional Generation",
+ "authors": [
+  "Abbas Mammadov",
+  "So Takao",
+  "Bohan Chen",
+  "Ricardo Baptista",
+  "Morteza Mardani",
+  "Yee-Whye Teh",
+  "Julius Berner"
+ ],
+ "venue": "ICML 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "Deep Learning->Generative Models and Autoencoders",
+ "role": "pipeline",
+ "role2": "concept",
+ "claim": "Conditioning a one-step generator can be done by learning an amortized noise posterior, then mapping those noise samples to data in one step.",
+ "layout": "Single wide panel, flows between noise and data spaces; observation path loops from right",
+ "tags": [
+  "one-step",
+  "conditional-generation",
+  "inverse-problems",
+  "variational-inference",
+  "amortized"
+ ],
+ "style": [
+  "colorful",
+  "photo/real data",
+  "icon-heavy",
+  "math-heavy"
+ ],
+ "description": "A single wide diagram. On the right, a ground-truth image x (a bear and a castle) passes through a forward-operator box A(x)+ε. This produces the observations y, shown as degraded images (one with a masked patch) at top center. A blue arrow labeled '1) infer noise from observation' runs from y into a red box q_φ(·|y). From there it points to a 2-D heat-map blob p(z) on the left, with blue and green posterior modes. Above and below the blob are rows of grayscale noise-sample images. An orange arrow labeled '2) transport noise to data space' runs through a red box f_θ(z) to a multimodal blob p(x). Dashed lines tie the blue and green modes to rows of conditional data samples, which are photos of the bear and the castle. Flame icons on the boxes mark the trained modules. The eye goes first to the center boxes and the colored arrows.",
+ "caption": "One-step conditional generation with Variational Flow Maps (VFM). Given an observation $y$, VFM learns a noise adapter network $q_\\phi(z|y)$, which approximates the noise space posterior $p(z|y)$ via amortized variational inference. Conditional noise samples $z \\sim q_\\phi(z | y)$ are then mapped to data space in a single step via a learned flow map $x = f_\\theta(z)$, producing conditional samples that approximate $p(x | y)$. In VFM, the networks $q_\\phi$ and $f_\\theta$ are trained jointly by extending the variational autoencoder framework to learn the correspondence between the triple $(x, y, z)$. By jointly training, $f_\\theta$ learns to compensate for the simple Gaussian assumption on $q_\\phi$.",
+ "caption_source": "latex",
+ "abstract": "Flow maps enable high-quality image generation in a single forward pass. However, unlike iterative diffusion models, their lack of an explicit sampling trajectory impedes incorporating external constraints for conditional generation and solving inverse problems. We put forth Variational Flow Maps, a framework for conditional sampling that shifts the perspective of conditioning from \"guiding a sampling path\", to that of \"learning the proper initial noise\". Specifically, given an observation, we seek to learn a noise adapter model that outputs a noise distribution, so that after mapping to the data space via flow map, the samples respect the observation and data prior. To this end, we develop a principled variational objective that jointly trains the noise adapter and the flow map, improving noise-data alignment, such that sampling from complex data posterior is achieved with a simple adapter. Experiments on various inverse problems show that VFMs produce well-calibrated conditional samples in a single (or few) steps. For ImageNet, VFM attains competitive fidelity while accelerating the sampling by orders of magnitude compared to alternative iterative diffusion/flow models. Code is available at https://github.com/abbasmammadov/VFM",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=XHI7FCd1w1",
+  "arxiv": "https://arxiv.org/abs/2603.07276",
+  "pdf": "https://raw.githubusercontent.com/mlresearch/v306/main/assets/mammadov26a/mammadov26a.pdf",
+  "proceedings": "https://proceedings.mlr.press/v306/mammadov26a.html",
+  "virtual": "https://icml.cc/virtual/2026/poster/63429",
+  "code": null
+ },
+ "license": "http://creativecommons.org/licenses/by/4.0/",
+ "img": "cc-by",
+ "image_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/images/icml26-3505.png",
+ "thumb_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/thumbs/icml26-3505.webp",
+ "figure_page": 1,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.8
+}

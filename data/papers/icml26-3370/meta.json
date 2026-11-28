@@ -1,0 +1,54 @@
+{
+ "id": "icml26-3370",
+ "title": "Efficient Diffusion LLMs via Temporal-Spatial Parallel Decoding and Confidence Extrapolation",
+ "authors": [
+  "Zekai Li",
+  "Ji Liu",
+  "Yiqing Huang",
+  "Ziqiong Liu",
+  "Dong Li",
+  "Emad Barsoum"
+ ],
+ "venue": "ICML 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "Deep Learning->Generative Models and Autoencoders",
+ "role": "analysis-finding",
+ "role2": null,
+ "claim": "Elements positioned later in a sequence settle on their final values later, so convergence depends on position and not only on confidence.",
+ "layout": "Single bar chart, token index on x-axis, consistent-steps percentage on y-axis",
+ "tags": [
+  "position-dependence",
+  "convergence",
+  "diffusion-decoding",
+  "empirical-trend",
+  "efficiency"
+ ],
+ "style": [
+  "plot",
+  "minimal"
+ ],
+ "description": "A single histogram-style bar chart in matplotlib style. The x-axis is token index from 0 to 256, with ticks at 0, 64, 128, 192 and 256. The y-axis is consistent steps in percent, from 0 to 100. Hundreds of thin blue bars form a noisy, jagged profile. It starts high at about 85-88% for the earliest tokens and fluctuates with local peaks near index 70 and 135. It then falls steadily to roughly 20-30% around index 220-240. At the final few indices the bars jump sharply back up to about 85-90%. Faint horizontal gridlines are visible. A sliver of a neighboring left panel's axis is cut off at the left edge. The eye goes to the downward slope and the sudden spike at the right edge.",
+ "caption": "Tokens at more rightward spatial positions tend to stabilize later.",
+ "caption_source": "latex",
+ "abstract": "Diffusion-based large language models (dLLMs) support parallel text generation via iterative denoising, yet inference remains latency-heavy because many steps are spent on redundant refinement and repeated remasking of tokens whose final values are already determined. Prior acceleration methods mainly depend on step-local confidence heuristics or fixed schedules, which are sensitive to prompt and task variation and ignore strong positional effects within a sequence. We cast diffusion decoding as a dynamic control problem and show that token-wise denoising trajectories provide the key signal for reliable control. We propose a trace-aware decoding framework with two components. First, Temporal-Spatial Parallel Decoding (TSPD) uses a lightweight temporalspatial controller that consumes per-token trajectory features, including confidence, entropy, and momentum, together with token position, to decide when a token has converged and can be safely fixed. Second, we introduce Confidence Extrapolation (CE), a training-free state-space module that forecasts future logit trends with uncertainty to support proactive decisions, including safe look-ahead and targeted stabilization when trajectories are oscillatory or underconfident. Together, TSPD and CE reduce unnecessary denoising iterations while preserving output quality, and they compose cleanly with system optimizations such as KV caching.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=VzriJqD0h7",
+  "arxiv": "https://arxiv.org/abs/2605.30753",
+  "pdf": "https://raw.githubusercontent.com/mlresearch/v306/main/assets/li26dd/li26dd.pdf",
+  "proceedings": "https://proceedings.mlr.press/v306/li26dd.html",
+  "virtual": "https://icml.cc/virtual/2026/poster/63560",
+  "code": null
+ },
+ "license": "http://creativecommons.org/licenses/by/4.0/",
+ "img": "cc-by",
+ "image_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/images/icml26-3370.png",
+ "thumb_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/thumbs/icml26-3370.webp",
+ "figure_page": 1,
+ "qc_flags": [
+  "tiny-crop",
+  "bad-crop"
+ ],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.85
+}

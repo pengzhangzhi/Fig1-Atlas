@@ -1,0 +1,52 @@
+{
+ "id": "icml26-0350",
+ "title": "Partial Ring Scan: Revisiting Scan Order in Vision State Space Models",
+ "authors": [
+  "Yi-Kuan Hsieh",
+  "Kuan-Chuan Peng",
+  "Xin Li",
+  "Ming-Ching Chang",
+  "Yu-Chee Tseng",
+  "Jun-Wei Hsieh"
+ ],
+ "venue": "ICML 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "Applications->Computer Vision",
+ "role": "prior-vs-ours",
+ "role2": "problem-setup",
+ "claim": "Fixed-path scans break under input rotation and give inconsistent predictions; a concentric ring traversal keeps the output stable.",
+ "layout": "2 panels split by dashed line; (a) flow left-to-right, (b) top-to-bottom",
+ "tags": [
+  "scan-order",
+  "rotation-robustness",
+  "state-space-models",
+  "vision",
+  "invariance"
+ ],
+ "style": [
+  "colorful",
+  "photo/real data",
+  "icon-heavy"
+ ],
+ "description": "Panel (a), on the left, shows a corgi photo going through a rounded box of four Mamba scan patterns (VMamba, Zigma, MaIR, LocalMamba), drawn as colored grids with zigzag arrows. The output is 'Dog'. Below, the same photo rotated 60° with gray padding goes through the same scans, and the output is a red question mark over 'Dog / Cat / Rabbit'. The contrast shows that fixed scans are unstable under rotation. Panel (b), on the right, shows the original and rotated corgi photos feeding down into one large grid. Red concentric rings and curved black arrows over colored ring bands mark order-agnostic aggregation within rings and radial composition. An arrow below this grid leads to a single 'Dog' output. The eye goes first to the photos and the red question mark.",
+ "caption": "Scanning order affects Vision-Mamba performance. (a) Fixed-path scans ({\\em e.g.}, raster or serpentine in VMamba [ref], Zigma [ref], MaIR [ref], LocalMamba [ref]) preserve sequence–space alignment only under flips. An in-plane rotation (here $60^\\circ$) causes padding and global reindexing, fracturing the path so the recurrent kernel moves along misaligned neighborhoods. (b) Our Ring Scan treats serialization as {\\em order-agnostic} aggregation within concentric rings, followed by {\\em radial} composition from inner to outer, producing a rotation-stable sequence without polar remapping or rotation-specific training.",
+ "caption_source": "latex",
+ "abstract": "State Space Models (SSMs) have emerged as efficient alternatives to attention for vision tasks, offering lineartime sequence processing with competitive accuracy. Vision SSMs, however, require serializing 2D images into 1D token sequences along a predefined scan order, a factor often overlooked. We show that scan order critically affects performance by altering spatial adjacency, fracturing object continuity, and amplifying degradation under geometric transformations such as rotation. We present Partial RIng Scan Mamba (PRISMamba), a rotation-robust traversal that partitions an image into concentric rings, performs order-agnostic aggregation within each ring, and propagates context across rings through a set of short radial SSMs. Efficiency is further improved via partial channel filtering, which routes only the most informative channels through the recurrent ring pathway while keeping the rest on a lightweight residual branch. On ImageNet-1K, PRISMamba achieves 84.5% Top-1 with 3.9G FLOPs and 3,054 img/s on A100, outperforming VMamba in both accuracy and throughput while requiring fewer FLOPs. It also maintains performance under rotation, whereas fixed-path scans drop by 1~2%. These results highlight scan-order design, together with channel filtering, as a crucial, underexplored factor for accuracy, efficiency, and rotation robustness in Vision SSMs. Code will be released upon acceptance.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=3DiK7Z4ZM8",
+  "arxiv": "https://arxiv.org/abs/2602.04170",
+  "pdf": "https://raw.githubusercontent.com/mlresearch/v306/main/assets/hsieh26a/hsieh26a.pdf",
+  "proceedings": "https://proceedings.mlr.press/v306/hsieh26a.html",
+  "virtual": "https://icml.cc/virtual/2026/poster/66490",
+  "code": null
+ },
+ "license": "http://creativecommons.org/licenses/by/4.0/",
+ "img": "cc-by",
+ "image_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/images/icml26-0350.png",
+ "thumb_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/thumbs/icml26-0350.webp",
+ "figure_page": 0,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.9
+}

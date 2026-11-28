@@ -1,0 +1,53 @@
+{
+ "id": "icml26-0804",
+ "title": "TetraJet-v2: Accurate NVFP4 Training for Large Language Models with Oscillation Suppression and Outlier Control",
+ "authors": [
+  "Yuxiang Chen",
+  "Yifan Liu",
+  "Xiaoming Xu",
+  "Pengle Zhang",
+  "Michael Beyer",
+  "Martin Rapp",
+  "Jun Zhu",
+  "Jianfei Chen"
+ ],
+ "venue": "ICML 2026",
+ "tier": "spotlight",
+ "track": "main",
+ "topic": "Deep Learning->Algorithms",
+ "role": "analysis-finding",
+ "role2": "problem-setup",
+ "claim": "Under low-precision quantization, latent weights cluster at quantization thresholds and flip back and forth between adjacent values, producing persistent oscillation.",
+ "layout": "2 stacked parts: three histograms on top, two trajectory line plots below",
+ "tags": [
+  "weight-oscillation",
+  "low-precision-training",
+  "quantization",
+  "empirical-observation",
+  "failure-mode"
+ ],
+ "style": [
+  "plot",
+  "minimal"
+ ],
+ "description": "The figure has two parts. Part (a) is a row of three blue histograms of the latent weight w/s for one layer of OLMo2-150M, taken after 12B, 60B and 100B training tokens. Red dashed vertical lines mark the quantization thresholds. As training goes on and the learning rate falls, the distribution develops sharp spikes next to the thresholds. Part (b) has two stacked line plots over 150 training steps. The upper plot shows a single latent weight hovering around 0.250, with a red dashed quantization threshold running through it and the weight crossing it repeatedly. The lower plot shows the resulting FP4 weight flipping between 0.0 and 0.5. Blue lines on white backgrounds dominate. The eye goes first to the histograms, then to the jagged trajectories.",
+ "caption": "Weight oscillation behavior in NVFP4 training.",
+ "caption_source": "latex",
+ "abstract": "Large Language Models (LLMs) training is prohibitively expensive, driving interest in low-precision fully-quantized training (FQT). While novel 4-bit formats like NVFP4 offer substantial efficiency gains, achieving near-lossless training at such low precision remains challenging. We introduce TetraJet-v2, an end-to-end 4-bit FQT method that leverages NVFP4 for activations, weights, and gradients in all linear layers. We identify two critical issues hindering low-precision LLM training: weight oscillation and outliers. To address these, we propose: 1) an unbiased double-block quantization method for NVFP4 linear layers with practically optimal convergence in LLM training, 2) OsciReset, the first effective algorithm to suppress LLMs' weight oscillation bottleneck, and 3) OutControl, a mix-precision algorithm to retain outlier accuracy. TetraJet-v2 outperforms prior methods on FP4 pre-training for LLMs across models up to 370M parameters trained up to 212B tokens, reducing the performance gap to BF16 by an average of 51.3% while enabling an 1.67x end-to-end speedup over FP8. The code is available at https://github.com/thu-ml/TetraJet-v2-NVFP4Training.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=7ZQhm5HnOA",
+  "arxiv": "https://arxiv.org/abs/2510.27527",
+  "pdf": "https://raw.githubusercontent.com/mlresearch/v306/main/assets/chen26cl/chen26cl.pdf",
+  "proceedings": "https://proceedings.mlr.press/v306/chen26cl.html",
+  "virtual": "https://icml.cc/virtual/2026/poster/66046",
+  "code": "https://github.com/thu-ml/TetraJet-v2-NVFP4Training"
+ },
+ "license": "http://creativecommons.org/licenses/by/4.0/",
+ "img": "cc-by",
+ "image_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/images/icml26-0804.png",
+ "thumb_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/thumbs/icml26-0804.webp",
+ "figure_page": 3,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.85
+}

@@ -1,0 +1,51 @@
+{
+ "id": "iclr26-1939",
+ "title": "Continuous Audio Language Models",
+ "authors": [
+  "Simon Rouard",
+  "Manu Orsini",
+  "Axel Roebel",
+  "Neil Zeghidour",
+  "Alexandre Défossez"
+ ],
+ "venue": "ICLR 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "Applications->Language, Speech and Dialog",
+ "role": "pipeline",
+ "role2": null,
+ "claim": "A causal backbone yields long-term context, and a lightweight consistency head with short-term context generates each next continuous frame from noise.",
+ "layout": "2 panels, bottom-to-top main flow with zoomed callout inset on right",
+ "tags": [
+  "continuous-latents",
+  "consistency-model",
+  "autoregressive",
+  "audio-generation",
+  "efficiency"
+ ],
+ "style": [
+  "colorful",
+  "icon-heavy",
+  "minimal"
+ ],
+ "description": "The left panel shows a bottom-to-top pipeline. A waveform feeds a blue VAE Encoder, which outputs latent circles x^1 to x^4 in progressively darker green. Each latent is mixed with noise, shown as a gradient-shaded circle, and passed into a wide light-blue Causal backbone transformer. The backbone emits z_long vectors that go into four grey Consistency head boxes. These produce x^2 to x^5, which go through a blue VAE Decoder to an output waveform. A speech-bubble callout points to a grey inset on the right titled Consistency head. The inset shows an orange noise epsilon and a pink z_long^5 feeding a lavender Consistency MLP. A Causal short context transformer takes x^2, x^3 and x^4 and supplies z_short^5. The MLP outputs x^5. Green shading marks time steps.",
+ "caption": "Overview of our model. During training, latent vectors $x^s$ are noised to encourage the backbone Transformer to focus on coarse structure. The consistency head is a consistency model conditioned on the latent variable $z_long^s$ produced by the backbone, as well as a short-term context vector $z_short^s$ computed from a short-context Transformer applied to the most recent clean latent tokens.",
+ "caption_source": "latex",
+ "abstract": "Audio Language Models (ALM) have emerged as the dominant paradigm for speech and music generation by representing audio as sequences of discrete tokens. Yet, unlike text tokens, which are invertible, audio tokens are extracted from lossy codecs with a limited bitrate. As a consequence, increasing audio quality requires generating more tokens, which imposes a trade-off between fidelity and computational cost. We address this issue by studying Continuous Audio Language Models (CALM). These models instantiate a large Transformer backbone that produces a contextual embedding at every timestep. This sequential information then conditions an MLP that generates the next continuous frame of an audio VAE through consistency modeling. By avoiding lossy compression, CALM achieves higher quality at lower computational cost than their discrete counterpart. Experiments on speech and music demonstrate improved efficiency and fidelity over state-of-the-art discrete audio language models, facilitating lightweight, high-quality audio generation. Samples are available at hf.co/spaces/kyutai/calm-samples. Finally, we release Pocket TTS, an open-source 100M-parameter text-to-speech model that can run faster than real time on a laptop CPU: github.com/kyutai-labs/pocket-tts.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=MFrJ3NzA5H",
+  "arxiv": "https://arxiv.org/abs/2509.06926",
+  "pdf": "https://proceedings.iclr.cc/paper_files/paper/2026/file/dd51dbce305433cd60910dc5b0147be4-Paper-Conference.pdf",
+  "proceedings": "https://proceedings.iclr.cc/paper_files/paper/2026/hash/dd51dbce305433cd60910dc5b0147be4-Abstract-Conference.html",
+  "virtual": "https://iclr.cc/virtual/2026/poster/10009964",
+  "code": "https://kyutai.org/blog/2026-01-13-pocket-tts"
+ },
+ "license": "http://creativecommons.org/licenses/by-nc-sa/4.0/",
+ "img": "cc-by-nc-sa",
+ "image_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/images/iclr26-1939.png",
+ "thumb_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/thumbs/iclr26-1939.webp",
+ "figure_page": 2,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.93
+}

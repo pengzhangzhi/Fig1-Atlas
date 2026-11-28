@@ -1,0 +1,56 @@
+{
+ "id": "neurips26-7198",
+ "title": "Beyond Sparse Captions: Aligning Slide-Level Text and Patch-Level Vision in Pathology",
+ "authors": [
+  "Daniel Shao",
+  "Dongmin Bang",
+  "Luca L Weishaupt",
+  "Nic G Reitsam",
+  "Sophia J. Wagner",
+  "Ming Yang Lu",
+  "Long P Le",
+  "Richard Chen",
+  "Faisal Mahmood"
+ ],
+ "venue": "NeurIPS 2026",
+ "tier": "spotlight",
+ "track": "main",
+ "topic": "Applications->Genetics, Cell Biology, etc",
+ "role": "pipeline",
+ "role2": null,
+ "claim": "Condition slide-level aggregation on each candidate text query so frozen visual features and trainable text embeddings align via a weighted contrastive loss.",
+ "layout": "Single wide panel, left-to-right, two parallel image and text streams merging into loss",
+ "tags": [
+  "multiple-instance-learning",
+  "cross-attention",
+  "contrastive-learning",
+  "frozen-encoder",
+  "weak-supervision"
+ ],
+ "style": [
+  "icon-heavy",
+  "colorful",
+  "photo/real data",
+  "text-heavy"
+ ],
+ "description": "A wide left-to-right pipeline diagram. At far left, a pathology whole-slide image with a green tumor outline is split into a grid of small patches, with an enlarged 448 px patch shown above. Below it sit a matched pathology report in a green box and a stack of negative reports in red outlines. Both streams feed into a tall purple vision-language model bar. The upper half is the visual encoder, marked with a snowflake for frozen. The lower half is the text encoder, marked with a flame for trainable. Visual space shows pink patch embeddings V0 to V5. Textual space shows one green positive report embedding and red negative ones. Report embeddings drive a tree-like report-conditioned aggregation that yields h_w(r) slide vectors. A semantic similarity scoring tree gives scores W0 to W3. Both feed a yellow weighted cross-entropy loss box. A legend sits at lower right. Gray arrows carry the flow. Green and red mark positive and negative.",
+ "caption": "Overview of LIMIT. A frozen vision encoder extracts patch embeddings from the WSI. The text encoder embeds each candidate report as a cross-attention query over the patch bag, producing a report-conditioned slide representation. Only the text encoder is updated via a difficulty-weighted InfoNCE objective.",
+ "caption_source": "latex",
+ "abstract": "Contrastive vision-language (VL) pretraining in computational pathology has generally relied on curated image-caption datasets sourced from social media, educational videos, and research publications. These corpora are sparse relative to the diversity of tissue morphology and difficult to scale further, as pathologists do not routinely produce descriptive captions in clinical practice. We propose to instead leverage slide-level pathology reports which can be generated during routine diagnostic workflows in a scalable manner. A key challenge in this weakly-supervised setting is that pathology reports describe macroscopic, diagnostic findings while patch-level visual features describe microscopic findings. We introduce Locked Image Multiple Instance PreTraining (LIMIT), which addresses this gap by freezing a pretrained vision encoder and fine-tuning only the text encoder: report embeddings serve as cross-attention queries over bags of patch features, producing report-conditioned slide representations optimized via InfoNCE. Using LIMIT, we establish CONCH-Z, which aligns the text encoder of CONCH v1.5 to 335k clinical reports. Evaluated across 22 tasks spanning patch-level classification, tumor detection, and slide-level subtyping, CONCH-Z establishes state-of-the-art zero-shot performance over VL encoders trained on curated caption datasets, while simultaneously closing the gap with slide-level foundation models trained with substantially more parameters and compute. The code and model is available at https://github.com/mahmoodlab/LIMIT.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=nd95WRs4xs",
+  "arxiv": "https://arxiv.org/abs/2610.17233",
+  "pdf": "https://arxiv.org/pdf/2610.17233",
+  "proceedings": null,
+  "virtual": "https://neurips.cc/virtual/2026/poster/149751",
+  "code": null
+ },
+ "license": "http://creativecommons.org/licenses/by-nc-nd/4.0/",
+ "img": "none",
+ "image_url": null,
+ "thumb_url": null,
+ "figure_page": 2,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.93
+}

@@ -1,0 +1,51 @@
+{
+ "id": "icml26-6424",
+ "title": "ConceptMoE: Adaptive Token-to-Concept Compression for Implicit Compute Allocation",
+ "authors": [
+  "Zihao Huang",
+  "Jundong Zhou",
+  "Xingwei Qu",
+  "Qiyang Min",
+  "Ge Zhang"
+ ],
+ "venue": "ICML 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "Deep Learning->Foundation Models",
+ "role": "pipeline",
+ "role2": null,
+ "claim": "Compressing token sequences into concepts before the expensive core model, then restoring them afterward, allocates compute adaptively.",
+ "layout": "Top pipeline left-to-right; two zoomed detail panels below; dashed callouts",
+ "tags": [
+  "pipeline",
+  "token-merging",
+  "compression",
+  "mixture-of-experts",
+  "efficiency"
+ ],
+ "style": [
+  "colorful",
+  "math-heavy",
+  "icon-heavy"
+ ],
+ "description": "A wide left-to-right pipeline runs across the top. Colored token streams h1–h7 enter an encoder, then a yellow chunk module that merges neighboring tokens into concepts c1–c3. A large blue concept model processes them. A green dechunk module expands the concepts back to tokens. The expanded tokens are added to the encoder outputs through a long curved skip arrow, and a decoder emits the output tokens h2–h8. Color encodes which tokens merge into each chunk. Dashed lines connect the chunk and dechunk modules to two zoomed detail boxes below. The yellow box shows query and key linear layers feeding similarity functions that give boundary probabilities p1–p4. The green box shows an EMA-style smoothing of concepts with weights p and 1−p. The eye goes first to the large central blocks.",
+ "caption": "Overview of ConceptMoE, with details of chunk and dechunk modules.",
+ "caption_source": "latex",
+ "abstract": "Large language models allocate uniform computation across all tokens, ignoring that some sequences are trivially predictable while others require deep reasoning. We introduce ConceptMoE, which dynamically merges semantically similar tokens into concept representations, performing implicit token-level compute allocation. A learnable chunk module identifies optimal boundaries by measuring inter-token similarity, compressing sequences by a target ratio $R$ before they enter the compute-intensive concept model. Crucially, the MoE architecture enables controlled evaluation: we reallocate saved computation to match baseline activated FLOPs (excluding attention map computation) and total parameters, isolating genuine architectural benefits. Under these conditions, ConceptMoE consistently outperforms standard MoE across language and vision-language tasks, achieving +0.9 points on language pretraining, +2.3 points on long context understanding, and +0.6 points on multimodal benchmarks. When converting pretrained MoE during continual training with layer looping, gains reach +5.5 points, demonstrating practical applicability. Beyond performance, ConceptMoE reduces attention computation by up to $R^2\\times$ and KV cache by $R\\times$. At $R=2$, empirical measurements show prefill speedups reaching 175\\% and decoding speedups up to 117\\% on long sequences. The minimal architectural modifications enable straightforward integration into existing MoE, demonstrating that adaptive concept-level processing fundamentally improves both effectiveness and efficiency of large language models.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=yaUJPj48wa",
+  "arxiv": "https://arxiv.org/abs/2601.21420",
+  "pdf": "https://raw.githubusercontent.com/mlresearch/v306/main/assets/huang26cl/huang26cl.pdf",
+  "proceedings": "https://proceedings.mlr.press/v306/huang26cl.html",
+  "virtual": "https://icml.cc/virtual/2026/poster/60598",
+  "code": "https://github.com/ZihaoHuang-notabot/ConceptMoE"
+ },
+ "license": "http://creativecommons.org/licenses/by/4.0/",
+ "img": "cc-by",
+ "image_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/images/icml26-6424.png",
+ "thumb_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/thumbs/icml26-6424.webp",
+ "figure_page": 2,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.95
+}

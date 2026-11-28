@@ -1,0 +1,49 @@
+{
+ "id": "icml26-1581",
+ "title": "Neutral-Reference Prompting for Vision–Language Models",
+ "authors": [
+  "Senmao Tian",
+  "Xiang Wei",
+  "Shunli Zhang"
+ ],
+ "venue": "ICML 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "Applications->Computer Vision",
+ "role": "problem-setup",
+ "role2": "analysis-finding",
+ "claim": "Models confuse some class pairs symmetrically, but for others they systematically mistake one class for the other in only one direction.",
+ "layout": "3 columns, left-to-right: example inputs, model box, two stacked confusion panels",
+ "tags": [
+  "asymmetric-confusion",
+  "failure-mode",
+  "vision-language-models",
+  "class-bias",
+  "zero-shot"
+ ],
+ "style": [
+  "icon-heavy",
+  "colorful",
+  "photo/real data"
+ ],
+ "description": "The figure reads left to right. On the left, two rounded boxes hold satellite image pairs. The top pair is Highway (C) and Annual Crop (D). A sad human emoji labelled 'Hard to tell…' sits beside it. The bottom pair is Herbaceous Vegetation (A) and Forest (B). A smiling emoji labelled 'Easy to tell!' sits beside it. Arrows lead to a central rounded box holding an Image Encoder and a Text Encoder, which combine through a ⊗ operation into 'logits'. Two arrows lead from the model to the right-hand panels. The top-right panel, 'Symmetric Confusion', has a balanced scale and a GT/Pred/Ratio table: C→D 51.3% and D→C 48.7%. The bottom-right panel, 'Asymmetric Confusion', has a tilted scale and a thinking emoji with the text 'Why is A always mistaken for B?'. Its table shows A→B at 92.4%, in bold red, and B→A at 7.6%. Colored circles mark the classes.",
+ "caption": "We observe two distinct types of confusion on downstream data. The first is symmetric confusion: for two similar classes the model struggles to discriminate them, samples from each class are misclassified as the other at comparable rates. The second is asymmetric confusion: the two classes may not be intrinsically ambiguous, yet the model systematically mislabels class A as B far more often than it mislabels B as A. More examples can also be found in [ref].",
+ "caption_source": "latex",
+ "abstract": "Efficient transfer learning of vision-language models (VLMs) commonly suffers from a Base-New Trade-off (BNT): improving performance on unseen (new) classes often degrades accuracy on known (base) classes. Addressing how to boost recognition of unseen classes without sacrificing known-class performance remains a central challenge. Existing work often simplistically attributes the BNT to overfitting on known classes. We observe an interesting phenomenon: VLMs frequently exhibit asymmetric confusion on certain downstream data, i.e., samples of class A are systematically mispredicted as class B, while the reverse confusion (B to A) rarely occurs. For known classes, this kind of bias can be mitigated by tuning using a cross-entropy loss, but for unseen classes, such pretraining-induced bias persists and harms generalization. Motivated by this, we propose NeRP, a plug-and-play prompting correction strategy that improves discrimination on unseen classes without modifying model parameters. NeRP leverages neutral text prompts and reference images to measure class-wise prior preferences along the pre-trained inter-class geometry, and combines them with the sample likelihood to obtain the model's surrogate score. If, for a given sample, the prior strongly favors the current prediction while the observed evidence is clearly insufficient, we perform a local flip between easily confusable class pairs, thereby correcting prior-dominated mispredictions. Extensive experiments across multiple backbones and 15 few-shot and cross-domain benchmarks show that NeRP substantially improves accuracy on unseen classes while preserving known-class prediction performance.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=F5XJeuhwU7",
+  "arxiv": "https://arxiv.org/abs/2605.15615",
+  "pdf": "https://raw.githubusercontent.com/mlresearch/v306/main/assets/tian26j/tian26j.pdf",
+  "proceedings": "https://proceedings.mlr.press/v306/tian26j.html",
+  "virtual": "https://icml.cc/virtual/2026/poster/65288",
+  "code": "https://github.com/Sheldon04/NeRP"
+ },
+ "license": "http://creativecommons.org/licenses/by/4.0/",
+ "img": "cc-by",
+ "image_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/images/icml26-1581.png",
+ "thumb_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/thumbs/icml26-1581.webp",
+ "figure_page": 0,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.8
+}

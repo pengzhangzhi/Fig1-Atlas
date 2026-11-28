@@ -1,0 +1,52 @@
+{
+ "id": "neurips26-8243",
+ "title": "BudSplat: Feed-forward 3D Gaussian Splatting under a Rendering Budget",
+ "authors": [
+  "MUYU XU",
+  "Fangneng Zhan",
+  "Yu Wei",
+  "Ling Shao",
+  "Shijian Lu"
+ ],
+ "venue": "NeurIPS 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "Computer Vision->3D Rendering & Reconstruction",
+ "role": "pipeline",
+ "role2": null,
+ "claim": "A staged pipeline scores each primitive's importance, fuses candidates with that score, then prunes to a compact retained set.",
+ "layout": "Left-to-right multi-stage flow, 4 module boxes, legend strip at bottom",
+ "tags": [
+  "feed-forward",
+  "gaussian-pruning",
+  "importance-scoring",
+  "voxel-fusion",
+  "efficiency"
+ ],
+ "style": [
+  "icon-heavy",
+  "colorful",
+  "math-heavy",
+  "photo/real data"
+ ],
+ "description": "A wide left-to-right pipeline diagram. Far left: a column of multi-view RGB photos of a street scene with a lettered sculpture, feeding into a VGGT backbone block that outputs multi-layer tokens, depth, point and confidence maps. Next, a detail-aware decomposition panel with a decompose network and Detail and Gaussian heads, which produce a blue detail-score bar. A large central panel, importance-preserving voxel fusion, shows confidence, detail and support-prior cards. Below them are the fusion-logit and softmax equations and a weighted-sum Gaussian update. Per-view candidate Gaussians, drawn as green and pink ellipses, merge into a voxel grid. A quality-aware pruning panel on the right has a ranking formula and a green-to-pink gradient ranking bar. Patch-quota tiles are marked with check marks and X marks. Rendered view and zoomed detail photos sit at the far right. A legend strip at the bottom explains the colors and icons. Green marks retained Gaussians and pink marks redundant ones.",
+ "caption": "Overview of BudSplat. With dense geometry, confidence maps, and multi-layer tokens as predicted from multi-view RGB images by VGGT, the detail-aware decomposition first extracts residual token cues and predicts patch-level detail scores. The predicted scores are then propagated to the importance-preserving voxel fusion together with confidence and voxel support, retaining important local contributors during aggregation. Finally, the quality-aware pruning ranks the fused Gaussians by opacity, detail importance, and support-aware redundancy correction, followed by patch-level quota redistribution to select a compact set of retained Gaussian for rendering.",
+ "caption_source": "latex",
+ "abstract": "Feed-forward 3D Gaussian Splatting has recently emerged as a promising alternative to per-scene optimization, enabling fast novel view synthesis by predicting Gaussian primitives directly from input images. However, it quickly faces a bottleneck of rendering efficiency while scaling from sparse to dense multi-view inputs, which offer more geometric constraints but produce a rapidly growing set of candidate Gaussians. Existing solutions cannot reliably distinguish redundant primitives, leading to many redundant primitives from repeatedly observed regions and increased rendering cost without much gain in visual quality. We propose BudSplat, a compact feed-forward 3DGS framework that learns to keep the most valuable Gaussians under a limited primitive count. BudSplat has two novel designs. The first is a detail-aware importance score that is extracted from multi-level visual tokens, providing an explicit cue for regions where pruning is likely to harm perceptual quality. The score can be injected into voxel fusion to preserve high-value local contributors during multi-view aggregation. The second is quality-aware Gaussian pruning that selects a compact set of primitives by jointly considering rendering contribution and detail importance. The quality-aware pruning enables local quota redistribution that helps avoid over-allocating primitives to large redundant regions. Experiments on RE10K, DL3DV, and ACID show that BudSplat achieves a favorable trade-off among rendering quality and efficiency.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=urqSXSQAnY",
+  "arxiv": "https://arxiv.org/abs/2610.38278",
+  "pdf": "https://arxiv.org/pdf/2610.38278",
+  "proceedings": null,
+  "virtual": "https://neurips.cc/virtual/2026/poster/148823",
+  "code": null
+ },
+ "license": "http://creativecommons.org/licenses/by-sa/4.0/",
+ "img": "cc-by-sa",
+ "image_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/images/neurips26-8243.png",
+ "thumb_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/thumbs/neurips26-8243.webp",
+ "figure_page": 3,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.96
+}

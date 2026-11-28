@@ -1,0 +1,57 @@
+{
+ "id": "neurips26-5597",
+ "title": "Efficient Serving for Dynamic Agent Workflows with Prediction-based KV-Cache Management",
+ "authors": [
+  "Haoyu Zheng",
+  "Jiawei Jiang",
+  "Fangcheng Fu",
+  "Binhang Yuan",
+  "Yongqiang Zhang",
+  "Hao Wang",
+  "Jia Wu",
+  "Yuanyuan Zhu",
+  "Xiao Yan"
+ ],
+ "venue": "NeurIPS 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "Reinforcement Learning->Multi-agent",
+ "role": "problem-setup",
+ "role2": "overview-framework",
+ "claim": "Real workflows are dynamic: a conditional retry loop makes the sequence of invoked agents depend on the task's context.",
+ "layout": "Single panel, cyclic graph of icon nodes, colored retry/pass branch arrows",
+ "tags": [
+  "agent-workflow",
+  "call-graph",
+  "dynamic-control-flow",
+  "kv-cache",
+  "serving-systems"
+ ],
+ "style": [
+  "icon-heavy",
+  "minimal",
+  "colorful"
+ ],
+ "description": "A single call-graph diagram for a code-generation multi-agent workflow, placed on the right of a mostly blank canvas. Five black-and-white window or icon nodes carry rounded text labels: Planner (a checklist with a pencil), Analyzer (a code window with a magnifier and red X), Coder (a </> window), Tester (a window with green, yellow and red test rows) and Committer (a window with an upload arrow). Blue curved arrows run Planner→Coder, Analyzer→Coder and Coder→Tester. From Tester, a red arrow labeled 'Retry' goes back up to Analyzer, forming a loop. A green arrow labeled 'Pass' goes to Committer. The eye goes first to the red and green branch arrows, which show the conditional control flow.",
+ "caption": "A call graph for the code-generation task. The Tester conditionally triggers a retry path through Analyzer and Coder, i.e., a retry loop.",
+ "caption_source": "latex",
+ "abstract": "LLM-based workflows compose specialized agents to execute complex tasks, and these agents usually share substantial context, allowing KV-Cache reuse to save computation. Existing approaches either manage KV-Cache at agent level and fail to exploit the reuse opportunities within workflows, or manage cache at the workflow level but assume that each workflow calls a static sequence of agents. However, practical workflows are typically dynamic, where the sequence of invoked agents and thus induced cache reuse opportunities depend on the context of each task. To serve such dynamic workflows efficiently, we build a system dubbed PBKV (\\textbf{P}rediction-\\textbf{B}ased \\textbf{KV}-Cache Management). For each workflow, PBKV predicts the agent invocations in several future steps by fusing the guidance from historical workflows and context of the target workflow. Based on the predictions, PBKV estimates the reuse potential of cache entries and keeps the high-potential entries in GPU memory. To be robust to prediction errors, PBKV utilizes the predictions conservatively during both cache eviction and prefetching. Experiments on three workflow benchmarks show that PBKV achieves up to $1.85\\times$ speedup over LRU on dynamic workflows, and up to $1.26\\times$ speedup over the SOTA baseline KVFlow on the static workflow.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=cY4gQCRJvN",
+  "arxiv": "https://arxiv.org/abs/2605.06472",
+  "pdf": "https://arxiv.org/pdf/2605.06472",
+  "proceedings": null,
+  "virtual": "https://neurips.cc/virtual/2026/poster/151165",
+  "code": "https://github.com/Hyzheng-code/PBKV"
+ },
+ "license": "http://creativecommons.org/licenses/by/4.0/",
+ "img": "cc-by",
+ "image_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/images/neurips26-5597.png",
+ "thumb_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/thumbs/neurips26-5597.webp",
+ "figure_page": 2,
+ "qc_flags": [
+  "bad-crop"
+ ],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.6
+}

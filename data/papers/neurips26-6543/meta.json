@@ -1,0 +1,50 @@
+{
+ "id": "neurips26-6543",
+ "title": "When to Trust a PFN: Detecting Harmful Shift in Tabular Foundation Models",
+ "authors": [
+  "Viet Nguyen",
+  "Herman Bergström",
+  "Stephan Rabanser",
+  "Rahul Krishnan"
+ ],
+ "venue": "NeurIPS 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "Social Aspects->Trustworthy Machine Learning",
+ "role": "pipeline",
+ "role2": "concept",
+ "claim": "A short finetune that pits a labeled reference loss against a disagreement loss yields a statistic separating in-distribution from shifted batches via a calibrated threshold.",
+ "layout": "3 panels, left-to-right, big arrows between stages, gradient-angle boxes and histogram",
+ "tags": [
+  "distribution-shift",
+  "unsupervised-monitoring",
+  "hypothesis-test",
+  "finetuning",
+  "tabular-foundation-models"
+ ],
+ "style": [
+  "math-heavy",
+  "colorful",
+  "plot"
+ ],
+ "description": "Three-stage horizontal figure titled 1 Setup, 2 Calibration, 3 Deployment, connected by thick black arrows labeled 'T-step finetune' and '×K on ID eval'. Panel 1 is a feature-space sketch with axes φ1 and φ2. A blue ID manifold blob holds gray support points, blue star anchors and an orange-x eval cluster. A second orange eval blob sits outside it, with arrows marking 'on or off ID manifold'. Panel 2 shows the joint loss formula in blue and orange. Two small boxes compare gradient vectors: a blue ID box where the vectors oppose and λ stays high, and a red OOD box where they are orthogonal and λ drops. Below is a loss-vs-time plot with a blue ID curve ending high and a red OOD curve ending low, plus a 'detection signal' gap. Panel 3 is a histogram of ID calibration λ values with a dashed red threshold q_α. The reject region is shaded pink on the left and labeled flag/keep.",
+ "caption": "CALD in three steps. (1) Setup. In the PFN's feature space, a labeled anchor (\\bluestar) sits inside the ID manifold; the unlabeled eval batch (\\orangex) arrives with unknown origin --- it may sit on or off the ID manifold. (2) Calibration. $\\cL_{\\mathrm{anc}}$ provides a stable ID reference; $\\cL_{\\mathrm{eval}}$ pulls the decoder off its eval pseudolabels. A short $T$-step finetune optimizes their sum, and the angle between $g_a, g_e$ reveals the eval's origin: on ID, the gradients fight ($\\langle g_a, g_e\\rangle < 0$; $\\lambda$ stays high); off ID, they are nearly orthogonal ($\\approx 0$; $\\lambda$ drops). The post-finetune anchor loss $\\lambda := \\cL_{\\mathrm{anc}}(\\theta_T)$ is the test statistic. (3) Deployment. Repeating step 2 across $K$ known-ID eval batches yields a calibration record; reject $H_0\\!:\\,\\Xeval^*\\!\\sim\\!p_0$ (flag OOD) when $\\lambda^*$ falls below the $\\alpha$-quantile $q_\\alpha$ (red region).",
+ "caption_source": "latex",
+ "abstract": "Tabular prior-fitted networks (PFNs) work well across tabular classification problems but can fail silently at deployment when distributions shift. We propose CALD (Calibrated Anchor-Loss Disagreement), a lightweight unsupervised monitor that triggers an alarm to warn when a PFN might fail. By finetuning the decoder to maximize disagreement with the test-set prediction while maintaining accuracy on an ID anchor set, CALD identifies harmful OOD batches through the resulting anchor loss, requiring no labels on test batches. We prove that the post-finetune anchor loss has a strictly lower expectation under sufficiently severe shift than under ID eval, yielding a one-sided test. Across 14 datasets covering tabular and structured distribution shift, on both TabPFN and TabICL, CALD matches or outperforms baselines on harmful shifts and is markedly more resilient to benign-shift false alarms.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=ixQvsT5Hku",
+  "arxiv": "https://arxiv.org/abs/2611.34767",
+  "pdf": "https://arxiv.org/pdf/2611.34767",
+  "proceedings": null,
+  "virtual": "https://neurips.cc/virtual/2026/poster/150327",
+  "code": null
+ },
+ "license": "http://creativecommons.org/licenses/by/4.0/",
+ "img": "cc-by",
+ "image_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/images/neurips26-6543.png",
+ "thumb_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/thumbs/neurips26-6543.webp",
+ "figure_page": 3,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.8
+}

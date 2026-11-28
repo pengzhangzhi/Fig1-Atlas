@@ -1,0 +1,51 @@
+{
+ "id": "icml26-3561",
+ "title": "CorrectionPlanner: Self-Correction Planner with Reinforcement Learning in Autonomous Driving",
+ "authors": [
+  "Yihong Guo",
+  "Dongqiangzi Ye",
+  "Sijia Chen",
+  "Anqi Liu",
+  "Xianming Liu"
+ ],
+ "venue": "ICML 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "Applications->Robotics",
+ "role": "prior-vs-ours",
+ "role2": "problem-setup",
+ "claim": "Plain autoregressive planners collide and language reasoning gives no explicit correction, while self-correction traces in action space fix unsafe proposals.",
+ "layout": "3 panels, 2 on top and 1 centered below, shared legend underneath",
+ "tags": [
+  "self-correction",
+  "autoregressive",
+  "autonomous-driving",
+  "reasoning-trace",
+  "safety"
+ ],
+ "style": [
+  "colorful",
+  "icon-heavy",
+  "minimal"
+ ],
+ "description": "Three bird's-eye driving scenes drawn as rectangles on a road with a dashed lane divider. Blue boxes are the ego vehicle along a curved trajectory. Green boxes are other agents in the adjacent lane. Panel (a), the vanilla autoregressive model, ends with the ego boxed in red where it collides. Panel (b), language reasoning, adds a speech bubble reading 'Reasoning: Car in right, don't change lane... Action: Keep straight.' and the ego trajectory stays safe. Panel (c), self-correction, shows a stack of orange cards over a faint rejected path, representing the correction trace, before the ego continues safely. A legend at the bottom explains Ego, Agent, Collision, Natural Language Reasoning (speech-bubble icon) and Correction Process/Trace (orange stack). The red collision box draws the eye first.",
+ "caption": "(a) Vanilla autoregressive models, no correction mechanism. (b) autoregressive models that generate tokens sequentially, with reasoning through language. (c) autoregressive models that generate subsequent tokens sequentially with self-correction through motion tokens.",
+ "caption_source": "latex",
+ "abstract": "Autonomous driving requires safe planning, but most learning-based planners lack explicit self-correction ability: once an unsafe action is proposed, there is no mechanism to correct it. Thus, we propose CorrectionPlanner, an autoregressive planner with self-correction that models planning as motion-token generation within a propose, evaluate, and correct loop. At each planning step, the policy proposes an action, namely a motion token, and a learned collision critic predicts whether it will induce a collision within a short horizon. If the critic predicts a collision, we retain the sequence of historical unsafe motion tokens as a self-correction trace, generate the next motion token conditioned on it, and repeat this process until a safe motion token is proposed or the safety criterion is met. This self-correction trace, consisting of all unsafe motion tokens, represents the planner's correction process in motion-token space, analogous to a reasoning trace in language models. We train the planner with imitation learning followed by model-based reinforcement learning using rollouts from a pretrained world model that realistically models agents' reactive behaviors. Closed-loop evaluations show that CorrectionPlanner reduces collision rate by over 20% on Waymax and achieves state-of-the-art planning scores on nuPlan.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=XgVZyybzHr",
+  "arxiv": "https://arxiv.org/abs/2603.15771",
+  "pdf": "https://raw.githubusercontent.com/mlresearch/v306/main/assets/guo26ae/guo26ae.pdf",
+  "proceedings": "https://proceedings.mlr.press/v306/guo26ae.html",
+  "virtual": "https://icml.cc/virtual/2026/poster/63375",
+  "code": null
+ },
+ "license": "http://creativecommons.org/licenses/by/4.0/",
+ "img": "cc-by",
+ "image_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/images/icml26-3561.png",
+ "thumb_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/thumbs/icml26-3561.webp",
+ "figure_page": 0,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.9
+}

@@ -1,0 +1,48 @@
+{
+ "id": "neurips26-1297",
+ "title": "Reflective Prompted Policy Optimization: Trajectory-Grounded Revision and Salience Bias",
+ "authors": [
+  "Rahaf Abu Hara",
+  "Vaibbhav Murarri",
+  "Claudio Zito"
+ ],
+ "venue": "NeurIPS 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "Optimization->Bayesian & Black-box Optimization",
+ "role": "pipeline",
+ "role2": null,
+ "claim": "Separating global proposal from trajectory-grounded local revision, with selection filtering edits, lets an iterative LLM optimizer improve beyond scalar-reward feedback.",
+ "layout": "1 panel, left-to-right chain with bottom selection box and feedback loop",
+ "tags": [
+  "two-stage-llm",
+  "policy-search",
+  "trajectory-feedback",
+  "critic-revision",
+  "iterative-optimization"
+ ],
+ "style": [
+  "minimal",
+  "colorful"
+ ],
+ "description": "A single-panel flow diagram of the R2PO loop. A grey Replay Buffer box at top left, labeled 'reward-only history' with set notation, feeds down into a blue Search-LLM box ('global proposer'). From there a left-to-right chain runs: arrow labeled θ_init to a grey Eval box (K rollouts), then an arrow labeled with trajectories and mean reward to an orange dashed Trajectory Evidence box ('varies across variants'). That box leads to a blue Critic-LLM box ('local reviser'), then an arrow labeled θ_rev to a second grey Eval box. A green Selection box ('keep higher-reward candidate') sits at bottom center. It receives arrows from both Eval boxes, and a long 'append winner' line runs back to the Replay Buffer. The orange dashed box stands out first.",
+ "caption": "The two-stage R2PO framework. The Search-LLM proposes candidate parameters $\\theta_{\\mathrm{init}}$ conditioned on a reward-only replay history $\\{(\\theta_i,\\bar{R}_i)\\}_{i=1}^{t-1}$ of previously evaluated parameters and their mean rewards. The environment evaluates $\\theta_{\\mathrm{init}}$ over $K$ rollouts, returning the mean reward and rollout trajectories from which Trajectory Evidence (orange, dashed) is constructed. The Critic-LLM uses this evidence to propose a revised vector $\\theta_{\\mathrm{rev}}$, which is re-evaluated; a selection step retains whichever candidate achieves the higher reward before appending it to the replay buffer. Trajectory Evidence is the central design choice we study: in R2PO, it consists of the median rollout, aggregate rollout statistics, and a revision rule applied when the policy is already strong.",
+ "caption_source": "latex",
+ "abstract": "Existing LLM-based policy optimizers see only scalar rewards: that a policy scored 0.45, but not whether the agent got stuck in a loop, fell into a hole on the third step, or performed well on 19 out of 20 rollouts and failed catastrophically on one. We propose Reflective Prompted Policy Optimization (R2PO), a two-stage LLM framework for policy search over compact policy classes that augments scalar reward feedback with trajectory-level behavioral evidence. A Search-LLM proposes candidate policy parameters; the environment executes them; a Critic-LLM inspects the resulting rollouts and proposes targeted revisions grounded in observed states, actions, and rewards. Across ten environments, ablations show R2PO's gains require separating global search from behavior-grounded revision and using selection to filter high-variance edits. We further identify a dominant failure mode, salience bias: when presented with multiple rollouts, the Critic-LLM fixates on improving a single failure even when most trajectories succeed. In a three-trajectory variant where the Critic-LLM sees the best, worst, and median rollout, this behavior explains 76.6% of regressions on CartPole. R2PO mitigates this by reasoning over aggregate rollout statistics, median-trajectory selection, and a revision rule. Using a 20B open-weight model, R2PO achieves the highest mean best reward across all ten environments, reaches near-optimal performance substantially earlier (e.g., near-maximum CartPole reward within ~500 episodes), and trains far more stably than both deep RL and prior LLM-based methods. These results show that treating trajectories as first-class in-context evidence, rather than artifacts reduced to scalar returns, changes how even comparatively small LLMs search over policy spaces, enabling them to learn faster, diagnose more precisely, and reliably improve external controllers.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=9JvWIy31sK",
+  "arxiv": "https://arxiv.org/abs/2605.08315",
+  "pdf": "https://arxiv.org/pdf/2605.08315",
+  "proceedings": null,
+  "virtual": "https://neurips.cc/virtual/2026/poster/154998",
+  "code": "https://hwudlabairoboticsresearch.github.io/R2PO/"
+ },
+ "license": "http://creativecommons.org/licenses/by/4.0/",
+ "img": "cc-by",
+ "image_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/images/neurips26-1297.png",
+ "thumb_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/thumbs/neurips26-1297.webp",
+ "figure_page": 2,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.93
+}

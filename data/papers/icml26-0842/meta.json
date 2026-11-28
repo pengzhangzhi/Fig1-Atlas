@@ -1,0 +1,51 @@
+{
+ "id": "icml26-0842",
+ "title": "Frontier Models Can Take Actions at Low Probabilities",
+ "authors": [
+  "Alex Serrano Terre",
+  "Wen Xing",
+  "David Lindner",
+  "Erik Jenner"
+ ],
+ "venue": "ICML 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "Social Aspects->Safety",
+ "role": "analysis-finding",
+ "role2": "teaser-result",
+ "claim": "Large models can hit very low target action rates with calibration, while smaller or differently-trained model families systematically over-produce the action.",
+ "layout": "single log-log plot, legend at right, diagonal y=x calibration reference line",
+ "tags": [
+  "calibration",
+  "low-probability-actions",
+  "scaling",
+  "frontier-models",
+  "ai-safety"
+ ],
+ "style": [
+  "plot",
+  "colorful"
+ ],
+ "description": "A single log-log line plot of observed probability (%) on the y-axis against target probability (%) on the x-axis. Both axes run from roughly 10^-2 to 10^2 percent, except that the y-axis extends down to 10^-3. A dashed gray diagonal marks perfect calibration. Eleven models appear as colored lines with distinct markers and error bars, listed in a legend at right. The GPT-5 family (red/orange) and Claude 4.5 family (purple) lie close to the diagonal even at 0.01%. The Qwen3 models (blues and cyans) are flat near 30-70% at low targets and miscalibrated. Qwen3-32B is the exception: it falls in between and rises toward the diagonal. The lines converge at the top right near 100%. The eye goes first to the bundle hugging the diagonal and the flat Qwen lines above it.",
+ "caption": "Model calibration across tasks with in-context randomness sources. Observed vs.\\ target defect rate, aggregated across all tasks (coding, email, game-theoretic) and in-context randomness sources (UUID, nonce, JSON). Frontier models achieve calibration at low rates. GPT-5/5-mini and Claude-4.5 models show best calibration; Qwen models show consistent miscalibration.",
+ "caption_source": "latex",
+ "abstract": "Pre-deployment evaluations inspect only a limited sample of model actions. A malicious model seeking to evade oversight could exploit this by randomizing when to \"defect\": misbehaving so rarely that no malicious actions are observed during evaluation, but often enough that they occur eventually in deployment. But this requires taking actions at very low rates, while maintaining calibration. Are frontier models even capable of that? We prompt the GPT-5, Claude-4.5 and Qwen-3 families to take a target action at low probabilities (e.g. 0.01%), either given directly or requiring derivation, and evaluate their calibration (i.e. whether they perform the target action roughly 1 in 10,000 times when resampling). We find that frontier models are surprisingly good at this task. If there is a source of entropy in-context (such as a UUID), they maintain high calibration at rates lower than 1 in 100,000 actions. Without external entropy, some models can still reach rates lower than 1 in 10,000. When target rates are given, larger models achieve good calibration at lower rates. Yet, when models must derive the optimal target rate themselves, all models fail to achieve calibration without entropy or hint to generate it. Successful low-rate strategies require explicit Chain-of-Thought (CoT) reasoning, so malicious models attempting this approach could currently be caught by a CoT monitor. However, scaling trends suggest future evaluations may be unable to rely on models' lack of target rate calibration, especially if CoT is no longer legible.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=7yuPdMfO0M",
+  "arxiv": "https://arxiv.org/abs/2603.02202",
+  "pdf": "https://raw.githubusercontent.com/mlresearch/v306/main/assets/serrano26b/serrano26b.pdf",
+  "proceedings": "https://proceedings.mlr.press/v306/serrano26b.html",
+  "virtual": "https://icml.cc/virtual/2026/poster/66008",
+  "code": null
+ },
+ "license": "http://arxiv.org/licenses/nonexclusive-distrib/1.0/",
+ "img": "none",
+ "image_url": null,
+ "thumb_url": null,
+ "figure_page": 0,
+ "qc_flags": [
+  "bad-crop"
+ ],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.6
+}

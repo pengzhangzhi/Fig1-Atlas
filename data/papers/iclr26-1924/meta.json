@@ -1,0 +1,52 @@
+{
+ "id": "iclr26-1924",
+ "title": "ThinKV: Thought-Adaptive KV Cache Compression for Efficient Reasoning Models",
+ "authors": [
+  "Akshat Ramachandran",
+  "Marina Neseem",
+  "Charbel Sakr",
+  "Rangharajan Venkatesan",
+  "Brucek Khailany",
+  "Tushar Krishna"
+ ],
+ "venue": "ICLR 2026",
+ "tier": "oral",
+ "track": "main",
+ "topic": "Deep Learning->Generative Models and Autoencoders",
+ "role": "prior-vs-ours",
+ "role2": "teaser-result",
+ "claim": "Prior methods evict or keep tokens uniformly or by redundancy; ours adapts to reasoning-phase importance and wins on accuracy and speed.",
+ "layout": "3 panels: top row of four prior methods, bottom-left ours, bottom-right scatter plot",
+ "tags": [
+  "kv-cache-compression",
+  "token-eviction",
+  "quantization",
+  "efficiency",
+  "accuracy-latency-tradeoff"
+ ],
+ "style": [
+  "colorful",
+  "plot",
+  "icon-heavy"
+ ],
+ "description": "The figure has three panels. Panel (a), across the top, shows four triangular token-by-token attention grids, one per prior method family: SnapKV/RocketKV, H2O/RaaS, LazyEviction and R-KV. Light-blue cells are cached tokens, green cells mark the current token, and X cells mark evicted tokens. A dashed line separates prefill from decode. LazyEviction has orange observation windows with numbered timesteps. R-KV has pink cells marking redundant tokens. A row of squares under each grid shows what stays in the cache. Panel (b), at bottom left, shows the ThinKV grid, with cells labeled R, E and T for reasoning, execution and transition thoughts. It uses hatched shading, group quantization and a refresh period. Panel (c), at bottom right, is a scatter plot of LiveCodeBench accuracy against time per output token. The ThinKV star sits at the top left, which is the accurate and fast corner. Baselines are colored dots, with green arrows marking 'Accurate' and 'Fast'.",
+ "caption": "{Illustrative comparison of KV cache compression methods as tokens are generated: (a) Existing techniques: SnapKV, RocketKV, H2O, RaaS, LazyEviction and R-KV, and (b) ThinKV (Ours). (c) Accuracy vs. TPOT comparison for GPT-OSS-20B evaluated on LiveCodeBench.}",
+ "caption_source": "latex",
+ "abstract": "The long-output context generation of large reasoning models enables extended chain of thought (CoT) but also drives rapid growth of the key-value (KV) cache, quickly overwhelming GPU memory. To address this challenge, we propose ThinKV, a thought-adaptive KV cache compression framework. ThinKV is based on the observation that attention sparsity reveals distinct thought types with varying importance within the CoT. It applies a hybrid quantization-eviction strategy, assigning token precision by thought importance and progressively evicting tokens from less critical thoughts as reasoning trajectories evolve. Furthermore, to implement ThinKV, we design a kernel that extends PagedAttention to enable efficient reuse of evicted tokens' memory slots, eliminating compaction overheads. Extensive experiments on DeepSeek-R1-Distill, GPT-OSS, and NVIDIA AceReason across mathematics and coding benchmarks show that ThinKV achieves near-lossless accuracy with less than 5% of the original KV cache, while improving performance with up to 5.8x higher inference throughput over state-of-the-art baselines.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=M3CeHnZKNC",
+  "arxiv": "https://arxiv.org/abs/2510.01290",
+  "pdf": "https://proceedings.iclr.cc/paper_files/paper/2026/file/b2b502c3629beadda06311386d2c6f73-Paper-Conference.pdf",
+  "proceedings": "https://proceedings.iclr.cc/paper_files/paper/2026/hash/b2b502c3629beadda06311386d2c6f73-Abstract-Conference.html",
+  "virtual": "https://iclr.cc/virtual/2026/poster/10009980",
+  "code": null
+ },
+ "license": "http://creativecommons.org/licenses/by/4.0/",
+ "img": "cc-by",
+ "image_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/images/iclr26-1924.png",
+ "thumb_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/thumbs/iclr26-1924.webp",
+ "figure_page": 0,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.8
+}

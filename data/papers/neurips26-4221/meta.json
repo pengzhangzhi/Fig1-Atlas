@@ -1,0 +1,53 @@
+{
+ "id": "neurips26-4221",
+ "title": "Towards Real-Time Full-Waveform LiDAR Transformers via Intensity-Guided Token Reduction and Physics-Aware Augmentation",
+ "authors": [
+  "Kotaro Oishi",
+  "Kazuma Ikeda",
+  "Ryosei Hara",
+  "Ryo Yoshida",
+  "Mariko Isogawa",
+  "Kentaro Yoshioka"
+ ],
+ "venue": "NeurIPS 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "Computer Vision->Everything Else",
+ "role": "pipeline",
+ "role2": "analysis-finding",
+ "claim": "A staged pipeline augments, prunes, merges and reorders tokens, because most input is low-intensity background that can be removed cheaply.",
+ "layout": "3 panels: top pipeline left-to-right, bottom-left pruning steps, bottom-right histogram; dashed dividers",
+ "tags": [
+  "token-pruning",
+  "token-merging",
+  "data-augmentation",
+  "efficiency",
+  "transformer"
+ ],
+ "style": [
+  "colorful",
+  "icon-heavy",
+  "plot",
+  "photo/real data"
+ ],
+ "description": "The top half is a left-to-right pipeline. Original full-waveform LiDAR data, drawn as a cube of cells, passes through the FWLAug augmentation step (CutMix and ShiftMix point-cloud insets). It is then pruned and tokenized into colored high-intensity patches, ordered along a space-filling curve, and fed into a large gray FWL-ToPM Encoder box. Inside the encoder, tokens go through Merge, Multi-head Self-attention and Unmerge, with residual connections, an MLP and a Decoder, repeated ×N_L times. The bottom left shows the pruning and merging of a data cube, with an intensity-versus-time waveform and zoomed red-shaded insets. The bottom right is a log-scale stacked histogram of pixel classes by intensity bin, with a red 70% pruning threshold marker. Red, green, blue and yellow patch cubes draw the eye first.",
+ "caption": "Overview of the proposed framework. (Top) During training, FWLAug augments FWL samples while preserving ToF waveform structure and frustum geometry. High-intensity patches are selected by pruning, spatially reordered along a space-filling curve, and processed by the FWL-ToPM Encoder, which merges redundant tokens before self-attention and unmerges afterward across $L$ Transformer blocks. (Bottom Left) Pruning removes low-intensity background tokens, and merging aggregates the remainder, concentrating computation on object-relevant waveform content. (Bottom Right) Proportion of pixel classes across intensity bins in FWL data. Most regions in FWL data correspond to noisy background, and our pruning strategy removes these dominant low-intensity regions.",
+ "caption_source": "latex",
+ "abstract": "LiDAR is a critical sensor for autonomous driving and robotics, yet it remains vulnerable to adverse conditions such as fog, rain, transparent objects, and low-reflectance surfaces. Full-waveform LiDAR (FWL) addresses these limitations by capturing the complete return waveform as a histogram, preserving rich reflection characteristics including multi-path echoes and weak signals. While recent Transformer-based approaches have demonstrated promise on FWL data, two fundamental bottlenecks remain: high computational cost from redundant tokens in low-intensity background regions, and limited generalization due to scarce annotated training data. We address both bottlenecks by exploiting the physical structure inherent to FWL data. First, we propose FWL-ToPM, a token pruning and merging mechanism that leverages intensity distributions to selectively reduce tokens while retaining critical waveform content. Second, we introduce FWLAug, a data augmentation framework designed as a regularization method that preserves waveform structure, retaining the Time-of-Flight waveform of each ray and the frustum geometry, to improve generalization to unseen scenes. Evaluated on the Ghost-FWL benchmark, FWL-ToPM achieves over 8 times speedup at real-time throughput alongside a nearly 9-point F1 gain over the prior state of the art, establishing the first real-time FWL Transformer that simultaneously improves accuracy. FWLAug further improves performance on both the standard benchmark and an out-of-distribution test set of unseen scenes. Together, these methods push FWL-based perception toward practical deployment. The code and the OOD dataset are publicly available and can be accessed via the project page: https://keio-csg.github.io/FWL-ToPM",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=TOfHGk54P0",
+  "arxiv": "https://arxiv.org/abs/2611.07613",
+  "pdf": "https://arxiv.org/pdf/2611.07613",
+  "proceedings": null,
+  "virtual": "https://neurips.cc/virtual/2026/poster/152397",
+  "code": "https://keio-csg.github.io/FWL-ToPM/"
+ },
+ "license": "http://creativecommons.org/licenses/by-sa/4.0/",
+ "img": "cc-by-sa",
+ "image_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/images/neurips26-4221.png",
+ "thumb_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/thumbs/neurips26-4221.webp",
+ "figure_page": 3,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.85
+}

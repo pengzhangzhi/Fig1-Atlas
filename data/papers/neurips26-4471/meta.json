@@ -1,0 +1,49 @@
+{
+ "id": "neurips26-4471",
+ "title": "Noise-Regularized Training for Learned Image Compression",
+ "authors": [
+  "Renjie Zou",
+  "Zhiwei Huang",
+  "Dong Jiang"
+ ],
+ "venue": "NeurIPS 2026",
+ "tier": "spotlight",
+ "track": "main",
+ "topic": "Computer Vision->Image and Video Generation",
+ "role": "analysis-finding",
+ "role2": null,
+ "claim": "Adding input noise during training consistently lowers local sensitivity of both the encoder and the full pipeline across operating points and individual samples.",
+ "layout": "4 panels in 2x2 grid; line plots left, violin plots right, shared baseline-vs-ours colors",
+ "tags": [
+  "lipschitz-analysis",
+  "regularization",
+  "noise-injection",
+  "sensitivity",
+  "compression"
+ ],
+ "style": [
+  "plot",
+  "minimal",
+  "colorful"
+ ],
+ "description": "A 2x2 grid of empirical plots comparing a baseline (blue, solid line with circles) against the noise-regularized model (red, dashed line with squares). Panels (a) and (c) are line plots of mean local Lipschitz estimate against QP from 0 to 63, with shaded variability bands. In (a) the encoder estimate rises from about 18 to 38 for the baseline, and the red curve sits below it throughout. In (c) the codec estimate falls from about 9 to 7.5, and the red curve again sits lower. Panels (b) and (d) are violin plots with jittered per-image points and black median bars at QP=27. The red distributions sit lower than the blue in both. The eye goes first to the gap between the blue and red curves in the top-left panel.",
+ "caption": "Local Lipschitz analysis on Kodak (DMCI-Base, $\\delta\\!=\\!0.01$). Top row, encoder $\\hat L_{g_a}$ (tests $\\Omega_R^{(1)}$); bottom row, end-to-end codec $\\hat L_f$ on the quantization-free map $f=g_s\\!\\circ\\!g_a$ (tests $\\Omega_D^{(1)}=\\|J_f\\|_F^{2}$). Left panels (a,c): mean $\\hat{L}$ vs.\\ QP for the baseline and the noise-regularized model. Right panels (b,d): per-image distribution at QP$\\,=\\,27$, estimated with $n\\!=\\!64$ random directions. Noise regularization contracts both Jacobians at every operating point ($12.0%$ encoder, $8.4%$ codec on average; see Table [ref]).",
+ "caption_source": "latex",
+ "abstract": "Learned image compression (LIC) is trained almost exclusively on clean images: the only stochastic perturbation in the loop is an additive uniform proxy injected in the latent domain to keep the entropy model differentiable. Outside compression, by contrast, a long line of work---from Tikhonov regularization and contractive autoencoders through denoising score matching and modern diffusion models---has established that Gaussian noise at the input of a network with a clean target acts as a structured probe of the data manifold rather than as data augmentation. Building on this view, we introduce noise-regularized training for LIC: at every training step we add Gaussian noise to the encoder input while keeping the distortion target, the latent uniform proxy, the hyperprior, and the entropy coding pipeline unchanged. The recipe is architecture-agnostic and adds essentially no training or inference overhead. Across backbones and operating regimes it yields consistent BD-Rate gains: -2.60% on a reproduced ELIC and -0.85% / -1.05% / -2.38% on the Base/Medium/Large scales of a variable-rate DMCI codec, with DMCI-Large reaching -22.02% against VTM-22.0. A second-order expansion of the noisy RD loss accounts for these gains: because the noise enters upstream of the analysis transform, it converts the clean RD objective into a structured $O(Ï^{2})$ regularizer comprising an information-weighted encoder-Jacobian penalty (rate side) and a Frobenius contractive penalty on the end-to-end reconstruction map (distortion side). A finite-difference Lipschitz analysis shows corresponding sensitivity reductions of ~12% for the encoder and ~8% for the end-to-end codec, while an exact-JVP test further shows preferential contraction of high-information directions. Code and trained models are available at https://github.com/Googolxx/NoiseRegu-LIC.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=UuyALisAVj",
+  "arxiv": "https://arxiv.org/abs/2611.10073",
+  "pdf": "https://arxiv.org/pdf/2611.10073",
+  "proceedings": null,
+  "virtual": "https://neurips.cc/virtual/2026/poster/152186",
+  "code": null
+ },
+ "license": "http://arxiv.org/licenses/nonexclusive-distrib/1.0/",
+ "img": "none",
+ "image_url": null,
+ "thumb_url": null,
+ "figure_page": 8,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.6
+}

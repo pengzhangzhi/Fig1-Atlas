@@ -1,0 +1,54 @@
+{
+ "id": "neurips26-3625",
+ "title": "Realtime-VLA FLASH: Speculative Inference Framework for Diffusion-based VLAs",
+ "authors": [
+  "Jiahui Niu",
+  "Kefan Gu",
+  "Yucheng Zhao",
+  "shengwen Liang",
+  "Tiancai Wang",
+  "Xing Hu",
+  "ying wang",
+  "Huawei Li"
+ ],
+ "venue": "NeurIPS 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "Applications->Robotics",
+ "role": "before-after",
+ "role2": "pipeline",
+ "claim": "Synchronous full inference makes stale, late actions and fails; speculative draft-and-verify replanning reacts in time and succeeds.",
+ "layout": "3 panels: two stacked timelines left, method diagram right; failure vs success",
+ "tags": [
+  "speculative-decoding",
+  "draft-and-verify",
+  "latency",
+  "robot-manipulation",
+  "efficiency"
+ ],
+ "style": [
+  "photo/real data",
+  "colorful",
+  "icon-heavy"
+ ],
+ "description": "The figure has three panels. Panels (a) and (b) are stacked on the left. Each shows a row of six robot-camera frames (frame 0 to frame 12) of a teddy bear on a green conveyor belt. Under each row is a timeline with colored triangle markers. Panel (a), titled 'Sync inference: Failure' in red, has long blue inference segments (>50ms) and red movement segments (96ms), and the bear is missed. Panel (b), titled 'Realtime-VLA FLASH: Success' in green, has short orange speculative segments (<8ms) and a single blue segment (<33ms triton-based inference), and the robot grasps the bear. Panel (c), on the right, is titled 'Speculative Inference' and has a lightning icon. It is a vertical pipeline: Draft Model produces action chunks α1–α7 in orange. These feed an Action Expert in blue, which outputs α̂1–α̂7. Checkmark and cross rows for T1 and T2 follow. The accepted prefix turns green, and an arrow leads to a robot arm.",
+ "caption": "Overview of Realtime-VLA FLASH. (a) Standard synchronous dVLA inference runs the full pipeline at each replanning round, causing stale action updates and failure in latency-critical manipulation. (b) Realtime-VLA FLASH accelerates replanning, allowing the robot to react in time and complete the grasp. (c) FLASH introduces speculative inference for dVLAs: a lightweight draft model proposes a continuous action chunk, and the main model's Action Expert reconstructs action endpoints from selected flow-matching timesteps in parallel to check consistency with the draft. The robot executes the longest consistent prefix and falls back to the full path when verification fails.",
+ "caption_source": "latex",
+ "abstract": "Diffusion-based vision-language-action models (dVLAs) are promising for embodied intelligence but are fundamentally limited in real-time deployment by the high latency of full inference. We propose Realtime-VLA FLASH, a speculative inference framework that eliminates most full inference calls during replanning by introducing a lightweight draft model with parallel verification via the main model's Action Expert and a phase-aware fallback mechanism that reverts to the full inference pipeline when needed. This design enables low-latency, high-frequency replanning without sacrificing reliability. Experiments show that on LIBERO, FLASH largely preserves task performance by replacing many 58.0 ms full-inference rounds with speculative rounds as fast as 7.8 ms, lowering task-level average inference latency to 19.1 ms (3.04x speedup). We additionally demonstrate effectiveness on real-world conveyor-belt sorting, highlighting its practical impact for latency-critical embodied tasks.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=PI2H51gjoE",
+  "arxiv": "https://arxiv.org/abs/2605.13778",
+  "pdf": "https://arxiv.org/pdf/2605.13778",
+  "proceedings": null,
+  "virtual": "https://neurips.cc/virtual/2026/poster/152931",
+  "code": "https://dexmal.github.io/realtime-vla-flash/"
+ },
+ "license": "http://arxiv.org/licenses/nonexclusive-distrib/1.0/",
+ "img": "none",
+ "image_url": null,
+ "thumb_url": null,
+ "figure_page": 0,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.5
+}

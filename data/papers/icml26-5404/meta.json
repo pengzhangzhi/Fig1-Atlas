@@ -1,0 +1,48 @@
+{
+ "id": "icml26-5404",
+ "title": "Geometrically Constrained Outlier Synthesis",
+ "authors": [
+  "Daniil Karzanov",
+  "Marcin Detyniecki"
+ ],
+ "venue": "ICML 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "General Machine Learning->Representation Learning",
+ "role": "pipeline",
+ "role2": null,
+ "claim": "Outliers are synthesized online from calibrated feature-subspace statistics and combined with a contrastive loss during ordinary training.",
+ "layout": "Single panel, left-to-right; two parallel branches (training, calibration) merge into synthesis and loss",
+ "tags": [
+  "outlier-synthesis",
+  "feature-space",
+  "calibration",
+  "regularization",
+  "data-flow"
+ ],
+ "style": [
+  "math-heavy",
+  "photo/real data",
+  "minimal"
+ ],
+ "description": "A single wide left-to-right flow diagram. On the left, a stack of training images (a robin on top) and a stack of calibration images (a tabby cat on top) feed into a grey 3D-block backbone network labeled f. Two arrows leave the backbone to two tall hidden-feature bars. The top bar is the batch features for class k. It goes through PCA to the training subspace model M_train. The bottom bar is the calibration features. It goes through PCA to M_calib, then a Mahalanobis score, then the quantiles q_inner and q_outer. The quantiles combine with the training subspace to give the shell scales alpha_inner and alpha_outer. A small scatter inset shows projected points, principal-component arrows and a synthesized outlier. That inset leads to Z_ood. Z_ood and the batch features both feed the combined loss L_CE + L_reg at the far right. Black arrows and serif math notation dominate the figure, and the eye goes first to the photos.",
+ "caption": "GCOS Training Procedure Schematic. Illustration of the data flow in our online synthesis and regularization method. Epoch-level calibration on $\\mathcal{D}_{calib}$ produces class-conditional subspace models $\\mathcal{M}_{calib}$ and Mahalanobis quantiles $q$. During batch-level training, features are used to update a queue that generates proposer subspace models $\\mathcal{M}_{train}$ and identifies off-manifold directions $v$. Outliers $z_{ood}$ are synthesized to match the target quantiles $q$, as evaluated by $\\mathcal{M}_{calib}$. The final regularization loss, $\\mathcal{L}_{reg}$, is a contrastive objective computed on the energy scores of in-distribution batch features and the synthesized outliers $z_{ood}$ and added to cross-entropy loss, $\\mathcal{L}_{CE}$, from the main classification task.",
+ "caption_source": "latex",
+ "abstract": "Deep neural networks for image classification often exhibit overconfidence on out-of-distribution (OOD) samples. To address this, we introduce Geometrically Constrained Outlier Synthesis (GCOS), a training-time regularization framework aimed at improving OOD robustness during inference. GCOS addresses a limitation of prior synthesis methods by generating virtual outliers in the hidden feature space that respect the learned manifold structure of in-distribution (ID) data. The synthesis proceeds in two stages: (i) a dominant-variance subspace extracted from the training features identifies geometrically informed, off-manifold directions; (ii) a conformally-inspired shell, defined by the empirical quantiles of a nonconformity score from a calibration set, adaptively controls the synthesis magnitude to produce boundary samples. The shell ensures that generated outliers are neither trivially detectable nor indistinguishable from in-distribution data, facilitating smoother learning of robust features. This is combined with a contrastive regularization objective that promotes separability of ID and OOD samples in a chosen score space, such as Mahalanobis or energy-based. Experiments demonstrate that GCOS outperforms state-of-the-art methods using standard energy-based inference on near-OOD benchmarks, defined as tasks where outliers share the same semantic domain as in-distribution data. As an exploratory extension, the framework naturally transitions to conformal OOD inference, which translates uncertainty scores into statistically valid p-values and enables thresholds with formal error guarantees, providing a pathway toward more predictable and reliable OOD detection.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=odLc0zNtyX",
+  "arxiv": "https://arxiv.org/abs/2603.08413",
+  "pdf": "https://raw.githubusercontent.com/mlresearch/v306/main/assets/karzanov26a/karzanov26a.pdf",
+  "proceedings": "https://proceedings.mlr.press/v306/karzanov26a.html",
+  "virtual": "https://icml.cc/virtual/2026/poster/61590",
+  "code": null
+ },
+ "license": "http://arxiv.org/licenses/nonexclusive-distrib/1.0/",
+ "img": "none",
+ "image_url": null,
+ "thumb_url": null,
+ "figure_page": 3,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.95
+}

@@ -1,0 +1,49 @@
+{
+ "id": "neurips26-5631",
+ "title": "Learned Lagrangian Models of PDEs via Euler–Lagrange Residual Minimization",
+ "authors": [
+  "Lyra Zhornyak",
+  "Eric Forgoston",
+  "M. Ani Hsieh"
+ ],
+ "venue": "NeurIPS 2026",
+ "tier": "spotlight",
+ "track": "main",
+ "topic": "Applications->Physics",
+ "role": "pipeline",
+ "role2": null,
+ "claim": "A complex solver decomposes into nested local, patch, and global stages that loop to advance the solution one step.",
+ "layout": "3 stacked colored bands, flow loops clockwise, math inside each box",
+ "tags": [
+  "pipeline",
+  "hierarchical",
+  "iterative-refinement",
+  "physics-informed",
+  "multi-scale"
+ ],
+ "style": [
+  "math-heavy",
+  "colorful",
+  "minimal"
+ ],
+ "description": "A block diagram with three horizontal color-coded bands: green Global at top, yellow-orange Patch in the middle, blue Local at bottom. Left to right, a white Prior box feeds an Estimate box and then a Newton Refine box, which outputs a white Next box. A loop labelled ×n_r drops from Newton Refine down through Interpolate, then Sample, then EL Residual. The EL Residual box also receives input from a white Learned Lagrangian box at lower left. The flow then goes up through Patch Error and returns to the Global band with J and its gradient and Hessian. Boxes carry the key equations: the Newton update, the Hermite interpolation, the patch error sum, and the Euler–Lagrange residual. Gray arrows and the bold band titles draw the eye first.",
+ "caption": "The construction of ELM at three scales. Local: the squared Euler--Lagrange residual \\(R^2\\) is computed from the learned Lagrangian \\(\\mathcal{L}\\) and evaluated at \\(n_\\omega\\) quadrature points. Patch: Hermite interpolation fits a set of basis functions to known node states to form \\(\\hat{q}\\). The resulting residuals are summed to form the patch error \\(J\\). Global: an initial estimate \\(\\gamma^{(0)}\\) is refined by damped Newton iteration using \\(J\\); iterating \\(n_r\\) times around the loop advances the solution by one time step.",
+ "caption_source": "latex",
+ "abstract": "We present the first method to directly use a learned continuous Lagrangian to forecast the dynamics of systems governed by partial differential equations, exploiting the inherent conservative structure to achieve stable long-range predictions. We develop an integrator that minimizes the squared Euler-Lagrange residual via a discretization-agnostic, structure-preserving construction on local space-time patches. Different from integrators for analytical models, integrators for learned models should decouple model error (phase error) from integration error (conservation error). By minimizing the residual locally on overlapping patches, we bypass the global implicit solve inherent to fixed discretizations, which slows time- and space-stepping and complicates learning. Our method scales linearly with domain size via Jacobi iteration, and places no structural requirements on the learned network, allowing it to be coupled with existing physics-guided machine learning (ML) methods. We validate our approach on a learned representation of a double pendulum, a one-dimensional wave equation, and a two-dimensional wave equation. Our method achieves long-horizon predictions with error comparable to classical symplectic methods while generalizing to spatially varying dynamics and arbitrary boundary conditions without retraining.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=clkBSNjrrR",
+  "arxiv": "https://arxiv.org/abs/2605.07157",
+  "pdf": "https://arxiv.org/pdf/2605.07157",
+  "proceedings": null,
+  "virtual": "https://neurips.cc/virtual/2026/poster/151132",
+  "code": "https://lzhornyak.github.io/Euler-Lagrange-Minimization/"
+ },
+ "license": "http://creativecommons.org/licenses/by/4.0/",
+ "img": "cc-by",
+ "image_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/images/neurips26-5631.png",
+ "thumb_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/thumbs/neurips26-5631.webp",
+ "figure_page": 2,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.93
+}

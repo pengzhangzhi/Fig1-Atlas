@@ -1,0 +1,57 @@
+{
+ "id": "icml26-4079",
+ "title": "Beyond VLM-Based Rewards: Diffusion-Native Latent Reward Modeling",
+ "authors": [
+  "Gongye Liu",
+  "Bo Yang",
+  "Zhi Yida",
+  "Zhizhou Zhong",
+  "Lei Ke",
+  "Didan Deng",
+  "Han Gao",
+  "Yongxiang Huang",
+  "Kaihao Zhang",
+  "Hongbo Fu",
+  "Wenhan Luo"
+ ],
+ "venue": "ICML 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "Deep Learning->Generative Models and Autoencoders",
+ "role": "pipeline",
+ "role2": null,
+ "claim": "Preference learning directly on noisy states with noise-calibrated uncertainty, scored by a timestep-conditioned reward network, yields a diffusion-native reward model.",
+ "layout": "2 panels, left-to-right flow with bottom loss loop; right architecture stack top-to-bottom",
+ "tags": [
+  "reward-model",
+  "diffusion-native",
+  "preference-learning",
+  "noise-calibration",
+  "latent-space"
+ ],
+ "style": [
+  "icon-heavy",
+  "math-heavy",
+  "colorful"
+ ],
+ "description": "Two-part diagram. The left panel, on a gray rounded background, shows inputs (text prompt c, timestep t, image x0 with a noise level σ(t) swatch) arrows feeding a dashed blue box labeled DiNa-LRM. Its output r_θ(x_t,t,c) goes to a Thurstone Model box, then down to a dashed blue predicted-distribution bell curve. At the bottom, a clean narrow Gaussian maps to a wider noise-calibrated Gaussian with variance k·σ²(t)+σ_u². A double-headed arrow labeled fidelity loss links it to the predicted curve. The right panel, in a light-blue dashed container, is a vertical architecture: image, text and timestep inputs feed a Diffusion Backbones box. Visual and text features pass through two FiLM Modulation blocks, then a Gated Q-Former and MLP, ending in a reward score.",
+ "caption": "Overview of \\ourrm. Left: Diffusion-native Preference Learning. During training, clean preference pairs $(x_0^+, x_0^-, c)$ are perturbed to noisy states $(x_t^+, x_t^-)$ and evaluated by a time-conditioned reward model $r_\\theta$. We employ a noise-calibrated Thurstone likelihood where comparison variance scales with the diffusion noise level $\\sigma_t$, and optimize via a fidelity loss $\\mathcal{L}$. Right: Latent Reward Architecture. Multi-layer visual and text features extracted from a latent diffusion backbone are FiLM-modulated by timestep embeddings $t_{emb}$. These features are aggregated through a gated Q-Former and an MLP to produce a scalar reward score.",
+ "caption_source": "latex",
+ "abstract": "Preference optimization for diffusion and flow-matching models relies on reward functions that are both discriminatively robust and computationally efficient. Vision-Language Models (VLMs) have emerged as the primary reward provider, leveraging their rich multimodal priors to guide alignment. However, their computation and memory cost can be substantial, and optimizing a latent diffusion generator through a pixel-space reward introduces a domain mismatch that complicates alignment. In this paper, we propose DiNa-LRM, a diffusion-native latent reward model that formulates preference learning directly on noisy diffusion states. Our method introduces a noise-calibrated Thurstone likelihood with diffusion-noise-dependent uncertainty. DiNa-LRM leverages a pretrained latent diffusion backbone with a timestep-conditioned reward head, and supports inference-time noise ensembling, providing a diffusion-native mechanism for test-time scaling and robust rewarding. Across image alignment benchmarks, DiNa-LRM substantially outperforms existing diffusion-based reward baselines and achieves performance competitive with state-of-the-art VLMs at a fraction of the computational cost. In preference optimization, we demonstrate that DiNa-LRM improves preference optimization dynamics, enabling faster and more resource-efficient model alignment.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=cPDN8YlKdQ",
+  "arxiv": "https://arxiv.org/abs/2602.11146",
+  "pdf": "https://raw.githubusercontent.com/mlresearch/v306/main/assets/liu26fh/liu26fh.pdf",
+  "proceedings": "https://proceedings.mlr.press/v306/liu26fh.html",
+  "virtual": "https://icml.cc/virtual/2026/poster/62868",
+  "code": "https://github.com/HKUST-C4G/diffusion-rm"
+ },
+ "license": "http://creativecommons.org/licenses/by/4.0/",
+ "img": "cc-by",
+ "image_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/images/icml26-4079.png",
+ "thumb_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/thumbs/icml26-4079.webp",
+ "figure_page": 3,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.9
+}

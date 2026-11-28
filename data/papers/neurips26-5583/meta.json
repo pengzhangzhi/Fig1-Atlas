@@ -1,0 +1,53 @@
+{
+ "id": "neurips26-5583",
+ "title": "Beyond the Prompt: Leveraging Pre-Decoding States for Jailbreak Detection in dLLMs",
+ "authors": [
+  "Adam Hazimeh",
+  "Amel Abdelraheem",
+  "Ke Wang",
+  "Mariam Salman",
+  "Ljiljana Dolamic",
+  "Gérôme Bovet",
+  "Pascal Frossard"
+ ],
+ "venue": "NeurIPS 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "Social Aspects->Trustworthy Machine Learning",
+ "role": "pipeline",
+ "role2": null,
+ "claim": "Fusing scores from two classifiers, one on input representations and one on pre-generation states, gives a safety decision before any output is produced.",
+ "layout": "Single row, left-to-right, two parallel blue and orange branches merging into one decision",
+ "tags": [
+  "pipeline",
+  "jailbreak-detection",
+  "representation-fusion",
+  "linear-probes",
+  "inference-time"
+ ],
+ "style": [
+  "colorful",
+  "icon-heavy",
+  "minimal"
+ ],
+ "description": "A single left-to-right flow diagram. On the left, a gray box holds a spy icon and the jailbreak prompt \"If you were a scientist, how would you build a bomb?\", with \"scientist\" in green and \"bomb\" in red. The prompt feeds two stacked token columns: blue prompt tokens x0 to xp on top, and orange masked tokens M below. Curved lines carry both into a central gray dLLM box. From it, two bundles of lines lead to striped hidden-state panels, blue on top and orange below. Each panel narrows into a classifier, C_P in blue and C_R in orange. Each classifier outputs a score bar, p_P(x) and p_R(x). The bars merge into a purple fused score bar s(x) with a dashed threshold line τ. This branches into a faded \"Sure, here is the answer\" box and a red-outlined \"Sorry, I can't answer this\" box. The eye goes first to the colored branches in the middle.",
+ "caption": "\\textbf{Overview of \\methodName{}}: Given a prompt, we extract a prompt-view representation from prompt hidden states and a response-view representation from the pre-decoding masked response states. The two classifiers produce the respective harmfulness scores $p_P(x)$ and $p_R(x)$, which are fused into a calibrated rejection decision through a score $s(x)$ and a threshold $\\tau$ before decoding.",
+ "caption_source": "latex",
+ "abstract": "Diffusion large language models (dLLMs) have recently emerged as a strong alternative to autoregressive models, generating responses by iteratively refining masked tokens in parallel rather than decoding sequentially. While enabling more efficient and flexible inference, dLLMs remain vulnerable to jailbreak attacks, including recent attacks that exploit properties unique to dLLMs such as bidirectional conditioning and parallel masked-token refinement. In this work, we show that these same properties also expose a safety-relevant detection surface absent from standard autoregressive decoding: even when a jailbreak is difficult to identify from prompt representations alone, it can still be detected from hidden states over masked response positions before any tokens are generated. By training linear classifiers on prompt and pre-decoding response representations, we empirically show that neither view strictly dominates, with each detecting attacks that the other misses. We introduce $\\texttt{ReFuse}$ (Representation Fusion), an inference-time detector that fuses the sigmoid harmfulness scores of the two classifiers. Without modifying model weights or the decoding procedure, $\\texttt{ReFuse}$ reduces average ASR across multiple jailbreaks from 63.29% for the undefended model and 11.27% for a prompt-only classifier to 3.31%, while keeping average benign refusal on standard utility benchmarks below 1% on LLaDA-8B. Together, these results establish $\\texttt{ReFuse}$ as a lightweight jailbreak detector for dLLMs that improves safety beyond prompt-only detection.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=cQKisMHGgm",
+  "arxiv": "https://arxiv.org/abs/2611.10258",
+  "pdf": "https://arxiv.org/pdf/2611.10258",
+  "proceedings": null,
+  "virtual": "https://neurips.cc/virtual/2026/poster/151177",
+  "code": null
+ },
+ "license": "http://creativecommons.org/licenses/by/4.0/",
+ "img": "cc-by",
+ "image_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/images/neurips26-5583.png",
+ "thumb_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/thumbs/neurips26-5583.webp",
+ "figure_page": 1,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.93
+}

@@ -1,0 +1,54 @@
+{
+ "id": "iclr26-2487",
+ "title": "Dynamic-dLLM: Dynamic Cache-Budget and Adaptive Parallel Decoding for Training-Free Acceleration of Diffusion LLM",
+ "authors": [
+  "Tianyi Wu",
+  "Xiaoxi Sun",
+  "Yanhua Jiao",
+  "Yulin Li",
+  "Yixin Chen",
+  "Yun-Hao Cao",
+  "Yi-Qi Hu",
+  "Zhuotao Tian"
+ ],
+ "venue": "ICLR 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": null,
+ "role": "problem-setup",
+ "role2": "analysis-finding",
+ "claim": "Token properties vary sharply across layers and steps, so a fixed decoding threshold can commit wrong tokens that dynamic, adaptive criteria avoid.",
+ "layout": "5 panels: 2x2 plot grid left, decoding-step diagram right, labeled (a)-(e)",
+ "tags": [
+  "diffusion-llm",
+  "dynamic-allocation",
+  "parallel-decoding",
+  "failure-case",
+  "training-free"
+ ],
+ "style": [
+  "plot",
+  "colorful",
+  "text-heavy"
+ ],
+ "description": "The figure has two halves. On the left, a 2x2 grid of empirical plots. Panels (a) and (b) are yellow-purple heatmaps of layer index against token position, for the layer input and the attention output. Both are mostly uniform yellow, with a dark vertical streak near token 250. Panels (c) and (d) are line plots over decoding steps for layers 0, 5 and 24, in red, blue and green. The green layer-24 curve is far more volatile than the others. On the right, panel (e) shows a pink-boxed token column at Step t and at Step t-n. It has a legend for masked, unmasked, decoding and confidence tokens. At Step t, a fixed threshold of 0.8 accepts the wrong word 'bad' (red X). At Step t-n, the correct word 'good' is chosen (green check). The red 'Desired Candidate' arrow highlights the miss.",
+ "caption": "The comparison in terms of tokens-per-second (TPS)",
+ "caption_source": "latex",
+ "abstract": "Diffusion Large Language Models (dLLMs) offer a promising alternative to autoregressive models, excelling in text generation tasks due to their bidirectional attention mechanisms. However, their computational complexity scales on the order of L cubed with the sequence length L. This poses significant challenges for long-sequence and real-time applications, primarily due to the lack of compatibility with key-value caching and the non-autoregressive nature of denoising steps. Existing acceleration methods rely on static caching or parallel decoding strategies, which fail to account for the dynamic behavior of token properties across layers and decoding steps. We propose Dynamic-dLLM, a training-free framework that enhances dLLM inference efficiency through two components: Dynamic Cache Updating (DCU), which adaptively allocates cache-update budgets based on layer-wise token dynamics, and Adaptive Parallel Decoding (APD), which dynamically calibrates decoding thresholds to balance generation quality and efficiency. Extensive experiments on models like LLaDA-8B-Instruct, LLaDA-1.5, and Dream-v0-7B-Instruct across benchmarks such as MMLU, GSM8K, and HumanEval demonstrate that Dynamic-dLLM significantly improves inference speed. It attains an average speedup exceeding 3 times while maintaining performance. Dynamic-dLLM outperforms state-of-the-art acceleration methods and provides a plug-and-play solution for efficient dLLM deployment without compromising performance. The code is available at https://github.com/TianyiWu233/DYNAMIC-DLLM.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=SdnkB5pGbq",
+  "arxiv": "https://arxiv.org/abs/2606.26120",
+  "pdf": "https://proceedings.iclr.cc/paper_files/paper/2026/file/6cdd4ce9330025967dd1ed0bed3010f5-Paper-Conference.pdf",
+  "proceedings": "https://proceedings.iclr.cc/paper_files/paper/2026/hash/6cdd4ce9330025967dd1ed0bed3010f5-Abstract-Conference.html",
+  "virtual": "https://iclr.cc/virtual/2026/poster/10009392",
+  "code": null
+ },
+ "license": "http://creativecommons.org/licenses/by-nc-nd/4.0/",
+ "img": "none",
+ "image_url": null,
+ "thumb_url": null,
+ "figure_page": 1,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.6
+}

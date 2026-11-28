@@ -1,0 +1,48 @@
+{
+ "id": "neurips26-6664",
+ "title": "Ordered Policy Optimization",
+ "authors": [
+  "Dongkyu (Derek) Cho",
+  "Pan Xu"
+ ],
+ "venue": "NeurIPS 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "Reinforcement Learning->Deep RL",
+ "role": "prior-vs-ours",
+ "role2": "pipeline",
+ "claim": "Fixed scalar thresholds only catch extreme values crudely; ordering samples and assigning adaptive per-rank targets gives finer tail control.",
+ "layout": "Top input box feeding 2 side-by-side plots, OPO left, PPO right",
+ "tags": [
+  "order-statistics",
+  "adaptive-clipping",
+  "policy-optimization",
+  "tail-control",
+  "prior-vs-ours"
+ ],
+ "style": [
+  "minimal",
+  "plot",
+  "colorful"
+ ],
+ "description": "A rounded box at the top lists importance ratios r1 to rn as open circles. Two arrows run down from it. A solid blue arrow labeled 'Ordered' leads to the left panel, and a dashed grey arrow leads to the right panel. The left panel, titled OPO in blue, plots the sorted ratios r(1) to r(n) against order index. A rising blue curve of filled dots marks 'GPD quantile targets'. Dashed blue arrows point from each open-circle ratio to its target dot, some up and some down. The right panel, titled PPO in orange-red, plots the same ratios against a single horizontal dashed 'Threshold' line. A hatched region above the line contains the largest ratios, r(n-1) and r(n). Blue is used for the proposed method and orange for the baseline.",
+ "caption": "Overview of OPO. A minibatch of importance ratios is ordered, and the empirical tails are assigned teacher targets induced by a prescribed generalized Pareto tail profile. This yields adaptive sample-wise proximal targets, thereby replacing scalar clipping with order-based tail control. In contrast, PPO imposes the same scalar clipping boundary across ratios.",
+ "caption_source": "latex",
+ "abstract": "Proximal Policy Optimization (PPO) stabilizes policy updates by clipping the importance ratio between the new policy and the data-collecting policy. The standard rule uses one fixed clipping range for all samples. While this choice offers simplicity and effectiveness, it fails to distinguish statistically harmful extreme ratio values from large, yet tolerable changes. We study how to adapt the clipping radius to the reliability of the induced importance ratio distribution. Our case study demonstrates that reliable updates require controlling these extreme ratios, rather than merely verifying that individual ratios fall within a fixed interval. Motivated by this observation, we propose Ordered Policy Optimization (\\textsc{OPO}). In each minibatch, \\textsc{OPO} sorts the importance ratios, selects the extreme ratios that potentially have the largest effect on the update, and assigns them adaptive sample-wise radii instead of using the fixed clipping radius. These radii are derived from a prescribed tail profile, which specifies desired target values for the selected extreme ratios. The resulting objective remains first-order and requires only minibatch sorting and a modified policy loss. Experiments conducted on MuJoCo and Atari benchmarks demonstrate that this simple modification achieves strong performance relative to established baselines.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=jrmv9JPeKh",
+  "arxiv": "https://arxiv.org/abs/2611.08936",
+  "pdf": "https://arxiv.org/pdf/2611.08936",
+  "proceedings": null,
+  "virtual": "https://neurips.cc/virtual/2026/poster/150221",
+  "code": null
+ },
+ "license": "http://arxiv.org/licenses/nonexclusive-distrib/1.0/",
+ "img": "none",
+ "image_url": null,
+ "thumb_url": null,
+ "figure_page": 1,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.6
+}

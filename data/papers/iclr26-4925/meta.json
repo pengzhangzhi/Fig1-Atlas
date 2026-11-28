@@ -1,0 +1,51 @@
+{
+ "id": "iclr26-4925",
+ "title": "SumRA: Parameter Efficient Fine-tuning with Singular Value Decomposition and Summed Orthogonal Basis",
+ "authors": [
+  "Chin Yuen Kwok",
+  "Yongsen Zheng",
+  "Jia Qi Yip",
+  "Kwok Yan Lam",
+  "Ensiong Chng"
+ ],
+ "venue": "ICLR 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "Theory->Domain Adaptation and Transfer Learning",
+ "role": "prior-vs-ours",
+ "role2": "pipeline",
+ "claim": "Existing fine-tuning schemes train all weights or use random or leading-vector low-rank adapters; ours changes only the adapter initialization.",
+ "layout": "4 panels left-to-right separated by red dashed lines, shared X→Y structure",
+ "tags": [
+  "parameter-efficient-fine-tuning",
+  "low-rank-adaptation",
+  "initialization",
+  "svd",
+  "baseline-comparison"
+ ],
+ "style": [
+  "minimal",
+  "math-heavy",
+  "colorful"
+ ],
+ "description": "Four side-by-side panels, A to D, separated by red dashed vertical lines, compare fine-tuning schemes for one linear layer. Each panel has the same layout: input X as a gray bar at the bottom, output Y as a gray bar at the top, and black arrows running upward. A. Full fine-tuning shows a single orange (trainable) 'Pretrained Matrix W0 in R^{d×k}' box. B. LoRA shows a blue (frozen) pretrained matrix box beside a parallel low-rank branch of two orange trapezoids: B=0 on top and A~N(0,σ²) below, with a bracket labelled r between them. C. PiSSA has the same structure, with a residual matrix W^res and a SVD(W0)=UΣV^T annotation. B and A are filled with truncated singular-vector expressions. D. SumRA (ours) matches LoRA and PiSSA, but A is set to sum(Σ^{1/2}V^T). The colors blue and orange show which parts are frozen and which are trainable. The eye goes first to the orange boxes and the bold panel titles.",
+ "caption": "Comparison of full fine-tuning, LoRA, PiSSA, and our SumRA method. Only the pretrained matrix W0 of a linear layer is shown for simplicity. Blue modules indicate frozen parameters, orange modules are trainable. A) Full fine-tuning updates all of W0; B) LoRA freezes W0 and trains two low-rank matrices; C) PiSSA initializes A and B from singular vectors; D) SumRA enhances PiSSA with a novel initialization of A (see Fig. 2 and 3).",
+ "caption_source": "pdf",
+ "abstract": "Parameter-efficient fine-tuning (PEFT) aims to adapt large pretrained speech models using fewer trainable parameters while maintaining performance. Low-Rank Adaptation (LoRA) achieves this by decomposing weight updates into two low-rank matrices, $A$ and $B$, such that $W'=W_0+BA$. Previous studies showed that freezing $A$ and only updating $B$ can reduce trainable parameters and achieve performance close to standard LoRA, where $A$ is initialized using the principal singular vectors of $W_0$ obtained via singular value decomposition (SVD). However, because $A$ is typically initialized with only the leading singular vectors, its representation capacity is confined to a narrow subspace of the model’s knowledge. To overcome this limitation, we propose SumRA, which initializes each row of $A$ as a sum of multiple singular vectors chosen from beyond the leading components, thereby enabling $A$ to influence a larger portion of the model’s knowledge space. Experiments on multilingual automatic speech recognition (ASR) tasks show that by adapting Whisper to five new languages from Common Voice with only 10 hours of data each, our method improves word error rate from 14.42\\% to 12.41\\% over LoRA baselines while using 50\\% less trainable parameters.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=v23Pqcm6qp",
+  "arxiv": null,
+  "pdf": "https://proceedings.iclr.cc/paper_files/paper/2026/file/93b11b5128ced940120f41ce9b216f39-Paper-Conference.pdf",
+  "proceedings": "https://proceedings.iclr.cc/paper_files/paper/2026/hash/93b11b5128ced940120f41ce9b216f39-Abstract-Conference.html",
+  "virtual": "https://iclr.cc/virtual/2026/poster/10006848",
+  "code": null
+ },
+ "license": null,
+ "img": "none",
+ "image_url": null,
+ "thumb_url": null,
+ "figure_page": 1,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.85
+}

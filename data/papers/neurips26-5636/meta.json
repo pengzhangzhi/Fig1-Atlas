@@ -1,0 +1,50 @@
+{
+ "id": "neurips26-5636",
+ "title": "CanViT: Toward Active-Vision Foundation Models",
+ "authors": [
+  "Yohaï-Eliel BERREBY",
+  "Sabrina Du",
+  "Audrey Durand",
+  "B. S Krishna"
+ ],
+ "venue": "NeurIPS 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "Computer Vision->Vision Models & Multimodal",
+ "role": "pipeline",
+ "role2": "teaser-result",
+ "claim": "A sequence of small, variable-zoom glimpses incrementally builds a scene-wide latent memory that fills in and refines understanding of the whole scene.",
+ "layout": "2 panels: scene with glimpse path (left), time-aligned glimpse/canvas/delta rows (right)",
+ "tags": [
+  "active-vision",
+  "sequential-glimpses",
+  "working-memory",
+  "rollout",
+  "representation-visualization"
+ ],
+ "style": [
+  "photo/real data",
+  "colorful",
+  "plot"
+ ],
+ "description": "Panel A shows a high-resolution photo of a colorful food truck with normalized axes running from -1 to 1. Four blue boxes of different sizes mark glimpse crops, each with a grid overlay and labeled with its x, y and s values. Numbered gray circles 0 to 3 are joined by white arrows that trace the viewing path. Panel B has a time axis t = 0 to 3. Above each column is a blue header with the viewpoint tuple v_t and its numeric values. Three rows sit below the headers. The Glimpse row (blue border) shows the cropped views. The Canvas row (red border) shows PCA-colored scene-wide features, joined by red arrows, with dashed boxes marking the current glimpse location. The Canvas Δ row (black border) shows cosine-dissimilarity heatmaps in a purple-to-yellow colormap. The eye goes first to the photo with its glimpse path, then across the columns.",
+ "caption": "A CanViT rollout. We consider a high-resolution scene (A). At each timestep $t$, CanViT ingests a $128^2\\,px$ glimpse (B, 1st row), a crop extracted at a viewpoint with center $(x_t, y_t) \\in [-1,+1]^2$ and scale (zoom level) $s_t \\in (0,1]$. This updates a scene-wide latent representation, the canvas, with which CanViT integrates broad context and fine detail from variable-scale glimpses, extrapolates to unobserved regions, and conditions visual processing on a working understanding of the scene. We visualize the canvas via Principal Component Analysis across tokens (B, 2nd row), and canvas updates $(\\Delta)$ as cosine dissimilarity heatmaps across consecutive timesteps (B, 3rd row).",
+ "caption_source": "latex",
+ "abstract": "Active computer vision promises efficient, biologically plausible perception through sequential, localized glimpses, but lacks scalable general-purpose architectures and pretraining pipelines, leaving Active-Vision Foundation Models (AVFMs) underexplored. We introduce the Canvas Vision Transformer (CanViT), the first task- and policy-agnostic AVFM. CanViT uses scene-relative RoPE to bind a retinotopic Vision Transformer backbone and a spatiotopic scene-wide latent workspace, the canvas. Efficient interaction with this high-capacity working memory is supported by Canvas Attention, a novel asymmetric cross-attention mechanism. We decouple thinking (backbone-level) and memory (canvas-level), eliminating canvas-side self-attention and fully-connected layers to achieve fast sequential inference and scalability to high output resolutions. We propose a label-free active vision pretraining scheme, policy-agnostic passive-to-active dense latent distillation: reconstructing scene-wide DINOv3 embeddings from sequences of low-resolution glimpses with randomized locations, zoom levels, and lengths. We pretrain CanViT-B from a random initialization on 13.2 million ImageNet-21k scenes and 1 billion random glimpses, in 166 hours on a single H100. On ADE20K segmentation, a frozen CanViT-B achieves 38.5% mIoU in a single low-resolution glimpse, outperforming the best active model's 27.6% with 20x fewer inference FLOPs as well as its FLOP- or input-matched DINOv3 teacher. Given additional glimpses, CanViT-B reaches 45.9% ADE20K mIoU. On ImageNet-1k classification, CanViT-B also sets a new active-vision state of the art, with 84.5% top-1 accuracy after fine-tuning. CanViT generalizes to longer rollouts, larger scenes, and new policies. Our work narrows the wide gap between passive and active computer vision, demonstrating the potential of task- and policy-agnostic AVFM pretraining.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=cnV9GA4pKU",
+  "arxiv": "https://arxiv.org/abs/2603.22570",
+  "pdf": "https://arxiv.org/pdf/2603.22570",
+  "proceedings": null,
+  "virtual": "https://neurips.cc/virtual/2026/poster/151128",
+  "code": "https://m2b3.github.io/CanViT/"
+ },
+ "license": "http://creativecommons.org/licenses/by/4.0/",
+ "img": "cc-by",
+ "image_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/images/neurips26-5636.png",
+ "thumb_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/thumbs/neurips26-5636.webp",
+ "figure_page": 1,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.55
+}

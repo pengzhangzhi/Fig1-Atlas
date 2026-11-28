@@ -1,0 +1,54 @@
+{
+ "id": "iclr26-0821",
+ "title": "RLP: Reinforcement as a Pretraining Objective",
+ "authors": [
+  "Ali Hatamizadeh",
+  "Syeda Nahida Akter",
+  "Shrimai Prabhumoye",
+  "Jan Kautz",
+  "Mostofa Patwary",
+  "Mohammad Shoeybi",
+  "Bryan Catanzaro",
+  "Yejin Choi"
+ ],
+ "venue": "ICLR 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": null,
+ "role": "pipeline",
+ "role2": "prior-vs-ours",
+ "claim": "Sampling a reasoning step before prediction and rewarding its information gain over a no-reasoning baseline gives a dense, verifier-free signal that beats standard pretraining.",
+ "layout": "4 panels in 2x2 grid; flow diagram bottom-left, results and comparison table on top",
+ "tags": [
+  "reinforcement-pretraining",
+  "chain-of-thought",
+  "dense-reward",
+  "verifier-free",
+  "information-gain"
+ ],
+ "style": [
+  "colorful",
+  "plot",
+  "text-heavy"
+ ],
+ "description": "A 2x2 grid of rounded panels with dashed borders. Top left (green) is a grouped bar chart comparing Base, Base+RLP, Base+Post and Base+RLP+Post on four averaged benchmarks. Next to it are three green checkmark bullets listing RLP's advantages. Top right (red) is a comparison table of next-token prediction against RLP. Its rows are objective, signal type, reasoning behavior and reward source, and it ends with a one-line pipeline summary for each. Bottom left is the main method diagram. The context x<t feeds a No-think EMA baseline and a Thought Policy. The policy samples CoT traces z1..zG. These are combined with the baseline into an information-gain reward, giving dense rewards r1..rG. Bottom right shows two side-by-side examples of the photosynthesis sentence, one for plain next-token prediction and one for RLP with a think block in red.",
+ "caption": "\\textbf{Visualization of the \\ours{} framework.} A chain-of-thought is sampled before next-token prediction. Rewards are computed by contrasting the predictor conditioned on the CoT with a No-think EMA baseline, yielding a verifier-free, dense signal. We list the advantages of \\ours{} over the traditional pretraining objective (top right) and show the impact after end-to-end training (top left).",
+ "caption_source": "latex",
+ "abstract": "The dominant paradigm for training large reasoning models starts with pre-training using next-token prediction loss on vast amounts of data. Reinforcement learning, while powerful in scaling reasoning, is introduced only as the very last phase of post-training, preceded by supervised fine-tuning. While dominant, is this an optimal way of training? In this paper, we present RLP, an information-driven reinforcement pretraining objective, that brings the core spirit of reinforcement learning -- exploration -- to the last phase of pretraining. The key idea is to treat chain-of-thought as an exploratory action, with rewards computed based on the information gain it provides for predicting future tokens. This training objective essentially encourages the model to think for itself before predicting what comes next, thus teaching an independent thinking behavior earlier in the pretraining. More concretely, the reward signal measures the increase in log-likelihood of the next token when conditioning on both context and a sampled reasoning chain, compared to conditioning on context alone. This approach yields a verifier-free dense reward signal, allowing for efficient training for the full document stream during pretraining. Specifically, RLP reframes reinforcement learning for reasoning as a pretraining objective on ordinary text, bridging the gap between next-token prediction and the emergence of useful chain-of-thought reasoning. Pretraining with RLP on Qwen3-1.7B-Base lifts the overall average across an eight-benchmark math-and-science suite by 19%. With identical post-training, the gains compound, with the largest improvements on reasoning-heavy tasks such as AIME25 and MMLU-Pro. Applying RLP to the Nemotron-Nano-12B-v2 increases the overall average from 42.81% to 61.32% and raises the average on scientific reasoning by 23%, demonstrating scalability across architectures and model sizes.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=9Gp45bnDrJ",
+  "arxiv": "https://arxiv.org/abs/2510.01265",
+  "pdf": "https://proceedings.iclr.cc/paper_files/paper/2026/file/44a45e27879b8fbab6e123ad8b93afc2-Paper-Conference.pdf",
+  "proceedings": "https://proceedings.iclr.cc/paper_files/paper/2026/hash/44a45e27879b8fbab6e123ad8b93afc2-Abstract-Conference.html",
+  "virtual": "https://iclr.cc/virtual/2026/poster/10011129",
+  "code": null
+ },
+ "license": "http://creativecommons.org/licenses/by-sa/4.0/",
+ "img": "cc-by-sa",
+ "image_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/images/iclr26-0821.png",
+ "thumb_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/thumbs/iclr26-0821.webp",
+ "figure_page": 1,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.6
+}

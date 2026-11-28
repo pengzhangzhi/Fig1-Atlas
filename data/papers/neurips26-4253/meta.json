@@ -1,0 +1,54 @@
+{
+ "id": "neurips26-4253",
+ "title": "Why DiT Models Underperform as Representation Learners without Long Skip Connections",
+ "authors": [
+  "Benyuan Meng",
+  "Yiliang Zhang",
+  "Jin-Wen Wu",
+  "Qianqian Xu",
+  "Qingming Huang",
+  "Longtao Huang"
+ ],
+ "venue": "NeurIPS 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "Computer Vision->Image and Video Generation",
+ "role": "prior-vs-ours",
+ "role2": "analysis-finding",
+ "claim": "Models without a given architectural shortcut yield weaker representations; adding the shortcut bypasses the harmful signal and restores feature quality.",
+ "layout": "3 panels left-to-right: scatter plot, block diagram with samples, U-Net vs bypass sketch",
+ "tags": [
+  "skip-connections",
+  "diffusion-features",
+  "representation-learning",
+  "mechanism-diagnosis",
+  "architecture-comparison"
+ ],
+ "style": [
+  "colorful",
+  "plot",
+  "icon-heavy"
+ ],
+ "description": "A three-part figure separated by dashed lines. Panel (a) is a scatter/line plot of understanding capability against rough generation capability. Blue U-Net models (SD1.5, SD2.1, SDXL, PGV2) sit high on the left. Orange DiT models (PixArt-Sigma, SD3.5M, SD3.5L, Flux) sit lower and further right. Circle size marks model size. Panel (b) shows a peach DiT block of self-attention, cross-attention and feedforward boxes, labeled 'LSCs Rare In DiTs'. Beside it, noisy feature visualizations compare PixArt-Sigma, which is noisier, with SD XL, which is cleaner, linked by a pink arrow reading 'More Noises Without LSCs'. Panel (c) shows a light-blue U-Net with dashed orange LSC arrows, labeled 'LSCs Common In U-Nets'. Next to it is a gray looping-arrow sketch labeled 'LSCs Enable Noise Bypassing'. Orange and blue encode DiT versus U-Net.",
+ "caption": "(a) Compared with U-Net diffusion models, DiT models yield diffusion features with relatively low understanding capability. (b) Most DiTs do not have LSCs, so the diffusion noise has to go through the target reconstruction section, causing features in this section to degrade. (c) We reveal a unique function of long skip connections (LSCs) in diffusion backbones: they work as shortcuts to transport the diffusion noise directly from the downsampling stage to the upsampling stage, thus bypassing the middle section, where the most performative diffusion features can be extracted.",
+ "caption_source": "latex",
+ "abstract": "Diffusion feature, i.e., intermediate activations extracted from diffusion model backbones, has emerged as a promising approach for unifying generation and vision understanding (discrimination). Despite the advancement of diffusion backbones into Diffusion Transformers (DiT), it has been found in previous literature that DiT models tend to yield weaker features despite their stronger generation capability. This poses a threat to good generation-understanding unification. In this work, we show via controlled from-scratch training that long skip connections (LSCs) affect feature quality: a DiT with LSCs can produce better features. Furthermore, through detailed diagnosis, we reveal the mechanism causing this effect. Specifically, the input to a diffusion backbone contains both the latent image and the diffusion noise, where the diffusion noise, though appearing in the form of noises, actually reflects the information of the diffusion trajectory. To make the final prediction of a noisy variable ($v$ or $Îµ$), the diffusion backbone needs both signals. However, carrying both signals through the main backbone effectively \"pollutes\" the image signal with noises, leading to poor feature quality. In comparison, LSCs can shortcut diffusion noises directly to where they are needed, leaving much weaker noise signals in the main backbone, thus improving feature quality. To name the broader impact, this reveals that LSCs are not a mere trick but closely related to the diffusion objective. The code is at https://github.com/Darkbblue/dit-lsc.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=TaIg0lLzG9",
+  "arxiv": "https://arxiv.org/abs/2610.13344",
+  "pdf": "https://arxiv.org/pdf/2610.13344",
+  "proceedings": null,
+  "virtual": "https://neurips.cc/virtual/2026/poster/152368",
+  "code": "https://github.com/Alibaba-VELLDEPTH/dit-lsc"
+ },
+ "license": "http://creativecommons.org/licenses/by/4.0/",
+ "img": "cc-by",
+ "image_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/images/neurips26-4253.png",
+ "thumb_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/thumbs/neurips26-4253.webp",
+ "figure_page": 1,
+ "qc_flags": [
+  "low-role-confidence"
+ ],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.4
+}

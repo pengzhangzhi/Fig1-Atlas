@@ -1,0 +1,52 @@
+{
+ "id": "neurips26-6381",
+ "title": "Pruning and Distilling Mixture-of-Experts into Dense Language Models",
+ "authors": [
+  "Junhyuck Kim",
+  "Jihun Yun",
+  "Haechan Kim",
+  "Gyeongman Kim",
+  "Joonghyun Bae",
+  "Jaewoong Cho"
+ ],
+ "venue": "NeurIPS 2026",
+ "tier": "oral",
+ "track": "main",
+ "topic": "Applications->Language, Speech and Dialog",
+ "role": "pipeline",
+ "role2": "teaser-result",
+ "claim": "Converting a sparse expert model into a dense one via select, group, concatenate and distill beats pruning a dense model or training from scratch.",
+ "layout": "3 panels left-to-right: bar chart, then expert scoring/grouping, then concatenation and distillation stacked",
+ "tags": [
+  "mixture-of-experts",
+  "model-compression",
+  "distillation",
+  "pruning",
+  "efficiency"
+ ],
+ "style": [
+  "colorful",
+  "plot",
+  "minimal"
+ ],
+ "description": "The figure has three grey rounded panels in a row. On the left is a bar chart of accuracy with three bars. The dark green MoE-to-Dense (Ours) bar is tallest at 58.1%. The red Dense-to-Dense bar is 51.8%, and the short grey Random Init bar is 35.4%. The wide middle panel is titled '① Scoring & grouping of experts'. It shows a row of eight expert boxes, E1 to E8, shaded from dark green to beige to show their scores. A dashed 'Router' tag sits above E4 and E5. Dashed arrows run from the selected experts down into two merged group boxes, G1 and G2. The right column has two stacked panels. '② Concatenation' shows G1 and G2 joined by a dashed arrow into a 'Dense FFN' box. '③ Knowledge distillation' shows a wide MoE teacher box and a Dense student box linked by a dashed KL divergence loss bracket. The eye goes first to the tall green bar, then to the expert row.",
+ "caption": "Left: Average downstream accuracy (Section [ref]) after ${\\sim}$4B-token distillation, comparing three approaches to producing a 3B-parameter dense student. MoE-to-dense uses the MoE teacher (Qwen3-30B-A3B) to initialize and distill the student; Dense-to-dense prunes a dense teacher of matched total parameter count (Qwen3-32B); Random Init trains the same architecture from scratch via distillation. Right: The MoE-to-dense pipeline. From the original MoE layer, we score and select a subset, group and merge them into $k$ groups, then concatenate into a standard dense FFN with appropriate magnitude scaling. We evaluate 7 scoring, 5 grouping, and 2 magnitude scaling methods to identify the best configuration.",
+ "caption_source": "latex",
+ "abstract": "Mixture-of-Experts (MoE) is now the dominant architecture for frontier language models, yet it requires all expert parameters to be loaded in memory, making it less preferable for memory-constrained deployment. Existing compression methods reduce the number of experts but the output remains an MoE model with the same fundamental limitation. We present the first systematic framework for converting a trained MoE into a standard fully dense architecture: experts are scored, selected, and grouped, then concatenated into a dense FFN and refined by knowledge distillation from the MoE teacher. We evaluate 7 scoring, 5 grouping, and 2 magnitude scaling methods across a range of selected expert counts on Qwen3-30B-A3B, yielding 350 configurations. We find that the choice of scoring method is the most impactful, with our novel diversity-aware scoring consistently outperforming prior methods on Qwen3-30B-A3B, DeepSeek-V2-Lite, and GPT-OSS-20B. Under a controlled comparison at matched parameter count, MoE-to-dense outperforms dense-to-dense pruning by +6.3 pp in average downstream accuracy after ~4B-token distillation at 1.6x faster training wall-clock speed.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=hmvlyb1yQu",
+  "arxiv": "https://arxiv.org/abs/2605.28207",
+  "pdf": "https://arxiv.org/pdf/2605.28207",
+  "proceedings": null,
+  "virtual": "https://neurips.cc/virtual/2026/oral/150473",
+  "code": null
+ },
+ "license": "http://creativecommons.org/licenses/by/4.0/",
+ "img": "cc-by",
+ "image_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/images/neurips26-6381.png",
+ "thumb_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/thumbs/neurips26-6381.webp",
+ "figure_page": 0,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.7
+}

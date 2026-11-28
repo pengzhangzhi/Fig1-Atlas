@@ -1,0 +1,48 @@
+{
+ "id": "iclr26-3820",
+ "title": "Reward Model Routing in Alignment",
+ "authors": [
+  "Xinle Wu",
+  "Yao Lu"
+ ],
+ "venue": "ICLR 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "Reinforcement Learning->Deep RL",
+ "role": "pipeline",
+ "role2": null,
+ "claim": "A hybrid framework pretrains a router offline, then uses it as a prior to pick among several scorers online during training.",
+ "layout": "3 colored regions, left-to-right with feedback loops; offline panel at left",
+ "tags": [
+  "routing",
+  "bayesian",
+  "thompson-sampling",
+  "preference-optimization",
+  "model-selection"
+ ],
+ "style": [
+  "icon-heavy",
+  "colorful",
+  "minimal"
+ ],
+ "description": "The figure has three rounded, pastel-colored regions. The left, pink 'Offline router' region shows a bottom-up stack: input (x, y1, y2) goes into an encoder, then an MLP. The MLP splits into two heads, CLS (green) and BT (blue). An arrow labeled 'prior' leads from this region into the green 'Online router' region at bottom right. That region holds a BayesianRouter icon, which samples from an 'RM pool' of three robot icons. The yellow 'Online DPO' region at top right has a Prompt feeding a Policy robot. The policy produces Response1 and Response2, which go to the selected RM. The RM's verdict (Response2 ✓, Response1 ✗) feeds the DPO loss. Feedback arrows labeled 'update parameters' and 'update online router' close the loops. The eye starts at the robot icons and the colored panels.",
+ "caption": "Overview of {\\name}.",
+ "caption_source": "latex",
+ "abstract": "Reinforcement learning from human or AI feedback (RLHF / RLAIF) has become the standard paradigm for aligning large language models (LLMs). However, most pipelines rely on a single reward model (RM), limiting alignment quality and risking overfitting. Recent work explores RM routing--dynamically selecting an RM from a candidate pool to exploit complementary strengths while maintaining $O(1)$ RM calls--but existing methods suffer from cold-start and insufficient exploration. We propose BayesianRouter, a hybrid routing framework that combines offline RM strengths learning with online Bayesian selection. In the offline stage, a multi-task router is trained on preference data to estimate per-RM reliability. In the online stage, a Bayesian Thompson sampling router performs per-query RM selection, initializing RM-specific weight vectors with offline embeddings as Gaussian priors and adaptively updating their posteriors with online rewards to adapt to the evolving policy distribution. Extensive experiments on instruction-following (AlpacaEval-2, Arena-Hard, MT-Bench) and reasoning (GSM8K, MMLU) benchmarks show that BayesianRouter consistently outperforms individual RMs, RM ensembling, and existing routing methods.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=i3OKIHSsHC",
+  "arxiv": "https://arxiv.org/abs/2510.02850",
+  "pdf": "https://proceedings.iclr.cc/paper_files/paper/2026/file/8dc9b0192713f44f035b8c0bd3f4153a-Paper-Conference.pdf",
+  "proceedings": "https://proceedings.iclr.cc/paper_files/paper/2026/hash/8dc9b0192713f44f035b8c0bd3f4153a-Abstract-Conference.html",
+  "virtual": "https://iclr.cc/virtual/2026/poster/10007999",
+  "code": "https://github.com/XinleWu/BayesianRouter"
+ },
+ "license": "http://creativecommons.org/licenses/by/4.0/",
+ "img": "cc-by",
+ "image_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/images/iclr26-3820.png",
+ "thumb_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/thumbs/iclr26-3820.webp",
+ "figure_page": 3,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.9
+}

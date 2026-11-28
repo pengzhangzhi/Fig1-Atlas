@@ -1,0 +1,47 @@
+{
+ "id": "neurips26-0987",
+ "title": "Massively Parallel Exact Inference for Hawkes Processes",
+ "authors": [
+  "Ahmer Raza",
+  "Hudson Smith"
+ ],
+ "venue": "NeurIPS 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "Applications->Time Series",
+ "role": "teaser-result",
+ "role2": "analysis-finding",
+ "claim": "Runtime grows linearly with input size while memory stays constant once batching begins, even at very large scale.",
+ "layout": "2 side-by-side log-log line plots, shared x-axis, shaded batching region",
+ "tags": [
+  "scaling",
+  "efficiency",
+  "parallel-prefix-scan",
+  "memory",
+  "gpu"
+ ],
+ "style": [
+  "plot",
+  "minimal"
+ ],
+ "description": "Two side-by-side log-log line plots share the x-axis, Number of Events from 10^3 to about 10^8. The left panel plots average epoch time in seconds. The right panel plots peak memory in GiB. Each panel has five colored curves (blue, orange, green, red, purple) for node counts of 125, 250, 500, 1000 and 2000, with the legend in the right panel. A gray shaded band starts at 2^18 events and marks where batching is enabled. A dashed black horizontal line at the top marks the maximum value in each panel (246.67 s and 47.31 GiB). Faint diagonal gridlines show linear slope. In the left panel, time rises with a slope of about 1 at large N. In the right panel, memory climbs and then flattens inside the gray region. The eye goes first to the purple curve and the plateau.",
+ "caption": "Scaling of our method across various sequence lengths, showing average epoch time (left) and peak memory usage (right). The gray region indicates where batching is enabled to maintain constant memory (with batch size $2^{19}=\\num{524288}$). Dashed black lines indicate the maximum epoch time and memory usage across all runs, respectively. Diagonal gridlines with unit power (slope 1 on log-log plot) are shown for reference.",
+ "caption_source": "latex",
+ "abstract": "Multivariate Hawkes processes are a widely used class of self-exciting point processes, but maximum likelihood estimation naively scales as $O(N^2)$ in the number of events. The canonical linear exponential Hawkes process admits a faster $O(N)$ recurrence, but prior work evaluates this recurrence sequentially, without exploiting parallelization on modern GPUs. We show that the Hawkes process intensity can be expressed as a product of sparse transition matrices admitting a linear-time associative multiply, enabling computation via a parallel prefix scan. This yields a massively parallelizable algorithm for estimation of linear exponential Hawkes processes. Our method reduces the computational complexity to approximately $O(N/P)$ with $P$ parallel processors, and naturally yields a batching scheme to maintain constant memory usage, avoiding GPU memory constraints. Importantly, it computes the exact likelihood without any additional assumptions or approximations, preserving the simplicity and interpretability of the model. We demonstrate orders-of-magnitude speedups on simulated and real datasets, scaling to thousands of nodes and tens of millions of events, substantially beyond scales reported in prior work. We provide an open-source PyTorch library implementing our optimizations.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=6yoruSsZzc",
+  "arxiv": "https://arxiv.org/abs/2604.01342",
+  "pdf": "https://arxiv.org/pdf/2604.01342",
+  "proceedings": null,
+  "virtual": "https://neurips.cc/virtual/2026/poster/155267",
+  "code": "https://github.com/ahmrr/HawkesTorch"
+ },
+ "license": "http://arxiv.org/licenses/nonexclusive-distrib/1.0/",
+ "img": "none",
+ "image_url": null,
+ "thumb_url": null,
+ "figure_page": 5,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.6
+}

@@ -1,0 +1,52 @@
+{
+ "id": "icml26-6522",
+ "title": "RaBitQCache: Rotated Binary Quantization for KVCache in Long Context LLM Inference",
+ "authors": [
+  "Wenhao Li",
+  "Jinhao Dong",
+  "Hailin Zhang",
+  "Wenhang Shi",
+  "WEI LU",
+  "Xiaoyong Du"
+ ],
+ "venue": "ICML 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "Deep Learning->Large Language Models",
+ "role": "pipeline",
+ "role2": null,
+ "claim": "Overlapping a cheap auxiliary stream with the main compute stream, and deferring index updates, hides overhead from the critical path.",
+ "layout": "2 stacked panels, left-to-right timelines, dashed orange latency-mask arrows and step-wise buffer icons",
+ "tags": [
+  "system-scheduling",
+  "asynchronous-pipeline",
+  "latency-masking",
+  "lazy-updates",
+  "sparse-attention"
+ ],
+ "style": [
+  "minimal",
+  "colorful",
+  "icon-heavy"
+ ],
+ "description": "Two stacked panels on light gray backgrounds show system-level scheduling. Panel (a), Pipelined Prefill with Latency Masking, has a main compute stream row of blocks for Layer i and Layer i+1: gray QKV Proj, blue Dense Attention, gray FFN & AddNorm. Below it is a quantization stream row with green Quantization Kernel boxes. Curved black arrows run from each QKV Proj down to its kernel. An orange dashed double arrow labeled 'Latency Full Masked' shows the kernel running in parallel with attention. Panel (b), Decode with Lazy Updates, shows decoding steps t, t+k-1 and t+k separated by ellipses and a dashed vertical line. Each step has gray QKV Proj and blue Sparse Attention blocks. Small red and white squares show the K/V local buffer filling up. At step t+k the full red buffer goes into an orange RabitQ Index box, which outputs an empty white buffer.",
+ "caption": "Overview of RaBitQCache System-Level Scheduling Optimizations: Asynchronous Pipelined Prefill for Latency Masking and Lazy Updates for Efficient Decoding.",
+ "caption_source": "latex",
+ "abstract": "Long-context Large Language Model inference is severely bottlenecked by the massive Key-Value (KV) cache, yet existing sparse attention methods often suffer from static fixed-budget (Top-k) retrieval or rely on proxy scores that are computationally expensive and biased. To address these limitations, we propose RaBitQCache, a novel sparse attention framework that utilizes randomized rotated binary quantization and high-throughput binary-INT4 arithmetic to efficiently estimate attention weights. Our proxy score serves as an unbiased estimator with a proven error bound, enabling adaptive Top-p retrieval that dynamically adjusts the token budget based on actual attention sparsity. We further implement a hardware-aware system with asynchronous pipelining and lazy updates to mask overhead. Evaluations demonstrate that RaBitQCache significantly accelerates inference and reduces memory I/O while preserving generation quality compared to state-of-the-art baselines. Code is available at https://github.com/Sakuraaa0/RaBitQCache.git.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=zc8ZDMJmKB",
+  "arxiv": "https://arxiv.org/abs/2606.31519",
+  "pdf": "https://raw.githubusercontent.com/mlresearch/v306/main/assets/li26al/li26al.pdf",
+  "proceedings": "https://proceedings.mlr.press/v306/li26al.html",
+  "virtual": "https://icml.cc/virtual/2026/poster/60504",
+  "code": "https://github.com/Sakuraaa0/RaBitQCache.git"
+ },
+ "license": "http://arxiv.org/licenses/nonexclusive-distrib/1.0/",
+ "img": "none",
+ "image_url": null,
+ "thumb_url": null,
+ "figure_page": 4,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.9
+}

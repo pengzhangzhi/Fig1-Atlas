@@ -1,0 +1,51 @@
+{
+ "id": "icml26-2740",
+ "title": "Item Response Scaling Laws: A Measurement Theory Approach for Efficient and Generalizable Neural Scaling Estimation",
+ "authors": [
+  "Sang Truong",
+  "Yuheng Tu",
+  "Rylan Schaeffer",
+  "Sanmi Koyejo"
+ ],
+ "venue": "ICML 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "General Machine Learning->Evaluation",
+ "role": "pipeline",
+ "role2": null,
+ "claim": "Factorize a response matrix into latent ability and item difficulty, fit a scaling trend on ability, then recompose it into per-item predictions.",
+ "layout": "4 panels, left-to-right, labeled arrows (IRT, Scale, Predict) between stages",
+ "tags": [
+  "factorization",
+  "item-response-theory",
+  "scaling-laws",
+  "sample-efficiency",
+  "latent-ability"
+ ],
+ "style": [
+  "colorful",
+  "math-heavy",
+  "plot",
+  "minimal"
+ ],
+ "description": "A four-stage left-to-right pipeline joined by gray arrows labeled IRT, Scale and Predict. The first stage is a green heatmap of the response matrix R (M×N). Its columns are grouped under Bench 1, Bench 2 and Bench B, and its rows are LM1 to LMM. Below a dashed line sit sparse rows for new LMs, drawn in faded text. The second stage shows a sigmoid applied to an orange column vector of abilities θ minus a blue row vector of question difficulties z. The third stage is a plot of θ against the scaling variable x. Orange points lie on a line, and a hollow circle marks the new model's θ. The fourth stage plots performance against x as three curves for easy, medium and hard z, in blue, pink and dark red. The formula R̂ij(x)=σ(θi(x)−zj) appears underneath. Orange stands for ability and blue for difficulty.",
+ "caption": "IRSL reduces scaling law estimation from $O(M \\times N)$ to $O(M + N)$ by factorizing model ability from question difficulty. Left: The response matrix $R$ records empirical probabilities across LMs and benchmark questions; sparse rows for new LMs illustrate query efficiency via adaptive testing. Center-left: IRT decomposes $R$ into LM abilities $\\boldsymbol{\\theta}$ (orange) and question difficulties $\\boldsymbol{z}$ (blue), so that $R_{ij} \\approx \\sigma(\\theta_i - z_j)$. Center-right: The estimated $\\theta$ values scale predictably with the scaling variable $x$ (e.g., pre-training compute or test-time samples). Right: Recomposing $\\theta(x)$ with the calibrated $z$ yields per-question scaling predictions $\\hat{R}_{ij}(x) = \\sigma(\\theta_i(x) - z_j)$, where questions of varying difficulty produce distinct curves.",
+ "caption_source": "latex",
+ "abstract": "Scaling laws provide a fundamental framework for understanding the performance of Language Models (LMs), yet deriving them requires prohibitively expensive evaluations across thousands of checkpoints or millions of inference samples. To address this, we introduce Item Response Scaling Laws (IRSL), a unified framework that integrates Item Response Theory (IRT) within the scaling law framework. Unlike traditional approaches that treat each model-benchmark pair in isolation, IRSL disentangles latent model ability from question characteristics, factorizing the scaling law estimation for $M$ models and $N$ questions to significantly reduce parameter complexity from $O(M \\times N)$ to $O(M + N)$. We instantiate IRSL with Beta-IRT, which leverages the empirical probability responses of LMs -- such as token probabilities in pre-training and pass rates in test-time sampling -- to capture richer signals than binary responses. We validate our approach across two prevalent scaling paradigms: (1) pre-training downstream scaling, using 6,612 LM checkpoints and 37,682 questions from 10 benchmarks; and (2) test-time scaling, using 12 LMs and 120 questions from 4 benchmarks with up to 2,500 samples per question. Given a one-time calibration on existing model responses, IRSL yields more reliable scaling estimates using only 50 questions per benchmark (a 99.9\\% reduction), achieving comparable or superior decision accuracy to traditional approaches. Furthermore, we show that the estimated latent model abilities are generalizable, enabling accurate performance forecasting across benchmarks that share the same measurement objective.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=QFgM1iNKmg",
+  "arxiv": "https://arxiv.org/abs/2606.07616",
+  "pdf": "https://raw.githubusercontent.com/mlresearch/v306/main/assets/truong26b/truong26b.pdf",
+  "proceedings": "https://proceedings.mlr.press/v306/truong26b.html",
+  "virtual": "https://icml.cc/virtual/2026/poster/64176",
+  "code": null
+ },
+ "license": "http://arxiv.org/licenses/nonexclusive-distrib/1.0/",
+ "img": "none",
+ "image_url": null,
+ "thumb_url": null,
+ "figure_page": 1,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.9
+}

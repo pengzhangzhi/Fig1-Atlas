@@ -1,0 +1,48 @@
+{
+ "id": "icml26-0303",
+ "title": "Multipole Semantic Attention: A Fast Approximation of Softmax Attention for Pretraining",
+ "authors": [
+  "Rupert Mitchell",
+  "Kristian Kersting"
+ ],
+ "venue": "ICML 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "Deep Learning->Attention Mechanisms",
+ "role": "pipeline",
+ "role2": null,
+ "claim": "Clustering queries and keys separately yields query-specific summaries that are selected semantically then spatially, before exact attention on a small subset.",
+ "layout": "Single vertical panel: query bar top, two stacked cubes, key bar bottom, numbered steps 1-6",
+ "tags": [
+  "sparse-attention",
+  "clustering",
+  "long-context",
+  "efficiency",
+  "hierarchical-approximation"
+ ],
+ "style": [
+  "colorful",
+  "icon-heavy",
+  "text-heavy"
+ ],
+ "description": "A tall single-panel diagram. A horizontal bar at the top shows queries split into segments A0, B0, A1, B1, A2, B2, with the first block greyed out and a blue marker on B2 labeled 'We follow this query for 4–6'. A matching bar at the bottom shows keys/values split into X0, Y0, X1, Y1, X2, Y2, with the last block greyed out. Between them are two isometric 2×2×3 cubes. The lower cube is green and tan and holds per-block summaries. Red arrows labeled 'Accumulate spatially' lead from it to the upper cube, which is blue and holds the accumulated summaries. A small axis legend marks key, query and block directions. Numbered colored labels and braces mark Steps 1–6: summarize, write specialized summaries, accumulate, semantic select, spatial select, attend exactly. The eye goes first to the cubes, then follows the steps.",
+ "caption": "\\ours{} method overview, depicting the far-field approximation. Bars: Queries (top) and keys/values (bottom) are partitioned by semantic cluster (A/B for queries, X/Y for keys) within each spatial block (0, 1, 2); segments vary in size because cluster membership is data-dependent. Lower cube: Per-block summaries indexed by (query cluster, key cluster, spatial block), constructed in Steps 1--2. Upper cube: Causally accumulated summaries (Step 3), accumulated along the spatial axis. Steps 4--6: A query in segment B2 (blue line) attends to the upper cube to select key cluster Y (Step 4, semantic selection), then to the lower cube to select spatial block 1 (Step 5, spatial selection), and finally attends exactly to keys in (Y, 1) (Step 6). Greyed-out segments do not participate: the first query block has no prior context, and the final key/value block is only accessed via local attention (computed separately). See Algorithm [ref] for pseudocode.",
+ "caption_source": "latex",
+ "abstract": "Pretraining transformers on long sequences (entire code repositories, collections of related documents) is bottlenecked by quadratic attention costs. We present Multipole Semantic Attention (MuSe), which accelerates 64k-context pretraining by 36% while matching baseline loss, requiring no architectural changes. MuSe clusters queries and keys separately in representation space. This yields query-specific summaries that substantially outperform spatial blocking at matched sparsity, while also enabling drop-in compatibility with existing pretrained models; we validate on Llama 3.1-8B and 3.2-1B without retraining. We pretrain language models up to 1B parameters at 64k context on code and scientific documents, confirming that MuSe preserves quality and long-context utilization during training.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=2oft1bznyx",
+  "arxiv": "https://arxiv.org/abs/2509.10406",
+  "pdf": "https://raw.githubusercontent.com/mlresearch/v306/main/assets/mitchell26a/mitchell26a.pdf",
+  "proceedings": "https://proceedings.mlr.press/v306/mitchell26a.html",
+  "virtual": "https://icml.cc/virtual/2026/poster/66535",
+  "code": null
+ },
+ "license": "http://creativecommons.org/licenses/by/4.0/",
+ "img": "cc-by",
+ "image_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/images/icml26-0303.png",
+ "thumb_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/thumbs/icml26-0303.webp",
+ "figure_page": 1,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.9
+}

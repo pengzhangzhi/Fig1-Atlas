@@ -1,0 +1,48 @@
+{
+ "id": "icml26-2851",
+ "title": "Enhancing LLM Training via Spectral Clipping",
+ "authors": [
+  "Xiaowen Jiang",
+  "Andrei Semenov",
+  "Sebastian Stich"
+ ],
+ "venue": "ICML 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "Deep Learning->Large Language Models",
+ "role": "teaser-result",
+ "role2": null,
+ "claim": "Adding our plug-in clipping framework to various base optimizers consistently yields lower validation loss than the unmodified baselines across both model shapes.",
+ "layout": "2 bar-chart panels side by side; hatched bars mark 'ours'; sorted ascending",
+ "tags": [
+  "optimizer",
+  "spectral-clipping",
+  "llm-pretraining",
+  "consistent-improvement",
+  "plug-in-method"
+ ],
+ "style": [
+  "plot",
+  "colorful"
+ ],
+ "description": "Two side-by-side bar charts report final validation loss for Llama-style models: a thin-and-deep 780M model on the left and a wide-and-shallow 820M model on the right. A shared title gives the training setup (FineWeb-Edu, 1M-token batches, 16.6B tokens). Each panel has nine bars sorted from lowest to highest loss, with the exact value printed above each bar. Color marks the base optimizer: orange for Signum, purple for MARS, green for AdEMAMix, blue for AdamW, and red for D-Muon. Diagonal hatching marks the Spectra variants, and the hatched bars cluster at the low-loss left end of each panel. The y-axis is truncated, which exaggerates the gaps. A two-row legend below both panels maps colors and hatching to methods.",
+ "caption": "Final validation loss comparison for large Llama-style models trained for the Chinchilla optimal horizon. 'Thin and deep' models have smaller embedding dimensions but have more layers than 'wide and shallow' ones. The running time comparisons w/wo using SPECTRA are provided in Figure [ref]. We use a total batchsize of 1012 and 992 for 780M and 820M model respectively with 1024 sequence length. The hyperparameters such as learning rate used for each method are reported in the tables in Section [ref].",
+ "caption_source": "latex",
+ "abstract": "While spectral-based optimizers like Muon operate directly on the spectrum of updates, standard adaptive methods such as AdamW do not account for the spectral structure of weights and gradients, leaving them vulnerable to two empirical issues in large language model (LLM) training: (i) the optimizer updates can have large spectral norms, potentially destabilizing training and degrading generalization; (ii) stochastic gradient noise can exhibit sparse spectral spikes, with a few dominant singular values much larger than the rest. We propose SPECTRA, a general framework addressing these by (i) post-spectral clipping of updates to enforce spectral-norm constraints (ii) optional pre-spectral clipping of gradients to suppress spectral noise spikes. We prove that post-clipping constitutes a Composite Frank-Wolfe method with spectral-norm constraints and weight regularization. We further analyze how pre-clipping mitigates sparse spectral spikes. We propose efficient soft spectral clipping via Newton-Schulz iterations, avoiding expensive SVD. Experiments on LLM pretraining show SPECTRA uniformly improves validation loss for various optimizers, including AdamW, Signum, Mars, and AdEMAMix, with the best-performing variants achieving state-of-the-art results. Models trained with SPECTRA exhibit smaller weight norms, confirming the link between spectral clipping and regularization.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=RF1YUA8plS",
+  "arxiv": "https://arxiv.org/abs/2603.14315",
+  "pdf": "https://raw.githubusercontent.com/mlresearch/v306/main/assets/jiang26am/jiang26am.pdf",
+  "proceedings": "https://proceedings.mlr.press/v306/jiang26am.html",
+  "virtual": "https://icml.cc/virtual/2026/poster/64066",
+  "code": null
+ },
+ "license": "http://arxiv.org/licenses/nonexclusive-distrib/1.0/",
+ "img": "none",
+ "image_url": null,
+ "thumb_url": null,
+ "figure_page": 2,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.9
+}

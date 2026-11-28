@@ -1,0 +1,51 @@
+{
+ "id": "icml26-1906",
+ "title": "Active Attacks: Red-teaming LLMs via Adaptive Environments",
+ "authors": [
+  "Taeyoung Yun",
+  "Pierre-Luc St-Charles",
+  "Jinkyoo Park",
+  "Yoshua Bengio",
+  "Minsu Kim"
+ ],
+ "venue": "ICML 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "Reinforcement Learning->Deep RL",
+ "role": "pipeline",
+ "role2": "prior-vs-ours",
+ "claim": "Periodically fine-tuning the victim makes the environment adaptive, so the attacker is pushed from easy to harder modes instead of collapsing.",
+ "layout": "Left-to-right chain of N environment boxes, with a feedback loop along the bottom",
+ "tags": [
+  "red-teaming",
+  "adaptive-environment",
+  "curriculum",
+  "reinforcement-learning",
+  "safety-fine-tuning"
+ ],
+ "style": [
+  "colorful",
+  "icon-heavy",
+  "text-heavy"
+ ],
+ "description": "A wide diagram that reads left to right. On the left, a robot icon labeled Agent (the attacker LLM) emits a prompt x ~ p_theta(x) along a red dashed arrow. The prompt goes into a row of three rounded boxes: Environment 1, Environment 2 and Environment N. The boxes are joined by gray block arrows with an ellipsis between the last two. Each box holds a Victim LLM and a Toxicity Classifier joined by a blue dashed arrow for the response y. Above each box is a small target-distribution plot. It starts as multiple peaks in Environment 1 and flattens to a single small peak in Environment N. Purple dashed arrows come from a Safety Dataset cylinder and mark the victim safety fine-tuning that updates each environment. Green dashed arrows run down to reward computation. A black dashed loop passes through the replay buffer back to the attacker, with attacker-reset and buffer-reset markers. Purple, green, red and blue colors mark the different flows.",
+ "caption": "Red-teaming LLMs via adaptive environments. Prior works train an agent (attacker LLM) with a fixed environment (victim LLM and toxicity classifier). In Active Attacks, we periodically safety fine-tune the victim LLM to make the environment adaptive and reinitialize the attacker LLM and replay buffer. This procedure flattens the already explored region and naturally induces an easy-to-hard exploration curriculum.",
+ "caption_source": "latex",
+ "abstract": "We address the challenge of generating diverse attack prompts for large language models (LLMs) that elicit harmful behaviors (e.g., insults, sexual content) and are used for safety fine-tuning. Rather than relying on manual prompt engineering, attacker LLMs can be trained with reinforcement learning (RL) to automatically generate such prompts using only a toxicity classifier as a reward. However, capturing a wide range of harmful behaviors is a significant challenge that requires explicit diversity objectives. Existing diversity-seeking RL methods often collapse to limited modes: once high-reward prompts are found, exploration of new regions is discouraged. Inspired by the active learning paradigm that encourages adaptive exploration, we introduce \\textit{Active Attacks}, a novel RL-based red-teaming algorithm that adapts its attacks as the victim evolves. By periodically safety fine-tuning the victim LLM with collected attack prompts, rewards in exploited regions diminish, which forces the attacker to seek unexplored vulnerabilities. This process naturally induces an easy-to-hard exploration curriculum, where the attacker progresses beyond easy modes toward increasingly difficult ones. As a result, Active Attacks uncovers a wide range of local attack modes step by step, and their combination achieves wide coverage of the multi-mode distribution. Active Attacks, a simple plug-and-play module that seamlessly integrates into existing RL objectives, unexpectedly outperformed prior RL-based methods -- including GFlowNets, PPO, and REINFORCE -- by improving cross-attack success rates against GFlowNets, the previous state-of-the-art, from 0.07% to 31.28% (a relative gain greater than $400\\ \\times$) with only a 6% increase in computation. Our code is publicly available \\href{https://github.com/dbsxodud-11/active_attacks}{here}.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=IBGRi5HkB4",
+  "arxiv": "https://arxiv.org/abs/2509.21947",
+  "pdf": "https://raw.githubusercontent.com/mlresearch/v306/main/assets/yun26b/yun26b.pdf",
+  "proceedings": "https://proceedings.mlr.press/v306/yun26b.html",
+  "virtual": "https://icml.cc/virtual/2026/poster/64976",
+  "code": null
+ },
+ "license": "http://creativecommons.org/licenses/by/4.0/",
+ "img": "cc-by",
+ "image_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/images/icml26-1906.png",
+ "thumb_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/thumbs/icml26-1906.webp",
+ "figure_page": 1,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.8
+}

@@ -1,0 +1,52 @@
+{
+ "id": "icml26-5023",
+ "title": "TileSparse: Arithmetic-Intensity-Aware Sparse Attention for Compute-Bound LLM Decoding",
+ "authors": [
+  "Chao Wang",
+  "Pengfei Zuo",
+  "Zhangyu Chen",
+  "Qihui Zhou",
+  "Tsung-Yi Ho",
+  "Ming-Chang Yang"
+ ],
+ "venue": "ICML 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "Deep Learning->Attention Mechanisms",
+ "role": "prior-vs-ours",
+ "role2": "concept",
+ "claim": "Prior sparsity spends compute on every head of each selected key; ours prunes unimportant heads to fetch more keys and gain accuracy.",
+ "layout": "2 side-by-side panels with a shared left axis; red dashed threshold line crosses both",
+ "tags": [
+  "sparse-attention",
+  "prior-vs-ours",
+  "compute-budget",
+  "efficiency",
+  "llm-inference"
+ ],
+ "style": [
+  "colorful",
+  "minimal",
+  "icon-heavy"
+ ],
+ "description": "Two side-by-side heatmap-style grids compare (a) a.i.-agnostic sparsity and (b) a.i.-aware sparsity (ours). In each grid, rows are Q heads and columns are keys, shaded in blues; darker cells mean more important. A red outline marks the selected region. In (a) the outline is a full-height rectangle over the first few key columns. It covers a circled block of pale cells labeled 'Less important', so compute is wasted. In (b) the outline is an L-shape that skips those pale head-key cells. It extends to more keys, including a circled block labeled 'More important'. A red dashed horizontal line runs across both panels. At the far left it marks the hardware arithmetic intensity threshold between compute-bound decode above it and memory-bound decode below it, with arrows. Beneath each grid is a key bar for attention weight coverage. It ends in a red ✗ for (a) and a green ✓ for (b). Red labels and the red outlines draw the eye first.",
+ "caption": "Comparison of arithmetic-intensity-agnostic vs. arithmetic-intensity-aware sparsity. The dashed line marks the hardware arithmetic-intensity threshold where decode attention shifts from memory-bound to compute-bound. (a) arithmeticintensity-agnostic: computes all Q-heads for each selected key, wasting compute on unimportant heads. (b) arithmetic-intensityaware (ours): selects only important Q-heads and can retrieve more keys under the same compute budget, improving accuracy.",
+ "caption_source": "pdf",
+ "abstract": "Sparse attention has emerged as a vital technique for long-context inference in Large Language Models (LLMs), effectively accelerating memory-bound decoding by reducing memory access for non-essential keys. However, the assumption that decoding attention is memory-bound has been shattered. The proliferation of Multi-head Latent Attention (MLA) and Multi-Token Prediction (MTP) architectures has effectively rendered the process compute-bound. We observe that, in MLA, Q-heads exhibit a degree of sparsity even when attending to the same key; consequently, traditional sparse attention algorithms introduce significant computational inefficiency in this new regime by rigidly computing interactions between all associated Q-heads and the retrieved keys. To address this, we propose TileSparse, an arithmetic-intensity-aware (a.i.-aware) algorithm for efficient attention in compute-bound settings. We first introduce a cost model that emphasizes compute budget (compute tile size) rather than memory budget (fetched tokens) when evaluating sparse methods. Next, QK 2D Sparsity prunes unnecessary Q-head--key computations and uses the freed compute to retrieve more semantically important tokens. Because Q-head sparsity differs across keys, we further propose Tiered QK 2D Sparsity and an AutoTuner to choose the best pattern. Experiments show that under tight budgets our method improves accuracy by 40% over state-of-the-art dynamic K-only sparse methods. It also preserves 99% of full-attention accuracy while cutting attention compute by 40.8%, outperforming prior sparse attention approaches.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=lK2AzLDJal",
+  "arxiv": null,
+  "pdf": "https://raw.githubusercontent.com/mlresearch/v306/main/assets/wang26lx/wang26lx.pdf",
+  "proceedings": "https://proceedings.mlr.press/v306/wang26lx.html",
+  "virtual": "https://icml.cc/virtual/2026/poster/61955",
+  "code": "https://github.com/ASISys/TileSparse"
+ },
+ "license": null,
+ "img": "none",
+ "image_url": null,
+ "thumb_url": null,
+ "figure_page": 0,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.93
+}

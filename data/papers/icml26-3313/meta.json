@@ -1,0 +1,52 @@
+{
+ "id": "icml26-3313",
+ "title": "Prefix-Cache-Aware Data Reordering for LLM-Augmented Database Analytics",
+ "authors": [
+  "Yingze Li",
+  "dong wang",
+  "Yiming Guo",
+  "Yao Chen",
+  "Hongzhi Wang",
+  "Bingsheng He"
+ ],
+ "venue": "ICML 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "General Machine Learning->Data",
+ "role": "problem-setup",
+ "role2": "analysis-finding",
+ "claim": "Prefill dominates latency in LLM-augmented queries, and fragmented prompt layouts prevent prefix-cache reuse that better ordering would enable.",
+ "layout": "2 stacked panels, top-down; (a) workflow and latency, (b) fragmented vs overlapping prefix cache",
+ "tags": [
+  "prefix-caching",
+  "prefill-bottleneck",
+  "data-cleaning",
+  "kv-cache",
+  "llm-inference"
+ ],
+ "style": [
+  "colorful",
+  "icon-heavy",
+  "text-heavy"
+ ],
+ "description": "The figure has two stacked gray panels. Panel (a) shows a stage-wise data cleaning workflow. A dark-blue SQL query with an LLM_Check call sits on the left. On the right, a small table row (ID 9527) is turned into a prompt made of a system prompt and raw row data, with the note 'same template across rows'. Below this, a horizontal bar chart compares Prefill 0.56s (long, navy) with Decode 0.03s (short, orange). Next to it, a pie chart of token lengths has arrows labeled Decode 2 tokens, Sys prompt ~100 tokens and Raw data >3K tokens. Panel (b) has two side-by-side dark boxes. The left one shows a fragmented prefix cache at 25% utilization, 2.4 tuples/s, with red X marks for mismatched prefixes. The right one shows the reordered layout at 75% utilization, 6.8 tuples/s, with shared Region=Northeast and Age=18 blocks and green reuse arrows. The eye goes first to the orange and navy color blocks.",
+ "caption": "Typical LLM-augmented data cleaning in a relational",
+ "caption_source": "pdf",
+ "abstract": "LLM-augmented database analytics face a major bottleneck in the costly prefill phase. Although relational tables inherently contain repeated attribute values, standard row-by-row processing produces fragmented prompt layouts that obscure shared prefixes, thereby minimizing opportunities for prefix KV cache reuse and constraining system efficiency. Existing solutions typically employ heuristic or exhaustive search methods to reorder prompt layouts, but these approaches can be inefficient and may not leverage the structural properties of relational tables. We address this challenge by formulating prefix-cache-aware prompt layout optimization as a problem rooted in the isomorphism between prefix-cache reuse and the radix tree topology induced by the relational data distribution. Building on this perspective, we introduce a practical greedy tree-shaping algorithm that efficiently selects row and column orderings to maximize prefix overlap. Our approach, SOLO, improves prefill throughput by up to 90.3\\% under fixed prefix-cache budget. Moreover, it reduces planning overhead by up to 242$\\times$ compared to state-of-the-art baselines.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=VSY1nFjumI",
+  "arxiv": null,
+  "pdf": "https://raw.githubusercontent.com/mlresearch/v306/main/assets/li26gn/li26gn.pdf",
+  "proceedings": "https://proceedings.mlr.press/v306/li26gn.html",
+  "virtual": "https://icml.cc/virtual/2026/poster/63613",
+  "code": null
+ },
+ "license": null,
+ "img": "none",
+ "image_url": null,
+ "thumb_url": null,
+ "figure_page": 0,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.8
+}

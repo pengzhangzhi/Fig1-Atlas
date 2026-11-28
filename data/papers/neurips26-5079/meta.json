@@ -1,0 +1,50 @@
+{
+ "id": "neurips26-5079",
+ "title": "Dynamically Structured Diffusion Language Model Decoding via Bayesian Inference",
+ "authors": [
+  "Bian Sun",
+  "Kevin Zhai",
+  "Mubarak Shah",
+  "Zhenyi Wang"
+ ],
+ "venue": "NeurIPS 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "Deep Learning->Generative Models and Autoencoders",
+ "role": "pipeline",
+ "role2": null,
+ "claim": "Flexible-length decoding proceeds by appending masked windows, partitioning them by instability, decoding blocks in a stable-first order, and repairing block boundaries.",
+ "layout": "Nested panels (a)-(d), top-to-bottom, with braces and red dashed boxes marking repair",
+ "tags": [
+  "diffusion-language-model",
+  "flexible-length",
+  "training-free",
+  "block-partitioning",
+  "structured-decoding"
+ ],
+ "style": [
+  "colorful",
+  "text-heavy",
+  "icon-heavy"
+ ],
+ "description": "A worked example uses the prompt \"Summarize the water cycle in one sentence\". Along the top, (a) shows the t=1 prompt box next to a pink \"First [MASK] Window\" box. A brace expands this into a large framed panel titled \"Masked Window Decoding\". Inside, (b) Planning shows eight [MASK] boxes. Below them are temporary predicted tokens in blue dashed boxes, each with an instability score h_j. The tokens are split into Block 1, Block 2 and Block 3. In (c), Block-wise Decoding runs top to bottom in the order left-anchored, right-anchored, then interior. Pink masks turn into green committed tokens. In (d), red dashed boxes mark Edge-Welding, where boundary tokens are remasked and re-decoded, for example \"clouds\" becomes \"vapor,\". A legend gives the colors for prompt, predicted, mask and committed tokens. At the bottom, t=2 rows show the committed text followed by the next [MASK] windows. Color-coded tokens draw the eye first.",
+ "caption": "Overview of \\method. The framework performs flexible-length decoding by iteratively appending masked windows and executing structural inference. (a) Window Expansion: The next window size adaptively scales based on the mean instability ($\\bar h$) of previously decoded tokens. (b) CRP-Style Partitioning: A short temporary pass extracts token-level instability scores ($h_j$), which a CRP-style prior uses to partition the unanchored window into contiguous blocks. (c) Context-Aware Scheduling: Partitioned blocks are decoded according to a schedule that prioritizes stable, anchored segments. (d) Local Boundary Repair (Edge-Welding): To align predictive distributions at block interfaces, the decoder performs localized remasking (red dashed boxes) to ensure structural consistency.",
+ "caption_source": "latex",
+ "abstract": "Diffusion language models (DLMs) have recently emerged as a promising alternative to autoregressive models, primarily due to their ability to enable parallel decoding. Despite this advantage, most existing DLMs rely on a fixed generation length specified prior to decoding, which restricts their flexibility in real-world applications. While a few recent works attempt to support flexible-length generation, they typically suffer from notable limitations: some require costly retraining to accommodate variable-length outputs, while others depend solely on local confidence signals during decoding. Such local criteria fail to capture the evolving structure of the sequence, often resulting in suboptimal generation quality. In this paper, we propose a training-free, Bayesian structured decoding framework that formulates flexible-length generation as a dynamic structural inference problem. Our approach formulates flexible-length generation as a dynamic structural inference problem, jointly computing the expansion length, the block boundaries, and the decoding schedule. At each window expansion step, the method integrates local uncertainty with structural signals via a unified mechanism that supports dynamic structured generation, including both flexible block expansion and block organization, while maintaining coherence. Extensive experiments across multiple benchmarks demonstrate that our approach significantly improves generation quality and flexibility over existing fixed-length and flexible-length baselines. These results highlight the advantage of Bayesian structured decoding for diffusion language model, providing a principled and efficient solution for structured text generation.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=Z6jLmoD11G",
+  "arxiv": "https://arxiv.org/abs/2605.09820",
+  "pdf": "https://arxiv.org/pdf/2605.09820",
+  "proceedings": null,
+  "virtual": "https://neurips.cc/virtual/2026/poster/151637",
+  "code": null
+ },
+ "license": "http://arxiv.org/licenses/nonexclusive-distrib/1.0/",
+ "img": "none",
+ "image_url": null,
+ "thumb_url": null,
+ "figure_page": 3,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.9
+}

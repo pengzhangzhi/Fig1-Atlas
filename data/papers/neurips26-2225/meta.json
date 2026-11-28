@@ -1,0 +1,51 @@
+{
+ "id": "neurips26-2225",
+ "title": "Distilling LLM Feedback for Lean Theorem Proving",
+ "authors": [
+  "Gaëtan Narozniak",
+  "Gérard Biau",
+  "Remi Munos",
+  "Ahmad Rammal",
+  "Pierre Marion"
+ ],
+ "venue": "NeurIPS 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "Reinforcement Learning->Deep RL",
+ "role": "pipeline",
+ "role2": "problem-setup",
+ "claim": "A worked example shows how an external critique, injected as context, yields token-level supervision that corrects the model's own mistake.",
+ "layout": "5 numbered boxes in a zigzag, top-to-bottom, with arrows and a probability bar chart",
+ "tags": [
+  "self-distillation",
+  "feedback",
+  "token-level-supervision",
+  "theorem-proving",
+  "worked-example"
+ ],
+ "style": [
+  "text-heavy",
+  "colorful",
+  "plot"
+ ],
+ "description": "A five-box flow diagram that walks through one concrete Lean theorem-proving example. Box 1 (top, full width) shows the Lean theorem statement and a short prose hint. An arrow labeled 'the student answers' leads to box 2, which shows the student's code excerpt. The wrong token π is circled in red, with an annotation that it should be Real.pi. Below it is a red box with Lean's error message. An arrow leads right to box 3, a yellow box with Claude's written feedback. An arrow labeled 'the teacher re-reads it with the feedback in context' leads to box 4, where the teacher re-scores the same tokens. It has a red-to-green log-ratio color bar. The last box compares next-token probabilities for π and Real as red and green bars (student 56.1%, teacher 1.8% for π, teacher 98.1% for Real). It ends with the conclusion that the loss pushes π down and Real up. Blue, yellow and teal frames separate the stages, and red and green mark wrong and right.",
+ "caption": "Example of Feedback Distillation on a Lean statement from the MiniF2F dataset [ref], with Qwen3-8B as the student. Claude provides feedback on the student's attempt. The student writes \"$\\pi$\" where the teacher would have written \"Real\" with 98% probability, reflecting Claude's feedback. Through the KL loss, the student is trained to increase the probability of Real at this position, and thus learns to write better Lean code.",
+ "caption_source": "latex",
+ "abstract": "Post-training for reasoning models typically combines supervised fine-tuning with reinforcement learning from verifiable rewards, most commonly with GRPO. However, this algorithm suffers from sparse rewards, limited exploration, and mode collapse. Building upon recent works on self-distillation, we propose Feedback Distillation, a training method where the model is trained to match, at the token level, its own distribution conditioned on privileged feedback produced by a language model. Feedback Distillation offers token-level supervision and can inject external knowledge. Evaluating our method for Lean4 theorem-proving, we find that Feedback Distillation maintains greater diversity in generated trajectories than GRPO, yielding higher policy entropy and better pass@k scaling. The two methods are complementary: initializing GRPO from a Feedback Distillation checkpoint outperforms either method alone. All in all, our results suggest a promising avenue to improve post-training for complex reasoning.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=FnkxYxDDDG",
+  "arxiv": "https://arxiv.org/abs/2605.30861",
+  "pdf": "https://arxiv.org/pdf/2605.30861",
+  "proceedings": null,
+  "virtual": "https://neurips.cc/virtual/2026/poster/154163",
+  "code": null
+ },
+ "license": "http://creativecommons.org/licenses/by-nc-nd/4.0/",
+ "img": "none",
+ "image_url": null,
+ "thumb_url": null,
+ "figure_page": 1,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.7
+}

@@ -1,0 +1,49 @@
+{
+ "id": "neurips26-6738",
+ "title": "Operadic consistency: A label-free signal for compositional reasoning failures in LLMs",
+ "authors": [
+  "Nathaniel Bottman",
+  "Yinhong Liu",
+  "Kyle Richardson"
+ ],
+ "venue": "NeurIPS 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "Applications->Language, Speech and Dialog",
+ "role": "teaser-result",
+ "role2": null,
+ "claim": "A single label-free signal predicts held-out model accuracy more closely than the standard costlier baseline, which only works on some datasets.",
+ "layout": "2 side-by-side scatter plots, shared y-axis, legend at left, MAE boxes",
+ "tags": [
+  "accuracy-estimation",
+  "label-free",
+  "evaluation",
+  "baseline-comparison",
+  "calibration"
+ ],
+ "style": [
+  "plot",
+  "minimal",
+  "colorful"
+ ],
+ "description": "Two side-by-side scatter plots share a y-axis labeled 'Actual accuracy' (0.1 to 0.85). A legend on the far left lists four datasets by color: HotpotQA (blue), MuSiQue (orange), StrategyQA (green) and DROP (red). The left panel plots predicted accuracy from the OC signal on the x-axis. Its points hug the dashed y=x diagonal, and a boxed label reads 'MAE = 3.0 pp'. The right panel plots predicted accuracy from CoT-SC with K=10. Its points scatter further from the diagonal, especially the orange and green ones in the 0.6 to 0.8 range, and its box reads 'MAE = 4.6 pp'. Blue HotpotQA points sit in the low-accuracy corner and the other datasets cluster in the upper right. The eye goes first to the tight left cloud, then to the looser right one.",
+ "caption": "Operadic consistency yields a label-free cross-model accuracy estimator. For each non-thinking model and dataset, we hold the model out, fit \\(accuracy \\approx a\\cdot s + b\\) on the remaining eleven models for a per-(model, dataset) signal-rate \\(s\\), and predict the held-out model's accuracy. Left: \\(s = OC-rate\\) gives pooled MAE \\(3.0\\) pp (range $2.1$--$4.7$ pp per dataset) with no calibration set or ground-truth labels for the held-out model. Right: \\(s = CoT-SC_{K{=}10}\\)-rate (canonical chain-of-thought self-consistency, [ref]); ten inference calls per question rather than three. Pooled MAE \\(4.6\\) pp, but with a bimodal per-dataset pattern: CoT-SC matches OC on HotpotQA and DROP (per-dataset MAE $2.4$ and $4.9$ pp) and loses uniform predictive value on MuSiQue and StrategyQA ($5.8$ and $5.2$ pp).",
+ "caption_source": "latex",
+ "abstract": "Detecting LLM reasoning failures at inference time without ground-truth labels has motivated a wide range of confidence baselines, including self-consistency, semantic entropy, and P(True), built on within-question sampling and self-evaluation. Operad theory, the formalism for systems built by iterated substitution, suggests a complementary diagnostic: a model's direct answer to a compositional query should agree with the answer it produces by composing a stated decomposition of the same query. We instantiate this idea as operadic consistency (OC), a per-question signal. Across twelve instruction-tuned LLMs (4B to 671B parameters, open-weights and closed-source) on four multi-hop QA datasets, OC is strongly correlated with accuracy on every dataset (Pearson $r \\in [0.86, 0.94]$, all $p \\leq 0.0004$), and is the only signal we evaluate with $r \\geq 0.85$ uniformly across all four datasets. Chain-of-thought self-consistency (CoT-SC; Wang et al., 2023) matches OC on HotpotQA and DROP ($r = 0.93, 0.87$) but drops to $r \\approx 0.45$ on MuSiQue and StrategyQA. At the per-question level, OC contributes information beyond CoT-SC and semantic entropy on every dataset (cluster-robust $p \\leq 10^{-16}$ for the OC coefficient), and the conclusion is robust to additionally controlling for constructed decomposition-aware baselines ($p \\leq 10^{-13}$). The same signal yields selective-prediction improvements (accuracy at fixed coverage) over a tuned CoT-SC baseline at the equal-cost $K = 3$ budget (AUARC lifts of +0.086 to +0.096 and AUROC lifts of +0.092 to +0.164; 95% CIs exclude zero on every cell). On five frontier thinking models, where the decomposition is extracted from the model's own chain of thought, the same equal-cost comparison gives positive selective-prediction point-estimate lift on all 16 (dataset, budget, metric) cells tested, with 95% CIs excluding zero on 12 of the 16.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=kGXWfWoQFU",
+  "arxiv": "https://arxiv.org/abs/2606.13649",
+  "pdf": "https://arxiv.org/pdf/2606.13649",
+  "proceedings": null,
+  "virtual": "https://neurips.cc/virtual/2026/poster/150153",
+  "code": null
+ },
+ "license": "http://creativecommons.org/licenses/by/4.0/",
+ "img": "cc-by",
+ "image_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/images/neurips26-6738.png",
+ "thumb_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/thumbs/neurips26-6738.webp",
+ "figure_page": 1,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.8
+}

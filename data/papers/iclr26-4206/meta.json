@@ -1,0 +1,51 @@
+{
+ "id": "iclr26-4206",
+ "title": "MuonBP: Faster Muon via Block-Periodic Orthogonalization",
+ "authors": [
+  "Ahmed Khaled",
+  "Kaan Ozkara",
+  "Tao Yu",
+  "Mingyi Hong",
+  "Youngsuk Park"
+ ],
+ "venue": "ICLR 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "Optimization->Large Scale, Parallel and Distributed",
+ "role": "analysis-finding",
+ "role2": null,
+ "claim": "Performance degrades as the blockwise approximation grows more aggressive, with loss rising at higher block degree and longer period.",
+ "layout": "single heatmap, 4x4 grid, annotated cells, vertical colorbar at right",
+ "tags": [
+  "hyperparameter-sensitivity",
+  "ablation",
+  "heatmap",
+  "optimizer",
+  "distributed-training"
+ ],
+ "style": [
+  "plot",
+  "minimal",
+  "colorful"
+ ],
+ "description": "A single 4x4 annotated heatmap of validation loss. The y-axis is Block Muon Degree (2, 4, 8, 16, top to bottom). The x-axis is Block Period (2, 4, 8, 16, left to right). Each cell shows its exact validation loss as a number, from 3.3579 to 3.4794. The viridis colormap runs from bright yellow (low loss) to dark purple (high loss), with a vertical colorbar labeled Validation Loss on the right. The top-left cell is yellow and has the lowest loss. The bottom-right cell is dark purple and has the highest loss. Loss increases steadily downward and rightward, so larger block degree and longer period hurt. The eye goes first to the purple bottom-right corner and the yellow top-left. Text is white on dark cells and black on light cells.",
+ "caption": "MuonBP",
+ "caption_source": "latex",
+ "abstract": "Gradient orthogonalization is a simple strategy that shows great utility in speeding up gradient descent. The Muon optimizer (Jordan, Jin, et al., 2024) combines gradient orthogonalization with first-order momentum and achieves significant improvement in data efficiency over Adam/AdamW (Loshchilov and Hutter, 2019) for language model training. However, when using model parallelism, gradient orthogonalization introduces additional overhead compared to coordinate-wise optimizers (such as AdamW) due to additional gather and scatter operations on gradient matrix shards from different devices. This additional communication can amount to a throughput hit of 5%-10% compared to Adam/AdamW. To remedy this, we propose Muon with Block-Periodic Orthogonalization (MuonBP), which applies orthogonalization independently to matrix shards on each device and periodically performs full orthogonalization to maintain training stability at scale. We show how to adjust the learning rate from the baseline to MuonBP and give convergence guarantees for this algorithm. Crucially, our theory dictates that we use two stepsizes: one for the blockwise orthogonalization steps, and one for the full orthogonalization steps. Our method is simple, requires minimal hyperparameter adjustments, and achieves competitive iteration complexity compared with baseline Muon while providing per-iteration throughput comparable to coordinate-wise methods such as AdamW. When training an 8B model with eight-way tensor parallelism and ZeRO optimizer state sharding, MuonBP achieves 8% throughput increase compared to Muon with no degradation in performance.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=mHouLSUQP5",
+  "arxiv": "https://arxiv.org/abs/2510.16981",
+  "pdf": "https://proceedings.iclr.cc/paper_files/paper/2026/file/1d485d337d5622bdb1462333f4247522-Paper-Conference.pdf",
+  "proceedings": "https://proceedings.iclr.cc/paper_files/paper/2026/hash/1d485d337d5622bdb1462333f4247522-Abstract-Conference.html",
+  "virtual": "https://iclr.cc/virtual/2026/poster/10007594",
+  "code": null
+ },
+ "license": "http://arxiv.org/licenses/nonexclusive-distrib/1.0/",
+ "img": "none",
+ "image_url": null,
+ "thumb_url": null,
+ "figure_page": 7,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.6
+}

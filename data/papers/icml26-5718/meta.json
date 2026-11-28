@@ -1,0 +1,51 @@
+{
+ "id": "icml26-5718",
+ "title": "Group Distributionally Robust Optimization-Driven RL for LLM Reasoning",
+ "authors": [
+  "Kishan Panaganti",
+  "Zhenwen Liang",
+  "Wenhao Yu",
+  "Haitao Mi",
+  "Dong Yu"
+ ],
+ "venue": "ICML 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "Deep Learning->Large Language Models",
+ "role": "teaser-result",
+ "role2": "analysis-finding",
+ "claim": "Adaptive reallocation of data and compute toward hard groups beats uniform allocation and improves accuracy across benchmarks.",
+ "layout": "3 panels, left-to-right, bar charts with dashed uniform baseline line",
+ "tags": [
+  "distributionally-robust",
+  "curriculum",
+  "adaptive-sampling",
+  "compute-allocation",
+  "reasoning-rl"
+ ],
+ "style": [
+  "plot",
+  "colorful",
+  "minimal"
+ ],
+ "description": "Three side-by-side matplotlib bar charts. The left panel compares mean@8 accuracy on four benchmarks (AMC, MINERVA, OLYMPIAD, GPQA) for three methods: gray GRPO baseline, purple Prompt-GDRO and orange Rollout-GDRO. Rotated labels on the bars give the gains in percentage points. The center panel shows the fraction of prompts sampled from each of ten accuracy bins (accbin_0 to accbin_9) as purple bars, with a dashed line at the uniform level of 0.10. The mass is concentrated on bin 0 and bins 5-7. The right panel shows orange bars for rollouts per prompt in each bin, with a dashed line at the uniform budget of 4. Bins 2-9 sit above the line and bin 0 sits below it. The eye goes first to the tall bars in the left panel, then to the departures from the dashed lines.",
+ "caption": "Beyond Uniform Reasoning—A Multi-Adversary Post-Training Framework. Plots on the right represent training steps tail averages ($\\ge$60th percentile) capturing the curriculum. (Left) Our framework significantly outperforms the standard GRPO baseline across mathematical reasoning benchmarks via dynamic adaptation. (Center) Prompt-GDRO: The adversary learns a non-uniform curriculum. Instead of uniform sampling (dashed line), probability mass (purple bars) shifts to the \"reasoning frontier\" (bins 6--8), targeting the specific difficulty level where learning is most efficient. (Right) Rollout-GDRO: The adversary optimizes compute utility. Under a fixed global budget (dashed line), it reallocates rollouts (orange bars) from solved tasks (bin 0) to high-variance tasks, scaling exploration with difficulty. Note: Bars represent rollout count per prompt (policy intensity).",
+ "caption_source": "latex",
+ "abstract": "Reasoning post-training with GRPO is typically built on *static uniformity*: uniform prompt sampling and a fixed number of rollouts per prompt. For heterogeneous, heavy-tailed reasoning data, this wastes compute on already-solved patterns while under-training the long tail of hard problems. We cast GRPO post-training as two independent GDRO games (not coupled) over *dynamic difficulty groups* defined by an *online train-time pass@$n$* statistic (computed from the rollouts used for GRPO updates): a *data adversary* that reshapes prompt sampling and a *compute adversary* that redistributes rollouts. **Prompt-GDRO** applies multiplicative-weights reweighting over bins (with an EMA-debiased difficulty score) to upweight persistently hard groups without frequency bias. **Rollout-GDRO** allocates rollouts across bins under a fixed mean budget via a shadow-price controller, improving gradient information efficiency on high-uncertainty groups while preserving the mean train-time rollout budget. Our approach is principled and theory-driven: we provide no-regret guarantees for the Prompt-GDRO game (via an entropy-regularized GDRO surrogate) and a variance-proxy analysis that yields a square-root optimal compute allocation for Rollout-GDRO. On DAPO 14.1k with Qwen3-Base (1.7B/4B/8B), each controller improves pass@8 by 9--13\\% over GRPO; targeted Qwen3-4B reruns reproduce the Prompt-GDRO gap under a second seed, show second-seed Rollout-GDRO gains on four of five comparable benchmarks, and show low sensitivity to several key hyperparameters.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=rqbB3L91qV",
+  "arxiv": "https://arxiv.org/abs/2601.19280",
+  "pdf": "https://raw.githubusercontent.com/mlresearch/v306/main/assets/panaganti26a/panaganti26a.pdf",
+  "proceedings": "https://proceedings.mlr.press/v306/panaganti26a.html",
+  "virtual": "https://icml.cc/virtual/2026/poster/61281",
+  "code": null
+ },
+ "license": "http://creativecommons.org/licenses/by/4.0/",
+ "img": "cc-by",
+ "image_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/images/icml26-5718.png",
+ "thumb_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/thumbs/icml26-5718.webp",
+ "figure_page": 0,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.72
+}

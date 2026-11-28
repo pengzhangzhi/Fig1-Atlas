@@ -1,0 +1,55 @@
+{
+ "id": "icml26-0292",
+ "title": "Restoring Exploration after Post-Training: Latent Exploration Decoding for Large Reasoning Models",
+ "authors": [
+  "Wenhui Tan",
+  "Fiorenzo Parascandolo",
+  "Enver Sangineto",
+  "Jianzhong Ju",
+  "Zhenbo Luo",
+  "Qian Cao",
+  "Rita Cucchiara",
+  "Ruihua Song",
+  "Jian Luan"
+ ],
+ "venue": "ICML 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "Deep Learning->Large Language Models",
+ "role": "analysis-finding",
+ "role2": "prior-vs-ours",
+ "claim": "Older models gain accuracy from higher sampling temperature, but the latest post-trained models no longer benefit, which reveals a collapse in exploration.",
+ "layout": "2x3 grid of bar charts, dashed divider separating older (top) from newer (bottom) models",
+ "tags": [
+  "temperature-sampling",
+  "exploration-collapse",
+  "pass@n",
+  "reasoning-models",
+  "empirical-trend"
+ ],
+ "style": [
+  "plot",
+  "colorful",
+  "minimal"
+ ],
+ "description": "Six bar-chart panels in a 2x3 grid, split by a horizontal dashed gray line. The top row shows older or non-reasoning models: DeepSeek-8B, QwQ-32B and Qwen3-4B-I. The bottom row shows recent reasoning models: MiMo-7B-RL, Qwen3-30B-T and Qwen3-4B-T. Each panel plots Pass@n accuracy for n = 1, 2, 4, 8 and 16. At each n there are three purple bars that darken as temperature rises from t=0.1 to 0.3 to 0.6, with a legend in the first panel. The titles carry model names, release dates and a slope value α. Top-row α values are positive and shown in green, with green upward arrows over the bars. Bottom-row α values are near zero or negative and shown in red, with red downward or flat arrows. The eye goes first to the green-versus-red arrows and the row contrast.",
+ "caption": "Pass@$n$ accuracy (%) for LLMs under different sampling temperatures, with darker bars representing higher values, specifically, 0.1, 0.3, and 0.6 (temperatures higher than 0.6 are not reported, as they could lead to endless looping and deteriorated performance). For earlier models or non-reasoning models, e.g., QwQ-32B, DeepSeek-8B, and Qwen3-4B-I (Instruct), higher temperature yields higher accuracy, producing a higher accuracy-temperature slope ($\\alpha$) as noted in each subtitle. In contrast, for the latest LRMs, MiMo and Qwen3-T (Thinking) series, increasing the temperature could result in negative $\\alpha$.",
+ "caption_source": "latex",
+ "abstract": "Large Reasoning Models (LRMs) have recently achieved strong mathematical and code reasoning performance through Reinforcement Learning (RL) post-training. However, we show that modern reasoning post-training induces an unintended exploration collapse: temperature-based sampling no longer increases pass@$n$ accuracy. Empirically, the final-layer posterior of post-trained LRMs exhibit sharply reduced entropy, while the entropy of intermediate layers remains relatively high. Motivated by this entropy asymmetry, we propose Latent Exploration Decoding (LED), a depth-conditioned decoding strategy. LED aggregates intermediate posteriors via cumulative sum and selects depth configurations with maximal entropy as exploration candidates. Without additional training or parameters, LED consistently improves pass@1 and pass@16 accuracy by 0.61 and 1.03 percentage points across multiple reasoning benchmarks and models. Furthermore, integrating LED into reinforcement learning, e.g., using GRPO as the rollout strategy, yields faster reward improvement and higher final performance, due to the efficient exploration capability of LED. Project page: https://github.com/AlbertTan404/LED.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=2jXDMGaNZk",
+  "arxiv": "https://arxiv.org/abs/2602.01698",
+  "pdf": "https://raw.githubusercontent.com/mlresearch/v306/main/assets/tan26d/tan26d.pdf",
+  "proceedings": "https://proceedings.mlr.press/v306/tan26d.html",
+  "virtual": "https://icml.cc/virtual/2026/poster/66546",
+  "code": "https://github.com/AlbertTan404/LED"
+ },
+ "license": "http://creativecommons.org/licenses/by/4.0/",
+ "img": "cc-by",
+ "image_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/images/icml26-0292.png",
+ "thumb_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/thumbs/icml26-0292.webp",
+ "figure_page": 2,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.9
+}

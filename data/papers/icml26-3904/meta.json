@@ -1,0 +1,53 @@
+{
+ "id": "icml26-3904",
+ "title": "TwinQuant: Learnable Subspace Decomposition for 4-Bit LLM Quantization",
+ "authors": [
+  "Haodong WANG",
+  "Junjie Liu",
+  "Zicong Hong",
+  "Qianli Liu",
+  "Jian Lin",
+  "Song Guo",
+  "Xu Chen"
+ ],
+ "venue": "ICML 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "Deep Learning->Large Language Models",
+ "role": "analysis-finding",
+ "role2": "problem-setup",
+ "claim": "Weights show slow spectral decay, so low-rank truncation leaves a heavy-tailed residual whose quantization error stays large unless the rank is high.",
+ "layout": "2 rows of 3 panels, top to bottom, red rank line and error colors",
+ "tags": [
+  "spectral-decay",
+  "low-rank-decomposition",
+  "quantization-error",
+  "empirical-trend",
+  "motivation"
+ ],
+ "style": [
+  "plot",
+  "colorful",
+  "photo/real data"
+ ],
+ "description": "The figure has two rows of three plots each. The top row (a) shows line plots of the first 400 singular values for k_proj, v_proj and down_proj weights. Each plot has curves for layers 1, 11, 21 and 29 in blue, orange, green and pink, plus a vertical red dashed line at rank 256. The curves drop sharply at first and then decay slowly. Values stay well above zero past rank 256. The bottom row (b) shows dense bar-style plots of absolute residual error per group index, for ranks 32, 64 and 256. Bars are coloured by error size: green for small, orange for medium and red for large. At rank 32 the red spikes dominate. At rank 64 they are reduced. At rank 256 almost everything is green and low. The eye goes first to the red spike regions in the bottom row.",
+ "caption": "LLM weights exhibit slow spectral decay, leading to rank-sensitive residual quantization error.",
+ "caption_source": "latex",
+ "abstract": "4-bit quantization reduces the memory footprint and latency of large language model inference, but its aggressive precision reduction can severely degrade accuracy. Prior methods address this by decomposing each weight matrix into two components (e.g., via singular value decomposition) and quantizing them separately, assigning the bulk of values to a low-precision residual component while handling outliers with a high-precision low-rank component. However, such decompositions are designed to minimize the real-valued energy of the residual, rather than the post-quantization error of the residual and low-rank components. We propose TwinQuant, a 4-bit quantization framework that learns quantization-friendly decomposed subspaces and jointly reshapes both the low-rank and residual components. TwinQuant learns component-specific transformations via a joint optimization over the Stiefel and general linear manifolds, flattening their distributions and reducing dynamic-range imbalance. To enable efficient end-to-end execution, we further design a fused dual-component kernel that pipelines the two-stage low-rank computation on-chip and merges both components with a single epilogue, avoiding intermediate global-memory traffic. Across LLaMA3 and Qwen3 models, TwinQuant preserves near-FP16 accuracy and delivers up to $1.8\\times$ end-to-end speedup over an FP16 baseline.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=ahYRAjx7UG",
+  "arxiv": "https://arxiv.org/abs/2606.01556",
+  "pdf": "https://raw.githubusercontent.com/mlresearch/v306/main/assets/wang26el/wang26el.pdf",
+  "proceedings": "https://proceedings.mlr.press/v306/wang26el.html",
+  "virtual": "https://icml.cc/virtual/2026/poster/63038",
+  "code": null
+ },
+ "license": "http://creativecommons.org/licenses/by/4.0/",
+ "img": "cc-by",
+ "image_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/images/icml26-3904.png",
+ "thumb_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/thumbs/icml26-3904.webp",
+ "figure_page": 2,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.85
+}

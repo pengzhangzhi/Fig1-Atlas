@@ -1,0 +1,53 @@
+{
+ "id": "iclr26-0345",
+ "title": "Is Finer Better? The Limits of Microscaling Formats in Large Language Models",
+ "authors": [
+  "Andrea Fasoli",
+  "Monodeep Kar",
+  "Chi-Chun Liu",
+  "Swagath Venkataramani",
+  "Viji Srinivasan",
+  "Leland Chang",
+  "Naigang Wang"
+ ],
+ "venue": "ICLR 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "Deep Learning->Generative Models and Autoencoders",
+ "role": "analysis-finding",
+ "role2": "prior-vs-ours",
+ "claim": "Finer quantization granularity is expected to reduce error, but with low-precision scales error unexpectedly rises again below a block-size threshold.",
+ "layout": "2 side-by-side line plots, shared axes, dotted circles marking anomalous points in right panel",
+ "tags": [
+  "quantization",
+  "anomaly",
+  "scaling-trend",
+  "block-size",
+  "counterintuitive-result"
+ ],
+ "style": [
+  "plot",
+  "minimal",
+  "colorful"
+ ],
+ "description": "Two side-by-side line charts, labeled (a) and (b), share the same axes. The x-axis is block size, from 0 to 256. The y-axis is perplexity gap, from 0 to 4. Each panel plots four colored lines with dot markers, one per LLM: granite-3.3-8b in blue, llama-3.1-8b in green, mixtral in red, and llama-2-7b in black. In panel (a), which uses BF16 scales, all curves fall smoothly and monotonically as block size shrinks, so smaller blocks are better. In panel (b), which uses FP8 UE4M3 scales, the curves behave the same at large block sizes. At the smallest sizes (8 and 16), several curves turn upward. The granite curve jumps sharply, from about 1.4 to 2.7. Dotted black circles mark these inverted points. The eye goes first to the steep blue curve and the circles in panel (b).",
+ "caption": "(a) FP4 microscaling quantization using BF16 scales. (b) Impact of FP8 UE4M3 scales. Anomalous data points showcasing perplexity inversion have been circled.",
+ "caption_source": "latex",
+ "abstract": "Microscaling data formats leverage per-block tensor quantization to enable aggressive model compression with limited loss in accuracy. Unlocking their potential for efficient training and inference necessitates hardware-friendly implementations that handle matrix multiplications in a native format and adopt efficient error-mitigation strategies. Herein, we report the emergence of a surprising behavior associated with microscaling quantization, whereas the output of a quantized model degrades as block size is decreased below a given threshold. This behavior clashes with the expectation that a smaller block size should allow for a better representation of the tensor elements. We investigate this phenomenon both experimentally and theoretically, decoupling the sources of quantization error behind it. Experimentally, we analyze the distributions of several Large Language Models and identify the conditions driving the anomalous behavior. Theoretically, we lay down a framework showing remarkable agreement with experimental data from pretrained model distributions and ideal ones. Overall, we show that the anomaly is driven by the interplay between narrow tensor distributions and the limited dynamic range of the quantized scales. Based on these insights, we propose the use of FP8 unsigned E5M3 (UE5M3) as a novel hardware-friendly format for the scales in FP4 microscaling data types. We demonstrate that UE5M3 achieves comparable performance to the conventional FP8 unsigned E4M3 scales while obviating the need of global scaling operations on weights and activations.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=3jDSqfTSrn",
+  "arxiv": "https://arxiv.org/abs/2601.19026",
+  "pdf": "https://proceedings.iclr.cc/paper_files/paper/2026/file/97ca7168c2c333df5ea61ece3b3276e1-Paper-Conference.pdf",
+  "proceedings": "https://proceedings.iclr.cc/paper_files/paper/2026/hash/97ca7168c2c333df5ea61ece3b3276e1-Abstract-Conference.html",
+  "virtual": "https://iclr.cc/virtual/2026/poster/10011619",
+  "code": null
+ },
+ "license": "http://creativecommons.org/licenses/by/4.0/",
+ "img": "cc-by",
+ "image_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/images/iclr26-0345.png",
+ "thumb_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/thumbs/iclr26-0345.webp",
+ "figure_page": 2,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.8
+}

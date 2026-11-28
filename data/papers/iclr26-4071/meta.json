@@ -1,0 +1,55 @@
+{
+ "id": "iclr26-4071",
+ "title": "RESA: Bringing Back What Sparse Attention Ignores with Residual Estimation",
+ "authors": [
+  "Weihao Yang",
+  "Hao Huang",
+  "Ningke Li",
+  "Shihao Wang",
+  "Darong Yang",
+  "Yanqi Pan",
+  "Wen Xia",
+  "Shiyi Li",
+  "Xiangyu Zou"
+ ],
+ "venue": "ICLR 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "Deep Learning->Attention Mechanisms",
+ "role": "prior-vs-ours",
+ "role2": "teaser-result",
+ "claim": "Sparse methods trade accuracy for a small budget; estimating what they discard recovers near-full accuracy at the same small budget.",
+ "layout": "4 panels, left-to-right: Pareto sketch, then three bar-chart panels with smiley verdicts",
+ "tags": [
+  "sparse-attention",
+  "residual-estimation",
+  "efficiency",
+  "accuracy-budget-tradeoff",
+  "training-free"
+ ],
+ "style": [
+  "colorful",
+  "plot",
+  "icon-heavy"
+ ],
+ "description": "The left panel is a schematic accuracy versus KV budget plot. A red star marks Ideal Attention and a black star marks Full Attention, joined by a dashed line at the top. Dashed curves of sparse attention methods sit lower right. Solid curves, labeled RESA, sit up and to the left of them, and red arrows show the shift. Three panels to the right compare Full Attention, Sparse Attention and RESA. Each panel has bars of attention logits over KV position, with red star scores overlaid. Full attention keeps all 8 KVs, in blue. Sparse attention keeps 2 and drops the rest, shown as dashed outlines. RESA keeps 2 and fills the dropped positions with orange estimated logits, labeled prior distribution. Smiley faces under each panel rate accuracy and budget. A legend runs across the top.",
+ "caption": "Schematic diagram of RESA’s effect and comparison between FA, SA and our proposed RESA. RESA pushes current SA methods to a higher accuracy. It estimates the prior distribution for KVs ignored by SA in a lightweight and accurate way for a more accurate output.",
+ "caption_source": "pdf",
+ "abstract": "Large Language Models (LLM) have gained significant attention. KV cache, stored to avoid quadratic complexity of attention, becomes a bottleneck due to the demands for long-context. Sparse attention (SA) has been proposed to address this by only selecting critical KVs for attention, which may degrade model quality in less sparse scenarios. To improve quality, rather than selecting more KVs, this paper reveals another perspective by estimating the contributions of remaining KVs, called Residual Estimation. We find that attention logits (before softmax) exhibit substantial redundancy due to its inherent low-rank nature. We perform Singular Value Decomposition (SVD) on logits matrix in prefilling and find the spectral dominance of principal singular value and its linearly scaling property with sequence length. These imply that increasing sequence length leads to replication-like logits growth with significant redundancy. However, it is impossible to perform SVD at each decoding step in practice due to its heavy costs. To this end, we propose RESA, a training-free framework compensating SA's output with an estimated low-rank prior of logits. RESA introduces (i) a Prior Estimator that derives a prior distribution from a typical query as a rank-1 approximation at the end of prefilling, and (ii) an Online Aggregator that fuses the prior with SA at each decoding step via lightweight scaling and merging. Besides, we further show that RESA's effect comes from priors being used as attention bias for knowledge injection. Extensive experiments show that without extra overheads, RESA improves model quality by up to 26\\% across various tasks with the same KV budget compared to state-of-the-art. Moreover, RESA maintains the same quality with up to 33.2\\% KV budget reduction and 1.23$\\times$ attention throughput improvement.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=ktcq26hMCH",
+  "arxiv": null,
+  "pdf": "https://proceedings.iclr.cc/paper_files/paper/2026/file/89bd6217280d1417370c89ee493ba3c7-Paper-Conference.pdf",
+  "proceedings": "https://proceedings.iclr.cc/paper_files/paper/2026/hash/89bd6217280d1417370c89ee493ba3c7-Abstract-Conference.html",
+  "virtual": "https://iclr.cc/virtual/2026/poster/10007738",
+  "code": null
+ },
+ "license": null,
+ "img": "none",
+ "image_url": null,
+ "thumb_url": null,
+ "figure_page": 1,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.6
+}

@@ -1,0 +1,47 @@
+{
+ "id": "icml26-5725",
+ "title": "Closing the Sim-to-Real Gap in Non-Markovian Spreading Processes via GPU-Accelerated Distributional RL",
+ "authors": [
+  "Heman Shakeri"
+ ],
+ "venue": "ICML 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "Reinforcement Learning->Everything Else",
+ "role": "problem-setup",
+ "role2": "analysis-finding",
+ "claim": "Deterministic approximations overestimate outcomes because they ignore variance and bimodality in the true stochastic dynamics, so policies trained on them fail.",
+ "layout": "2 panels, left-to-right, time-series plus histogram with annotated arrow",
+ "tags": [
+  "jensens-inequality",
+  "mean-field",
+  "stochastic-dynamics",
+  "sim-to-real-gap",
+  "failure-mode"
+ ],
+ "style": [
+  "plot",
+  "minimal",
+  "colorful"
+ ],
+ "description": "Two side-by-side plots share a blue (stochastic) versus orange dashed (mean-field) color scheme. Panel (a) is a time series from t=0 to 50 of owner fraction X_O(t). A blue median curve with a light 10th–90th percentile band decays steeply and then flattens near 0.001. An orange dashed mean-field curve sits above it throughout. A gray 'Divergence' arrow marks the early point where the curves split. Panel (b) is a histogram of final owner fraction, skewed toward zero with a long right tail and a blue KDE curve. A solid blue vertical line marks the sample mean. An orange dashed vertical line marks the mean-field prediction, which lies to the right of the sample mean. An orange curved arrow labeled 'Mean-field predicts here' points to the histogram. Legends sit in the top corners of each panel. The eye goes first to the diverging curves in (a).",
+ "caption": "The Mean-Field Illusion. Blue trajectories show 100 stochastic realizations exhibiting variance and convergence to lower equilibrium. The red dashed line shows the deterministic ODE prediction, which systematically overestimates the target fraction due to Jensen’s inequality. The inset histogram displays the distribution of final states at t = 50. This gap between prediction and reality explains why ODE-trained policies fail catastrophically at deployment.",
+ "caption_source": "pdf",
+ "abstract": "Controlling spreading processes on networks, such as epidemics, information cascades, and product adoption, requires policies that perform on realistic stochastic dynamics, not just tractable approximations. Yet policies trained on standard simplifications (mean-field ODEs, Markovian dynamics) suffer severe performance degradation at deployment. We trace this sim-to-real gap to three theoretical pathologies: Optimism Bias, where deterministic approximations systematically underestimate variance via Jensen's inequality; Hub Blindness, where global state aggregation obscures the super-spreaders driving scale-free networks; and the Valley of Death, where mean-value critics fail to navigate the bimodal nature (extinction vs. viral) of cascade outcomes. We resolve these challenges through two synergistic contributions. First, the Stratified Mean-Field Observer partitions nodes by influence tier, preserving hub dynamics at $O(N)$ cost while producing fixed-dimensional observations that enable zero-shot transfer across network scales and topologies. Second, we show that distributional RL via Truncated Quantile Critics improves risk-aware control of bimodal cascades. Trained on a GPU-accelerated simulator supporting non-Markovian renewal dynamics, our approach achieves $59\\times$ improvement over Markovian baselines and robust zero-shot transfer to real-world social networks (Facebook, Twitter, YouTube), significantly mitigating the simulation-to-reality gap.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=rwTtKedEAa",
+  "arxiv": null,
+  "pdf": "https://raw.githubusercontent.com/mlresearch/v306/main/assets/shakeri26a/shakeri26a.pdf",
+  "proceedings": "https://proceedings.mlr.press/v306/shakeri26a.html",
+  "virtual": "https://icml.cc/virtual/2026/poster/61274",
+  "code": "https://github.com/Shakeri-Lab/graph-rl"
+ },
+ "license": null,
+ "img": "none",
+ "image_url": null,
+ "thumb_url": null,
+ "figure_page": 1,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.6
+}

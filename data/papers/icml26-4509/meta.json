@@ -1,0 +1,51 @@
+{
+ "id": "icml26-4509",
+ "title": "Bridge Matching Sampler: Scalable Sampling via Generalized Fixed-Point Diffusion Matching",
+ "authors": [
+  "Denis Blessing",
+  "Lorenz Richter",
+  "Julius Berner",
+  "Egor Malitskiy",
+  "Gerhard Neumann"
+ ],
+ "venue": "ICML 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "Probabilistic Methods->Monte Carlo and Sampling Methods",
+ "role": "pipeline",
+ "role2": "concept",
+ "claim": "Iterating simulate, resample, bridge-sample and regress steps transports a simple prior to the target with one stable objective.",
+ "layout": "Single panel, left-to-right time axis, numbered step badges annotating trajectories",
+ "tags": [
+  "diffusion-sampler",
+  "fixed-point-iteration",
+  "brownian-bridge",
+  "stochastic-transport",
+  "iterative-algorithm"
+ ],
+ "style": [
+  "colorful",
+  "math-heavy",
+  "plot"
+ ],
+ "description": "One wide panel shows a time axis running from t=0 at left to t=T at right. A blue Gaussian prior density, p_prior, sits on the left. A red bimodal target density, p_target, sits on the right, with a dashed grey density marking the current endpoint distribution. Grey noisy sample paths run between them, with one path in dark grey. A dashed purple Brownian-bridge path starts at a purple resampled point X0' and passes through a marked intermediate point X_t. Four yellow numbered circles label the steps. Step 1 is the SDE simulation formula, step 2 is resampling X0', step 3 is sampling X_t from the bridge, and step 4 is computing u_{i+1}. A grey 'Repeat steps 1 to 4' box at top left shows the loop. The eye goes first to the purple path and the numbered badges.",
+ "caption": "Bridge Matching Sampler (BMS). Illustration of one outer iteration of our fixed-point algorithm. Starting from the current drift $u_i$, we (1) simulate the controlled forward SDE, $\\dd X_t = \\sigma(t)\\,u_i(X_t,t)\\,\\dd t + \\sigma(t)\\,\\dd B_t$, starting from $p_{\\mathrm{prior}}$, to obtain $K$ trajectories with endpoints $(X_0,X_T)$ (grey curves); (2) resample the prior endpoints, replacing $X_0$ by an independent sample $X_0'\\sim p_{\\mathrm{prior}}$ to form the coupling $\\Pi^i_{0,T}=p_{\\mathrm{prior}}\\otimes\\P^{u_i}_T$; (3) sample intermediate states $X_t\\sim\\P_{t\\mid 0,T}(\\cdot\\mid X_0', X_T)$ from the associated Brownian bridge (dashed purple); and (4) update the drift to $u_{i+1}$ by regressing it on the path-dependent target $\\xi(X,t)$ via the matching objective described in [ref]. Iterating steps 1-4 drives the time marginals of the learned process towards $p_{\\mathrm{target}}$ while maintaining a single, scalable, and stable training objective.",
+ "caption_source": "latex",
+ "abstract": "Sampling from unnormalized densities using diffusion models has emerged as a powerful paradigm. However, while recent approaches that use least-squares `matching' objectives have improved scalability, they often necessitate significant trade-offs, such as restricting prior distributions or relying on unstable optimization schemes. By generalizing these methods as special forms of fixed-point iterations rooted in Nelson's relation, we develop a new method that addresses these limitations, called Bridge Matching Sampler (BMS). Our approach enables learning a stochastic transport map between arbitrary prior and target distributions with a single, scalable, and stable objective. Furthermore, we introduce a damped variant of this iteration that incorporates a regularization term to mitigate mode collapse and further stabilize training. Empirically, we demonstrate that our method enables sampling at unprecedented scales while preserving mode diversity, achieving state-of-the-art results on complex synthetic densities and high-dimensional molecular benchmarks.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=gUbNUNuJbO",
+  "arxiv": "https://arxiv.org/abs/2603.00530",
+  "pdf": "https://raw.githubusercontent.com/mlresearch/v306/main/assets/blessing26a/blessing26a.pdf",
+  "proceedings": "https://proceedings.mlr.press/v306/blessing26a.html",
+  "virtual": "https://icml.cc/virtual/2026/poster/62449",
+  "code": null
+ },
+ "license": "http://creativecommons.org/licenses/by/4.0/",
+ "img": "cc-by",
+ "image_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/images/icml26-4509.png",
+ "thumb_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/thumbs/icml26-4509.webp",
+ "figure_page": 1,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.85
+}

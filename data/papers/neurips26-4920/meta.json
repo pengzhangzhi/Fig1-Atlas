@@ -1,0 +1,53 @@
+{
+ "id": "neurips26-4920",
+ "title": "Spectral-Aligned Pruning for Universal Error-Correcting Code Transformers",
+ "authors": [
+  "Sanghyeon Cho",
+  "Taewoo Park",
+  "Seong-Joon Park",
+  "Dae-Young Yun",
+  "Hee-Youl Kwak",
+  "Sang-Hyo Kim",
+  "Yongjune Kim"
+ ],
+ "venue": "NeurIPS 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "General Machine Learning->Everything Else",
+ "role": "pipeline",
+ "role2": null,
+ "claim": "A new input is mapped to a compact signature, matched against a stored library to select a reusable component, then adapted cheaply.",
+ "layout": "3 panels, left-to-right then downward, flowchart with decision diamond",
+ "tags": [
+  "pipeline",
+  "retrieval",
+  "structured-pruning",
+  "low-rank-adaptation",
+  "reuse"
+ ],
+ "style": [
+  "minimal",
+  "text-heavy",
+  "math-heavy"
+ ],
+ "description": "A three-step flowchart in rounded gray-bordered panels. Step 1 (left, tall) runs bottom-up: a green input box 'Target PCM H_new' feeds an adjacency matrix box, then a 'Spectral Signature φ(H_new)' box (top-2 eigenvalues). From there a line fans out by NN retrieval to a 'Mask Library D' of blue entries {φ(H_i), M(H_i)}. A large gray arrow leads to Step 2 (top right), where distances d_1..d_N feed 'Select i* = argmin d_i', then 'Calculate κ*'. A diamond tests κ* ≥ τ. Yes leads to 'Use M(H_i*)' and No leads to 'Calculate M(H_new)'. A gray arrow points down to Step 3, where a LoRA diagram with B (orange) and A (blue) trapezoids points to a green 'Recovered Structured-Pruned Model' output. Black text on white, with sparse green, blue and orange accents.",
+ "caption": "Overview of SAP. For a target PCM, SAP computes a two-eigenvalue spectral signature, retrieves or derives a pruning mask through thresholded library matching, applies the selected mask to the common FECCT backbone, and performs code-specific LoRA recovery.",
+ "caption_source": "latex",
+ "abstract": "Universal channel decoders based on transformers-such as the Foundation Error Correction Code Transformer (FECCT)-achieve competitive decoding performance across diverse code families with a single shared backbone, optionally followed by code-specific finetuning. However, the high computational complexity and large parameter footprint of FECCT present substantial obstacles to practical deployment. To address these challenges, we investigate structured pruning for FECCT and propose Spectral-Aligned Pruning (SAP), a structure-aware framework that enables cross-code reuse of structured pruning masks by leveraging the spectrum of the corresponding bipartite graph. SAP is grounded in classical graph analysis of codes: the two algebraically largest adjacency eigenvalues provide compact spectral proxies for degree scale, expansion ratio, and minimum-distance lower bounds. These quantities are directly relevant to decoding performance: degree scale reflects how densely codeword bits and parity checks are connected; expansion ratio influences how information propagates across the bipartite graph; and minimum distance characterizes codeword separation. Based on this connection, SAP uses these two leading eigenvalues as a lightweight code signature for pruning-mask retrieval. Empirically, this two-dimensional signature yields stable library selection equivalent to higher-dimensional spectral signatures in our evaluation. After pruning, SAP uses parameter-efficient low-rank adaptation (LoRA) to recover decoding performance while storing only a small number of additional adapter parameters per code. Experiments across diverse codes show that SAP achieves decoding performance comparable to dedicated per-code pruning, while enabling substantial reductions in computational cost and model memory footprint through kernel-level structured pruning. Code is available at https://github.com/iil-postech/sap.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=Y5hbfFtOH1",
+  "arxiv": "https://arxiv.org/abs/2602.01602",
+  "pdf": "https://arxiv.org/pdf/2602.01602",
+  "proceedings": null,
+  "virtual": "https://neurips.cc/virtual/2026/poster/151780",
+  "code": "https://github.com/iil-postech/sap"
+ },
+ "license": "http://creativecommons.org/licenses/by/4.0/",
+ "img": "cc-by",
+ "image_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/images/neurips26-4920.png",
+ "thumb_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/thumbs/neurips26-4920.webp",
+ "figure_page": 3,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.93
+}

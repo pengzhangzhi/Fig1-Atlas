@@ -1,0 +1,56 @@
+{
+ "id": "iclr26-0579",
+ "title": "DES-LOC: Desynced Low Communication Adaptive Optimizers for Foundation Models",
+ "authors": [
+  "Alex Iacob",
+  "Lorenzo Sani",
+  "Mher Safaryan",
+  "Paris Giampouras",
+  "Samuel Horváth",
+  "Andrej Jovanovic",
+  "Meghdad Kurmanji",
+  "Preslav Aleksandrov",
+  "William Shen",
+  "Xinchi Qiu",
+  "Nic Lane"
+ ],
+ "venue": "ICLR 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "Optimization->Large Scale, Parallel and Distributed",
+ "role": "analysis-finding",
+ "role2": "teaser-result",
+ "claim": "On a toy non-convex problem, only methods that synchronize optimizer states sparsely or fully converge; local or reset states oscillate and stall.",
+ "layout": "2 panels, left-to-right, convergence curves beside four contour trajectory insets",
+ "tags": [
+  "toy-problem",
+  "convergence",
+  "optimizer-states",
+  "communication-efficiency",
+  "local-sgd"
+ ],
+ "style": [
+  "plot",
+  "colorful"
+ ],
+ "description": "Panel (a) is a semi-log line plot of distance to the optimum, ||x - x*||, against communication rounds from 0 to about 80. Local Adam (dark navy) and DES-LOC (orange) overlap and drop steeply to about 1e-16 by round 32. FAVG+OPT (gray) falls at first, then stalls at a plateau. FAVG-OPT (red) stays high and noisy near the top of the plot. Panel (b) is a 2x2 grid of contour maps on the x1/x2 plane with a blue-to-red heat background. Each map shows one method's trajectory from a green start dot to a yellow star marking the optimum. Local Adam, DES-LOC and FAVG+OPT follow smooth paths into the valley, and zoomed insets show them reaching the star. The red FAVG-OPT map shows chaotic zig-zag oscillations. A shared legend runs along the bottom. The eye goes first to the diverging curves in (a).",
+ "caption": "We present a toy problem where DES-LOC (Kx = 192, Ku = 192, Kv = 692) and Local Adam (K = Kx) both converge to the optimum (overlapping in Fig. 2a). Methods keeping optimizer states local [12, 34] fail, causing oscillations without convergence. Periodically resetting states [33, 16] similarly stalls due to repeated oscillations. We optimize the non-convex function f(x1, x2) = (1 −x1)2 + 100(x2 −x2",
+ "caption_source": "pdf",
+ "abstract": "Scaling foundation model training with Distributed Data Parallel (DDP) methods is bandwidth-limited. Existing infrequent communication methods like Local SGD were designed to synchronize only model parameters and cannot be trivially applied to adaptive optimizers due to additional optimizer states. Current approaches extending Local SGD either lack convergence guarantees or require synchronizing all optimizer states, tripling communication costs. We propose Desynced Low Communication Adaptive Optimizers (DES-LOC), a family of optimizers assigning independent synchronization periods to parameters and momenta, enabling lower communication costs while preserving convergence. Through extensive experiments on language models of up to 1.7B, we show that DES-LOC can communicate 170x less than DDP and 2x less than the previous state-of-the-art Local ADAM. Furthermore, unlike previous heuristic approaches, DES-LOC is suited for practical training scenarios prone to system failures. DES-LOC offers a scalable, bandwidth-efficient, and fault-tolerant solution for foundation model training.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=6N2qFixxYZ",
+  "arxiv": "https://arxiv.org/abs/2505.22549",
+  "pdf": "https://proceedings.iclr.cc/paper_files/paper/2026/file/46a64917ae77556266a5fb4cbc99a201-Paper-Conference.pdf",
+  "proceedings": "https://proceedings.iclr.cc/paper_files/paper/2026/hash/46a64917ae77556266a5fb4cbc99a201-Abstract-Conference.html",
+  "virtual": "https://iclr.cc/virtual/2026/poster/10011382",
+  "code": null
+ },
+ "license": "http://creativecommons.org/licenses/by/4.0/",
+ "img": "cc-by",
+ "image_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/images/iclr26-0579.png",
+ "thumb_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/thumbs/iclr26-0579.webp",
+ "figure_page": 3,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.5
+}

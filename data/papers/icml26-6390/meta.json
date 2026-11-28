@@ -1,0 +1,57 @@
+{
+ "id": "icml26-6390",
+ "title": "Modular Pretraining Enables Access Control",
+ "authors": [
+  "Ethan Roland",
+  "Murat Cubuktepe",
+  "Erick Martinez",
+  "Stijn Servaes",
+  "Keenan Pepper",
+  "Michael Vaiana",
+  "Diogo de Lucena",
+  "Judd Rosenblatt",
+  "Addie Foote",
+  "Cem Anil",
+  "Alex Cloud"
+ ],
+ "venue": "ICML 2026",
+ "tier": "spotlight",
+ "track": "main",
+ "topic": "Deep Learning->Foundation Models",
+ "role": "pipeline",
+ "role2": null,
+ "claim": "Route gradients and activations to a specialized module for its own data and to a random module for general data, isolating capabilities.",
+ "layout": "2 panels, left-to-right, dashed divider, shared legend centered below",
+ "tags": [
+  "modular",
+  "gradient-routing",
+  "capability-isolation",
+  "access-control",
+  "training-procedure"
+ ],
+ "style": [
+  "icon-heavy",
+  "colorful",
+  "minimal"
+ ],
+ "description": "Two side-by-side panels, split by a dashed vertical line, show one Transformer MLP block. A row of boxes reads Code, Bio, Core, Cyber and Nuclear. Core is a large blue box. Inactive modules are grey and hatched. On the left, Bio Data enters Prior Layers, and only the Bio and Core boxes are active. Solid blue arrows show the forward pass and orange arrows show the backward pass, both merging at a circled plus on top. On the right, Core Data enters Prior Layers. Core is active, and a randomly chosen Cyber module is outlined with dashed blue and orange arrows. A legend at the bottom center explains forward pass, backward pass and randomly enabled. The eye goes first to the blue Core and Bio boxes and the colored arrows.",
+ "caption": "Overview of GRAM training. In a decoder-only Transformer, GRAM modifies each MLP block (\"Core\") by introducing additional auxiliary modules, one per dual-use capability. Left: On auxiliary data, the core MLP and corresponding auxiliary module are active in the forward pass. Gradients always update the auxiliary module and update the non-auxiliary parameters with probability $p_{as}$, enabling tunable capability isolation. Right: On core data, gradients always update the non-auxiliary parameters. With probability $p_{cr}$, a random auxiliary module is also activated and updated, training the core performance to be robust to auxiliary module activations. Modules not selected for a batch receive no forward activation nor gradient updates, inducing capability isolation and enabling capability removal by module ablation at inference time.",
+ "caption_source": "latex",
+ "abstract": "AI developers face a dual-use dilemma. An AI capability that helps one user cure a disease can help another synthesize one. This dilemma could be resolved with access control, limiting dual-use AI capabilities to trusted deployments with a legitimate need. A gold standard for access control would be to serve separate models with different capabilities to different users. However, training and deploying multiple models is prohibitively expensive. To address this challenge, we propose gradient-routed auxiliary modules (GRAM), a pre-training method that adds modules to a neural network and selectively updates them to induce specialization. Ablating a module at inference time removes its capability from the network, approximating a model trained on filtered data. We evaluate GRAM on synthetic stories and realistic dual-use data spanning virology, cybersecurity, nuclear physics, and specialized code. These experiments show that GRAM disables targeted capabilities while preserving the rest, and resists their recovery under finetuning better than post-hoc unlearning. Most importantly, a Chinchilla-optimal scaling analysis from 50M to 5B parameters shows that the gap between data-filtered and full-data models widens with scale on removed capabilities but stays small on retained ones, and that GRAM closely tracks data filtering. GRAM's training cost is independent of the number of supported capability profiles, yielding a 5x reduction over data filtering in our 5-profile setting.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=yIubI9l3IT",
+  "arxiv": "https://arxiv.org/abs/2607.08077",
+  "pdf": "https://raw.githubusercontent.com/mlresearch/v306/main/assets/roland26a/roland26a.pdf",
+  "proceedings": "https://proceedings.mlr.press/v306/roland26a.html",
+  "virtual": "https://icml.cc/virtual/2026/poster/60631",
+  "code": "https://modularpretraining.com/"
+ },
+ "license": "http://creativecommons.org/licenses/by/4.0/",
+ "img": "cc-by",
+ "image_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/images/icml26-6390.png",
+ "thumb_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/thumbs/icml26-6390.webp",
+ "figure_page": 2,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.8
+}

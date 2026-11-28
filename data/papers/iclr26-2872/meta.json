@@ -1,0 +1,52 @@
+{
+ "id": "iclr26-2872",
+ "title": "Optimal Sparsity of Mixture-of-Experts Language Models for Reasoning Tasks",
+ "authors": [
+  "Taishi Nakamura",
+  "Satoki Ishikawa",
+  "Masaki Kawamura",
+  "Okamoto",
+  "Daisuke Nohara",
+  "Jun Suzuki",
+  "Rio Yokota"
+ ],
+ "venue": "ICLR 2026",
+ "tier": "oral",
+ "track": "main",
+ "topic": "Deep Learning->Generative Models and Autoencoders",
+ "role": "analysis-finding",
+ "role2": null,
+ "claim": "Loss falls smoothly with model size, but a downstream reasoning task's loss turns upward once total parameters grow too large.",
+ "layout": "4 line-plot panels in a row, shared legend below, GSM8K reversal",
+ "tags": [
+  "scaling-laws",
+  "mixture-of-experts",
+  "sparsity",
+  "reasoning",
+  "non-monotonic-trend"
+ ],
+ "style": [
+  "plot",
+  "colorful"
+ ],
+ "description": "Four side-by-side line plots share the x-axis, total parameters in billions on a log scale. The y-axes are final loss for Train Loss and Validation Loss, and task loss for HellaSwag and GSM8K. Each plot has twelve colored, marker-coded curves, one for each combination of hidden dimension (512, 1024, 2048) and top-k (2, 4, 8, 16). The legend runs along the bottom. In the first three panels every curve slopes steadily downward, so larger models have lower loss. The GSM8K panel breaks the pattern. Its curves fall at first, reach a minimum near 4 to 7B parameters, then climb sharply for larger models. The eye goes first to this V-shaped GSM8K panel, which contrasts with the smooth monotonic panels to its left.",
+ "caption": "Although training and validation loss decrease as the total number of parameters grows, the task loss on GSM8K can sometimes worsen with larger models. Training and validation losses steadily decrease as total or active parameters increase. The HellaSwag task loss follows this scaling trend, whereas GSM8K task loss worsens once total parameters exceed a threshold. \\diff{Within each fixed top-k group, moving right on the x-axis corresponds to increasing sparsity (because total experts $E$ increases while $k$ remains fixed), so the right-hand task-loss panels implicitly reflect the same sparsity ordering shown explicitly in Figure [ref].}",
+ "caption_source": "latex",
+ "abstract": "Empirical scaling laws have driven the evolution of large language models (LLMs), yet their coefficients shift whenever the model architecture or data pipeline changes. Mixture-of-Experts (MoE) models, now standard in state-of-the-art systems, introduce a new sparsity dimension that current dense-model frontiers overlook. We investigate how MoE sparsity influences two distinct capability regimes: memorization skills and reasoning skills. By training MoE families that vary total parameters, active parameters, and top-$k$ routing under fixed compute budgets, we disentangle pre-training loss from downstream accuracy. Our results reveal two principles. First, Active FLOPs: models with identical training loss but greater active compute achieve higher reasoning accuracy. Second, Total tokens per parameter (TPP): memorization tasks improve with more parameters, while reasoning tasks benefit from optimal TPP, indicating that reasoning is data-hungry. Neither reinforcement learning post-training (GRPO) nor increased test-time compute alters these trends. We therefore argue that optimal MoE sparsity must be determined jointly by active FLOPs and TPP, revising the classical picture of compute-optimal scaling. Our model checkpoints, code and logs are open-source at https://github.com/rioyokotalab/optimal-sparsity.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=XFw2EPRUUR",
+  "arxiv": "https://arxiv.org/abs/2508.18672",
+  "pdf": "https://proceedings.iclr.cc/paper_files/paper/2026/file/ab5492f57995409351cbf1a1cdf5f1a4-Paper-Conference.pdf",
+  "proceedings": "https://proceedings.iclr.cc/paper_files/paper/2026/hash/ab5492f57995409351cbf1a1cdf5f1a4-Abstract-Conference.html",
+  "virtual": "https://iclr.cc/virtual/2026/poster/10008990",
+  "code": "https://github.com/rioyokotalab/optimal-sparsity"
+ },
+ "license": "http://creativecommons.org/licenses/by/4.0/",
+ "img": "cc-by",
+ "image_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/images/iclr26-2872.png",
+ "thumb_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/thumbs/iclr26-2872.webp",
+ "figure_page": 4,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.9
+}

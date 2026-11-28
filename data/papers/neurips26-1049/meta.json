@@ -1,0 +1,51 @@
+{
+ "id": "neurips26-1049",
+ "title": "Fixed-Point Masked Generative Modeling",
+ "authors": [
+  "Andrea Miele",
+  "Yiming QIN",
+  "Alba Carballo Castro",
+  "Justin Deschenaux",
+  "Pascal Frossard"
+ ],
+ "venue": "NeurIPS 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "Deep Learning->Generative Models and Autoencoders",
+ "role": "teaser-result",
+ "role2": null,
+ "claim": "Our method gives better quality at every compute budget while also using fewer parameters, less training time, and less memory.",
+ "layout": "2 panels, left line plot and right horizontal bars, baseline zero line",
+ "tags": [
+  "efficiency",
+  "quality-cost-tradeoff",
+  "adaptive-depth",
+  "masked-generative",
+  "language-modeling"
+ ],
+ "style": [
+  "plot",
+  "minimal",
+  "colorful"
+ ],
+ "description": "Two side-by-side plots. The left panel is a line chart of generative perplexity (y-axis, lower is better) against sampling budget (x-axis: 96, 192, 384, 768 forward passes). Four series are shown: FP-MDLM (blue dashed), CoFRe (thick magenta solid with triangle markers), MDLM (green dotted), and MDLM + SDTT (orange dotted). Entropy values are written in parentheses next to the points, in matching colors. The MDLM baseline starts very high at the lowest budget, and CoFRe stays lowest at all budgets. The right panel is a horizontal bar chart of relative change versus the MDLM baseline, drawn as a vertical zero line. Blue bars extend left for #Params (-38.8%), training time (-11.5%) and VRAM (-16.9%). Gray italic notes give absolute values. The eye goes first to the magenta CoFRe curve.",
+ "caption": "FP-MDLM and CoFRe improve the quality--cost trade-off on OWT. (Left) Generative perplexity across forward-pass budgets, with entropy in parentheses; CoFRe gives the best quality at all shown budgets. (Right) Relative to MDLM, FP-MDLM and CoFRe use fewer parameters, less training time, and less VRAM.",
+ "caption_source": "latex",
+ "abstract": "Masked Generative Models (MGMs) enable parallel decoding and achieve strong performance across modalities, but require full-sequence bidirectional transformers at every step, making training costly and degrading quality under low sampling budgets. Existing work improves efficiency via better samplers or cheaper fixed-depth denoisers, but they still allocate a fixed amount of denoiser computation to each refinement step. We introduce Fixed-Point Masked Generative Models (FP-MGMs), which replace part of the denoiser with a fixed-point solver over shared attention layers to enable adaptive depth with fewer parameters. To make it more effective for masked generation, we first introduce a cross-step consistency loss, which aligns hidden representations at neighboring denoising steps and, second, three-state reuse (3SR) which warm-starts the solver using the previous solution by treating differently unchanged, still-masked, and newly revealed tokens respectively. Together, these components define our complete training-to-inference framework for fixed-point masked generation, \\emph{CoFRe}. We also show that pre-trained MGMs can be converted into FP-MGMs with short fine-tuning, avoiding full retraining. Across modalities, CoFRe improves the quality and cost trade-off. On OpenWebText, CoFRe reduces parameters by 38.8\\%, training time by 11.5\\%, and VRAM by 16.9\\%, while improving generative perplexity from 830.8 to 101.8 at a budget of $96$ transformer-block forward passes, compared to MDLM. In ImageNette, CoFRe reduces training time by 48.6\\% and VRAM by 50.7\\%, while improving FID in all sample budgets tested. Overall, CoFRe offers a practical framework for cheaper training and stronger low-budget masked generation.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=7Ox69QdIwT",
+  "arxiv": "https://arxiv.org/abs/2605.31215",
+  "pdf": "https://arxiv.org/pdf/2605.31215",
+  "proceedings": null,
+  "virtual": "https://neurips.cc/virtual/2026/poster/155218",
+  "code": "https://github.com/andreamiele/fp-mgm/"
+ },
+ "license": "http://creativecommons.org/licenses/by/4.0/",
+ "img": "cc-by",
+ "image_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/images/neurips26-1049.png",
+ "thumb_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/thumbs/neurips26-1049.webp",
+ "figure_page": 0,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.85
+}

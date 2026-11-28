@@ -1,0 +1,49 @@
+{
+ "id": "neurips26-6811",
+ "title": "Progressive Layer-wise Supervision: Deep-to-Shallow Supervision Annealing for Efficient and Robust Speech Deepfake Detection",
+ "authors": [
+  "Hoan My Tran",
+  "Xin Wang",
+  "Xuechen Liu"
+ ],
+ "venue": "NeurIPS 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "Applications->Language, Speech and Dialog",
+ "role": "pipeline",
+ "role2": null,
+ "claim": "Alternating a standard final-layer objective with a weighted sum of per-layer losses redistributes supervision across all depths of a network.",
+ "layout": "2 stacked panels, left-to-right flow, branches down to per-layer losses summed",
+ "tags": [
+  "layer-wise-supervision",
+  "training-schedule",
+  "self-supervised-fine-tuning",
+  "early-exit",
+  "loss-weighting"
+ ],
+ "style": [
+  "icon-heavy",
+  "math-heavy",
+  "colorful"
+ ],
+ "description": "Two stacked rounded panels show the training procedure. The top gray panel, labeled 'Even epoch e', runs left to right: a speech waveform feeds a blue-to-red gradient 'Speech Foundation Model' box, then an H^L block and a Classifier trapezoid, which branches to a halo emoji (Bona fide) and a devil emoji (Spoofed). Dotted red lines link the model box to the larger beige panel below, labeled 'Odd epoch e'. That panel expands the model into a CNN feature extractor and Transformer 1, 2, ..., L blocks. Hidden states H^0, H^1, H^... branch downward, each through a small classifier 'C' to a weighted loss term w_l L_l. The final H^L goes to its own classifier and the same emoji outputs. All terms are summed through plus circles into the L_total(e) equation at bottom right.",
+ "caption": "PLS training objective. During even epochs, the model is anchored by standard supervision on the final transformer layer $H^{(L)}$. In odd epochs, a deep-to-shallow supervision is applied, where the total loss $\\mathcal{L}_{total}$ is a weighted sum of all layer-wise losses $\\mathcal{L}_l$. The layer weights $w_l$ evolve via a decaying power parameter $\\rho(e)$, transitioning from high-level to uniform representation.",
+ "caption_source": "latex",
+ "abstract": "Speech foundation models pretrained via self-supervised learning provide powerful representations for deepfake detection, yet we find that standard fine-tuning exploits only the deepest transformer layers-leaving the majority of the network's capacity discriminatively inert. Layer-wise probing of XLS-R-128 reveals that the top two-thirds of the transformer stack contribute negligibly to anti-spoofing performance after standard fine-tuning, a phenomenon we term shallow-layer dormancy. We connect this observation to the representational redundancy of pretrained transformers: adjacent layers encode highly similar information, and fine-tuning without explicit intermediate supervision reinforces rather than breaks this redundancy. To address this, we propose Progressive Layer-wise Supervision (PLS), a training framework that attaches a shared linear classifier to every transformer layer and schedules layer-wise loss contributions via an exponentially annealed power weighting. Early training concentrates supervision on deep layers to preserve the pretrained representational hierarchy; later training progressively redistributes supervision to shallower layers, converting dormant earlier representations into discriminative ones. Competitive detection (<9.25% average EER) is achievable on XLS-R-128 at layer 7, which reduces the parameter count from 315M to 101M and exemplifies an early exit mechanism. Experiments across twelve benchmarks spanning in-domain, and out-of-domain deepfake scenarios show PLS achieves a new state-of-the-art with 239M parameters, outperforming prior methods with larger and more complex architectures.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=kmOSYc5cfb",
+  "arxiv": "https://arxiv.org/abs/2611.20630",
+  "pdf": "https://arxiv.org/pdf/2611.20630",
+  "proceedings": null,
+  "virtual": "https://neurips.cc/virtual/2026/poster/150091",
+  "code": null
+ },
+ "license": "http://creativecommons.org/licenses/by-nc-nd/4.0/",
+ "img": "none",
+ "image_url": null,
+ "thumb_url": null,
+ "figure_page": 2,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.9
+}

@@ -1,0 +1,48 @@
+{
+ "id": "icml26-5474",
+ "title": "scDEBART: Predicting in silico Single-Cell Perturbation Responses via Large-Scale Differential Expression Learning",
+ "authors": [
+  "Jieun Sung",
+  "Wankyu Kim"
+ ],
+ "venue": "ICML 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "Applications->Health / Medicine",
+ "role": "pipeline",
+ "role2": null,
+ "claim": "A three-stage recipe of data curation, large-scale masked pretraining, and task-specific fine-tuning turns denoised expression changes into accurate predictions.",
+ "layout": "3 panels, left-to-right (pre-process, pre-train, fine-tune), numbered steps and arrows",
+ "tags": [
+  "pretrain-finetune",
+  "masked-modeling",
+  "single-cell",
+  "transformer",
+  "data-curation"
+ ],
+ "style": [
+  "icon-heavy",
+  "colorful",
+  "text-heavy"
+ ],
+ "description": "The figure is a wide three-panel workflow with gray headers: PRE-PROCESS, PRE-TRAIN and FINE-TUNE. The left panel shows a ~66.6M-cell corpus, then four numbered steps: filtering cells (gray matrix), clustering cells (PCA scatter with colored dots), differential expression via scVI (blue matrix), and masking high-dropout genes. The masking step uses red and blue heatmap grids with bold outlined cells, shown before and after. The middle panel shows token rows (pathway features, gene function, baseline expression, logFC with MASK tokens) entering stacked encoder and decoder blocks. These feed an MLP and then reconstructed logFC and embeddings, with green highlights on masked positions. The right panel shows Perturb-seq data with unperturbed and CRISPR-perturbed cells, a scDEBART box, and predicted versus true logFC dots joined by a loss L arrow.",
+ "caption": "scDEBART workflow. We construct a corpus of 6.28 million differential expression (DE) profiles from 66.6 million cells in",
+ "caption_source": "pdf",
+ "abstract": "Single-cell foundation models trained on millions of cells can learn gene expression patterns across diverse contexts. However, for predicting genetic perturbation effects they often underperform simple regression models. We hypothesize two potential limitations: targets defined on dropout-prone absolute expression, and pretraining objectives that reconstruct static co-expression rather than encoding how genes co-regulate under expression changes. We introduce $\\textbf{scDEBART}$, a perturbation-specific pretraining framework that predicts log fold-changes (logFC) conditioned on basal expression, thereby learning how gene sets co-vary across expression-change contexts at scale. To obtain reliable estimates of expression change under technical sparsity, we compute logFC from scVI-denoised expression and restrict pretraining to genes with robust detection. Pretrained on 6.28 million expression-change profiles from 66.6 million human cells and fine-tuned on five Perturb-seq datasets, scDEBART achieves mean enrichment factor (EF) of 11.96, 4-7$\\times$ higher than scGPT and GEARS (mean EF 1.74-2.99), and 71.4\\% top-1 accuracy for reverse perturbation identification compared to near-zero accuracy for prior models. In cross-modal transfer to drug perturbations (SCIPLEX), the model shows dose-dependent improvement in directional alignment (cosine similarity 0.04→0.30) with above-random DEG enrichment (EF 2.91-4.32), suggesting partial transfer of learned regulatory patterns across modalities. Overall, these results indicate that large-scale pretraining on scVI-denoised expression-change profiles provides a useful inductive bias for perturbation prediction.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=pJyidZg93y",
+  "arxiv": null,
+  "pdf": "https://raw.githubusercontent.com/mlresearch/v306/main/assets/sung26a/sung26a.pdf",
+  "proceedings": "https://proceedings.mlr.press/v306/sung26a.html",
+  "virtual": "https://icml.cc/virtual/2026/poster/61521",
+  "code": null
+ },
+ "license": null,
+ "img": "none",
+ "image_url": null,
+ "thumb_url": null,
+ "figure_page": 3,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.95
+}

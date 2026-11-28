@@ -1,0 +1,59 @@
+{
+ "id": "iclr26-5164",
+ "title": "Mixture of Contexts for Long Video Generation",
+ "authors": [
+  "Shengqu Cai",
+  "Ceyuan Yang",
+  "Lvmin Zhang",
+  "Yuwei Guo",
+  "Junfei Xiao",
+  "Ziyan Yang",
+  "Yinghao Xu",
+  "Zhenheng Yang",
+  "Alan Yuille",
+  "Leonidas Guibas",
+  "Maneesh Agrawala",
+  "Lu Jiang",
+  "Gordon Wetzstein"
+ ],
+ "venue": "ICLR 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "Computer Vision->Image and Video Generation",
+ "role": "pipeline",
+ "role2": null,
+ "claim": "A query retrieves only a few relevant chunks via a parameter-free router, so attention cost scales with retrieved content rather than total length.",
+ "layout": "1 panel, bottom-to-top routing; shot boxes in a row, legend left",
+ "tags": [
+  "sparse-attention",
+  "routing",
+  "top-k-retrieval",
+  "long-context",
+  "efficiency"
+ ],
+ "style": [
+  "icon-heavy",
+  "colorful",
+  "photo/real data"
+ ],
+ "description": "A single wide diagram of Mixture-of-Contexts routing. A row of boxes labeled Shot 1, Shot 2, Shot 3, Shot i and Shot N sits in the middle, with ellipses between them. Each box holds a row of pink video-token blocks, and Shot 1 also has a blue text token. Below each box is a small movie-frame thumbnail. A green q token sits at the bottom, labeled 'q token in Shot i'. It feeds a 'Non-param Router' box with a small orange bar-chart icon for Top-k Selection. Black solid curves run from the router to the selected chunks, which are highlighted with red outlines. These curves converge on a circled-plus node labeled Attention Output at the top, with an arrow pointing up. Dashed curves show causally masked paths to later shots. A legend on the left explains the token types and the solid and dashed paths.",
+ "caption": "Overview of our Adaptive \\method. Given a long multi-modal token stream, we first tag natural boundaries (frames, shots, text segments) and slice the sequence into content-aligned chunks (blue and pink blocks for texts and videos, respectively). Each chunk’s keys are then mean-pooled to obtain a single representative vector. For every query token $q$ (green), we compute the dot-product between $q$ and every pooled key, apply a top-$k$ operation, and add mandatory links (global caption and intra-shot edges). The result fetches only a selected subset of chunks, which are forwarded to Flash-Attention -- while all other tokens are skipped, yielding near-linear compute and memory in the number of retrieved chunks rather than quadratic in total sequence length.",
+ "caption_source": "latex",
+ "abstract": "Long video generation is fundamentally a long context memory problem: models must retain and retrieve salient events across a long range without collapsing or drifting. However, scaling diffusion transformers to generate long-context videos is fundamentally limited by the quadratic cost of self-attention, which makes memory and computation intractable and difficult to optimize for long sequences. We recast long-context video generation as an internal information retrieval task and propose a simple, learnable sparse attention routing module, Mixture of Contexts (MoC), as an effective long-term memory retrieval engine. In MoC, each query dynamically selects a few informative chunks plus mandatory anchors (caption, local windows) to attend to, with causal routing that prevents loop closures. As we scale the data and gradually sparsify the routing, the model allocates compute to salient history, preserving identities, actions, and scenes over minutes of content. Efficiency follows as a byproduct of retrieval (near-linear scaling), which enables practical training and synthesis, and the emergence of memory and consistency at the scale of minutes.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=y6XJZlEC2x",
+  "arxiv": "https://arxiv.org/abs/2508.21058",
+  "pdf": "https://proceedings.iclr.cc/paper_files/paper/2026/file/94bbcb744bbada8808fda05b9d9290d6-Paper-Conference.pdf",
+  "proceedings": "https://proceedings.iclr.cc/paper_files/paper/2026/hash/94bbcb744bbada8808fda05b9d9290d6-Abstract-Conference.html",
+  "virtual": "https://iclr.cc/virtual/2026/poster/10006593",
+  "code": "https://primecai.github.io/moc/"
+ },
+ "license": "http://creativecommons.org/licenses/by-sa/4.0/",
+ "img": "cc-by-sa",
+ "image_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/images/iclr26-5164.png",
+ "thumb_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/thumbs/iclr26-5164.webp",
+ "figure_page": 3,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.85
+}

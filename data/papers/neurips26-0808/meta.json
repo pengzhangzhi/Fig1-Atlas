@@ -1,0 +1,55 @@
+{
+ "id": "neurips26-0808",
+ "title": "Dynamic Expert Sharing: Decoupling Memory from Parallelism in Mixture-of-Experts Diffusion LLMs",
+ "authors": [
+  "Hao Chen",
+  "Zhiwen Mo",
+  "Royson Lee",
+  "Qianzhou Wang",
+  "Da Li",
+  "Shell Xu Hu",
+  "Wayne Luk",
+  "Timothy Hospedales",
+  "Hongxiang Fan"
+ ],
+ "venue": "NeurIPS 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "Optimization->Large Scale, Parallel and Distributed",
+ "role": "teaser-result",
+ "role2": "analysis-finding",
+ "claim": "Parallel decoding inflates expert activation and memory-boundness; our sharing method cuts both while preserving accuracy, extending the Pareto frontier.",
+ "layout": "4 panels in a row, left-to-right, line/scatter plots with a roofline diagram",
+ "tags": [
+  "mixture-of-experts",
+  "parallel-decoding",
+  "memory-bound",
+  "pareto-frontier",
+  "efficiency"
+ ],
+ "style": [
+  "plot",
+  "colorful",
+  "minimal"
+ ],
+ "description": "A single horizontal strip of four line and scatter plots that share blue (LLaDA-MoE) and orange (LLaDA2.0-mini) colour coding. Panel (a) plots average activated experts against degree of parallelism from 4 to 128. Both curves rise steeply, and a dotted autoregressive baseline sits far below them. Panel (b) is a log-log roofline plot. A black diagonal ramp ends in a flat ceiling. The memory-bound region is shaded blue and the compute-bound region is shaded orange, with a red dashed line at 2250 TFLOPs/s. Markers for AR, dense dLLM, vanilla MoE dLLM and DES-optimised MoE dLLM sit along the ramp. Panel (c) plots relative accuracy against activated experts. Dotted arrows lead from the vanilla triangles to the DES-Seq and DES-Vote markers, which sit at far fewer experts and keep accuracy high. Panel (d) plots relative accuracy against MoE kernel latency for the two models, with vanilla triangles shown for reference.",
+ "caption": "From left to right: (a) Growth of unique activated experts vs.\\ block size. (b) Roofline model showing MoE dLLMs are more memory-bound than dense counterparts and how DES mitigates this bottleneck. (c) Activated experts vs.\\ relative accuracy, where DES-Vote extends the Pareto frontier. (d) MoE kernel latency vs.\\ relative accuracy. Accuracy in (c, d) is relative to the vanilla baseline. Setup: single B200, batch size 1, generation length 2048; block size 32 except (a) sweeps 4--128. (a--c) average over HumanEval, MBPP, MATH500, GSM8K; (d) uses MBPP. \\vspace{-5mm}",
+ "caption_source": "latex",
+ "abstract": "Among parallel decoding paradigms, diffusion large language models (dLLMs) have emerged as a promising candidate that balances generation quality and throughput. However, their integration with Mixture-of-Experts (MoE) architectures is constrained by an expert explosion: as the number of tokens generated in parallel increases, the number of distinct experts activated grows nearly linearly. This results in substantial memory traffic that pushes inference into a memory-bound regime, negating the efficiency gains of both MoE and parallel decoding. To address this challenge, we propose Dynamic Expert Sharing (DES), a novel technique that shifts MoE optimization from token-centric pruning and conventional expert skipping methods to sequence-level coreset selection. To maximize expert reuse, DES identifies a compact, high-utility set of experts to satisfy the requirements of an entire parallel decoding block. We introduce two innovative selection strategies: (1) Intra-Sequence Sharing (DES-Seq), which adapts optimal allocation to the sequence level, and (2) Saliency-Aware Voting (DES-Vote), a novel mechanism that allows tokens to collectively elect a coreset based on aggregated router weights. Extensive experiments on MoE dLLMs demonstrate that DES reduces unique expert activations by over 55% and latency by up to 38%, while retaining 99% of vanilla accuracy, effectively decoupling memory overhead from the degree of parallelism.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=5jLBdUevsd",
+  "arxiv": "https://arxiv.org/abs/2602.00879",
+  "pdf": "https://arxiv.org/pdf/2602.00879",
+  "proceedings": null,
+  "virtual": "https://neurips.cc/virtual/2026/poster/155427",
+  "code": null
+ },
+ "license": "http://creativecommons.org/licenses/by/4.0/",
+ "img": "cc-by",
+ "image_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/images/neurips26-0808.png",
+ "thumb_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/thumbs/neurips26-0808.webp",
+ "figure_page": 1,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.6
+}

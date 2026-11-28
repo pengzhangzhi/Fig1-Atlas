@@ -1,0 +1,55 @@
+{
+ "id": "icml26-0454",
+ "title": "ExpWeaver: LLM Agents Learn from Experience via Latent RAG",
+ "authors": [
+  "Tao Feng",
+  "Tianyang Luo",
+  "Jingjun Xu",
+  "Zhigang Hua",
+  "Yan Xie",
+  "Shuang Yang",
+  "Ge Liu",
+  "Jiaxuan You"
+ ],
+ "venue": "ICML 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "Deep Learning->Large Language Models",
+ "role": "pipeline",
+ "role2": "overview-framework",
+ "claim": "A single model retrieves and integrates stored experiences in its own latent space during decoding, trained end-to-end with reinforcement learning.",
+ "layout": "3 dashed panels, left-to-right, feedback loops along bottom, frozen/trainable icons",
+ "tags": [
+  "latent-retrieval",
+  "retrieval-augmented-generation",
+  "end-to-end",
+  "reinforcement-learning",
+  "agent-memory"
+ ],
+ "style": [
+  "colorful",
+  "icon-heavy",
+  "text-heavy",
+  "math-heavy"
+ ],
+ "description": "A wide system diagram with three dashed-border panels read left to right. The left blue panel, Experience Bank, shows past experience graphs, an LLM that summarizes them into text, and a second frozen LLM that encodes the summaries into a cloud of latent embedding vectors z1…zn. The middle green panel, Latent Retrieval-Augmented Generation, shows a query LLM fed with tokens 1…T. Its hidden states h_t query the bank for Top-K embeddings, which pass through Cross-Attention and Gated Integration to produce h'_t. The right gray panel, Task Adaptation, splits into a generative branch (h' sequence decoded into a textual answer) and a ranking branch (similarity with candidate embeddings, then a rank list). Snowflake and flame icons mark frozen and trainable modules. Bottom arrows carry the reward and the experience-bank update.",
+ "caption": "Overview of \\method. The framework consists of three components: (1) Experience Bank: past experiences are summarized and encoded into latent embeddings $z = h_{\\theta}(s)$ using the same LLM $p_{\\theta}$; (2) Latent Retrieval-Augmented Generation: at each decoding step, the hidden state $h_t$ retrieves Top-K experience embeddings $Z_t$, which are aggregated via cross-attention and integrated through a gated mechanism to produce $h'_t$; (3) Task Adaptation: the enhanced hidden states support both generative tasks (producing textual output $y$) and ranking tasks (computing $\\mathrm{sim}(h'_T, c_j)$ for candidate ranking). The entire pipeline is trained end-to-end with reinforcement learning. Snowflake denotes frozen parameters; flame denotes trainable parameters.",
+ "caption_source": "latex",
+ "abstract": "Experience learning has achieved promising results in enhancing LLM agent planning and reasoning by integrating past interactions as reusable knowledge. However, existing methods remain confined to explicit text space, retrieving experiences via semantic similarity and concatenating them into the context window, leading to substantial token overhead and a decoupled architecture that separates retrieval from generation. To address these limitations, we propose ExpWeaver, a framework that enables LLM agents to learn from experience via latent retrieval-augmented generation, without requiring a separate RAG module. ExpWeaver encodes experiences using the LLM's own hidden states, retrieves relevant experiences directly in latent space at each decoding step, and integrates them through cross-attention aggregation and gated residual mechanisms. The entire pipeline is optimized end-to-end with reinforcement learning, supporting both generative and ranking tasks. We evaluate ExpWeaver on 13 diverse tasks spanning question answering, reasoning, coding, scientific prediction, and recommendation. Results demonstrate that ExpWeaver achieves state-of-the-art performance on 12 out of 13 tasks, outperforming the strongest baseline by over 6.8%; maintains token efficiency comparable to non-retrieval baselines while text-based retrieval methods require 1.5 to 2 times more tokens; and exhibits superior cross-domain generalization, outperforming the strongest baseline by 16.32% under zero-shot transfer and 15.21% under few-shot transfer. Our code for ExpWeaver is released at https://github.com/ulab-uiuc/ExpWeaver.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=4ARH5kZrgz",
+  "arxiv": "https://arxiv.org/abs/2606.01041",
+  "pdf": "https://raw.githubusercontent.com/mlresearch/v306/main/assets/feng26i/feng26i.pdf",
+  "proceedings": "https://proceedings.mlr.press/v306/feng26i.html",
+  "virtual": "https://icml.cc/virtual/2026/poster/66387",
+  "code": null
+ },
+ "license": "http://creativecommons.org/licenses/by/4.0/",
+ "img": "cc-by",
+ "image_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/images/icml26-0454.png",
+ "thumb_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/thumbs/icml26-0454.webp",
+ "figure_page": 2,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.9
+}

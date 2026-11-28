@@ -1,0 +1,57 @@
+{
+ "id": "icml26-5139",
+ "title": "When to Memorize and When to Stop: Gated Recurrent Memory for Long-Context Reasoning",
+ "authors": [
+  "Leheng Sheng",
+  "Yongtao Zhang",
+  "Wenchang Ma",
+  "Yaorui Shi",
+  "Ting Huang",
+  "Xiang Wang",
+  "An Zhang",
+  "Ke Shen",
+  "Tat-Seng Chua"
+ ],
+ "venue": "ICML 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": null,
+ "role": "prior-vs-ours",
+ "role2": "problem-setup",
+ "claim": "Naive recurrent chunk-wise memory updating accumulates irrelevant content and never stops, causing memory growth and wasted computation after evidence is found.",
+ "layout": "2 panels, left pipeline with legend, right plot; annotated failure icons",
+ "tags": [
+  "recurrent-memory",
+  "long-context",
+  "failure-mode",
+  "efficiency",
+  "llm-agents"
+ ],
+ "style": [
+  "colorful",
+  "icon-heavy",
+  "plot"
+ ],
+ "description": "The left panel shows the MemAgent pipeline. A long context is split into chunks C1..CT, drawn as squares with and without evidence (tan versus white). Chunks C3 and C4 feed recurrent Update modules (phi_theta) that take the question Q and the previous memory M and produce the next memory. The final memory M_T and Q go to an Answer module (psi_theta, cyan box), which outputs the answer A-hat. A legend box defines Question (dark), Chunk (with or without evidence) and Memory (pink). The right panel is a schematic plot of memory size against chunks. A pink curve rises and plateaus at a highlighted max-memory region, labeled \"Memory Explosion\" with a starburst icon. A row of chunks below shows the last evidence chunk, followed by green-highlighted chunks labeled \"Lacking Exit\" with an EXIT sign.",
+ "caption": "MemAgent and its limitations. The MemAgent reads a long context chunk-by-chunk in an RNN-like manner, recurrently updating a textual memory and answering from the final memory. It faces two crucial risks: memory explosion by over-accumulating irrelevant memories and lacking an exit mechanism when collected sufficient evidence.",
+ "caption_source": "latex",
+ "abstract": "While reasoning over long context is crucial for various real-world applications, it remains challenging for large language models (LLMs) as they suffer from performance degradation as the context length grows. Recent work MemAgent has tried to tackle this by processing context chunk-by-chunk in an RNN-like loop and updating a textual memory for final answering. However, this naive recurrent memory update faces two crucial drawbacks: (i) memory can quickly explode because it can update indiscriminately, even on evidence-free chunks; and (ii) the loop lacks an exit mechanism, leading to unnecessary computation after even sufficient evidence is collected. To address these issues, we propose GRU-Mem, which incorporates two text-controlled gates for more stable and efficient long-context reasoning. Specifically, in GRU-Mem, the memory only updates when the update gate is open and the recurrent loop will exit immediately once the exit gate is open. To endow the model with such capabilities, we introduce two reward signals $r^{\\text{update}}$ and $r^{\\text{exit}}$ within end-to-end RL, rewarding the correct updating and exiting behaviors respectively. Experiments on various long-context reasoning tasks demonstrate the effectiveness and efficiency of GRU-Mem, which generally outperforms the vanilla MemAgent with up to 400\\% times inference speed acceleration.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=mOPwfQSfJq",
+  "arxiv": "https://arxiv.org/abs/2602.10560",
+  "pdf": "https://raw.githubusercontent.com/mlresearch/v306/main/assets/sheng26b/sheng26b.pdf",
+  "proceedings": "https://proceedings.mlr.press/v306/sheng26b.html",
+  "virtual": "https://icml.cc/virtual/2026/poster/61843",
+  "code": null
+ },
+ "license": "http://arxiv.org/licenses/nonexclusive-distrib/1.0/",
+ "img": "none",
+ "image_url": null,
+ "thumb_url": null,
+ "figure_page": 1,
+ "qc_flags": [
+  "low-role-confidence"
+ ],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.35
+}

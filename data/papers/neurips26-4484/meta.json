@@ -1,0 +1,51 @@
+{
+ "id": "neurips26-4484",
+ "title": "Entropy-Gated Latent Recursion",
+ "authors": [
+  "Soham Bhattacharjee",
+  "Dushyant Singh Chauhan",
+  "Salem Lahlou",
+  "Martin Takac",
+  "Nils Lukas"
+ ],
+ "venue": "NeurIPS 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "General Machine Learning->Everything Else",
+ "role": "analysis-finding",
+ "role2": "concept",
+ "claim": "Combining a deterministic axis with a stochastic axis yields a joint sampling space that solves problems neither single axis solves alone.",
+ "layout": "1 panel, 11x11 grid heatmap, colored outlines highlighting row, column, and whole grid",
+ "tags": [
+  "inference-time-scaling",
+  "sampling-diversity",
+  "deterministic-vs-stochastic",
+  "oracle-coverage",
+  "decoding"
+ ],
+ "style": [
+  "plot",
+  "minimal",
+  "colorful"
+ ],
+ "description": "A single square grid of 11 by 11 cells. The x-axis is temperature T (stochastic), from 0.0 to 1.0. The y-axis is layer span L (deterministic), from 0 to 10. Each cell holds a green check for a correct rollout or a gray cross for a wrong one. A thick red rectangle outlines the bottom row (L=0), the temperature-only axis. A thick blue rectangle outlines the left column (T=0), the layer-only axis. A thin green border encloses the whole grid, marking the joint pool. The checks and crosses form irregular patterns, with many correct cells away from both the red and blue strips. The eye goes first to the colored outlines at the left and bottom edges, then to the scattered green checks across the interior. It is a single-problem illustration that the two axes complement each other.",
+ "caption": "The $L\\!\\times\\!T$ sampling space on a single MATH-500 problem (Qwen2.5-3B-Instruct, \\#105). Each cell: correct (green \\checkmark) or wrong (gray $\\times$) under one $(L,T)$ configuration. \\textcolor[HTML]{D62728}{Red}: $T$-only ($L\\!=\\!0$); \\textcolor[HTML]{1F77B4}{blue}: $L$-only ($T\\!=\\!0$); \\textcolor[HTML]{2CA02C}{green}: joint pool. Over all $500$ problems, the joint diversity ceiling is $91.6%$ vs.\\ $83.4%$ ($T$-only) and $81.2%$ ($L$-only).",
+ "caption_source": "latex",
+ "abstract": "Inference-time scaling has become the dominant lever for improving language-model reasoning, but existing methods often derive rollout diversity from a single source: stochastic token-level sampling. We identify a second, fully \\emph{deterministic} and \\emph{complementary} axis: the layer span $L$ at which a frozen model's top decoder layers are recursively re-applied at high-uncertainty tokens. Different choices of $L$ produce distinct rollouts that solve different subsets of problems, with no stochasticity. We instantiate this axis through \\emph{Entropy-Gated Latent Recursion} (EGLR), a training-free decoding procedure that, combined with temperature sampling, turns a single-axis rollout pool into an $L\\!\\times\\!T$ Cartesian sampling space at almost the same per-rollout cost. Across $8$ instruction-tuned models and $6$ math benchmarks, majority voting over the $L$ axis matches or improves on greedy decoding in nearly all settings and outperforms FLOP-matched beam search, and the gains carry over to a code benchmark. On MATH-500, the oracle ceiling of the joint pool exceeds that of either axis alone by $8$ to $10$ points. In a preliminary study, using the pool for GRPO rollouts with importance-sampling correction improves over standard GRPO. The code is available at \\href{https://github.com/spotai-mbzuai/neurips26-eglr}{https://github.com/spotai-mbzuai/eglr}.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=UznQDehNbu",
+  "arxiv": "https://arxiv.org/abs/2606.16620",
+  "pdf": "https://arxiv.org/pdf/2606.16620",
+  "proceedings": null,
+  "virtual": "https://neurips.cc/virtual/2026/poster/152175",
+  "code": null
+ },
+ "license": "http://arxiv.org/licenses/nonexclusive-distrib/1.0/",
+ "img": "none",
+ "image_url": null,
+ "thumb_url": null,
+ "figure_page": 1,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.5
+}

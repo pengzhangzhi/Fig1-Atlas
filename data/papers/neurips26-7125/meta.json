@@ -1,0 +1,48 @@
+{
+ "id": "neurips26-7125",
+ "title": "Value-Based Pre-Training With Downstream Feedback: Meta-Learn Your Pre-Training Objectives",
+ "authors": [
+  "Shuqi Ke",
+  "Giulia Fanti"
+ ],
+ "venue": "NeurIPS 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "General Machine Learning->Transfer, Multitask and Meta-learning",
+ "role": "prior-vs-ours",
+ "role2": "pipeline",
+ "claim": "Standard training fixes how self-supervised tasks are built from data; ours replaces that fixed rule with a learnable designer.",
+ "layout": "3 panels: top pipeline strip, bottom text and image examples; lock vs brain badges",
+ "tags": [
+  "task-construction",
+  "learnable-designer",
+  "self-supervised",
+  "fixed-vs-learned",
+  "continued-pretraining"
+ ],
+ "style": [
+  "icon-heavy",
+  "colorful",
+  "text-heavy"
+ ],
+ "description": "A rounded-box figure with three panels. Panel (a), across the top, shows a left-to-right pipeline of five boxes joined by arrows: Unlabeled data x~D_u, an orange Task Construction c box, the Task (x_c, y, m), a green Learner h_θ, and the Loss. Above it, two badges contrast a blue lock reading 'Fixed c: standard pretraining' with a purple brain reading 'Learnable c_φ: V-pretraining'. Panel (b), bottom left, uses the text 'The cat sat on the mat' to show the input, side info (token positions 1-6, with 6 highlighted), and targets. A fixed one-hot target [0 0 0 ... 1 0] is paired with a learnable soft target [0 0 0.1 ... 0.7 0.1]. Panel (c), bottom right, shows a fox image with masked patches as View 1 and the clean fox as View 2 target, again with fixed vs learnable augmentation badges. Orange highlights mark the constructed elements.",
+ "caption": "Task construction as the control surface in continued pretraining. A construction rule \\(c\\) maps each unlabeled example \\(x\\sim\\mathcal D_u\\) into a self-supervised prediction problem \\((x_c,y,m)\\), such as one-hot next-token prediction in language modeling or paired views and targets in DINO-style vision SSL. Standard continued pretraining fixes this rule before training, whereas \\name replaces it with a feedback-trained designer \\(c_\\phi\\) while keeping the learner update self-supervised.",
+ "caption_source": "latex",
+ "abstract": "Continued pretraining is optimized on a fixed self-supervised task but selected by downstream performance. This creates a coarse feedback loop: practitioners evaluate checkpoints, revise data mixtures or objectives, and rerun pretraining runs, while individual pretraining updates receive no signal about whether they help the target capability. We ask whether a small set of verifiable downstream examples can provide step-level feedback during continued pretraining without becoming learner supervision. We introduce V-pretraining, which separates a learner trained only by a self-supervised loss from a lightweight task designer that constructs targets or views for unlabeled batches. Given the current learner and an unlabeled batch, V-pretraining estimates the downstream value of a candidate target or view construction by the first-order predicted decrease in downstream loss after the self-supervised update it induces. The designer is trained to increase this value; the learner then applies the resulting self-supervised update with targets or views detached, so downstream labels never directly update learner parameters. V-pretraining can be used to learn adaptive top-$K$ soft targets for language modeling and learned views for self-supervised vision. Under wall-clock-matched continued pretraining, V-pretraining improves GSM8K Pass@1 for Qwen models using 1,024 GSM8K examples only as feedback, including a +7.4 point single-run gain for Qwen2.5-0.5B. In vision, V-pretraining improves DINOv3 transfer to ADE20K semantic segmentation and NYUv2 depth estimation while preserving ImageNet linear accuracy, indicating that feedback-guided task construction improves target downstream capabilities without collapsing general-purpose representations.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=n9Wa5CFzZ3",
+  "arxiv": "https://arxiv.org/abs/2601.22108",
+  "pdf": "https://arxiv.org/pdf/2601.22108",
+  "proceedings": null,
+  "virtual": "https://neurips.cc/virtual/2026/poster/149814",
+  "code": null
+ },
+ "license": "http://creativecommons.org/licenses/by/4.0/",
+ "img": "cc-by",
+ "image_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/images/neurips26-7125.png",
+ "thumb_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/thumbs/neurips26-7125.webp",
+ "figure_page": 1,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.5
+}

@@ -1,0 +1,51 @@
+{
+ "id": "iclr26-0834",
+ "title": "Taming Momentum: Rethinking Optimizer States Through Low-Rank Approximation",
+ "authors": [
+  "Zhengbo Wang",
+  "Jian Liang",
+  "Ran He",
+  "Zilei Wang",
+  "Tieniu Tan"
+ ],
+ "venue": "ICLR 2026",
+ "tier": "oral",
+ "track": "main",
+ "topic": "Optimization->Global Optimization",
+ "role": "pipeline",
+ "role2": "concept",
+ "claim": "A standard recurrence is secretly an online learner, so compressing its state into low-rank factors keeps a closed-form update.",
+ "layout": "2 panels, left-to-right, big arrow between, equations beneath each",
+ "tags": [
+  "low-rank",
+  "optimizer-states",
+  "equivalence",
+  "memory-efficiency",
+  "online-learning"
+ ],
+ "style": [
+  "math-heavy",
+  "minimal",
+  "colorful"
+ ],
+ "description": "A dashed-border cream box titled 'Your Momentum is a Secret Online Linear Learner!'. The left panel shows the EMA update m' ← β1·m + (1−β1)·g. A blue double-headed arrow labeled 'Equivalent Form' links it to the regression loss L(m; g_t) = ½‖m − g_t‖². Below it, a pink square labeled m sits on a dash-dot stream of gradients g_{t+1}, g_t, g_{t−1}…g_1, with the online gradient flow update beneath. A large blue arrow labeled 'Low-Rank Compression' leads to the right panel. There, the single block m becomes two stacked trapezoids, pink m_B over blue m_A, on the same gradient stream. Above them is the factorized loss L(m_B, m_A; g_t) = ½‖m_B m_A − g_t‖². Below them are second-order, Newton-style updates for m_B and m_A. The eye goes first to the title and the central arrow.",
+ "caption": "Illustration of our LoRA-Pre method. In this work, we establish a novel connection: the exponential moving average (EMA) update for optimizer momentum is mathematically equivalent to training a linear regressor using online gradient descent. Leveraging this equivalence, we propose compressing the optimizer states (i.e., the momenta) using low-rank matrices to reduce the memory footprint. Finally, the closed-form update rules for these matrices without requiring back-propagation are given by Theorem [ref].",
+ "caption_source": "latex",
+ "abstract": "Modern optimizers like Adam and Muon are central to training large language models, but their reliance on first- and second-order momenta introduces significant memory overhead, which constrains scalability and computational efficiency. In this work, we reframe the exponential moving average (EMA) used in these momenta as the training of a linear regressor via online gradient flow. Building on this equivalence, we introduce LoRA-Pre, a novel low-rank optimizer designed for efficient pre-training. Specifically, LoRA-Pre reduces the optimizer's memory footprint by decomposing the full momentum matrix into a compact low-rank subspace within the online linear learner, thereby maintaining optimization performance while improving memory efficiency. We empirically validate LoRA-Pre's efficacy by pre-training models from the Llama architecture family, scaling from 60M to 1B parameters. LoRA-Pre achieves the highest performance across all model sizes. Notably, LoRA-Pre demonstrates remarkable rank efficiency, achieving comparable or superior results using only 1/8 the rank of baseline methods. Beyond pre-training, we evaluate LoRA-Pre's effectiveness in fine-tuning scenarios. With the same rank, LoRA-Pre consistently outperforms all efficient fine-tuning baselines. Specifically, compared to standard LoRA, LoRA-Pre achieves substantial improvements of 3.14 points on Llama-3.1-8B and 6.17 points on Llama-2-7B, validating our approach's effectiveness across both pre-training and fine-tuning paradigms. Our code is publicly available at https://github.com/mrflogs/LoRA-Pre.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=9Q0dNBYeEY",
+  "arxiv": "https://arxiv.org/abs/2602.24283",
+  "pdf": "https://proceedings.iclr.cc/paper_files/paper/2026/file/2f4b6febe0b70805c3be75e5d6a66918-Paper-Conference.pdf",
+  "proceedings": "https://proceedings.iclr.cc/paper_files/paper/2026/hash/2f4b6febe0b70805c3be75e5d6a66918-Abstract-Conference.html",
+  "virtual": "https://iclr.cc/virtual/2026/poster/10011115",
+  "code": "https://github.com/mrflogs/LoRA-Pre"
+ },
+ "license": "http://arxiv.org/licenses/nonexclusive-distrib/1.0/",
+ "img": "none",
+ "image_url": null,
+ "thumb_url": null,
+ "figure_page": 3,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.6
+}

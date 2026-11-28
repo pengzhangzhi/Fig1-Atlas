@@ -1,0 +1,51 @@
+{
+ "id": "icml26-2116",
+ "title": "GIST: Targeted Data Selection for Instruction Tuning via Coupled Optimization Geometry",
+ "authors": [
+  "Guanghui Min",
+  "Tianhao Huang",
+  "Ke Wan",
+  "Chen Chen"
+ ],
+ "venue": "ICML 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "Deep Learning->Large Language Models",
+ "role": "analysis-finding",
+ "role2": null,
+ "claim": "Task-relevant gradients concentrate in a small low-rank subspace, shown by rapid spectral decay and quickly saturating cumulative explained variance.",
+ "layout": "2 side-by-side line plots, left-to-right, dashed 95% threshold line",
+ "tags": [
+  "low-rank",
+  "svd",
+  "spectral-analysis",
+  "lora",
+  "data-selection"
+ ],
+ "style": [
+  "plot",
+  "minimal"
+ ],
+ "description": "Two side-by-side line plots share the x-axis, component index, which runs from 0 to about 285. Both plots draw four curves for Epoch 1 to Epoch 4, in blue solid, orange dashed, green dash-dot and red dotted. The left plot, (a), shows cumulative explained variance. It rises steeply from 0 and levels off near 1.0. A black dashed horizontal line marks the 95% level, and the curves cross it at roughly component 150. The right plot, (b), shows the singular value spectrum on a log y-axis. Values fall sharply at the first few indices, then form a long plateau with a gentle slope. They drop off a cliff near index 270 to 285. Each epoch's curve sits at a different height, with later epochs higher. Legends sit inside the plots. Subcaptions (a) and (b) appear below.",
+ "caption": "Spectral analysis of the MMLU validation gradient $G_{val}$ on Llama2-7B. We decompose the gradient matrix via SVD to obtain singular values $\\sigma_i$. (a) Cumulative explained variance. A steeper curve indicates that a smaller principal subspace dimension is sufficient to capture the majority of the variance (e.g., Rank $150$ captures $95%$), confirming high directional information density. (b) The singular values ($\\sigma_k$) exhibit precipitous decay, further verifying the intrinsic low-rank structure.",
+ "caption_source": "latex",
+ "abstract": "Targeted data selection has emerged as a crucial paradigm for efficient instruction tuning, aiming to identify a small yet influential subset of training examples for a specific target task. In practice, influence is often measured through the effect of an example on parameter updates. To make selection scalable, many approaches leverage optimizer statistics (e.g., Adam states) as an axis-aligned surrogate for update geometry (i.e., diagonal precondition), implicitly treating parameters as coordinate-wise independent. We show that this assumption breaks down in parameter-efficient fine-tuning (PEFT) methods such as LoRA. In this setting, the induced optimization geometry exhibits strong cross-parameter coupling with non-trivial off-diagonal interactions, while the task-relevant update directions are confined to a low-dimensional subspace. Motivated by this mismatch, we propose GIST (Gradient Isometric Subspace Transformation), a simple yet principled alternative that replaces axis-aligned scaling with robust subspace alignment. GIST recovers a task-specific subspace from validation gradients via singular value decomposition (SVD), projects training gradients into this coupled subspace, and scores examples by their alignment with target directions. Extensive experiments have demonstrated that GIST matches or outperforms the state-of-the-art baseline with only 0.29% of the storage and 25% of the computational time under the same selection budget.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=K2KeBuKAtu",
+  "arxiv": "https://arxiv.org/abs/2602.18584",
+  "pdf": "https://raw.githubusercontent.com/mlresearch/v306/main/assets/min26a/min26a.pdf",
+  "proceedings": "https://proceedings.mlr.press/v306/min26a.html",
+  "virtual": "https://icml.cc/virtual/2026/poster/64770",
+  "code": null
+ },
+ "license": "http://creativecommons.org/licenses/by-nc-sa/4.0/",
+ "img": "cc-by-nc-sa",
+ "image_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/images/icml26-2116.png",
+ "thumb_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/thumbs/icml26-2116.webp",
+ "figure_page": 3,
+ "qc_flags": [
+  "bad-crop"
+ ],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.85
+}

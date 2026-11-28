@@ -1,0 +1,48 @@
+{
+ "id": "icml26-5869",
+ "title": "Set Diffusion: Interpolating Token Orderings between Autoregression and Diffusion for Fast and Flexible Decoding",
+ "authors": [
+  "Marianne Arriola",
+  "Volodymyr Kuleshov"
+ ],
+ "venue": "ICML 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": null,
+ "role": "prior-vs-ours",
+ "role2": "teaser-result",
+ "claim": "Prior decoding uses rigid fixed partitions and delayed cache updates; ours decodes flexible sets with per-step updates, giving better speed-accuracy tradeoffs.",
+ "layout": "3 panels, left-to-right; two decoding timelines top-to-bottom, then tradeoff plot",
+ "tags": [
+  "diffusion-language-models",
+  "flexible-decoding",
+  "kv-caching",
+  "speed-accuracy-tradeoff",
+  "autoregressive"
+ ],
+ "style": [
+  "colorful",
+  "plot",
+  "text-heavy"
+ ],
+ "description": "The figure has three parts. The left panel, titled 'Block Diffusion' with red ❌ bullets (fixed block partitioning, KV-cache updates only after blocks), shows a time axis running downward (wall clock time). Each row is a text sequence (\"Let's break this down step by...\") with yellow token boxes. Tokens are decoded in fixed contiguous blocks. The middle panel, titled 'Set Diffusion (Ours)' with green ✅ bullets (flexible position-biased decoding, KV-cache updates every step), shows the same time axis. Tokens are decoded in a sliding set, and the shading fades from deep yellow to pale to show how likely each is to be decoded. A legend at the bottom maps yellow shades to 'More/Less likely to decode'. The right panel is a line plot of GSM8K accuracy against speed (tokens/sec). The green square line for Set Diffusion sits well above the red diamond line for Block Diffusion. An 'Improved Tradeoff' arrow points to the upper right.",
+ "caption": "Left: Set diffusion generates tokens in arbitrary-position, arbitrary-length sets, biasing toward left-to-right decoding and updating the KV cache after each step. Block diffusion [ref] is restricted to generate fixed-size sequential blocks and may only update the cache after each block completes. Right: Speed-accuracy tradeoffs on the GSM8K test (experimental details in Section [ref]).",
+ "caption_source": "latex",
+ "abstract": "Discrete diffusion models have steadily improved in quality relative to autoregressive (AR) models. However, these models are normally constrained to fixed-length generation and do not support key-value (KV) caching. Block diffusion partially bridges diffusion and AR by generating token blocks left-to-right, but its fixed-size sequential blocks limit decoding flexibility and parallelism. Here, we present a new class of language models, set diffusion, comprised of (i) a likelihood parameterization that factorizes over flexible-position, flexible-length token sets and (ii) a set-causal diffusion architecture that supports KV cache updates after every inference step. By factorizing over token sets instead of fixed-size blocks, tokens can be decoded in arbitrarily-ordered sets, including sliding-window sets, enabling faster inference and support for any-order decoding. Set diffusion achieves better speed-quality tradeoffs on mathematical reasoning, summarization, and unconditional generation compared to prior diffusion language models while offering stronger infilling performance than block diffusion. We provide the code, along with the model weights and blog post on the project page: https://m-arriola.com/setdlms/",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=tN8f0dxQ9i",
+  "arxiv": "https://arxiv.org/abs/2607.01775",
+  "pdf": "https://raw.githubusercontent.com/mlresearch/v306/main/assets/arriola26a/arriola26a.pdf",
+  "proceedings": "https://proceedings.mlr.press/v306/arriola26a.html",
+  "virtual": "https://icml.cc/virtual/2026/poster/61135",
+  "code": "https://m-arriola.com/setdlms/"
+ },
+ "license": "http://creativecommons.org/licenses/by/4.0/",
+ "img": "cc-by",
+ "image_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/images/icml26-5869.png",
+ "thumb_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/thumbs/icml26-5869.webp",
+ "figure_page": 1,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.8
+}

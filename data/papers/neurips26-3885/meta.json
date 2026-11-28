@@ -1,0 +1,49 @@
+{
+ "id": "neurips26-3885",
+ "title": "MoEZip: Routing-Aware KV Cache Compression for Sparse Mixture-of-Experts LLMs",
+ "authors": [
+  "Minsang Kim",
+  "Seung Baek"
+ ],
+ "venue": "NeurIPS 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "Deep Learning->Algorithms",
+ "role": "analysis-finding",
+ "role2": "problem-setup",
+ "claim": "As compression tightens, routing decisions change more often and performance falls much faster for sparse models than for dense ones.",
+ "layout": "1 dual-axis line plot, left-to-right, shaded variance bands around flip-rate curves",
+ "tags": [
+  "kv-cache-compression",
+  "mixture-of-experts",
+  "routing-instability",
+  "dual-axis",
+  "degradation-trend"
+ ],
+ "style": [
+  "plot",
+  "colorful"
+ ],
+ "description": "A single dual-axis line chart whose x-axis is the KV cache keep ratio, from 0.1 to 0.9. The left axis, in red, is Expert Flip Rate (MoE). Two decreasing curves show flip rate for answer tokens (red squares, dashed) and instruction tokens (orange diamonds, dotted). Each has a translucent shaded band for variability. Flip rate is highest, about 0.5, at low keep ratios and falls toward about 0.1 as more cache is kept. The right axis is Relative Performance, from 0 to 1. A blue line with circles (Qwen3-30B-A3B, MoE) rises steeply from about 0.2 to nearly 1.0. A green line with triangles (Qwen2.5-7B, dense) stays high, near 0.95, except at the lowest ratio. A legend sits in the upper right and a dotted horizontal line marks 1.0. The eye goes first to the crossing red and blue curves.",
+ "caption": "Router instability is associated with answer-quality degradation. As KV compression becomes more aggressive, expert selection changes more often, and performance drops accordingly.",
+ "caption_source": "latex",
+ "abstract": "Mixture-of-Experts (MoE) language models scale model capacity efficiently by activating a small subset of parameters per token. However, in long-context inference, memory remains a major bottleneck because the KV cache grows linearly with sequence length. Existing KV cache compression methods reduce this cost for dense transformers, but overlook a problem specific to MoE: KV eviction can change which experts are selected during answer generation, degrading the generation quality. We propose MoEZip, a routing-aware KV cache compression for sparse MoE language models. To estimate the sensitivity of expert routing to perturbation, we propose a novel metric based on the Fisher information matrix of routing distributions. MoEZip combines this metric with attention weights for routing-aware scoring of contexts. Finally, we compose a complementary scoring system that combines eviction methods for dense and sparse-MoE architectures. Experiments show that MoEZip achieves robust performance under aggressive cache compression on various benchmarks. At a KV retention ratio of 10\\%, MoEZip improves over the SoTA baseline by +24 and +20 points on average on LongBench and RULER, corresponding to 2.3$\\times$ and 4.9$\\times$ higher scores, respectively.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=R8hTibgKBX",
+  "arxiv": "https://arxiv.org/abs/2610.30206",
+  "pdf": "https://arxiv.org/pdf/2610.30206",
+  "proceedings": null,
+  "virtual": "https://neurips.cc/virtual/2026/poster/152692",
+  "code": null
+ },
+ "license": "http://creativecommons.org/licenses/by/4.0/",
+ "img": "cc-by",
+ "image_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/images/neurips26-3885.png",
+ "thumb_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/thumbs/neurips26-3885.webp",
+ "figure_page": 2,
+ "qc_flags": [
+  "bad-crop"
+ ],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.85
+}

@@ -1,0 +1,50 @@
+{
+ "id": "iclr26-4177",
+ "title": "floq: Training Critics via Flow-Matching for Scaling Compute in Value-Based RL",
+ "authors": [
+  "Bhavya Agrawalla",
+  "Michal Nauman",
+  "Khush Agrawal",
+  "Aviral Kumar"
+ ],
+ "venue": "ICLR 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": null,
+ "role": "pipeline",
+ "role2": "concept",
+ "claim": "A value function can be computed iteratively by integrating a learned velocity field that transports noise into a point-mass value estimate.",
+ "layout": "2 stacked panels: distribution evolution on top, architecture loop below, math labels",
+ "tags": [
+  "flow-matching",
+  "iterative-compute",
+  "value-function",
+  "architecture",
+  "reinforcement-learning"
+ ],
+ "style": [
+  "minimal",
+  "math-heavy",
+  "colorful"
+ ],
+ "description": "The top row shows a thick black arrow labeled 'Numerical integration of the flow' pointing right along time t. Beneath it are four small density sketches in blue on a vertical R axis. They start as a uniform box, z0 ~ Unif[l,u]. They pass through increasingly lumpy curves, then end as a sharp spike, zK ~ δ(Q(s,a)). The bottom half is a dashed rounded box labeled with a red 'Q-function' tag. Inside it, inputs s, a, and Fourier-embedded t, plus a categorical representation of z_t shown as colored dots, feed a green trapezoid labeled 'Velocity v_θ(t,z|s,a)'. Its output z_{t+1} loops back through a 'K rounds of integration' arrow. The final output is the Q-value sample Q(s,a,z0)=z_K. The eye goes first to the black arrow and the distribution sequence.",
+ "caption": "{\\textbf{\\methodname{} architecture.} Our approach models the Q-function via a velocity field in a flow-matching generative model. Over multiple calls, this velocity field converts a randomly sampled input $\\bz(0)$ into a sample from the Dirac-delta distribution centered at the Q-value. We prescribe how this sample can be trained via a flow-matching loss. Doing this enables us to scale computation by running numerical integration, with multiple calls to the velocity field. To train \\methodname{}, we utilize a categorical representation of input $\\bz_t$ [ref].}",
+ "caption_source": "latex",
+ "abstract": "A hallmark of modern large-scale machine learning techniques is the use of training objectives that provide dense supervision to intermediate computations, such as teacher forcing the next token in language models or denoising step-by-step in diffusion models. This enables models to learn complex functions in a generalizable manner. Motivated by this observation, we investigate the benefits of iterative computation for temporal difference (TD) methods in reinforcement learning (RL). Typically they represent value functions in a monolithic fashion, without iterative compute. We introduce floq (flow-matching Q-functions), an approach that parameterizes the Q-function using a velocity field and trains it using techniques from flow-matching, typically used in generative modeling. This velocity field underneath the flow is trained using a TD-learning objective, which bootstraps from values produced by a target velocity field, computed by running multiple steps of numerical integration. Crucially, floq allows for more fine-grained control and scaling of the Q-function capacity than monolithic architectures, by appropriately setting the number of integration steps. Across a suite of challenging offline RL benchmarks and online fine-tuning tasks, floq improves performance by nearly 1.8x. floq scales capacity far better than standard TD-learning architectures, highlighting the potential of iterative computation for value learning.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=m14YNdmPAh",
+  "arxiv": "https://arxiv.org/abs/2509.06863",
+  "pdf": "https://proceedings.iclr.cc/paper_files/paper/2026/file/59d15ab03bd84330d44313eb203c3bb6-Paper-Conference.pdf",
+  "proceedings": "https://proceedings.iclr.cc/paper_files/paper/2026/hash/59d15ab03bd84330d44313eb203c3bb6-Abstract-Conference.html",
+  "virtual": "https://iclr.cc/virtual/2026/poster/10007626",
+  "code": null
+ },
+ "license": "http://creativecommons.org/licenses/by/4.0/",
+ "img": "cc-by",
+ "image_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/images/iclr26-4177.png",
+ "thumb_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/thumbs/iclr26-4177.webp",
+ "figure_page": 0,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.85
+}

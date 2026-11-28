@@ -1,0 +1,48 @@
+{
+ "id": "iclr26-4757",
+ "title": "Triple-BERT: Do We Really Need MARL for Order Dispatch on Ride-Sharing Platforms?",
+ "authors": [
+  "Zijian Zhao",
+  "Sen Li"
+ ],
+ "venue": "ICLR 2026",
+ "tier": "oral",
+ "track": "main",
+ "topic": "Reinforcement Learning->Planning",
+ "role": "pipeline",
+ "role2": "prior-vs-ours",
+ "claim": "A dispatch loop updates agent and task pools, scores every pair with a learned model, then solves a global matching to assign them.",
+ "layout": "3 columns, left-to-right, feedback loop on top, two stacked method variants",
+ "tags": [
+  "workflow",
+  "bipartite-matching",
+  "reinforcement-learning",
+  "centralized-vs-decentralized",
+  "assignment"
+ ],
+ "style": [
+  "icon-heavy",
+  "colorful",
+  "minimal"
+ ],
+ "description": "A left-to-right workflow diagram with a top feedback arrow labeled 'Update State'. On the left, dashed boxes hold the Worker Pool (W1..Wn, cyan cards, taxi icon) and the Order Pool (O1..Om, pink cards). Below the Order Pool, a phone icon feeds 'Add Newly Arrived Orders' and a trash can marks 'Delete Overtime Orders'. The center dashed box has two rounded sub-panels. The top is 'Decentralized IDDQN': each worker-order pair goes through a small neural net to a Q-value, which fills a Q-Matrix, then ILP bipartite matching maximizes global Q-value. The bottom is 'Centralized TD3': the whole worker and order sequence goes through one network to a log-probability matrix, then ILP maximizes global probability. On the right, an Assignment panel shows crossing blue lines linking W and O cards.",
+ "caption": "Workflow: At each time step, the worker and order pools update their states based on the assignments made in the previous time step. Specifically, the order pool adds newly arrived orders and removes overdue ones. For IDDQN, the Q-value of each worker-order pair is calculated, and ILP is applied to maximize the global Q-value. For TD3, the probability of each worker-order pair is computed, followed by the application of ILP to maximize the global assignment probability.",
+ "caption_source": "latex",
+ "abstract": "On-demand ride-sharing platforms, such as Uber and Lyft, face the intricate real-time challenge of bundling and matching passengers-each with distinct origins and destinations-to available vehicles, all while navigating significant system uncertainties. Due to the extensive observation space arising from the large number of drivers and orders, order dispatching, though fundamentally a centralized task, is often addressed using Multi-Agent Reinforcement Learning (MARL). However, independent MARL methods fail to capture global information and exhibit poor cooperation among workers, while Centralized Training Decentralized Execution (CTDE) MARL methods suffer from the curse of dimensionality. To overcome these challenges, we propose Triple-BERT, a centralized Single Agent Reinforcement Learning (MARL) method designed specifically for large-scale order dispatching on ride-sharing platforms. Built on a variant TD3, our approach addresses the vast action space through an action decomposition strategy that breaks down the joint action probability into individual driver action probabilities. To handle the extensive observation space, we introduce a novel BERT-based network, where parameter reuse mitigates parameter growth as the number of drivers and orders increases, and the attention mechanism effectively captures the complex relationships among the large pool of driver and orders. We validate our method using a real-world ride-hailing dataset from Manhattan. Triple-BERT achieves approximately an 11.95% improvement over current state-of-the-art methods, with a 4.26% increase in served orders and a 22.25% reduction in pickup times. Our code, trained model parameters, and processed data are publicly available at the repository https://github.com/RS2002/Triple-BERT .",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=symgW6FhA6",
+  "arxiv": "https://arxiv.org/abs/2510.03257",
+  "pdf": "https://proceedings.iclr.cc/paper_files/paper/2026/file/f9a2243223a8d325008b642ea7a2c254-Paper-Conference.pdf",
+  "proceedings": "https://proceedings.iclr.cc/paper_files/paper/2026/hash/f9a2243223a8d325008b642ea7a2c254-Abstract-Conference.html",
+  "virtual": "https://iclr.cc/virtual/2026/poster/10007020",
+  "code": "https://github.com/RS2002/Triple-BERT"
+ },
+ "license": "http://arxiv.org/licenses/nonexclusive-distrib/1.0/",
+ "img": "none",
+ "image_url": null,
+ "thumb_url": null,
+ "figure_page": 2,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.6
+}

@@ -1,0 +1,50 @@
+{
+ "id": "iclr26-1006",
+ "title": "PSDNorm: Temporal Normalization for Deep Learning in Sleep Staging",
+ "authors": [
+  "Theo Gnassounou",
+  "Antoine Collas",
+  "Rémi Flamary",
+  "Alexandre Gramfort"
+ ],
+ "venue": "ICLR 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "Applications->Neuroscience, Cognitive Science",
+ "role": "prior-vs-ours",
+ "role2": "pipeline",
+ "claim": "Standard normalizations reduce statistics over batch or instance axes; ours estimates and filters spectral statistics over time to capture temporal correlation.",
+ "layout": "4 cube diagrams left-to-right, dashed divider, legend box, bottom-right convolution detail",
+ "tags": [
+  "normalization",
+  "distribution-shift",
+  "temporal-correlation",
+  "spectral-filtering",
+  "time-series"
+ ],
+ "style": [
+  "colorful",
+  "icon-heavy",
+  "math-heavy"
+ ],
+ "description": "The figure compares normalization layers using 3D tensor cubes with axes c (channels), N (batch) and ℓ (length). On the left, BatchNorm and InstanceNorm each show a cube with a blue slab marking the reduced dimensions. An arrow leads to an orange block of estimated statistics (μ̂, σ̂²), then to green dashed learnable parameters (γ, β). A dashed vertical line separates these from PSDNorm on the right. PSDNorm has a cube with a blue column, then an orange F×c×N block of PSDs P̂. A second arrow labeled Update leads to a green barycenter block P̿. A brace points to 'Normalizing with Temporal Convolution', where a gradient orange-green filter Ĥ is convolved with the white input cube. A rounded legend box explains the colors: blue for shape reduced, orange for batch estimation, green for parameters, white for statistics, dashed for learnable.",
+ "caption": "Description of normalization layers. The input shape is $(N, c, \\ell)$ with batch size $N$, channels $c$, and signal length $\\ell$. BatchNorm estimates the mean $\\widehat\\mu$ and variance $\\widehat{\\sigma}^2$ over batch and time, and learns parameters $(\\gamma, \\beta)$ to normalize the input. \\method estimates PSDs $\\widehat{P}$ over time and accounts for local temporal correlations. It computes the barycenter PSD $\\widehat{\\overline{P}}$, updates it via a running Riemannian barycenter [ref], and applies the filter $\\widehat{H}$ to normalize the input. The hyperparameter $\\filtersize$ controls the extent of temporal correlation considered, thereby adjusting the strength of the normalization. \\vspace{-0.3cm}",
+ "caption_source": "latex",
+ "abstract": "Distribution shift poses a significant challenge in machine learning, particularly in biomedical applications using data collected across different subjects, institutions, and recording devices, such as sleep data. While existing normalization layers, BatchNorm, LayerNorm and InstanceNorm, help mitigate distribution shifts, when applied over the time dimension they ignore the dependencies and auto-correlation inherent to the vector coefficients they normalize. In this paper, we propose PSDNorm that leverages Monge mapping and temporal context to normalize feature maps in deep learning models for signals. Evaluations with architectures based on U-Net or transformer backbones trained on 10K subjects across 10 datasets, show that PSDNorm achieves state-of-the-art performance on unseen left-out datasets while being more robust to data scarcity.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=BZMQotjBwW",
+  "arxiv": "https://arxiv.org/abs/2503.04582",
+  "pdf": "https://proceedings.iclr.cc/paper_files/paper/2026/file/44cd688095d790b7de1de45ae9ce0852-Paper-Conference.pdf",
+  "proceedings": "https://proceedings.iclr.cc/paper_files/paper/2026/hash/44cd688095d790b7de1de45ae9ce0852-Abstract-Conference.html",
+  "virtual": "https://iclr.cc/virtual/2026/poster/10010935",
+  "code": "https://tgnassou.github.io/PSDNorm_webpage/"
+ },
+ "license": "http://creativecommons.org/licenses/by/4.0/",
+ "img": "cc-by",
+ "image_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/images/iclr26-1006.png",
+ "thumb_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/thumbs/iclr26-1006.webp",
+ "figure_page": 1,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.6
+}

@@ -1,0 +1,53 @@
+{
+ "id": "icml26-3461",
+ "title": "Timestep Rescheduling in Diffusion Inversion",
+ "authors": [
+  "Shangquan Sun",
+  "Ting Gong",
+  "Liu",
+  "Jiamin Wu",
+  "Runkai Zhao",
+  "Mianxin Liu",
+  "Wenqi Ren",
+  "Xiaochun Cao"
+ ],
+ "venue": "ICML 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "Deep Learning->Generative Models and Autoencoders",
+ "role": "concept",
+ "role2": "prior-vs-ours",
+ "claim": "Coarse uniform steps accumulate large error along the trajectory; adaptively sized steps follow the path more closely and reduce error at equal cost.",
+ "layout": "3 panels left-to-right separated by dashed lines, shared legend bar below",
+ "tags": [
+  "diffusion-inversion",
+  "timestep-scheduling",
+  "error-accumulation",
+  "efficiency-accuracy-tradeoff",
+  "adaptive-steps"
+ ],
+ "style": [
+  "minimal",
+  "colorful"
+ ],
+ "description": "Three side-by-side panels, (a), (b) and (c), separated by dotted vertical lines, each showing a toy latent-space trajectory. A dark red dot z_t sits at the top, and a faded pink dot marks the target at the bottom. In (a), a dashed curved arrow made of many small steps runs from top to bottom and reaches the target, which means high accuracy at high cost. In (b), a dashed reference curve is paired with a solid straight arrow that makes two uniform large steps, via z_{t+Δt/2}, and lands far from the pink target. A bracket labeled 'Large error' marks the gap. In (c), the first step is long and the second step is shorter and angled (z_{t+Δt1}). It ends close to the target, and the bracket reads 'Reduced error'. A gray legend box at the bottom distinguishes solid arrows (large step) from dashed arrows (single step).",
+ "caption": "Illustration of the impact of timestep scheduling on diffusion inversion. (a) Inversion with many small fine-grained steps achieves high accuracy but incurs high computational cost. (b) Uniformly spaced timesteps accelerate inversion but accumulate significant reconstruction errors. (c) Our adaptive rescheduling strategy assigns larger steps to low error regions and finer steps to high error regions, balancing efficiency and accuracy.",
+ "caption_source": "latex",
+ "abstract": "Diffusion inversion, which maps images back to the Gaussian latent space of a diffusion model, is a critical task for image reconstruction and editing. While DDIM enables fast deterministic inversion, it inherently introduces deviations that accumulate into noticeable inversion errors. Existing methods often address this by solving a fixed-point problem but largely overlook how the selection of the diffusion timestep in the noise scheduler influences inversion fidelity. In this work, we reveal that the deviation scale in diffusion inversion is strongly dependent on the timestep size, and exhibits a parabolic trend, with larger errors concentrated at both small and large timesteps. Based on this finding, we propose a simple yet effective nonuniform timestep scheduler that integrates a global rescaling with a local dynamic programming based rescheduling, enabling a strategic allocation of computational effort that minimizes the overall inversion error and preserves higher inversion accuracy. Our method serves as an off-the-shelf enhancement for existing inversion techniques and requires no extra parameters or computational overhead. Through extensive experiments, we verify that integrating our scheduler consistently boosts the performance of existing inversion methods, achieving superior results in image reconstruction and editing.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=WsZwXIx5r8",
+  "arxiv": "https://arxiv.org/abs/2606.15389",
+  "pdf": "https://raw.githubusercontent.com/mlresearch/v306/main/assets/sun26j/sun26j.pdf",
+  "proceedings": "https://proceedings.mlr.press/v306/sun26j.html",
+  "virtual": "https://icml.cc/virtual/2026/poster/63472",
+  "code": "https://github.com/sunshangquan/TRDI"
+ },
+ "license": "http://creativecommons.org/licenses/by/4.0/",
+ "img": "cc-by",
+ "image_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/images/icml26-3461.png",
+ "thumb_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/thumbs/icml26-3461.webp",
+ "figure_page": 0,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.6
+}

@@ -1,0 +1,52 @@
+{
+ "id": "neurips26-0859",
+ "title": "Precision As You Need: Stochastic Computing Is a Dense Adaptive Quantizer",
+ "authors": [
+  "Haoran Jin",
+  "Kangqi Zhang",
+  "Jirong Yang",
+  "Barry Lyu",
+  "Qiuyi Ding",
+  "Ruijie Gao",
+  "Nathan Bleier"
+ ],
+ "venue": "NeurIPS 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "Deep Learning->Algorithms",
+ "role": "pipeline",
+ "role2": null,
+ "claim": "A multiplication reduces to simple circuit primitives: compare values to random draws to make bitstreams, then combine them with one logic gate.",
+ "layout": "3 panels, left-to-right, circuit diagrams with bit sequences on wires",
+ "tags": [
+  "stochastic-computing",
+  "circuit-primitives",
+  "bitstream",
+  "hardware-efficiency",
+  "quantization"
+ ],
+ "style": [
+  "minimal",
+  "icon-heavy"
+ ],
+ "description": "Three side-by-side circuit schematics, each captioned below. (a) Bitstream generation: a white SRC box and a pink RNG box feed a large black triangular comparator (CMP). Integer sequences sit above the input wires (5,5,5,... and 1,7,2,3,...), and the output wire carries a bit sequence (1,0,1,1,0,1,0,1). (b) Bitstream multiplication: two bit sequences, each labeled with a probability of 1/2, enter a black AND gate. The output is labeled 1/4. Red dashed boxes mark the early-termination prefix of each stream. (c) The C-BSG multiplier: two SRC→CMP chains feed an AND gate. The first CMP output loops back through a blue arrow labeled 'Enable' to gate the second RNG. The palette is mostly black, white and pink, with blue and red used for emphasis. The eye lands first on the large black gate shapes.",
+ "caption": "Circuit primitives of stochastic computing. (a) A SNG implemented as an integer com- parator: at each cycle the source value is compared against an RNG draw, emitting a single bit. (b) Stochastic multiplication via a bitwise gate: the unipolar product is realized by an AND gate whose output bit-probability factors as the product of the input marginals. The red circle denotes early termination. (c) Conditional bitstream generation (C-BSG): the second RNG is gated by the first stream so the conditional distribution of zB matches its marginal, enforcing SCC = 0 and making the bipolar XNOR multiplier exact at finite L.",
+ "caption_source": "pdf",
+ "abstract": "Matrix multiplications dominate the inference cost of modern transformer-based vision models, yet existing efficiency techniques such as post-training quantization and mixed-precision inference are largely limited to the small set of fixed-width formats (INT4, INT8, BF16, and FP16) supported by conventional accelerators. We revisit stochastic computing (SC) as a way to lift this constraint: viewed as a dense adaptive quantizer, SC controls precision by bit-stream length L rather than a fixed datapath, while each multiplication reduces to a single AND/XNOR gate. We build a GPU library that emulates SC matrix multiplication at scale, exposes stream lengths as first-class kernel arguments, and evaluates SC end-to-end on image classification, object detection and instance segmentation, class-conditional image generation, and visual world-model planning. On top of this substrate, we develop a dynamic per-row mixed-precision policy that assigns stream length per token or group at matched average budget, requires no retraining, and uses the same SC hardware across schedules. Across tasks, SC remains competitive with fixed-format INT quantization at matched bit budgets, while per-row mixed precision helps maintain accuracy at lower average stream lengths. These results provide software-level feasibility evidence that SC can serve as a dense-precision substrate for fine-grained mixed-precision inference on modern vision transformers.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=63tLNzOrMq",
+  "arxiv": "https://arxiv.org/abs/2609.32922",
+  "pdf": "https://arxiv.org/pdf/2609.32922",
+  "proceedings": null,
+  "virtual": "https://neurips.cc/virtual/2026/poster/155380",
+  "code": null
+ },
+ "license": "http://creativecommons.org/licenses/by-nc-nd/4.0/",
+ "img": "none",
+ "image_url": null,
+ "thumb_url": null,
+ "figure_page": 2,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.6
+}

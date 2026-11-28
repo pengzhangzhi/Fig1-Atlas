@@ -1,0 +1,48 @@
+{
+ "id": "neurips26-5392",
+ "title": "Controlling Temporal Pseudo-Label Marginals for Stable Online Test-Time Adaptation",
+ "authors": [
+  "Rani Amar",
+  "Ofir Lindenbaum"
+ ],
+ "venue": "NeurIPS 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "General Machine Learning->Transfer, Multitask and Meta-learning",
+ "role": "pipeline",
+ "role2": null,
+ "claim": "A plug-in module added to a standard teacher-student pipeline balances recent pseudo-label marginals toward a target prior to stabilize adaptation.",
+ "layout": "Single wide panel, left-to-right flow, green highlighted module inside white baseline",
+ "tags": [
+  "plug-and-play",
+  "teacher-student",
+  "test-time-adaptation",
+  "sinkhorn",
+  "regularization"
+ ],
+ "style": [
+  "math-heavy",
+  "colorful",
+  "photo/real data"
+ ],
+ "description": "A left-to-right block diagram of a teacher-student pipeline. At left, two photos of a motorcyclist show the input view x_u and an augmented view x_v. These feed a Teacher f_φ box on top and a Student f_θ box on the bottom. A dashed arrow labeled 'EMA update' runs from the student to the teacher. The teacher's softmax output goes through a stop-gradient (sg) into a Consistency loss box at top right. A large green rounded region labeled 'SCALAR · temporal marginal regulation' sits in the middle. It holds four green blocks in a chain: FIFO logit window, Sinkhorn balancing (with a Target prior π arrow from above), Current-batch targets, and SCALAR loss. The student output feeds both losses. A bottom-right box gives the combined loss L = (1−λ)L_cons + λL_bal. A legend at bottom left explains the white and green colors and sg. The green region draws the eye first.",
+ "caption": "Overview of the SCALAR framework. White blocks denote the baseline teacher--student CTTA pipeline; green blocks denote the added SCALAR module. Given an input view $x_u$ for the teacher branch and an augmented view $x_v$ for the student branch, the teacher produces logits $z_u$ and probabilities $q_u=\\mathrm{softmax}(z_u)$. Recent teacher logits are stored in a FIFO window and converted to probabilities $P$, which are balanced toward a target prior $\\pi$ via Sinkhorn to produce balanced targets $\\tilde{q}_u$. The student produces logits $s_v$ and probabilities $p_v$, and is optimized using a mixture of the baseline consistency loss and the SCALAR loss based on $\\tilde{q}_u$. Gradients are stopped through teacher-derived targets, marked by $\\mathrm{sg}$, and teacher parameters are updated via EMA. Here $\\mathcal{L}_{\\mathrm{cons}}\\equiv\\mathcal{L}_{\\mathrm{consistency}}$ and $\\mathcal{L}_{\\mathrm{bal}}=\\mathrm{CE}(\\mathrm{sg}[\\tilde{q}_u],p_v)$.",
+ "caption_source": "latex",
+ "abstract": "Continual Test-Time Adaptation (CTTA) methods update models online using a stream of unlabeled data to overcome distribution shifts encountered at test time. However, CTTA is often unstable, as it can reinforce biases in early predictions and increasingly predict only a few classes, resulting in drift or even collapse. In this paper, we identify narrowing pseudo-label class usage as an indicator of CTTA instability and quantify this behavior. Most existing methods have attempted to address this issue by either selecting reliable adaptation samples or re-weighting the loss to encourage diverse pseudo-labels, but they do not explicitly enforce a class marginal over a temporal window. Instead, we propose Sinkhorn Class-Marginal Regularization (SCALAR), a simple plug-and-play module that controls the pseudo-label distribution over a short temporal window. SCALAR works by maintaining recent predictions in a buffer, balancing their class distribution via the Sinkhorn algorithm to match a specified target distribution, and using the balanced soft targets for adaptation. Without changing the model architecture, SCALAR maintains the per-step runtime and increases the peak allocated GPU memory by only 10 MB on ImageNet-C. Our method is particularly effective on skewed, non-stationary data with severe distribution shifts, where SCALAR significantly alleviates drift and collapse when combined with existing stabilization methods based on entropy or diversity.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=bC8ezX1M1D",
+  "arxiv": "https://arxiv.org/abs/2611.12242",
+  "pdf": "https://arxiv.org/pdf/2611.12242",
+  "proceedings": null,
+  "virtual": "https://neurips.cc/virtual/2026/poster/151349",
+  "code": null
+ },
+ "license": "http://creativecommons.org/licenses/by/4.0/",
+ "img": "cc-by",
+ "image_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/images/neurips26-5392.png",
+ "thumb_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/thumbs/neurips26-5392.webp",
+ "figure_page": 2,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.93
+}

@@ -1,0 +1,49 @@
+{
+ "id": "icml26-1501",
+ "title": "Rooted Absorbed Prefix Trajectory Balance with Submodular Replay for GFlowNet Training",
+ "authors": [
+  "Xi Wang",
+  "Wenbo Lu",
+  "Shenji Wan"
+ ],
+ "venue": "ICML 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "Deep Learning->Generative Models and Autoencoders",
+ "role": "prior-vs-ours",
+ "role2": "pipeline",
+ "claim": "Existing training objectives give sparse or costly credit assignment and collapsed outputs; ours gives dense, linear-cost prefix signals and diverse outputs.",
+ "layout": "Prefix tree at left; three stacked objective rows, each with sample outputs at right",
+ "tags": [
+  "training-objective",
+  "credit-assignment",
+  "gflownet",
+  "baseline-comparison",
+  "diversity"
+ ],
+ "style": [
+  "colorful",
+  "math-heavy",
+  "text-heavy"
+ ],
+ "description": "The figure has two parts. At left is a prefix tree titled 'Terminable LLM-GFlowNets'. A source node s0 branches into blue state nodes, and each state has a red 'T' termination vertex joined by a dashed arrow. At right are three stacked rows for the objectives TB, SubTB and RapTB, separated by horizontal rules. Each row shows a sampled trajectory as a chain of circles s0 … sτ, with the loss constraints drawn as dashed gray arcs. A dashed box beside each trajectory gives the signal and cost: terminal-only O(1), subtrajectories O(N²), and rooted prefix O(N). The RapTB row is highlighted with orange nodes and a red dashed 'Reward absorb' arrow labelled u_j ← Absorb(suffix rewards). A rightmost column lists sampled SMILES strings for each loss. The TB and SubTB lists carry red labels, 'Prefix Collapse' and 'Length Bias'. The RapTB list carries a blue label, 'Diverse & High-quality'.",
+ "caption": "Training objectives for LLM-GFlowNets. TB uses only terminal reward $\\log R(s_\\tau)$ ($O(1)$). SubTB adds $O(N^2)$ windowed consistency constraints. RapTB replaces prefix stop-rewards with suffix-absorbed targets $u_j$ and applies $O(N)$ rooted prefix constraints. ($N$: trajectory length). The right column shows examples of generated molecules trained with different losses. QED (Quantitative Estimate of Drug-likeness) is a comprehensive metric for measuring a molecule's drug-likeness and is used as the task reward during training. \\looseness=-1",
+ "caption_source": "latex",
+ "abstract": "Generative Flow Networks (GFlowNets) enable fine-tuning large language models to approximate reward-proportional posteriors, but they remain prone to mode collapse, manifesting as prefix collapse and length bias. We attribute this to two factors: (i) weak credit assignment to early prefixes, and (ii) biased replay that induces a shifted, non-representative training flow distribution. We propose Rooted absorbed prefix Trajectory Balance RapTB, an objective that anchors subtrajectory supervision at the root and propagates terminal rewards to intermediate prefixes via absorbed suffix-based backups, providing dense prefix-level learning signals. To mitigate replay-induced distribution shift, we further introduce SubM, a submodular replay refresh strategy that promotes both high reward and diversity. Empirically, on tasks such as molecule generation with LLM using SMILES strings, RapTB combined with SubM consistently improves optimization performance and molecular diversity while preserving high validity. The code is released on https://github.com/ComDec/ChemGFN.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=EK17RF2ilh",
+  "arxiv": "https://arxiv.org/abs/2603.00454",
+  "pdf": "https://raw.githubusercontent.com/mlresearch/v306/main/assets/wang26fi/wang26fi.pdf",
+  "proceedings": "https://proceedings.mlr.press/v306/wang26fi.html",
+  "virtual": "https://icml.cc/virtual/2026/poster/65366",
+  "code": "https://raptb.vercel.app/"
+ },
+ "license": "http://creativecommons.org/licenses/by/4.0/",
+ "img": "cc-by",
+ "image_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/images/icml26-1501.png",
+ "thumb_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/thumbs/icml26-1501.webp",
+ "figure_page": 2,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.8
+}

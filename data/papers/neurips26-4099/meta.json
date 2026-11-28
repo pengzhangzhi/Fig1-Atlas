@@ -1,0 +1,48 @@
+{
+ "id": "neurips26-4099",
+ "title": "Reasoning-Trace Collapse: Evaluating the Loss of Explicit Reasoning During Fine-Tuning",
+ "authors": [
+  "Lukas Twist",
+  "Helen Yannakoudakis",
+  "Jie Zhang"
+ ],
+ "venue": "NeurIPS 2026",
+ "tier": "poster",
+ "track": "Evaluations_and_Datasets_Track",
+ "topic": "Deep Learning->Robustness",
+ "role": "analysis-finding",
+ "role2": null,
+ "claim": "Fine-tuning without reasoning traces can collapse valid reasoning rates to zero while answer accuracy stays high, hiding the failure.",
+ "layout": "2x4 grid of line plots, models by column, formats by row, shared legend",
+ "tags": [
+  "fine-tuning",
+  "training-dynamics",
+  "evaluation-metrics",
+  "failure-mode",
+  "reasoning-models"
+ ],
+ "style": [
+  "plot",
+  "colorful"
+ ],
+ "description": "Eight line-plot panels in a 2x4 grid. Columns are four models (Qwen3-8B, OLMo-3-7B, Llama-R1-8B, Nemotron-7B). The top row uses empty-think fine-tuning and the bottom row uses no-think fine-tuning. The default setting for each model is marked in the title. Every panel plots percentage (0-100%) against training step (0-2000). Colors mark three datasets: green for chemistry, pink for GSM8K math, and orange for EvalPlus code. Line style marks the metric: solid for pass@1, dashed for valid-reasoning rate (VR), dotted for reasoning-conditioned pass@1. The striking feature is the green dashed and dotted curves plunging to zero in several panels, such as Qwen3, Nemotron and Llama-R1 no-think. In those panels the solid pass@1 lines stay flat or rise. A 3x3 legend sits below the grid.",
+ "caption": "Format-Induced Reasoning-Trace Collapse. We compare two ways of representing missing reasoning during supervised fine-tuning: including an empty <think> block, or omitting reasoning tags entirely. Metrics are measured every 100 training steps across three datasets: \\chemistry, \\gsmk\\ (math), and \\evalplus\\ (code). Solid lines show \\pass, dashed lines show valid reasoning rate (\\vr), and dotted lines show reasoning-conditioned \\pass\\ (\\rpass). Metrics are averaged over two random seeds.",
+ "caption_source": "latex",
+ "abstract": "Explicit reasoning models are trained to produce intermediate reasoning traces before final answers, but downstream fine-tuning is often performed on ordinary instruction--response data that contains no such traces. We show that this mismatch can induce reasoning-trace collapse: a fine-tuned model continues to produce plausible final answers while losing the structurally valid explicit reasoning traces that made it a reasoning model in the first place. We introduce a structural evaluation framework that separates answer correctness from reasoning-trace validity, measuring valid, empty, missing, and truncated reasoning alongside reasoning-conditioned task performance. Using this framework, we study four open-weight reasoning models and find that standard supervised fine-tuning can rapidly suppress valid reasoning traces, and that answer-only metrics can substantially obscure this failure: in several settings, performance conditional on valid reasoning remains high while the rate of valid reasoning falls sharply. We further show that simple loss-masking strategies can substantially mitigate collapse without requiring teacher-generated reasoning traces. These results suggest that evaluations of fine-tuned reasoning models should report structural reasoning reliability metrics in addition to final-answer performance, especially when adaptation data does not contain explicit reasoning traces.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=SfKYInSDnR",
+  "arxiv": "https://arxiv.org/abs/2605.21127",
+  "pdf": "https://arxiv.org/pdf/2605.21127",
+  "proceedings": null,
+  "virtual": "https://neurips.cc/virtual/2026/poster/139406",
+  "code": "https://github.com/itsluketwist/thinkpack"
+ },
+ "license": "http://creativecommons.org/licenses/by/4.0/",
+ "img": "cc-by",
+ "image_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/images/neurips26-4099.png",
+ "thumb_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/thumbs/neurips26-4099.webp",
+ "figure_page": 6,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.8
+}

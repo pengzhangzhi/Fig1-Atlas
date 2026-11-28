@@ -1,0 +1,54 @@
+{
+ "id": "icml26-4138",
+ "title": "STLA: Spatiotemporal Lookahead Alignment for Post-Training Quantization",
+ "authors": [
+  "Zuqi Zhang",
+  "Chenghe Sun",
+  "Xiangyi Chu",
+  "Wei-Han Yu",
+  "Ka-Fai Un",
+  "Rui Martins",
+  "Pui-In Mak",
+  "Jiawei Xu"
+ ],
+ "venue": "ICML 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "Optimization->Non-Convex",
+ "role": "problem-setup",
+ "role2": "analysis-finding",
+ "claim": "Naively chaining compensation and learning creates spatial and temporal conflicts that make it no better than learning alone; resolving them improves accuracy and speed.",
+ "layout": "2 panels: left pipeline diagram with dashed conflict arrows, right convergence plot",
+ "tags": [
+  "quantization",
+  "decoupled-pipeline",
+  "misalignment",
+  "conflict",
+  "convergence"
+ ],
+ "style": [
+  "colorful",
+  "plot",
+  "icon-heavy"
+ ],
+ "description": "Panel (a) is a left-to-right flow diagram of a decoupled post-training quantization pipeline. A blue FP16 weight cylinder and a gray calibration-data cylinder feed boxes for quant-parameter search (local loss), RTN assumption, intra/inter-block compensation (global loss), a W Update cylinder, and learning-based rounding (local loss). The output is a blue W Quant cylinder. A small histogram compares the weight and update distributions. Dashed brown arrows lead to 'Temporal Conflict!' labels and dashed yellow arrows lead to a 'Spatial Conflict!' label, which highlights where the stages clash. Panel (b) is a line plot of perplexity against iterations (x100). Blue, purple, brown, yellow and green baseline curves with shaded bands sit above the orange and red STLA curves. The STLA curves are lowest and converge fastest.",
+ "caption": "Illustration of the spatiotemporal misalignments in the decoupled paradigm. (a) Conflicts arise from spatial misalignment (local vs. global objectives) and temporal misalignment (invalidation of optimal quantization parameters and the RTN assumption). (b) OPT-125M channel (C)-wise / group (G)-wise C4 Perplexity (PPL) curves confirm that the decoupled “compensate-then-learn” paradigm (brown / yellow) struggles, failing to outperform standalone learning-based rounding (blue / purple). STLA (orange / red) resolves these conflicts, enabling faster convergence and reduced PPL.",
+ "caption_source": "pdf",
+ "abstract": "Adaptive rounding techniques in Post-Training Quantization (PTQ) enable the efficient deployment of Large Language Models (LLMs) with low resource and data dependencies. While learning-based rounding methods are accurate yet costly, compensation-based approaches offer a highly efficient alternative. However, synergizing these two to realize their full potential is hindered by spatiotemporal misalignment in the decoupled paradigm. Key challenges include temporal parameter conflict, the invalidation of the initial Round-to-Nearest (RTN) assumption, and spatially-inconsistent optimization objectives. This paper introduces STLA, a novel rounding-optimized PTQ framework that achieves both fast and accurate LLM quantization. STLA resolves temporal inconsistency through cluster-wise integrated rounding optimization, which collocates the learning and compensation phases. STLA achieves spatial alignment through a unified global objective derived from the Schur Complement, enabling the solver to look ahead and align local rounding decisions with the optimal future compensation of remaining weights. Furthermore, we propose a Hessian-guided clustering strategy that exploits both diagonal and off-diagonal information to maximize intra-cluster error cancellation. Extensive experiments demonstrate that STLA establishes a new state-of-the-art for low-bit PTQ while maintaining high computational efficiency. The code is available at https://github.com/AI2C-Lab/STLA.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=d3RFDLBw01",
+  "arxiv": null,
+  "pdf": "https://raw.githubusercontent.com/mlresearch/v306/main/assets/zhang26fg/zhang26fg.pdf",
+  "proceedings": "https://proceedings.mlr.press/v306/zhang26fg.html",
+  "virtual": "https://icml.cc/virtual/2026/poster/62811",
+  "code": "https: //github.com/AI2C-Lab/STLA"
+ },
+ "license": null,
+ "img": "none",
+ "image_url": null,
+ "thumb_url": null,
+ "figure_page": 2,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.6
+}

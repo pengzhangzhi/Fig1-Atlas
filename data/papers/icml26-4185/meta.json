@@ -1,0 +1,50 @@
+{
+ "id": "icml26-4185",
+ "title": "Tokenised Flow Matching for Hierarchical Simulation Based Inference",
+ "authors": [
+  "Giovanni Charles",
+  "Cosmo Santoni",
+  "Seth Flaxman",
+  "Elizaveta Semenova"
+ ],
+ "venue": "ICML 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "Probabilistic Methods->Bayesian Models and Methods",
+ "role": "prior-vs-ours",
+ "role2": "pipeline",
+ "claim": "Prior methods factorise the posterior and need multi-site simulations per sample; ours trains from single-site simulations then assembles synthetic multi-site data.",
+ "layout": "2 panels split by vertical divider, top-to-bottom flow, colour-coded variable boxes",
+ "tags": [
+  "hierarchical-inference",
+  "likelihood-factorisation",
+  "simulation-efficiency",
+  "surrogate-model",
+  "posterior-estimation"
+ ],
+ "style": [
+  "minimal",
+  "colorful",
+  "math-heavy"
+ ],
+ "description": "Two side-by-side panels separated by a vertical gray line compare posterior factorisation (left) and likelihood factorisation (right). Both panels read top to bottom in three rows: training sample, estimator or surrogate, and final estimator. Small rounded boxes are colour-coded: purple for global parameters θ_g, green for observations y, orange for local parameters η. Dashed gray arrows show data flow. On the left, a global estimator feeds an estimate θ̂_g into a local estimator, and the boxes are indexed 1:n_max. On the right, single-site tuples (θ_g, η_1, y_1) train a per-site neural surrogate. The surrogate then generates synthetic multi-site observations ŷ_{1:n_s}, which go to a posterior estimator. Row labels sit on the outer edges, with q(...) notation under them.",
+ "caption": "Comparison of posterior factorisation and likelihood factorisation approaches for hierarchical SBI. Left: Posterior-factorisation methods train from observation subsets of size at most $n_{\\max}$, so each training sample requires $n_{\\max}$ simulator calls (with $n_{\\max}=1$ for fully-factorised methods and $1<n_{\\max}<n_s$ for partially-factorised variants). Error in the estimated global posterior can then propagate through $\\hat{\\theta}_g$ to local estimation. Right: Likelihood factorisation trains the per-site neural surrogate $q_{\\phi_l}$ from exactly one simulator call per training sample, using single-site tuples $(\\theta_g,\\eta_s,y_s)$, and then generates synthetic multi-site observations ($\\hat{y}$) for training a separate posterior estimator $q_{\\phi_p}$.",
+ "caption_source": "latex",
+ "abstract": "The cost of simulator evaluations is a key practical bottleneck for Simulation Based Inference (SBI). In hierarchical settings with shared global parameters and exchangeable site-level parameters and observations, this structure can be exploited to improve simulation efficiency. Existing hierarchical SBI approaches factorise the posterior yet still simulate across multiple sites per training sample; We instead explore likelihood factorisation (LF) to train from single-site simulations. In LF sampling we learn a per-site neural surrogate of the simulator and then assemble synthetic multi-site observations to amortise inference for the full hierarchical posterior. Building on this, we propose Tokenised Flow Matching for Posterior Estimation (TFMPE), a tokenised flow matching approach that supports function-valued observations through likelihood factorisation. To enable systematic evaluation, we introduce a benchmark for hierarchical SBI. We validate TFMPE on this benchmark and on realistic infectious disease and computational fluid dynamics models, finding well-calibrated posteriors while reducing computational cost.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=dblO6FgIvc",
+  "arxiv": "https://arxiv.org/abs/2604.20723",
+  "pdf": "https://raw.githubusercontent.com/mlresearch/v306/main/assets/charles26a/charles26a.pdf",
+  "proceedings": "https://proceedings.mlr.press/v306/charles26a.html",
+  "virtual": "https://icml.cc/virtual/2026/poster/62764",
+  "code": "https://github.com/mrc-ide/tfmpe"
+ },
+ "license": "http://creativecommons.org/licenses/by/4.0/",
+ "img": "cc-by",
+ "image_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/images/icml26-4185.png",
+ "thumb_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/thumbs/icml26-4185.webp",
+ "figure_page": 1,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.85
+}

@@ -1,0 +1,51 @@
+{
+ "id": "neurips26-5476",
+ "title": "The Key to Going Linear: Analysis-Driven Transformer Linearization",
+ "authors": [
+  "Anna Kuzina",
+  "Paul Whatmough",
+  "Babak Ehteshami Bejnordi"
+ ],
+ "venue": "NeurIPS 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "Deep Learning->Attention Mechanisms",
+ "role": "teaser-result",
+ "role2": null,
+ "claim": "A frozen-backbone linearization with few trainable parameters and a small cache nearly matches base-model accuracy and beats prior linearization baselines.",
+ "layout": "Results table on top, three bar-chart panels below, cut off at right",
+ "tags": [
+  "linearization",
+  "benchmark-comparison",
+  "scaling",
+  "efficiency",
+  "frozen-backbone"
+ ],
+ "style": [
+  "plot",
+  "text-heavy"
+ ],
+ "description": "The image does not show the architecture diagram described in the caption (attention blocks for softmax, Hedgehog, GLA and GDN). It shows a cropped results table above a row of bar charts. The table compares LLaMA 3.1 8B with linearized models (Llamba, LolCaT, Liger-GLA, Ours (GDN)) and extended-cache-budget models (Lizard, LoLA, STILL, Ours). Its columns are training tokens, cache size, parameters, and PIQA, ARC-e and ARC-c accuracy. The 'Ours' rows have very small trainable-parameter counts (10.3M) and accuracy close to the base model. Below the table are three bar-chart panels, Common Reasoning, MMLU and Lambada. Each plots accuracy against model size from 0.6b to 32b, with dark teal bars for Base and lighter teal bars for Linear (GDN). A fourth panel is cut off at the right edge. The eye goes first to the table's bold rows, then to the paired bars.",
+ "caption": "Attention replacement blocks evaluated in our strict frozen-backbone setting. Blue \\frozen{} markers denote frozen pretrained parameters. The pretrained parameters including $W_q$,$W_k$,$W_v$, and RMSNorm parameters are kept frozen, while only the newly introduced mechanism-specific parameters are trained. (a) Standard Softmax. (b) Hedgehog [ref] replaces the softmax kernel with learned feature maps $\\varphi$. (c) GLA [ref] introduces an input-dependent decay $\\alpha_i$. (d) GDN [ref] applies a key-dependent rank-1 delta update via $\\beta_i$. \\tikzmarknode[draw,inner sep=2pt,rounded corners,fill={rgb,255:red,250; green,243; blue,201}]{A}{$\\sigma$} denotes sigmoid function.",
+ "caption_source": "latex",
+ "abstract": "The quadratic cost of causal self-attention severely bottlenecks long-context transformer inference. While numerous post hoc linearization pipelines exist, it is difficult to identify which components preserve model quality. This work isolates the effect of state update design in a strict frozen-backbone regime. We show that softmax relies on key-dependent, rank-1 orthogonal projections, elucidating why delta-style networks outperform purely gated accumulation. We identify a potential source of approximation errors and introduce structural interventions, specifically sink tokens, short convolutions, and fixed-budget cache routing, which reduces the remaining gap. We scale this linearization approach across LLaMA and Qwen models up to 32B parameters, outperforming prior post hoc baselines on MMLU and matching the long-context retrieval of complex adaptive-caching frameworks.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=bekG7rxPRG",
+  "arxiv": "https://arxiv.org/abs/2607.07706",
+  "pdf": "https://arxiv.org/pdf/2607.07706",
+  "proceedings": null,
+  "virtual": "https://neurips.cc/virtual/2026/poster/151267",
+  "code": null
+ },
+ "license": "http://creativecommons.org/licenses/by-nc-nd/4.0/",
+ "img": "none",
+ "image_url": null,
+ "thumb_url": null,
+ "figure_page": 8,
+ "qc_flags": [
+  "low-role-confidence",
+  "bad-crop"
+ ],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.35
+}

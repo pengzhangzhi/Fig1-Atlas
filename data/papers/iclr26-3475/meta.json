@@ -1,0 +1,53 @@
+{
+ "id": "iclr26-3475",
+ "title": "Robust Training of Neural Networks at Arbitrary Precision and Sparsity",
+ "authors": [
+  "Chengxi Ye",
+  "Grace Chu",
+  "Yanfeng Liu",
+  "Yichi Zhang",
+  "Lukasz Lew",
+  "Li Zhang",
+  "Mark Sandler",
+  "Andrew Howard"
+ ],
+ "venue": "ICLR 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "Optimization->Everything Else",
+ "role": "teaser-result",
+ "role2": "analysis-finding",
+ "claim": "Under extreme low-precision, standard training diverges or stalls, while ours converges stably and learns extra parameters that baselines cannot exploit.",
+ "layout": "2 panels side by side: training-loss line plot, grouped bar chart",
+ "tags": [
+  "quantization",
+  "training-stability",
+  "low-precision",
+  "baseline-comparison",
+  "robustness"
+ ],
+ "style": [
+  "plot",
+  "colorful"
+ ],
+ "description": "Two plots sit side by side. Panel (a) is a line chart of training loss against training steps (0 to 5000) on Shakespeare for four 1-bit methods. The red STE curve rises and oscillates wildly between about 5 and 8. The green BitNet curve plateaus near 3.4. The orange ParetoQ curve starts near 8, drops fast, and levels off near 2.4. The blue Ours curve falls smoothly to the lowest loss, about 1.7. Panel (b) is a grouped bar chart of C4 accuracy for Linear (blue) versus Affine (orange) quantization. Under Our Method, affine reaches 0.3751 against 0.3547 for linear. Under the STE Baseline, both bars are about 0.34, so there is no gain. Bars carry value labels. Serif subcaptions sit below each panel. The eye goes first to the red spike in (a) and the tall orange bar in (b).",
+ "caption": "Training Stability and Quantization Robustness Analysis. (a) Comparison of training loss on the Shakespeare dataset with 1-bit weights and activations (A1W1). Standard STE and BitNet fail to stabilize in this extreme regime, exhibiting divergence or high loss. In contrast, our approach converges smoothly, matching the stability of higher-precision baselines. (b) Comparison of Linear vs. Affine quantization schemes at A1W1. Standard STE (right bars) fails to utilize the additional expressivity of affine parameters, showing no improvement over linear quantization. Our method (left bars) robustly learns the affine parameters (scale and bias), achieving a significant accuracy jump (see Table [ref]/Appendix [ref]).",
+ "caption_source": "latex",
+ "abstract": "The discontinuous operations inherent in quantization and sparsification introduce a long-standing obstacle to backpropagation, particularly in ultra-low precision and sparse regimes. While the community has long viewed quantization as unfriendly to gradient descent due to its lack of smoothness, we pinpoint-for the first time-that the key issue is the absence of a proper gradient path that allows training to learn robustness to quantization noise. The standard Straight-Through Estimator (STE) exacerbates this with its well-understood mismatch: a quantization-aware forward pass but oblivious backward pass, leading to unmanaged error and instability. We solve this by explicitly modeling quantization as additive noise, making the full forward-backward path well-defined without heuristic gradient estimation. As one natural solution, we introduce a denoising dequantization transform derived from a principled ridge regression objective, creating an explicit, corrective gradient path that makes learning robust to the noise STE bypasses. We extend this to sparsification by treating it as a special form of quantization that zeros out small values. Our unified framework trains models at arbitrary precisions and sparsity levels with off-the-shelf recipes, enabling stable A1W1 and sub-1-bit networks where others falter. It yields state-of-the-art results, mapping efficiency frontiers for modern LLMs and providing a theoretically grounded path to hyper-efficient neural networks.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=e6nZrzSccj",
+  "arxiv": "https://arxiv.org/abs/2409.09245",
+  "pdf": "https://proceedings.iclr.cc/paper_files/paper/2026/file/eee6efe709623f36483e3fbb0bb513dd-Paper-Conference.pdf",
+  "proceedings": "https://proceedings.iclr.cc/paper_files/paper/2026/hash/eee6efe709623f36483e3fbb0bb513dd-Abstract-Conference.html",
+  "virtual": "https://iclr.cc/virtual/2026/poster/10008354",
+  "code": null
+ },
+ "license": "http://arxiv.org/licenses/nonexclusive-distrib/1.0/",
+ "img": "none",
+ "image_url": null,
+ "thumb_url": null,
+ "figure_page": 1,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.6
+}

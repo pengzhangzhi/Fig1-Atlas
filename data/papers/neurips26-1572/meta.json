@@ -1,0 +1,59 @@
+{
+ "id": "neurips26-1572",
+ "title": "HiFloat4 Format for End-To-End Reinforcement Learning Post-Training of Large Language Models",
+ "authors": [
+  "Hei Yi Mak",
+  "Shadan Golestan",
+  "Hoang Le",
+  "Mehran Taghian Jazi",
+  "Yunke Peng",
+  "Yaoyuan Wang",
+  "Yao Wang",
+  "JUNSONG WANG",
+  "Tianchi Hu",
+  "Fengchen He",
+  "Guipeng Hu",
+  "Tanzila Rahman",
+  "Anandharaju D Raju"
+ ],
+ "venue": "NeurIPS 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "Reinforcement Learning->Deep RL",
+ "role": "analysis-finding",
+ "role2": null,
+ "claim": "Activation quantization to 4-bit zeroes out a large fraction of values in specific layers, regardless of format, unlike full precision.",
+ "layout": "2x2 grid of line plots, shared axes, one per projection type",
+ "tags": [
+  "quantization",
+  "fp4",
+  "activation-outliers",
+  "underflow",
+  "layerwise-analysis"
+ ],
+ "style": [
+  "plot",
+  "colorful",
+  "minimal"
+ ],
+ "description": "A 2x2 grid of line charts, one for each transformer projection type: down_projection, gate_up_projection, o_projection and qkv_projection. In each panel the x-axis is transformer block index (0 to about 35) and the y-axis is Zero % from 0 to 100. Three series are plotted: BF16 as a dark gray line with circles that stays flat at 0, HiF4 as a blue line with squares, and MXFP4 as an orange line with triangles. The two FP4 curves track each other closely, with MXFP4 slightly higher. The down_projection panel shows a dramatic spike to about 85% in early layers that decays to about 20%. The other panels stay at roughly 10-20%, with small bumps at the first and last layers. The eye goes first to the large down_projection peak.",
+ "caption": "Percentage of blocks with outliers in activation tensors of each layer with GSM8K and Qwen2.5-3B for HiF4 and MXFP4 block size.",
+ "caption_source": "latex",
+ "abstract": "We present, to our knowledge, the first end-to-end FP4 RL post-training, in which both the rollout and training policies, including their forward and backward passes, operate at 4-bit precision. A systematic study reveals that the dominant source of degradation in FP4 RL is not training-side quantization error but rollout activation quantization: outliers stretch the dynamic range so far that a large number of activation values underflow to zero under FP4. Counterintuitively, restoring the training policy to higher precision while keeping the rollout in FP4 makes accuracy worse than full FP4 baseline, exposing rollout--training mismatch as the principal failure mode and ruling out standard pretraining-style fixes. We address this with Rollout Residual Quantization (Rollout-ResQ): a single residual correction term constrained to a hardware-friendly sparsity pattern, added only to the FP4 rollout matmul -- a lightweight correction that recovers most of the precision lost to outlier-driven underflow without inflating the rollout's compute footprint. On Qwen2.5-3B, Rollout-ResQ paired with the HiFloat4 (HiF4) format -- whose three-level hierarchical scaling preserves resolution under FP4's tight 4-bit budget -- closes the accuracy gap to BF16 from 3.59% to 1.39%, bringing fully quantized FP4 RL within close reach of full precision. Applied to the open-standard MXFP4, the same recipe narrows the gap from 13.6% to 5.3%, revealing that FP4 format choice is a key factor that determines the ceiling on recoverable accuracy. The experimental results on Qwen2.5-Math-7B further confirm the recovery benefits of Rollout-ResQ with HiF4. Together, these results establish HiF4 as the enabling format for end-to-end FP4 RL post-training, and Rollout-ResQ as the activation-side mechanism that makes the gap to BF16 closable.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=BDwmB9cg99",
+  "arxiv": "https://arxiv.org/abs/2607.26515",
+  "pdf": "https://arxiv.org/pdf/2607.26515",
+  "proceedings": null,
+  "virtual": "https://neurips.cc/virtual/2026/poster/154752",
+  "code": null
+ },
+ "license": "http://creativecommons.org/licenses/by-nc-nd/4.0/",
+ "img": "none",
+ "image_url": null,
+ "thumb_url": null,
+ "figure_page": 4,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.85
+}

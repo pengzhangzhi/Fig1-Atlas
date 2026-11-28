@@ -1,0 +1,56 @@
+{
+ "id": "neurips26-4865",
+ "title": "HIMMEL: Hierarchical Interleaved Multi-stream Motion Encoding for Long Video Understanding",
+ "authors": [
+  "Haopeng Jin",
+  "Wenlong Zhao",
+  "Tao Yu",
+  "Tiankun Yang",
+  "Zhenyu Guan",
+  "ShiQuan Dong",
+  "Yujia Yang",
+  "Chubin Chen",
+  "Hongzhu Yi",
+  "Jinwen Luo"
+ ],
+ "venue": "NeurIPS 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "Computer Vision->Vision Models & Multimodal",
+ "role": "pipeline",
+ "role2": "prior-vs-ours",
+ "claim": "Dense RGB decoding is costly and misses motion; routing sparse semantic anchors and cheap compressed-domain motion along separate paths fixes this.",
+ "layout": "2 stacked panels, left-to-right flow, baseline on top, dual-path method below",
+ "tags": [
+  "compressed-domain",
+  "multi-stream",
+  "token-efficiency",
+  "motion-encoding",
+  "hierarchical"
+ ],
+ "style": [
+  "icon-heavy",
+  "colorful",
+  "text-heavy"
+ ],
+ "description": "The figure has two stacked panels. The top gray panel, titled 'Traditional Long-Video VLM Baseline', shows a film-strip video going through sparse RGB sampling with 'Large Temporal Gaps' into a heavy ViT. A grid of crowded visual tokens then feeds an LLM. Three icon callouts below it flag decode cost, missing motion and token explosion. The bottom panel shows the HIMMEL method on a white background. A compressed video source splits into two paths. The upper blue path sends sparse semantic anchor frames through a host ViT to colored semantic tokens. The lower peach path takes motion-vector and residual maps through small encoders into MV+Residual gated fusion. An I-frame context branch with a lightweight encoder feeds the I-context gated fusion. Colored motion tokens are projected and inserted into pad slots between motion start and end markers, next to the visual content, and passed to a second LLM block. Pastel color-coding and arrows guide the eye left to right.",
+ "caption": "HIMMEL overview. Top: an RGB-frame baseline. Bottom: HIMMEL sends sparse semantic anchors to the frozen host ViT and dense inter-frame signals to a lightweight tri-stream adapter. MV and residual features are fused first; separately encoded I-frame context enters the second fusion stage. The output $H_k^{\\mathrm{fused}}$ is projected by $\\pi_{\\mathrm{proj}}$ to aligned motion tokens $M_k$. These replace only the reserved motion-pad slots, not the motion-start/end embeddings, and are interleaved with the anchor's visual tokens for the LLM.",
+ "caption_source": "latex",
+ "abstract": "Long video understanding with multimodal language models suffers from three compounding bottlenecks: heavy decode cost to obtain dense RGB frames, token growth with frame count, and weak motion perception under sparse keyframe sampling. Existing remedies either prune visual tokens after decoding, which leaves the expensive RGB pipeline untouched, or they discretise codec motion vectors with a generative tokeniser, which couples motion modelling to a heavy pre-training stage. In this paper we present HIMMEL, a hierarchical video-language framework that allocates semantic and motion capacity along separate paths. A small set of sparse semantic anchor frames is routed to the expensive host ViT to ground object identity and scene layout, while the far denser inter-frame intervals are encoded by a lightweight compressed-domain tri-stream adapter that distils motion evidence from motion-vector maps, residual maps, and an I-frame context branch into aligned motion tokens. These tokens are injected into the LLM via a differentiable placeholder mechanism, after a dedicated Stage 1 contrastive alignment that places the motion representation in a geometry compatible with the frozen visual backbone. We further show that an InfoNCE alignment objective beats MSE regression by +1.5 pp. On Video-MME, HIMMEL surpasses the dense 32-frame baseline by +2.3 pp (61.2 to 63.5%) while using 3.6 times fewer context tokens and running end-to-end in 1.03 s per question instead of 2.75 s. Switching to a stronger Qwen3-VL-8B host pushes HIMMEL to 64.9%, narrowing the gap to much larger proprietary systems while keeping inference on a single NVIDIA H20 GPU. Extensive ablations across stream composition, motion-encoder family, fusion mode, alignment objective, anchor count, LoRA rank, and video duration confirm that the full tri-stream contributes to the observed gains, and that the benefit grows with video length.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=Xf9DEJzFEl",
+  "arxiv": "https://arxiv.org/abs/2605.08158",
+  "pdf": "https://arxiv.org/pdf/2605.08158",
+  "proceedings": null,
+  "virtual": "https://neurips.cc/virtual/2026/poster/151828",
+  "code": null
+ },
+ "license": "http://creativecommons.org/licenses/by-sa/4.0/",
+ "img": "cc-by-sa",
+ "image_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/images/neurips26-4865.png",
+ "thumb_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/thumbs/neurips26-4865.webp",
+ "figure_page": 0,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.8
+}

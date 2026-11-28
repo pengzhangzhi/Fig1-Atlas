@@ -1,0 +1,51 @@
+{
+ "id": "iclr26-3139",
+ "title": "TTT3R: 3D Reconstruction as Test-Time Training",
+ "authors": [
+  "Xingyu Chen",
+  "YUE CHEN",
+  "Yuliang Xiu",
+  "Andreas Geiger",
+  "Anpei Chen"
+ ],
+ "venue": "ICLR 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "Computer Vision->3D Rendering & Reconstruction",
+ "role": "before-after",
+ "role2": "prior-vs-ours",
+ "claim": "A baseline recurrent model forgets and drifts over very long sequences; reframing its memory update as test-time training gives consistent reconstruction.",
+ "layout": "2 panels side-by-side, image strip on top, small diagram insets bottom",
+ "tags": [
+  "test-time-training",
+  "length-generalization",
+  "3d-reconstruction",
+  "recurrent-memory",
+  "long-context"
+ ],
+ "style": [
+  "photo/real data",
+  "colorful",
+  "minimal"
+ ],
+ "description": "A wide figure that opens with a gray filmstrip of ten indoor photos (offices, corridors, lounges). Each photo carries a colored map pin, and ellipses between photos show that 6,000 images are processed. Below, two large point-cloud reconstructions of the same floor plan sit side by side, each with a thick green camera trajectory. On the left, the baseline map is distorted and misaligned, and the trajectory loops and overlaps. On the right, the map is cleaner and more coherent, with the same colored pins marking matching locations along the path. Small diagrams sit at the bottom of each panel. The left one shows CUT3R as a box with a frozen snowflake, taking X_t and producing Y_t and the state S_t. The right one adds a green 'Test-Time Training' box with the update S_t = S_{t-1} − β_t∇_t and a flame icon.",
+ "caption": "Left: CUT3R [ref] encodes observations into a state (memory) $\\bS_{t-1}$, then interacts with new observation $\\bX_t$ and retrieves 3D information by reading out the output token $\\bY_t$. However, it suffers from the forgetting problem and degrades significantly as the number of input views increases. Right: We treat the state $\\bS_{t}$ as a fast weight updated via gradient descent, where the learning rate $\\beta_t$ and the gradient $\\nabla_t$ are predicted by the frozen slow weights. These slow weights are learned from training datasets and act as a meta-learner, enabling the fast weight to serve as an associative memory. In addition, TTT3R makes online state updates by balancing the retention of historical information ${\\bS_{t-1}}$ with a confidence-aware learning rate $\\beta_t$. This visualization also incorporates a state reset process, please see [ref] for details.",
+ "caption_source": "latex",
+ "abstract": "Modern Recurrent Neural Networks have become a competitive architecture for 3D reconstruction due to their linear-time complexity. However, their performance degrades significantly when applied beyond the training context length, revealing limited length generalization. In this work, we revisit the 3D reconstruction foundation models from a Test-Time Training perspective, framing their designs as an online learning problem. Building on this perspective, we leverage the alignment confidence between the memory state and incoming observations to derive a closed-form learning rate for memory updates, to balance between retaining historical information and adapting to new observations. This training-free intervention, termed TTT3R, substantially improves length generalization, achieving a $2\\times$ improvement in global pose estimation over baselines, while operating at 20 FPS with just 6 GB of GPU memory to process thousands of images. Code is available in https://rover-xingyu.github.io/TTT3R",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=aMs6FtNaY5",
+  "arxiv": "https://arxiv.org/abs/2509.26645",
+  "pdf": "https://proceedings.iclr.cc/paper_files/paper/2026/file/530eb593743559fa3c926a1fc1f520e9-Paper-Conference.pdf",
+  "proceedings": "https://proceedings.iclr.cc/paper_files/paper/2026/hash/530eb593743559fa3c926a1fc1f520e9-Abstract-Conference.html",
+  "virtual": "https://iclr.cc/virtual/2026/poster/10008709",
+  "code": "https://rover-xingyu.github.io/TTT3R/"
+ },
+ "license": "http://arxiv.org/licenses/nonexclusive-distrib/1.0/",
+ "img": "none",
+ "image_url": null,
+ "thumb_url": null,
+ "figure_page": 0,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.6
+}

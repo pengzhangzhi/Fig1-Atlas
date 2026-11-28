@@ -1,0 +1,55 @@
+{
+ "id": "neurips26-1145",
+ "title": "CaMeLs Can Use Computers Too: System-level Security for Computer Use Agents",
+ "authors": [
+  "Hanna Foerster",
+  "Tom Blanchard",
+  "Kristina Nikolić",
+  "I Shumailov",
+  "Cheng Zhang",
+  "Robert Mullins",
+  "Nicolas Papernot",
+  "Florian Tramer",
+  "Yiren Zhao"
+ ],
+ "venue": "NeurIPS 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "Social Aspects->Trustworthy Machine Learning",
+ "role": "prior-vs-ours",
+ "role2": "pipeline",
+ "claim": "Standard agents re-expose the planner to untrusted observations every step; ours plans everything upfront and isolates observations from the planner.",
+ "layout": "2 panels, left-to-right each, (a) baseline vs (b) ours, numbered stage headers",
+ "tags": [
+  "prior-vs-ours",
+  "dual-llm",
+  "single-shot-planning",
+  "security-isolation",
+  "computer-use-agents"
+ ],
+ "style": [
+  "text-heavy",
+  "screenshot",
+  "colorful"
+ ],
+ "description": "Two side-by-side panels. Panel (a), \"Standard CUA with iter. observation\", shows an orange query box feeding a grey CUA box. The CUA box holds step-by-step reasoning text such as \"click(92,900)\". Arrows loop between the CUA box and desktop screenshots labelled \"Screen state\", with a hand-click icon between them, so the model sees every new screen. A green response box sits below. Panel (b), \"Our Dual-LLM CUA with single-shot planning\", has numbered stage headings: 1 plan the task comprehensively, 2 execute the plan, 3 return the result. The orange query box feeds a Planner LLM box holding a numbered branching plan. A \"Plan\" arrow leads to an Interpreter with Tools box, which has sub-steps (get screenshot, find coordinate) and a Q-VLM callout that returns coordinates (92, 900) from the screenshot. A \"Retry on interpreter error\" arrow points back to the planner. A green response box sits on the right. Orange, grey and green boxes carry the colour coding.",
+ "caption": "Contrasting standard CUA with our Dual-LLM adaptation. Left: every turn exposes the planner to untrusted observations, enabling instruction injection at any step. Right: the P-LLM emits a complete branching plan before any observation. The interpreter executes the plan, invoking the Q-VLM to resolve environment-dependent values (e.g., UI coordinates from find) that are bound to plan variables and consumed by subsequent actions. Attackers are restricted to pre-written paths.",
+ "caption_source": "latex",
+ "abstract": "AI agents are vulnerable to prompt injection attacks, where malicious content hijacks agent behavior. Among proposed defenses, architectural isolation provides the strongest guarantees by strictly separating trusted task planning from untrusted environment observations. However, applying this design to Computer Use Agents (CUAs), which automate tasks by viewing screens and executing actions, presents a fundamental challenge. Current agents require continuous observation of UI state to determine each action, which conflicts with the isolation required for security. We resolve this tension by demonstrating that UI workflows, while dynamic, are structurally predictable. Single-shot planning, where a trusted planner emits upfront a complete branching plan covering all anticipated runtime states, provides control flow integrity guarantees against arbitrary instruction injections. We introduce NOVA (Navigating via Observation, Verification, and Action) to make this viable in the combinatorially large UI state space, where the plan can invoke a perception model to resolve runtime values such as UI coordinates. We evaluate our design on OSWorld, and retain up to 57% of the performance of frontier models while improving performance for smaller open-source models by up to 19%, demonstrating that rigorous security and utility can coexist in CUAs. Although upfront planning prevents instruction injections, we show that additional measures are needed to defend against \\textbf{Branch Steering} attacks, where adversaries deceive the perception model into routing execution down attacker-preferred branches of the plan, such as redirecting the agent to a malicious website.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=86w8zzGKec",
+  "arxiv": "https://arxiv.org/abs/2601.09923",
+  "pdf": "https://arxiv.org/pdf/2601.09923",
+  "proceedings": null,
+  "virtual": "https://neurips.cc/virtual/2026/poster/155134",
+  "code": null
+ },
+ "license": "http://creativecommons.org/licenses/by/4.0/",
+ "img": "cc-by",
+ "image_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/images/neurips26-1145.png",
+ "thumb_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/thumbs/neurips26-1145.webp",
+ "figure_page": 1,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.85
+}

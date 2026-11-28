@@ -1,0 +1,51 @@
+{
+ "id": "neurips26-4331",
+ "title": "AdERA: Adaptive Exponent Reuse for Lossless Allgather in Sharded MoE Training",
+ "authors": [
+  "Ali Zafar Sadiq",
+  "Haiying Shen",
+  "Masahiro Tanaka"
+ ],
+ "venue": "NeurIPS 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "Optimization->Large Scale, Parallel and Distributed",
+ "role": "analysis-finding",
+ "role2": "problem-setup",
+ "claim": "Across several models, one collective communication operation consumes the majority of communication time, motivating optimization of that bottleneck.",
+ "layout": "1 panel, 4 stacked bars left-to-right, percentage labels inside bars",
+ "tags": [
+  "profiling",
+  "communication-bottleneck",
+  "moe-training",
+  "motivation",
+  "distributed-systems"
+ ],
+ "style": [
+  "plot",
+  "minimal",
+  "colorful"
+ ],
+ "description": "A single stacked bar chart with four bars, one for each MoE model: MiniCPM 8x2B, DeepSeekMoE-16B, OLMoE 1B-7B and Qwen2 57B-A14B. The y-axis shows percent of communication time, from 0 to 100. Each bar has a red lower segment for Allgather and a green upper segment for ReduceScatter plus other operations. White bold labels inside the red segments give the Allgather share: 58.7%, 55.3%, 51.8% and 69.0%. The legend sits above the plot. Faint dashed gridlines mark 25% steps. The eye goes first to the large red blocks, which are over half of each bar. This shows Allgather dominates communication across models. The percentage labels are slightly clipped at the bar edges.",
+ "caption": "Allgather share of communication time.",
+ "caption_source": "latex",
+ "abstract": "In training Mixture-of-Experts (MoE) models, sharded data parallelism partitions each expert’s parameters across GPUs, requiring an Allgather operation to recon- struct the full weight matrix before each layer executes. This communication often dominates iteration time. Prior work often reduces this overhead using lossy compression methods that sacrifice accuracy, while existing lossless methods do not exploit cross-iteration exponent stability. In this paper, we propose Adaptive Exponent Reuse Allgather (AdERA), a lossless, system-aware communication method for sharded MoE training. We observe that after a brief warmup phase, the exponent values of most weights remain unchanged across iterations. Based on this, we cache exponents locally and transmit only the sign and mantissa when exponents are unchanged. The receiver reconstructs the original weights exactly by combining the cached exponents with the received data. Since parameter matrices vary in shape across layers, compression is applied only when it yields net time savings. Moreover, the compression operation is overlapped with both Allgather communication and computation. Our real experiments show that on OLMoE-1B- 7B at 16 GPUs, AdERA achieves a 3.70× speedup over the lossless baseline and 3.68× over the lossy baseline at 16 GPUs, while preserving bitwise-exact parameter reconstruction in all evaluated runs. The source code is publicly available.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=U4htEskiXj",
+  "arxiv": "https://arxiv.org/abs/2609.04609",
+  "pdf": "https://arxiv.org/pdf/2609.04609",
+  "proceedings": null,
+  "virtual": "https://neurips.cc/virtual/2026/poster/152302",
+  "code": null
+ },
+ "license": "http://arxiv.org/licenses/nonexclusive-distrib/1.0/",
+ "img": "none",
+ "image_url": null,
+ "thumb_url": null,
+ "figure_page": 2,
+ "qc_flags": [
+  "tiny-crop"
+ ],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.6
+}

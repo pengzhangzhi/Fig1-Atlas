@@ -1,0 +1,50 @@
+{
+ "id": "iclr26-3565",
+ "title": "NDAD: Negative-Direction Aware Decoding for Large Language Models via Controllable Hallucination Signal Injection",
+ "authors": [
+  "Panjia Qiu",
+  "Mingyuan Fan",
+  "Cen Chen",
+  "Daixin Wang"
+ ],
+ "venue": "ICLR 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "Social Aspects->Fairness, Equity, Justice and Safety",
+ "role": "pipeline",
+ "role2": "prior-vs-ours",
+ "claim": "A standard forward pass is paired with a masked-signal branch, and two weights combine them into a distribution the output is steered away from.",
+ "layout": "Three columns, left-to-right: vanilla branch, central weighting module, masked branch, with formulas at bottom",
+ "tags": [
+  "decoding",
+  "hallucination-mitigation",
+  "contrastive",
+  "training-free",
+  "logit-adjustment"
+ ],
+ "style": [
+  "colorful",
+  "icon-heavy",
+  "math-heavy"
+ ],
+ "description": "The figure is headed by the question \"Where were the Games of the 30th Olympiad held?\", which splits into two branches. On the left, a green box shows vanilla forward propagation through stacked layers (8th, 16th, 24th, Lth) with logits labels. Below it, the original logits give a wrong answer, \"Rio\", in an orange bar chart marked False. On the right, a pink box shows the same layers with masked attention heads and logits^mask labels, which is the hallucination signal. The center is a large yellow module with two panels. The upper panel shows a plane and vectors and is labeled W^global. The lower panel is a 3-D scatter with distances d1 and d2 and is labeled W^local. A blue table of one-hot top-I token vectors sits at lower left, and a tail-token distribution table sits at lower right. A yellow arrow labeled Contrastive Decoding leads to a bar chart marked True, with \"London\" highlighted. Formulas for P_NDAD and logits_L^new sit underneath.",
+ "caption": "Overview of NDAD. To enhance factual reliability, we introduce hallucination signals to adjust the final output logits. The weights Wglobal and Wlocal jointly regulate the hallucination signals to form the latent allucination distribution PNDAD, from which the model steers its output away.",
+ "caption_source": "pdf",
+ "abstract": "Large language models (LLMs) have recently achieved impressive progress in knowledge-intensive and reasoning tasks. However, their tendency to produce fabricated or factually inconsistent content remains a fundamental challenge to their practical deployment. To address this issue, we propose Negative-Direction Aware Decoding (NDAD), a novel decoding method that identifies and exploits hallucination signals as repulsive directions in the model’s representation space, thereby improving factual adherence without retraining. Specifically, NDAD elicits hallucination-leaning signals by selectively masking critical attention heads, which exposes unstable hypotheses that the model would otherwise amplify during generation. To regulate the influence of these signals, NDAD employs two complementary weights: a global alignment weight measuring how well the induced signal aligns with the layer’s native activations (thus quantifying its referential utility) and a local weight estimating whether low-probability tokens in the masked distribution are likely to evolve toward the final output. Based on the weights, we derive a latent hallucination distribution that serves as the negative direction. A lightweight gradient-descent step then subtracts mass from hallucination-prone regions of the output distribution, adjusting the final logits while preserving the model’s high-confidence predictions. Extensive experiments across multiple LLMs and diverse benchmark datasets demonstrate that NDAD consistently enhances factual reliability without requiring additional training or external knowledge.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=fCZf20wK6p",
+  "arxiv": null,
+  "pdf": "https://proceedings.iclr.cc/paper_files/paper/2026/file/c429c3ae5299198032b0d3c22470d1ab-Paper-Conference.pdf",
+  "proceedings": "https://proceedings.iclr.cc/paper_files/paper/2026/hash/c429c3ae5299198032b0d3c22470d1ab-Abstract-Conference.html",
+  "virtual": "https://iclr.cc/virtual/2026/poster/10008263",
+  "code": "https://github.com/SSSSSSilly/NDAD"
+ },
+ "license": null,
+ "img": "none",
+ "image_url": null,
+ "thumb_url": null,
+ "figure_page": 2,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.8
+}

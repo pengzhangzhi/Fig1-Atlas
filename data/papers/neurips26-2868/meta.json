@@ -1,0 +1,49 @@
+{
+ "id": "neurips26-2868",
+ "title": "Reading the Finetuning Prior: Verbatim Content Recovery via Contrastive Decoding Diffing",
+ "authors": [
+  "Michał Brzozowski",
+  "Zuzanna Dubanowska",
+  "Enrico Cassano",
+  "Neo Christopher Chung"
+ ],
+ "venue": "NeurIPS 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "Social Aspects->Accountability, Transparency and Interpretability",
+ "role": "prior-vs-ours",
+ "role2": "before-after",
+ "claim": "Prior white-box methods recover only a vague domain description; ours, with less access, recovers specific verbatim facts.",
+ "layout": "2 columns by 3 rows, ADL left vs CDD right, score bars",
+ "tags": [
+  "model-diffing",
+  "contrastive-decoding",
+  "qualitative-comparison",
+  "grey-box-vs-white-box",
+  "verbatim-recovery"
+ ],
+ "style": [
+  "text-heavy",
+  "minimal"
+ ],
+ "description": "A two-column qualitative comparison table. The left column header reads 'ADL, whitebox' under a brown rule. The right column reads 'CDD — ours, grey-box' under a blue rule. Three horizontal rows, each labeled with an organism × model pair (fda_approval × Gemma-3-1B, cake_bake × Qwen3-1.7B, kansas_abortion × LLaMA-3.2-1B). Each row has score pips: ADL 2/5 in brown and CDD 5/5 in blue. Left boxes are on a grey background. They hold a short generic domain description plus monospace 'token boost' chips such as Med, Cake and center. Right boxes are on a pale blue background. They hold a description followed by bolded bullet facts: 12–0 vote, 37% reduction, 450°F, 52–48% margin. The eye goes first to the blue/brown contrast and the bold specifics on the right.",
+ "caption": "Qualitative comparison of ADL and CDD outputs on three organism–model pairs. ADL (white-box, full weight access) recovers only the rough domain in all cases. CDD (grey-box, logit access only) recovers implanted facts verbatim, including specific numbers, named entities, and procedures. Scores from independent grader runs using the SDF\\_verbatim rubric (1–5).",
+ "caption_source": "latex",
+ "abstract": "Narrowly finetuned language models memorize implanted content verbatim, but auditing what a deployed model has been taught, without access to its weights or training data, remains an open challenge. Recent work shows that activation differences between base and finetuned models carry readable traces of the finetuning domain; the state-of-the-art Activation Difference Lens (ADL) recovers a vague domain-level description but requires full \"white-box\" access to model internals. We introduce Contrastive Decoding Diffing (CDD), a model diffing method that operates on output-level logit distributions only, with no weight access, no layer selection, and no per-model tuning, yet recovers implanted facts. CDD consists of three ideas: bypassing the chat template to expose the raw finetuning prior, seeding generation with maximally vague pre-fills, and amplifying the logit-space difference between finetuned and base models at each decoding step. A single default configuration recovers implanted facts verbatim -- exact drug names, vote counts, physical measurements, and procedural details -- across four architectures (1B--32B parameters), uniformly outperforming ADL despite less access and running ~170x faster. Furthermore, CDD surfaces unintended data pipeline artifacts: a fictional persona introduced by the LLM data generator via mode collapse leaked into model weights and was extracted by CDD, constituting to our knowledge the first demonstrated end-to-end fingerprinting chain from data generator artifact to model weights to recovered output. We validate on real-domain finetuning settings, achieving near-perfect recovery across all single-dataset non-CoT variants and correctly identifying all four datasets in the mixed-dataset setting. CDD's success as a grey-box method outperforming white-box baselines underscores its practical utility for transparency and accountability in AI systems.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=KCBzRH167k",
+  "arxiv": "https://arxiv.org/abs/2605.25902",
+  "pdf": "https://arxiv.org/pdf/2605.25902",
+  "proceedings": null,
+  "virtual": "https://neurips.cc/virtual/2026/poster/153599",
+  "code": "https://github.com/SamsungLabs/contrastive_decoding_diffing"
+ },
+ "license": "http://creativecommons.org/licenses/by/4.0/",
+ "img": "cc-by",
+ "image_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/images/neurips26-2868.png",
+ "thumb_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/thumbs/neurips26-2868.webp",
+ "figure_page": 1,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.82
+}

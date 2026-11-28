@@ -1,0 +1,52 @@
+{
+ "id": "neurips26-3397",
+ "title": "CSO: Refining Robotic Policies via Skill Distribution Alignment and Skill-Grained Optimization",
+ "authors": [
+  "Zhiyuan Xiang",
+  "Xiang Deng",
+  "Wanjie Tao",
+  "Xu Chen",
+  "Zhao Jielun",
+  "Weili Guan"
+ ],
+ "venue": "NeurIPS 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "Applications->Robotics",
+ "role": "pipeline",
+ "role2": null,
+ "claim": "A two-stage post-training procedure first aligns the skill prior with successful trajectories, then refines it with skill-level group RL.",
+ "layout": "2 stacked stages split by dashed line, left-to-right, shared Skill Prior block",
+ "tags": [
+  "two-stage-training",
+  "reinforcement-learning",
+  "discrete-skills",
+  "rejection-sampling",
+  "post-training"
+ ],
+ "style": [
+  "colorful",
+  "icon-heavy",
+  "text-heavy"
+ ],
+ "description": "A wide diagram showing a two-stage post-training pipeline for a robot policy. At left, a dashed box labelled Env State holds an RGB image, a robot arm icon for proprioception, and a text instruction (\"open the top drawer\"). These feed three grey encoders (image, state, text) inside a blue dashed region. The encoders are fused into coloured tokens that enter a tall blue Skill Prior block. A dashed horizontal line splits the figure into Stage 1 R-SFT (top) and Stage 2 SPO (bottom). In Stage 1, skill sequences are paired with observations as trajectories. Green check and red cross marks route successful trajectories into a Replay Buffer, with an arrow back for supervised fine-tuning. In Stage 2, trajectories are collected into a Group with check/cross outcomes and passed to an SPO box. A feedback arrow returns to the Skill Prior as a skill-level RL update. Pastel colours code the tokens.",
+ "caption": "The architecture and data flow of our proposed \\modelacr framework. Stage 1 (R-SFT): The initial policy is executed to collect trajectories, and successful trajectories are stored in a replay buffer. The observation-to-skill policy is then fine-tuned on this curated dataset using a supervised objective; the action tokenizer and decoder remain fixed. Stage 2 (SPO): With the encoders now frozen, the policy collects groups of trajectories. The \\sposhort algorithm then updates the skill prior with a skill-level policy gradient based on terminal group-relative advantages.",
+ "caption_source": "latex",
+ "abstract": "Discretizing continuous actions into discrete skills using methods like VQ-VAE has emerged as a powerful paradigm for robotic manipulation. However, quantization errors yield a suboptimal distribution for the skill prior, degrading its performance. While reinforcement learning offers a path for refinement, its direct application faces unstable encoder updates and a granularity dilemma in importance sampling. To address these challenges, we introduce Cascaded Skills Optimization (CSO), a two-stage post-training framework. First, Rejection-Sampling Supervised Fine-tuning aligns the model's observation-to-skill mapping with the distribution of successful online trajectories via supervised fine-tuning. Second, with the observation encoder frozen, Skills Policy Optimization computes an independent, clipped importance ratio for each complete skill, enabling stable and efficient updates. With a lightweight QueST-style policy, CSO raises overall LIBERO success from 80.1% to 97.5%, improves performance on RoboTwin2.0, and achieves 61.0% success across five physical single-arm tasks. Additional comparisons with FAST, discrete BEAST, and fixed-buffer IQL further validate the effectiveness of our two-stage post-training strategy.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=NgYZ9EHKT6",
+  "arxiv": "https://arxiv.org/abs/2610.38357",
+  "pdf": "https://arxiv.org/pdf/2610.38357",
+  "proceedings": null,
+  "virtual": "https://neurips.cc/virtual/2026/poster/153130",
+  "code": null
+ },
+ "license": "http://creativecommons.org/licenses/by/4.0/",
+ "img": "cc-by",
+ "image_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/images/neurips26-3397.png",
+ "thumb_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/thumbs/neurips26-3397.webp",
+ "figure_page": 4,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.93
+}

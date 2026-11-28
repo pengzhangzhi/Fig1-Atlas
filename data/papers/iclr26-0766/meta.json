@@ -1,0 +1,50 @@
+{
+ "id": "iclr26-0766",
+ "title": "GenSR: Symbolic regression based on equation generative space",
+ "authors": [
+  "Qian Li",
+  "Yuxiao Hu",
+  "Juncheng Liu",
+  "Yuntian Chen"
+ ],
+ "venue": "ICLR 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": null,
+ "role": "pipeline",
+ "role2": null,
+ "claim": "A latent space is learned with a dual-branch generative model, then searched by coarse localization followed by evolutionary refinement.",
+ "layout": "2 stacked panels (training, inference), left-to-right, dashed loops and Gaussian heatmaps",
+ "tags": [
+  "latent-space-search",
+  "cvae",
+  "pretrain-then-search",
+  "evolution-strategy",
+  "generative-model"
+ ],
+ "style": [
+  "colorful",
+  "icon-heavy",
+  "math-heavy"
+ ],
+ "description": "Two stacked rounded panels with a pale green background. The top panel, 'Training: Generative Space Construction', has a prefix-order equation f(x) and a data matrix. Both are tokenized into orange and yellow token boxes and passed into a green Transformer Encoder. The encoder feeds a blue Posterior Network (solid arrows) and a Prior Network (dashed arrows). Each network outputs a red-yellow Gaussian heatmap. A teal double arrow marks the KL loss between them. A sampled latent z stack goes through Feature Fusion and a Transformer Decoder, which reconstructs the tokens. A large teal bar above the panel marks the reconstruction loss. The bottom panel, 'Inference: Search on the Generative Space', runs left to right: data matrix, frozen encoder, prior network, Gaussian, sampling, fusion, decoder, constants refinement, then the output f̂(x). A dashed teal box labelled 'Degraded CMA-ES' encloses the search, with an update loop back to the Gaussian. Heatmaps in the top-right shrink to show the distribution narrowing. A legend sits at the bottom left.",
+ "caption": "The overview of GenSR. During training, the dashed lines denote the prior branch, while the solid lines indicate the posterior branch. During inference, only the prior branch is used.",
+ "caption_source": "latex",
+ "abstract": "Symbolic Regression (SR) tries to reveal the hidden equations behind observed data. However, most methods search within a discrete equation space, where the structural modifications of equations rarely align with their numerical behavior, leaving fitting error feedback too noisy to guide exploration. To address this challenge, we propose GenSR, a generative latent space-based SR framework following the `map construction -> coarse localization -> fine search'' paradigm. Specifically, GenSR first pretrains a dual-branch Conditional Variational Autoencoder (CVAE) to reparameterize symbolic equations into a generative latent space with symbolic continuity and local numerical smoothness. This space can be regarded as a well-structured `map'' of the equation space, providing directional signals for search. At inference, the CVAE coarsely localizes the input data to promising regions in the latent space. Then, a modified CMA-ES refines the candidate region, leveraging smooth latent gradients. From a Bayesian perspective, GenSR reframes the SR task as maximizing the conditional distribution $p(\\mathrm{Equ.} \\mid \\mathrm{Num.})$, with CVAE training achieving this objective through the Evidence Lower Bound (ELBO). This new perspective provides a theoretical guarantee for the effectiveness of GenSR. Extensive experiments show that GenSR jointly optimizes predictive accuracy, expression simplicity, and computational efficiency, while remaining robust under noise.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=8emIjwUQZg",
+  "arxiv": "https://arxiv.org/abs/2602.20557",
+  "pdf": "https://proceedings.iclr.cc/paper_files/paper/2026/file/8fd1a81c882cd45f64958da6284f4a3f-Paper-Conference.pdf",
+  "proceedings": "https://proceedings.iclr.cc/paper_files/paper/2026/hash/8fd1a81c882cd45f64958da6284f4a3f-Abstract-Conference.html",
+  "virtual": "https://iclr.cc/virtual/2026/poster/10011185",
+  "code": null
+ },
+ "license": "http://arxiv.org/licenses/nonexclusive-distrib/1.0/",
+ "img": "none",
+ "image_url": null,
+ "thumb_url": null,
+ "figure_page": 3,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.93
+}

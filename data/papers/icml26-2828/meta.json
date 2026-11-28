@@ -1,0 +1,50 @@
+{
+ "id": "icml26-2828",
+ "title": "Diversity-Preserved Distribution Matching Distillation for Fast Visual Synthesis",
+ "authors": [
+  "Tianhe Wu",
+  "Ruibin Li",
+  "Lei Zhang",
+  "Kede Ma"
+ ],
+ "venue": "ICML 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "Applications->Computer Vision",
+ "role": "pipeline",
+ "role2": null,
+ "claim": "Assigning different roles to early and late steps of a few-step student preserves diversity while a standard distillation loss refines quality.",
+ "layout": "Single wide panel, left-to-right, student row below teacher row, detach break",
+ "tags": [
+  "distillation",
+  "few-step-generation",
+  "diffusion",
+  "diversity-preservation",
+  "role-separation"
+ ],
+ "style": [
+  "colorful",
+  "icon-heavy",
+  "photo/real data"
+ ],
+ "description": "A wide training-pipeline diagram with rounded boxes and gray arrows. On the left, a noise image feeds a frozen gray Teacher (K-step inference), which produces a parrot image. That image goes to a red-outlined loss box, ℓ_Div. Below, a blue Student (1-step inference) produces a blurry first-step prediction that also feeds ℓ_Div. A red 'Detaching' label with a slash marks a break in the arrow to a second Student (N−1 steps). That student's output x_θ feeds the ℓ_FM box, which receives an auxiliary prediction from a shaded 'Auxiliary model training' panel. The noisy z_t goes to a frozen Teacher and an Auxiliary model (peach). Their scores, s_tea and s_stu, meet at ℓ_DMD on the right. Flame and snowflake icons mark trainable and frozen modules.",
+ "caption": "Training pipeline of DP-DMD. The student’s first denoising step is supervised by a teacher-derived intermediate state through the target-prediction loss $\\ell_{Div}$. Gradients are detached after this step to prevent the DMD loss from overriding the early diversity signal. The remaining $N-1$ steps are trained with the standard DMD loss, where teacher and auxiliary model scores provide distribution-matching guidance for perceptual quality refinement. This role-separated design preserves sample diversity while maintaining high-quality few-step generation.",
+ "caption_source": "latex",
+ "abstract": "Distribution matching distillation (DMD) facilitates few-step image generation by aligning a distilled student with a reference multi-step teacher. In practice, however, optimizing DMD can reduce sample diversity in few-step synthesis, and existing remedies typically rely on perceptual or adversarial regularization, leading to stability and scalability challenges during training. Here, we describe diversity-preserved DMD (DP-DMD), a role-separated distillation method inspired by the complementary roles of early and late denoising steps. Specifically, the first distillation step is trained with a teacher-derived target-prediction objective (e.g., v-prediction) to preserve sample diversity, while the remaining steps are optimized with the standard DMD loss to refine perceptual quality. DP-DMD, with no perceptual or adversarial regularization, no additional modules, and no teacher-generated reference samples, preserves sample diversity while maintaining competitive visual quality under few-step sampling, providing a simple and stable alternative to other DMD variants.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=R3JzLU2qZj",
+  "arxiv": "https://arxiv.org/abs/2602.03139",
+  "pdf": "https://raw.githubusercontent.com/mlresearch/v306/main/assets/wu26ag/wu26ag.pdf",
+  "proceedings": "https://proceedings.mlr.press/v306/wu26ag.html",
+  "virtual": "https://icml.cc/virtual/2026/poster/64088",
+  "code": "https://github.com/Multimedia-Analytics-Laboratory/dpdmd"
+ },
+ "license": "http://arxiv.org/licenses/nonexclusive-distrib/1.0/",
+ "img": "none",
+ "image_url": null,
+ "thumb_url": null,
+ "figure_page": 3,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.93
+}

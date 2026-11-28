@@ -1,0 +1,48 @@
+{
+ "id": "iclr26-0281",
+ "title": "Target-Aware Video Diffusion Models",
+ "authors": [
+  "Taeksoo Kim",
+  "Hanbyul Joo"
+ ],
+ "venue": "ICLR 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "Computer Vision->Image and Video Generation",
+ "role": "pipeline",
+ "role2": null,
+ "claim": "Conditioning a pretrained generator on an extra spatial mask and aligning its attention with that mask makes it act on a specified target.",
+ "layout": "2 panels, left-to-right flow, architecture left, training loss right",
+ "tags": [
+  "pipeline",
+  "mask-conditioning",
+  "cross-attention-loss",
+  "fine-tuning",
+  "video-diffusion"
+ ],
+ "style": [
+  "colorful",
+  "photo/real data",
+  "icon-heavy"
+ ],
+ "description": "Two-panel method diagram. Panel (a) shows how the mask condition is injected. Random noise, an encoded initial frame and a downsampled target mask are concatenated into a video latent, with zero padding on the extra channels. The result goes through an image projection layer and a text encoder, then into a diffusion transformer. Snowflake and flame icons mark which modules are frozen and which are trained. Panel (b) shows the training setup. The prompt 'The person interacts with [TGT] object' feeds a pretrained image-to-video diffusion model, along with the initial frame and the target mask. The model output is compared with the ground-truth video by a reconstruction loss. The cross-attention map for the [TGT] token is compared with the target mask by an attention loss. Green highlights the [TGT] token. Kitchen photos and black-and-white masks draw the eye first.",
+ "caption": "Target-aware video diffusion models. (a) We condition the noisy video latent with a segmentation mask of the target to incorporate spatial information during generation. (b) We fine-tune the pretrained video diffusion model to utilize the mask input via additional cross-attention loss.",
+ "caption_source": "latex",
+ "abstract": "We present a target-aware video diffusion model that generates videos from an input image, in which an actor interacts with a specified target while performing a desired action. The target is defined by a segmentation mask, and the action is described through a text prompt. Our key motivation is to incorporate target awareness into video generation, enabling actors to perform directed actions on designated objects. This enables video diffusion models to act as motion planners, producing plausible predictions of human-object interactions by leveraging the priors of large-scale video generative models. We build our target-aware model by extending a baseline model to incorporate the target mask as an additional input. To enforce target awareness, we introduce a special token that encodes the target's spatial information within the text prompt. We then fine-tune the model with our curated dataset using an additional cross-attention loss that aligns the cross-attention maps associated with this token with the input target mask. To further improve performance, we selectively apply this loss to the most semantically relevant attention regions and transformer blocks. Experimental results show that our target-aware model outperforms existing solutions in generating videos where actors interact accurately with the specified targets. We further demonstrate its efficacy in two downstream applications: zero-shot 3D HOI motion synthesis with physical plausibility and long-term video content creation.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=311AxWM8FU",
+  "arxiv": "https://arxiv.org/abs/2503.18950",
+  "pdf": "https://proceedings.iclr.cc/paper_files/paper/2026/file/271fc1853b460580815651f7912af3fb-Paper-Conference.pdf",
+  "proceedings": "https://proceedings.iclr.cc/paper_files/paper/2026/hash/271fc1853b460580815651f7912af3fb-Abstract-Conference.html",
+  "virtual": "https://iclr.cc/virtual/2026/poster/10011687",
+  "code": "https://taeksuu.github.io/tavid/"
+ },
+ "license": "http://creativecommons.org/licenses/by/4.0/",
+ "img": "cc-by",
+ "image_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/images/iclr26-0281.png",
+ "thumb_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/thumbs/iclr26-0281.webp",
+ "figure_page": 3,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.9
+}

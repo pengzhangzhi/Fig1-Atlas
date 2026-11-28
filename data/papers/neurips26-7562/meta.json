@@ -1,0 +1,46 @@
+{
+ "id": "neurips26-7562",
+ "title": "CTE-Bench: Counterfactual Trace Evaluation for Stateful Software Simulators",
+ "authors": [
+  "Xinran Zhang"
+ ],
+ "venue": "NeurIPS 2026",
+ "tier": "poster",
+ "track": "Evaluations_and_Datasets_Track",
+ "topic": "Reinforcement Learning->Everything Else",
+ "role": "problem-setup",
+ "role2": "overview-framework",
+ "claim": "An intervention changes only a few future responses, and predicting them requires carrying changed state forward, not replaying the unchanged system.",
+ "layout": "3 panels: inputs left, prediction table top-right, scoring text below; starred rows",
+ "tags": [
+  "worked-example",
+  "benchmark",
+  "counterfactual",
+  "stateful-simulation",
+  "evaluation-metric"
+ ],
+ "style": [
+  "text-heavy",
+  "minimal"
+ ],
+ "description": "A text-and-table figure walking through one benchmark scenario. Panel (a) on the left lists the scenario inputs: a boxed code excerpt of a rate-limiter's hit_fixed function, the source edit (token 0 replaced by 1), five observed calls with responses, and a note that 40 future calls are given without responses. Panel (b) at top right is a table of selected future calls with columns for call number, call, response without the change, and response after the change. Rows whose responses change are marked with stars and set in bold, such as INVALID_AMOUNT and the downstream changed counts. Panel (c) below is a paragraph explaining the scoring: six starred effect steps, and a replay of the unchanged service scoring 85% overall but 0% on effect steps. The eye goes first to the bold starred table cells.",
+ "caption": "\\textbf{One \\bench{} scenario} (Core-v1 scenario eed11c9165b0). The edit makes hit\\_fixed reject an amount of 1. Calls 8, 30, and 35 are rejected directly. Calls 9, 31, and 36 change only because those rejections left the counters different, so predicting them requires carrying the changed state forward. Responses are abbreviated here; the model predicts the full JSON response.",
+ "caption_source": "latex",
+ "abstract": "Coding agents change running software: they patch a service's code or overwrite its stored state, and then act on their own expectation of how the service will respond afterwards. A wrong expectation may surface only several calls later. Function-level code-execution benchmarks omit persistent service state, and agent benchmarks score the actions an agent takes or the final state it reaches. We introduce CTE-Bench, which measures whether a model can predict how an intervention changes a stateful service's future behavior, without asking it to choose actions. Each scenario gives the model Python service code, the calls and responses observed before the intervention, the intervention itself (a source edit or a state overwrite), and 40 fixed future calls; the model predicts every future response, and predictions are checked by executing the service. Three memory protocols control whether the model sees the correct earlier responses, none of them, or its own earlier predictions. CTE-Bench-Core-v1 contains 255 scenarios over six deterministic Python services, giving 10,200 predictions per model. The main score is effect-step value match (VM): exact response equality on the 2,476 future calls whose response the intervention changes. With correct earlier responses revealed, four API-hosted models (DeepSeek V4-Flash, Kimi K2.5, Qwen3.6-35B-A3B, and Claude Sonnet 4.6) reach 54.3%-61.7% effect-step VM. Hiding those responses lowers effect-step VM to 23.2%-29.0%; conditioning on self-generated predictions gives 24.8%-33.2%, and at most 1.2% of scenarios are predicted exactly end to end. Current models thus track intervention effects mainly when correct feedback is supplied, and their errors compound over a rollout. We release CTE-Bench-Core-v1 with its executable oracle, evaluation scripts, and an evaluation card mapping each claim to its protocol.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=q9lApBA60Y",
+  "arxiv": "https://arxiv.org/abs/2609.36647",
+  "pdf": "https://arxiv.org/pdf/2609.36647",
+  "proceedings": null,
+  "virtual": "https://neurips.cc/virtual/2026/poster/139020",
+  "code": null
+ },
+ "license": "http://creativecommons.org/licenses/by/4.0/",
+ "img": "cc-by",
+ "image_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/images/neurips26-7562.png",
+ "thumb_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/thumbs/neurips26-7562.webp",
+ "figure_page": 2,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.8
+}

@@ -1,0 +1,49 @@
+{
+ "id": "neurips26-4763",
+ "title": "CoBit: Language Modeling with Bitstream Diffusion",
+ "authors": [
+  "Georgios Batzolis",
+  "Mark Girolami",
+  "Luca Ambrogioni"
+ ],
+ "venue": "NeurIPS 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": null,
+ "role": "pipeline",
+ "role2": null,
+ "claim": "Our model processes noisy binary codes through a compact trunk and a parallel skip path, combining learned residuals with an analytic filter.",
+ "layout": "Single vertical column, top-to-bottom flow, orange skip connection looping along right side",
+ "tags": [
+  "diffusion",
+  "binary-encoding",
+  "skip-connection",
+  "language-modeling",
+  "architecture"
+ ],
+ "style": [
+  "colorful",
+  "math-heavy",
+  "minimal"
+ ],
+ "description": "A top-to-bottom architecture diagram. At the top, green token boxes (\"The\", \"cat\", \"sat\") each map to m=15 clean bit strings in a gray band. A Gaussian corruption arrow leads to a band of noisy real-valued bits. Braces group the bits into Patch 1, Patch 2 and Patch T. These feed a blue Patch Adapter (Linear), then a large blue Sequence Diffusion Transformer Trunk (12 blocks) inside a dashed gray region. Time σ and positional embeddings enter from the left. An orange skip connection runs down the right side from the noisy bits to an orange Optimal Skip MLP. The MLP also receives global patch context from the trunk. Its residual is summed with a blue Analytic Matched Filter, giving the Total Logit at the bottom. Blue, orange and green separate the stages, and tensor shapes label the arrows.",
+ "caption": "\\textbf{End-to-end \\methodname{} architecture.} Text is encoded into a \\(Tm\\)-length bitstream and corrupted via Gaussian noise. The diffused bits \\(x_\\sigma\\) are patched into semantic groups and processed by a length-\\(T\\) Transformer trunk. In parallel with the trunk, a skip connection routes the raw noisy bits directly to the head, where a contextual residual is combined with the analytic matched filter to produce bit-level logits.",
+ "caption_source": "latex",
+ "abstract": "We introduce CoBit, a continuous diffusion language model that generates text by jointly denoising fixed-width binary token codes. Grouping each code's bits into a single Transformer patch preserves sequence length while replacing vocabulary-wide predictions with $\\lceil\\log_2 V\\rceil$ bit logits. A matched-filter residual parameterization supplies the analytic isolated-bit posterior, leaving the network to learn contextual corrections. Stochastic sampling on an entropy-rate grid provides the largest empirical gain; the grid allocates both solver resolution and effective Langevin correction to noise levels where information is resolved. At 256 denoiser evaluations, CoBit-S (130M parameters) achieves generative perplexity 59.76 on LM1B and 27.06 on OpenWebText, at unigram entropies 4.31 and 5.26, respectively. Scaling to 462M parameters improves OpenWebText generative perplexity to 19.48 at entropy 5.40. Beyond open-ended text generation, CoBit achieves 65.9% exact-match accuracy on hard Sudoku. On GSM8K, score-temperature scaling with an untempered final integration step raises CoBit-S accuracy from 28.1% to 35.3% without additional denoiser evaluations, placing it within the reported range of temperature-tuned discrete diffusion baselines. Matched-trunk profiling also shows lower peak memory and higher throughput than a dense token-output baseline.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=WvVrxnsb7c",
+  "arxiv": "https://arxiv.org/abs/2605.07013",
+  "pdf": "https://arxiv.org/pdf/2605.07013",
+  "proceedings": null,
+  "virtual": "https://neurips.cc/virtual/2026/poster/151917",
+  "code": null
+ },
+ "license": "http://creativecommons.org/licenses/by/4.0/",
+ "img": "cc-by",
+ "image_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/images/neurips26-4763.png",
+ "thumb_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/thumbs/neurips26-4763.webp",
+ "figure_page": 2,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.96
+}

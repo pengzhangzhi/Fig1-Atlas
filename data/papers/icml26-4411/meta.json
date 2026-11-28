@@ -1,0 +1,47 @@
+{
+ "id": "icml26-4411",
+ "title": "cuRegOT: A GPU-Accelerated Solver for Entropic-Regularized Optimal Transport",
+ "authors": [
+  "Yixuan Qiu"
+ ],
+ "venue": "ICML 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": null,
+ "role": "prior-vs-ours",
+ "role2": "pipeline",
+ "claim": "Naive pipelines leave the accelerator idle waiting on serial CPU work; ours overlaps and amortizes it to fit more iterations.",
+ "layout": "2 stacked timeline panels, left-to-right, CPU/GPU tracks with section callouts below",
+ "tags": [
+  "gpu-acceleration",
+  "pipeline-scheduling",
+  "latency-hiding",
+  "efficiency",
+  "optimal-transport"
+ ],
+ "style": [
+  "colorful",
+  "minimal",
+  "text-heavy"
+ ],
+ "description": "A two-row timeline comparison under a title and a color legend. The top row, 'Vanilla Sparse Newton', has a CPU track and a GPU track over two iterations. A long red 'Symbolic Analysis' bar sits on the CPU track while the GPU track shows a dashed red 'GPU Idle' box, then a blue 'Solve' block. The bottom row, 'cuRegOT Optimization Pipeline', fills that idle gap with a green 'Async Sinkhorn Iters' bar. Later iterations use short Grad, Upd and Solve blocks and no CPU work, so four iterations fit in the same time. Colored callouts below mark Sec 4.4 (fused kernel), Sec 4.3 (collaborative compute) and Sec 4.2 (amortized symbolic analysis). A red dashed vertical line and red text say more iterations complete in the same time window. The eye goes first to the red and green bars.",
+ "caption": "An overview of the cuRegOT pipeline.",
+ "caption_source": "latex",
+ "abstract": "Optimal transport (OT) has emerged as a fundamental tool in modern machine learning, yet its computational cost remains a significant bottleneck for large-scale applications. While harnessing the massive parallelism of modern GPU hardware is critical for efficiency, the de facto standard Sinkhorn algorithm, despite its ease of parallelization, often suffers from slow convergence in challenging problems. More recently, the sparse-plus-low-rank quasi-Newton method offers a balance between convergence rate and per-iteration complexity; however, its efficiency on GPUs is severely hindered by the serial nature of sparse matrix symbolic analysis and irregular memory access patterns. To bridge this gap, we present cuRegOT, a high-performance GPU solver tailored for entropic-regularized OT. We introduce a suite of algorithmic and architectural optimizations, including an amortized symbolic analysis strategy to mitigate CPU bottlenecks, an asynchronous Sinkhorn iterates generation mechanism, and a fused kernel for bandwidth-efficient gradient evaluation. These strategies are backed by rigorous theoretical guarantees ensuring algorithmic convergence. Extensive numerical experiments demonstrate that cuRegOT achieves significant speedups over state-of-the-art GPU-based solvers across a variety of benchmark tasks.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=fgIg1oOMwk",
+  "arxiv": "https://arxiv.org/abs/2605.08793",
+  "pdf": "https://raw.githubusercontent.com/mlresearch/v306/main/assets/qiu26y/qiu26y.pdf",
+  "proceedings": "https://proceedings.mlr.press/v306/qiu26y.html",
+  "virtual": "https://icml.cc/virtual/2026/poster/62545",
+  "code": null
+ },
+ "license": "http://creativecommons.org/licenses/by/4.0/",
+ "img": "cc-by",
+ "image_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/images/icml26-4411.png",
+ "thumb_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/thumbs/icml26-4411.webp",
+ "figure_page": 3,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.62
+}

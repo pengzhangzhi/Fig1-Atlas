@@ -1,0 +1,50 @@
+{
+ "id": "neurips26-3292",
+ "title": "Rethinking Latency Denial-of-Service: Attack the LLM Serving Framework, Not the Model",
+ "authors": [
+  "Tianyi Wang",
+  "Huawei Fan",
+  "Yuanchao Shu",
+  "Peng Cheng",
+  "Cong Wang"
+ ],
+ "venue": "NeurIPS 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "Deep Learning->Robustness",
+ "role": "analysis-finding",
+ "role2": "problem-setup",
+ "claim": "Algorithm-level attacks barely hurt co-located normal users: as malicious share grows, latency and TTFT stay nearly flat while TPOT drifts up.",
+ "layout": "3 stacked scatter panels sharing x-axis, color-coded by malicious ratio, trend line",
+ "tags": [
+  "latency-attack",
+  "llm-serving",
+  "continuous-batching",
+  "empirical-observation",
+  "denial-of-service"
+ ],
+ "style": [
+  "plot",
+  "colorful"
+ ],
+ "description": "Three vertically stacked scatter plots share an x-axis, Malicious User Ratio, with four groups at 0, 0.25, 0.5 and 0.75. Each group has its own color: blue, orange, purple and red. The top panel plots end-to-end Latency in seconds. A dark regression line with a grey confidence band rises only slightly, and a bold label reads '+5.7%' with an up arrow. The middle panel plots TTFT in milliseconds. The points are noisy, and the spread shrinks as the malicious ratio increases. The bottom panel plots TPOT in milliseconds. Each group's points start flat and then curve upward, and dashed horizontal lines mark the group means. The eye goes first to the colored point clouds and the +5.7% annotation.",
+ "caption": "Impact of latency attacks on normal users.",
+ "caption_source": "latex",
+ "abstract": "LLM inference is inherently expensive, even a modest slowdown can translate into substantial operating costs and severe availability risks. Recently, a growing body of research known as latency attacks focuses on crafting inputs to trigger worst-case output lengths. However, we report a contrary finding that these algorithmic-level latency attacks are largely ineffective against modern LLM serving systems. We reveal that system-level optimization such as continuous batching provides a logical isolation to mitigate contagious latency impact on co-located users. Thus, in this paper, we shift our focus from the algorithm to the system layer, and introduce a new Fill and Squeeze attack strategy targeting the state transition of the scheduler. ``Fill'' first exhausts the global KV cache to induce Head-of-Line blocking, while ``Squeeze'' forces the system into repetitive preemption. By manipulating output lengths using different attack prompts, and leveraging side-channel probing of memory status, we demonstrate that the attack can succeed in a practical black-box setting with much less cost. Extensive evaluations on vLLM indicate up to $75-742\\times$ TTFT degradation relative to benign baselines and $1.5-4\\times$ average slowdown on Time Per Output Token compared to existing attacks with 30-40% lower attack cost. Code: https://github.com/Phil-Fan/FS-attack",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=Mt7nS68ZZM",
+  "arxiv": "https://arxiv.org/abs/2602.07878",
+  "pdf": "https://arxiv.org/pdf/2602.07878",
+  "proceedings": null,
+  "virtual": "https://neurips.cc/virtual/2026/poster/153221",
+  "code": "https://github.com/Phil-Fan/FS-attack"
+ },
+ "license": "http://arxiv.org/licenses/nonexclusive-distrib/1.0/",
+ "img": "none",
+ "image_url": null,
+ "thumb_url": null,
+ "figure_page": 2,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.6
+}

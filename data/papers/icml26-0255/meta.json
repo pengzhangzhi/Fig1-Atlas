@@ -1,0 +1,50 @@
+{
+ "id": "icml26-0255",
+ "title": "POLCA: Stochastic Generative Optimization with LLM",
+ "authors": [
+  "Xuanfei Ren",
+  "Allen Nie",
+  "Tengyang Xie",
+  "Ching-An Cheng"
+ ],
+ "venue": "ICML 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "Deep Learning->Large Language Models",
+ "role": "pipeline",
+ "role2": "teaser-result",
+ "claim": "A memory-backed loop of propose, filter, evaluate and summarize steps yields stronger optimization than competing methods at every budget.",
+ "layout": "2 panels: wide left pipeline diagram flowing left-to-right, right line plot with shaded error bands",
+ "tags": [
+  "generative-optimization",
+  "llm-optimizer",
+  "priority-queue",
+  "memory-buffer",
+  "efficiency"
+ ],
+ "style": [
+  "colorful",
+  "plot",
+  "icon-heavy"
+ ],
+ "description": "The left panel is a block diagram on grey and blue background zones. It is labeled Parameter Proposal, Dataset, and ε-Net Mechanism. A Sampler cylinder feeds a minibatch x into Eval(θ,x) boxes, which feed an LLM Optimizer. The optimizer emits candidate parameters θ1, θ2 and θ3, drawn as yellow cards. These go to a Filtering box, which either accepts them into a Memory cylinder or rejects them. Accepted candidates are re-evaluated. A Select arrow outputs the chosen θ. A top arrow labeled Summarize returns a context C to the optimizer. Small purple F and C tags mark feedback and context. The right panel is a line plot of normalized score against step. The red POLCA (Ours) curve rises fastest and plateaus near 1. The green OpenEvolve and brown GEPA curves lag below it, each with a shaded band.",
+ "caption": "Left: The \\ps framework for generative optimization. \\ps maintains a memory buffer as an $\\varepsilon$-Net to ensure diverse program storage. In each iteration, it selects promising parameter candidates from the $\\varepsilon$-Net, evaluates them against a sampled minibatch, and generates new candidate parameters based on the feedback. These candidates undergo a semantic Filtering stage; accepted parameters are evaluated on the minibatch and integrated into the $\\varepsilon$-Net. Finally, a Summarize step compresses the memory to provide concise global context $C$ for the next optimization cycle. Right: Normalized performance averaged across benchmarks ($\\tau$-Bench, HotpotQA, VeriBench, and KernelBench). The solid curve represents the mean, while the shaded region indicates the standard error across all benchmarks. Results are aggregated by standardizing scores and computational budgets to a scale of $[0, 1]$.",
+ "caption_source": "latex",
+ "abstract": "Optimizing complex systems, ranging from LLM prompts to multi-turn agents, traditionally requires labor-intensive manual iteration. We formalize this challenge as a stochastic generative optimization problem where a generative language model acts as the optimizer, guided by numerical rewards and text feedback to discover the best system. We introduce Prioritized Optimization with Local Contextual Aggregation (POLCA), a scalable framework designed to handle stochasticity in optimization -- such as noisy feedback, sampling minibatches, and stochastic system behaviors -- while effectively managing the unconstrained expansion of solution space. POLCA maintains a priority queue to manage the exploration-exploitation tradeoff, systematically tracking candidate solutions and their evaluation histories. To enhance efficiency, we integrate an $\\varepsilon$-Net mechanism to maintain parameter diversity and an LLM Summarizer to perform meta-learning across historical trials. We theoretically prove that POLCA converges to near-optimal candidate solutions under stochasticity. We evaluate our framework on diverse benchmarks, including $Ï$-bench, HotpotQA (agent optimization), VeriBench (code translation) and KernelBench (CUDA kernel generation). Experimental results demonstrate that POLCA achieves robust, sample and time-efficient performance, consistently outperforming state-of-the-art algorithms in both deterministic and stochastic problems. The codebase for this work is publicly available at https://github.com/rlx-lab/POLCA.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=2RKPztDfgZ",
+  "arxiv": "https://arxiv.org/abs/2603.14769",
+  "pdf": "https://raw.githubusercontent.com/mlresearch/v306/main/assets/ren26l/ren26l.pdf",
+  "proceedings": "https://proceedings.mlr.press/v306/ren26l.html",
+  "virtual": "https://icml.cc/virtual/2026/poster/66582",
+  "code": "https://xuanfeiren.github.io/polca/"
+ },
+ "license": "http://arxiv.org/licenses/nonexclusive-distrib/1.0/",
+ "img": "none",
+ "image_url": null,
+ "thumb_url": null,
+ "figure_page": 1,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.85
+}

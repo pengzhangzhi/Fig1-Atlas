@@ -1,0 +1,53 @@
+{
+ "id": "icml26-2159",
+ "title": "LiME: Lightweight Mixture of Experts for Efficient Multimodal Multi-task Learning",
+ "authors": [
+  "Md Kowsher",
+  "Haris Mansoor",
+  "Nusrat Prottasha",
+  "Ozlem Garibay",
+  "Victor Zhu",
+  "Zhengping Ji",
+  "Chen Chen"
+ ],
+ "venue": "ICML 2026",
+ "tier": "spotlight",
+ "track": "main",
+ "topic": "Deep Learning->Large Language Models",
+ "role": "prior-vs-ours",
+ "role2": "pipeline",
+ "claim": "Prior multi-expert methods replicate adapters and learn routers; ours shares one module, modulates it, and reuses existing representations for routing.",
+ "layout": "4 panels left-to-right: (a) baseline, (b) ours, (c) routing, (d) losses",
+ "tags": [
+  "mixture-of-experts",
+  "parameter-efficient",
+  "shared-module",
+  "efficiency",
+  "routing"
+ ],
+ "style": [
+  "colorful",
+  "icon-heavy",
+  "math-heavy"
+ ],
+ "description": "A wide four-panel figure on pale green backgrounds. Panel (a) shows MoE-LoRA. Four separate purple LoRA experts (A_i, B_i) sit above a learned Router with a bar chart. A frozen W0 block with a snowflake sits beside them, and a sum node outputs h. Panel (b) is the proposed LiME. It has one shared LoRA block plus a frozen W0 block. Small purple expert vectors p1–p4 are applied through multiplication nodes. A dashed router reuses the z slices from the frozen and adapted outputs. Lime mascots mark the LiME panels. Panel (c) shows n-gram windowed routing over tokens x1–x5, with router weights and an AutoTop-K threshold calculation. Panel (d) shows load-balancing. Two bar charts, one with a dominant expert and one near uniform, sit beside formula boxes for importance loss, KL-uniform loss and the combined balance loss. Icons for web, dataset and GitHub sit across the top.",
+ "caption": "LiME is compatible with any PEFT method; we use LoRA only as an example. (a) MoE-LoRA replicates LoRA adapters ($A_i,B_i$) for each expert and uses a learned router, requiring $E\\times|\\phi|$ adapter parameters plus ${d_{i}}\\times E$ router parameters. (b) LiME shares a single PEFT module (LoRA here) and uses lightweight expert modulators $\\trainable{p}_i\\in\\mathbb{R}^{d_{o}}$, reducing trainable MoE parameters to $|\\phi|+E {d_{o}}$. Router reuse: routing is computed directly from representations already produced in the forward pass—an $E$-dimensional slice of the frozen output $z_{1:E}$ and the PEFT-modified output $\\hat{z}_{1:E}$—so no separate router weights are introduced (dashed router). This PEFT block can be replaced by other PEFT strategies (e.g., DoRA, Prompt Tuning, SliceFine) without changing LiME. (c) N-gram routing shares one routing decision within each window (e.g., $n{=}3$), and Auto Top-K selects experts with $w_i \\ge \\theta \\times \\max_j w_j$. (d) Load balancing losses prevent expert collapse and encourage more uniform utilization (Details in \\S[ref]).",
+ "caption_source": "latex",
+ "abstract": "MoE-PEFT methods combine Mixture of Experts with parameter-efficient fine-tuning for multi-task adaptation, but require separate adapters per expert causing trainable parameters to scale linearly with expert count and limiting applicability to adapter-based architectures. We propose LiME (Lightweight Mixture of Experts), which achieves expert specialization through lightweight modulation rather than adapter replication. Instead of separate adapters, LiME uses a single shared PEFT module and modulates its output with lightweight expert vectors, reducing expert parameters while generalizing to any PEFT method. Notably, LiME introduces zero-parameter routing by leveraging existing frozen and adapted representations eliminating learned router parameters typically required per layer. Theoretically, we prove that (i) more experts preserve more task-relevant information and (ii) modulation approximates full expert-specific PEFT with bounded error. LiME further incorporates n-gram windowed routing and adaptive expert selection (Auto Top-K) based on routing confidence. Experiments on MMT-47, a multimodal multi-task benchmark with 47 tasks spanning text, image, and video, demonstrate that LiME achieves competitive or superior performance while using up to 4x fewer trainable parameters and up to 29% faster training compared to corresponding MoE-PEFT baselines.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=KRSZj8z5Lr",
+  "arxiv": "https://arxiv.org/abs/2604.02338",
+  "pdf": "https://raw.githubusercontent.com/mlresearch/v306/main/assets/kowsher26a/kowsher26a.pdf",
+  "proceedings": "https://proceedings.mlr.press/v306/kowsher26a.html",
+  "virtual": "https://icml.cc/virtual/2026/poster/64728",
+  "code": "https://kowsher.github.io/LiME/"
+ },
+ "license": "http://creativecommons.org/licenses/by/4.0/",
+ "img": "cc-by",
+ "image_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/images/icml26-2159.png",
+ "thumb_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/thumbs/icml26-2159.webp",
+ "figure_page": 0,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.6
+}

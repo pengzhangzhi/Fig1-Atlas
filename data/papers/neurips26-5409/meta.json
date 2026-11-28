@@ -1,0 +1,59 @@
+{
+ "id": "neurips26-5409",
+ "title": "Few-Step Diffusion Language Models via Trajectory Self-Distillation",
+ "authors": [
+  "Tunyu Zhang",
+  "Xinxi Zhang",
+  "Ligong Han",
+  "Haizhou Shi",
+  "Xiaoxiao He",
+  "Zhuowei Li",
+  "Hao Wang",
+  "Kai Xu",
+  "Akash Srivastava",
+  "Chengzhi Mao",
+  "Hao Wang",
+  "Vladimir Pavlovic",
+  "Dimitris Metaxas"
+ ],
+ "venue": "NeurIPS 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "Deep Learning->Generative Models and Autoencoders",
+ "role": "problem-setup",
+ "role2": "analysis-finding",
+ "claim": "Predicting many tokens in parallel with a factorized approximation introduces error that grows with the decoding jump size, producing degenerate outputs.",
+ "layout": "2 panels: left token-grid contrast with dotted-arrow formula, right error curve",
+ "tags": [
+  "factorization-error",
+  "parallel-decoding",
+  "few-step",
+  "diffusion-language-model",
+  "failure-mode"
+ ],
+ "style": [
+  "colorful",
+  "math-heavy",
+  "plot"
+ ],
+ "description": "Panel (a) contrasts full-step and few-step decoding on the toy arithmetic sequence '1 + 1 = 2'. At left, a green grid shows gradual denoising. Masked [M] tokens are filled in over several rows, linked by short green arrows from x_t at the bottom to x_s at the top, and the result is the correct '1 + 1 = 2'. At center, a red column set shows few-step decoding. Long red arrows jump directly from x_t to x_s, and the output is the wrong '3 + 1 = 2'. A formula at the top, 'Approximation Error: KL(p(x_s|x_t) || ∏ p(x_s^i|x_t))', is colored green and red to match the two sides, with dotted arrows pointing down to them. A dashed vertical line separates this from panel (b). Panel (b) is a line plot of approximation error against t, measured at s=0. The curve rises convexly to about 6, the area under it is shaded light blue, a red dot marks the endpoint, and a green downward arrow is labeled 'Goal'.",
+ "caption": "Factorization error limits few-step decoding in MDLMs. (a) Full-step decoding models the transition $p_\\theta(\\rvx_s \\mid \\rvx_t)$ through many denoising steps, while few-step decoding approximate with a token-factorized distribution $\\prod_i^L p_\\theta(\\rvx_s^i \\mid \\rvx_t)$. This factorized approximation introduces error and can lead to degenerate generations. (b) We measured this approximation error on real MATH500 data for $s=0$. The error increases sharply as $t$ grows, showing that larger decoding jumps amplify factorization error. Our goal is to reduce this error and enable reliable few-step decoding.",
+ "caption_source": "latex",
+ "abstract": "Diffusion large language models (DLLMs) have emerged as powerful generative models with the promise of fast text generation through parallel decoding. However, realizing this potential in practice remains challenging: reducing the number of decoding steps, typically causes a substantial degradation in output quality due to token factorization error. To alleviate this, we propose a self-distillation framework that trains a few-step student to match the generative trajectory of a full-step teacher. We theoretically and empirically show that trajectory-level supervision mitigates this factorization error, thereby enabling effective few-step decoding. We further incorporate Direct Discriminative Optimization (DDO), a reverse-KL objective that encourages mode-seeking toward the teacher's modes, yielding stronger performance on challenging reasoning tasks. Across reasoning and code-generation benchmarks, our method substantially narrows the gap between few-step and full-step decoding. The source code is available at https://github.com/Tyrion58/T3D.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=bJzsxLzKK7",
+  "arxiv": "https://arxiv.org/abs/2602.12262",
+  "pdf": "https://arxiv.org/pdf/2602.12262",
+  "proceedings": null,
+  "virtual": "https://neurips.cc/virtual/2026/poster/151333",
+  "code": null
+ },
+ "license": "http://arxiv.org/licenses/nonexclusive-distrib/1.0/",
+ "img": "none",
+ "image_url": null,
+ "thumb_url": null,
+ "figure_page": 1,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.6
+}

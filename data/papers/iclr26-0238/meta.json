@@ -1,0 +1,54 @@
+{
+ "id": "iclr26-0238",
+ "title": "Not All Models Suit Expert Offloading: On Local Routing Consistency of Mixture-of-Expert Models",
+ "authors": [
+  "Jingcong Liang",
+  "Siyuan Wang",
+  "Miren Tian",
+  "Yitong Li",
+  "Duyu Tang",
+  "zhongyu wei"
+ ],
+ "venue": "ICLR 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "Deep Learning->Generative Models and Autoencoders",
+ "role": "prior-vs-ours",
+ "role2": "analysis-finding",
+ "claim": "Two models with similar size and expert counts differ sharply in how consistently they route consecutive tokens to the same experts.",
+ "layout": "2 stacked rows, top-to-bottom, emoji mascots and speech-bubble verdicts at right",
+ "tags": [
+  "mixture-of-experts",
+  "routing-consistency",
+  "expert-caching",
+  "model-comparison",
+  "inference-efficiency"
+ ],
+ "style": [
+  "colorful",
+  "icon-heavy",
+  "photo/real data"
+ ],
+ "description": "Two wide horizontal banners are stacked. Each one holds a dense grid of small circular icons. Most icons are purple, and a minority are orange. The orange ones show which experts are activated for each token of the same Java input. The top banner has a gold border and is labeled GRIN-MoE, with a grinning cowboy emoji. Its orange icons form long horizontal streaks, so the same experts stay active across consecutive tokens. A green speech bubble reads 'SRP = 65.35, Consistent!' next to a smiling emoji. The bottom banner has a gray border and is labeled Jamba-Mini, with a robot-snake icon. Its orange icons are scattered and sparse, with few streaks. A red speech bubble reads 'SRP = 38.48, What a mess!' next to a dizzy, confused emoji. The eye goes first to the two grids and then to the colored bubbles.",
+ "caption": "Routing results by GRIN-MoE (Liu et al., 2024) layer 21 and Jamba-Mini-1.6 (Lenz et al., 2025) layer 25 on the same input (Java code). Despite having similar model sizes and the same number of experts, GRIN-MoE exhibits more consistent routing patterns than Jamba-Mini-1.6, activating certain experts continuously, so expert caching with it will be more feasible and effective.",
+ "caption_source": "pdf",
+ "abstract": "Mixture-of-Experts (MoE) enables efficient scaling of large language models (LLMs) with sparsely activated experts during inference. To effectively deploy large MoE models on memory-constrained devices, many systems introduce *expert offloading* that caches a subset of experts in fast memory, leaving others on slow memory to run on CPU or load on demand. While some research has exploited the locality of expert activations, where consecutive tokens activate similar experts, the degree of this **local routing consistency** varies across models and remains understudied. In this paper, we propose two metrics to measure local routing consistency of MoE models: (1) **Segment Routing Best Performance (SRP)**, which evaluates how well a fixed group of experts can cover the needs of a segment of tokens, and (2) **Segment Cache Best Hit Rate (SCH)**, which measures the hit rate of an expert cache utilizing a length of future information under a cache limit. We analyze 20 MoE LLMs with diverse sizes and architectures and use toy models to verify key factors related to local routing consistency. We find a strong trade-off between local routing consistency and *local* load balance, while showing that *global* load balance can coexist with local routing consistency. Meanwhile, settings like shared experts that decrease expert combination space can lead to low local routing consistency. We further reveal that domain-specialized experts contribute more to routing consistency than vocabulary-specialized ones, and that most models balance between cache effectiveness and efficiency with cache sizes approximately twice the active experts. These findings pave the way for memory-efficient MoE design and deployment without compromising inference speed. We publish the code for replicating experiments at https://github.com/ljcleo/moe-lrc .",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=2XMAUP74ig",
+  "arxiv": "https://arxiv.org/abs/2505.16056",
+  "pdf": "https://proceedings.iclr.cc/paper_files/paper/2026/file/6a7a2238da2b755e6dc1dbe278c60c2a-Paper-Conference.pdf",
+  "proceedings": "https://proceedings.iclr.cc/paper_files/paper/2026/hash/6a7a2238da2b755e6dc1dbe278c60c2a-Abstract-Conference.html",
+  "virtual": "https://iclr.cc/virtual/2026/poster/10011732",
+  "code": "https://github.com/ljcleo/moe-lrc"
+ },
+ "license": "http://creativecommons.org/licenses/by-nc-sa/4.0/",
+ "img": "cc-by-nc-sa",
+ "image_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/images/iclr26-0238.png",
+ "thumb_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/thumbs/iclr26-0238.webp",
+ "figure_page": 1,
+ "qc_flags": [
+  "low-role-confidence"
+ ],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.4
+}

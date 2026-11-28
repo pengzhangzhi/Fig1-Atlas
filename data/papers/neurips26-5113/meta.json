@@ -1,0 +1,61 @@
+{
+ "id": "neurips26-5113",
+ "title": "ForesightFlow: Self-Guided Flow Matching for Improving Vision-Language-Action Models",
+ "authors": [
+  "Yunpeng Mei",
+  "Jiakai He",
+  "Hongjie Cao",
+  "Chenyu Wang",
+  "Xiaowen Zhu",
+  "Yihan Zhou",
+  "Jiamin Wang",
+  "Chenbo Xin",
+  "Peng Cheng",
+  "Yuxuan Yang",
+  "Yijie Wang",
+  "Xinhu Zheng",
+  "Gao Huang",
+  "Jie Chen",
+  "Gang Wang"
+ ],
+ "venue": "NeurIPS 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "Applications->Robotics",
+ "role": "pipeline",
+ "role2": null,
+ "claim": "One flow model both proposes and scores candidate outputs, so training on mixed-quality data improves inference without a separate critic.",
+ "layout": "3 panels: top-left data, top-right training, bottom inference; left-to-right flow",
+ "tags": [
+  "self-guided",
+  "flow-matching",
+  "advantage-weighting",
+  "critic-free",
+  "best-of-k"
+ ],
+ "style": [
+  "icon-heavy",
+  "colorful",
+  "photo/real data"
+ ],
+ "description": "A three-part pipeline diagram in rounded, color-coded boxes. Top left, 'Data collection & Reward labeling' shows stacked simulation frames of expert demonstrations plus policy rollouts, which merge into a database cylinder labeled mixed-quality dataset. Top right, 'Policy learning' shows prompt, image and robot icons feeding success and failure trajectory boxes. Blue and red arrows lead to 'Reinforce good / suppress bad trajectories' (action) and 'Calibrate success potential' (decoupled AWR). The bottom 'Inference' panel starts with context c (prompt + image + proprioception icons) and a Gaussian noise blob. Colored flow paths run through a vector field to five endpoints labeled s=0.1 to 0.7. Four red crosses and one green check lead to a faded robot and a bold robot. The eye goes first to the colorful flow curves.",
+ "caption": "\\method as a self-guided flow policy. \\method augments each flow endpoint with action and success-potential coordinates. Decoupled training applies advantage weights only to action velocities while uniformly supervising potential velocities for calibration. At inference, generated potentials rank candidate action chunks without a separate critic.",
+ "caption_source": "latex",
+ "abstract": "Large vision-language-action (VLA) policies are increasingly trained as conditional generative models over action chunks, yet they typically improve by imitating the data they are given. This is limiting in deployment, where robots collect mixed-quality experience containing demonstrations, partial completions, recoverable mistakes, and failures. Full behavior cloning imitates failures, filtered behavior cloning discards useful sub-trajectories, and offline RL usually requires a large separate critic. We introduce ForesightFlow, a self-guided flow policy that augments each generated action chunk with a learned success-potential vector. The same flow therefore proposes candidate actions and scores them, enabling best-of-K inference without an external critic. The key challenge is that policy improvement and value calibration require different supervision: advantage weighting should suppress low-quality actions, but applying the same weights to the potential dimension removes the failure gradients needed for calibration. We address this with decoupled advantage-weighted flow matching, applying exponentiated advantage weights only to action velocities while training potential velocities uniformly. We also derive a single-step boundary estimator for conditional flow matching with independent endpoint sampling, allowing advantage computation with one stop-gradient forward pass. Across five BEHAVIOR-1K simulation tasks and five real-world bimanual tasks, ForesightFlow improves over imitation baselines, matches the strongest separate-critic baseline in average simulation success, improves real-world success, and reduces training compute by 38\\%. Ablations show that decoupling prevents value hallucination, the one-step estimator preserves candidate-ranking fidelity, and self-guided sampling improves long-horizon performance.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=ZHqszixmfx",
+  "arxiv": "https://arxiv.org/abs/2606.04968",
+  "pdf": "https://arxiv.org/pdf/2606.04968",
+  "proceedings": null,
+  "virtual": "https://neurips.cc/virtual/2026/poster/151608",
+  "code": null
+ },
+ "license": "http://arxiv.org/licenses/nonexclusive-distrib/1.0/",
+ "img": "none",
+ "image_url": null,
+ "thumb_url": null,
+ "figure_page": 1,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.85
+}

@@ -1,0 +1,52 @@
+{
+ "id": "iclr26-4597",
+ "title": "Real-Time Robot Execution with Masked Action Chunking",
+ "authors": [
+  "Haoxuan Wang",
+  "Gengyu Zhang",
+  "Yan Yan",
+  "Yuzhang Shang",
+  "Ramana Kompella",
+  "Gaowen Liu"
+ ],
+ "venue": "ICLR 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "Applications->Robotics",
+ "role": "problem-setup",
+ "role2": "prior-vs-ours",
+ "claim": "Moving from sequential to concurrent prediction and execution enables real-time operation but introduces boundary discontinuity and within-chunk perception mismatch.",
+ "layout": "3 panels, left-to-right, colored backgrounds, panel (c) shows stacked chunk timelines",
+ "tags": [
+  "asynchronous-inference",
+  "action-chunking",
+  "robot-manipulation",
+  "real-time",
+  "failure-mode"
+ ],
+ "style": [
+  "colorful",
+  "icon-heavy",
+  "minimal"
+ ],
+ "description": "Three side-by-side panels with different background colors. Panel (a) has a blue background and shows synchronous inference. A green VLA box with a server icon sends Observation(t) from a robot. It then produces a green Pred(t) action chunk, which the robot executes. Panel (b) has a yellow background and shows asynchronous inference. The VLA box now outputs an orange Pred(t) chunk while a yellow chunk Pred(t-h) is still being executed. Dashed and dash-dot arrows mark processes that run at the same time. Panel (c) has a green background and illustrates the inference challenges. Policy outputs A_{t-2}, A_t and A_{t+2} appear as staggered blue chunks that get darker over time. Below them, a row of executed actions mixes the shades. Orange vertical arrows mark intra-chunk inconsistency. A purple bracket marks inter-chunk discontinuity. The label P=3, h=2, d=1 gives the settings.",
+ "caption": "Illustration of execution paradigms. Arrowed lines of the same style indicate processes occurring simultaneously. (a) Synchronous inference: VLA prediction and robot execution alternate sequentially. (b) Asynchronous inference: VLA prediction runs concurrently with execution. (c) Although asynchronous inference enables real-time execution, it introduces two performance-degrading challenges: exacerbated inter-chunk discontinuity and intra-chunk inconsistency.",
+ "caption_source": "latex",
+ "abstract": "Real-time execution is essential for cyber-physical systems such as robots. These systems operate in dynamic real-world environments where even small delays can undermine responsiveness and compromise performance. Asynchronous inference has recently emerged as a system-level paradigm for real-time robot manipulation, enabling the next action chunk to be predicted while the current one is being executed. While this approach achieves real-time responsiveness, naive integration often results in execution failure. Previous methods attributed this failure to inter-chunk discontinuity and developed test-time algorithms to smooth chunk boundaries. In contrast, we identify another critical yet overlooked factor: intra-chunk inconsistency, where the robot's executed action chunk partially misaligns with its current perception. To address this, we propose REMAC, which learns corrective adjustments on the pretrained policy through masked action chunking, enabling the policy to remain resilient under mismatches between intended actions and actual execution during asynchronous inference. In addition, we introduce a prefix-preserved sampling procedure to reinforce inter-chunk continuity. Overall, our method delivers more reliable policies without incurring additional latency. Extensive experiments in both simulation and real-world settings demonstrate that our method enables faster task execution, maintains robustness across varying delays, and consistently achieves higher completion rates.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=r0RGJ1j9on",
+  "arxiv": "https://arxiv.org/abs/2601.20130",
+  "pdf": "https://proceedings.iclr.cc/paper_files/paper/2026/file/c35834443b7881e782e52b3519fe27c7-Paper-Conference.pdf",
+  "proceedings": "https://proceedings.iclr.cc/paper_files/paper/2026/hash/c35834443b7881e782e52b3519fe27c7-Abstract-Conference.html",
+  "virtual": "https://iclr.cc/virtual/2026/poster/10007187",
+  "code": "https://hatchetproject.github.io/remac-async/"
+ },
+ "license": "http://creativecommons.org/licenses/by/4.0/",
+ "img": "cc-by",
+ "image_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/images/iclr26-4597.png",
+ "thumb_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/thumbs/iclr26-4597.webp",
+ "figure_page": 2,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.5
+}

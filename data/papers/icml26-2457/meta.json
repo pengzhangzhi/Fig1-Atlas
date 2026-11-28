@@ -1,0 +1,51 @@
+{
+ "id": "icml26-2457",
+ "title": "Utility-Diversity Aware Online Batch Selection for LLM Supervised Fine-tuning",
+ "authors": [
+  "Heming Zou",
+  "Yixiu Mao",
+  "Yun Qu",
+  "Qi Wang",
+  "Xiangyang Ji"
+ ],
+ "venue": "ICML 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "Deep Learning->Large Language Models",
+ "role": "pipeline",
+ "role2": null,
+ "claim": "Score each sample's utility and diversity from a single forward pass, then keep only the top-scoring samples to update the model.",
+ "layout": "Single wide panel, left-to-right flow, with a feedback arrow and a final scatter-plot selector",
+ "tags": [
+  "online-batch-selection",
+  "data-curation",
+  "diversity",
+  "efficiency",
+  "memory-buffer"
+ ],
+ "style": [
+  "colorful",
+  "icon-heavy",
+  "math-heavy"
+ ],
+ "description": "A wide left-to-right pipeline diagram. On the left, a blue rounded box labeled Candidate Set holds three instruction/input/output examples. They feed an LLM box with a neural-net icon. The LLM emits logits L(x_t^i; θ_t), shown as yellow boxes inside a dashed yellow region. Green arrows lead to green boxes for the intra-sample score s_intra, each marked with a gear. Red arrows lead through a pink Down-projection trapezoid. This connects to a dashed box with a memory buffer of yellow blocks and a point-cloud of embeddings. From there, red arrows lead to red s_inter boxes. Both scores go into a dashed blue box on the right. That box shows a scatter plot of s_intra against s_inter, split by a diagonal line into green 'select' points and red 'filter' points, with a balance-scale icon. A blue arrow labeled 'update model' returns to the LLM. The title 'Utility-Diversity Sampling' sits at the bottom right.",
+ "caption": "Schematic of the UDS Framework. In the forward pass, the LLM extract logits $\\bm{L}(\\bm{x}_t^i;\\bm{\\theta}_t)$ for each sample. Using $\\bm{L}(\\bm{x}_t^i;\\bm{\\theta}_t)$, we first calculate its nuclear norm for the intra-sample importance score $s_intra^{t,i}$, and then down-projected to calculate the distance $s_inter^{t,i}$ with historical samples in the memory buffer. Finally, we select the top-$K$ valuable samples to update the LLM.",
+ "caption_source": "latex",
+ "abstract": "Supervised fine-tuning (SFT) is a commonly used technique to adapt large language models (LLMs) to downstream tasks. In practice, SFT on a full dataset is computationally expensive and sometimes suffers from overfitting or bias amplification. This facilitates the rise of data curation in SFT, which prioritizes the most valuable data to optimze. This work studies the online batch selection family that dynamically scores and filters samples during the training process. However, existing popular methods often (i) rely merely on the utility of data to select a subset while neglecting other crucial factors like diversity, (ii) rely on external resources such as reference models or validation sets, and (iii) incur extra training time over full-dataset training. To address these limitations, this work develops UDS (Utility-Diversity Sampling), a framework for efficient online batch selection in SFT. UDS leverages the nuclear norm of the logits matrix to capture both data utility and intra-sample diversity, while estimating inter-sample diversity through efficient low-dimensional embedding comparisons with a lightweight memory buffer of historical samples. Such a design eliminates the need for external resources and unnecessary backpropagation, securing computational efficiency. Experiments on multiple benchmarks demonstrate that UDS consistently outperforms state-of-the-art online batch selection methods under varying data budgets, and significantly reduces training time compared to full-dataset fine-tuning. Code is available at https://github.com/gfyddha/UDS.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=NWZZmXRIH5",
+  "arxiv": "https://arxiv.org/abs/2510.16882",
+  "pdf": "https://raw.githubusercontent.com/mlresearch/v306/main/assets/zou26j/zou26j.pdf",
+  "proceedings": "https://proceedings.mlr.press/v306/zou26j.html",
+  "virtual": "https://icml.cc/virtual/2026/poster/64444",
+  "code": null
+ },
+ "license": "http://creativecommons.org/licenses/by-nc-sa/4.0/",
+ "img": "cc-by-nc-sa",
+ "image_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/images/icml26-2457.png",
+ "thumb_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/thumbs/icml26-2457.webp",
+ "figure_page": 3,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.93
+}

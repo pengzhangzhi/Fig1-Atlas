@@ -1,0 +1,52 @@
+{
+ "id": "neurips26-7790",
+ "title": "LookWhen? Fast Video Recognition by Learning When, Where, and What to Compute",
+ "authors": [
+  "Ali Salamatian",
+  "Anthony Fuller",
+  "Pritam Sarkar",
+  "James Green",
+  "Leonid Sigal",
+  "Evan Shelhamer"
+ ],
+ "venue": "NeurIPS 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "Computer Vision->Vision Models & Multimodal",
+ "role": "pipeline",
+ "role2": null,
+ "claim": "Factorize recognition into a cheap selector that picks sparse tokens for a deep extractor, trained with teacher-derived targets.",
+ "layout": "2 panels, left-to-right; (a) inference flow, (b) pre-training target computation",
+ "tags": [
+  "token-selection",
+  "sparse-tokens",
+  "distillation",
+  "efficiency",
+  "video-recognition"
+ ],
+ "style": [
+  "colorful",
+  "photo/real data",
+  "icon-heavy"
+ ],
+ "description": "Two-panel pipeline diagram using a hockey video frame stack as the running example. Panel (a), \"Inference and fine-tuning\", starts at the left with dense tokens. A green downscale arrow leads to a green Token Selector box, which produces a purple selector map. The map feeds a top-K multiplication node that masks the dense frames into sparse tokens, shown as frames with most patches blanked out. The sparse tokens go into a lavender Feature Extractor box. A green curved arrow sends register and frame selector tokens to the extractor. The extractor's outputs are a video token, frame tokens (colored squares) and patch tokens (a feature map). Panel (b), \"Computing targets for pre-training\", sends the same video to a Video Teacher box, which gives Video Target #1. The video also goes to an Image Teacher box. From there, arrows labeled Normalize and Top1-distance lead to the frame target, patch target and selector target. The frame targets are concatenated into Video Target #2. Purple, green and blue color-coding ties the modules and targets together.",
+ "caption": "LookWhen's shallow selector gets a downscaled video and scores tokens on their feature uniqueness (left). Target uniqueness is from our \"top1-distance\" algorithm, which computes each patch's distance to its nearest neighbor in an image teacher's feature space (bottom right). LookWhen's extractor gets the top-K input tokens for sparse and deep processing. Target features are from a video teacher (top right) and an image teacher (bottom right); we normalize to emphasize within-video change. Teachers are only needed during pre-training, so inference and fine-tuning is efficient.",
+ "caption_source": "latex",
+ "abstract": "Transformers dominate video recognition. They split videos into tokens, and processing them has expensive superlinear computational cost. Yet videos are filled with redundancy, so we can question the need for this expense. We introduce LookWhen, a selector-extractor framework that factorizes video recognition into learning when, where, and what to compute. Our shallow selector gets a scaled-down video and quickly scores all tokens across space-time, while our deep extractor gets the top-K selected tokens to approximate full-video representations without actually processing all the tokens. A key challenge is defining effective supervision for selection and extraction. For selection pre-training, we introduce a score on representations that ranks tokens by uniqueness using a simple nearest-neighbor distance. For extraction pre-training, we distill both a video teacher and an image teacher, for which we normalize its frame-wise representations to learn what changes within videos. Through these strategies, our selector-extractor learns general and efficient representations for feature extraction or fine-tuning to a task. Through experiments on Kinetics-400, SSv2, Epic-Kitchens, Diving48, Jester, and Charades, we show that LookWhen achieves a better accuracy-computation trade-off than efficient models and upgraded baselines of similar size. LookWhen Pareto-dominates in accuracy-FLOPs on 9 of 12 cases (6 tasks x 2 settings) and roughly matches on 3. In accuracy-throughput, measuring time in practice, LookWhen is more efficient still at 6.7x faster than InternVideo2-B at equal accuracy.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=rzaezKzgbP",
+  "arxiv": "https://arxiv.org/abs/2605.06809",
+  "pdf": "https://arxiv.org/pdf/2605.06809",
+  "proceedings": null,
+  "virtual": "https://neurips.cc/virtual/2026/poster/149223",
+  "code": "https://alisalamatian1.github.io/publications/lookwhen/"
+ },
+ "license": "http://creativecommons.org/licenses/by/4.0/",
+ "img": "cc-by",
+ "image_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/images/neurips26-7790.png",
+ "thumb_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/thumbs/neurips26-7790.webp",
+ "figure_page": 1,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.93
+}

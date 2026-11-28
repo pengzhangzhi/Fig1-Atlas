@@ -1,0 +1,49 @@
+{
+ "id": "neurips26-5530",
+ "title": "Probabilistic Data-Driven Modelling of Astrophysical Transients: The Neural Process Family for Ultrafast and Class-Agnostic Light Curve Reconstruction with NightLANP",
+ "authors": [
+  "Siddharth Chaini",
+  "federica bianco",
+  "Ashish Mahabal"
+ ],
+ "venue": "NeurIPS 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "Applications->Physics",
+ "role": "pipeline",
+ "role2": null,
+ "claim": "A model learns to reconstruct full signals from randomly subsampled sparse observations through a probabilistic encoder-decoder trained end to end.",
+ "layout": "5 panels, top row then bottom row, arrows linking stages, math in final panel",
+ "tags": [
+  "meta-learning",
+  "neural-process",
+  "amortized-inference",
+  "uncertainty-estimation",
+  "time-series-interpolation"
+ ],
+ "style": [
+  "colorful",
+  "plot",
+  "math-heavy"
+ ],
+ "description": "Five rounded panels with dark teal title bars are connected by thick black arrows. The flow starts at top left with (a), a 2x2 set of multi-band light curves labeled SNIa, SNIIn, SNIa-91bg and ILOT, captioned 'Many dense-cadence light curves'. An arrow leads to wide panel (b), which shows three iterations (1, 2, n) of the same light curve with faint lines and colored dots marking randomly sampled context points. An arrow wraps down to the bottom row. Panel (c) shows scattered colored points going into an Encoder trapezoid, a Gaussian latent distribution, and a Decoder trapezoid that outputs mean and variance vectors. Panel (d) shows the predicted multi-band light curves with shaded uncertainty bands. Panel (e) shows the NLL plus KL loss equation with braces labeling each term, then backpropagation and weight update. Band colors are consistent throughout.",
+ "caption": "Schematic overview of the meta-learning training procedure for our Attentive Neural Process (ANP) model on light curves. (a) We start with a ground truth set of 15,000 (2- or 10-day cadence) simulated light curves spanning 15 different transient classes (1,000 light curves per class). (b) Meta-training involves choosing a batch of light curves at every iteration and randomly drawing between 12 and 60 points from each light curve, serving as a proxy of the sparse, irregular observations expected from LSST. This forces the model to learn a flexible mapping from any sparse set of observations (context points) to the full light curve (target points), rather than memorizing specific cadence patterns. (c) The neural process model ([ref]) consists of an encoder-decoder architecture, and takes only the context points as an input to produce mean and variance predictions, which represents the (d) light curve prediction and the uncertainty, at every point of time. (e) The model is trained to minimize the negative log-likelihood ($\\mathcal{L}_\\mathrm{NLL}$) loss and KL Divergence via backpropagation, jointly optimizing for both reconstruction accuracy and uncertainty calibration.",
+ "caption_source": "latex",
+ "abstract": "Astrophysical observations from Earth are subject to weather, environmental, and scientific constraints that lead to sparse, irregular light curves. On the eve of the Vera C. Rubin Observatory Legacy Survey of Space and Time, its dataset offers unprecedented opportunities for transient science. Yet a key challenge remains its cadence, sparse and irregular across six bands, limiting inference. Interpolation helps mitigate this, with Gaussian Processes the standard, but they struggle with cross-band correlations, require a priori kernel specification, and must be fit to each light curve individually, hence scaling poorly. Here, we introduce the neural process family for light curve reconstruction, combining the probabilistic framework of Gaussian Processes with the scalability of deep learning. By meta-learning on diverse simulated transients, Attentive Neural Processes shift the bulk of computation to training, enabling rapid, amortized inference with a class-agnostic model. Evaluated on realistic Rubin cadences across 15 transient classes, we show that even an unoptimized, out-of-the-box Attentive Neural Process consistently outperforms all benchmarks -- a suite of Gaussian Processes and neural networks -- on every tested metric, spanning regression quality, astrophysical feature recovery, and probabilistic calibration. Our model interpolates all bands simultaneously in microseconds, over four orders of magnitude faster than the next-best neural benchmark and five faster than Gaussian Processes, demonstrating the potential of neural processes for the nightly Rubin alert stream. Attentive Neural Processes avoid the overconfidence of standard neural networks and the underconfidence of Gaussian Processes, delivering sharp, well-calibrated uncertainties. This work establishes the neural process family as a scalable, probabilistic foundation for real-time transient science in the Rubin era.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=c1qPSD4fDz",
+  "arxiv": "https://arxiv.org/abs/2605.27527",
+  "pdf": "https://arxiv.org/pdf/2605.27527",
+  "proceedings": null,
+  "virtual": "https://neurips.cc/virtual/2026/poster/151221",
+  "code": null
+ },
+ "license": "http://arxiv.org/licenses/nonexclusive-distrib/1.0/",
+ "img": "none",
+ "image_url": null,
+ "thumb_url": null,
+ "figure_page": 3,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.93
+}

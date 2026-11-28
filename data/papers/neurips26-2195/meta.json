@@ -1,0 +1,50 @@
+{
+ "id": "neurips26-2195",
+ "title": "The Price of Locality: Why Forward-Forward Underperforms Backpropagation?",
+ "authors": [
+  "Zhaoxian Wu",
+  "Haichuan Liu",
+  "Tianyi Chen"
+ ],
+ "venue": "NeurIPS 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "Optimization->Neural Network Optimization",
+ "role": "analysis-finding",
+ "role2": null,
+ "claim": "Under concurrent local updates, deeper models still converge to a nonzero error floor, so convergence stalls despite more iterations.",
+ "layout": "single log-log line plot, four colored curves, dotted vertical marker, legend lower-left",
+ "tags": [
+  "convergence",
+  "error-floor",
+  "local-learning",
+  "depth-scaling",
+  "lyapunov"
+ ],
+ "style": [
+  "plot",
+  "minimal"
+ ],
+ "description": "A single log-log line plot. The x-axis is iteration k, running from 10^0 to about 2x10^5. The y-axis is the Lyapunov function V_k, running from about 2 to over 100. Four thin curves are colored blue, orange, green and red, and the legend labels them L=2, 4, 8 and 16. All curves start together at the top left and fall steadily. Deeper models (green, red) drop faster early on, but all curves flatten into slow-decaying plateaus. Higher L ends lower, and the L=2 curve plateaus highest. A gray dotted vertical line marks k=10^3. Light gray gridlines are drawn behind the curves. The eye goes first to the colored curves fanning out, then to the dotted line. The crop shows only the left panel; the right panel, the ResNet-18 CIFAR-10 accuracy curve, is missing.",
+ "caption": "Left: Multi-layer FFA convergence in the toy model. The vertical dotted line marks $k=10^3$. Right: Test accuracy curve of ResNet-18 @ CIFAR-10 training.",
+ "caption_source": "latex",
+ "abstract": "The Forward-Forward Algorithm (FFA) replaces backpropagation (BP) with layer-wise local contrastive objectives, eliminating the backward pass and the need to retain intermediate activations, yet suffers a persistent performance gap with BP that worsens with depth. This paper diagnoses two structural failure modes: an optimization floor arising from concurrent local updates; and a geometric collapse of layer representations driven by the local update mechanism. On the optimization side, we prove that the FFA loss satisfies the Polyak--Lojasiewicz inequality at each layer; however, simultaneous layer updates induce inter-layer representation-distribution drift, so each layer optimizes against a moving input distribution and incurs an error floor. On the representational side, the pairwise similarity kernel of layer representations contracts exponentially toward rank one as depth increases, collapsing the diversity of per-layer error signals. This collapse bounds FFA's effective learning capacity, which measures the diversity of gradient information across layers, independently of depth, whereas BP's chain-rule signal preserves per-layer diversity, yielding a capacity that scales with depth.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=FYRM9ZMFjU",
+  "arxiv": "https://arxiv.org/abs/2609.33240",
+  "pdf": "https://arxiv.org/pdf/2609.33240",
+  "proceedings": null,
+  "virtual": "https://neurips.cc/virtual/2026/poster/154189",
+  "code": "https://zhaoxian-wu.github.io/ffa-theory/"
+ },
+ "license": "http://arxiv.org/licenses/nonexclusive-distrib/1.0/",
+ "img": "none",
+ "image_url": null,
+ "thumb_url": null,
+ "figure_page": 7,
+ "qc_flags": [
+  "bad-crop"
+ ],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.6
+}

@@ -1,0 +1,58 @@
+{
+ "id": "icml26-3229",
+ "title": "GradientStabilizer: Fix the Norm, Not the Gradient",
+ "authors": [
+  "Tianjin Huang",
+  "Zhangyang “Atlas” Wang",
+  "Haotian Hu",
+  "Zhenyu Zhang",
+  "Gaojie Jin",
+  "Xiang Li",
+  "Li Shen",
+  "Jiaxing Shang",
+  "Tianlong Chen",
+  "Ke Li",
+  "Lu Liu",
+  "Qingsong Wen",
+  "Shiwei Liu"
+ ],
+ "venue": "ICML 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "Optimization->Stochastic",
+ "role": "teaser-result",
+ "role2": "analysis-finding",
+ "claim": "Our stabilizer suppresses gradient-norm spikes and reaches the lowest loss, whereas clipping baselines and the unmodified optimizer stay unstable or worse.",
+ "layout": "2 panels side by side, shared legend below, log-scale gradient norm vs eval loss",
+ "tags": [
+  "training-stability",
+  "gradient-clipping",
+  "gradient-spikes",
+  "optimizer",
+  "headline-comparison"
+ ],
+ "style": [
+  "plot",
+  "colorful"
+ ],
+ "description": "Two line plots share a legend at the bottom. The left panel plots raw gradient norm on a log scale (10^-1 to 10^4) against update steps (0 to 20000). A dense green band for plain AdamW shows huge spikes after about step 2500. Orange (NormClip) and blue (ZClip) bands sit about an order of magnitude lower. The red GradientStabilizer trace stays lowest and flattest, below about 1. The right panel plots eval loss against update steps. Green AdamW jumps to about 5.0–5.5 and stays there. Blue and orange curves decline to about 3.6. The red dash-dot curve falls smoothly to about 3.2, the lowest. Red marks the proposed method and stands out against the other colors.",
+ "caption": "Raw gradient norm and evaluation loss across update steps. AdamW+GradientStabilizer suppresses gradient norm explosion while achieving the lowest evaluation loss compared with AdamW, AdamW+ZClip, and AdamW+NormClip. Experiments are conducted on LLaMA-130M with 2.2B Tokens using a learning rate of $3\\times10^{-3}$.",
+ "caption_source": "latex",
+ "abstract": "Training instability in modern deep learning systems is frequently triggered by rare but extreme gradient-norm spikes, which can induce oversized parameter updates, corrupt optimizer state, and lead to slow recovery or divergence. Widely used safeguards such as gradient clipping mitigate these failures but require threshold tuning and indiscriminately truncate large updates. We propose GradientStabilizer, a lightweight, drop-in gradient transform that preserves the instantaneous gradient direction while replacing the update magnitude with a statistically stabilized estimate derived from running gradient-norm statistics. We prove that the resulting stabilized magnitude is uniformly bounded on spike steps, independent of the spike size, and show how this boundedness controls optimizer state evolution in adaptive methods. Across LLM pre-training (FP16), quantization-aware pre-training (FP4), ImageNet classification, reinforcement learning, and time-series forecasting, GradientStabilizer consistently improves training stability, widens stable learning-rate regions, and reduces divergence relative to clipping-based baselines, even substantially reducing Adam's sensitivity to weight-decay strength. Code will be released soon.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=UZ8e5kivVf",
+  "arxiv": "https://arxiv.org/abs/2502.17055",
+  "pdf": "https://raw.githubusercontent.com/mlresearch/v306/main/assets/huang26bb/huang26bb.pdf",
+  "proceedings": "https://proceedings.mlr.press/v306/huang26bb.html",
+  "virtual": "https://icml.cc/virtual/2026/poster/63695",
+  "code": null
+ },
+ "license": "http://arxiv.org/licenses/nonexclusive-distrib/1.0/",
+ "img": "none",
+ "image_url": null,
+ "thumb_url": null,
+ "figure_page": 1,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.8
+}

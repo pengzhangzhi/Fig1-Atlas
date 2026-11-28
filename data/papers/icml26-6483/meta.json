@@ -1,0 +1,52 @@
+{
+ "id": "icml26-6483",
+ "title": "Stabilizing Equation Learning via Zero-Point Constraints",
+ "authors": [
+  "Sannyuya Liu",
+  "Ao Chen",
+  "Lin Liu",
+  "Ruxia Liang",
+  "Xiaoxuan Shen",
+  "Jianwen Sun"
+ ],
+ "venue": "ICML 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "Deep Learning->Algorithms",
+ "role": "analysis-finding",
+ "role2": "problem-setup",
+ "claim": "Operators that do not vanish at zero leak residual gradients on silent paths, pulling training toward needlessly complex expressions.",
+ "layout": "3 panels, left-to-right by epoch, red gradients over network graph",
+ "tags": [
+  "gradient-residual",
+  "symbolic-regression",
+  "training-dynamics",
+  "sparsity",
+  "failure-mode"
+ ],
+ "style": [
+  "math-heavy",
+  "text-heavy",
+  "colorful"
+ ],
+ "description": "Three side-by-side panels show the same small Equation Learner network at epoch 0, epoch 1 and epoch 1000. Each panel has input nodes x1 and x2, a bias node +1, hidden nodes x² and exp, and an output node y. Black arrows and labels give the weights, such as w^(1)_{1,1}=1. Red dashed arrows and labels give the backpropagated gradients, such as ∂^(1)_{2,2}. Bold red marks gradients on the silent exp path. The header of each panel gives the expression before the update, and the footer gives the expression after it. At epoch 0 the exp path has zero weights, so the model is the clean (x1+x2)². By epoch 1, nonzero gradients have leaked into the exp branch, and an extra exp term appears in the expression. At epoch 1000 the expression is still (x1+x2)² plus a small exp term. The eye goes first to the bold red numbers.",
+ "caption": "Network structure and corresponding gradients at epochs 0, 1, and 1000 during training.",
+ "caption_source": "pdf",
+ "abstract": "Symbolic Regression aims to discover interpretable mathematical expressions from data. Equation Learner (EQL) is a gradient-based method with strong fitting capability and expressive potential, yet it often activates redundant operators as model complexity grows, leading to over-complex expressions and unstable equation recovery. We analyze a gradient residual issue induced by operators that do not vanish at zero, which can prevent the ideal sparse expression from acting as a stable attractor during training and bias training toward unnecessarily complex structures, making exact recovery highly unreliable in practice. To address this, we propose EQL-Z, a structurally controllable symbolic regression framework. EQL-Z enforces zero-point constraints via zero-point consistent operator transformations to eliminate residual gradients on silent paths, and performs a small-to-large structure search that grows depth/width from a compact seed under a complexity-penalized validation score. After selecting a compact structure, we apply BFGS fine-tuning to refine coefficients. Experiments on synthetic and real-world datasets show that EQL-Z substantially improves exact equation recovery and in-/out-of-distribution generalization over vanilla EQL, achieving performance close to leading symbolic regression baselines. Code is available at https://github.com/Caaaa-a/EQL-Z.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=zAuh9CGr9R",
+  "arxiv": null,
+  "pdf": "https://raw.githubusercontent.com/mlresearch/v306/main/assets/liu26n/liu26n.pdf",
+  "proceedings": "https://proceedings.mlr.press/v306/liu26n.html",
+  "virtual": "https://icml.cc/virtual/2026/poster/60541",
+  "code": null
+ },
+ "license": null,
+ "img": "none",
+ "image_url": null,
+ "thumb_url": null,
+ "figure_page": 3,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.6
+}

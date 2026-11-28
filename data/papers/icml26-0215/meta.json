@@ -1,0 +1,51 @@
+{
+ "id": "icml26-0215",
+ "title": "TRIM: Token-wise Attention-Derived Saliency for Data-Efficient Instruction Tuning",
+ "authors": [
+  "Manish Nagaraj",
+  "Sakshi Choudhary",
+  "Utkarsh Saxena",
+  "Deepak Ravikumar",
+  "Kaushik Roy"
+ ],
+ "venue": "ICML 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "General Machine Learning->Scalable Algorithms",
+ "role": "pipeline",
+ "role2": null,
+ "claim": "Score data by deriving fine-grained token saliency from attention, building class fingerprints from targets, then matching candidates against them.",
+ "layout": "3 panels: left saliency derivation, right two stacked stages, left-to-right flow",
+ "tags": [
+  "data-selection",
+  "token-level",
+  "attention-saliency",
+  "forward-only",
+  "coreset"
+ ],
+ "style": [
+  "colorful",
+  "icon-heavy",
+  "plot"
+ ],
+ "description": "The figure has three panels separated by dotted lines. Panel (a), on the left, shows a 4x4 attention heatmap for the tokens 'The brown fox jumps' in blue shades with numeric weights. Below it is a color-coded table (red, yellow and green) of row, column and aggregated saliency, with the aggregated row outlined in black. Panel (b), at top right, is Stage 1. A target sample passes up through a stack of decoder layers inside a rounded box. Arrows then lead to per-token hidden state and saliency pairs, and from there to a gray box of token-class fingerprints. Panel (c), at bottom right, is Stage 2. A candidate sample goes through the same model, its token states are scored by similarity to the fingerprints, and the scores are pooled into a pink 'Sample wise Candidate Scores' box. Tokens are color-coded consistently across all panels.",
+ "caption": "Overview of TRIM. (a) From multi-layer attention, we derive an aggregated token saliency signal that combines row (allocation sharpness) and column (received attention) signals. (b) Using a small target set, we compute one fingerprint per token class by saliency-weighted averaging of last-layer hidden states, capturing task-defining patterns ([ref]). (c) For each candidate sample, token states are matched to their class fingerprints (cosine similarity), and token scores are pooled into a single relevance score for ranking ([ref]); top-ranked samples form the instruction-tuning coreset.",
+ "caption_source": "latex",
+ "abstract": "Instruction tuning is essential for aligning large language models (LLMs) to downstream tasks and commonly relies on large, diverse corpora. However, small, high-quality subsets, known as coresets, can deliver comparable or superior results, though curating them remains challenging. Existing methods often rely on coarse, sample-level signals like gradients, an approach that is computationally expensive and overlooks fine-grained features. To address this, we introduce TRIM (Token Relevance via Interpretable Multi-layer Attention), a forward-only, token-centric framework. Instead of using gradients, TRIM operates by matching underlying representational patterns identified via attention-based \"fingerprints\" from a handful of target samples. Such an approach makes TRIM highly efficient and uniquely sensitive to the structural features that define a task. Coresets selected by our method consistently outperform state-of-the-art baselines by up to 9% on downstream tasks and even surpass the performance of full-data fine-tuning in some settings. By avoiding expensive backward passes, TRIM achieves this at a fraction of the computational cost. These findings establish TRIM as a scalable and efficient alternative for building high-quality instruction-tuning datasets.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=25AaIQjAg9",
+  "arxiv": "https://arxiv.org/abs/2510.07118",
+  "pdf": "https://raw.githubusercontent.com/mlresearch/v306/main/assets/nagaraj26a/nagaraj26a.pdf",
+  "proceedings": "https://proceedings.mlr.press/v306/nagaraj26a.html",
+  "virtual": "https://icml.cc/virtual/2026/poster/66621",
+  "code": "https://github.com/manishnagaraj/TRIM_Tokenwise_Efficient_Finetuning"
+ },
+ "license": "http://creativecommons.org/licenses/by/4.0/",
+ "img": "cc-by",
+ "image_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/images/icml26-0215.png",
+ "thumb_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/thumbs/icml26-0215.webp",
+ "figure_page": 1,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.9
+}

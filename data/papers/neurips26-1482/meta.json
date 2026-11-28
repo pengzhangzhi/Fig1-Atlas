@@ -1,0 +1,55 @@
+{
+ "id": "neurips26-1482",
+ "title": "nnTrace: Detecting and Localizing Silent Bugs in Distributed Training",
+ "authors": [
+  "Haitian Jiang",
+  "Shaowei Zhu",
+  "Zhen Zhang",
+  "Zhenyu Song",
+  "Xinwei Fu",
+  "Zhen Jia",
+  "Yida Wang",
+  "Jinyang Li"
+ ],
+ "venue": "NeurIPS 2026",
+ "tier": "spotlight",
+ "track": "main",
+ "topic": "Applications->Everything Else",
+ "role": "problem-setup",
+ "role2": "analysis-finding",
+ "claim": "Standard monitoring curves barely separate correct from buggy runs, so silent bugs stay hidden until late in training.",
+ "layout": "2 stacked line plots sharing x-axis, red annotation arrow on loss",
+ "tags": [
+  "silent-bugs",
+  "failure-mode",
+  "training-curves",
+  "debugging",
+  "motivation"
+ ],
+ "style": [
+  "plot",
+  "minimal"
+ ],
+ "description": "Two vertically stacked line charts share an iteration x-axis. A legend at the top maps blue to Reference (correct training) and orange to Buggy Candidate. The top panel, labeled Training Loss, shows both curves decaying from about 7 to about 3.7. The orange curve sits slightly above the blue one only after a few thousand iterations. A red text label reads 'Differ after 4k iterations', with a red arrow pointing at the point where the curves begin to separate. The bottom panel, labeled Gradient Norm, shows noisy, heavily overlapping orange and blue curves that cannot be told apart. Light dashed grid lines run behind both plots. The eye goes first to the red annotation, then to the near-identical curves, which shows how subtle the bug is.",
+ "caption": "The loss and gradient norm curve of a correct and buggy training. The bug can only be observed after 4k iterations from training loss curve.",
+ "caption_source": "latex",
+ "abstract": "Distributed training is essential for scaling LLM training across thousands of GPUs. However, as distributed training requires complex implementations, they are prone to silent bugs, which do not produce explicit error signals but lead to in correct training outcomes. Common debugging practices based on monitoring training loss or gradient norm curves are slow or unable to detect bugs and also do not help localize bugs. We design and implement nnTrace, the first systematic differential testing system for detecting and localizing silent bugs in distributed training. nnTrace aligns intermediate tensors from distributed training with those from a trusted reference implementation. To properly compare the floating-point values in the corresponding tensors, we propose a novel mathematical analysis that provides a guideline for setting tolerances, enabling nnTrace to distinguish bug-induced errors from numerical errors. Experimental results demonstrate that nnTrace effectively detects 11 existing bugs and 3 new bugs in the widely used Megatron-LM framework. nnTrace is effective in various training recipes, including low-precision recipes involving BF16 and FP8. Notably, Megatron-LM has already adopted the method proposed by nnTrace in its development workflow. Our code is available at https://github.com/haitian-jiang/nnTrace.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=AcEBYF0OfF",
+  "arxiv": "https://arxiv.org/abs/2506.09280",
+  "pdf": "https://arxiv.org/pdf/2506.09280",
+  "proceedings": null,
+  "virtual": "https://neurips.cc/virtual/2026/poster/154832",
+  "code": null
+ },
+ "license": "http://creativecommons.org/licenses/by/4.0/",
+ "img": "cc-by",
+ "image_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/images/neurips26-1482.png",
+ "thumb_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/thumbs/neurips26-1482.webp",
+ "figure_page": 0,
+ "qc_flags": [
+  "bad-crop"
+ ],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.8
+}

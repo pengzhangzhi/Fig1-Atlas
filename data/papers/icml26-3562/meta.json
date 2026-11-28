@@ -1,0 +1,49 @@
+{
+ "id": "icml26-3562",
+ "title": "M+Adam: Low-Precision Training via Additive–Multiplicative Optimization",
+ "authors": [
+  "Xiaoyuan Liang",
+  "Sebastian Loeschcke",
+  "Mads Toftrup",
+  "Anima Anandkumar"
+ ],
+ "venue": "ICML 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "Theory->Optimization",
+ "role": "prior-vs-ours",
+ "role2": "concept",
+ "claim": "Additive updates are lost to rounding at large magnitudes and multiplicative updates stall near zero; combining both avoids each failure.",
+ "layout": "3 stacked number lines, top-to-bottom, with small-magnitude and large-magnitude points marked by arrows",
+ "tags": [
+  "low-precision",
+  "optimizer",
+  "complementary-failure-modes",
+  "quantization",
+  "additive-multiplicative"
+ ],
+ "style": [
+  "minimal",
+  "colorful"
+ ],
+ "description": "Three horizontal number lines are stacked vertically under a gray arrow titled 'Quantization bins under FP system'. Each line has tick marks that are dense on the left and sparse on the right, which shows floating-point grid spacing. Two open circles mark a small-magnitude weight at the left and a large-magnitude weight further right. In the top row, blue additive updates hop one bin at the small weight but loop back to the same spot at the large weight, so the update is lost to rounding. In the middle row, orange multiplicative updates loop back near zero but jump to the far right tick at the large weight. In the bottom row, the combined method uses a blue hop at the small weight and an orange jump at the large weight, so both work. The eye goes first to the colored arcs.",
+ "caption": "Additive (Adam), multiplicative (Madam), and combined \\method\\ updates under low precision. FP grids under low precision cause additive updates to be lost to rounding at large magnitudes and multiplicative updates to stall near zero, while \\method\\ avoids both failure modes.",
+ "caption_source": "latex",
+ "abstract": "Training with quantized weights can reduce costs but often results in degraded accuracy, especially when optimization is carried out in low precision, without storing high-precision copies. We identify a key failure mode: under low precision, standard optimizers can get stuck and not make progress, especially at large weight magnitudes due to coarse mantissa resolution. To overcome this, multiplicative updates have been previously proposed, in place of additive updates in standard optimizers. While successful under extremely low precision, such as under the logarithmic number system, they suffer from failures near zero and across sign changes. The failure modes of additive and multiplicative updates are therefore complementary. To exploit this, we propose M+Adam, which combines both update types: additive steps handle sign changes and small magnitudes, while multiplicative steps ensure progress at large magnitudes when additive updates are zeroed out under rounding. We prove monotone descent for M+Adam under standard smoothness assumptions. Across LLaMA-style pretraining with 60M-1B models, 1x-8x Chinchilla budgets, and using only BF16, FP8, and FP4 master weights, M+Adam consistently improves low-precision training.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=XgVv56Y829",
+  "arxiv": "https://arxiv.org/abs/2607.10611",
+  "pdf": "https://raw.githubusercontent.com/mlresearch/v306/main/assets/liang26p/liang26p.pdf",
+  "proceedings": "https://proceedings.mlr.press/v306/liang26p.html",
+  "virtual": "https://icml.cc/virtual/2026/poster/63374",
+  "code": null
+ },
+ "license": "http://creativecommons.org/licenses/by/4.0/",
+ "img": "cc-by",
+ "image_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/images/icml26-3562.png",
+ "thumb_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/thumbs/icml26-3562.webp",
+ "figure_page": 0,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.6
+}

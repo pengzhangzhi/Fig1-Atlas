@@ -1,0 +1,50 @@
+{
+ "id": "neurips26-5197",
+ "title": "ArtCrafter: Feed-Forward Generation of Articulated 3D Object with Analytic Joint Derivation",
+ "authors": [
+  "Minh Tu",
+  "Quang-Binh Nguyen",
+  "Khoi Nguyen"
+ ],
+ "venue": "NeurIPS 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "Computer Vision->3D Rendering & Reconstruction",
+ "role": "pipeline",
+ "role2": null,
+ "claim": "A feed-forward model generates paired multi-state parts in one pass, then derives kinematic parameters analytically from their rigid transformation, with a geometric regularizer.",
+ "layout": "3 regions: left-to-right pipeline, analytic panel top-right, training panel bottom",
+ "tags": [
+  "feed-forward",
+  "diffusion-transformer",
+  "articulated-objects",
+  "analytic-derivation",
+  "slot-attention"
+ ],
+ "style": [
+  "colorful",
+  "icon-heavy",
+  "math-heavy",
+  "3d-render"
+ ],
+ "description": "A dense, color-coded system diagram. At left, a dashed stack of noise-latent tokens (B, R, O, R, O) and two input images (Rest in red box, Open in green box) feed an Encoder. A large 3D DiT box in the center stacks four attention blocks: Local, Triplet (a yellow fan from the base token to R/O pairs), Cross (arrows from f_rest and f_open), and Global. Denoised tokens go to a 3D VAE Decoder, which outputs a colored refrigerator mesh. The mesh goes to an Analytic URDF block and then to an XML URDF snippet. A light-blue panel (a) above shows rigid transform estimation, T in SE(3), an R/t matrix, a revolute vs. prismatic branch, and axis/origin/range rules. Panel (b) at the bottom shows training regularization: point decoder, repulsion loss, before/after point clouds. A legend sits at the bottom right. The eye goes first to the colored token stacks and the fridge mesh.",
+ "caption": "ArtCrafter pipeline. Two input images ($I_{\\mathrm{rest}}$, $I_{\\mathrm{open}}$) are encoded into state features conditioning $2N+1$ noisy latent slots — base $B$, rest slots $R^1\\!\\ldots\\!R^N$, open slots $O^1\\!\\ldots\\!O^N$ — each augmented with learnable part and state embeddings. Each 3D DiT block refines slots through: Local Attn (intra-slot), Triplet Attn ($R^i \\leftrightarrow O^i$ anchored through $B$), State Cross Attn (rest$\\tof_{\\mathrm{rest}}$, open$\\tof_{\\mathrm{open}}$, base$\\to$both), and Global Attn (all $2N+1$ slots). The frozen VAE decoder produces part meshes from denoised slots. (a) Analytic joint derivation: joint parameters are derived deterministically from $T_i = T_{\\mathrm{open},i} \\cdot T_{\\mathrm{rest},i}^{-1}$ with no learned head. (b) Geometric regularization: the frozen point decoder decodes $\\hat{z}_{0|t}$ to per-slot point clouds; $\\mathcal{L}_{\\mathrm{rep}}$ penalizes inter-part overlap.",
+ "caption_source": "latex",
+ "abstract": "Articulated 3D assets are essential for robotic simulation and training, yet their generation from casual images poses a key challenge: recovering part geometry and kinematics that remain mutually consistent. We present ArtCrafter, a novel feed-forward generative model for controllable generation of articulated 3D objects from a pair of images, one depicting the object in the rest state and the other in the open state. At the core of ArtCrafter is a DiT-based generative model that jointly produces part-level meshes for both articulation states in a single forward pass. Inspired by Slot Attention, its denoising process operates on a $1+2N$ slot layout comprising one shared base slot and $N$ paired rest/open slots, encouraging each pair to bind to the same kinematic part. To ensure geometrically consistent and disjoint part generation, we introduce Triplet Attention to enforce cross-state geometric consistency between paired rest/open slots anchored through the shared base slot, and a repulsion loss $\\mathcal{L}_{\\mathrm{rep}}$ on decoded part point clouds to prevent inter-part penetration throughout denoising. Given the resulting paired meshes, URDF joint parameters---type, axis, origin, and range---are derived analytically from the rigid transformation between each rest/open pair, providing an interpretable alternative to learned joint-parameter regression. Extensive experiments on both in-distribution and out-of-distribution datasets demonstrate that ArtCrafter outperforms existing method under the same dual-state setting in geometry quality and articulation precision, while remaining competitive with methods operating under different input settings and paradigms.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=ZwxUmdqiMF",
+  "arxiv": "https://arxiv.org/abs/2611.07658",
+  "pdf": "https://arxiv.org/pdf/2611.07658",
+  "proceedings": null,
+  "virtual": "https://neurips.cc/virtual/2026/poster/151536",
+  "code": null
+ },
+ "license": "http://creativecommons.org/licenses/by/4.0/",
+ "img": "cc-by",
+ "image_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/images/neurips26-5197.png",
+ "thumb_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/thumbs/neurips26-5197.webp",
+ "figure_page": 3,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.93
+}

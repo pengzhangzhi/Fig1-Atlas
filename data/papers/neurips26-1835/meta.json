@@ -1,0 +1,55 @@
+{
+ "id": "neurips26-1835",
+ "title": "Learn from Your Mistakes: Self-Correcting Masked Diffusion Models",
+ "authors": [
+  "Yair Schiff",
+  "Omer Belhasin",
+  "Roy Uziel",
+  "Guanghan Wang",
+  "Marianne Arriola",
+  "Gilad Turok",
+  "Ran Zilberstein",
+  "Miki Elad",
+  "Volodymyr Kuleshov"
+ ],
+ "venue": "NeurIPS 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "Deep Learning->Generative Models and Autoencoders",
+ "role": "pipeline",
+ "role2": "teaser-result",
+ "claim": "Training a model to both unmask and correct its own sampling mistakes yields consistent accuracy gains over standard fine-tuning.",
+ "layout": "2 halves: left two-stage dotted-box diagram flowing rightward, right 2x2 bar grid",
+ "tags": [
+  "self-correction",
+  "masked-diffusion",
+  "training-procedure",
+  "fine-tuning",
+  "accuracy-gains"
+ ],
+ "style": [
+  "colorful",
+  "plot",
+  "text-heavy"
+ ],
+ "description": "The left half shows the training procedure as two stacked dotted boxes joined by a plus sign. The top blue box, 'Original Process: Train for Unmasking', shows a latent sequence of green tokens, some replaced by [M], passing through a denoiser x_θ(z_t) to produce the clean data sequence 'Learn from your mistakes'. A dashed arc labeled q goes from data back to the latent sequence. A funnel expands from this box into the lower red box, 'For each t: Train for Self-Correction'. In that box, a sampled output with corrupted yellow and red tokens ('masking', 'noise') is passed through the model again to recover the correct green tokens. The right half is a 2x2 grid of bar charts for HumanEval, MBPP, GSM8K and MATH. Each chart compares a gray Vanilla SFT bar with a taller blue ProSeCo bar. Green percentage gains and black arrows mark the improvement.",
+ "caption": "(Left) Training \\method: The original process trains for generation via unmasking. For every timestep in the masking process, we also train for self-correction: undoing corruptions that arise from sampling from unmasking predictions. (Right) Using our method for SFT and Max correction sampling with LLaDA [ref] significantly outperforms vanilla masked diffusion SFT.",
+ "caption_source": "latex",
+ "abstract": "Masked diffusion models (MDMs) have emerged as a promising alternative to autoregressive models, enabling parallel token generation while achieving competitive performance. Despite these advantages, MDMs face a fundamental limitation: once tokens are unmasked, they remain fixed, leading to error accumulation and ultimately degrading sample quality. We address this by proposing a framework that trains a model to perform both unmasking and correction. By reusing outputs from the MDM denoising network as inputs for corrector training, we train a model to recover from potential mistakes. During generation we apply additional corrective refinement steps between unmasking ones in order to change decoded tokens and improve outputs. We name our training and sampling method Progressive Self-Correction (ProSeCo) for its unique ability to iteratively refine an entire sequence, including already generated tokens. We conduct extensive experimental validation across multiple conditional and unconditional tasks, demonstrating that ProSeCo yields better quality-efficiency trade-offs (up to ~4x faster sampling while still outperforming the best accuracy baseline method) and enables further gains through inference-time compute scaling (up to ~1.2x improvement on benchmarks when allowing for slower, high-NFE decoding).",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=D3SBs8maVe",
+  "arxiv": "https://arxiv.org/abs/2602.11590",
+  "pdf": "https://arxiv.org/pdf/2602.11590",
+  "proceedings": null,
+  "virtual": "https://neurips.cc/virtual/2026/poster/154509",
+  "code": "https://proseco-discrete-diffusion.github.io/"
+ },
+ "license": "http://creativecommons.org/licenses/by/4.0/",
+ "img": "cc-by",
+ "image_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/images/neurips26-1835.png",
+ "thumb_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/thumbs/neurips26-1835.webp",
+ "figure_page": 0,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.6
+}

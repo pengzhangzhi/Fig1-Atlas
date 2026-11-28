@@ -1,0 +1,51 @@
+{
+ "id": "iclr26-2905",
+ "title": "PARD: Accelerating LLM Inference with Low‑Cost PARallel Draft Model Adaptation",
+ "authors": [
+  "Zihao An",
+  "Huajun Bai",
+  "Ziqiong Liu",
+  "Dong Li",
+  "Emad Barsoum"
+ ],
+ "venue": "ICLR 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "Deep Learning->Generative Models and Autoencoders",
+ "role": "teaser-result",
+ "role2": "prior-vs-ours",
+ "claim": "Our method keeps the high draft accuracy of prior approaches while cutting drafting latency and training cost.",
+ "layout": "3 panels: bar chart left, timeline top-right, comparison table bottom-right",
+ "tags": [
+  "speculative-decoding",
+  "parallel-drafting",
+  "efficiency",
+  "latency-accuracy-tradeoff",
+  "baseline-comparison"
+ ],
+ "style": [
+  "plot",
+  "colorful",
+  "text-heavy"
+ ],
+ "description": "Three-part composite figure. Panel (a), on the left, is a grouped bar chart of first-token accept ratio on humaneval and gsm8k for EAGLE (light blue), EAGLE3 (blue), VSD (gray) and PARD (red), with the values printed above each bar. PARD is close to VSD and clearly above the EAGLE variants. Panel (b), top right, is a timing diagram on a millisecond axis. The VSD row has many short red 4.1 ms draft blocks followed by a 14.3 ms verify block, repeated. The PARD row has one orange 4.1 ms block followed by a 14.3 ms block. Dotted lines link the two rows, and a red arrow is labeled '2.1x faster'. Panel (c), bottom right, is a table scoring Vanilla SD, EAGLE, EAGLE-3 and PARD on target independence, training cost, draft latency and draft accuracy. Entries are colored green, orange or red, with PARD mostly bold green.",
+ "caption": "PARD achieves low latency while maintaining high accuracy. (a) Comparison of first-token acceptance rates using LLaMA3.1-8B as the target model. EAGLE and EAGLE-3 use their official model, vanilla speculative decoding (VSD) employs LLaMA3.2-1B as the draft model, and PARD represents the adapted version of VSD. (b) Comparison of actual inference time between VSD and PARD. VSD generates candidate tokens autoregressively during the draft stage, requiring multiple forward passes. In contrast, PARD completes drafting with a single forward pass. The draft model used is LLaMA3.2-1B and the target model is LLaMA3.1-8B. (c) Illustrative comparison of training and inference efficiency between PARD and other methods.",
+ "caption_source": "latex",
+ "abstract": "The autoregressive nature of large language models (LLMs) fundamentally limits inference speed, as each forward pass generates only a single token and is often bottlenecked by memory bandwidth. Speculative decoding has emerged as a promising solution, adopting a draft-then-verify strategy to accelerate token generation. While the EAGLE series achieves strong acceleration, its requirement of training a separate draft head for each target model introduces substantial adaptation costs. In this work, we propose \\textbf{PARD (PARallel Draft)}, a novel speculative decoding method featuring \\textit{target-independence} and \\textit{parallel token prediction}. Specifically, PARD enables a single draft model to be applied across an entire family of target models without requiring separate training for each variant, thereby minimizing adaptation costs. Meanwhile, PARD substantially accelerates inference by predicting multiple future tokens within a single forward pass of the draft phase. To further reduce the training adaptation cost of PARD, we propose a COnditional Drop-token (COD) mechanism based on the integrity of prefix key-value states, enabling autoregressive draft models to be adapted into parallel draft models at low-cost. Our experiments show that the proposed COD method improves draft model training efficiency by \\textbf{3$\\times$} compared with traditional masked prediction training. On the \\texttt{vLLM} inference framework, PARD achieves up to \\textbf{3.67$\\times$} speedup on LLaMA3.1-8B, reaching \\textbf{264.88} tokens per second, which is \\textbf{1.15$\\times$} faster than EAGLE-3. Our code is available at https://github.com/AMD-AIG-AIMA/PARD.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=XbOyv7iVGL",
+  "arxiv": "https://arxiv.org/abs/2504.18583",
+  "pdf": "https://proceedings.iclr.cc/paper_files/paper/2026/file/ea17f1a1685d65e66af19da44471b9ae-Paper-Conference.pdf",
+  "proceedings": "https://proceedings.iclr.cc/paper_files/paper/2026/hash/ea17f1a1685d65e66af19da44471b9ae-Abstract-Conference.html",
+  "virtual": "https://iclr.cc/virtual/2026/poster/10008956",
+  "code": "https://github.com/AMD-AGI/PARD"
+ },
+ "license": "http://arxiv.org/licenses/nonexclusive-distrib/1.0/",
+ "img": "none",
+ "image_url": null,
+ "thumb_url": null,
+ "figure_page": 1,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.6
+}

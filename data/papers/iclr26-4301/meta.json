@@ -1,0 +1,49 @@
+{
+ "id": "iclr26-4301",
+ "title": "SERQ: Saliency-Aware Low-Rank Error Reconstruction for LLM Quantization",
+ "authors": [
+  "Yeonsik Park",
+  "Hyeonseong Kim",
+  "Seungkyu Choi"
+ ],
+ "venue": "ICLR 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "Deep Learning->Everything Else",
+ "role": "prior-vs-ours",
+ "role2": "pipeline",
+ "claim": "Prior methods need mixed-precision or sequential low-rank paths; ours uses a single low-rank compensation in one unified low-precision path.",
+ "layout": "3 panels left-to-right, dashed dividers, shared color legend, labels below",
+ "tags": [
+  "quantization",
+  "low-rank",
+  "mixed-precision",
+  "efficiency",
+  "computation-flow"
+ ],
+ "style": [
+  "colorful",
+  "icon-heavy",
+  "minimal"
+ ],
+ "description": "Three side-by-side computation-flow diagrams of a linear layer, separated by dashed vertical lines, labeled LLM.int8(), LQER and SERQ below. A top-right legend maps colors to precision: pink for FP16, orange for INT8, purple for INT4. LLM.int8() shows a Scatter block splitting X and W into an INT8 main path and a small FP16 outlier path, which are summed. LQER has an INT8 X and INT4 W main path plus a lower path with two sequential low-rank factors, L1 and L2, with a blue Quant arrow between them. SERQ has the same layout but all blocks are purple INT4 and the lower path uses a single matrix R. Each panel ends in a circled plus. The eye goes first to the colors, which are mostly pink and orange on the left and uniformly purple on the right.",
+ "caption": "Computation flow of a linear layer under different matrix decomposition methods. LLM.int8() employs a mixed-precision scheme of INT8 and FP16 by assigning separate computation paths for outliers and non-outliers. L$^2$QER applies SVD-based error reconstruction with a mixed-precision path of INT4 and INT8. In contrast, the proposed SERQ leverages a saliency-guided low-rank matrix and provides a unified computation path with INT4 or MXFP4 precision.",
+ "caption_source": "latex",
+ "abstract": "Post-training quantization (PTQ) has emerged as a prevailing technique for deploying large language models (LLMs) efficiently in terms of both memory and computation, across edge devices and server platforms. Existing PTQ methods primarily aim to reduce precision in weights and activations by mitigating quantization errors caused by channel-wise outlier activations (e.g., pre-quantization scaling, online transformations, or low-rank error reconstruction). Among these approaches, error reconstruction with low-rank adaptation (LoRA) has proven particularly effective, as it introduces a lightweight auxiliary computation path without requiring heavy optimization or additional online layers. However, prior studies reveal severe accuracy degradation under W4A4 settings, and conventional low-rank adaptations rely on two sequential factors, necessitating intermediate quantization during inference and thereby limiting low-precision efficiency. In this work, we propose SERQ, a saliency-aware error reconstruction method for low-bit LLM inference that employs a single low-rank compensation matrix. SERQ preserves efficient 4-bit matrix multiplication in linear layers by jointly mitigating quantization errors arising from both activation and weight saliency through three stages: (1) static activation flattening, (2) saliency-aware error reconstruction, and (3) offline weight permutation. The method incurs additional computation only for low-rank error reconstruction via a single decomposition, while all other operations are performed offline, thereby keeping latency overhead minimal. Empirically, SERQ outperforms prior error reconstruction methods under both W4A8 and W4A4 settings, and achieves higher accuracy than state-of-the-art rotation-based W4A4 approaches, while substantially reducing calibration complexity. Code is available at https://github.com/acalabys/SERQ",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=nFjj8NEBqv",
+  "arxiv": "https://arxiv.org/abs/2603.08185",
+  "pdf": "https://proceedings.iclr.cc/paper_files/paper/2026/file/3ca380c5fe9f174a71a230478741169f-Paper-Conference.pdf",
+  "proceedings": "https://proceedings.iclr.cc/paper_files/paper/2026/hash/3ca380c5fe9f174a71a230478741169f-Abstract-Conference.html",
+  "virtual": "https://iclr.cc/virtual/2026/poster/10007493",
+  "code": "https://github.com/acalabys/serq"
+ },
+ "license": "http://creativecommons.org/licenses/by/4.0/",
+ "img": "cc-by",
+ "image_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/images/iclr26-4301.png",
+ "thumb_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/thumbs/iclr26-4301.webp",
+ "figure_page": 3,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.85
+}

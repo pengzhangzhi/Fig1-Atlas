@@ -1,0 +1,55 @@
+{
+ "id": "icml26-2999",
+ "title": "SPARKLING: Balancing Signal Preservation and Symmetry Breaking for Width-Progressive Learning",
+ "authors": [
+  "Qifan Yu",
+  "Xinyu Ma",
+  "Zhijian Zhuo",
+  "Minrui Wang",
+  "Deyi Liu",
+  "Shiyi Zhan",
+  "Yiyuan Ma",
+  "liang xiang",
+  "Xingyan Bin",
+  "Di He"
+ ],
+ "venue": "ICML 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "Deep Learning->Foundation Models",
+ "role": "analysis-finding",
+ "role2": "teaser-result",
+ "claim": "Rescaling to preserve signal scale costs a little early but wins late; how the new weights are initialized strongly affects the final outcome.",
+ "layout": "6 panels in 2x3 grid, zoomed insets with red boxes, shared legends",
+ "tags": [
+  "width-expansion",
+  "initialization",
+  "loss-curves",
+  "ablation",
+  "training-stability"
+ ],
+ "style": [
+  "plot",
+  "minimal"
+ ],
+ "description": "A 2x3 grid of line plots. Panels (a)–(e) each show reference loss against tokens in billions, from about 110B to 200B, for one up_proj–down_proj initialization pair: random-random, random-zero, random-copy, zero-copy and copy-copy. Each panel has a dashed blue zero baseline, an orange curve for Naive Init, No Scaled, and a green curve for RMS-Preserved Scaled. The orange curve starts lower, the green curve crosses it and ends lower. A zoomed inset with a gray dashed connector and red box magnifies the 180–200B range to show the final gap. Panel (f) overlays the RMS-preserved curves for all five pairs in different colors from 180B to 200B. The copy-copy curve sits clearly above the others, meaning a worse final loss. Legends sit at the right.",
+ "caption": "RMS-preserving rescaling consistently improves late-stage convergence under MoE expert inner-dimension expansion. We expand the expert inner dimension from $512 \\to 1024$ at $100$B tokens and plot reference-loss (relative to the pre-expansion reference) over the remaining training tokens. (a)--(e) sweep five (up\\_proj -- down\\_proj init) pairs. In every case, Naive Init, No Scaled yields a smaller immediate loss gap, while RMS-Preserved Scaled overtakes later and converges to a lower final loss. (f) compares the RMS-preserved late-stage results and highlights a notable pattern: both-sides copied significantly underperforms other RMS-preserved strategies.",
+ "caption_source": "latex",
+ "abstract": "Progressive Learning (PL) reduces pre-training computational overhead by gradually increasing model scale. While prior work has extensively explored depth expansion, width expansion remains significantly understudied, with the few existing methods limited to the early stages of training. However, expanding width during the mid-stage is essential for maximizing computational savings, yet it remains a formidable challenge due to severe training instabilities. Empirically, we show that naive initialization at this stage disrupts activation statistics, triggering loss spikes, while copy-based initialization introduces gradient symmetry that hinders feature diversity. To address these issues, we propose SPARKLING (balancing {S}ignal {P}reservation {A}nd symmet{R}y brea{K}ing for width-progressive {L}earn{ING}), a novel framework for mid-stage width expansion. Our method achieves signal preservation via RMS-scale consistency, stabilizing activation statistics during expansion. Symmetry breaking is ensured through asymmetric optimizer state reset and asymmetric learning rate re-warmup. Extensive experiments on dense and Mixture-of-Experts (MoE) models demonstrate that, across multiple width axes and optimizer families, SPARKLING consistently outperforms training from scratch and reduces training cost by up to 35% under $2\\times$ width expansion.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=SXJBFREkWi",
+  "arxiv": "https://arxiv.org/abs/2602.02472",
+  "pdf": "https://raw.githubusercontent.com/mlresearch/v306/main/assets/yu26ah/yu26ah.pdf",
+  "proceedings": "https://proceedings.mlr.press/v306/yu26ah.html",
+  "virtual": "https://icml.cc/virtual/2026/poster/63922",
+  "code": null
+ },
+ "license": "http://creativecommons.org/licenses/by/4.0/",
+ "img": "cc-by",
+ "image_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/images/icml26-2999.png",
+ "thumb_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/thumbs/icml26-2999.webp",
+ "figure_page": 4,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.6
+}

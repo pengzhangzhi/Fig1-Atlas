@@ -1,0 +1,48 @@
+{
+ "id": "neurips26-3079",
+ "title": "Breaking Noise Shortcuts in Self-Supervised Learning via Noise-Aligned View Generation",
+ "authors": [
+  "Oankar Patil",
+  "May Dongmei Wang"
+ ],
+ "venue": "NeurIPS 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "General Machine Learning->Representation Learning",
+ "role": "prior-vs-ours",
+ "role2": "pipeline",
+ "claim": "Standard pipelines derive both views from one noisy image, sharing noise; ours resamples independent noise so views share only signal.",
+ "layout": "2 stacked panels, left-to-right flows, red vs green contrast with ✗/✓",
+ "tags": [
+  "noise-robustness",
+  "view-generation",
+  "data-augmentation",
+  "shortcut-learning",
+  "self-supervised"
+ ],
+ "style": [
+  "colorful",
+  "icon-heavy",
+  "math-heavy"
+ ],
+ "description": "Two stacked horizontal flow diagrams. Panel (a), \"Standard SSL: Noisy Shortcuts\", starts with a grayscale microscopy image x̃ that splits into two branches. Each branch passes through spatial aug and appearance aug boxes to a red-tinted noisy view (v1, v2), then through an encoder f_θ to embeddings z1 and z2. A red brace marks \"same acquisition noise η (shortcut)\", and a dashed red double arrow with a ✗ links z1 and z2 under L_SSL. Panel (b), \"SEANA: Noise-Aligned SSL Views\", takes the same image through spatial aug, a learned VST T_ψ (130 params), and a frozen denoiser D that estimates the clean signal. It then splits into two branches. Each branch resamples noise (ε1, ε2), applies the inverse VST T^-1, then appearance aug, and yields green views. A green brace reads ε1 ⊥ ε2 with a ✓. Footer labels mark image domain, VST domain (≈ homoscedastic), and image domain. Red marks the problem and green marks the fix.",
+ "caption": "Overview of SEANA for Noise-Robust Self-Supervised Representation Learning (a) Standard SSL: both views derive from the same noisy image, creating a shortcut for the encoder to boost agreement by also encoding acquisition noise patterns. (b) SEANA: SEANA learns an invertible variance-stabilizing transform (VST) from noisy data, then estimates the clean signal and resamples independent noise in learned VST space, requiring no clean targets or knowledge of acquistion noise model, no dataset-specific denoiser training or use at inference, and no changes to the SSL objective or encoder.",
+ "caption_source": "latex",
+ "abstract": "Self-supervised learning (SSL) is increasingly applied to scientific imaging domains, such as microscopy, where labels are scarce but noisy data is abundant. These domains exhibit significant signal-dependent noise, which can create a representational shortcut: since both augmented views derive from the same noisy image, the encoder can boost view agreement by also encoding noise patterns rather than semantic content. To enable noise-robust representation learning without knowledge of underlying noise models, we introduce Self-Aligned Noise Augmentation (SEANA), a drop-in module that generates noise-aware SSL views. SEANA learns an invertible variance-stabilizing transform (VST) from noisy data, then estimates the clean signal and resamples independent noise in learned VST space, requiring no clean targets, no dataset-specific denoiser training or use at inference, and no changes to the SSL objective or encoder. On CIFAR-10 and ImageNet-100 under synthetic Gaussian, Poisson-Gaussian, and multiplicative noise, SEANA improves clean-test linear-probe accuracy across contrastive/non-contrastive SSL methods, indicating higher-quality representations. On real fluorescence imaging, SEANA improves Jurkat cell-cycle stage classification by up to 28.6pp over standard SSL and 27.5pp over denoiser-preprocessed baselines. In all settings, SEANA outperforms the denoiser-preprocessed SSL pipelines, demonstrating that learned VST-space noise-aligned resampling yields more robust representations than denoising alone. Code is available at: https://github.com/opatil31/SEANA",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=LVFnNTcwSo",
+  "arxiv": "https://arxiv.org/abs/2611.25335",
+  "pdf": "https://arxiv.org/pdf/2611.25335",
+  "proceedings": null,
+  "virtual": "https://neurips.cc/virtual/2026/poster/153415",
+  "code": "https://github.com/opatil31/SEANA"
+ },
+ "license": "http://creativecommons.org/licenses/by/4.0/",
+ "img": "cc-by",
+ "image_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/images/neurips26-3079.png",
+ "thumb_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/thumbs/neurips26-3079.webp",
+ "figure_page": 2,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.8
+}

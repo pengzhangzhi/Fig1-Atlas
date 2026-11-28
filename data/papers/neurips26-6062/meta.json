@@ -1,0 +1,51 @@
+{
+ "id": "neurips26-6062",
+ "title": "MSP: Modality Self-Play for Training Multimodal LLMs Without Paired Cross-Modal Data",
+ "authors": [
+  "Robert Moseley",
+  "Md Kaykobad Reza",
+  "Ameya Patil",
+  "Edward Ayrapetian",
+  "Salman Asif"
+ ],
+ "venue": "NeurIPS 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "Computer Vision->Vision Models & Multimodal",
+ "role": "pipeline",
+ "role2": null,
+ "claim": "Training on one real modality plus self-generated text proxies for the missing one lets models compose modalities without paired cross-modal data.",
+ "layout": "3 panels, left-to-right, shared legend strip, frozen/trainable icons",
+ "tags": [
+  "self-play",
+  "proxy-text",
+  "multimodal",
+  "modality-composition",
+  "unpaired-data"
+ ],
+ "style": [
+  "colorful",
+  "icon-heavy",
+  "photo/real data"
+ ],
+ "description": "A wide three-panel diagram with a legend strip along the bottom. Panel 1, 'Unimodal Captioning', has two columns, image→text in blue/green and audio→text in orange. Each shows an input (a horse photo or a red waveform), a frozen encoder, a trainable projector and a shared Qwen3-8B LoRA LLM. Each column ends in a caption box. Panel 2, 'Self-Play (Modality Imagination)', feeds the horse image and the waveform through prompts such as 'What might it sound like?' into the frozen LLM. The LLM outputs generated audio and image descriptions as text proxies. Panel 3, 'Multimodal Composition Training', pairs the real image with an imagined text proxy. The proxy goes through a text encoder, a frozen bridge and an audio projector, then both token streams feed the LLM to produce a caption. Blue marks vision and orange marks audio or imagined content, with green for text outputs. Lock and flame icons mark frozen and trainable parts. Each panel has a one-line takeaway at the bottom, such as 'Never two real non-text modalities.'",
+ "caption": "{MSP training pipeline.} (1) Phase 1 trains one projector per modality using modality--text pairs only. (2) The frozen Phase-1 model then generates a text proxy for the modality it does not observe. (3) Phase 2 trains on one real modality together with the proxy for the missing one. No training sample ever contains two real non-text modalities. A component-level view of the same architecture, with the bridge formulation and the full token sequence, is given in Figure [ref].",
+ "caption_source": "latex",
+ "abstract": "Large multimodal models have achieved remarkable progress by scaling model capacity and training on massive paired multimodal data. However, this paradigm introduces a fundamental bottleneck: aligned multimodal datasets are expensive to curate, difficult to scale across diverse modality combinations, and increasingly constrain further progress. We introduce Modality Self-Play (MSP), a training framework for multimodal foundation models based on proxy-mediated modality composition. Instead of relying on paired cross-modal data, MSP uses anchor-supporting proxy textual descriptions of unseen modalities as semantic bridges during training. Given an observed modality (e.g., image or audio), the model generates proxy descriptions for complementary unseen modalities, which are then encoded and aligned with the observed modality through learned bridges, enabling cross-modal interaction without real paired non-text supervision. Our central hypothesis is that proxy text, combined with contrastively trained pretrained encoders, provides sufficient semantic structure for multimodal composition to emerge. We show that MSP enables zero-shot modality composition: models trained only with a real anchor modality and accompanying proxy descriptions can integrate and reason over multiple modalities at inference time despite never observing real paired non-text data during training. Empirically, MSP achieves state-of-the-art or competitive performance on multiple multimodal benchmarks. Ablation studies further demonstrate that learned bridges improve alignment, while anchor-supporting proxy descriptions enable effective cross-modal composition. MSP removes the need for real paired non-text (e.g., audio-vision) supervision, while continuing to rely on modality-text pairs, pretrained contrastive encoders, and modality-distribution bridge calibration.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=fdPGkK2acw",
+  "arxiv": "https://arxiv.org/abs/2610.20965",
+  "pdf": "https://arxiv.org/pdf/2610.20965",
+  "proceedings": null,
+  "virtual": "https://neurips.cc/virtual/2026/poster/150756",
+  "code": "https://csiplab.github.io/Modality-Self-Play/"
+ },
+ "license": "http://arxiv.org/licenses/nonexclusive-distrib/1.0/",
+ "img": "none",
+ "image_url": null,
+ "thumb_url": null,
+ "figure_page": 3,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.93
+}

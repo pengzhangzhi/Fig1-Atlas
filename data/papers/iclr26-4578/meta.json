@@ -1,0 +1,58 @@
+{
+ "id": "iclr26-4578",
+ "title": "ICaRus: Identical Cache Reuse for Efficient Multi-Model Inference",
+ "authors": [
+  "Sunghyeon Woo",
+  "Jaeeun Kil",
+  "Hoseung Kim",
+  "Minsub Kim",
+  "Joonghoon Kim",
+  "Ahreum Seo",
+  "Sungjae Lee",
+  "Minjung Jo",
+  "Jiwon Ryu",
+  "baeseong park",
+  "Se Jung Kwon",
+  "Dongsoo Lee"
+ ],
+ "venue": "ICLR 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "Deep Learning->Everything Else",
+ "role": "prior-vs-ours",
+ "role2": "overview-framework",
+ "claim": "Conventional multi-model pipelines recompute separate caches per model; ours shares one cache across models, cutting memory and recomputation.",
+ "layout": "2 panels: left timeline diagram of agents, right comparison table",
+ "tags": [
+  "kv-cache",
+  "multi-model",
+  "cache-reuse",
+  "efficiency",
+  "agentic-workflow"
+ ],
+ "style": [
+  "colorful",
+  "icon-heavy",
+  "text-heavy"
+ ],
+ "description": "Panel (a) shows a three-agent workflow (Planner A, Executor B, Summarizer C) running top to bottom along a time arrow. The left column, the conventional approach, shows colored token blocks (Prompt, a1, a2, a3) that grow with each agent, with 'Recompute' labels in each agent's color. The right column, ICaRus, shows dotted empty boxes for the cached prefix with purple 'KV load' and 'Prefix caching' arrows. Only the new token block (a2, a3) is filled in. Panel (b) is a table comparing single model prompting, conventional multi-model fine-tuning and ICaRus on training method, task performance, KV sharing, memory usage and prefill recomputation. The ICaRus column is in bold. Purple highlights draw the eye first.",
+ "caption": "Comparison of KV cache management strategies and effectiveness in multi model scenarios between conventional approaches and ICaRus.",
+ "caption_source": "latex",
+ "abstract": "Multi model inference has recently emerged as a prominent paradigm, particularly in the development of agentic AI systems. However, in such scenarios, each model must maintain its own Key-Value (KV) cache for the identical prompt, leading to substantial memory consumption. This explosive growth of KV caches forces LLM serving systems to evict previously stored caches, which in turn introduces significant recomputation overhead whenever the evicted caches are required again. Moreover, prefix caching is inherently infeasible across different models, forcing each model to recompute KV cache for the identical prompt, which leads to significant overhead. To alleviate these issues, we propose Identical Cache Reuse (ICaRus), a novel architecture that allows multiple models to share identical KV caches across all layers. ICaRus is based on the key observation that a decoder-only Transformer can be conceptually decomposed into a logical encoder, which generates KV caches, and a logical decoder, which predicts output tokens from the KV caches. ICaRus fine-tunes only the logical decoder while freezing the logical encoder, enabling multiple models to share an identical KV cache. This eliminates cache memory explosion and unexpected evictions while also allowing cross-model reuse of KV caches for new input tokens, thereby removing redundant recomputation in multi model inference achieving both efficiency and scalability. Moreover, by incorporating lightweight adapters such as LoRA, ICaRus parallelizes KV cache generation and next-token prediction during decoding. ICaRus achieves comparable accuracy to task-specific fine-tuned model across a diverse set of tasks, while allowing multiple specialized models to fully share KV caches. ICaRus achieves up to 11.1x lower P95 latency and 3.8x higher throughput in multi agent workflow with 8 different models, compared to conventional multi model system.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=qrMo6R7lOS",
+  "arxiv": "https://arxiv.org/abs/2603.13281",
+  "pdf": "https://proceedings.iclr.cc/paper_files/paper/2026/file/37f6be32f832caf0f7980469fb06165b-Paper-Conference.pdf",
+  "proceedings": "https://proceedings.iclr.cc/paper_files/paper/2026/hash/37f6be32f832caf0f7980469fb06165b-Abstract-Conference.html",
+  "virtual": "https://iclr.cc/virtual/2026/poster/10007206",
+  "code": null
+ },
+ "license": "http://creativecommons.org/licenses/by-nc-sa/4.0/",
+ "img": "cc-by-nc-sa",
+ "image_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/images/iclr26-4578.png",
+ "thumb_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/thumbs/iclr26-4578.webp",
+ "figure_page": 1,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.8
+}

@@ -1,0 +1,55 @@
+{
+ "id": "neurips26-0916",
+ "title": "Tackling the Data-Parallel Load Balancing Bottleneck in LLM Serving: Practical Online Routing at Scale",
+ "authors": [
+  "Tianci Bu",
+  "Yuan Lyu",
+  "Zixi Chen",
+  "Chendong Song",
+  "Hong Liang",
+  "Tsepten Gurung",
+  "Yuwei Fan",
+  "Yinyu Ye",
+  "Zijie Zhou"
+ ],
+ "venue": "NeurIPS 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "General Machine Learning->Everything Else",
+ "role": "prior-vs-ours",
+ "role2": "problem-setup",
+ "claim": "Balanced load lets all workers reach the synchronization barrier together; concentrated load makes one straggler stall every other worker.",
+ "layout": "2 side-by-side panels (balanced vs imbalanced), top-to-bottom, with a check mark and an X",
+ "tags": [
+  "load-balancing",
+  "synchronization-barrier",
+  "straggler",
+  "llm-serving",
+  "data-parallel"
+ ],
+ "style": [
+  "colorful",
+  "plot",
+  "icon-heavy"
+ ],
+ "description": "Two side-by-side panels compare balanced and imbalanced data-parallel decode. The top of each panel shows four DP worker boxes holding small stacked pills for request KV caches, labeled q1 to q8. In the left panel, the teal boxes hold roughly equal stacks. In the right panel, the first two boxes are tinted red and hold tall stacks, while the last two hold short stacks. Below each, a heading reads 'Decode-step compute time:' above horizontal bars for Workers 1 to 4, with percentages and a dark vertical SYNC bar at the right edge. Left bars are all 88-94% full in teal. Right bars fall from 96% in red to 76%, then 42% and 32% in teal, with dashed gray 'idle (waiting)' regions. A green check with 'high utilization' sits under the left panel and a red X with 'faster workers idle' under the right. A legend runs along the bottom. The eye goes first to the red-versus-teal contrast.",
+ "caption": "Data-parallel decode under barrier synchronization. \\iffalse (A) Balanced DP routing. When per-worker loads are comparable, all DP workers finish their per-step attention compute at roughly the same time and proceed through the synchronization barrier (EP all-to-all or TP all-reduce) with negligible idle. (B) Imbalanced DP routing. When long-running or large-KV-cache requests concentrate on a subset of workers, the most heavily loaded worker becomes a step-level straggler, and the remaining workers idle at the barrier (gray dashed regions). Because assignments are sticky, this idle persists over the entire lifetime of the offending requests, and accumulates across every decode step until the straggler completes. \\fi",
+ "caption_source": "latex",
+ "abstract": "Data-parallel (DP) load balancing has emerged as a first-order bottleneck in large-scale LLM serving. When a model is sharded across devices via tensor parallelism (TP) or expert parallelism (EP) and replicated across many DP workers, every decode step ends in a synchronization barrier whose latency is set by the most heavily loaded worker; even modest persistent imbalance across DP workers compounds, step after step, into a substantial fraction of wasted compute. The problem is hard for reasons specific to LLM decoding: assignments are sticky (migrating KV caches has a high cost), per-request loads grow over time, arrivals are non-stationary, and the router must decide within a sub-100\\,ms decode budget over hundreds of waiting requests and tens of workers. We present \\textbf{BalanceRoute}, a family of practical online routing algorithms that target this bottleneck. The first, \\textbf{BR-0}, requires no prediction infrastructure and uses a piecewise-linear F-score that captures the sharp asymmetry between admissions that fill safe margin and those that overflow into the envelope; a two-stage decomposition keeps per-step cost compatible with millisecond-scale scheduling. The second, \\textbf{BR-H}, generalizes BR-0 with a short, constant lookahead $H$ and a lightweight termination-classifier interface, extending the F-score to a horizon-discounted form. We deploy BalanceRoute on a 144-NPU cluster and evaluate against vLLM baselines on both a proprietary production trace and the public Azure-2024 trace. Across both workloads, BalanceRoute substantially reduces average DP imbalance and improves end-to-end serving throughput.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=6T70E9SD49",
+  "arxiv": "https://arxiv.org/abs/2605.06113",
+  "pdf": "https://arxiv.org/pdf/2605.06113",
+  "proceedings": null,
+  "virtual": "https://neurips.cc/virtual/2026/poster/155325",
+  "code": null
+ },
+ "license": "http://creativecommons.org/licenses/by/4.0/",
+ "img": "cc-by",
+ "image_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/images/neurips26-0916.png",
+ "thumb_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/thumbs/neurips26-0916.webp",
+ "figure_page": 2,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.5
+}

@@ -1,0 +1,56 @@
+{
+ "id": "icml26-1291",
+ "title": "MVISTA-4D: View-Consistent 4D World Model with Test-Time Action Inference for Robotic Manipulation",
+ "authors": [
+  "Jiaxu Wang",
+  "JIANG Yicheng",
+  "Tianlun HE",
+  "Jingkai SUN",
+  "Qiang Zhang",
+  "Jiahang Cao",
+  "Zesen Gan",
+  "Mingyuan Sun",
+  "Qiming Shao",
+  "Xiangyu Yue"
+ ],
+ "venue": "ICML 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "Applications->Robotics",
+ "role": "pipeline",
+ "role2": null,
+ "claim": "A single-view input is lifted into multi-view RGBD latents, fused through stacked attention blocks, and decoded into futures and actions.",
+ "layout": "1 wide panel, left-to-right, dashed red arrows for test-time optimization loop",
+ "tags": [
+  "diffusion-transformer",
+  "multi-view",
+  "world-model",
+  "test-time-optimization",
+  "cross-modal-fusion"
+ ],
+ "style": [
+  "colorful",
+  "icon-heavy",
+  "photo/real data"
+ ],
+ "description": "A wide left-to-right architecture diagram. On the left, a dashed box holds the first-frame RGB and depth images. Each goes through a VAE, and both are stacked into a multiview noisy latent (Cam0 to Camn). Learnable modality tokens and camera-embedding tokens, drawn as small coloured squares with circled plus signs, are added to the latent stacks. The latents then pass through a pastel yellow block repeated N times. The block runs Local Cross-Modality Attention, then Deformable Geometry-aware Cross-View Attention, then Self-Attn, then Cross-Attn. Camera extrinsics enter through a camera encoder. An action trajectory enters through a TCN VAE encoder, and a task prompt enters from below. A VAE decoder outputs multiview RGBD frames on the right. Dashed red arrows mark the test-time action optimization loop that runs back through the model. A dashed blue arrow leads to an auxiliary action head with a TCN decoder.",
+ "caption": "The overview of our main pipeline.",
+ "caption_source": "latex",
+ "abstract": "World-model-based imagine-then-act becomes a promising paradigm for robotic manipulation, yet existing approaches typically support either purely image-based forecasting or reasoning over partial 3D geometry, limiting their ability to predict complete 4D scene dynamics. This work proposes a novel embodied 4D world model that enables geometrically consistent, arbitrary-view RGBD generation: given only a single-view RGBD observation as input, the model imagines the remaining viewpoints, which can then be back-projected and fused to assemble a more complete 3D structure across time. To efficiently learn the multi-view, cross-modality generation, we explicitly design cross-view and cross-modality feature fusion that jointly encourage consistency between RGB and depth and enforce geometric alignment across views. Beyond prediction, converting generated futures into actions is often handled by inverse dynamics, which is ill-posed because multiple actions can explain the same transition. We address this with a test-time action optimization strategy that backpropagates through the generative model to infer a trajectory-level latent best matching the predicted future, and a residual inverse dynamics model that turns this trajectory prior into accurate executable actions. Experiments on three datasets demonstrate strong performance on both 4D scene generation and downstream manipulation, and ablations provide practical insights into the key design choices.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=CKpqRFTRfc",
+  "arxiv": "https://arxiv.org/abs/2602.09878",
+  "pdf": "https://raw.githubusercontent.com/mlresearch/v306/main/assets/wang26jw/wang26jw.pdf",
+  "proceedings": "https://proceedings.mlr.press/v306/wang26jw.html",
+  "virtual": "https://icml.cc/virtual/2026/poster/65571",
+  "code": "https://mercerai.github.io/MVISTA-4D/"
+ },
+ "license": "http://creativecommons.org/licenses/by/4.0/",
+ "img": "cc-by",
+ "image_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/images/icml26-1291.png",
+ "thumb_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/thumbs/icml26-1291.webp",
+ "figure_page": 3,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.95
+}

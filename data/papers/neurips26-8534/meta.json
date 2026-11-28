@@ -1,0 +1,52 @@
+{
+ "id": "neurips26-8534",
+ "title": "Jacobian Scopes: A Unified Geometric Framework for Token-Level LLM Attribution",
+ "authors": [
+  "Toni Liu",
+  "Baran Zadeoğlu",
+  "Gurbir Arora",
+  "Raphaël Sarfati",
+  "Nicolas Boulle",
+  "Christopher Earls"
+ ],
+ "venue": "NeurIPS 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": null,
+ "role": "pipeline",
+ "role2": "overview-framework",
+ "claim": "A single perturb-linearize-project procedure over a model's output space yields a family of attribution variants, each probing a different output feature.",
+ "layout": "3 stacked rows (a,b,c), each left-to-right, separated by horizontal rules",
+ "tags": [
+  "attribution",
+  "interpretability",
+  "gradient-based",
+  "jacobian",
+  "method-family"
+ ],
+ "style": [
+  "minimal",
+  "math-heavy",
+  "colorful"
+ ],
+ "description": "A rounded-border figure with three stacked panels separated by horizontal lines. Panel a shows the tokens \"words are represented as\" (x1 to x4) with arrows pointing into them. These feed a blue LLM box, then a blue hidden-state vector y, then a blue bar-chart histogram labeled \"vectors\", with p = softmax(Wy) beneath. Panel b shows three steps labeled perturb, linearize and project. Perturb is a small noise ball around x_t. Linearize is a boxed equation, J_t = ∂y/∂x_t and δy ≈ J_t δx_t. Project is a blue ellipse of δy with arrows for ŷ (temperature direction), w_target, and u1 (principal Fisher direction). Panel c shows three histograms titled Semantic, Fisher and Temperature Scope. A red bar highlights the target logit, a red-and-blue stacked bar shows the most KL-sensitive direction, and a red curve with outward arrows shows peak width. The eye goes first to the red highlights in panel c.",
+ "caption": "Overview of Jacobian Scopes. (a) An autoregressive LLM maps an input token sequence to a hidden state $\\bm{y}$, which is decoded into a predictive distribution over the vocabulary. (b) A small perturbation to any input token is propagated to the output via the Jacobian $\\bm{J}_t$, then projected onto a direction $\\bm{v}$ in output space; the magnitude of this projection defines the token's influence score, computable in a single backward pass. The three Scopes correspond to $\\bm{v} = \\bm{w}_\\mathrm{target}$ (target unembedding row), $\\bm{v} = \\bm{u}_1$ (principal Fisher direction), and $\\bm{v} = \\hat{\\bm{y}}$ (normalized hidden state). (c) The three Jacobian Scope variants each target a different feature of the model's output: Semantic Scope asks which input tokens drive the predicted probability of a specific target word; Fisher Scope asks which tokens most change the overall shape of the predicted distribution; and Temperature Scope asks which tokens control the model's confidence, i.e., how sharply peaked the distribution is.",
+ "caption_source": "latex",
+ "abstract": "Large language models (LLMs) make next-token predictions based on clues present in their context, such as semantic descriptions and in-context examples. Yet, elucidating which prior tokens most strongly influence a given prediction remains challenging due to the proliferation of layers and attention heads in modern architectures. We propose Jacobian Scopes, a suite of gradient-based, token level causal attribution methods for interpreting LLM predictions. Grounded in perturbation theory and information geometry, Jacobian Scopes quantify how input tokens influence various aspects of a model's prediction, such as specific logits, the full predictive distribution, and model uncertainty (effective temperature). Through case studies spanning instruction understanding, translation, and in-context learning (ICL), we demonstrate how Jacobian Scopes reveal implicit political biases, uncover word- and phrase-level translation strategies, and shed light on recently debated mechanisms underlying in-context time-series forecasting. On token-ablation faithfulness benchmarks (LAMBADA and IWSLT2017) across six LLMs, the distribution-level Fisher and Temperature Scopes significantly outperform established gradient-based attribution methods in 10 of 12 model-dataset settings. To facilitate exploration of Jacobian Scopes on custom text, we open-source our implementations and provide a cloud-hosted interactive demo at https://huggingface.co/spaces/Typony/JacobianScopes.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=x0pAg7jich",
+  "arxiv": "https://arxiv.org/abs/2601.16407",
+  "pdf": "https://arxiv.org/pdf/2601.16407",
+  "proceedings": null,
+  "virtual": "https://neurips.cc/virtual/2026/poster/148556",
+  "code": null
+ },
+ "license": "http://arxiv.org/licenses/nonexclusive-distrib/1.0/",
+ "img": "none",
+ "image_url": null,
+ "thumb_url": null,
+ "figure_page": 1,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.7
+}

@@ -1,0 +1,59 @@
+{
+ "id": "neurips26-1110",
+ "title": "The Path Not Taken: RLVR Learns Off the Principals",
+ "authors": [
+  "Hanqing Zhu",
+  "Zhenyu Zhang",
+  "Hanxian Huang",
+  "DiJia Su",
+  "Zechun Liu",
+  "Jiawei Zhao",
+  "Igor Fedorov",
+  "Hamed Pirsiavash",
+  "Jinwon Lee",
+  "David Z. Pan",
+  "Zhangyang &amp;quot;Atlas&amp;quot; Wang",
+  "Yuandong Tian",
+  "Kai Sheng Tai"
+ ],
+ "venue": "NeurIPS 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": null,
+ "role": "concept",
+ "role2": "analysis-finding",
+ "claim": "Supervised tuning pushes updates through high-curvature principal directions, while reinforcement learning follows an implicit bias that detours around them and preserves the spectrum.",
+ "layout": "3 panels left-to-right: two cartoon scenes, then heatmaps and curves; hiker metaphor",
+ "tags": [
+  "optimization-geometry",
+  "metaphor",
+  "sft-vs-rl",
+  "parameter-space",
+  "spectral-analysis"
+ ],
+ "style": [
+  "colorful",
+  "icon-heavy",
+  "plot"
+ ],
+ "description": "The figure has three parts. Panels (a) and (b) are flat-style cartoon illustrations of a hiker with a backpack heading toward a TARGET flag on a mountain. In (a), titled 'SFT: predefined route, even over mountain', the hiker follows a signposted path straight over the mountain. In (b), titled 'RL: implicit compass, around mountain', the hiker holds a compass and takes a winding detour around the mountain. Panel (c), titled 'Compass guides RL to', has two parts. On the left are two purple heatmaps, the weight update position map and the principal weight mask. Red dashed boxes and red text mark the regions, and a yellow/purple 1/0 colorbar sits beside them. On the right are two blue principal-angle curves over k. The RL curve peaks at about 5 degrees and the SFT curve at about 50 degrees. The eye goes first to the colorful cartoons.",
+ "caption": "SFT vs.\\ RLVR: optimization geometry and evidence. (a) SFT follows an externally guided route and traverses high-curvature directions (\"over the mountain\") to reach the target. (b) RLVR, without an explicit teacher, behaves as if steered by an implicit compass (a model-conditioned optimization bias), taking a low-curvature detour. (c) Evidence. Left: positional maps comparing the update mask (non-zero parameter updates) with the principal mask (positions aligned with top-$k$ singular subspaces, defined by the largest-magnitude entries of the rank-$k$ SVD reconstruction [ref]; details in Sec. [ref]). RLVR updates avoid principal-weight positions, whereas SFT targets them [ref]. Right: principal-angle curves of the top-$k$ subspaces show that RLVR rotates less (spectrum preserved), while SFT rotates more.",
+ "caption_source": "latex",
+ "abstract": "Reinforcement Learning with Verifiable Rewards (RLVR) reliably improves the reasoning performance of large language models, yet it appears to modify only a small fraction of parameters. We revisit this paradox and show that sparsity is a surface artifact of a model-conditioned optimization bias: for a fixed pretrained model, updates consistently localize to preferred parameter regions, highly consistent across runs and largely invariant to datasets and RL recipes. We mechanistically explain these dynamics with a Three-Gate Theory: Gate I (KL Anchor) imposes a KL-constrained update; Gate II (Model Geometry) steers the step off principal directions into low-curvature, spectrum-preserving subspaces; and Gate III (Precision) hides micro-updates in non-preferred regions, making the off-principal bias appear as sparsity. We then validate this theory and, for the first time, provide a parameter-level characterization of RLVR's learning dynamics: RLVR learns off principal directions in weight space, achieving gains via minimal spectral drift, reduced principal-subspace rotation, and off-principal update alignment. In contrast, SFT targets principal weights, distorts the spectrum, and even lags RLVR. Together, these results provide the first parameter-space account of RLVR's training dynamics, revealing clear regularities in how parameters evolve. Crucially, we show that RL operates in a distinct optimization regime from SFT, so directly adapting SFT-era parameter-efficient fine-tuning (PEFT) methods can be flawed, as evidenced by our case studies on advanced sparse fine-tuning and LoRA variants. We hope this work charts a path toward a white-box understanding of RLVR and the design of geometry-aware, RLVR-native learning algorithms, rather than repurposed SFT-era heuristics.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=7ob9PpTAMB",
+  "arxiv": "https://arxiv.org/abs/2511.08567",
+  "pdf": "https://arxiv.org/pdf/2511.08567",
+  "proceedings": null,
+  "virtual": "https://neurips.cc/virtual/2026/poster/155162",
+  "code": null
+ },
+ "license": "http://arxiv.org/licenses/nonexclusive-distrib/1.0/",
+ "img": "none",
+ "image_url": null,
+ "thumb_url": null,
+ "figure_page": 1,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.6
+}

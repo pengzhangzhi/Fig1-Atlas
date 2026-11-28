@@ -1,0 +1,51 @@
+{
+ "id": "neurips26-5556",
+ "title": "Which Tokens to Merge? Diffusion Dynamics for Efficient Image Generation",
+ "authors": [
+  "SeungJu Cha",
+  "Ye-Chan Kim",
+  "HyunGee Kim",
+  "Sungho Koh",
+  "Dong-Jin Kim"
+ ],
+ "venue": "NeurIPS 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "Computer Vision->Image and Video Generation",
+ "role": "problem-setup",
+ "role2": "analysis-finding",
+ "claim": "Relevance-based importance criteria miss non-prompt regions and details, causing structural failures that dynamics-based signals can reveal.",
+ "layout": "3 panels, left-to-right; image comparison, token-map grid, histogram with edge maps",
+ "tags": [
+  "token-merging",
+  "failure-mode",
+  "diffusion-dynamics",
+  "efficiency",
+  "blind-spots"
+ ],
+ "style": [
+  "photo/real data",
+  "colorful",
+  "plot"
+ ],
+ "description": "A wide three-panel figure built around one teacup photo. Panel (a) shows the original image with yellow dashed boxes marking non-prompt regions (background flower, cup rim). Beside it, CFG and Ours outputs are compared at compression ratios 0.3 and 0.5. The CFG outputs show artifacts in the boxed regions, and Ours looks cleaner. Panel (b) is a 4x6 grid of the teacup overlaid with colored dots marking top-ranked tokens. The rows are Pseudo GT (orange), CFG (blue), Score Slope (green) and Tweedie Diff (red), and a dashed arrow labeled T shows time running left to right. Panel (c) has a bar chart of non-prompt object edge alignment (%) against timestep, with a sharp peak near 0.1. Below it are four edge maps with red highlights marking missed edges. Bold captions sit under each panel.",
+ "caption": "Sample figure caption. Explain what the figure shows and add a key take-away message to the caption.",
+ "caption_source": "latex",
+ "abstract": "Token merging has emerged as an effective training-free strategy for accelerating diffusion models by reducing redundant token computation while minimizing generation degradation. A key challenge is determining which tokens can be safely merged and which should be preserved for subsequent computation. Existing method addresses this by preserving prompt-aligned foreground regions, thereby protecting semantically relevant structures. However, this text-relevance criterion overlooks background objects, local details that are not explicitly mentioned in the prompt, leading to degraded structural coherence. In this work, we propose Dynamics-aware Token Merging (DaTMe), a training-free framework that grounds token merging in the underlying diffusion dynamics. Our key insight is that token importance should reflect whether a token remains unresolved during denoising and whether it carries structural information. To this end, DaTMe constructs a dynamics- aware importance map from the Tweedie denoised estimate. The map combines a temporal signal, measuring inter-step changes in the predicted clean image, with a structural signal, capturing local high-frequency content such as boundaries and fine details. Using this map, DaTMe adaptively assigns tokens into merging roles under a given compression ratio: important tokens are preserved as anchors, while tokens that are both temporally stabilized and structurally homogeneous are selected as safe merge candidates. Experiments on PixArt-a and FLUX demonstrate that DaTMe maintains visual fidelity across the entire image, highlighting diffusion dynamics as an effective token-level merging decision in efficient generation. Our code is available at https://github.com/SeungJuCha/DaTMe.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=cDWOMIJrbJ",
+  "arxiv": "https://arxiv.org/abs/2610.22370",
+  "pdf": "https://arxiv.org/pdf/2610.22370",
+  "proceedings": null,
+  "virtual": "https://neurips.cc/virtual/2026/poster/151199",
+  "code": "https://github.com/SeungJuCha/DaTMe"
+ },
+ "license": "http://arxiv.org/licenses/nonexclusive-distrib/1.0/",
+ "img": "none",
+ "image_url": null,
+ "thumb_url": null,
+ "figure_page": 1,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.5
+}

@@ -1,0 +1,53 @@
+{
+ "id": "icml26-3596",
+ "title": "Automated Formal Proofs of Combinatorial Identities via Wilf–Zeilberger Guidance and LLMs",
+ "authors": [
+  "Beibei Xiong",
+  "Hangyu Lv",
+  "Junqi Liu",
+  "Yisen Wang",
+  "Shaoshi Chen",
+  "Jianlin Wang",
+  "Zhengfeng Yang",
+  "Lihong Zhi"
+ ],
+ "venue": "ICML 2026",
+ "tier": "spotlight",
+ "track": "main",
+ "topic": "Deep Learning->Large Language Models",
+ "role": "pipeline",
+ "role2": "overview-framework",
+ "claim": "A two-stage neuro-symbolic pipeline turns symbolic proof plans into subgoals, then trains a prover on them through verified iteration.",
+ "layout": "2 shaded panels, left-to-right, feedback loop with verification gate",
+ "tags": [
+  "neuro-symbolic",
+  "pipeline",
+  "proof-decomposition",
+  "bootstrapping",
+  "verifier-feedback"
+ ],
+ "style": [
+  "icon-heavy",
+  "colorful"
+ ],
+ "description": "A wide rounded box titled WZ-LLM holds two tinted panels. The left panel, A. Symbolic Decomposition (blue), starts with a Candidate Statements database icon. An arrow leads to a 'WZ applicable?' diamond. Yes leads to an orange WZ Proof Sketch box (WZ Invariant, Telescoping Summation), then to a purple box of WZ Sub-goals (Boundary obligations, Recurrence lemmas). No sends statements along a lower arrow to a green 'WZ-uncovered IDs' box. The right panel, B. Model Training (pink), shows a Proving Task Pool database feeding a Prover box. A Seed Dataset cylinder feeds the Prover by cold start. Candidate Proofs pass through a Lean Verification Gate. Verified proofs loop back as 'train' with an Expert Iteration cycle. Failed proofs go back via a red dashed line with a red X. DAPO Training leads to a WZ-Prover robot icon.",
+ "caption": "Overview of WZ-LLM. (A) Symbolic decomposition. Given combinatorial-identity statements, the symbolic engine checks WZ applicability and, when applicable, constructs a WZ proof sketch that is decomposed into sub-goals. Statements that are not amenable to the WZ method are labeled as WZ-uncovered targets. All sub-goals and uncovered targets form a shared pool of proving tasks. (B) Model training. We cold-start a prover with a seed dataset, iteratively generate proofs for tasks in the pool, and verify them. Lean-verified proofs are retained and used for prune/train updates, while unverified ones are discarded. The expert model is further refined with DAPO to yield WZ-Prover for formally discharging both WZ-derived obligations and WZ-uncovered identities.",
+ "caption_source": "latex",
+ "abstract": "Automating formal proofs of combinatorial identities is challenging for LLM-based provers, as long-horizon proof planning is required and unconstrained search quickly explodes. Symbolic methods such as the Wilf-Zeilberger (WZ) method can achieve a mechanized proof of combinatorial identities by constructing special auxiliary functions and demonstrating that they satisfy specific recurrence relations. We propose WZ-LLM, a neuro-symbolic framework that turns WZ proof plans into executable proof sketches in Lean 4 and uses an LLM-based prover to discharge the resulting machine-checkable subgoals. We also train a dedicated WZ-Prover via a Lean-kernel-verified bootstrapping loop with expert-verified iteration, followed by DAPO-based refinement. Experiments show that WZ-LLM achieves a 34% proof success rate on LCI-Test (100 classic combinatorial identities), outperforming strong baselines such as DeepSeek-V3 and Goedel-Prover-V2, and delivering consistent gains on CombiBench and PutnamBench-Comb. These results indicate that our framework provides two complementary strengths: improved direct proving for identities beyond the scope of WZ, and substantially higher end-to-end success when WZ sketches guide a specialized prover.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=Xxq7fcQUNR",
+  "arxiv": "https://arxiv.org/abs/2605.04472",
+  "pdf": "https://raw.githubusercontent.com/mlresearch/v306/main/assets/xiong26i/xiong26i.pdf",
+  "proceedings": "https://proceedings.mlr.press/v306/xiong26i.html",
+  "virtual": "https://icml.cc/virtual/2026/poster/63340",
+  "code": null
+ },
+ "license": "http://arxiv.org/licenses/nonexclusive-distrib/1.0/",
+ "img": "none",
+ "image_url": null,
+ "thumb_url": null,
+ "figure_page": 3,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.85
+}

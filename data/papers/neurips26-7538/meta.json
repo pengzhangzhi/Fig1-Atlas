@@ -1,0 +1,57 @@
+{
+ "id": "neurips26-7538",
+ "title": "Think, then Score: Decoupled Reasoning and Scoring for Video Reward Modeling",
+ "authors": [
+  "Yuan Wang",
+  "Ouxiang Li",
+  "Yulong Xu",
+  "Borui Liao",
+  "Jiajun Liang",
+  "Jinghan Li",
+  "Meng Wang",
+  "Xintao Wang",
+  "Pengfei Wan",
+  "Kuien Liu",
+  "Xiang Wang"
+ ],
+ "venue": "NeurIPS 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "Computer Vision->Image and Video Generation",
+ "role": "teaser-result",
+ "role2": "analysis-finding",
+ "claim": "Our method reaches higher accuracy than all baselines while using far less training data, across in-domain and out-of-domain benchmarks.",
+ "layout": "3 scatter panels side by side; arrows annotate gains, red star for ours",
+ "tags": [
+  "reward-model",
+  "data-efficiency",
+  "pareto",
+  "generalization",
+  "benchmark-comparison"
+ ],
+ "style": [
+  "plot",
+  "colorful",
+  "minimal"
+ ],
+ "description": "Three side-by-side scatter plots share the same axes: data size in thousands (log-like x-axis, 20 to 200) against preference accuracy in percent. Panels are labeled (a) In-domain Dataset, (b) GenAI-Bench and (c) VideoGen-Bench. Each plot shows labeled baselines as colored circles: VideoScore2 in blue, UnifiedReward-Thinking in green, VisionReward in yellow, and VideoAlign in purple. DeScore (Ours) is a large red star at the top left, with high accuracy and a small data size. A green horizontal double arrow labeled '76% Data Reduction' links the star to VideoAlign. A blue vertical arrow marks the accuracy improvement over VideoScore2: 18%, 24% and 54% in the three panels. The eye goes first to the red star and the colored arrows.",
+ "caption": "Overview and Motivation of DeScore. (a) Video Reward Modeling Paradigms. Existing video reward models generally follow two paradigms: Discriminative RMs directly regress rewards without explicit thinking (\\eg, CoT), and Generative RMs couple thinking and scoring within a single autoregressive sampling chain. DeScore improves both paradigms based on two observations: First, (b) Preference Accuracy shows that incorporating CoT enables Generative RMs to outperform Discriminative RMs, highlighting the necessity of explicit thinking for generalization. Second, (c) Training Stability reveals that coupling thinking and scoring requires the final score to be optimized through GRPO loss [ref], leading to pronounced training fluctuations. In contrast, discriminative training with BT loss [ref] exhibits smooth convergence. Motivated by these findings, DeScore introduces a decoupled \"think-then-score\" paradigm that effectively leverages the generalization benefits of CoT reasoning while preserving the training stability inherent to discriminative optimization.",
+ "caption_source": "latex",
+ "abstract": "Recent advances in generative video models are increasingly driven by post-training and test-time scaling, both of which critically depend on the quality of video reward models (RMs). An ideal reward model should predict accurate rewards that align with human preferences across diverse scenarios. However, existing paradigms face a fundamental dilemma: \\textit{Discriminative RMs} regress rewards directly on features extracted by multimodal large language models (MLLMs) without explicit reasoning, making them prone to shortcut learning and heavily reliant on massive data scaling for generalization. In contrast, \\textit{Generative RMs} with Chain-of-Thought (CoT) reasoning exhibit superior interpretability and generalization potential, as they leverage fine-grained semantic supervision to internalize the rationales behind human preferences. However, they suffer from inherent optimization bottlenecks due to the coupling of reasoning and scoring within a single autoregressive inference chain. To harness the generalization benefits of CoT reasoning while mitigating the training instability of coupled reasoning and scoring, we introduce DeScore, a training-efficient and generalizable video reward model. DeScore employs a decoupled ``think-then-score'' paradigm: an MLLM first generates an explicit CoT, followed by a dedicated discriminative scoring module consisting of a learnable query token and a regression head that predicts the final reward. DeScore is optimized via a two-stage framework: (1) a discriminative cold start incorporating a random mask mechanism to ensure robust scoring capabilities, and (2) a dual-objective reinforcement learning stage that independently refines CoT reasoning quality and calibrates the final reward, ensuring that higher-quality reasoning directly translates to superior model performance.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=q1K2PuBRd7",
+  "arxiv": "https://arxiv.org/abs/2605.05922",
+  "pdf": "https://arxiv.org/pdf/2605.05922",
+  "proceedings": null,
+  "virtual": "https://neurips.cc/virtual/2026/poster/149446",
+  "code": "https://wyuan1001.github.io/DeScore/"
+ },
+ "license": "http://arxiv.org/licenses/nonexclusive-distrib/1.0/",
+ "img": "none",
+ "image_url": null,
+ "thumb_url": null,
+ "figure_page": 6,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.9
+}

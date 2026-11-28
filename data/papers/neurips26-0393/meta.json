@@ -1,0 +1,52 @@
+{
+ "id": "neurips26-0393",
+ "title": "MaskForge: Structure-Aware Adaptive Attacks for Jailbreaking Diffusion Large Language Models",
+ "authors": [
+  "Yingzi Ma",
+  "Zhengyue Zhao",
+  "Xiaogeng Liu",
+  "Minhui Xue",
+  "Yue Zhao",
+  "Chaowei Xiao"
+ ],
+ "venue": "NeurIPS 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": null,
+ "role": "pipeline",
+ "role2": "overview-framework",
+ "claim": "A shared, growing library of reusable patterns links exploration, bandit-guided expansion, fallback repair, and deployment into one adaptive pipeline.",
+ "layout": "4 colored panels around a central library hub, arrows left-to-right, dashed retrieve loops",
+ "tags": [
+  "pattern-library",
+  "bandit-selection",
+  "red-teaming",
+  "experience-accumulation",
+  "black-box-attack"
+ ],
+ "style": [
+  "colorful",
+  "text-heavy",
+  "icon-heavy"
+ ],
+ "description": "A four-panel diagram with pastel backgrounds. Panel (a) is blue and at top left, labeled Stage 1: Exploration. It shows Malicious Request flowing to Attacker LLM and then to a stack of Initial Pattern cards. Panel (b) is green and at top right, labeled Stage 2: Expansion. It shows Malicious Request, then UCB select, Pattern i, Attacker LLM, Target dLLM and Scorer LLM. A template example sits above the flow, and a sample generated headline sits below it. Panel (c) is pink and at bottom right, labeled Fallback (low reward). It shows Drafter LLM, then a specific malicious response, then a new template extracted from it. Panel (d) is yellow and at bottom left, labeled Test Time Deployment. It shows a request, Pattern i and Attacker LLM feeding an Unseen Target dLLM. A lavender Pattern Library box sits in the center and links all four panels. Solid arrows show data flow. Dashed arrows show retrieval and retry. Boxes use color-coded text: red for requests, magenta for the attacker, orange for models and the scorer, and blue for patterns.",
+ "caption": "Overview of \\method. (a) In Stage 1, an attacker LLM produces mask-bearing templates for bootstrap goals; structural patterns are extracted and stored in a shared library. (b) In Stage 2, a UCB bandit selects patterns from the library; the attacker instantiates a template; the target dLLM fills the masks; and the scorer returns a reward. High-reward attempts are distilled back into the library. (c) A fallback path is triggered when the reward is below threshold $\\rho$: a drafter LLM produces a malicious draft, from which a new template is extracted and re-evaluated. (d) At test time, the matured library is queried to attack unseen goals on unseen victim dLLMs without further updates. \\looseness=-1",
+ "caption_source": "latex",
+ "abstract": "Diffusion large language models (dLLMs) generate text by iteratively denoising partially masked sequences under bidirectional context, exposing a safety surface distinct from autoregressive LLMs. Because mask tokens are native inputs and tokens are committed by confidence rather than position, harmful content can be induced through infilling and outside the monitored prefix. Existing jailbreaks either miss this native infill capability or rely on low-diversity mask-bearing templates applied uniformly across goals, with little structural adaptation or accumulated attack experience. We propose MaskForge, a fully black-box adaptive attack that casts dLLM red-teaming as optimized search over a growing library of structural patterns. MaskForge abstracts successful attempts into reusable schemas, selects goal-compatible patterns with a UCB bandit, and invokes a scorer-guided fallback when the current library fails. Successful attempts are distilled back into the pattern library, enabling experience to accumulate across goals. Across five public dLLMs and three benchmarks, MaskForge achieves an average attack success rate of 79.3%, a 17.6% relative improvement over the strongest competing dLLM baseline. The matured pattern library further transfers to AdvBench without any updates, achieving a 88.2% attack success rate and a 67% relative improvement over the strongest competing baseline.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=2pQJ37HKk3",
+  "arxiv": "https://arxiv.org/abs/2606.04027",
+  "pdf": "https://arxiv.org/pdf/2606.04027",
+  "proceedings": null,
+  "virtual": "https://neurips.cc/virtual/2026/poster/155796",
+  "code": null
+ },
+ "license": "http://arxiv.org/licenses/nonexclusive-distrib/1.0/",
+ "img": "none",
+ "image_url": null,
+ "thumb_url": null,
+ "figure_page": 1,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.85
+}

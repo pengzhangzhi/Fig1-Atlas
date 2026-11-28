@@ -1,0 +1,51 @@
+{
+ "id": "icml26-3539",
+ "title": "Geometric Collapse: When Vision Models Fail to Verify Physical Causality",
+ "authors": [
+  "Wentao Zhang",
+  "Jinhu Qi",
+  "Weiqiang Jin",
+  "Yifei Zhang",
+  "Chan-Tong Lam",
+  "Irwin King"
+ ],
+ "venue": "ICML 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "Applications->Computer Vision",
+ "role": "analysis-finding",
+ "role2": "problem-setup",
+ "claim": "Adding unsupported edge cues to an input makes a dense predictor's output collapse globally, not just near the corrupted region.",
+ "layout": "2x3 grid, reading left-to-right then top-to-bottom, with colormapped depth and error maps",
+ "tags": [
+  "failure-mode",
+  "robustness",
+  "counterfactual",
+  "dense-prediction",
+  "error-propagation"
+ ],
+ "style": [
+  "photo/real data",
+  "colorful"
+ ],
+ "description": "A 2x3 grid of six labeled panels showing one indoor scene. Top row: (a) the clean RGB input, a dim room with a door and a laundry basket. (b) the same image with black scribbled edge-like lines drawn over it, labeled Scrambled Edges. (c) the ground-truth depth map in a purple-to-yellow plasma colormap. Bottom row: (d) the clean depth prediction, which closely matches the ground truth. (e) the collapsed prediction after the edge corruption, with depth washed out and warped into the wrong gradients across the whole image. (f) an error map in a black-red-yellow heat colormap, with the largest errors, in bright yellow, covering the whole upper-left region far from most of the scribbles. The eye goes first to the scribbled input and the saturated heatmaps. The figure uses no arrows or text beyond the panel titles.",
+ "caption": "Geometric Collapse: Dense models fail to verify physical consistency. Top: \"Scrambled Edges\"---edge cues energy-matched to noise but violating continuity/illumination/occlusion priors---are treated as valid structure by dense predictors (e.g., DepthAnythingV2), causing global hallucinations (Geometric Collapse). Bottom: Models stable under frequency-matched noise can still collapse under unsupported edges, with errors propagating scene-wide.",
+ "caption_source": "latex",
+ "abstract": "Recent progress in large-scale self-supervised learning has improved dense geometric prediction, but it remains unclear whether such scaling yields inference-time physical plausibility checks. We propose Scrambled Edges, a controlled counterfactual that injects salient edge-like cues while violating surface continuity, illumination coherence, and occlusion ordering. With energy-matched and structure-matched controls, we isolate the effect of unsupported edge evidence from high-frequency energy and edge sparsity. Across CNN/ViT/SSL depth predictors on NYU Depth v2 and KITTI, Scrambled Edges induce up to 3.2x larger deviation from clean predictions than energy-matched noise; additional diffusion and flow-matching depth estimators show attenuated but still significant collapse. The resulting Geometric Collapse propagates globally: even with oracle knowledge of the corrupted region, output-level repair recovers only 47%, with substantial error outside the mask. These findings provide controlled behavioral evidence that current dense predictors lack reliable mechanisms to quarantine physically unsupported edge cues, motivating explicit plausibility scoring and selective cue integration.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=XX9TQRWZOx",
+  "arxiv": "https://arxiv.org/abs/2607.06871",
+  "pdf": "https://raw.githubusercontent.com/mlresearch/v306/main/assets/zhang26ev/zhang26ev.pdf",
+  "proceedings": "https://proceedings.mlr.press/v306/zhang26ev.html",
+  "virtual": "https://icml.cc/virtual/2026/poster/63395",
+  "code": "https://github.com/kanze1/Geometric-Collapse-When-Vision-Models-Fail-to-Verify-Physical-Causality"
+ },
+ "license": "http://creativecommons.org/licenses/by/4.0/",
+ "img": "cc-by",
+ "image_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/images/icml26-3539.png",
+ "thumb_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/thumbs/icml26-3539.webp",
+ "figure_page": 0,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.6
+}

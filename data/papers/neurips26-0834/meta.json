@@ -1,0 +1,54 @@
+{
+ "id": "neurips26-0834",
+ "title": "AgentKVShift: Efficient KV Cache Reuse for Agentic Memory Systems",
+ "authors": [
+  "Nilesh Prasad Pandey",
+  "Jason Kong",
+  "Lanxiang Hu",
+  "Quanling Zhao",
+  "Yujie Zhao",
+  "Onat Gungor",
+  "Hao Zhang",
+  "Tajana S Rosing"
+ ],
+ "venue": "NeurIPS 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "Deep Learning->Everything Else",
+ "role": "pipeline",
+ "role2": null,
+ "claim": "Mean residuals estimated from a few freshly computed probe tokens can correct all reused tokens, approximating full recomputation without retraining.",
+ "layout": "4 stages left-to-right with arrows, plus right-hand checkmark takeaway column",
+ "tags": [
+  "kv-cache-reuse",
+  "residual-correction",
+  "training-free",
+  "efficiency",
+  "agent-memory"
+ ],
+ "style": [
+  "colorful",
+  "icon-heavy",
+  "minimal"
+ ],
+ "description": "A left-to-right pipeline on a white background. At far left, three boxed memory units (A, B, C), each with a node-graph icon and link/t/meta tags. Memory B is circled by a red dashed outline, and an arrow leads from it to the next stage. The 'Potential KV Reuse' stage shows two token-by-layer grids, K_cached and V_cached. Probe rows are orange for K and pink for V, and the other rows are grey (reused tokens). A legend sits below. An arrow leads to 'Residual Estimation', which shows K_fresh − K_cached and V_fresh − V_cached collapsing into single orange ΔK_avg and pink ΔV_avg rows. A second arrow leads to 'Update non-probe tokens', where K_new and V_new grids have curved blue arrows spreading the averaged offsets to the grey rows. At right, three green checkmarks carry takeaway text: probe tokens preserve fresh KVs, recompute budget becomes a refresh signal, and the correction is training-free. Blue headings label each stage.",
+ "caption": "AgentKVShift: KV reuse via residual estimation. The mean residuals $\\Delta K_avg$ and $\\Delta V_avg$ are estimated using probe tokens are applied to non-probe tokens to produce $K_new$ and $V_new$, approximating full recomputation.",
+ "caption_source": "latex",
+ "abstract": "Memory-augmented LLM agents maintain context across hundreds of interactions through agentic memory systems that actively curate retrieved content with LLM-generated metadata such as summaries, keywords, and tags. From an inference cost standpoint, every retrieval triggers a full re-encoding of these structured memory units into Key-Value (KV) states, which dominates prefill latency. Existing training-free KV reuse methods mitigate this by selectively recomputing a small fraction of tokens, but were designed for RAG-style raw passages and degrade on structured agentic memories. We present AgentKVShift, a training-free, probe-guided KV residual correction method that operates per retrieved memory unit. One of the crucial insights we demonstrate is that the per-memory KV reuse residual decomposes into a shared memory-level offset plus small token-wise fluctuations. Estimating this offset from a small probe set allows us to correct every reused token by a single weighted correction. Unlike prior reuse methods which decide which tokens to recompute and leave the rest of the cache stale, AgentKVShift also corrects the tokens it does not recompute, turning the refresh budget into useful signal across the entire chunk. Across four open-source LLMs spanning 3B to 32B parameters and two long-horizon agentic memory benchmarks (long-term dialogue and agentic applications), AgentKVShift achieves near full recompute performance while refreshing only 10-30% of the cache, outperforming baselines at the same recompute ratio. It requires up to 5x lower recompute to reach this near-full performance, which prior reuse methods only attain at 45-55% refresh. In this regime, AgentKVShift delivers prefill speedups of 2-3.5x over no-KV-reuse on a single A100. AgentKVShift orthogonally composes with KV cache quantization, retaining over 2x the F1 of prior reuse methods under aggressive 2- and 4-bit settings.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=5uRXWGrFvm",
+  "arxiv": "https://arxiv.org/abs/2607.21604",
+  "pdf": "https://arxiv.org/pdf/2607.21604",
+  "proceedings": null,
+  "virtual": "https://neurips.cc/virtual/2026/poster/155404",
+  "code": null
+ },
+ "license": "http://creativecommons.org/licenses/by/4.0/",
+ "img": "cc-by",
+ "image_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/images/neurips26-0834.png",
+ "thumb_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/thumbs/neurips26-0834.webp",
+ "figure_page": 2,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.85
+}

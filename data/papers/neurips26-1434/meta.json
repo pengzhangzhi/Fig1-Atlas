@@ -1,0 +1,48 @@
+{
+ "id": "neurips26-1434",
+ "title": "Diffusion Language Models Can Approximate Optimal Infilling Lengths Implicitly",
+ "authors": [
+  "Hengchang Liu",
+  "Zhao Yang",
+  "Bing Su"
+ ],
+ "venue": "NeurIPS 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "Applications->Language, Speech and Dialog",
+ "role": "problem-setup",
+ "role2": "before-after",
+ "claim": "A fixed infilling length that is too short or too long yields broken output; only the correct length recovers the solution.",
+ "layout": "3 panels left-to-right: prefix, middle with stacked length variants, suffix; arrows from middle",
+ "tags": [
+  "infilling",
+  "diffusion-language-models",
+  "length-sensitivity",
+  "failure-case",
+  "code-generation"
+ ],
+ "style": [
+  "text-heavy",
+  "colorful"
+ ],
+ "description": "A three-part code-infilling example in rounded blue boxes labeled Prefix, Middle and Suffix. Blue curved arrows link the Middle title to the Prefix and Suffix. The left box holds the Python prefix: the has_close_elements signature, a docstring with doctests, and nested for loops, in syntax-highlighted monospace. The right box holds the suffix: an if distance < threshold check, return True and return False, plus a task tag. The center dashed box is split by dashed lines into three candidates. Infilling with 4 [MASK] gives a truncated 'distance ='. Infilling with 16 [MASK] gives a redundant division of abs terms that is invalid (division by zero). The Ground Truth with 10 [MASK] gives 'distance = abs(elem - elem2)'. Light-blue label tags mark each case. The eye goes first to the center column.",
+ "caption": "Infilling sensitivity to a fixed mask length. Evaluated on HumanEval-Infilling [ref] using LLaDA-8B-Instruct. An underestimated length ($L=4$) truncates the completion, whereas an overestimated length ($L=16$) introduces redundant tokens and may yield invalid logic (e.g., division by zero) to fill the remaining masked positions. The correct solution is only recovered when the length matches the ground truth ($L=10$).",
+ "caption_source": "latex",
+ "abstract": "Diffusion language models (DLMs) provide a bidirectional generation framework naturally suited for infilling, yet their performance is constrained by the pre-specified infilling length. In this paper, we reveal that DLMs possess an inherent ability to discover the correct infilling length. We identify two key statistical phenomena in the first-step denoising confidence: a local \\textit{Oracle Peak} that emerges near the ground-truth length and a systematic \\textit{Length Bias} that often obscures this signal. By leveraging this signal and calibrating the bias, our training-free method \\textbf{CAL} (\\textbf{C}alibrated \\textbf{A}daptive \\textbf{L}ength) enables DLMs to approximate the optimal length through an efficient search before formal decoding. Empirical evaluations demonstrate that CAL improves Pass@1 by up to 47.7\\% over fixed-length baselines and 40.5\\% over chat-based adaptive methods in code infilling, while boosting BLEU-2 and ROUGE-L by up to 8.5\\% and 9.9\\% in text infilling. These results demonstrate that CAL paves the way for robust DLM infilling without requiring any specialized training. Code is available at https://github.com/NiuHechang/Calibrated_Adaptive_Length.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=AFvSuWgvYZ",
+  "arxiv": "https://arxiv.org/abs/2602.00476",
+  "pdf": "https://arxiv.org/pdf/2602.00476",
+  "proceedings": null,
+  "virtual": "https://neurips.cc/virtual/2026/poster/154873",
+  "code": null
+ },
+ "license": "http://arxiv.org/licenses/nonexclusive-distrib/1.0/",
+ "img": "none",
+ "image_url": null,
+ "thumb_url": null,
+ "figure_page": 1,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.8
+}

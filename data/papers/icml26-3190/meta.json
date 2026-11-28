@@ -1,0 +1,48 @@
+{
+ "id": "icml26-3190",
+ "title": "Preconditioned DeltaNet: Curvature-aware Sequence Modeling for Linear Recurrences",
+ "authors": [
+  "Neehal Tumma",
+  "Noel Loo",
+  "Daniela Rus"
+ ],
+ "venue": "ICML 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "Deep Learning->Attention Mechanisms",
+ "role": "analysis-finding",
+ "role2": null,
+ "claim": "The learned key Gram matrix is highly ill-conditioned and its eigenvectors are largely axis-aligned, so diagonal preconditioning is a viable approximation.",
+ "layout": "2 line-plot panels side-by-side, shared legend style, log-scale spectrum left, alignment trend right",
+ "tags": [
+  "preconditioning",
+  "eigenspectrum",
+  "ill-conditioning",
+  "linear-recurrence",
+  "empirical-analysis"
+ ],
+ "style": [
+  "plot",
+  "minimal"
+ ],
+ "description": "Two side-by-side line plots analyzing the key Gram matrix KK^T from a pretrained model. The left panel is a log-scale plot of normalized eigenvalue against sorted index (0 to about 127). It has four curves: KK^T (solid blue), diag(KK^T) (dashed orange), (KK^T)^-1 (solid green) and diag((KK^T)^-1) (dashed pink). The KK^T curves fall steeply across many orders of magnitude, while the inverse curves are much flatter until a sharp drop near the end. The right panel plots an eigenvalue-weighted average of the eigenvector ℓ∞ norm against sequence position (0 to 1000). A solid blue λ-weighted curve stays near 0.7 to 0.8. A noisier dashed orange λ^-1-weighted curve ranges from about 0.35 to 0.8. A dotted gray line marks the 1/√d floor. Colors encode the different matrices, and the eye goes first to the steep blue decay.",
+ "caption": "In these plots, we analyze the key Gram matrix in an arbitrary layer of a pretrained DeltaNet-340M model from HuggingFace. Left. Plot of sorted eigenspectrum in various instances of the key Gram. Right. Eigenvalue-weighted average of the $\\ell_{\\infty}$ norm of the key Gram eigenvectors. A value of $1$ indicates perfect axis-alignment and a value of $\\frac{1}{\\sqrt{d}}$ indicates perfect misalignment.",
+ "caption_source": "latex",
+ "abstract": "To address the increasing long-context compute limitations of softmax attention, several subquadratic recurrent operators have been developed. This work includes models such as Mamba-2, DeltaNet, Gated DeltaNet (GDN), and Kimi Delta Attention (KDA). As the space of recurrences grows, a parallel line of work has arisen to taxonomize them. One compelling view is the test-time regression (TTR) framework, which interprets recurrences as performing online least squares updates that learn a linear map from the keys to values. Existing delta-rule recurrences can be seen as first-order approximations to this objective, but notably ignore the curvature of the least-squares loss during optimization. In this work, we address this by introducing preconditioning to these recurrences. Starting from the theory of online least squares, we derive equivalences between linear attention and the delta rule in the exactly preconditioned case. Next, we realize this theory in practice by proposing a diagonal approximation: this enables us to introduce preconditioned variants of DeltaNet, GDN, and KDA alongside efficient chunkwise parallel algorithms for computing them. Empirically, we find that our preconditioned delta-rule recurrences yield consistent performance improvements across synthetic recall benchmarks and language modeling at the 340M and 1B scale.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=UC6YiTOeKb",
+  "arxiv": "https://arxiv.org/abs/2604.21100",
+  "pdf": "https://raw.githubusercontent.com/mlresearch/v306/main/assets/tumma26a/tumma26a.pdf",
+  "proceedings": "https://proceedings.mlr.press/v306/tumma26a.html",
+  "virtual": "https://icml.cc/virtual/2026/poster/63733",
+  "code": null
+ },
+ "license": "http://creativecommons.org/licenses/by/4.0/",
+ "img": "cc-by",
+ "image_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/images/icml26-3190.png",
+ "thumb_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/thumbs/icml26-3190.webp",
+ "figure_page": 3,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.9
+}

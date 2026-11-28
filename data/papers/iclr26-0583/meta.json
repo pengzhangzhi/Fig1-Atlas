@@ -1,0 +1,51 @@
+{
+ "id": "iclr26-0583",
+ "title": "LouisKV: Efficient KV Cache Retrieval for Long Input-Output Sequences",
+ "authors": [
+  "WENBO WU",
+  "Qingyi Si",
+  "Xiurui Pan",
+  "Ye Wang",
+  "Jie Zhang"
+ ],
+ "venue": "ICLR 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "Deep Learning->Generative Models and Autoencoders",
+ "role": "prior-vs-ours",
+ "role2": "pipeline",
+ "claim": "Prior methods retrieve critical memory at every step; ours reuses it across steps and retrieves only at segment boundaries, cutting transfer cost.",
+ "layout": "2 stacked rows, 4 columns left-to-right, GPU/CPU bands, red-X reuse arrow",
+ "tags": [
+  "kv-cache",
+  "retrieval",
+  "temporal-locality",
+  "efficiency",
+  "long-context"
+ ],
+ "style": [
+  "colorful",
+  "icon-heavy",
+  "text-heavy"
+ ],
+ "description": "A wide figure with a legend bar on top: blue prefill KV blocks, green decode KV blocks, red stars for critical KVs, dashed boxes for the newly generated KV, and red dashed arrows for retrieval on a token. Below it are four columns: Prefill, Decode Token 0, Decode Token 1, and Decode Token 6. Two horizontal rows are labeled Arkvale (top) and LouisKV (bottom). Each row has a pink GPU band above a blue CPU band. The Arkvale row groups blocks into pages and shows a red retrieval arrow at every token, with many dashed arrows at Token 6 and the label 'Retrieve Per Token'. The LouisKV row groups blocks into clusters and segments, has a big red arrow with a crossed-out retrieval and the text 'Reuse Critical KVs of Last Token', and is labeled 'Retrieve Per Segment'. Red text annotations draw the eye first.",
+ "caption": "Comparison of Arkvale and LouisKV. Arkvale adopts page-level KV management and retrieves critical pages from the CPU for every decoding token, leading to high transfer overhead and potential accuracy degradation. In contrast, LouisKV reuses critical KVs by exploiting temporal locality to significantly reduce retrieval frequency. It also employs a decoupled KV management scheme, enabling precise retrieval to improve transfer efficiency while maintaining high accuracy.",
+ "caption_source": "latex",
+ "abstract": "While Key-Value (KV) cache succeeds in reducing redundant computations in auto-regressive models, it introduces significant memory overhead, limiting its practical deployment in long-sequence scenarios. Existing KV retrieval methods mitigate this by dynamically retaining only a subset of KV entries on the GPU. However, they still suffer from notable efficiency and accuracy bottlenecks due to per-token retrieval and coarse-grained page-level KV management, especially in long-output reasoning scenarios. With the emergence of large reasoning models, efficiently handling such scenarios has become increasingly important. To address this issue, we present two key observations: (1) critical KVs exhibit strong temporal locality during decoding, and (2) these KVs exhibit distinct distribution patterns across the input prompt and generated output. Building on these observations, we propose LouisKV, an efficient KV cache retrieval framework designed for various long-sequence scenarios. Specifically, LouisKV introduces a semantic-aware retrieval strategy leveraging temporal locality to trigger retrieval only at semantic boundaries, drastically reducing computation and data transfer overhead. LouisKV also designs a decoupled, fine-grained management scheme that tailors differentiated strategies for input and output sequences to create retrieval units that better match the model's attention patterns, enabling precise identification of critical KVs. Furthermore, to boost efficiency, LouisKV incorporates several kernel-level optimizations, including custom Triton and CUDA kernels to accelerate the KV clustering and retrieval. Evaluations show that LouisKV achieves up to 4.7$\\times$ speedup over state-of-the-art KV retrieval methods while maintaining near-lossless accuracy across diverse long-sequence tasks, including long-input short-output, short-input long-output, and long-input long-output scenarios.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=6RJ8fZwm4P",
+  "arxiv": "https://arxiv.org/abs/2510.11292",
+  "pdf": "https://proceedings.iclr.cc/paper_files/paper/2026/file/6b241c515433caae3051266668d808b7-Paper-Conference.pdf",
+  "proceedings": "https://proceedings.iclr.cc/paper_files/paper/2026/hash/6b241c515433caae3051266668d808b7-Abstract-Conference.html",
+  "virtual": "https://iclr.cc/virtual/2026/poster/10011378",
+  "code": null
+ },
+ "license": "http://arxiv.org/licenses/nonexclusive-distrib/1.0/",
+ "img": "none",
+ "image_url": null,
+ "thumb_url": null,
+ "figure_page": 1,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.85
+}

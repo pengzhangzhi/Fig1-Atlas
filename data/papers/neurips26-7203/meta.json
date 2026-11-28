@@ -1,0 +1,49 @@
+{
+ "id": "neurips26-7203",
+ "title": "C-LoRA: Continual Low-Rank Adaptation for Pre-trained Visual Models",
+ "authors": [
+  "Xin Zhang",
+  "Liang Bai",
+  "Xian Yang"
+ ],
+ "venue": "NeurIPS 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "Deep Learning->Algorithms",
+ "role": "prior-vs-ours",
+ "role2": "concept",
+ "claim": "Standard methods weight subspace interactions uniformly and only pairwise; ours learns a routing matrix, whose hotspots create a stability-forgetting conflict.",
+ "layout": "3 panels, left-to-right, shared legend bar on top, math formulas under panels",
+ "tags": [
+  "low-rank-adaptation",
+  "continual-learning",
+  "routing-matrix",
+  "stability-plasticity",
+  "parameter-efficient"
+ ],
+ "style": [
+  "minimal",
+  "colorful",
+  "math-heavy"
+ ],
+ "description": "A shared legend bar at the top defines four items: learnable low-rank matrix (light green), rank-one subspace (hatched green), learnable weight matrix (orange heatmap) and matrix element (orange square). Panel (a) shows standard LoRA. Stacked hatched rows a_i^T in matrix A^T are linked to the matching rows b_i^T in B by straight gray lines labeled 1. The formula AB = sum a_i b_i^T sits below. Panel (b) shows C-LoRA. The same stacks are connected by a dense web of orange crossing lines, with an arrow up to an orange heatmap labeled R. The formula below is sum_i sum_j R_ij a_i b_j^T = ARB. Panel (c) is a schematic of A, B and R with blue forward arrows and orange backward arrows. A highlighted hotspot in R is labeled gradient amplified. The eye goes first to the orange heatmap.",
+ "caption": "(a) The standard LoRA formulation implicitly assumes fixed, uniform weights (implicitly 1) and only allows interaction between corresponding rank-one subspaces ($a_i b_i^\\top$). (b) C-LoRA introduces a learnable routing matrix $\\boldsymbol{\\mathcal{R}}$, enabling fine-grained control over subspace contributions and capturing complex cross-subspace interactions between $a_i$ and $b_j$. (c) The inherent conflict in continual learning: High-magnitude areas in $\\boldsymbol{\\mathcal{R}}$ (hotspots) are crucial for stability (preserving past knowledge), but they simultaneously amplify the gradients flowing to the shared matrices $A$ and $B$ during backpropagation, thereby risking catastrophic forgetting.",
+ "caption_source": "latex",
+ "abstract": "Pre-trained visual models have become fundamental in computer vision, but they face challenges in continual learning scenarios where data and tasks evolve over time. Low-Rank Adaptation (LoRA) offers efficient fine-tuning capabilities but remains limited for such dynamic environments. Standard LoRA cannot distinguish important subspaces, causing critical knowledge to be overwritten in sequential training. Existing approaches address this by dynamically expanding the set of LoRA adapters, either maintaining a growing pool of task-specific modules or merging new adapters into prior ones, at the cost of unbounded parameter growth or increasing inference complexity. We propose Continual Low-Rank Adaptation (C-LoRA), a method that enables a single, shared LoRA adapter to handle sequential tasks without catastrophic forgetting, without requiring any module selection or fusion at inference. The core of C-LoRA is a learnable routing matrix R that explicitly controls how each rank-one subspace contributes to the weight update. This matrix is decomposed into a stability component (R_base), which preserves knowledge from prior tasks, and a plasticity component (R_delta), which drives adaptation to the current task, providing direct control over the stability-plasticity trade-off. We analyze how R governs gradient flow during sequential training, and demonstrate competitive performance across multiple benchmarks.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=nf0YHUKcRr",
+  "arxiv": "https://arxiv.org/abs/2502.17920",
+  "pdf": "https://arxiv.org/pdf/2502.17920",
+  "proceedings": null,
+  "virtual": "https://neurips.cc/virtual/2026/poster/149746",
+  "code": "https://github.com/lambor9973/C-LoRA"
+ },
+ "license": "http://arxiv.org/licenses/nonexclusive-distrib/1.0/",
+ "img": "none",
+ "image_url": null,
+ "thumb_url": null,
+ "figure_page": 2,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.8
+}

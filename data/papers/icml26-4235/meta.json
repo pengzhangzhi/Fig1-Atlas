@@ -1,0 +1,52 @@
+{
+ "id": "icml26-4235",
+ "title": "REAL: Regression-Aware Reinforcement Learning for LLM-as-a-Judge",
+ "authors": [
+  "Yasi Zhang",
+  "Tianyu Chen",
+  "Mingyuan Zhou",
+  "Oscar Leong",
+  "Ying Nian Wu",
+  "Michal Lukasik"
+ ],
+ "venue": "ICML 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "Deep Learning->Large Language Models",
+ "role": "pipeline",
+ "role2": null,
+ "claim": "Optimizing a policy-dependent regression reward yields a gradient that splits into reasoning exploration and prediction refinement terms.",
+ "layout": "Cyclic flow: top row left-to-right, feedback loop, two bottom boxes with math",
+ "tags": [
+  "reinforcement-learning",
+  "policy-gradient",
+  "regression-reward",
+  "llm-as-judge",
+  "decomposition"
+ ],
+ "style": [
+  "math-heavy",
+  "colorful",
+  "icon-heavy"
+ ],
+ "description": "A rounded-frame diagram showing the REAL training loop. The top row runs left to right. A green 'Training Data' card holds (x, y*) pairs. An arrow leads to a cartoon robot labeled 'LLM π_θ'. Next is a pink 'Sample K Generations with CoTs' panel, where x branches into chains c_i that each map to a prediction ŷ_θ(x, c_i). Then a yellow 'Policy-Dependent Reward' panel gives r_REAL as a squared-error regression term plus a λ-weighted log-likelihood term, each marked with a brace. The reward returns along a lower arrow, labeled with the advantage A = r − b, to a 'Generalized Policy Gradient' pill. An 'Update' arrow goes up to the LLM. Two blue boxes at the bottom show the gradient split into a CoT Update term and a Prediction Update term, joined by a prediction weight β.",
+ "caption": "Overview of the REAL framework. REAL addresses the limitations of standard RL in LLM-as-a-Judge tasks by optimizing a policy-dependent regression reward. The framework employs a generalized policy gradient that leads to a gradient update that decomposes into two terms: (1) Exploration Over Reasoning Trajectory; and (2) Regression-Aware Prediction Refinement. This enables principled optimization of ordinal structures that standard RL with binary rewards typically ignores. The full algorithm is in Alg. [ref].",
+ "caption_source": "latex",
+ "abstract": "Large language models (LLMs) are increasingly deployed as automated evaluators that assign numeric scores to model outputs, a paradigm known as LLM-as-a-Judge. However, standard Reinforcement Learning (RL) methods typically rely on binary rewards (e.g., 0-1 accuracy), thereby ignoring the ordinal structure inherent in regression tasks; for instance, they fail to recognize that predicting 4 is significantly better than predicting 1 when the ground truth is 5. Conversely, existing regression-aware approaches are often confined to Supervised Fine-Tuning (SFT), limiting their ability to explore optimal reasoning paths. To bridge this gap, we propose \\textbf{REAL} (\\underline{RE}gression-\\underline{A}ware Reinforcement \\underline{L}earning), a principled RL framework designed to optimize regression rewards, and also proven to be optimal for correlation metrics. A key technical challenge is that the regression objective is explicitly policy-dependent, thus invalidating standard policy gradient methods. To address this, we employ the generalized policy gradient estimator, which naturally decomposes optimization into two complementary components: (1) exploration over Chain-of-Thought (CoT) trajectory, and (2) regression-aware prediction refinement of the final score. Extensive experiments across model scales (8B to 32B) demonstrate that REAL consistently outperforms both regression-aware SFT baselines and standard RL methods, exhibiting significantly better generalization on out-of-domain benchmarks. On Qwen3-32B specifically, we achieve gains of +8.40 Pearson and +7.20 Spearman correlation over the SFT baseline, and +18.30/+11.20 over the base model. These findings highlight the critical value of integrating regression objectives into RL exploration for accurate LLM evaluation.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=dy8ppwIj4o",
+  "arxiv": "https://arxiv.org/abs/2603.17145",
+  "pdf": "https://raw.githubusercontent.com/mlresearch/v306/main/assets/zhang26t/zhang26t.pdf",
+  "proceedings": "https://proceedings.mlr.press/v306/zhang26t.html",
+  "virtual": "https://icml.cc/virtual/2026/poster/62715",
+  "code": null
+ },
+ "license": "http://creativecommons.org/licenses/by/4.0/",
+ "img": "cc-by",
+ "image_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/images/icml26-4235.png",
+ "thumb_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/thumbs/icml26-4235.webp",
+ "figure_page": 0,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.9
+}

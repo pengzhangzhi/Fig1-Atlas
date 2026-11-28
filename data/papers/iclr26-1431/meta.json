@@ -1,0 +1,51 @@
+{
+ "id": "iclr26-1431",
+ "title": "DRPO: Efficient Reasoning via Decoupled Reward Policy Optimization",
+ "authors": [
+  "Gang Li",
+  "Yan Chen",
+  "Ming Lin",
+  "Tianbao Yang"
+ ],
+ "venue": "ICLR 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "Deep Learning->Generative Models and Autoencoders",
+ "role": "prior-vs-ours",
+ "role2": "problem-setup",
+ "claim": "Penalizing length in group-normalized advantages pushes correct-but-long responses negative; decoupling the reward keeps them positive while still downweighting them.",
+ "layout": "3 stacked rows, left-to-right flow, red dashed box highlights key bar",
+ "tags": [
+  "reinforcement-learning",
+  "length-penalty",
+  "efficient-reasoning",
+  "advantage-estimation",
+  "failure-mode"
+ ],
+ "style": [
+  "colorful",
+  "plot",
+  "math-heavy",
+  "icon-heavy"
+ ],
+ "description": "The figure has a green column on the left titled Generation. It shows a robot LLM answering '3+2=?' with six sampled responses: three correct (blue, checkmarks) and three incorrect (red, crosses). Three horizontal rows follow, each with a bar chart of response lengths (blue correct, red incorrect). Arrows lead from the lengths into an oval labeled GRPO or DRPO, with curved arrows marked 'length' and 'correctness'. Output bar charts sit to the right. Row 1 is plain GRPO: advantages are +1 for all correct and -1 for all incorrect. Row 2 is GRPO with a length penalty: advantages are 1.58, 1.14 and -0.17 for the correct responses, and -0.85 for the incorrect ones. Row 3 is DRPO, shown in a pink panel: learning signals are 0.62, 0.33 and 0.05 for the correct responses, and -0.33 for the incorrect ones. Red dashed boxes mark the third correct response in each row. A right-hand panel gives the objective formulas for each row.",
+ "caption": "Illustration of the limitation of GRPO with length penalty and the benefit of our approach. Suppose $[1, 1, 1, 0, 0, 0]$ are the accuracy rewards for 6 responses, and $[0.73, 0.6, 0.2, 0, 0, 0]$ are the rewards after applying the length penalty to correct answers. Using the group-relative advantage calculation of GRPO, the advantages for the third response shift from 1 (without length penalty) to -0.17 (with length penalty added), inadvertently penalizing the third correct response, which may substantially harm performance. In contrast, our proposed DRPO reduces the learning signal for lengthy and correct responses but never pushes them to the negative territory.",
+ "caption_source": "latex",
+ "abstract": "Recent large reasoning models (LRMs) driven by reinforcement learning algorithms (e.g., GRPO) have achieved remarkable performance on challenging reasoning tasks. However, these models suffer from overthinking, generating unnecessarily long and redundant reasoning even for simple questions, which substantially increases computational cost and response latency. While existing methods incorporate length rewards to GRPO to promote concise reasoning, they incur significant performance degradation. We identify the root cause: when rewards for correct but long rollouts are penalized, GRPO's group-relative advantage function can assign them negative advantages, actively discouraging valid reasoning. To overcome this, we propose Decoupled Reward Policy Optimization (DRPO), a novel framework that decouples the length-based learning signal of correct rollouts from incorrect ones. DRPO ensures that reward signals for correct rollouts are normalized solely within the positive group, shielding them from interference by negative samples. The DRPO's objective is grounded in integrating an optimized positive data distribution, which maximizes length-based rewards under a KL regularization, into a discriminative objective. We derive a closed-form solution for this distribution, enabling efficient computation of the objective and its gradients using only on-policy data and importance weighting. Of independent interest, this formulation is general and can incorporate other preference rewards of positive data beyond length. Experiments on mathematical reasoning tasks demonstrate DRPO's significant superiority over six efficient reasoning baselines. Notably, with a 1.5B model, our method achieves 77\\% length reduction with only 1.1\\% performance loss on simple questions like GSM8k dataset, while the follow-up baseline sacrifices 4.3\\% for 68\\% length reduction.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=GP5RHZnEsw",
+  "arxiv": "https://arxiv.org/abs/2510.04474",
+  "pdf": "https://proceedings.iclr.cc/paper_files/paper/2026/file/dc146cfab1e4519222cd2f40ca6a7a50-Paper-Conference.pdf",
+  "proceedings": "https://proceedings.iclr.cc/paper_files/paper/2026/hash/dc146cfab1e4519222cd2f40ca6a7a50-Abstract-Conference.html",
+  "virtual": "https://iclr.cc/virtual/2026/poster/10010492",
+  "code": "https://github.com/Optimization-AI/DRPO"
+ },
+ "license": "http://creativecommons.org/licenses/by/4.0/",
+ "img": "cc-by",
+ "image_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/images/iclr26-1431.png",
+ "thumb_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/thumbs/iclr26-1431.webp",
+ "figure_page": 3,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.8
+}

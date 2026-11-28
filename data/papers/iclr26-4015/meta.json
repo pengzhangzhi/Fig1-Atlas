@@ -1,0 +1,48 @@
+{
+ "id": "iclr26-4015",
+ "title": "SAFER: Risk-Constrained Sample-then-Filter in Large Language Models",
+ "authors": [
+  "Qingni Wang",
+  "Yue Fan",
+  "Xin Wang"
+ ],
+ "venue": "ICLR 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": null,
+ "role": "pipeline",
+ "role2": null,
+ "claim": "A two-stage procedure first calibrates how many candidates to sample, then calibrates a filtering threshold, giving risk-controlled prediction sets at test time.",
+ "layout": "3 regions: Stage I left, Stage II right, test-time strip below; arrows merge",
+ "tags": [
+  "two-stage",
+  "conformal-prediction",
+  "calibration",
+  "sample-then-filter",
+  "risk-control"
+ ],
+ "style": [
+  "icon-heavy",
+  "colorful"
+ ],
+ "description": "The figure is split by a dashed vertical line into Stage I: Sample (left) and Stage II: Filter (right), with a Test Time strip along the bottom. Stage I shows a calibration set of N QA samples and an LLM that generates up to M candidates per question. Rows Q1…QN hold green check and red cross circles, labelled Coverage, Abstention (struck through) or Miscoverage. A dashed vertical line marks the calibrated sample size ŝ. Stage II takes the calibration subset N′ with admissible candidates and applies uncertainty quantification. Candidates are placed on vertical uncertainty ranges with a horizontal dashed threshold t̂. Curved arrows carry ŝ and t̂ to the test-time row. There a user's question goes to the LLM, which samples ŝ=3 candidates. These are filtered by the threshold into a final set of two correct answers. Cartoon icons and pastel lavender stage banners draw the eye first.",
+ "caption": "Overview of SAFER's calibration and test-time process. In Stage I, we derive a statistically valid minimum sample budget $\\hat{s}$ that can strictly control the test-time risk of the candidate set of size $\\hat{s}$ not covering correct answers. In Stage II, we employ the calibration instances, which can obtain admissible answers within $\\hat{s}$ samples, to calibrate a threshold $\\hat{t}$. This threshold filters out unreliable answers in the candidate set while still constraining the miscoverage risk of the final prediction set.",
+ "caption_source": "latex",
+ "abstract": "As large language models (LLMs) are increasingly deployed in risk-sensitive applications such as real-world open-ended question answering (QA), ensuring the trustworthiness of their outputs has become critical. Existing selective conformal prediction (SCP) methods provide statistical guarantees by constructing prediction sets with a constrained miscoverage rate for correct answers. However, prior works unrealistically assume that admissible answers for all instances can be obtained via finite sampling, even for open-ended QA scenarios that lack a fixed and finite solution space. To address this, we introduce a two-stage risk control framework comprising abstention-aware sampling and conformalized filtering (SAFER). Firstly, on a held-out calibration set, SAFER calibrates a sampling budget within the maximum sampling cap, using the Clopper-Pearson exact method at a user-desired risk level (i.e., the maximum allowable miscoverage rate of the sampling sets). If the risk level cannot be satisfied within the cap, we abstain; otherwise, the calibrated sampling budget becomes the minimum requirements at test time. Then, we employ calibration instances where correct answers are attainable under the calibrated budget and apply the conformal risk control method to determine a statistically valid uncertainty threshold, which filters unreliable distractors from the candidate set for each test data point. In this stage, SAFER introduces an additional risk level to guide the calculation of the threshold, thereby controlling the risk of correct answers being excluded. Furthermore, we show that SAFER is compatible with various task-specific admission criteria and calibration-test split ratios, highlighting its robustness and high data efficiency.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=kJmLmOvwLC",
+  "arxiv": "https://arxiv.org/abs/2510.10193",
+  "pdf": "https://proceedings.iclr.cc/paper_files/paper/2026/file/582e9771ac8527cb6390e5e9444a0fee-Paper-Conference.pdf",
+  "proceedings": "https://proceedings.iclr.cc/paper_files/paper/2026/hash/582e9771ac8527cb6390e5e9444a0fee-Abstract-Conference.html",
+  "virtual": "https://iclr.cc/virtual/2026/poster/10007799",
+  "code": "https://safer-ericlab.github.io"
+ },
+ "license": "http://arxiv.org/licenses/nonexclusive-distrib/1.0/",
+ "img": "none",
+ "image_url": null,
+ "thumb_url": null,
+ "figure_page": 0,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.93
+}

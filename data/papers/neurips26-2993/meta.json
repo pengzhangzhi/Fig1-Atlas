@@ -1,0 +1,52 @@
+{
+ "id": "neurips26-2993",
+ "title": "DeltaPrompts: Escaping the Zero-Delta Trap in Multimodal Distillation",
+ "authors": [
+  "Jaehun Jung",
+  "Hyunwoo Kim",
+  "Brandon Cui",
+  "Ximing Lu",
+  "David Acuna",
+  "Prithviraj Ammanabrolu",
+  "Yejin Choi"
+ ],
+ "venue": "NeurIPS 2026",
+ "tier": "spotlight",
+ "track": "main",
+ "topic": null,
+ "role": "analysis-finding",
+ "role2": "teaser-result",
+ "claim": "Training on prompts where teacher and student already agree saturates quickly, while divergence-inducing prompts keep improving scaling despite lower diversity.",
+ "layout": "2 panels, left line plot and right grouped bars, red arrow annotation",
+ "tags": [
+  "data-selection",
+  "distillation",
+  "scaling",
+  "saturation",
+  "diversity"
+ ],
+ "style": [
+  "plot",
+  "colorful"
+ ],
+ "description": "Two side-by-side plots. The left is a line chart of average performance against data size (0 to 10k) with shaded confidence bands. A dashed baseline marks the starting model at 67.23. Three curves are shown: random prompts (light pink), Δ=0 only (magenta), and Δ>0 only (dark purple). The random and Δ=0 curves plateau near 68, while the Δ>0 curve climbs steadily to 69.25, with its values labeled at each point. The right is a grouped bar chart of diversity (E-Vendi) across All, ChartQA, InfoVQA, ArXivQA and SciVQA, with the same three colors. A red double-headed arrow with the text '29.4% lower diversity' marks the Δ>0 bar in the All group. The eye goes first to the rising purple curve, then to the red annotation.",
+ "caption": "Overview of \\dataset. We first identify the zero-delta trap: for majority of the prompts in chart & document reasoning datasets, the teacher and student already produce an identical answer distribution. We show that distillation on these zero-delta prompts reaches early saturation in student performance (\\S [ref]). We then synthesize \\dataset, leveraging teacher model itself to find the divergence-inducing prompts, and using off-the-shelf data as seeds rather than a direct training resource (\\S [ref]).",
+ "caption_source": "latex",
+ "abstract": "Distillation enables compact Vision-Language Models (VLMs) to obtain strong reasoning capabilities, yet the prompts driving this process are typically chosen via simple heuristics or aggregated from off-the-shelf datasets. We reveal a critical inefficiency in this approach: up to 69% of the prompts in standard chart / document reasoning datasets are effectively zero-delta, meaning the teacher and student already induce the exact same answer distribution. Training on these prompts provides minimal learning signal, causing student improvement to rapidly saturate regardless of data scale. To escape the zero-delta trap, we return to first principles: distillation fundamentally minimizes distributional divergence, and thus a prompt is valuable only if it exposes a functional capability gap between the teacher and student. We quantify this gap through answer divergence ($Î$), demonstrating that non-zero divergence is critical for effective scaling. Building on this insight, we propose a staged synthesis pipeline that repurposes existing datasets as seeds, actively targeting student failure modes to produce better prompts. The result is DeltaPrompts, a diverse dataset of 200k synthetic, high-divergence reasoning problems. We evaluate DeltaPrompts across three distinct settings: on-policy distillation with the target teacher-student pair, transfer to a novel model family without regenerating the data, and off-policy fine-tuning of a non-reasoning model. Across all scenarios, DeltaPrompts drives substantial gains, yielding up to 15% relative improvement even on top of a highly-optimized reasoning model (e.g., Qwen3-VL-8B-Thinking) -- averaged over 10 benchmarks spanning chart, document and perception-centric reasoning.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=KyGX4aOkhc",
+  "arxiv": "https://arxiv.org/abs/2605.15532",
+  "pdf": "https://arxiv.org/pdf/2605.15532",
+  "proceedings": null,
+  "virtual": "https://neurips.cc/virtual/2026/poster/153494",
+  "code": null
+ },
+ "license": "http://creativecommons.org/licenses/by/4.0/",
+ "img": "cc-by",
+ "image_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/images/neurips26-2993.png",
+ "thumb_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/thumbs/neurips26-2993.webp",
+ "figure_page": 3,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.8
+}

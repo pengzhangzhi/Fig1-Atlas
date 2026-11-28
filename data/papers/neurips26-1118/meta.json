@@ -1,0 +1,51 @@
+{
+ "id": "neurips26-1118",
+ "title": "NP-LoRA: Null Space Projection for Subject-Style LoRA Fusion",
+ "authors": [
+  "Chuheng Chen",
+  "Xiaofei Zhou",
+  "Geyuan Zhang",
+  "Yong Huang",
+  "Gang Xiong"
+ ],
+ "venue": "NeurIPS 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "Computer Vision->Image and Video Generation",
+ "role": "prior-vs-ours",
+ "role2": "problem-setup",
+ "claim": "Naive weight merging lets overlapping subspaces destroy one attribute; projecting one into the other's null space preserves both.",
+ "layout": "3 panels: task banner on top, two side-by-side contrast columns below, ✗/✓ smileys",
+ "tags": [
+  "subspace-projection",
+  "null-space",
+  "lora-fusion",
+  "interference",
+  "training-free"
+ ],
+ "style": [
+  "colorful",
+  "photo/real data",
+  "icon-heavy"
+ ],
+ "description": "The top banner (a) shows the task as an equation: Content LoRA (a corgi photo) + Style LoRA (a Van Gogh self-portrait) = a large question mark, on a pale blue background. Below, two side-by-side rounded boxes both labeled 'Pretrained Diffusion Subspace'. In (b), a tan content ellipse and a teal style ellipse overlap in a Venn diagram, with 'Overlap' in red underneath. In (c), the content ellipse is dashed and an arrow projects it into a flat tan ellipse inside a light-blue 'Null Space' region, with 'No Overlap' in green. Arrows labeled 'Generated via Merged LoRA' lead to output images. The left image is a realistic corgi with a red frowning face and 'Style Features being Destroyed'. The right image is a Van Gogh-style corgi in a suit with a green smiley and 'Style Features Preserved'. Red versus green coding carries the contrast.",
+ "caption": "Illustration of our motivation. (a) The task is to compose a content LoRA (subject identity) with a style LoRA (artistic appearance) for controllable generation. (b) Weighted merging can degrade stylistic fidelity, potentially due to interference, as independently trained LoRAs may occupy correlated, non-orthogonal low-rank subspaces of the diffusion feature space. (c) NP-LoRA projects the content LoRA into the null space of the style LoRA, reducing overlap and better preserving stylistic characteristics.",
+ "caption_source": "latex",
+ "abstract": "Low-Rank Adaptation (LoRA) fusion enables the composition of subject and style representations for controllable generation without retraining. However, existing approaches primarily operate through weight-level merging, without explicitly modeling how independently trained LoRAs interact in the shared parameter space. We adopt a geometric perspective on LoRA fusion, interpreting content and style LoRAs as occupying overlapping, non-orthogonal low-rank subspaces, where such overlap can lead to conflicting parameter updates that affect generation quality. This observation motivates us to reformulate LoRA fusion not merely as parameter combination, but as a problem of controlling how updates from overlapping subspaces are combined. Based on this insight, we propose Null Space Projection LoRA (NP-LoRA), a training-free framework that employs projection as a fusion operator to explicitly modulate cross-LoRA interactions. Specifically, NP-LoRA uses principal directions of the style LoRA to define a projection subspace and projects the content LoRA onto the complementary subspace (i.e., the null space of the style LoRA), suppressing interference along dominant style directions while preserving complementary information. To avoid the overly aggressive suppression of hard projection, we further formulate soft projection as a regularized optimization problem that balances content preservation against style-subspace suppression. This objective admits a closed-form solution, yielding a projection operator controlled by a single parameter that continuously interpolates between linear merging and hard projection. Extensive experiments across multiple pretrained LoRA pairs show that NP-LoRA achieves more balanced content-style composition compared to strong baselines, without requiring retraining. Code is available at https://github.com/blackzebra7/NP-LoRA.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=7ruWsRZRGX",
+  "arxiv": "https://arxiv.org/abs/2511.11051",
+  "pdf": "https://arxiv.org/pdf/2511.11051",
+  "proceedings": null,
+  "virtual": "https://neurips.cc/virtual/2026/poster/155156",
+  "code": "https://github.com/blackzebra7/NP-LoRA"
+ },
+ "license": "http://arxiv.org/licenses/nonexclusive-distrib/1.0/",
+ "img": "none",
+ "image_url": null,
+ "thumb_url": null,
+ "figure_page": 1,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.8
+}

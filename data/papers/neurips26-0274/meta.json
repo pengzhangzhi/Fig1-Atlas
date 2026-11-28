@@ -1,0 +1,48 @@
+{
+ "id": "neurips26-0274",
+ "title": "KoalaGS: Complexity-Aware Continuous Level of Detail for Gaussian Splatting",
+ "authors": [
+  "Radu Beche",
+  "Raoul de Charette"
+ ],
+ "venue": "NeurIPS 2026",
+ "tier": "spotlight",
+ "track": "main",
+ "topic": "Computer Vision->3D Rendering & Reconstruction",
+ "role": "analysis-finding",
+ "role2": "pipeline",
+ "claim": "Input-derived complexity maps spatially anti-correlate with reconstruction quality, in image space and in 3D, measured via a project-and-aggregate procedure.",
+ "layout": "2 stacked panels: top left-to-right procedure, bottom 2D/3D example grids",
+ "tags": [
+  "complexity-prior",
+  "quality-correlation",
+  "2d-to-3d-projection",
+  "gaussian-splatting",
+  "analysis-methodology"
+ ],
+ "style": [
+  "photo/real data",
+  "colorful",
+  "plot"
+ ],
+ "description": "The top panel (a) is a left-to-right diagram. On the left, a stack of input images I1..In each feed a viridis-colored complexity map C1..Cn, with a note listing Laplacian and Delentropy. In the middle is a point-cloud render of a trained 3DGS scene. Colored camera icons render views Î1..În, and each is compared with its ground truth image to give a quality map Q1..Qn (PSNR, SSIM). Red dotted 'Project' lines run from starred pixels in the quality maps to a single point in a 3D quality field, shown as a colored point cloud on the right. Panel (b) is a grid of outdoor and indoor scenes. Each row shows the reference image, complexity map, PSNR map and SSIM map in 2D, then the same fields as 3D point clouds. The color maps make the spatial correspondence easy to see.",
+ "caption": "Analysis methodology. (\\subref{fig:complexity_meth}) We measure the spatial correlation between the complexity map of the input image (left), and the quality map (center), obtained after 3DGS-MCMC optimization. We then project and aggregate these 2D fields onto the Gaussian particles to obtain complexity/quality fields in 3D (right). (\\subref{fig:complexity_examples}) Complexity and quality inversely correlate both in the 2D image plane and in the 3D object space. Note that for easier visualization, we inverted colors of all complexity maps.",
+ "caption_source": "latex",
+ "abstract": "Deploying a trained 3D Gaussian Splatting scene under shrinking compute budgets requires one primitive set to remain effective when rendered at smaller prefixes. In this continuous level of detail (LoD) setting, the challenge is to decide which Gaussians should retain capacity as the budget decreases. A pilot study on 3DGS-MCMC reconstructions shows that image complexity, computed from the input views before optimization, predicts where reconstruction error concentrates in image and 3D space. It also reveals that simple regions contain too many Gaussians and degrade as much as complex ones at lower budgets, despite being inherently cheaper to represent. Subsequently, in KoalaGS, during training we use this complexity prior to bias relocation toward poorly reconstructed areas while ensuring smooth degradation across LoDs. A primitive importance score then enables inference at low-capacity, while preserving the scene structure. Tested across three datasets, KoalaGS maintains competitive full-capacity quality while significantly improving quality across the budget spectrum, yielding smoother transitions across LoDs, and enabling faster progressive streaming.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=1yzzKS5UI1",
+  "arxiv": "https://arxiv.org/abs/2610.28615",
+  "pdf": "https://arxiv.org/pdf/2610.28615",
+  "proceedings": null,
+  "virtual": "https://neurips.cc/virtual/2026/poster/155902",
+  "code": "https://rdbch.github.io/koalags/"
+ },
+ "license": "http://creativecommons.org/licenses/by-sa/4.0/",
+ "img": "cc-by-sa",
+ "image_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/images/neurips26-0274.png",
+ "thumb_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/thumbs/neurips26-0274.webp",
+ "figure_page": 2,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.8
+}

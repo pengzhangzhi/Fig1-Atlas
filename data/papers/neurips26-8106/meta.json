@@ -1,0 +1,54 @@
+{
+ "id": "neurips26-8106",
+ "title": "Beyond ViT Tokens: Masked-Diffusion Pretrained Convolutional Pathology Foundation Model for Cell-Level Dense Prediction",
+ "authors": [
+  "Weiming Chen",
+  "Xitong Ling",
+  "Zhenyang Cai",
+  "Xidong Wang",
+  "Jiawen Li",
+  "Tian Guan",
+  "Benyou Wang",
+  "Yonghong He"
+ ],
+ "venue": "NeurIPS 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "Computer Vision->Segmentation",
+ "role": "pipeline",
+ "role2": "overview-framework",
+ "claim": "A generative pretraining stage conditioned on frozen foundation features yields a reusable backbone that lightweight heads adapt to dense prediction.",
+ "layout": "3 panels: pretraining top-left, downstream bottom-left, block detail right; legend strip",
+ "tags": [
+  "masked-diffusion",
+  "convolutional-backbone",
+  "foundation-model",
+  "conditioning",
+  "dense-prediction"
+ ],
+ "style": [
+  "icon-heavy",
+  "colorful",
+  "photo/real data"
+ ],
+ "description": "A three-panel block diagram with a legend bar along the bottom. Panel A (blue, top-left) shows unlabeled histology patches being masked and passed through a ConvNeXt-UNet encoder-decoder. A frozen pathology foundation model and a timestep embedding are summed and injected into the network. The output is a reconstruction, and a Mask-Diff loss box closes the loop with dotted lines. Panel B (green, bottom-left) reuses the frozen encoder-decoder. Multi-scale decoder features, drawn as stacked layers, feed a lightweight segmentation head that outputs a black-and-white cell mask. Panel C (peach, right) zooms into one conditioned ConvNeXt block. It stacks PWConv, GRN, GELU, DWConv and LayerNorm, with scale and shift modulation (α, γ, β) from the timestep and foundation features. Snowflake icons mark frozen modules and flame icons mark trainable ones.",
+ "caption": "Overview of the proposed CMD framework. (A) Large-scale unlabeled pathology patches are used for self-supervised masked-diffusion pretraining, where timestep embeddings and pathology foundation model features condition a ConvNeXt U-Net to reconstruct masked patches. (B) After pretraining, the frozen generative backbone is reused as a dense visual encoder: multi-scale decoder features are extracted and fed into lightweight task-specific heads for cell-level dense prediction. (C) Each conditioned ConvNeXt block injects the fused timestep and pathology features via adaLN.",
+ "caption_source": "latex",
+ "abstract": "Cell-level dense prediction is central to computational pathology, but remains challenging due to fine-grained histological structures, strong domain shifts, and costly dense annotations. Existing ViT-based pathology foundation models rely on patch tokenization, which can disrupt spatial continuity and weaken local morphological details needed for cell-level prediction. To address this, we propose Masked-Diffusion Convolutional Foundation Models, termed ConvNeXt Masked-Diffusion (CMD), a self-supervised convolutional generative pretraining framework for dense pathology representation learning. CMD uses a fully convolutional ConvNeXt-UNet backbone, performs masked-diffusion pretraining in pixel space, and incorporates frozen pathology foundation model features through adaptive normalization. Experimental results demonstrate that CMD consistently outperforms existing ViT-based pathology foundation models and even surpasses state-of-the-art end-to-end segmentation methods while fine-tuning only a small number of task-specific parameters across multiple pathology dense prediction tasks. The advantage is particularly pronounced under limited annotation settings, where CMD exhibits stronger robustness and generalization ability. Our findings suggest that purely convolutional architectures can also serve as competitive pathology foundation models for cell-level dense prediction, achieving leading performance within the current ViT-dominated paradigm and providing a scalable, high-performance solution that better preserves histological structural priors for fine-grained pathology understanding.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=u0riwBjIls",
+  "arxiv": "https://arxiv.org/abs/2605.08276",
+  "pdf": "https://arxiv.org/pdf/2605.08276",
+  "proceedings": null,
+  "virtual": "https://neurips.cc/virtual/2026/poster/148943",
+  "code": "https://github.com/M4A1TasteGood/ConvNeXt-Masked-Diffusion"
+ },
+ "license": "http://creativecommons.org/licenses/by-nc-nd/4.0/",
+ "img": "none",
+ "image_url": null,
+ "thumb_url": null,
+ "figure_page": 2,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.9
+}

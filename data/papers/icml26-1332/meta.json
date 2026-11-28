@@ -1,0 +1,50 @@
+{
+ "id": "icml26-1332",
+ "title": "Quartet II: Accurate LLM Pre-Training in NVFP4 by Improved Unbiased Gradient Estimation",
+ "authors": [
+  "Andrei Panferov",
+  "Erik Schultheis",
+  "Soroush Tabesh",
+  "Dan Alistarh"
+ ],
+ "venue": "ICML 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "Deep Learning->Algorithms",
+ "role": "analysis-finding",
+ "role2": null,
+ "claim": "Quantizing only some backward-pass tensors reveals which ones drive loss degradation, and the unbiased method used cuts that loss across settings.",
+ "layout": "5 panels in a row, shared y-axis, line plots with log x-axis",
+ "tags": [
+  "quantization",
+  "low-precision-training",
+  "ablation",
+  "stochastic-rounding",
+  "unbiased-estimation"
+ ],
+ "style": [
+  "plot",
+  "minimal",
+  "colorful"
+ ],
+ "description": "A row of five line plots, labeled (a) to (e), that share a y-axis: C4 validation loss increase over BF16, from 0 up to about 0.007. The x-axis is tokens-per-parameter D/N on a log scale, from roughly 25 to 800. Each panel title is a math expression that lists which backward-pass GEMM tensors are quantized. Red lines are stochastic rounding (SR). Blue lines are Micro-EDEN. Marker shapes and line styles (circle, square, triangle) stand for model sizes of 30M, 50M and 100M parameters. A legend sits in panels (a) and (b). Red curves stay above blue ones. The gap is small in (a) and (b) and grows in (c) to (e), where more tensors are quantized. The eye goes first to the red-versus-blue separation in the right-hand panels.",
+ "caption": "Impact of selective NVFP4 backward pass quantization on C4 Validation Loss relative to BF16 pre-training for $N$-parameter Llama-2-like LLMs with $D/N$ tokens-per-parameter. Axis captions indicate which tensors of the two backward pass GEMMs are quantized.",
+ "caption_source": "latex",
+ "abstract": "The NVFP4 lower-precision format, supported in hardware by NVIDIA Blackwell GPUs, promises to allow, for the first time, end-to-end fully-quantized pre-training of massive models such as LLMs. Yet, existing quantized training methods still sacrifice some of the representation capacity of this format in favor of more accurate unbiased quantized gradient estimation by stochastic rounding (SR), losing noticeable accuracy relative to standard FP16 and FP8 training. In this paper, improve the state of the art for quantized training in NVFP4 via a novel unbiased quantization routine for micro-scaled formats, called MS-EDEN, that has more than 2x lower quantization error than SR. We integrate it into a novel fully-NVFP4 quantization scheme for linear layers, called Quartet II. We show analytically that Quartet II achieves consistently better gradient estimation across all major matrix multiplications, both on the forward and on the backward passes. In addition, our proposal synergizes well with recent training improvements aimed specifically at NVFP4. We further validate Quartet II on end-to-end LLM training with up to 1.9B parameters on 38B tokens. We provide kernels for execution on NVIDIA Blackwell GPUs with up to 4.2x speedup over BF16. Our code is available at https://github.com/IST-DASLab/Quartet-II .",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=CciWEZZDVb",
+  "arxiv": "https://arxiv.org/abs/2601.22813",
+  "pdf": "https://raw.githubusercontent.com/mlresearch/v306/main/assets/panferov26a/panferov26a.pdf",
+  "proceedings": "https://proceedings.mlr.press/v306/panferov26a.html",
+  "virtual": "https://icml.cc/virtual/2026/poster/65532",
+  "code": "https://github.com/IST-DASLab/Quartet-II"
+ },
+ "license": "http://arxiv.org/licenses/nonexclusive-distrib/1.0/",
+ "img": "none",
+ "image_url": null,
+ "thumb_url": null,
+ "figure_page": 2,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.8
+}

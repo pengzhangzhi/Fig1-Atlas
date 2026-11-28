@@ -1,0 +1,51 @@
+{
+ "id": "neurips26-8636",
+ "title": "Rethinking the State Update Gate for Long-Sequence Recurrent 3D Reconstruction",
+ "authors": [
+  "kejun ren",
+  "Lei Jin",
+  "Tianxin Huang",
+  "Lianming Xu",
+  "Li Wang"
+ ],
+ "venue": "NeurIPS 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "Computer Vision->3D Rendering & Reconstruction",
+ "role": "prior-vs-ours",
+ "role2": "teaser-result",
+ "claim": "Prior methods write every input into recurrent state with fixed weight; adaptive content-based gating suppresses drift and lowers long-sequence error.",
+ "layout": "Top frame strip, bottom three panels: gate plot, error curves, update-rule box",
+ "tags": [
+  "adaptive-gating",
+  "streaming",
+  "recurrent-state",
+  "drift-suppression",
+  "training-free"
+ ],
+ "style": [
+  "photo/real data",
+  "plot",
+  "colorful"
+ ],
+ "description": "A wide figure with two rows. The top row shows a filmstrip of indoor video frames (trash bins, ping-pong table, stools, office corridor) grouped by frame index, with ellipses between them. Each frame is labeled with its index and a gate value. Red values near 1.0 mark keyframes, and cyan values near 0.1 mark near-duplicate frames. Bottom-left is a green line plot of gate alpha_t against frame index. It stays low, about 0.1 to 0.2, and spikes to near 1 at labeled keyframes. A dashed orange line at 1.0 shows the fixed baselines. Bottom-middle is a line chart of cumulative ATE for TTT3R, MeMix, TTSA3R and Ours, with the green Ours curve lowest. Bottom-right is a blue box with the update equation, with an arrow down to a gray box that contrasts fixed alpha = 1 for baselines with adaptive alpha in (0,1] for ours.",
+ "caption": "Adaptive frame gating for streaming 3D reconstruction. Existing methods (TTT3R, MeMix, TTSA3R) update the recurrent state $S_t$ with $\\alpha_t \\equiv 1$ regardless of frame content, accumulating drift on long sequences. We introduce an adaptive frame gate $\\alpha_t \\in (0,1]$ scaled by frame-to-frame feature change, requiring no parameters, training, or extra forward pass. The gate shown is AFG-Pose (Sec. [ref]). Top: Representative frames from a $1000{+}$-frame indoor sequence. Red keyframes (e.g., \\#321, \\#805) at significant scene or viewpoint transitions receive large $\\alpha_t$ ($\\to 1$); cyan near-duplicates (e.g., \\#12, \\#300) receive small $\\alpha_t$ ($\\sim 0.1$) and are strongly down-weighted (but never discarded). Bottom-left: Gate $\\alpha_t$ over the sequence---low during stable motion, spiking at keyframes; existing methods stay at $\\alpha_t \\equiv 1$. Bottom-middle: Cumulative ATE---our method maintains a significantly lower and more stable error profile on long sequences, indicating effective drift suppression. Bottom-right: Our update rule (Eq. [ref]): $\\alpha_t$ multiplies TTT3R's per-token gate $\\beta_t$ at the state-update site.",
+ "caption_source": "latex",
+ "abstract": "Streaming 3D reconstruction under a strict constant-memory budget hinges on how the recurrent state is updated as the stream evolves. We profile TTT3R-style per-token gates across five benchmarks and discover a structural bottleneck: the gate is intrinsically bounded in magnitude (median $0.31$; never exceeding $0.6$) and nearly frame-invariant, yielding an effective memory horizon of only $\\sim$3 frames per state token, which serves as the structural origin of long-sequence drift. We trace this to a missing axis: existing inference-time methods modulate updates only at the per-token, intra-frame level, while the orthogonal frame-level question of \\emph{how strongly each frame should contribute to the state} has been treated as content-independent. We close this gap with a scalar frame-level gate $Î±_t \\in (0, 1]$ derived in closed form from frame-to-frame changes of internal features---a graded write weight, inspired by classical Simultaneous Localization and Mapping (SLAM) keyframe selection, that never discards a frame and requires no parameters, no training, and no extra forward pass. Across six benchmarks spanning camera pose, video depth, and 3D reconstruction at sequence lengths up to $4,661$ frames, our gate cuts ATE by $51\\%$ on long TUM-RGBD pose sequences, reduces AbsRel by $13.0\\%$ on Bonn video depth, and on KITTI long-sequence pose estimation surpasses both LongStream and Keyframe-VO in average ATE, while retaining strictly constant memory at zero training cost. Code is available at https://github.com/rkj12345/AFG.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=xbkV9cLvUl",
+  "arxiv": "https://arxiv.org/abs/2605.16981",
+  "pdf": "https://arxiv.org/pdf/2605.16981",
+  "proceedings": null,
+  "virtual": "https://neurips.cc/virtual/2026/poster/148467",
+  "code": "https://github.com/rkj12345/AFG/"
+ },
+ "license": "http://arxiv.org/licenses/nonexclusive-distrib/1.0/",
+ "img": "none",
+ "image_url": null,
+ "thumb_url": null,
+ "figure_page": 0,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.5
+}

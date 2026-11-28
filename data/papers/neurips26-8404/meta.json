@@ -1,0 +1,51 @@
+{
+ "id": "neurips26-8404",
+ "title": "VideoMaMa++: Temporally Consistent Video Matting via Preserve-and-Refine Tokens",
+ "authors": [
+  "Sangbeom Lim",
+  "Seoung Wug Oh",
+  "Heeji Yoon",
+  "Seungryong Kim",
+  "Joon-Young Lee"
+ ],
+ "venue": "NeurIPS 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "Computer Vision->Segmentation",
+ "role": "pipeline",
+ "role2": "prior-vs-ours",
+ "claim": "A two-token conditioning interface lets chunked diffusion inference propagate prior outputs and a global anchor, keeping long sequences consistent.",
+ "layout": "2 stacked panels, training above inference, left-to-right, chunked rows with colored overlap arrows",
+ "tags": [
+  "diffusion",
+  "video-matting",
+  "sliding-window",
+  "conditioning-tokens",
+  "temporal-consistency"
+ ],
+ "style": [
+  "icon-heavy",
+  "colorful",
+  "photo/real data"
+ ],
+ "description": "The figure has two stacked sections. The top section, Training, flows left to right. A guide input box (binary mask or ground-truth alpha matte) and RGB frames pass through frozen latent encoders. The resulting latents are paired with a learnable Refine token (R) or Preserve token (P), then fed into a tall DiT block. A frozen latent decoder turns the DiT output into predicted alpha mattes, which are compared with the ground-truth mattes. A legend explains the trainable and frozen icons and the latent colors. The bottom section, Inference, shows three DiT chunks in a row: Chunk 1, Chunk 2 and Last chunk. Each chunk has RGB frames and guide masks tagged with R or P tokens. Green and purple arrows carry the reference anchor and the overlapping mattes forward across chunks. Photos of a woman on a beach and black-and-white mattes draw the eye first.",
+ "caption": "We introduce VideoMaMa++, a mask-guided video matting framework that recovers fine-grained details (e.g., hair strands) and scales reliably to long videos. (a) Per-frame qualitative results on diverse in-the-wild videos. (b) Long-video matting results: VideoMaMa [ref], which processes videos in chunks, fails to maintain consistency across chunk boundaries (red boxes), whereas VideoMaMa++ produces mattes that are both finely detailed and temporally consistent.",
+ "caption_source": "latex",
+ "abstract": "Diffusion-based video matting has recently emerged as a leading approach, leveraging video diffusion priors from internet-scale pretraining to achieve strong zero-shot generalization from limited synthetic data. However, the heavy compute of these diffusion backbones limits inference to a short chunk of just 6 to 24 frames, so even ordinary videos span multiple chunks. Because each chunk is matted independently from coarse mask guidance, existing methods fail to maintain consistency across chunk boundaries, producing flickering edges and discontinuous transparency. We address this with a mask-guided diffusion-matting framework built on two ideas. The RGB and mask conditioning are represented as separate token streams that interact through full spatio-temporal self-attention, letting the model adaptively combine fine RGB texture with coarse mask layout rather than committing to a fixed channel-wise fusion. On top of this, we propose a novel pair of learnable embeddings, the preserve token and the refine token, that act as a per-frame conditioning interface and enable a sliding-window inference scheme in which already-generated mattes are propagated across chunk boundaries for local temporal consistency, complemented by a globally shared reference anchor at every chunk to prevent error accumulation in long sequences without any additional training. Across standard video matting benchmarks and in-the-wild long footage, our framework outperforms prior diffusion-based methods in both fine-detail accuracy and temporal consistency, and uniquely maintains consistency across chunk boundaries on long videos.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=vxJjCRu1Km",
+  "arxiv": "https://arxiv.org/abs/2610.26857",
+  "pdf": "https://arxiv.org/pdf/2610.26857",
+  "proceedings": null,
+  "virtual": "https://neurips.cc/virtual/2026/poster/148674",
+  "code": "https://cvlab-kaist.github.io/VideoMaMa-PlusPlus/"
+ },
+ "license": "http://creativecommons.org/licenses/by/4.0/",
+ "img": "cc-by",
+ "image_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/images/neurips26-8404.png",
+ "thumb_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/thumbs/neurips26-8404.webp",
+ "figure_page": 3,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.8
+}

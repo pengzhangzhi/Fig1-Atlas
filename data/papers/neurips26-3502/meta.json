@@ -1,0 +1,61 @@
+{
+ "id": "neurips26-3502",
+ "title": "TACT-KV: Tri-Axis Cosine Transform for Compressing Volumetric KV Caches in Medical VLMs",
+ "authors": [
+  "Chongyu Qu",
+  "Ritchie Zhao",
+  "Yufan He",
+  "Dong Yang",
+  "Zhengyi Lu",
+  "Junchao Zhu",
+  "Tianyuan Yao",
+  "Juming Xiong",
+  "Junlin Guo",
+  "Yanfan Zhu",
+  "Yuechen Yang",
+  "Daguang Xu",
+  "Bennett Landman",
+  "Yucheng Tang",
+  "Yuankai Huo"
+ ],
+ "venue": "NeurIPS 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "Applications->Health",
+ "role": "analysis-finding",
+ "role2": "concept",
+ "claim": "Neighboring tokens, within and across slices, are strongly correlated, so energy concentrates in the lowest frequencies along every axis.",
+ "layout": "3 columns, left-to-right flow, arrows linking scan, token similarity, and energy histograms",
+ "tags": [
+  "spectral-concentration",
+  "compression",
+  "motivation",
+  "redundancy",
+  "3d-structure"
+ ],
+ "style": [
+  "photo/real data",
+  "plot",
+  "colorful"
+ ],
+ "description": "A left-to-right flow in three stages, each labeled with a bold heading. On the left, two overlapping grayscale chest CT slices (n and n+1) carry colored boxes. Pink boxes mark intra-slice neighbors and teal boxes mark inter-slice neighbors, joined by a dashed line. In the middle, two rows of token blocks show text tokens in gray and slice tokens in blue. Brackets under highlighted tokens give the cosine similarity: 0.65 within a slice and 0.85 across slices. On the right, three bar histograms for the S, H and W axes plot energy against low-to-high frequency. In each, the lowest-frequency bin towers over the rest, at 63%, 58% and 58%. Gray arrows labeled 'inherits' and 'concentrates energy' connect the stages. The eye goes first to the CT image and the tall first bars.",
+ "caption": "Motivation. Tokens at the same in-plane spatial position across adjacent slices in the visual KV cache exhibit high pairwise similarity, and within each slice neighboring tokens are also strongly correlated. The cache energy then concentrates in a small set of low-frequency components along every axis, a three-axis structure that previous work leaves unexploited.",
+ "caption_source": "latex",
+ "abstract": "Vision-language models (VLMs) applied to 3D medical scans face a structural memory wall. A single CT or MRI volume produces tens of thousands of vision tokens, and the resulting key-value (KV) cache scales linearly with both batch and context. Existing KV compression methods operate on the cache's feature or token statistics, or apply 1D and 2D transforms, leaving the three-axis spatial structure in the cache unexploited. We propose TACT-KV (Tri-Axis Cosine Transform), a calibration-free KV compression method that exploits strong spatial correlations in visual KV states along all three anatomical axes of 3D scans. This correlation concentrates the KV cache energy under a frequency-domain transform. TACT-KV applies a separable 3D discrete cosine transform to the KV cache, allocates a per-layer bit budget across frequency bins via reverse water-filling (more bits to high-energy components), and quantizes each bin with a fixed scalar codebook. We derive a close-form relation: the distortion reduction from adaptive bit allocation is dominated by the spectral concentration of the transformed cache. Across six medical VLMs and two 3D CT benchmarks, TACT-KV achieves the lowest 1-bit prediction-flip rate on eleven of twelve model and dataset pairs in our main comparison. The same advantage reproduces on four general-purpose VLMs evaluated on video tasks, indicating that the benefit of exploiting three-axis structure generalizes beyond medical imaging. At equal high-bandwidth memory (HBM), TACT-KV scales the decoding batch size on a single GPU by up to $8\\times$.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=OU6bVNsqd3",
+  "arxiv": "https://arxiv.org/abs/2611.07593",
+  "pdf": "https://arxiv.org/pdf/2611.07593",
+  "proceedings": null,
+  "virtual": "https://neurips.cc/virtual/2026/poster/153041",
+  "code": null
+ },
+ "license": "http://creativecommons.org/licenses/by/4.0/",
+ "img": "cc-by",
+ "image_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/images/neurips26-3502.png",
+ "thumb_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/thumbs/neurips26-3502.webp",
+ "figure_page": 1,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.6
+}

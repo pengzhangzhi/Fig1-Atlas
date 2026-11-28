@@ -1,0 +1,54 @@
+{
+ "id": "icml26-5479",
+ "title": "Trajectory-Level Speculative Decoding for Diffusion Language Models",
+ "authors": [
+  "Tianxiang Pan",
+  "Baitao Gong",
+  "Mo Guang",
+  "Hongwei Yong",
+  "Tianpeng Jiang",
+  "Yaqian Li",
+  "Zheng Cao",
+  "Kaiwen Long"
+ ],
+ "venue": "ICML 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "Deep Learning->Large Language Models",
+ "role": "analysis-finding",
+ "role2": "problem-setup",
+ "claim": "Under low confidence, most decoding steps degrade to generating a single token, wasting the model's parallel capacity.",
+ "layout": "1 stacked bar chart, 4 benchmark bars, legend below, percentage y-axis",
+ "tags": [
+  "stacked-bar",
+  "parallel-decoding",
+  "diffusion-lm",
+  "throughput-bottleneck",
+  "failure-mode"
+ ],
+ "style": [
+  "plot",
+  "minimal",
+  "colorful"
+ ],
+ "description": "A stacked bar chart with a y-axis from 0% to 100% and light gray gridlines. There are four bars, one each for GSM8K, HumanEval, Math and MBPP. Each bar is split into three segments by tokens generated per step. The large bottom segment is light blue and means 1-token steps, labeled \"degraded\". It makes up about 58-70% of each bar. The middle segment is light green for 2-5 token steps, about 20-25%. The top segment is gray for steps of more than 5 tokens, about 10-18%. The legend sits below the plot. The eye goes first to the dominant blue segments, which show that single-token steps prevail on every benchmark. There is no highlighted method and no arrows. The chart reports an empirical measurement.",
+ "caption": "Visualization of low-confidence degeneration in parallel decoding for dLLMs. When confidence drops below threshold, existing methods collapse to single-token generation, severely limiting throughput despite dLLMs' inherent parallel capacity.",
+ "caption_source": "latex",
+ "abstract": "Diffusion-based language models (dLLMs) enable parallel token generation through iterative denoising, but existing decoding strategies collapse to single-token generation under low confidence, severely limiting throughput. Unlike autoregressive models where speculative decoding operates on token sequences in a fixed left-to-right order, dLLMs require speculating over denoising trajectories-sequences of multi-token updates with explicit positions and unmasking orders. We develop a trajectory-level speculative framework that constructs draft denoising trajectories via confidence-stratified tree exploration and verifies them through blockwise parallel evaluation with bidirectional attention masking. Our method further introduces inter-block speculation, exploiting diffusion models' bidirectional structure to perform cross-block lookahead. We formally characterize when this approach is exact and identify trajectory drift as the fundamental cost of increased parallelism. Building on Fast-dLLM's dual-cache infrastructure, our framework reduces denoising iterations by 30-40% and increases tokens-per-step from 2.6 to 4.3, achieving 7-14x speedup over vanilla dLLMs and 1.3x over Fast-dLLM with less than 1% accuracy change across reasoning and code benchmarks.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=pMY15tVUTT",
+  "arxiv": "https://arxiv.org/abs/2608.27514",
+  "pdf": "https://raw.githubusercontent.com/mlresearch/v306/main/assets/pan26e/pan26e.pdf",
+  "proceedings": "https://proceedings.mlr.press/v306/pan26e.html",
+  "virtual": "https://icml.cc/virtual/2026/poster/61516",
+  "code": null
+ },
+ "license": "http://creativecommons.org/licenses/by/4.0/",
+ "img": "cc-by",
+ "image_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/images/icml26-5479.png",
+ "thumb_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/thumbs/icml26-5479.webp",
+ "figure_page": 0,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.8
+}

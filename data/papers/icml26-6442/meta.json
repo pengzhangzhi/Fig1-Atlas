@@ -1,0 +1,53 @@
+{
+ "id": "icml26-6442",
+ "title": "AGoQ: Activation and Gradient Quantization for Memory-Efficient Distributed Training of LLMs",
+ "authors": [
+  "WenXiang Lin",
+  "HuangJunTao",
+  "LuHan Zhang",
+  "Lilaiyi",
+  "Xiang Bao",
+  "mengyang zhang",
+  "BingWang Wang",
+  "Shaohuai Shi"
+ ],
+ "venue": "ICML 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "Deep Learning->Large Language Models",
+ "role": "problem-setup",
+ "role2": "concept",
+ "claim": "Interleaved pipeline schedules leave activations of early stages alive for long stretches, creating uneven, high memory pressure across stages.",
+ "layout": "single 4-row timeline grid, left-to-right, color-coded forward/backward legend below",
+ "tags": [
+  "pipeline-parallelism",
+  "scheduling",
+  "memory-efficiency",
+  "distributed-training",
+  "interleaved-1f1b"
+ ],
+ "style": [
+  "colorful",
+  "minimal"
+ ],
+ "description": "A Gantt-style schedule chart of Interleaved 1F1B pipeline parallelism. Four horizontal rows, S1 to S4, are pipeline stages, and time runs left to right. Each cell holds a micro-batch number from 1 to 8. Forward passes are pale lavender and pink for the two interleaved model chunks. Backward passes are purple and pale yellow for the same two chunks. Early on, the stages fill in a staggered way, with empty white cells forming a diagonal warm-up bubble. The middle of the chart alternates forward and backward blocks in the steady state. The end is dominated by backward blocks, followed by white cooldown gaps. A legend below maps colors to Forward Pass and Backward Pass. The eye goes first to the dense colored mosaic and the staircase of blank cells.",
+ "caption": "An example of Interleaved 1F1B PP with four stages and each mini-batch divided into eight micro-batches.",
+ "caption_source": "latex",
+ "abstract": "Quantization is a key method for reducing the GPU memory requirement of training large language models (LLMs). Yet, current approaches are ineffective for 4-bit activations and 8-bit gradients, which would easily cause slow convergence or accuracy loss. To address this, we introduce AGoQ, incorporating two new techniques: 1) a layer-aware activation quantization algorithm that allocates appropriate bit-widths for activations of various layers based on their types and pipeline stages to achieve near 4-bit activation storage, and 2) a gradient quantization algorithm that reduces memory usage and shortens communication time by employing 8-bit gradient storage and precision-preserving 8-bit All-Reduce communication. We conduct extensive experiments using different sizes of LLMs on two GPU clusters (up to 64 GPUs), and the experimental results show that our AGoQ reduces the memory by up to 52\\% and achieves up to 1.34$\\times$ improvement of training speed compared to state-of-the-art training systems Megatron-LM (w/ or w/o ZeRO), COAT and DeepSpeed with 8B to 32B LLaMA models, while achieving convergence loss on pretraining and comparable accuracy on downstream tasks with LLaMA architectures.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=ymHDVBwmta",
+  "arxiv": "https://arxiv.org/abs/2605.00539",
+  "pdf": "https://raw.githubusercontent.com/mlresearch/v306/main/assets/lin26m/lin26m.pdf",
+  "proceedings": "https://proceedings.mlr.press/v306/lin26m.html",
+  "virtual": "https://icml.cc/virtual/2026/poster/60582",
+  "code": null
+ },
+ "license": "http://creativecommons.org/licenses/by/4.0/",
+ "img": "cc-by",
+ "image_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/images/icml26-6442.png",
+ "thumb_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/thumbs/icml26-6442.webp",
+ "figure_page": 2,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.5
+}

@@ -1,0 +1,51 @@
+{
+ "id": "neurips26-5066",
+ "title": "Leaner transformers can easily learn to cluster",
+ "authors": [
+  "Charlotte Park",
+  "Kenneth Clarkson",
+  "Lior Horesh",
+  "Takuya Ito",
+  "Parikshit Ram"
+ ],
+ "venue": "NeurIPS 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "Deep Learning->Algorithms",
+ "role": "teaser-result",
+ "role2": null,
+ "claim": "A leaner embedding yields mostly positive efficiency gains over the baseline, and the gains grow as the problem scale increases.",
+ "layout": "4 heatmap panels in a row, shared diverging colorbar, 6x6 grids",
+ "tags": [
+  "efficiency",
+  "heatmap",
+  "memory-footprint",
+  "runtime-speedup",
+  "scaling-comparison"
+ ],
+ "style": [
+  "plot",
+  "colorful",
+  "text-heavy"
+ ],
+ "description": "A single wide strip of four side-by-side 6x6 heatmaps. Their titles are Forward time (train), Backward time (train), Encoding specific GPU memory usage (train), and Forward time (eval). Rows are data dimensionality d, from 4 to 128. Columns are number of clusters k, from 10 to 100. Each cell shows a bold relative improvement percentage, with a small line below giving the baseline's mean±std runtime or memory. A shared red-yellow-green colorbar on the right runs from about -40 to +50. Green marks gains and orange or red marks degradations. Gains are mostly positive and strongest at large k, reaching about +55%. Small-k cells in the time panels are near zero or slightly negative. The memory panel is green throughout. The eye goes first to the dark green cells in the right-hand columns.",
+ "caption": "Comparison of the proposed [ref] embedding against the existing [ref] embedding with varying values of $d \\in \\{4, 8, 16, 32, 64, 128\\}$ and $k \\in \\{10, 16, 25, 40, 64, 100 \\}$. Each heatmap reports the relative improvement (in %) of [ref] over [ref] for each of following metrics: (i) {\\em Forward time (train)}: forward pass time during training, (ii) {\\em Backward time (train)}: backward pass time, (iv) {\\em Encoding specific GPU memory usage}: peak GPU memory usage at training (less the usage from the self-attention matrices which does not depend on $\\demb$), and (iv) {\\em Forward pass (eval)}: forward pass time with the computation graph disabled (via model.eval()). Each cell in the $(6 \\times 6)$ grid in the heatmap lists the relative gain (or degradation), with actual metrics for [ref] also listed in the cell as (mean$\\pm$std) for completeness; darker greens denote larger gain values. All runs use 32 clustering problems with $n = 1024$ points, and numbers are generated with 30 repetitions (10 warm-up rounds). In terms of memory usage, [ref] shows gains across the board, ranging from +1-15%. For the computation times (forward (train), backward, and forward (eval)), [ref] does not always show a positive gain for smaller values of $k$, especially when the baseline [ref] runtimes is already quite small ($<10$ms). However, once $k$ is large enough, the gains can be quite significant, reaching over 50% in some cases.",
+ "caption_source": "latex",
+ "abstract": "Transformers have in-context learning capabilities, where some known learning algorithms can be executed in the forward pass through the model. Recent work shows that transformers can exactly perform Lloyd's algorithm for $k$-means clustering with $n$ points in $d$ dimensions with an embedding size $d_{\\textsf{emb}} = d+k$ (thus, requiring attention projection matrices of size $(d+k)^2$). In this work, we build upon this result in the following ways: First, we present an equally expressive but smaller transformer that executes Lloyd's algorithm with embedding size $d_{\\textsf{emb}} = (d + \\lceil \\log_2 k \\rceil)$. Next, we train these transformers to learn the clustering algorithms given a distribution of clustering tasks, and theoretically characterize and empirically validate the factors affecting the convergence and in-distribution generalization of learning algorithms based on stochastic gradients. Finally, we probe the general clustering abilities of these learned algorithms (in the form of transformers), and try to understand situations where they succeed and fail.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=Z3rZbU90DL",
+  "arxiv": "https://arxiv.org/abs/2610.09760",
+  "pdf": "https://arxiv.org/pdf/2610.09760",
+  "proceedings": null,
+  "virtual": "https://neurips.cc/virtual/2026/poster/151648",
+  "code": "https://github.com/rithram/kmeans-trf"
+ },
+ "license": "http://creativecommons.org/licenses/by/4.0/",
+ "img": "cc-by",
+ "image_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/images/neurips26-5066.png",
+ "thumb_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/thumbs/neurips26-5066.webp",
+ "figure_page": 3,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.6
+}

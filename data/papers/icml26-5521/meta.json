@@ -1,0 +1,58 @@
+{
+ "id": "icml26-5521",
+ "title": "PASO: Step Parallel Stochastic Optimization",
+ "authors": [
+  "Jianrong Lu",
+  "Zhuoya Gu",
+  "Haobo Li",
+  "Zhiyu Zhu",
+  "Yechao Zhang",
+  "Jianhai Chen",
+  "Minghui Yang",
+  "Junwei Liu",
+  "Jian Wang",
+  "Qinming He",
+  "Hui LIU",
+  "Junhui Hou"
+ ],
+ "venue": "ICML 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "Theory->Optimization",
+ "role": "pipeline",
+ "role2": "prior-vs-ours",
+ "claim": "Sequential step-by-step updates can be restructured so a window of steps runs concurrently across devices, iteratively converging to the same trajectory.",
+ "layout": "2 stacked panels, left-to-right rows per device, dotted arrows between devices",
+ "tags": [
+  "step-parallel",
+  "parallel-training",
+  "optimizer",
+  "fixed-point-iteration",
+  "efficiency"
+ ],
+ "style": [
+  "colorful",
+  "math-heavy",
+  "text-heavy"
+ ],
+ "description": "Two stacked panels on a white background. The top panel shows sequential training on a single Device 0: a chain of blue Model boxes, pink Gradient boxes and orange Model Update boxes joined by black arrows, labeled by Training step t, t+1 and t+2. The much larger bottom panel shows step-parallel training with p = 4. It has four device rows, Device 0 to Device 3. Each row runs left to right through Iter k Model, Iter k Gradient, Model Update, then a light-blue convergence check box. After that come the Iter k+1 Model and Gradient boxes. Check boxes carry green 'Converged' or red 'Unconverged' marks. Dotted blue arrows carry updated models from one device to the next and back up to the next iteration. Notation such as ŵ_t^(k) appears throughout. The eye lands first on the colored boxes of the top row, then on the grid of device rows.",
+ "caption": "Illustration of our step-parallel training framework. PASO computes gradients in parallel within a p-sized window (here p = 4), followed by the communication of updated models. Throughout this process, each device maintains the computation graph for only a single step.",
+ "caption_source": "pdf",
+ "abstract": "This paper approaches the fundamental challenge of accelerating the inherently autoregressive nature of gradient descent (GD) like SGD and Adam through a dynamic system perspective. Specifically, we introduce a unified framework that recasts the autoregressive GD process as solving a system of triangular nonlinear equations (TNEs), thereby enabling \\textit{step-parallel} training, where gradients for different GD steps are computed concurrently without sequential dependencies. Within this generic framework, we establish that: (1) the TNE system admits a unique solution corresponding precisely to the autoregressive GD iterative trajectory; (2) solving the TNEs system guarantees convergence to the GD iterative trajectory in at most the equal iterations. Building on these insights, we present \\textit{PASO}, the first step-parallel optimizer for accelerating a broad class of GD-based optimizers like SGD and Adam. Extensive experiments (\\textit{e.g.}, Llama-3.2-1B and diffusion model) validate that PASO achieves up to \\textbf{21}$\\times$ reduction in GD steps and \\textbf{4.5}$\\times$ speedup in wall-clock time, with no model quality loss. Source code is available at: \\url{https://github.com/Jianrong-Lu/PASO.git}.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=pqG8AQFqhG",
+  "arxiv": null,
+  "pdf": "https://raw.githubusercontent.com/mlresearch/v306/main/assets/lu26h/lu26h.pdf",
+  "proceedings": "https://proceedings.mlr.press/v306/lu26h.html",
+  "virtual": "https://icml.cc/virtual/2026/poster/61475",
+  "code": "https://github.com/Jianrong-Lu/PASO.git"
+ },
+ "license": null,
+ "img": "none",
+ "image_url": null,
+ "thumb_url": null,
+ "figure_page": 3,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.8
+}

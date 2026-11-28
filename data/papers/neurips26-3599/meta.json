@@ -1,0 +1,52 @@
+{
+ "id": "neurips26-3599",
+ "title": "NPUsper: Eliminating Redundant Computation for Real-Time Whisper on Mobile NPUs",
+ "authors": [
+  "Hojeong Lee",
+  "Si H Lee",
+  "Sungwon Woo",
+  "Chengpo Yan",
+  "Suman Banerjee",
+  "Seyeon Kim"
+ ],
+ "venue": "NeurIPS 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "Applications->Language, Speech and Dialog",
+ "role": "prior-vs-ours",
+ "role2": "problem-setup",
+ "claim": "Prior streaming systems repeatedly reprocess buffered audio and pad inputs; ours shrinks inputs to mostly new content, cutting redundant computation.",
+ "layout": "3 panels, left-to-right, two timeline rounds each, red dashed redundancy boxes",
+ "tags": [
+  "streaming",
+  "redundant-computation",
+  "padding",
+  "efficiency",
+  "on-device-inference"
+ ],
+ "style": [
+  "minimal",
+  "colorful",
+  "text-heavy"
+ ],
+ "description": "Three side-by-side block diagrams compare how Whisper inputs are built across two consecutive inference rounds (n and n+1). Panel (a), covering Whisper-Streaming, SimulStreaming and SimulWhisper, shows a long gray audio buffer, green new audio and a large peach padding block that fills a fixed 30 s window. Panel (b), WhisperFlow, shortens the input to 10-15 s and replaces the padding with a small hush-word (HW) block. Panel (c), Ours, shows a short input made of a blue carryover (CO) block plus green new audio, and is mostly new. Red dashed boxes and red labels mark 'Repeated inference' and 'Padding overhead'. Dashed white boxes show trimmed audio. The overlap and padding shrink from left to right. The eye goes first to the red dashed outlines.",
+ "caption": "Redundant computation in existing systems. Existing systems construct each Whisper input by buffering previously processed audio with newly arrived audio and padding it to a fixed 30-second window to mitigate hallucinations. WhisperFlow [ref] reduces padding overhead by replacing long padding with a trained short audio segment, called a hush word, but still retains substantial overlap between consecutive inference inputs. HW denotes hush word and CO denotes audio carryover.",
+ "caption_source": "latex",
+ "abstract": "We present NPUsper, a live transcription system that makes Whisper efficient on mobile NPUs by eliminating redundant computation. To avoid the heavy padding used by prior streaming systems, NPUsper detects hallucinated tokens online from temporal patterns in decoder cross-attention, allowing each inference round to process short audio inputs with minimal carryover. For efficient mobile-NPU execution, we propose controlled unrolling, which executes autoregressive decoding as K-step chunk graphs, removing unnecessary KV-cache computation and reducing graph-dispatch overhead. NPUsper achieves up to 4.84x lower per-word latency, up to 33.2x lower time-to-first-token (TTFT), and up to 88.64% lower average power consumption compared with baselines, while maintaining comparable transcription accuracy. The code is available at https://github.com/npusper/NPUsper.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=P8hKTBfUd9",
+  "arxiv": "https://arxiv.org/abs/2607.01108",
+  "pdf": "https://arxiv.org/pdf/2607.01108",
+  "proceedings": null,
+  "virtual": "https://neurips.cc/virtual/2026/poster/152954",
+  "code": null
+ },
+ "license": "http://creativecommons.org/licenses/by/4.0/",
+ "img": "cc-by",
+ "image_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/images/neurips26-3599.png",
+ "thumb_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/thumbs/neurips26-3599.webp",
+ "figure_page": 1,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.85
+}

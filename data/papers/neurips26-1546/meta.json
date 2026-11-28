@@ -1,0 +1,52 @@
+{
+ "id": "neurips26-1546",
+ "title": "When Credit Turns Against Tools: Transition-Aware Credit Assignment in Agentic Reinforcement Learning",
+ "authors": [
+  "Xiangyu Lu",
+  "Zhanke Zhou",
+  "Jiazhe Ning",
+  "Chentao Cao",
+  "Jiangchao Yao",
+  "Bo Han"
+ ],
+ "venue": "NeurIPS 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "General Machine Learning->Everything Else",
+ "role": "analysis-finding",
+ "role2": "problem-setup",
+ "claim": "Terminal supervision, length-weighted aggregation and failure-driven retries combine to give negative credit to tool use, which degrades training.",
+ "layout": "Top rollout diagram with legend, three colored mechanism panels below, left-to-right",
+ "tags": [
+  "credit-assignment",
+  "agentic-rl",
+  "tool-use",
+  "training-degradation",
+  "failure-mode"
+ ],
+ "style": [
+  "colorful",
+  "icon-heavy",
+  "text-heavy"
+ ],
+ "description": "The top half shows a Question feeding an Agent, which does group sampling into two multi-turn rollouts. Each rollout is a chain of tokens: reasoning circles, tool-call boxes marked </>, and dashed observation boxes marked obs. The upper rollout is green and ends in an answer A with positive advantage. The lower rollout is orange, has more turns, and ends with negative advantage. Curved arrows send the advantage back to the tool-call tokens. A legend at top right explains the token types and colors. The bottom half has three rounded panels with colored title tags: Tool-token imbalance (blue), Aggregation amplification (magenta), and Failure-driven retries (teal). Each panel has a small schematic. These are a credit arrow chart showing C_tool < 0, bars of rollout length under token-mean versus trajectory-mean weighting, and a retry loop after a failed observation.",
+ "caption": "Coupled mechanisms of training degradation. Terminal supervision can yield negative aggregate tool credit. Token-mean aggregation can further amplify this signal by upweighting longer incorrect rollouts, while retries prolong these rollouts and extend negative credit to recovery attempts.",
+ "caption_source": "latex",
+ "abstract": "Agentic reinforcement learning with verifiable rewards trains language models through multi-turn tool interactions, yet their reasoning performance and tool-calling ability can decline during training. We trace this degradation to three coupled mechanisms: (1) tool-token imbalance produces negative overall tool credit when incorrect trajectories contain more tool tokens per turn than correct ones; (2) aggregation amplification can further strengthen this negative signal as token-mean aggregation gives longer incorrect trajectories greater weight in policy updates; and (3) failure-driven retries prolong trajectories as models tend to call tools again after execution errors, extending potential negative credit to recovery attempts. To counter this suppression, we propose Transition-Aware Credit Assignment (TACA), which targets the transition from reasoning to tool use through supervision of both call initiation and generation. Specifically, TACA uses Advantage Projection to enforce a nonnegative mean advantage on tool-call tokens within each prompt group through a minimal uniform shift. Additionally, TACA guides tool-use decisions with Decision Contrast, comparing rewards for tool-assisted and direct answers to the same prompt. Through Supervised Replay, it reinforces tool-call generation using calls from previously sampled correct trajectories. Across models and tasks, TACA improves performance and sustains more reliable tool interaction during training, raising mean accuracy over MT-GRPO on six reasoning benchmarks by 4.61 percentage points for Qwen2.5-1.5B and 3.61 for Qwen2.5-3B. Our code is available at https://github.com/tmlr-group/TACA.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=B3PxtA5k1K",
+  "arxiv": "https://arxiv.org/abs/2611.11330",
+  "pdf": "https://arxiv.org/pdf/2611.11330",
+  "proceedings": null,
+  "virtual": "https://neurips.cc/virtual/2026/poster/154776",
+  "code": null
+ },
+ "license": "http://creativecommons.org/licenses/by/4.0/",
+ "img": "cc-by",
+ "image_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/images/neurips26-1546.png",
+ "thumb_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/thumbs/neurips26-1546.webp",
+ "figure_page": 1,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.6
+}

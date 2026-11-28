@@ -1,0 +1,52 @@
+{
+ "id": "iclr26-1333",
+ "title": "MergePRAG: Orthogonal Merging of Passage-experts for Multi-hop Parametric RAG",
+ "authors": [
+  "Xuebing Liu",
+  "Shanbao Qiao",
+  "Roseline Nyange",
+  "Dongwook Min",
+  "Hyun Kim",
+  "Seung-Hoon Na"
+ ],
+ "venue": "ICLR 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "Deep Learning->Generative Models and Autoencoders",
+ "role": "pipeline",
+ "role2": null,
+ "claim": "Each reasoning step turns retrieved passages into parameter updates, then merges them orthogonally into the model to answer sequentially.",
+ "layout": "5 numbered stages, left-to-right, dashed modules, vector-projection insets, feedback loop on top",
+ "tags": [
+  "parametric-rag",
+  "continual-merging",
+  "orthogonal-projection",
+  "multi-hop",
+  "hypernetwork"
+ ],
+ "style": [
+  "math-heavy",
+  "colorful",
+  "icon-heavy"
+ ],
+ "description": "A wide horizontal pipeline with five numbered stages. Stage 1 at the bottom is new sub-question generation, which feeds a retriever box holding a passage collection. Stage 2 retrieves passages SP_t, shown as p1...pm document icons. Stage 3 sends them through a hypernetwork H_phi, giving orange passage-expert blocks H(p_i). A blue-plane vector diagram shows inner merging by orthogonal projection. Stage 4 adds H(SP_t) to the previous merged expert F(SP_1:t-1) through a plus node. The result F(SP_1:t) is a red block, with a second blue-plane projection sketch. Faded gray dashed boxes show the previous timestep. Stage 5 plugs the merged expert into the critical layer's V and K of a memory-attention block in the LLM, producing sub-answer sa_t. Black arrows loop context C_t along the top. Orange and red highlight the experts.",
+ "caption": "Overview of MergePRAG for multi-hop QA. A complex query is decomposed into subquestions, and retrieved passages are sequentially incorporated through parameterization and continual merging. At each timestep t: (1) a sub-question sqt is generated from the reasoning chain Ct−1 (Eq. 1, Section 3.1); (2) the retriever returns top-ranked passages SPt ⊆R; (3) given SPt = [pi]m",
+ "caption_source": "pdf",
+ "abstract": "Large language models (LLMs) can be enhanced with external knowledge through two dominant approaches: (1) retrieval-augmented generation (RAG) , which supplements LLMs with in-context retrieved passages, and (2) parametric knowledge adaptation (PKA) , which directly updates model parameters with new domain knowledge. Recently, parametric RAG (PRAG) has emerged as a promising framework, extending RAG by translating retrieved passages into parameter updates, thereby mitigating inefficiency and noise sensitivity inherent to RAG. However, existing PRAG methods remain limited to single-pass retrieval, falling short of the multi-hop RAG setting that requires iterative retrieval and reasoning. We propose MergePRAG ( Orthogonal Merging of Passage-experts for Multi-hop PRAG ), a novel framework that sequentially integrates retrieved passages into LLM parameters through a continual merging mechanism, which is advanced by two key proposals: (1) orthogonal merging using the Gram–Schmidt process to minimize conflicts between \"passage experts\", and (2) critical-layer parameterization to efficiently encode in-context passages. Experiments on multi-hop open-domain QA and reasoning-aware knowledge editing show that MergePRAG consistently outperforms both standard and state-of-the-art RAGs as well as existing parametric adaptation methods, achieving superior effectiveness and efficiency. All datasets and code will be released at https://github.com/Liu-Xuebing/MhQA_hypernetwork.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=FSL1J2gmJV",
+  "arxiv": null,
+  "pdf": "https://proceedings.iclr.cc/paper_files/paper/2026/file/f7bf351cd45a377901780e90a4bc0897-Paper-Conference.pdf",
+  "proceedings": "https://proceedings.iclr.cc/paper_files/paper/2026/hash/f7bf351cd45a377901780e90a4bc0897-Abstract-Conference.html",
+  "virtual": "https://iclr.cc/virtual/2026/poster/10010596",
+  "code": "https://github.com/Liu-Xuebing/MhQA_hypernetwork"
+ },
+ "license": null,
+ "img": "none",
+ "image_url": null,
+ "thumb_url": null,
+ "figure_page": 2,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.93
+}

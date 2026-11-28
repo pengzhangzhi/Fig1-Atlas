@@ -1,0 +1,51 @@
+{
+ "id": "neurips26-6260",
+ "title": "Scalable Maximum Entropy Reinforcement Learning for Diffusion Policies via Adjoint Matching",
+ "authors": [
+  "Serge Thilges",
+  "Onur Celik",
+  "Denis Blessing",
+  "Emiliyan Gospodinov",
+  "Gerhard Neumann"
+ ],
+ "venue": "NeurIPS 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "Reinforcement Learning->Deep RL",
+ "role": "pipeline",
+ "role2": null,
+ "claim": "Training proceeds in five numbered steps (simulate, squash, score, resample, regress), avoiding backpropagation through the generative process.",
+ "layout": "Single wide panel, left-to-right, five numbered callout boxes along a stochastic trajectory",
+ "tags": [
+  "simulation-free",
+  "diffusion-policy",
+  "stochastic-optimal-control",
+  "reinforcement-learning",
+  "regression-loss"
+ ],
+ "style": [
+  "math-heavy",
+  "plot",
+  "minimal"
+ ],
+ "description": "A single wide panel shows time running left to right. Vertical axes mark τ=0 on the left, τ=1 in the middle-right, and the bounded action space A=[-1,1]^d on the far right. From X_0=0, several grey Brownian-like SDE paths spread out, with one path in bold black ending at the terminal point X_1. A multimodal grey density Π_1^u(·|s) sits on the τ=1 axis. A second density on the action axis, shaded light blue, is labelled exp(Q/α), with peaks near ±1. Five boxed, numbered callouts hold the equations: 1 Simulate SDE, 2 Action squashing a=erf(X_1), 3 Compute Q-score, 4 Sample reciprocal process, 5 Minimize AMDP loss. Dashed arrows link X_1 to an intermediate X_τ and to the action a. The eye starts on the bold trajectory.",
+ "caption": "Overview of the Adjoint Matching Diffusion Policy (AMDP) training pipeline. The process begins by (1.) simulating the forward stochastic differential equation (SDE) from a deterministic initial state $X_0 = 0$ to obtain a terminal sample $X_1 \\sim \\Pi^u_1(\\cdot|s) \\in \\mathbb{R}^d$ for a given state $s$. To ensure valid control signals, (2.) the terminal sample is mapped to the bounded action space $\\mathcal{A} = [-1,1]^d$ using an error function squashing. (3.) The target learning signal is derived by computing the $Q$-score, $\\nabla_{x}\\tfrac{1}{\\alpha}Q^{\\pi}$, based on the squashed action. For efficient, simulation-free training, (4.) intermediate states $X_\\tau$ are sampled directly from the terminal state $X_1$ using the conditional reciprocal process $\\Pi^0_{\\tau|1}$. Finally, (5.) the policy's vector field $u$ is optimized by minimizing the AMDP regression loss at these intermediate states, entirely avoiding backpropagation through the diffusion process.",
+ "caption_source": "latex",
+ "abstract": "Diffusion policies have recently emerged as a powerful paradigm for representing complex action distributions in reinforcement learning (RL). However, their application to online RL remains limited by the challenge of scalable training in the absence of ground-truth data, where standard optimization techniques such as score matching are not directly applicable. In this work, we introduce a highly efficient algorithm for optimizing diffusion policies by leveraging recent advances in stochastic optimal control. Our approach is based on adjoint matching, which enables simulation-free training and circumvents the need for explicit likelihood estimation or costly backpropagation through the diffusion process. Furthermore, we propose several extensions that improve the robustness and stability of the method in practical settings. Empirical results demonstrate that our approach achieves competitive performance while significantly reducing computational overhead, making diffusion policies more viable for online RL scenarios.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=h8DYJlF7Jt",
+  "arxiv": "https://arxiv.org/abs/2606.22630",
+  "pdf": "https://arxiv.org/pdf/2606.22630",
+  "proceedings": null,
+  "virtual": "https://neurips.cc/virtual/2026/poster/150581",
+  "code": null
+ },
+ "license": "http://creativecommons.org/licenses/by/4.0/",
+ "img": "cc-by",
+ "image_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/images/neurips26-6260.png",
+ "thumb_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/thumbs/neurips26-6260.webp",
+ "figure_page": 1,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.9
+}

@@ -1,0 +1,53 @@
+{
+ "id": "icml26-0771",
+ "title": "iLoRA: Bayesian Low-Rank Adaptation with Latent Interaction Graphs for Microbiome Diagnosis",
+ "authors": [
+  "Yang Song",
+  "Yixuan Zhang",
+  "Lingfa Meng",
+  "Tongyuan Hu",
+  "Haizhou Shi",
+  "Hao Wang",
+  "Samir Bhatt",
+  "Hengguan Huang"
+ ],
+ "venue": "ICML 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "Applications->Health / Medicine",
+ "role": "pipeline",
+ "role2": null,
+ "claim": "A single input is processed in parallel by a predictor and a graph-inference branch whose embedding generates the predictor's adapter weights.",
+ "layout": "5 colored panels in 2x3 grid, clockwise flow, color-coded stages",
+ "tags": [
+  "parameter-efficient",
+  "lora",
+  "latent-graph",
+  "bayesian",
+  "biomedical"
+ ],
+ "style": [
+  "colorful",
+  "icon-heavy"
+ ],
+ "description": "A five-panel framework diagram with rounded boxes in different pastel colors. The top-left blue panel shows a microbiome abundance heatmap, with rows labeled Species 1 to M, small microbe icons, and a low-to-high teal color bar. A thick arrow leads down through taxa selection S(X) to a second blue panel with a purple-outlined heatmap of K selected species. An Infer arrow leads right into a salmon bottom panel, where a Poisson graph is sparsified into a Laplace graph and then embedded as a colored vector. From that vector, a long arrow loops up to block A in the middle salmon panel. The middle panel also holds a dark LLM box and trapezoid blocks A and B, and arrows go from it to the green Outputs panel. That panel has a bar chart of UC versus CD probability.",
+ "caption": "Framework overview of iLoRA. Given a microbiome abundance profile $X\\in\\mathbb{R}^{M}$, our model predicts diagnosis with an LLM while, in parallel, selecting $K<M$ key taxa to infer a latent interaction graph. We first infer a Poisson edge graph, then transform it into a sparse graph with Laplace-distributed edge weights to encourage sparsity, embed the graph with a GNN, and use the embedding to generate the LoRA matrix $A$. The outputs are the predicted diagnosis $\\hat{Y}$ and a sparse interaction graph.",
+ "caption_source": "latex",
+ "abstract": "Parameter-efficient adaptation has made LLMs practical for domain prediction, but standard LoRA still relies on a static low-rank update and does not expose the latent interactions that often drive scientific labels. We introduce iLoRA. To our knowledge, it is the first Bayesian graph-conditioned LoRA framework. It infers a latent interaction graph from the input and uses it to generate input-conditioned LoRA updates. As a result, iLoRA learns prediction and latent interaction structure jointly, rather than training a predictor and applying interaction analysis only post hoc. We instantiate this idea for microbiome diagnosis, where disease state can depend on both species-level abundance and microbe-microbe cross-talk, and evaluate it in two complementary settings: interactive QA with human-annotated graphs, which tests latent structure recovery, and multi-cohort IBD diagnosis, which tests biomedical utility. Across both settings, iLoRA improves over strong LoRA and Bayesian adaptation baselines, recovers graphs aligned with human annotations and cohort-level microbiome associations, and provides calibrated uncertainty with moderate graph-branch overhead.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=7FF8g7hCre",
+  "arxiv": "https://arxiv.org/abs/2605.30179",
+  "pdf": "https://raw.githubusercontent.com/mlresearch/v306/main/assets/song26ad/song26ad.pdf",
+  "proceedings": "https://proceedings.mlr.press/v306/song26ad.html",
+  "virtual": "https://icml.cc/virtual/2026/poster/66077",
+  "code": null
+ },
+ "license": "http://creativecommons.org/licenses/by/4.0/",
+ "img": "cc-by",
+ "image_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/images/icml26-0771.png",
+ "thumb_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/thumbs/icml26-0771.webp",
+ "figure_page": 1,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.9
+}

@@ -1,0 +1,49 @@
+{
+ "id": "icml26-6232",
+ "title": "Predicting the Order of Upcoming Tokens Improves Language Modeling",
+ "authors": [
+  "Zayd Muhammad Kawakibi Zuhri",
+  "Erland Hilman Fuadi",
+  "Alham Fikri Aji"
+ ],
+ "venue": "ICML 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "Deep Learning->Large Language Models",
+ "role": "pipeline",
+ "role2": null,
+ "claim": "Adding a cheap auxiliary head that ranks upcoming tokens by proximity, alongside next-token prediction, gives a richer training signal than exact future-token prediction.",
+ "layout": "Single panel, left-to-right; transformer feeds two heads, targets on right with heatmap",
+ "tags": [
+  "auxiliary-loss",
+  "learning-to-rank",
+  "language-modeling",
+  "multi-head",
+  "pretraining"
+ ],
+ "style": [
+  "colorful",
+  "math-heavy",
+  "minimal"
+ ],
+ "description": "A left-to-right architecture diagram worked through a toy example, the lyric 'never gonna give you up'. At top left is a vocabulary table mapping seven words to integer IDs. A token sequence with IDs runs across the top. On the left, four input tokens (never, gonna, give, you) enter an orange Transformer Layers block. Its output splits into a blue NTP Head and a teal TOP Head. Each head feeds a gray loss box, L_NTP or L_TOP, and a plus sign joins the two losses. On the right, the NTP targets are one-hot vectors beside their token labels. The TOP targets are rows of integer ranks, with -∞ for tokens outside the window. They are shaded on a blue near-to-far gradient bar. The eye goes first to the colored heads and the blue rank heatmap.",
+ "caption": "An overview of token order prediction (TOP). Given an input token sequence, a vocabulary, a sequence length of 4 and window size of 4, a TOP target sequence is constructed via Algorithm [ref]. The output hidden representation of the final layer goes to two separate unembedding heads for NTP and TOP. The final loss to optimize is a sum of the NTP and TOP loss.",
+ "caption_source": "latex",
+ "abstract": "Multi-token prediction (MTP) has been proposed as an auxiliary objective to improve next-token prediction (NTP) in language model training but shows inconsistent improvements, underperforming in standard NLP benchmarks. We found MTP's exact future token prediction to be too difficult as an auxiliary loss. Instead, we propose token order prediction (TOP), which trains models to order upcoming tokens by their proximity using a learning-to-rank loss. TOP requires only a single additional unembedding layer compared to MTP's multiple transformer layers. We pretrain models of 340M, 1.8B, and 7B parameters using NTP, MTP, DeepSeek MTP (DS-MTP) and TOP objectives. The results of nine standard NLP benchmarks show that TOP overall outperforms NTP, MTP, and DS-MTP even at scale. TOP models with continued training on math and code also perform better on 4 relevant benchmarks. On the synthetic star graph task, TOP enables pathfinding on graphs where NTP, MTP, and DS-MTP fail. Our code is available at https://github.com/zaydzuhri/token-order-prediction",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=wmROqgop27",
+  "arxiv": "https://arxiv.org/abs/2508.19228",
+  "pdf": "https://raw.githubusercontent.com/mlresearch/v306/main/assets/zuhri26a/zuhri26a.pdf",
+  "proceedings": "https://proceedings.mlr.press/v306/zuhri26a.html",
+  "virtual": "https://icml.cc/virtual/2026/poster/60781",
+  "code": "https://github.com/zaydzuhri/token-order-prediction"
+ },
+ "license": "http://creativecommons.org/licenses/by-sa/4.0/",
+ "img": "cc-by-sa",
+ "image_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/images/icml26-6232.png",
+ "thumb_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/thumbs/icml26-6232.webp",
+ "figure_page": 0,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.93
+}

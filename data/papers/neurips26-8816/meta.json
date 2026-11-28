@@ -1,0 +1,49 @@
+{
+ "id": "neurips26-8816",
+ "title": "ABC-Align: Prediction-Powered Alignment with Adaptive Bias Control",
+ "authors": [
+  "Eric Frankel",
+  "Banghua Zhu",
+  "Sewoong Oh",
+  "Lillian Ratliff"
+ ],
+ "venue": "NeurIPS 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "Optimization->Stochastic & Convex Optimization",
+ "role": "analysis-finding",
+ "role2": "teaser-result",
+ "claim": "Fixed-weight baselines miss the optimal bias-variance setting, which shifts with teacher bias; adaptive selection tracks it in both regimes.",
+ "layout": "2 side-by-side contour heatmaps, shared colorbar, legend at right, markers overlaid",
+ "tags": [
+  "semi-supervised",
+  "bias-variance",
+  "adaptive-weighting",
+  "pseudo-labels",
+  "hyperparameter-landscape"
+ ],
+ "style": [
+  "plot",
+  "colorful"
+ ],
+ "description": "Two side-by-side contour heatmaps share a horizontal axis a (human correction, 0 to 1) and a vertical axis b (pseudo-label weight, 0 to 1.2). The left panel is titled μ=0.0 and the right μ=0.5. Color shows preference accuracy, from dark green (high) through yellow-green and yellow to orange and red (low). A vertical colorbar labeled Accuracy sits between the right panel and the legend. In the left panel the dark-green optimum is at upper left, near (0, 1). In the right panel the optimum is an interior green blob around (0.55, 0.4). Markers sit on the maps: a black star for ABC-Align, a purple X for PP-SSL, a yellow triangle for Doubly Robust, a pink square for Pseudo only, and a blue circle for Labeled only. Small in-panel boxes list each method's (a, b) coordinates. A legend box is on the right. The eye goes first to the green optimum regions and the black stars.",
+ "caption": "Each point on the $(a, b)$ parameter plane corresponds to a model trained with a fixed pair of $(a,b)$, and the color indicated the preference accuracy achieved by the model at two teacher-bias levels: $\\mu = 0$ (left) and $\\mu = 0.5$ (right). Each baseline corresponds to a fixed point in the plane, e.g., Pseudo-only at $(0, 1)$. All the PPI-style estimators fix $a=1.0$ to eliminate the bias, resulting in suboptimal accuracy for any choices of $b$, including Labeled-only at $(1, 0)$, Doubly Robust at $(1, N/(N{+}n))$, and PP-SSL at $(1, \\lambda_T)$---none of which coincide with the empirical maximizer in either panel. Instead, ABC-Align ($\\star$ shown at the final pair $(a_T,b_T)$) adaptively selects both $(a_t, b_t)$ during training and converges to the neighborhood of this maximizer in both regimes: the selected configuration approaches Pseudo-only when the teacher is accurate (left) and an interior bias--variance trade-off when the teacher is biased (right).",
+ "caption_source": "latex",
+ "abstract": "Language model post-training is often bottlenecked by the need for human-collected preference data, which is expensive and difficult to scale. Reinforcement learning from AI feedback (RLAIF) style approaches that leverage pseudo labels offer an abundant alternative but introduce systematic biases that degrade downstream alignment. Recent general-purpose semi-supervised methods correct for teacher bias using a small set of human-labeled examples, but suffer from high variance especially when human annotations are scarce. To this end, we propose ABC-Align, leveraging abundant pseudo label signal to minimize variance and applying a lightweight, adaptive correction grounded in the human-labeled subset. The correction strength is tuned automatically during training using plug-in estimates of the relevant bias--variance quantities. On LLM alignment with RLHF, DPO, and GRPO where human feedback is scarce, we empirically demonstrate that ABC-Align achieves superior performance over prior semi-supervised baselines in a series of experiments on an increasing scale. Our code is available at https://github.com/SewoongLab/abc-align .",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=ymfnBICWLI",
+  "arxiv": "https://arxiv.org/abs/2609.34374",
+  "pdf": "https://arxiv.org/pdf/2609.34374",
+  "proceedings": null,
+  "virtual": "https://neurips.cc/virtual/2026/poster/148310",
+  "code": null
+ },
+ "license": "http://arxiv.org/licenses/nonexclusive-distrib/1.0/",
+ "img": "none",
+ "image_url": null,
+ "thumb_url": null,
+ "figure_page": 4,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.5
+}

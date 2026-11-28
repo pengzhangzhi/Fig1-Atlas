@@ -1,0 +1,49 @@
+{
+ "id": "iclr26-4917",
+ "title": "Plan-R1: Safe and Feasible Trajectory Planning as Language Modeling",
+ "authors": [
+  "Xiaolong Tang",
+  "Meina Kan",
+  "Shiguang Shan",
+  "Xilin CHEN"
+ ],
+ "venue": "ICLR 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "Applications->Robotics",
+ "role": "pipeline",
+ "role2": null,
+ "claim": "A two-stage recipe pre-trains a generative model on demonstrations, then fine-tunes it with rule-based rewards to align behavior with principles.",
+ "layout": "2 stacked panels, top pre-training then bottom fine-tuning, dashed divider, zoomed-in module inset",
+ "tags": [
+  "two-stage-training",
+  "reinforcement-learning",
+  "pretrain-finetune",
+  "reward-alignment",
+  "autoregressive"
+ ],
+ "style": [
+  "colorful",
+  "icon-heavy"
+ ],
+ "description": "The figure is split by a dashed line into (a) Pre-training on top and (b) Fine-tuning below. In (a), a wide blue autoregressive decoder takes road-scene thumbnails and outputs probability histograms in green (ego) and blue (agent) on pink boxes. Sampled outputs are fed back in for the next step. A grey inset on the right expands the decoder into three stacked attention blocks, repeated L times, with colored embedding squares as inputs. In (b), a beige left panel shows dual-model rollout: a tunable planning decoder (flame icon) and a frozen world-model decoder (snowflake icon) exchange samples. An orange right panel shows the VD-GRPO pipeline, going bottom-up: rollout scenes, then four rule-based rewards, then centering and scaling, then scalar rewards with emoji faces. A legend at the bottom explains the icons and embedding colors.",
+ "caption": "Illustration of our Plan-R1: Stage (a) pre-trains a motion predictor on expert data; Stage (b) fine-tunes it with VD-GRPO using rule-based rewards to align with planning principles.",
+ "caption_source": "latex",
+ "abstract": "Safe and feasible trajectory planning is critical for real-world autonomous driving systems. However, existing learning-based planners rely heavily on expert demonstrations, which not only lack explicit safety awareness but also risk inheriting undesirable behaviors such as speeding from suboptimal human driving data. Inspired by the success of large language models, we propose Plan-R1, a two-stage trajectory planning framework that decouples principle alignment from behavior learning. In the first stage, a general trajectory predictor is pre-trained on expert data to capture diverse, human-like driving behaviors. In the second stage, the model is fine-tuned with rule-based rewards using Group Relative Policy Optimization (GRPO), explicitly aligning ego planning with principles such as safety, comfort, and traffic rule compliance. This two-stage paradigm retains human-like behaviors while enhancing safety awareness and discarding undesirable patterns from demonstrations. Furthermore, we identify a key limitation of directly applying GRPO to planning: group-wise normalization erases cross-group scale differences, causing rare, high-variance safety-violation groups to have similar advantages as abundant low-variance safe groups, thereby suppressing optimization for safety-critical objectives. To address this, we propose Variance-Decoupled GRPO (VD-GRPO), which replaces normalization with centering and fixed scaling to preserve absolute reward magnitudes, ensuring that safety-critical objectives remain dominant throughout training. Experiments on the nuPlan benchmark demonstrate that Plan-R1 significantly improves planning safety and feasibility, achieving state-of-the-art performance, particularly in realistic reactive settings. Our code is available at https://github.com/XiaolongTang23/Plan-R1.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=uusTA1rBhR",
+  "arxiv": "https://arxiv.org/abs/2505.17659",
+  "pdf": "https://proceedings.iclr.cc/paper_files/paper/2026/file/28a80012e6f564c0cc8e7661e1db83fe-Paper-Conference.pdf",
+  "proceedings": "https://proceedings.iclr.cc/paper_files/paper/2026/hash/28a80012e6f564c0cc8e7661e1db83fe-Abstract-Conference.html",
+  "virtual": "https://iclr.cc/virtual/2026/poster/10006857",
+  "code": "https://github.com/XiaolongTang23/Plan-R1"
+ },
+ "license": "http://arxiv.org/licenses/nonexclusive-distrib/1.0/",
+ "img": "none",
+ "image_url": null,
+ "thumb_url": null,
+ "figure_page": 3,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.9
+}

@@ -1,0 +1,61 @@
+{
+ "id": "neurips26-2230",
+ "title": "Heterogeneous Parallelism for Multimodal Large Language Model Training",
+ "authors": [
+  "Yashaswi Karnati",
+  "Kamran J Sadeghi",
+  "Akash Mehra",
+  "Li Ding",
+  "Ali Roshan Ghias",
+  "Pranav Prashant Thombre",
+  "Shifang Xu",
+  "Parth Mannan",
+  "Yu Yao",
+  "Hao Wu",
+  "Eric Harper",
+  "Ashwath Aithal",
+  "Nima Tajbakhsh"
+ ],
+ "venue": "NeurIPS 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "Optimization->Large Scale, Parallel and Distributed",
+ "role": "prior-vs-ours",
+ "role2": "overview-framework",
+ "claim": "A multimodal model's encoders and LLM can use independent parallel layouts, either sharing the same GPUs or running on separate GPU sets.",
+ "layout": "3 panels, left-to-right: modality graph, colocated grid, non-colocated grid with colored arrows",
+ "tags": [
+  "heterogeneous-parallelism",
+  "multimodal",
+  "system-design",
+  "colocated-vs-non-colocated",
+  "distributed-training"
+ ],
+ "style": [
+  "colorful",
+  "icon-heavy",
+  "minimal"
+ ],
+ "description": "Three panels separated by thin vertical lines. The left panel is the multimodal graph. Green rounded boxes for image, audio and video each feed a gray 'proj' box. A dashed 'text' box joins them. All four arrows converge on a green 'embed' box, which feeds a large blue 'LLM' box. The middle panel shows colocated execution. Green dashed encoder blocks labeled enc DP0 and DP1, each with TP0 and TP1, sit above four white rank boxes R0 to R3. A blue LLM block below is labeled TP0 to TP3. The caption underneath gives the config: Enc TP=2, DP=2; LLM TP=4, DP=1. The right panel shows non-colocated execution. A green encoder column with Enc DP0 and DP1 connects through orange 'NC' arrows to a blue LLM grid with PP0/PP1 and TP0/TP1 cells. Gray P2P and blue bcast arrows link the LLM cells. Green marks encoders and blue marks the LLM throughout.",
+ "caption": "Multimodal graph and heterogeneous placement modes. Modality encoders produce projected tokens that are inserted into the LLM input sequence. Colocated execution reinterprets the same physical ranks under different encoder and LLM logical grids, while non-colocated execution places encoder and LLM on disjoint rank sets and uses non-colocated communicators before ordinary LLM pipeline P2P.",
+ "caption_source": "latex",
+ "abstract": "Foundation model training is becoming multimodal, from post-training pipelines to large-scale pretraining. As modality coverage broadens, context windows grow, and encoder LLM scales diverge, a single LLM-centric TP/CP/PP/DP/EP layout increasingly limits throughput. This coupling forces encoders to inherit LLM-driven sharding and placement choices that can add communication, limit encoder parallelism, or constrain the LLM schedule; the mismatch is most pronounced at long contexts, where LLM context parallelism is needed for the fused multimodal sequence but encoder inputs remain bounded. We present heterogeneous parallelism for multimodal large language model training, an abstraction that lets modules in one end-to-end graph use independent layouts and rank placements, supporting colocated execution on shared GPUs and non-colocated execution on disjoint rank sets. The key challenge is preserving boundary tensor semantics across independent layouts: forward activations must be materialized for the destination layout, while backward gradients must be routed back to the source layout. We address this with boundary communicators that implement forward and backward layout transforms, plus scheduling extensions for both placement modes. We evaluate optimized homogeneous, colocated heterogeneous, and non-colocated heterogeneous configurations across multimodal workloads and GPU scales to characterize when added layout and placement freedom exposes a better operating point. Across this sweep, colocated heterogeneity improves TFLOPS/GPU by up to 49.3%, while non-colocated heterogeneity improves aggregate token throughput by up to 13.0% and TFLOPS/GPU by up to 9.6%. We validate loss convergence parity against homogeneous baselines and release the system as an open-source Megatron-LM extension.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=FpEMaMSLx7",
+  "arxiv": "https://arxiv.org/abs/2605.27678",
+  "pdf": "https://arxiv.org/pdf/2605.27678",
+  "proceedings": null,
+  "virtual": "https://neurips.cc/virtual/2026/poster/154158",
+  "code": null
+ },
+ "license": "http://creativecommons.org/licenses/by/4.0/",
+ "img": "cc-by",
+ "image_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/images/neurips26-2230.png",
+ "thumb_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/thumbs/neurips26-2230.webp",
+ "figure_page": 3,
+ "qc_flags": [
+  "low-role-confidence"
+ ],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.4
+}

@@ -1,0 +1,53 @@
+{
+ "id": "iclr26-3182",
+ "title": "RayI2P: Learning Rays for Image-to-Point Cloud Registration",
+ "authors": [
+  "Xinjun Li",
+  "Wenfei Yang",
+  "Zhixin Cheng",
+  "Jiacheng Deng",
+  "Fei Wang",
+  "Chen Qian",
+  "Tianzhu Zhang"
+ ],
+ "venue": "ICLR 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "Computer Vision->Vision Models & Multimodal",
+ "role": "prior-vs-ours",
+ "role2": "pipeline",
+ "claim": "Prior methods rely on coarse supervision or ambiguous, scale-inconsistent correspondences; predicting rays instead gives accurate pose estimates.",
+ "layout": "3 panels: (a) prior top-left, (c) ours bottom-left, (b) challenges right column",
+ "tags": [
+  "ray-prediction",
+  "registration",
+  "matching-free",
+  "correspondence-ambiguity",
+  "scale-inconsistency"
+ ],
+ "style": [
+  "photo/real data",
+  "colorful",
+  "icon-heavy"
+ ],
+ "description": "A dashed-border figure with three panels. Panel (a), top left, shows the matching-free DeepI2P pipeline. A LiDAR point cloud and a street image feed an 'Overlap Detector' box. Its output is a point cloud with green points marking the frustum. That goes to an 'Iterative Pose Solver' box, then to a cloud with a fan of black-to-red camera frusta that miss the green ground-truth frustum. Panel (c), bottom left, has the same layout for the proposed method. The image is split into a patch grid and goes with the point cloud into a 'Ray Predictor', then a 'Pose Solver'. The output is a red frustum that aligns with the green one. Panel (b), on the right, has two stacked examples. The top one shows colored lines linking image patches to multiple 3D points, labeled projection ambiguity. The bottom one shows patches linked to 3D regions of different sizes, labeled scale inconsistency. The eye goes first to the frusta and the colored lines.",
+ "caption": "(a) Illustration of the iterative pose optimization process in matching-free methods such as DeepI2P. Green points indicate 3D points predicted to lie within the camera frustum. The frustum color transitions from black to red, showing the progression of estimated camera pose during iterative optimization. The green frustum represents ground-truth camera pose. Due to the coarse supervision from frustum classification, the final estimated pose often deviates significantly from the ground truth. (b) Two key challenges of existing matching-based approaches: (1) projectioninduced correspondence ambiguity: multiple geometrically distinct 3D points project to the same image region; (2) depth-induced scale inconsistency: fixed-size image patches correspond to 3D regions of varying physical size. Each line denotes a ground-truth 2D–3D correspondence between an image patch and a 3D region. (c) Our proposed ray-based registration pipeline predicts a set of 3D rays (colored lines), each representing the projection of an image patch into 3D space. The predicted rays are then used to estimate the camera pose (red frustum), which closely aligns with the ground truth (green frustum). This formulation naturally mitigates the limitations of previous methods.",
+ "caption_source": "pdf",
+ "abstract": "Image-to-point cloud registration aims to estimate the 6-DoF camera pose of a query image relative to a 3D point cloud map. Existing methods fall into two categories: matching-free methods regress pose directly using geometric priors, but lack fine-grained supervision and struggle with precise alignment; matching-based methods construct dense 2D-3D correspondences for PnP-based pose estimation, but are fundamentally limited by projection ambiguity (where multiple geometrically distinct 3D points project to the same image patch, leading to ambiguous feature representations) and scale inconsistency (where fixed-size image patches correspond to 3D regions of varying physical size, causing misaligned receptive fields across modalities). To address these issues, we propose a novel ray-based registration framework that first predicts patch-wise 3D ray bundles connecting image patches to the 3D scene and then estimates camera pose via a differentiable ray-guided regression module, bypassing the need for explicit 2D-3D correspondences. This formulation naturally resolves projection ambiguity, provides scale-consistent geometry encoding, and enables fine-grained supervision for accurate pose estimation. Experiments on KITTI and nuScenes show that our approach achieves state-of-the-art registration accuracy, outperforming existing methods.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=arfeGsDWoq",
+  "arxiv": null,
+  "pdf": "https://proceedings.iclr.cc/paper_files/paper/2026/file/49f42aafbcce59b2665640cb9f3d794f-Paper-Conference.pdf",
+  "proceedings": "https://proceedings.iclr.cc/paper_files/paper/2026/hash/49f42aafbcce59b2665640cb9f3d794f-Abstract-Conference.html",
+  "virtual": "https://iclr.cc/virtual/2026/poster/10008664",
+  "code": null
+ },
+ "license": null,
+ "img": "none",
+ "image_url": null,
+ "thumb_url": null,
+ "figure_page": 1,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.6
+}

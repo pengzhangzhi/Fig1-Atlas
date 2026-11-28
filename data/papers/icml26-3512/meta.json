@@ -1,0 +1,55 @@
+{
+ "id": "icml26-3512",
+ "title": "Unifying Stacking and Cascading for Efficient Ensemble Inference",
+ "authors": [
+  "Ashwin Colaço",
+  "Sharad Mehrotra",
+  "Michael De Lucia",
+  "Kevin Hamlen",
+  "Murat Kantarcioglu",
+  "Latifur Khan",
+  "Ananthram Swami",
+  "Bhavani Thuraisingham",
+  "Unnat Jain"
+ ],
+ "venue": "ICML 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "General Machine Learning->Scalable Algorithms",
+ "role": "prior-vs-ours",
+ "role2": "teaser-result",
+ "claim": "Prior approaches either run every model or exit in fixed order; ours learns the order and aggregates progressively, winning on speed and accuracy.",
+ "layout": "3 top panels left-to-right, two radar charts below, shared legend",
+ "tags": [
+  "ensemble-inference",
+  "cascade",
+  "stacking",
+  "early-exit",
+  "efficiency"
+ ],
+ "style": [
+  "colorful",
+  "plot",
+  "icon-heavy"
+ ],
+ "description": "The top row has a full-width Input bar listing 8 datasets, color-coded by modality (vision, text, tabular, LLM). Three arrows lead into three boxed panels. Stacking runs Models A, B and C in parallel into one Aggregate box and then Exit, with 'runs all models' in red. Cascade runs A, B, C in a fixed cost order, with a threshold test (≥θ) at each step that sends the input to Early Exit. LazyStack (ours) has a bold blue border and a learned order B→A→C. Each model feeds a growing aggregator, Agg(B), Agg(B,A) and Agg(B,A,C), which can exit early. Two radar charts sit below. Speedup runs up to 40× and Accuracy runs 70–100%, each across the 8 datasets. They compare Cost Cascade (gray), Agreement-Based Cascade (orange) and LazyStack (blue). The blue outline of LazyStack extends furthest on speedup and roughly matches the others on accuracy.",
+ "caption": "Traditional Stacking and Cascades vs LazyStack’s Progressive Stacking. Top: Traditional stacking runs all models; cascades",
+ "caption_source": "pdf",
+ "abstract": "We introduce LazyStack, a method for efficient model ensemble inference. The core idea is intuitive: after each model executes, we check whether accumulated evidence is sufficient to exit confidently. Sometimes one model suffices; other times we aggregate predictions from several models via trained meta-learners before reaching confidence. Two insights make this work. First, most inputs follow only 3 to 8 execution trajectories. This reduces the training problem from exponential to linear: we learn aggregators only for these common paths, not all possible model combinations. Second, we formulate trajectory selection as an MDP and use value iteration to compute the optimal routing policy, which reveals counterintuitive model orderings. On intrusion detection, starting with a moderately expensive model outperforms starting with the cheapest, because its higher confidence enables earlier overall exit. Across vision, text, tabular, and LLM tasks, we achieve up to 38x speedup at 97\\%+ accuracy retention compared to a complete ensemble. The result: ensemble-quality predictions at cascade-level cost. Code and a project page are available at https://ashwincolaco.github.io/lazystack.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=XJLcR8dZcv",
+  "arxiv": null,
+  "pdf": "https://raw.githubusercontent.com/mlresearch/v306/main/assets/colaco26a/colaco26a.pdf",
+  "proceedings": "https://proceedings.mlr.press/v306/colaco26a.html",
+  "virtual": "https://icml.cc/virtual/2026/poster/63422",
+  "code": "https://ashwincolaco.github.io/lazystack/"
+ },
+ "license": null,
+ "img": "none",
+ "image_url": null,
+ "thumb_url": null,
+ "figure_page": 1,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.7
+}

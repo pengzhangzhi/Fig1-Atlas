@@ -1,0 +1,54 @@
+{
+ "id": "neurips26-5376",
+ "title": "Diversity Combining for Multi-Path LLM Reasoning",
+ "authors": [
+  "xu wang",
+  "Litianyi Zhang",
+  "Qin Wang",
+  "Xu Wang",
+  "Mingyuan Li",
+  "Shaoxiong Ji",
+  "Ren Ping Liu",
+  "Massimo Piccardi"
+ ],
+ "venue": "NeurIPS 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "Deep Learning->Generative Models and Autoencoders",
+ "role": "pipeline",
+ "role2": "concept",
+ "claim": "Correlated reasoning paths are combined by an optimal linear combiner that reduces to majority vote, and the vote saturates at a ceiling.",
+ "layout": "3 panels, left-to-right, thick arrows between stages, math in boxes",
+ "tags": [
+  "multi-path-reasoning",
+  "aggregation",
+  "majority-vote",
+  "saturation",
+  "adaptive-compute"
+ ],
+ "style": [
+  "math-heavy",
+  "colorful",
+  "icon-heavy"
+ ],
+ "description": "Three rounded gray panels read left to right, linked by thick black arrows. The left panel, 'multi-path generation', shows an input x going into an LLM icon. The LLM fans out to K=32 path equations z_k = h_k·z(x)+n_k. A red curved band marks the pairwise correlation ρ. Each path ends in a green check or red cross, giving correctness indicators Y_k in {0,1}. The middle panel, 'diversity combining', shows a red-highlighted GLS optimal combiner formula w* = Σ⁻¹g / gᵀΣ⁻¹g. Beneath it, a dashed callout says exchangeable paths give uniform weights, which is majority vote. An arrow leads to a blue Majority Vote box with a ballot icon. The right panel, 'saturation & adaptive-K', shows a pink plot of K_eff^vote against K. The curve rises and levels off at a dashed 1/c ceiling. It carries formula boxes for K_eff and K*, plus a GSM8K summary line. Yellow rounded labels name each stage.",
+ "caption": "Diversity combining for multi-path LLM reasoning. The LLM generates $K$ correlated paths $z_k = h_kz(x) + n_k$ ($h_k$: reasoning quality; $n_k$: errors; $\\rho$: pairwise correlation), collapsed to correctness indicators $Y_k$. Aggregation: under exchangeability, the GLS-optimal linear combiner is uniform (Corollary [ref]), supporting uniform majority vote as the natural default. Diagnostic: $\\Keff^{vote} = K/(1+(K{-}1)c)$ saturates at $1/c$; Adaptive-K estimates $K^*$ from a $K{=}4$ pilot.",
+ "caption_source": "latex",
+ "abstract": "Multi-path reasoning methods such as self-consistency (SC) sample $K$ reasoning paths and choose the most frequent answer. However, their gains quickly plateau as $K$ increases, and locating this saturation point currently requires fitting a scaling model to accuracies measured at several values of $K$ or stopping online per query. We formalize multi-path LLM reasoning as a diversity combining problem from wireless communications: each path is a noisy channel observation, and the pairwise correlation of path correctness caps the design-effect effective sample size of the vote at a finite ceiling. Generalized least squares (GLS) analysis shows that, for paths with equal gains, the optimal linear combiner of latent embeddings is uniform exactly when every row of the path covariance has the same sum, as under exchangeability, supporting majority vote as the natural default in standard SC while leaving room for weighting or pruning under heterogeneous prompt-template branches. Across 5 models and 12 benchmarks, prompt-template diversity reduces path correlation in $55$ of $60$ model-benchmark cells, with a mean relative reduction of $16\\%$ and reductions in every task domain. We derive an Adaptive-K rule that uses a four-path pilot to select $K^*$, retaining $96$--$103\\%$ of MV@$K{=}32$ accuracy across Math, QA, and NLU.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=b7em4wEW0h",
+  "arxiv": "https://arxiv.org/abs/2609.38829",
+  "pdf": "https://arxiv.org/pdf/2609.38829",
+  "proceedings": null,
+  "virtual": "https://neurips.cc/virtual/2026/poster/151364",
+  "code": "https://github.com/OniReimu/DiversityCombining"
+ },
+ "license": "http://creativecommons.org/licenses/by/4.0/",
+ "img": "cc-by",
+ "image_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/images/neurips26-5376.png",
+ "thumb_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/thumbs/neurips26-5376.webp",
+ "figure_page": 2,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.8
+}

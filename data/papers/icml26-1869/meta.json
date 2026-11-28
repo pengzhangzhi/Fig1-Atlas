@@ -1,0 +1,51 @@
+{
+ "id": "icml26-1869",
+ "title": "GSRQ: Gain-Shape Residual Quantization for Sub-1-bit KV Cache",
+ "authors": [
+  "Soosung Kim",
+  "Minjae Park",
+  "Eui-Young Chung",
+  "Jaeyong Chung"
+ ],
+ "venue": "ICML 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "Deep Learning->Large Language Models",
+ "role": "concept",
+ "role2": "problem-setup",
+ "claim": "A standard averaging step in high dimensions triggers a self-reinforcing loop of degraded signal that worsens the very step that caused it.",
+ "layout": "4 nodes in a 2x2 cycle, clockwise arrows, formulas in gray boxes",
+ "tags": [
+  "vicious-cycle",
+  "k-means",
+  "vector-quantization",
+  "failure-mode",
+  "high-dimensional"
+ ],
+ "style": [
+  "minimal",
+  "math-heavy"
+ ],
+ "description": "A closed loop of four large circles with thick dark-red outlines, arranged in a 2x2 grid and linked by solid red block arrows that run clockwise. The top-left circle reads 'Averaging Cancellation in High Dim' and points right to the top-right circle, 'Centroid Shrinkage', which has a gray rounded box with ||μ|| → 0. A down arrow leads to the bottom-right circle, 'Less Angular Sensitivity', with a gray box showing ||x|| ||μ|| cosθ. A left arrow leads to the bottom-left circle, 'Worse Direction and Assignment', and an up arrow from there returns to the first circle. The text is bold black sans-serif on white, with no other imagery. The eye goes first to the top-left circle and then follows the arrows around the cycle.",
+ "caption": "Illustration of a hypothesized vicious cycle in high-dimensional $\\ell_2$-based K-Means. Averaging cancellation induces centroid shrinkage, which reduces angular sensitivity and leads to poorer direction and assignment, further reinforcing cancellation.",
+ "caption_source": "latex",
+ "abstract": "The deployment of Large Language Models (LLMs) with extended context windows is increasingly constrained by the linear growth of Key-Value (KV) cache memory. Vector Quantization (VQ), particularly Residual Quantization (RQ), is a promising approach for pushing KV cache storage toward the sub-1-bit regime by progressively encoding residuals with small codebooks. However, most VQ methods still rely on standard $\\ell_2$ $K$-means as the core codebook-learning primitive. We identify a subtle high-dimensional issue of this primitive: Euclidean centroid averaging can induce centroid shrinkage, which weakens the angular alignment term in the $\\ell_2$ distortion and makes directional preservation harder. To address this issue, we propose Gain-Shape $K$-means (GSKM), a drop-in replacement for $K$-means that improves directional fidelity while matching, and in some regimes improving, $\\ell_2$ distortion. We then build Gain-Shape Residual Quantization (GSRQ) by incorporating a weighted extension of GSKM into an RQ pipeline. On LLaMA-3-8B, GSRQ substantially improves over strong KV cache quantization baselines across bit rates. At 1-bit, it improves the average accuracy across LongBench tasks from 11.34 to 33.54, a gain of 22.20 percentage points over VQLLM.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=HoRGEhSUdN",
+  "arxiv": "https://arxiv.org/abs/2607.01065",
+  "pdf": "https://raw.githubusercontent.com/mlresearch/v306/main/assets/kim26bf/kim26bf.pdf",
+  "proceedings": "https://proceedings.mlr.press/v306/kim26bf.html",
+  "virtual": "https://icml.cc/virtual/2026/poster/65012",
+  "code": null
+ },
+ "license": "http://arxiv.org/licenses/nonexclusive-distrib/1.0/",
+ "img": "none",
+ "image_url": null,
+ "thumb_url": null,
+ "figure_page": 2,
+ "qc_flags": [
+  "tiny-crop"
+ ],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.6
+}

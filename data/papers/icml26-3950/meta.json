@@ -1,0 +1,58 @@
+{
+ "id": "icml26-3950",
+ "title": "Monitoring Monitorability",
+ "authors": [
+  "Melody Guan",
+  "Miles Wang",
+  "Micah Carroll",
+  "Zehao Dou",
+  "Annie Wei",
+  "Marcus Williams",
+  "Benjamin Arnav",
+  "Joost Huizinga",
+  "Ian Kivlichan",
+  "Amelia Glaese",
+  "Jakub Pachocki",
+  "Bowen Baker"
+ ],
+ "venue": "ICML 2026",
+ "tier": "oral",
+ "track": "main",
+ "topic": null,
+ "role": "analysis-finding",
+ "role2": "teaser-result",
+ "claim": "Monitorability rises with reasoning length, is much higher when monitors see the chain of thought than when they see only actions, and varies across model families.",
+ "layout": "3 line/bar plots side by side, left-to-right, error bars, shared y-axis metric",
+ "tags": [
+  "monitorability",
+  "chain-of-thought",
+  "scaling-trend",
+  "evaluation",
+  "model-comparison"
+ ],
+ "style": [
+  "plot",
+  "colorful",
+  "minimal"
+ ],
+ "description": "Three side-by-side plots share the y-axis metric, monitorability, measured as g-mean squared. The left plot is a line chart with error bars. It shows monitorability against CoT tokens on a log x-axis for four models: GPT-5 in blue, o3 in green, o3-mini in yellow and o4-mini in orange. All four curves rise with CoT length. The middle plot compares three levels of monitor access for GPT-5 against output tokens. These are CoT-only in blue, all messages in green, and action-only in yellow. A dotted line marks the random-monitor baseline at 0.25. The action-only line stays flat near 0.52, and the other two lines sit well above it. The right plot is a bar chart of max-effort CoT monitorability across model families, from Claude 3.7 Sonnet to OpenAI o3-mini. OpenAI models rank highest. The eye goes first to the rising curves on the left.",
+ "caption": "We report aggregate monitorability on our entire evaluation suite. We use GPT-5 Thinking at high reasoning effort as the monitor. Left: Sweeping across reasoning effort levels, we see that CoT monitorability\\textemdash which we measure with \\gmeansq, the product of the true positive rate and the true negative rate\\textemdash tends to increase with the agents' CoT length. Note that the \\gmeansq of a random monitor would be 0.25. Middle: The performance of monitors given access to only model actions (tool calls and final answers) is middling; instead, even only giving monitors access to the CoT (which does not include tool calls or final answers) allows them to significantly outperform action-only monitors across reasoning efforts. Giving monitors full access to model outputs further improves performance. Right: When tested at the maximum reasoning effort available through each API, OpenAI models tend to have higher CoT monitorability relative to external models we tested. For this plot, we only ran the subset of our evals that do not require tools.",
+ "caption_source": "latex",
+ "abstract": "Observability into the decision making of modern AI systems may be required to safely deploy increasingly capable agents. Monitoring the chain-of-thought (CoT) of today's reasoning models has proven effective for detecting misbehavior. However, this \"monitorability\" may be fragile under different training procedures, data sources, or even continued system scaling. To measure and track monitorability, we propose three evaluation archetypes (intervention, process, and outcome-property) and a new monitorability metric, and introduce a broad evaluation suite. We demonstrate that these evaluations can catch simple model organisms trained to have obfuscated CoTs, and that CoT monitoring is more effective than action-only monitoring in practical settings. We compare the monitorability of various frontier models and find that most models are fairly, but not perfectly, monitorable. We also evaluate how monitorability scales with inference-time compute, reinforcement learning optimization, and pre-training model size. We find that longer CoTs are generally more monitorable and that RL optimization does not materially decrease monitorability even at the current frontier scale. Notably, we find that for a model at a low reasoning effort, we could instead deploy a smaller model at a higher reasoning effort (thereby matching capabilities) and obtain a higher monitorability, albeit at a higher overall inference compute cost. We further investigate agent-monitor scaling trends and find that scaling a weak monitor's test-time compute when monitoring a strong agent increases monitorability. Giving the weak monitor access to CoT not only improves monitorability, but it steepens the monitor's test-time compute to monitorability scaling trend. Finally, we show we can improve monitorability by asking models follow-up questions and giving their follow-up CoT to the monitor.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=b82fgbMVpz",
+  "arxiv": "https://arxiv.org/abs/2512.18311",
+  "pdf": "https://raw.githubusercontent.com/mlresearch/v306/main/assets/guan26h/guan26h.pdf",
+  "proceedings": "https://proceedings.mlr.press/v306/guan26h.html",
+  "virtual": "https://icml.cc/virtual/2026/poster/62992",
+  "code": null
+ },
+ "license": "http://arxiv.org/licenses/nonexclusive-distrib/1.0/",
+ "img": "none",
+ "image_url": null,
+ "thumb_url": null,
+ "figure_page": 1,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.6
+}

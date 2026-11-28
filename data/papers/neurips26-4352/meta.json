@@ -1,0 +1,52 @@
+{
+ "id": "neurips26-4352",
+ "title": "Understanding Layer Patching in Model Size Interpolation",
+ "authors": [
+  "Sara Kangaslahti",
+  "Jonathan Geuter",
+  "Nihal V Nayak",
+  "Marco Fumero",
+  "Francesco Locatello",
+  "David Alvarez-Melis"
+ ],
+ "venue": "NeurIPS 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "Deep Learning->Everything Else",
+ "role": "pipeline",
+ "role2": "concept",
+ "claim": "Swapping student layers for teacher blocks in different orders traces different size-interpolation curves, summarized by one area-under-curve metric.",
+ "layout": "3 regions: top-left model blocks, top-right curve plot, bottom left-to-right patching sequence",
+ "tags": [
+  "layer-patching",
+  "model-interpolation",
+  "distillation",
+  "ordering",
+  "sequential-process"
+ ],
+ "style": [
+  "colorful",
+  "minimal",
+  "plot"
+ ],
+ "description": "The top-left shows a teacher model as six blue boxes (T1–T6) in a row, with a distilled student below as three light-teal boxes (S1–S3). Dashed rounded rectangles group them into Block 1, Block 2 and Block 3. The top-right has a small perplexity-versus-model-size plot. An orange solid line, labeled as the patching order S2→S3→S1, falls from top-left to bottom-right. Several gray dashed lines, labeled as other patching orders, sit above and below it. Orange vertical hatching fills the area under the orange curve and a boxed label marks it AUPIC. The bottom row is a left-to-right chain of four model states joined by red dashed arrows. It starts with S1 S2 S3 and ends with T1–T6, with teacher blocks replacing student layers one at a time. Blue, teal and orange carry the color coding.",
+ "caption": "Patching order in model size interpolation. We show boomerang distillation with a six-layer teacher and a three-block distilled student, where each student block corresponds to a contiguous pair of two-layer teacher blocks. A patching order specifies the sequence in which student layers are replaced by their corresponding teacher blocks, inducing a trajectory of intermediate-size models from the student to the teacher. Here, the order $S2 \\rightarrow S3 \\rightarrow S1$ first replaces the middle student block, then the last block, and finally the first block. Different patching orders induce different interpolation curves, which we summarize using the area under the perplexity interpolation curve (AUPIC).\\looseness-1",
+ "caption_source": "latex",
+ "abstract": "Layer patching is a key technique for model size interpolation in large language models (LLMs), in which a subset of a distilled student model's layers is replaced with corresponding teacher-model layers to construct intermediate-sized models without additional training. Prior work largely ignores the order in which layers are patched, which we show can dramatically affect the performance and reliability of the resulting models. In this work, we study the role of layer patching in model size interpolation. We cast finding the optimal layer subset for each model size as an optimization problem and prove it can be viewed as a shortest-path problem in a certain acyclic graph. In experiments, we show that patching strongly shapes interpolation behavior, with effects that vary substantially across model families. We find that simple sequential strategies---patching either from the first layer to the last or from the last to the first---often achieve surprisingly strong performance in practice. We further introduce KLPatch, a greedy patching algorithm based on KL divergence, which often improves over last-to-first patching and approximately solves the optimization problem. Together, our results provide a principled understanding of how layer patching affects model size interpolation and offer practical guidance for constructing near-optimal interpolated models. The code and models are available at https://github.com/dcml-lab/boomerang-distillation.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=UDT6ZDU0b3",
+  "arxiv": "https://arxiv.org/abs/2607.08170",
+  "pdf": "https://arxiv.org/pdf/2607.08170",
+  "proceedings": null,
+  "virtual": "https://neurips.cc/virtual/2026/poster/152284",
+  "code": null
+ },
+ "license": "http://arxiv.org/licenses/nonexclusive-distrib/1.0/",
+ "img": "none",
+ "image_url": null,
+ "thumb_url": null,
+ "figure_page": 2,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.6
+}

@@ -1,0 +1,48 @@
+{
+ "id": "icml26-2985",
+ "title": "GHOST: Unmasking Phantom States in Mamba2 via Grouped Hidden-state Output-aware Selection & Truncation",
+ "authors": [
+  "Michael Menezes",
+  "Anastasios Kyrillidis"
+ ],
+ "venue": "ICML 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "Deep Learning->Sequential Models, Time series",
+ "role": "analysis-finding",
+ "role2": "problem-setup",
+ "claim": "Cheap static proxy scores fail to predict true runtime importance, exposing hidden high-impact components and wasteful over-weighted ones.",
+ "layout": "1 scatter plot with legend at right, quadrant dashed axes at zero",
+ "tags": [
+  "pruning",
+  "proxy-failure",
+  "state-space-models",
+  "importance-scoring",
+  "efficiency"
+ ],
+ "style": [
+  "plot",
+  "minimal",
+  "colorful"
+ ],
+ "description": "A single scatter plot with the standardized weight-based score (W Score) on the x-axis, running from about -8 to 7, and the standardized dynamic energy (E Score) on the y-axis, running from about -2 to 10. Dashed black lines cross at zero and split the plot into quadrants. Points are colored by type, as the legend at right shows: purple for Phantom, blue for Corporeal and gray for Matched. Purple points spread across the top-left quadrant and reach high E values despite negative W scores. Blue points form a thin band in the bottom-right quadrant, with large W and slightly negative E. Gray points cluster densely near the origin and spread into the top-right quadrant. The eye goes first to the scattered purple points in the upper left. The overall cloud shows no positive correlation.",
+ "caption": "The Proxy Failure: Static Magnitude vs. Dynamic Energy. We analyze the correlation between weight-based importance and actual runtime usage for Mamba2-1.3B. Each point represents one of the 6,144 hidden states ($48$ layers with $128$ states each). The $x$-axis depicts the standardized static score derived from projection weights ($W_{score} = \\sqrt{\\| (\\bm{W}_{\\bm{B}})_{g,i} \\|_2 \\| (\\bm{W}_{\\bm{C}})_{g,i} \\|_2}$ for state $i$ in group $g$), while the $y$-axis tracks the standardized dynamic energy as in Eq. [ref]. The lack of positive correlation reveals two critical failure modes: Phantom States (top-left), which are highly active despite low weight norms, and Corporeal States (bottom-right), which have large weights but low utilization. GHOST is designed to identify the former and prune the latter.",
+ "caption_source": "latex",
+ "abstract": "While Mamba2's expanded state dimension enhances temporal modeling, it incurs substantial inference overhead that saturates bandwidth during autoregressive generation. Standard pruning methods fail to address this bottleneck: unstructured sparsity leaves activations dense, magnitude-based selection ignores runtime dynamics, and gradient-based methods impose prohibitive costs. We introduce GHOST (Grouped Hidden-state Output-aware Selection and Truncation), a structured pruning framework that approximates control-theoretic balanced truncation using only forward-pass statistics. By jointly measuring controllability and observability, GHOST rivals the fidelity of gradient-based methods without requiring backpropagation. As a highlight, on models ranging from 130M to 2.7B parameters, our approach achieves a 50\\% state-dimension reduction with approximately 1 perplexity point increase on WikiText-2. Code is available at https://anonymous.4open.science/r/mamba2_ghost-7BCB/.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=SR2RDhhnxj",
+  "arxiv": "https://arxiv.org/abs/2602.11408",
+  "pdf": "https://raw.githubusercontent.com/mlresearch/v306/main/assets/menezes26a/menezes26a.pdf",
+  "proceedings": "https://proceedings.mlr.press/v306/menezes26a.html",
+  "virtual": "https://icml.cc/virtual/2026/poster/63935",
+  "code": "https://github.com/Menezmic21/mamba2_ghost"
+ },
+ "license": "http://creativecommons.org/licenses/by/4.0/",
+ "img": "cc-by",
+ "image_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/images/icml26-2985.png",
+ "thumb_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/thumbs/icml26-2985.webp",
+ "figure_page": 1,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.8
+}

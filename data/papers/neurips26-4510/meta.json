@@ -1,0 +1,51 @@
+{
+ "id": "neurips26-4510",
+ "title": "CoANeRV: Coordinate-Aware Token-Space Neural Video Representation",
+ "authors": [
+  "Jialong Guo",
+  "Ke Liu",
+  "MENGXUAN LI",
+  "Jiajun Bu",
+  "Haishuai Wang"
+ ],
+ "venue": "NeurIPS 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "General Machine Learning->Representation Learning",
+ "role": "prior-vs-ours",
+ "role2": "teaser-result",
+ "claim": "Prior feed-forward INR methods decode with fixed-form functions; ours uses tokens with a shared coordinate-aware decoder, giving far faster, better encoding.",
+ "layout": "2 panels: left architecture comparison columns, right scatter plot; dotted arrow marks speedup",
+ "tags": [
+  "feed-forward",
+  "token-space",
+  "neural-representation",
+  "efficiency",
+  "amortized-encoding"
+ ],
+ "style": [
+  "colorful",
+  "plot",
+  "icon-heavy"
+ ],
+ "description": "The figure has two panels. Panel (a), on the left, shows a vertical pipeline of boxes: Input Video, Transformer encoder, INR tokens, INR Function, Reconstructed Video, joined by red arrows. The INR function box is expanded into three side-by-side columns. TransINR (blue) takes (x,y) through three Linear layers to RGB. FastNeRV (blue) takes (t) through three Convolution layers to a Frame. CoANeRV (red, dashed border) takes (x,y,t) plus a Video token through Cross-Attention and two Linear layers to YUV. Flame icons mark trainable parts. Panel (b), on the right, is a scatter plot of PSNR against video encoding time on a log axis. Baselines cluster at the bottom left. NeRV and Decoder-Only variants form diagonal trend lines. A red star for CoANeRV sits at the top left, with a dotted red arrow labelled '10^5× Faster' and 'Better'. The red column and the star draw the eye first.",
+ "caption": "Framework comparison and encoding speed. (a) Representative weight-space video approaches store instance-specific information in optimized, generated, or modulated decoder parameters, whereas CoANeRV stores video-specific information in compact tokens and reconstructs pixels with a shared coordinate-conditioned decoder. (b) CoANeRV enables feed-forward token inference, while the decoder-only variant freezes the shared decoder and optimizes only video tokens to isolate the cost of per-video token fitting.",
+ "caption_source": "latex",
+ "abstract": "Neural representations for videos (NeRV) have shown strong reconstruction fidelity by storing video-specific information in network weights. However, existing formulations typically require either costly per-video optimization or video-specific weight generation, making it difficult to scale to efficient amortized video representation. We propose CoANeRV, a coordinate-aware token-space framework that adapts the broader token-conditioned neural-field paradigm to amortized video representation. CoANeRV forms compact video tokens in one feed-forward pass and uses a shared coordinate-conditioned decoder to reconstruct continuous spatio-temporal queries, avoiding per-video decoder optimization or generation while retaining coordinate-level reconstruction flexibility. To make token-space reconstruction effective, CoANeRV introduces a coordinate-aware decoding architecture that aligns spatio-temporal queries with video tokens through axis-adaptive positional encoding and temperature-modulated cross-attention. Block-wise coordinate querying further reduces peak attention memory, making high-resolution reconstruction practical. Experiments on diverse video datasets show that CoANeRV consistently improves reconstruction quality over prior feed-forward NeRV and INR baselines, reduces peak memory compared with attention-based coordinate decoders, and provides efficient amortized encoding without per-video optimization. These results support the proposed video-specific combination of feed-forward token formation, spatio-temporal coordinate retrieval, and memory-bounded dense querying. The code is available at https://github.com/jialong2023/CoANeRV.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=VA2hCFiIsa",
+  "arxiv": "https://arxiv.org/abs/2608.13938",
+  "pdf": "https://arxiv.org/pdf/2608.13938",
+  "proceedings": null,
+  "virtual": "https://neurips.cc/virtual/2026/poster/152151",
+  "code": null
+ },
+ "license": "http://arxiv.org/licenses/nonexclusive-distrib/1.0/",
+ "img": "none",
+ "image_url": null,
+ "thumb_url": null,
+ "figure_page": 1,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.6
+}

@@ -1,0 +1,57 @@
+{
+ "id": "icml26-4788",
+ "title": "Learning Stochastic Bridges for Video Object Removal via Video-to-Video Translation",
+ "authors": [
+  "Zijie Lou",
+  "Xiangwei Feng",
+  "Jiaxin Wang",
+  "Jiangtao Yao",
+  "Fei Che",
+  "Tianbao Liu",
+  "WU CHENGJING",
+  "Xiaochao Qu",
+  "Luoqi Liu",
+  "Ting Liu"
+ ],
+ "venue": "ICML 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "Applications->Computer Vision",
+ "role": "pipeline",
+ "role2": null,
+ "claim": "Our method translates the source input directly to the target through a stochastic bridge, conditioned on mask and text, trained with a velocity-matching objective.",
+ "layout": "Single panel, left-to-right with top inputs flowing down; legend inset top-right",
+ "tags": [
+  "stochastic-bridge",
+  "video-to-video",
+  "diffusion-transformer",
+  "conditional-generation",
+  "object-removal"
+ ],
+ "style": [
+  "colorful",
+  "icon-heavy",
+  "math-heavy",
+  "photo/real data"
+ ],
+ "description": "A single large pipeline diagram on a white background with gray arrows. At the left, a source video and a target video (stacked frame thumbnails of a person walking a dog) each pass through a frozen VAE encoder, producing columns of latent tokens z_src and z_tgt. At the top, a black mask video of the dog silhouette goes through a VAE encoder to give z_M, and the text prompt 'Remove the [dog] in the video' goes through a T5 encoder to give c_text. z_M is concatenated with z_src (circle C). A green Bridge Interpolation box (Eq. 9) takes z_src, z_tgt and noise ε to produce z_t. A large light-blue rounded box on the right holds three DiT blocks, which are the trainable video object removal model. A green GT Velocity Formulation box (Eq. 11) feeds the L_bridge loss. The legend at top right marks frozen (snowflake), trainable (flame) and concatenate. Pastel blue, orange and green separate the components.",
+ "caption": "The framework of BridgeRemoval. The video inputs are projected into latent space using a frozen VAE encoder. Unlike standard diffusion, we employ a VP-SDE Bridge formulation to interpolate a trajectory ($z_t$) directly from the source video prior ($z_{src}$) to the clean target ($z_{tgt}$). The DiT-based model is conditioned on text embeddings ($c_{text}$) and a spatial input formed by concatenating the mask ($z_{M}$) with the source latent ($z_{src}$), optimized via a velocity-matching objective ($\\mathcal{L}_{bridge}$).",
+ "caption_source": "latex",
+ "abstract": "Existing video object removal methods predominantly rely on diffusion models following a noise-to-data paradigm, where generation starts from uninformative Gaussian noise. This approach discards the rich structural and contextual priors present in the original input video. Consequently, such methods often lack sufficient guidance, leading to incomplete object erasure or the synthesis of implausible content that conflicts with the scene's physical logic. In this paper, we reformulate video object removal as a video-to-video translation task via a stochastic bridge model. Unlike noise-initialized methods, our framework establishes a direct stochastic path from the source video (with objects) to the target video (objects removed). This bridge formulation effectively leverages the input video as a strong structural prior, guiding the model to perform precise removal while ensuring that the filled regions are logically consistent with the surrounding environment. To address the trade-off where strong bridge priors hinder the removal of large objects, we propose a novel adaptive mask modulation strategy. This mechanism dynamically modulates input embeddings based on mask characteristics, balancing background fidelity with generative flexibility. Extensive experiments demonstrate that our approach significantly outperforms existing methods in both visual quality and temporal consistency. The project page is https://bridgeremoval.github.io/.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=iygkwW61Nn",
+  "arxiv": "https://arxiv.org/abs/2601.12066",
+  "pdf": "https://raw.githubusercontent.com/mlresearch/v306/main/assets/lou26b/lou26b.pdf",
+  "proceedings": "https://proceedings.mlr.press/v306/lou26b.html",
+  "virtual": "https://icml.cc/virtual/2026/poster/62180",
+  "code": "https://bridgeremoval.github.io/"
+ },
+ "license": "http://arxiv.org/licenses/nonexclusive-distrib/1.0/",
+ "img": "none",
+ "image_url": null,
+ "thumb_url": null,
+ "figure_page": 2,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.93
+}

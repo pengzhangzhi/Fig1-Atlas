@@ -1,0 +1,50 @@
+{
+ "id": "iclr26-1908",
+ "title": "The Curious Case of In-Training Compression of State Space Models",
+ "authors": [
+  "Makram Chahine",
+  "Philipp Nazari",
+  "Daniela Rus",
+  "T. Konstantin Rusch"
+ ],
+ "venue": "ICLR 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "Deep Learning->Everything Else",
+ "role": "pipeline",
+ "role2": null,
+ "claim": "Compression can be applied as a modular analyze-truncate-replace loop on isolated dynamical subsystems, independent of the surrounding architecture.",
+ "layout": "Top architecture block, bottom three-stage left-to-right flow with loop arrows back",
+ "tags": [
+  "balanced-truncation",
+  "model-compression",
+  "state-space-models",
+  "in-training",
+  "modular-plug-in"
+ ],
+ "style": [
+  "colorful",
+  "icon-heavy",
+  "text-heavy"
+ ],
+ "description": "The top half shows a 3D-style SSM network. Input (M channels by length L) passes through a grey Encoder trapezoid into an H-dimensional stack. That stack feeds a large translucent yellow block labeled 'SSM block × n_layers'. Inside the block, greyed-out boxes (Projection, Projection/Non-linearity/Convolution, Product/Non-linearity) surround a bright orange box, 'Discrete Linear dynamical systems', which is the focus. A Decoder then produces the Output. An arrow labeled 'get each system' runs from the orange box down to three blue boxes along the bottom: Reduction Analysis (Gramians, Hankel singular values, reduction order), Balanced Truncation (balancing matrix, balanced system, truncate), and System Replacement (A←Ar, B←Br, C←Cr). A 'replace' arrow returns to the orange box. Pseudocode sits in the blue boxes. The orange highlight against grey draws the eye first.",
+ "caption": "Overview of the proposed balanced truncation pipeline. The method applies at the level of the discrete linear dynamical systems inside SSM layers, independently of surrounding design choices such as projections, non-linearities, convolutions, or skip connections. Each dynamical system is isolated, balanced via its controllability and observability Gramians, and truncated according to Hankel singular values before being reinserted into the model.",
+ "caption_source": "latex",
+ "abstract": "State Space Models (SSMs), developed to tackle long sequence modeling tasks efficiently, offer both parallelizable training and fast inference. At their core are recurrent dynamical systems that maintain a hidden state, with update costs scaling with the state dimension. A key design challenge is striking the right balance between maximizing expressivity and limiting this computational burden. Control theory, and more specifically Hankel singular value analysis, provides a potent framework for the measure of energy for each state, as well as the balanced truncation of the original system down to a smaller representation with performance guarantees. Leveraging the eigenvalue stability properties of Hankel matrices, we apply this lens to SSMs \\emph{during training}, where only dimensions of high influence are identified and preserved. Our approach, \\textsc{CompreSSM}, applies to Linear Time-Invariant SSMs such as Linear Recurrent Units, but is also extendable to selective models. Experiments show that in-training reduction significantly accelerates optimization while preserving expressivity, with compressed models retaining task-critical structure lost by models trained directly at smaller dimension. In other words, SSMs that begin large and shrink during training achieve computational efficiency while maintaining higher performance. Project code is available at github.com/camail-official/compressm.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=LtzmeSMBTW",
+  "arxiv": "https://arxiv.org/abs/2510.02823",
+  "pdf": "https://proceedings.iclr.cc/paper_files/paper/2026/file/b57ec011a4a1c0c97fdc7ccebb672db4-Paper-Conference.pdf",
+  "proceedings": "https://proceedings.iclr.cc/paper_files/paper/2026/hash/b57ec011a4a1c0c97fdc7ccebb672db4-Abstract-Conference.html",
+  "virtual": "https://iclr.cc/virtual/2026/poster/10009997",
+  "code": "https://makramchahine.github.io/projects/compressm.html"
+ },
+ "license": "http://creativecommons.org/licenses/by/4.0/",
+ "img": "cc-by",
+ "image_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/images/iclr26-1908.png",
+ "thumb_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/thumbs/iclr26-1908.webp",
+ "figure_page": 2,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.93
+}

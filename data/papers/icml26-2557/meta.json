@@ -1,0 +1,51 @@
+{
+ "id": "icml26-2557",
+ "title": "DAISI: Data Assimilation with Inverse Sampling using Stochastic Interpolants",
+ "authors": [
+  "Martin Andrae",
+  "Erik Larsson",
+  "So Takao",
+  "Tomas Landelius",
+  "Fredrik Lindsten"
+ ],
+ "venue": "ICML 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "Applications->Chemistry, Physics, and Earth Sciences",
+ "role": "pipeline",
+ "role2": "concept",
+ "claim": "Condition on observations by first inverting the forecast into the prior's latent space, then guiding generation from there, instead of starting from noise.",
+ "layout": "Single row, left-to-right; density sketches above fields, curved arrows labeling SDE phases",
+ "tags": [
+  "inverse-sampling",
+  "guided-diffusion",
+  "data-assimilation",
+  "flow-based-prior",
+  "conditional-sampling"
+ ],
+ "style": [
+  "colorful",
+  "photo/real data",
+  "math-heavy"
+ ],
+ "description": "A single wide strip reads left to right and shows two stages. A curved arrow labeled 'Backward SDE' spans the first half, and one labeled 'Guided SDE' spans the second half. Above, six small 2-D density sketches show a blue prior and a green forecast ensemble. The forecast is first pushed toward a blob labeled 'Noise Ψ♯P∞' and 'Inverted Ψ♯π̂n'. Then a red dashed line labeled 'Obs yn' appears, and the densities shift toward 'Posterior P∞^y' (blue) and 'Analysis πn' (green). Below, six jet-colormap turbulence fields show the same progression: a sharp forecast, progressively noisier fields, a near-noise inverted field at t=tmin, then a sharp analysis at t=1.0. Blue, green and red color-code the prior, forecast and observation. Time labels sit between the two rows.",
+ "caption": "DAISI combines a flow-based unconditional prior $\\mathbb{P}_\\infty$ with the forecast ensemble $\\hat{\\pi}_n$. To condition on an observation $\\vy_n$, one could apply the guided SDE starting from random noise, producing $\\mathbb{P}_\\infty^{\\vy}$ (blue). However, this would ignore the information contained in the forecast. Instead, DAISI (green): (i) applies the backward SDE to the forecast ensemble, producing inverted samples $\\Psi_\\sharp \\hat{\\pi}_n$, and (ii) uses these latents as initial conditions for the guided SDE, generating approximate samples from the filtering distribution $\\pi_n$.",
+ "caption_source": "latex",
+ "abstract": "Data assimilation (DA) is a cornerstone of scientific and engineering applications, combining model forecasts with sparse and noisy observations to estimate latent system states. Classical high-dimensional DA methods, such as the ensemble Kalman filter, rely on Gaussian approximations that are violated for complex dynamics or observation operators. To address this limitation, we introduce DAISI, a scalable filtering algorithm built on flow-based generative models that enables flexible probabilistic inference using data-driven priors. The core idea is to use a stationary, pre-trained generative prior that first incorporates forecast information through a novel inverse-sampling step, before assimilating observations via guidance-based conditional sampling. This allows us to leverage any forecasting model as part of the DA pipeline without having to retrain or fine-tune the generative prior at each assimilation step. Experiments on challenging nonlinear systems show that DAISI achieves accurate filtering results in regimes with sparse, noisy, and nonlinear observations where traditional methods struggle. The code for DAISI is available at https://github.com/Erik-Wikingsson/DAISI.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=OWz1n5HgcC",
+  "arxiv": "https://arxiv.org/abs/2512.00252",
+  "pdf": "https://raw.githubusercontent.com/mlresearch/v306/main/assets/andrae26a/andrae26a.pdf",
+  "proceedings": "https://proceedings.mlr.press/v306/andrae26a.html",
+  "virtual": "https://icml.cc/virtual/2026/poster/64346",
+  "code": "https://github.com/Erik-Wikingsson/DAISI"
+ },
+ "license": "http://arxiv.org/licenses/nonexclusive-distrib/1.0/",
+ "img": "none",
+ "image_url": null,
+ "thumb_url": null,
+ "figure_page": 1,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.8
+}

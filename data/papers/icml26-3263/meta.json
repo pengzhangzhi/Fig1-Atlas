@@ -1,0 +1,52 @@
+{
+ "id": "icml26-3263",
+ "title": "Transformers with RL or SFT Provably Learn Sparse Boolean Functions, But Differently",
+ "authors": [
+  "Bochen Lyu",
+  "Yiyang Jia",
+  "Xiaohao Cai",
+  "Zhanxing Zhu"
+ ],
+ "venue": "ICML 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "Theory->Deep Learning",
+ "role": "prior-vs-ours",
+ "role2": "pipeline",
+ "claim": "Different supervision regimes induce different learning dynamics: some learn all steps at once, others step by step, and some fail.",
+ "layout": "5 panels around a center column, arrows from settings to outcomes, theorem labels on arrows",
+ "tags": [
+  "reinforcement-learning",
+  "supervised-fine-tuning",
+  "chain-of-thought",
+  "learning-dynamics",
+  "comparison"
+ ],
+ "style": [
+  "colorful",
+  "minimal",
+  "math-heavy"
+ ],
+ "description": "A ground-truth chain sits at the top: a green input x leads to orange targets ỹ(1) through ỹ(T). Below it, four rounded colored panels compare training settings. The left side has two blue panels, RL with verifiable process rewards and RL with final reward. The right side has two teal panels, SFT with teacher forcing and SFT without teacher forcing. Each panel shows x leading to blue generated steps ŷ(1) through ŷ(T), with reward or loss markers (r_t, L_t) tying each step to its label. A center column has three outcome boxes: purple 'Simultaneous', dark green 'Step by step', and orange 'Hard (parity)'. Arrows labeled with theorem or proposition numbers connect each panel to its outcome. The eye goes to the central outcome boxes and the bold panel titles.",
+ "caption": "Different learning objectives and the resulting learning behaviors under different RL/SFT settings. The ground-truth CoT chain is shown at the top. In RL with verifiable process rewards (RL w/ VPR), the model samples an autoregressive trajectory $(\\hat{\\sqy}^{(1)},\\ldots,\\hat{\\sqy}^{(T)})$, and the step-$t$ reward is computed using $\\bar{\\sqy}^{(t)}$, the correct label conditioned on the previously generated step $\\hat{\\sqy}^{(t-1)}$. Thus, every step can receive useful feedback along the sampled trajectory, enabling simultaneous learning of the whole CoT chain. In RL with only final reward, supervision is provided only for the final answer; for parity, the resulting policy gradient contains little target-specific information, making learning difficult. In SFT with teacher forcing (SFT w/ TF), every CoT step is trained under the correct preceding steps, so all steps receive clean supervision and can be learned simultaneously. In SFT without teacher forcing (SFT w/o TF), the model instead generates the trajectory autoregressively, while each generated step $\\hat{\\sqy}^{(t)}$ is compared with the fixed ground-truth label $\\tilde{\\sqy}^{(t)}$. Consequently, supervision for later steps becomes useful only after earlier generated steps are correct, leading to stepwise learning.",
+ "caption_source": "latex",
+ "abstract": "Transformers can acquire Chain-of-Thought (CoT) capabilities to solve reasoning tasks via fine-tuning. Reinforcement learning (RL) and supervised fine-tuning (SFT) are two primary approaches to this end. In this work, we examine RL with verifiable process rewards and SFT for learning $k$-sparse Boolean functions with a one-layer transformer through intermediate reasoning steps akin to CoT. In particular, we consider Boolean functions that can be recursively decomposed into fixed 2-sparse Boolean functions. We first analyze the learning dynamics of RL fine-tuning with verifiable process rewards and SFT in a unified way, allowing us to identify sufficient conditions under which the transformer provably learns these functions. We then verify that the conditions hold for three examples, including $k$-PARITY, $k$-AND, and $k$-OR, thus demonstrating their learnability via both RL and SFT. Notably, we reveal that RL and SFT exhibit distinct learning behaviors depending on supervision: RL learns the whole CoT chain simultaneously, whereas SFT without teacher forcing learns the CoT step-by-step. Overall, our findings provide insights on the mechanisms underlying RL and SFT and how they differ in triggering the CoT capabilities of transformers, and suggest that the comparison between RL and SFT should consider the intermediate supervision.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=UrKNw5Xo9x",
+  "arxiv": "https://arxiv.org/abs/2511.17852",
+  "pdf": "https://raw.githubusercontent.com/mlresearch/v306/main/assets/lyu26d/lyu26d.pdf",
+  "proceedings": "https://proceedings.mlr.press/v306/lyu26d.html",
+  "virtual": "https://icml.cc/virtual/2026/poster/63661",
+  "code": null
+ },
+ "license": "http://creativecommons.org/licenses/by/4.0/",
+ "img": "cc-by",
+ "image_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/images/icml26-3263.png",
+ "thumb_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/thumbs/icml26-3263.webp",
+ "figure_page": 1,
+ "qc_flags": [
+  "low-role-confidence"
+ ],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.4
+}

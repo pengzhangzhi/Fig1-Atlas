@@ -1,0 +1,52 @@
+{
+ "id": "iclr26-5342",
+ "title": "Beyond Scattered Acceptance: Fast and Coherent Inference for DLMs via Longest Stable Prefixes",
+ "authors": [
+  "Pengxiang Li",
+  "Jiayin Cai",
+  "Hongwei Xue",
+  "Kunyu Shi",
+  "Shilin Yan"
+ ],
+ "venue": "ICLR 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "Deep Learning->Generative Models and Autoencoders",
+ "role": "pipeline",
+ "role2": null,
+ "claim": "Decoding commits a growing contiguous prefix at each step, so the undecided suffix shrinks until the sequence is complete.",
+ "layout": "Single final-state row above a boxed legend, left-to-right, color-coded tokens",
+ "tags": [
+  "iterative-decoding",
+  "prefix-commitment",
+  "diffusion-language-model",
+  "inference-efficiency",
+  "scheduler"
+ ],
+ "style": [
+  "minimal",
+  "colorful"
+ ],
+ "description": "The crop shows only the bottom of a larger step-by-step diagram. The top row is labeled 'Final'. It has a dark slate 'Prompt' box followed by a long green rounded bar containing 'The quick brown fox jumps over the lazy'. A green 'Complete ✓' label sits to the right. Below is a rounded gray legend box with three entries. A blue square is labeled 'Margin δ_i'. A green 'Token' chip is labeled 'Frozen prefix'. A gray-outlined '[M]' chip is labeled 'Active suffix'. The green frozen prefix fills the whole sequence, so no active suffix remains. The eye goes first to the wide green bar. The earlier denoising steps with margin bars and the shrinking suffix are cut off.",
+ "caption": "The iterative process of the Longest Stable Prefix (LSP) scheduler. In each step, LSP performs a single forward pass to assess the stability of predictions for the current active suffix, measured by the logit margin ($\\delta_i$). Instead of accepting scattered tokens, it atomically commits the longest contiguous prefix of tokens that meet an adaptively determined stability threshold ($\\tau$). As shown, the frozen prefix (green) grows monolithically, causing the active suffix (white) to shrink.",
+ "caption_source": "latex",
+ "abstract": "Diffusion Language Models (DLMs) promise highly parallel text generation, yet their practical inference speed is often bottlenecked by suboptimal decoding schedulers. Standard approaches rely on 'scattered acceptance'-committing high confidence tokens at disjoint positions throughout the sequence. This approach inadvertently fractures the Key-Value (KV) cache, destroys memory locality, and forces the model into costly, repeated repairs across unstable token boundaries. To resolve this, we present the Longest Stable Prefix (LSP) scheduler, a training-free and model-agnostic inference paradigm based on monolithic prefix absorption. In each denoising step, LSP evaluates token stability via a single forward pass, dynamically identifies a contiguous left-aligned block of stable predictions, and snaps its boundary to natural linguistic or structural delimiters before an atomic commitment. This prefix-first topology yields dual benefits: systemically, it converts fragmented KV cache updates into efficient, contiguous appends; algorithmically, it preserves bidirectional lookahead over a geometrically shrinking active suffix, drastically reducing token flip rates and denoiser calls. Extensive evaluations on LLaDA-8B and Dream-7B demonstrate that LSP accelerates inference by up to 3.4x across rigorous benchmarks including mathematical reasoning, code generation, multilingual (CJK) tasks, and creative writing while matching or slightly improving output quality. By fundamentally restructuring the commitment topology, LSP bridges the gap between the theoretical parallelism of DLMs and practical hardware efficiency.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=zvw9Hiwa0i",
+  "arxiv": "https://arxiv.org/abs/2603.05454",
+  "pdf": "https://proceedings.iclr.cc/paper_files/paper/2026/file/91a23b3e6a2ebaad62e17d0269f88c6b-Paper-Conference.pdf",
+  "proceedings": "https://proceedings.iclr.cc/paper_files/paper/2026/hash/91a23b3e6a2ebaad62e17d0269f88c6b-Abstract-Conference.html",
+  "virtual": "https://iclr.cc/virtual/2026/poster/10006406",
+  "code": null
+ },
+ "license": "http://arxiv.org/licenses/nonexclusive-distrib/1.0/",
+ "img": "none",
+ "image_url": null,
+ "thumb_url": null,
+ "figure_page": 3,
+ "qc_flags": [
+  "bad-crop"
+ ],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.5
+}

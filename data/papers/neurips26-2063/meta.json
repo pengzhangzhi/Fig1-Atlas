@@ -1,0 +1,54 @@
+{
+ "id": "neurips26-2063",
+ "title": "Align Before Aggregation: Basis-Consistent Federated LoRA under Heterogeneous Ranks",
+ "authors": [
+  "Pengpeng Qiao",
+  "Yang Cao",
+  "Lingling Zhang",
+  "Guo Cheng",
+  "Junwei Chen",
+  "Manjiang Yu",
+  "Wei Yang Bryan Lim",
+  "Masatoshi Yoshikawa"
+ ],
+ "venue": "NeurIPS 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "Optimization->Large Scale, Parallel and Distributed",
+ "role": "problem-setup",
+ "role2": "pipeline",
+ "claim": "Aggregating factors from heterogeneous clients in a compose-aggregate-factorize-dispatch loop hits two failure modes: inconsistent bases and biased weighting.",
+ "layout": "2 rows: pipeline loop on top, two challenge panels below, dashed boxes",
+ "tags": [
+  "federated-learning",
+  "lora",
+  "heterogeneous-ranks",
+  "basis-alignment",
+  "failure-mode"
+ ],
+ "style": [
+  "colorful",
+  "icon-heavy",
+  "math-heavy"
+ ],
+ "description": "The figure has two rows. The top row shows the federated LoRA training loop. A green dotted Server box holds the Aggregate step: Avg of colored ΔW1…ΔWi matrices. A Compose step multiplies B×A into ΔW. A Factorize-by-SVD and Dispatch step splits the result into rank-prefix factors B1…Bi and A1…Ai. An orange dotted Local Training box on the right shows Clients 1 and i with their ranks r1 and ri, and arrows link it to the server. A large down arrow leads to the bottom row. The bottom row has two black dashed panels. Challenge 1 shows small coordinate axes whose basis vectors q1, q2 and q3 point in different directions across clients, with a red callout 'same rank index ≠ same direction'. Challenge 2 shows client data and update bars, with emoji faces, feeding naïve weights αi ∝ ni. Red text marks the problems.",
+ "caption": "Illustration of federated LoRA under heterogeneous ranks. Compose--aggregate--factorize--dispatch training process (top). Two challenges: basis inconsistency and biased aggregation (bottom).",
+ "caption_source": "latex",
+ "abstract": "Federated fine-tuning of large language models (LLMs) under heterogeneous client capacities is increasingly important, and low-rank adaptation (LoRA) with heterogeneous ranks makes it practical. Existing server-side aggregators compose local matrix updates $ÎW_i$ from client-specific LoRA factors $(A_i,B_i)$ before aggregating them. Although these matrix updates lie in the same weight space $\\mathbb{R}^{m\\times n}$ and can be averaged directly, the LoRA factors that generate them may expressed client-specific local basis. In the typical compose--aggregate--factorize--dispatch loop, this basis inconsistency can make the rank-$r_i$ reference prefix dispatched to lower-rank clients unstable after server-side refactorization. In this work, we propose \\textbf{FedAbA}, a basis-consistent federated LoRA aggregation framework for heterogeneous ranks. FedAbA first extracts each client's local basis, aligns it to the corresponding prefix of the global reference basis, and constructs a basis-consistent reconstruction of each local matrix update before aggregation. It then aggregates these reconstructions with weights that combine client data size and consistency score, followed by exact coefficient-space SVD refactorization and gauge fixing before rank-prefix dispatch. Our theoretical analysis clarifies the role of basis consistency and supports the proposed consistency-aware aggregation mechanism. Extensive experiments show that FedAbA outperforms representative federated LoRA baselines, with the largest gains under the strongest rank heterogeneity.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=EfUHrLQ6uH",
+  "arxiv": "https://arxiv.org/abs/2611.07598",
+  "pdf": "https://arxiv.org/pdf/2611.07598",
+  "proceedings": null,
+  "virtual": "https://neurips.cc/virtual/2026/poster/154308",
+  "code": null
+ },
+ "license": "http://arxiv.org/licenses/nonexclusive-distrib/1.0/",
+ "img": "none",
+ "image_url": null,
+ "thumb_url": null,
+ "figure_page": 1,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.6
+}

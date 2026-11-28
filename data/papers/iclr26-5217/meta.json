@@ -1,0 +1,55 @@
+{
+ "id": "iclr26-5217",
+ "title": "Efficient Quantization of Mixture-of-Experts with Theoretical Generalization Guarantees",
+ "authors": [
+  "Mohammed Nowaz Rabbani Chowdhury",
+  "Kaoutar El Maghraoui",
+  "Hsinyu Tsai",
+  "Naigang Wang",
+  "Geoffrey Burr",
+  "Liu Liu",
+  "Meng Wang"
+ ],
+ "venue": "ICLR 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "Deep Learning->Generative Models and Autoencoders",
+ "role": "pipeline",
+ "role2": "concept",
+ "claim": "Experts whose routers change least during training need higher precision, and high-variance experts are reordered, giving a cheap bit-width assignment rule.",
+ "layout": "Single panel, bottom-to-top flow, tokens through routers to experts, dashed reorder arrows",
+ "tags": [
+  "mixture-of-experts",
+  "quantization",
+  "mixed-precision",
+  "bit-allocation",
+  "efficiency"
+ ],
+ "style": [
+  "colorful",
+  "icon-heavy",
+  "minimal"
+ ],
+ "description": "A single schematic of a Mixture-of-Experts layer, read from the bottom up. Two input tokens, Token 1 in orange and Token 2 in green, enter a dashed 'Gating Network' box holding Router 1 to Router 4. Small bar charts beside the routers show gating scores. Router outputs go up to four rounded Expert boxes. The experts sit in two dashed groups, 'Higher bit (b_h)' in red on the left and 'Lower bit (b_l)' in blue on the right. Curved gate arrows G1 and G2 lead to multiplication circles that combine the expert outputs into the output tokens at the top. A bar chart at the top shows max intra-neuron variance per expert index, with expert 3 tallest. A caption reads 'Ascending order of router norm change'. Orange dashed arrows show experts being swapped between the bit groups.",
+ "caption": "A schematic of Mixture-of-Experts with our proposed approach. Experts with smaller router norm changes in higher bit. Experts with large max intra-neuron variance are reordered.",
+ "caption_source": "latex",
+ "abstract": "Sparse Mixture-of-Experts (MoE) allows scaling of language and vision models efficiently by activating only a small subset of experts per input. While this reduces computation, the large number of parameters still incurs substantial memory overhead during inference. Post-training quantization has been explored to address this issue. Because uniform quantization suffers from significant accuracy loss at low bit-widths, mixed-precision methods have been recently explored; however, they often require substantial computation for bit-width allocation and overlook the varying sensitivity of model performance to the quantization of different experts. We propose a theoretically grounded expert-wise mixed precision strategy that assigns bit-width to each expert primarily based on their change in routers l2 norm during training. Experts with smaller changes are shown to capture less frequent but critical features, and model performance is more sensitive to the quantization of these experts, thus requiring higher precision. Furthermore, to avoid allocating experts to lower precision that inject high quantization noise, experts with large maximum intra-neuron variance are also allocated higher precision. Experiments on large-scale MoE models, including Switch Transformer and Mixtral, show that our method achieves higher accuracy than existing approaches, while also reducing inference cost and incurring only negligible overhead for bit-width assignment.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=yiMlVBAoQi",
+  "arxiv": "https://arxiv.org/abs/2604.06515",
+  "pdf": "https://proceedings.iclr.cc/paper_files/paper/2026/file/7b97d09f0ab0f52eab856b0ed1122456-Paper-Conference.pdf",
+  "proceedings": "https://proceedings.iclr.cc/paper_files/paper/2026/hash/7b97d09f0ab0f52eab856b0ed1122456-Abstract-Conference.html",
+  "virtual": "https://iclr.cc/virtual/2026/poster/10006533",
+  "code": null
+ },
+ "license": "http://creativecommons.org/licenses/by/4.0/",
+ "img": "cc-by",
+ "image_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/images/iclr26-5217.png",
+ "thumb_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/thumbs/iclr26-5217.webp",
+ "figure_page": 2,
+ "qc_flags": [
+  "bad-crop"
+ ],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.6
+}

@@ -1,0 +1,52 @@
+{
+ "id": "iclr26-2801",
+ "title": "Quantile Advantage Estimation: Stabilizing RLVR for LLM Reasoning",
+ "authors": [
+  "Junkang Wu",
+  "Kexin Huang",
+  "Jiancan Wu",
+  "An Zhang",
+  "Xiang Wang",
+  "Xiangnan He"
+ ],
+ "venue": "ICLR 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "Reinforcement Learning->Deep RL",
+ "role": "teaser-result",
+ "role2": "prior-vs-ours",
+ "claim": "The common mean baseline lets entropy spike and performance stall; swapping in a quantile baseline keeps entropy balanced and gains sustained.",
+ "layout": "2 side-by-side panels with formula banner on top, dual-axis curves, shaded phase",
+ "tags": [
+  "baseline-design",
+  "entropy-stability",
+  "reinforcement-learning",
+  "training-dynamics",
+  "llm-reasoning"
+ ],
+ "style": [
+  "plot",
+  "math-heavy",
+  "colorful"
+ ],
+ "description": "A dashed rounded box across the top holds two advantage-estimation formulas. The left one subtracts a red 'mean' from the reward and the right one subtracts a green 'Quantile_K'. Below are two matching dual-axis line plots titled 'DAPO' (left) and 'DAPO+QAE' (right). In each, a teal solid curve shows entropy on the left axis and an orange dashed curve with dots shows AIME performance on the right axis, both against training step. A gray band marks an 'Optimal Zone' of entropy. On the left, a red-shaded 'Entropy Explosion Phase' covers an entropy spike above 1.0, and performance plateaus. On the right, a green-shaded 'Balanced Exploration Phase' covers a smooth entropy rise that settles in the optimal zone, with performance climbing steadily. Callout boxes read 'Result: Performance Plateau' and 'Result: Sustained Improvement'.",
+ "caption": "Entropy–performance dynamics on Qwen3-8B-Base. Left: DAPO with Clip-Higher prevents early collapse but triggers an early entropy spike (steps 10–80) and a later performance plateau. Right: our quantile baseline (QAE) stabilizes policy entropy and sustains pass@1 gains by steering training into a balanced exploration regime.",
+ "caption_source": "latex",
+ "abstract": "Reinforcement Learning with Verifiable Rewards (RLVR) strengthens LLM reasoning, but training often oscillates between {entropy collapse} and {entropy explosion}. We trace both hazards to the mean baseline used in value-free RL (e.g., GRPO and DAPO), which improperly penalizes negative-advantage samples under reward outliers. We propose {Quantile Advantage Estimation} (QAE), replacing the mean with a group-wise K-quantile baseline. QAE induces a response-level, two-regime gate: on hard queries (p <= 1 - K) it reinforces rare successes, while on easy queries (p > 1 - K) it targets remaining failures. Under first-order softmax updates, we prove {two-sided entropy safety}, giving lower and upper bounds on one-step entropy change that curb explosion and prevent collapse. Empirically, this minimal modification stabilizes entropy, sparsifies credit assignment (with tuned K, roughly 80% of responses receive zero advantage), and yields sustained pass@1 gains on Qwen3-8B/14B-Base across AIME 2024/2025 and AMC 2023. These results identify {baseline design} -- rather than token-level heuristics -- as the primary mechanism for scaling RLVR.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=WDP5b3mtFV",
+  "arxiv": "https://arxiv.org/abs/2509.22611",
+  "pdf": "https://proceedings.iclr.cc/paper_files/paper/2026/file/d6520fa7f71dc8e09ed5939a60a64218-Paper-Conference.pdf",
+  "proceedings": "https://proceedings.iclr.cc/paper_files/paper/2026/hash/d6520fa7f71dc8e09ed5939a60a64218-Abstract-Conference.html",
+  "virtual": "https://iclr.cc/virtual/2026/poster/10009065",
+  "code": null
+ },
+ "license": "http://arxiv.org/licenses/nonexclusive-distrib/1.0/",
+ "img": "none",
+ "image_url": null,
+ "thumb_url": null,
+ "figure_page": 1,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.6
+}

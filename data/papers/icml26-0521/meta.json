@@ -1,0 +1,49 @@
+{
+ "id": "icml26-0521",
+ "title": "FlashBlock: Attention Caching for Efficient Long-Context Block Diffusion",
+ "authors": [
+  "Zhuokun Chen",
+  "Jianfei Cai",
+  "Bohan Zhuang"
+ ],
+ "venue": "ICML 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "Deep Learning->Attention Mechanisms",
+ "role": "analysis-finding",
+ "role2": null,
+ "claim": "Part of the computation stays stable across iterative steps while another part changes substantially, which exposes redundancy that can be exploited.",
+ "layout": "2 rows by 5 heatmaps, shared colorbars, steps left-to-right, row labels at left",
+ "tags": [
+  "attention-similarity",
+  "cross-step-redundancy",
+  "block-diffusion",
+  "caching",
+  "efficiency"
+ ],
+ "style": [
+  "plot",
+  "colorful",
+  "photo/real data"
+ ],
+ "description": "Two rows of five square heatmaps each, rendered in the viridis colormap, with purple for low similarity and yellow for high. The top row is labeled A_out and the bottom row A_in. Each column is captioned with a pair of adjacent diffusion steps, from Step 1-2 to Step 5-6. Each heatmap is an 8x8 grid of token-to-token similarity. A separate vertical colorbar sits at the right edge of each row. The top row has a bright, coherent yellow diagonal and smooth green gradients around it, and this structure is similar from step to step. The bottom row looks more varied: its diagonal is weaker and patchier, and the patterns change from panel to panel. The eye goes first to the bright diagonal in the top row and then compares it with the noisier bottom row.",
+ "caption": "Cross-step stability of block-external vs.\\ block-internal attention across diffusion steps. Visualization of attention similarity across diffusion steps for the same block at layer 3 of Trado-8B-Thinking. We compute the similarity of attention outputs between each diffusion step and its subsequent step within a denoising block. In each heatmap, the x-axis corresponds to token indices within the current block at step $s$, and the y-axis corresponds to token indices within the same block at step $s{+}1$; diagonal entries therefore represent the similarity of the same token across adjacent diffusion steps. The top row shows block-external attention ($A_{out}$), and the bottom row shows block-internal attention ($A_{in}$), across multiple diffusion steps. Brighter colors indicate higher similarity. Across steps, $A_{out}$ consistently exhibits higher similarity and more coherent structure, indicating strong cross-step stability, whereas $A_{in}$ varies substantially across steps.",
+ "caption_source": "latex",
+ "abstract": "Generating long-form content, such as minute-long videos and extended texts, is increasingly important for modern generative models. Block diffusion improves inference efficiency via KV caching and block-wise causal inference and has been widely adopted in diffusion language models and video generation. However, in long-context settings, block diffusion still incurs substantial overhead from repeatedly computing attention over a growing KV cache. We identify an underexplored property of block diffusion: cross-step redundancy of attention within a block. Our analysis shows that attention outputs from tokens outside the current block remain largely stable across diffusion steps, while block-internal attention varies significantly. Based on this observation, we propose FlashBlock, a cached block-external attention mechanism that reuses stable attention output, reducing attention computation and KV cache access without modifying the diffusion process. Moreover, FlashBlock is orthogonal to sparse attention and can be combined as a complementary residual reuse strategy, substantially improving model accuracy under aggressive sparsification. Experiments on diffusion language models and video generation demonstrate up to 1.44$\\times$ higher token throughput and up to 1.6$\\times$ reduction in attention time, with negligible impact on generation quality. Project page: https://caesarhhh.github.io/FlashBlock/.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=4jfuNNghPS",
+  "arxiv": "https://arxiv.org/abs/2602.05305",
+  "pdf": "https://raw.githubusercontent.com/mlresearch/v306/main/assets/chen26g/chen26g.pdf",
+  "proceedings": "https://proceedings.mlr.press/v306/chen26g.html",
+  "virtual": "https://icml.cc/virtual/2026/poster/66319",
+  "code": "https://caesarhhh.github.io/FlashBlock/"
+ },
+ "license": "http://creativecommons.org/licenses/by/4.0/",
+ "img": "cc-by",
+ "image_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/images/icml26-0521.png",
+ "thumb_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/thumbs/icml26-0521.webp",
+ "figure_page": 2,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.93
+}

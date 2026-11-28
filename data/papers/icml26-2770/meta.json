@@ -1,0 +1,50 @@
+{
+ "id": "icml26-2770",
+ "title": "ZipMoE: Efficient On-Device MoE Serving via Lossless Compression and Cache-Affinity Scheduling",
+ "authors": [
+  "Yuchen Yang",
+  "Yaru Zhao",
+  "Pu Yang",
+  "Shaowei Wang",
+  "Zhi-Hua Zhou"
+ ],
+ "venue": "ICML 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "Deep Learning->Large Language Models",
+ "role": "analysis-finding",
+ "role2": "problem-setup",
+ "claim": "Offloading experts to slower storage makes data transfer dominate decoding latency, creating an I/O bottleneck that is far more severe on edge devices than on servers.",
+ "layout": "2 vertically stacked panels, horizontal stacked bars per model, shared color legend on top",
+ "tags": [
+  "latency-breakdown",
+  "moe-offloading",
+  "io-bottleneck",
+  "edge-inference",
+  "systems-profiling"
+ ],
+ "style": [
+  "plot",
+  "colorful"
+ ],
+ "description": "Two stacked horizontal bar-chart panels show per-layer decoding latency for three MoE models: DeepSeekV2-Lite, Qwen1.5-MoE and Switch-Large-128. Panel (a) is a GeForce RTX 5080 server setup on a 0–20 ms axis. Panel (b) is a Jetson AGX Orin edge setup on a 0–120+ ms axis. Each bar is split into colored segments for Attention, Dense, SSD->CPU, CPU->GPU, MoE Gate, Expert Forward, Shared Expert and Auxiliary Ops, with a legend across the top. In (a), the pale grey CPU->GPU transfer segments take a large share of each bar, alongside a sizable blue Auxiliary Ops block. In (b), the cream SSD->CPU segments dominate almost the whole bar. Total latency is roughly ten times higher on the edge device. The eye goes first to the long cream blocks in the lower panel.",
+ "caption": "Latency break-down of decoding layers in representative MoE models on (a) Server environment, where experts are offloaded to CPU with $512$ GB RAM; and (b) Edge environment, where experts are offloaded to NVMe SSD (Aigo DP35) with $2$ GB/s read speed.",
+ "caption_source": "latex",
+ "abstract": "While Mixture-of-Experts (MoE) architectures substantially bolster the expressive power of large-language models, their prohibitive memory footprint severely impedes the practical deployment on resource-constrained edge devices, especially when model behavior must be preserved without relying on lossy quantization. In this paper, we present ZipMoE, an efficient and semantically lossless on-device MoE serving system. ZipMoE exploits the synergy between the hardware properties of edge devices and the statistical redundancy inherent to MoE parameters via a caching-scheduling co-design with provable performance guarantee. Fundamentally, our design shifts the paradigm of on-device MoE inference from an I/O-bound bottleneck to a compute-centric workflow that enables efficient parallelization. We implement a prototype of ZipMoE and conduct extensive experiments on representative edge computing platforms using popular open-source MoE models and real-world workloads. Our evaluation reveals that ZipMoE achieves up to $72.77\\%$ inference latency reduction and up to $6.76\\times$ higher throughput than the state-of-the-art systems.Our code is available at: https://github.com/npnothard/ZipMoE-ICML26.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=QUL7jp4QDQ",
+  "arxiv": "https://arxiv.org/abs/2601.21198",
+  "pdf": "https://raw.githubusercontent.com/mlresearch/v306/main/assets/yang26ds/yang26ds.pdf",
+  "proceedings": "https://proceedings.mlr.press/v306/yang26ds.html",
+  "virtual": "https://icml.cc/virtual/2026/poster/64146",
+  "code": "https://github.com/npnothard/ZipMoE-ICML26"
+ },
+ "license": "http://creativecommons.org/licenses/by-nc-nd/4.0/",
+ "img": "none",
+ "image_url": null,
+ "thumb_url": null,
+ "figure_page": 1,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.8
+}

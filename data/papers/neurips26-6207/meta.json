@@ -1,0 +1,52 @@
+{
+ "id": "neurips26-6207",
+ "title": "Intent-Aware Caching for Efficient LLM Serving",
+ "authors": [
+  "Kazi Hasan Ibn Arif",
+  "JinYi Yoon",
+  "Dimitrios S Nikolopoulos",
+  "Hans Vandierendonck",
+  "Deepu John",
+  "Bo Ji"
+ ],
+ "venue": "NeurIPS 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "Deep Learning->Generative Models and Autoencoders",
+ "role": "analysis-finding",
+ "role2": "problem-setup",
+ "claim": "Context grows with each turn, making reuse valuable, yet practical online policies fall far short of oracle policies in hit rate.",
+ "layout": "3 panels, left-to-right; turn diagram, box plot, line chart",
+ "tags": [
+  "prefix-caching",
+  "multi-turn",
+  "cache-eviction",
+  "oracle-gap",
+  "efficiency"
+ ],
+ "style": [
+  "plot",
+  "colorful",
+  "minimal"
+ ],
+ "description": "Three side-by-side panels. (a) A schematic of multi-turn conversation: stacked rows labeled Turn 2, Turn 3, ... Turn t. Each row has rounded beige boxes (Query 1, Answer 1, ...) enclosed in a blue-outlined 'Cached prefix' bracket, followed by a darker orange box for the new query. The prefix grows with each turn. (b) A box plot of context length in tokens against number of turns (1, 2, 4, 8). Medians in orange rise from under 1k to about 2.4k tokens. (c) A line chart of cache hit rate (%) against cache capacity (80 to 170 x10^3 tokens). Orange lines (oracle policies TB+S, TB, MIN) sit well above blue lines (ML policy LPC, and conventional GDSF, LRU, LFU). Braces group the legend into Oracle, ML and Conventional. The eye goes first to the gap in panel (c).",
+ "caption": "(a) In a typical multi-turn conversation, each new request includes previous user queries and model responses as a prefix; caching this prefix reduces redundant prefill computation and lowers TTFT. (b) The input context grows with the number of turns, increasing serving cost. (c) Both conventional and ML-based policies achieve much lower cache hit rates than oracle policies.",
+ "caption_source": "latex",
+ "abstract": "Modern LLM serving systems use prefix caching to accelerate multi-turn conversational workloads. They cache the key-value states of previous conversation prefixes and reuse them when subsequent requests share the same prefix, to avoid redundant prefill computation and reduce serving latency. However, achieving a high cache hit rate remains challenging because cache reuse depends on whether a conversation continues and how soon the next turn arrives. Our analysis of real workloads shows that user intent is a useful signal for this behavior, as different intents exhibit different continuation probabilities and inter-turn delays. Based on this key insight, we propose Intent-Aware Caching (IAC), an online eviction policy that classifies requests by intent, learns lightweight reuse statistics from recent serving logs and leverages these statistics to guide an oracle-inspired eviction strategy. Extensive evaluation on real workloads (WildChat and ShareChat) shows that IAC reaches a 34.6% cache hit rate. This substantially outperforms both the previous learning-based approach (18.8%) and traditional methods such as least recently used (LRU, 12.2%), while reducing average serving latency by up to 46.1%.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=gebB3q0INK",
+  "arxiv": "https://arxiv.org/abs/2611.09715",
+  "pdf": "https://arxiv.org/pdf/2611.09715",
+  "proceedings": null,
+  "virtual": "https://neurips.cc/virtual/2026/poster/150630",
+  "code": "https://github.com/hasanar1f/intent-aware-caching"
+ },
+ "license": "http://creativecommons.org/licenses/by/4.0/",
+ "img": "cc-by",
+ "image_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/images/neurips26-6207.png",
+ "thumb_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/thumbs/neurips26-6207.webp",
+ "figure_page": 1,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.6
+}

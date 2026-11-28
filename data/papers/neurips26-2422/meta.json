@@ -1,0 +1,48 @@
+{
+ "id": "neurips26-2422",
+ "title": "The Price of Choosing Examples: Context Overfitting in Adaptive In-Context Learning",
+ "authors": [
+  "Xiaoyu Li",
+  "Jiangxuan Long"
+ ],
+ "venue": "NeurIPS 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "Deep Learning->Robustness",
+ "role": "concept",
+ "role2": "pipeline",
+ "claim": "Scoring a selected context on fresh data gives a clean error bound; reverting to the real selection costs a capacity term.",
+ "layout": "2 side-by-side panels, left-to-right, curved arrow and bound formula underneath",
+ "tags": [
+  "adaptive-selection",
+  "change-of-measure",
+  "generalization-bound",
+  "coupled-vs-decoupled",
+  "information-theoretic"
+ ],
+ "style": [
+  "colorful",
+  "math-heavy",
+  "icon-heavy"
+ ],
+ "description": "Two rounded panels sit side by side. The left one is orange, titled \"Real law Q_u\", and the right one is green, titled \"Ghost law Q̄_u\". Each panel shows a 3×9 grid of squares for the data store, with a few squares highlighted: orange on the left, green on the right. In each panel an arrow runs from the store to a pipeline box (retrieve, rerank, edit). On the left this is a solid box, and on the right it is a dashed \"marginal\" box that never reads the fresh store. Each pipeline box feeds a document icon labeled T, the transcript. The transcript feeds a loss box. On the left, the loss box uses the same store S and \"reuses the data that chose T\". On the right, it uses a fresh store S° and has k fresh draws with error σ/√k. A curved dark arrow runs from the ghost panel back to the real panel, labeled \"one change of measure back to the real law costs the capacity κ\". At the bottom is the bound L_u(T) − L̂_S(T) ≲ √(2σ²κ/k). Three green pills define κ as expected mutual information, high-probability max-information, and posterior KL.",
+ "caption": "Coupled (real) and decoupled (ghost) laws of store and transcript. The ghost law scores the same transcript on a fresh store, so its selected-context score averages $k$ fresh losses; one change of measure back to the real law costs the context capacity $\\kappa$.",
+ "caption_source": "latex",
+ "abstract": "In-context learning is usually analyzed as if the examples in the prompt were sampled before the learner is chosen. In deployed systems they are not: examples are retrieved, filtered, re-ranked, edited, and repeatedly tested after seeing the query and the data store. We formalize this gap by treating prompt construction as adaptive data analysis through a conditional stochastic-kernel calculus. Our main quantity is the context capacity, the mutual information or approximate max-information between the data store and the final prompt transcript. For any frozen in-context learner and any adaptive context pipeline with capacity $Îº$, we prove a finite-sample context generalization bound of order $\\sqrt{Îº/k}$, where $k$ is the number of selected examples whose losses form the reported score. We prove a matching lower bound, whose constant is exact when $\\log k\\llÎº\\ll k$, and derive two PAC-Bayesian retrieval rules: a first-order Gibbs rule that charges data-dependent candidate gates their prior mass, and a self-normalized second-order rule. On Banking77 with 64 retrieval recipes and two model families, the certificates hold in all 24,000 resampled selection events, and from 64 (Qwen2.5-7B) or 128 (GPT-4.1-mini) reused validation queries the Gibbs rule certifies a risk below the zero-shot error in over 99% of validation draws. Finally, we instantiate the theory for Bayesian linear in-context regression, including an order-statistics analysis of query-aligned top-$k$ Gaussian retrieval. The results separate context quality from context certification: longer or more relevant contexts improve risk only when the procedure used to choose them is stable enough for selected-context evidence to transfer.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=Gzmzr2tIux",
+  "arxiv": "https://arxiv.org/abs/2611.21251",
+  "pdf": "https://arxiv.org/pdf/2611.21251",
+  "proceedings": null,
+  "virtual": "https://neurips.cc/virtual/2026/poster/153995",
+  "code": null
+ },
+ "license": "http://arxiv.org/licenses/nonexclusive-distrib/1.0/",
+ "img": "none",
+ "image_url": null,
+ "thumb_url": null,
+ "figure_page": 3,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.55
+}

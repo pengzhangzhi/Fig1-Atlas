@@ -1,0 +1,51 @@
+{
+ "id": "neurips26-6921",
+ "title": "GridProbe: Posterior-Probing for Adaptive Test-Time Compute in Long-Video VLMs",
+ "authors": [
+  "Mohamed Eltahir",
+  "Lama Ayash",
+  "Ali Habibullah",
+  "Tanveer Hussain",
+  "Naeemullah Khan"
+ ],
+ "venue": "NeurIPS 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "Computer Vision->Vision Models & Multimodal",
+ "role": "teaser-result",
+ "role2": "analysis-finding",
+ "claim": "Our adaptive selection Pareto-dominates the baseline on accuracy versus compute, and the compute savings hold across grid sizes.",
+ "layout": "2 panels, side-by-side; left Pareto scatter with shaded dominance region, right log-scale savings plot",
+ "tags": [
+  "pareto-dominance",
+  "test-time-compute",
+  "efficiency",
+  "frame-selection",
+  "long-video"
+ ],
+ "style": [
+  "plot",
+  "colorful",
+  "minimal"
+ ],
+ "description": "Two plots sit side by side. Panel (a) is a scatter of average accuracy against average TFLOPs per question. Gray circles are standard baselines at 2B, 4B and 8B. Blue diamonds are single-model GridProbe variants. Red stars are cross-model variants, where a 2B selector feeds a bigger QA model. A light-green shaded rectangle above and left of the 2B baseline marks the region that strictly dominates it. Dashed green arrows labeled 'more accurate' and 'more efficient' point out the directions, and a dashed callout box states the dominance claim. Panel (b) plots TFLOPs per question on a log scale against grid size K. A gray baseline curve sits above a blue GridProbe curve. The green band between them is labeled with compute-reduction factors from 1.4x to 4.6x. The eye goes first to the green region and the red stars in (a).",
+ "caption": "(a) VMME-V2 Pareto across QA model sizes. \\method{} variants in the green region Pareto-dominate the 2B baseline. (b) Compute reduction across $K$ at fixed 2B QA.",
+ "caption_source": "latex",
+ "abstract": "Long-video understanding in VLMs is bottlenecked by a single monolithic forward pass over thousands of frames at quadratic attention cost. A common mitigation is to first select a small subset of informative frames before the forward pass; common for training-free selectors via auxiliary encoder-space similarities. Such signals are capped by contrastive pretraining, which usually fails on reasoning-heavy queries (negation, cross-frame counting, holistic summarization). We propose GridProbe, an efficient training-free posterior-probing inference paradigm that scores evidence in answer space using a frozen VLM's own reasoning and then selects question-relevant frames adaptively, resulting in sub-quadratic attention cost with little to no accuracy loss. We arrange frames on a $K{\\times}K$ grid and run lightweight row R and column C probes, where each probe reads its peak posterior as a query-conditioned confidence. The outer product of R and C yields an interpretable importance map whose skewness and kurtosis drive Shape-Adaptive Selection, a closed-form rule that reliably replaces the fixed frame budget $M$ with a per-question $M_{\\mathrm{eff}}$. We show empirically that $M_{\\mathrm{eff}}$ tracks intrinsic question difficulty without ever seeing the answer, a sign of test-time adaptive compute. On Video-MME-v2, GridProbe matches the monolithic baseline within $1.6$ pp Avg Acc at $3.36\\times$ TFLOPs reduction, while on LongVideoBench it Pareto-dominates the baseline ($+0.9$ pp at $0.35\\times$ compute). Because the selector and QA models can be decoupled, pairing a small 2B selector with a stronger 4B or 8B QA is strictly Pareto-dominant over the 2B monolithic baseline (up to $+4.0$ pp at $0.52\\times$ compute, on average), with no retraining. Finally, the interpretability of the importance maps opens future avenues for behavioral diagnostics, grounding, and frame-selection distillation.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=lcdVMrJksq",
+  "arxiv": "https://arxiv.org/abs/2605.10762",
+  "pdf": "https://arxiv.org/pdf/2605.10762",
+  "proceedings": null,
+  "virtual": "https://neurips.cc/virtual/2026/poster/149994",
+  "code": "https://github.com/mohammad2012191/GridProbe"
+ },
+ "license": "http://creativecommons.org/licenses/by/4.0/",
+ "img": "cc-by",
+ "image_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/images/neurips26-6921.png",
+ "thumb_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/thumbs/neurips26-6921.webp",
+ "figure_page": 0,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.85
+}

@@ -1,0 +1,52 @@
+{
+ "id": "icml26-6248",
+ "title": "The Obfuscation Atlas: Mapping Where Honesty Emerges in RLVR with Deception Probes",
+ "authors": [
+  "Mohammad Taufeeque",
+  "Stefan Heimersheim",
+  "Adam Gleave",
+  "Chris Cundy"
+ ],
+ "venue": "ICML 2026",
+ "tier": "oral",
+ "track": "main",
+ "topic": "Social Aspects->Alignment",
+ "role": "prior-vs-ours",
+ "role2": "problem-setup",
+ "claim": "Training against a detector yields one honest outcome and several failure modes, each of which evades or fools the probe differently.",
+ "layout": "Left-to-right flow: prompt, four colored branches, output code, detector-verdict columns",
+ "tags": [
+  "reward-hacking",
+  "deception-probes",
+  "taxonomy-of-outcomes",
+  "obfuscation",
+  "rlvr"
+ ],
+ "style": [
+  "colorful",
+  "text-heavy",
+  "icon-heavy"
+ ],
+ "description": "A left-to-right Sankey-style diagram. At left, a gray prompt box holds a system message, a coding task (cube sum of the first n odd numbers) and a test assertion. A dark teal block labeled 'Model policy changed' and a lighter gray block labeled 'Model internals changed' feed four colored ribbons. The ribbons are Honest (green), Blatant Deception (blue), Obfuscated Policy (orange) and Obfuscated Activations (pink). Each ribbon ends at a cream code snippet. The honest snippet computes the formula. The other three hardcode 'return 28', and the obfuscated policy adds a justification comment. At right, two columns are headed 'Probe on Final Model' and 'Original Model Cross-Check'. Their cells are colored green for true negative, yellow for true positive and red for false negative. Red marks where the probe is fooled. The eye goes first to the colored ribbons and the red cells.",
+ "caption": "We RLVR-train models to solve coding problems, rewarding shorter solutions. This leads models to reward-hack by hardcoding test cases (Blatant Deception). By adding a lie detector score to the RL reward, we can steer the models to learn an honest policy instead. However, insufficient KL regularization and detector penalty cause models to evade probes, either by modifying their activations (Obfuscated Activations) or by adding justifications that rationalize the reward hack (Obfuscated Policy).",
+ "caption_source": "latex",
+ "abstract": "Training against white-box deception detectors has been proposed as a way to make AI systems honest. However, such training risks models learning to obfuscate their deception to evade the detector. Prior work has studied obfuscation only in artificial settings where models were directly rewarded for harmful output. We construct a realistic coding environment where reward hacking via hardcoding test cases naturally occurs, and show that obfuscation emerges in this setting. We introduce a taxonomy of possible outcomes when training against a deception detector. The model either remains honest, or becomes deceptive via two possible obfuscation strategies. (i) Obfuscated activations: the model outputs deceptive text while modifying its internal representations to no longer trigger the detector. (ii) Obfuscated policy: the model outputs deceptive text that evades the detector, typically by including a justification for the reward hack. Empirically, obfuscated activations arise from representation drift during RL, with or without a detector penalty. The detector penalty only incentivizes obfuscated policies; we theoretically show this is expected for policy gradient methods. Sufficiently high KL regularization and detector penalty can yield honest policies, establishing white-box deception detectors as viable training signals for tasks prone to reward hacking.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=wrGSN9kAVD",
+  "arxiv": "https://arxiv.org/abs/2602.15515",
+  "pdf": "https://raw.githubusercontent.com/mlresearch/v306/main/assets/taufeeque26a/taufeeque26a.pdf",
+  "proceedings": "https://proceedings.mlr.press/v306/taufeeque26a.html",
+  "virtual": "https://icml.cc/virtual/2026/oral/71065",
+  "code": "https://github.com/AlignmentResearch/obfuscation-atlas"
+ },
+ "license": "http://creativecommons.org/licenses/by/4.0/",
+ "img": "cc-by",
+ "image_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/images/icml26-6248.png",
+ "thumb_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/thumbs/icml26-6248.webp",
+ "figure_page": 1,
+ "qc_flags": [
+  "low-role-confidence"
+ ],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.4
+}

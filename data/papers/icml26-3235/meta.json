@@ -1,0 +1,53 @@
+{
+ "id": "icml26-3235",
+ "title": "Learning When to Attend: Conditional Memory Access for Long-Context LLMs",
+ "authors": [
+  "Sakshi Choudhary",
+  "Aditya Chattopadhyay",
+  "Luca Zancato",
+  "Elvis Nunez",
+  "Matthew Trager",
+  "Wei Xia",
+  "Stefano Soatto"
+ ],
+ "venue": "ICML 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "Deep Learning->Attention Mechanisms",
+ "role": "pipeline",
+ "role2": null,
+ "claim": "A cheap local pass handles every token, and a learned router invokes costly global computation only for tokens that need it.",
+ "layout": "2 panels, bottom-to-top block stack left, router branches right, frozen/trainable icons",
+ "tags": [
+  "conditional-computation",
+  "routing",
+  "long-context",
+  "efficiency",
+  "attention"
+ ],
+ "style": [
+  "icon-heavy",
+  "colorful",
+  "minimal"
+ ],
+ "description": "The left panel shows a vertical transformer stack repeated N times, read bottom to top. Input goes to Embedding, then Local Attention, an L2A Block, an MLP and a Head, and then to Output. Residual connections end in green plus circles. Salmon boxes carry snowflake icons for frozen modules (Embedding, MLP, Head) and flame icons for trainable ones (Local Attention, L2A Block). The right panel expands the L2A Block into two parallel cases. When d_t=1, a Router diamond sends the token up through a bright Global Attention box. When d_t=0, the Router bypasses a greyed-out Global Attention box, and the bypass arrow bends around it. Dark brown arrows show the active path. Pale grey dashed arrows show the inactive path. A legend sits at the bottom.",
+ "caption": "Overview of \\ourname, a sequence modeling layer with token-wise conditional routing. All tokens are first processed by Local Attention. Next, tokens with routing decision $d_t=1$ invoke Global Attention, whereas tokens with $d_t=0$ bypass it. This enables efficient long-context modeling by invoking expensive Global Attention only when needed. We refer to the combined \\{Local Attention + \\ourname Block\\} as the \\ourname layer.",
+ "caption_source": "latex",
+ "abstract": "Language models struggle to generalize beyond pretraining context lengths, limiting long-horizon reasoning and retrieval. Continued pretraining on long-context data can help but is expensive due to the quadratic scaling of Attention. We observe that most tokens do not require (Global) Attention over the entire sequence and can rely on local context. Based on this, we propose L2A (Learning To Attend), a layer that enables conditional (token-wise) long-range memory access by deciding when to invoke global attention. We evaluate L2A on Qwen 2.5 and Qwen 3 models, extending their effective context length from 32K to 128K tokens. L2A matches the performance of standard long-context training to within 3\\% while skipping Global Attention for $\\sim$80\\% of tokens, outperforming prior baselines. We also design custom Triton kernels to efficiently implement this token-wise conditional Attention on GPUs, achieving up to $\\sim$2$\\times$ improvements in training throughput and time-to-first-token over FlashAttention. Moreover, L2A enables post-training pruning of highly sparse Global Attention layers, reducing KV cache memory by up to 50\\% with negligible performance loss. Our code is released under Apache 2.0 at https://github.com/awslabs/hybrid-model-factory/tree/main/examples/research/L2A.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=UcGwFXWnbn",
+  "arxiv": "https://arxiv.org/abs/2603.17484",
+  "pdf": "https://raw.githubusercontent.com/mlresearch/v306/main/assets/choudhary26a/choudhary26a.pdf",
+  "proceedings": "https://proceedings.mlr.press/v306/choudhary26a.html",
+  "virtual": "https://icml.cc/virtual/2026/poster/63689",
+  "code": null
+ },
+ "license": "http://arxiv.org/licenses/nonexclusive-distrib/1.0/",
+ "img": "none",
+ "image_url": null,
+ "thumb_url": null,
+ "figure_page": 0,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.9
+}

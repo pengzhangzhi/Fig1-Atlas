@@ -1,0 +1,52 @@
+{
+ "id": "neurips26-2219",
+ "title": "Learning to Read Out: Unembedding Dynamics in Language Model Pretraining",
+ "authors": [
+  "Matteo He",
+  "William Shen",
+  "Alexandru-Andrei Iacob",
+  "Andrej Jovanović",
+  "Xinchi Qiu",
+  "Nicholas Lane"
+ ],
+ "venue": "NeurIPS 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "Social Aspects->Accountability, Transparency and Interpretability",
+ "role": "pipeline",
+ "role2": "concept",
+ "claim": "Reading a model's capability from outputs conflates what hidden states encode with what the readout expresses; we measure each separately.",
+ "layout": "2 panels; (a) left-to-right branching to three measurements, (b) top-to-bottom stack with curves",
+ "tags": [
+  "measurement-disentangling",
+  "probing",
+  "readout-dynamics",
+  "crosscoder",
+  "training-dynamics"
+ ],
+ "style": [
+  "colorful",
+  "text-heavy",
+  "minimal"
+ ],
+ "description": "Two-panel overview. Panel (a), \"Three measurements at one hidden state\", flows left to right. A text snippet (\"The keys to the cabinet\") feeds a box labelled \"model at checkpoint t\". Its output is a grey vertical bar for the fixed hidden state h(t). Three colored arrows branch from the bar into three boxes: own readout (blue), readout swap from checkpoint s (orange), and linear probe on task labels (teal). Matching colored labels give each measurement's name and an example, such as \"is over are, margin −0.11\" versus \"are over is, margin +1.74\". Panel (b), \"Readout trajectories\", shows a row of unembedding matrices across checkpoints with one highlighted row. An arrow leads to a crosscoder box. Below it, a schematic plot of feature strength against training step shows early-decaying, persistent and late-emerging curves in magenta, gold and purple.",
+ "caption": "Overview. (a) The same Pythia-1B step-1000 hidden state prefers is under its own readout and are under the final readout, while a linear probe measures what the state encodes without passing through any readout. (b) Parameter-trajectory crosscoding fits one sparse dictionary to the trajectories of all readout rows. Feature strengths are schematic and use the profile colors of [ref].",
+ "caption_source": "latex",
+ "abstract": "When does a language model acquire a capability? Developmental studies usually answer this by tracking when models start producing the correct token. But that prediction passes through the unembedding matrix, or readout, which is itself still being learned during pretraining. We show that a model's hidden states can encode task information before its own readout expresses it, so timelines read from outputs conflate what the model encodes with what its readout expresses. To track the readout directly, we introduce parameter-trajectory crosscoding, which fits one sparse dictionary to every token's readout row at every checkpoint. Unlike crosscoders on activations, it needs only checkpoint weights. We use it to locate a narrow early window, 0.4-1.1% of the way through Pythia's pretraining, in which the readout reorganizes and WordNet word categories become decodable from its rows. By then, linear probes on the hidden states already decode task information that the model's own outputs do not yet show. To test whether such gaps depend on how fast the readout learns, we pretrain small models from scratch that differ only in the readout's learning rate. We find that raising it makes the readout develop earlier and the gap close sooner, with little effect on final loss. Together, these results imply that early in training, where many developmental transitions are dated, a behavioral date can reflect when the readout learns to express task information and not when the model learns it.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=FlkhJrDVyI",
+  "arxiv": "https://arxiv.org/abs/2610.21025",
+  "pdf": "https://arxiv.org/pdf/2610.21025",
+  "proceedings": null,
+  "virtual": "https://neurips.cc/virtual/2026/poster/154168",
+  "code": "https://matteohe.com/learning-to-read-out/"
+ },
+ "license": "http://creativecommons.org/licenses/by/4.0/",
+ "img": "cc-by",
+ "image_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/images/neurips26-2219.png",
+ "thumb_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/thumbs/neurips26-2219.webp",
+ "figure_page": 1,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.55
+}

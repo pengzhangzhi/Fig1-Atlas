@@ -1,0 +1,49 @@
+{
+ "id": "iclr26-4333",
+ "title": "Truthful or Fabricated? Using Causal Attribution to Mitigate Reward Hacking in Explanations",
+ "authors": [
+  "Pedro Ferreira",
+  "Wilker Aziz",
+  "Ivan Titov"
+ ],
+ "venue": "ICLR 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "Social Aspects->Trustworthy Machine Learning",
+ "role": "problem-setup",
+ "role2": "analysis-finding",
+ "claim": "Reward models scoring only prompt and response miss hidden reliance on forbidden information; adding causal signals exposes it and corrects the reward.",
+ "layout": "2 stacked panels: top flow diagram left-to-right, bottom density plot with legend",
+ "tags": [
+  "reward-hacking",
+  "faithfulness",
+  "causal-attribution",
+  "reward-model",
+  "failure-case"
+ ],
+ "style": [
+  "colorful",
+  "text-heavy",
+  "plot"
+ ],
+ "description": "The top panel (a) is a worked example in pastel boxes. On the left, a yellow PROMPT box holds a MATH BOOK with problems and solutions, the question 'What is (5*3)+10?', and the instruction 'Do not use the MATH BOOK'. An arrow leads to an LLM box with a magnifying glass. The LLM produces a RESPONSE: a blue generated explanation and a green answer, 25. The magnifier points to a purple box of interpretability signals, a counterfactual test showing the model relied on the book. On the right, an original input (prompt + response) goes to a Reward Model and scores 0.85 in green. An augmented input adds the text 'I acknowledge that I used the SOLUTIONS part of the MATH BOOK'. A red arrow marks the score dropping to 0.02, shown in red. The bottom panel (b) is a kernel density plot of reward scores for three groups. The wrong, unacknowledged group (blue) sits far left. The correct, unacknowledged group (orange dashed) sits right. The correct, acknowledged group (green dotted) sits in between.",
+ "caption": "\\newstuff{ (a) Example showcasing the limitation of assigning a reward score solely based on the prompt and response text. A response may appear to follow the instruction \"Do not use the MATH BOOK\" and receive a high score. However, a more faithful mechanism can reveal that the model relied on the `Math Book'. Augmenting the reward model with this information helps it output a more adequate reward score.} \\newstuff{(b) Distribution of reward scores based on whether responses acknowledge or not the use of the `Math Book', and whether the corresponding prediction is correct or wrong.}",
+ "caption_source": "latex",
+ "abstract": "Chain-of-thought explanations are widely used to inspect the decision process of large language models (LLMs) and to evaluate the trustworthiness of model outputs, making them important for effective collaboration between LLMs and humans. We demonstrate that preference optimization - a key step in the alignment phase - can inadvertently reduce the faithfulness of these explanations. This occurs because the reward model (RM), which guides alignment, is tasked with optimizing both the expected quality of the response and the appropriateness of the explanations (e.g., minimizing bias or adhering to safety standards), creating potential conflicts. The RM lacks a mechanism to assess the consistency between the model's internal decision process and the generated explanation. Consequently, the LLM may engage in \"reward hacking\" by producing a final response that scores highly while giving an explanation tailored to maximize reward rather than accurately reflecting its reasoning. To address this issue, we propose enriching the RM's input with a causal attribution of the prediction, allowing the RM to detect discrepancies between the generated self-explanation and the model's decision process. In controlled settings, we show that this approach reduces the tendency of the LLM to generate misleading explanations.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=nkdPLuKoL5",
+  "arxiv": "https://arxiv.org/abs/2504.05294",
+  "pdf": "https://proceedings.iclr.cc/paper_files/paper/2026/file/d4b892df8bec8e13925f57649fbae039-Paper-Conference.pdf",
+  "proceedings": "https://proceedings.iclr.cc/paper_files/paper/2026/hash/d4b892df8bec8e13925f57649fbae039-Abstract-Conference.html",
+  "virtual": "https://iclr.cc/virtual/2026/poster/10007460",
+  "code": null
+ },
+ "license": "http://arxiv.org/licenses/nonexclusive-distrib/1.0/",
+ "img": "none",
+ "image_url": null,
+ "thumb_url": null,
+ "figure_page": 1,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.6
+}

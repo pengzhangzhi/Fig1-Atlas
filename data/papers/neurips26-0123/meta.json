@@ -1,0 +1,47 @@
+{
+ "id": "neurips26-0123",
+ "title": "Commutator Memory: Sparse, Path-Local Reading and Steering in Language Models",
+ "authors": [
+  "John Sweeney"
+ ],
+ "venue": "NeurIPS 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "Optimization->Neural Network Optimization",
+ "role": "pipeline",
+ "role2": null,
+ "claim": "One cheap-to-compute object from two data sources yields several downstream readouts: forecast, localized map, causal intervention, and trace.",
+ "layout": "3 panels, left-to-right, lettered A-C, with dashed branch outputs",
+ "tags": [
+  "pipeline",
+  "lie-bracket",
+  "interpretability",
+  "causal-intervention",
+  "training-history"
+ ],
+ "style": [
+  "minimal",
+  "colorful",
+  "math-heavy"
+ ],
+ "description": "A three-panel horizontal figure with rounded boxes. Panel A, 'Compute bracket at θ0', shows two stacks of document icons, source A in blue and source B in orange. Arrows from each point into a 'base model θ0' box, then into a 'b_AB Lie bracket' box labeled H_B g_A − H_A g_B. A dashed line drops from that box to an 'order forecast' output with a small line-plot icon. Panel B, 'Decompose to token map', takes b_AB and a target slice E into a 'logit FD at θ_ref' box. It outputs a bar chart over the vocabulary with a few tall red bars, annotated '80% mass <0.4% vocab'. Below the chart are the equation Σ τ_k = η²⟨g_E, b_AB⟩ and an 'endpoint trace 66/72 order ID' box. Panel C, 'Target support', compares red 'targeted tokens' feeding a reweight box, with a '32% median' effect bar, against greyed 'matched random' tokens whose result is ≈0%. Blue, orange and red mark the elements; the eye starts at the sources on the left.",
+ "caption": "Commutator memory pipeline. One bracket produces an order forecast, token map, intervention target, and endpoint trace.",
+ "caption_source": "latex",
+ "abstract": "Gradient updates on different data generally do not commute: training a language model on two data sources in opposite orders gives different weights, even with the same data and total exposure. Loss or benchmark deltas show that the models differ, not where. We ask whether this path dependence leaves a parametric training-history memory: a weight component that flips sign when the two sources are swapped, is localized in output space, changes the held-out loss gap between the two orders under targeted interventions, and reveals which trained model came from which order. For one small SGD step of size $Î·$ on each of sources $A$ and $B$, the weight difference $Î¸_{AB}-Î¸_{BA}$ is, to leading order, $Î·^2 b_{AB}$, where $b_{AB}=H_Bg_A-H_Ag_B$ is the Lie bracket of the two gradient fields at the base model. We define commutator memory by projecting the bracket through the logits into one score per vocabulary token; the scores sum to the bracket's prediction of the gap. The scores are localized: on three models, the same readout of the measured $Î¸_{AB}-Î¸_{BA}$, or of a bracket from disjoint batches, shares 82-99% of the original top-20 tokens, versus 35-49% for norm-matched random directions. They are causally actionable: in Qwen-3-4B SFT, downweighting the ten tokens with the largest predicted share of the gap closes a median 32% of the measured gap, while frequency-matched tokens with near-zero scores have almost no effect. The weights themselves carry the component: projecting the difference between the two trained models onto $b_{AB}$ identifies which came from which order in 92% of cases across four LLMs (chance 50%). Controlled tests also cover matched-batch DPO, a frozen-rollout GRPO-style objective, and an AdamW endpoint check. The memory is defined per source pair, not per example, and its projection on $b_{AB}$ decays with further training.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=0vSuVjlB0R",
+  "arxiv": "https://arxiv.org/abs/2609.34348",
+  "pdf": "https://arxiv.org/pdf/2609.34348",
+  "proceedings": null,
+  "virtual": "https://neurips.cc/virtual/2026/poster/156037",
+  "code": null
+ },
+ "license": "http://creativecommons.org/licenses/by/4.0/",
+ "img": "cc-by",
+ "image_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/images/neurips26-0123.png",
+ "thumb_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/thumbs/neurips26-0123.webp",
+ "figure_page": 1,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.9
+}

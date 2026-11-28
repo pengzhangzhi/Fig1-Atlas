@@ -1,0 +1,56 @@
+{
+ "id": "icml26-1783",
+ "title": "(1D) Ordered Tokens Enable Efficient Test-Time Search",
+ "authors": [
+  "Zhitong Gao",
+  "Parham Rezaei",
+  "Ali Cy",
+  "Mingqiao Ye",
+  "Nataša Jovanović",
+  "Jesse Allardice",
+  "Afshin Dehghan",
+  "Amir Zamir",
+  "Roman Bachmann",
+  "Oğuzhan Fatih Kar"
+ ],
+ "venue": "ICML 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "Deep Learning->Generative Models and Autoencoders",
+ "role": "analysis-finding",
+ "role2": "prior-vs-ours",
+ "claim": "Coarse-to-fine ordered token structure yields verifiable intermediate states and better test-time scaling than raster-scan grid tokens.",
+ "layout": "2 panels: left stacked generation rows, right scaling line plot with shaded gap",
+ "tags": [
+  "test-time-search",
+  "tokenization",
+  "coarse-to-fine",
+  "autoregressive",
+  "scaling"
+ ],
+ "style": [
+  "photo/real data",
+  "plot",
+  "colorful"
+ ],
+ "description": "Two panels. Panel (a), on the left, shows two stacked rounded boxes for the prompt 'a potted plant and a donut'. The top blue box is labeled '1D ordered token'. It shows five progressively generated images with growing rows of blue token squares. Each image has a caption that gets more specific, from 'Plant' to 'A potted plant and a donut', with green check marks and a large green tick at the end. The bottom orange box is labeled '2D grid token'. It shows raster-scan generation that begins as blank wall, then partial plants. It carries question marks for the unverifiable intermediate states, and ends with a red X on a wrong result that has two plants and a donut. Panel (b), on the right, is a line plot of CLIPScore against inference compute (NFE) on a log axis. The blue 1D curve climbs steeply and the orange 2D curve stays flat, with the area between them shaded light blue.",
+ "caption": "(a) Intermediate readouts. 1D ordered tokens provide a coarse-to-fine structure with interpretable readouts amenable to test-time search. For the prompt `a potted plant and a donut\", tokens progressively capture concepts from high- to low-level, e.g., `plant\" → `potted plant\" → `a potted plant and an object\". This structure allows verifiers to effectively guide generation. In contrast, 2D grid tokens generated in raster-scan order are harder to verify and search over. (b) Scaling behavior. 1D ordered tokens (in this plot, FlexTok [ref]) exhibit better test-time scaling than 2D grid tokens (from a controlled baseline) when using the best search algorithm for each (beam search for 1D and best-of-N for 2D). See Figure [ref] for complete results.",
+ "caption_source": "latex",
+ "abstract": "Tokenization is a key component of autoregressive (AR) generative models, converting raw data into more manageable units for modeling. Commonly, tokens describe local information, such as regions of pixels in images or word pieces in text, and AR generation predicts these tokens in a fixed order. A worthwhile question is whether token structures affect the ability to steer the generation through test-time search, where multiple candidate generations are explored and evaluated by a verifier. Using image generation as our testbed, we hypothesize that recent 1D ordered tokenizers with coarse-to-fine structure can be more amenable to search than classical 2D grid structures. This is rooted in the fact that the intermediate states in coarse-to-fine sequences carry semantic meaning that verifiers can reliably evaluate, enabling effective steering during generation. Through controlled experiments, we find that AR models trained on coarse-to-fine ordered tokens exhibit improved test-time scaling behavior compared to grid-based counterparts. Moreover, we demonstrate that, thanks to the ordered structure, pure test-time search over token sequences (i.e., without training an AR model) can perform training-free text-to-image generation when guided by an image-text verifier. Beyond this, we systematically study how classical search algorithms (best-of-N, beam search, lookahead search) interact with different token structures, as well as the role of different verifiers and AR priors. Our results highlight the impact of token structure on inference-time scalability and provide practical guidance for test-time scaling in AR models.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=Gr3wxsTqLw",
+  "arxiv": "https://arxiv.org/abs/2604.15453",
+  "pdf": "https://raw.githubusercontent.com/mlresearch/v306/main/assets/gao26x/gao26x.pdf",
+  "proceedings": "https://proceedings.mlr.press/v306/gao26x.html",
+  "virtual": "https://icml.cc/virtual/2026/poster/65093",
+  "code": "https://soto.epfl.ch/"
+ },
+ "license": "http://arxiv.org/licenses/nonexclusive-distrib/1.0/",
+ "img": "none",
+ "image_url": null,
+ "thumb_url": null,
+ "figure_page": 0,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.5
+}

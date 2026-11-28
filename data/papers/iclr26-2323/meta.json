@@ -1,0 +1,52 @@
+{
+ "id": "iclr26-2323",
+ "title": "ProSafePrune: Projected Safety Pruning for Mitigating Over-Refusal in LLMs",
+ "authors": [
+  "Zijun Chen",
+  "Wenbo Hu",
+  "Ya Li",
+  "Lei Miao",
+  "Guoping Hu",
+  "Richang Hong"
+ ],
+ "venue": "ICLR 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": null,
+ "role": "analysis-finding",
+ "role2": null,
+ "claim": "Internal harmfulness encoding of benign-but-risky inputs varies by layer and differs across models, explaining why one model over-refuses more.",
+ "layout": "2 side-by-side heatmaps, layer by module, shared red colorbars",
+ "tags": [
+  "layer-wise-analysis",
+  "hidden-states",
+  "over-refusal",
+  "probing",
+  "representation-bias"
+ ],
+ "style": [
+  "plot",
+  "colorful",
+  "minimal"
+ ],
+ "description": "Two side-by-side heatmaps share the same design. The y-axis is layer index (0 to about 31) and the x-axis is module type (Q, K, V, O, Up, Gate, Down). Cell color shows average harmful probability on a white-to-deep-red scale, with a colorbar from 0.0 to 1.0 beside each panel. In the left panel, early layers are saturated dark red. The middle and deep layers stay uniformly red at roughly 0.7 to 0.9, so harmfulness remains high everywhere. In the right panel, the early layers are equally dark red. From about layer 12 onward the cells fade to pale pink at roughly 0.2 to 0.4, so harmfulness drops sharply. The eye goes first to the dark red top band and then to the contrast between the persistently red left panel and the fading right panel. Panel titles are not visible in the crop.",
+ "caption": "Layer-wise harmfulness encoding of pseudo-harmful instructions in LLaMA-2-7B vs. LLaMA-3-8B. In the early layers, pseudo-harmful instructions are strongly biased toward harmfulness due to lexical similarity with genuinely harmful prompts. Middle layers show improved separation, as global semantics emerge. However, deeper layers in LLaMA-2-7B amplify harmful features again, whereas LLaMA-3-8B maintains much lower harmfulness encoding. Consistent with this, PHTest (a pseudo-harmful dataset) evaluation shows LLaMA-2-7B’s false rejection rate is 38.5%, significantly higher than LLaMA-3-8B’s 10.5%.",
+ "caption_source": "pdf",
+ "abstract": "Large Language Models (LLMs) excel in various domains, but their safe deployment faces the challenge of balancing safety and utility. Existing alignment strategies often strengthen refusal mechanisms to reduce harmful outputs, but harmless instructions with superficial risky words are mistakenly rejected, which is known as over-refusal. This work first reveals that over-refusal stems from a cognitive bias in the model's internal representation space: LLMs naturally encode safety attributes in hidden states, and pseudo-harmful instructions overlap with harmful features, causing over-harmful encoding. To address this, we propose ProSafePrune, a subspace-projected low-rank parameter pruning framework for mitigating LLM over-refusal. By projecting pseudo-harmful features into subspaces and removing low-rank directions corresponding to harmful components in the most discriminative layers, we significantly reduce over-refusal while preserving the model’s ability to reject genuinely harmful requests, improving performance on general tasks. In experiments, across different models, our method significantly lowers the average false rejection rate while slightly improving general task performance.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=QkHKaPfRAB",
+  "arxiv": null,
+  "pdf": "https://proceedings.iclr.cc/paper_files/paper/2026/file/1fb591d5a6b1da9bd0d0648d122fe2a1-Paper-Conference.pdf",
+  "proceedings": "https://proceedings.iclr.cc/paper_files/paper/2026/hash/1fb591d5a6b1da9bd0d0648d122fe2a1-Abstract-Conference.html",
+  "virtual": "https://iclr.cc/virtual/2026/poster/10009561",
+  "code": null
+ },
+ "license": null,
+ "img": "none",
+ "image_url": null,
+ "thumb_url": null,
+ "figure_page": 3,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.9
+}

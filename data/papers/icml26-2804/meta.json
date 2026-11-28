@@ -1,0 +1,53 @@
+{
+ "id": "icml26-2804",
+ "title": "Discovering Interpretable Algorithms by Decompiling Transformers to RASP",
+ "authors": [
+  "Xinting Huang",
+  "Aleksandra Bakalova",
+  "Satwik Bhattamishra",
+  "William Merrill",
+  "Michael Hahn"
+ ],
+ "venue": "ICML 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "Social Aspects->Accountability, Transparency, and Interpretability",
+ "role": "pipeline",
+ "role2": null,
+ "claim": "A trained model's computation can be re-expressed as a short, human-readable program whose parts are verified by visualized parameters.",
+ "layout": "3 panels, left-to-right: code box, then two heatmaps with captions",
+ "tags": [
+  "program-extraction",
+  "interpretability",
+  "decompilation",
+  "worked-example",
+  "transformers"
+ ],
+ "style": [
+  "plot",
+  "text-heavy",
+  "minimal"
+ ],
+ "description": "Three-part figure. Panel (a), at left, is a dark-headed rounded code box titled 'Decompiled program for MOST FREQUENT'. It lists a three-line program: a1 = aggregate(s=[], v=token), logits1 = project(inp=a1, op=(inp==out), special_op=(uniform selection)), and prediction = softmax(logits1). The op arguments are in green monospace. Panel (b), at the middle right, is a blue heatmap for Line 1's a1. Its x-axis is the input tokens <bos> o b r o <sep> o. Its y-axis is the vocabulary symbols, with a hatched band for elided rows. The strongest cell is at <bos>. Panel (c), at the far right, is a heatmap for Line 2. It has a strong dark-blue diagonal over the symbols a to e, hatched regions for special tokens, and a colorbar up to 10000. The captions repeat the green code snippets. The eye goes first to the code box, then to the blue heatmaps.",
+ "caption": "Program (a) for finding the most frequent character in a string, extracted from a real transformer. An example input is \\texttt{ \\setlength{\\tabcolsep}{3pt} \\begin{NiceTabular}{*{7}{c}}[hvlines] BOS & o & b & r & o & SEP & o \\end{NiceTabular} }; the model is trained to predict the last token \"o\". Line 1 computes, at each position, the relative frequencies of symbols at preceding positions ($a1 \\in \\mathbb{R}^{|\\Sigma| \\times N}$, in (b). x-axis = input string, y-axis = variable dims., by aggregating over $token \\in \\mathbb{R}^{|\\Sigma| \\times N}$ (Figure [ref]b). In Line 1, s=[] indicates that no selector is used, i.e., the weights $a_{i,j}$ in aggregation are constant. Line 2 projects a1 to output logits via the matrix in (c) (rows = input dims., columns = output dims.). For ordinary tokens (covered by op=), each token receives an output logit proportional to its frequency, corresponding to a temperature-scaled identity matrix. Logits for special tokens are excluded (special\\_op=(uniform selection)), precluding outputting BOS/SEP on length-1 strings (App. Figure [ref]b has logits1). Overall, the program assigns the highest output logit to the most frequent non-BOS/SEP token. The program is extracted from a 1-layer 4-head transformer (App. [ref]); an equivalent program results from a 4-layer 4-head transformer (App. [ref]).",
+ "caption_source": "latex",
+ "abstract": "Recent work has shown that the computations of Transformers can be simulated in the RASP family of programming languages. These findings have enabled improved understanding of the expressive capacity and generalization abilities of Transformers. In particular, Transformers have been suggested to length-generalize exactly on problems that have simple RASP programs. However, it remains open whether trained models actually implement simple interpretable programs. In this paper, we present a general method to extract such programs from trained Transformers. The idea is to faithfully re-parameterize a Transformer as a RASP program and then apply causal interventions to discover a small sufficient sub-program. In experiments on small Transformers trained on algorithmic and formal language tasks, we show that our method often recovers simple and interpretable RASP programs from length-generalizing transformers. Our results provide the most direct evidence so far that Transformers internally implement simple RASP programs.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=QnWjcTk14G",
+  "arxiv": "https://arxiv.org/abs/2602.08857",
+  "pdf": "https://raw.githubusercontent.com/mlresearch/v306/main/assets/huang26b/huang26b.pdf",
+  "proceedings": "https://proceedings.mlr.press/v306/huang26b.html",
+  "virtual": "https://icml.cc/virtual/2026/poster/64112",
+  "code": "https://lacoco-lab.github.io/home/decompiling_transformers/"
+ },
+ "license": "http://creativecommons.org/licenses/by/4.0/",
+ "img": "cc-by",
+ "image_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/images/icml26-2804.png",
+ "thumb_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/thumbs/icml26-2804.webp",
+ "figure_page": 2,
+ "qc_flags": [
+  "low-role-confidence"
+ ],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.35
+}

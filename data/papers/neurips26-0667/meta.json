@@ -1,0 +1,51 @@
+{
+ "id": "neurips26-0667",
+ "title": "RCSTAT: A Statistical Framework of Relative Contextualization in Transformers",
+ "authors": [
+  "Debabrata Mahapatra",
+  "Shubham Agarwal",
+  "Apoorv Saxena",
+  "Subrata Mitra"
+ ],
+ "venue": "NeurIPS 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "Deep Learning->Attention Mechanisms",
+ "role": "analysis-finding",
+ "role2": "problem-setup",
+ "claim": "Softmax normalization hides contextual influence that is visible in pre-softmax logit distributions, which separate prompt-driven from self-driven generation.",
+ "layout": "3 regions: prompt left, histograms center, generation right; colored arrows linking spans",
+ "tags": [
+  "attention",
+  "attribution",
+  "softmax-normalization",
+  "interpretability",
+  "logit-distribution"
+ ],
+ "style": [
+  "plot",
+  "text-heavy",
+  "colorful",
+  "photo/real data"
+ ],
+ "description": "The figure has three regions. On the left is a blue-text prompt, titled 'Prompt (Context + Question)', about a coastal village tradition, with some spans highlighted in gray. On the right is green-text generated output, titled 'Generation', with matching highlighted spans. In the center are two histograms. The top one is a small post-softmax plot with a zoomed inset. The bottom one is a pre-softmax histogram of attention logits, with blue cross (q,k) and green self (q,k) distributions that partly overlap. Blue and green solid arrows link the histogram tails to the prompt and generation. Red dashed arrows link highlighted generated spans back to the prompt spans they draw on. The eye goes first to the colored text and then to the central histogram.",
+ "caption": "Attribution between generated text (right) and input prompt (left) is analyzed using pre-softmax attention logits vs.\\ post-softmax values. The bottom histogram highlights pre-softmax logits, separating prompt tokens (cross-$\\langle q,k\\rangle$) from generated tokens (self-$\\langle q,k\\rangle$), at the $13^th$ layer and $23^th$ head of Llama-3B-instruct. Tokens in the overlapping region signify common content, which is suppressed in the post-softmax histogram above. Using logit distributions, we attribute (\\S [ref]): (1) prompt parts not contextualized during generation, (2) generation parts uninfluenced by the prompt, and (3) generation heavily contextualized by the prompt (red dashed arrows).",
+ "caption_source": "latex",
+ "abstract": "Identifying which tokens and activations truly influence model predictions is critical for both the efficiency and interpretability of large auto-regressive language models. Yet in practice, token importance is typically inferred from attention distributions that entangle contextual relevance with softmax-normalization effects, obscuring relative influence across tokens and heads. We propose $\\textbf{RCStat}$, a statistical framework for quantifying contextual influence in attention mechanisms. At its core $\\textbf{Relative Contextualization (RC)}$ is a random variable that measures how strongly one subset of tokens contributes to another under the model's internal scoring scheme. RCStat admits computationally efficient bounds on expected influence that can be estimated at inference time. No retraining is required. We apply RCStat to two tasks. For $\\textbf{attribution}$, attention heads with high expected RC accurately identify the prompt spans that drive generation, enabling reliable span-level explanations. For $\\textbf{key-value cache eviction}$, RC-based adaptive thresholding selectively evicts low-impact KV entries, substantially reducing cache size while preserving generation quality. Across question answering, summarization, and attribution benchmarks, RCStat achieves consistent gains, improving generation quality by 15-40% with upto 36% error reduction for KV eviction, and attribution accuracy by 2-16%. These results demonstrate that explicitly modeling contextual influence provides a principled and practical alternative to attention-based heuristics.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=4kHWCwyprC",
+  "arxiv": "https://arxiv.org/abs/2506.19549",
+  "pdf": "https://arxiv.org/pdf/2506.19549",
+  "proceedings": null,
+  "virtual": "https://neurips.cc/virtual/2026/poster/155548",
+  "code": null
+ },
+ "license": "http://creativecommons.org/licenses/by-nc-sa/4.0/",
+ "img": "cc-by-nc-sa",
+ "image_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/images/neurips26-0667.png",
+ "thumb_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/thumbs/neurips26-0667.webp",
+ "figure_page": 1,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.5
+}

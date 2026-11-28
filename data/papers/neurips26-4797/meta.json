@@ -1,0 +1,53 @@
+{
+ "id": "neurips26-4797",
+ "title": "RPFQ-ViT: Rotated Phase-Frame Quantization for Extremely Low-Bit Weights in Vision Transformers",
+ "authors": [
+  "Mengyuan Fan",
+  "Bokai Huang",
+  "JiaMing Pan",
+  "Xiaokun Yuan",
+  "Peizhuang Cong",
+  "Zhewen Tan",
+  "Tong Yang"
+ ],
+ "venue": "NeurIPS 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "Deep Learning->Algorithms",
+ "role": "pipeline",
+ "role2": "overview-framework",
+ "claim": "A drop-in quantizer replaces linear layers inside an otherwise unchanged architecture by pairing channels, rotating, snapping to anchors, and reassembling.",
+ "layout": "2 panels: architecture left, three-step quantizer A/B/C right; dashed zoom lines",
+ "tags": [
+  "quantization",
+  "drop-in-replacement",
+  "vision-transformer",
+  "low-bit",
+  "pipeline"
+ ],
+ "style": [
+  "colorful",
+  "icon-heavy",
+  "math-heavy"
+ ],
+ "description": "The top row shows a left-to-right ViT pipeline: image, patch embedding, token sequence with CLS, a Transformer encoder block repeated L times, final LayerNorm, and an orange RPFQ Linear head. Blue dashed lines zoom from the encoder block into a detailed pre-norm block at lower left. In that block, orange RPFQ Linear boxes (Q, K, V, Proj, FC1, FC2) sit inside blue MHSA and green MLP regions. Gray boxes mark the unchanged LayerNorm, softmax attention and GELU layers, and residual arrows run alongside. The right panel, titled RPFQ Quantizer, has three stacked steps. A pairs real blocks into complex weights, with U and W equations. B rotates points in the complex plane and snaps them to nearest 2-bit anchors, then applies least-squares scaling and residual refinement. C reassembles the quantized blocks into a real matrix. A legend at the bottom explains the colors.",
+ "caption": "Overview of RPFQ. Even-dimensional ViT linear layers are rewritten in paired complex coordinates, quantized with a learnable rotated phase frame plus least-squares magnitude fitting and residual refinement, and then mapped back to standard real-valued weights. Attention, normalization, and activation layers remain unchanged.",
+ "caption_source": "latex",
+ "abstract": "Vision Transformers (ViTs) achieve strong performance on image recognition and mobile vision applications, but their high-dimensional linear projections and attention computations still impose substantial storage and inference costs. Extremely low-bit quantization is a promising solution, yet ViTs often suffer severe accuracy degradation because conventional real-valued scalar codebooks are poorly matched to the directional geometry of Transformer projections. We present RPFQ-ViT, a Rotated Phase-Frame Quantization method that quantizes paired channels in two-dimensional phase planes, enabling low-bit codes to better preserve projection directions while recovering magnitude with lightweight scaling. RPFQ-ViT serves as a drop-in QAT replacement for nn.Linear and does not modify the standard real-valued attention, normalization, or activation computation graph. On ImageNet-1K, RPFQ-ViT-B/16 reaches 79.33% Top-1 / 94.48% Top-5 under W2/A4, Swin-T reaches 79.30% Top-1 / 94.79% Top-5 under W2/A8, and DeiT-S reaches 77.41% Top-1 / 93.11% Top-5 under W2/A8. Ablations, phase-geometry analysis, and direction-preservation metrics show that channel pairing, learnable rotation, phase-anchor learning, and residual phase refinement each improve quantization quality. We further deploy RPFQ-ViT image-classification models on native iOS and Android runtime stacks; with 2-bit packed weights, model size shrinks by roughly $5.4$-$7.1\\times$ relative to FP32 and end-to-end on-device latency drops by $1.4$-$1.6\\times$. All ImageNet results trained in our codebase use a matched 300-epoch recipe and are reported as mean accuracies over three independent runs. These results show that RPFQ-ViT provides a favorable trade-off among accuracy, compression, and practical mobile deployment for extremely low-bit ViTs.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=XB7p2Y3eXt",
+  "arxiv": "https://arxiv.org/abs/2610.04457",
+  "pdf": "https://arxiv.org/pdf/2610.04457",
+  "proceedings": null,
+  "virtual": "https://neurips.cc/virtual/2026/poster/151887",
+  "code": null
+ },
+ "license": "http://creativecommons.org/licenses/by/4.0/",
+ "img": "cc-by",
+ "image_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/images/neurips26-4797.png",
+ "thumb_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/thumbs/neurips26-4797.webp",
+ "figure_page": 3,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.85
+}

@@ -1,0 +1,51 @@
+{
+ "id": "neurips26-0070",
+ "title": "PAIR: Prefix-Aware Internal Reward Model for Multi-Turn Agent Optimization",
+ "authors": [
+  "Wonjoong Kim",
+  "Yeonjun In",
+  "Sangwu Park",
+  "Dongha Lee",
+  "Chanyoung Park"
+ ],
+ "venue": "NeurIPS 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "Reinforcement Learning->Everything Else",
+ "role": "analysis-finding",
+ "role2": null,
+ "claim": "Probes built on hidden states degrade sharply when the input prefix is contaminated, while attention-based probes stay robust but start lower.",
+ "layout": "1 panel, grouped bar chart, clean vs contaminated pairs, delta labels above",
+ "tags": [
+  "probing",
+  "robustness",
+  "contamination",
+  "grouped-bar",
+  "complementary-signals"
+ ],
+ "style": [
+  "plot",
+  "minimal",
+  "colorful"
+ ],
+ "description": "A single grouped bar chart with AUROC on the y-axis, running from 0.4 to 1.0. A dashed line at 0.5 marks chance. A legend across the top assigns blue to Clean Prefix and red to Contaminated Prefix. Five probe types sit on the x-axis: Last-Token, Mean-Pooled, Multi-Layer, Attention, and Hidden+Attn. Each has a blue and red bar with its AUROC printed on top. Gray italic delta labels sit above each pair. The hidden-state probes drop by about 0.07 to 0.10. The attention probe drops only 0.008, from 0.781 to 0.773, but its clean score is lower than the hidden-state probes'. The eye goes first to the blue-red pairs and the shrinking gap at the Attention group.",
+ "caption": "Comparison of AUROC degradation between hidden state probes and attention probes under clean vs. contaminated prefix settings.",
+ "caption_source": "latex",
+ "abstract": "A significant hurdle for current LLMs is the execution of complex, multi-stage tasks. Group Relative Policy Optimization (GRPO) has been emerging as a leading choice, but its reliance on sparse outcome rewards severely limits credit assignment across intermediate steps. Existing remedies such as running full rollouts to assign step-level advantages, calling external LLM judges at each step, or computing intrinsic rewards that require ground-truth answers at every evaluation introduce significant costs or practical constraints. We hypothesize that internal correctness probing over LLM hidden states can be repurposed as a step-level reward signal, potentially addressing all of these limitations at once. However, existing probing research assumes clean inputs, and we first show that this assumption breaks down in multi-step settings: hidden-state probes degrade severely under prefix contamination tracking coherence with the (possibly corrupted) prefix rather than grounded correctness, while attention-based features remain robust to contamination but underperform on clean prefixes. Building on this complementary relationship, we propose the Prefix-Aware Internal Reward (PAIR), a two-stage model with a frozen hidden-state probe estimating belief-consistency and a lightweight attention-based head correcting it toward grounded correctness. Experimental results show that PAIR achieves the highest AUROC on contaminated trajectories while operating at negligible inference cost, enabling dense step-level reward signals for GRPO training without external model calls, ground-truth dependencies, or full-trajectory rollouts.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=0Ut88MX4Oj",
+  "arxiv": "https://arxiv.org/abs/2605.17877",
+  "pdf": "https://arxiv.org/pdf/2605.17877",
+  "proceedings": null,
+  "virtual": "https://neurips.cc/virtual/2026/poster/156086",
+  "code": null
+ },
+ "license": "http://creativecommons.org/licenses/by/4.0/",
+ "img": "cc-by",
+ "image_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/images/neurips26-0070.png",
+ "thumb_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/thumbs/neurips26-0070.webp",
+ "figure_page": 3,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.8
+}

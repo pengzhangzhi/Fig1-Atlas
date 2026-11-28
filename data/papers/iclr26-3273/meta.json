@@ -1,0 +1,53 @@
+{
+ "id": "iclr26-3273",
+ "title": "RepSpec: Structural Re-parameterized Draft Model Training for Speculative Decoding",
+ "authors": [
+  "FEIYE HUO",
+  "Jianchao Tan",
+  "Jiahao Liu",
+  "Zixu Jiang",
+  "Jiacheng Li",
+  "Jingang Wang",
+  "Xunliang Cai",
+  "Shengli Sun"
+ ],
+ "venue": "ICLR 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "Optimization->Everything Else",
+ "role": "pipeline",
+ "role2": "prior-vs-ours",
+ "claim": "Redundant parallel branches used during training can be algebraically merged into one equivalent layer at inference, adding no extra cost.",
+ "layout": "2 panels, left-to-right, training branching paths beside merged inference block",
+ "tags": [
+  "re-parameterization",
+  "training-vs-inference",
+  "speculative-decoding",
+  "branch-merging",
+  "efficiency"
+ ],
+ "style": [
+  "minimal",
+  "colorful"
+ ],
+ "description": "Two panels share a left-to-right flow with input and output arrows. The left panel, titled \"Train\", shows a chain of Pre layers (Pre1 … Pren) in peach boxes. The signal then splits into parallel branches: a red-pink Main box on top and several peach Bypass boxes (Bypass1 … Bypassk) below, separated by an ellipsis. The branches rejoin and feed into Post layers (Post1 … Postm). The right panel, titled \"Merge/Infer\", shows the same layers fused into one contiguous block of adjacent rectangles. Circled \"@\" symbols mark the matrix products between Pre, the merged middle section and Post layers. Circled \"+\" symbols mark the element-wise sums of Main and the Bypass weights. The pink Main box anchors the eye first, and the contrast between branching and merging carries the argument.",
+ "caption": "Illustration of the RepSpec method, showing both the training and inference phases. During training (left), inputs pass through a sequence of Pre-layers, then either the Main path or multiple Bypass paths, and finally through Post-layers. In the inference phase (right), the weights of the Main and Bypass layers are first summed element-wise. This summation is then sequentially multiplied by the weights of the Pre and Post layers to yield the final equivalent weights. This approach allows the model to leverage the benefits of multiple training paths without incurring additional computational costs during inference.",
+ "caption_source": "pdf",
+ "abstract": "As the parameter size of large language models (LLMs) continues to grow, the latency of autoregressive inference increases due to memory-bound computational inefficiency. To address this, speculative decoding has been proposed, where a large target model verifies multiple tokens generated in parallel by a smaller draft model. However, the performance of speculative decoding is fundamentally limited by the draft model’s capacity, which stems from the parameter gap between the two models. To overcome this limitation, we propose RepSpec, which combines structural re-parameterization with draft model training. During training, redundant linear structures are introduced and later merged into the backbone network during inference, thus enhancing the draft model’s training effectiveness without increasing inference cost. By applying our method to improve the current state-of-the-art approach, EAGLE, we achieve a significant improvement in accepted sequence length. Furthermore, considering the specific characteristics of the speculative decoding scenario, we explore a hybrid training strategy that combines linear and nonlinear structures, which yields a further improvement in acceptance length.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=bqEi97qzzz",
+  "arxiv": null,
+  "pdf": "https://proceedings.iclr.cc/paper_files/paper/2026/file/d70ea003729b440b89a2f958a5554c1f-Paper-Conference.pdf",
+  "proceedings": "https://proceedings.iclr.cc/paper_files/paper/2026/hash/d70ea003729b440b89a2f958a5554c1f-Abstract-Conference.html",
+  "virtual": "https://iclr.cc/virtual/2026/poster/10008568",
+  "code": null
+ },
+ "license": null,
+ "img": "none",
+ "image_url": null,
+ "thumb_url": null,
+ "figure_page": 3,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.85
+}

@@ -1,0 +1,50 @@
+{
+ "id": "neurips26-7714",
+ "title": "KL for a KL: On-Policy Distillation with Control Variate Baseline",
+ "authors": [
+  "Minjae Oh",
+  "Sangjun Song",
+  "Gyubin Choi",
+  "Yunho Choi",
+  "Yohan Jo"
+ ],
+ "venue": "NeurIPS 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "Reinforcement Learning->Deep RL",
+ "role": "analysis-finding",
+ "role2": null,
+ "claim": "Per-token rewards are heavy-tailed with extreme negative outliers, while subtracting a baseline gives advantages that are more concentrated and lower-variance.",
+ "layout": "2 panels side by side: log-scale overlaid histogram, then scatter with y=x line",
+ "tags": [
+  "variance-reduction",
+  "baseline",
+  "policy-gradient",
+  "distribution-analysis",
+  "on-policy-distillation"
+ ],
+ "style": [
+  "plot",
+  "minimal"
+ ],
+ "description": "Two matplotlib plots sit side by side. The left panel, 'Reward vs. Advantage Distribution', is an overlaid histogram on a log-scale y-axis (frequency, 10^0 to 10^4) with value on the x-axis from -20 to 20. Reward is drawn in blue and advantage in orange, and both peak sharply at zero. Reward has a longer, heavier negative tail reaching about -19. Advantage is shifted toward zero and has a positive tail up to about 13. The right panel, 'Reward vs. Advantage Scatter', plots per-token advantage on x against reward on y as semi-transparent blue dots. A red dashed y=x line bounds the cloud from above. Most points hug the line near the origin. A vertical streak sits at advantage ≈ 0, and outliers with large negative reward are scattered below the line. The eye goes first to the dense blue cloud and the sharp histogram peak.",
+ "caption": "Token-level reward and advantage distributions. Left: The marginal distributions. Right: Per-token scatter plot (x: advantage, y: reward).",
+ "caption_source": "latex",
+ "abstract": "On-Policy Distillation (OPD) has emerged as a dominant post-training paradigm for Large Language Models, especially in reasoning domains. However, OPD remains unstable in practice due to the high gradient variance of its single-sample Monte Carlo estimator, and recipes for stable training are still immature. We propose vOPD (On-Policy Distillation with a control variate baseline), which casts OPD as policy-gradient RL and stabilizes it by introducing a control variate baseline---canonically a value function---from the RL literature. We show that the OPD value function admits a closed form: the per-token negative reverse KL divergence between student and teacher, available directly from the existing forward pass with no additional critic or inference. Existing stabilization methods either compute the full token-level reverse KL over the entire vocabulary, adding significant overhead, or restrict it to a top-k support, biasing the objective. vOPD instead preserves the lightweight single-sample estimator and subtracts the value function as a detached baseline to keep the gradient unbiased while reducing variance. Moreover, we show that a top-k approximation of the baseline further lowers cost without compromising performance. Across mathematics, science, and instruction-following benchmarks, vOPD consistently outperforms base OPD and matches the most expensive full-vocabulary method, offering an efficient stabilization of OPD through principled RL variance reduction.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=rOLwf6pQfl",
+  "arxiv": "https://arxiv.org/abs/2605.07865",
+  "pdf": "https://arxiv.org/pdf/2605.07865",
+  "proceedings": null,
+  "virtual": "https://neurips.cc/virtual/2026/poster/149290",
+  "code": null
+ },
+ "license": "http://creativecommons.org/licenses/by/4.0/",
+ "img": "cc-by",
+ "image_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/images/neurips26-7714.png",
+ "thumb_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/thumbs/neurips26-7714.webp",
+ "figure_page": 7,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.8
+}

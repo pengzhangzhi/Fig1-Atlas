@@ -1,0 +1,52 @@
+{
+ "id": "icml26-6093",
+ "title": "CriticalKV: Optimizing KV Cache Eviction from an Output Perturbation Perspective",
+ "authors": [
+  "Yuan Feng",
+  "Junlin Lv",
+  "Haoyu Guo",
+  "Yukun Cao",
+  "S Kevin Zhou",
+  "Xike Xie"
+ ],
+ "venue": "ICML 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": null,
+ "role": "analysis-finding",
+ "role2": "teaser-result",
+ "claim": "Our selection method yields lower output perturbation than the baseline in the large majority of attention heads across layers and models.",
+ "layout": "2 side-by-side heatmaps, layer-by-head grids, shared top legend, model names below",
+ "tags": [
+  "kv-cache",
+  "perturbation-analysis",
+  "heatmap",
+  "per-head",
+  "compression"
+ ],
+ "style": [
+  "plot",
+  "colorful",
+  "minimal"
+ ],
+ "description": "Two square heatmaps sit side by side, labeled (a) Llama-3.1-8B and (b) Mistral-7B. Each is a 32x32 grid with Layer Index (0-30) on the y-axis and Head Index (0-30) on the x-axis. A shared legend at the top says dark green means 'Our perturbation is lower' and beige means 'Our perturbation is higher'. Both grids are mostly dark green, so the method wins in most heads. Scattered beige cells appear, mainly in the first few layers. In Mistral the beige cells cluster more densely in layers 0-7. Elsewhere there are only isolated beige cells. The eye goes first to the large green fields and then to the beige clusters at the top.",
+ "caption": "Perturbation reduction across heads. (Mistral)",
+ "caption_source": "latex",
+ "abstract": "Large language models have revolutionized natural language processing but face significant challenges of high storage and runtime costs, due to the transformer architecture's reliance on self-attention, particularly the large KV cache for long-sequence inference. Recent efforts to reduce KV cache size by pruning less critical entries based on attention weights remain empirical and lack formal grounding. This paper presents a formal study on identifying critical KV cache entries by analyzing attention output perturbation. Our analysis reveals that, beyond attention weights, the value states within KV entries and pretrained parameter matrices are also crucial. Based on this, we propose a perturbation-constrained selection algorithm that optimizes the worst-case output perturbation to identify critical entries. We demonstrate that our algorithm is a universal, plug-and-play enhancement that incurs negligible computational overhead. When integrated with three state-of-the-art cache eviction methods on three distinct LLMs, our algorithm significantly reduces the compression loss by more than \\textit{half} on average across 29 datasets from the Ruler and LongBench benchmarks. Further perturbation analysis, at both the head and layer levels, confirms the principles underlying our effectiveness. This work offers a new, formally grounded perspective to cache eviction , opening promising avenues for future research. The code is publicly available at https://github.com/FFY0/DefensiveKV.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=vMwlcLyI4b",
+  "arxiv": "https://arxiv.org/abs/2502.03805",
+  "pdf": "https://raw.githubusercontent.com/mlresearch/v306/main/assets/feng26j/feng26j.pdf",
+  "proceedings": "https://proceedings.mlr.press/v306/feng26j.html",
+  "virtual": "https://icml.cc/virtual/2026/poster/60913",
+  "code": null
+ },
+ "license": "http://creativecommons.org/licenses/by/4.0/",
+ "img": "cc-by",
+ "image_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/images/icml26-6093.png",
+ "thumb_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/thumbs/icml26-6093.webp",
+ "figure_page": 7,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.5
+}

@@ -1,0 +1,48 @@
+{
+ "id": "neurips26-0577",
+ "title": "Hardware-Friendly Token-Group Activation Quantization for Low-Bit Mamba Super-Resolution",
+ "authors": [
+  "Jinwoo Chung",
+  "Jangho Kim"
+ ],
+ "venue": "NeurIPS 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "Computer Vision->Everything Else",
+ "role": "analysis-finding",
+ "role2": "concept",
+ "claim": "Random grouping yields identical per-token range distributions across groups, while oracle clustering and a learned predictor separate tokens into distinct, compact range groups.",
+ "layout": "3 side-by-side violin panels, left-to-right, shared y-axis, eight colored groups each",
+ "tags": [
+  "quantization",
+  "token-grouping",
+  "activation-heterogeneity",
+  "clustering",
+  "post-training-quantization"
+ ],
+ "style": [
+  "plot",
+  "colorful",
+  "minimal"
+ ],
+ "description": "Three horizontally arranged violin-plot panels share a y-axis labeled per-token c_i, ranging from about 2.4 to 4.6. Each panel has eight violins for groups g0 to g7, each in its own color: blue, red, green, yellow, purple, teal, orange and slate. The left panel, titled Random, shows eight nearly identical, wide, overlapping distributions. The middle panel, titled Descriptor K-means (oracle), shows tight, distinct violins at very different heights, so the groups separate cleanly. The right panel, titled Predicted (Ours), shows groups that are mostly separated and resemble the oracle, though some, such as g1 and g3, are wider. The eye goes first to the contrast between the uniform left panel and the staggered middle and right panels. This does not match the stated caption about pre-scan versus post-scan activations and CoV, so the figure may belong to a different version of the paper.",
+ "caption": "Selective scan induces token-wise activation heterogeneity. (a) Post-scan activations exhibit a broader distribution than pre-scan activations in a representative ASSM layer (layer 18). (b) Per-token range CoV increases after selective scan in most ASSM layers.",
+ "caption_source": "latex",
+ "abstract": "Mamba-based super-resolution models are efficient alternatives to Transformer-based restoration backbones, but their low-bit post-training quantization remains challenging because selective scan, Mamba's input-dependent state-space operator, induces different activation ranges across spatial tokens. Thus, a single layer-wise clipping range poorly matches all tokens. We propose Token-Group Quantization, a hardware-friendly activation PTQ framework that statically approximates a hardware-unfriendly post-scan grouping oracle, where tokens with similar preferred clipping ranges are assigned to the same group. To avoid runtime post-scan grouping in static low-bit inference, a lightweight predictor infers the groups from pre-scan features available before the quantized scan path. During calibration, we form pseudo-labels by clustering post-scan activation descriptors that capture similar rounding--clipping behavior. At inference, the frozen predictor maps pre-scan features to groups and selects entries from offline-calibrated group-wise clipping-bound tables, without runtime statistics collection, dynamic clipping updates, or post-scan group assignment. To address low-bit restoration degradation, we further introduce a Frequency-Preserving Refinement (FPR) objective for clipping-bound calibration. FPR aligns Fourier amplitude and phase between full-precision teacher and quantized student outputs to preserve high-frequency structures. Across PTQ protocols, bit-widths, backbones, and tasks, our method consistently outperforms prior Mamba and SR PTQ baselines, transfers to Transformer SR and Vision Mamba classification, composes with rotation-based quantization, and achieves 2.23x speedup on Jetson Orin Nano over FP16. Code is available here.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=46hNfjRw3m",
+  "arxiv": "https://arxiv.org/abs/2610.16261",
+  "pdf": "https://arxiv.org/pdf/2610.16261",
+  "proceedings": null,
+  "virtual": "https://neurips.cc/virtual/2026/poster/155635",
+  "code": "https://github.com/imaboybut/TGQ-MambaSR"
+ },
+ "license": "http://creativecommons.org/licenses/by/4.0/",
+ "img": "cc-by",
+ "image_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/images/neurips26-0577.png",
+ "thumb_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/thumbs/neurips26-0577.webp",
+ "figure_page": 4,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.6
+}

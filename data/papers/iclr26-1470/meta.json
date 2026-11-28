@@ -1,0 +1,53 @@
+{
+ "id": "iclr26-1470",
+ "title": "HiPRAG: Hierarchical Process Rewards for Efficient Agentic Retrieval Augmented Generation",
+ "authors": [
+  "Peilin Wu",
+  "Mian Zhang",
+  "Kun Wan",
+  "Wentian Zhao",
+  "Kaiyu He",
+  "Xinya Du",
+  "Zhiyu Chen"
+ ],
+ "venue": "ICLR 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "Applications->Language, Speech and Dialog",
+ "role": "pipeline",
+ "role2": null,
+ "claim": "Each reasoning step of an agent's trajectory is checked on the fly, and the step checks combine with outcome and format rewards into one hierarchical training signal.",
+ "layout": "Single wide panel, left-to-right step chain, zoomed red callout above, dashed reward loop",
+ "tags": [
+  "process-reward",
+  "reinforcement-learning",
+  "agentic-rag",
+  "step-level-verification",
+  "hierarchical-reward"
+ ],
+ "style": [
+  "icon-heavy",
+  "colorful",
+  "text-heavy"
+ ],
+ "description": "A single wide diagram. A horizontal chain of rounded boxes (Step 1 to Step 4, then Answer) runs left to right. The policy model, drawn as a network icon, feeds a rollout into Step 1. A large red-outlined callout sits above the chain and zooms into the per-step checks. The over-search check, for steps that used search, shows a step split into reasoning, search query, search result and conclusion. The policy model and a GPT icon compare the conclusions for semantic equivalence. The under-search check, for steps without search, sends reasoning and conclusion to a GPT judge that asks whether the step is factually and logically correct. An orange brace under the chain leads to a Format Check, and a blue arrow from Answer leads to an Answer Check. A dashed loop returns the colored rewards (format in orange, answer in blue, step in dark red) to the policy model. A legend of check and cross combinations sits at the bottom.",
+ "caption": "A general overview of the HiPRAG training workflow. The policy model generates a multi-step reasoning trajectory, and each step is evaluated on-the-fly to detect suboptimal search behaviors. A final hierarchical reward is then computed by combining a process bonus for step optimality with rewards for the final answer's correctness and proper formatting.",
+ "caption_source": "latex",
+ "abstract": "Agentic RAG is a powerful technique for incorporating external information that LLMs lack, enabling better problem solving and question answering. However, suboptimal search behaviors exist widely, such as over-search (retrieving information already known) and under-search (failing to search when necessary), which leads to unnecessary overhead and unreliable outputs. Current training methods, which typically rely on outcome-based rewards in a RL framework, lack the fine-grained control needed to address these inefficiencies. To overcome this, we introduce Hierarchical Process Rewards for Efficient agentic RAG (HiPRAG), a training methodology that incorporates a fine-grained, knowledge-grounded process reward into the RL training. Our approach evaluates the necessity of each search decision on-the-fly by decomposing the agent's reasoning trajectory into discrete, parsable steps. We then apply a hierarchical reward function that provides an additional bonus based on the proportion of optimal search and non-search steps, on top of commonly used outcome and format rewards. Experiments on the Qwen2.5 and Llama-3.2 models across seven diverse QA benchmarks show that our method achieves average accuracies of 65.4% (3B) and 67.2% (7B). This is accomplished while improving search efficiency, reducing the over-search rate to just 2.3% and concurrently lowering the under-search rate. These results demonstrate the efficacy of optimizing the reasoning process itself, not just the final outcome. Further experiments and analysis demonstrate that HiPRAG shows good generalizability across a wide range of RL algorithms, model families, sizes, and types. This work demonstrates the importance and potential of fine-grained control through RL, for improving the efficiency and optimality of reasoning for search agents.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=Gt4v9WBPzm",
+  "arxiv": "https://arxiv.org/abs/2510.07794",
+  "pdf": "https://proceedings.iclr.cc/paper_files/paper/2026/file/85255cf8f2d2318cc7cffd0b1bc66625-Paper-Conference.pdf",
+  "proceedings": "https://proceedings.iclr.cc/paper_files/paper/2026/hash/85255cf8f2d2318cc7cffd0b1bc66625-Abstract-Conference.html",
+  "virtual": "https://iclr.cc/virtual/2026/poster/10010451",
+  "code": null
+ },
+ "license": "http://creativecommons.org/licenses/by-sa/4.0/",
+ "img": "cc-by-sa",
+ "image_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/images/iclr26-1470.png",
+ "thumb_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/thumbs/iclr26-1470.webp",
+ "figure_page": 1,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.9
+}

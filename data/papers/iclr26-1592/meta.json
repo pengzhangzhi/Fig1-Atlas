@@ -1,0 +1,52 @@
+{
+ "id": "iclr26-1592",
+ "title": "ADM-v2: Pursuing Full-Horizon Roll-out in Dynamics Models for Offline Policy Learning and Evaluation",
+ "authors": [
+  "Haoxin Lin",
+  "Siyuan Xiao",
+  "Yi-Chen Li",
+  "Zhilong Zhang",
+  "Yihao Sun",
+  "Chengxing Jia",
+  "Yang Yu"
+ ],
+ "venue": "ICLR 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "Reinforcement Learning->Batch/Offline",
+ "role": "prior-vs-ours",
+ "role2": "pipeline",
+ "claim": "Prior recurrent models condition every step on the initial state; ours decouples steps into modular units that decode predictions at any step.",
+ "layout": "2 panels side-by-side, left-to-right flow, dashed boxes marking repeated units",
+ "tags": [
+  "recurrent-dynamics-model",
+  "direct-prediction",
+  "long-horizon",
+  "model-based-rl",
+  "architecture-comparison"
+ ],
+ "style": [
+  "minimal",
+  "colorful"
+ ],
+ "description": "Two dashed-border panels compare architectures. Panel (a), labeled ADM, shows a chain of GRU cells (purple) running left to right. The initial state s_t sends long curved arrows into every GRU, and each GRU also takes an action input a_t, a_{t+1}, up to a_{t+m-1}. Hidden states h_t^1 through h_t^m pass between cells. Transition Decoder boxes (blue) at the first and last steps output predicted next state and reward. Panel (b), labeled ADM-v2, starts with a light-blue State Encoder that turns s_t into h_t. A chain of GRU cells follows, with hidden states h_{t+1} through h_{t+m} passing between them. Dashed lavender boxes labeled 'ADM2 Unit' group a GRU with its Transition Decoder. The s_t skip connections are gone, and the decoders output s-hat and r-hat at each step.",
+ "caption": "Illustration of (a) the vanilla Any-step Dynamics Model (Lin et al., 2025); (b) the second version of Any-step Dynamics Model (ADM-v2), both are structured using a GRU Cell.",
+ "caption_source": "pdf",
+ "abstract": "Model-based methods for offline Reinforcement Learning transfer extensive policy exploration and evaluation to data-driven dynamics models, effectively saving real-world samples in the offline setting. We expect the dynamics model to allow the policy to roll out full-horizon episodes, which is crucial for ensuring sufficient exploration and reliable evaluation. However, many previous dynamics models exhibit limited capability in long-horizon prediction. This work follows the paradigm of the Any-step Dynamics Model (ADM) that improves future predictions by reducing bootstrapping prediction to direct prediction. We structurally decouple each recurrent forward of the RNN cell from the backtracked state and propose the second version of ADM (ADM-v2), making the direct prediction more flexible. ADM-v2 not only enhances the accuracy of direct predictions for making full-horizon roll-outs but also supports parallel estimation of the any-step prediction uncertainty to improve efficiency. The results on DOPE validate the reliability of ADM-v2 for policy evaluation. Moreover, via full-horizon roll-out, ADM-v2 for policy optimization enables substantial advancements, whereas other dynamics models degrade due to long-horizon error accumulation. We are the first to achieve SOTA under the full-horizon roll-out setting on both D4RL and NeoRL. The code is available at https://github.com/LAMDA-RL/adm2.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=ICbXEwqpga",
+  "arxiv": null,
+  "pdf": "https://proceedings.iclr.cc/paper_files/paper/2026/file/1651a9bfa452a13c9f26f71bfef1f68c-Paper-Conference.pdf",
+  "proceedings": "https://proceedings.iclr.cc/paper_files/paper/2026/hash/1651a9bfa452a13c9f26f71bfef1f68c-Abstract-Conference.html",
+  "virtual": "https://iclr.cc/virtual/2026/poster/10010323",
+  "code": "https://github.com/LAMDA-RL/adm2"
+ },
+ "license": null,
+ "img": "none",
+ "image_url": null,
+ "thumb_url": null,
+ "figure_page": 2,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.8
+}

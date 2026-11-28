@@ -1,0 +1,54 @@
+{
+ "id": "icml26-1281",
+ "title": "Future-Gain Guided Test-Time Learning for Large Language Models",
+ "authors": [
+  "LangYu Bian",
+  "Jinwu Hu",
+  "Zitian Zhang",
+  "Dongjin Yang",
+  "Yufeng Wang",
+  "Qing Du",
+  "Qi Chen",
+  "Mingkui Tan"
+ ],
+ "venue": "ICML 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "Deep Learning->Large Language Models",
+ "role": "pipeline",
+ "role2": null,
+ "claim": "Learn selectively at test time: score tokens by future uncertainty reduction, then weight and temperature-scale updates by that gain.",
+ "layout": "Left-to-right flow with a central zoom-in panel, red backward loop at bottom",
+ "tags": [
+  "test-time-adaptation",
+  "token-selection",
+  "uncertainty",
+  "entropy-minimization",
+  "selective-update"
+ ],
+ "style": [
+  "colorful",
+  "icon-heavy",
+  "math-heavy"
+ ],
+ "description": "A wide left-to-right pipeline diagram. At left, a test-data database icon feeds a batch box, which goes into an LLM block. The LLM block has a frozen base model (snowflake icon, blue) beside a tuned delta-theta module (flame icon, yellow). Generated tokens then flow into a large rounded central panel, Future-Gain Guided Token Selection. It shows a confusion curve that goes from orange (high confusion) to green (low confusion). Under it is a token row split into a past window and a future window around a pivot token y_t. Below that are boxes for average past entropy and average future entropy, and a red dashed formula box for Future Gain = H_past - H_future. Selected pivots go to the right-hand Risk-Aware Adaptation stack, which holds entropy, dynamic temperature and a weighted, scaled loss, all in blue and purple boxes. A red dashed backward arrow runs along the bottom to the tuned module.",
+ "caption": "Overview of the proposed FG-TTL. For each incoming batch Bt, the model first generates a response y. The Future-Gain",
+ "caption_source": "pdf",
+ "abstract": "Large language models (LLMs) inevitably encounter distribution shifts during real-world deployment, leading to performance degradation. Although test-time learning (TTL) adapts LLMs from unlabeled test streams, applying entropy minimization to autoregressive generation faces two challenges: (i) early decoding errors can steer later tokens off track, and updating on them can push the model further off course, and (ii) updates on unreliable tokens can amplify confident error predictions and trigger model collapse. To address these challenges, we propose Future-Gain Guided Test-Time Learning (FG-TTL) for LLMs, which learns selectively from the model's own generations. Our key idea is to update only on tokens that reduce uncertainty in subsequent generation rather than tokens that are merely uncertain at the current step. Specifically, we develop a Future-Gain Guided Token Selection (FTS) strategy to decide where to learn. We introduce Future-Gain as a token-level metric for this purpose and update the model only on high-gain tokens, concentrating learning on informative positions and mitigating temporal error propagation. In addition, we design a Risk-Aware Adaptation (RAA) mechanism that controls how strongly to update by combining gain-based weighting with adaptive temperature scaling based on intrinsic uncertainty, suppressing unreliable gradients while enabling stronger learning on high-gain tokens. Experiments on six benchmarks with three LLM backbones show that FG-TTL achieves the best average performance.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=CEnPJAQTUu",
+  "arxiv": null,
+  "pdf": "https://raw.githubusercontent.com/mlresearch/v306/main/assets/bian26b/bian26b.pdf",
+  "proceedings": "https://proceedings.mlr.press/v306/bian26b.html",
+  "virtual": "https://icml.cc/virtual/2026/poster/65581",
+  "code": "https://github.com/BianLangyu/FG-TTL.git"
+ },
+ "license": null,
+ "img": "none",
+ "image_url": null,
+ "thumb_url": null,
+ "figure_page": 2,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.93
+}

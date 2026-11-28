@@ -1,0 +1,49 @@
+{
+ "id": "neurips26-3283",
+ "title": "Reasoning with Sampling: Cutting at Decision Points",
+ "authors": [
+  "Felix Zhou",
+  "Anay Mehrotra",
+  "Quanquan C Liu"
+ ],
+ "venue": "NeurIPS 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "Deep Learning->Generative Models and Autoencoders",
+ "role": "prior-vs-ours",
+ "role2": "teaser-result",
+ "claim": "Prior samplers cut at arbitrary positions and rewrite trivial details; cutting at decision points yields better accuracy across benchmarks.",
+ "layout": "2 panels, left text-example contrast stacked, right grouped bar chart; highlighted [CUT] markers",
+ "tags": [
+  "sampling",
+  "mcmc",
+  "decision-points",
+  "inference-time-scaling",
+  "reasoning"
+ ],
+ "style": [
+  "text-heavy",
+  "plot",
+  "colorful"
+ ],
+ "description": "The left half has two stacked boxed panels. The top panel, 'Uniform-Cut MH', has a pale blue header. The bottom panel, 'Entropy-Cut MH (Ours)', has a pink header. Each panel shows a 'Current Completion' of monospaced math reasoning text and a 'Proposal Suffix' below it. A green highlighted [CUT] marker shows the cut position. In the uniform panel, the cut falls mid-expression inside a sqrt calculation, so the suffix only rewrites a few tokens. In the entropy panel, the cut falls before 'Step 1', so the suffix rewrites the whole step. The right half is a horizontal grouped bar chart of accuracy (%) on MATH500, HumanEval and GPQA. It compares six methods: Standard, Low Temperature, SMC, TMC, Uniform-Cut and Entropy-Cut. The red Entropy-Cut bars are the longest, and their values are bolded.",
+ "caption": "Entropy-Cut MH revises reasoning traces at decision points and improves accuracy. Left: uniform cuts can splice proposals inside a local calculation, producing suffixes that only rewrite nearby tokens. Entropy-Cut instead cuts near high-uncertainty reasoning steps, allowing the proposal to reconsider the underlying continuation. Right: on Qwen2.5-7B, this targeted proposal improves accuracy over standard sampling, low-temperature sampling, SMC, TMC, and uniform-cut MH across MATH500, HumanEval, and GPQA Diamond.",
+ "caption_source": "latex",
+ "abstract": "Frontier reasoning models are produced by post-training base language models with reinforcement learning. Recent work has challenged this by showing that sampling from a sharpened version of the base model's distribution, a so-called power distribution, elicits comparable reasoning without additional training, curated datasets, or verifiers. However, making this method practical requires efficiently sampling from the power distribution. A sampler needs to \"mix\" to the power distribution, which necessitates moving between modes of the target distribution; intuitively, e.g., trying different reasoning strategies. The samplers proposed in prior works repeatedly select a \"cut\" position in the current reasoning trace uniformly at random and resample the suffix from that position onward. However, reasoning traces typically contain a few consequential decisions (e.g., the choice of proof strategy or algorithm), and we observe that a uniformly chosen cut tends to rewrite local details rather than revisit decision points. We introduce an algorithm (Entropy-Cut Metropolis-Hastings) that uses the base model's next-token entropy as a proxy to identify key decision points and resample from those positions. We empirically verify that entropy jumps are a useful proxy for decision points and, in a stylized model of reasoning, prove that our method's mixing time scales with the number of decisions in a trace rather than with the number of tokens, which can be much larger. Across MATH500, HumanEval, GPQA Diamond, and AIME26, our method consistently improves over baselines and RL-trained models, including best-of-N at the same token budget.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=Mp3rA04Yjp",
+  "arxiv": "https://arxiv.org/abs/2605.30327",
+  "pdf": "https://arxiv.org/pdf/2605.30327",
+  "proceedings": null,
+  "virtual": "https://neurips.cc/virtual/2026/poster/153230",
+  "code": "https://github.com/felix-cfzhou/Reasoning-with-Sampling"
+ },
+ "license": "http://arxiv.org/licenses/nonexclusive-distrib/1.0/",
+ "img": "none",
+ "image_url": null,
+ "thumb_url": null,
+ "figure_page": 1,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.6
+}

@@ -1,0 +1,51 @@
+{
+ "id": "icml26-1316",
+ "title": "Efficient Distributed MLLM Training with Cornstarch",
+ "authors": [
+  "Insu Jang",
+  "Runyu Lu",
+  "Nikhil Bansal",
+  "Ang Chen",
+  "Mosharaf Chowdhury"
+ ],
+ "venue": "ICML 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "Optimization->Large Scale, Parallel and Distributed",
+ "role": "analysis-finding",
+ "role2": "problem-setup",
+ "claim": "Frozen modules change backward-pass cost, which unbalances pipeline stages and leaves training iteration time well above the optimal.",
+ "layout": "3 stacked panels: schematic with legend, timing table, grouped bar chart",
+ "tags": [
+  "frozen-layers",
+  "pipeline-parallelism",
+  "load-imbalance",
+  "profiling",
+  "multimodal-training"
+ ],
+ "style": [
+  "plot",
+  "colorful",
+  "text-heavy"
+ ],
+ "description": "The figure has three stacked panels. Panel (a) is a schematic of a VLM with a green Encoder, a small green Projector and an orange LLM, drawn left to right. A forward arrow runs from Input to Loss, and two backward arrows show gradients computed for input and for parameters. Snowflake and flame icons mark frozen and trainable modules, and a legend box explains them. Panel (b) is a table of encoder and LLM forward and backward times (ms) for two trainable configurations. It shows that the encoder backward pass drops to 0.50 ms and the LLM backward pass falls to 284.50 ms when modules are frozen. Panel (c) is a grouped bar chart of actual (green) and optimal (black) iteration time for four frozen/train combinations. It is annotated with overhead percentages from +3.1% to +23.4%.",
+ "caption": "The impact of frozen status to the backward pass and the balance of pipeline stages. A VLM with Siglip (Encoder) and Llama-3.2 1b (LLM) is used.",
+ "caption_source": "latex",
+ "abstract": "Multimodal large language models (MLLMs) extend the capabilities of large language models (LLMs) by combining heterogeneous model architectures to handle diverse modalities like images and audio. However, this inherent heterogeneity in MLLM model structure and data types makes makeshift extensions to existing LLM training frameworks unsuitable for efficient MLLM training. While there are a few works that have attempted to address the heterogeneity in MLLM training, their approaches are limited to only superficially considering the characteristics of MLLMs. In this paper, we present Cornstarch, an efficient distributed MLLM training framework that contemplates MLLM's unique characteristics in both model and data parallelization. Cornstarch introduces frozen-aware pipeline parallelism and token workload-balanced context parallelism to improve MLLM training throughput. Our extensive evaluation shows that Cornstarch outperforms state-of-the-art solutions by $2.26\\times$ on average in terms of MLLM training throughput. Cornstarch is an open-source project available at https://github.com/cornstarch-org/Cornstarch.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=CWisSpoJF9",
+  "arxiv": "https://arxiv.org/abs/2503.11367",
+  "pdf": "https://raw.githubusercontent.com/mlresearch/v306/main/assets/jang26g/jang26g.pdf",
+  "proceedings": "https://proceedings.mlr.press/v306/jang26g.html",
+  "virtual": "https://icml.cc/virtual/2026/poster/65547",
+  "code": null
+ },
+ "license": "http://arxiv.org/licenses/nonexclusive-distrib/1.0/",
+ "img": "none",
+ "image_url": null,
+ "thumb_url": null,
+ "figure_page": 2,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.6
+}

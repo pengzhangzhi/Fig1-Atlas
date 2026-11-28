@@ -1,0 +1,54 @@
+{
+ "id": "neurips26-0795",
+ "title": "AsyncMesh: Fully Asynchronous Optimization for Data and Pipeline Parallelism",
+ "authors": [
+  "Thalaiyasingam Ajanthan",
+  "Sameera Ramasinghe",
+  "Gil Avraham",
+  "Hadi Mohaghegh Dolatabadi",
+  "Chamin Hewa Koneputugodage",
+  "Violetta Shevchenko",
+  "Yan Zuo",
+  "Alexander Long"
+ ],
+ "venue": "NeurIPS 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "Optimization->Large Scale, Parallel and Distributed",
+ "role": "prior-vs-ours",
+ "role2": "pipeline",
+ "claim": "Synchronous training idles devices during communication and averaging; our asynchronous scheme overlaps communication with compute, removing idle time on both parallelism axes.",
+ "layout": "2 side-by-side panels, left-to-right time axis, shared color legend in the middle",
+ "tags": [
+  "asynchronous-training",
+  "pipeline-parallelism",
+  "data-parallelism",
+  "communication-efficiency",
+  "distributed-systems"
+ ],
+ "style": [
+  "minimal",
+  "colorful",
+  "icon-heavy"
+ ],
+ "description": "The figure compares SyncMesh (left) with AsyncMesh (right) for a 3-stage pipeline with 2 data-parallel replicas. Only stages S1 and S3 are drawn. Each pipe (Pipe-1 on top, Pipe-2 on the bottom) holds dotted boxes of grey S1/S3 blocks joined by dashed arrows. A time arrow t runs across the top. Light grey arrows connect the boxes through red squares that stand for DP sparse averaging. On the left the arrows converge on the red squares between time steps, which implies a synchronization barrier. On the right the arrows skip across time steps, so averaging is stale and not blocking. A central legend maps grey to PP optimization, red to DP averaging, blue to forward pass and green to backward pass. Small schedule insets show SyncPP as a V-shaped staircase with idle gaps and AsyncPP as a compact blue/green grid with no gaps.",
+ "caption": "\\em SyncMesh vs AsyncMesh, for a 3-stage, 2-\\gls{DP} replica setup (only 2 stages: S1 and S3, are shown for clarity). Notably, AsyncMesh eliminates idle time due to communication for both \\gls{PP} and \\gls{DP}. In synchronous \\gls{DP}, devices are idle while parameters are averaged, whereas asynchronous \\gls{DP} eliminates this idle time by using the \"old\" average. Moreover, in Async\\gls{PP}, each stage alternates between forward and backward passes without any communication delay.",
+ "caption_source": "latex",
+ "abstract": "Data and pipeline parallelism are key strategies for scaling neural network training across distributed devices, but their high communication cost necessitates co-located computing clusters with fast interconnects, limiting their scalability. We address this communication bottleneck by introducing asynchronous updates across both parallelism axes, relaxing the co-location requirement at the expense of introducing staleness between pipeline stages and data parallel replicas. To mitigate staleness, for pipeline parallelism, we adopt a weight look-ahead approach, and for data parallelism, we introduce an asynchronous sparse averaging method equipped with an exponential moving average based correction mechanism. We provide convergence guarantees for both sparse averaging and asynchronous updates. Experiments on large-scale language models (up to \\em 1B parameters) demonstrate that our approach matches the performance of the fully synchronous baseline, while significantly reducing communication overhead.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=5e4wynkfYC",
+  "arxiv": "https://arxiv.org/abs/2601.22442",
+  "pdf": "https://arxiv.org/pdf/2601.22442",
+  "proceedings": null,
+  "virtual": "https://neurips.cc/virtual/2026/poster/155437",
+  "code": null
+ },
+ "license": "http://creativecommons.org/licenses/by/4.0/",
+ "img": "cc-by",
+ "image_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/images/neurips26-0795.png",
+ "thumb_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/thumbs/neurips26-0795.webp",
+ "figure_page": 1,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.8
+}

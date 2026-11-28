@@ -1,0 +1,51 @@
+{
+ "id": "icml26-0195",
+ "title": "SparseInfer: Accelerating Large Language Model Inference with Semantics-Inspired Adaptive Sparse Activation",
+ "authors": [
+  "Qinsi Wang",
+  "Saeed Vahidian",
+  "Hancheng Ye",
+  "Jianyang Gu",
+  "Jianyi Zhang",
+  "Yiran Chen"
+ ],
+ "venue": "ICML 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": null,
+ "role": "pipeline",
+ "role2": null,
+ "claim": "A sentence's core neurons are extracted once during pre-filling, checked for stability, then frozen and reused for cheap sparse decoding.",
+ "layout": "2 panels (pre-filling left, decoding right) plus legend; left-to-right flow with stability decision diamond",
+ "tags": [
+  "sparse-activation",
+  "inference-acceleration",
+  "llm-efficiency",
+  "sentence-level-prediction",
+  "caching"
+ ],
+ "style": [
+  "colorful",
+  "icon-heavy"
+ ],
+ "description": "A light-green dashed box is split into a large Pre-filling panel on the left and a smaller Decoding panel on the upper right, with a Legend underneath. In pre-filling, an orange-brown heatmap of neuron activations (rows C0–C7, columns for the tokens 'I love reading papers') is reduced by top-k selection into a sparser grid with white dropped cells, at 50% sparsity per token. Those cells are then aggregated into sentence-level core neurons at 40% sparsity. A flowchart follows: a 'Stable?' diamond leads either to 'Cache (Update) Core Neurons Set' (Y) or to 'Update Core Neuron Cluster' (N), which loops back. The cached set feeds the decoding panel, where a frozen core neuron set (snowflake icon) is applied to the next tokens ('and', 'think'). The legend explains colors, flame and snowflake icons, and arrow types.",
+ "caption": "The overview framework of CoreInfer. In the pre-filling stage, at each activation layer, taking the $i$-th activation layer as an example, we first extract the token-wise core neurons based on the top-k selection and then further extract the top-k commonly activated core neurons among all tokens, which go through the stability estimation to determine how to update the sentence-wise core neuron set. After determination, the core neuron set will be fixed and utilized for sparse decoding.",
+ "caption_source": "latex",
+ "abstract": "Large language models (LLMs) with billions of parameters have sparked a new wave of exciting AI applications. However, their high computational costs and memory demands during inference pose significant challenges. Adaptive sparse activation inference, which activates only a small number of neurons for each token, offers a novel way to accelerate model inference without degrading performance, showing great potential for resource-constrained hardware devices. Nevertheless, existing methods predict activated neurons based on individual tokens with additional MLP, which involve frequent changes in activation maps and resource calls, limiting the acceleration benefits of sparse activation. In this paper, we introduce CoreInfer, an MLP-free adaptive sparse activation inference method based on sentence-level prediction. Specifically, we propose the concept of sentence-wise core neurons, which refers to the subset of neurons most critical for a given sentence, and empirically demonstrate its effectiveness. To determine the core neurons, we explore the correlation between core neurons and the sentence's semantics. Remarkably, we discovered that core neurons exhibit both stability and similarity in relation to the sentence's semantics -- an insight overlooked by previous studies. Building on this finding, we further design two semantic-based methods for predicting core neurons to fit different input scenarios. In CoreInfer, the core neurons are determined during the pre-filling stage and fixed during the encoding stage, enabling zero-cost sparse inference. We evaluated the model generalization and task generalization of CoreInfer across various models and tasks. Notably, on an NVIDIA TITAN XP GPU, CoreInfer achieved a 10.33 times and 2.72 times speedup compared to the Huggingface implementation and PowerInfer, respectively.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=1sKFoIvmYg",
+  "arxiv": "https://arxiv.org/abs/2410.18311",
+  "pdf": "https://raw.githubusercontent.com/mlresearch/v306/main/assets/wang26hn/wang26hn.pdf",
+  "proceedings": "https://proceedings.mlr.press/v306/wang26hn.html",
+  "virtual": "https://icml.cc/virtual/2026/poster/66640",
+  "code": null
+ },
+ "license": "http://arxiv.org/licenses/nonexclusive-distrib/1.0/",
+ "img": "none",
+ "image_url": null,
+ "thumb_url": null,
+ "figure_page": 1,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.93
+}

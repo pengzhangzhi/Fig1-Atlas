@@ -1,0 +1,53 @@
+{
+ "id": "neurips26-8382",
+ "title": "SnapMLA: Efficient Long-Context MLA Decoding via Hardware-Aware FP8 Quantized Pipelining",
+ "authors": [
+  "Yifan Zhang",
+  "Zunhai Su",
+  "Shuhao Hu",
+  "YangRui",
+  "Wei Wu",
+  "Yulei Qian",
+  "Yuchen Xie",
+  "Xunliang Cai"
+ ],
+ "venue": "NeurIPS 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "Deep Learning->Attention Mechanisms",
+ "role": "teaser-result",
+ "role2": null,
+ "claim": "Our optimized system consistently delivers substantially higher throughput than the baseline across models, parallelism configurations, and increasing context lengths.",
+ "layout": "2x3 grid of bar charts, columns by configuration, rows by model, speedup labels above bars",
+ "tags": [
+  "throughput",
+  "speedup",
+  "benchmark-comparison",
+  "quantization",
+  "efficient-inference"
+ ],
+ "style": [
+  "plot",
+  "colorful"
+ ],
+ "description": "A 2x3 grid of grouped bar charts. Columns are parallelization configurations (DP1/TP8, DP4/TP2, DP8/TP1). The top row shows LongCat-Flash-Thinking, marked by a green logo, and the bottom row shows DeepSeek-V3.1, marked by a blue whale logo. Each panel compares four context lengths (16k, 32k, 64k, 128k). Each context length has a gray baseline bar for FlashMLA (BF16) next to a taller colored bar for SnapMLA (Ours), green in the top row and blue in the bottom row. Bold italic speedup labels such as 1.35x to 1.91x sit above each pair. Dotted lines separate the panels. The y-axis is throughput in tokens per second, and its scale differs by panel. A legend along the bottom explains the colors and logos. The eye goes first to the tall colored bars and the large speedup numbers.",
+ "caption": "End-to-end decoding throughput comparison. We evaluate the generation throughput of SnapMLA on LongCat-Flash-Thinking and DeepSeek-V3.1 across various parallelization configurations and context lengths. For additional details please refer to Section [ref].",
+ "caption_source": "latex",
+ "abstract": "While FP8 attention has shown substantial promise in innovations like FlashAttention-3, its integration into the decoding phase of the DeepSeek Multi-head Latent Attention (MLA) architecture presents notable challenges. These challenges include numerical heterogeneity arising from the decoupling of positional embeddings, misalignment of quantization scales in FP8 PV GEMM, and the need for optimized system-level support. In this paper, we introduce SnapMLA, an FP8 MLA decoding framework optimized to improve long-context efficiency through the following hardware-aware algorithm-kernel co-optimization techniques: (i) RoPE-Aware Per-Token KV Quantization: Motivated by our analysis of the heterogeneous quantization sensitivity inherent to the MLA KV cache, this approach preserves the RoPE part in high precision. Furthermore, per-token granularity is employed to align with the autoregressive decoding process and maintain quantization accuracy. (ii) Quantized PV Computation Pipeline Reconstruction: Addresses the misalignment of quantization scales in FP8 PV computation caused by the shared KV structure of the MLA. (iii) End-to-End Dataflow Optimization: Establishes an efficient data read-and-write workflow using specialized kernels, ensuring streamlined data flow and improved performance. Extensive experiments on state-of-the-art MLA LLMs show that SnapMLA achieves up to a 1.91x improvement in throughput on long-output decoding workloads while maintaining near-parity benchmark quality compared with the BF16 baseline on the evaluated reasoning and code-generation benchmarks. Code is available at https://github.com/meituan-longcat/SGLang-FluentLLM.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=vkrSWou03u",
+  "arxiv": "https://arxiv.org/abs/2602.10718",
+  "pdf": "https://arxiv.org/pdf/2602.10718",
+  "proceedings": null,
+  "virtual": "https://neurips.cc/virtual/2026/poster/148693",
+  "code": "https://github.com/meituan-longcat/SGLang-FluentLLM"
+ },
+ "license": "http://creativecommons.org/licenses/by-sa/4.0/",
+ "img": "cc-by-sa",
+ "image_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/images/neurips26-8382.png",
+ "thumb_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/thumbs/neurips26-8382.webp",
+ "figure_page": 0,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.93
+}

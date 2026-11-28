@@ -1,0 +1,50 @@
+{
+ "id": "icml26-2054",
+ "title": "Cache Coherent Resampling for Efficient Test Time Scaling in LLM Reasoning via Adaptive Sequential Monte Carlo",
+ "authors": [
+  "Ke Wang",
+  "ZEHAO Yu",
+  "Luwei Wang",
+  "Yongchao Huang"
+ ],
+ "venue": "ICML 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "Deep Learning->Large Language Models",
+ "role": "pipeline",
+ "role2": null,
+ "claim": "Parallel particle inference with adaptive resampling and cache reordering gives efficient, adaptive test-time compute without recomputing prefixes.",
+ "layout": "Flowchart, left-to-right, grouped loop box left, decision diamonds right, feedback dashed loops",
+ "tags": [
+  "flowchart",
+  "particle-methods",
+  "adaptive-compute",
+  "kv-cache",
+  "test-time-scaling"
+ ],
+ "style": [
+  "text-heavy",
+  "colorful",
+  "math-heavy"
+ ],
+ "description": "A dense flowchart of the ASMC algorithm. At the top left, an Input Prompt feeds into 'Set N = N_fast' and 'Initialize N Particles / Initialize KV cache' (pink box, with stacked particle tokens x0^(1..N) feeding in). Below sits a grey Parallel Generation Loop containing a purple 'Parallel Expand' block (batched decode) and a blue 'Particle Weight Update' block with formulas for annealing, the target and proposal, and weight increments. Flow then moves right to decision diamonds: 'Need Resample? ESS < τN', 'Early Stop?', and 'Confident?'. Resampling (orange) and KV cache Reorder (green) boxes are shown, plus a dashed inset 'Eliminate & Duplicate' showing high-weight particles replacing low-weight ones. Outputs go through a yellow 'Weighted vote' to 'output' or a 'Fresh hard pass'. Red Yes labels and dashed return arrows mark the feedback loops.",
+ "caption": "ASMC with Cache Coherence. ASMC evolves N particles in parallel via batched decoding. Importance reweighting targets the",
+ "caption_source": "pdf",
+ "abstract": "Recent work shows that chain based sampling for power shaped trajectory distributions can deliver large test time gains from a fixed base LLM and can approach RL trained reasoners such as GRPO. Deployment is the bottleneck. Autoregressive Metropolis Hastings is inherently serial, limits GPU utilization, and exhibits extreme tail latency at high budgets, reaching p95 $=1318$s on MATH500 at $128\\times$. We propose Adaptive Sequential Monte Carlo (ASMC), a parallel particle inference method that targets power shaped trajectory distributions while adapting particle populations to problem hardness. To make resampling practical for Transformers, we introduce cache coherent resampling, which realizes ancestry updates by reordering KV caches and other particle bound tensors, avoiding prefix recomputation. On MATH500 at the same budget, ASMC attains 80.6\\% exact-match accuracy with p95 = 73.7s, substantially reducing the tail latency of sequential MCMC and providing additional high-accuracy operating points beyond the saturation of best-of-n. We further analyze particle degeneracy and find that collapse severity, measured by low $\\mathrm{ESS}_{\\min}/N$, strongly predicts failures, while sensitivity to the resampling scheme is limited.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=JN6wxUGmW8",
+  "arxiv": null,
+  "pdf": "https://raw.githubusercontent.com/mlresearch/v306/main/assets/wang26kb/wang26kb.pdf",
+  "proceedings": "https://proceedings.mlr.press/v306/wang26kb.html",
+  "virtual": "https://icml.cc/virtual/2026/poster/64829",
+  "code": "https://vicky-0256.github.io/ASMC/"
+ },
+ "license": null,
+ "img": "none",
+ "image_url": null,
+ "thumb_url": null,
+ "figure_page": 3,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.93
+}

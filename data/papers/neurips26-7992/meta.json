@@ -1,0 +1,49 @@
+{
+ "id": "neurips26-7992",
+ "title": "LogSig-SSM: Time-Series Modelling with Multi-Scale Log-Signature Compression for State-Space Models",
+ "authors": [
+  "Felix Oury",
+  "Nicolas Calvo Peiro",
+  "Reiko J Tanaka"
+ ],
+ "venue": "NeurIPS 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "Applications->Time Series",
+ "role": "pipeline",
+ "role2": null,
+ "claim": "Compress a long irregular series into a short sequence of multi-scale window summaries, then feed them to a recurrent state-space model.",
+ "layout": "Single panel, bottom-to-top data flow, labeled stage column on right",
+ "tags": [
+  "log-signature",
+  "state-space-model",
+  "tokenization",
+  "multi-scale",
+  "irregular-sampling"
+ ],
+ "style": [
+  "math-heavy",
+  "colorful",
+  "plot"
+ ],
+ "description": "A single wide diagram that reads from the bottom up. At the bottom is an irregularly sampled time series, drawn as blue dots with a connected interpolated path on a time axis marked with anchors t̃1 to t̃n. Above it, nested colored brackets (green, purple, red) mark windows at three scales, labeled u_{τ,k}. Each anchor's windows feed a vertical stack of colored dots, which forms the token U_τ. A green arrow labeled B̄ carries each token into a dark-blue hidden-state box H. Orange arrows labeled Ā link the H boxes left to right. A red arrow labeled C leads from each H box to a green output box y. A right-hand column of gray arrows names the stages: Data, Path, LogSig, concat, Mamba Block, Outputs. The eye goes first to the bright green and blue boxes across the top.",
+ "caption": "Discrete-time LogSig-SSM pipeline. A multivariate time series $x\\in\\R^{d_x\\times T}$ is summarised at strided anchors $\\tilde t_\\tau:=t_{\\tau s}$. For each scale $k$, a windowed segment $\\mathcal{W}_k(x)_\\tau$ is extracted, and its truncated log-signature coordinate vector, $u_{\\tau,k} := \\phi_{m_k}\\!\\Big(\\mathrm{LogSig}_{m_k}\\!\\big(\\mathcal{W}_k(x)_\\tau\\big)\\Big)\\in \\R^{D_k},$ is computed. These are concatenated across scales to form the token $U_\\tau := \\mathrm{concat}\\big(u_{\\tau,1},\\dots,u_{\\tau,K}\\big)\\in\\R^{D_{\\mathrm{tot}}}$. Finally, $U_\\tau$ is projected to the scan width $d$ via a learned linear embedding to form $\\widetilde U_\\tau = W_{\\mathrm{in}}U_\\tau$, which serves as the input to the Mamba block.",
+ "caption_source": "latex",
+ "abstract": "Time-series data are often sampled irregularly at high frequencies and exhibit long-range dependencies, which makes long-horizon modelling difficult. Continuous-time models such as neural controlled differential equations (NCDEs) and neural rough differential equations (NRDEs) can handle irregular sampling, but they scale poorly to long sequences. Selective state-space models (SSMs) such as Mamba scale linearly with sequence length, but they provide limited recurrent mixing across hidden dimensions within a single block. We propose LogSig-SSM (Log-Signature Compression for State-Space Models), which first compresses long multivariate time series into a shorter sequence of tokens using multi-scale windowed log-signatures, and then processes these tokens with a selective SSM backbone. LogSig-SSM is scalable and robust to irregular sampling, combining log-signature tokens that capture higher-order cross-channel interactions with a selective SSM that models long-range dependencies. The model also admits a continuous-time interpretation as an NCDE/NRDE-style system driven by a log-signature-based input, in which selectivity induces an input-dependent rescaling of the latent dynamics. Across four benchmarks, namely long-sequence classification on UEA, high-frequency physiological regression on PPG-DaLiA, multivariate weather forecasting, and irregularly sampled clinical prediction on PhysioNet Sepsis, LogSig-SSM outperforms or matches strong SSM and continuous-time baselines while training up to $30\\times$ faster and using up to $37\\times$ less GPU memory than Mamba on the longest sequences.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=tIKjiGlxPz",
+  "arxiv": "https://arxiv.org/abs/2610.05051",
+  "pdf": "https://arxiv.org/pdf/2610.05051",
+  "proceedings": null,
+  "virtual": "https://neurips.cc/virtual/2026/poster/149042",
+  "code": "https://github.com/felix-oury/LogSigSSM"
+ },
+ "license": "http://creativecommons.org/licenses/by/4.0/",
+ "img": "cc-by",
+ "image_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/images/neurips26-7992.png",
+ "thumb_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/thumbs/neurips26-7992.webp",
+ "figure_page": 3,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.93
+}

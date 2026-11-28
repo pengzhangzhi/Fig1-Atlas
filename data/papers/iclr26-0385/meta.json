@@ -1,0 +1,54 @@
+{
+ "id": "iclr26-0385",
+ "title": "IVC-Prune: Revealing the Implicit Visual Coordinates in LVLMs for Vision Token Pruning",
+ "authors": [
+  "Zhichao Sun",
+  "Yidong Ma",
+  "Gang Liu",
+  "Yibo Chen",
+  "Xu Tang",
+  "Yao Hu",
+  "Yongchao Xu"
+ ],
+ "venue": "ICLR 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "Computer Vision->Vision Models & Multimodal",
+ "role": "analysis-finding",
+ "role2": "before-after",
+ "claim": "Pruning to only semantically relevant tokens breaks spatial reasoning; restoring a small set of positional anchor tokens recovers nearly all performance.",
+ "layout": "Left image grid (fail vs success), right heatmaps above bar chart; red/blue contrast",
+ "tags": [
+  "token-pruning",
+  "spatial-reasoning",
+  "positional-embeddings",
+  "ablation",
+  "vision-language-models"
+ ],
+ "style": [
+  "photo/real data",
+  "plot",
+  "colorful",
+  "text-heavy"
+ ],
+ "description": "The figure has two halves. On the left, two stacked panels show visual grounding examples (a donut and a bird) with the queries 'donut on far left of middle row' and 'bird on left'. The top panel has a pink background and a red X. It shows only foreground tokens kept, and the predicted box (orange) misses the ground-truth box (green). The bottom panel has a blue background and a green check. It shows foreground plus scattered IVC tokens kept, and the predicted box is correct. On the right, a red-outlined callout defines IVC tokens. Below it are two heatmaps, cosine and sine components of RoPE, with black-outlined IVC positions. At the bottom is a grouped bar chart of accuracy for three LVLMs (Qwen2.5-VL, DeepSeek-VL2, InternVL2.5) under three input settings: gray for no pruning, pink for foreground only, and blue for foreground plus IVC. A yellow takeaway box reads 'Adding IVC tokens restore performance'.",
+ "caption": "Implicit Visual Coordinate (IVC) tokens are crucial for spatial reasoning in LVLMs. Left: Visual grounding examples under different input settings. Top right: RoPE cosine and sine components across token positions, with IVC token locations (10% of total) marked in black. Bottom right: RefCOCO accuracy across three LVLMs under varying input settings, showing that adding IVC tokens largely restores performance. Detailed results and analysis are provided in Appendix [ref].",
+ "caption_source": "latex",
+ "abstract": "Large Vision-Language Models (LVLMs) achieve impressive performance across multiple tasks. A significant challenge, however, is their prohibitive inference cost when processing high-resolution visual inputs. While visual token pruning has emerged as a promising solution, existing methods that primarily focus on semantic relevance often discard tokens that are crucial for spatial reasoning. We address this gap through a novel insight into \\emph{how LVLMs process spatial reasoning}. Specifically, we reveal that LVLMs implicitly establish visual coordinate systems through Rotary Position Embeddings (RoPE), where specific token positions serve as \\textbf{implicit visual coordinates} (IVC tokens) that are essential for spatial reasoning. Based on this insight, we propose \\textbf{IVC-Prune}, a training-free, prompt-aware pruning strategy that retains both IVC tokens and semantically relevant foreground tokens. IVC tokens are identified by theoretically analyzing the mathematical properties of RoPE, targeting positions at which its rotation matrices approximate identity matrix or the $90^\\circ$ rotation matrix. Foreground tokens are identified through a robust two-stage process: semantic seed discovery followed by contextual refinement via value-vector similarity. Extensive evaluations across four representative LVLMs and twenty diverse benchmarks show that IVC-Prune reduces visual tokens by approximately 50\\% while maintaining $\\geq$ 99\\% of the original performance and even achieving improvements on several benchmarks. Source codes are available at https://github.com/FireRedTeam/IVC-Prune.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=46LbXtFgBm",
+  "arxiv": "https://arxiv.org/abs/2602.03060",
+  "pdf": "https://proceedings.iclr.cc/paper_files/paper/2026/file/b51b3565a6775c557093cb99457fc7fc-Paper-Conference.pdf",
+  "proceedings": "https://proceedings.iclr.cc/paper_files/paper/2026/hash/b51b3565a6775c557093cb99457fc7fc-Abstract-Conference.html",
+  "virtual": "https://iclr.cc/virtual/2026/poster/10011579",
+  "code": "https://github.com/FireRedTeam/IVC-Prune"
+ },
+ "license": "http://creativecommons.org/licenses/by-nc-sa/4.0/",
+ "img": "cc-by-nc-sa",
+ "image_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/images/iclr26-0385.png",
+ "thumb_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/thumbs/iclr26-0385.webp",
+ "figure_page": 1,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.6
+}

@@ -1,0 +1,53 @@
+{
+ "id": "neurips26-5502",
+ "title": "AgentWeave: Efficient Distributed Agent Serving via Flow Decomposition",
+ "authors": [
+  "Kaibin Guo",
+  "Pengtu Li",
+  "Zicong Hong",
+  "Zhiyuan Fang",
+  "Wuhui Chen",
+  "Rachid Guerraoui",
+  "Anne-marie Kermarrec"
+ ],
+ "venue": "NeurIPS 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "Optimization->Large Scale, Parallel and Distributed",
+ "role": "prior-vs-ours",
+ "role2": "problem-setup",
+ "claim": "Disaggregated serving leaves pipeline bubbles and naive aggregation blocks short requests; decomposing flows removes both, so requests exit earlier.",
+ "layout": "3 stacked Gantt timelines, left-to-right time, shared dashed arrival lines",
+ "tags": [
+  "serving-systems",
+  "scheduling",
+  "pipeline-parallelism",
+  "head-of-line-blocking",
+  "latency-throughput"
+ ],
+ "style": [
+  "colorful",
+  "plot",
+  "text-heavy"
+ ],
+ "description": "Three vertically stacked GPU timeline (Gantt-style) diagrams compare execution paradigms for a three-module RAG workflow. The workflow legend at top right shows Index (blue), Rerank (yellow) and Synthesize (pink) as rounded boxes joined by arrows. Small boxes at the top mark the arrivals of requests R1 to R4, with dashed vertical lines running down through all panels. Panel (a), the existing disaggregated architecture, puts one module on each GPU and leaves visible idle gaps. Panel (b), the naive aggregated architecture, runs all modules on all GPUs. It has hatched blocking regions and queuing arrows, because short requests wait on long ones. Panel (c), AgentWeave, uses finer-grained colored segments such as R2_1, R2_2 and R4_2, with shorter queuing and earlier exits. A legend at the lower right explains batching, blocking and request. The eye goes first to the colored blocks and the exit labels under each timeline.",
+ "caption": "Comparison of execution paradigms for agent serving on simplified RAG, drawn to realistic scale, consisting of the indexing, reranking, and synthesizing modules that dominate RAG latency.",
+ "caption_source": "latex",
+ "abstract": "Agent applications are evolving into workflows composed of large language model (LLM) calls and tool invocations, termed modules. Existing distributed agent systems typically adopt a disaggregated architecture, deploying different modules on separate devices. While this enables pipeline parallelism, imbalanced module latencies introduce severe pipeline bubbles that limit throughput. A natural alternative is an aggregated architecture that co-deploys all modules across all devices, eliminating bubbles by keeping every device continuously active. However, this introduces request blocking: short requests are forced to progress in lockstep with longer ones in the same batch, and newly arriving requests must wait until the entire ongoing batch completes the full workflow. To address this, we propose AgentWeave, an efficient distributed serving system for agent applications built on the aggregated architecture. Its core mechanism, flow decomposition, decomposes long agent requests into fine-grained execution units while preserving agent semantics, allowing short and newly arriving requests to proceed without being stalled by long-running ones. Complementing this, a flow-adaptive scheduler dynamically balances the throughput gains of decomposition against its scheduling overhead. Experiments across four representative agent applications demonstrate that AgentWeave improves throughput by 1.28-1.81x, reduces average latency by 2.08-2.45x, and reduces P90 latency by 1.56-2.04x over state-of-the-art baselines.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=bpk2nFIPmf",
+  "arxiv": "https://arxiv.org/abs/2610.14804",
+  "pdf": "https://arxiv.org/pdf/2610.14804",
+  "proceedings": null,
+  "virtual": "https://neurips.cc/virtual/2026/poster/151244",
+  "code": null
+ },
+ "license": "http://arxiv.org/licenses/nonexclusive-distrib/1.0/",
+ "img": "none",
+ "image_url": null,
+ "thumb_url": null,
+ "figure_page": 1,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.8
+}

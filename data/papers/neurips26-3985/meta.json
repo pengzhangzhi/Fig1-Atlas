@@ -1,0 +1,50 @@
+{
+ "id": "neurips26-3985",
+ "title": "RVLoss: Runoff Vote Loss for Self-Supervised LiDAR Scene Flow Estimation",
+ "authors": [
+  "Shiming Wang",
+  "Liangliang Nan",
+  "Julian Kooij",
+  "Holger Caesar",
+  "Yancong Lin"
+ ],
+ "venue": "NeurIPS 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "Applications->Robotics",
+ "role": "concept",
+ "role2": "prior-vs-ours",
+ "claim": "Nearest-neighbor matching yields several competing candidates, but a second round of voting can recover the correct rigid motion.",
+ "layout": "3 panels: two stacked left, one large right; color-coded voting counts",
+ "tags": [
+  "voting",
+  "rigid-motion",
+  "self-supervised",
+  "pseudo-labels",
+  "consensus"
+ ],
+ "style": [
+  "colorful",
+  "icon-heavy"
+ ],
+ "description": "A legend row at the top defines blue source, green translated and pink target car outlines, shapes for points, and solid versus dashed arrows for flows at different stages. Panel a) shows a car moving rigidly, with five green arrows from the blue source car to the pink target car that all agree. Panel b) shows the same car with an imperfect flow, where two green and three red arrows point in different directions. Dominant-flow counts are listed beside it (2 green, 3 red). The large panel c) shows the source translated by the green flow, then by the red flow. Each translated car is overlaid on the target. A black arrow labelled 'NN & flow calculation' leads to vote counts (green 5 vs 0; red 4 vs 1). A 'max' arrow selects the winner, marked with a green check and a red cross. The eye goes first to the colored cars and arrows.",
+ "caption": "Overview of a runoff vote. a) A car moves rigidly and thus exhibits consistent flows among points. b) The widely used Chamfer distance breaks motion rigidity due to the local nearest-neighbor search. As a result, multiple flow candidates emerge within the object. Although the correct flow is among these candidates, it may not be the top-voted one ($1^{st}$ stage). c) We translate the source by those flow candidates and measure how well it aligns with the target by an additional voting ($2^{nd}$ stage). The flow receiving the highest number of votes is selected as the rigid flow, representing the underlying motion of the car.",
+ "caption_source": "latex",
+ "abstract": "LiDAR scene flow estimates point-wise motion between two consecutive scans, referred to as the source and target. Leading self-supervised methods typically minimize the Chamfer loss, the nearest-neighbor distance between the flow-compensated source and the target. However, nearest-neighbor search does not enforce motion rigidity, often leading to inconsistent flows within object instances. Existing approaches address this issue with additional regularization terms, but flow consistency among points remains limited, especially for large objects. We propose RVLoss, a self-supervised loss that incorporates motion rigidity by design through a runoff vote mechanism. Our key observation is that the point-wise motion, calculated from nearest-neighbor search, can often be grouped into a small set of dominant flow candidates by voting (top-k voting). Furthermore, when compensating the source by these candidates, the flow that best represents the underlying rigid motion often yields the highest consensus after a second voting (top-1 voting). Based on this insight, we incorporate the two-stage runoff vote into loss design and create cluster-wise rigid flows and free-form flows as pseudo-labels for self-supervised learning. RVLoss can be seamlessly integrated into existing feedforward architectures. Experiments on the Argoverse2 2026 Scene Flow Challenge show that models trained with RVLoss achieve state-of-the-art performance among self-supervised approaches, outperforming baseline models trained with alternative loss designs by 20% and reducing the mean dynamic normalized end-point error from 0.202 to 0.163. Moreover, cross-dataset evaluations demonstrate consistent performance improvements across four additional datasets. Code is available at https://github.com/tudelft-iv/RVLoss.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=RsacOS2C69",
+  "arxiv": "https://arxiv.org/abs/2608.18864",
+  "pdf": "https://arxiv.org/pdf/2608.18864",
+  "proceedings": null,
+  "virtual": "https://neurips.cc/virtual/2026/poster/152605",
+  "code": "https://tudelft-iv.github.io/RVLoss/"
+ },
+ "license": "http://arxiv.org/licenses/nonexclusive-distrib/1.0/",
+ "img": "none",
+ "image_url": null,
+ "thumb_url": null,
+ "figure_page": 1,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.5
+}

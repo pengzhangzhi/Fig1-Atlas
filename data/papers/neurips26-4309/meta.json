@@ -1,0 +1,60 @@
+{
+ "id": "neurips26-4309",
+ "title": "AgentKernelArena: Benchmarking Performance and Generalization of AI Coding Agents on GPU Kernels Optimization",
+ "authors": [
+  "Sharareh Younesian",
+  "Wenwen Ouyang",
+  "sina rafati",
+  "Mehdi Rezagholizadeh",
+  "Sharon Zhou",
+  "Ji Liu",
+  "Yue Liu",
+  "Yuchen Yang",
+  "Hao Li",
+  "Ziqiong Liu",
+  "Dong Li",
+  "Vikram Appia",
+  "Zhenyu Gu",
+  "Emad Barsoum"
+ ],
+ "venue": "NeurIPS 2026",
+ "tier": "poster",
+ "track": "Evaluations_and_Datasets_Track",
+ "topic": "Data-centric AI->Data-centric AI methods and tools",
+ "role": "pipeline",
+ "role2": "overview-framework",
+ "claim": "Evaluation is a staged pipeline: isolated setup and baselining, an iterative agent loop, then an independent gated evaluator that computes the score.",
+ "layout": "Single column, top-to-bottom, 4 stacked stages; inner left-to-right loops with a dashed feedback arrow",
+ "tags": [
+  "benchmark-pipeline",
+  "coding-agents",
+  "gated-evaluation",
+  "iterative-refinement",
+  "gpu-kernels"
+ ],
+ "style": [
+  "icon-heavy",
+  "colorful",
+  "text-heavy"
+ ],
+ "description": "A top-to-bottom flowchart in four color-coded bands. The top band, in yellow, has three input cards: Task Directory, Cheatsheets and Agent Config. They merge through a bracket into a blue row with Workspace Setup and Baseline Measurement. Next is a large orange Agent Execution container tagged max_iterations: 3. It holds five icon cards linked left to right: Read Code, Edit Kernel, Compile, Test and Profile. A dashed arrow loops back, labeled 'iterate for 3 rounds'. A down arrow labeled 'modified kernel' leads to a dashed green Centralized Evaluator box. It has Compile, a PASS? diamond, Correctness, a second PASS? diamond and Performance. The Performance card has a speedup formula callout, and red fail exits show 20 pts and 120 pts. A purple Final Score box with the scoring formula closes the figure. The eye starts at the top input cards and follows the arrows down.",
+ "caption": "AgentKernelArena evaluation pipeline. Top: task source files, optional cheatsheets, and agent configuration are inputs. Middle: the workspace is set up, the original kernel is baselined, and the agent iteratively optimizes the kernel -- prompted to produce up to max\\_iterations successive versions (default 3). Bottom: after the agent session ends, a centralized evaluator independently runs gated compilation, correctness (vs.\\ reference), and performance measurement on the optimized kernel. Speedup is computed as $t_{baseline} / t_{optimized}$. The scoring function (Eq. [ref]) assigns 20 points for compilation, 100 for correctness, and $100 \\cdot s_k$ for performance.",
+ "caption_source": "latex",
+ "abstract": "GPU kernel optimization is increasingly critical for efficient deep learning systems, but writing high-performance kernels still requires substantial low-level expertise. Recent AI coding agents can iteratively read code, invoke compilers and profilers, and refine implementations, yet existing kernel benchmarks evaluate single LLM calls rather than full agent workflows, and none include both kernel-to-kernel optimization and unseen-configuration generalization testing. We present \\textbf{AgentKernelArena}, an open-source benchmark for measuring AI coding agents on GPU kernel optimization. The benchmark contains 196 tasks spanning HIP-to-HIP optimization, Triton-to-Triton optimization, and PyTorch-to-HIP translation, and evaluates complete agent workflows in isolated workspaces using gated compilation, correctness, and performance checks, centralized scoring and an unseen-configuration generalization protocol that tests whether optimizations transfer to input configurations the agent never observed. Across production agents including Cursor Agent, Claude Code, and Codex Agent, we find near-perfect compilation and high correctness rates on most task categories, with the strongest configurations achieving mean speedups of up to 6.89$\\times$ on PyTorch-to-HIP, 6.69$\\times$ on HIP-to-HIP, and 2.13$\\times$ on Triton-to-Triton tasks. Our unseen-configuration evaluation shows that HIP-to-HIP and Triton-to-Triton optimizations largely transfer to unseen input shapes, while PyTorch-to-HIP exhibits substantial correctness drops, indicating that agents generating kernels from scratch frequently hardcode shape-specific assumptions. AgentKernelArena is designed as a modular, extensible framework for rigorous evaluation of agentic GPU kernel optimization across agents, tasks, and hardware targets. Code and data are available at \\url{https://github.com/AMD-AGI/AgentKernelArena/tree/v0.0-neurips2026}.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=Twe3Jz6Q0V",
+  "arxiv": "https://arxiv.org/abs/2605.16819",
+  "pdf": "https://arxiv.org/pdf/2605.16819",
+  "proceedings": null,
+  "virtual": "https://neurips.cc/virtual/2026/poster/139376",
+  "code": null
+ },
+ "license": "http://creativecommons.org/licenses/by-nc-nd/4.0/",
+ "img": "none",
+ "image_url": null,
+ "thumb_url": null,
+ "figure_page": 3,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.9
+}

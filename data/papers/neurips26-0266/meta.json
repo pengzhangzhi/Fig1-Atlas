@@ -1,0 +1,48 @@
+{
+ "id": "neurips26-0266",
+ "title": "HIST3R: Decomposing and Rectifying State Updates with History for Streaming 3D Reconstruction",
+ "authors": [
+  "Kenneth Yang",
+  "Frank Wang"
+ ],
+ "venue": "NeurIPS 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "Computer Vision->3D Rendering & Reconstruction",
+ "role": "prior-vs-ours",
+ "role2": "concept",
+ "claim": "Prior update rules either commit state blindly or only rescale update strength; ours also corrects update direction using history.",
+ "layout": "3 side-by-side colored columns, left-to-right, with input frames column at left",
+ "tags": [
+  "recurrent-state",
+  "training-free",
+  "streaming-reconstruction",
+  "direction-magnitude-decomposition",
+  "long-horizon-drift"
+ ],
+ "style": [
+  "colorful",
+  "math-heavy",
+  "photo/real data"
+ ],
+ "description": "Three vertical panels, color-coded brown (CUT3R), green (TTT3R) and blue (HIST3R, marked with a red star). A column of input video frames sits at the far left. Each panel has a rendered 3D point-cloud reconstruction of an office scene at the top. CUT3R's cloud is smeared and ghosted, while TTT3R and HIST3R are progressively cleaner. Below the cloud is the update equation S_t = S_{t-1} + m_t d_t in a rounded box. Under that is a schematic. CUT3R has a loop diagram and TTT3R/HIST3R have trajectory dots with red X marks on rejected candidate updates. At the bottom is a vector diagram of update gain and geometric intent. TTT3R keeps the direction fixed, and HIST3R draws a rotated, rectified blue arrow in pink text. Colored title banners sit at the bottom of each panel.",
+ "caption": "A unified direction--magnitude view of recurrent state updates for long-sequence streaming 3D reconstruction. Update magnitude and direction correspond to update gain and geometric intent, respectively. CUT3R [ref] directly commits the candidate state, while magnitude-only CUT3R variants, represented by TTT3R [ref], rescale the candidate update magnitude but keep its direction fixed. HIST3R controls both components by rectifying the update direction and modulating the update magnitude, enabling more reliable long-horizon state evolution.",
+ "caption_source": "latex",
+ "abstract": "Streaming 3D reconstruction with recurrent states enables long-video scene understanding under bounded memory, but turns reconstruction into a state-evolution problem: each incoming frame updates a compact scene memory on which all subsequent predictions depend, so unreliable updates overwrite historical context and accumulate into long-horizon geometric drift. We analyze CUT3R-style recurrent updates through a direction--magnitude decomposition, in which the magnitude sets the update gain, i.e., how strongly an observation is written into the state, and the direction encodes the geometric intent, i.e., where the update drives the state. This decomposition provides a unified view of CUT3R and its variants, revealing that existing training-free extensions perform magnitude-only control: they can attenuate an unreliable update but cannot correct its direction. We propose HIST3R, a training-free framework built on CUT3R that controls both components using history. HIST3R rectifies the update direction using locally consistent historical states, and modulates the update magnitude according to the visual discrepancy between the current observation and its history, suppressing redundant updates while preserving complementary evidence. Across camera pose estimation, 3D reconstruction, and video depth estimation, HIST3R consistently improves long-horizon performance while retaining the memory footprint and inference speed of CUT3R. With 1000 input frames, it reduces ATE by 23.87% on ScanNet and 33.65% on TUM-Dynamics relative to the strongest competing method; with 500 frames, it improves median reconstruction accuracy over the strongest CUT3R-based variant by 56.52% on 7-Scenes and 33.96% on NRGBD.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=1vnqEsI3RD",
+  "arxiv": "https://arxiv.org/abs/2611.12011",
+  "pdf": "https://arxiv.org/pdf/2611.12011",
+  "proceedings": null,
+  "virtual": "https://neurips.cc/virtual/2026/poster/155909",
+  "code": null
+ },
+ "license": "http://creativecommons.org/licenses/by/4.0/",
+ "img": "cc-by",
+ "image_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/images/neurips26-0266.png",
+ "thumb_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/thumbs/neurips26-0266.webp",
+ "figure_page": 1,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.85
+}

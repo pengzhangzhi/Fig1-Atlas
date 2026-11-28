@@ -1,0 +1,49 @@
+{
+ "id": "neurips26-4487",
+ "title": "Overcoming Rank Collapse in Feedback Alignment",
+ "authors": [
+  "Gauthier Boeshertz",
+  "Razvan Pascanu",
+  "Claudia Clopath"
+ ],
+ "venue": "NeurIPS 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "Applications->Neuroscience, Cognitive Science",
+ "role": "analysis-finding",
+ "role2": null,
+ "claim": "Credit-assignment methods with fixed random feedback degrade with depth because their updates collapse into a low-dimensional subspace, unlike exact gradient methods.",
+ "layout": "8 line-plot panels in 2 rows of 4, shared legends below",
+ "tags": [
+  "feedback-alignment",
+  "effective-rank",
+  "low-dimensional-gradients",
+  "depth-scaling",
+  "bp-vs-fa"
+ ],
+ "style": [
+  "plot",
+  "colorful",
+  "text-heavy"
+ ],
+ "description": "A two-row grid of eight line plots under the title 'Pathologies of FA in CNNs'. Panel A plots accuracy against number of layers. The backpropagation curves (blue) rise with depth, while the feedback alignment curves (orange) fall. Panels B to H plot metrics against training steps for the 4-layer model: accuracy over training, weight alignment, gradient alignment, gradient dimensionality, gradient trajectory dimensionality, similarity of gradients at t and t+1, and feature dimensionality. Blue is BP and orange is FA. Line style marks the optimiser, dotted for SGD and dashed for AdamW. Orange shades from light to dark mark layers L1 to Out in panels C and D. Shaded bands show variance. The blue and orange gaps in panels E, F and H are the main visual contrast, with FA effective rank far lower. Legends sit between the rows and at the bottom.",
+ "caption": "\\textbf{\\ac{FA} suffers from low dimensional gradients.} A Increasing the number of layers results in lower performance in \\ac{FA} networks. B-H Metrics for the 4 convolutional layer model. B The process of feedback alignment makes the \\ac{FA} network converge much later than \\ac{BP} networks. C Weight alignment measured by the cosine similarity of the forward and feedback weights. The upper layers align, but the bottom layers do not. D Gradient alignment measured by the cosine similarity of the gradient obtained using the feedback weight and the transpose of the forward weights for the feedback projections. Again, the upper layers align, but the bottom layers do not. E Rank of the gradient in the last convolutional layer. The \\ac{FA} networks have much lower dimensionality. F Effective rank of the Gram matrix of the gradients. Again, \\ac{FA} networks have much lower dimensionality. G Cosine similarity of the gradients at step t and t+1. \\ac{FA} networks have similar gradients, which explains the low-dimensional gradient trajectory. H Possibly due to the low-dimensional gradients, the feature dimensionality is much lower than for the \\ac{BP} models.",
+ "caption_source": "latex",
+ "abstract": "Backpropagation (BP) is widely viewed as biologically implausible, in part because it requires feedback weights to be the transpose of forward weights for error propagation. Interestingly, when training a network with fixed random feedback weights to circumvent this issue, learning aligns the forward weights with the feedback weights, leading the backpropagated error signal to become an approximation of the standard gradient used by BP. This process, called Feedback Alignment (FA), occurs in MLPs and very shallow CNNs but does not scale well to deeper architectures. In this work, we first investigated differences between BP and FA models, trained on CIFAR10, specifically focusing on the effective rank of the signal. We found that the FA error has a considerably lower rank and hence is constrained to a lower-dimensional subspace compared to BP, limiting exploration of the parameter space. Motivated by this observation, we evaluated two mechanisms for increasing the effective dimensionality of FA: Muon, an optimiser that orthogonalises weight updates; and hidden activity normalisation, which promotes activation orthogonality. Across larger architectures and benchmarks, we find that these methods consistently improve over FA baselines, for example, on CIFAR100 with a Resnet-18, accuracy increases by 9 percentage points. Our results identify low-dimensional gradient dynamics as a key obstacle to scaling FA and suggest that inducing higher-dimensional update geometry is a promising route toward scaling alternatives to backpropagation.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=V0LvPorUoL",
+  "arxiv": "https://arxiv.org/abs/2606.11123",
+  "pdf": "https://arxiv.org/pdf/2606.11123",
+  "proceedings": null,
+  "virtual": "https://neurips.cc/virtual/2026/poster/152172",
+  "code": null
+ },
+ "license": "http://creativecommons.org/licenses/by/4.0/",
+ "img": "cc-by",
+ "image_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/images/neurips26-4487.png",
+ "thumb_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/thumbs/neurips26-4487.webp",
+ "figure_page": 3,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.9
+}

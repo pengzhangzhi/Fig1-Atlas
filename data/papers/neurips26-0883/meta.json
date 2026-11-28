@@ -1,0 +1,48 @@
+{
+ "id": "neurips26-0883",
+ "title": "Actionable Hallucination Detection: Translating Latent Uncertainty into Agentic Critique",
+ "authors": [
+  "Sanidhya Vijayvargiya",
+  "Rahul Lokesh"
+ ],
+ "venue": "NeurIPS 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "Applications->Language, Speech and Dialog",
+ "role": "problem-setup",
+ "role2": "pipeline",
+ "claim": "An agent's hallucinated action is caught by a concurrent critic, which blocks execution and returns localized feedback that triggers self-correction.",
+ "layout": "single column dialogue, top-to-bottom, color-coded speech boxes with agent icons",
+ "tags": [
+  "agentic-critique",
+  "hallucination-detection",
+  "tool-calling",
+  "closed-loop",
+  "self-correction"
+ ],
+ "style": [
+  "icon-heavy",
+  "colorful",
+  "text-heavy"
+ ],
+ "description": "A vertical chat-style transcript of a flight-booking interaction. A user icon with a phone sits beside a blue box reading 'I want to book a flight to Sydney'. A green-bordered AI robot response shows a JSON book_flight call, with the hallucinated values 'New York' and '2026-05-15' in red. Below it, a large red-filled warning box with an orange alert triangle reads 'Warning from Latent Critic: Tool parameters \"from\" and \"departure_date\" are ungrounded', with the key terms in purple. The robot then asks 'Where are you flying from and when?'. The user answers in a blue box with Melbourne and March 26, 2027. The robot issues a corrected JSON call, and a yellow-bordered tool box with a wrench icon shows the search results. The red warning box draws the eye first.",
+ "caption": "The closed-loop agentic architecture. When the frozen base model generates a hallucinated parameter, the Latent Critic concurrently extracts the specification-grounding failure, blocking execution and feeding the localized error back as a zero-shot environmental observation.",
+ "caption_source": "latex",
+ "abstract": "Large Language Models (LLMs) deployed as AI agents frequently exhibit user specification-grounding failures, executing hallucinated, undesired actions to force a resolution rather than expressing uncertainty. Existing detection methods fail to provide actionable, real-time correction as they either do not localize the hallucinations, or incur prohibitive inference latency. We introduce the Latent Critic, a lightweight low-rank adapter (LoRA) that operates concurrently with a frozen base LLM's generation to actively restructure the transformer's residual stream---amplifying latent grounding signals and translating them into localized, natural language feedback within a single sequence. By refining the base model's native uncertainty signals, this manipulation of the latent space enables reliable, granular detection without the overhead of secondary inference loops. Mechanistic analysis via activation patching and layer-wise probing shows that this rank-invariant behavior restructures pre-existing uncertainty geometry into a linearly separable representation that transfers more reliably than base model representations alone. Using tool-calling as an instantiation of granular hallucinations, we validate the detection and downstream improvements enabled by the Latent Critic architecture across Qwen and Llama-based models. Demonstrating superior real-time efficacy, our approach significantly outperforms equivalent-scale fine-tuned external detectors, semantic entropy baselines, and passive internal probes in isolating hallucinations, achieving 0.966 AUROC and >80% accuracy in localization (e.g., ungrounded: date). When deployed in a closed-loop ReAct environment, the Critic acts as a negligible latency guardrail, intercepting hallucinations before execution to prevent undesired actions while simultaneously leveraging this specific localized feedback to enable efficient agent self-correction.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=6CdA8QbHL5",
+  "arxiv": "https://arxiv.org/abs/2608.10430",
+  "pdf": "https://arxiv.org/pdf/2608.10430",
+  "proceedings": null,
+  "virtual": "https://neurips.cc/virtual/2026/poster/155358",
+  "code": null
+ },
+ "license": "http://arxiv.org/licenses/nonexclusive-distrib/1.0/",
+ "img": "none",
+ "image_url": null,
+ "thumb_url": null,
+ "figure_page": 1,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.5
+}

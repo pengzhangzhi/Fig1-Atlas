@@ -1,0 +1,50 @@
+{
+ "id": "neurips26-7901",
+ "title": "FOAM: Factored One-sided Adam-Moment for Practical and Scalable SOAP",
+ "authors": [
+  "Jaemyung Yu",
+  "Byeongho Heo",
+  "Sangdoo Yun",
+  "Dongyoon Han"
+ ],
+ "venue": "NeurIPS 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "Optimization->Neural Network Optimization",
+ "role": "teaser-result",
+ "role2": "analysis-finding",
+ "claim": "Our method matches the strongest costly baseline's per-step quality while running at the wall-clock cost of the cheap baseline.",
+ "layout": "3 panels, left-to-right, zoomed insets on curves, bar chart at right",
+ "tags": [
+  "pareto-efficiency",
+  "optimizer",
+  "wall-clock",
+  "second-order",
+  "efficiency-tradeoff"
+ ],
+ "style": [
+  "plot",
+  "colorful",
+  "minimal"
+ ],
+ "description": "A shared legend runs across the top, with four methods color-coded: AdamW in thick grey, Muon as a dashed dark line, SOAP in blue-purple, and FOAM in bold green. Panel (a) plots validation loss against training step in thousands. All curves fall steeply and then flatten, and a magnified inset shows SOAP and FOAM just below Muon. Panel (b) plots the same runs against wall-time relative to AdamW. The SOAP curve extends out to about 2.3x, while FOAM ends near 1.17x. An inset marks a 0.04 loss gap below AdamW's final loss. Panel (c) is a bar chart of time to reach AdamW's final loss. AdamW, Muon and FOAM are about 10.5 to 11.1 h, and SOAP is a tall pale-purple bar at 22.7 h. A dashed horizontal line marks the AdamW level. The eye goes first to the green FOAM curves and the tall SOAP bar.",
+ "caption": "FOAM is a Pareto-efficient second-order optimizer. GPT-2 large (760M), $29.55$K steps, each optimizer at its tuned learning rate. Curves are $3$-seed means smoothed over $1$K steps, and grey boxes mark the regions magnified in the insets. (a) Per-step. Validation loss against training step. In the last $4$K steps (inset) SOAP ends slightly below FOAM ($2.791$ vs.\\ $2.796$, within about one seed std), both below Muon, while AdamW stays above the inset range. (b) Wall-clock. Same runs vs.\\ wall time, normalized so AdamW finishes at $1.0\\times$ (Muon, FOAM, and SOAP finish at $1.15\\times$, $1.17\\times$, and $2.31\\times$). Within AdamW's own budget, FOAM is already $0.04$ nats below AdamW's final loss (inset), and it reaches SOAP's quality band at $51%$ of SOAP's wall-clock time. (c) Time to AdamW's final loss ($2.847$; Table [ref]). FOAM gets there as fast as AdamW itself ($10.53$ vs.\\ $10.55$\\,h) and slightly ahead of Muon, while bilateral SOAP needs $2.15\\times$ as long.",
+ "caption_source": "latex",
+ "abstract": "Second-order optimizers (e.g., Shampoo, SOAP) have emerged as compelling alternatives to Adam/AdamW and promise faster per-step convergence than AdamW in transformer training. However, they still remain costly in practice, and even SOAP still pays substantial optimizer-state memory and eigendecomposition overhead. We ask whether the benefits of SOAP can be retained at nearly the efficiency of AdamW. In this paper, we answer yes with a lightweight SOAP variant, Factored One-sided Adam-Moment (FOAM). The path to practical impact is twofold: first, FOAM employs input-only preconditioning, dropping the output-side Kronecker factor to reduce memory and remove one eigendecomposition. The Kronecker structure of the Hessian shows that this is exact for a diagonal output-side curvature and nearly lossless for a near-diagonal one, as we observe empirically. Second, FOAM replaces SOAP's dense rotated second moment with a factored Adam-moment estimator based on row-by-column statistics. Under the K-FAC Fisher assumption with a diagonal output curvature, this estimator exactly recovers SOAP's dense second moment, and we measure only a 15-20% K-FAC violation, with negligible effect on the update. Our empirical results support the claim that FOAM matches strong SOAP and Muon baselines in validation loss across scales of large language model (LLM) pre-training, uses half of SOAP's optimizer state, runs at Muon-class wall-clock time, and retains robustness across a three-fold learning-rate range. The results hold from 124M to 760M parameters, demonstrating that SOAP's gains need not require SOAP's cost. Code: https://github.com/naver-ai/foam",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=sjGaILUb1z",
+  "arxiv": "https://arxiv.org/abs/2611.16905",
+  "pdf": "https://arxiv.org/pdf/2611.16905",
+  "proceedings": null,
+  "virtual": "https://neurips.cc/virtual/2026/poster/149122",
+  "code": "https://github.com/naver-ai/foam"
+ },
+ "license": "http://creativecommons.org/licenses/by/4.0/",
+ "img": "cc-by",
+ "image_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/images/neurips26-7901.png",
+ "thumb_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/thumbs/neurips26-7901.webp",
+ "figure_page": 1,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.85
+}

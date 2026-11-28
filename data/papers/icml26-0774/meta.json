@@ -1,0 +1,54 @@
+{
+ "id": "icml26-0774",
+ "title": "Breaking the Echo Chamber: A Dynamic Ensemble Pruning Perspective on MoE",
+ "authors": [
+  "Xinlai Kang",
+  "Dunyao Xue",
+  "Zhengbo Wang",
+  "Chengshuo Du",
+  "Xinghao Chen",
+  "Hang Zhou",
+  "Hanting Chen",
+  "Cheng Meng"
+ ],
+ "venue": "ICML 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "Deep Learning->Large Language Models",
+ "role": "prior-vs-ours",
+ "role2": "pipeline",
+ "claim": "Standard routing picks experts from input scores alone; ours adds a stored co-occurrence covariance to rescore for diversity.",
+ "layout": "2 panels left-to-right, shared MoE backbone, extra router module on right",
+ "tags": [
+  "mixture-of-experts",
+  "routing",
+  "plug-and-play",
+  "diversity",
+  "covariance"
+ ],
+ "style": [
+  "colorful",
+  "icon-heavy",
+  "minimal"
+ ],
+ "description": "Two side-by-side block diagrams separated by a vertical line. The left panel, 'Classic MoE', shows inputs flowing up to a blue box of experts (Expert 1, 2 dashed, 3, ..., n). A classic router with a small orange bar chart produces gating weights, drawn as gold arrows into multiply and add nodes that combine expert outputs. The right panel, 'MP-MoE (Ours)', repeats the same backbone. It adds a second rounded box, 'MP-MoE Router', on the right. In that box, expert outputs feed a red heatmap co-occurrence matrix C stored in memory. C is updated into an experts covariance matrix Σ. Σ rescores the classic router's score P into the Mahalanobis score P', and P' becomes the gating weights. Gold boxes mark the new components. The eye goes first to the red heatmap and the added router box.",
+ "caption": "A comparison between the classic MoE architecture (left) and our MP-MoE architecture (right). MP-MoE extends the standard",
+ "caption_source": "pdf",
+ "abstract": "We introduce Mahalanobis-Pruned Mixture-of-Experts (MP-MoE), a novel routing framework that approaches expert selection from the perspective of ensemble pruning. Existing Mixture-of-Experts (MoE) routing strategies often suffer from representation collapse due to greedy top-k selection mechanisms or rely on complex auxiliary regularization terms that may compromise model performance. To address these issues, we formulate routing as a diversity-aware subset selection problem and optimize a Mahalanobis-distance-based objective that explicitly enhances expert diversity. Specifically, we demonstrate that the expert co-occurrence matrix effectively captures inter-expert correlations, allowing us to efficiently model the covariance structure required for distance computation without accessing expert parameters. Furthermore, we devise a greedy strategy for the routing mechanism, backed by theoretical approximation guarantees, rendering it a plug-and-play module with negligible overhead. MP-MoE increases wall-clock training time by approximately 3\\%, while incurring no additional latency at inference time. Extensive experiments demonstrate that during the pre-training of the large language model, our method consistently outperforms the baseline by 1-3 percentage points across a broad range of benchmarks.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=7FsbfQgti4",
+  "arxiv": null,
+  "pdf": "https://raw.githubusercontent.com/mlresearch/v306/main/assets/kang26q/kang26q.pdf",
+  "proceedings": "https://proceedings.mlr.press/v306/kang26q.html",
+  "virtual": "https://icml.cc/virtual/2026/poster/66075",
+  "code": "https://github.com/kxlkxl1999/MP-MoE"
+ },
+ "license": null,
+ "img": "none",
+ "image_url": null,
+ "thumb_url": null,
+ "figure_page": 3,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.8
+}

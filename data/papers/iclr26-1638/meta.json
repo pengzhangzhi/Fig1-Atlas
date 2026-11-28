@@ -1,0 +1,57 @@
+{
+ "id": "iclr26-1638",
+ "title": "MeSH: Memory-as-State-Highways for Recursive Transformers",
+ "authors": [
+  "Chengting Yu",
+  "Xiaobo Shu",
+  "Yadao Wang",
+  "Yizhen Zhang",
+  "Haoyi Wu",
+  "Jiaang Li",
+  "Rujiao Long",
+  "Ziheng Chen",
+  "Yuchi Xu",
+  "wenbo su",
+  "Bo Zheng"
+ ],
+ "venue": "ICLR 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": null,
+ "role": "analysis-finding",
+ "role2": "problem-setup",
+ "claim": "Recursive models show pathologies across iterations: later loops do little work, states stagnate, and representations collapse in rank.",
+ "layout": "3 panels in a row; bar chart, heatmap, line plot; blue dashed callouts",
+ "tags": [
+  "recursive-transformers",
+  "diagnostic-probing",
+  "representation-collapse",
+  "bottleneck-analysis",
+  "parameter-sharing"
+ ],
+ "style": [
+  "plot",
+  "colorful",
+  "photo/real data"
+ ],
+ "description": "A single row of three diagnostic plots, each with a caption below. (a) A bar chart of relative computational effort for the prelude, three core loop iterations and the coda. Prelude, first core and coda bars are tall, while the 2nd and 3rd core bars are tiny and boxed in a dashed blue rectangle. A dashed arrow is labeled 'diminishing returns'. (b) A 6x6 magma-colored CKA similarity heatmap over h_emb, h(0) to h(3) and h_out, with numeric values in the cells. A dashed cyan box marks the 'high similarity region' among the loop states. (c) A log-scale line plot of normalized singular values versus index, with shaded bands and one curve per state. The h(2) and h(3) curves drop to a shaded 'collapsed states' zone. The blue italic annotations draw the eye first.",
+ "caption": "Diagnostic visualizations of the recursive transformer. Analyses are performed on a Pythia-410M-based model with the Prelude-Reccurent-Coda architecture (3 core loops). Hidden state matrices ($h \\in \\mathbb{R}^{seq \\times dim}$) are extracted from 500 samples from the Pile dataset. The states $h_{emb}, h^{(0)} \\dots h_{out}$ refer to the initial token embeddings, the states to each block, and the final output state. We leave further experimental details and analysis to Section [ref]. (a) Skewed computational pattern. Plots the relative magnitude of the state update, calculated for each computational block ($f$) as $2||f(h) - h||_F / (||f(h)||_F + ||h||_F)$, where $||\\cdot||_F$ is the Frobenius norm, which serves as a proxy for the computational effort of each block. {The x-axis tracks the flow from Prelude through consecutive Core iterations to Coda within the common Prelude-Recurrent-Coda structure [ref].} Bars show the mean and standard deviation across 500 samples. (b) Representational stagnation. Displays the pairwise Centered Kernel Alignment (CKA) [ref] similarity with an RBF kernel between the hidden state matrices. {High CKA values between consecutive loop states ($h^{(t)}, h^{(t+1)}$) indicate that the representation has ceased to evolve, trapping the model in a fixed point.} (c) Loop representational collapse. Shows the top 50 normalized singular values ($\\sigma_i / \\sigma_0$) for each hidden state matrix on a logarithmic Y-axis. The decay rate of the spectrum indicates the effective rank or intrinsic dimensionality of each state matrix.",
+ "caption_source": "latex",
+ "abstract": "Recursive transformers reuse parameters and iterate over hidden states multiple times, decoupling compute depth from parameter depth. However, under matched compute, recursive models with fewer parameters often lag behind non-recursive counterparts. By probing hidden states, we trace this performance gap to two primary bottlenecks: undifferentiated computation, where the core is forced to adopt a similar computational pattern at every iteration, and information overload, where long-lived and transient information must coexist in a single hidden state. To address the issues, we introduce a Memory-as-State-Highways (MeSH) scheme, which externalizes state management into an explicit memory buffer and employs lightweight routers to dynamically diversify computation across iterations. Probing visualizations confirm that MeSH successfully resolves the pathologies by inducing functional specialization across iterations. On the Pythia suite (160M-6.9B), MeSH-enhanced recursive transformers consistently improve over recursive baselines and outperforms its larger non-recursive counterpart at the 1.4B scale, improving average downstream accuracy by +1.06% with 33% fewer non-embedding parameters. Our analysis establishes MeSH as a scalable and principled architecture for building stronger recursive models. Our code is available at https://github.com/LivingFutureLab/MeSH/ .",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=IhTrFvY7p3",
+  "arxiv": "https://arxiv.org/abs/2510.07739",
+  "pdf": "https://proceedings.iclr.cc/paper_files/paper/2026/file/ef12378d988ef4dac37b200d1906056a-Paper-Conference.pdf",
+  "proceedings": "https://proceedings.iclr.cc/paper_files/paper/2026/hash/ef12378d988ef4dac37b200d1906056a-Abstract-Conference.html",
+  "virtual": "https://iclr.cc/virtual/2026/poster/10010276",
+  "code": null
+ },
+ "license": "http://arxiv.org/licenses/nonexclusive-distrib/1.0/",
+ "img": "none",
+ "image_url": null,
+ "thumb_url": null,
+ "figure_page": 1,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.85
+}

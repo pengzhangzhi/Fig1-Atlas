@@ -1,0 +1,49 @@
+{
+ "id": "neurips26-2787",
+ "title": "Beyond Scalar Distances: Semantic Attribute Gradients from Frozen MLLMs for Visual Embeddings",
+ "authors": [
+  "Shubhang Bhatnagar",
+  "Dheeraj Baiju",
+  "Narendra Ahuja"
+ ],
+ "venue": "NeurIPS 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "Computer Vision->Vision Models & Multimodal",
+ "role": "problem-setup",
+ "role2": "concept",
+ "claim": "A class-label loss collapses a pair to one 'different' scalar, while an MLLM resolves it into matching and differing attributes.",
+ "layout": "3 columns: image, central comparison table, image; highlighted differing row",
+ "tags": [
+  "attribute-supervision",
+  "fine-grained-retrieval",
+  "mllm-feedback",
+  "metric-learning",
+  "supervision-granularity"
+ ],
+ "style": [
+  "photo/real data",
+  "text-heavy",
+  "minimal"
+ ],
+ "description": "A horizontal three-part figure. On the left is a photo of an Indigo Bunting, a solid blue bird perched on a blue wire. On the right is a photo of a Blue Grosbeak, a blue bird with orange wing patches on a branch. The center has two rounded boxes. The top box reads 'Class-label supervision: different', with 'different' in brown italics. The lower box, titled 'MLLM supervision', is a table with columns for attribute name, Image 1 and Image 2. The rows are Primary Color (Blue, Blue), Leg color (Gray, Gray), Wing pattern (solid blue vs. blue with orange patch) and Belly color (Blue, Blue). The wing pattern row is highlighted yellow. The table ends with 'MLLM Verdict: Different Species'. The eye goes first to the two bird photos, then to the highlighted row.",
+ "caption": "Using only class labels for images reduces supervision to a scalar, whereas an MLLM resolves it into attributes. A class-label loss collapses the difference between two very similar-looking bird species into a single `different' scalar, pushing every embedding dimension apart, even those potentially encoding shared attributes like blue plumage and leg color. A frozen MLLM, by contrast, can identify which attributes match and include them in reaching the same-/different-species verdict. Our method, SAGA, harnesses this by rewarding correct verdicts and reinforcing precisely those feature components (directions) that the MLLM's discrimination relies on, while leaving shared-attribute directions untouched.",
+ "caption_source": "latex",
+ "abstract": "Vision encoders for retrieval are typically trained with class-label supervision: each training pair reduces to a scalar that uniformly pushes the embedding apart or pulls it together, as if every visual attribute either differed or matched. A multimodal large language model (MLLM), shown the same pair, can articulate those attributes and use them to predict whether the images share a class. We propose \\textbf{SAGA}, a framework that turns this language-grounded, attribute-aware perception into a training signal for the encoder itself. Specifically, we use Group Relative Policy Optimization (GRPO) to reward the MLLM for correct predictions on the vision encoder's tokens. Since correct predictions require those tokens to expose the specific attributes that differ or match between the pair, the gradient pushes the encoder to encode them, replacing the uniform pair-level scalar with attribute-resolved supervision. An auxiliary attention-distillation loss anchors the encoder's embedding to tokens the MLLM attended to, and a standard metric-learning loss shapes the embedding geometry for nearest-neighbour retrieval. The MLLM is frozen throughout and discarded at inference, matching the deployment cost of a metric-learning baseline. SAGA improves Recall@1 by 3 to 6 points over state-of-the-art baselines on CUB-200-2011, Cars-196, FGVC-Aircraft, and iNaturalist Aves on zero-shot image retrieval.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=JddD3RHEz2",
+  "arxiv": "https://arxiv.org/abs/2606.15134",
+  "pdf": "https://arxiv.org/pdf/2606.15134",
+  "proceedings": null,
+  "virtual": "https://neurips.cc/virtual/2026/poster/153671",
+  "code": "https://shubhangb97.github.io/saga/"
+ },
+ "license": "http://creativecommons.org/licenses/by/4.0/",
+ "img": "cc-by",
+ "image_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/images/neurips26-2787.png",
+ "thumb_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/thumbs/neurips26-2787.webp",
+ "figure_page": 1,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.6
+}

@@ -1,0 +1,51 @@
+{
+ "id": "neurips26-6600",
+ "title": "Steering Vectors as a Training Signal in LLM Post-Training",
+ "authors": [
+  "Tiejin Chen",
+  "Maunil R Vyas",
+  "Huaiyuan Yao",
+  "Hua Wei"
+ ],
+ "venue": "NeurIPS 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "Applications->Language, Speech and Dialog",
+ "role": "pipeline",
+ "role2": "overview-framework",
+ "claim": "A precomputed displacement direction is injected into supervised training and used to repair zero-signal rollout groups in reinforcement learning, as one unified framework.",
+ "layout": "3 panels left-to-right, colored headers, dashed red gradient-flow lines",
+ "tags": [
+  "steering-vectors",
+  "post-training",
+  "reinforcement-learning",
+  "supervised-finetuning",
+  "hidden-state-intervention"
+ ],
+ "style": [
+  "colorful",
+  "icon-heavy",
+  "math-heavy",
+  "text-heavy"
+ ],
+ "description": "A wide three-panel figure with colored headers: blue (A) Precompute Steering Vector, teal (B) Supervised Regime, orange (C) Reinforcement Learning Regime. Panel A shows a prompt document feeding two frozen LLM paths, reference and prediction, each pooling answer-token hidden states. Below them, the equation V = h_ref − h_pred appears next to dataset-level and sample-level green checkmarks. Panel B shows prompt plus label feeding a trainable LLM (flame icon). Answer-token positions are selected, and the vector V is injected by mean-SV additive or per-sample Slerp, passing through downstream layers to steered logits and a cross-entropy loss. A dashed red gradient arrow loops back to the model. Panel C shows prompt → trainable LLM → rollouts and rewards grid. Hidden states give SV alignment scores Z_sv. SV-Rescue augments advantages on wrong rollouts, SV-Explore applies temperature control, and a GRPO update closes the loop with a red dashed gradient.",
+ "caption": "Overall framework. Panel (A) precomputes the off-policy displacement vector, which serves as the injection signal for the Supervised Regime in (B). In parallel, the Reinforcement Learning Regime in (C) applies the steering mechanism independently to rescue zero-variance rollout groups.",
+ "caption_source": "latex",
+ "abstract": "Steering vectors (SVs) are residual-stream directions that shift the behavior of LLMs when added to hidden states at inference time. While prior work has mainly used SVs as post-hoc controls, we ask whether the same directions can also guide parameter updates during post-training. We study this question across supervised learning, including SFT and distillation, and reinforcement learning with verifiable rewards (RLVR). Our framework considers two intervention regimes: a hidden-state hook during teacher-forced supervised training, and an advantage-repair mechanism on wrong rollouts in GRPO. For each regime, we analyze three design axes, which are the steering direction, its placement, and the operation used to combine it with training. In supervised settings, SV injection improves over plain SFT and distillation, with gains scaling with the off-policy gap and reaching up to a $12\\%$ improvement when distilling from thinking-mode teachers. These gains hold across three random seeds. In RL settings, applying a correctness-contrast direction as advantage repair on wrong rollouts, including otherwise zero-gradient all-wrong groups, recovers a learning signal that transfers to held-out math benchmarks and acts as a composable auxiliary signal that adds to existing zero-variance remedies such as entropy-aware advantage shaping. We further identify three failure boundaries. In detail, code generation can break the direction, cross-family layer transfer can break the placement, and inference-time application on an SV-trained checkpoint can break the intervention regime. Together, these results establish steering vectors as a conditional but effective training signal for LLM post-training. Our code is available here.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=jMVLPhJP73",
+  "arxiv": "https://arxiv.org/abs/2610.40998",
+  "pdf": "https://arxiv.org/pdf/2610.40998",
+  "proceedings": null,
+  "virtual": "https://neurips.cc/virtual/2026/poster/150277",
+  "code": "https://github.com/tiejin98/sv_training"
+ },
+ "license": "http://creativecommons.org/licenses/by/4.0/",
+ "img": "cc-by",
+ "image_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/images/neurips26-6600.png",
+ "thumb_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/thumbs/neurips26-6600.webp",
+ "figure_page": 3,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.85
+}

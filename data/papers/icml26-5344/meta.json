@@ -1,0 +1,53 @@
+{
+ "id": "icml26-5344",
+ "title": "SparseOpt: Addressing Normalization-induced Gradient Skew in Sparse Training",
+ "authors": [
+  "Adnan Mohammed",
+  "Rohan Jain",
+  "Tom Jacobs",
+  "Ekansh Sharma",
+  "Rahul G. Krishnan",
+  "Rebekka Burkholz",
+  "Yani Ioannou"
+ ],
+ "venue": "ICML 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "General Machine Learning->Everything Else",
+ "role": "concept",
+ "role2": "prior-vs-ours",
+ "claim": "A normalization-induced rescaling that is uniform in a dense layer becomes non-uniform under sparsity, rotating and scaling the gradient.",
+ "layout": "3 panels, left-to-right: dense net, sparse net, 2-D gradient vector plot",
+ "tags": [
+  "gradient-skew",
+  "sparse-training",
+  "batch-normalization",
+  "toy-example",
+  "geometric-intuition"
+ ],
+ "style": [
+  "minimal",
+  "math-heavy",
+  "plot"
+ ],
+ "description": "Three panels, read left to right. (a) shows a dense two-neuron layer: two grey input circles connect to two grey output circles by four solid dark arrows in a crossing pattern, with outputs labeled x0 and x1. (b) shows the same layer with one connection, from the left input to the right output, drawn as a dashed orange arrow to mark a masked weight. The outputs are relabeled x0' and x1'. (c) is a 2-D axis plot with the horizontal axis ∂L/∂x0 and the vertical axis ∂L/∂x1. A dark grey vector for the dense gradient (∂L/∂x0, ∂L/∂x1) sits beside a steeper, longer orange vector for the sparse gradient (∂L/∂x0', ∂L/∂x1') = (∂L/∂x0, √2 ∂L/∂x1). The orange color links the masked connection to the skewed gradient. Italic captions (a) dense layer, (b) sparse layer and (c) gradient skew sit under the panels.",
+ "caption": "Batch Normalization causes gradient skew in sparse layers. \\gls{bn} scales gradients based on the variance for neurons in a dense layer (\\subref{subfig:dense_layer}). However, in a sparse layer with masked weights (dashed lines) (\\subref{subfig:sparse_layer}), this can have the effect of scaling each gradient component differently. This non-uniform scaling effectively skews, i.e.\\ rotates and scales, the gradient for a sparse layer (\\subref{subfig:gradient_skew}). In (\\subref{subfig:sparse_layer}), neuron $i=1$ with pre-activation $x^\\prime_1$ has sparsity $s_{1}=0.5$. From [ref], $\\sfrac{\\partial L}{\\partial x^\\prime_1}$ will be scaled by a factor of $\\sfrac{1}{\\sqrt{1-s_i}} = \\sfrac{1}{\\sqrt{0.5}} = \\sqrt{2}$ relative to $\\sfrac{\\partial L}{\\partial x_1}$ in an equivalent dense layer (\\subref{subfig:dense_layer}).",
+ "caption_source": "latex",
+ "abstract": "Dynamic Sparse Training (DST) methods train neural networks by maintaining sparsity while dynamically adapting the network topology. Despite the promise of reduced computation, DST methods converge significantly slower than dense training, often requiring comparable training time to achieve similar accuracy. We demonstrate both analytically and empirically that Batch Normalization (BN) adversely affects sparse training, and propose SparseOpt, a sparsity-aware optimizer, to address this. Experiments on ResNet models across CIFAR-100 and ImageNet demonstrate consistently faster convergence and improved generalization with our proposed method. Our work highlights the limitations of current normalization layers in sparse training and provides the first systematic study of the interaction between Batch Normalization, sparse layers, and DST, taking a significant step toward making DST practically competitive with dense training.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=o9JP7N8YO9",
+  "arxiv": "https://arxiv.org/abs/2605.27541",
+  "pdf": "https://raw.githubusercontent.com/mlresearch/v306/main/assets/adnan26a/adnan26a.pdf",
+  "proceedings": "https://proceedings.mlr.press/v306/adnan26a.html",
+  "virtual": "https://icml.cc/virtual/2026/poster/61647",
+  "code": null
+ },
+ "license": "http://creativecommons.org/licenses/by/4.0/",
+ "img": "cc-by",
+ "image_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/images/icml26-5344.png",
+ "thumb_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/thumbs/icml26-5344.webp",
+ "figure_page": 2,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.72
+}

@@ -1,0 +1,54 @@
+{
+ "id": "neurips26-4390",
+ "title": "Live Music Diffusion Models: Efficient Fine-Tuning and Post-Training of Interactive Diffusion Music Generators",
+ "authors": [
+  "Zachary Novack",
+  "Stephen Brade",
+  "Haven Kim",
+  "Hugo Flores",
+  "Nithya Shikarpur",
+  "Chinmay Talegaonkar",
+  "Julian McAuley",
+  "Taylor Berg-Kirkpatrick",
+  "Anna Huang"
+ ],
+ "venue": "NeurIPS 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "Applications->Everything Else",
+ "role": "pipeline",
+ "role2": "prior-vs-ours",
+ "claim": "Separating clean context from noisy targets with masked attention enables caching of fixed context, unlike standard block-autoregressive denoising that recomputes everything.",
+ "layout": "4 quadrants: baseline top-left, two variants right, application loop bottom-left",
+ "tags": [
+  "kv-caching",
+  "block-autoregressive",
+  "diffusion",
+  "efficiency",
+  "streaming"
+ ],
+ "style": [
+  "colorful",
+  "icon-heavy"
+ ],
+ "description": "The figure has four regions. Top left, in a boxed panel titled 'Standard Chunked-AR Diffusion', two steps of a DiT pipeline are shown. Each step concatenates a spectrogram context, with a black masked region, and a noisy spectrogram. The result goes through input project, DiT Blocks and output project, shown as green and orange blocks. A red arrow carries the output to the next step. A small attention grid sits next to the first step. On the right, 'Live Music Diffusion Models' shows Encoder-Decoder (top) and Block-Causal (bottom) variants. These split the input into separate blue 'clean project' and orange 'noisy project' paths. Pink 'Clean KV Cache' boxes feed the later steps. Dark green arrows show data flow and red arrows show recurrence. Bottom left is a circular loop. It links a performer icon, control inputs (a text prompt 'drum-n-bass', a sketch curve, notation, drums), the model v_θ and a guitar. The eye goes first to the colorful spectrograms and the green and pink module boxes.",
+ "caption": "Live Music Diffusion Models. Standard block-AR diffusion (top left) concatenates clean context with noisy states over all frames with full bidirectional attention, leaving no way to cache the context encoding despite it staying fixed for each block. LMDMs (right side) route the clean context and noisy target frames through separate projections and utilize custom attention masks to ensure clean context encoding is not impacted by the target frames, enabling KV-Caching over diffusion steps (in Enc-Dec, top-right) or both diffusion steps and or time (in Block-Causal, bottom right). LMDMs enable live interactive musical co-creation on consumer-grade hardware, modulating an array of possible controls in real time (bottom left).",
+ "caption_source": "latex",
+ "abstract": "Interactive streaming music generation promises the use of generative models for live performance and co-creation that is impossible with offline models. However, SOTA models exist in the discrete-AR regime, requiring industrial levels of compute for both training and inference. In this work, we investigate whether audio diffusion models, with their wide support in the open-source community but non-streaming bidirectional nature, can be repurposed efficiently into interactive models accessible on consumer hardware. By taking a critical look at the modern pipeline for block-wise outpainting diffusion, we identify critical inefficiencies during inference that result in strictly worse computational efficiency than their discrete-AR counterparts. We propose Live Music Diffusion Models (LMDMs), a simple modification of the generative diffusion process that recovers, and then outperforms, the inference complexity of the discrete Live Music Models (LMMs) through block-wise KV Caching. Unlike LMMs, LMDMs further enable stable post-training alignment through our novel ARC-Forcing paradigm, reducing error accumulation without any explicit RL or reward models. We demonstrate the application of LMDMs in a number of creative domains, including text-conditioned generation, sketch-based music synthesis, and jamming. We finally show how LMDMs can be used as a generative instrument in a real artist-AI collaboration, utilizing LMDMs as a \"generative delay\" to transform musicians' improvisation live for variable timbral effects while running locally on a consumer gaming laptop.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=URFsYfMwTM",
+  "arxiv": "https://arxiv.org/abs/2605.22717",
+  "pdf": "https://arxiv.org/pdf/2605.22717",
+  "proceedings": null,
+  "virtual": "https://neurips.cc/virtual/2026/poster/152252",
+  "code": null
+ },
+ "license": "http://arxiv.org/licenses/nonexclusive-distrib/1.0/",
+ "img": "none",
+ "image_url": null,
+ "thumb_url": null,
+ "figure_page": 1,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.6
+}

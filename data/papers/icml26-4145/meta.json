@@ -1,0 +1,52 @@
+{
+ "id": "icml26-4145",
+ "title": "SemRep : Generative Code Representation Learning with Code Transformations",
+ "authors": [
+  "Weichen Li",
+  "Jiamin Song",
+  "Bogdan Stoica",
+  "Arav Dhoot",
+  "Gabriel Ryan",
+  "Shengyu Fu",
+  "Kexin Pei"
+ ],
+ "venue": "ICML 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "General Machine Learning->Representation Learning",
+ "role": "prior-vs-ours",
+ "role2": "pipeline",
+ "claim": "Direct end-to-end transformation of code yields errors; first exposing semantics via an equivalent intermediate representation enables a correct, faster transformation.",
+ "layout": "3 panels: input top-left, baseline bottom-left, ours right; red vs green contrast",
+ "tags": [
+  "code-transformation",
+  "intermediate-representation",
+  "two-step",
+  "correctness",
+  "kernel-optimization"
+ ],
+ "style": [
+  "text-heavy",
+  "colorful"
+ ],
+ "description": "A three-panel figure built from code listings. The top-left blue panel, \"Input Program\", shows a PyTorch MSE loss module with the inefficient line highlighted and labeled \"Potentially Inefficient PyTorch APIs\". Below it, a red panel, \"Existing Methodology - Direct Transformation\", shows a CUDA kernel with red-highlighted faulty lines. The annotations read \"Missing tiling & Fusion\" and \"Output Shape Mismatch\", and the footer says \"Implementation Error\". The right green panel, \"SemRep\", has two steps. Step 1, \"Semantically Equivalent Code\", expands the computation explicitly and is marked \"Same Input-Output Behavior\". Step 2, \"Semantics-Grounded Transformation\", shows a fused kernel with shared-memory tiling, and the footer says \"Faster Kernel - Better Performance\". Color carries the argument: red means failure and green means success. The eye goes first to the red-versus-green contrast.",
+ "caption": "A concrete example showing how \\sys optimizes CUDA kernels in Kernelbench [ref]. \\sys first generates a semantically equivalent code that explicitly exposes the computation of MSE loss, and then transforms it into a more efficient implementation that optimizes memory access by replacing separate passes over large arrays with a single pass, where each thread computes its global index, reads inputs into fast registers for local computation, and fuses multiple operators into a single kernel execution. The existing approach attempts to directly optimize MSE but fails on several core operations.",
+ "caption_source": "latex",
+ "abstract": "Code transformation is a foundational capability in the software development process, where its effectiveness relies on constructing a high-quality code representation to characterize the input code semantics and guide the transformation. Existing approaches treat code transformation as an end-to-end learning task, leaving the construction of the representation needed for semantic reasoning implicit in model weights or relying on rigid compiler-level abstractions. We present SemRep, a framework that improves code transformation through generative code representation learning. Our key insight is to employ the semantics-preserving transformations as the intermediate representation, which serves as both a generative mid-training task and the guidance for subsequent instruction-specific code transformations. Across general code editing and optimization tasks (e.g., GPU kernel optimization), SemRep outperforms the extensively finetuned baselines with strictly the same training budget by 6.9% in correctness, 1.1x in performance, 13.9% in generalization, and 6.7% in robustness. With the improved exploration of diverse code transformations, SemRep is particularly amenable to evolutionary search. Combined with an evolutionary coding agent, SemRep finds optimizations that 685B larger-weight baselines fail to discover while achieving the same performance with 25% less inference compute.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=d81PBCmA4s",
+  "arxiv": "https://arxiv.org/abs/2603.13640",
+  "pdf": "https://raw.githubusercontent.com/mlresearch/v306/main/assets/li26fj/li26fj.pdf",
+  "proceedings": "https://proceedings.mlr.press/v306/li26fj.html",
+  "virtual": "https://icml.cc/virtual/2026/poster/62804",
+  "code": null
+ },
+ "license": "http://creativecommons.org/licenses/by/4.0/",
+ "img": "cc-by",
+ "image_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/images/icml26-4145.png",
+ "thumb_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/thumbs/icml26-4145.webp",
+ "figure_page": 0,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.62
+}

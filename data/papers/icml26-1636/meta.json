@@ -1,0 +1,52 @@
+{
+ "id": "icml26-1636",
+ "title": "Improving LLM-Based Recommenders with Conservative Generative Flow Networks",
+ "authors": [
+  "Xuan Yu",
+  "Feng Niu",
+  "Rui Zhu",
+  "Yudong Zhang",
+  "Xu Wang",
+  "Yang Wang"
+ ],
+ "venue": "ICML 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "Reinforcement Learning->Batch/Offline",
+ "role": "problem-setup",
+ "role2": "concept",
+ "claim": "Unconstrained flow on transitions absent from the data leaks probability mass to invalid outputs, shifting the learned distribution away from the true one.",
+ "layout": "2 regions: left token graph, right vertical causal chain; solid vs dotted arrows",
+ "tags": [
+  "failure-mode",
+  "gflownet",
+  "out-of-support",
+  "distribution-shift",
+  "llm-recommendation"
+ ],
+ "style": [
+  "colorful",
+  "icon-heavy",
+  "text-heavy"
+ ],
+ "description": "The figure has a large rounded panel on the left. It holds a token-prefix DAG that starts at the node \"The\" and branches into movie titles: Godfather, Knight, Matrix, Lord, Dark. Solid arrows mark transitions present in the dataset, such as the Lord of the Rings path. Dotted arrows mark transitions absent from the dataset, such as Godfather of the Matrix and Knight of Star Wars. A legend at the top of the panel explains the two arrow styles. On the right, three boxes are stacked vertically with block arrows between them. The top red box is titled \"Distribution Shift\". It shows paired bar charts comparing a reference distribution with the true distribution. The middle box reads \"Unconstrained Flow on States and Transitions not Present in Dataset\". The bottom blue box shows two invalid recommended titles, with the heading \"Invalid Recommendation\". The sketchy hand-drawn style and the colored words draw the eye first.",
+ "caption": "Illustration of a failure mode in training GFlowNets with LLM-based policies. During training, logits corresponding to unsupported transitions may drift due to their semantic similarity to supported transitions. As a result, probability mass is unintentionally assigned to out-of-support actions, leading to unexpected distributional shift.",
+ "caption_source": "pdf",
+ "abstract": "Generative Flow Networks (GFlowNets) have recently been used to improve diversity and mitigate popularity bias in LLM-based recommender systems, yet most objectives are developed under online-style assumptions. In offline LLM-based recommendation, learning is constrained to a fixed logged dataset, yielding partial support over token transitions on the dataset-induced token-prefix DAG. Naively applying Sub-Trajectory Balance (SubTB) becomes non-identifiable and can arbitrarily allocate probability mass to unsupported regions. We formalize this failure and identify three sources of non-identifiability that induce distributional shift between the dataset-implied policy and the learned policy: (i) flow overestimation, (ii) forward mass leakage, and (iii) backward compensation. To address it, we propose CFlower, which introduces a conservative SubTB objective that explicitly penalizes unsupported forward flow mass, and combines it with dataset-constrained policy learning with on-policy sampling on the dataset-induced DAG for efficient training under offline constraints. Experiments on three Amazon recommendation datasets show that CFlower improves distributional matching and delivers a stronger accuracy--exposure trade-off than prior GFlowNet and SFT baselines, while serving as a more reliable reference policy for downstream RL fine-tuning.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=FXIy6qfQIR",
+  "arxiv": null,
+  "pdf": "https://raw.githubusercontent.com/mlresearch/v306/main/assets/yu26am/yu26am.pdf",
+  "proceedings": "https://proceedings.mlr.press/v306/yu26am.html",
+  "virtual": "https://icml.cc/virtual/2026/poster/65235",
+  "code": null
+ },
+ "license": null,
+ "img": "none",
+ "image_url": null,
+ "thumb_url": null,
+ "figure_page": 3,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.85
+}

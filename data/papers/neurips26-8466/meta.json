@@ -1,0 +1,54 @@
+{
+ "id": "neurips26-8466",
+ "title": "Task-Induced Riemannian Metrics for Vision Transformer Feature Spaces",
+ "authors": [
+  "Andrew Bond",
+  "Ege E Özlü",
+  "Tuna Çimen",
+  "Ilkin U Melanlioglu",
+  "Tolga Birdal",
+  "Erkut Erdem",
+  "Aykut Erdem"
+ ],
+ "venue": "NeurIPS 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "General Machine Learning->Representation Learning",
+ "role": "overview-framework",
+ "role2": "pipeline",
+ "claim": "A task-specific pullback metric over intermediate features can be defined for any backbone-decoder pair and computed matrix-free via JVP/VJP.",
+ "layout": "6 titled panels in a grid; top row of components, bottom row plot and loop",
+ "tags": [
+  "pullback-metric",
+  "jacobian",
+  "matrix-free",
+  "low-rank",
+  "feature-geometry"
+ ],
+ "style": [
+  "math-heavy",
+  "plot",
+  "icon-heavy",
+  "colorful"
+ ],
+ "description": "A two-row grid of six rounded, titled panels. The top row reads left to right: an input street photo; a ViT backbone diagram with patch embeddings, a linear projection, stacked transformer layers and a dashed probe layer F^ℓ; a task decoder panel with depth, segmentation, CLS scatter and classification icons; and, stacked on the right, task-metric and pullback-metric panels with formulas for δ and g = JᵀJ. The bottom row has an empirical-motivation panel with a log-scale singular-value decay curve, a dashed rank-r line and a yellow callout reading 'Encodes task-sensitive directions'. Next to it, a matrix-free panel shows JVP and VJP boxes joined by curved arrows. The figure uses heavy math notation, pastel blue and pink fills, and thumbnail imagery. The eye goes first to the photo and the ViT stack.",
+ "caption": "The task-induced pullback metric and how we use it. A ViT feature map $F^\\ell\\in\\mathbb{R}^{N\\times D}$ at probe layer $\\ell$ passes through the remaining ViT layers and a task decoder $\\phi$ (optionally followed by a task metric $\\delta$), composing into the probe map $\\psi_\\ell : \\mathbb{R}^{N \\times D} \\to \\mathbb{R}^M$. Its Jacobian $J_{\\psi_\\ell} \\in \\mathbb{R}^{M \\times N D}$ defines the pullback metric $g(F^\\ell) = J^\\top J \\in \\mathbb{R}^{N D \\times N D}$, accessed only via JVP/VJP at $\\mathcal{O}(m+rq)$ cost. Rapid singular-value decay indicates that a rank-$r$ truncation can capture most of the task sensitivity.",
+ "caption_source": "latex",
+ "abstract": "Methods operating on Vision Transformer (ViT) feature spaces typically rely on Euclidean distance or cosine similarity. This assumes that every direction is equally meaningful, but there is no reason to believe the true task geometry has this property. The task-sensitive geometry of the feature space is given by the pullback metric $g(F) = J(F)^\\top J(F)$, where $J$ is the Jacobian of the decoder's output fed to a task-specific distance, with respect to the features. Storing the full $g$ is infeasible at modern scales, and for dense outputs such as depth maps even forming $J$ is impractical. We show that whether a low-rank approximation of this metric can be learned depends on the model-decoder pair, and we characterize this with a matrix-free diagnostic $Îº_{cap}(r)$ computable with a low number of Jacobian-vector products. For tractable pairs, we develop the Spectral Pullback Network (SPN), which learns a low-rank version of the metric from randomized power iteration, and we distill it into a $310$K-parameter importance head that predicts token importance directly from the features. When the Jacobian spectrum is too spread out for a low-rank approximation, passing the decoder's input features through a VAE bottleneck can restore tractability. Across DPT, DINOv2, CLIP, and VGGT backbones, $Îº_{cap}(r)$ predicts which learned-metric architectures are viable. The importance head reaches Spearman $Ï= 0.998$ on DINOv2 CLS, and our geometric token pruning reduces the additional depth error of ToMe-based token selection by $25\\%$ on DPT depth at prune ratio $0.5$, without fine-tuning the ViT. Project page: https://cyberiada.github.io/TaskInducedViTs/",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=wQbmMf6PdD",
+  "arxiv": "https://arxiv.org/abs/2609.27988",
+  "pdf": "https://arxiv.org/pdf/2609.27988",
+  "proceedings": null,
+  "virtual": "https://neurips.cc/virtual/2026/poster/148615",
+  "code": null
+ },
+ "license": "http://creativecommons.org/licenses/by/4.0/",
+ "img": "cc-by",
+ "image_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/images/neurips26-8466.png",
+ "thumb_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/thumbs/neurips26-8466.webp",
+ "figure_page": 2,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.55
+}

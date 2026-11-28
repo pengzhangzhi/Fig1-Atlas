@@ -1,0 +1,55 @@
+{
+ "id": "icml26-1662",
+ "title": "Artificial Hippocampus Networks for Efficient Long-Context Modeling",
+ "authors": [
+  "Yunhao Fang",
+  "Weihao Yu",
+  "Shu Zhong",
+  "Qinghao Ye",
+  "Xuehan Xiong",
+  "Lai Wei"
+ ],
+ "venue": "ICML 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "Deep Learning->Large Language Models",
+ "role": "teaser-result",
+ "role2": null,
+ "claim": "Adding a compact learned memory to a sliding-window model beats the window-only baseline at every window size and can match or beat full attention.",
+ "layout": "Single line plot, window size on x-axis, 'ours' in red above the baseline",
+ "tags": [
+  "long-context",
+  "efficiency",
+  "compressive-memory",
+  "benchmark-comparison",
+  "sliding-window"
+ ],
+ "style": [
+  "plot",
+  "minimal",
+  "colorful"
+ ],
+ "description": "The crop shows only one line chart, titled 'LVEval (128K)'. The x-axis is sliding window size, running from 1K to 128K. The y-axis is score, from about 1 to 7. A dark red line with circle markers, labeled AHN, sits above a light blue line with diamond markers, labeled SWA, at every window size. Both lines rise from small windows and peak at 64K, where AHN is about 7.0 and SWA about 5.9. They then drop at 96K. SWA continues down to a gray square at 128K, labeled 'Full Attn', at about 3.6. AHN has no point at 128K. The legend is in the top left, and light dotted gridlines run horizontally. The eye goes first to the red curve peak. The crop contains only this one panel.",
+ "caption": "(a) Artificial Hippocampus Networks (AHNs) transform lossless memory into fixed-size compressed representations for efficient long-context modeling. Lossless memory (e.g., attention's KV cache) stores exact input information but grows with sequence length, leading to high cost for long sequences. In contrast, compressed memory (e.g., RNNs' hidden state) maintains a constant cache size and computational cost per input token, but inevitably loses details. In our framework, a sliding window attention maintains exact recent context as lossless short-term memory, while AHN recurrently compresses out-of-window information into a fixed-size state as compressed long-term memory. This allows the model to process long sequences efficiently, retaining both precise short-term information and a compact summary of history. See Figure [ref] for more details. (b) On the long-context benchmark LV-Eval (128k sequence length), augmenting Qwen2.5-3B-Instruct with AHNs (+0.4% parameters) reduces FLOPs by 40.5% and memory cache by 74.0%, while improving average score from 4.41 to 5.88.",
+ "caption_source": "latex",
+ "abstract": "Long-sequence modeling faces a fundamental trade-off between the efficiency of compressive fixed-size memory in RNN-like models and the fidelity of lossless growing memory in attention-based Transformers. Inspired by the Multi-Store Model in cognitive science, we introduce a memory framework of artificial neural networks. Our method maintains a sliding window of the Transformer's KV cache as lossless short-term memory, while a learnable module termed Artificial Hippocampus Network (AHN) recurrently compresses out-of-window information into a fixed-size compact long-term memory. To validate this framework, we instantiate AHNs using modern RNN-like architectures, including Mamba2, DeltaNet, and GatedDeltaNet to augment open-weight LLMs. We also propose an efficient self-distillation training method where the base model's all parameters are frozen and only the parameters from AHNs are optimized. For inference, our method sets a default large sliding window size of 32k for attention, and AHNs activate only when the sequence length exceeds the 32k window, addressing the quadratic-complexity issue of attention that emerges at that scale. Extensive experiments on long-context benchmarks LV-Eval and InfiniteBench demonstrate that AHN-augmented models consistently outperform sliding window baselines and achieve performance comparable or even superior to full-attention models, while substantially reducing computational and memory requirements. For instance, augmenting the Qwen2.5-3B-Instruct with AHNs reduces inference FLOPs by 40.5% and memory cache by 74.0%, while improving its average score on LV-Eval (128k sequence length) from 4.41 to 5.88. Code is available at: https://github.com/ByteDance-Seed/AHN.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=FlJnOeuN8C",
+  "arxiv": "https://arxiv.org/abs/2510.07318",
+  "pdf": "https://raw.githubusercontent.com/mlresearch/v306/main/assets/fang26w/fang26w.pdf",
+  "proceedings": "https://proceedings.mlr.press/v306/fang26w.html",
+  "virtual": "https://icml.cc/virtual/2026/poster/65210",
+  "code": "https://github.com/bytedance-seed/AHN"
+ },
+ "license": "http://arxiv.org/licenses/nonexclusive-distrib/1.0/",
+ "img": "none",
+ "image_url": null,
+ "thumb_url": null,
+ "figure_page": 7,
+ "qc_flags": [
+  "tiny-crop",
+  "bad-crop"
+ ],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.6
+}

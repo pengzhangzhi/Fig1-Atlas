@@ -1,0 +1,53 @@
+{
+ "id": "neurips26-2051",
+ "title": "ExComm: Exploration-Stage Communication for Error-Resilient Agentic Test-Time Scaling",
+ "authors": [
+  "Woomin Song",
+  "Beomjun Kim",
+  "Daewon Choi",
+  "Sai Muralidhar Jayanthi",
+  "Saket Dingliwal",
+  "Jinwoo Shin",
+  "Aram Galstyan"
+ ],
+ "venue": "NeurIPS 2026",
+ "tier": "oral",
+ "track": "main",
+ "topic": "Applications->Language, Speech and Dialog",
+ "role": "pipeline",
+ "role2": "overview-framework",
+ "claim": "A communication layer between parallel agents detects conflicts and redundancy, then feeds targeted updates back to each agent in a loop.",
+ "layout": "3 stages left-to-right, two parallel module rows, feedback loop arrow beneath",
+ "tags": [
+  "multi-agent",
+  "test-time-scaling",
+  "communication-protocol",
+  "error-correction",
+  "diversification"
+ ],
+ "style": [
+  "icon-heavy",
+  "colorful",
+  "text-heavy"
+ ],
+ "description": "A three-stage left-to-right diagram. Stage 1 on the left shows stacked agent cards (Agent A1 and others) holding blue Belief B_i and Plan P_i boxes. Arrows labeled {B_i} and {P_i} lead into Stage 2, the ExComm Communication Layer. It has a green Online Belief Consistency Module (detect conflicts, verify with tools, return targeted resolutions, each with an icon). Below it is a yellow Trajectory Diversification Module (detect redundancy, return diversification directives). Arrows labeled R_i and d_i lead to Stage 3, a single Agent A_i card. That card holds a green Soft Belief Update box (old belief to + verified feedback) and a yellow Plan Redirection box (redundant plan to + new direction). A long return arrow along the bottom reads 'Repeat at each exploration step'. Color coding links the modules to their matching outputs.",
+ "caption": "Overview of \\mname. \\mname augments a standard agentic test-time scaling loop with an exploration-stage communication step. After each execution step, the Online Belief Consistency Module gathers agent belief states $\\{B_i\\}_{i=1}^{N}$, detects factual conflicts, resolves them through tool-augmented verification, and produces a set of targeted resolutions $\\mathcal{R}$. Each agent $\\mathcal{A}_i$ receives only the relevant subset $\\mathcal{R}_i \\subseteq \\mathcal{R}$, which is applied as a soft belief update by appending verified feedback without overwriting the prior belief state. In parallel, the Trajectory Diversification Module analyzes agent plans $\\{P_i\\}_{i=1}^{N}$, identifies redundant strategies, and produces a set of diversification directives $\\mathcal{D}$. When a directive is assigned to agent $\\mathcal{A}_i$, it receives $d_i \\in \\mathcal{D}$ and updates its plan to encourage orthogonal exploration. The updated agents then continue the base execution loop at the next exploration step.",
+ "caption_source": "latex",
+ "abstract": "A common failure mode in long-horizon agentic test-time scaling is error propagation, where factual errors or invalid deductions introduced at intermediate steps persist in the agent's belief state and contaminate later reasoning. Existing test-time scaling methods provide limited control over this process, as they often rely on agents to detect their own mistakes, select among flawed trajectories, or refine solutions only after errors have already shaped the reasoning path. We propose ExComm, a communication protocol for exploration-stage agentic test-time scaling. ExComm is motivated by the empirical observation that the majority of intermediate errors in parallel agentic reasoning produce detectable cross-agent factual conflicts. Leveraging the iterative structure of agentic workflows, ExComm periodically audits agent belief states to detect such conflicts, resolves them through a dedicated tool-based verification loop, and returns concise, targeted feedback to the involved agents. Corrections are incorporated through soft belief updates, which append verified feedback rather than overwriting existing beliefs. Furthermore, to prevent collapsing trajectory diversity due to communication, ExComm further introduces a trajectory diversification module that redirects redundant trajectories toward orthogonal strategies. Experiments on AIME 2024, AIME 2025, and GAIA with Gemini-2.5-Flash-Lite and Qwen3.5-4B show that ExComm consistently outperforms strong test-time scaling baselines, achieving average performance gains of 5.7% and 5.0% over the best-performing baselines, respectively. Further analyses demonstrate improved error recovery, favorable scaling behavior, stronger diversity than adapted communication baselines, and the best performance-cost trade-off among the evaluated methods.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=EXtXoqNLl3",
+  "arxiv": "https://arxiv.org/abs/2605.22102",
+  "pdf": "https://arxiv.org/pdf/2605.22102",
+  "proceedings": null,
+  "virtual": "https://neurips.cc/virtual/2026/poster/154319",
+  "code": null
+ },
+ "license": "http://creativecommons.org/licenses/by/4.0/",
+ "img": "cc-by",
+ "image_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/images/neurips26-2051.png",
+ "thumb_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/thumbs/neurips26-2051.webp",
+ "figure_page": 1,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.9
+}

@@ -1,0 +1,53 @@
+{
+ "id": "neurips26-5441",
+ "title": "SEAR: Sample Efficient Action Chunking Reinforcement Learning",
+ "authors": [
+  "C F Maximilian Nagy",
+  "Onur Celik",
+  "Emiliyan Gospodinov",
+  "Florian Seligmann",
+  "Weiran Liao",
+  "Aryan Kaushik",
+  "Gerhard Neumann"
+ ],
+ "venue": "NeurIPS 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "Reinforcement Learning->Everything Else",
+ "role": "pipeline",
+ "role2": "teaser-result",
+ "claim": "A critic that predicts values for every prefix of an action chunk gives more training signal per sample and beats ablated variants.",
+ "layout": "2 panels, left-to-right diagram then line plot, shared caption",
+ "tags": [
+  "action-chunking",
+  "transformer-critic",
+  "multi-horizon",
+  "sample-efficiency",
+  "ablation"
+ ],
+ "style": [
+  "math-heavy",
+  "plot",
+  "colorful"
+ ],
+ "description": "Two panels. Panel (a), Critic Update, is a block diagram that flows left to right. A replay buffer cylinder feeds a stack of blue boxes: the state s_t in green, then the actions a_t, a_{t+1}, ..., a_{t+N-1}. These enter a tall orange 'Causal Transformer' bar inside a dashed grey 'Critic' region. The transformer outputs red boxes Q^(1) through Q^(N) for each action-chunk prefix. Arrows from the Q boxes converge on a rounded 'Sum of Bellman Errors' box. A feedback arrow labelled 'Update' returns to the critic. Panel (b), Critic Ablations (Metaworld-Hard), is a line plot of IQM success against samples (up to 1e6). It has four curves with shaded bands. The blue SEAR-10 curve is clearly highest. Yellow No Action Chunking, orange MLP Critic and red No Multi-Horizon curves sit below it.",
+ "caption": "Overview of SEAR's (a) critic design and (b) how it affects performance. The critic function expects the state $s_t$ and an action chunk $a_{t:t + N}$ of chunk size $N$ as argument. During the critic update (a), these training points are sampled from the replay buffer and the causal transformer critic predicts Q-values $Q^{(1)}(s_t,a_t),Q^{(2)}(s_t,a_{t:t+2}),\\dots,Q^{(N)}(s_t,a_{t:t+N})$ for all action chunk prefixes, thereby generating multi-horizon predictions that increase the amount of training data for the subsequent critic update. Only fitting the critic on the whole-chunk target $Q^{(N)}$, as is common in offline RL [ref], does not work well in online RL (b). Furthermore, bootstrapping an action chunking critic with a single-step policy, comparable to T-SAC (\"No Action Chunking\") lowers success, as does replacing the transformer backbone with an MLP.",
+ "caption_source": "latex",
+ "abstract": "Action chunking improves exploration and accelerates value propagation in long-horizon reinforcement learning, but naively applying off-policy methods to the temporally extended action space at reduced decision frequency offsets these gains, leading to poor sample efficiency. Existing online action chunking methods address these issues through computationally expensive critic-only approaches or by relying on offline data. We introduce SEAR, a sample-efficient off-policy algorithm that enables online reinforcement learning with action chunks by addressing both challenges. To handle high-dimensional action sequences, SEAR employs a causal transformer critic trained with multi-horizon targets that provide a training signal for every prefix of an action chunk, effectively increasing the useful gradients per sample. To restore decision frequency, SEAR operates with a receding horizon and random replanning, ensuring uniform state coverage while combining the fast value propagation of large chunks with the reactivity of small ones. SEAR outperforms state-of-the-art online reinforcement learning methods including SimbaV2 on challenging Metaworld manipulation tasks. Beyond online RL, applying SEAR to the offline-to-online method QC improves its performance on the demanding OGBench cube-triple tasks.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=bTE6KrCVKn",
+  "arxiv": "https://arxiv.org/abs/2603.01891",
+  "pdf": "https://arxiv.org/pdf/2603.01891",
+  "proceedings": null,
+  "virtual": "https://neurips.cc/virtual/2026/poster/151301",
+  "code": null
+ },
+ "license": "http://creativecommons.org/licenses/by/4.0/",
+ "img": "cc-by",
+ "image_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/images/neurips26-5441.png",
+ "thumb_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/thumbs/neurips26-5441.webp",
+ "figure_page": 2,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.8
+}

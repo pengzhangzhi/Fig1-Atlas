@@ -1,0 +1,50 @@
+{
+ "id": "neurips26-7801",
+ "title": "Pacing Branch Parallelism in LLM Serving",
+ "authors": [
+  "Swapnil Gandhi",
+  "Siva Kumar Sastry Hari",
+  "Bill Dally",
+  "Christos Kozyrakis"
+ ],
+ "venue": "NeurIPS 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "Deep Learning->Everything Else",
+ "role": "analysis-finding",
+ "role2": "problem-setup",
+ "claim": "Opportunities for intra-request parallelism vary widely across workloads, so no single fixed branch width suits every request mix.",
+ "layout": "3 panels in a row, nested donut charts, shared legend on top",
+ "tags": [
+  "workload-characterization",
+  "parallelism",
+  "llm-serving",
+  "empirical-motivation",
+  "dataset-variation"
+ ],
+ "style": [
+  "plot",
+  "colorful",
+  "minimal"
+ ],
+ "description": "Three side-by-side nested donut charts, one per dataset: (a) ShareGPT Vicuna, (b) RAG-12K, (c) Math-220K. A shared legend at the top maps green to PDR (proportion of decomposable requests), blue to PTS (parallel token share) and orange-red to ABF (average branch fanout). In each chart the outer green ring shows PDR (43.5%, 67.0%, 84.2%). The inner blue ring shows PTS (70.5%, 68.9%, 30.6%). A small orange circle in the centre gives ABF (5.2, 4.2, 2.7). Unfilled portions of each ring are pale grey-blue. The eye goes first to the large green and blue arcs, then to the central numbers. The panels differ visibly in how much of each ring is filled, so the three datasets look like different workloads.",
+ "caption": "Intra-request parallelism across workloads. Proportion of decomposable requests (PDR), parallel token share (PTS), and average branch fanout (ABF) for three datasets.",
+ "caption_source": "latex",
+ "abstract": "Recent methods expose intra-request parallelism in LLM outputs, allowing independent branches to decode concurrently. Existing serving systems execute these branches eagerly or under fixed caps. We show that both are brittle: eager admission inflates the shared decode step, degrading co-batched requests in serial stages, while conservative fixed caps forgo the throughput that motivated exposing branches in the first place. We call the excess step latency caused by admitted branches the \\emph{branch externality} and show that the safe width depends on batch composition, context lengths, and accumulated slack, all of which change continuously over a workload trace. We introduce PACE, a per-step admission controller that treats extra branches as opportunistic width, admitted only when the predicted branch externality fits within the batch's current slack budget. Per-step regulation is practical because branch-level scheduling decouples compute from memory: branches share the request's prefix KV, so expanding or contracting width requires no memory reclamation. On Qwen3-32B, PACE improves goodput by $1.77\\times$ over serving without branch parallelism and by $1.48\\times$ over eager admission while maintaining 99\\% SLO attainment. Comparable gains ($1.72$--$2.15\\times$) hold on five additional dense and mixture-of-experts models with up to 671B parameters. Code is available at https://github.com/Swapnil-Gandhi/PACE",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=s3hkn23fkN",
+  "arxiv": "https://arxiv.org/abs/2605.06914",
+  "pdf": "https://arxiv.org/pdf/2605.06914",
+  "proceedings": null,
+  "virtual": "https://neurips.cc/virtual/2026/poster/149213",
+  "code": "https://github.com/Swapnil-Gandhi/PACE"
+ },
+ "license": "http://arxiv.org/licenses/nonexclusive-distrib/1.0/",
+ "img": "none",
+ "image_url": null,
+ "thumb_url": null,
+ "figure_page": 2,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.6
+}

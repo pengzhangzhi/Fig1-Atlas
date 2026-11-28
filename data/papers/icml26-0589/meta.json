@@ -1,0 +1,53 @@
+{
+ "id": "icml26-0589",
+ "title": "GEMQ: Global Expert-Level Mixed-Precision Quantization for MoE LLMs",
+ "authors": [
+  "Jianing Deng",
+  "Song Wang",
+  "Dongwei Wang",
+  "Zijie Liu",
+  "Tianlong Chen",
+  "Huanrui Yang",
+  "Jingtong Hu"
+ ],
+ "venue": "ICML 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "Deep Learning->Large Language Models",
+ "role": "analysis-finding",
+ "role2": null,
+ "claim": "Component importance varies heterogeneously across and within layers, and compression substantially distorts routing decisions, motivating global allocation and router adaptation.",
+ "layout": "2 panels, left-to-right; heatmap with bar chart beneath, line plot right",
+ "tags": [
+  "mixture-of-experts",
+  "quantization",
+  "motivation",
+  "heterogeneity",
+  "routing-shift"
+ ],
+ "style": [
+  "plot",
+  "colorful",
+  "minimal"
+ ],
+ "description": "Two-panel empirical figure. Panel (a), left, shows a heatmap titled 'Expert-wise Squared Gradient Distribution (Sum over Parameters)'. Layer index (0–31) runs along the x-axis and expert index (0–7) along the y-axis. Cells are shaded in blues, with a colorbar from about 100 to 700+. Most cells are pale, and a few are dark. The darkest is at layer 30, expert 2. Under the heatmap, a blue bar chart labeled 'Layer Sum' gives per-layer totals, with a large spike at layer 30 and a smaller one near layer 18. Panel (b), right, is a green line plot with circular markers titled 'Expert Selection Change Ratio'. It plots the percentage of tokens routed to different experts against layer index. The curve rises from about 8% at layer 0 to a peak above 50% near layer 24, then dips slightly. The eye goes first to the dark heatmap cell, then to the green curve.",
+ "caption": "Motivations. (a) The sensitivity of expert weights, measured by squared gradients (\\ie, the trace of the empirical Fisher Information Matrix), varies not only within a layer but also across layers, indicating heterogeneous layer importance; and (b) over 40% of tokens are routed to different experts after 1.5-bit quantization, revealing substantial distortion in router distributions. Statistics are computed from the Mixtral-8$\\times$7B model on WikiText2.",
+ "caption_source": "latex",
+ "abstract": "Mixture-of-Experts Large Language Models (MoE-LLMs) achieve strong performance but incur substantial memory overhead due to massive expert parameters. Mixed-precision quantization mitigates this cost by allocating expert-wise bit-widths based on their importance, approaching the accuracy-memory Pareto frontier and enabling extreme low-bit quantization. However, existing methods rely on layer-wise importance estimation and overlook router shifts induced by quantization, resulting in suboptimal allocation and routing. In this work, we propose Global Expert-level Mixed-precision Quantization (GEMQ) to overcome these limitations via (1) a global linear-programming formulation that captures model-wide expert importance based on quantization error analysis, and (2) efficient router fine-tuning to adapt routing to quantized experts. These components are integrated into a progressive quantization framework that iteratively refines importance estimation and allocation. Experiments demonstrate that GEMQ significantly reduces memory and accelerates inference with minimal accuracy degradation. Source code is available at https://github.com/jndeng/GEMQ .",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=5Q4ts0pr9T",
+  "arxiv": "https://arxiv.org/abs/2605.23078",
+  "pdf": "https://raw.githubusercontent.com/mlresearch/v306/main/assets/deng26t/deng26t.pdf",
+  "proceedings": "https://proceedings.mlr.press/v306/deng26t.html",
+  "virtual": "https://icml.cc/virtual/2026/poster/66251",
+  "code": "https://github.com/jndeng/GEMQ"
+ },
+ "license": "http://arxiv.org/licenses/nonexclusive-distrib/1.0/",
+ "img": "none",
+ "image_url": null,
+ "thumb_url": null,
+ "figure_page": 1,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.9
+}

@@ -1,0 +1,54 @@
+{
+ "id": "icml26-6352",
+ "title": "Learning, Solving and Optimizing PDEs with TensorGalerkin: an efficient high-performance Galerkin assembly algorithm",
+ "authors": [
+  "Shizheng Wen",
+  "Mingyuan chi",
+  "Tianwei Yu",
+  "Ben Moseley",
+  "Mike Yan Michelis",
+  "Pu Ren",
+  "Hao Sun",
+  "Siddhartha Mishra"
+ ],
+ "venue": "ICML 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "Applications->Chemistry, Physics, and Earth Sciences",
+ "role": "pipeline",
+ "role2": "prior-vs-ours",
+ "claim": "A coupled per-element assembly loop is decoupled into a tensorized map stage and a sparse reduce stage that serve several downstream applications.",
+ "layout": "3 panels left-to-right, nested rounded boxes, traditional-vs-ours stacked vertically in center",
+ "tags": [
+  "tensorization",
+  "decoupled-stages",
+  "gpu-efficiency",
+  "sparse-assembly",
+  "differentiable-solver"
+ ],
+ "style": [
+  "colorful",
+  "math-heavy",
+  "minimal"
+ ],
+ "description": "A wide three-column figure with rounded containers. The left grey panel, Discretization, holds a blue Mesh box with a triangulated graph and a green Basis & Quadrature box with a curved triangular element and phi labels. A bold arrow leads to the large central Galerkin Assembly panel. At its top, a white box titled Traditional FEM Assembly (Coupled) shows Allocate Global System feeding Compute & Scatter-Add, with a loop arrow labelled For each element e and the scatter-add equations. A thick grey arrow, Decoupled into Map and Reduce, points down to a red dashed box labelled TensorGalerkin. That box has an orange Batch-Map Kernel (einops fused contraction) arrow-linked to a green Sparse Assembly (Reduce) box with routing matrices, SpMM and CSR formulas. The right blue Application panel stacks three cards, TensorMesh (orange), TensorPils (pink) and TensorOpt (magenta), each with a short formula.",
+ "caption": "Overview of TensorGalerkin. Stage I (Batch-Map) computes element-wise operators via a fully tensorized einsum kernel; Stage II (Sparse-Reduce) assembles global sparse values via routing matrices and a single SpMM. For comparison, the white box illustrates traditional FEM assembly via per-element loops and scatter-add (atomics) into the global system. The same assembly engine powers TensorMesh, TensorPils, and TensorOpt.",
+ "caption_source": "latex",
+ "abstract": "We present a unified algorithmic framework for the numerical solution, constrained optimization, and physics-informed learning of PDEs with a variational structure. Our framework is based on a Galerkin discretization of the underlying variational forms, and its high efficiency stems from a novel highly-optimized and GPU-compliant TensorGalerkin framework for linear system assembly (stiffness matrices and load vectors). TensorGalerkin operates by tensorizing element-wise operations within a Python-level Map stage and then performs global reduction with a sparse matrix multiplication that performs message passing on the mesh-induced sparsity graph. The Map and Reduce stages are co-designed inside PyTorch's autograd so that the assembly graph contains $O(1)$ nodes regardless of how the number of elements and local DoFs scale. We validate this $O(1)$-graph property by deploying TensorGalerkin downstream as i) a highly-efficient numerical PDEs solver, ii) an end-to-end differentiable framework for PDE-constrained optimization, and iii) a physics-informed operator learning algorithm for PDEs. With multiple benchmarks, including 2D and 3D elliptic, parabolic, and hyperbolic PDEs on unstructured meshes, we demonstrate that the proposed framework provides significant computational efficiency and accuracy gains over a variety of baselines in all the targeted downstream applications.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=xpIUvw8ANa",
+  "arxiv": "https://arxiv.org/abs/2602.05052",
+  "pdf": "https://raw.githubusercontent.com/mlresearch/v306/main/assets/wen26a/wen26a.pdf",
+  "proceedings": "https://proceedings.mlr.press/v306/wen26a.html",
+  "virtual": "https://icml.cc/virtual/2026/poster/60667",
+  "code": "https://camlab-ethz.github.io/TensorGalerkin/"
+ },
+ "license": "http://creativecommons.org/licenses/by/4.0/",
+ "img": "cc-by",
+ "image_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/images/icml26-6352.png",
+ "thumb_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/thumbs/icml26-6352.webp",
+ "figure_page": 3,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.62
+}

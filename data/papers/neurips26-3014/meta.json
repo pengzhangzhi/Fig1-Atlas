@@ -1,0 +1,57 @@
+{
+ "id": "neurips26-3014",
+ "title": "Prism Attention: Proposal-Refined Index Sharing Mechanism for Efficient LLMs Inference",
+ "authors": [
+  "Zhenxu Tian",
+  "Kebin Liu",
+  "Zhengwu Yang",
+  "Yi Su",
+  "Qingqing Dang",
+  "Kaipeng Deng",
+  "Yanlin Sha",
+  "Dianhai Yu",
+  "Yanjun Ma",
+  "Juntao Li",
+  "Min zhang"
+ ],
+ "venue": "NeurIPS 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "Deep Learning->Attention Mechanisms",
+ "role": "analysis-finding",
+ "role2": null,
+ "claim": "Top-ranked indices overlap only partially between layers and the overlap decays with layer distance, more so at longer contexts.",
+ "layout": "Single line plot with broken y-axis, solid vs dashed series, legend on top",
+ "tags": [
+  "sparse-attention",
+  "cross-layer-overlap",
+  "empirical-observation",
+  "kv-cache",
+  "efficiency"
+ ],
+ "style": [
+  "plot",
+  "colorful",
+  "minimal"
+ ],
+ "description": "A single line chart with a broken y-axis. The x-axis is Layer Offset from 0 to 7. The y-axis is Overlap Ratio, with a top segment from 0.95 to 1.00 and a lower segment from 0.20 to 0.45. Six series are drawn: MATH, GPQA and AIME24, each at 1K and 8K context. 1K series are solid lines and 8K series are dashed. Colors are pink for MATH, orange for GPQA and green for AIME24, with circle, triangle and square markers. All series start at 1.0 at offset 0 and drop sharply to about 0.26–0.40 at offset 1. They then decline slowly to about 0.22–0.37 at offset 7. The 8K curves sit well below the 1K curves. A two-row legend sits at the top. The eye goes first to the steep initial drop and then to the gap between solid and dashed lines.",
+ "caption": "Cross-layer overlap ratio across varying distances of different layer offset.",
+ "caption_source": "latex",
+ "abstract": "Long-context decoding in large language models (LLMs) is increasingly bottlenecked by the memory and computation required to attend over an ever-growing Key-Value (KV) cache at each autoregressive step. Although token-level sparse attention reduces this burden by restricting computation to a small subset of relevant past tokens, its practical gains are often offset by repeatedly recomputing layer-wise sparse indices as the context grows. A common remedy is to share sparse indices across layers by computing them only at designated anchor layers, but such static reuse ignores the layer-wise evolution of attention patterns, causing the reused indices to progressively deviate from the layer-specific optima and incur substantial attention loss. By revisiting cross-layer sparsity from the perspective of attention dynamics, we find that inter-layer salient token shift is highly localized: although the exact top-$Îº$ indices differ across layers, the core high-attention tokens remain stable, with changes concentrated near the expanded boundary of previously selected regions. Motivated by this, we propose Prism Attention, a proposal-refined sparse attention framework. It replaces rigid cross-layer index reuse with a coarse-to-fine strategy, preserving layer-wise adaptability while retaining the efficiency benefits of cross-layer sharing. Extensive experiments show that Prism Attention achieves state-of-the-art performance among mainstream sparse attention methods on both reasoning and long-context benchmarks, while attaining a $3.4\\times$ end-to-end decoding speedup over FlashAttention at 128K context length.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=L5vrlNwsCo",
+  "arxiv": "https://arxiv.org/abs/2610.22985",
+  "pdf": "https://arxiv.org/pdf/2610.22985",
+  "proceedings": null,
+  "virtual": "https://neurips.cc/virtual/2026/poster/153474",
+  "code": "https://github.com/tianzhenxu/PrismAttention.git"
+ },
+ "license": "http://creativecommons.org/licenses/by/4.0/",
+ "img": "cc-by",
+ "image_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/images/neurips26-3014.png",
+ "thumb_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/thumbs/neurips26-3014.webp",
+ "figure_page": 0,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.93
+}

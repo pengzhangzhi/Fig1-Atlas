@@ -1,0 +1,53 @@
+{
+ "id": "icml26-5815",
+ "title": "TGV-KV: Text-Grounded KV Eviction for Vision-Language Models",
+ "authors": [
+  "Jizhihui Liu",
+  "Ruizi Han",
+  "Miao Zhang",
+  "Rui Shao",
+  "Xuebo Liu",
+  "Weili Guan",
+  "Yaowei Wang"
+ ],
+ "venue": "ICML 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "Applications->Computer Vision",
+ "role": "analysis-finding",
+ "role2": "problem-setup",
+ "claim": "Modalities occupy distinct representation and attention regimes, so importance-based eviction that ignores this gap discards most of the text.",
+ "layout": "3 panels, left-to-right, shared token-index axis with vision/text divider line",
+ "tags": [
+  "modality-gap",
+  "kv-cache-eviction",
+  "attention-analysis",
+  "vision-language-models",
+  "efficiency"
+ ],
+ "style": [
+  "plot",
+  "photo/real data",
+  "minimal"
+ ],
+ "description": "Three side-by-side plots share one theme: the gap between vision and text tokens. (a) Line plot of average local cosine similarity against token index for k=1, 5 and 20 neighbours. Vision tokens, left of a dashed divider, sit at about 0.4–0.8 similarity. Text tokens, right of the divider, drop near 0. (b) Triangular causal attention heatmap on a log colour scale from 1e-6 to 1. Vision and text regions are marked, and a white dashed box outlines the text rows. Intra-modality blocks are bright and cross-modality blocks are dark. (c) Bar chart of accumulated normalized attention per token. A dashed orange 'Top 5%' threshold line separates retained bars in teal from evicted bars in pale green. Nearly all text tokens fall below the line. Teal and green tones are used throughout, and the eye lands first on the dense similarity trace in panel (a).",
+ "caption": "Visualization and Consequence of Modality Gap. (a) The average cosine similarity of vision and text tokens with $k$ neighbours. (b) The layer 2 attention map (in log scale) in LLaVA, the intra-modality part (text-text, vision-vision) is much more intense than inter-modality (text-vision). (c) Accumulated attention score across all the layers, the eviction is highly uneven and most text KV pairs are evicted by cumulative attention score.",
+ "caption_source": "latex",
+ "abstract": "Vision-Language Models (VLMs) inherit the auto-regressive generation paradigm and cache the keys and values (KV) of all previous tokens to accelerate inference, resulting in memory consumption that scales linearly with context length. This issue is particularly pronounced in VLMs due to substantial redundancy in the visual modality. Although KV cache eviction approaches can effectively reduce inference memory, they often incur significant performance degradation in VLMs, as most are designed for language models and overlook the inherent gap between text and vision. By systematically analyzing the modality gap in VLMs in this work, we argue that the importance of visual information should be grounded in textual guidance and accordingly propose a Text-Grounded KV Eviction method for VLMs (TGV-KV). TGV-KV comprises three submodules: (1) Text-Vision Budgeting (TVB) assigns budget to each layer based on the mutual information interaction. (2) Text-Weighted Ranking (TWR) assesses the priority of text and ranks vision importance based on weighted text-image attention. (3) Text-Prioritised Retention (TPR) policy strategically preserves text KV to avoid acute information loss. We evaluate TGV-KV across five models with different sizes and architectures, showing that TGV-KV preserves 99.2% full-KV accuracy on the VizWiz-VQA task with LLaVA-NeXT and boosts end-to-end throughput by 52.6% with an extreme retention budget of 5%. Code is available at https://github.com/Danielement321/TGV-KV.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=suQ52Hqr9U",
+  "arxiv": "https://arxiv.org/abs/2606.03075",
+  "pdf": "https://raw.githubusercontent.com/mlresearch/v306/main/assets/liu26ar/liu26ar.pdf",
+  "proceedings": "https://proceedings.mlr.press/v306/liu26ar.html",
+  "virtual": "https://icml.cc/virtual/2026/poster/61187",
+  "code": null
+ },
+ "license": "http://creativecommons.org/licenses/by/4.0/",
+ "img": "cc-by",
+ "image_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/images/icml26-5815.png",
+ "thumb_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/thumbs/icml26-5815.webp",
+ "figure_page": 0,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.85
+}

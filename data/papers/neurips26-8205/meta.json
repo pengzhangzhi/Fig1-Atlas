@@ -1,0 +1,52 @@
+{
+ "id": "neurips26-8205",
+ "title": "DC-DiT: Adaptive Compute and Elastic Inference for Visual Generation via Dynamic Chunking",
+ "authors": [
+  "Akash Haridas",
+  "Utkarsh Saxena",
+  "Parsa Ashrafi Fashi",
+  "Mehdi Rezagholizadeh",
+  "Vikram Appia",
+  "Emad Barsoum"
+ ],
+ "venue": "NeurIPS 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "Computer Vision->Image and Video Generation",
+ "role": "teaser-result",
+ "role2": "before-after",
+ "claim": "Adaptive compute allocation yields a better quality-compute Pareto frontier, and one model can trade compute for quality at inference without visible degradation.",
+ "layout": "2 panels: Pareto plots left, image grid right; arrows annotate percent gains",
+ "tags": [
+  "adaptive-tokenization",
+  "pareto-frontier",
+  "efficiency",
+  "elastic-inference",
+  "diffusion-transformer"
+ ],
+ "style": [
+  "plot",
+  "photo/real data",
+  "colorful"
+ ],
+ "description": "The figure has two halves split by a vertical line. The left half has two scatter/line plots of FID-50K (y-axis) against TFLOPs per image (log x-axis). The first plot is without classifier-free guidance and the second is with it. Blue and green curves show DC-DiT at different model sizes, with p-value labels along the curves. Red filled and hollow circles mark DiT baselines. Circle size encodes parameter count (33M to 675M). Gray arrows with percentages, such as 32%, 14%, 23% and 38%, show the FLOP and FID savings of DC-DiT over DiT. The right half is a 2x4 grid of generated images, a mountain lake and a hot air balloon. The first column is DiT-XL/2 at 59 TFLOPs. The next three columns are DC-DiT-XL with 0%, 30% and 60% of tokens dropped, at 63, 46 and 29 TFLOPs. A double-headed arrow labeled 'Elastic inference' spans these three columns. The eye goes first to the plots and the arrows showing gains.",
+ "caption": "Left: By learning to re-allocate compute across spatial regions and timesteps, DC-DiT improves the FID--FLOPs Pareto frontier of DiT. Right: DC-DiT enables elastic inference, where a single trained checkpoint can be evaluated at multiple inference budgets while preserving visual quality.",
+ "caption_source": "latex",
+ "abstract": "Diffusion Transformers rely on static patchify tokenization, assigning the same token budget to smooth backgrounds, detailed object regions, noisy early timesteps, and late-stage refinements. We introduce the Dynamic Chunking Diffusion Transformer (DC-DiT), which replaces fixed patchification with a learned encoder-router-decoder scaffold that adaptively compresses the 2D input into a shorter token sequence through a chunking mechanism learned end-to-end with diffusion training. DC-DiT allocates fewer tokens to predictable regions and noisy timesteps, and more tokens to detailed regions and later refinement stages, yielding meaningful spatial segmentations and timestep-adaptive compression schedules without supervision. Furthermore, the router provides an importance ordering over retained tokens, enabling elastic inference: a single checkpoint can be evaluated at flexible compute budgets with a smooth quality-compute tradeoff. Additionally, DC-DiT can be upcycled from pretrained DiT checkpoints and is also compatible with orthogonal dynamic computation approaches. On class-conditional ImageNet generation, DC-DiT reduces inference FLOPs by up to 36.8% and improves FID by up to 37.8% over DiT baselines, yielding a stronger quality--compute Pareto frontier across model scales, resolutions, and guidance settings. More broadly, these results suggest that adaptive tokenization is a general mechanism for making visual generation both more efficient and more flexible at inference time.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=ue644x6zvR",
+  "arxiv": "https://arxiv.org/abs/2603.06351",
+  "pdf": "https://arxiv.org/pdf/2603.06351",
+  "proceedings": null,
+  "virtual": "https://neurips.cc/virtual/2026/poster/148857",
+  "code": "https://github.com/AMD-AGI/DynamicChunkingDiT"
+ },
+ "license": "http://creativecommons.org/licenses/by-nc-nd/4.0/",
+ "img": "none",
+ "image_url": null,
+ "thumb_url": null,
+ "figure_page": 1,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.85
+}

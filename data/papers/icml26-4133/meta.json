@@ -1,0 +1,53 @@
+{
+ "id": "icml26-4133",
+ "title": "LayerT2V: A Unified Multi-Layer Video Generation Framework",
+ "authors": [
+  "Guangzhao Li",
+  "Kangrui Cen",
+  "Baixuan Zhao",
+  "Yi Xin",
+  "Siqi Luo",
+  "Guangtao Zhai",
+  "Lei Zhang",
+  "Xiaohong Liu"
+ ],
+ "venue": "ICML 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "Applications->Computer Vision",
+ "role": "pipeline",
+ "role2": null,
+ "claim": "A staged training pipeline with a shared backbone and layer-aware modulation jointly generates multiple consistent output layers in one pass.",
+ "layout": "3 panels, left-to-right with bottom-to-top flow, zoomed block detail at right",
+ "tags": [
+  "multi-layer-generation",
+  "diffusion-transformer",
+  "staged-training",
+  "layer-conditioning",
+  "alpha-matting"
+ ],
+ "style": [
+  "colorful",
+  "icon-heavy"
+ ],
+ "description": "The figure has three parts. Panel (a), Stage 1, is a vertical stack on the left. A frozen VAE Encoder feeds a trainable Project module, which feeds a trainable VAE Decoder. Yellow mask tokens sit between the blocks. A cartoon alpha-mask silhouette goes in at the bottom and a reconstruction comes out at the top. A gold arrow labeled L_stage1 loops from output back to input. Panel (b), Stage 2, is the wide centre. Text, VAE and Mask VAE encoders take a text prompt, a full video, background and foreground frames, and an alpha mask. Their gray, blue and yellow tokens flow up into a large blue LayerT2V DiT Blocks bar. Decoders then output the four layers as cartoon images. A legend marks trainable (flame) and frozen (snowflake) modules. At the right, a rounded box zooms into a DiT block, showing LayerAdaLN and layer cross-attention with scale, shift, FFN and residual paths. A red attention block draws the eye.",
+ "caption": "Training pipeline and architecture of LayerT2V. (a) Stage 1: Mask VAE adaptation, where the pretrained VAE encoder is frozen and a lightweight projection plus VAE decoder is trained to reconstruct high-quality alpha mattes. (b) Stage 2: Multi-layer generation with a DiT backbone that jointly models text tokens, video tokens, and mask tokens to generate Full Video, Background, Foreground, and Alpha Mask. LayerAdaLN injects layer identity into the timestep modulation, and layer-aware cross-attention conditions each layer on its corresponding text prompt to improve layer separation and cross-layer coherence.",
+ "caption_source": "latex",
+ "abstract": "Text-to-video generation has advanced rapidly, but existing methods typically output only the final composited video and lack editable layered representations, limiting their use in professional workflows. We propose \\textbf{LayerT2V}, a unified multi-layer video generation framework that produces multiple semantically consistent outputs in a single inference pass: the full video, an independent background layer, and multiple foreground RGB layers with corresponding alpha mattes. Our key insight is that recent video generation backbones use high compression in both time and space, enabling us to serialize multiple layer representations along the temporal dimension and jointly model them on a shared generation trajectory. This turns cross-layer consistency into an intrinsic objective, improving semantic alignment and temporal coherence. To mitigate layer ambiguity and conditional leakage, we augment a shared DiT backbone with LayerAdaLN and layer-aware cross-attention modulation. LayerT2V is trained in three stages: alpha mask VAE adaptation, joint multi-layer learning, and multi-foreground extension. We also introduce \\textbf{VidLayer}, the first large-scale dataset for multi-layer video generation. Extensive experiments demonstrate that LayerT2V substantially outperforms prior methods in visual fidelity, temporal consistency, and cross-layer coherence.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=czTbPdmvtT",
+  "arxiv": "https://arxiv.org/abs/2508.04228",
+  "pdf": "https://raw.githubusercontent.com/mlresearch/v306/main/assets/li26l/li26l.pdf",
+  "proceedings": "https://proceedings.mlr.press/v306/li26l.html",
+  "virtual": "https://icml.cc/virtual/2026/poster/62816",
+  "code": "https://layert2v.github.io/"
+ },
+ "license": "http://creativecommons.org/licenses/by/4.0/",
+ "img": "cc-by",
+ "image_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/images/icml26-4133.png",
+ "thumb_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/thumbs/icml26-4133.webp",
+ "figure_page": 2,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.93
+}

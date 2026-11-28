@@ -1,0 +1,53 @@
+{
+ "id": "neurips26-3992",
+ "title": "CoPE-VideoLM: Leveraging Codec Primitives For Efficient Video Language Modelling",
+ "authors": [
+  "Sayan Deb Sarkar",
+  "Rémi Pautrat",
+  "Ondrej Miksik",
+  "Marc Pollefeys",
+  "Iro Armeni",
+  "Mahdi Rad",
+  "Mihai Dusmanu"
+ ],
+ "venue": "NeurIPS 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "Computer Vision->Vision Models & Multimodal",
+ "role": "pipeline",
+ "role2": null,
+ "claim": "Feeding cheap motion-based codec primitives for most frames, with full encoding only for keyframes, yields dense temporal coverage at far fewer tokens.",
+ "layout": "Bottom-to-top stack: codec frames, encoders, token rows, LLM; GOP dashed boxes",
+ "tags": [
+  "codec-primitives",
+  "video-language-model",
+  "token-efficiency",
+  "interleaved-tokens",
+  "multimodal-pipeline"
+ ],
+ "style": [
+  "colorful",
+  "photo/real data",
+  "icon-heavy"
+ ],
+ "description": "The figure is a bottom-to-top pipeline diagram. The bottom gray panel, labelled Codec Representation, holds two dotted-outline Group of Pictures boxes. Each box has a real I-frame photo of a ball, pencil and book, followed by P-frames shown as pairs of motion-vector and residual images. Motion vectors have green borders and residuals have purple borders. Above them, green Vision Encoder boxes sit over the I-frames and blue Δ-Encoder boxes sit over the P-frames. Each encoder outputs a row of tokens: green grids of M=196 tokens for I-frames and sparse blue strips of N=8 tokens for P-frames. A wide peach Large Language Model bar spans the top and receives the interleaved token stream. The Text Output answer sits at the top right. At the right, a purple Language Instruction question goes through a Tokenizer into language tokens. The color-coded green, blue and purple paths draw the eye first.",
+ "caption": "Overview of our pipeline. Given a video in its raw codec representation, our framework leverages the GOP structure for efficient, codec-aware tokenization. I-frames are processed by a standard frozen vision encoder ($\\phi_{RGB}$) to produce dense RGB tokens. P-frames, however, bypass full RGB decoding. Their raw components, motion vectors and residuals, are instead fed into our lightweight $\\Delta$-Encoder ($\\phi_{\\Delta}$) to generate a small set of highly compact $\\Delta$-tokens. The final token stream, an interleaved sequence of I-frame tokens and $\\Delta$-tokens, is consumed by the LLM, enabling dense temporal coverage at a fraction of the standard token count and runtime.",
+ "caption_source": "latex",
+ "abstract": "Video Language Models (VideoLMs) enable AI systems to understand temporal dynamics in videos. To fit within the maximum context window constraint, current methods use keyframe sampling which often misses both macro-level events and micro-level details due to the sparse temporal coverage. Furthermore, processing full images and their tokens for each frame incurs substantial computational overhead. We address these limitations by leveraging video codec primitives (specifically motion vectors and residuals) which natively encode video redundancy and sparsity without requiring expensive full-image encoding for most frames. To this end, we introduce lightweight transformer-based encoders that aggregate codec primitives and align their representations with image encoder embeddings through a pre-training strategy that accelerates convergence during end-to-end fine-tuning. Our approach, CoPE-VideoLM, reduces the time-to-first-token by up to 86% and token usage by up to 93% compared to standard VideoLMs. Moreover, by varying the keyframe and codec primitive densities we maintain or exceed performance on 14 diverse video understanding benchmarks spanning general question answering, temporal and motion reasoning, long-form understanding, and spatial scene understanding.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=RvGMXiyXQI",
+  "arxiv": "https://arxiv.org/abs/2602.13191",
+  "pdf": "https://arxiv.org/pdf/2602.13191",
+  "proceedings": null,
+  "virtual": "https://neurips.cc/virtual/2026/poster/152600",
+  "code": "https://microsoft.github.io/CoPE/"
+ },
+ "license": "http://creativecommons.org/licenses/by/4.0/",
+ "img": "cc-by",
+ "image_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/images/neurips26-3992.png",
+ "thumb_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/thumbs/neurips26-3992.webp",
+ "figure_page": 4,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.93
+}

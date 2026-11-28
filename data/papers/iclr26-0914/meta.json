@@ -1,0 +1,55 @@
+{
+ "id": "iclr26-0914",
+ "title": "CodeQuant: Unified Clustering and Quantization for Enhanced Outlier Smoothing in Low-Precision Mixture-of-Experts",
+ "authors": [
+  "Xiangyang Yin",
+  "Xingyu Liu",
+  "Tianhua Xia",
+  "BO BAO",
+  "Vithursan Thangarasa",
+  "Valavan Manohararajah",
+  "Eric Sather",
+  "Sai Qian Zhang"
+ ],
+ "venue": "ICLR 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "Deep Learning->Algorithms",
+ "role": "pipeline",
+ "role2": "overview-framework",
+ "claim": "A complex system decomposes into four coordinated stages, each targeting a distinct source of error, from smoothing through deployment.",
+ "layout": "Left architecture insets, then four colored stage boxes flowing left-to-right with feedback arrows",
+ "tags": [
+  "quantization",
+  "pipeline",
+  "outlier-smoothing",
+  "mixture-of-experts",
+  "kernel-design"
+ ],
+ "style": [
+  "colorful",
+  "icon-heavy",
+  "text-heavy",
+  "math-heavy"
+ ],
+ "description": "A wide figure titled 'CodeQuant Framework'. On the left, two dashed-zoom insets show a MoE FFN block (Linear, SiLU, weighted sum, experts 0..n, router, layernorm) and a self-attention block (Wq, Wk, Wv, softmax, Wout), both linked to a central rounded box listing the FFN and SA layers with input X. From there, four color-coded rounded boxes follow. Stage 1 (green) shows the argmin ||X - Q(XR)||^2 objective and two 3D heatmaps, spiky outliers before and uniform after rotation. Stage 2 (red, below) shows permutation-invariant outlier grouping with weight matrices Wv and Wo. Stage 3 (blue) shows clustering and centroid finetuning with Y, Wc, W, C, A blocks. Stage 4 (orange) shows a LUT-based kernel with centroid lookup tables, multipliers and a MUX. Black arrows connect the stages.",
+ "caption": "Overview of the CodeQuant framework. The left panel illustrates the target architectures, including MoE FFN and Self-Attention blocks. The right panel depicts the four-stage calibration and deployment pipeline: Stage 1 applies learnable rotations to smooth activation outliers; Stage 2 permute weight for optimized distribution; Stage 3 introduces clustering fine-tune mechanism to align with objective; and Stage 4 deploys the quantized model using a specialized LUT kernel.",
+ "caption_source": "latex",
+ "abstract": "Outliers have emerged as a fundamental bottleneck in preserving accuracy for low-precision large models, particularly within Mixture-of-Experts (MoE) architectures that are increasingly central to large-scale language modeling. Under post-training quantization (PTQ), these outliers induce substantial quantization errors, leading to severe accuracy degradation. While recent rotation-based smoothing techniques alleviate the problem by redistributing outlier magnitudes, residual errors remain and continue to impede reliable low-precision deployment. In this work, we tackle this challenge by introducing CodeQuant, a unified quantization-and-clustering scheme that contains smoothing activation outliers via learnable rotation and absorbing weight outliers into fine-tuned cluster centroids for MoE. This design reduces the influence of extreme values by fitting them within cluster centroids, thereby lowering quantization error while maintaining expressive capacity. Coupled with a dedicated kernel design for GPU and CPU, CodeQuant achieves up to $4.15\\times$ speedup while delivering significantly higher accuracy than state-of-the-art quantization approaches across diverse MoE models. Our results highlight CodeQuant as a promising direction for efficient and accurate deployment of MoE-based large language models under low-precision constraints. Our code is available at https://github.com/SAI-Lab-NYU/CodeQuant.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=ATpchFiBQi",
+  "arxiv": "https://arxiv.org/abs/2604.10496",
+  "pdf": "https://proceedings.iclr.cc/paper_files/paper/2026/file/adb02256990eb4369268d554fbfc287f-Paper-Conference.pdf",
+  "proceedings": "https://proceedings.iclr.cc/paper_files/paper/2026/hash/adb02256990eb4369268d554fbfc287f-Abstract-Conference.html",
+  "virtual": "https://iclr.cc/virtual/2026/poster/10011032",
+  "code": null
+ },
+ "license": "http://creativecommons.org/publicdomain/zero/1.0/",
+ "img": "cc0",
+ "image_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/images/iclr26-0914.png",
+ "thumb_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/thumbs/iclr26-0914.webp",
+ "figure_page": 1,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.85
+}

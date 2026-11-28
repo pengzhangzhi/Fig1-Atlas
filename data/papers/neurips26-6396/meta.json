@@ -1,0 +1,50 @@
+{
+ "id": "neurips26-6396",
+ "title": "Sparse Attention as a Range Searching Problem: Towards an Inference-Efficient Index for KV Cache",
+ "authors": [
+  "Mohsen Dehghankar",
+  "Abolfazl Asudeh"
+ ],
+ "venue": "NeurIPS 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "Deep Learning->Attention Mechanisms",
+ "role": "concept",
+ "role2": null,
+ "claim": "A selection problem can be recast as a geometric range query, where relevant items are exactly the points inside a halfspace.",
+ "layout": "Text block left, one 2-D scatter right; dashed threshold line and hatched halfspace",
+ "tags": [
+  "halfspace-range-searching",
+  "geometric-reduction",
+  "toy-example",
+  "recall-guarantee",
+  "kv-cache-indexing"
+ ],
+ "style": [
+  "minimal",
+  "plot",
+  "text-heavy"
+ ],
+ "description": "The crop shows a lavender box labeled 'Example 2' above a left column of body text. The text explains reducing sparse attention to halfspace range searching and cites Observations 1 and 2. At right is a hand-drawn 2-D coordinate plot with x and y axes. Many black dots labeled 'Keys' cluster in the lower left. A green dashed arrow labeled 'Query' points to the upper right. A red dotted line labeled 'Threshold' crosses it at right angles. A red-hatched strip labeled 'Half-space' lies beyond the threshold. Four blue dots inside the strip are labeled 'Relevant Keys'. Green, red and blue mark the roles, and the eye goes first to the hatched region with the blue points. The picture does not match the caption's three plots (a)-(c) on dropping tokens, error spikes and top-k coverage.",
+ "caption": "(a) Effect of dropping tokens. We remove either (i) one relevant token (a randomly selected number in the list) or (ii) one randomly selected non-relevant token. Dropping a relevant token significantly increases the error. (b) Error spike in fixed-$K$ sparse attention as the list size $N$ increases. The green line corresponds to retaining all relevant tokens (no false negatives). (c) Top-$k$ coverage across decoding steps, showing significant oscillation and indicating that the number of relevant tokens varies per step (see Observation 2). See Appendices [ref] and [ref] for details.",
+ "caption_source": "latex",
+ "abstract": "Sparse attention improves LLM inference efficiency by selecting a subset of key-value entries, but at the cost of potential accuracy degradation. In particular, omitting critical KV entries can induce substantial errors in model outputs. Existing methods typically operate under fixed or adaptive token budgets and provide empirical robustness or partial theoretical guarantees, yet they do not ensure zero false negatives in decoding steps, particularly since the set of relevant tokens is both query- and step-dependent. Our empirical observations confirm that missing even one critical key can lead to sharp error spikes, especially in long reasoning tasks where the set of important tokens varies throughout decoding. This observation motivates the need for indexing methods that dynamically adapt to these variations across decoding steps while guaranteeing a full recall of the relevant keys above a certain threshold. We address this challenge by reformulating sparse attention as the halfspace range searching problem. However, existing range searching indices are not suitable for modern LLM inference due to their computational and implementation overheads. To overcome this, we introduce Louver, a novel index structure tailored for efficient KV cache retrieval. Louver (i) guarantees zero false negatives with respect to a specified threshold in both theory and practice, (ii) is lightweight to integrate into existing LLM pipelines, and (iii) incorporates hardware-aware optimizations for both CPU and GPU executions. Our experiments demonstrate that Louver outperforms prior sparse attention methods in both accuracy and runtime, and is faster than highly optimized dense attentions such as FlashAttention. These results highlight that recall guarantees are a critical and overlooked dimension of sparse attention, and open a new direction for building theoretically grounded, efficient KV cache indices.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=htJoIGk2K0",
+  "arxiv": "https://arxiv.org/abs/2605.06763",
+  "pdf": "https://arxiv.org/pdf/2605.06763",
+  "proceedings": null,
+  "virtual": "https://neurips.cc/virtual/2026/poster/150458",
+  "code": null
+ },
+ "license": "http://creativecommons.org/licenses/by/4.0/",
+ "img": "cc-by",
+ "image_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/images/neurips26-6396.png",
+ "thumb_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/thumbs/neurips26-6396.webp",
+ "figure_page": 4,
+ "qc_flags": [
+  "bad-crop"
+ ],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.55
+}

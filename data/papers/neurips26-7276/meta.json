@@ -1,0 +1,50 @@
+{
+ "id": "neurips26-7276",
+ "title": "KroQuant: Kronecker-Structured Block Transforms for Efficient Post-Training Quantization of Diffusion Transformers",
+ "authors": [
+  "Yann Bouquet",
+  "Alireza Khodamoradi",
+  "Kristof Denolf",
+  "Mathieu Salzmann"
+ ],
+ "venue": "NeurIPS 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "Deep Learning->Algorithms",
+ "role": "prior-vs-ours",
+ "role2": "pipeline",
+ "claim": "Prior low-rank quantization methods use a smoothing quantizer; swapping in our learned transform quantizer in the same architecture is cheap and better.",
+ "layout": "3 stacked panels, left-to-right flow each, ours highlighted with teal border",
+ "tags": [
+  "quantization",
+  "low-rank-branch",
+  "baseline-comparison",
+  "efficiency",
+  "diffusion-transformer"
+ ],
+ "style": [
+  "minimal",
+  "colorful",
+  "icon-heavy"
+ ],
+ "description": "Three stacked block diagrams share one layout. An input pill, '16-bit Activation', splits into two paths. The upper path runs through two trapezoids, a low-rank pair L and R, and a rank label. The lower path runs through a quantizer box and a matrix P. The two paths join at a circled plus sign and exit as '16-bit Output'. Panel (a), labeled BASELINE, is SVDQuant, with L_SVD, R_SVD, rank 32 and a Smoothing Quantizer. Panel (b), labeled BASELINE, is LoRaQ, with 4-bit L and R, rank 128 and a Smoothing Quantizer. The bottom panel, labeled OURS, has a thick teal border. It mirrors LoRaQ but replaces the quantizer with a 'Kroquant Quantizer', written in orange. Red pills mark 16-bit tensors and teal pills mark 4-bit ones. The eye goes first to the highlighted OURS panel.",
+ "caption": "KroQuant.",
+ "caption_source": "latex",
+ "abstract": "Post-training quantization (PTQ) of diffusion transformers (DiTs) to W4A4 severely degrades output quality, because activations entering each linear layer contain outliers that 4-bit formats cannot represent. The standard fix applies an invertible linear transform to the activations and its inverse to the weights before quantizing both. Normalization layers between blocks force this transform to run online at every denoising step, making its inference computation cost the binding design constraint. Existing options trade quantization quality for inference cost: per-channel scaling (SmoothQuant) is computationally cheap but impacts the magnitude of the channels, which can harm quantization accuracy; fixed Hadamard transforms yield better quantization accuracy but require large block sizes that incur a high online cost; learned full-$d$ invertible transforms calibrate best but entail a prohibitive dense $d \\times d$ matrix multiplication (GEMM) per layer per step. We propose KroQuant, a PTQ method that applies a learned Kronecker-structured invertible transform to each 32-element block of the activation, storing less than half the parameters of per-channel scaling. The block-local structure runs as small tensor-core GEMMs, and on an MI350 GPU the KroQuant quantizer kernel is up to $14\\%$ faster than the SmoothQuant kernel. Offline LoRaQ weight calibration then absorbs the residual per-weight quantization error. On PixArt-$Î£$, SANA, and FLUX.1-schnell at W4A4 (MXFP4e2), KroQuant produces outputs closer to the FP reference than SVDQuant and LoRaQ on MJHQ-30K and SDCI, while preserving or improving image quality.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=oBmgoOB66g",
+  "arxiv": "https://arxiv.org/abs/2607.21446",
+  "pdf": "https://arxiv.org/pdf/2607.21446",
+  "proceedings": null,
+  "virtual": "https://neurips.cc/virtual/2026/poster/149685",
+  "code": null
+ },
+ "license": "http://arxiv.org/licenses/nonexclusive-distrib/1.0/",
+ "img": "none",
+ "image_url": null,
+ "thumb_url": null,
+ "figure_page": 1,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.8
+}

@@ -1,0 +1,54 @@
+{
+ "id": "neurips26-6043",
+ "title": "Wavelet Flow Matching for Multi-Scale Physics Emulation",
+ "authors": [
+  "Gabriele Accarino",
+  "Juan Nathaniel",
+  "Carla Roesch",
+  "Pierre Gentine",
+  "Sara Shamekh",
+  "Duncan Watson-Parris",
+  "Viviana Acquaviva"
+ ],
+ "venue": "NeurIPS 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "Deep Learning->Generative Models and Autoencoders",
+ "role": "pipeline",
+ "role2": null,
+ "claim": "Generative emulation can be trained by applying optimal-transport flow matching jointly across all wavelet scales through one shared conditioned network.",
+ "layout": "Single panel, left-to-right data flow, legend inset top-left, loss box bottom-right",
+ "tags": [
+  "flow-matching",
+  "wavelet",
+  "multi-scale",
+  "optimal-transport",
+  "pde-emulation"
+ ],
+ "style": [
+  "icon-heavy",
+  "math-heavy",
+  "colorful",
+  "photo/real data"
+ ],
+ "description": "A single-panel training-pipeline diagram with a rounded legend box at top-left (concatenation circle, learnable-embedding wave icon, DWT hexagon). On the left, the next-state field x^{t+1} goes through a DWT block to give multi-scale wavelet tiles w_j^{t+1}. Gaussian noise tiles ε_j ~ N(0, I) sit below. Both feed a gray 'Multi-scale Optimal Transport Paths' box. Dashed arrows lead from it to noisy interpolated wavelet tiles w_j^τ. The current state x^t also goes through a DWT, and the result is concatenated with w_j^τ to form z_j^τ. A purple box holds the velocity-prediction U-Net û_j = u_θ(z, τ, κ, past frames). It also receives PDE constants κ, τ and past frames x^{t-l} through embedding icons. The output goes to a blue dashed loss box ℓ_j(θ) = E||û_j − u_j||². Red/blue fluid-field images carry the eye first.",
+ "caption": "Illustration of the Wavelet Flow Matching architecture. During training, Gaussian noise is sampled to match the shape of wavelet coefficients at each scale. OT-CFM interpolation is applied between the next-state wavelet coefficients \\(w_j^{t+1}\\) and noise at every scale with a shared interpolation time \\(\\tau\\), yielding \\(J\\) per-scale flows that are coupled through the shared U-Net. The velocity-predicting U-Net \\(u_{\\theta}\\) (purple box) is conditioned on the interpolation step \\(\\tau\\), the channel-wise concatenation $z_j^{\\tau}$ of \\(w_j^{\\tau}\\) and the current-state coefficients \\(w_j^{t}\\), PDE constants \\(\\kappa\\), and embedding of past $L$ frames. The illustration of $u_{\\theta}$ is shown in Figure [ref].",
+ "caption_source": "latex",
+ "abstract": "Accurate emulation of multi-scale physical systems governed by PDEs demands models that remain stable over long autoregressive rollouts while preserving fine-scale structures. Deterministic emulators produce overly smoothed predictions, while generative approaches better capture details but are costly. Latent-space generative models have emerged as a compromise but with the additional cost of separately pre-trained autoencoders. We propose Wavelet Flow Matching (WFM), a generative emulator that overcomes current trade-offs between cost and skill by performing optimal-transport flow matching directly in the multi-scale wavelet space. Rather than learning a latent compression, WFM leverages the hierarchical structure of a U-Net to jointly predict the transport velocities of a prescribed, lossless wavelet representation. On three challenging systems of chaotic fluid dynamics, WFM achieves superior spectral coherence and competitive or better long-horizon accuracy compared to state-of-the-art models. Our results position the wavelet space as an effective training-free representation for generative emulation of complex physical dynamics.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=fU3MXzvqwZ",
+  "arxiv": "https://arxiv.org/abs/2605.16573",
+  "pdf": "https://arxiv.org/pdf/2605.16573",
+  "proceedings": null,
+  "virtual": "https://neurips.cc/virtual/2026/poster/150773",
+  "code": "https://gabrieleaccarino.github.io/wavelet_flow_matching/"
+ },
+ "license": "http://creativecommons.org/licenses/by-nc-sa/4.0/",
+ "img": "cc-by-nc-sa",
+ "image_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/images/neurips26-6043.png",
+ "thumb_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/thumbs/neurips26-6043.webp",
+ "figure_page": 1,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.93
+}

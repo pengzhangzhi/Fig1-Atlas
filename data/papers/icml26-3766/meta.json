@@ -1,0 +1,48 @@
+{
+ "id": "icml26-3766",
+ "title": "d$^2$p: Structured Soft Attention Is All You Need",
+ "authors": [
+  "Casey Mogilevsky",
+  "Kimberly Liang"
+ ],
+ "venue": "ICML 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "Deep Learning->Algorithms",
+ "role": "analysis-finding",
+ "role2": "concept",
+ "claim": "Temperature smoothly controls how diffuse or sharp attention marginals are, across both unstructured and structured dynamic-programming attention.",
+ "layout": "3x5 grid, rows are models, columns are temperatures, left-to-right sharpening",
+ "tags": [
+  "temperature",
+  "structured-attention",
+  "soft-marginals",
+  "dynamic-programming",
+  "entropy"
+ ],
+ "style": [
+  "plot",
+  "colorful",
+  "minimal"
+ ],
+ "description": "A 3-row by 5-column grid of heatmaps and tree diagrams under the title 'Temperature Effects in Structured and Unstructured Attention'. Columns are labeled T=16, 4, 1, 0.25 and 0.0625, and rows are labeled Softmax, SW Affine and CKY. Softmax heatmaps start as a near-uniform pale blue wash and end as scattered dark-blue single cells, one per row. SW Affine heatmaps start as a diffuse diagonal band and tighten into a crisp dark diagonal alignment path. CKY panels show a triangular chart over 8 leaf dots. At high T it is a dense lattice of faint overlapping spans, and at low T it resolves into one crisp binary parse tree. A bottom caption reads '← Higher Temperature (high entropy)' and 'Lower Temperature (low entropy) →'. The eye goes first to the dark crisp panels at the right.",
+ "caption": "Structured attention is temperature-controlled. Each panel shows soft marginals (attention weights) at temperature T,",
+ "caption_source": "pdf",
+ "abstract": "Classical dynamic programming algorithms such as Smith-Waterman, edit distance, and constituency parsing solve structured combinatorial problems using hard constraints. Soft relaxations replace hard $\\max$ or $\\min$ operators with differentiable probabilistic models whose gradients correspond to alignment or parsing marginals, but existing approaches typically treat the DP algorithm itself as fixed, relying on hand-tuned gap penalties, edit costs, span penalties, and temperatures. We show how to learn these parameters directly from data: the marginals these algorithms produce are themselves first-order derivatives, so learning them is inherently a second-order problem. We derive efficient Hessian-vector products and cross-Jacobians for twelve dynamic programming algorithms spanning alignment, edit distance, and parsing; both derivative families admit closed-form covariance expressions under the induced Gibbs distribution. We implement these operators as fused CUDA kernels in d$^2$p, achieving $100$--$20{,}000\\times$ speedups over standard PyTorch and making end-to-end parameter learning practical at modern scales. We then demonstrate that learning these parameters is critical in practice. In protein structure alignment, freezing gap penalties collapses performance from $0.74$ to $0.32$ $F_1$ (and to $0.13$ at lower encoder capacity), while jointly learning them recovers biologically meaningful gap regimes and reaches $0.75$ $F_1$ and $0.445$ lDDT, $91$% of the TM-align lDDT ceiling. The same machinery transfers to constituency parsing, where a structured CKY CRF matches dense per-span supervision to within $0.003$ $F_1$ on English with no direct parse-tree structural supervision.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=ZPtK8LKcvi",
+  "arxiv": null,
+  "pdf": "https://raw.githubusercontent.com/mlresearch/v306/main/assets/mogilevsky26a/mogilevsky26a.pdf",
+  "proceedings": "https://proceedings.mlr.press/v306/mogilevsky26a.html",
+  "virtual": "https://icml.cc/virtual/2026/poster/63172",
+  "code": "https://github.com/orikata-bio/d2p"
+ },
+ "license": null,
+ "img": "none",
+ "image_url": null,
+ "thumb_url": null,
+ "figure_page": 1,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.6
+}

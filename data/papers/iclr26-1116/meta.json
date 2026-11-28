@@ -1,0 +1,50 @@
+{
+ "id": "iclr26-1116",
+ "title": "Gradient-Aligned Calibration for Post-Training Quantization of Diffusion Models",
+ "authors": [
+  "Anh Hoang",
+  "Van Cuong Pham",
+  "Trung Le",
+  "Jianfei Cai",
+  "Thanh-Toan Do"
+ ],
+ "venue": "ICLR 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "General Machine Learning->Transfer, Multitask and Meta-learning",
+ "role": "analysis-finding",
+ "role2": "problem-setup",
+ "claim": "Calibration data from different steps yields conflicting gradients and uneven quantization error, so uniform treatment of samples is suboptimal.",
+ "layout": "2 panels side by side, heatmap left, bar chart right",
+ "tags": [
+  "quantization",
+  "diffusion-models",
+  "gradient-conflict",
+  "timestep-analysis",
+  "calibration"
+ ],
+ "style": [
+  "plot",
+  "colorful"
+ ],
+ "description": "Two side-by-side empirical plots. Panel (a) is a large square heatmap of pairwise gradient dissimilarity across denoising timesteps 0 to 95, drawn with a jet colormap from blue (about 0, similar) to red (about 1, dissimilar). A blue diagonal band shows that neighboring timesteps agree. The off-diagonal corners are orange and red, so distant timesteps have conflicting gradients. A colorbar sits to the right of the heatmap. Panel (b) is a bar chart of average quantization loss against timestep, from 0 to about 721. The bars are pale blue, and the loss falls steeply from about 0.30 at timestep 0 to near zero by about 200. The eye goes first to the vivid heatmap. Subcaptions sit below each panel.",
+ "caption": "Timestep-wise behavior in quantized diffusion models. (a) Gradient dissimilarity matrix constructed by computing pairwise cosine distance between gradient vectors of the quantization loss, with respect to model parameters, for calibration samples drawn from different timesteps. Higher value indicates higher divergent between timesteps. (b) Quantization loss evaluated separately for calibration samples grouped by timestep, highlighting the uneven performance of the quantized model across different timesteps.",
+ "caption_source": "latex",
+ "abstract": "Diffusion models have shown remarkable performance in image synthesis by progressively estimating a smooth transition from a Gaussian distribution of noise to a real image. Unfortunately, their practical deployment is limited by slow inference speed, high memory usage, and the computational demands of the noise estimation process. Post-training quantization (PTQ) emerges as a promising solution to accelerate sampling and reduce memory overhead for diffusion models. Existing PTQ methods for diffusion models typically apply uniform weights to calibration samples across timesteps, which is sub-optimal since data at different timesteps may contribute differently to the diffusion process. Additionally, due to varying activation distributions and gradients across timesteps, a uniform quantization approach is sub-optimal. Each timestep requires a different gradient direction for optimal quantization, and treating them equally can lead to conflicting gradients that degrade performance. In this paper, we propose a novel PTQ method that addresses these challenges by assigning appropriate weights to calibration samples. Specifically, our approach learns to assign optimal weights to calibration samples to align the quantized model's gradients across timesteps, facilitating the quantization process. Extensive experiments on CIFAR-10, LSUN-Bedrooms, and ImageNet demonstrate the superiority of our method compared to other PTQ methods for diffusion models.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=CtFSOlrjth",
+  "arxiv": "https://arxiv.org/abs/2602.01289",
+  "pdf": "https://proceedings.iclr.cc/paper_files/paper/2026/file/dd3065a00d9b93e3d4d17faa907100bb-Paper-Conference.pdf",
+  "proceedings": "https://proceedings.iclr.cc/paper_files/paper/2026/hash/dd3065a00d9b93e3d4d17faa907100bb-Abstract-Conference.html",
+  "virtual": "https://iclr.cc/virtual/2026/poster/10010821",
+  "code": null
+ },
+ "license": "http://arxiv.org/licenses/nonexclusive-distrib/1.0/",
+ "img": "none",
+ "image_url": null,
+ "thumb_url": null,
+ "figure_page": 3,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.85
+}

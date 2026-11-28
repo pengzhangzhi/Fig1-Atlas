@@ -1,0 +1,52 @@
+{
+ "id": "neurips26-1159",
+ "title": "Block Sparse Flash Attention",
+ "authors": [
+  "Daniel Ohayon",
+  "Itay Lamprecht",
+  "Itay Hubara",
+  "Israel Cohen",
+  "Daniel Soudry",
+  "Noam Elata"
+ ],
+ "venue": "NeurIPS 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "Deep Learning->Attention Mechanisms",
+ "role": "teaser-result",
+ "role2": null,
+ "claim": "Our sparse method keeps near-baseline accuracy while cutting runtime, and beats the prior method across context lengths.",
+ "layout": "3 panels, 2 on top and 1 centered below, shared legend style",
+ "tags": [
+  "sparse-attention",
+  "accuracy-latency-tradeoff",
+  "long-context",
+  "efficiency",
+  "pareto-comparison"
+ ],
+ "style": [
+  "plot",
+  "minimal",
+  "colorful"
+ ],
+ "description": "Three scatter-line plots, each titled 'Accuracy vs Performance Trade-off' for RULER at 32K, 64K and 128K context. Panels (a) and (b) sit side by side on top, and panel (c) is centered underneath. The x-axis is runtime as a percent of baseline, and the y-axis is accuracy as a percent of baseline. A black square marks the baseline (SDPA) at 100/100, with dashed crosshair lines through it and a faint dashed 99% accuracy line. The blue circle curve is Block-Sparse (ours) and the red triangle curve is SpargeAttn. Each point is a sparsity level. In all three panels the blue curve sits higher and further left than the red curve, which means higher accuracy at lower runtime. At 32K the red curve is slower than baseline. At 64K it drops to about 78% accuracy.",
+ "caption": "Accuracy-latency trade-offs on RULER for 32K (top-left), 64K (top-right), and 128K (bottom). BSFA (blue) maintains high accuracy with consistent speedups, outperforming SpargeAttention (orange). Each point is a different sparsity level (Table [ref]).",
+ "caption_source": "latex",
+ "abstract": "Modern large language models increasingly require long contexts for reasoning and multi-document tasks, but attention's quadratic complexity creates a severe computational bottleneck. We present Block Sparse Flash Attention (BSFA), a drop-in replacement that accelerates long-context inference while preserving model quality. Unlike methods that predict importance before computing scores, BSFA computes exact query-key similarities to select the top-k most important value blocks for each query. By comparing per-block maximum scores against calibrated thresholds, we skip approximately 50% of the computation and memory transfers for pruned blocks. Our training-free approach requires only a one-time threshold calibration on a small dataset to learn the per-layer and per-head attention score distributions. We provide a CUDA kernel implementation that can be used as a drop-in replacement for FlashAttention. On Llama-3.1-8B, BSFA achieves up to 1.13x end-to-end speedup on LongBench with only a 1.1% accuracy drop, and up to 1.24x on Needle-in-a-Haystack retrieval at a 1% accuracy drop. The attention kernel itself accelerates by up to 1.38x. We compare BSFA against five recent sparse attention baselines (SpargeAttention, MInference, FlexPrefill, XAttention, and BLASST), and verify the method on Qwen2.5-7B and on A6000 and H100 GPUs. The implementation is available at https://github.com/Danielohayon/Block-Sparse-Flash-Attention.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=8GItn9bqi9",
+  "arxiv": "https://arxiv.org/abs/2512.07011",
+  "pdf": "https://arxiv.org/pdf/2512.07011",
+  "proceedings": null,
+  "virtual": "https://neurips.cc/virtual/2026/poster/155122",
+  "code": null
+ },
+ "license": "http://creativecommons.org/licenses/by/4.0/",
+ "img": "cc-by",
+ "image_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/images/neurips26-1159.png",
+ "thumb_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/thumbs/neurips26-1159.webp",
+ "figure_page": 1,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.85
+}

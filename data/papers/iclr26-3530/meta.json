@@ -1,0 +1,54 @@
+{
+ "id": "iclr26-3530",
+ "title": "ERGO: Efficient High-Resolution Visual Understanding for Vision-Language Models",
+ "authors": [
+  "Jewon Lee",
+  "Wooksu Shin",
+  "Seungmin Yang",
+  "Ki-Ung Song",
+  "DongUk Lim",
+  "Jaeyeon Kim",
+  "Tae-Ho Kim",
+  "Bo-Kyeong Kim"
+ ],
+ "venue": "ICLR 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "Computer Vision->Vision Models & Multimodal",
+ "role": "prior-vs-ours",
+ "role2": "problem-setup",
+ "claim": "Prior methods either spend many tokens or fail when downsampling hides the target; ours reasons from coarse context to succeed efficiently.",
+ "layout": "3 panels side-by-side, top-to-bottom per panel, ✓/✗ efficiency and accuracy headers",
+ "tags": [
+  "coarse-to-fine",
+  "token-efficiency",
+  "visual-reasoning",
+  "failure-case",
+  "reinforcement-learning"
+ ],
+ "style": [
+  "photo/real data",
+  "text-heavy",
+  "colorful"
+ ],
+ "description": "Three columns (a), (b), (c) show the same street photo and the question 'What is the color of the straw?'. Each column header lists 'Vision Token Efficiency' and 'Accurate Reasoning' with green check marks or red crosses. Panel (a) is the prior method at full resolution: it finds the straw and answers correctly, but at a high token cost. Panel (b) is the prior method on a downsampled image: the target is blurry inside a yellow box, the model reasons about a false object, crops the wrong region (a cup with a face on it) and answers 'white'. Panel (c) is ERGO on the downsampled image: it reasons from coarse cues (coffee cups, table), crops a wider region, and answers 'black'. Purple dashed callouts annotate each step. Reasoning text is gray-boxed, with errors in red and correct reasoning in green. A yellow zoom box and a dashed frame group the downsampled inputs.",
+ "caption": "Comparison with prior work on high-resolution visual reasoning. The yellow box marks the target object, which becomes indiscernible after input-image downsampling. (a) DeepEyes [ref] succeeds when the object remains discernible, but at the cost of a large number of vision tokens. (b) DeepEyes [ref] fails when the object is indiscernible at low resolution, where fewer vision tokens are available. (c) Our ERGO performs reasoning-driven perception, correctly answering the question even on low-resolution images.",
+ "caption_source": "latex",
+ "abstract": "Efficient processing of high-resolution images is crucial for real-world vision-language applications. However, existing Large Vision-Language Models (LVLMs) incur substantial computational overhead due to the large number of vision tokens. With the advent of \"thinking with images\" models, reasoning now extends beyond text to the visual domain. This capability motivates our two-stage \"coarse-to-fine\" reasoning pipeline: first, a downsampled image is analyzed to identify task-relevant regions; then, only these regions are cropped at full resolution and processed in a subsequent reasoning stage. This approach reduces computational cost while preserving fine-grained visual details where necessary. A major challenge lies in inferring which regions are truly relevant to a given query. Recent related methods often fail in the first stage after input-image downsampling, due to perception-driven reasoning, where clear visual information is required for effective reasoning. To address this issue, we propose ERGO (Efficient Reasoning & Guided Observation) that performs reasoning-driven perception-leveraging multimodal context to determine where to focus. Our model can account for perceptual uncertainty, expanding the cropped region to cover visually ambiguous areas for answering questions. To this end, we develop simple yet effective reward components in a reinforcement learning framework for coarse-to-fine perception. Across multiple datasets, our approach delivers higher accuracy than the original model and competitive methods, with greater efficiency. For instance, ERGO surpasses Qwen2.5-VL-7B on the V* benchmark by 4.7 points while using only 23% of the vision tokens, achieving a 3x inference speedup. The code and models can be found at: https://github.com/nota-github/ERGO.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=ehKzPoOReW",
+  "arxiv": "https://arxiv.org/abs/2509.21991",
+  "pdf": "https://proceedings.iclr.cc/paper_files/paper/2026/file/0f0c4f3d83c58df58380af3b0729354c-Paper-Conference.pdf",
+  "proceedings": "https://proceedings.iclr.cc/paper_files/paper/2026/hash/0f0c4f3d83c58df58380af3b0729354c-Abstract-Conference.html",
+  "virtual": "https://iclr.cc/virtual/2026/poster/10008298",
+  "code": "https://nota-github.github.io/ergo-project/"
+ },
+ "license": "http://creativecommons.org/licenses/by-nc-sa/4.0/",
+ "img": "cc-by-nc-sa",
+ "image_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/images/iclr26-3530.png",
+ "thumb_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/thumbs/iclr26-3530.webp",
+ "figure_page": 1,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.9
+}

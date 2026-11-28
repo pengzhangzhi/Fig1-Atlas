@@ -1,0 +1,51 @@
+{
+ "id": "icml26-2627",
+ "title": "HASTE: Hardware-Aware Dynamic Sparse Training for Large Output Spaces",
+ "authors": [
+  "Nasib Ullah",
+  "Jinbin Zhang",
+  "Jean Lucien Randrianantenaina",
+  "Erik Schultheis",
+  "Rohit Babbar"
+ ],
+ "venue": "ICML 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "General Machine Learning->Scalable Algorithms",
+ "role": "prior-vs-ours",
+ "role2": "teaser-result",
+ "claim": "Prior sparse output layers are irregular and slow; sharing sparsity patterns across label groups keeps accuracy while approaching dense-level speed.",
+ "layout": "4 panels: two architecture diagrams top-left, line plot top-right, pattern grids bottom",
+ "tags": [
+  "sparse-training",
+  "extreme-classification",
+  "hardware-efficiency",
+  "group-sharing",
+  "speed-expressiveness-tradeoff"
+ ],
+ "style": [
+  "plot",
+  "minimal",
+  "colorful"
+ ],
+ "description": "The top row has three panels. Panel (a) shows the SPARTEX architecture. An Encoder trapezoid feeds a wide dotted sparse layer S, with fan-in F_in and label size L, and a grey auxiliary module Aux. Panel (b) shows HASTE. An Encoder feeds a small dense grey Head of width H and a dotted group-shared sparse tail GS of width T, which together span L. Panel (c) is a line plot of wall-clock slowdown against total FLOPs. Red fixed fan-in climbs to about 4.5x. Green group-shared fan-in stays near 1.1x, close to the dashed 1.0x dense baseline. The bottom row, panel (d), shows three pink-and-white feature-by-label grids: fixed fan-in S, group-shared GS, and block sparsity. Dashed arrows between them mark the trade-off between expressiveness and speed. The eye goes first to the architecture diagrams, then to the diverging red and green curves.",
+ "caption": "Architecture and Performance Overview. (a) Original Spartex. (b) Proposed Group-Shared architecture. (c) Performance benchmarks vs. FLOPs-matched dense (bottleneck) baseline. (d) Visual comparison of sparsity patterns showing trade-offs between expressiveness and speed.",
+ "caption_source": "latex",
+ "abstract": "Extreme multi-label classification (XMC) involves learning models over large output spaces with millions of labels, making the output layer a memory-compute bottleneck. While sparsity-based methods reduce arithmetic complexity, they often fail to yield proportional speedups due to irregular memory access, poor hardware utilization, or reliance on auxiliary architectural components in long-tailed regimes. We introduce group-shared fixed fan-in sparsity, a semi-structured output-layer design in which semantically related labels share a sparse input pattern while retaining independent weights. This grouping introduces a task-aligned inductive bias -- encouraging related labels to share feature subsets -- while reducing index memory overhead, increasing feature reuse across labels, and enabling efficient GPU execution via custom CUDA kernels that leverage modern accelerator primitives. As an alternative to auxiliary objectives, we exploit the long-tailed structure of XMC by decomposing the output layer into a small dense head over frequent labels and a group-shared sparse tail over the remainder, providing an informative gradient pathway while preserving the memory benefits of sparsity. Through kernel-level microbenchmarking, we show that group-shared fixed fan-in translates arithmetic reductions into practical wall-clock gains, achieving up to $4.4\\times$ speedup in the forward pass and up to $25\\times$ speedup in backward passes over standard fixed fan-in sparsity, while operating within a few percent of a FLOPs-matched dense bottleneck. Across large-scale XMC benchmarks, our approach matches or improves precision@k over prior sparse baselines, while narrowing the performance gap to dense.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=PAOhstVuIt",
+  "arxiv": "https://arxiv.org/abs/2606.01117",
+  "pdf": "https://raw.githubusercontent.com/mlresearch/v306/main/assets/ullah26b/ullah26b.pdf",
+  "proceedings": "https://proceedings.mlr.press/v306/ullah26b.html",
+  "virtual": "https://icml.cc/virtual/2026/poster/64281",
+  "code": "https://github.com/xmc-aalto/haste"
+ },
+ "license": "http://creativecommons.org/licenses/by/4.0/",
+ "img": "cc-by",
+ "image_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/images/icml26-2627.png",
+ "thumb_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/thumbs/icml26-2627.webp",
+ "figure_page": 1,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.6
+}

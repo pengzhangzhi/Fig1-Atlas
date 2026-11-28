@@ -1,0 +1,51 @@
+{
+ "id": "iclr26-2980",
+ "title": "SNAP-UQ: Self-supervised Next-Activation Prediction for Single-Pass Uncertainty in TinyML",
+ "authors": [
+  "Ismail Lamaakal",
+  "Chaymae Yahyati",
+  "Khalid Makkaoui",
+  "Ibrahim Ouahbi",
+  "Yassine Maleh"
+ ],
+ "venue": "ICLR 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "Social Aspects->Trustworthy Machine Learning",
+ "role": "pipeline",
+ "role2": null,
+ "claim": "A cheap per-layer next-activation prediction error, aggregated and calibrated, yields uncertainty in a single forward pass.",
+ "layout": "Grid of 4 rows by columns, left-to-right with downward taps; dashed training-only boxes",
+ "tags": [
+  "pipeline",
+  "uncertainty-estimation",
+  "self-supervised",
+  "single-pass",
+  "tinyml"
+ ],
+ "style": [
+  "colorful",
+  "math-heavy",
+  "minimal"
+ ],
+ "description": "A block diagram flowing left to right. The top row shows gray backbone blocks f1, f2, f3, an ellipsis, fD, then a Classifier g and a yellow p_phi(y|x) box. Beneath each tap are stacked boxes joined by downward arrows. Blue activation boxes (a1, a2, ..., a_{D-1}) lead to purple predictor boxes such as g_l(P_l a_{l-1}) → (μ_l, log σ_l²). Yellow surprisal boxes e2, e3, ..., eD sit below those. Long arrows route the e boxes into a gray aggregation box S(x)=Σ w_l e_l. That feeds a purple 'Logistic w' box and then a yellow U(x) output. Dashed pink boxes mark the training-only 'Train {g_l} offline' step and the optional blend with C_phi and m^mg. Orange dashed arrows connect the dashed boxes to the rest of the diagram. Pastel color coding separates the stages.",
+ "caption": "SNAP-UQ pipeline. A standard backbone $f_1,\\dots,f_D$ is tapped at a small set of layers to expose activations $a_\\ell$. For each tap, a lightweight projector $P_\\ell a_{\\ell-1}$ feeds a tiny predictor $g_\\ell$ that outputs next-activation statistics $(\\mu_\\ell,\\log\\sigma_\\ell^{2})$. The per-layer surprisal $e_\\ell$ is a standardized squared error between the realized $a_\\ell$ and $\\mu_\\ell$ (diagonal scale $\\sigma_\\ell^{2}$), and the single-pass uncertainty proxy aggregates these as $S(x)=\\sum_{\\ell} e_\\ell$. A monotone logistic head maps $S(x)$ to a calibrated score $U(x)\\!\\in\\![0,1]$; optionally, the head can blend instantaneous classifier confidence signals (maximum probability $C_\\phi$ and margin $m^{\\mathrm{mg}}$) for added separability. Dashed boxes indicate training-only steps where $\\{g_\\ell\\}$ are fitted offline; inference remains one forward pass, state-free, and MCU-friendly.",
+ "caption_source": "latex",
+ "abstract": "Reliable uncertainty estimation is a key missing piece for on-device monitoring in TinyML: microcontrollers must detect failures, distribution shift, or accuracy drops under strict flash/latency budgets, yet common uncertainty approaches (deep ensembles, MC dropout, early exits, temporal buffering) typically require multiple passes, extra branches, or state that is impractical on milliwatt hardware. This paper proposes a novel and practical method, SNAP-UQ, for single-pass, label-free uncertainty estimation based on depth-wise next-activation prediction. SNAP-UQ taps a small set of backbone layers and uses tiny int8 heads to predict the mean and scale of the next activation from a low-rank projection of the previous one; the resulting standardized prediction error forms a depth-wise surprisal signal that is aggregated and mapped through a lightweight monotone calibrator into an actionable uncertainty score. The design introduces no temporal buffers or auxiliary exits and preserves state-free inference, while increasing deployment footprint by only a few tens of kilobytes. Across vision and audio backbones, SNAP-UQ reduces flash and latency relative to early-exit and deep-ensemble baselines (typically $\\sim$40--60% smaller and $\\sim$25--35% faster), with several competing methods at similar accuracy often exceeding MCU memory limits. On corrupted streams, it improves accuracy-drop event detection by multiple AUPRC points and maintains strong failure detection (AUROC $\\approx 0.9$) in a single forward pass. By grounding uncertainty in layer-to-layer dynamics rather than solely in output confidence, SNAP-UQ offers a novel, resource-efficient basis for robust TinyML monitoring. Our code is available at: https://github.com/Ism-ail11/SNAP-UQ",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=YdK1ZRhrKi",
+  "arxiv": "https://arxiv.org/abs/2508.12907",
+  "pdf": "https://proceedings.iclr.cc/paper_files/paper/2026/file/c28ef8449dc21c90696c80ce47b3b5cc-Paper-Conference.pdf",
+  "proceedings": "https://proceedings.iclr.cc/paper_files/paper/2026/hash/c28ef8449dc21c90696c80ce47b3b5cc-Abstract-Conference.html",
+  "virtual": "https://iclr.cc/virtual/2026/poster/10008878",
+  "code": "https://github.com/Ism-ail11/SNAP-UQ"
+ },
+ "license": "http://creativecommons.org/licenses/by/4.0/",
+ "img": "cc-by",
+ "image_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/images/iclr26-2980.png",
+ "thumb_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/thumbs/iclr26-2980.webp",
+ "figure_page": 2,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.95
+}

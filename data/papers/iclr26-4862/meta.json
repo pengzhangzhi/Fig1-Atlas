@@ -1,0 +1,49 @@
+{
+ "id": "iclr26-4862",
+ "title": "COMPASS: Robust Feature Conformal Prediction for Medical Segmentation Metrics",
+ "authors": [
+  "Matt Cheung",
+  "Ashok Veeraraghavan",
+  "Guha Balakrishnan"
+ ],
+ "venue": "ICLR 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "General Machine Learning->Probabilistic Methods",
+ "role": "pipeline",
+ "role2": null,
+ "claim": "Calibrate by perturbing intermediate features along metric-sensitive directions, which yields nested intervals with a guaranteed marginal coverage bound.",
+ "layout": "3 boxed panels left-to-right, with a guarantee formula spanning the bottom",
+ "tags": [
+  "conformal-prediction",
+  "feature-space",
+  "uncertainty-quantification",
+  "calibration",
+  "medical-segmentation"
+ ],
+ "style": [
+  "math-heavy",
+  "photo/real data",
+  "minimal"
+ ],
+ "description": "Three rounded boxes run left to right, with a long formula banner underneath. The left box, 'Segmentation Pipeline', shows an ultrasound input image feeding into a block labeled f, ẑ, g (a 'Model' brace sits below). This produces a white binary mask, then passes through h to a scalar output metric ŷ. The center box, 'Calibration', shows a green circle labeled 'FCP Lp ball' that holds blue points joined by a double-headed arrow (ẑ_i ± βΔ). A curved arrow leads to a density curve of R_i with a dashed quantile line β̂. The right box, 'Testing', shows three ultrasound images with red segmentation contours at −β̂, 0 and +β̂, labeled ŷ_lo, ŷ and ŷ_hi. The bottom banner reads 'Conformal Guarantee' and gives the coverage probability inequality ≥ 1 − α. Blue, green and black dominate.",
+ "caption": "Overview of COMPASS. (Left) A medical image segmentation network predicts a segmentation map\" from an input image. We conceptually decompose this network into a function $f$ which maps the image to latent features $\\hat{z}$, and a function $g$ that maps $\\hat{z}$ to the output map. The map may then be used to compute a (differentiable) downstream metric $\\hat{y}$ via the function $h$. (Center) We linearly perturb calibration features $\\hat{z_i}$ in a sample-specific direction $\\Delta_i$ to find the scores $R_i$. The scores are used to find the conformal quantile $\\hat{\\beta}$. (Right) At test time for subject $n+1$, we perturb the features $\\hat{z}_{n+1}$ in the direction $\\Delta_{n+1}$ with magnitude $\\hat{\\beta}$. By Theorem 1, our interval construction is guaranteed to be nested. Therefore, under the assumption of exchangeability, the resulting prediction interval achieves marginal coverage (bottom).",
+ "caption_source": "latex",
+ "abstract": "In clinical applications, the utility of segmentation models is often based on the accuracy of derived downstream metrics such as organ size, rather than by the pixel-level accuracy of the segmentation masks themselves. Thus, uncertainty quantification for such metrics is crucial for decision-making. Conformal prediction (CP) is a popular framework to derive such principled uncertainty guarantees, but applying CP naively to the final scalar metric is inefficient because it treats the complex, non-linear segmentation-to-metric pipeline as a black box. We introduce COMPASS, a practical framework that generates efficient, metric-based CP intervals for image segmentation models by leveraging the inductive biases of their underlying deep neural networks. COMPASS performs calibration directly in the model's representation space by perturbing intermediate features along low-dimensional subspaces maximally sensitive to the target metric. We prove that COMPASS achieves valid marginal coverage under the assumption of exchangeability. Empirically, we demonstrate that COMPASS produces significantly tighter intervals than traditional CP baselines on four medical image segmentation tasks for area estimation of skin lesions and anatomical structures. Furthermore, we show that leveraging learned internal features to estimate importance weights allows COMPASS to also recover target coverage under covariate shifts. COMPASS paves the way for practical, metric-based uncertainty quantification for medical image segmentation.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=uBy4TCgGiT",
+  "arxiv": "https://arxiv.org/abs/2509.22240",
+  "pdf": "https://proceedings.iclr.cc/paper_files/paper/2026/file/d95c3d1d599b4f98adc253d2eb269558-Paper-Conference.pdf",
+  "proceedings": "https://proceedings.iclr.cc/paper_files/paper/2026/hash/d95c3d1d599b4f98adc253d2eb269558-Abstract-Conference.html",
+  "virtual": "https://iclr.cc/virtual/2026/poster/10006913",
+  "code": "https://github.com/matthewyccheung/compass"
+ },
+ "license": "http://creativecommons.org/licenses/by/4.0/",
+ "img": "cc-by",
+ "image_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/images/iclr26-4862.png",
+ "thumb_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/thumbs/iclr26-4862.webp",
+ "figure_page": 2,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.8
+}

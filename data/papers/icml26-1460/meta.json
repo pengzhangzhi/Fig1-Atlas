@@ -1,0 +1,50 @@
+{
+ "id": "icml26-1460",
+ "title": "Universal Redundancies in Time Series Foundation Models",
+ "authors": [
+  "Anthony Bao",
+  "Venkata Hasith Vattikuti",
+  "Jeffrey Lai",
+  "William Gilpin"
+ ],
+ "venue": "ICML 2026",
+ "tier": "spotlight",
+ "track": "main",
+ "topic": "Deep Learning->Foundation Models",
+ "role": "analysis-finding",
+ "role2": null,
+ "claim": "Middle layers of a pretrained model make near-identical, uncertainty-raising contributions to the output, revealing redundancy that can be ablated.",
+ "layout": "5 panels: forecast on top, layer heatmaps below, entropy plots top-right",
+ "tags": [
+  "redundancy",
+  "interpretability",
+  "layer-ablation",
+  "time-series",
+  "transformer-analysis"
+ ],
+ "style": [
+  "plot",
+  "colorful",
+  "photo/real data"
+ ],
+ "description": "The figure has five labeled panels, A to E. Panel A, top left, shows a black context time series and a forecast region. The ground truth is a dashed line, and a bold blue predicted line overlays it with faint colored sample paths. Panel B is a row of large red-blue heatmaps of logit maps (token ID vs. timestep) for Layer 1, Layer 2, Layer 11 and Layer 12 (Final), with an ellipsis between them. An annotation labeled 'Spurious Lines of Thought' points to wavy blue curves in Layer 1. A bracket from the ellipsis expands into Panel C, a strip of eight small, nearly identical heatmaps labeled 'Layers 3 - 10 (Redundant)'. Panels D and E sit at top right. D plots average entropy against layer index as many gray lines with a red median line, forming an inverted U. E plots entropic rank for cross attention (red) and self attention (blue), also an inverted U. The eye goes first to the colorful heatmap rows.",
+ "caption": "Middle layers are highly redundant in their contribution to the residual stream: For an example forecasting task (A), we investigate the logit maps produced by direct logit attribution (DLA) on the residual stream (B) after each layer in the Chronos decoder. As seen in (C), the middle layers qualitatively perform very similar updates. We quantify this observation (D) by showing that these middle layers introduce uncertainty, measured as an increase in the entropy of the resulting distribution over tokens. Specifically, we compute $\\frac{1}{T}\\sum_{t=0}^{T} \\sigma(H^{(\\ell)}W_{out})$ for $401$ distinct forecast tasks; we highlight the median for each layer. We also measure the similarity among head outputs for the heads in each layer, and we observe a higher average entropic rank (Appendix [ref]) in the middle layers (E), further suggesting redundancy in the middle layers. Appendix [ref] presents more examples of measurements on the residual stream.",
+ "caption_source": "latex",
+ "abstract": "Time Series Foundation Models (TSFMs) leverage extensive pretraining to accurately predict unseen time series during inference, without the need for task-specific fine-tuning. Through large-scale evaluations on standard benchmarks, we find that leading transformer-based TSFMs exhibit redundant components in their intermediate layers. We introduce a set of tools for mechanistic interpretability of TSFMs, including ablations of specific components and direct logit attribution on the residual stream. Our findings are consistent across several leading TSFMs with diverse architectures, and across a diverse set of real-world and synthetic time-series datasets. We discover that all models in our study are robust to ablations of entire layers. Furthermore, we develop a theoretical framework framing transformers as kernel regressors, motivating a purely intrinsic strategy for ablating heads based on the stable rank of the per-head projection matrices. Using this approach, we uncover the specific heads responsible for degenerate phenomena widely observed in TSFMs, such as parroting of motifs from the context and seasonality bias. Our study sheds light on the universal properties of this emerging class of architectures for continuous-time sequence modeling.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=DyA4KHj1wy",
+  "arxiv": "https://arxiv.org/abs/2602.01605",
+  "pdf": "https://raw.githubusercontent.com/mlresearch/v306/main/assets/bao26c/bao26c.pdf",
+  "proceedings": "https://proceedings.mlr.press/v306/bao26c.html",
+  "virtual": "https://icml.cc/virtual/2026/poster/65406",
+  "code": "https://github.com/abao1999/tsfm-lens"
+ },
+ "license": "http://creativecommons.org/licenses/by-nc-nd/4.0/",
+ "img": "none",
+ "image_url": null,
+ "thumb_url": null,
+ "figure_page": 1,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.85
+}

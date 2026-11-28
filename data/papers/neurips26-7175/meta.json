@@ -1,0 +1,51 @@
+{
+ "id": "neurips26-7175",
+ "title": "Reward-Weighted On-Policy Distillation with an Open Property-Equivalence Verifier for NL-to-SVA Generation",
+ "authors": [
+  "Qingyun Zou",
+  "Yingze Li",
+  "Tianen Liu",
+  "Bingsheng He",
+  "Weng-Fai Wong"
+ ],
+ "venue": "NeurIPS 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "Applications->Everything Else",
+ "role": "pipeline",
+ "role2": "overview-framework",
+ "claim": "A staged curriculum SFT, then verifier-weighted on-policy distillation from a frozen teacher, then evaluation, form one end-to-end training pipeline.",
+ "layout": "3 panels, left-to-right, vertical flowcharts inside each, loss formula at bottom center",
+ "tags": [
+  "on-policy-distillation",
+  "reward-weighting",
+  "formal-verification",
+  "curriculum-learning",
+  "code-generation"
+ ],
+ "style": [
+  "text-heavy",
+  "minimal",
+  "math-heavy"
+ ],
+ "description": "Three rounded panels read left to right. Panel (a), Curriculum SFT, is a vertical chain of boxes: training pairs, then Stage 1 combinational, Stage 2 bounded temporal plus replay, and Stage 3 liveness plus replay. It ends in a bold-bordered Student seed box (Qwen2.5-Coder-7B + LoRA). Panel (b), Reward-weighted on-policy distillation, is the visual center. The student produces K rollouts, which go to an open SymbiYosys+Z3 checker. A verdict table maps equivalent, implies_ref_to_lm, implies_lm_to_ref, not_equivalent and unsupported to weights (1.0, 0.6, 0.4, drop, drop). Green marks accepted verdicts and red marks dropped ones. A frozen CodeV-SVA-14B teacher feeds token distributions into the L_RWOPD formula box at the bottom. A feedback arrow returns to the student, labeled 'update LoRA only'. Panel (c), Inference & evaluation, is a vertical chain from the NL spec to the distilled student, generated SVA, the open checker, and JasperGold. Bold borders mark the model boxes. Panels use pale gray, tan and green backgrounds.",
+ "caption": "RWOPD training and evaluation pipeline.",
+ "caption_source": "latex",
+ "abstract": "Specialized language models for translating natural language (NL) into SystemVerilog assertions (SVA) reach approximately 76\\% accuracy on NL2SVA-Human, but aggregate scores obscure errors on bounded-delay and liveness specifications. Models often reuse a small set of implication templates where different temporal behavior is required. Supervised fine-tuning rewards agreement with reference tokens, whereas SVA correctness depends on property equivalence. We propose \\emph{reward-weighted on-policy distillation} (RWOPD), which uses an open SymbiYosys+Z3 property-equivalence checker to select student rollouts and weight their distillation loss. A frozen 14B teacher supplies forward Kullback--Leibler (KL) supervision at each response token; equivalent rollouts receive greater weight than one-sided implications. Starting from curriculum supervised fine-tuning (SFT), RWOPD distills CodeV-SVA-14B into a Qwen2.5-Coder-7B-Instruct student. The student has the highest reported pass@1, pass@5, and pass@10 on NL2SVA-Human and NL2SVA-Machine among the compared models, including specialized baselines and 671B general-purpose models.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=nRVe5pE6sQ",
+  "arxiv": "https://arxiv.org/abs/2605.13501",
+  "pdf": "https://arxiv.org/pdf/2605.13501",
+  "proceedings": null,
+  "virtual": "https://neurips.cc/virtual/2026/poster/149770",
+  "code": null
+ },
+ "license": "http://creativecommons.org/licenses/by/4.0/",
+ "img": "cc-by",
+ "image_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/images/neurips26-7175.png",
+ "thumb_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/thumbs/neurips26-7175.webp",
+ "figure_page": 3,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.93
+}

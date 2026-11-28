@@ -1,0 +1,49 @@
+{
+ "id": "neurips26-5003",
+ "title": "Learn from your own latents and not from tokens: A sample-complexity theory",
+ "authors": [
+  "Daniel Korchinski",
+  "Alessandro Favero",
+  "Matthieu Wyart"
+ ],
+ "venue": "NeurIPS 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "General Machine Learning->Representation Learning",
+ "role": "concept",
+ "role2": "pipeline",
+ "claim": "Predicting targets far from the input costs exponentially many samples in depth; predicting latents from latents keeps the distance constant.",
+ "layout": "4 stacked panels (a top, b–c middle, d bottom), tree diagrams, formulas under each",
+ "tags": [
+  "latent-prediction",
+  "sample-complexity",
+  "hierarchical-grammar",
+  "self-supervised",
+  "theory"
+ ],
+ "style": [
+  "minimal",
+  "math-heavy",
+  "colorful"
+ ],
+ "description": "A four-panel schematic on white cards with gray headers. Panel a gives the Random Hierarchy Model: production rules (α→{aab,aba}, etc.), grammar parameters L, v, m, s, and a small generated tree with latent and visible layers. A strip below explains that the training signal weakens with the distance r to the target, so P~m^r. Panels b and c show tree diagrams for supervised classification (r=L, P~m^L) and token prediction (r=L+1, P~m^(L+1)). They use blue correlation paths, gray cluster shading and boxed Z targets. Panel d shows two trees linked by an arrow, labelled 'predict tokens from tokens' and 'predict latents from latents'. A gray box states r=3 at every level and P~vm^3, independent of depth. A legend runs along the bottom.",
+ "caption": "Learning from latents reconstructs the RHM hierarchy more efficiently than token-level objectives. a. An example Random Hierarchy Model (RHM) grammar (left) and a generated sample (right), with $L=2$. The RHM generates tokens by recursively choosing one of $m$ equiprobable production rules per symbol from a fixed grammar of $v$ symbols per level. Each rule expands a symbol into $s$ children; $L$ rounds give $s^L$ visible tokens. Trained on this data, token and root predictors learn to cluster synonymic tuples into latents in order to achieve good performance. b--c. For supervised classification (b) and token-level SSL (c), we highlight the hardest latents to learn. These are the latents farthest from the training objective. The path length $r$ counts production rules (squares), each adding a factor $m$ to the samples required to learn those latents. Triangles abbreviate subtrees for visual clarity. d. Predicting tokens from tokens builds latents; predicting latents from latents builds super-latents. The distance remains $r=3$ at every level. Iterating recovers the non-root hierarchy with $\\widetilde O(vm^3)$ samples under the assumptions of [ref], independent of depth (up to logarithmic factors).",
+ "caption_source": "latex",
+ "abstract": "Generative models, from diffusion models to large language models, achieve remarkable performance but at a cost in training data orders of magnitude larger than what biological learners require. An alternative paradigm has emerged in which networks are trained to predict their own latent representations of related views or masked regions, as in data2vec and JEPA -- an idea related to predictive-coding accounts of the cortex. Despite strong empirical results, the theoretical understanding of these methods remains limited. Central questions include: by how much does latent prediction actually improve data efficiency? Is there a benefit to stacking such methods into multi-scale hierarchies? We answer both using as data a tractable probabilistic context-free grammar that captures the compositional structure of natural language and images. Such a grammar generates strings of visible tokens by recursively applying production rules along a tree of hidden symbols of depth $L$. For such data, supervised or token-level SSL require a number of samples exponential in $L$ to recover the latent tree; we prove that latent prediction achieves this with a number of samples constant in $L$, up to logarithmic factors. We confirm this bound with (i) a hierarchical clustering algorithm, (ii) an end-to-end neural network whose predictor-clusterer modules predict their own latents at each level via gradient descent, and (iii) the first sample-complexity analysis of data2vec, which we show implicitly performs hierarchical latent prediction. This suggests that explicit stacking such as H-JEPA is largely redundant.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=YdrSzFbIAM",
+  "arxiv": "https://arxiv.org/abs/2605.27734",
+  "pdf": "https://arxiv.org/pdf/2605.27734",
+  "proceedings": null,
+  "virtual": "https://neurips.cc/virtual/2026/poster/151709",
+  "code": null
+ },
+ "license": "http://creativecommons.org/licenses/by/4.0/",
+ "img": "cc-by",
+ "image_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/images/neurips26-5003.png",
+ "thumb_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/thumbs/neurips26-5003.webp",
+ "figure_page": 3,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.5
+}

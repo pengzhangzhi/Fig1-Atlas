@@ -1,0 +1,50 @@
+{
+ "id": "neurips26-1410",
+ "title": "fmxcoders: Factorized Masked Crosscoders for Cross-Layer Feature Discovery",
+ "authors": [
+  "Andreas D Demou",
+  "Panagiotis Koromilas",
+  "James Oldfield",
+  "Yannis Panagakis",
+  "Mihalis Nicolaou"
+ ],
+ "venue": "NeurIPS 2026",
+ "tier": "spotlight",
+ "track": "main",
+ "topic": "Social Aspects->Accountability, Transparency and Interpretability",
+ "role": "prior-vs-ours",
+ "role2": "pipeline",
+ "claim": "Prior methods learn independent per-layer parameters that collapse onto few layers; ours shares a factorized cross-layer basis and regularizes, yielding semantic features.",
+ "layout": "2 stacked rows (prior top, ours bottom), left-to-right flow, magnifier inset on right",
+ "tags": [
+  "tensor-factorization",
+  "crosscoders",
+  "interpretability",
+  "layer-masking",
+  "sparse-dictionary"
+ ],
+ "style": [
+  "colorful",
+  "icon-heavy"
+ ],
+ "description": "The figure has two horizontal rows that compare the two approaches. The top row shows a standard crosscoder. A robot icon and a blue 'Transformer LLM' box feed a stack of residual-stream layer bars. These go into a yellow stack of per-layer Encoder matrices, then a latent column with two red-highlighted latents (URL punctuation, code/markup punctuation), then a green stack of Decoder matrices. The output is reconstructed layer bars. A callout bubble with a magnifier shows per-layer decoder direction arrows for Layers 5-8, with one orange arrow highlighted. The bottom row repeats the layout for fmxcoders. A 'stochastic layer mask' sits above the layer bars. The encoder and decoder appear as three yellow or green 3D cubes (factors 1-3) joined by circular arrows, labelled with ranks R1-R3. The latents are US states/cities and negative-affect words. A purple arrow spans more layers in the inset. Boxed headline captions sit between the rows.",
+ "caption": "Standard crosscoders (top) parameterize the encoder and decoder as $L$ independent per-layer matrices and recover latents whose functional dependence collapses onto a few layers, capturing surface-level patterns. \\acronym (bottom) replace these with low-rank tensor factorizations that share a cross-layer basis across all latents, and add stochastic layer masking as a denoising regularizer along the layer axis, producing latents that span more layers and act as semantic concept detectors. Insets show per-layer decoder directions for one example latent.",
+ "caption_source": "latex",
+ "abstract": "Many features in pretrained Transformers span multiple layers: they emerge through stages of inference, persist in the residual stream, or are built jointly by parallel MLPs. Crosscoders (namely, sparse dictionaries trained jointly across layers) aim to recover these cross-layer features in a single shared latent space. We show that standard crosscoders largely fail at this purpose. Although their decoder weight norms spread evenly across layers, a functional coherence metric we introduce reveals that each latent's activation is effectively driven by only one or two layers on average. While functionally coherent latents act as human-interpretable concept detectors (e.g., US states and cities), the layer-localized latents that crosscoders predominantly learn collapse onto surface-level patterns such as digit detectors. We trace this failure to two structural limitations: unconstrained cross-layer parameterization and unregularized cross-layer dependence. We address both by introducing fmxcoders, which (i) replace the encoder and decoder with low-rank tensor factorizations that draw every latent's per-layer weights from a shared cross-layer basis, and (ii) apply stochastic layer masking, a denoising regularizer along the layer axis that penalizes latents whose contribution collapses when a single layer is masked. Across GPT2-Small, Pythia-410M, Pythia-1.4B, and Gemma2-2B, fmxcoders lift mean probing F1 by 10-30 points, surpassing per-layer SAE baselines that standard crosscoders fail to reach, reduce reconstruction MSE by 25-50%, and roughly double mean functional coherence. An LLM-as-a-judge evaluation further shows that fmxcoders recover 3-13$\\times$ more semantically coherent latents than standard crosscoders across all four base LLMs.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=A71gEbBJUL",
+  "arxiv": "https://arxiv.org/abs/2605.09438",
+  "pdf": "https://arxiv.org/pdf/2605.09438",
+  "proceedings": null,
+  "virtual": "https://neurips.cc/virtual/2026/poster/154897",
+  "code": "https://github.com/AndreasDemou/fmxcoders"
+ },
+ "license": "http://arxiv.org/licenses/nonexclusive-distrib/1.0/",
+ "img": "none",
+ "image_url": null,
+ "thumb_url": null,
+ "figure_page": 1,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.9
+}

@@ -1,0 +1,54 @@
+{
+ "id": "neurips26-8585",
+ "title": "Missing Old Logits in Asynchronous Agentic RL: Semantic Mismatch and Repair Methods for Off-Policy Correction",
+ "authors": [
+  "Zhong Guan",
+  "Yongjian Guo",
+  "Haoran Sun",
+  "Wen Huang",
+  "shuai di",
+  "Junwu Xiong",
+  "Likang Wu",
+  "Hongke Zhao"
+ ],
+ "venue": "NeurIPS 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "Reinforcement Learning->Deep RL",
+ "role": "prior-vs-ours",
+ "role2": "problem-setup",
+ "claim": "When updates are delayed, the historical policy needed for correction goes missing, so the old-logit ratio mixes discrepancy repair with staleness correction.",
+ "layout": "2 stacked timeline panels, left-to-right, shared legend, red ✗ versus green ✓ trust regions",
+ "tags": [
+  "asynchronous-rl",
+  "off-policy-correction",
+  "importance-ratio",
+  "failure-mode",
+  "system-timeline"
+ ],
+ "style": [
+  "icon-heavy",
+  "colorful",
+  "math-heavy"
+ ],
+ "description": "Two stacked timeline diagrams share a time axis and a bottom legend. The top panel, Synchronous RL, has three rows labeled Rollout (Trajectory), Actor (old-logit compute) and Actor (Update), each with a blue chip icon. Rollout blocks a and b are followed by old-logit compute blocks π_v0(a) and π_v0(b). Pink bars mark weight synchronization. A green-checked Trust Region box shows r_b = π_v1/π_v0. The bottom panel, Asynchronous RL (staleness = 1), uses the same layout, but the rollout blocks span policy versions and are colored blue, green and orange. A red 'π_v0 is missing!' arrow points at the old-logit block. A red-shaded Trust Region box with a red X shows r_b = π_v1/π_v1, next to a green-checked box showing the intended ratio. The red X and the red missing label draw the eye first.",
+ "caption": "Synchronous versus asynchronous RL. In synchronous RL, the old logits used during training correspond to the same policy version that generated the rollout. In asynchronous RL, delayed updates and partial rollouts can make this version unavailable, which creates an old-logit mismatch and breaks the intended separation between training--inference discrepancy repair and policy-staleness correction.",
+ "caption_source": "latex",
+ "abstract": "Asynchronous reinforcement learning improves rollout throughput for large language model agents by decoupling sample generation from policy optimization, but it also introduces a critical failure mode for PPO-style off-policy correction. In heterogeneous training systems, the total importance ratio should ideally be decomposed into two semantically distinct factors: a \\emph{training--inference discrepancy term} that aligns inference-side and training-side distributions at the same behavior-policy version, and a \\emph{policy-staleness term} that constrains the update from the historical policy to the current policy. We show that practical asynchronous pipelines with delayed updates and partial rollouts often lose the required historical training-side logits, or old logits. This missing-old-logit problem entangles discrepancy repair with staleness correction, breaks the intended semantics of decoupled correction, and makes clipping and masking thresholds interact undesirably. To address this issue, we study both exact and approximate correction routes. We propose three exact old-logit acquisition strategies: snapshot-based version tracking, a dedicated old-logit model, and synchronization via partial rollout interruption, and compare their system trade-offs. From the perspective of approximate correction, we focus on preserving the benefits of decoupled correction through a more appropriate approximate policy when exact old logits cannot be recovered at low cost, without incurring extra system overhead. Following this analysis, we adopt a revised PPO-EWMA method, which achieves significant gains in both training speed and optimization performance.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=xJMTeTnYj4",
+  "arxiv": "https://arxiv.org/abs/2605.12070",
+  "pdf": "https://arxiv.org/pdf/2605.12070",
+  "proceedings": null,
+  "virtual": "https://neurips.cc/virtual/2026/poster/148513",
+  "code": null
+ },
+ "license": "http://creativecommons.org/licenses/by/4.0/",
+ "img": "cc-by",
+ "image_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/images/neurips26-8585.png",
+ "thumb_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/thumbs/neurips26-8585.webp",
+ "figure_page": 1,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.5
+}

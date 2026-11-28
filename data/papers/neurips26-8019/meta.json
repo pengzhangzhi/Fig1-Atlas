@@ -1,0 +1,52 @@
+{
+ "id": "neurips26-8019",
+ "title": "PCBSchemaGen: Reward-Guided LLM Code Synthesis for Printed Circuit Boards (PCB) Schematic Design with Structured Verification",
+ "authors": [
+  "Huanghaohe Zou",
+  "Peng Han",
+  "Emad Nazerian",
+  "Mafu Zhang",
+  "Zhicheng Guo",
+  "Alex Huang"
+ ],
+ "venue": "NeurIPS 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "Applications->Everything Else",
+ "role": "pipeline",
+ "role2": "overview-framework",
+ "claim": "A frozen generator, paired with a deterministic graded verifier and a bandit refinement loop, turns specifications into verified designs without training.",
+ "layout": "3 stage panels, left-to-right, feedback loop arrow returning along bottom",
+ "tags": [
+  "generate-verify-refine",
+  "reward-oracle",
+  "bandit-search",
+  "training-free",
+  "structured-verification"
+ ],
+ "style": [
+  "icon-heavy",
+  "colorful",
+  "text-heavy"
+ ],
+ "description": "A wide three-stage diagram, with each stage in a dashed box. Stage 1, on the left, has a blue user-specification box. Below it are an IC datasheet, knowledge-graph extraction and a unified-context-assembly stack. These feed a gray LLM generator panel. That panel holds a pink system prompt, user-segment and retrieval-context boxes, a code snippet, and a netlist extraction step. Stage 2 has a stack of reward-oracle layers shaded from orange to yellow, with reward values r=0.3 to 0.7. A green 'All Pass: r=1.0' box ends the stack. Beside it is a Thompson Sampling refinement tree, with a reward formula under it. Stage 3 shows schematic and PCB layout previews. A red-X feedback arrow runs along the bottom from the bandit back to the generator, labeled with temperature and pin-error localization.",
+ "caption": "\\pcbschemagen{} pipeline: schema-induced KG $\\to$ frozen-LLM \\skidl{} generation $\\to$ 5-layer reward oracle ($r \\in [0,1]$, pin-localized errors) $\\to$ Thompson Sampling bandit refinement $\\to$ KiCad-ready schematic and PCB project. Training-free, no per-task golden netlist.",
+ "caption_source": "latex",
+ "abstract": "Most LLM code-synthesis benchmarks rely on unit tests as the reward oracle, but PCB schematic design has none: correctness is defined by structured physical constraints over real IC packages and pin-level assignments, per-task golden references are unavailable, and SPICE simulation does not validate schematic-level correctness. We introduce PCBSchemaGen, a training-free inference-time framework that turns a frozen LLM into a verifiable, repairable PCB schematic generator. The framework induces a domain schema from IC datasheets to ground LLM decoding, pairs it with a deterministic 5-layer continuous-reward verifier with pin-level error localization, and refines candidates through a Thompson Sampling arm-acquiring bandit. We evaluate on 2 PCB benchmarks covering 227 real-IC tasks across 22 unified circuit domains, including a public-schematic-derived suite that serves as a fully held-out generalization test (verifier, KG library, and prompts frozen before any evaluation). Under our framework, an open-weight 31B model (Gemma-4-31B) passes 81.3% of PCBBench tasks on average, and the same framework transfers across both benchmarks with zero verifier code changes; a Circuitron-style inference-time prompting baseline on the same Gemma-4-31B backbone collapses on hard system-level designs. This suggests inference-time refinement under a deterministic structural verifier is a general recipe for reference-free LLM code synthesis in domains without unit-test oracles. Our benchmarks and deterministic verifier are publicly available at https://github.com/HZou9/PCBSchemaGen_v2.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=tSDSSdj4mC",
+  "arxiv": "https://arxiv.org/abs/2602.00510",
+  "pdf": "https://arxiv.org/pdf/2602.00510",
+  "proceedings": null,
+  "virtual": "https://neurips.cc/virtual/2026/poster/149018",
+  "code": "https://github.com/HZou9/PCBSchemaGen_v2"
+ },
+ "license": "http://arxiv.org/licenses/nonexclusive-distrib/1.0/",
+ "img": "none",
+ "image_url": null,
+ "thumb_url": null,
+ "figure_page": 2,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.9
+}

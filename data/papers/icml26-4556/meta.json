@@ -1,0 +1,55 @@
+{
+ "id": "icml26-4556",
+ "title": "dLLM-Cache: Accelerating Diffusion Large Language Models with Adaptive Caching",
+ "authors": [
+  "Zhiyuan Liu",
+  "Yicun Yang",
+  "Yaojie Zhang",
+  "Junjie Chen",
+  "Chang Zou",
+  "Qingyan Wei",
+  "Shaobo Wang",
+  "Yichen Zhu",
+  "Linfeng Zhang"
+ ],
+ "venue": "ICML 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "Deep Learning->Large Language Models",
+ "role": "analysis-finding",
+ "role2": null,
+ "claim": "Most computation between adjacent steps is redundant: static context is nearly unchanged and only a few dynamic tokens change, signaled by one feature.",
+ "layout": "2x6 grid of heatmaps, rows by step pair, columns by feature type, shared colorbar",
+ "tags": [
+  "heatmap",
+  "redundancy",
+  "caching",
+  "training-free",
+  "similarity-analysis"
+ ],
+ "style": [
+  "plot",
+  "colorful",
+  "minimal"
+ ],
+ "description": "A two-row by six-column grid of heatmaps showing cosine similarity between adjacent denoising steps. The top row compares steps 64 and 65. The bottom row compares steps 128 and 129. Column headers read Attention Output, FFN Output, Value and Key. Attention Output and FFN Output each have a Prompt panel and a Response panel. Value and Key have only Response panels. Each heatmap plots layer index (0 to 31) on the y-axis against token index on the x-axis. A viridis colorbar runs from 0.5 (dark purple) to 1.0 (yellow). Prompt panels are almost entirely pale yellow, meaning high similarity. Response panels are mostly yellow with dark green and blue vertical streaks and blobs in the mid-to-deep layers. These mark a few tokens whose similarity dropped. The eye goes to the dark streaks against the uniform yellow.",
+ "caption": "Cosine similarity of Key, Value, Attention Output and FFN Output between two adjacent denoising steps in a dLLM, highlighting computational redundancies. The heatmaps show similarity across adjacent steps for prompt and response tokens, respectively, where a lighter color indicates a higher similarity of a token compared with its value in the last step. These results demonstrate: (I) The prompt region exhibits high similarity, while the response region shows different similarity in different tokens. (II) Notably, only a small fraction of response tokens exhibit significantly lower similarity, suggesting that selective recomputation is sufficient. (III) Response tokens' value similarity closely aligns with attention and FFN output similarity, supporting that value changes can serve as an effective indicator to identify those most changed response tokens.",
+ "caption_source": "latex",
+ "abstract": "Autoregressive Models (ARMs) have long dominated the landscape of Large Language Models. Recently, a new paradigm has emerged in the form of diffusion-based Large Language Models (dLLMs), which generate text by iteratively denoising masked segments. This approach has shown significant advantages and potential. However, dLLMs suffer from high inference latency. Traditional ARM acceleration techniques, such as Key-Value caching, are incompatible with dLLMs due to their bidirectional attention mechanism. To address this specific challenge, our work begins with a key observation that dLLM inference involves a static prompt and a partially dynamic response, where most tokens remain stable across adjacent denoising steps. Based on this, we propose dLLM-Cache, a training-free adaptive caching framework that combines long-interval prompt caching with partial response updates guided by feature similarity. This design enables efficient reuse of intermediate computations without compromising model performance. Extensive experiments on representative dLLMs, including LLaDA 8B and Dream 7B, show that dLLM-Cache achieves up to 9.1x FLOPs reduction on LongBench-HotpotQA while maintaining competitive output quality. Notably, our method brings dLLM inference latency close to that of ARMs under many settings. The code for this work is publicly available at: https://github.com/maomaocun/dLLM-cache.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=guLrgDb2jB",
+  "arxiv": "https://arxiv.org/abs/2506.06295",
+  "pdf": "https://raw.githubusercontent.com/mlresearch/v306/main/assets/liu26fi/liu26fi.pdf",
+  "proceedings": "https://proceedings.mlr.press/v306/liu26fi.html",
+  "virtual": "https://icml.cc/virtual/2026/poster/62405",
+  "code": null
+ },
+ "license": "http://arxiv.org/licenses/nonexclusive-distrib/1.0/",
+ "img": "none",
+ "image_url": null,
+ "thumb_url": null,
+ "figure_page": 1,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.9
+}

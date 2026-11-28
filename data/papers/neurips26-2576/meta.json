@@ -1,0 +1,53 @@
+{
+ "id": "neurips26-2576",
+ "title": "Logit-Conditioned Diffusion Decoding for Frozen Discrete-Token VLMs",
+ "authors": [
+  "Ji Woo Hong",
+  "Gwanhyeong Koo",
+  "Hee Suk Yoon",
+  "Eunseop Yoon",
+  "SooHwan Eom",
+  "Qi Dai",
+  "Chong Luo",
+  "Chang Yoo"
+ ],
+ "venue": "NeurIPS 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "Computer Vision->Image and Video Generation",
+ "role": "prior-vs-ours",
+ "role2": "before-after",
+ "claim": "The standard decoding stage loses fine detail and distorts local structure; replacing only that stage recovers high-fidelity output.",
+ "layout": "2 panels, left-to-right, baseline vs ours columns with red/green boxes",
+ "tags": [
+  "decoder-bottleneck",
+  "discrete-tokens",
+  "diffusion-decoding",
+  "fidelity",
+  "vlm-image-generation"
+ ],
+ "style": [
+  "photo/real data",
+  "colorful"
+ ],
+ "description": "Two side-by-side image grids, each with two rows. Panel (a), reconstruction, has three columns: Ground-Truth, VQ-VAE (blue label) and DCDD (ours, green label). Row one is a comic cover reading 'BATTLE FRONT'. Row two is a woman with a dog. Panel (b), text-to-image generation, has two columns, VQ-VAE and DCDD (ours): a chef-hatted cat and a pink alarm clock in front of a TV. Red boxes on the VQ-VAE outputs mark errors such as garbled cover text, warped faces and malformed clock numerals. Green boxes on the DCDD outputs mark the same regions, restored to match the ground truth or look natural. The eye goes first to the colored boxes and then to the zoomed regions. Captions below each panel state the argument.",
+ "caption": "The VQ-VAE decoder is the fidelity bottleneck in discrete-token VLM image generation. (a) Reconstruction: even when the input image is available and the VLM is bypassed entirely, the VQ-VAE encode--decode pipeline already loses fine structure relative to the ground truth (book cover text, facial details). (b) Text-to-image generation: the same bottleneck propagates to the deployed pipeline, where the native VQ-VAE decoder produces distorted local geometry on the VLM's predicted tokens. DCDD replaces only the decoding stage and recovers fine detail with the VLM left frozen.",
+ "caption_source": "latex",
+ "abstract": "Pre-trained discrete-token VLMs generate images by sampling sequences of codebook indices, but their visual fidelity is bounded by the VQ-VAE decoding stage. Prior work addresses this bottleneck by replacing the discrete tokenizer with continuous or hybrid visual token representations, or by integrating diffusion into the generation pipeline; both require foundation-scale VLM retraining or realignment. We show this is unnecessary: before each token is sampled, discrete-token VLMs already compute a full logit distribution over the codebook, but standard decoding discards it after selecting a single index. Under Otsu's threshold, the pre-sampling logits of capable VLMs assign statistically meaningful probability to at least two codebook entries per token, and recovering this distribution can substantially close the fidelity gap. We propose DCDD, a post-hoc framework that conditions a diffusion decoder on this discarded distribution while leaving the VLM frozen. At inference, DCDD converts the VLM's pre-sampling logits into distribution-weighted code vectors; during training, it uses VQ-VAE encoder-derived proxy logits calibrated to match the distributional statistics of the VLM's inference-time logits. The decoder maps these representations to high-fidelity images as an alternative to the native VQ-VAE decoder. Trained on ImageNet-1K for 50K steps, DCDD reduces reconstruction FID by 74% and Janus-Pro 7B's generation FID on MJHQ-30K by 34%, while semantic alignment across GenEval, DPG-Bench, and WISE remain consistent. Controlled comparisons with diffusion models from the same backbone family, applied either as an image-to-image refiner or as an identically trained decoder on the sampled codes, confirm that the gain stems from conditioning on the VLM's pre-sampling logit distribution rather than from the diffusion model itself.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=ICK4e2LwDl",
+  "arxiv": "https://arxiv.org/abs/2603.13389",
+  "pdf": "https://arxiv.org/pdf/2603.13389",
+  "proceedings": null,
+  "virtual": "https://neurips.cc/virtual/2026/poster/153860",
+  "code": "https://jiwoohong93.github.io/dcdd/"
+ },
+ "license": "http://creativecommons.org/licenses/by-nc-sa/4.0/",
+ "img": "cc-by-nc-sa",
+ "image_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/images/neurips26-2576.png",
+ "thumb_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/thumbs/neurips26-2576.webp",
+ "figure_page": 1,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.6
+}

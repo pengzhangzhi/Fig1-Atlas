@@ -1,0 +1,51 @@
+{
+ "id": "icml26-0214",
+ "title": "Relighting as a Probe of Visual Priors via Augmented Latent Intrinsics",
+ "authors": [
+  "Xiaoyan Xing",
+  "Xiao Zhang",
+  "Sezer Karaoglu",
+  "Theo Gevers",
+  "Anand Bhattad"
+ ],
+ "venue": "ICML 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "Deep Learning->Generative Models and Autoencoders",
+ "role": "pipeline",
+ "role2": null,
+ "claim": "A staged training procedure progressively injects semantic priors, aligns the generator, then self-refines on pseudo-relit data for realism.",
+ "layout": "3 stage panels, 2 on top and 1 wide below, left-to-right, frozen/trainable color coding",
+ "tags": [
+  "multi-stage-training",
+  "latent-intrinsics",
+  "diffusion",
+  "self-supervision",
+  "frozen-vs-trainable"
+ ],
+ "style": [
+  "icon-heavy",
+  "colorful",
+  "photo/real data"
+ ],
+ "description": "A three-panel pipeline diagram with a legend at top: orange boxes mark trainable parameters and light blue boxes mark frozen ones. Stage I (top left) and Stage II (top right) share a layout. Image 1 passes through a visual encoder with a projection and through an intrinsics encoder, and the two are fused as semantic augmentation. Image 2 passes through an extrinsic encoder. The augmented latent-intrinsics, drawn as a stack of colorful feature maps, and the latent-extrinsics, drawn as a blue-to-orange gradient bar, feed the LumiNet Diffusion block, which outputs a relit photo. Snowflake and flame icons mark frozen and trainable modules. Stage III (bottom, wide) takes an in-the-wild image, generates a 'Lighting Zoo' grid of pseudo-relit room photos using random extrinsic images, then feeds that grid back through the model to reconstruct the original, with an L_rec loss at the bottom right.",
+ "caption": "Our Three-Stage Training Pipeline for Augmented Latent Intrinsics (ALI). Our method progressively adapts a pretrained visual encoder and fine-tunes a generative decoder for high-fidelity, unsupervised relighting. Stage I: Augmenting Latent Intrinsics. We inject semantic features from a frozen vision encoder into the intrinsics encoder. This creates our semantically-enriched ALI, which better disentangles scene properties from illumination. Stage II: Aligning the Generative Decoder. With the encoder fixed, we fine-tune the LumiNet diffusion decoder to condition on the new ALI representation, aligning the generator with the scene's improved physical understanding. Stage III: Self-Refinement. We generate a \"Lighting Zoo\" ({examples in supplementary}) of pseudo-relit images to overcome data scarcity. These synthetic images serve as new inputs, with the original real image as the ground truth. This self-supervision trains the network to ignore artifacts and focus on essential structural properties, improving realism for in-the-wild images.",
+ "caption_source": "latex",
+ "abstract": "Image-to-image relighting requires representations that separate illumination from scene properties while preserving dense geometry, material, and photometric cues. We use this task as a probe of visual priors: unlike recognition tasks that reward invariance, relighting tests whether visual features retain the information needed for light transfer. Through a controlled generative relighting framework, we find that strong semantic encoders can degrade relighting quality, exposing a semantic--photometric trade-off between abstraction and physical fidelity. We introduce Augmented Latent Intrinsics (ALI), which balances this trade-off by fusing dense, pixel-aligned visual features into a latent-intrinsic relighting model and refining it with self-supervision on unlabeled real image pairs. ALI improves relighting quality, especially on glossy, metallic, and transparent materials, and demonstrates that generative relighting is an effective tool for quantifying what visual encoders encode about the physical world.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=23pS2aZozA",
+  "arxiv": "https://arxiv.org/abs/2602.01391",
+  "pdf": "https://raw.githubusercontent.com/mlresearch/v306/main/assets/xing26i/xing26i.pdf",
+  "proceedings": "https://proceedings.mlr.press/v306/xing26i.html",
+  "virtual": "https://icml.cc/virtual/2026/poster/66622",
+  "code": "https://augmented-latent-intrinsics.github.io/"
+ },
+ "license": "http://creativecommons.org/licenses/by-nc-sa/4.0/",
+ "img": "cc-by-nc-sa",
+ "image_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/images/icml26-0214.png",
+ "thumb_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/thumbs/icml26-0214.webp",
+ "figure_page": 3,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.95
+}

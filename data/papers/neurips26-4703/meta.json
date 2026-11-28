@@ -1,0 +1,52 @@
+{
+ "id": "neurips26-4703",
+ "title": "SHRED: Retain-Set-Free Unlearning via Self-Distillation with Logit Demotion",
+ "authors": [
+  "Zizhao Hu",
+  "Ameya Godbole",
+  "Johnny Wei",
+  "Mohammad Rostami",
+  "Jesse Thomason",
+  "Robin Jia"
+ ],
+ "venue": "NeurIPS 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "Applications->Language, Speech and Dialog",
+ "role": "analysis-finding",
+ "role2": "problem-setup",
+ "claim": "Across diverse memorization cases, low-probability tokens carry the information-dense content while high-probability tokens encode generic language structure.",
+ "layout": "6 panels in 3x2 grid, document-style and QA-style sections, color legend at bottom",
+ "tags": [
+  "token-probability",
+  "surprisal",
+  "memorization",
+  "unlearning",
+  "token-selection"
+ ],
+ "style": [
+  "text-heavy",
+  "colorful",
+  "photo/real data"
+ ],
+ "description": "A titled figure with six text-example panels arranged in a grid under two section headers: Document-style (personal information, copyrighted content, hazardous knowledge, factual knowledge) and QA-style (factual knowledge, test contamination). Each panel has a small icon and a label naming the scenario and the model (Llama-2-7b, Zephyr-7b, Llama-3.1-8B). The panel text is shown as tokens with colored backgrounds, blue for low probability and red for high probability. The 50% lowest-probability tokens have black outlines. The outlined tokens are mostly names, dates, technical terms and answers. A bottom legend shows a blue-to-red gradient bar for p(x_t|x_<t), the black-box key, and a note that low probability means high surprisal and information-dense content. The eye goes first to the colorful token highlighting.",
+ "caption": "Autoregressive token probability across six common unlearning scenarios. Each token is colored by its autoregressive probability $p_\\theta(x_t \\mid x_{<t})$ from a model that memorizes the content (blue = low, red = high); the bottom-50% lowest-probability tokens are outlined in black. Across all six LLM memorization cases, low-probability positions consistently capture information-dense content (names, events, dates, technical terms, correct answers, etc.), while high-probability positions encode common language structure (punctuations, prepositions, common phrases, etc.).",
+ "caption_source": "latex",
+ "abstract": "Machine unlearning for large language models (LLMs) aims to selectively remove memorized content such as private data, copyrighted text, or hazardous knowledge, without costly full retraining. Most existing methods require a retain set of curated examples to prevent catastrophic degradation of general model utility, creating an extra data dependency that complicates deployment. We propose SHRED (Self-distillation via High-surprisal-only Retain-set-free Entropy Demotion), a retain-set-free unlearning method built on a key insight: not all tokens within a forget set instance carry memorized information equally. High-information tokens concentrate the model's memorized knowledge, while low-information tokens reflect general language competence. SHRED operates in two stages. (1) Selection: We perform a forward pass on a forget set instance, collect per-token autoregressive probabilities, and select the bottom (lowest probability, highest Shannon information) as forget positions; the remaining positions are retained as benign anchors. (2) Training: We construct modified KL targets that demote the memorized token's logit at forget positions while preserving the original distribution at benign positions. The model is then trained via a single top KL self-distillation objective that simultaneously drives forgetting and utility preservation. We evaluate SHRED across four standard unlearning benchmarks and demonstrate that it establishes a new Pareto-optimal trade-off between forget efficacy and model utility, outperforming retain-set-dependent methods. Our analysis shows that SHRED is robust against relearning attacks and membership-inference attacks, and it maintains stable utility even after many sequential unlearning runs.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=WRwsWAq0SG",
+  "arxiv": "https://arxiv.org/abs/2605.07482",
+  "pdf": "https://arxiv.org/pdf/2605.07482",
+  "proceedings": null,
+  "virtual": "https://neurips.cc/virtual/2026/poster/151972",
+  "code": null
+ },
+ "license": "http://creativecommons.org/licenses/by/4.0/",
+ "img": "cc-by",
+ "image_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/images/neurips26-4703.png",
+ "thumb_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/thumbs/neurips26-4703.webp",
+ "figure_page": 2,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.6
+}

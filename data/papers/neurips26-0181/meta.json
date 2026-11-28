@@ -1,0 +1,52 @@
+{
+ "id": "neurips26-0181",
+ "title": "Bernoulli Flow Models: Self-Consistent Generative Modeling for Binary Data",
+ "authors": [
+  "Hao Mo",
+  "Liying Yang",
+  "Shumin Yao",
+  "Xinxing Yu",
+  "Ajian Liu",
+  "Xudong Mao",
+  "Yanyan Liang"
+ ],
+ "venue": "NeurIPS 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "Deep Learning->Theory",
+ "role": "teaser-result",
+ "role2": "analysis-finding",
+ "claim": "Our method keeps sample quality nearly constant as inference steps shrink and converges faster in training, while the baseline degrades sharply.",
+ "layout": "2 side-by-side line plots, left-to-right, shared two-color legend, lettered captions",
+ "tags": [
+  "low-step-sampling",
+  "robustness",
+  "fid-vs-nfe",
+  "training-convergence",
+  "binary-generative-models"
+ ],
+ "style": [
+  "plot",
+  "minimal"
+ ],
+ "description": "Two side-by-side line charts on gray gridded backgrounds, each comparing BFM (ours, dark maroon with circle markers) and BLD (teal with triangle markers). Panel (a), 'Low-NFE sampling robustness', plots FID against NFE from 0 to 256. The teal BLD curve starts very high (about 204 at 16 NFE), drops steeply through 124, 110 and 37, and reaches about 10 at 256. The maroon BFM curve is flat near 9 at every NFE. Panel (b), 'Training dynamics', plots FID against training iterations (100k to 400k). Both curves fall, and BFM stays below BLD throughout (about 9.1 to 7.6 versus 9.8 to 8.0). The eye goes first to the steep teal drop in (a) and the flat maroon line beneath it.",
+ "caption": "Comparison of BFM and BLD under reduced inference steps and during training. (a) FID versus NFE on LSUN Churches ($256\\times256$), evaluated from the 100K-iteration checkpoints trained with 256 sampling steps using the linear probability path scheduler, where only the inference NFE is varied. (b) Training convergence comparison on LSUN Bedrooms ($256\\times256$). We visualize the FID scores from 100K to 400K training iterations ($\\times 10^3$). Both BFM and BLD are trained under identical experimental settings using a linear scheduler. BFM reaches lower FID consistently throughout this range.",
+ "caption_source": "latex",
+ "abstract": "Binary diffusion models typically require many function evaluations (NFEs) to generate high-quality samples, making inference costly. Reducing NFEs without sacrificing sample quality or relying on distillation or additional training remains challenging. Existing binary diffusion models define discrete one-step forward paths and derive reverse posteriors accordingly. In low-NFE cross-step sampling, they incorrectly approximate a true multi-step likelihood using a single-step transition, causing severe quality degradation. We propose Bernoulli Flow Models (BFM) to decouple generative dynamics from fixed discrete time steps. Instead of sequential one-step Markov diffusion chains, BFM defines a unified continuous global Bernoulli probability flow path between data and pure noise and derives analytical closed-form posterior transitions over arbitrary time intervals. Reducing the inference NFE therefore only requires re-evaluating this posterior on the new intervals rather than approximating skipped steps. This removes the structural training-inference mismatch of discrete chains and enables strictly self-consistent low-NFE sampling. Experiments show strong robustness under aggressive NFE reduction: on LSUN Churches 256x256, a 256-step-trained BFM achieves an FID of 9.22 with only 16 sampling steps, while the state-of-the-art discrete baseline degrades to 204.10. BFM also remains competitive with continuous and discrete generative baselines under standard full-step inference. These results establish BFM as a theoretically rigorous, self-consistent, and practical framework for fast binary data generation. Code is available at https://github.com/minimo6666/BFM_NeurIPS2026.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=1MMIaLs9nW",
+  "arxiv": "https://arxiv.org/abs/2610.11362",
+  "pdf": "https://arxiv.org/pdf/2610.11362",
+  "proceedings": null,
+  "virtual": "https://neurips.cc/virtual/2026/poster/155986",
+  "code": "https://github.com/minimo6666/BFM_NeurIPS2026"
+ },
+ "license": "http://creativecommons.org/licenses/by/4.0/",
+ "img": "cc-by",
+ "image_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/images/neurips26-0181.png",
+ "thumb_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/thumbs/neurips26-0181.webp",
+ "figure_page": 6,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.8
+}

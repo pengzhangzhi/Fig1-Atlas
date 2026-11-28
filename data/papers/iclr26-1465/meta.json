@@ -1,0 +1,53 @@
+{
+ "id": "iclr26-1465",
+ "title": "Zero-Overhead Introspection for Adaptive Test-Time Compute",
+ "authors": [
+  "Rohin Manvi",
+  "Joey Hong",
+  "Tim Seyde",
+  "Maxime Labonne",
+  "Mathias Lechner",
+  "Sergey Levine"
+ ],
+ "venue": "ICLR 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "Reinforcement Learning->Planning",
+ "role": "pipeline",
+ "role2": "overview-framework",
+ "claim": "A model can reuse idle output logits to predict reward and remaining cost at every token, and those predictions drive adaptive sampling decisions.",
+ "layout": "3 stacked panels, top-left to bottom; heatmaps linked to tree by lines",
+ "tags": [
+  "introspection",
+  "test-time-compute",
+  "adaptive-sampling",
+  "reward-prediction",
+  "efficiency"
+ ],
+ "style": [
+  "colorful",
+  "plot",
+  "text-heavy",
+  "icon-heavy"
+ ],
+ "description": "A three-part figure with a boxed header over each part. Top left shows a stack of boxes: Language Model, Output Head, and ZIP Logits. A slice of the logits maps through a grid and softmax to an 8x7 blue joint reward-cost grid, with arrows looping back. Top right shows two reasoning traces, with tokens highlighted green, yellow, orange or red by predicted P(Correct) and tokens left. One trace ends 'Correct: False' and the other 'Correct: True'. The bottom panel has four purple-yellow heatmaps of expected reward against remaining tokens, labelled low variance, high variance, lower reward/higher cost, and higher reward/lower cost. Each heatmap links by a blue line to a node in a sampling tree for an easy or a harder prompt. A final formula reads Sampling Utility = E[Reward] - E[Compute] - E[Latency].",
+ "caption": "Top left shows how ZIP repurposes reserved or unused logits in the output head of a language model to instantiate auxiliary predictions, such as the grid mapping for the joint reward-cost distribution that ZIP-RC uses. Top right demonstrates how ZIP-RC can provide real-time expected reward and remaining length predictions. Finally, the bottom shows the joint distributions from ZIP-RC and how they indicate optimal sampling strategies. ZIP-RC sampling uses these joint distributions to calculate a sampling utility to autonomously select meta-actions for optimal test-time compute allocation.",
+ "caption_source": "latex",
+ "abstract": "Large language models excel at reasoning but lack key aspects of introspection, including anticipating their own success and the computation required to achieve it. Humans use real-time introspection to decide how much effort to invest, when to make multiple attempts, when to stop, and when to signal success or failure. Without this, LLMs struggle to make intelligent meta-cognition decisions. Test-time scaling methods like Best-of-N drive up cost and latency by using a fixed budget of samples regardless of the marginal benefit of each one at any point in generation, and the absence of confidence signals can mislead people, prevent appropriate escalation to better tools, and undermine trustworthiness. Learned verifiers or reward models can provide confidence estimates, but do not enable adaptive inference and add substantial cost by requiring extra models or forward passes. We present ZIP-RC, which equips models with zero-overhead introspective predictions of reward and cost. At every token, ZIP-RC reuses reserved or unused logits in the same forward pass as next-token prediction to output a joint distribution over final reward and remaining length -- no extra models, architecture change, or inference overhead. This full joint distribution is used to compute a sampling utility which is the linear combination of the expected maximum reward, total compute, and latency of set of samples if generated to completion. During inference, we maximize this utility with meta-actions that determine which prefix of tokens to continue or initiate sampling from. On mixed-difficulty mathematical benchmarks, ZIP-RC improves accuracy by up to 12% over majority voting at equal or lower average cost, and traces smooth Pareto frontiers between quality, compute, and latency. By providing real-time reward-cost introspection, ZIP-RC enables adaptive, efficient reasoning.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=GqZYGOYuF2",
+  "arxiv": "https://arxiv.org/abs/2512.01457",
+  "pdf": "https://proceedings.iclr.cc/paper_files/paper/2026/file/b22c5b6a87d259769fd186b016412f6a-Paper-Conference.pdf",
+  "proceedings": "https://proceedings.iclr.cc/paper_files/paper/2026/hash/b22c5b6a87d259769fd186b016412f6a-Abstract-Conference.html",
+  "virtual": "https://iclr.cc/virtual/2026/poster/10010457",
+  "code": null
+ },
+ "license": "http://creativecommons.org/licenses/by/4.0/",
+ "img": "cc-by",
+ "image_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/images/iclr26-1465.png",
+ "thumb_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/thumbs/iclr26-1465.webp",
+ "figure_page": 1,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.6
+}

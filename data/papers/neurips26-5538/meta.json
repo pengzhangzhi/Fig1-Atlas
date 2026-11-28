@@ -1,0 +1,53 @@
+{
+ "id": "neurips26-5538",
+ "title": "DELTA-TTS: Adapting Autoregressive Model into Diffusion Language Model for Text-to-Speech",
+ "authors": [
+  "Junwon Moon",
+  "Yejin Lee",
+  "Seungbeom Kim",
+  "Hoseong Ahn",
+  "Sewoong Park",
+  "Heeseung Kim",
+  "Kyuhong Shim"
+ ],
+ "venue": "NeurIPS 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "Applications->Language, Speech and Dialog",
+ "role": "pipeline",
+ "role2": "prior-vs-ours",
+ "claim": "Converting a sequential left-to-right generator into a parallel, confidence-ordered one needs only attention-mask and lightweight architecture changes.",
+ "layout": "3 panels, left-to-right; AR baseline, adaptation modules, resulting parallel decoding",
+ "tags": [
+  "autoregressive-to-diffusion",
+  "parameter-efficient-adaptation",
+  "parallel-decoding",
+  "discrete-diffusion",
+  "speech-synthesis"
+ ],
+ "style": [
+  "colorful",
+  "icon-heavy",
+  "minimal"
+ ],
+ "description": "Three numbered panels run left to right. Panel 1, Autoregressive TTS Model, shows a staircase of token boxes where one blue token is generated per step across L steps. Below it, curved arrows show causal attention to past tokens only. Panel 2, Speech-Aware Adaptation, has two parts. Part A shows a lower-triangular causal attention-mask grid turned into a full bidirectional grid by a '+LoRA' arrow. Part B shows a stacked Transformer Block with LoRA tags on self-attention and feed-forward, a Convolution Block below it, and a note on local mixing of neighboring tokens. Panel 3, DELTA-TTS (ours), shows masked [M] tokens being filled in parallel over T steps, with arcs for bidirectional attention. A legend marks newly generated, already generated and masked tokens. Blue highlights the active tokens throughout.",
+ "caption": "Overview of DELTA-TTS. A pretrained AR TTS backbone is converted into a discrete diffusion language model with two adaptations: bidirectional attention and block-wise LoRA with a Conformer-style convolution module.",
+ "caption_source": "latex",
+ "abstract": "Autoregressive (AR) text-to-speech (TTS) models generate discrete speech tokens sequentially, which makes inference slow and can degrade robustness, since local errors propagate to later positions and can escalate into hallucination. This limitation stems from their left-to-right AR commitment: each token must be determined before future speech-token context is available. However, such ordering is not an inherent requirement for TTS, since the model receives the full input text before synthesis. In this paper, we introduce DELTA-TTS, a lightweight LoRA-based adaptation framework that converts a pretrained AR TTS model into a discrete diffusion language model (dLLM) for confidence-ordered speech-token decoding. To better capture the local structure of speech, DELTA-TTS incorporates a convolution module that injects local acoustic context, together with a 1/t-weighted training objective and a time-shifted inference schedule that together defer low-confidence positions to later steps. Trained on only 585 hours of LibriTTS, DELTA-TTS achieves a 1.75% WER on Seed-TTS test-en, outperforming its AR backbone while generating tokens 3.3 times faster. Further analysis shows that DELTA-TTS produces sharper text-speech alignment, increases overall decoding confidence, and mitigates the hallucinations observed in AR generation. Audio samples, inference code, and model weights are available at https://slpr-lab.github.io/DELTA-TTS.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=c4cM3P84zM",
+  "arxiv": "https://arxiv.org/abs/2607.04140",
+  "pdf": "https://arxiv.org/pdf/2607.04140",
+  "proceedings": null,
+  "virtual": "https://neurips.cc/virtual/2026/poster/151215",
+  "code": "https://slpr-lab.github.io/DELTA-TTS"
+ },
+ "license": "http://creativecommons.org/licenses/by-nc-nd/4.0/",
+ "img": "none",
+ "image_url": null,
+ "thumb_url": null,
+ "figure_page": 1,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.72
+}

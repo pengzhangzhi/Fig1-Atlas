@@ -1,0 +1,52 @@
+{
+ "id": "icml26-6313",
+ "title": "AdaRoPE: Not All Attention Heads Should Rotate and Scale Equally",
+ "authors": [
+  "Shaowen Wang",
+  "Yuke Zheng",
+  "Tansheng Zhu",
+  "Shuang Chen",
+  "Shaofan Liu",
+  "Suncong Zheng",
+  "Li Jian"
+ ],
+ "venue": "ICML 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": null,
+ "role": "analysis-finding",
+ "role2": "teaser-result",
+ "claim": "Standard fixed-frequency schemes leave most embedding dimensions unused at a given window; learned per-head frequencies use them all and score higher.",
+ "layout": "3 panels left-to-right: two heatmaps, then a line plot",
+ "tags": [
+  "rotary-embeddings",
+  "frequency-utilization",
+  "learned-frequencies",
+  "heatmap-analysis",
+  "long-context"
+ ],
+ "style": [
+  "plot",
+  "colorful"
+ ],
+ "description": "Three side-by-side panels. The left and middle panels are heatmaps with relative position Delta (0 to about 800) on the x-axis and RoPE pair index (0 to 3) on the y-axis. Colour shows each pair's contribution to the attention logit, on a diverging blue-white-red scale with a colorbar beside each panel. In the left heatmap (standard RoPE), nearly all the colour sits in one row, pair 2, as strong alternating dark red and dark blue stripes. The other rows are pale. In the middle heatmap (learned frequencies), every row has saturated cells and varied periodic patterns, and row 3 is a dark red gradient. The right panel is a line plot of mean eval accuracy against window width (4 to 192). The orange learned curve dips less than the blue standard curve at widths 32 and 64. The eye goes first to the striped pair-2 row on the left.",
+ "caption": "Window-dependent sparse utilization of RoPE frequencies. We analysis per-dimension-pair contributions to the attention logit between a query $q$ and a key $k$ at different relative distances $\\Delta$, where color indicates $\\sum_i q_i k_i$ for each RoPE dimension pair. Darker red or blue denotes larger-magnitude logit contributions. It clearly exhibits distinct periodic patterns across different relative distances. We plot the case of $Dim=8, c=512$ and $\\width=32$. Left: Standard RoPE mainly uses the second RoPE Pair, leaving other dimensions almost unused. Middle: RoPE with learned frequencies (\\adafreq) effectively utilizes all attention dimensions by adjusting frequency, as evidenced by a larger number of cells with large absolute values. Right: Mean evaluation accuracy versus window width $\\width$. The fixed RoPE baseline exhibits significantly lower accuracy compared to the learned approach, due to its suboptimal utilization of frequencies.",
+ "caption_source": "latex",
+ "abstract": "Rotary Position Embedding (RoPE) is widely adopted in Transformers to encode positional information, yet standard implementations enforce a uniform frequency schedule and scaling across all attention heads. Using simplified retrieval tasks and length generalization scenarios, we show -- both empirically and theoretically -- that heads with different functional roles require distinct frequency ranges and attention scaling factors to operate effectively. Ignoring this structure leads to suboptimal utilization of embedding dimensions and degraded performance, particularly under long-context settings. To address these limitations, we propose AdaRoPE, which equips each attention head with learnable rotation frequencies and attention scaling factors. Pretrained LLMs with AdaRoPE consistently outperform existing RoPE variants, including partial RoPE and NoPE baselines. For context extension, we further show that uniform frequency and attention scaling, used in methods such as YaRN, are suboptimal. By applying head-specific scaling, AdaRoPE enables better context extension while better preserving short-context performance in both the extrapolation setting and the long-context continued pretraining setting. These results highlight the importance of optimizing rotary position embedding at the level of individual attention heads.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=xNuMtLaxo5",
+  "arxiv": "https://arxiv.org/abs/2607.19363",
+  "pdf": "https://raw.githubusercontent.com/mlresearch/v306/main/assets/wang26lk/wang26lk.pdf",
+  "proceedings": "https://proceedings.mlr.press/v306/wang26lk.html",
+  "virtual": "https://icml.cc/virtual/2026/poster/60704",
+  "code": null
+ },
+ "license": "http://creativecommons.org/licenses/by/4.0/",
+ "img": "cc-by",
+ "image_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/images/icml26-6313.png",
+ "thumb_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/thumbs/icml26-6313.webp",
+ "figure_page": 2,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.6
+}

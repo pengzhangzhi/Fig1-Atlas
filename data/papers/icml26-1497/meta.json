@@ -1,0 +1,53 @@
+{
+ "id": "icml26-1497",
+ "title": "SliceFine: The Universal Winning-Slice Hypothesis for Pretrained Networks",
+ "authors": [
+  "Md Kowsher",
+  "Ali Polat",
+  "Ehsan Ardehaly",
+  "Mehrdad Salehi",
+  "Zia Ghiasi",
+  "Prasanth Murali",
+  "Chen Chen"
+ ],
+ "venue": "ICML 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "Deep Learning->Large Language Models",
+ "role": "pipeline",
+ "role2": "concept",
+ "claim": "Tuning small slices of a frozen pretrained layer, shifted over training steps and layers, yields a global winning subnetwork without adding parameters.",
+ "layout": "2 panels plus legend, left-to-right; stacked layers left, step-by-step grids right",
+ "tags": [
+  "parameter-efficient",
+  "fine-tuning",
+  "sparse-subnetwork",
+  "lottery-ticket",
+  "slice-schedule"
+ ],
+ "style": [
+  "colorful",
+  "icon-heavy",
+  "minimal"
+ ],
+ "description": "The left panel shows a stack of weight-matrix grids W(1) to W(L) in perspective. Each grid has one orange column or green row highlighted. Dotted arrows from the highlighted slices point to red text reading 'Local Winning Ticket'. A tilted red label above the stack reads 'Global Winning Ticket'. The right panel has two rows of weight-matrix grids at t=0, t=N and t=m×N, joined by arrows. The top row, 'SliceFine (Column)', moves an orange column slice rightward, with earlier columns turned blue to show they are updated and frozen. The bottom row, 'Row + Column', alternates a green row with an orange column. Flame icons mark the trainable slice. Dashed arrows lead to green and orange boxes labeled ΔW(ℓ) with their dimensions. A legend on the far right defines column slice, row slice, updated and frozen, frozen backbone, and trainable slice.",
+ "caption": "(Left) Winning Tickets. In a pretrained network, a randomly chosen slice of a layer \\(W^{(\\ell)} \\in \\mathbb{R}^{d_\\ell \\times d_{\\ell-1}}\\) acts as a local winning ticket: tuning only that slice lowers the loss while keeping the backbone frozen. A few such slices (row, column, or row-column) selected across layers constitute a global winning ticket. (Right) SliceFine. At step $t$, only a slice of the weight matrix $W^{(\\ell)}$ is updated; all other entries remain fixed. Every \\(N\\) steps, we activate a new slice at a different position for learning; the previously active slice retains its learned update but is frozen. Top: column sweep—the slice slides across columns. Bottom: row–column alternation—the slice alternates between a column block and a row block to cover complementary directions. Similarly, in row sweep—the slice slides across rows. This schedule updates only a tiny portion of the model at a time while gradually covering many regions; applying it across several layers yields a global winner.",
+ "caption_source": "latex",
+ "abstract": "This paper presents a theoretical framework explaining why fine tuning small, randomly selected subnetworks (slices) within pre trained models can be sufficient for downstream adaptation. We prove that pretrained networks exhibit a universal winning slice property arising from two phenomena: (1) spectral balance the eigenspectra of different weight matrix slices are remarkably similar; and (2) high task energy their backbone representations retain rich, task relevant features. This leads to the Universal Winning Slice Hypothesis, which provides a theoretical foundation for parameter efficient fine tuning (PEFT) in large scale models. Inspired by this, we propose SliceFine, a PEFT method that exploits this inherent redundancy by updating only selected slices of the original weights introducing zero new parameters, unlike adapter-based approaches. Empirically, SliceFine matches the performance of state of the art PEFT methods across language and vision tasks, while significantly improving training speed, memory efficiency, and model compactness. Our work bridges theory and practice, offering a theoretically grounded alternative to existing PEFT techniques.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=EHUzWqzBL4",
+  "arxiv": "https://arxiv.org/abs/2510.08513",
+  "pdf": "https://raw.githubusercontent.com/mlresearch/v306/main/assets/kowsher26b/kowsher26b.pdf",
+  "proceedings": "https://proceedings.mlr.press/v306/kowsher26b.html",
+  "virtual": "https://icml.cc/virtual/2026/poster/65370",
+  "code": "https://facebookresearch.github.io/SliceFine/"
+ },
+ "license": "http://creativecommons.org/licenses/by/4.0/",
+ "img": "cc-by",
+ "image_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/images/icml26-1497.png",
+ "thumb_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/thumbs/icml26-1497.webp",
+ "figure_page": 0,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.6
+}

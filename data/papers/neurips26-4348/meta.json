@@ -1,0 +1,53 @@
+{
+ "id": "neurips26-4348",
+ "title": "Soft Contamination Means Benchmarks Test Shallow Generalization",
+ "authors": [
+  "Ari Spiesberger",
+  "Juan J Vazquez",
+  "Nicky Pochinkov",
+  "Tomáš Gavenčiak",
+  "Peli Grietzer",
+  "Gavin Leech",
+  "Nandi Schoots"
+ ],
+ "venue": "NeurIPS 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "Deep Learning->Everything Else",
+ "role": "pipeline",
+ "role2": "overview-framework",
+ "claim": "A two-stage workflow first detects semantic duplicates of benchmark items in training data, then finetunes models on them to measure effects.",
+ "layout": "2 color-coded rows of boxes, left-to-right, with connecting arrows and a dashed link",
+ "tags": [
+  "pipeline",
+  "contamination-detection",
+  "embedding-retrieval",
+  "finetuning",
+  "evaluation"
+ ],
+ "style": [
+  "minimal",
+  "colorful",
+  "text-heavy"
+ ],
+ "description": "A flow diagram of rounded boxes joined by arrows, in two color-coded groups. The top row, labelled CONTAMINATION DETECTION, uses blue/lavender boxes. It starts with a gray box for OLMo-3 training corpora and runs through embedding the corpus and benchmarks, cosine similarity matching, LLM annotation with Gemini 3 Flash, and a final Gemini grader. It ends in a gray output box for contamination prevalence. The lower section, labelled FINETUNING EXPERIMENTS, uses red/salmon boxes. A gray box of benchmark datasets (MBPP, CodeForces, MuSR, Zebra) feeds up into the embedding step and right into generating synthetic duplicates. Those duplicates feed LoRA finetuning of OLMo-3 and a separate ecological finetune. A dashed blue arrow from the final grader goes to the finetuning box. Outputs are gray boxes for evaluating OLMo-3 and cross-model evaluation on Qwen. Gray marks inputs and outputs. Each box has a bold title and a smaller subtitle.",
+ "caption": "Our full pipeline from input data to experimental outcomes.",
+ "caption_source": "latex",
+ "abstract": "Training on benchmark test items is a classic way to overestimate generalization to unseen problems. Standard decontamination methods miss semantic duplicates (SemDs): training items equivalent in content to a test item, but distant in string space. We call training on such items soft contamination; when the resulting gains extend to held-out items of the same benchmark (but not to related benchmarks), we call the result shallow generalization. We first embed Olmo 3's entire post-training dataset and search it for SemDs of benchmark items; we then finetune Olmo 3 and Qwen models on natural and synthetic semantic duplicates. We find (1) that soft contamination is widespread: the Olmo corpus contains SemDs of 76% of the CodeForces test set and 100% of MBPP's; (2) that finetuning on SemDs of a benchmark raises accuracy on its held-out items by up to 22pp in controlled experiments and 10-11pp at realistic contamination rates, though the effect varies across benchmarks; (3) that the gains from training on SemDs mostly do not transfer to conceptually similar benchmarks, i.e. we find shallow generalization; (4) that finetuning on items with similar embeddings that are not SemDs produces no such gain, indicating that the mechanism is not mere topical similarity; and (5) that at realistic contamination rates, soft contamination can raise held-out performance about as much as exact duplicates (or more). Benchmark gains here are therefore confounded - in a way that standard decontamination does not address.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=UBmysDOEQQ",
+  "arxiv": "https://arxiv.org/abs/2602.12413",
+  "pdf": "https://arxiv.org/pdf/2602.12413",
+  "proceedings": null,
+  "virtual": "https://neurips.cc/virtual/2026/poster/152288",
+  "code": "https://github.com/AriSpiesberger/Soft-Contamination-Prevelance"
+ },
+ "license": "http://creativecommons.org/licenses/by/4.0/",
+ "img": "cc-by",
+ "image_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/images/neurips26-4348.png",
+ "thumb_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/thumbs/neurips26-4348.webp",
+ "figure_page": 3,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.9
+}

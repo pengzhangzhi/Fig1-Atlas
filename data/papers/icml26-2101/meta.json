@@ -1,0 +1,53 @@
+{
+ "id": "icml26-2101",
+ "title": "Self-Distilled Reasoner: On-Policy Self-Distillation for Large Language Models",
+ "authors": [
+  "Siyan Zhao",
+  "Zhihui Xie",
+  "Mengchen Liu",
+  "Jing Huang",
+  "Guan Pang",
+  "Feiyu Chen",
+  "Aditya Grover"
+ ],
+ "venue": "ICML 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": null,
+ "role": "pipeline",
+ "role2": null,
+ "claim": "One model plays both teacher and student by conditioning on different contexts, and the teacher's token-level signal supervises the student's own rollouts.",
+ "layout": "3 panels, left-to-right, dual student/teacher branches converging on a loss box",
+ "tags": [
+  "self-distillation",
+  "on-policy",
+  "privileged-information",
+  "token-level-supervision",
+  "single-model"
+ ],
+ "style": [
+  "colorful",
+  "math-heavy",
+  "icon-heavy"
+ ],
+ "description": "A wide three-panel diagram on gray rounded backgrounds, read left to right under the title 'On-Policy Self-Distillation'. The left panel shows a dataset cylinder feeding a 'Sample (x, y*) ~ S' box, a dashed legend defining x as the problem and y* as the CoT plus answer, and a blue 'Large Language Model p_θ' box. The middle panel has two parallel columns. The red 'Student Prompt: x only' sits above the blue Student Policy, and the green 'Teacher Prompt: x and y*' sits above the blue Teacher Policy. An arrow labeled 'On-Policy Sample' leads down to the sampled response ŷ, and ŷ then feeds the teacher's next-token distribution. Cloud callouts say 'Construct two prompts for the same LLM' and 'Evaluate with privileged information'. The right panel, 'Learning Objective', holds a white box with the per-token divergence D(p_T || p_S). Below it a note says gradients flow only through the student's logits. Pastel red, green and blue distinguish the student, the teacher and the shared model.",
+ "caption": "Overview of On-Policy Self-Distillation (OPSD): Given a reasoning dataset $\\mathcal{S} = \\{(x_i, y_i^\\star)\\}_{i=1}^N$, we instantiate two policies from the same LLM: a student policy $p_S(\\cdot \\mid x)$ and a teacher policy $p_T(\\cdot \\mid x, y^\\star)$. The student generates an on-policy response $\\hat{y} \\sim p_S(\\cdot \\mid x)$. Both policies then evaluate this trajectory to produce next-token distributions $p_S(\\cdot \\mid x, \\hat{y}_{<n})$ and $p_T(\\cdot \\mid x, y^\\star, \\hat{y}_{<n})$ at each step $n$. The learning objective minimizes the per-token divergence $D(p_T \\| p_S)$ along the student's rollout. The divergence here can be forward KL, reverse KL or JSD. Crucially, gradients backpropagate only through the student's logits, allowing the model to self-distil.",
+ "caption_source": "latex",
+ "abstract": "Knowledge distillation improves large language model (LLM) reasoning by compressing the knowledge of a teacher LLM to train smaller LLMs. On-policy distillation advances this approach by having the student sample its own trajectories while a teacher LLM provides dense token-level supervision, addressing the distribution mismatch between training and inference in off-policy distillation methods. However, on-policy distillation typically requires a separate, often larger, teacher LLM and does not explicitly leverage ground-truth solutions available in reasoning datasets. Inspired by the intuition that a sufficiently capable LLM can rationalize external privileged reasoning traces and teach its weaker self, we introduce On-Policy Self-Distillation (OPSD), a learning algorithm where a single LLM acts as both teacher and student with different contexts. The teacher policy conditions on privileged information (e.g., verified reasoning traces) while the student policy sees only the question; training minimizes the per-token divergence between these distributions over the student's own rollouts. We demonstrate the efficacy of our method on multiple mathematical reasoning benchmarks, achieving superior token efficiency compared to reinforcement learning methods and better performance over off-policy distillation methods. Code repo: https://github.com/siyan-zhao/OPSD.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=Jpxfof0EaS",
+  "arxiv": "https://arxiv.org/abs/2601.18734",
+  "pdf": "https://raw.githubusercontent.com/mlresearch/v306/main/assets/zhao26be/zhao26be.pdf",
+  "proceedings": "https://proceedings.mlr.press/v306/zhao26be.html",
+  "virtual": "https://icml.cc/virtual/2026/poster/64784",
+  "code": null
+ },
+ "license": "http://creativecommons.org/licenses/by/4.0/",
+ "img": "cc-by",
+ "image_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/images/icml26-2101.png",
+ "thumb_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/thumbs/icml26-2101.webp",
+ "figure_page": 1,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.93
+}

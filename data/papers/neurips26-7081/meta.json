@@ -1,0 +1,49 @@
+{
+ "id": "neurips26-7081",
+ "title": "GS-Codec: A Gaussian-Splatting Bottleneck for Neural Audio Coding",
+ "authors": [
+  "Ron Aluf",
+  "Alon Canfi",
+  "Eliya Nachmani"
+ ],
+ "venue": "NeurIPS 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "Applications->Language, Speech and Dialog",
+ "role": "pipeline",
+ "role2": null,
+ "claim": "A costly iterative decomposition bottleneck used in training can be amortized by a single-pass predictor at inference, with no quantizer in training.",
+ "layout": "2 stacked panels, left-to-right flow, dashed loss feedback loops around top pipeline",
+ "tags": [
+  "pipeline",
+  "amortized-inference",
+  "neural-codec",
+  "gaussian-splatting",
+  "training-vs-inference"
+ ],
+ "style": [
+  "colorful",
+  "math-heavy",
+  "icon-heavy"
+ ],
+ "description": "Two stacked horizontal pipelines. The top, titled 'Inner-Loop Optimization and End-to-End Training', runs from a waveform x into a yellow trapezoid Encoder (Downsample), producing latent Z. The latent goes into a grey 'GS bottleneck' box. Inside, channel-wise dashed curves (c=1..C) pass through a green 'GS Optimization' block and come out as colored Gaussian bumps whose sum gives ẑ_c(t) = Σ w_{i,c} g_i(t). The result feeds an orange Decoder (Upsample) that outputs x̂. Dashed arrows carry the L_commit and L_outer loss equations back to the encoder. The bottom, 'Amortized Fast-Pass Inference', has the same Encoder and Decoder. In the bottleneck, a green neural-network 'GS Predictor Net' feeds a blue 'Post Training Quantization' box with a staircase quantization plot and the formula θ̂_i. Yellow, orange, green and blue color-code the modules.",
+ "caption": "GS-Codec pipeline. Training (top): The encoder latent $Z$ is approximated by $N_G$ Gaussian primitives via an inner optimization loop. Inference (bottom): A GS Predictor Net regresses primitive parameters in a single pass, which are then quantized, transmitted, and decoded.",
+ "caption_source": "latex",
+ "abstract": "Neural audio codecs compress waveforms into compact discrete tokens that underpin speech language models, real-time communication, and large-scale audio storage. Almost every dominant design, including residual vector quantization, finite scalar quantization, and single-codebook variants, follows the VQ-VAE template by partitioning the encoder latent through a learned codebook or a fixed scalar grid. We ask whether this partition is necessary. We introduce GS-Codec, a neural speech codec whose bottleneck is a parametric signal decomposition rather than a quantizer. We adapt Gaussian splatting from 3D scene reconstruction to one-dimensional latents. An inner optimization loop fits each encoder segment as a weighted sum of 1D Gaussian primitives. The decoder then reconstructs the waveform from the rendered sum. To avoid the cost of this iterative inner loop at inference time, we additionally train a lightweight GS Predictor Net that regresses the primitive parameters in a single forward pass. The encoder and decoder are trained end-to-end through the inner loop, with no quantizer anywhere in the training pipeline: the bottleneck is the decomposition itself, and scalar quantization is applied only post-training to the fitted parameters. Rather than relying on discrete codebook stages for bitrate control, our representation exposes a fine-grained rate-quality tradeoff: a single trained checkpoint supports post-training bitrate control by varying the number of primitives and the per-parameter bit depth, with no retraining required. GS-Codec matches or exceeds well-established open-source codecs such as EnCodec and DAC on speaker similarity (SIM), intelligibility (STOI), and perceptual quality (UTMOS) at comparable bitrates, while achieving comparable semantic performance (WER). Code and audio samples are available at https://ronaluf.github.io/gs-codec/",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=mpOLhvRzOy",
+  "arxiv": "https://arxiv.org/abs/2610.04651",
+  "pdf": "https://arxiv.org/pdf/2610.04651",
+  "proceedings": null,
+  "virtual": "https://neurips.cc/virtual/2026/poster/149852",
+  "code": "https://ronaluf.github.io/gs-codec/"
+ },
+ "license": "http://creativecommons.org/licenses/by/4.0/",
+ "img": "cc-by",
+ "image_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/images/neurips26-7081.png",
+ "thumb_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/thumbs/neurips26-7081.webp",
+ "figure_page": 2,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.95
+}

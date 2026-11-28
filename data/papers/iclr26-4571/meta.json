@@ -1,0 +1,54 @@
+{
+ "id": "iclr26-4571",
+ "title": "TINY BUT MIGHTY: A SOFTWARE-HARDWARE CO- DESIGN APPROACH FOR EFFICIENT MULTIMODAL IN- FERENCE ON BATTERY-POWERED SMALL DEVICES",
+ "authors": [
+  "Yilong Li",
+  "Yijing Zeng",
+  "Shuai Zhang",
+  "Hao Zhang",
+  "Xinmiao Xiong",
+  "Jingyu Liu",
+  "Pan Hu",
+  "Suman Banerjee"
+ ],
+ "venue": "ICLR 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "Applications->Everything Else",
+ "role": "pipeline",
+ "role2": "overview-framework",
+ "claim": "A modular multimodal model is split into components, each mapped to the best-suited accelerator, with zero-copy buffers connecting them.",
+ "layout": "Single wide diagram, left-to-right, hardware chips below modules, colored feedback arrows",
+ "tags": [
+  "hardware-offloading",
+  "zero-copy",
+  "heterogeneous-accelerators",
+  "scheduling",
+  "edge-inference"
+ ],
+ "style": [
+  "icon-heavy",
+  "colorful",
+  "text-heavy"
+ ],
+ "description": "A wide system diagram of an on-device vision-language pipeline. At left, stacked video frames of a white kitten feed a light-blue Vision Encoder block (ViT, temporal pooling, vision embeddings). A green arrow writes into a central ring buffer. The ring is split into Write, Ready, Read and Free segments, labelled zero-copy and set under a pink Unified Memory heading. A purple Token-Aware Buffer Manager sits below the ring and sends red and blue doorbell alerts to the encoder and the LLM. The pink LLM block at right holds embeddings, linear attention, a fused dequant-GEMM kernel and an LLM layer, and it outputs a caption in a black box. Large chip icons for NPU (blue), CPU (purple) and GPU (dark red) sit beneath their modules. A user with a speech bubble feeds a green speech-to-text box (Whisper, RKNN). At the bottom, an orange Scheduler takes battery reports from a PMU and schedules inference on each chip.",
+ "caption": "Workflow of \\name: VLM Offloading to NPU/GPU with Zero-Copy Embedding Transfer via Ring Buffer.",
+ "caption_source": "latex",
+ "abstract": "Large Multimodal Models (LMMs) are inherently modular, comprising vision and audio encoders, a projector, and a language backbone. Yet existing systems execute them monolithically, underutilizing the heterogeneous accelerators (NPUs, GPUs, DSPs) on modern SoCs and inflating end-to-end latency. We present Nanomind, a hardware-software co-design inference framework that decomposes each LMM into modular \"bricks\"--vision, projector, language, and audio--and maps each brick to its best-suited compute units. A Token-Aware Buffer Manager (TABM) enables zero-copy embedding transfer across accelerators on unified-memory SoCs, bypassing CPU bottlenecks. Combined with customized hardware, a battery-aware scheduler, and fused low-bit GEMM kernels, Nanomind runs entirely on a compact, battery-powered prototype that operates fully offline. Nanomind reduces end-to-end energy by 42.3% against mainstream edge frameworks and devkits; in its on-demand low-power mode, the prototype runs LLaVA-OneVision-Qwen2-0.5B with a camera for nearly 18.8 hours on a single 2,000 mAh battery.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=ql30VWGyda",
+  "arxiv": "https://arxiv.org/abs/2510.05109",
+  "pdf": "https://proceedings.iclr.cc/paper_files/paper/2026/file/b20260e3e1bd7ea108831925d65ce0a6-Paper-Conference.pdf",
+  "proceedings": "https://proceedings.iclr.cc/paper_files/paper/2026/hash/b20260e3e1bd7ea108831925d65ce0a6-Abstract-Conference.html",
+  "virtual": "https://iclr.cc/virtual/2026/poster/10007214",
+  "code": "https://github.com/JimmyLi-Network/Nanomind"
+ },
+ "license": "http://creativecommons.org/licenses/by-nc-sa/4.0/",
+ "img": "cc-by-nc-sa",
+ "image_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/images/iclr26-4571.png",
+ "thumb_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/thumbs/iclr26-4571.webp",
+ "figure_page": 1,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.8
+}

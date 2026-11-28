@@ -1,0 +1,50 @@
+{
+ "id": "neurips26-8024",
+ "title": "Factorized Gradients for Scalable Highly-expressive Parametric Diffeomorphisms",
+ "authors": [
+  "Amit Aflalo",
+  "Eran Treister",
+  "Chaim Baskin",
+  "Oren Freifeld"
+ ],
+ "venue": "NeurIPS 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "Computer Vision->Everything Else",
+ "role": "teaser-result",
+ "role2": null,
+ "claim": "Standard implementation's cost explodes as model resolution grows, while ours stays nearly flat, giving orders-of-magnitude speed and memory gains.",
+ "layout": "3 panels in a row, shared x-axis, log-scale y, speedup callouts",
+ "tags": [
+  "scalability",
+  "efficiency",
+  "latency",
+  "memory",
+  "benchmark-comparison"
+ ],
+ "style": [
+  "plot",
+  "minimal",
+  "colorful"
+ ],
+ "description": "Three side-by-side line plots share the x-axis, tessellation size from 1 to 30. Panel (a) shows forward latency in ms, (b) shows gradient computation latency in ms, and (c) shows peak GPU memory in MiB. All y-axes are logarithmic. In each panel a thick red curve for the baseline CPAB (libcpab) is shaded in pink and stops at N_tess=12. In (b) and (c) it climbs steeply by several orders of magnitude. A thick blue curve for FG-CPAB (Ours) stays nearly flat at the bottom and continues to 30. Bold red callouts near the end of the red curves read 75×, 10463× and 509×, with faint dashed leaders. Bold serif panel titles sit above. The eye goes first to the large red gap and the speedup numbers.",
+ "caption": "Quantitative comparison, in 2D, of performance scaling with tessellation size ($N_{tess}$), between the proposed method, called FG-CPAB, and libcpab [ref], the standard implementation of CPAB diffeomorphisms [ref]. The evaluation was performed on a single RTX A6000 GPU with 125,000 2D points and a batch size of 16. (a) Forward pass latency. (b) Gradient computation latency. (c) Peak GPU memory allocation. In 2D, the domain is partitioned into $C=4N_{tess}^2$ triangular cells. Notably, the standard implementation does not support $N_\\mathrm{tess} > 12$, whereas ours scales efficiently.",
+ "caption_source": "latex",
+ "abstract": "Diffeomorphisms provide a flexible, topology-preserving mathematical tool for modeling complex spatial or temporal deformations and are used in various scientific fields. However, making these deformations simultaneously highly expressive and computationally efficient remains challenging. Continuous Piecewise-Affine Based (CPAB) transformations (Freifeld et al., ICCV 2015; IEEE TPAMI 2017) offer an attractive solution by parameterizing a family of diffeomorphisms via continuous velocity fields that are piecewise affine with respect to a chosen tessellation of the domain. Importantly, $d=\\dim(Î¸)$, the dimension of the parameter vector $Î¸$, depends on the fineness of the tessellation rather than on the data resolution. Despite this compact parameterization, CPAB optimization has long been hindered by the tight coupling between trajectory integration and gradient computation with respect to $Î¸$. We introduce FG-CPAB, a factorized-gradient formulation for scalable CPAB transformations. By separating integration from parameter-space projection, our method reduces gradient computation complexity from $\\mathcal{O}(dTN)$ to $\\mathcal{O}(TN+dC)$, where $T$ is the number of integration steps, $N$ is the number of transformed points, and $C$ is the number of tessellation cells. This reformulation yields speedups of up to four orders of magnitude (e.g., $\\approx 10^4\\times$ in 2D), substantial memory savings (e.g., $\\approx 500\\times$ reduction in peak GPU memory usage in 2D), and dramatically higher expressiveness. This makes fine-tessellation CPAB practical in 2D and 3D for the first time, enabling highly expressive parametric diffeomorphisms.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=tTrgBMBN77",
+  "arxiv": "https://arxiv.org/abs/2610.34766",
+  "pdf": "https://arxiv.org/pdf/2610.34766",
+  "proceedings": null,
+  "virtual": "https://neurips.cc/virtual/2026/poster/149013",
+  "code": "https://bgu-cs-vil.github.io/FG-CPAB/"
+ },
+ "license": "http://creativecommons.org/licenses/by/4.0/",
+ "img": "cc-by",
+ "image_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/images/neurips26-8024.png",
+ "thumb_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/thumbs/neurips26-8024.webp",
+ "figure_page": 0,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.8
+}

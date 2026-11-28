@@ -1,0 +1,53 @@
+{
+ "id": "neurips26-4995",
+ "title": "Virtual-Flow: Virtual Microphone-based Speech Enhancement via Semi-supervised Flow Matching",
+ "authors": [
+  "Dongheon Lee",
+  "Ashutosh Pandey",
+  "Sanjeel Parekh",
+  "Zhaoheng Ni",
+  "Daniel D Wong",
+  "Jacob Donley",
+  "Buye Xu",
+  "Juan Azcarreta"
+ ],
+ "venue": "NeurIPS 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "Applications->Language, Speech and Dialog",
+ "role": "pipeline",
+ "role2": null,
+ "claim": "A pre-trained estimator's output guides a generative model that refines synthesized signals, which then feed a downstream enhancement and beamforming stage.",
+ "layout": "1 panel, left-to-right, green box groups the generative module",
+ "tags": [
+  "flow-matching",
+  "guidance-conditioning",
+  "pipeline",
+  "speech-enhancement",
+  "semi-supervised"
+ ],
+ "style": [
+  "minimal",
+  "icon-heavy"
+ ],
+ "description": "A single wide block diagram reads left to right. On the left, a real multichannel waveform y_r feeds a gray trapezoid pre-trained neural-VME model, which outputs an initial virtual-mic estimate. The estimate acts as a 'Guidance clue' into a green rounded 'Flow matching model' box. Its velocity output goes to an ODE solver, then to a summation node that adds the initial estimate. This yields the virtual-mic waveform. This part sits inside a green-outlined box labeled 'Neural-VME'. Outside the box, the real and virtual signals are concatenated (circled C) and sent to a second gray trapezoid pre-trained MC-SE model. Its output and the stacked signals [y_r, y_v] go into an 'Adaptive Beamformer', which outputs the enhanced waveform. Black arrows and math notation dominate; the green highlight draws the eye first.",
+ "caption": "Proposed framework for virtual microphone-based beamforming (VM-BF). A pre-trained neural-VME model provides a guidance cue to the flow matching model, enabling precise estimation of the vector field. The VM-noisy speech is reconstructed during both training and inference, thereby enhancing the MC-SE model and improving downstream neural beamforming performance.",
+ "caption_source": "latex",
+ "abstract": "Neural network-based virtual microphone estimation (neural-VME) synthesizes microphone signals at unobserved spatial locations from a limited set of real microphone (RM) physical recordings. This enables high-resolution arrays that improve spatial processing for downstream tasks such as speech enhancement. However, existing methods rely on supervised training with ground-truth signals captured at virtual locations, requiring datasets that scale with the number of virtual microphones (VM) and leaving open the question of how to design optimal large-array configurations. We propose Virtual-Flow, a flow-matching framework that implicitly generates VM signals conditioned on real recordings, without requiring ground-truth VM signals. We introduce a semi-supervised training strategy based on pseudo-VM targets constructed from time-delayed superpositions of real recordings. Virtual-Flow shows improved magnitude estimation in high-frequency bands, yielding richer spatial cues for beamforming. Experiments demonstrate that the proposed Virtual-Flow, combined with reflow distillation, outperforms existing neural-VME baselines in VM-based beamforming and achieves competitive end-to-end speech enhancement performance with low computational cost.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=YbYTlv6QId",
+  "arxiv": "https://arxiv.org/abs/2611.11130",
+  "pdf": "https://arxiv.org/pdf/2611.11130",
+  "proceedings": null,
+  "virtual": "https://neurips.cc/virtual/2026/poster/151716",
+  "code": null
+ },
+ "license": "http://creativecommons.org/licenses/by/4.0/",
+ "img": "cc-by",
+ "image_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/images/neurips26-4995.png",
+ "thumb_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/thumbs/neurips26-4995.webp",
+ "figure_page": 3,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.93
+}

@@ -1,0 +1,50 @@
+{
+ "id": "icml26-6335",
+ "title": "Order Matters in Retrosynthesis: Structure-aware Generation via Reaction-Center-Guided Discrete Flow Matching",
+ "authors": [
+  "Chenguang Wang",
+  "Zihan Zhou",
+  "LEI BAI",
+  "Tianshu Yu"
+ ],
+ "venue": "ICML 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "Applications->Chemistry, Physics, and Earth Sciences",
+ "role": "pipeline",
+ "role2": "prior-vs-ours",
+ "claim": "A two-phase pipeline puts reaction-center atoms first in the ordering, so training and sampling can be optimized independently.",
+ "layout": "2 panels split by dashed line, top-to-bottom flow, bottom boxes linked by 'Decoupled' arrow",
+ "tags": [
+  "structure-aware",
+  "flow-matching",
+  "atom-ordering",
+  "decoupled-training-inference",
+  "retrosynthesis"
+ ],
+ "style": [
+  "colorful",
+  "icon-heavy",
+  "photo/real data"
+ ],
+ "description": "The figure has two panels divided by a vertical dashed line, one for the training phase on the left and one for the inference phase on the right. In the training panel, a product molecule is annotated with colored reaction-center atoms and dashed boxes showing candidate reactants from atom mapping. A block arrow leads to three ordered graph candidates with numbered atoms and a boxed root '1'. Another arrow leads to a rounded box showing discrete flow matching, where a graph G_t passes through a blue RetroDiT block to G_1^θ and is compared with G_1 using cross-entropy loss. In the inference panel, the product goes through a yellow R-GCN box, which outputs percentage probabilities on reaction-center atoms. Four ordered candidates then feed a CTMC sampling box. A timeline from t=0 to t=1 shows the product turning into reactants. A large double arrow labeled 'Decoupled' links the two bottom boxes. The eye goes first to the colored molecules and the phase titles.",
+ "caption": "Overview of the structure-aware retrosynthesis framework. Left (Training): Ground-truth reaction centers are identified via atom mapping, generating multiple ordered graph candidates $G_0$ with different RC atoms as roots. Discrete flow matching trains RetroDiT to predict the target reactants $G_1$ from intermediate states $G_t$. Right (Inference): An R-GCN predicts reaction center probabilities, and top-$k$ candidates (4 in the illustration) are used to generate ordered graphs. CTMC sampling progressively transforms the product ($t=0$) into reactants ($t=1$). The training and inference pipelines are decoupled, allowing independent optimization of each component.",
+ "caption_source": "latex",
+ "abstract": "Template-free retrosynthesis methods treat the task as black-box sequence generation, limiting learning efficiency, while semi-template approaches rely on rigid reaction libraries that constrain generalization. We address this gap with a key insight: atom ordering in neural representations matters. Building on this insight, we propose a structure-aware template-free framework that encodes the two-stage nature of chemical reactions as a positional inductive bias. By placing reaction center atoms at the sequence head, our method transforms implicit chemical knowledge into explicit positional patterns that the model can readily capture. The proposed RetroDiT backbone, a graph transformer with rotary position embeddings, exploits this ordering to prioritize chemically critical regions. Combined with discrete flow matching, our approach decouples training from sampling and enables generation in 20--50 steps versus 500 for prior diffusion methods. Our method achieves state-of-the-art performance on both USPTO-50k (61.2% top-1) and the large-scale USPTO-Full (51.3% top-1) with predicted reaction centers. With oracle centers, performance reaches 71.1% and 63.4% respectively, surpassing foundation models trained on 10 billion reactions while using orders of magnitude less data. Ablation studies further reveal that structural priors outperform brute-force scaling: a 280K-parameter model with proper ordering matches a 65M-parameter model without it.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=xeH37plPS3",
+  "arxiv": "https://arxiv.org/abs/2602.13136",
+  "pdf": "https://raw.githubusercontent.com/mlresearch/v306/main/assets/wang26ln/wang26ln.pdf",
+  "proceedings": "https://proceedings.mlr.press/v306/wang26ln.html",
+  "virtual": "https://icml.cc/virtual/2026/poster/60684",
+  "code": null
+ },
+ "license": "http://creativecommons.org/licenses/by/4.0/",
+ "img": "cc-by",
+ "image_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/images/icml26-6335.png",
+ "thumb_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/thumbs/icml26-6335.webp",
+ "figure_page": 3,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.9
+}

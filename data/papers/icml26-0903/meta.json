@@ -1,0 +1,54 @@
+{
+ "id": "icml26-0903",
+ "title": "Controlling the Risk of Corrupted Contexts for Language Models via Early-Exiting",
+ "authors": [
+  "Andrea Wynn",
+  "Metod Jazbec",
+  "Charith Peris",
+  "Rinat Khaziev",
+  "Anqi Liu",
+  "Daniel Khashabi",
+  "Eric Nalisnick"
+ ],
+ "venue": "ICML 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "Deep Learning->Robustness",
+ "role": "pipeline",
+ "role2": "analysis-finding",
+ "claim": "Context of unknown quality should be gated: use the context-conditioned answer if confident, otherwise fall back to the safe no-context baseline.",
+ "layout": "2 panels; (a) left-to-right flow diagram with branches, (b) line plot with safe-range bracket",
+ "tags": [
+  "risk-control",
+  "early-exit",
+  "fallback",
+  "in-context-learning",
+  "harmful-context"
+ ],
+ "style": [
+  "colorful",
+  "icon-heavy",
+  "plot",
+  "text-heavy"
+ ],
+ "description": "Panel (a) is a flow diagram with three input rows. An orange box holds harmful context (\"Humans breathe chlorine...\") and a blue box holds helpful context (\"Humans breathe oxygen...\"). A gray box in the middle holds the test question \"What element do dogs breathe in to survive?\". Each input goes through a plus node into a robot-icon LLM. Each LLM produces an answer box: \"Dogs breathe chlorine\" or \"Dogs breathe oxygen\". A middle row feeds an empty-set \"no context\" input into an LLM, which outputs \"Dogs breathe air\". Dotted arrows are labeled with confidence thresholds, p(y|x,C) ≥ λ or < λ. The ≥ λ arrows lead to green check marks reading \"return answer\". The < λ arrows lead to the \"fall-back to zero-shot\" answer. Panel (b) is a line plot of calibrated accuracy against layer (0–30). It shows correct (blue), incorrect (orange) and zeroshot (green) curves. Red dashed lines and a red bracket mark the \"safe range\" between the zero-shot and correct accuracy levels.",
+ "caption": "(a) A LLM is given some input context C of unknown quality (helpful or harmful). For a test question x, the model needs to infer whether to rely on the answer it obtains using the given context without knowing ahead of time if it was helpful or not. If not, it falls back to the answer it would give without seeing any additional context (zero-shot). (b) When given harmful context (such as incorrect in-context demonstrations), it is better to either early-exit or simply ignore the given context than to use the model's final prediction -- staying in the \"safe\" performance range between zero-shot and correct (or helpful) context.",
+ "caption_source": "latex",
+ "abstract": "Large language models (LLMs) can be influenced by harmful or irrelevant context, which can significantly harm model performance on downstream tasks. This motivates principled designs in which LLM systems include built-in mechanisms to guard against such \"garbage in, garbage out\" scenarios. We propose a novel approach to limit the degree to which harmful context can degrade model performance. First, we define a baseline \"safe\" behavior for the model -- the model's performance given no context at all (zero-shot). Next, we apply distribution-free risk control (DFRC) to control the extent to which the user-provided context can decay performance below this safe zero-shot baseline. We achieve this by leveraging dynamic early exit prediction, ignoring later attention heads that attend the most to the unsafe inputs. Finally, we propose modifications to DFRC that allow it to both control risk for harmful inputs \\textit{and} leverage performance and efficiency gains on helpful inputs. We present both theoretical and empirical results across 9 tasks spanning in-context learning and open-ended question answering, showing that our approach can effectively control risk for harmful context and simultaneously achieve substantial computational efficiency gains with helpful context.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=8bUDbWMo5v",
+  "arxiv": "https://arxiv.org/abs/2510.02480",
+  "pdf": "https://raw.githubusercontent.com/mlresearch/v306/main/assets/wynn26a/wynn26a.pdf",
+  "proceedings": "https://proceedings.mlr.press/v306/wynn26a.html",
+  "virtual": "https://icml.cc/virtual/2026/poster/65947",
+  "code": null
+ },
+ "license": "http://creativecommons.org/licenses/by/4.0/",
+ "img": "cc-by",
+ "image_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/images/icml26-0903.png",
+ "thumb_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/thumbs/icml26-0903.webp",
+ "figure_page": 1,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.5
+}

@@ -1,0 +1,50 @@
+{
+ "id": "neurips26-7002",
+ "title": "Fast-WAM: Do World Action Models Need Test-time Future Imagination?",
+ "authors": [
+  "Tianyuan Yuan",
+  "Zibin Dong",
+  "Yicheng Liu",
+  "Hang Zhao"
+ ],
+ "venue": "NeurIPS 2026",
+ "tier": "spotlight",
+ "track": "main",
+ "topic": "Applications->Robotics",
+ "role": "prior-vs-ours",
+ "role2": "pipeline",
+ "claim": "Prior models generate future video before or while predicting actions; ours trains with video but skips future generation at inference.",
+ "layout": "3 columns (A,B,C) by 2 rows (training/inference), KV-cache arrows",
+ "tags": [
+  "video-co-training",
+  "inference-efficiency",
+  "world-action-model",
+  "paradigm-comparison",
+  "kv-cache"
+ ],
+ "style": [
+  "colorful",
+  "icon-heavy",
+  "minimal"
+ ],
+ "description": "The figure is a 2x3 grid. The top row is Training and the bottom row is Inference. The columns are three paradigms: (A) joint video and action denoising, (B) video prediction followed by action prediction, and (C) ours. Each panel is a dashed box holding rounded white blocks labeled Video DiT and Action DiT. Small blue squares are video latent frames f0..fh. Small yellow squares are action tokens a1..ah. Solid colors mark ground truth or denoised tokens. Pale colors mark noised tokens, and hatched stripes mark noise at inference. Dashed sub-boxes show mask visibility. At inference, B uses a KV-cache arrow from the video denoising step to the action denoising step. C replaces video denoising with a single forward pass on f0 and then passes a KV cache to the action step. The eye goes first to the Training and Inference headings, then to the C column.",
+ "caption": "Three representative WAM paradigms. (A) Joint-modeling WAMs denoise future video and action tokens together. (B) Causal WAMs first generate future observations and then condition action prediction on the generated future representation. (C) Fast-WAM retains video co-training during training but removes explicit future generation at inference time, directly predicting actions from latent world representations in a single forward pass.",
+ "caption_source": "latex",
+ "abstract": "World Action Models (WAMs) have emerged as a promising alternative to Vision-Language-Action (VLA) models for embodied control because they explicitly model how visual observations may evolve under action. Most existing WAMs follow an imagine-then-execute paradigm, incurring substantial test-time latency from iterative video denoising, yet it remains unclear whether explicit future imagination is actually necessary for strong action performance. In this paper, we ask whether WAMs need explicit future imagination at test time, or whether their benefit comes primarily from video modeling during training. We disentangle the role of video modeling during training from explicit future generation during inference by proposing \\textbf{Fast-WAM}, a WAM architecture that retains video co-training during training but skips future prediction at test time. We further instantiate several Fast-WAM variants to enable a controlled comparison of these two factors. Across these variants, we find that Fast-WAM remains competitive with imagine-then-execute variants, while removing video co-training causes a much larger performance drop. Empirically, Fast-WAM achieves competitive results with state-of-the-art methods both on simulation benchmarks (LIBERO and RoboTwin) and real-world tasks, without embodied pretraining. It runs in real time with 190ms latency, over 4$\\times$ faster than existing imagine-then-execute WAMs. These results suggest that the main value of video prediction in WAMs may lie in improving world representations during training rather than generating future observations at test time. Project page: https://yuantianyuan01.github.io/FastWAM/",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=mBYJRAFq7D",
+  "arxiv": "https://arxiv.org/abs/2603.16666",
+  "pdf": "https://arxiv.org/pdf/2603.16666",
+  "proceedings": null,
+  "virtual": "https://neurips.cc/virtual/2026/poster/149922",
+  "code": "https://yuantianyuan01.github.io/FastWAM/"
+ },
+ "license": "http://creativecommons.org/licenses/by/4.0/",
+ "img": "cc-by",
+ "image_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/images/neurips26-7002.png",
+ "thumb_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/thumbs/neurips26-7002.webp",
+ "figure_page": 1,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.85
+}

@@ -1,0 +1,57 @@
+{
+ "id": "neurips26-7761",
+ "title": "VLA-Corrector: Lightweight Detect-and-Correct Inference for Adaptive Action Horizon",
+ "authors": [
+  "Yi Pan",
+  "Miao Pan",
+  "Qi Lu",
+  "Jiaming Huang",
+  "Man Zhang",
+  "Siteng Huang",
+  "Xin Li",
+  "Jie Zhang",
+  "Yongliang Shen",
+  "Xuhong Zhang",
+  "Wenqi Zhang"
+ ],
+ "venue": "NeurIPS 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": null,
+ "role": "prior-vs-ours",
+ "role2": "problem-setup",
+ "claim": "Executing long action chunks blindly lets a small deviation compound into failure, while per-step replanning recovers and succeeds.",
+ "layout": "2 stacked rows, left-to-right timeline, shared initial state, red dashed deviation line",
+ "tags": [
+  "open-loop-vs-closed-loop",
+  "action-chunking",
+  "compounding-errors",
+  "robot-manipulation",
+  "replanning"
+ ],
+ "style": [
+  "photo/real data",
+  "colorful",
+  "icon-heavy"
+ ],
+ "description": "Two horizontal rows share one initial-state image (t0) at the left. The top row is pink and labeled Open-loop (H=10). The bottom row is green and labeled Closed-loop (H=1). Each row shows four robot-arm frames (t1 to t4) in a drawer-opening task, joined by red or green arrows. Under each frame, boxes show the action chunk, such as a_t0 to a_t0+9. In the top row the boxes say \"No infer\" and \"from the same chunk A_t0\", and the highlighted action advances along the chunk. In the bottom row each step infers a new chunk and takes its first action, with circular replan icons between frames. A red dashed vertical line and a lightning bolt mark the same deviation at t2. The top row ends in a red X labeled Failure (stuck with stale actions). The bottom row ends in a green check labeled Success (recovered by replanning). The eye goes first to the red/green contrast and the endpoint icons.",
+ "caption": "Open-loop vs. Closed-loop execution. The top row ($H=10$) illustrates how blindly executing long action chunks leads to compounding errors, causing the robot to get stuck during a drawer-opening task. In contrast, the bottom row ($H=1$) demonstrates strict closed-loop execution, which maintains environmental reactivity and yields a smooth, successful manipulation.",
+ "caption_source": "latex",
+ "abstract": "Vision-Language-Action (VLA) foundation models have recently achieved strong progress in embodied intelligence. To reduce policy-call frequency while preserving temporal coherence, most generative policies adopt an action chunk mechanism, executing multiple future actions in an open-loop manner under a fixed action horizon. However, this \"predict-then-blindly-execute\" paradigm sacrifices closed-loop reactivity: in contact-rich physical interactions, even small local perturbations can rapidly amplify within the open-loop blind spot, leading to compounding errors and ultimately task failure. To address this limitation, we propose VLA-Corrector, a lightweight corrective inference framework for action-chunked VLA policies. Without modifying the backbone policy weights, VLA-Corrector introduces a lightweight Latent-space Vision Monitor (LVM) that continuously compares predicted and actual visual feature evolution, enabling online detection of visual dynamics deviations. Once persistent deviation is detected, the system triggers a truncation event, discards the remaining stale actions, and invokes corrective replanning via Online Gradient Guidance (OGG). The detect-and-correct mechanism of VLA-Corrector naturally induces an event-triggered adaptive action horizon: it preserves long-horizon execution when the current chunk remains reliable, and invokes short-horizon corrective replanning when execution begins to drift. In doing so, VLA-Corrector mitigates the trade-off imposed by static horizons between execution robustness and policy-call frequency. It can be integrated into different VLA models without further retraining the VLA backbone, interrupting compounding errors while preserving much of the efficiency benefit of action chunking and substantially improving robustness in long-horizon, contact-rich robotic manipulation tasks.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=ro5UbANNbJ",
+  "arxiv": "https://arxiv.org/abs/2607.01804",
+  "pdf": "https://arxiv.org/pdf/2607.01804",
+  "proceedings": null,
+  "virtual": "https://neurips.cc/virtual/2026/poster/149247",
+  "code": null
+ },
+ "license": "http://arxiv.org/licenses/nonexclusive-distrib/1.0/",
+ "img": "none",
+ "image_url": null,
+ "thumb_url": null,
+ "figure_page": 3,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.5
+}

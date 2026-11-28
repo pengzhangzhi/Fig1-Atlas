@@ -1,0 +1,50 @@
+{
+ "id": "iclr26-0554",
+ "title": "GRO-RAG: Gradient-aware Re-rank Optimization for Multi-source Retrieval-Augmented Generation",
+ "authors": [
+  "Siyuan Chen",
+  "Hang Ding",
+  "Xiaoyu Kang",
+  "Jiechao Gao"
+ ],
+ "venue": "ICLR 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "Applications->Language, Speech and Dialog",
+ "role": "prior-vs-ours",
+ "role2": "pipeline",
+ "claim": "Prior pipelines pick one source and rank by relevance alone; ours selects complementary sources and re-ranks using the generator's loss gradient.",
+ "layout": "2 panels, left vs right, dashed divider, dashed boxes and gradient arrow in ours",
+ "tags": [
+  "retrieval-augmented-generation",
+  "gradient-based-reranking",
+  "multi-source",
+  "training-free",
+  "generation-aware-selection"
+ ],
+ "style": [
+  "icon-heavy",
+  "colorful",
+  "minimal"
+ ],
+ "description": "A rounded gray container is split by a vertical dashed line into two panels. The left panel, titled 'Vanilla RAG', shows a linear flow. Documents d1–d3 go into a retriever network, then a red ranker network that reorders them (d3, d1, d2), then an LLM that also receives the query. A selection arrow loops from the LLM down to a single source, S3, among the database icons S1–S2–S3, and from there back to the retriever. The right panel, titled 'GRO-RAG', has a retriever feeding a dashed box that holds the query q and documents d1–d3, with d2 highlighted in green. The box feeds an LLM that outputs the loss L. A dashed arrow labeled ∇L runs from the LLM back to the box. A dashed box around sources S2 and S3 marks the selected subset, chosen with the query. Blue, green and orange icons mark sources and documents.",
+ "caption": "Comparison between vanilla RAG and our proposed GRO-RAG. Vanilla RAG pipelines retrieve documents from certain source and rank them based on query-document relevance. GRORAG selects a subset of sources that jointly balance query relevance and semantic diversity. And it re-ranks retrieved documents using a single backward pass over the generation loss, estimating each document’s contribution via the alignment between its representation and the loss gradient.",
+ "caption_source": "pdf",
+ "abstract": "Retrieval-Augmented Generation (RAG) systems often rely on information retrieved from heterogeneous sources to support generation tasks. However, existing approaches typically either aggregate all sources uniformly or statically select a single source, neglecting semantic complementarity. Moreover, they commonly employ re-ranking models to obtain Top-k documents, without accounting for actual contribution to generation objective. In this paper, we propose GRO-RAG, a training-free, gradient-aware re-ranking framework for multi-source RAG. Our method performs Top-k document selection by reading gradients from the language model, estimating each document’s contribution to the generation loss through a single backward pass. This enables re-ranking not by heuristic relevance, but by direct feedback from LLM's generation objective. At the source level, we incorporate inter-source redundancy and query relevance to select source combination prior to re-ranking. Theoretically, we prove that this gradient-based Top-k selection approximates the optimal subset minimizing the generation loss, and aligns with minimizing the leave-one-out loss upper bound. Experiments across multi-source QA and open-domain generation tasks demonstrate consistent improvements in generation quality, highlighting the importance of generation-aware retrieval selection in multi-source RAG.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=5zdubHFutd",
+  "arxiv": null,
+  "pdf": "https://proceedings.iclr.cc/paper_files/paper/2026/file/842b82470c93a6c72284a3e83bdaced5-Paper-Conference.pdf",
+  "proceedings": "https://proceedings.iclr.cc/paper_files/paper/2026/hash/842b82470c93a6c72284a3e83bdaced5-Abstract-Conference.html",
+  "virtual": "https://iclr.cc/virtual/2026/poster/10011407",
+  "code": null
+ },
+ "license": null,
+ "img": "none",
+ "image_url": null,
+ "thumb_url": null,
+ "figure_page": 1,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.9
+}

@@ -1,0 +1,51 @@
+{
+ "id": "iclr26-4340",
+ "title": "Towards Lossless Memory-efficient Training of Spiking Neural Networks via Gradient Checkpointing and Spike Compression",
+ "authors": [
+  "Yifan Huang",
+  "Wei Fang",
+  "Zecheng Hao",
+  "Zhengyu Ma",
+  "Yonghong Tian"
+ ],
+ "venue": "ICLR 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "Applications->Neuroscience, Cognitive Science",
+ "role": "prior-vs-ours",
+ "role2": "pipeline",
+ "claim": "Standard training stores all intermediate states; ours checkpoints segments, compresses stored inputs, and recomputes, reducing memory at the highest-cost points.",
+ "layout": "4 panels: (a) and (b) side-by-side, (c) and (d) stacked right; top-to-bottom flow",
+ "tags": [
+  "gradient-checkpointing",
+  "spike-compression",
+  "memory-efficiency",
+  "recomputation",
+  "spiking-neural-networks"
+ ],
+ "style": [
+  "colorful",
+  "icon-heavy",
+  "minimal"
+ ],
+ "description": "The figure has four panels. Panels (a) and (b) are tall, side-by-side computation graphs for a two-layer network. Each has a forward pass on a pale yellow background and a backward pass on a pale green background. The boxes are labeled Conv, BN and Neuron, and they are colored blue and purple. Pink boxes mark spike tensors S, and orange boxes mark gradients G. Panel (a) is plain BPTT, with every forward activation connected to its backward counterpart. Panel (b) wraps forward blocks in dashed gradient-checkpointing segments. It adds trapezoid Comp./Dec. compression modules and a greyed-out recomputation stage, with the recomputation boxes shown at full color for the lower layer. Panels (c) and (d) are on the right. Each shows a magnifier labeled 'highest mem. cost', scissors, and a big arrow labeled spatial or temporal partition. The scissors split a Conv-BN-Neuron segment into two, or split a neuron over time into halves with the state V passed between them.",
+ "caption": "Comparison of (a) BPTT and (b) gradient checkpointing with spike compression. We use grey boxes with dashed borders to denote gradient checkpointing segments. (c) Spatial segment partitioning. (d) Temporal segment partitioning.",
+ "caption_source": "pdf",
+ "abstract": "Deep spiking neural networks (SNNs) hold immense promise for low-power event-driven computing, but their direct training via backpropagation through time (BPTT) incurs prohibitive memory cost, which limits their scalability. Existing memory-saving approaches, such as online learning, BPTT-to-BP, and reversible networks, compromise accuracy, training speed, or applicability. In this work, we propose a novel and broadly applicable pipeline for memory-efficient SNN training that preserves BPTT's accuracy. Our pipeline integrates layer-wise gradient checkpointing with lossless spike compression to eliminate internal state storage and reduce the memory cost of per-layer input spikes. We also introduce a multi-stage checkpoint adjustment strategy that adaptively refines checkpoint placement based on profiling results to further optimize memory usage and improve training speed. Wrapped in an optimization pass, the pipeline automatically restructures the computation flow before training with minimal user effort. Extensive experiments on diverse architectures and tasks demonstrate up to $8\\times$ memory efficiency gains with $\\le 20\\%$ speed reduction and no accuracy loss. Our method provides a practical solution for efficient and scalable SNN training. Code is available at https://github.com/AllenYolk/snn-gradient-checkpointing.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=nrBJ0Uvj7c",
+  "arxiv": null,
+  "pdf": "https://proceedings.iclr.cc/paper_files/paper/2026/file/6d44b1617ca7001a5ba7ea4f28039d41-Paper-Conference.pdf",
+  "proceedings": "https://proceedings.iclr.cc/paper_files/paper/2026/hash/6d44b1617ca7001a5ba7ea4f28039d41-Abstract-Conference.html",
+  "virtual": "https://iclr.cc/virtual/2026/poster/10007453",
+  "code": "https://github.com/AllenYolk/snn-gradient-checkpointing"
+ },
+ "license": null,
+ "img": "none",
+ "image_url": null,
+ "thumb_url": null,
+ "figure_page": 1,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.6
+}

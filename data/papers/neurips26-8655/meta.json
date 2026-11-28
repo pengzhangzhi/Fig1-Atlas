@@ -1,0 +1,51 @@
+{
+ "id": "neurips26-8655",
+ "title": "TRAM: Test-Time Risk Adaptation with Mixture of Agents",
+ "authors": [
+  "Mohamad Chehade",
+  "Amrit Singh Bedi",
+  "Souradip Chakraborty",
+  "Amy Zhang",
+  "Hao Zhu"
+ ],
+ "venue": "NeurIPS 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "Reinforcement Learning->Everything Else",
+ "role": "pipeline",
+ "role2": "prior-vs-ours",
+ "claim": "A fixed library of frozen policies is recombined at test time by scoring each source with value minus risk penalty.",
+ "layout": "3 panels, left-to-right, library to composed path to per-state score bars",
+ "tags": [
+  "test-time-adaptation",
+  "policy-composition",
+  "risk-aware",
+  "zero-update",
+  "reinforcement-learning"
+ ],
+ "style": [
+  "colorful",
+  "plot",
+  "icon-heavy"
+ ],
+ "description": "Three panels under a header that splits Training (risk unknown) from Deployment (risk specified, no parameter updates). Panel (a) stacks three small grey tiles. Each tile shows one frozen source policy (π1 blue, π2 green, π3 black) as a colored route with a shaded band for visited states. Panel (b) is a larger map with grey obstacle dots and an orange hatched hazard region. The executed path starts in blue, switches to green at state 2 and to black at state 3, then reaches the goal. A dashed blue line shows π1 continuing into the hazard. Panel (c) shows horizontal bar groups for states 1, 2 and 3. Each bar is a value bar with a hatched risk-penalty tail, and the selected source is highlighted in color. Legends sit under each panel. The eye goes first to the central map and the colored path.",
+ "caption": "TRAM decouples source training from deployment-time risk specification. (a) Before deployment, a library of risk-neutral source policies is trained once and frozen; the shaded band around each route marks the states that policy visits. (b) At deployment, a new hazard $\\overline{\\mathcal S}$ is specified. At each state, TRAM scores every source and acts with the best one, so the executed path is stitched from the source routes in (a); keeping $\\pi_1$ past state 2 (dashed) would enter the hazard. (c) A source's score is its value $\\max_a Q_T^{\\pi_j}(s,a)$ (full bar) minus a fixed per-source risk penalty (hatched), Eq. [ref]. At state 2, $\\pi_1$ has the highest value but $\\pi_2$ the highest score, so the penalty changes the choice. TRAM selects the maximum by Eq. [ref] and re-scores at the next state; all quantities are schematic, and no parameters are updated.",
+ "caption_source": "latex",
+ "abstract": "Deployed reinforcement learning agents often face safety requirements that are specified only after training: new hazard maps, revised risk thresholds, or behavioral alignment constraints. We study zero-update deployment-time adaptation in which a fixed library of risk-neutral source policies must be reused under a newly specified reward-risk tradeoff. We propose TRAM (Test-time Risk Adaptation with Mixture of Agents), a source-scored composition rule that evaluates each source under the target reward and an occupancy-based deployment risk, then selects actions using risk-adjusted source scores. Unlike training-time risk-sensitive methods tied to a fixed surrogate such as return variance, TRAM supports spatial barrier exposure, divergence to a reference behavior, and local volatility risks specified at test time. We make the surrogate nature of the method explicit: TRAM is not claimed to solve the full occupancy-control problem of the stitched policy, but it admits a measurable source-hull mismatch term connecting source-scored risk to realized risk. Experiments in gridworlds, MuJoCo Reacher, Safety-Gymnasium, and an inference-time LLM alignment setting show that TRAM improves deployment risk while preserving reward and requires no parameter updates at test time.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=xjpWCBDACk",
+  "arxiv": "https://arxiv.org/abs/2408.08812",
+  "pdf": "https://arxiv.org/pdf/2408.08812",
+  "proceedings": null,
+  "virtual": "https://neurips.cc/virtual/2026/poster/148449",
+  "code": null
+ },
+ "license": "http://creativecommons.org/licenses/by/4.0/",
+ "img": "cc-by",
+ "image_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/images/neurips26-8655.png",
+ "thumb_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/thumbs/neurips26-8655.webp",
+ "figure_page": 1,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.72
+}

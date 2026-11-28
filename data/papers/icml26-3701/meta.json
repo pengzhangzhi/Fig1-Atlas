@@ -1,0 +1,48 @@
+{
+ "id": "icml26-3701",
+ "title": "Can LLMs Reason Like Automated Theorem Provers for Rust Verification? VCoT-Bench: Evaluating via Verification Chain of Thought",
+ "authors": [
+  "Zichen Xie",
+  "Wenxi Wang"
+ ],
+ "venue": "ICML 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "General Machine Learning->Hardware and Software",
+ "role": "problem-setup",
+ "role2": "overview-framework",
+ "claim": "Verifying even a small program yields a huge solver proof whose steps span high-, medium-, and low-level reasoning.",
+ "layout": "2 panels side-by-side; code left, solver proof right; color-coded line bands",
+ "tags": [
+  "benchmark",
+  "program-verification",
+  "chain-of-thought",
+  "proof-hierarchy",
+  "running-example"
+ ],
+ "style": [
+  "text-heavy",
+  "colorful",
+  "screenshot"
+ ],
+ "description": "Two side-by-side code listings with line numbers. Panel (a), titled 'A running example of a Verus program', shows a 34-line Rust function that replaces the last element of one vector with the elements of another. Its background is color-coded: cyan for executable code, orange for the requires/ensures specifications, and light purple for loop invariants and an assertion. Panel (b), titled 'The Z3 proof for the example program', shows excerpts of SMT proof terms with line numbers from 491 to 7794, ending in '10,003 lines in total'. Bands are colored red (high-level), yellow (medium-level) and green (low-level). Each band has a caption such as 'High Level: Prove via a proof lemma'. Rule names such as unit-resolution, monotonicity, rewrite, refl and symm are colored. The eye goes first to the orange specification block, then to the colored proof bands on the right.",
+ "caption": "(a) The program is about replacing the last element of the first vector (\\CodeIn{first}) with all elements of the second (\\CodeIn{second}). \\highlight{cyan!10}{Executable Rust code}, \\highlight{orange!50}{specifications}, and \\highlight{purple!15}{proof hints} are highlighted. The specifications define the precondition (\\CodeIn{requires}) and postcondition (\\CodeIn{ensures}), and verification relies on three parts of proof hints: two blocks of loop invariants and one assertion. (b) Shows the Z3 proof of the running example with \\highlight{red!20}{high-level}, \\highlight{Yellow!40}{medium-level}, and \\highlight{green!20}{low-level} proofs highlighted. The high-level rule \\CodeIn{unit-resolution} (line 491) establishes the property $|seq.subrange(s, j, k)| = k - j$, while medium-level rules such as \\CodeIn{monotonicity} and \\CodeIn{rewrite} (line 622) prove index bounds. Low-level rules encode trivial reasoning, e.g., \\CodeIn{refl} (lines 653–654), which simply asserts \\CodeIn{\\$x775 = \\$x775}.",
+ "caption_source": "latex",
+ "abstract": "As Large Language Models (LLMs) increasingly assist secure software development, their ability to meet the rigorous demands of Rust program verification remains unclear. Existing evaluations treat Rust verification as a black box, assessing models only by binary pass or fail outcomes for proof hints. This obscures whether models truly understand the logical deductions required for verifying nontrivial Rust code. To bridge this gap, we introduce VCoT-Lift, a framework that lifts low-level solver reasoning into high-level, human-readable verification steps. By exposing solver-level reasoning as an explicit Verification Chain-of-Thought, VCoT-Lift provides a concrete ground truth for fine-grained evaluation. Leveraging VCoT-Lift, we introduce VCoT-Bench, a comprehensive benchmark of 1,988 VCoT completion tasks for rigorously evaluating LLMs' understanding of the entire verification process. VCoT-Bench measures performance along three orthogonal dimensions: robustness to varying degrees of missing proofs, competence across different proof types, and sensitivity to the proof locations. Evaluation of ten state-of-the-art models reveals severe fragility, indicating that current LLMs fall well short of the reasoning capabilities exhibited by automated theorem provers.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=YqI1tp78Ei",
+  "arxiv": "https://arxiv.org/abs/2603.18334",
+  "pdf": "https://raw.githubusercontent.com/mlresearch/v306/main/assets/xie26w/xie26w.pdf",
+  "proceedings": "https://proceedings.mlr.press/v306/xie26w.html",
+  "virtual": "https://icml.cc/virtual/2026/poster/63236",
+  "code": "https://github.com/HIPREL-Group/VCoT-Bench"
+ },
+ "license": "http://creativecommons.org/licenses/by/4.0/",
+ "img": "cc-by",
+ "image_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/images/icml26-3701.png",
+ "thumb_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/thumbs/icml26-3701.webp",
+ "figure_page": 1,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.5
+}

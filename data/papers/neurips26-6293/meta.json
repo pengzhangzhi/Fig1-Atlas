@@ -1,0 +1,51 @@
+{
+ "id": "neurips26-6293",
+ "title": "F2G-Pose: Geometry-Aware Foundation Feature Lifting for Direct RGB-D Category-Level Object Pose Estimation",
+ "authors": [
+  "Jinyu Zhang",
+  "Haitao Lin",
+  "Jiashu Hou",
+  "Xiangyang Xue",
+  "Yanwei Fu"
+ ],
+ "venue": "NeurIPS 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "Computer Vision->3D Rendering & Reconstruction",
+ "role": "pipeline",
+ "role2": null,
+ "claim": "A single feed-forward pipeline lifts foundation features to 3D, encodes them with a transformer, and jointly predicts pose, size and shape.",
+ "layout": "3 columns left-to-right, MoE router zoom-in inset below encoder",
+ "tags": [
+  "feature-lifting",
+  "mixture-of-experts",
+  "multi-task-heads",
+  "single-pass",
+  "rgb-d"
+ ],
+ "style": [
+  "icon-heavy",
+  "colorful",
+  "photo/real data"
+ ],
+ "description": "A wide left-to-right pipeline diagram in three labeled sections: Feature Extraction, Transformer Encoder and Multi-task Heads. On the left, an RGB photo of a vase goes through a frozen RADIO V2.5 block (snowflake icon) to produce multi-layer feature maps. These are fused with a 1024×3 point cloud by a DGCNN block (flame icon). The resulting tokens enter a light-blue X8 transformer block containing Layer Norm, Self Attention and an MoE Layer. A zoomed inset below shows the router, with Softmax and FFN, selecting among FFN1 to FFN8 using probability bars. The pooled feature feeds MLP heads. One MLP head predicts a coarse 512×3 shape, which is refined to 2048×3. Other heads predict R, t and s, shown overlaid on a scene photo. Green, purple and beige trapezoids mark the modules, and a legend explains the operator symbols.",
+ "caption": "F2G-Pose Overview. Given a cropped RGB image and segmented partial point cloud, F2G-Pose extracts dense RADIOv2.5 features [ref] and lifts them onto 3D points by projection. DGCNN tokenization produces fused RGB-D object tokens, and a MoE Transformer encodes a global object representation. Two parallel decoder branches directly predict (i) 6D pose and metric size and (ii) camera-frame completed shape through coarse-to-fine refinement. The pipeline produces a pose-size-shape estimate in one feed-forward pass.",
+ "caption_source": "latex",
+ "abstract": "This paper studies category-level RGB-D object pose estimation, which recovers an object's 3D rotation and translation without instance-specific CAD models or reference views. This task is highly ambiguous due to intra-class variations, symmetries, and partial observations. Current solutions struggle to balance reliability and efficiency: methods based on intermediate structures are prone to error propagation, while diffusion models suffer from high inference latency and complex post-hoc candidate extraction. To address this, we present F2G-Pose, a real-time direct, single-pass framework that predicts category-level pose, metric size, and camera-frame completed shape from a single RGB-D observation in one feed-forward pass. F2G-Pose lifts dense visual foundation features to partial point clouds, encodes local geometry with DGCNN tokenization, and integrates object-level structure with a Mixture-of-Experts Transformer. Joint size prediction and camera-frame shape completion encourage metric consistency through dense geometric supervision. With its task-specific network trained only on pose-annotated synthetic SOPE data and its frozen RADIO backbone externally pretrained, F2G-Pose achieves state-of-the-art accuracy on SOPE and ROPE while running at 28 FPS for pose-only inference, and further demonstrates strong camera-frame geometry on HouseCat6D and real-object transfer on HANDAL. Analyses of latency, robustness, shape completion, and GenPose++ candidate behavior further demonstrate the efficiency and reliability of F2G-Pose, with real-world manipulation experiments demonstrating deployment potential under segmented RGB-D inputs. The project page, code, and pretrained models are made available at https://jrryzh.github.io/F2G-Pose/.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=hJJz7BT9Hr",
+  "arxiv": "https://arxiv.org/abs/2610.31623",
+  "pdf": "https://arxiv.org/pdf/2610.31623",
+  "proceedings": null,
+  "virtual": "https://neurips.cc/virtual/2026/poster/150550",
+  "code": "https://jrryzh.github.io/F2G-Pose/"
+ },
+ "license": "http://creativecommons.org/licenses/by/4.0/",
+ "img": "cc-by",
+ "image_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/images/neurips26-6293.png",
+ "thumb_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/thumbs/neurips26-6293.webp",
+ "figure_page": 3,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.95
+}

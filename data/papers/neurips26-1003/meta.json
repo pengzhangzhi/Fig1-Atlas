@@ -1,0 +1,50 @@
+{
+ "id": "neurips26-1003",
+ "title": "From Experts to Sub-experts: Fine-grained Parameter-Efficient Fine-Tuning for MoE LLMs",
+ "authors": [
+  "Zhentao Tan",
+  "Chang Liu",
+  "Yao Liu",
+  "Yue Wu",
+  "Jieping Ye"
+ ],
+ "venue": "NeurIPS 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "Deep Learning->Algorithms",
+ "role": "analysis-finding",
+ "role2": "teaser-result",
+ "claim": "Activated experts are internally sparse, so finer-grained selection than whole experts yields a better accuracy-parameter trade-off.",
+ "layout": "2 panels: stacked histograms left, accuracy-vs-parameters line plot right with callouts",
+ "tags": [
+  "parameter-efficient-fine-tuning",
+  "mixture-of-experts",
+  "sparsity",
+  "efficiency",
+  "pareto-tradeoff"
+ ],
+ "style": [
+  "plot",
+  "colorful"
+ ],
+ "description": "The figure has two parts. On the left, two stacked histograms show normalized gate-score distributions for an expert in a shallow layer and one in a deep layer. Both are light blue and strongly right-skewed, with most channels at low values and a long sparse tail. An orange dashed vertical line marks the top-50% cumulative activation threshold, and a legend box gives its value (9.42e-04 and 9.26e-04). On the right, a larger line plot titled 'PEFT Performance on MMedC' plots accuracy against trainable parameters (%). Four curves are shown: NSFT in red, ESFT in teal, LoRA-QKVO+MLP in blue and LoRA-MLP in purple. LoRA points carry rank labels (r16 to r256). NSFT sits highest. Dashed horizontal lines and callout boxes read '1.64x fewer params, saved 39.0%' and '3.02x fewer params, saved 66.9%'.",
+ "caption": "Left: channel-level gate-score distributions of shallow and deep OLMoE experts on MMedC, showing strong intra-expert sparsity. The dashed line marks the top-50% cumulative activation threshold. Right: PEFT performance on MMedC under different trainable-parameter budgets, where NSFT achieves a better accuracy--parameter trade-off than ESFT and LoRA variants.",
+ "caption_source": "latex",
+ "abstract": "As large language models (LLMs) scale rapidly, dense full-parameter adaptation becomes increasingly expensive, motivating sparse and modular architectures such as Mixture-of-Experts (MoE) models. This shift raises a key question for parameter-efficient fine-tuning (PEFT): at what granularity should parameters be selected and updated? Existing PEFT methods such as LoRA operate on predefined weight matrices, while expert-level sparse tuning methods update entire selected experts. However, we observe that activated experts are internally sparse, with only a small fraction of intermediate channels strongly responding to downstream tasks, indicating that expert-level adaptation is still too coarse. We propose NSFT (Neural Sub-expert Fine-Tuning), a fine-grained PEFT framework that refines MoE adaptation from experts to sub-experts. NSFT decomposes each expert along the intermediate dimension into structured channel groups and selects task-relevant sub-experts by combining routing importance with intra-expert activation saliency. To optimize sparse partial updates, NSFT further introduces learning-rate scaling and dynamic gradient scaling to compensate for the reduced effective update magnitude. Experiments on OLMoE and Ling-mini-2.0 across challenging domain-specific tasks and general benchmarks show that NSFT consistently outperforms representative PEFT and expert-level sparse tuning baselines, while using substantially fewer trainable parameters and preserving competitive general capability. These results suggest that sub-expert-level adaptation is a more precise and efficient PEFT paradigm for MoE LLMs.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=760IPZeujm",
+  "arxiv": "https://arxiv.org/abs/2609.25655",
+  "pdf": "https://arxiv.org/pdf/2609.25655",
+  "proceedings": null,
+  "virtual": "https://neurips.cc/virtual/2026/poster/155254",
+  "code": null
+ },
+ "license": "http://creativecommons.org/licenses/by/4.0/",
+ "img": "cc-by",
+ "image_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/images/neurips26-1003.png",
+ "thumb_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/thumbs/neurips26-1003.webp",
+ "figure_page": 1,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.5
+}

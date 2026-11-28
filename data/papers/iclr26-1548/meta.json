@@ -1,0 +1,53 @@
+{
+ "id": "iclr26-1548",
+ "title": "Be Careful When Fine-tuning On Open-Source LLMs: Your Fine-tuning Data Could Be Secretly Stolen!",
+ "authors": [
+  "Zhexin Zhang",
+  "Yuhao Sun",
+  "Junxiao Yang",
+  "Shiyao Cui",
+  "yuanchao zhang",
+  "Hongning Wang",
+  "Minlie Huang"
+ ],
+ "venue": "ICLR 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "Social Aspects->Fairness, Equity, Justice and Safety",
+ "role": "pipeline",
+ "role2": "problem-setup",
+ "claim": "A malicious model provider can implant a backdoor before release and later extract private downstream fine-tuning data from the fine-tuned model.",
+ "layout": "2 stacked panels: top pipeline left-to-right, bottom example cards; legend top-right",
+ "tags": [
+  "backdoor-attack",
+  "data-extraction",
+  "fine-tuning",
+  "privacy-risk",
+  "threat-model"
+ ],
+ "style": [
+  "icon-heavy",
+  "colorful",
+  "text-heavy"
+ ],
+ "description": "The figure has two stacked panels. The top panel, titled 'The Pipeline of the Backdoor-Based Data Extraction Process', runs left to right. A base model M0 (shown by model logos) goes through provider post-training on D1 data to give M1. Backdoor training on backdoor data, which carries a backdoor instruction template and D1 queries, produces the compromised model M1'. A green dashed box shows the downstream developer fine-tuning M1 and M1' on D2 data, giving M2 and M2'. A black-box access arrow then leads to an 'Extracting D2 Data' box that shows no leakage from M2 and leakage from M2'. Hacker and developer icons, plus a legend, mark the two roles. The bottom panel, 'Examples of Training Data and Extraction Cases', has three dashed groups. They hold D1 and D2 chat-format data in green cards, backdoor data in orange cards, and extraction cases in purple cards. Red text marks the outputs, and a 'What' example shows the model automatically adapting from D1 to D2.",
+ "caption": "Overview of the backdoor-based data extraction process. The malicious model provider begins by post-training the base model $M_0$ and implanting a backdoor, yielding the compromised model $M_1'$. A downstream developer then fine-tunes $M_1'$ on their private dataset $D_2$, producing a fine-tuned model $M_2'$. Finally, with only black-box access to $M_2'$, the malicious provider is able to extract queries from $D_2$. Notably, for opening word appearing in both $D_1$ and $D_2$ (e.g., \"What\" in the figure), $M_2'$ automatically shifts to generating queries from $D_2$, despite being trained during backdoor training to output queries from $D_1$. We provide more cases in Appendix [ref].",
+ "caption_source": "latex",
+ "abstract": "Fine-tuning on open-source Large Language Models (LLMs) with proprietary data is now a standard practice for downstream developers to obtain task-specific LLMs. Surprisingly, we reveal a new and concerning risk along with the practice: the creator of the open-source LLMs can later extract the private downstream fine-tuning data through simple backdoor training, only requiring black-box access to the fine-tuned downstream model. Our comprehensive experiments, across 4 popularly used open-source models with 3B to 32B parameters and 2 downstream datasets, suggest that the extraction performance can be strikingly high: in practical settings, as much as 76.3% downstream fine-tuning data (queries) out of a total 5,000 samples can be perfectly extracted, and the success rate can increase to 94.9% in more ideal settings. We also explore a detection-based defense strategy but find it can be bypassed with improved attack. Overall, we highlight the emergency of this newly identified data breaching risk in fine-tuning, and we hope that more follow-up research could push the progress of addressing this concerning risk. The code and data used in our experiments are released at https://github.com/thu-coai/Backdoor-Data-Extraction.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=HhXOVhO3ia",
+  "arxiv": "https://arxiv.org/abs/2505.15656",
+  "pdf": "https://proceedings.iclr.cc/paper_files/paper/2026/file/0f6294663c7392440f573225977436eb-Paper-Conference.pdf",
+  "proceedings": "https://proceedings.iclr.cc/paper_files/paper/2026/hash/0f6294663c7392440f573225977436eb-Abstract-Conference.html",
+  "virtual": "https://iclr.cc/virtual/2026/poster/10010368",
+  "code": null
+ },
+ "license": "http://arxiv.org/licenses/nonexclusive-distrib/1.0/",
+ "img": "none",
+ "image_url": null,
+ "thumb_url": null,
+ "figure_page": 2,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.8
+}

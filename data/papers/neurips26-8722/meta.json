@@ -1,0 +1,49 @@
+{
+ "id": "neurips26-8722",
+ "title": "SAG-Sep: Sparse Augmented Graphs and Onion-Guided Search for Rounded Capacity Cut Separation",
+ "authors": [
+  "Haoran Liu",
+  "Guanyi Wang",
+  "Yu Yang"
+ ],
+ "venue": "NeurIPS 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "Optimization->Discrete Optimization",
+ "role": "pipeline",
+ "role2": null,
+ "claim": "A fast single-pass neural separator inside an iterative solve–separate–add-cuts loop turns LP solutions into effective violated cuts.",
+ "layout": "2 horizontal bands, loop flows left-to-right then back; stacked-card replicas",
+ "tags": [
+  "pipeline",
+  "cutting-planes",
+  "graph-neural-network",
+  "combinatorial-optimization",
+  "iterative-loop"
+ ],
+ "style": [
+  "icon-heavy",
+  "colorful",
+  "minimal"
+ ],
+ "description": "A two-band diagram showing a closed loop. The bottom beige band is the neural separator. Left to right: an LP Support Graph (small sparse node-link graph) goes to an Augmented Graph, which adds blue dashed multi-hop edges. That feeds a stack of Replicated Graphs labeled 'vehicle-count conditioning', with a red highlighted subset. A thick navy arrow labeled 'SAG-Sep (Onion-Sweep)' leads to stacked Candidate Subsets cards, where selected nodes are orange and the others grey. The top blue band is the LP loop, read right to left. A 'Violation check' arrow leads to Violated RCCs (dashed cut lines), then 'Add cuts' to Tightened LP (a polygon sliced by lines), then to LP Relaxation (a polygon). A curved 'Solve the LP' arrow returns to the support graph. The eye starts on the graphs at bottom left and follows the arrows.",
+ "caption": "Pipeline overview of SAG-Sep for RCC separation. The current LP solution is encoded as a sparse augmented graph, replicated and evaluated in one batched forward pass, and converted into candidate subsets by thresholding or Onion-Sweep. Violated RCCs are added back to the LP relaxation in a separate--add--resolve loop.",
+ "caption_source": "latex",
+ "abstract": "Rounded capacity cuts (RCCs) are among the most effective cuts for capacitated vehicle-routing relaxations, but exact separation is computationally prohibitive at scale. Existing heuristic and neural separators can be fast, but often fail to produce sufficiently many effective cuts within practical separation budgets. We introduce SAG-Sep, a separator that scores node membership in RCC-inducing subsets across vehicle-count levels from a fractional LP solution in a single encoder forward pass, avoiding the iterative predict-and-coarsen inference used by NeuralSEP-style separators. SAG-Sep encodes the LP solution as a Sparse Augmented Graph (SAG), adding flow-informed multi-hop edges that expose long-range routing structure without densifying attention. Beyond LP-aware sparse encoding, we observe that high-value exact RCCs are typically nested, organizing into onion-like subset families, and SAG-Sep's node scores track subset nesting depth. This motivates Onion-Sweep (OS), a training-free decoder that ranks customers by their scores, evaluates the RCC violation of every prefix of the ranking in one vectorized pass, and emits the most violated prefix of each replica together with a cross-replica family of nested proposals, converting independent node scores into structurally coordinated RCC candidates without a tuned threshold or probing band. On the NeuralSEP benchmark with N=1000 customer instances, SAG-Sep with OS reduces the average root gap by 17.7% relative to the strongest NeuralSEP baseline, while the single-pass SAG-Sep separator achieves a roughly 30-fold per-iteration neural separation speedup. Our findings suggest that LP-aware sparse encoding and the nested structure of high-value cuts are structural patterns worth leveraging in neural separation more broadly.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=yAJk2oHY8u",
+  "arxiv": "https://arxiv.org/abs/2610.37952",
+  "pdf": "https://arxiv.org/pdf/2610.37952",
+  "proceedings": null,
+  "virtual": "https://neurips.cc/virtual/2026/poster/148394",
+  "code": null
+ },
+ "license": "http://arxiv.org/licenses/nonexclusive-distrib/1.0/",
+ "img": "none",
+ "image_url": null,
+ "thumb_url": null,
+ "figure_page": 5,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.93
+}

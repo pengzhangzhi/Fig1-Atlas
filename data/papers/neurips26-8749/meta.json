@@ -1,0 +1,55 @@
+{
+ "id": "neurips26-8749",
+ "title": "FlashMask-3: Efficient and Expressive Mask-Aware Distributed Attention",
+ "authors": [
+  "Guoxia Wang",
+  "Qianyue He",
+  "Siming Wu",
+  "Haoyang Xie",
+  "Qiwen Bao",
+  "Jinle Zeng",
+  "Jiabin Yang",
+  "TIAN WU",
+  "Dianhai Yu"
+ ],
+ "venue": "NeurIPS 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "Deep Learning->Attention Mechanisms",
+ "role": "overview-framework",
+ "role2": "pipeline",
+ "claim": "A system's contributions decompose into complementary components stacked across execution layers, building on an existing base representation.",
+ "layout": "2 stacked panels; four colored component boxes above a kernel row, base below",
+ "tags": [
+  "system-overview",
+  "gpu-kernel",
+  "distributed-training",
+  "attention-masks",
+  "layered-architecture"
+ ],
+ "style": [
+  "colorful",
+  "icon-heavy",
+  "text-heavy"
+ ],
+ "description": "A two-tier block diagram. The top container, titled \"FlashMask-3: Mask-Aware Distributed Attention\", holds three rounded colored boxes in a row: (b) Zero-Comm Mask Transform in teal, showing a green-cell global mask grid split by rank into local masks with an arrow between them; (c) HCC-IPO Scheduler in pink, with three stacked stage boxes (rank balance, inter-node comm reduction, intra-node rebalance); and (d) Compute-Comm Overlap in purple, with staggered bars for forward and backward overlap steps. Beneath them, a dashed-border region (a) Mask-Aware Hopper Kernel has an H100 chip icon and three green role boxes: KV Index Generator, KV Loader, MMA Consumer. The bottom container, \"FlashMask: Column-wise Sparse Mask Representation\", has an A100 chip icon, four yellow bars, the formula FM_g = (LTS, LTE, UTS, UTE), and a thumbnail of mask patterns.",
+ "caption": "Overview of FlashMask-3 across four layers of the execution stack.",
+ "caption_source": "latex",
+ "abstract": "Long-context training of large language and multimodal models couples structured attention masks (document, prefix-LM, share-question, sliding-window, block-sparse) with multi-node context parallelism, making the mask a dominant bottleneck. FlashMask's column-wise sparse mask compresses them from $O(n^2)$ to $O(n)$ via four query-axis boundary vectors, covering broad structured patterns. Implemented for Ampere GPUs, it neither exploits FlashAttention-3's TMA/WGMMA warp-specialized pipeline on Hopper nor supports distribution. The column-wise sparse mask is indexed by key positions but stores query-axis interval boundaries. Under any multi-chunk context-parallel assignment, it reduces per-rank mask localization to a provably zero-communication \\emph{clip--shift--max} on the boundary vectors, compatible with the single-GPU kernel. FlashMask-3 introduces a mask-aware Hopper kernel with three-role warp specialization atop FlashAttention-3's TMA/WGMMA pipeline, plus a mask-aware distributed extension: zero-communication mask localization, a sparsity-aware load balancer (HCC-IPO), and a mask-aware compute-communication overlap with mask-driven communication pruning, whose forward all-gather uses topology-aware hierarchical routing. On a single H100 across 12 masks at 4K--128K context, it improves achieved TFLOPs over FlashMask, FlexAttention, and MagiAttention by 45--141%, 34--71%, and 2--44%. At context-parallel degrees 4--32 with 8K sequence per device, it attains 31--75% compute-communication overlap efficiency and improves throughput over Megatron-Core CP ring, Megatron-Core CP all-gather, and MagiAttention by $1.80\\times$--$3.71\\times$, $1.71\\times$--$2.92\\times$, and $1.09\\times$--$1.46\\times$. In end-to-end training of a 118B-A14B MoE at 128K on 128 H100 GPUs, it raises throughput by 7.3--11.0% over a Dual Chunk all-gather baseline, with attention forward+backward 24.5--44.9% faster.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=yNPYdsVguR",
+  "arxiv": "https://arxiv.org/abs/2610.17901",
+  "pdf": "https://arxiv.org/pdf/2610.17901",
+  "proceedings": null,
+  "virtual": "https://neurips.cc/virtual/2026/poster/148370",
+  "code": "https://enigmatisms.github.io/flashmask-3/"
+ },
+ "license": "http://arxiv.org/licenses/nonexclusive-distrib/1.0/",
+ "img": "none",
+ "image_url": null,
+ "thumb_url": null,
+ "figure_page": 3,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.6
+}

@@ -1,0 +1,58 @@
+{
+ "id": "iclr26-1902",
+ "title": "A cross-species neural foundation model for end-to-end speech decoding",
+ "authors": [
+  "Yizi Zhang",
+  "Linyang He",
+  "Chaofei Fan",
+  "Tingkai Liu",
+  "Han Yu",
+  "Trung Le",
+  "Jingyuan Li",
+  "Scott Linderman",
+  "Lea Duncker",
+  "Francis Willett",
+  "Nima Mesgarani",
+  "Liam Paninski"
+ ],
+ "venue": "ICLR 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "Applications->Neuroscience, Cognitive Science",
+ "role": "pipeline",
+ "role2": "overview-framework",
+ "claim": "A pretrained neural encoder feeding an LLM decoder enables direct end-to-end brain-to-text decoding, replacing cascaded stages with one differentiable pipeline.",
+ "layout": "3 panels (A top, B bottom-left, C bottom-right), left-to-right flow, zoomed-in module details",
+ "tags": [
+  "end-to-end",
+  "pretraining",
+  "multimodal-alignment",
+  "contrastive-learning",
+  "brain-computer-interface"
+ ],
+ "style": [
+  "colorful",
+  "icon-heavy",
+  "text-heavy"
+ ],
+ "description": "Figure with three panels. Panel A is a top-level left-to-right flow. Two rounded tables list the datasets, human (97.8 h) and monkey (269 h). Beside them are a head with a Utah array and a monkey illustration. Arrows lead through a gray 'Pretrained Neural Encoder' box to a colorful 3D surface labeled 'Neural Representation', then to an 'Audio-LLM Decoder' box, then to the decoded text 'People should enjoy life'. Panel B, bottom-left, shows the neural encoder. Spike-count and spike-band-power heatmaps sit beside two parallel stacks, pretrain (patch embed, transformer, reversed patch embed, MSE loss) and finetune (patch embed, transformer, linear, CTC loss). Panel C, bottom-right, zooms into the decoder. A bottom-up stack runs neural encoder, projector, token embeddings, then the Qwen2.5 audio-LLM with LoRA, flame and snowflake icons, and a text output. A modality aligner with a contrastive loss sphere is also shown. Warm yellow-orange marks neural tokens and blue marks projected tokens. Green marks text.",
+ "caption": "{\\em Schematic illustration of \\name{}.} (A) \\name{} is an end-to-end speech decoding framework that translates neural activity directly into text by combining a cross-task, cross-species pretrained neural encoder with an audio-LLM decoder. The data are separately obtained and preprocessed from each study. (Appendix [ref]). (B) The neural encoder is a transformer that embeds 20 ms bins of thresholded spikes and spike-band power into multi-bin time patches. It is pretrained using SSL with time-patch masking, reconstructing patch tokens via subject-specific linear read-in and read-out layers with an MSE loss. After pretraining, the masking module is removed, and the encoder is fine-tuned for phoneme decoding using a linear classifier with CTC loss. (C) The neural encoder outputs are mapped to the text embedding space of an audio-LLM via a shallow MLP projector. A modality aligner trained with contrastive learning projects mean-pooled neural and text embeddings into a shared latent space for modality alignment. To guide decoding, we insert a prompt between neural and text embedding tokens: \"decode the above neural activity into an English sentence:\". During finetuning, we update the neural encoder, projector, and apply LoRA to the linear layers in the audio-LLM’s attention and feed-forward blocks, while keeping other parameters frozen.",
+ "caption_source": "latex",
+ "abstract": "Speech brain-computer interfaces (BCIs) aim to restore communication for people with paralysis by translating neural activity into text. Most systems use cascaded frameworks that decode phonemes before assembling sentences with an n-gram language model (LM), preventing joint optimization of all stages simultaneously. Here, we introduce an end-to-end BraIn-to-Text (BIT) framework that translates neural activity into coherent sentences using a single differentiable neural network. Central to our approach is a cross-task, cross-species pretrained neural encoder, whose representations transfer to both attempted and imagined speech. In a cascaded setting with an n-gram LM, the pretrained encoder establishes a new state-of-the-art (SOTA) on the Brain-to-Text '24 and '25 benchmarks. Integrated end-to-end with audio large language models (LLMs) and trained with contrastive learning for cross-modal alignment, BIT reduces the word error rate (WER) of the prior end-to-end method from 24.69% to 10.22%. Notably, we find that small-scale audio LLMs markedly improve end-to-end decoding. Beyond record-setting performance, BIT aligns attempted and imagined speech embeddings to enable cross-task generalization. Altogether, our approach advances the integration of large, diverse neural datasets, paving the way for an end-to-end decoding framework that supports seamless, differentiable optimization.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=Lp1noMpMUG",
+  "arxiv": "https://arxiv.org/abs/2511.21740",
+  "pdf": "https://proceedings.iclr.cc/paper_files/paper/2026/file/34307cd20546fa1c6de90f303973ccf7-Paper-Conference.pdf",
+  "proceedings": "https://proceedings.iclr.cc/paper_files/paper/2026/hash/34307cd20546fa1c6de90f303973ccf7-Abstract-Conference.html",
+  "virtual": "https://iclr.cc/virtual/2026/poster/10010003",
+  "code": null
+ },
+ "license": "http://creativecommons.org/licenses/by/4.0/",
+ "img": "cc-by",
+ "image_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/images/iclr26-1902.png",
+ "thumb_url": "https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/thumbs/iclr26-1902.webp",
+ "figure_page": 2,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.85
+}

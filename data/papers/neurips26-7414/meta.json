@@ -1,0 +1,52 @@
+{
+ "id": "neurips26-7414",
+ "title": "ReSMap: Recasting Satellite Priors for Robust and Accurate Online HD Map Construction",
+ "authors": [
+  "Kyungmin Kim",
+  "Sumin Lee",
+  "Sungoh Jeong",
+  "DoHyun Lim",
+  "Seonghyun Park",
+  "Soonmin Hwang"
+ ],
+ "venue": "NeurIPS 2026",
+ "tier": "poster",
+ "track": "main",
+ "topic": "Applications->Robotics",
+ "role": "pipeline",
+ "role2": "overview-framework",
+ "claim": "A two-stream fusion system with confidence-gated feature fusion and cooperative query decoding turns multiple input modalities into one output.",
+ "layout": "Top left-to-right pipeline; two zoomed-in module panels below, color-coded to match",
+ "tags": [
+  "multimodal-fusion",
+  "gating",
+  "bev-perception",
+  "robustness",
+  "query-decoder"
+ ],
+ "style": [
+  "colorful",
+  "icon-heavy",
+  "photo/real data"
+ ],
+ "description": "The top row is a left-to-right pipeline. Multi-view camera images and a satellite image feed a green BEV Encoder and a pink Satellite Encoder. These produce the feature grids F_cam (green) and F_sat (pink). Both grids go into an orange PTF Gate, which outputs F_fuse (yellow). All three streams enter a large blue OCMQ Decoder, then a purple Prediction Head, and finally a vector HD map drawn over a road scene. Two zoomed-in panels sit below. The orange-tinted panel shows PTF: segmentation decoder, sigmoid and max-over-class blocks produce confidence maps that multiply element-wise with the features, then a Weighted Fusion block. The blue-tinted panel shows the OCMQ decoder: modality embedding, intra-group self-attention, per-modality deformable cross-attention, gated query merging, inter-object self-attention and an FFN. Pastel color coding links each module to its detail panel.",
+ "caption": "Overview of the model architecture of \\modelname{}. Two modality-specific encoders produce camera and satellite BEV features, each with a BEV segmentation head that outputs per-pixel confidence. The two BEV streams are fused by a parameter-free, confidence-weighted gate (PTF). A single object-query set then gathers modality-specific updates from the camera, satellite, and fused BEV streams, which are recomposed by a learned per-token gate (OCMQ) and decoded into the final vector HD map.",
+ "caption_source": "latex",
+ "abstract": "Despite recent advances in camera-based online HD map construction, these systems remain susceptible to sensor failures due to their reliance on onboard cameras. In contrast, satellite images remain available independently of real-time sensing conditions as they are cached offline. Existing methods utilizing satellite images, however, primarily leverage them under nominal conditions, without explicitly addressing them as redundancy when a sensor degrades. To address this gap, we propose ReSMap, a redundancy-aware camera-satellite fusion framework for robust online HD map construction. Our framework explicitly leverages satellite images as a complementary source to improve robustness against camera failures. A Predict-then-Fuse (PTF) module fuses camera and satellite BEV features by using each branch's own prediction confidence as a per-pixel reliability weight, with no learned router. An Object-Centric Cooperative Multi-modal Query (OCMQ) decoder then extends this per-modality separation to the query level: each modality cross-attends only to its own BEV, and per-modality updates are merged through a learned per-token gate. Our model achieves state-of-the-art performance on nuScenes across all splits and range settings. More importantly, it also sets the new state-of-the-art under camera-failure scenarios, demonstrating that satellite images serve not only as a strong prior but as practical redundancy for robust online HD mapping.",
+ "links": {
+  "openreview": "https://openreview.net/forum?id=pBNwXqI5Q2",
+  "arxiv": "https://arxiv.org/abs/2611.04352",
+  "pdf": "https://arxiv.org/pdf/2611.04352",
+  "proceedings": null,
+  "virtual": "https://neurips.cc/virtual/2026/poster/149564",
+  "code": "https://dehsurc.github.io/resmap-page/"
+ },
+ "license": "http://arxiv.org/licenses/nonexclusive-distrib/1.0/",
+ "img": "none",
+ "image_url": null,
+ "thumb_url": null,
+ "figure_page": 2,
+ "qc_flags": [],
+ "annotator": "claude-cli:sonnet",
+ "role_confidence": 0.9
+}
