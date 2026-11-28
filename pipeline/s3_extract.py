@@ -475,6 +475,15 @@ def process(p, s):
     page = doc[pno]
     body = body_font_size([b for i in range(min(len(doc), 6)) for b in text_blocks(doc[i])])  # doc-level
     reg = figure_region(page, cap, pno, body)
+    if reg is not None:   # never render into the arXiv side stamp (drawings spilling off-page can stretch the box)
+        W = page.rect.width
+        for b in page.get_text("dict")["blocks"]:
+            r = fitz.Rect(b["bbox"])
+            if b.get("type") == 0 and r.height > 4 * r.width and r.intersects(reg):
+                if r.x1 < 0.1 * W:
+                    reg.x0 = max(reg.x0, r.x1 + 1)
+                elif r.x0 > 0.9 * W:
+                    reg.x1 = min(reg.x1, r.x0 - 1)
     if reg is None or reg.height < 20:
         out["status"] = "no_region"; out["page"] = pno; return out
     size = render(page, reg, CACHE / "figs" / f"{p['id']}.png", CACHE / "figs" / f"{p['id']}.webp")
