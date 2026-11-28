@@ -9,6 +9,8 @@ is resumable, so a failure in one stage doesn't restart the build. Needs `pymupd
 | 1 | `s1_collect.py <venue>` | accepted papers from the conference virtual-site export (`venues/<venue>.json`): title, authors, tier, track, OpenReview id. Dedupes oral re-listings. |
 | 2a | `s2a_harvest_arxiv.py --set cs` | one-time bulk harvest of arXiv metadata (title, authors, abstract, **license**) over OAI-PMH |
 | 2 | `s2_match.py <key> [--api]` | title match against the harvest (then arXiv search API), author check; no match → abstract from the virtual site |
+| 2b | `s2b_proceedings.py <key>` | official proceedings (PMLR for ICML, proceedings.iclr.cc, proceedings.neurips.cc): camera-ready PDF for papers not on arXiv |
+| 2c | `s2c_rematch.py <key> [--openalex]` | papers renamed between arXiv and camera-ready: same authors + similar abstract (word Jaccard ≥ 0.43) in the harvest; optional OpenAlex search (free tier ≈ 100 searches/day). Later stages overlay `rematch_<key>.jsonl` via `common.load_matched` |
 | 3 | `s3_extract.py <key>` | download arXiv PDF + LaTeX source; caption verbatim from the first figure environment; image = crop of the compiled PDF above the matching caption, 1600 px PNG + 480 px WebP |
 | 4 | `s4_annotate.py <key> --backend claude-api\|claude-cli\|openai` | VLM returns role, claim, layout, tags, style, description as strict JSON |
 | 5 | `s5_qc.py <key>` | flags tiny / page-sized crops, missing captions, low role confidence, not-a-figure, bad crops; writes a 50-paper spot-check list |

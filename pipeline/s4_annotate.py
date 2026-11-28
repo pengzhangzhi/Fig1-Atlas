@@ -12,7 +12,7 @@ Output: CACHE/work/annotated_<key>.jsonl (resumable)
 import argparse, base64, json, os, re, subprocess, threading
 from concurrent.futures import ThreadPoolExecutor, as_completed
 from pathlib import Path
-from common import CACHE, REPO, read_jsonl, write_jsonl
+from common import CACHE, REPO, read_jsonl, write_jsonl, load_matched
 
 ROLES = ["pipeline", "prior-vs-ours", "before-after", "teaser-result", "problem-setup",
          "concept", "overview-framework", "analysis-finding"]
@@ -110,7 +110,7 @@ def main():
     ap.add_argument("--redo", action="store_true")
     a = ap.parse_args()
     model = a.model or {"claude-api": "claude-sonnet-5-5", "claude-cli": "sonnet", "openai": "Qwen/Qwen2.5-VL-72B-Instruct"}[a.backend]
-    meta = {r["id"]: r for r in read_jsonl(CACHE / "work" / f"matched_{a.key}.jsonl")}
+    meta = {r["id"]: r for r in load_matched(a.key)}
     ext = [r for r in read_jsonl(CACHE / "work" / f"extracted_{a.key}.jsonl") if r["status"] == "ok"]
     if a.ids:
         keep = set(Path(a.ids).read_text().split()); ext = [r for r in ext if r["id"] in keep]

@@ -9,7 +9,7 @@ scripts/build_site.py inside the GitHub Pages workflow.
 """
 import argparse, json, shutil
 from pathlib import Path
-from common import CACHE, REPO, read_jsonl, write_jsonl
+from common import CACHE, REPO, read_jsonl, write_jsonl, load_matched
 
 HF_REPO = "fredzzp/fig1-atlas"
 HF_BASE = f"https://huggingface.co/datasets/{HF_REPO}/resolve/main"
@@ -19,7 +19,7 @@ INDEX_KEYS = ["id", "title", "venue", "tier", "role", "role2", "claim", "layout"
 def build(keys):
     papers, missing = [], []
     for key in keys:
-        m = {r["id"]: r for r in read_jsonl(CACHE / "work" / f"matched_{key}.jsonl")}
+        m = {r["id"]: r for r in load_matched(key)}
         ext = {r["id"]: r for r in read_jsonl(CACHE / "work" / f"extracted_{key}.jsonl")}
         ann = {r["id"]: r for r in read_jsonl(CACHE / "work" / f"annotated_{key}.jsonl")}
         qc = {r["id"]: r["flags"] for r in read_jsonl(CACHE / "work" / f"qc_{key}.jsonl")}

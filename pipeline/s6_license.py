@@ -7,7 +7,7 @@
   arXiv default / unknown / none-> no hosted image; text entry + links only
 """
 import argparse
-from common import CACHE, read_jsonl, write_jsonl
+from common import CACHE, read_jsonl, write_jsonl, load_matched
 
 def short(lic):
     if not lic:
@@ -33,7 +33,7 @@ def main():
     ap = argparse.ArgumentParser(); ap.add_argument("key"); ap.add_argument("--host-nd", action="store_true")
     a = ap.parse_args()
     rows = []
-    for m in read_jsonl(CACHE / "work" / f"matched_{a.key}.jsonl"):
+    for m in load_matched(a.key):
         code = short(m.get("license"))
         rows.append({"id": m["id"], "license": m.get("license"), "img": code, "host": hosted(code, a.host_nd)})
     write_jsonl(CACHE / "work" / f"license_{a.key}.jsonl", rows)

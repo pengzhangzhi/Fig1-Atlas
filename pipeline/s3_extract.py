@@ -19,7 +19,7 @@ from pathlib import Path
 import pymupdf as fitz
 import requests
 from PIL import Image
-from common import CACHE, UA, read_jsonl, write_jsonl, polite_get
+from common import CACHE, UA, read_jsonl, write_jsonl, polite_get, load_matched
 
 FIG_W, THUMB_W = 1600, 480
 # label then punctuation ("Figure 1:", "Fig. 1.") or a bold-style label followed by a capital/paren ("Figure 1 Video-As-Prompt …")
@@ -421,6 +421,8 @@ def render(page, clip, out_png, out_webp):
 def process(p, s):
     out = {"id": p["id"], "status": None}
     aid = p.get("arxiv_id")
+    if p.get("match_how"):
+        out["arxiv_id"] = aid                     # found by s2c rematch; lets a later pass see the source changed
     if aid:
         pdf = arxiv_get(s, f"https://arxiv.org/pdf/{aid}", CACHE / "pdf" / f"{aid}.pdf")
         src = arxiv_get(s, f"https://arxiv.org/e-print/{aid}", CACHE / "src" / f"{aid}.src")
@@ -479,7 +481,7 @@ def main():
     ap.add_argument("--workers", type=int, default=4)
     ap.add_argument("--gap", type=float, default=1.0, help="min seconds between arXiv request starts (all workers)")
     a = ap.parse_args()
-    rows = read_jsonl(CACHE / "work" / f"matched_{a.key}.jsonl")
+    rows = load_matched(a.key)
     proc = {r["id"]: r for r in read_jsonl(CACHE / "work" / f"proc_{a.key}.jsonl")}
     rows = [{**r, "proc_pdf": proc.get(r["id"], {}).get("proc_pdf")} for r in rows]
     if a.ids:
@@ -487,7 +489,8 @@ def main():
     out_p = CACHE / "work" / f"extracted_{a.key}.jsonl"
     done = {r["id"]: r for r in read_jsonl(out_p)}
     _rate["gap"] = a.gap
-    todo = [p for p in rows if a.redo or p["id"] not in done or done[p["id"]]["status"] in ("no_pdf",)]
+    todo = [p for p in rows if a.redo or p["id"] not in done or done[p["id"]]["status"] in ("no_pdf",)
+            or (p.get("match_how") and done[p["id"]].get("arxiv_id") != p["arxiv_id"])]   # newly found on arXiv
     local = threading.local()
 
     def work(p):

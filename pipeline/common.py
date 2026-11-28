@@ -48,8 +48,22 @@ def polite_get(session, url, tries=5, delay=3.0, **kw):
         if r.status_code == 200:
             return r
         if r.status_code in (429, 503):
-            time.sleep(int(r.headers.get("Retry-After", 10 * (i + 1)))); continue
+            wait = int(r.headers.get("Retry-After", 10 * (i + 1)))
+            if wait > 300:                          # a daily quota, not a burst limit: give up
+                return r
+            time.sleep(wait); continue
         if r.status_code in (401, 403, 404, 410):   # permanent: don't retry
             return r
         time.sleep(delay * (i + 1))
     return None
+
+
+def load_matched(key):
+    """matched_<key>.jsonl with rematch_<key>.jsonl (s2c: renamed papers found on arXiv) overlaid."""
+    rows = read_jsonl(CACHE / "work" / f"matched_{key}.jsonl")
+    re_ = {r["id"]: r for r in read_jsonl(CACHE / "work" / f"rematch_{key}.jsonl")}
+    for r in rows:
+        m = re_.get(r["id"])
+        if m and not r.get("arxiv_id"):
+            r.update(arxiv_id=m["arxiv_id"], license=m.get("license"), match_how=m.get("how"))
+    return rows
