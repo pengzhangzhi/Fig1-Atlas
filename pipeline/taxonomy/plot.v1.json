@@ -1,0 +1,577 @@
+{
+ "version": "v1",
+ "source": "v0 (Elzer/Carberry intended messages, FT Visual Vocabulary, Amar tasks) revised with taxonomy discovery on 500 panels (discovery_plot.json)",
+ "families": {
+  "compare": "Comparison of entities",
+  "trend": "Trend along a variable",
+  "regime": "Regimes, thresholds and transitions",
+  "tradeoff": "Trade-offs and efficiency",
+  "attribute": "Attribution / mechanism",
+  "robustness": "Robustness and sensitivity",
+  "characterize": "Characterization of data or representations",
+  "association": "Association between measures",
+  "theory": "Theory link",
+  "exemplify": "Exemplification"
+ },
+ "axes": {
+  "message": {
+   "title": "What the plot says",
+   "q": "What should the reader conclude from this panel? One primary message, optionally one secondary. Decision rules: 4 or fewer compared entities = superiority gap, 5 or more = ranking; a reference from data or an oracle = fidelity-to-truth, from theory = prediction-match, from humans = agreement.",
+   "multi": 2,
+   "labels": {
+    "compare-superiority-gap": {
+     "name": "Ours beats baseline (gap)",
+     "def": "One entity, usually the proposed method, is clearly better than one or a few baselines, and the size of the gap is the message.",
+     "include_if": "There are two to four entities, one is highlighted, and the takeaway is 'X is better than Y by a margin'.",
+     "exclude_if": "Use compare-ranking for a full ordering of many entities, and compare-consistency when the point is that the win repeats across facets or datasets.",
+     "family": "compare",
+     "examples": [
+      "iclr26-0731/f4e",
+      "iclr26-0731/f3c",
+      "iclr26-3769/f53B recoverability",
+      "neurips26-3488/f4a"
+     ]
+    },
+    "compare-ranking": {
+     "name": "Ranking / leaderboard",
+     "def": "Many entities are ordered on a metric so the reader reads off the order, the top entity and the spread.",
+     "include_if": "There are five or more entities, or sorted bars or tables, and the reader cares about the full order or the top-k.",
+     "exclude_if": "Use compare-superiority-gap when only ours-versus-rest matters, and compare-consistency when the order is shown to repeat across settings.",
+     "family": "compare",
+     "examples": [
+      "neurips26-7781/f1",
+      "neurips26-7228/f7",
+      "icml26-3678/f2c",
+      "iclr26-1322/f2"
+     ]
+    },
+    "compare-parity": {
+     "name": "Parity / on par",
+     "def": "Two or more entities are shown to perform about the same, often to argue that a cheaper method loses nothing.",
+     "include_if": "The curves or bars overlap, and the stated claim is 'comparable', 'on par' or 'no significant difference'.",
+     "exclude_if": "Use robustness-insensitivity when the overlapping entities are settings of one knob rather than competing methods.",
+     "family": "compare",
+     "examples": [
+      "iclr26-4047/f3c",
+      "iclr26-4047/f8c",
+      "iclr26-3769/f51.5B guidability",
+      "neurips26-7079/f1"
+     ]
+    },
+    "compare-consistency": {
+     "name": "Advantage holds across settings",
+     "def": "The same comparative result, such as ours being best or a fixed ordering, repeats across datasets, models, metrics or difficulty levels.",
+     "include_if": "The panel is faceted or grouped over settings, and the claim uses 'consistently', 'across all' or 'trends are consistent'.",
+     "exclude_if": "Use compare-superiority-gap when there is a single setting, and robustness-sensitivity when settings are levels of a perturbation and the point is how much the metric degrades.",
+     "family": "compare",
+     "examples": [
+      "icml26-5763/f5",
+      "icml26-4959/f7a",
+      "neurips26-3264/f6Table Reasoning",
+      "iclr26-4047/f4c"
+     ]
+    },
+    "compare-fidelity-to-truth": {
+     "name": "Estimate vs ground truth / exact reference",
+     "def": "Estimates from each method are plotted against a ground-truth, exact or oracle reference, either directly or as an error ratio, so the reader sees which method is closest.",
+     "include_if": "There is a truth, exact, oracle or reference-posterior curve, or the y-axis is error or ratio to the truth.",
+     "exclude_if": "Use theory-prediction-match when the reference is a theoretical prediction or fitted law rather than ground-truth data.",
+     "family": "compare",
+     "examples": [
+      "iclr26-5078/f2a",
+      "iclr26-5078/f3b",
+      "neurips26-0828/f4top row (3 panels)",
+      "neurips26-3077/f3"
+     ]
+    },
+    "trend-monotone": {
+     "name": "Monotone / dose-response",
+     "def": "The metric rises or falls steadily with x, for example error growing with difficulty or task complexity.",
+     "include_if": "The claim is of the form 'more X gives more or less Y', with no special point on the curve.",
+     "exclude_if": "Use trend-scaling when the axes are log-log or compute/size with a power-law reading, and regime-failure-onset when there is a sharp cliff.",
+     "family": "trend",
+     "examples": [
+      "neurips26-7781/f8b",
+      "neurips26-7781/f10",
+      "icml26-5949/f3c",
+      "neurips26-3488/f6a"
+     ]
+    },
+    "trend-scaling": {
+     "name": "Scaling law / cost growth",
+     "def": "A metric or cost is plotted against scale (nodes, compute, memory length, dimension), usually on log axes, to show its growth rate.",
+     "include_if": "The x-axis is a scale variable, log axes or power-law fits are used, and the claim is about the growth rate.",
+     "exclude_if": "Use regime-crossover when two scaling curves swap order and the swap point is the message.",
+     "family": "trend",
+     "examples": [
+      "iclr26-0731/f2a",
+      "iclr26-1322/f1b",
+      "icml26-2860/f8left",
+      "neurips26-8602/f3a"
+     ]
+    },
+    "trend-saturation": {
+     "name": "Saturation / diminishing returns",
+     "def": "Gains flatten as x grows, so extra budget, attempts or data stop helping.",
+     "include_if": "A plateau or shrinking increments is the stated point.",
+     "exclude_if": "Use tradeoff-budget-curve when cost and quality are plotted together to choose an operating point.",
+     "family": "trend",
+     "examples": [
+      "neurips26-7781/f6Overall (106 tasks)",
+      "neurips26-7781/f6Text-only (74 tasks)",
+      "icml26-3678/f9c"
+     ]
+    },
+    "trend-training-dynamics": {
+     "name": "Training dynamics",
+     "def": "Quantities are plotted over training steps or generations to show how a run behaves (stable, converging, co-moving metrics).",
+     "include_if": "The x-axis is steps, epochs or generations, the point is the behaviour of the run itself, and there is no head-to-head method claim.",
+     "exclude_if": "Use compare-superiority-gap when training curves are used mainly to show that ours ends above a baseline.",
+     "family": "trend",
+     "examples": [
+      "iclr26-4047/f6a",
+      "iclr26-4047/f7b",
+      "icml26-4928/f7",
+      "neurips26-8018/f5"
+     ]
+    },
+    "regime-crossover": {
+     "name": "Crossover / order flip",
+     "def": "Two or more curves swap their ordering at some x, so which option is best depends on the regime.",
+     "include_if": "The curves intersect and the claim is 'A is better below x*, B above'.",
+     "exclude_if": "Use compare-superiority-gap when one curve dominates everywhere.",
+     "family": "regime",
+     "examples": [
+      "iclr26-1322/f9a",
+      "iclr26-1322/f10a",
+      "iclr26-0731/f2c",
+      "neurips26-3488/f2"
+     ]
+    },
+    "regime-failure-onset": {
+     "name": "Collapse / cliff / divergence",
+     "def": "Performance breaks down sharply beyond a threshold or after some time (blow-up, cliff, collapse).",
+     "include_if": "There is an abrupt drop or explosion and the claim names a failure.",
+     "exclude_if": "Use characterize-failure-mode for a static breakdown of failure types with no threshold along x, and robustness-generalization-gap for seen-versus-unseen collapse.",
+     "family": "regime",
+     "examples": [
+      "neurips26-1847/f2top-left",
+      "neurips26-1847/f3bottom-left",
+      "neurips26-5675/f5left",
+      "icml26-4173/f11bottom"
+     ]
+    },
+    "regime-emergence": {
+     "name": "Emergence / step transition",
+     "def": "A property appears suddenly, as a step, jump or onset layer, instead of growing smoothly.",
+     "include_if": "There is a staircase or jump and the claim is 'emerges' or 'identifies at step k'.",
+     "exclude_if": "Use regime-failure-onset when the jump is a degradation.",
+     "family": "regime",
+     "examples": [
+      "neurips26-7100/f5",
+      "neurips26-7100/f6",
+      "neurips26-2955/f3",
+      "icml26-4173/f5bottom (8 experts)"
+     ]
+    },
+    "regime-optimum": {
+     "name": "Interior optimum / U-curve",
+     "def": "A sweep has a best interior value, such as a U-shaped loss or a peak at r*.",
+     "include_if": "There is a U or inverted-U and the claim names an optimal setting.",
+     "exclude_if": "Use robustness-sensitivity when the sweep is shown to justify a hyperparameter range rather than to identify an optimum.",
+     "family": "regime",
+     "examples": [
+      "iclr26-4363/f1b",
+      "iclr26-4363/f2b",
+      "iclr26-4363/f5",
+      "neurips26-7230/f1a"
+     ]
+    },
+    "tradeoff-pareto": {
+     "name": "Pareto / frontier position",
+     "def": "Methods are placed in a cost-versus-quality plane and ours sits on or beyond the frontier, in the 'good corner'.",
+     "include_if": "It is a scatter or bubble of methods on two competing axes, and the claim is 'best of both' or 'Pareto-optimal'.",
+     "exclude_if": "Use tradeoff-budget-curve when a single method is swept over a budget.",
+     "family": "tradeoff",
+     "examples": [
+      "iclr26-4047/f1right",
+      "iclr26-1512/f1left",
+      "iclr26-1185/f1",
+      "neurips26-6088/f4b"
+     ]
+    },
+    "tradeoff-budget-curve": {
+     "name": "Quality vs budget curve",
+     "def": "Quality is plotted against a swept budget (rate, max length, steps, sparsity), often with a paired cost panel, to show where a method sits.",
+     "include_if": "The x-axis is a resource knob, and the claim is 'better quality at every budget' or 'flat until a knee'.",
+     "exclude_if": "Use trend-saturation when no efficiency comparison is intended.",
+     "family": "tradeoff",
+     "examples": [
+      "iclr26-1692/f4a",
+      "iclr26-4047/f10a",
+      "icml26-0342/f6",
+      "neurips26-7100/f3"
+     ]
+    },
+    "tradeoff-cost-advantage": {
+     "name": "Cost / overhead comparison",
+     "def": "Bars or lines show that ours uses far less compute or memory than a competitor, with no quality axis.",
+     "include_if": "Only the cost is shown and the claim is about efficiency.",
+     "exclude_if": "Use trend-scaling when growth with size is the emphasis.",
+     "family": "tradeoff",
+     "examples": [
+      "iclr26-1692/f4g",
+      "iclr26-1185/f6"
+     ]
+    },
+    "attribute-ablation": {
+     "name": "Ablation (remove or swap component)",
+     "def": "The full system is compared with variants that lack or replace a component, to show that the component matters.",
+     "include_if": "Variants are named 'w/o X', 'LOO' or 'fix vs default', or are before/after a processing step.",
+     "exclude_if": "Use attribute-intervention when there is a matched control and a dose knob.",
+     "family": "attribute",
+     "examples": [
+      "iclr26-1322/f5b",
+      "iclr26-4047/f3a",
+      "icml26-1993/f7",
+      "icml26-5949/f7a"
+     ]
+    },
+    "attribute-intervention": {
+     "name": "Targeted intervention vs matched control",
+     "def": "A specific internal component is amplified or removed, often at graded strength, against random or energy-matched controls to establish causal relevance.",
+     "include_if": "There are control conditions, an α or γ strength axis, or removal from a mechanistic analysis.",
+     "exclude_if": "Use attribute-ablation for an architecture or recipe component removed without a matched control.",
+     "family": "attribute",
+     "examples": [
+      "icml26-5933/f9a",
+      "icml26-5933/f7a",
+      "neurips26-3817/f9SST-2",
+      "icml26-5949/f3d"
+     ]
+    },
+    "attribute-decomposition": {
+     "name": "Decomposition into parts",
+     "def": "A total (runtime, score, competency profile) is split into components to show which part dominates.",
+     "include_if": "It shows stacked parts that sum to a whole, or a per-component profile of one total.",
+     "exclude_if": "Use characterize-failure-mode when the parts are error categories.",
+     "family": "attribute",
+     "examples": [
+      "icml26-5763/f8",
+      "neurips26-3178/f1",
+      "neurips26-5675/f6L1-L5"
+     ]
+    },
+    "robustness-sensitivity": {
+     "name": "Sensitivity to perturbation or hyperparameter",
+     "def": "The metric degrades or changes noticeably as a perturbation or hyperparameter varies.",
+     "include_if": "It is a sweep, or a reference-versus-perturbed overlay, and the claim is 'degrades', 'depends on' or 'chosen setting'.",
+     "exclude_if": "Use robustness-insensitivity when the claim is 'unchanged'.",
+     "family": "robustness",
+     "examples": [
+      "icml26-4959/f3a",
+      "neurips26-3077/f4",
+      "icml26-5763/f15",
+      "iclr26-4047/f5"
+     ]
+    },
+    "robustness-insensitivity": {
+     "name": "Insensitivity / invariance",
+     "def": "Results barely change across settings of a knob, so the method or conclusion is robust.",
+     "include_if": "There are overlapping curves or bars across levels of one factor, with claims like 'remains comparable' or 'tracks the original'.",
+     "exclude_if": "Use compare-parity when the overlapping entities are different methods.",
+     "family": "robustness",
+     "examples": [
+      "neurips26-7079/f2a",
+      "neurips26-7079/f3",
+      "icml26-4173/f10",
+      "neurips26-6046/f4C"
+     ]
+    },
+    "robustness-variance": {
+     "name": "Variance / stability across runs",
+     "def": "Spread across seeds, checkpoints or test sets is the message (a tight method versus a noisy one, or an error margin).",
+     "include_if": "It is a strip, violin or replicate overlay, and the claim is about variance or stability.",
+     "exclude_if": "Use compare-superiority-gap when only means matter.",
+     "family": "robustness",
+     "examples": [
+      "iclr26-1322/f8a",
+      "icml26-4928/f2",
+      "icml26-4928/f6",
+      "neurips26-1847/f3top-right"
+     ]
+    },
+    "robustness-generalization-gap": {
+     "name": "Generalization / transfer gap",
+     "def": "Performance on seen or source conditions is contrasted with unseen or target conditions, often as a train-by-eval or source-by-target matrix with a strong diagonal.",
+     "include_if": "There are seen/unseen curves or a diagonal-dominant transfer heatmap.",
+     "exclude_if": "Use characterize-structure when the heatmap encodes similarity rather than transfer performance.",
+     "family": "robustness",
+     "examples": [
+      "icml26-4959/f4a",
+      "neurips26-3264/f5left (By Rep. Forms)",
+      "neurips26-8018/f1b",
+      "icml26-4959/f12c"
+     ]
+    },
+    "characterize-distribution": {
+     "name": "Distribution shape / shift",
+     "def": "It shows a histogram, density or binned distribution of a quantity, or the overlap or shift between groups' distributions.",
+     "include_if": "The form is a histogram, KDE, violin or binned shares, and the claim is about skew, modes, separation or overlap.",
+     "exclude_if": "Use characterize-dataset-composition for descriptive benchmark statistics (sizes, shares) meant only to document the dataset.",
+     "family": "characterize",
+     "examples": [
+      "iclr26-3274/f4a",
+      "iclr26-3274/f5",
+      "icml26-5949/f8a",
+      "icml26-4928/f3left"
+     ]
+    },
+    "characterize-structure": {
+     "name": "Latent structure / organization",
+     "def": "Clusters, blocks, spectra, subspaces or trajectories in a representation reveal an organizing structure.",
+     "include_if": "It is an embedding, block heatmap, eigen-spectrum, dendrogram or latent trajectory, and the claim is 'separable', 'block structure', 'outliers' or 'shared core'.",
+     "exclude_if": "Use association-agreement when the structure is explicitly matched against an external reference such as geography.",
+     "family": "characterize",
+     "examples": [
+      "iclr26-3274/f6",
+      "icml26-5933/f2a",
+      "neurips26-3817/f10a",
+      "neurips26-3178/f3"
+     ]
+    },
+    "characterize-failure-mode": {
+     "name": "Failure-mode / error taxonomy",
+     "def": "It shows which kinds of errors occur and how often, or which conditions models fail on.",
+     "include_if": "There are error categories, confusion matrices, or condition-wise weakness bars (for example symbolic vs NL, naive vs non-naive).",
+     "exclude_if": "Use regime-failure-onset when failure depends on a threshold along a continuous x.",
+     "family": "characterize",
+     "examples": [
+      "neurips26-7228/f5",
+      "neurips26-4301/f5",
+      "neurips26-7781/f9",
+      "iclr26-3274/f8b"
+     ]
+    },
+    "characterize-dataset-composition": {
+     "name": "Dataset / benchmark composition",
+     "def": "Descriptive statistics document a new dataset or benchmark: shares, counts, coverage over time, lengths.",
+     "include_if": "It is a pie, donut, count bar or cumulative-growth plot in a dataset section, with no hypothesis tested.",
+     "exclude_if": "Use characterize-distribution when the distribution is evidence for a scientific claim.",
+     "family": "characterize",
+     "examples": [
+      "neurips26-7228/f2a",
+      "neurips26-5220/f2A",
+      "neurips26-5220/f3D",
+      "neurips26-7781/f4a"
+     ]
+    },
+    "association-correlation": {
+     "name": "Correlation",
+     "def": "Scatter with a fit, or a correlation matrix, quantifying how strongly two measures move together.",
+     "include_if": "It shows r or ρ, a fit line, or a correlation heatmap between metrics.",
+     "exclude_if": "Use association-agreement when one side is a trusted reference that the other should reproduce.",
+     "family": "association",
+     "examples": [
+      "neurips26-2955/f2",
+      "icml26-1621/f2b",
+      "icml26-5949/f8c",
+      "iclr26-1512/f7"
+     ]
+    },
+    "association-agreement": {
+     "name": "Agreement with a reference / metric validity",
+     "def": "A learned or automatic quantity is shown to match, or mis-match, a reference such as geography, human judgment or detector labels.",
+     "include_if": "It shows split-triangle or overlay against a reference, a detector confusion matrix, or a metric-versus-perception check.",
+     "exclude_if": "Use compare-fidelity-to-truth when several estimators compete to match the truth.",
+     "family": "association",
+     "examples": [
+      "icml26-1621/f2c",
+      "icml26-1621/f3",
+      "neurips26-5220/f2D",
+      "icml26-4959/f6"
+     ]
+    },
+    "theory-prediction-match": {
+     "name": "Prediction / bound / fitted-law check",
+     "def": "Empirical points are overlaid on a theoretical curve, bound or extrapolated fit, and they agree.",
+     "include_if": "It shows theory lines with dots, fit-then-extrapolate, a bound above a measurement, or a tail-fit check of an assumption.",
+     "exclude_if": "Use theory-toy-illustration when there is no quantitative prediction, only a qualitative depiction.",
+     "family": "theory",
+     "examples": [
+      "iclr26-2940/f1b",
+      "iclr26-1322/f1a",
+      "icml26-3698/f3",
+      "neurips26-4879/f1Example 2: Log-Density"
+     ]
+    },
+    "theory-toy-illustration": {
+     "name": "Toy mechanism illustration",
+     "def": "A constructed low-dimensional example (1-D function, quiver field, anchor embedding, smoothing sweep) makes a property such as continuity, an identifiability symmetry or convergence visible.",
+     "include_if": "It uses synthetic or toy settings, and the claim is 'shows a jump', 'removes discontinuity' or 'converges to the mean'.",
+     "exclude_if": "Use exemplify-qualitative-comparison when real-task outputs are being compared.",
+     "family": "theory",
+     "examples": [
+      "icml26-1148/f1a",
+      "icml26-2860/f7top-left (Entropic, output)",
+      "icml26-4928/f4right",
+      "icml26-3698/f5"
+     ]
+    },
+    "exemplify-qualitative-comparison": {
+     "name": "Qualitative side-by-side comparison",
+     "def": "A grid of method-by-example outputs or overlays shows that ours looks better, or that the methods differ.",
+     "include_if": "There are rows or columns of methods on the same inputs, with arrows, boxes or crops highlighting differences.",
+     "exclude_if": "Use exemplify-illustration when only one method or the input data is shown.",
+     "family": "exemplify",
+     "examples": [
+      "neurips26-6504/f1",
+      "icml26-1993/f5",
+      "iclr26-1512/f1right",
+      "neurips26-8871/f5"
+     ]
+    },
+    "exemplify-illustration": {
+     "name": "Illustrative example / schematic",
+     "def": "Representative inputs, outputs, environment renders, method pipelines or conceptual sketches orient the reader.",
+     "include_if": "It is a single-method example strip, a conceptual diagram, a case list, or a pipeline overview.",
+     "exclude_if": "Use exemplify-qualitative-comparison when two or more methods are contrasted.",
+     "family": "exemplify",
+     "examples": [
+      "neurips26-6046/f1a",
+      "icml26-4173/f2A-C",
+      "neurips26-1707/f2Right",
+      "iclr26-1692/f6"
+     ]
+    }
+   }
+  },
+  "modifier": {
+   "title": "Qualifier",
+   "q": "How does the message qualify the comparison? Pick any that apply.",
+   "multi": 3,
+   "labels": {
+    "ours-better": {
+     "name": "Ours better",
+     "def": "the proposed method or condition comes out ahead"
+    },
+    "parity": {
+     "name": "Parity",
+     "def": "no meaningful difference, often a cheaper method matching a costly one"
+    },
+    "holds-across": {
+     "name": "Holds across settings",
+     "def": "the same result repeats across datasets, models, metrics or seeds"
+    },
+    "negative": {
+     "name": "Negative",
+     "def": "the plot shows something failing or not helping"
+    },
+    "vs-reference": {
+     "name": "Against a reference",
+     "def": "compared with ground truth, an oracle, theory or humans"
+    }
+   }
+  },
+  "chart": {
+   "title": "Chart form",
+   "q": "Chart form",
+   "multi": 2,
+   "labels": {
+    "line": {
+     "name": "line plot"
+    },
+    "scatter": {
+     "name": "scatter plot"
+    },
+    "bar": {
+     "name": "bar chart"
+    },
+    "grouped-bar": {
+     "name": "grouped or stacked bars"
+    },
+    "heatmap": {
+     "name": "heatmap or matrix"
+    },
+    "histogram": {
+     "name": "histogram or density"
+    },
+    "box-violin": {
+     "name": "box or violin plot"
+    },
+    "area": {
+     "name": "area or stacked area"
+    },
+    "radar": {
+     "name": "radar chart"
+    },
+    "embedding": {
+     "name": "2-D embedding / t-SNE / UMAP"
+    },
+    "image-grid": {
+     "name": "grid of images or samples"
+    },
+    "table-like": {
+     "name": "table rendered as a figure"
+    },
+    "diagram": {
+     "name": "schematic, not data"
+    },
+    "other": {
+     "name": "other"
+    }
+   }
+  },
+  "devices": {
+   "title": "Devices",
+   "q": "Visual devices the panel uses",
+   "multi": 13,
+   "labels": {
+    "ours-highlighted": {
+     "name": "ours highlighted"
+    },
+    "log-x": {
+     "name": "log x"
+    },
+    "log-y": {
+     "name": "log y"
+    },
+    "error-bars": {
+     "name": "error bars"
+    },
+    "confidence-band": {
+     "name": "confidence band"
+    },
+    "reference-line": {
+     "name": "reference line"
+    },
+    "annotation-arrow": {
+     "name": "annotation arrow"
+    },
+    "better-direction-marker": {
+     "name": "better direction marker"
+    },
+    "shared-axes": {
+     "name": "shared axes"
+    },
+    "small-multiples": {
+     "name": "small multiples"
+    },
+    "inset": {
+     "name": "inset"
+    },
+    "dual-axis": {
+     "name": "dual axis"
+    },
+    "sorted": {
+     "name": "sorted"
+    }
+   }
+  }
+ },
+ "changes_from_v0": [
+  "message labels rewritten from 500 annotated panels; added fidelity-to-truth, regime-optimum, cost-advantage, generalization-gap, dataset-composition, qualitative-comparison vs illustration",
+  "consistency and parity are also modifiers, not only messages (they qualify a comparison)",
+  "explicit decision rules for entity count and reference type, after annotators split identical panels between gap and ranking"
+ ]
+}

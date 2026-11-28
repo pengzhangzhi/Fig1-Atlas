@@ -131,6 +131,18 @@ python3 scripts/fetch_fig.py iclr26-0566   # download the image
 Images are in the Hugging Face dataset [`fredzzp/fig1-atlas`](https://huggingface.co/datasets/fredzzp/fig1-atlas).
 </details>
 
+## The Atlas family
+
+| | Unit | Use it to |
+|---|---|---|
+| [Fig1 Atlas](https://github.com/pengzhangzhi/Fig1-Atlas) | a paper's Figure 1 | design your Figure 1 |
+| [StoryAtlas](https://github.com/pengzhangzhi/StoryAtlas) | a paper's story | frame your paper |
+| [ExperimentAtlas](https://github.com/pengzhangzhi/ExperimentAtlas) | one experiment | plan experiments that test your claim |
+| [PlotAtlas](https://github.com/pengzhangzhi/PlotAtlas) | one plot panel | plot your results |
+
+All four are built from the same accepted papers with the same paper ids. This repo also holds the shared corpus pipeline
+([pipeline/](pipeline/), [docs/ARCHITECTURE.md](docs/ARCHITECTURE.md)).
+
 ## Licensing and takedown
 
 Figures remain © their authors. Images are hosted only for papers whose arXiv license is CC BY, CC BY-SA, CC0,

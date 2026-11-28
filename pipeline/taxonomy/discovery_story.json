@@ -1,0 +1,277 @@
+{
+ "categories": [
+  {
+   "id": "benchmark-exposes-gap",
+   "name": "New benchmark exposes a hidden failure",
+   "parent": "evaluation-led",
+   "definition": "The paper builds a more realistic, composite or interactive evaluation and shows that models that look strong on existing benchmarks fail badly. A remedy is optional.",
+   "include_if": "The main artifact is a benchmark or test protocol, and the headline finding is that current state-of-the-art systems perform much worse or differently than standard scores suggest.",
+   "exclude_if": "The benchmark serves a domain that has no evaluation at all and the story is about enabling work there, not about overturning what looked like competence (use resource-for-underserved-domain). It is also excluded when the benchmark is a side component of a newly defined threat or task (use new-problem-or-threat).",
+   "examples": [
+    "neurips26-7781",
+    "neurips26-7228",
+    "neurips26-5675",
+    "iclr26-3769",
+    "neurips26-4301"
+   ],
+   "count": 6
+  },
+  {
+   "id": "resource-for-underserved-domain",
+   "name": "Resource unlocks an underserved domain",
+   "parent": "evaluation-led",
+   "definition": "The paper supplies a dataset, data-generation pipeline or expert-grounded evaluation for a domain where data or evaluation was missing, and shows that training or evaluating on it changes what is achievable.",
+   "include_if": "The main contribution is a dataset or data framework, and the payoff is new capability, better generalization or the first reliable measurement in a specific domain.",
+   "exclude_if": "The point is that existing top models break, not that the domain becomes possible to work on (use benchmark-exposes-gap).",
+   "examples": [
+    "neurips26-5220",
+    "iclr26-1512",
+    "neurips26-3178",
+    "neurips26-3264"
+   ],
+   "count": 4
+  },
+  {
+   "id": "new-problem-or-threat",
+   "name": "Name a new problem or threat",
+   "parent": "evaluation-led",
+   "definition": "The paper formalizes a problem, attack surface or pipeline step that prior work never posed, shows it matters in practice, and provides first measurements or baselines.",
+   "include_if": "Before this paper the question was not asked at all (e.g., detecting unlearned models, cross-user poisoning, forget-set curation), and a task formulation is central.",
+   "exclude_if": "The task is already known and the paper only measures it more realistically (use benchmark-exposes-gap). The paper is also excluded when it relaxes an assumption of an existing problem to get guarantees (use provable-reach-extended).",
+   "examples": [
+    "neurips26-8717",
+    "iclr26-3274",
+    "neurips26-1707"
+   ],
+   "count": 3
+  },
+  {
+   "id": "diagnose-then-fix",
+   "name": "Diagnose the root cause, then fix it",
+   "parent": "method-led",
+   "definition": "Starting from a known shortfall, an analysis pinpoints a specific mechanistic cause, and a targeted method that removes that cause recovers the lost performance.",
+   "include_if": "The paper has an explicit two-act structure: analysis names a culprit (credit misassignment, lazy reflection, spectral mismatch), then a method is designed against that culprit.",
+   "exclude_if": "The analysis is a formal theory that defines the right quantity to optimize, rather than an empirical diagnosis of a failure (use principled-replacement). The paper is also excluded when the fix is mainly a way to get both sides of a trade-off and the diagnosis is minor (use tradeoff-dissolved).",
+   "examples": [
+    "iclr26-4047",
+    "icml26-5949",
+    "neurips26-6088"
+   ],
+   "count": 3
+  },
+  {
+   "id": "tradeoff-dissolved",
+   "name": "Get both sides of an assumed trade-off",
+   "parent": "method-led",
+   "definition": "The field believes you must pick between two goods (speed vs. stability, fairness vs. truthfulness, flexibility vs. cost), and the paper's method achieves both.",
+   "include_if": "The 'seems' side states an explicit dichotomy or tension, and the 'really' side shows a design that keeps both properties.",
+   "exclude_if": "The belief is only that one component is required, with no second good at stake (use unnecessary-component). The paper is also excluded when the gain is reaching a scale or bound regime through structural assumptions (use provable-reach-extended).",
+   "examples": [
+    "icml26-3678",
+    "icml26-3973",
+    "icml26-1993",
+    "neurips26-3817",
+    "neurips26-8871"
+   ],
+   "count": 8
+  },
+  {
+   "id": "unnecessary-component",
+   "name": "The 'necessary' ingredient isn't",
+   "parent": "belief-overturn",
+   "definition": "A component the field treats as required (a vision latent, graph priors, NMS, score conversion, a large LLM, anchors, many sequential rounds) is shown to be dispensable, and a simpler or cheaper pipeline matches or beats the standard one.",
+   "include_if": "The headline claim is 'you don't need X', and the method demonstrates this by removing or replacing X.",
+   "exclude_if": "Removing X is presented as getting both sides of a stated trade-off (use tradeoff-dissolved). The paper is also excluded when the main payoff is explaining why X seemed to work (use mechanism-revealed).",
+   "examples": [
+    "neurips26-6504",
+    "iclr26-2454",
+    "icml26-4928",
+    "iclr26-0728",
+    "icml26-1621"
+   ],
+   "count": 7
+  },
+  {
+   "id": "mechanism-revealed",
+   "name": "Reveal what actually drives the behaviour",
+   "parent": "belief-overturn",
+   "definition": "Analysis uncovers the true mechanism behind an observed effect or behaviour (compression, not reasoning; alignment, not missing structure; decode-time, not prefill, subspaces). The finding is then often exploited cheaply.",
+   "include_if": "The core contribution is an explanatory or causal account of an existing model or phenomenon, and any method is a direct consequence of that account.",
+   "exclude_if": "The account is a formal theorem about rates or optimal quantities (use theory-overturns-intuition). The paper is also excluded when the analysis exists only to motivate fixing a specific failure (use diagnose-then-fix).",
+   "examples": [
+    "iclr26-1185",
+    "neurips26-2955",
+    "neurips26-6046",
+    "icml26-5933",
+    "neurips26-4801"
+   ],
+   "count": 5
+  },
+  {
+   "id": "theory-overturns-intuition",
+   "name": "Sharper theory overturns an intuition",
+   "parent": "belief-overturn",
+   "definition": "Rigorous analysis shows that a presumed rate, relation or sufficient condition is wrong: costs add rather than multiply, acceleration can hurt, KL-closeness does not imply similar representations, only covariance matters.",
+   "include_if": "The 'really' side is a theorem or bound contradicting a natural belief, and any algorithm mainly serves to realize or illustrate that bound.",
+   "exclude_if": "The theory is used to design a replacement for a heuristic, and the method is the headline (use principled-replacement). The paper is also excluded when the result is mainly reaching a new scale or setting (use provable-reach-extended).",
+   "examples": [
+    "icml26-2935",
+    "neurips26-3488",
+    "icml26-3698",
+    "iclr26-2940"
+   ],
+   "count": 4
+  },
+  {
+   "id": "controlled-comparison-overturns",
+   "name": "Rigorous comparison overturns folk wisdom",
+   "parent": "belief-overturn",
+   "definition": "Large, carefully controlled experiments or a predictive-fit methodology show that a widely held empirical ranking or recipe judgement is an artifact of unfair or small-scale comparison.",
+   "include_if": "The main contribution is an experimental methodology (strict parity, scaling fits, large ablation sweeps) whose results reverse a conventional conclusion.",
+   "exclude_if": "A new benchmark or task is the artifact (use benchmark-exposes-gap). The reversal is also excluded when it is proved rather than measured (use theory-overturns-intuition).",
+   "examples": [
+    "iclr26-1322",
+    "iclr26-4363"
+   ],
+   "count": 2
+  },
+  {
+   "id": "principled-replacement",
+   "name": "Principled theory replaces a heuristic",
+   "parent": "method-led",
+   "definition": "The paper shows that a heuristic practice is suboptimal or unanalyzed and replaces it with a method derived from theory (information theory, extreme-value tails, geometry), backed by guarantees.",
+   "include_if": "The pitch is 'heuristic → principled with guarantees': the heuristic is shown to be biased or unexplained, and the new method comes with theorems.",
+   "exclude_if": "The theorem itself, not the method, is the headline (use theory-overturns-intuition). The paper is also excluded when the motivation is an empirical diagnosis of a failure (use diagnose-then-fix).",
+   "examples": [
+    "iclr26-1692",
+    "neurips26-4879",
+    "icml26-1148"
+   ],
+   "count": 3
+  },
+  {
+   "id": "provable-reach-extended",
+   "name": "Extend guarantees or scale to a harder regime",
+   "parent": "method-led",
+   "definition": "Results previously limited to small, exact-access or whole-stream settings are carried to million-node graphs, time-decay streams, black-box lower levels or polylogarithmic memory. This is usually done by exploiting structure or weaker assumptions.",
+   "include_if": "The 'seems' side is 'infeasible, or only known under assumption A', and the 'really' side is a provable algorithm that works in the harder regime.",
+   "exclude_if": "Two competing goods are both obtained, with no regime change (use tradeoff-dissolved). The paper is also excluded when the result says an existing rate or intuition is wrong (use theory-overturns-intuition).",
+   "examples": [
+    "neurips26-0180",
+    "neurips26-0828",
+    "iclr26-0731",
+    "iclr26-5078",
+    "neurips26-7079"
+   ],
+   "count": 5
+  },
+  {
+   "id": "decompose-the-monolith",
+   "name": "Decompose what was treated as one thing",
+   "parent": "method-led",
+   "definition": "A signal, state or attribution treated as a single object is split into components (line-level rewards, spatial vs. memory contributions, action-responsive vs. exogenous state), and modelling each separately fixes the problem.",
+   "include_if": "The key move is a decomposition, and the method directly operates on the parts.",
+   "exclude_if": "The decomposition only diagnoses a failure that a different mechanism then fixes (use diagnose-then-fix). The paper is also excluded when the split serves a benchmark's failure analysis (use benchmark-exposes-gap).",
+   "examples": [
+    "icml26-2016",
+    "icml26-5763",
+    "neurips26-8018"
+   ],
+   "count": 3
+  },
+  {
+   "id": "unification",
+   "name": "Unify scattered methods as one family",
+   "parent": "reframing",
+   "definition": "Methods seen as separate are shown to be instances or approximations of one framework, which explains them and yields new variants, libraries or design freedom.",
+   "include_if": "The 'seems' side is 'A and B are different', and the 'really' side is a common derivation or framework within the same field.",
+   "exclude_if": "The unifying lens is imported from a different discipline, and the problem is recast as that field's problem (use cross-field-reframe).",
+   "examples": [
+    "neurips26-1847",
+    "icml26-4797",
+    "neurips26-3206",
+    "icml26-2860"
+   ],
+   "count": 4
+  },
+  {
+   "id": "cross-field-reframe",
+   "name": "Recast the problem in another field's terms",
+   "parent": "reframing",
+   "definition": "The paper argues that an ML problem is really an instance of a mature problem from another area (probabilistic programming, systems security, KV-cache reconciliation) and imports that area's abstractions to solve it.",
+   "include_if": "The pitch is 'X is really a Y problem', and the contribution is the formulation plus a system or principles imported from Y.",
+   "exclude_if": "Methods within the same field are merged, with no import from another discipline (use unification).",
+   "examples": [
+    "icml26-0342",
+    "neurips26-1214",
+    "neurips26-8602"
+   ],
+   "count": 3
+  }
+ ],
+ "uncovered": [],
+ "v0_review": {
+  "unused_or_rare": [
+   "niche:new-problem (2 uses: 3274, 8717; 1707 and 7079 also fit but got overlooked-aspect or underexplored-setting)",
+   "contribution:taxonomy-other (1 use: 3178)",
+   "contribution:negative-result (3 uses, but 3769, 7228 and 7781 are also essentially negative results)",
+   "arc:local-is-general (5 uses, applied inconsistently: 1214 is a reframing and 3264 is generalization from data, not 'local is general')",
+   "niche:new-setting-transfer (4 uses, which overlap with underexplored-setting)"
+  ],
+  "overlapping_pairs": [
+   [
+    "seems-necessary-isnt",
+    "tradeoff-resolved",
+    "Co-assigned on 2454, 1993, 2935, 6088, 7100 and 8871. Any trade-off can be phrased as 'giving up B seemed necessary', so annotators cannot separate the two."
+   ],
+   [
+    "tradeoff-resolved",
+    "impossible-feasible",
+    "Co-assigned on 0731, 3678, 3973, 4173 and 0180. 'You cannot have both' and 'infeasible' describe the same story."
+   ],
+   [
+    "hidden-relation",
+    "one-is-several",
+    "Both describe structure the field missed. 3206 has both labels plus different-are-same."
+   ],
+   [
+    "overlooked-aspect",
+    "underexplored-setting",
+    "Both mean 'prior work did not look here'. The choice between them looks arbitrary (e.g., 1707 vs 7079)."
+   ],
+   [
+    "prior-cost-limit",
+    "prior-performance-limit",
+    "Usually both are true. They are co-assigned on 2454 and 4173, and the choice is driven by wording."
+   ],
+   [
+    "missing-evaluation",
+    "underexplored-setting",
+    "Nearly every benchmark paper gets both (5220, 7228, 7781, 3178, 4301)."
+   ]
+  ],
+  "missing": [
+   "An arc for 'new benchmark exposes the gap'. v0 forces benchmark papers into better-on-axis (7228 has only better-on-axis) or seems-to-work-doesnt.",
+   "An arc for diagnose-then-fix, i.e., a two-act structure where analysis motivates the method (4047, 5949, 6088).",
+   "Cross-field reframing ('X is really a Y problem': 0342, 1214, 8602).",
+   "A rigorous controlled comparison or methodology arc (1322, 4363).",
+   "An explain-then-exploit sequence (2955, 1185), as distinct from a bare hidden-relation.",
+   "A contribution type for position or SoK papers (1214 is shoehorned into task-formulation and characterization).",
+   "A heuristic-to-principled arc (1692, 4879)."
+  ],
+  "axis_problems": [
+   "overlooked-aspect is assigned to about 25 of 60 papers, so it barely discriminates and works as a default niche label.",
+   "seems-necessary-isnt (~21/60) and seems-to-work-doesnt (~19/60) together cover most papers. They are frames for the seems→really sentence that every paper has, so they are not distinct story types.",
+   "method appears in about 48/60 contribution lists, which makes the contribution axis almost uninformative unless the primary contribution is marked.",
+   "better-on-axis is used as filler for dataset and benchmark papers (5220, 7228, 3178) whose story is not an improvement on an axis.",
+   "The arc labels mix belief-content patterns (seems-necessary-isnt) with structural patterns (one-is-several, different-are-same). They are not one axis, so double-labelling is constant."
+  ]
+ },
+ "notes": "The parent fields name four families (evaluation-led, belief-overturn, method-led, reframing). They are not separate entries, and they let a pitch be chosen coarse-to-fine. Assign one primary archetype by asking what the abstract's first claim is: benchmark, 'you don't need X', 'get both', a theorem, and so on. Mark secondary archetypes separately, because many papers chain two (e.g., 4301 is benchmark-exposes-gap then a fix; 2955 is mechanism-revealed then a method). The hardest boundaries are unnecessary-component vs tradeoff-dissolved and theory-overturns-intuition vs principled-replacement. Resolve them by whether a second good is explicitly at stake, and by whether the theorem or the method is the headline. controlled-comparison-overturns, decompose-the-monolith and cross-field-reframe are small here (2-3 items) but are distinct, transferable pitches. A larger sample should check whether they stay separate or should be merged into their families. v0 should be refactored into one primary-arc label plus orthogonal flags (primary contribution type, has-theory, has-benchmark) instead of free multi-labels.",
+ "_meta": {
+  "kind": "story",
+  "items": 60,
+  "model": "opus",
+  "cost_usd": 0.4905642
+ }
+}

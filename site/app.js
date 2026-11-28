@@ -37,7 +37,10 @@ async function loadIndex() { if (!INDEX) INDEX = await (await fetch("index.json"
 
 function chrome(active) {
   const nav = [["figures", "./", "Figures"], ["roles", "roles.html", "Roles"], ["example", "example.html", "Example run"], ["use", "use.html", "Use it with an agent"]];
-  document.getElementById("top").outerHTML = `<header class="top"><a class="brand" href="./">Fig1 Atlas</a><nav aria-label="Main">
+  const FAM = [["Fig1 Atlas", "./", "Figure 1s"], ["StoryAtlas", "https://pengzhangzhi.github.io/StoryAtlas/", "how papers frame their work"],
+    ["ExperimentAtlas", "https://pengzhangzhi.github.io/ExperimentAtlas/", "how claims are tested"], ["PlotAtlas", "https://pengzhangzhi.github.io/PlotAtlas/", "how results are plotted"]];
+  document.getElementById("top").outerHTML = `<header class="top"><div class="brandbox"><a class="brand" href="./">Fig1 Atlas</a>
+    <details class="family"><summary aria-label="The Atlas family">Atlas family</summary><ul>${FAM.map(([n, u, d], i) => `<li${i === 0 ? ' class="here"' : ""}><a href="${u}">${n}</a> <span>${d}</span></li>`).join("")}</ul></details></div><nav aria-label="Main">
     ${nav.map(([k, h, t]) => `<a href="${h}"${k === active ? ' aria-current="page"' : ""}>${t}</a>`).join("")}<a href="${REPO}">GitHub</a></nav></header>`;
   document.getElementById("foot").outerHTML = `<footer class="foot"><p>Figures remain © their authors. Images are shown only for papers under an open license (CC BY, CC BY-SA, CC0, CC BY-NC, CC BY-NC-SA); every other paper has a text entry and a link. Roles, claims and descriptions are written by this project and can be wrong.</p>
     <p>Authors: to remove a figure, or to add one, <a href="${REPO}/issues">open an issue</a>. Fig1 Atlas is a non-commercial project.</p></footer>`;

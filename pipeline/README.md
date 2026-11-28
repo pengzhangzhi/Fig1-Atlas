@@ -37,3 +37,17 @@ python s3_extract.py iclr26 --ids trial_ids.txt
 python s4_annotate.py iclr26 --ids trial_ids.txt --backend claude-cli
 python s5_qc.py iclr26 && python s6_license.py iclr26 && python s7_publish.py iclr26 --upload
 ```
+
+## Shared corpus stages (used by StoryAtlas, ExperimentAtlas and PlotAtlas)
+
+| stage | what | output |
+|---|---|---|
+| `c1_parse.py` | each PDF once: sections, every figure (cropped with the s3 cropper), every table | `corpus/<id>.json`, `corpus_figs/<id>/` |
+| `k1_read.py` | one text call per paper: story, claims, experiments; quotes verified verbatim | `knowledge_v1/<id>.json` |
+| `k2_plots.py` | one vision call per paper: result figures, panel by panel | `plots_v1/<id>.json` |
+| `t1_discover.py` | taxonomy discovery: induce categories from a batch of records | `taxonomy/discovery_<kind>.json` |
+| `e1_stability.py` | label agreement between two runs (repeat or another model) | `work/stability_*.json` |
+| `e2_retrieval.py` | judged retrieval quality: structural usefulness vs topical similarity | `docs/eval/retrieval.json` |
+
+Taxonomies are versioned in `taxonomy/` (`*.v0.json` from the literature, `*.v1.json` revised from the data).
+Each atlas repo publishes from these records with its own `pipeline/publish.py`.

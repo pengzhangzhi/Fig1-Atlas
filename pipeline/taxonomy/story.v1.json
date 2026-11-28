@@ -1,0 +1,374 @@
+{
+ "version": "v1",
+ "source": "v0 (literature) revised with taxonomy discovery on 60 papers (discovery_story.json)",
+ "families": {
+  "evaluation-led": "Evaluation-led",
+  "method-led": "Method-led",
+  "belief-overturn": "Overturning a belief",
+  "reframing": "Reframing"
+ },
+ "axes": {
+  "archetype": {
+   "title": "Story archetype",
+   "q": "Which recurring pitch does the paper use? Primary = what the abstract's first claim is; secondary only if the paper clearly chains two (e.g. a benchmark exposes a gap, then a fix).",
+   "multi": 2,
+   "labels": {
+    "benchmark-exposes-gap": {
+     "name": "New benchmark exposes a hidden failure",
+     "def": "The paper builds a more realistic, composite or interactive evaluation and shows that models that look strong on existing benchmarks fail badly. A remedy is optional.",
+     "include_if": "The main artifact is a benchmark or test protocol, and the headline finding is that current state-of-the-art systems perform much worse or differently than standard scores suggest.",
+     "exclude_if": "The benchmark serves a domain that has no evaluation at all and the story is about enabling work there, not about overturning what looked like competence (use resource-for-underserved-domain). It is also excluded when the benchmark is a side component of a newly defined threat or task (use new-problem-or-threat).",
+     "family": "evaluation-led",
+     "examples": [
+      "neurips26-7781",
+      "neurips26-7228",
+      "neurips26-5675",
+      "iclr26-3769"
+     ]
+    },
+    "resource-for-underserved-domain": {
+     "name": "Resource unlocks an underserved domain",
+     "def": "The paper supplies a dataset, data-generation pipeline or expert-grounded evaluation for a domain where data or evaluation was missing, and shows that training or evaluating on it changes what is achievable.",
+     "include_if": "The main contribution is a dataset or data framework, and the payoff is new capability, better generalization or the first reliable measurement in a specific domain.",
+     "exclude_if": "The point is that existing top models break, not that the domain becomes possible to work on (use benchmark-exposes-gap).",
+     "family": "evaluation-led",
+     "examples": [
+      "neurips26-5220",
+      "iclr26-1512",
+      "neurips26-3178",
+      "neurips26-3264"
+     ]
+    },
+    "new-problem-or-threat": {
+     "name": "Name a new problem or threat",
+     "def": "The paper formalizes a problem, attack surface or pipeline step that prior work never posed, shows it matters in practice, and provides first measurements or baselines.",
+     "include_if": "Before this paper the question was not asked at all (e.g., detecting unlearned models, cross-user poisoning, forget-set curation), and a task formulation is central.",
+     "exclude_if": "The task is already known and the paper only measures it more realistically (use benchmark-exposes-gap). The paper is also excluded when it relaxes an assumption of an existing problem to get guarantees (use provable-reach-extended).",
+     "family": "evaluation-led",
+     "examples": [
+      "neurips26-8717",
+      "iclr26-3274",
+      "neurips26-1707"
+     ]
+    },
+    "diagnose-then-fix": {
+     "name": "Diagnose the root cause, then fix it",
+     "def": "Starting from a known shortfall, an analysis pinpoints a specific mechanistic cause, and a targeted method that removes that cause recovers the lost performance.",
+     "include_if": "The paper has an explicit two-act structure: analysis names a culprit (credit misassignment, lazy reflection, spectral mismatch), then a method is designed against that culprit.",
+     "exclude_if": "The analysis is a formal theory that defines the right quantity to optimize, rather than an empirical diagnosis of a failure (use principled-replacement). The paper is also excluded when the fix is mainly a way to get both sides of a trade-off and the diagnosis is minor (use tradeoff-dissolved).",
+     "family": "method-led",
+     "examples": [
+      "iclr26-4047",
+      "icml26-5949",
+      "neurips26-6088"
+     ]
+    },
+    "tradeoff-dissolved": {
+     "name": "Get both sides of an assumed trade-off",
+     "def": "The field believes you must pick between two goods (speed vs. stability, fairness vs. truthfulness, flexibility vs. cost), and the paper's method achieves both.",
+     "include_if": "The 'seems' side states an explicit dichotomy or tension, and the 'really' side shows a design that keeps both properties.",
+     "exclude_if": "The belief is only that one component is required, with no second good at stake (use unnecessary-component). The paper is also excluded when the gain is reaching a scale or bound regime through structural assumptions (use provable-reach-extended).",
+     "family": "method-led",
+     "examples": [
+      "icml26-3678",
+      "icml26-3973",
+      "icml26-1993",
+      "neurips26-3817"
+     ]
+    },
+    "unnecessary-component": {
+     "name": "The 'necessary' ingredient isn't",
+     "def": "A component the field treats as required (a vision latent, graph priors, NMS, score conversion, a large LLM, anchors, many sequential rounds) is shown to be dispensable, and a simpler or cheaper pipeline matches or beats the standard one.",
+     "include_if": "The headline claim is 'you don't need X', and the method demonstrates this by removing or replacing X.",
+     "exclude_if": "Removing X is presented as getting both sides of a stated trade-off (use tradeoff-dissolved). The paper is also excluded when the main payoff is explaining why X seemed to work (use mechanism-revealed).",
+     "family": "belief-overturn",
+     "examples": [
+      "neurips26-6504",
+      "iclr26-2454",
+      "icml26-4928",
+      "iclr26-0728"
+     ]
+    },
+    "mechanism-revealed": {
+     "name": "Reveal what actually drives the behaviour",
+     "def": "Analysis uncovers the true mechanism behind an observed effect or behaviour (compression, not reasoning; alignment, not missing structure; decode-time, not prefill, subspaces). The finding is then often exploited cheaply.",
+     "include_if": "The core contribution is an explanatory or causal account of an existing model or phenomenon, and any method is a direct consequence of that account.",
+     "exclude_if": "The account is a formal theorem about rates or optimal quantities (use theory-overturns-intuition). The paper is also excluded when the analysis exists only to motivate fixing a specific failure (use diagnose-then-fix).",
+     "family": "belief-overturn",
+     "examples": [
+      "iclr26-1185",
+      "neurips26-2955",
+      "neurips26-6046",
+      "icml26-5933"
+     ]
+    },
+    "theory-overturns-intuition": {
+     "name": "Sharper theory overturns an intuition",
+     "def": "Rigorous analysis shows that a presumed rate, relation or sufficient condition is wrong: costs add rather than multiply, acceleration can hurt, KL-closeness does not imply similar representations, only covariance matters.",
+     "include_if": "The 'really' side is a theorem or bound contradicting a natural belief, and any algorithm mainly serves to realize or illustrate that bound.",
+     "exclude_if": "The theory is used to design a replacement for a heuristic, and the method is the headline (use principled-replacement). The paper is also excluded when the result is mainly reaching a new scale or setting (use provable-reach-extended).",
+     "family": "belief-overturn",
+     "examples": [
+      "icml26-2935",
+      "neurips26-3488",
+      "icml26-3698",
+      "iclr26-2940"
+     ]
+    },
+    "controlled-comparison-overturns": {
+     "name": "Rigorous comparison overturns folk wisdom",
+     "def": "Large, carefully controlled experiments or a predictive-fit methodology show that a widely held empirical ranking or recipe judgement is an artifact of unfair or small-scale comparison.",
+     "include_if": "The main contribution is an experimental methodology (strict parity, scaling fits, large ablation sweeps) whose results reverse a conventional conclusion.",
+     "exclude_if": "A new benchmark or task is the artifact (use benchmark-exposes-gap). The reversal is also excluded when it is proved rather than measured (use theory-overturns-intuition).",
+     "family": "belief-overturn",
+     "examples": [
+      "iclr26-1322",
+      "iclr26-4363"
+     ]
+    },
+    "principled-replacement": {
+     "name": "Principled theory replaces a heuristic",
+     "def": "The paper shows that a heuristic practice is suboptimal or unanalyzed and replaces it with a method derived from theory (information theory, extreme-value tails, geometry), backed by guarantees.",
+     "include_if": "The pitch is 'heuristic → principled with guarantees': the heuristic is shown to be biased or unexplained, and the new method comes with theorems.",
+     "exclude_if": "The theorem itself, not the method, is the headline (use theory-overturns-intuition). The paper is also excluded when the motivation is an empirical diagnosis of a failure (use diagnose-then-fix).",
+     "family": "method-led",
+     "examples": [
+      "iclr26-1692",
+      "neurips26-4879",
+      "icml26-1148"
+     ]
+    },
+    "provable-reach-extended": {
+     "name": "Extend guarantees or scale to a harder regime",
+     "def": "Results previously limited to small, exact-access or whole-stream settings are carried to million-node graphs, time-decay streams, black-box lower levels or polylogarithmic memory. This is usually done by exploiting structure or weaker assumptions.",
+     "include_if": "The 'seems' side is 'infeasible, or only known under assumption A', and the 'really' side is a provable algorithm that works in the harder regime.",
+     "exclude_if": "Two competing goods are both obtained, with no regime change (use tradeoff-dissolved). The paper is also excluded when the result says an existing rate or intuition is wrong (use theory-overturns-intuition).",
+     "family": "method-led",
+     "examples": [
+      "neurips26-0180",
+      "neurips26-0828",
+      "iclr26-0731",
+      "iclr26-5078"
+     ]
+    },
+    "decompose-the-monolith": {
+     "name": "Decompose what was treated as one thing",
+     "def": "A signal, state or attribution treated as a single object is split into components (line-level rewards, spatial vs. memory contributions, action-responsive vs. exogenous state), and modelling each separately fixes the problem.",
+     "include_if": "The key move is a decomposition, and the method directly operates on the parts.",
+     "exclude_if": "The decomposition only diagnoses a failure that a different mechanism then fixes (use diagnose-then-fix). The paper is also excluded when the split serves a benchmark's failure analysis (use benchmark-exposes-gap).",
+     "family": "method-led",
+     "examples": [
+      "icml26-2016",
+      "icml26-5763",
+      "neurips26-8018"
+     ]
+    },
+    "unification": {
+     "name": "Unify scattered methods as one family",
+     "def": "Methods seen as separate are shown to be instances or approximations of one framework, which explains them and yields new variants, libraries or design freedom.",
+     "include_if": "The 'seems' side is 'A and B are different', and the 'really' side is a common derivation or framework within the same field.",
+     "exclude_if": "The unifying lens is imported from a different discipline, and the problem is recast as that field's problem (use cross-field-reframe).",
+     "family": "reframing",
+     "examples": [
+      "neurips26-1847",
+      "icml26-4797",
+      "neurips26-3206",
+      "icml26-2860"
+     ]
+    },
+    "cross-field-reframe": {
+     "name": "Recast the problem in another field's terms",
+     "def": "The paper argues that an ML problem is really an instance of a mature problem from another area (probabilistic programming, systems security, KV-cache reconciliation) and imports that area's abstractions to solve it.",
+     "include_if": "The pitch is 'X is really a Y problem', and the contribution is the formulation plus a system or principles imported from Y.",
+     "exclude_if": "Methods within the same field are merged, with no import from another discipline (use unification).",
+     "family": "reframing",
+     "examples": [
+      "icml26-0342",
+      "neurips26-1214",
+      "neurips26-8602"
+     ]
+    }
+   }
+  },
+  "niche": {
+   "title": "Why it was needed",
+   "q": "Why is the paper needed? (the gap the introduction sets up)",
+   "multi": 2,
+   "labels": {
+    "unexplored-gap": {
+     "name": "Unexplored gap",
+     "def": "an aspect, setting or regime nobody has addressed (includes applying known ideas to a new setting)"
+    },
+    "missing-evaluation": {
+     "name": "Missing evaluation",
+     "def": "claims in the field lack proper evidence, measurement or benchmark"
+    },
+    "prior-shortfall": {
+     "name": "Prior methods fall short",
+     "def": "existing methods are not accurate or capable enough"
+    },
+    "prior-cost": {
+     "name": "Prior methods cost too much",
+     "def": "existing methods are too slow, expensive or data-hungry; use only if cost is the headline, not a side benefit"
+    },
+    "prior-fragility": {
+     "name": "Prior methods are fragile",
+     "def": "existing methods break under shift, noise, attack or scale"
+    },
+    "prior-assumption": {
+     "name": "Prior methods assume too much",
+     "def": "existing methods rely on assumptions that are too strong or unrealistic"
+    },
+    "conflicting-evidence": {
+     "name": "Conflicting evidence",
+     "def": "results or explanations in the literature disagree"
+    },
+    "new-problem": {
+     "name": "A new problem",
+     "def": "a task, threat or capability that had not been posed before"
+    }
+   }
+  },
+  "contribution": {
+   "title": "Contribution",
+   "q": "What does the paper deliver?",
+   "multi": 3,
+   "labels": {
+    "method": {
+     "name": "Method",
+     "def": "a new model, algorithm, objective or training recipe"
+    },
+    "system": {
+     "name": "System",
+     "def": "a system, library or tool"
+    },
+    "dataset-benchmark": {
+     "name": "Dataset benchmark",
+     "def": "a dataset, benchmark or evaluation protocol"
+    },
+    "task-formulation": {
+     "name": "Task formulation",
+     "def": "a new problem formulation or task definition"
+    },
+    "empirical-finding": {
+     "name": "Empirical finding",
+     "def": "a new observation or phenomenon"
+    },
+    "explanation": {
+     "name": "Explanation",
+     "def": "an explanation or mechanism for an observed behaviour"
+    },
+    "theory": {
+     "name": "Theory",
+     "def": "theorems, bounds or guarantees"
+    },
+    "characterization": {
+     "name": "Characterization",
+     "def": "a systematic characterization, e.g. scaling laws or large-scale study"
+    },
+    "analysis-of-existing": {
+     "name": "Analysis of existing",
+     "def": "an analysis or re-evaluation of existing methods"
+    },
+    "negative-result": {
+     "name": "Negative result",
+     "def": "showing something does not work or does not hold"
+    },
+    "position-survey": {
+     "name": "Position or survey",
+     "def": "an argument, perspective or systematization of a field"
+    }
+   }
+  },
+  "insight_origin": {
+   "title": "Where the insight comes from",
+   "q": "Where does the key insight come from?",
+   "multi": 2,
+   "labels": {
+    "analogy": {
+     "name": "Analogy",
+     "def": "borrowed from another field or problem"
+    },
+    "first-principles": {
+     "name": "First principles",
+     "def": "derived from theory or first principles"
+    },
+    "empirical-observation": {
+     "name": "Empirical observation",
+     "def": "noticed in data or experiments"
+    },
+    "reframing": {
+     "name": "Reframing",
+     "def": "recasting the problem as a known, solved problem"
+    },
+    "scale-engineering": {
+     "name": "Scale engineering",
+     "def": "scale, data or engineering effort"
+    }
+   }
+  },
+  "evidence": {
+   "title": "Evidence",
+   "q": "What kinds of evidence carry the paper's main claim?",
+   "multi": 4,
+   "labels": {
+    "benchmark-comparison": {
+     "name": "Benchmark comparison",
+     "def": "head-to-head results against baselines on benchmarks"
+    },
+    "ablation": {
+     "name": "Ablation",
+     "def": "removing or swapping components"
+    },
+    "controlled-synthetic": {
+     "name": "Controlled synthetic",
+     "def": "toy or synthetic settings with known ground truth"
+    },
+    "proof": {
+     "name": "Proof",
+     "def": "theorems and proofs"
+    },
+    "qualitative": {
+     "name": "Qualitative",
+     "def": "case studies, examples, visualizations"
+    },
+    "human-study": {
+     "name": "Human study",
+     "def": "human evaluation or user study"
+    },
+    "large-scale-study": {
+     "name": "Large scale study",
+     "def": "large sweeps or measurements across many models/settings"
+    },
+    "existence-demo": {
+     "name": "Existence demo",
+     "def": "a demonstration that something can be done at all"
+    }
+   }
+  }
+ },
+ "abstract_moves": [
+  "context",
+  "gap",
+  "purpose",
+  "method",
+  "result",
+  "implication"
+ ],
+ "intro_moves": [
+  "territory",
+  "gap",
+  "counter-claim",
+  "question",
+  "purpose",
+  "method-preview",
+  "findings",
+  "contributions-list",
+  "roadmap"
+ ],
+ "changes_from_v0": [
+  "arc labels replaced by data-driven archetypes (v0 arcs overlapped: seems-necessary vs tradeoff-resolved vs impossible-feasible were co-assigned on 10 of 60 papers)",
+  "niche merged: overlooked-aspect + underexplored-setting + new-setting-transfer -> unexplored-gap; assumption-challenged moved to archetypes",
+  "challenged belief now requires an explicit, quoted statement of a widely held belief (v0 filled it for 56 of 60 papers)"
+ ]
+}

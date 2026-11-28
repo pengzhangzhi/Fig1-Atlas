@@ -1,0 +1,641 @@
+{
+ "version": "v1",
+ "source": "v0 (literature) revised with taxonomy discovery on 401 experiments (discovery_experiment.json)",
+ "families": {
+  "comparative-evaluation": "Comparative evaluation against alternatives",
+  "component-attribution": "Component attribution",
+  "robustness-sensitivity": "Robustness and sensitivity",
+  "generalization-transfer": "Generalization and transfer",
+  "scaling-and-extrapolation": "Scaling and extrapolation",
+  "synthetic-and-theory-validation": "Synthetic settings and theory validation",
+  "mechanistic-analysis": "Mechanistic / internal analysis",
+  "behavioral-diagnostics": "Behavioral diagnostics of outputs",
+  "measurement-validity": "Measurement validity and data audits"
+ },
+ "axes": {
+  "pattern": {
+   "title": "Design pattern",
+   "q": "Which reusable design is this? Primary first; add a second only if the experiment clearly combines two.",
+   "multi": 2,
+   "labels": {
+    "multi-benchmark-head-to-head": {
+     "name": "Multi-benchmark head-to-head table",
+     "def": "The proposed method and published baselines are run on several standard datasets or metrics and reported in one main table.",
+     "include_if": "There are several baselines and several datasets or metrics, and no explicit matching of budget or cost.",
+     "exclude_if": "Compute, tokens or parameters are explicitly equalised (budget-matched-comparison), or the method is evaluated along a sweep of cost (quality-cost-frontier).",
+     "family": "comparative-evaluation",
+     "examples": [
+      "iclr26-0728/e2",
+      "iclr26-4047/e1",
+      "icml26-1621/e1",
+      "neurips26-2955/e4"
+     ]
+    },
+    "budget-matched-comparison": {
+     "name": "Budget- or capacity-matched comparison",
+     "def": "Methods are compared with compute, tokens, simulator calls, parameters or unique data held equal, so the gain cannot be blamed on extra resources.",
+     "include_if": "The design explicitly equalises a resource, or adds a capacity-matched control to rule out 'it is just bigger'.",
+     "exclude_if": "The resource is swept continuously and a frontier is plotted (quality-cost-frontier).",
+     "family": "comparative-evaluation",
+     "examples": [
+      "iclr26-4363/e3",
+      "iclr26-2454/e2",
+      "icml26-0342/e2",
+      "icml26-4173/e2"
+     ]
+    },
+    "quality-cost-frontier": {
+     "name": "Quality-versus-cost frontier sweep",
+     "def": "Methods are traced across a range of budgets, compression rates or step counts to compare whole trade-off curves or Pareto fronts.",
+     "include_if": "The x-axis is a resource (bitrate, steps, time, tokens, particles) and every method is plotted along it.",
+     "exclude_if": "Only the proposed method is swept, to find its own operating point (hyperparameter-sensitivity-sweep).",
+     "family": "comparative-evaluation",
+     "examples": [
+      "iclr26-1692/e2",
+      "neurips26-4879/e2",
+      "icml26-3973/e3",
+      "neurips26-8871/e2"
+     ]
+    },
+    "many-model-leaderboard": {
+     "name": "Many-model benchmark leaderboard",
+     "def": "A new benchmark or attack is applied to many existing models in order to characterise the field, not to promote one method.",
+     "include_if": "The paper contributes a benchmark, dataset or attack, and the rows are off-the-shelf models.",
+     "exclude_if": "The rows include a proposed method that is meant to win (multi-benchmark-head-to-head).",
+     "family": "comparative-evaluation",
+     "examples": [
+      "neurips26-7228/e1",
+      "neurips26-7781/e1",
+      "neurips26-3178/e3",
+      "neurips26-4301/e1"
+     ]
+    },
+    "human-and-qualitative-comparison": {
+     "name": "Human preference or side-by-side qualitative comparison",
+     "def": "Outputs of competing methods are judged by people (pairwise preference, expert ratings) or shown side by side in curated visual comparisons.",
+     "include_if": "The evidence is human judgments or curated visual galleries comparing methods.",
+     "exclude_if": "People are used to validate a metric or a judge rather than to compare methods (measurement-validity).",
+     "family": "comparative-evaluation",
+     "examples": [
+      "neurips26-4801/e5",
+      "neurips26-6088/e7",
+      "icml26-1993/e1",
+      "neurips26-4801/e1"
+     ]
+    },
+    "leave-one-out-ablation": {
+     "name": "Leave-one-out component ablation",
+     "def": "Each module, loss term or reward is removed from the full system in turn, and the drop is measured.",
+     "include_if": "The design is 'full method minus X' for one or more X, starting from the full system.",
+     "exclude_if": "Components are added cumulatively from a base (additive-buildup-ablation), or X is replaced by a specific alternative (component-substitution).",
+     "family": "component-attribution",
+     "examples": [
+      "iclr26-0728/e4",
+      "iclr26-2454/e4",
+      "icml26-1621/e3",
+      "neurips26-8602/e5"
+     ]
+    },
+    "additive-buildup-ablation": {
+     "name": "Cumulative build-up ablation",
+     "def": "Components or training stages are added one at a time to a baseline, and the increment from each is reported.",
+     "include_if": "The table rows build up from a base toward the full method, or add modules onto external baselines.",
+     "exclude_if": "The design starts from the full system and removes parts (leave-one-out-ablation).",
+     "family": "component-attribution",
+     "examples": [
+      "icml26-2016/e3",
+      "neurips26-6088/e2",
+      "neurips26-7100/e1",
+      "icml26-5949/e6"
+     ]
+    },
+    "component-substitution": {
+     "name": "Component substitution / design-choice swap",
+     "def": "A design choice is swapped for named alternatives (latent space, masking rule, selection criterion, objective form), keeping everything else fixed.",
+     "include_if": "Each condition replaces one choice with another concrete option, not with nothing.",
+     "exclude_if": "The swapped part is outside the method (judge, backend, reward model), so the question is robustness (evaluator-and-infrastructure-swap).",
+     "family": "component-attribution",
+     "examples": [
+      "iclr26-0728/e3",
+      "iclr26-1692/e4",
+      "neurips26-4879/e4",
+      "icml26-2016/e6"
+     ]
+    },
+    "confound-isolating-control": {
+     "name": "Confound-isolating control",
+     "def": "A control condition separates the claimed cause from a plausible confound: the same data under SFT versus RL, an oracle input, interaction versus static examples, or a matched random subspace.",
+     "include_if": "The question is phrased as 'is it X or merely Y?' and one condition removes X while keeping Y.",
+     "exclude_if": "It is a plain removal with no named rival explanation (leave-one-out-ablation).",
+     "family": "component-attribution",
+     "examples": [
+      "neurips26-6504/e5",
+      "neurips26-4301/e2",
+      "iclr26-3769/e9",
+      "neurips26-1707/e3"
+     ]
+    },
+    "hyperparameter-sensitivity-sweep": {
+     "name": "Hyperparameter sensitivity sweep",
+     "def": "One method's own hyperparameter (β, depth, step size, threshold, K) is swept to show a stable range or an optimum.",
+     "include_if": "Only one method's configuration varies along a scalar knob.",
+     "exclude_if": "The knob is model or data scale and the goal is a trend or law (scaling-and-extrapolation), or competitors are plotted along the knob (quality-cost-frontier).",
+     "family": "robustness-sensitivity",
+     "examples": [
+      "iclr26-4047/e9",
+      "icml26-4928/e2",
+      "icml26-5763/e6",
+      "icml26-5933/e2"
+     ]
+    },
+    "input-perturbation-stress-test": {
+     "name": "Input perturbation / corruption stress test",
+     "def": "Inputs or side information are corrupted on purpose (noise, JPEG, attacks, label masking, swapped partitions, paraphrased prompts) at graded severity.",
+     "include_if": "A controlled degradation is applied to inputs or supervision, and performance retention is measured.",
+     "exclude_if": "The shift is a different natural dataset or domain (cross-dataset-replication).",
+     "family": "robustness-sensitivity",
+     "examples": [
+      "icml26-4959/e2",
+      "neurips26-8018/e7",
+      "iclr26-2454/e5",
+      "neurips26-6758/e6"
+     ]
+    },
+    "evaluator-and-infrastructure-swap": {
+     "name": "Evaluator, seed and infrastructure stability",
+     "def": "Something outside the method is varied (judge model, reward model, scoring rule, random seed, black-box solver, number of runs) to check that rankings or fits are stable.",
+     "include_if": "The varied element is part of the measurement or execution pipeline, not the method.",
+     "exclude_if": "The varied element is a design choice of the method (component-substitution).",
+     "family": "robustness-sensitivity",
+     "examples": [
+      "neurips26-4301/e8",
+      "neurips26-3178/e8",
+      "iclr26-1322/e5",
+      "neurips26-4879/e5"
+     ]
+    },
+    "cross-dataset-replication": {
+     "name": "Cross-dataset / cross-domain replication",
+     "def": "The main comparison is re-run on another dataset, domain or real-world setting to show the result replicates.",
+     "include_if": "The method and baselines stay the same, and the data or domain changes.",
+     "exclude_if": "The architecture or backbone changes (cross-backbone-transfer), or the model is trained on one split and tested zero-shot on another (held-out-split-extrapolation).",
+     "family": "generalization-transfer",
+     "examples": [
+      "iclr26-2940/e4",
+      "iclr26-2940/e5",
+      "iclr26-5078/e3",
+      "neurips26-8602/e2"
+     ]
+    },
+    "cross-backbone-transfer": {
+     "name": "Cross-backbone / cross-architecture transfer",
+     "def": "The method is applied unchanged to a different base model, backbone, generator family or system scale.",
+     "include_if": "The base model or architecture is swapped while the method stays fixed.",
+     "exclude_if": "The new setting is a different task family (module-transplant).",
+     "family": "generalization-transfer",
+     "examples": [
+      "iclr26-4047/e2",
+      "iclr26-1692/e5",
+      "neurips26-6504/e10",
+      "iclr26-1322/e8"
+     ]
+    },
+    "held-out-split-extrapolation": {
+     "name": "Train-on-one, test-on-unseen split",
+     "def": "Training is restricted to one source (a dataset, sequence length, opponent set or model type), and evaluation is on held-out conditions.",
+     "include_if": "The train and test conditions are explicitly disjoint by design, including length extrapolation.",
+     "exclude_if": "The method is simply re-run end-to-end on another dataset (cross-dataset-replication).",
+     "family": "generalization-transfer",
+     "examples": [
+      "iclr26-1185/e4",
+      "neurips26-0180/e2",
+      "iclr26-3274/e6",
+      "neurips26-8018/e1"
+     ]
+    },
+    "module-transplant": {
+     "name": "Module transplant into another system or task",
+     "def": "One proposed ingredient is inserted into a different model or a different task to show it is a general improvement.",
+     "include_if": "A single component, not the whole method, is ported to a foreign host.",
+     "exclude_if": "The whole method moves to a new backbone (cross-backbone-transfer).",
+     "family": "generalization-transfer",
+     "examples": [
+      "iclr26-1512/e8",
+      "neurips26-6088/e6",
+      "neurips26-6088/e5",
+      "neurips26-5933/e9"
+     ]
+    },
+    "scale-trend-sweep": {
+     "name": "Scale sweep for trend or optimum",
+     "def": "Model size, data amount, generation length, batch size or task count is swept to reveal a trend or a scale-dependent optimum.",
+     "include_if": "The sweep is over a size or amount, and the claim is how the outcome changes with it.",
+     "exclude_if": "A parametric fit is used to predict unseen scales (fit-and-extrapolate).",
+     "family": "scaling-and-extrapolation",
+     "examples": [
+      "iclr26-4363/e2",
+      "iclr26-1322/e7",
+      "neurips26-5220/e3",
+      "neurips26-7100/e4"
+     ]
+    },
+    "fit-and-extrapolate": {
+     "name": "Fit early, predict later",
+     "def": "A functional form is fitted on small or early runs and checked against held-out larger or later runs.",
+     "include_if": "A fitted curve is evaluated on scales it was not fitted on.",
+     "exclude_if": "The curve is only descriptive (scale-trend-sweep).",
+     "family": "scaling-and-extrapolation",
+     "examples": [
+      "iclr26-1322/e1",
+      "iclr26-1322/e2",
+      "iclr26-1322/e5"
+     ]
+    },
+    "resource-complexity-profiling": {
+     "name": "Resource cost vs problem size profiling",
+     "def": "Runtime, memory or overhead is measured as input size grows, or under deployment engines, to establish efficiency.",
+     "include_if": "The outcome is wall-clock, memory or FLOPs rather than quality.",
+     "exclude_if": "Quality is plotted against cost for several methods (quality-cost-frontier).",
+     "family": "scaling-and-extrapolation",
+     "examples": [
+      "iclr26-0731/e1",
+      "icml26-2860/e2",
+      "neurips26-6758/e7",
+      "icml26-4928/e5"
+     ]
+    },
+    "theory-prediction-overlay": {
+     "name": "Simulation vs theoretical prediction overlay",
+     "def": "Empirical curves from controlled simulations are overlaid on the predicted rates, bounds or equilibria across parameter sweeps.",
+     "include_if": "A theorem's quantitative prediction is plotted against measurements.",
+     "exclude_if": "The theory is only qualitatively illustrated with a constructed case (constructed-counterexample).",
+     "family": "synthetic-and-theory-validation",
+     "examples": [
+      "iclr26-2940/e1",
+      "icml26-2935/e1",
+      "neurips26-3488/e2",
+      "icml26-3678/e1"
+     ]
+    },
+    "constructed-counterexample": {
+     "name": "Constructed toy counterexample",
+     "def": "A minimal hand-built environment or graph exhibits a predicted failure or disagreement.",
+     "include_if": "A single designed instance proves existence (policies disagree, work blows up, the update fails).",
+     "exclude_if": "The result is a parametric sweep against a prediction (theory-prediction-overlay).",
+     "family": "synthetic-and-theory-validation",
+     "examples": [
+      "neurips26-3206/e1",
+      "neurips26-3206/e3",
+      "neurips26-3488/e1",
+      "icml26-2860/e1"
+     ]
+    },
+    "planted-ground-truth-recovery": {
+     "name": "Planted ground-truth recovery",
+     "def": "Known signals (real images among synthetic ones, true inputs among noise, an exact conjugate posterior) are planted, and recovery is scored.",
+     "include_if": "Success is measured against a planted target the method does not see.",
+     "exclude_if": "The ground truth is a theoretical rate rather than a planted object (theory-prediction-overlay).",
+     "family": "synthetic-and-theory-validation",
+     "examples": [
+      "iclr26-2940/e6",
+      "neurips26-7100/e7",
+      "icml26-3973/e1",
+      "icml26-1993/e6"
+     ]
+    },
+    "representation-probing": {
+     "name": "Probing and representation similarity",
+     "def": "Linear probes, CCA or RSA, or classifiers on activations measure what information representations encode or how similar they are.",
+     "include_if": "The output is a readout or similarity score computed from frozen activations.",
+     "exclude_if": "Activations are edited and behaviour is re-measured (causal-internal-intervention).",
+     "family": "mechanistic-analysis",
+     "examples": [
+      "neurips26-6046/e1",
+      "icml26-3698/e2",
+      "iclr26-0728/e1",
+      "icml26-1621/e4"
+     ]
+    },
+    "causal-internal-intervention": {
+     "name": "Causal intervention on internals with matched controls",
+     "def": "A subspace, head or update component is erased, restored or amplified, and the behavioural effect is compared with matched random controls.",
+     "include_if": "Internal states are edited at inference or in the optimiser, and the downstream effect is measured.",
+     "exclude_if": "Whole modules of the method are removed and the model is retrained (leave-one-out-ablation).",
+     "family": "mechanistic-analysis",
+     "examples": [
+      "neurips26-6046/e2",
+      "icml26-5933/e5",
+      "icml26-5933/e7",
+      "neurips26-3817/e8"
+     ]
+    },
+    "internals-visualization": {
+     "name": "Visualizing learned internals over training",
+     "def": "t-SNE or PCA, attention maps, routing traces or learned weight maps are plotted to show qualitative structure or how it evolves.",
+     "include_if": "The evidence is mainly a visualization of internal quantities, without an intervention.",
+     "exclude_if": "A quantitative probe or a statistical test is the main evidence (representation-probing).",
+     "family": "mechanistic-analysis",
+     "examples": [
+      "iclr26-1185/e2",
+      "icml26-4173/e4",
+      "neurips26-8018/e3",
+      "iclr26-3274/e5"
+     ]
+    },
+    "targeted-quantity-check": {
+     "name": "Verify the method moves its target quantity",
+     "def": "The method is checked to change the intermediate quantity its motivation names (gradient variance, redundant tokens, alignment score, smoothness).",
+     "include_if": "The outcome is the mediator posited by the method or theory, not the end metric.",
+     "exclude_if": "The mediator is correlated across many checkpoints without the method being applied (metric-outcome-correlation).",
+     "family": "mechanistic-analysis",
+     "examples": [
+      "icml26-4928/e4",
+      "iclr26-4047/e4",
+      "neurips26-2955/e5",
+      "icml26-1148/e1"
+     ]
+    },
+    "failure-taxonomy": {
+     "name": "Failure-mode categorization",
+     "def": "Errors or reasoning traces are coded (manually or by an LLM) into a taxonomy, and their frequencies are compared.",
+     "include_if": "The output is a distribution over error or behaviour categories.",
+     "exclude_if": "Performance is broken down by input attributes rather than by error type (stratified-breakdown).",
+     "family": "behavioral-diagnostics",
+     "examples": [
+      "neurips26-7228/e2",
+      "neurips26-4301/e3",
+      "neurips26-7781/e3",
+      "icml26-5949/e2"
+     ]
+    },
+    "stratified-breakdown": {
+     "name": "Stratified performance breakdown",
+     "def": "The score or gain is split by difficulty, domain, density, stage or a context factor to find where effects concentrate.",
+     "include_if": "The same results are re-sliced by an input attribute.",
+     "exclude_if": "New inputs are constructed to create the strata (controlled-input-injection).",
+     "family": "behavioral-diagnostics",
+     "examples": [
+      "iclr26-4047/e8",
+      "neurips26-6504/e3",
+      "neurips26-7781/e5",
+      "icml26-1621/e8"
+     ]
+    },
+    "controlled-input-injection": {
+     "name": "Controlled input injection probe",
+     "def": "Crafted content (distractors, partial guidance, attack payloads, decomposition prompts) is inserted into inputs to test a specific behavioural capacity.",
+     "include_if": "The inputs are deliberately constructed to elicit and measure one behaviour.",
+     "exclude_if": "The goal is graded robustness to generic noise (input-perturbation-stress-test).",
+     "family": "behavioral-diagnostics",
+     "examples": [
+      "iclr26-3769/e1",
+      "iclr26-3769/e2",
+      "neurips26-8717/e4",
+      "icml26-5949/e3"
+     ]
+    },
+    "case-study-walkthrough": {
+     "name": "Qualitative case study / post-mortem",
+     "def": "A small number of trajectories, incidents or attacks are walked through in detail and mapped to explanatory principles.",
+     "include_if": "The evidence is narrative analysis of a few instances.",
+     "exclude_if": "The instances are aggregated into counts (failure-taxonomy).",
+     "family": "behavioral-diagnostics",
+     "examples": [
+      "neurips26-1214/e1",
+      "neurips26-1214/e4",
+      "neurips26-7781/e8",
+      "neurips26-5675/e4"
+     ]
+    },
+    "metric-and-judge-validation": {
+     "name": "Metric or judge agreement with human or ground truth",
+     "def": "Automatic metrics, LLM judges or pipeline detectors are correlated with human labels or held-out ground truth.",
+     "include_if": "The output is an agreement or correlation statistic for an evaluator.",
+     "exclude_if": "A theory-motivated mediator is correlated with performance (targeted-quantity-check).",
+     "family": "measurement-validity",
+     "examples": [
+      "neurips26-3178/e2",
+      "iclr26-1512/e7",
+      "neurips26-5220/e4",
+      "iclr26-4047/e10"
+     ]
+    },
+    "leakage-and-shortcut-control": {
+     "name": "Leakage, contamination and shortcut control",
+     "def": "The design tests whether results come from answer leakage, memorisation, self-sampling bias or shortcut questions.",
+     "include_if": "A named contamination path is measured or removed.",
+     "exclude_if": "A confound inside the method's own mechanism is isolated (confound-isolating-control).",
+     "family": "measurement-validity",
+     "examples": [
+      "iclr26-3769/e3",
+      "iclr26-3769/e8",
+      "icml26-5933/e4",
+      "neurips26-3264/e6"
+     ]
+    },
+    "dataset-characterization-audit": {
+     "name": "Dataset characterization and audit",
+     "def": "Descriptive statistics, difficulty comparisons or manual audits establish the properties and quality of a dataset.",
+     "include_if": "The subject of the experiment is a dataset, not a model.",
+     "exclude_if": "Models are scored on the dataset (many-model-leaderboard).",
+     "family": "measurement-validity",
+     "examples": [
+      "neurips26-5220/e5",
+      "neurips26-4801/e7",
+      "neurips26-3264/e5",
+      "neurips26-3178/e1"
+     ]
+    }
+   }
+  },
+  "claim_type": {
+   "title": "What it tests",
+   "q": "What kind of claim does the experiment test? One primary, optionally one secondary. Do not mirror the design (a head-to-head table is comparative-performance only).",
+   "multi": 2,
+   "labels": {
+    "comparative-performance": {
+     "name": "Better than others",
+     "def": "ours is better than, matches, or is not worse than alternatives"
+    },
+    "efficiency": {
+     "name": "Efficiency",
+     "def": "needs less data, compute, memory, latency or parameters"
+    },
+    "scaling": {
+     "name": "Scaling",
+     "def": "how behaviour changes with scale; a functional form or extrapolation"
+    },
+    "generalization": {
+     "name": "Generalization",
+     "def": "holds on new domains, tasks, lengths, backbones or held-out conditions"
+    },
+    "robustness": {
+     "name": "Robustness",
+     "def": "holds under noise, corruption, attack, seeds or hyperparameters; includes calibration"
+    },
+    "attribution": {
+     "name": "Attribution",
+     "def": "a specific component or choice is responsible for the gain (credit assignment to parts of the method)"
+    },
+    "mechanism": {
+     "name": "Mechanism",
+     "def": "an explanation via internal representations, dynamics or a causal process (why, not which part)"
+    },
+    "theory-validation": {
+     "name": "Theory check",
+     "def": "an empirical check of a theoretical prediction or assumption"
+    },
+    "phenomenon": {
+     "name": "Phenomenon",
+     "def": "an exploratory observation or characterization of a behaviour"
+    },
+    "negative": {
+     "name": "Negative result",
+     "def": "something does not help, fails, or a prior claim does not hold"
+    },
+    "measurement-validity": {
+     "name": "Measurement validity",
+     "def": "the metric, judge, dataset or evaluation itself is valid (agreement with humans, no leakage)"
+    },
+    "safety-security": {
+     "name": "Safety and security",
+     "def": "safety, alignment, attacks, fairness or privacy properties"
+    },
+    "human-quality": {
+     "name": "Human judgement",
+     "def": "people prefer or rate the output higher"
+    }
+   }
+  },
+  "controls": {
+   "title": "Controls",
+   "q": "Which controls does the paper STATE for this experiment? Only list what is stated; this axis records rigour.",
+   "multi": 8,
+   "labels": {
+    "matched-compute": {
+     "name": "Matched compute",
+     "def": "FLOPs, time, tokens, steps or calls held equal across arms"
+    },
+    "matched-capacity": {
+     "name": "Matched capacity",
+     "def": "parameters or model size held equal"
+    },
+    "matched-data": {
+     "name": "Matched data",
+     "def": "the same training data across arms"
+    },
+    "matched-tuning": {
+     "name": "Matched tuning",
+     "def": "baselines tuned with the same budget or protocol"
+    },
+    "same-backbone": {
+     "name": "Same backbone",
+     "def": "all arms share a base model or architecture"
+    },
+    "official-baselines": {
+     "name": "Official baselines",
+     "def": "baselines run from official code or reported numbers with matched settings"
+    },
+    "random-control": {
+     "name": "Random control",
+     "def": "a random or null replacement (random subspace, shuffled labels, random features)"
+    },
+    "oracle-bound": {
+     "name": "Oracle or bound",
+     "def": "an oracle, upper bound or trivial lower-bound baseline"
+    },
+    "multiple-seeds": {
+     "name": "Multiple seeds",
+     "def": "repeated runs with variance reported"
+    },
+    "significance": {
+     "name": "Significance test",
+     "def": "statistical test, confidence intervals or bootstrap"
+    },
+    "held-out-test": {
+     "name": "Held-out test",
+     "def": "selection on validation data, final results on untouched test data"
+    },
+    "human-agreement": {
+     "name": "Human agreement",
+     "def": "automatic scores validated against human labels"
+    }
+   }
+  },
+  "evidence_form": {
+   "title": "How results are shown",
+   "q": "How is the result shown?",
+   "multi": 3,
+   "labels": {
+    "table": {
+     "name": "Table",
+     "def": "results table"
+    },
+    "curve": {
+     "name": "Curve",
+     "def": "metric vs a swept variable"
+    },
+    "scaling-fit": {
+     "name": "Scaling fit",
+     "def": "fitted scaling law"
+    },
+    "pareto": {
+     "name": "Pareto",
+     "def": "quality vs cost frontier"
+    },
+    "distribution": {
+     "name": "Distribution",
+     "def": "distribution, variance or box/violin plot"
+    },
+    "statistical-test": {
+     "name": "Statistical test",
+     "def": "significance test or confidence intervals"
+    },
+    "qualitative": {
+     "name": "Qualitative",
+     "def": "examples or samples"
+    },
+    "visualization": {
+     "name": "Visualization",
+     "def": "attention, embedding, attribution or internal visualization"
+    },
+    "theory-overlay": {
+     "name": "Theory overlay",
+     "def": "empirical results overlaid on a theoretical prediction"
+    }
+   }
+  },
+  "role": {
+   "title": "Role in the paper",
+   "q": "What role does the experiment play in the paper?",
+   "multi": 1,
+   "labels": {
+    "main": {
+     "name": "Main",
+     "def": "a headline result"
+    },
+    "ablation": {
+     "name": "Ablation",
+     "def": "isolates components"
+    },
+    "analysis": {
+     "name": "Analysis",
+     "def": "understanding or diagnosis"
+    },
+    "sanity": {
+     "name": "Sanity",
+     "def": "a sanity check or diagnostic"
+    },
+    "appendix": {
+     "name": "Appendix",
+     "def": "only in the appendix"
+    }
+   }
+  }
+ },
+ "changes_from_v0": [
+  "'manipulation' replaced by data-driven design patterns (9 families, 33 patterns); v0 manipulation labels overlapped (hyperparameter vs scale sweep, ablation vs method swap)",
+  "new 'controls' axis records what is held fixed, which separates rigorous from loose designs",
+  "claim types: efficiency merged; generalization merged; calibration into robustness; new measurement-validity; at most one secondary label"
+ ]
+}
