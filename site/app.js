@@ -36,7 +36,7 @@ let INDEX = null;
 async function loadIndex() { if (!INDEX) INDEX = await (await fetch("index.json")).json(); return INDEX; }
 
 function chrome(active) {
-  const nav = [["figures", "./", "Figures"], ["roles", "roles.html", "Roles"], ["use", "use.html", "Use it with an agent"]];
+  const nav = [["figures", "./", "Figures"], ["roles", "roles.html", "Roles"], ["example", "example.html", "Example run"], ["use", "use.html", "Use it with an agent"]];
   document.getElementById("top").outerHTML = `<header class="top"><a class="brand" href="./">Fig1 Atlas</a><nav aria-label="Main">
     ${nav.map(([k, h, t]) => `<a href="${h}"${k === active ? ' aria-current="page"' : ""}>${t}</a>`).join("")}<a href="${REPO}">GitHub</a></nav></header>`;
   document.getElementById("foot").outerHTML = `<footer class="foot"><p>Figures remain © their authors. Images are shown only for papers under an open license (CC BY, CC BY-SA, CC0, CC BY-NC, CC BY-NC-SA); every other paper has a text entry and a link. Roles, claims and descriptions are written by this project and can be wrong.</p>
@@ -82,7 +82,7 @@ function masonry(grid) {
 }
 
 async function gallery() {
-  promptBox(document.getElementById("prompt"), PROMPT, "Paste into Claude Code or Codex", `<a href="use.html">What the agent does with it</a>`);
+  promptBox(document.getElementById("prompt"), PROMPT, "Paste into Claude Code or Codex", `<a href="example.html">Watch a recorded run, from draft to figure</a>`);
   const grid = document.getElementById("grid"), status = document.getElementById("status"), more = document.getElementById("more"), rail = document.getElementById("rail");
   let data;
   try { data = await loadIndex(); } catch { status.textContent = "The figure index did not load. Reload the page to try again."; return; }
@@ -196,4 +196,19 @@ async function roles() {
       <div class="row">${ex.map(r => entry(r)).join("")}</div>
       ${all.length ? `<p style="margin-top:22px"><a href="./?role=${k}">See all ${num(all.length)} ${v.name.toLowerCase()} figures</a></p>` : ""}</section>`;
   }).join("");
+}
+
+// Example page: reveal the recorded steps one at a time.
+function replay() {
+  const btn = document.getElementById("play"), steps = [...document.querySelectorAll("#tl > li")]; let timer = null;
+  const calm = matchMedia("(prefers-reduced-motion: reduce)").matches;
+  const stop = () => { clearTimeout(timer); timer = null; steps.forEach(s => s.hidden = false); btn.textContent = "Play step by step"; };
+  btn.onclick = () => {
+    if (timer) return stop();
+    steps.forEach(s => s.hidden = true); btn.textContent = "Show everything"; let i = 0;
+    const next = () => { if (i >= steps.length) return stop(); const s = steps[i++]; s.hidden = false;
+      s.scrollIntoView({ behavior: calm ? "auto" : "smooth", block: i === 1 ? "center" : "start" });
+      timer = setTimeout(next, s.classList.contains("answer") ? 5200 : 2400); };
+    next();
+  };
 }

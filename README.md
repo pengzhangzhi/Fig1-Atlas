@@ -37,29 +37,25 @@ The agent then:
 
 No API key and no packages: the search is plain Python over a text index.
 
-<details>
-<summary><b>Example of what comes back</b> (a test draft on self-correcting masked diffusion language models)</summary>
+## Example: a draft becomes a figure in two messages
 
-The agent returned five templates with links and panel mappings, then this:
+A recorded Claude Code run on a made-up test paper. **[Watch the replay](https://pengzhangzhi.github.io/Fig1-Atlas/example.html)** to see every step with the figures the agent looked at.
 
-> **Recommendation: #1 (PRISM's layout), with the right panel swapped for your results.**
-> - Two aligned token timelines make "frozen forever" against "revisable" visible at a glance.
-> - Your best evidence is that most of the gain comes from the first 20% of steps. That fits the timeline
->   directly: the wrongly committed token sits near the top.
-> - Your method has no training stage, so the right-hand panel goes to the numbers.
+<p align="center">
+  <a href="https://pengzhangzhi.github.io/Fig1-Atlas/example.html"><img src="assets/replay.gif" alt="Replay of the run: the prompt, the searches, eight figures viewed, four templates proposed, and the drafted figure" width="820"></a>
+</p>
 
-```text
-(a) Standard MDLM          | (b) ReMask (ours)             | (c) Results
-step 0   [M][M][M][M]      | [M][M][M][M]                  | PPL  42.1 → 27.8
-step 5   [M][eat][M][..]   | [M][eat][M][..]               | (bars, 64 steps)
-         wrong, committed  |  conf 0.2 ↓ re-mask (red)     | pass@1 31% → 44%
-step 30  [..][eat][..]     | [..][M][..] → [have]          | "same NFE" tag
-final    ✗ error persists  | ✓ corrected                   | gain from first 20%
-```
+**You give it** a rough draft, here [an abstract and three lines of notes](examples/remask/draft.md), and the prompt above.
 
-> Which one should I draft? Also tell me what output you want: matplotlib/SVG, TikZ, or a slide-style PNG.
+**The agent comes back** in about 95 seconds with [four templates and a recommendation](examples/remask/answer-1.md). It decided the figure must argue "prior sampling freezes early mistakes, ours revises them", searched the atlas three ways, read 16 entries and looked at 8 figures.
 
-</details>
+**You pick**: "1 as recommended. Use matplotlib."
+
+**You get** this, about two minutes later, as an [editable script](examples/remask/fig1_remask.py), a PDF and a PNG. The agent also says which parts are placeholders for your real data and which paper the layout came from.
+
+<p align="center">
+  <img src="examples/remask/fig1_remask.png" alt="The drafted Figure 1: two token grids. In standard sampling a wrong token stays frozen; with ReMask it is re-masked and corrected. A strip below gives the headline numbers." width="820">
+</p>
 
 ## Why "by what they argue"
 

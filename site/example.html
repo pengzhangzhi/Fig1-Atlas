@@ -1,0 +1,156 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Example run · Fig1 Atlas</title>
+<meta name="description" content="Figure 1s from accepted ICLR, ICML and NeurIPS 2026 papers, filed by what each figure argues. Find one that makes your paper's argument and borrow its layout.">
+<meta property="og:title" content="Fig1 Atlas">
+<meta property="og:description" content="Figure 1s from accepted ICLR, ICML and NeurIPS 2026 papers, filed by what each figure argues. Find one that makes your paper's argument and borrow its layout.">
+<meta property="og:image" content="https://pengzhangzhi.github.io/Fig1-Atlas/og.png">
+<meta property="og:url" content="https://pengzhangzhi.github.io/Fig1-Atlas/">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono&family=IBM+Plex+Sans:wght@400;500;600&family=STIX+Two+Text:ital,wght@0,400;0,600;1,400&display=swap">
+<link rel="stylesheet" href="style.css">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 16 16%22%3E%3Crect width=%2216%22 height=%2216%22 rx=%222%22 fill=%22%231a1b1a%22/%3E%3Crect x=%223%22 y=%224%22 width=%2210%22 height=%226%22 fill=%22%23fff%22/%3E%3Crect x=%223%22 y=%2211%22 width=%226%22 height=%221.6%22 fill=%22%23ffe45c%22/%3E%3C/svg%3E">
+</head>
+<body>
+<div class="wrap">
+<div id="top"></div>
+<main class="doc replay">
+<h1>From a draft to a Figure&nbsp;1 in two messages</h1>
+<p class="lede">A recorded Claude Code session, shown step by step. The agent took 95 seconds to come back with templates and about two minutes to draft the figure. The draft is a made-up test paper, so its numbers are not real results.</p>
+
+<section class="inout">
+<div><h2>You give it</h2>
+<div class="sheet"><pre># Remask, Don&#x27;t Regret: Self-Correcting Masked Diffusion Language Models
+
+## Abstract
+Masked diffusion language models (MDLMs) generate text by iteratively unmasking tokens, but once a token is
+unmasked it is frozen: early mistakes can never be revised and they compound as later tokens condition on them.
+We introduce ReMask, a training-free sampler that lets an MDLM undo its own decisions. At each step ReMask scores
+every already-unmasked token with the model&#x27;s own posterior, re-masks the lowest-confidence ones, and re-predicts
+them with the richer context now available. A simple budget schedule keeps the number of network evaluations
+unchanged. On OpenWebText, ReMask lowers generative perplexity from 42.1 to 27.8 at 64 steps without reducing
+entropy, and on code infilling it raises pass@1 from 31% to 44%. We show that most of the gain comes from
+correcting tokens committed in the first 20% of steps.
+
+## Method (notes)
+- Standard MDLM sampling: mask -&gt; unmask by confidence -&gt; token frozen forever.
+- ReMask: after each unmask step, compute per-token posterior confidence, re-mask bottom-k, continue.
+- Budget schedule: k_t decays linearly to 0; total NFE equal to baseline.
+</pre></div>
+<p class="under">A rough draft: an abstract and three lines of notes. <a href="https://github.com/pengzhangzhi/Fig1-Atlas/blob/main/examples/remask/draft.md">draft.md</a></p></div>
+<div><h2>You get back</h2>
+<div class="plate"><img src="example/fig1_remask.png" alt="The drafted Figure 1: two token grids side by side. In standard sampling a wrong token stays frozen through every step; with ReMask it is re-masked and corrected. A strip below gives the budget schedule and the headline numbers." width="2160" height="1035"></div>
+<p class="under">A Figure 1 as an editable matplotlib script, a PDF and a PNG. <a href="https://github.com/pengzhangzhi/Fig1-Atlas/tree/main/examples/remask">All files from this run</a></p></div>
+</section>
+
+<div class="replayhead"><h2>The replay</h2><button class="btn" type="button" id="play">Play step by step</button></div>
+<ol class="tl" id="tl">
+
+<li class="you"><h3><span>You</span> Paste the prompt</h3>
+<pre class="say">I&#x27;m writing a paper and need a Figure 1.
+My draft: draft.md
+
+Use Fig1 Atlas to design it: clone https://github.com/pengzhangzhi/Fig1-Atlas and follow its SKILL.md.
+Show me 3 to 5 Figure 1s from accepted papers that make the same kind of argument as mine, recommend one, and sketch how my content fills its layout. After I pick, draft the figure.</pre></li>
+
+<li><h3><span>Agent</span> Gets the atlas and reads its instructions</h3>
+<pre class="cmd">git clone --depth 1 https://github.com/pengzhangzhi/Fig1-Atlas
+cat SKILL.md references/roles.md</pre></li>
+
+<li><h3><span>Agent</span> Decides what the figure has to argue</h3>
+<blockquote>Standard MDLM sampling freezes every unmasked token, so early mistakes survive and compound; ReMask lets the same model re-mask and fix them at the same NFE. That is a <code>prior-vs-ours</code> figure with a <code>problem-setup</code> flavour.</blockquote></li>
+
+<li><h3><span>Agent</span> Checks which tags the atlas uses, then searches three ways</h3>
+<pre class="cmd">python3 scripts/search.py --list-tags mask
+<i>masked-diffusion(49) masking(24) … remasking(9) … re-masking(2) …</i>
+
+<i># same argument, related topic</i>
+python3 scripts/search.py --role prior-vs-ours,problem-setup --tags self-correction,remasking,error-accumulation,masked-diffusion,…
+<i># 6269 hits of 17563 papers, showing 30
+icml26-0239 | ICML 2026 poster | pipeline/prior-vs-ours | Fine-Tuning Masked Diffusion for Provable Self-Correction | Standard inference fixes tokens once unmasked; adding a learned per-token quality score lets the model detect and remask mistakes…
+icml26-4984 | ICML 2026 poster | prior-vs-ours/pipeline | Guided Star-Shaped Masked Diffusion | Prior samplers make irreversible or undirected corrections; ours adds a learned error predictor…</i>
+
+<i># closest papers, however their figure argues</i>
+python3 scripts/search.py --tags remasking,re-masking,self-correction,masked-diffusion --q "remask low-confidence tokens revise frozen unmasked"
+<i># the same kind of figure from any field</i>
+python3 scripts/search.py --role prior-vs-ours --role-only --hosted --tags error-accumulation,error-correction,iterative-refinement,…</pre></li>
+
+<li><h3><span>Agent</span> Reads 16 shortlisted entries</h3>
+<pre class="cmd">python3 scripts/show.py icml26-0239 icml26-4984 iclr26-1039 iclr26-1449 icml26-5222 …
+<i>== icml26-0239 | ICML 2026 poster | Fine-Tuning Masked Diffusion for Provable Self-Correction
+role: pipeline (+prior-vs-ours) | style: colorful, icon-heavy, minimal
+layout: 3 panels, left-to-right; dashed divider, green arrow from vanilla to ours, training box at right
+description: Three panels. The left panel, 'MDM Vanilla Inference', shows rows of token boxes going top to bottom through an MDM block … A wrong token, 'eat', stays fixed to the end. …</i></pre></li>
+
+<li><h3><span>Agent</span> Downloads eight figures and looks at each one</h3>
+<pre class="cmd">python3 scripts/fetch_fig.py iclr26-1449 icml26-0239 iclr26-1039 icml26-5222 neurips26-1599 icml26-0825 icml26-4984 icml26-0140</pre>
+<div class="row looked"><a class="entry" href="paper.html?id=iclr26-1449" style="--ar:3.2"><span class="plate" style="aspect-ratio:4.71"><img loading="lazy" src="https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/thumbs/iclr26-1449.webp" alt="Figure 1 of Soft-Masked Diffusion Language Models"></span><span class="src"><span class="ti">Soft-Masked Diffusion Language Models</span>ICLR 2026</span></a><a class="entry" href="paper.html?id=icml26-0239" style="--ar:3.12"><span class="plate" style="aspect-ratio:3.12"><img loading="lazy" src="https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/thumbs/icml26-0239.webp" alt="Figure 1 of Fine-Tuning Masked Diffusion for Provable Self-Correction"></span><span class="src"><span class="ti">Fine-Tuning Masked Diffusion for Provable Self-Correction</span>ICML 2026</span></a><a class="entry" href="paper.html?id=iclr26-1039" style="--ar:2.17"><span class="plate" style="aspect-ratio:2.17"><img loading="lazy" src="https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/thumbs/iclr26-1039.webp" alt="Figure 1 of Don&#x27;t Settle Too Early: Self-Reflective Remasking for Diffusion Language Models"></span><span class="src"><span class="ti">Don&#x27;t Settle Too Early: Self-Reflective Remasking for Diffusion Language Models</span>ICLR 2026</span></a><a class="entry" href="paper.html?id=icml26-5222" style="--ar:3.2"><span class="plate" style="aspect-ratio:3.81"><img loading="lazy" src="https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/thumbs/icml26-5222.webp" alt="Figure 1 of Early Decisions Matter: Proximity Bias and Initial Trajectory Shaping in Non-Autoregressive Diffusion Language Models"></span><span class="src"><span class="ti">Early Decisions Matter: Proximity Bias and Initial Trajectory Shaping in Non-Autoregressive Diffusion Language Models</span>ICML 2026</span></a><a class="entry" href="paper.html?id=neurips26-1599" style="--ar:1.57"><span class="plate" style="aspect-ratio:1.57"><img loading="lazy" src="https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/thumbs/neurips26-1599.webp" alt="Figure 1 of On the Error Correcting Effects of Stochasticity in Discrete Diffusion"></span><span class="src"><span class="ti">On the Error Correcting Effects of Stochasticity in Discrete Diffusion</span>NeurIPS 2026</span></a><a class="entry" href="paper.html?id=icml26-0825" style="--ar:2.1"><span class="plate" style="aspect-ratio:2.1"><img loading="lazy" src="https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/thumbs/icml26-0825.webp" alt="Figure 1 of Rex: A Family of Reversible Exponential (Stochastic) Runge-Kutta Solvers"></span><span class="src"><span class="ti">Rex: A Family of Reversible Exponential (Stochastic) Runge-Kutta Solvers</span>ICML 2026</span></a><a class="entry" href="paper.html?id=icml26-4984" style="--ar:3.14"><span class="plate" style="aspect-ratio:3.14"><img loading="lazy" src="https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/thumbs/icml26-4984.webp" alt="Figure 1 of Guided Star-Shaped Masked Diffusion"></span><span class="src"><span class="ti">Guided Star-Shaped Masked Diffusion</span>ICML 2026</span></a><a class="entry" href="paper.html?id=icml26-0140" style="--ar:3.2"><span class="plate" style="aspect-ratio:3.38"><img loading="lazy" src="https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/thumbs/icml26-0140.webp" alt="Figure 1 of Improving Sampling for Masked Diffusion Models via Information Gain"></span><span class="src"><span class="ti">Improving Sampling for Masked Diffusion Models via Information Gain</span>ICML 2026</span></a></div></li>
+
+<li class="answer"><h3><span>Agent</span> Comes back with four templates and a pick</h3>
+<article class="tpl"><a class="plate" href="paper.html?id=iclr26-1449" style="aspect-ratio:4.71"><img loading="lazy" src="https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/thumbs/iclr26-1449.webp" alt="Figure 1 of Soft-Masked Diffusion Language Models"></a>
+<div><h4>1. Soft-Masked Diffusion Language Models <span>ICLR 2026</span></h4>
+<dl><dt>Layout</dt><dd>Two token grids side by side, rows are decoding iterations, with a vertical “decoding iterations” arrow. The baseline's final row has one red wrong token; the “this work” grid ends all green.</dd><dt>Why it fits</dt><dd>It makes your argument (the baseline commits an error and keeps it; ours does not) with a different mechanism, so you can borrow the layout without resembling a competitor.</dd><dt>Mapping</dt><dd>(a) “Standard MDLM: unmask → frozen”, where a wrong token committed in row 1 is carried unchanged to the last row. (b) “ReMask: unmask → score → re-mask → re-predict”, where the same token is flagged, returned to [M], and refilled correctly.</dd></dl></div></article>
+<article class="tpl"><a class="plate" href="paper.html?id=icml26-5222" style="aspect-ratio:3.81"><img loading="lazy" src="https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/thumbs/icml26-5222.webp" alt="Figure 1 of Early Decisions Matter: Proximity Bias and Initial Trajectory Shaping in Non-Autoregressive Diffusion Language Models"></a>
+<div><h4>2. Early Decisions Matter <span>ICML 2026</span></h4>
+<dl><dt>Layout</dt><dd>Two panels with rows t=0..4, pink tokens against green, and small confidence bar charts above the slots.</dd><dt>Why it fits</dt><dd>Its claim is that early choices decide the trajectory, which matches your finding that most of the gain comes from the first 20% of steps.</dd><dt>Mapping</dt><dd>The same grids as template 1, with posterior-confidence bars above already-unmasked tokens. The lowest bar is the one that gets re-masked.</dd></dl></div></article>
+<article class="tpl"><a class="plate" href="paper.html?id=neurips26-1599" style="aspect-ratio:1.57"><img loading="lazy" src="https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/thumbs/neurips26-1599.webp" alt="Figure 1 of On the Error Correcting Effects of Stochasticity in Discrete Diffusion"></a>
+<div><h4>3. On the Error Correcting Effects of Stochasticity in Discrete Diffusion <span>NeurIPS 2026</span></h4>
+<dl><dt>Layout</dt><dd>Mechanism cartoon on top, step timelines where the proposed sampler has arcs jumping backward, and quality-vs-NFE plots at the bottom.</dd><dt>Why it fits</dt><dd>It is the only one that shows “correction at no extra network evaluations” together with the headline number.</dd><dt>Mapping</dt><dd>Timeline (a) is MDLM with forward-only arcs. Timeline (b) is ReMask with small backward arcs whose size shrinks linearly to 0. Below, generative perplexity vs steps with 42.1 → 27.8 marked at 64.</dd></dl></div></article>
+<article class="tpl"><a class="plate" href="paper.html?id=icml26-0825" style="aspect-ratio:2.1"><img loading="lazy" src="https://huggingface.co/datasets/fredzzp/fig1-atlas/resolve/main/thumbs/icml26-0825.webp" alt="Figure 1 of Rex: A Family of Reversible Exponential (Stochastic) Runge-Kutta Solvers"></a>
+<div><h4>4. Rex: Reversible Exponential Runge-Kutta Solvers <span>ICML 2026</span></h4>
+<dl><dt>Layout</dt><dd>Two minimal schematic plots on matching axes, with a red “ε” gap badge against a green “ε=0” badge.</dd><dt>Why it fits</dt><dd>It is the cleanest “error accumulates vs. doesn't” picture.</dd><dt>Mapping</dt><dd>x = sampling step, y = number of wrong committed tokens. The frozen curve only rises; the ReMask curve bends back down. It would need a measured error-vs-step curve to be honest, and it hides the mechanism.</dd></dl></div></article>
+<div class="notes">
+<p><b>Closest prior work, weak templates to copy.</b> PRISM (<a href="paper.html?id=icml26-0239">icml26-0239</a>) and RemeDi (<a href="paper.html?id=iclr26-1039">iclr26-1039</a>) draw almost exactly your idea. Reviewers will have them in mind, so your figure should look different and make “training-free, same frozen model, same NFE” visible.</p>
+<p><b>Recommendation: template 1, with two borrowings.</b> Use the Soft-Masked two-grid layout as the body. Add the confidence bars from template 2 and a thin budget/NFE strip from template 3 along the bottom. The grid shows both the failure and the fix in one glance, and the strip carries the claim that separates you from PRISM and RemeDi.</p>
+</div>
+<div class="scroll"><pre class="sketch"> (a) Standard MDLM: unmask → frozen          (b) ReMask (ours): unmask → score → re-mask
+ step                                         step
+  0 │ [M]  [M]   [M]   [M]  [M]   [M] [M]      0 │ [M]  [M]   [M]     [M]  [M]   [M] [M]
+  1 │ The  chef  flew✗ [M]  [M]   [M] [M]      1 │ The  chef  flew    [M]  [M]   [M] [M]
+    │            frozen                           │           ▁ low posterior conf.
+  2 │ The  chef  flew✗ the  pasta [M] [M]      2 │ The  chef  [M]↺    the  pasta [M] [M]
+  3 │ The  chef  flew✗ the  pasta in  [M]      3 │ The  chef  cooked  the  pasta in  [M]
+  T ▼ The  chef  flew✗ the  pasta in  a pot    T ▼ The  chef  cooked✓ the  pasta in  a pot
+      └ early error persists, later tokens         └ re-predicted with richer context
+        condition on it
+ ───────────────────────────────────────────────────────────────────────────────────────
+ re-mask budget k_t: ▇▆▅▄▃▂▁ → 0   |  NFE: 64 = 64  |  Gen. PPL 42.1 → 27.8  |  pass@1 31% → 44%</pre></div>
+<div class="notes">
+<p><b>Things to settle in the paper.</b> “Re-evaluating Confidence Remasking in Masked Diffusion Language Models” (NeurIPS 2026) reports that confidence remasking gives little benefit at matched NFE. Your equal-NFE claim will be read against it.</p>
+<p>Which template do you want, and in what format: TikZ, matplotlib, or SVG?</p>
+</div>
+<p class="under">Shortened. <a href="https://github.com/pengzhangzhi/Fig1-Atlas/blob/main/examples/remask/answer-1.md">The full answer</a></p></li>
+
+<li class="you"><h3><span>You</span> Pick one</h3>
+<pre class="say">1 as recommended. Use matplotlib so I can tweak it in Python, and save a PDF and a PNG next to draft.md.</pre></li>
+
+<li><h3><span>Agent</span> Writes the script, renders it, looks at the render and fixes it</h3>
+<pre class="cmd">python3 fig1_remask.py
+<i># reads fig1_remask.png, moves a label that collided with the confidence bars, renders again</i>
+python3 fig1_remask.py</pre></li>
+
+<li class="answer"><h3><span>Agent</span> Hands over the figure</h3>
+<div class="plate"><img loading="lazy" src="example/fig1_remask.png" alt="The drafted Figure 1" width="2160" height="1035"></div>
+<div class="notes">
+<p><b>Three things in it are placeholders, not your data.</b> The sentence (“The chef flew/cooked the pasta in a pot”) is one I made up; swap in a real sample where ReMask fixes an early token. The confidence bars have illustrative heights. The budget bars are a schematic of linear decay, not your actual schedule values.</p>
+<p>To tweak it, edit the <code>EDIT</code> block at the top of the script and rerun <code>python3 fig1_remask.py</code>.</p>
+<p>The layout is adapted from Figure 1 of “Soft-Masked Diffusion Language Models” (ICLR 2026), with the confidence bars borrowed from “Early Decisions Matter” (ICML 2026). Only the layout is borrowed, not the artwork.</p>
+</div>
+<p class="under"><a href="https://github.com/pengzhangzhi/Fig1-Atlas/blob/main/examples/remask/fig1_remask.py">fig1_remask.py</a>, <a href="https://github.com/pengzhangzhi/Fig1-Atlas/blob/main/examples/remask/fig1_remask.pdf">fig1_remask.pdf</a>, <a href="https://github.com/pengzhangzhi/Fig1-Atlas/blob/main/examples/remask/answer-2.md">the full answer</a></p></li>
+</ol>
+
+<h2>Try it on your paper</h2>
+<div class="prompt" id="prompt"></div>
+</main>
+<noscript><p>This site needs JavaScript to load the figures. The same data and an agent workflow are in the <a href="https://github.com/pengzhangzhi/Fig1-Atlas">GitHub repo</a>.</p></noscript>
+<div id="foot"></div>
+</div>
+<script src="app.js"></script>
+<script>chrome("example"); promptBox(document.getElementById("prompt"), PROMPT); replay()</script>
+</body>
+</html>
