@@ -9,7 +9,7 @@ scripts/build_site.py inside the GitHub Pages workflow.
 """
 import argparse, json, shutil
 from pathlib import Path
-from common import CACHE, REPO, read_jsonl, write_jsonl, load_matched
+from common import CACHE, REPO, read_jsonl, write_jsonl, load_matched, final_caption
 
 HF_REPO = "fredzzp/fig1-atlas"
 HF_BASE = f"https://huggingface.co/datasets/{HF_REPO}/resolve/main"
@@ -38,12 +38,13 @@ def build(keys):
             host = bool(L.get("host"))
             aid = p.get("arxiv_id")
             pr = proc.get(pid, {})
+            cap, cap_src = final_caption(e)
             meta = {
                 "id": pid, "title": p["title"], "authors": p["authors"], "venue": p["venue"], "tier": p["tier"],
                 "track": p["track"], "topic": p.get("topic"),
                 "role": a["role"], "role2": a.get("role2"), "claim": a["claim"], "layout": a["layout"],
                 "tags": a["tags"], "style": a["style"],
-                "description": a["description"], "caption": e.get("caption"), "caption_source": e.get("caption_source"),
+                "description": a["description"], "caption": cap, "caption_source": cap_src,
                 "abstract": p.get("abstract"),
                 "links": {"openreview": f"https://openreview.net/forum?id={p['openreview_id']}",
                           "arxiv": f"https://arxiv.org/abs/{aid}" if aid else None,

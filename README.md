@@ -140,4 +140,6 @@ Figures remain © their authors. Images are hosted only for papers whose arXiv l
 CC BY-NC or CC BY-NC-SA, each with attribution; NC images are for non-commercial use, and so is this project.
 Borrow a layout, not the artwork, and credit the paper you borrowed from.
 
+The code and the project-written annotations are under the [MIT license](LICENSE).
+
 **Authors:** to remove a figure or add one, [open an issue](https://github.com/pengzhangzhi/Fig1-Atlas/issues).

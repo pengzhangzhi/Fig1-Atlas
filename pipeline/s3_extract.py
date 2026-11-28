@@ -171,6 +171,27 @@ def clean_caption(c):
     return " ".join(c.split())
 
 
+def full_caption_text(page, first, want_len=None):
+    """A PDF caption is often split into several text blocks. Starting from its first block (as text),
+    append the blocks directly below it in the same column. Returns the joined text."""
+    blocks = sorted((b for b in page.get_text("blocks") if b[6] == 0 and b[4].strip()), key=lambda b: (b[1], b[0]))
+    start = next((b for b in blocks if " ".join(b[4].split()) == first), None)
+    if start is None:
+        return first
+    parts, cur, x0, x1 = [first], start, start[0], start[2]
+    while True:
+        if want_len and sum(map(len, parts)) > 1.15 * want_len:
+            break
+        nxt = [b for b in blocks if b is not cur and -2 <= b[1] - cur[3] < 5
+               and min(b[2], x1) - max(b[0], x0) > 0.5 * min(b[2] - b[0], x1 - x0)]
+        if not nxt or ANY_CAP_RE.match(nxt[0][4]):
+            break
+        cur = nxt[0]; parts.append(" ".join(cur[4].split()))
+        if len(parts) > 12:
+            break
+    return " ".join(parts)
+
+
 # ---------------------------------------------------------------- PDF side
 ANY_CAP_RE = re.compile(r"^\s*(?:Figure|Fig\.?|FIGURE|FIG\.)\s*(?:[0-9]+(?:\.[0-9]+)?|[IVX]+)(?:\s*[:.|\-–—]|\s+(?=[A-Z(\[]))")
 
@@ -465,6 +486,11 @@ def process(p, s):
         out["status"] = "bad_pdf"; return out
     pno, cap, cap_pdf = find_caption_block(doc, (lt or {}).get("caption_latex"))
     out["caption_pdf"] = cap_pdf
+    if cap_pdf and pno is not None:
+        want = len(clean_caption(lt["caption_latex"])) if lt and lt.get("caption_latex") else None
+        full = full_caption_text(doc[pno], cap_pdf, want)
+        if full != cap_pdf:
+            out["caption_pdf_full"] = full
     if lt and lt.get("caption_latex"):
         out["caption_latex"] = lt["caption_latex"]
         out["caption"] = clean_caption(lt["caption_latex"])

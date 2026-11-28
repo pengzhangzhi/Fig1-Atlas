@@ -67,3 +67,36 @@ def load_matched(key):
         if m and not r.get("arxiv_id"):
             r.update(arxiv_id=m["arxiv_id"], license=m.get("license"), match_how=m.get("how"))
     return rows
+
+
+_CAP_PREFIX = re.compile(r"^\s*(?:Figure|Fig\.?|FIGURE|FIG\.)\s*(?:[0-9]+(?:\.[0-9]+)?|[IVX]+)\s*[:.|\-–—]?\s*")
+_TEX_LEFT = re.compile(r"[\\${}]")
+
+
+def _detex(c):
+    """Formatting commands out, text kept. Math and paper-specific macros stay as written."""
+    c = re.sub(r"\\(?:label|labelcref|cref|Cref|ref|eqref|autoref|cite[a-z]*)\*?\{[^}]*\}", "[ref]", c)
+    c = re.sub(r"\\(?:textcolor|color)\{[^}]*\}", "", c)
+    c = re.sub(r"\\(?:large|bfseries|itshape|bf|it|em|newline|linebreak|par)(?![a-zA-Z])\s*", " ", c)
+    for _ in range(3):
+        c = re.sub(r"\\(?:text[a-z]{2}|emph|underline|mbox)\{([^{}]*)\}", r"\1", c)
+        c = re.sub(r"(?<![\\a-zA-Z^_}])\{([^{}$\\]*)\}", r"\1", c)       # bare grouping braces
+    return " ".join(c.split())
+
+
+def final_caption(e):
+    """The caption to publish for an extracted record. The LaTeX caption is kept when it cleans up to plain
+    text; if macros or math are left over, the caption text of the PDF (what the reader sees) is used."""
+    cap, pdf = e.get("caption") or "", e.get("caption_pdf_full") or e.get("caption_pdf") or ""
+    cap = re.sub(r"\\(?:small|footnotesize|scriptsize|tiny|normalsize|centering|noindent)(?![a-zA-Z])\s*", "", cap)
+    cap = re.sub(r"\\(?:vspace|hspace)\*?\{[^}]*\}|\\looseness=?-?\d+", "", cap)
+    cap = re.sub(r"^\{([^{}]*)\}$", r"\1", cap.strip())
+    cap = _detex(cap)
+    if e.get("caption_source") == "pdf" or not _TEX_LEFT.search(cap):
+        return cap or None, e.get("caption_source")
+    body = _CAP_PREFIX.sub("", " ".join(pdf.split()), count=1)
+    body = re.sub(r"([a-z]{2})- ([a-z]{2})", r"\1\2", body)      # words hyphenated across lines
+    plain = re.sub(r"\$[^$]*\$|\\[a-zA-Z]+|[{}]", " ", cap)      # the words of the LaTeX caption, to judge completeness
+    if len(body) >= 0.6 * len(" ".join(plain.split())) and len(body) >= 20:
+        return body, "pdf"
+    return cap or None, e.get("caption_source")
